@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 import emailjs from '@emailjs/browser'
 import { prepagas } from '@/lib/data/prepagas'
@@ -212,6 +212,104 @@ function NextBtn({ onClick, disabled = false, label = 'Siguiente →' }: { onCli
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
+// ─── ZonaStep ─────────────────────────────────────────────────────────────────
+function ZonaStep({ onSelect }: { onSelect: (p: Provincia) => void }) {
+  const [open, setOpen] = useState(false)
+  const [selected, setSelected] = useState<Provincia | null>(null)
+  const ref = React.useRef<HTMLDivElement>(null)
+
+  // Cerrar al click fuera
+  React.useEffect(() => {
+    function handler(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  function handleSelect(prov: Provincia) {
+    setSelected(prov)
+    setOpen(false)
+    setTimeout(() => onSelect(prov), 180) // pequeña pausa para que se vea la selección
+  }
+
+  return (
+    <div>
+      <ProgressBar step="zona" />
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">¿Desde dónde buscás cobertura?</h2>
+        <p className="text-sm text-gray-500">Las prepagas disponibles varían según tu provincia</p>
+      </div>
+
+      {/* Dropdown */}
+      <div ref={ref} className="relative max-w-sm mx-auto">
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className={`w-full flex items-center gap-3 px-5 py-4 rounded-2xl border-2 transition-all text-left ${
+            open
+              ? 'border-[#E8002D] bg-red-50 shadow-md'
+              : 'border-gray-200 bg-white hover:border-red-300 hover:shadow-sm'
+          }`}
+        >
+          {/* GPS icon */}
+          <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
+            open ? 'bg-[#E8002D]' : 'bg-red-50'
+          }`}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}
+              className={`w-5 h-5 ${open ? 'text-white' : 'text-[#E8002D]'}`}>
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+
+          {/* Label */}
+          <span className={`flex-1 font-semibold text-base transition-colors ${
+            selected ? 'text-gray-900' : 'text-gray-400'
+          }`}>
+            {selected ? selected.nombre : 'Seleccioná tu provincia'}
+          </span>
+
+          {/* Chevron animado */}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}
+            className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180 text-[#E8002D]' : ''}`}>
+            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+
+        {/* Panel desplegable */}
+        {open && (
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl overflow-hidden z-20">
+            <div className="max-h-64 overflow-y-auto">
+              {PROVINCIAS.map((prov, i) => (
+                <button
+                  key={prov.slug}
+                  onClick={() => handleSelect(prov)}
+                  className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-red-50 hover:text-[#E8002D] transition-colors group ${
+                    i < PROVINCIAS.length - 1 ? 'border-b border-gray-50' : ''
+                  }`}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}
+                    className="w-4 h-4 text-gray-300 group-hover:text-[#E8002D] flex-shrink-0 transition-colors">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="12" cy="9" r="2" fill="currentColor" stroke="none"/>
+                  </svg>
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-[#E8002D] transition-colors">
+                    {prov.nombre}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <p className="text-center text-xs text-gray-400 mt-5">
+        Elegí tu provincia para ver las prepagas disponibles en tu zona
+      </p>
+    </div>
+  )
+}
+
 export function ComparadorWizard() {
   const [step, setStep] = useState<Step>('zona')
   const [zonaKey, setZonaKey] = useState<string>('')
@@ -340,32 +438,7 @@ export function ComparadorWizard() {
   // ── Step: Zona ───────────────────────────────────────────────────────────────
   if (step === 'zona') {
     return (
-      <div>
-        <ProgressBar step="zona" />
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">¿Desde dónde buscás cobertura?</h2>
-          <p className="text-sm text-gray-500">Las prepagas disponibles varían según tu provincia</p>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-80 overflow-y-auto pr-1 scrollbar-thin">
-          {PROVINCIAS.map((prov) => (
-            <button
-              key={prov.slug}
-              onClick={() => pickZona(prov)}
-              className="group flex items-center gap-2.5 px-4 py-3 bg-white border-2 border-gray-100 rounded-xl hover:border-[#E8002D] hover:bg-red-50 transition-all text-left"
-            >
-              <div className="w-7 h-7 bg-red-50 group-hover:bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors">
-                <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-[#E8002D]">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
-                </svg>
-              </div>
-              <span className="text-sm font-semibold text-gray-800 group-hover:text-[#E8002D] transition-colors leading-tight">
-                {prov.nombre}
-              </span>
-            </button>
-          ))}
-        </div>
-        <p className="text-center text-xs text-gray-400 mt-4">Seleccioná tu provincia para continuar</p>
-      </div>
+      <ZonaStep onSelect={pickZona} />
     )
   }
 
