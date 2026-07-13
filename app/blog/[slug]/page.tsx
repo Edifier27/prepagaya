@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <div className="container py-10">
         {/* Layout: artículo + sidebar */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-10 items-start max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-10 max-w-5xl mx-auto">
 
           {/* ── Columna principal ── */}
           <div className="min-w-0">

@@ -49,7 +49,7 @@ export function BlogTOC({ sections }: Props) {
   }, [sections])
 
   return (
-    <aside className="sticky top-24 space-y-3">
+    <aside className="sticky top-24 self-start space-y-3">
 
       {/* TOC principal */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
