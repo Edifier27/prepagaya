@@ -1,0 +1,1287 @@
+export interface BlogPost {
+  slug: string
+  titulo: string
+  bajada: string
+  metaDescripcion: string
+  categoria: string
+  fechaPublicacion: string
+  tiempoLectura: number
+  imagen?: string
+  contenido: {
+    intro: string
+    secciones: { titulo: string; cuerpo: string }[]
+    conclusion: string
+  }
+  prepagasRelacionadas?: string[]
+  keywords: string[]
+}
+
+export const blogPosts: BlogPost[] = [
+  {
+    slug: 'prepagas-mas-caras-lujosas-argentina',
+    titulo: '¿Cuáles son las prepagas más caras de Argentina? (2026)',
+    bajada: 'OSDE Plan 510 y Swiss Medical SMG70 superan el millón de pesos. ¿Qué ofrecen a ese precio?',
+    metaDescripcion: 'Las prepagas más caras y lujosas de Argentina en 2026. OSDE, Swiss Medical y Omint en sus planes premium. Precios actualizados y qué incluyen.',
+    categoria: 'Precios',
+    fechaPublicacion: '2026-06-15',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'En Argentina, las prepagas premium pueden superar el millón de pesos mensuales por persona. ¿Qué justifica ese precio? ¿Valen la pena? Analizamos los planes más caros del mercado.',
+      secciones: [
+        {
+          titulo: 'Las prepagas más caras del mercado',
+          cuerpo: 'En el tope de precios encontramos a OSDE (Plan 510 y 610), Swiss Medical (SMG60 y SMG70) y Omint (planes premium). Para una persona de 50 años, estos planes pueden costar entre $800.000 y $1.500.000 por mes. A los 65 años, los precios pueden duplicarse.',
+        },
+        {
+          titulo: 'OSDE Plan 510: el premium de la red más grande',
+          cuerpo: 'El Plan 510 de OSDE cuesta $1.139.396 mensuales para una persona de 30 años — es el plan privado de mayor precio visible en el mercado argentino. Incluye acceso sin restricciones al 70% de los médicos del país, sin copago, cobertura internacional, habitación en suite, compañero hospitalario ilimitado y cirugía estética anual.',
+        },
+        {
+          titulo: 'Swiss Medical SMG40 y superiores',
+          cuerpo: 'Los planes SMG40, SMG50 y superiores de Swiss Medical tienen acceso exclusivo a los 8 sanatorios propios más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala y más), con hotelería de primer nivel, médico de cabecera y gestores de salud personales. El SMG40 parte de $390.775 para 30 años.',
+        },
+        {
+          titulo: '¿Vale la pena pagar tanto?',
+          cuerpo: 'La diferencia real entre un plan de $200.000 y uno de $600.000 no es tanto la cobertura médica básica (que el PMO garantiza en todos), sino la experiencia: turnos el mismo día, hotelería de internación de 5 estrellas, menos trámites de autorización, y acceso a especialistas de referencia sin derivaciones. Para quien usa mucho el sistema de salud, puede valer la pena.',
+        },
+      ],
+      conclusion: 'Las prepagas premium tienen sentido para personas que usan frecuentemente el sistema de salud, valoran la comodidad y tienen las posibilidades económicas. Para la mayoría, un plan intermedio (SMG20, OSDE 310) ofrece cobertura más que suficiente a la mitad del precio.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde'],
+    keywords: ['prepagas mas caras argentina', 'prepaga premium argentina', 'osde 510 precio', 'swiss medical smg70'],
+  },
+  {
+    slug: 'cual-es-la-prepaga-mas-grande-argentina',
+    titulo: '¿Cuál es la prepaga más grande de Argentina en 2026?',
+    bajada: 'OSDE, Swiss Medical y Sancor concentran más de 4 millones de afiliados. Analizamos el ranking por cantidad de usuarios.',
+    metaDescripcion: '¿Cuál es la prepaga más grande de Argentina? Ranking por cantidad de afiliados, red de prestadores y cobertura. OSDE vs Swiss Medical vs Sancor Salud.',
+    categoria: 'Mercado',
+    fechaPublicacion: '2026-06-10',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'El mercado de medicina prepaga en Argentina mueve más de 10 millones de afiliados. Pero ¿cuál es la empresa más grande? Depende cómo lo midamos: por afiliados, por red de prestadores o por volumen de facturación.',
+      secciones: [
+        {
+          titulo: 'Ranking por cantidad de afiliados',
+          cuerpo: 'Si bien OSDE nació como obra social sindical, hoy compite directamente con las prepagas privadas. Entre las prepagas puras, Swiss Medical lidera con más de 900.000 afiliados directos, seguida por Sancor Salud con aproximadamente 700.000 y Galeno con 600.000. Si incluimos los afiliados por derivación de obra social, los números cambian significativamente.',
+        },
+        {
+          titulo: 'Por red de prestadores: OSDE lidera',
+          cuerpo: 'Con más de 140.000 profesionales adheridos y presencia en todos los rincones del país, OSDE tiene la red más extensa de Argentina. Ninguna prepaga privada se acerca a esa cobertura geográfica y de especialidades.',
+        },
+        {
+          titulo: 'Por sanatorios propios: Swiss Medical',
+          cuerpo: 'Swiss Medical tiene 8 sanatorios propios incluyendo algunos de los más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas). Ninguna otra prepaga tiene una red propia de esa magnitud.',
+        },
+        {
+          titulo: 'El mercado está concentrado',
+          cuerpo: 'Las primeras 5 empresas (OSDE, Swiss Medical, Sancor Salud, Galeno y Omint) concentran más del 60% de los afiliados al sistema de medicina prepaga. Este oligopolio hace que los precios sean similares entre competidores y que la diferenciación sea por calidad de red y experiencia.',
+        },
+      ],
+      conclusion: 'No hay una respuesta única: OSDE tiene la mayor red de prestadores, Swiss Medical tiene los mejores sanatorios propios, y Sancor es la más grande en cobertura geográfica nacional. Todo depende del criterio que uses para medir "grande".',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
+    keywords: ['prepaga mas grande argentina', 'mayor prepaga argentina', 'cuantos afiliados tiene osde', 'ranking prepagas argentina'],
+  },
+  {
+    slug: 'que-pasa-si-dejo-de-pagar-la-prepaga',
+    titulo: '¿Qué pasa si dejo de pagar la prepaga? Todo lo que necesitás saber',
+    bajada: 'Antes de cortar el débito, conocé los plazos de gracia, las consecuencias y cómo reactivar tu cobertura.',
+    metaDescripcion: '¿Qué pasa si no pagás la prepaga en Argentina? Período de gracia, suspensión de cobertura y cómo reactivar. Guía completa con todos los detalles.',
+    categoria: 'Trámites',
+    fechaPublicacion: '2026-06-05',
+    tiempoLectura: 5,
+    contenido: {
+      intro: 'Si pasaste por un momento difícil económicamente y dejaste de pagar la prepaga, o simplemente querés saber qué sucede antes de tomar una decisión, acá te explicamos todo el proceso.',
+      secciones: [
+        {
+          titulo: 'Período de gracia: seguís cubierto por un tiempo',
+          cuerpo: 'La mayoría de las prepagas tienen un período de gracia de 30 días desde el vencimiento del pago. Durante ese mes, tu cobertura se mantiene activa. Pasado ese período, la prepaga puede suspender la cobertura o darte de baja.',
+        },
+        {
+          titulo: '¿Cuándo se corta la cobertura?',
+          cuerpo: 'Generalmente a los 60-90 días de mora (2-3 cuotas impagas) la prepaga procede a la baja definitiva. Sin embargo, algunas prepagas son más flexibles y pueden negociar un plan de pago si te contactás antes de que eso ocurra.',
+        },
+        {
+          titulo: 'Si querés reactivar la afiliación',
+          cuerpo: 'Si te dieron de baja por falta de pago y querés reafiliarte, la prepaga puede exigirte abonar la deuda acumulada más intereses antes de reactivar la cobertura. También pueden aplicarte un nuevo período de carencia como si fueras un afiliado nuevo.',
+        },
+        {
+          titulo: 'Alternativas antes de cortar',
+          cuerpo: 'Antes de dejar de pagar, considerá: cambiar a un plan más económico (podés pedir el cambio de plan sin darte de baja), pedir una quita de deuda si tenés mora, o derivar a una obra social si pasás a relación de dependencia (en ese caso la prepaga puede absorber los aportes y bajar el costo).',
+        },
+      ],
+      conclusion: 'Si estás en problemas económicos, lo mejor es llamar a la prepaga antes de acumular mora. La mayoría tiene opciones de refinanciación o planes alternativos. Cortar la cobertura sin aviso puede dejarte desprotegido justo cuando más lo necesitás.',
+    },
+    keywords: ['que pasa si dejo de pagar la prepaga', 'no pagar prepaga argentina', 'periodo gracia prepaga', 'baja prepaga por falta de pago'],
+  },
+  {
+    slug: 'prepagas-que-cubren-tratamientos-fertilidad',
+    titulo: 'Prepagas que cubren tratamientos de fertilidad en Argentina (2026)',
+    bajada: 'La Ley 26.862 obliga a cubrir técnicas de reproducción asistida. Te explicamos qué cubre cada prepaga y cómo acceder.',
+    metaDescripcion: 'Qué prepagas cubren tratamientos de fertilidad en Argentina. Ley 26.862, cobertura de FIV, inseminación y ICSI. Guía completa 2026.',
+    categoria: 'Cobertura',
+    fechaPublicacion: '2026-05-28',
+    tiempoLectura: 9,
+    contenido: {
+      intro: 'Desde 2013, la Ley 26.862 de Reproducción Médicamente Asistida obliga a todas las prepagas y obras sociales de Argentina a cubrir hasta 3 intentos de técnicas de reproducción asistida de baja complejidad y 3 de alta complejidad por año.',
+      secciones: [
+        {
+          titulo: '¿Qué técnicas cubre la ley?',
+          cuerpo: 'La ley cubre: inseminación artificial (baja complejidad), FIV (fertilización in vitro de alta complejidad), ICSI (inyección intracitoplasmática), y la donación de gametos. No incluye la maternidad subrogada ni la selección genética preimplantacional (PGT) salvo excepciones médicas.',
+        },
+        {
+          titulo: 'Requisitos para acceder a la cobertura',
+          cuerpo: 'No necesitás diagnóstico de infertilidad para acceder. La ley garantiza el acceso independientemente de la orientación sexual, el estado civil o la existencia de pareja. Podés iniciar los trámites con un simple pedido médico.',
+        },
+        {
+          titulo: '¿Qué cubre cada prepaga?',
+          cuerpo: 'Todas las prepagas deben cubrir lo que establece la ley (3+3 intentos). Donde difieren es en la calidad de los centros de fertilidad disponibles en su cartilla, los tiempos de autorización y si cubren medicamentos de estimulación ovárica (que pueden costar $300.000-$600.000 por ciclo). Swiss Medical y OSDE tienen los mejores centros de fertilidad en su red.',
+        },
+        {
+          titulo: 'Medicamentos de fertilidad: la clave',
+          cuerpo: 'El mayor costo de un tratamiento de fertilidad son los medicamentos de estimulación ovárica. La ley no los incluye explícitamente, pero fallos judiciales han obligado a las prepagas a cubrirlos. Consultá con tu prepaga antes de iniciar el tratamiento qué medicamentos incluyen.',
+        },
+      ],
+      conclusion: 'Todas las prepagas están obligadas por ley a cubrir tratamientos de fertilidad. La diferencia está en la calidad de los centros en su cartilla y si incluyen los medicamentos. Si tu prepaga te niega la cobertura, podés reclamar ante la Superintendencia de Servicios de Salud.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde'],
+    keywords: ['prepaga cubre fertilidad argentina', 'prepaga tratamiento fertilidad', 'ley 26862 prepaga', 'fiv cobertura prepaga'],
+  },
+  {
+    slug: 'swiss-medical-para-jovenes',
+    titulo: 'Swiss Medical para jóvenes: ¿qué plan conviene en 2026?',
+    bajada: 'El plan S1 empieza en $185.773 para menores de 30. Analizamos si vale la pena o conviene una alternativa más económica.',
+    metaDescripcion: 'Swiss Medical tiene planes económicos para jóvenes (S1, S2). ¿Vale la pena o conviene Premedic o Sancor? Comparativa honesta para menores de 30 años.',
+    categoria: 'Comparativas',
+    fechaPublicacion: '2026-05-20',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'Swiss Medical diseñó los planes S1 y S2 especialmente para jóvenes que buscan el respaldo de una prepaga premium sin pagar el precio de los planes SMG. ¿Son una buena opción?',
+      secciones: [
+        {
+          titulo: 'Planes S1 y S2: lo que incluyen',
+          cuerpo: 'El plan S1 ($185.773/mes para 30 años) y S2 ($233.226/mes) cubren internación, urgencias, consultas generales con copago, maternidad básica y urgencias en los Swiss Medical Centers. La red es cerrada (solo prestadores Swiss Medical), lo que los hace más económicos pero más restrictivos.',
+        },
+        {
+          titulo: 'La limitación principal: red cerrada',
+          cuerpo: 'Los planes S tienen red cerrada: solo podés atenderte con médicos y centros Swiss Medical. Si tu médico de confianza no es prestador Swiss, tendrás que cambiarlo. En CABA y GBA la red propia es excelente, pero en el interior del país es más limitada.',
+        },
+        {
+          titulo: '¿Vale más la pena Premedic o Sancor?',
+          cuerpo: 'Si el precio es tu principal criterio: Premedic Plan 200 a $107.044 te da cobertura PMO completa por casi la mitad del precio del S1. Sancor F700 ($257.337) te da red abierta a nivel nacional como entrada, o el F800 ($320.358) con mejor cobertura. La diferencia está en el respaldo institucional y la calidad de la red propia de Swiss.',
+        },
+        {
+          titulo: '¿Cuándo conviene el S1 o S2 de Swiss Medical?',
+          cuerpo: 'El S1 y S2 convienen si: valorás atenderte en los Swiss Medical Centers (reconocidos por su modernidad y atención), vivís en CABA/GBA donde la red es amplia, o tu empresa tiene un convenio con Swiss Medical. Para el resto, Premedic o Sancor son más convenientes económicamente.',
+        },
+      ],
+      conclusion: 'Los planes S de Swiss Medical son la puerta de entrada a la marca Swiss a precio accesible, pero la red cerrada es su gran limitación. Para jóvenes sanos en CABA con buen presupuesto, es una opción. Para jóvenes más ajustados económicamente, Premedic Plan 300 o Sancor Plan 1500 son más convenientes.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'premedic', 'sancor-salud'],
+    keywords: ['swiss medical plan s1 jovenes', 'swiss medical s2 precio', 'swiss medical plan economico', 'prepaga economica jovenes swiss'],
+  },
+  {
+    slug: 'premedic-vale-la-pena',
+    titulo: 'Premedic 2026: ¿vale la pena la más barata de Argentina?',
+    bajada: 'Con planes desde $107.044 al mes, Premedic es la más económica del mercado. Analizamos honestamente sus ventajas y límites.',
+    metaDescripcion: 'Análisis honesto de Premedic 2026: la prepaga más barata de Argentina. ¿Vale la pena o es muy básica? Opiniones de afiliados, cobertura real y comparativa.',
+    categoria: 'Análisis',
+    fechaPublicacion: '2026-05-10',
+    tiempoLectura: 8,
+    contenido: {
+      intro: 'Premedic es consistentemente la prepaga más barata de Argentina. Su plan 200 a $107.044/mes llama la atención de miles de personas que buscan cobertura médica sin gastar una fortuna. ¿Pero qué tan buena es realmente?',
+      secciones: [
+        {
+          titulo: 'Lo bueno: precio y satisfacción',
+          cuerpo: 'Premedic tiene una satisfacción del 82% entre sus afiliados, lo que la ubica como una de las más valoradas en relación a su precio. Muchos afiliados destacan la atención personalizada, el trato humano y la accesibilidad de los trámites.',
+        },
+        {
+          titulo: 'La cobertura es el PMO completo',
+          cuerpo: 'Premedic cumple con el Plan Médico Obligatorio en todos sus planes. Eso significa internaciones, urgencias, consultas, maternidad, salud mental y medicamentos con descuento. No es "cobertura recortada", es la cobertura mínima que establece la ley, que en muchos casos es suficiente.',
+        },
+        {
+          titulo: 'Las limitaciones reales',
+          cuerpo: 'Premedic solo tiene cobertura en CABA, GBA, Córdoba y Tucumán. Si viajás frecuentemente al interior o vivís fuera de esas zonas, no es una opción. Su red de prestadores es más pequeña que la de los grandes (8.000 profesionales vs 90.000 de OSDE), y no tiene sanatorios propios ni app móvil.',
+        },
+        {
+          titulo: '¿Para quién es ideal?',
+          cuerpo: 'Premedic es ideal para: jóvenes y adultos sanos en CABA/GBA que necesitan cobertura de urgencias y consultas básicas, monotributistas que buscan el menor costo posible, personas sin familia a cargo que no usan mucho el sistema. No es la mejor opción para quienes tienen enfermedades crónicas o necesitan especialidades frecuentes.',
+        },
+      ],
+      conclusion: 'Premedic sí vale la pena para el perfil correcto: joven, sano, CABA/GBA, que necesita cobertura de respaldo. Su 82% de satisfacción lo confirma. Pero si necesitás cobertura nacional, red amplia de especialistas o sanatorios de calidad, vale la pena invertir un poco más en Sancor o Medife.',
+    },
+    prepagasRelacionadas: ['premedic', 'sancor-salud', 'medife'],
+    keywords: ['premedic vale la pena', 'premedic prepaga opinion', 'premedic vs sancor', 'prepaga mas barata argentina vale'],
+  },
+  // ─── PRECIOS Y COSTOS ───────────────────────────────────────
+  {
+    slug: 'cuanto-cuesta-prepaga-familia',
+    titulo: '¿Cuánto cuesta una prepaga para una familia de 4 en Argentina?',
+    bajada: 'El costo real de cubrir a un matrimonio con 2 hijos puede superar el millón de pesos. Desglosamos los precios y opciones para familias.',
+    metaDescripcion: 'Cuánto cuesta una prepaga para una familia de 4 en Argentina 2026. Comparativa de precios por empresa, tips para pagar menos y las mejores opciones para familias.',
+    categoria: 'Precios',
+    fechaPublicacion: '2026-06-20',
+    tiempoLectura: 8,
+    contenido: {
+      intro: 'Una de las preguntas más comunes al buscar prepaga es: ¿cuánto sale cubrir a toda la familia? La respuesta depende de la edad de cada integrante, la empresa elegida y el plan. Para una familia tipo (matrimonio de 35 años + 2 hijos menores), los precios pueden variar entre $500.000 y $1.500.000 al mes.',
+      secciones: [
+        { titulo: 'Cómo se calcula el precio familiar', cuerpo: 'Las prepagas no tienen un "precio familia fijo". Cada integrante paga según su edad. Un matrimonio de 35 años con dos hijos menores de 18 puede tener precios muy distintos a un matrimonio de 55 años con los mismos hijos ya adultos.' },
+        { titulo: 'Ejemplo real: familia de 4, 35 años', cuerpo: 'Con dos adultos de 35 años y dos hijos menores de 18: Premedic Plan 300 rondaría $350.000 para los dos adultos (los menores gratis o arancel bajo). Sancor Plan 2000: ~$480.000. Swiss Medical SMG10: ~$600.000. OSDE 310: ~$580.000.' },
+        { titulo: 'Hijos mayores de 18: el costo se dispara', cuerpo: 'Cuando los hijos cumplen 18-21 años (el límite varía por prepaga), empiezan a pagar como adultos. Verificá el límite de edad para hijos en cada empresa antes de contratar.' },
+        { titulo: 'El plan familiar vs planes individuales', cuerpo: 'Algunas prepagas ofrecen planes familiares con descuento por grupo, pero en muchos casos es más conveniente comparar precios individuales. Siempre pedí cotización para el grupo completo y comparala con la suma de planes individuales.' },
+      ],
+      conclusion: 'Para familias, la clave es comparar no solo el precio actual sino la proyección de cómo escala con la edad. Una prepaga económica hoy puede volverse inaccesible a los 50-60 años si los multiplicadores por edad son altos.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud', 'premedic'],
+    keywords: ['cuanto cuesta prepaga familia argentina', 'prepaga para familia 4 personas', 'precio prepaga matrimonio hijos', 'mejor prepaga para familias 2026'],
+  },
+  {
+    slug: 'aumento-prepaga-2026',
+    titulo: 'Aumentos de prepagas en 2026: cuánto subieron y por qué',
+    bajada: 'Las prepagas aumentaron entre un 60% y 120% en el último año. Analizamos los motivos, qué dicen las empresas y cómo protegerte.',
+    metaDescripcion: 'Cuánto aumentaron las prepagas en Argentina en 2026. Análisis de los aumentos, marco regulatorio, y consejos para manejar el impacto en tu bolsillo.',
+    categoria: 'Actualidad',
+    fechaPublicacion: '2026-06-18',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'Los aumentos de prepagas son un tema recurrente en Argentina y en 2026 no fue la excepción. Con una inflación que se desaceleró pero no desapareció, las prepagas ajustaron sus precios varias veces en el año.',
+      secciones: [
+        { titulo: 'Los aumentos de 2026 en números', cuerpo: 'Las prepagas acumularon incrementos de entre el 60% y el 120% interanual en 2026, dependiendo de la empresa y el plan. Los aumentos se aplican generalmente en cuotas mensuales o bimestrales y deben ser autorizados por la Superintendencia de Servicios de Salud (SSS).' },
+        { titulo: '¿Por qué suben tanto?', cuerpo: 'Los costos de las prepagas tienen tres componentes principales: salarios del personal médico y administrativo (más del 60% del costo), insumos médicos (muchos importados en dólares) y servicios tercerizados. Cuando el salario en dólares sube más que la inflación general, los aumentos se trasladan a las cuotas.' },
+        { titulo: 'Tu derecho ante aumentos', cuerpo: 'Las prepagas deben notificarte los aumentos con 30 días de anticipación y estos deben estar autorizados por la SSS. Si el aumento supera el porcentaje autorizado, podés reclamar. Si la cuota aumenta más del 40% en 6 meses sin autorización, podés pedir la baja sin penalidad.' },
+        { titulo: 'Estrategias para pagar menos', cuerpo: 'Si el aumento te quedó grande: bajá de plan, cambiá a una empresa más económica (Premedic, Sancor), evaluá derivar a una obra social más económica si trabajás en relación de dependencia, o combiná la obra social del trabajo con una prepaga complementaria de menor costo.' },
+      ],
+      conclusion: 'Los aumentos de prepagas son una realidad de la economía argentina. La mejor defensa es conocer tus derechos, tener opciones claras y usar herramientas como la calculadora de costo real para tomar decisiones informadas.',
+    },
+    keywords: ['aumento prepaga 2026', 'cuanto aumento la prepaga', 'prepaga sube precio', 'aumentos prepagas argentina 2026'],
+  },
+  {
+    slug: 'como-bajar-costo-prepaga',
+    titulo: '5 formas reales de pagar menos por tu prepaga sin perder cobertura',
+    bajada: 'Cambiar de plan, negociar con la empresa, sumar la obra social. Estrategias concretas para reducir el gasto en salud.',
+    metaDescripcion: 'Cómo pagar menos por la prepaga en Argentina sin perder cobertura. 5 estrategias reales y efectivas: cambio de plan, negociación, obra social y más.',
+    categoria: 'Finanzas',
+    fechaPublicacion: '2026-06-12',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'Cuando la cuota de la prepaga empieza a pesar demasiado en el presupuesto, la primera reacción suele ser darse de baja. Pero hay opciones intermedias que pueden reducir el gasto sin quedarte sin cobertura.',
+      secciones: [
+        { titulo: '1. Bajá de plan (sin cambiar de empresa)', cuerpo: 'La opción más simple: pedile a tu prepaga cambiar a un plan inferior. La diferencia de precio puede ser del 30-40% entre planes y en muchos casos la cobertura básica es idéntica.' },
+        { titulo: '2. Aprovechá la obra social del trabajo', cuerpo: 'Si trabajás en relación de dependencia, tu empleador ya aporta el 6% de tu sueldo a una obra social. Podés derivar esos aportes a una OS de tu elección, reduciendo o eliminando el costo de bolsillo.' },
+        { titulo: '3. Negociá con la empresa', cuerpo: 'Muchas prepagas ofrecen descuentos de 10-20% por pago anual o tienen planes de retención para clientes en riesgo de baja. No tenés nada que perder llamando.' },
+        { titulo: '4. Compará con la competencia', cuerpo: 'El mercado cambia. Hacé la comparación cada 6-12 meses. Cambiarse a Premedic o Sancor puede generar un ahorro de $100.000-$200.000 mensuales con cobertura equivalente.' },
+        { titulo: '5. Evaluá el plan sin adicionales que no usás', cuerpo: 'Si no usás los servicios odontológicos ni de óptica de la prepaga, un plan sin esos adicionales puede ser considerablemente más barato. Hacé el cálculo real de cuánto usás vs cuánto pagás de más.' },
+      ],
+      conclusion: 'La clave es no quedarse con el status quo. Revisá tu plan al menos una vez al año y compará precios. El mercado de prepagas en Argentina tiene opciones para todos los presupuestos.',
+    },
+    keywords: ['como pagar menos prepaga', 'reducir costo prepaga argentina', 'bajar cuota prepaga', 'prepaga mas barata sin perder cobertura'],
+  },
+  {
+    slug: 'prepaga-para-jubilados-pami-complementaria',
+    titulo: 'Prepaga complementaria a PAMI: cómo combinarlas y cuánto cuesta',
+    bajada: 'Muchos jubilados combinan PAMI con una prepaga privada. Analizamos qué conviene sumar, qué paga cada uno y cuánto cuesta.',
+    metaDescripcion: 'Prepaga complementaria a PAMI 2026: cómo funciona, cuánto cuesta y cuáles son las mejores opciones. Guía completa para jubilados que quieren mejorar su cobertura.',
+    categoria: 'Perfiles',
+    fechaPublicacion: '2026-06-08',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'PAMI cubre a todos los jubilados del sistema nacional, pero muchos eligen complementarla con una prepaga privada para acceder a mejores prestadores y reducir tiempos de espera.',
+      secciones: [
+        { titulo: 'Cómo funciona la combinación PAMI + prepaga', cuerpo: 'Cuando un jubilado tiene PAMI y prepaga, la prepaga actúa como el seguro principal. La prepaga contratada puede descontar el aporte de PAMI (3% del haber), reduciendo el costo de bolsillo.' },
+        { titulo: 'Cuánto más cuesta', cuerpo: 'Las prepagas tienen planes especiales para jubilados que parten desde $80.000 al mes (sobre lo que ya descuenta PAMI). OSDE, Swiss Medical y Medicus tienen planes para mayores de 65 que incluyen las coberturas más demandadas.' },
+        { titulo: 'Qué gana el jubilado con la complementaria', cuerpo: 'Los beneficios más citados son: turnos con especialistas en días (vs. semanas en PAMI), internación en clínicas de mayor nivel, cobertura de medicamentos adicionales y gestión más ágil de autorizaciones.' },
+        { titulo: 'Cuándo NO vale la pena', cuerpo: 'Si el jubilado tiene haber mínimo, el costo extra puede no ser sostenible. En ese caso, conviene aprovechar al máximo los beneficios de PAMI: Médico de Cabecera, medicamentos gratuitos y la red de prestadores.' },
+      ],
+      conclusion: 'La combinación PAMI + prepaga complementaria tiene sentido para jubilados con haberes medios o altos que usan frecuentemente el sistema de salud. Para haberes mínimos, optimizar el uso de PAMI es la mejor estrategia.',
+    },
+    keywords: ['prepaga complementaria pami', 'pami mas prepaga costo', 'jubilados prepaga argentina', 'mejor prepaga para jubilados'],
+  },
+  // ─── OBRAS SOCIALES ─────────────────────────────────────────
+  {
+    slug: 'como-derivar-obra-social',
+    titulo: 'Cómo derivar tu obra social: guía paso a paso 2026',
+    bajada: 'La derivación te permite elegir tu obra social sin importar la rama sindical. Te explicamos cómo hacerlo en 10 minutos desde tu celular.',
+    metaDescripcion: 'Guía completa para derivar la obra social en Argentina 2026. Paso a paso, requisitos, plazos y qué obras sociales aceptan derivaciones.',
+    categoria: 'Trámites',
+    fechaPublicacion: '2026-06-16',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'La derivación de obra social es el proceso por el cual un trabajador en relación de dependencia elige a qué obra social van sus aportes. Es un derecho desde la Ley 23.660 y desde 2010 el trámite es completamente online.',
+      secciones: [
+        { titulo: '¿Quiénes pueden hacer la derivación?', cuerpo: 'Solo los trabajadores en relación de dependencia que aportan al sistema de obras sociales. Los monotributistas no pueden hacer derivaciones: directamente contratan la obra social de su elección como plan directo.' },
+        { titulo: 'Paso a paso: cómo hacer la derivación', cuerpo: 'Ingresá a sss.gob.ar. Con tu CUIL y clave fiscal nivel 2 entrás al sistema. Seleccionás "Cambio de Obra Social", elegís la OS de destino y confirmás. El cambio se procesa en 30-60 días hábiles.' },
+        { titulo: 'Qué obras sociales aceptan derivaciones', cuerpo: 'Las más elegidas como destino son: OSDE (planes 210, 310, 410), Swiss Medical Salud, Sancor Salud, Galeno, Medifé, ACCORD Salud, OSPAT, AmSALUD, OSSEG y muchas más habilitadas por la SSS.' },
+        { titulo: 'El costo diferencial', cuerpo: 'Si la OS de destino tiene un plan más caro que lo que aportás (3% + 6% del sueldo), el trabajador paga la diferencia de su bolsillo. Por ejemplo, si tu aporte mensual es $80.000 pero el plan de OSDE 310 cuesta $110.000, pagás $30.000 extra.' },
+      ],
+      conclusion: 'La derivación es una herramienta poderosa para mejorar tu cobertura. El trámite tarda menos de 10 minutos online y el cambio es efectivo en 1-2 meses. Antes de derivar, compará bien la cobertura en tu zona geográfica.',
+    },
+    keywords: ['como derivar obra social argentina', 'derivacion obra social paso a paso', 'cambiar obra social 2026', 'derivacion obra social online'],
+  },
+  {
+    slug: 'mejores-obras-sociales-argentina',
+    titulo: 'Las mejores obras sociales de Argentina 2026: ranking y comparativa',
+    bajada: 'OSDE, Swiss Medical y Sancor dominan el ranking. Te contamos qué tiene cada una y cuál conviene según tu perfil.',
+    metaDescripcion: 'Ranking de las mejores obras sociales de Argentina 2026. Comparativa de OSDE, Swiss Medical, Galeno, Sancor y más. Cuál es la mejor según tu situación.',
+    categoria: 'Ranking',
+    fechaPublicacion: '2026-06-14',
+    tiempoLectura: 9,
+    contenido: {
+      intro: 'Con más de 300 obras sociales registradas en Argentina, elegir la mejor puede ser abrumador. Te presentamos el ranking de las más valoradas en 2026, con análisis honesto de qué tiene cada una.',
+      secciones: [
+        { titulo: '#1 OSDE: la red más grande', cuerpo: 'OSDE tiene 140.000+ profesionales en todo el país. Sus planes 310 y 410 son los más elegidos por trabajadores de empresas medianas y grandes. La desventaja: es de las más caras como destino de derivación.' },
+        { titulo: '#2 Swiss Medical: los mejores sanatorios', cuerpo: 'Swiss Medical Salud destaca por sus 8 sanatorios propios de última generación incluyendo Suizo Argentina, Los Arcos y Agote. Si vivís en CABA o GBA y valorás la infraestructura médica, es difícil de superar.' },
+        { titulo: '#3 Sancor Salud: la mejor cobertura nacional', cuerpo: 'Para quienes viven o viajan al interior del país, Sancor Salud tiene la red más amplia con 30.000+ profesionales en todas las provincias. Es también una de las más elegidas por familias por su balance precio-cobertura.' },
+        { titulo: '¿Y las obras sociales sindicales?', cuerpo: 'Las OS sindicales tienen la obligación de dar cobertura del PMO, pero la calidad varía enormemente. Las más grandes y bien gestionadas ofrecen cobertura comparable a las prepagas premium; otras tienen prestadores limitados.' },
+      ],
+      conclusion: 'No existe "la mejor obra social" en abstracto: depende de tu zona, cuánto usás el sistema de salud y qué aportás. Lo que sí existe es la mejor para tu perfil específico. Usá nuestro comparador para encontrarla.',
+    },
+    keywords: ['mejores obras sociales argentina 2026', 'ranking obras sociales', 'mejor obra social para derivar', 'comparar obras sociales argentina'],
+  },
+  {
+    slug: 'pami-que-cubre-guia-completa',
+    titulo: 'PAMI 2026: qué cubre realmente y cómo aprovecharla al máximo',
+    bajada: 'PAMI cubre más de lo que muchos jubilados conocen. Medicamentos gratis, óptica, odontología, kinesiología y más. Guía completa.',
+    metaDescripcion: 'Guía completa de qué cubre PAMI en 2026: medicamentos gratuitos, turnos, odontología, óptica, kinesiología y todos los beneficios del PAMI para jubilados.',
+    categoria: 'Coberturas',
+    fechaPublicacion: '2026-06-10',
+    tiempoLectura: 10,
+    contenido: {
+      intro: 'PAMI es la obra social más grande de América Latina con más de 5 millones de afiliados. Pero muchos jubilados desconocen todos los beneficios que tienen disponibles. Esta guía te explica todo lo que PAMI cubre en 2026.',
+      secciones: [
+        { titulo: 'Medicamentos: el mayor beneficio', cuerpo: 'El programa de medicamentos de PAMI es uno de los más generosos. Jubilados con haber mínimo o criterios socioeconómicos reciben hasta el 100% de medicamentos para enfermedades crónicas sin costo. El descuento general es del 40% al 80%.' },
+        { titulo: 'Atención médica: el Médico de Cabecera', cuerpo: 'PAMI implementó el sistema de Médico de Cabecera, donde cada afiliado elige un médico de confianza como punto de entrada al sistema que coordina las derivaciones a especialistas.' },
+        { titulo: 'Odontología y óptica', cuerpo: 'PAMI tiene programa de odontología básica gratuita (extracciones, prótesis básicas) y un subsidio para anteojos a través de ópticas convenidas. Los anteojos se tramitan con receta oftalmológica.' },
+        { titulo: 'Cómo pedir turno', cuerpo: 'Tres formas de pedir turno: online en pami.org.ar, llamando al 0800-222-7264 (gratuito, 24 horas), o en la UGL más cercana a tu domicilio.' },
+      ],
+      conclusion: 'PAMI cubre mucho más de lo que la mayoría de los afiliados conoce. El error más común es no aprovechar los descuentos en medicamentos o no usar el Médico de Cabecera. Informarse es la mejor manera de sacarle el máximo partido.',
+    },
+    keywords: ['pami que cubre 2026', 'beneficios pami jubilados', 'pami medicamentos gratis', 'pami turno medico'],
+  },
+  {
+    slug: 'obra-social-monotributistas',
+    titulo: 'Obra social para monotributistas 2026: opciones y precios',
+    bajada: 'Los monotributistas pagan en promedio $45.000-$90.000 al mes por su obra social. ¿Cómo elegir la mejor opción?',
+    metaDescripcion: 'Obra social para monotributistas en Argentina 2026. Cuánto cuesta, qué opciones hay y cómo elegir la mejor. Comparativa completa.',
+    categoria: 'Perfiles',
+    fechaPublicacion: '2026-06-06',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'Los monotributistas tienen la libertad de elegir su obra social de forma directa, sin depender del sindicato de la actividad. Pero esa libertad puede ser confusa: ¿es mejor una obra social o una prepaga? ¿Cuánto debo gastar?',
+      secciones: [
+        { titulo: 'Obra social vs prepaga para monotributistas', cuerpo: 'Los monotributistas pueden optar por una obra social (cuota fija mensual) o una prepaga privada. La diferencia real está en el precio y la red: OSDE o Sancor tienen precios similares a las prepagas, mientras que OS sindicales de menor costo pueden ser más económicas.' },
+        { titulo: 'Precios 2026 para monotributistas', cuerpo: 'Las opciones más elegidas (precios directos con IVA, persona de 30 años): Premedic Plan 200 (~$107.000/mes), Swiss Medical S1 (~$185.773/mes), OSDE Plan 210 (~$267.250/mes), Sancor F700 (~$257.337/mes entrada, red abierta nacional).' },
+        { titulo: '¿Familia o individual?', cuerpo: 'Si tenés familia, la cuota aumenta por cada integrante según su edad. Para una familia de 4, podés estar pagando entre $400.000 y $800.000 al mes según la empresa.' },
+        { titulo: 'El aporte en el monotributo', cuerpo: 'Parte del pago mensual del monotributo incluye un componente de obra social. Sin embargo, ese aporte suele ser bajo y cubre solo la OS de la categoría mínima. Para acceder a mejores coberturas, los monotributistas pagan directamente a la OS o prepaga.' },
+      ],
+      conclusion: 'Los monotributistas tienen buenas opciones en el mercado, pero el precio varía enormemente. Antes de elegir, usá nuestra calculadora para ver el costo ajustado a tu edad.',
+    },
+    keywords: ['obra social para monotributistas', 'monotributistas obra social 2026', 'cuanto cuesta obra social monotributo', 'mejor obra social monotributista argentina'],
+  },
+  // ─── COBERTURAS ESPECÍFICAS ─────────────────────────────────
+  {
+    slug: 'prepaga-que-cubre-psicologia',
+    titulo: 'Prepagas que mejor cubren psicología en Argentina 2026',
+    bajada: 'La Ley 26.657 obliga a cubrir salud mental, pero la calidad varía enormemente entre prepagas. Cuáles tienen más sesiones y mejores profesionales.',
+    metaDescripcion: 'Qué prepagas cubren mejor la psicología en Argentina 2026. Sesiones por año, tipo de profesionales y cuáles tienen la red más amplia de psicólogos.',
+    categoria: 'Coberturas',
+    fechaPublicacion: '2026-06-19',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'La salud mental es una de las coberturas más consultadas. Desde la Ley 26.657, todas las prepagas están obligadas a cubrir tratamientos psicológicos y psiquiátricos sin límite de sesiones. La realidad, sin embargo, varía bastante.',
+      secciones: [
+        { titulo: 'Lo que dice la ley', cuerpo: 'La Ley 26.657 equipara la salud mental con la salud física: las prepagas no pueden limitar el número de sesiones anuales de psicología o psiquiatría. Sin embargo, algunas prepagas ponen trabas burocráticas en la práctica.' },
+        { titulo: 'Swiss Medical: la mejor red de psicólogos', cuerpo: 'Swiss Medical destaca por la cantidad y calidad de profesionales de salud mental en su cartilla, especialmente en CABA y GBA. Sus planes SMG incluyen sesiones sin copago o con copago mínimo.' },
+        { titulo: 'OSDE: red amplia pero con trámites', cuerpo: 'OSDE tiene una de las redes más grandes de psicólogos del país, pero algunos planes requieren autorización previa. Los planes 310 y superiores tienen mejor cobertura de salud mental.' },
+        { titulo: 'Qué verificar antes de contratar', cuerpo: 'Verificá: cuántos psicólogos hay en tu zona en la cartilla, si aceptan tu corriente terapéutica preferida, si hay copago por sesión, y si el profesional que ya ves puede ingresar como convenio.' },
+      ],
+      conclusion: 'Para quienes priorizan la salud mental, Swiss Medical y OSDE tienen las redes más amplias en grandes ciudades. Para el interior, Sancor Salud y Medifé son las mejores opciones.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
+    keywords: ['prepaga cubre psicologia argentina', 'mejor prepaga para psicologia', 'prepaga salud mental sesiones', 'cobertura psicologia prepaga 2026'],
+  },
+  {
+    slug: 'cobertura-odontologia-prepaga',
+    titulo: '¿Las prepagas cubren el dentista? Todo sobre odontología en prepagas',
+    bajada: 'La odontología no está en el PMO básico. Qué prepagas la incluyen, qué tratamientos cubren y si vale pagar el adicional.',
+    metaDescripcion: 'Cobertura odontológica en prepagas argentinas 2026. Qué incluye cada empresa, qué tratamientos están cubiertos y si conviene el adicional dental.',
+    categoria: 'Coberturas',
+    fechaPublicacion: '2026-06-13',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'La odontología es una de las consultas más frecuentes cuando alguien busca prepaga. La pregunta clave: ¿está incluida? La respuesta corta: depende del plan.',
+      secciones: [
+        { titulo: 'Qué dice el PMO sobre odontología', cuerpo: 'El PMO incluye cobertura odontológica básica: urgencias dentales y algunas prestaciones preventivas. Tratamientos complejos (implantes, ortodoncia, prótesis) no son obligatorios y cada prepaga decide si los incluye.' },
+        { titulo: 'Prepagas con odontología incluida', cuerpo: 'Swiss Medical incluye odontología en sus planes SMG: consultas de diagnóstico, obturaciones, extracciones y limpieza. OSDE tiene cobertura odontológica más amplia en planes superiores. CEMIC destaca por sus propias clínicas odontológicas universitarias.' },
+        { titulo: 'El adicional dental: ¿vale la pena?', cuerpo: 'Muchas prepagas ofrecen adicional dental por $15.000-$30.000 extra al mes. Si vas al dentista 2 veces al año para limpieza y algún empaste, no se justifica. Si hacés ortodoncia o implantes, puede valer.' },
+        { titulo: 'Alternativas a la cobertura dental de prepaga', cuerpo: 'Las mutuales odontológicas (INCLUIR, ASISTENCIA DENTAL) suelen tener planes específicos más completos para cobertura dental pura, sin necesitar una prepaga más cara por este único motivo.' },
+      ],
+      conclusion: 'La odontología en prepagas es útil para urgencias y mantenimiento básico. Para tratamientos complejos, compará si el adicional de la prepaga cubre los costos reales o si una mutual odontológica separada conviene más.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'cemic', 'osde'],
+    keywords: ['prepaga cubre dentista argentina', 'cobertura odontologia prepaga', 'prepaga odontologia incluida', 'adicional dental prepaga argentina'],
+  },
+  {
+    slug: 'prepaga-cubre-anteojos-optica',
+    titulo: '¿La prepaga cubre anteojos y lentes de contacto?',
+    bajada: 'La cobertura óptica no es obligatoria pero algunas prepagas la incluyen. Qué cubre cada empresa y cuánto te reintegran.',
+    metaDescripcion: 'Cobertura óptica en prepagas argentinas 2026. Qué prepagas cubren anteojos, lentes de contacto y cuánto reintegran. Guía completa.',
+    categoria: 'Coberturas',
+    fechaPublicacion: '2026-06-09',
+    tiempoLectura: 5,
+    contenido: {
+      intro: 'La cobertura de óptica es uno de los beneficios más valorados de las prepagas, especialmente para quienes tienen miopía, astigmatismo u otras condiciones visuales. Pero no todas la incluyen.',
+      secciones: [
+        { titulo: 'El PMO y la óptica', cuerpo: 'El PMO no incluye óptica como prestación obligatoria. Las prepagas que la cubren lo hacen como diferencial voluntario en planes superiores.' },
+        { titulo: 'Qué cubre cada prepaga', cuerpo: 'Swiss Medical incluye cobertura óptica en planes SMG con reintegro anual. OSDE tiene convenios con ópticas y cubre parte de marcos y lentes. Sancor Salud tiene cobertura en planes superiores. Premedic generalmente no incluye óptica.' },
+        { titulo: 'Montos de cobertura', cuerpo: 'Los reintegros varían entre $20.000 y $80.000 al año según el plan. Para anteojos de graduación media, puede cubrir el 30-50% del costo.' },
+        { titulo: 'Alternativas', cuerpo: 'Si la cobertura óptica de tu prepaga es limitada, busca programas de óptica convenida: ópticas adheridas con precios especiales para afiliados, que pueden ser más convenientes que el reintegro.' },
+      ],
+      conclusion: 'Si necesitás lentes con frecuencia, la cobertura óptica puede ser un diferencial importante al elegir prepaga. Verificá específicamente qué cubre el plan que estás evaluando antes de contratar.',
+    },
+    keywords: ['prepaga cubre anteojos argentina', 'cobertura optica prepaga', 'prepaga lentes de contacto', 'reintegro optica prepaga'],
+  },
+  {
+    slug: 'prepaga-cubre-remedios-cronicos',
+    titulo: 'Medicamentos crónicos y prepagas: qué porcentaje te cubren',
+    bajada: 'Diabetes, hipertensión, tiroides: los remedios crónicos pueden costar $150.000 al mes o más. Qué cubren las prepagas y cómo maximizar el descuento.',
+    metaDescripcion: 'Cobertura de medicamentos crónicos en prepagas argentinas 2026. Qué porcentaje cubren, qué remedios incluyen y cómo maximizar el descuento.',
+    categoria: 'Coberturas',
+    fechaPublicacion: '2026-06-05',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'Para personas con enfermedades crónicas, el costo de los medicamentos puede ser uno de los factores más importantes al elegir prepaga. Un paciente crónico puede gastar más de $150.000 al mes en remedios.',
+      secciones: [
+        { titulo: 'El PMO y los medicamentos crónicos', cuerpo: 'El PMO establece que las prepagas deben cubrir medicamentos para enfermedades crónicas con descuentos del 40% al 100% según el tipo. Las enfermedades contempladas incluyen diabetes, hipertensión, hipotiroidismo, EPOC y muchas más.' },
+        { titulo: 'Diferencias entre prepagas', cuerpo: 'Swiss Medical y OSDE tienen los programas de medicamentos crónicos más amplios: más medicamentos cubiertos y con mayores descuentos en planes superiores. Sancor Salud y Medifé tienen buena cobertura para patologías comunes. Premedic tiene la cobertura más básica.' },
+        { titulo: 'Cómo maximizar el descuento', cuerpo: 'Pedile al médico que recete el genérico cuando existe equivalente, presentá la receta en la farmacia con el carnet de la prepaga, consultá si hay un programa especial de tu prepaga para la patología, y verificá si podés acceder a programas de asistencia del laboratorio fabricante.' },
+        { titulo: 'El Programa SUMAR y otros estatales', cuerpo: 'Para afiliados a obras sociales, el Programa SUMAR puede complementar la cobertura. PAMI tiene el programa REMEDIAR para jubilados, con medicamentos gratuitos para patologías crónicas.' },
+      ],
+      conclusion: 'Los medicamentos crónicos pueden ser un ítem enorme de gasto. La diferencia de cobertura entre prepagas puede significar $50.000-$100.000 al mes. Si tenés una patología crónica, la cobertura de medicamentos debe ser uno de los criterios principales.',
+    },
+    keywords: ['prepaga medicamentos cronicos cobertura', 'descuento remedios prepaga', 'prepaga diabetes medicamentos', 'cobertura farmacia prepaga argentina'],
+  },
+  // ─── COMPARATIVAS ────────────────────────────────────────────
+  {
+    slug: 'osde-vs-cemic',
+    titulo: 'OSDE vs CEMIC: ¿cuál es mejor para vos en 2026?',
+    bajada: 'OSDE tiene 140.000 profesionales; CEMIC tiene sus propias clínicas universitarias. Comparamos red, precio y satisfacción para que elijas bien.',
+    metaDescripcion: 'OSDE vs CEMIC 2026: comparativa completa de precio, red de prestadores, coberturas y satisfacción. ¿Cuál conviene según tu perfil?',
+    categoria: 'Comparativas',
+    fechaPublicacion: '2026-06-17',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'OSDE y CEMIC son dos opciones muy distintas: OSDE con la red abierta más grande del país y CEMIC con sus propias clínicas universitarias de excelencia. Cuál es mejor para vos depende de dónde vivís y qué valorás.',
+      secciones: [
+        { titulo: 'OSDE: la mayor red abierta', cuerpo: 'OSDE tiene 140.000+ profesionales en todo el país. Es la opción por excelencia para quienes viajan, tienen múltiples especialistas o viven en distintas ciudades.' },
+        { titulo: 'CEMIC: clínicas propias de alta complejidad', cuerpo: 'CEMIC (Centro de Educación Médica e Investigaciones Clínicas) tiene sus propias clínicas en Buenos Aires con médicos de formación académica de altísimo nivel. Para oncología, neurología o patologías raras, es una referencia nacional.' },
+        { titulo: 'Precio: CEMIC es más económico', cuerpo: 'El Plan A de CEMIC parte de $177.000/mes para 30 años vs $345.310 para OSDE 310. Para planes premium, CEMIC suele ser 20-30% más económico que OSDE en planes equivalentes.' },
+        { titulo: 'La limitación de CEMIC: solo AMBA', cuerpo: 'CEMIC es esencialmente una opción para quienes viven en Buenos Aires y AMBA. Si viajás mucho o vivís en el interior, la red fuera de Buenos Aires es muy limitada.' },
+      ],
+      conclusion: 'Si vivís en Buenos Aires y valorás la excelencia médica en especialidades complejas, CEMIC es excelente y más económico que OSDE. Si necesitás cobertura nacional o tenés múltiples médicos fuera de la red propia, OSDE no tiene competencia.',
+    },
+    prepagasRelacionadas: ['osde', 'cemic'],
+    keywords: ['osde vs cemic', 'cemic vs osde 2026', 'cemic o osde cual es mejor', 'osde cemic comparativa'],
+  },
+  {
+    slug: 'sancor-vs-medife',
+    titulo: 'Sancor Salud vs Medifé: la batalla del interior argentino',
+    bajada: 'Ambas tienen excelente cobertura en el interior del país. Comparamos precio, red y satisfacción para que sepas cuál conviene en tu provincia.',
+    metaDescripcion: 'Sancor Salud vs Medifé 2026: comparativa completa. Cuál tiene mejor cobertura en el interior de Argentina, precio y satisfacción de afiliados.',
+    categoria: 'Comparativas',
+    fechaPublicacion: '2026-06-11',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'Para quienes viven fuera de Buenos Aires, Sancor Salud y Medifé son frecuentemente las dos mejores opciones. Ambas tienen amplia cobertura en el interior, pero con diferencias en precio, red y perfil de planes.',
+      secciones: [
+        { titulo: 'Cobertura en el interior: empate técnico', cuerpo: 'Sancor Salud tiene 30.000+ prestadores en todo el territorio; Medifé tiene 60.000+ profesionales y destaca especialmente en ciudades medianas de NOA, NEA y Cuyo. Antes de elegir, verificá la cartilla específica para tu ciudad.' },
+        { titulo: 'Precio: ambas competitivas en el segmento medio', cuerpo: 'Los planes de Medifé parten desde $173.648/mes (Medifé+), mientras que Sancor arranca en $257.337 (Plan F700, con copago) o $362.701 (Plan 1000, sin copago). Medifé tiene ventaja clara en precio de entrada.' },
+        { titulo: 'App y herramientas digitales', cuerpo: 'Sancor Salud tiene más variedad de planes y una app móvil más completa. Medifé tiene opciones más simples. Sancor además tiene mejor cobertura de maternidad en términos generales.' },
+        { titulo: '¿Cuál conviene?', cuerpo: 'La diferencia suele decidirse por: la cartilla específica de tu ciudad, el precio final para tu edad, y si necesitás coberturas de especialidades específicas. Verificá ambas cartillas antes de decidir.' },
+      ],
+      conclusion: 'Ambas son excelentes para el interior. Si querés mayor variedad de planes y app más completa, Sancor. Si buscás el precio más accesible, Medifé. En cualquier caso, verificá la cartilla para tu ciudad específica.',
+    },
+    prepagasRelacionadas: ['sancor-salud', 'medife'],
+    keywords: ['sancor salud vs medife', 'sancor vs medife interior argentina', 'medife o sancor cual es mejor', 'mejor prepaga interior pais'],
+  },
+  {
+    slug: 'mejor-prepaga-interior-pais',
+    titulo: '¿Cuál es la mejor prepaga si vivís en el interior de Argentina?',
+    bajada: 'Las prepagas no cubren igual en todo el país. Te decimos cuál conviene según tu provincia: Córdoba, Rosario, Tucumán, Mendoza y más.',
+    metaDescripcion: 'Mejor prepaga para el interior de Argentina 2026. Qué prepaga conviene en Córdoba, Rosario, Mendoza, Tucumán y otras provincias.',
+    categoria: 'Ranking',
+    fechaPublicacion: '2026-06-07',
+    tiempoLectura: 8,
+    contenido: {
+      intro: 'Si vivís fuera de Buenos Aires, la elección de prepaga es diferente. La red de prestadores de una empresa que es excelente en CABA puede ser mediocre en Mendoza o Salta. Analizamos cuál conviene según tu provincia.',
+      secciones: [
+        { titulo: 'Córdoba: OSDE y Sancor, las más fuertes', cuerpo: 'Córdoba tiene una de las mejores coberturas del interior. OSDE tiene una red enorme en la capital cordobesa y ciudades satélite. Sancor Salud tiene muy buena presencia. Swiss Medical tiene centros propios en la ciudad.' },
+        { titulo: 'Rosario: múltiples opciones', cuerpo: 'Rosario tiene un mercado de salud privada desarrollado. OSDE, Swiss Medical (con centro propio en Rosario), Sancor Salud y Medifé tienen buena presencia. Galeno también opera bien en la región.' },
+        { titulo: 'Mendoza y Cuyo: Sancor y Medifé', cuerpo: 'En Mendoza, Sancor Salud y Medifé son las más recomendadas por su red extendida en toda la región de Cuyo. OSDE tiene presencia pero la red es más limitada que en el litoral.' },
+        { titulo: 'Tucumán, NOA y NEA: Sancor es la referencia', cuerpo: 'Para el noroeste y noreste argentino, Sancor Salud tiene la cobertura más amplia, con prestadores en ciudades donde otras prepagas apenas tienen presencia.' },
+      ],
+      conclusion: 'La regla general: Sancor Salud y OSDE tienen la mejor cobertura nacional; Medifé es muy buena en el interior; Swiss Medical es excelente en las ciudades grandes. Siempre verificá la cartilla específica para tu ciudad antes de contratar.',
+    },
+    keywords: ['mejor prepaga interior argentina', 'prepaga cordoba argentina', 'prepaga rosario 2026', 'prepaga mendoza tucuman'],
+  },
+  // ─── TRÁMITES Y GESTIONES ───────────────────────────────────
+  {
+    slug: 'como-reclamar-a-una-prepaga',
+    titulo: 'Cómo reclamar a una prepaga: tus derechos y cómo hacerlos valer',
+    bajada: 'Si tu prepaga te negó una prestación, cobertura o medicamento, tenés derechos claros y formas efectivas de reclamar. Guía práctica.',
+    metaDescripcion: 'Cómo reclamar a una prepaga en Argentina 2026. Dónde hacer el reclamo, qué documentación necesitás y qué dice la ley.',
+    categoria: 'Trámites',
+    fechaPublicacion: '2026-06-21',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'Las prepagas están obligadas por ley a cumplir el PMO y las prestaciones incluidas en tu plan. Si te niegan una cobertura, medicamento o práctica médica, tenés herramientas legales para reclamar.',
+      secciones: [
+        { titulo: 'Primer paso: reclamo interno', cuerpo: 'Antes de ir a la SSS, reclamá directamente a la prepaga. La mayoría tiene un área de reclamos que puede resolver el problema en 48-72 horas. Guardá todos los números de expediente, nombre del operador y fecha.' },
+        { titulo: 'La Superintendencia de Servicios de Salud (SSS)', cuerpo: 'Si la prepaga no resuelve, presentá el reclamo en sss.gob.ar o llamando al 0800-222-SALUD (72583). La SSS tiene 30 días para resolver e interceder ante la prepaga.' },
+        { titulo: 'Defensor del Pueblo y PROCON', cuerpo: 'Para negativas injustificadas y urgentes también podés acudir al Defensor del Pueblo de la Nación o al PROCON de tu provincia.' },
+        { titulo: 'Medida cautelar de urgencia', cuerpo: 'Si necesitás una prestación urgente (medicamentos oncológicos, cirugía de emergencia), un abogado puede pedir una medida cautelar que obligue a la prepaga a cubrir la prestación de inmediato. Esta vía tiene alta tasa de éxito.' },
+      ],
+      conclusion: 'La mayoría de los reclamos se resuelven por vía administrativa (SSS) sin necesidad de ir a la justicia. No te quedes callado ante una negativa injustificada.',
+    },
+    keywords: ['como reclamar prepaga argentina', 'prepaga nego prestacion que hacer', 'superintendencia servicios salud reclamo', 'derechos afiliados prepaga'],
+  },
+  {
+    slug: 'como-pedir-reintegro-prepaga',
+    titulo: 'Cómo pedir reintegro a la prepaga: guía práctica 2026',
+    bajada: 'Si pagaste de tu bolsillo una práctica cubierta, podés pedir que te devuelvan el dinero. Te explicamos el proceso y los plazos.',
+    metaDescripcion: 'Cómo pedir reintegro a la prepaga en Argentina 2026. Qué gastos son reintegrables, cómo presentar el reclamo y en cuánto tiempo te devuelven el dinero.',
+    categoria: 'Trámites',
+    fechaPublicacion: '2026-06-15',
+    tiempoLectura: 5,
+    contenido: {
+      intro: 'Si por alguna razón pagaste de tu bolsillo una práctica o medicamento que estaba cubierto por tu prepaga, tenés derecho a pedir el reintegro. También aplica si usaste un prestador fuera de cartilla en una situación de urgencia.',
+      secciones: [
+        { titulo: '¿Qué se puede reintegrar?', cuerpo: 'Se puede pedir reintegro por: prácticas cubiertas realizadas fuera de cartilla por urgencia o emergencia, medicamentos cubiertos comprados sin receta de la prepaga, prácticas que la prepaga tardó en autorizar y tuviste que hacer por tu cuenta.' },
+        { titulo: 'Documentación necesaria', cuerpo: 'Necesitás: factura original del prestador o farmacia (con nombre, CUIT y fecha), orden médica que justifique la práctica, y el formulario de reintegro de la prepaga (disponible en la web o sucursales).' },
+        { titulo: 'Los plazos de resolución', cuerpo: 'Las prepagas tienen 30 días hábiles para resolver un pedido de reintegro. Si no responden en ese plazo, podés elevar el reclamo a la SSS. El monto reintegrado suele ser el de la cartilla de la prepaga para esa práctica.' },
+        { titulo: 'Cuánto te devuelven', cuerpo: 'El reintegro es por el "valor de cartilla" de la práctica, no lo que pagaste. Si el médico cobró $50.000 y el valor en cartilla es $30.000, te reintegran $30.000. La diferencia la asumís vos.' },
+      ],
+      conclusion: 'Pedir reintegro es un derecho que muchos afiliados no ejercen por desconocer el proceso. Guardá siempre las facturas de gastos médicos: tener la documentación completa acelera mucho el proceso.',
+    },
+    keywords: ['como pedir reintegro prepaga', 'reintegro prepaga argentina', 'prepaga devuelve dinero', 'como recuperar gastos medicos prepaga'],
+  },
+  {
+    slug: 'cambio-de-plan-misma-prepaga',
+    titulo: 'Cómo cambiar de plan dentro de la misma prepaga',
+    bajada: 'Cambiar a un plan más económico puede ahorrarte miles de pesos. Te explicamos cuándo se puede hacer, los períodos de espera y qué tener en cuenta.',
+    metaDescripcion: 'Cómo cambiar de plan en la misma prepaga 2026. Períodos de espera, qué coberturas perdés, cómo hacerlo y cuándo es mejor cambiar de empresa.',
+    categoria: 'Trámites',
+    fechaPublicacion: '2026-06-03',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'Si la cuota de tu prepaga está afectando tu presupuesto, una de las primeras opciones es pedir el cambio a un plan más económico dentro de la misma empresa. Es más simple que cambiar de empresa, pero tiene particularidades importantes.',
+      secciones: [
+        { titulo: '¿Se puede cambiar de plan en cualquier momento?', cuerpo: 'Sí, podés pedir el cambio de plan en cualquier momento del año. La empresa puede aplicar períodos de carencia para nuevas prestaciones al subir de plan. Al bajar de plan, el cambio es inmediato en términos de cobertura.' },
+        { titulo: 'Subir de plan: períodos de carencia', cuerpo: 'Si subís a un plan con más coberturas, las nuevas prestaciones pueden tener un período de carencia de 3 a 12 meses. Esto significa que no podés usar de inmediato todo lo que cubre el plan nuevo.' },
+        { titulo: 'Bajar de plan: lo que perdés', cuerpo: 'Si bajás de plan, perdés acceso a las prestaciones adicionales del plan actual. Por ejemplo, si bajás de un plan con odontología incluida a uno sin odontología, dejarás de tener esa cobertura.' },
+        { titulo: 'Cuándo conviene cambiar de empresa en vez de plan', cuerpo: 'Si la empresa es lo que no te convence (red limitada, mala atención), cambiar de plan no resuelve el problema. En ese caso, evaluá directamente cambiar de empresa.' },
+      ],
+      conclusion: 'Cambiar de plan es la solución más rápida para ajustar el costo. Antes de hacerlo, pedile a la prepaga el detalle de las diferencias entre planes y cuáles son los períodos de carencia aplicables.',
+    },
+    keywords: ['cambiar plan prepaga argentina', 'bajar plan prepaga', 'como cambiar plan en prepaga', 'periodo de carencia cambio plan prepaga'],
+  },
+  // ─── PERFILES DE USUARIO ────────────────────────────────────
+  {
+    slug: 'mejor-prepaga-para-embarazadas',
+    titulo: 'Mejor prepaga para embarazadas en Argentina 2026',
+    bajada: 'El embarazo es el momento más crítico para elegir bien la prepaga. Qué cobertura ofrecen, períodos de espera y cuál conviene según tu situación.',
+    metaDescripcion: 'Mejor prepaga para embarazadas en Argentina 2026. Cobertura de maternidad, períodos de espera y qué incluye cada empresa. Guía completa.',
+    categoria: 'Perfiles',
+    fechaPublicacion: '2026-06-22',
+    tiempoLectura: 8,
+    contenido: {
+      intro: 'Si estás embarazada o planeás estarlo, la cobertura de maternidad de la prepaga se vuelve el criterio más importante. No solo importa el parto: el control prenatal, las ecografías, la neonatología y el posparto también deben estar cubiertos.',
+      secciones: [
+        { titulo: 'El período de carencia: el gran problema', cuerpo: 'La mayoría de las prepagas aplica un período de espera de 6 a 10 meses para la cobertura de maternidad. Si te afiliás estando embarazada, puede que no tengas cobertura para el parto. Afiliarte antes de quedar embarazada es clave.' },
+        { titulo: 'Qué debe cubrir la prepaga obligatoriamente', cuerpo: 'Por el PMO, la prepaga debe cubrir: control prenatal completo (consultas mensuales, ecografías, análisis), internación en maternidad para el parto (vaginal y cesárea), neonatología para el recién nacido y atención del puerperio.' },
+        { titulo: 'Swiss Medical: la mejor infraestructura de maternidad', cuerpo: 'Los Swiss Medical Centers tienen maternidades modernas con habitación individual, sala de parto integrada y neonatología de alta complejidad. La opción de mayor confort, aunque la más cara.' },
+        { titulo: 'OSDE: la mayor red obstétrica', cuerpo: 'OSDE tiene la mayor red de obstetras y maternidades del país. En cualquier ciudad encontrarás opciones de parto en la cartilla. Su plan 310 incluye maternidad completa con buena calidad.' },
+      ],
+      conclusion: 'Para embarazadas, la prioridad es: verificar el período de carencia, confirmar que el obstetra de tu preferencia está en cartilla, y elegir una maternidad en tu zona. Si ya estás embarazada, algunas prepagas permiten la afiliación con cobertura inmediata de urgencias aunque apliquen carencia para el parto electivo.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
+    keywords: ['mejor prepaga para embarazadas argentina', 'prepaga maternidad sin periodo espera', 'cobertura maternidad prepaga 2026', 'prepaga embarazo argentina'],
+  },
+  {
+    slug: 'mejor-prepaga-jovenes-2026',
+    titulo: 'La mejor prepaga para jóvenes en Argentina 2026: la guía definitiva',
+    bajada: 'Entre 18 y 30 años, ¿conviene Premedic, Sancor, Swiss Medical S1 o OSDE 210? Comparamos precio, cobertura y lo que más importa a los jóvenes.',
+    metaDescripcion: 'Mejor prepaga para jóvenes en Argentina 2026. Comparativa de Premedic, Sancor, Swiss Medical S1 y OSDE para menores de 30 años.',
+    categoria: 'Perfiles',
+    fechaPublicacion: '2026-06-03',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'Para los jóvenes de 18 a 30 años, la prepaga tiene otras prioridades: precio accesible, buena cobertura de salud mental, urgencias, y no pagar de más por coberturas que no van a usar.',
+      secciones: [
+        { titulo: 'La lógica del joven sano: minimizar el riesgo', cuerpo: 'Un joven sano sin enfermedades crónicas necesita cobertura para urgencias, consultas básicas y salud mental. No necesita oncología de alta complejidad ni trasplante. Por eso, un plan económico puede ser perfectamente suficiente.' },
+        { titulo: 'Premedic Plan 200-300: la opción más económica', cuerpo: 'Para jóvenes en CABA, GBA, Córdoba o Tucumán, Premedic ofrece la mejor relación precio-cobertura básica. Su Plan 200 a ~$107.000/mes cubre el PMO completo.' },
+        { titulo: 'OSDE Plan Flux: psicología ilimitada para jóvenes', cuerpo: 'OSDE creó el Plan Flux específicamente para 18-35 años. Incluye psicología ilimitada sin copago, anticonceptivos al 100% y asistencia al viajero. Precio aproximado: $198.500/mes para 30 años.' },
+        { titulo: 'Sancor Salud F700: la opción nacional con copago', cuerpo: 'Para jóvenes que viven o viajan por el interior del país, Sancor F700 ($257.337/mes) tiene cobertura nacional con 30.000 profesionales. Es el plan de entrada de Sancor.' },
+        { titulo: 'OSDE 210: la opción de respaldo laboral', cuerpo: 'Si tu empresa te ofrece OSDE 210 como parte de los beneficios, es una excelente base. El plan 210 es el más básico de OSDE pero cubre el PMO completo con la red más grande del país.' },
+      ],
+      conclusion: 'Para jóvenes sanos en AMBA: Premedic es lo más económico. Para salud mental ilimitada: OSDE Plan Flux. Para el interior: Sancor F700. OSDE 210 si tu empresa lo ofrece como beneficio.',
+    },
+    prepagasRelacionadas: ['premedic', 'sancor-salud', 'swiss-medical', 'osde'],
+    keywords: ['mejor prepaga para jovenes argentina', 'prepaga joven economica argentina', 'prepaga menores 30 anos', 'prepaga barata jovenes 2026'],
+  },
+  {
+    slug: 'prepaga-para-adultos-mayores',
+    titulo: 'Prepagas para adultos mayores: costos reales y mejores opciones',
+    bajada: 'A los 60 años la cuota puede costar el triple que a los 30. Qué prepagas tienen mejor relación precio-cobertura para mayores de 60.',
+    metaDescripcion: 'Prepagas para adultos mayores en Argentina 2026. Cuánto cuestan, cuáles tienen mejor cobertura y qué tener en cuenta al elegir con más de 60 años.',
+    categoria: 'Perfiles',
+    fechaPublicacion: '2026-05-30',
+    tiempoLectura: 8,
+    contenido: {
+      intro: 'Para personas mayores de 60 años, la elección de prepaga tiene características particulares: los precios son 2-3 veces más altos que para alguien de 30 años, pero la demanda de servicios de salud también es mayor.',
+      secciones: [
+        { titulo: 'El impacto de la edad en el precio', cuerpo: 'Las prepagas aplican multiplicadores por edad. Para alguien de 60 años, la cuota puede ser 2 a 2.5 veces la de una persona de 30. A los 70 años, puede ser 3 veces más.' },
+        { titulo: 'Las coberturas más importantes para mayores de 60', cuerpo: 'Cardiología, traumatología, oncología, diabetes y enfermedades crónicas, oftalmología y audiología. Las prepagas premium (OSDE 310+, Swiss Medical SMG20+) tienen las mejores redes para estas especialidades.' },
+        { titulo: 'Preexistencias: el gran tema', cuerpo: 'A medida que envejecés, aumenta la chance de tener preexistencias. La ley argentina prohíbe a las prepagas rechazar la afiliación por preexistencias, pero sí pueden aplicar períodos de carencia de hasta 12 meses.' },
+        { titulo: 'Las mejores opciones para mayores de 60', cuerpo: 'OSDE 310 y 410 son las más elegidas por la red de especialistas. Swiss Medical SMG10 y SMG20 tienen la mejor infraestructura de internación. Para quienes tienen PAMI, una prepaga complementaria de $100.000-$150.000/mes puede ampliar significativamente el acceso.' },
+      ],
+      conclusion: 'Para adultos mayores, priorizar la calidad y amplitud de la red de especialistas es más importante que el precio. Un plan barato que no tiene el cardiólogo o traumatólogo que necesitás en tu zona no tiene valor.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
+    keywords: ['prepaga adultos mayores argentina', 'prepaga mayores 60 anos precio', 'mejor prepaga jubilados activos', 'prepaga para personas de 65 anos'],
+  },
+  {
+    slug: 'prepaga-para-trabajadores-remotos',
+    titulo: 'Prepaga para trabajadores remotos y freelancers en Argentina',
+    bajada: 'Si trabajás desde casa o sos nómade digital, tu prepaga debe cubrir en todo el país y tener buenas herramientas digitales. Las mejores opciones.',
+    metaDescripcion: 'Mejor prepaga para trabajadores remotos y freelancers en Argentina 2026. Cobertura nacional, telemedicina y opciones para quienes se mueven entre ciudades.',
+    categoria: 'Perfiles',
+    fechaPublicacion: '2026-05-25',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'El trabajo remoto cambió las necesidades de salud de miles de argentinos. Si trabajás desde casa o te movés entre ciudades, necesitás una prepaga con cobertura en todo el país y herramientas digitales para gestionar tu salud sin ir a una sucursal.',
+      secciones: [
+        { titulo: 'El criterio clave: cobertura nacional real', cuerpo: 'Para un trabajador remoto o nómade, la cobertura nacional es indispensable. Las prepagas con mejor cobertura en todo el territorio son OSDE (140.000+ profesionales), Sancor Salud (30.000+) y Medifé (60.000+, muy fuerte en el interior).' },
+        { titulo: 'Telemedicina: el diferencial moderno', cuerpo: 'Muchas prepagas incluyen telemedicina (consultas por videollamada). Swiss Medical, OSDE y Sancor tienen plataformas propias. Para un trabajador remoto sano, la telemedicina puede ser suficiente para la mayoría de las consultas de rutina.' },
+        { titulo: 'Gestión digital: sin ir a la sucursal', cuerpo: 'Para alguien que trabaja remotamente, poder gestionar todo online es clave. Swiss Medical y OSDE tienen las apps más completas para gestionar autorizaciones, pedidos de reintegro y cartilla.' },
+        { titulo: 'Cobertura en el exterior', cuerpo: 'Si viajás al exterior con frecuencia, algunos planes premium incluyen cobertura básica de urgencias en el exterior. OSDE Plan 410 y Swiss Medical SMG30+ la tienen.' },
+      ],
+      conclusion: 'Para trabajadores remotos y freelancers, Sancor Salud y OSDE son las mejores opciones por cobertura nacional. Si te movés mucho, priorizá la app y telemedicina. Si viajás al exterior frecuentemente, verificá la cobertura internacional.',
+    },
+    keywords: ['prepaga trabajadores remotos argentina', 'prepaga freelancers argentina', 'prepaga nomade digital', 'mejor prepaga cobertura nacional argentina'],
+  },
+  // ─── INFORMACIÓN GENERAL ────────────────────────────────────
+  {
+    slug: 'que-es-el-pmo',
+    titulo: 'Qué es el PMO: el Plan Médico Obligatorio explicado en simple',
+    bajada: 'El PMO define qué debe cubrir toda prepaga u obra social en Argentina. Si no lo conocés, podés estar dejando pasar beneficios que ya pagaste.',
+    metaDescripcion: 'Qué es el PMO (Plan Médico Obligatorio) en Argentina. Qué incluye, qué no cubre y cómo usarlo para reclamar prestaciones a tu prepaga.',
+    categoria: 'Información',
+    fechaPublicacion: '2026-05-15',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'El PMO (Plan Médico Obligatorio) es el piso mínimo de cobertura que toda prepaga y obra social debe ofrecer en Argentina. Fue establecido por la Ley 23.660 y actualizado múltiples veces. Conocerlo es fundamental para saber qué podés exigirle a tu prepaga.',
+      secciones: [
+        { titulo: '¿Qué incluye el PMO?', cuerpo: 'El PMO incluye: atención médica ambulatoria (consultas con médicos de todas las especialidades), internación hospitalaria, cirugías, urgencias 24hs, maternidad completa, salud mental sin límite de sesiones, medicamentos con descuentos del 40%+, trasplantes de órganos, tratamientos oncológicos, rehabilitación y odontología básica.' },
+        { titulo: 'La Ley de Salud Mental y el PMO', cuerpo: 'La Ley 26.657 de Salud Mental establece que las prepagas no pueden limitar las sesiones de psicología o psiquiatría, ni exigir autorizaciones previas más exigentes que para otras especialidades médicas.' },
+        { titulo: 'Lo que el PMO NO incluye', cuerpo: 'El PMO no incluye: odontología compleja (implantes, ortodoncia), óptica (anteojos, lentes de contacto), medicina estética, tratamientos experimentales y algunas prestaciones de alta complejidad que requieren evaluación especial.' },
+        { titulo: 'Cómo usar el PMO para reclamar', cuerpo: 'Si tu prepaga te niega una prestación que está en el PMO, podés reclamar directamente a la empresa, luego a la Superintendencia de Servicios de Salud (sss.gob.ar), y en última instancia por vía judicial.' },
+      ],
+      conclusion: 'El PMO es tu escudo como afiliado. Conocerlo te permite saber qué tenés derecho a exigir y cómo reclamar cuando tu prepaga no cumple. Lo que el PMO establece es un piso, no un techo.',
+    },
+    keywords: ['que es el pmo argentina', 'plan medico obligatorio argentina', 'pmo que cubre', 'prepaga obligaciones legales argentina'],
+  },
+  {
+    slug: 'periodos-de-carencia-prepaga',
+    titulo: 'Períodos de carencia en prepagas: qué son y cómo evitarlos',
+    bajada: 'Si te operás en los primeros meses de afiliación, puede que la prepaga no te cubra. Cómo funcionan los períodos de espera y cómo manejarte.',
+    metaDescripcion: 'Períodos de carencia en prepagas argentinas 2026. Qué son, cuánto duran y cómo evitarlos al contratar una prepaga.',
+    categoria: 'Información',
+    fechaPublicacion: '2026-05-12',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'El período de carencia es uno de los conceptos más importantes al contratar una prepaga y que muchas personas descubren demasiado tarde. Entender qué es y cómo evitarlo puede ahorrarte muchos problemas.',
+      secciones: [
+        { titulo: '¿Qué es un período de carencia?', cuerpo: 'El período de carencia es el tiempo durante el cual, a pesar de ser afiliado y pagar la cuota, no tenés cobertura para determinadas prestaciones. Es el mecanismo que usan las prepagas para evitar que la gente se afilie solo cuando ya necesita una cirugía.' },
+        { titulo: '¿Cuánto duran?', cuerpo: 'Varían según la prestación y empresa. Las urgencias generalmente no tienen carencia (desde el primer día). El parto puede tener 6 a 10 meses. Cirugías programadas: 6 meses. Algunas prestaciones de alta complejidad: hasta 12 meses.' },
+        { titulo: 'Las preexistencias y las carencias', cuerpo: 'La ley prohíbe que las prepagas rechacen afiliados por preexistencias, pero permite aplicar carencias de hasta 12 meses para prestaciones relacionadas con esa preexistencia.' },
+        { titulo: 'Cómo evitar o minimizar las carencias', cuerpo: 'Si estás cambiando de una prepaga a otra con continuidad, podés pedir que te reconozcan la antigüedad para evitar la carencia. Si necesitás una cirugía próximamente, planificá la afiliación con tiempo.' },
+      ],
+      conclusion: 'Los períodos de carencia son legales y esperables. La clave es planificar con anticipación: si sabés que vas a necesitar una cirugía programada, afiliarte 6-8 meses antes evita problemas.',
+    },
+    keywords: ['periodo de carencia prepaga argentina', 'carencia prepaga que es', 'cuanto dura carencia prepaga', 'preexistencias prepaga argentina'],
+  },
+  {
+    slug: 'prepagas-vs-obra-social-diferencias',
+    titulo: 'Prepaga vs Obra Social: todas las diferencias que necesitás saber',
+    bajada: '¿Obra social o prepaga? ¿Las dos? ¿Cuál paga primero? Resolvemos las dudas más comunes sobre los dos sistemas de salud en Argentina.',
+    metaDescripcion: 'Diferencias entre prepaga y obra social en Argentina 2026. Cuál conviene, costos, cobertura y cuándo tener las dos. Guía completa.',
+    categoria: 'Información',
+    fechaPublicacion: '2026-05-08',
+    tiempoLectura: 8,
+    contenido: {
+      intro: 'En Argentina coexisten dos sistemas de cobertura de salud privada: las obras sociales (obligatorias para empleados en relación de dependencia) y las prepagas (contratación voluntaria). Muchas personas no entienden la diferencia real ni cuándo conviene tener las dos.',
+      secciones: [
+        { titulo: 'La diferencia fundamental', cuerpo: 'La obra social es obligatoria: si trabajás en relación de dependencia, automáticamente tenés una obra social. La prepaga es voluntaria: la contratás directamente y pagás de tu bolsillo.' },
+        { titulo: 'Quién financia cada una', cuerpo: 'La obra social se financia con aportes del empleado (3% del salario) y del empleador (6%). La prepaga la pagás vos directamente. Si tenés los dos, la prepaga puede absorber los aportes de la obra social y reducir el costo de bolsillo.' },
+        { titulo: '¿Cuándo conviene tener las dos?', cuerpo: 'Muchos profesionales tienen la OS del trabajo como base y una prepaga complementaria para acceder a mejores sanatorios o especialistas de mayor nivel. La clave es que la prepaga descuente los aportes de la OS.' },
+        { titulo: '¿Cuál paga primero?', cuerpo: 'Si tenés los dos, en principio la prepaga actúa como financiador principal y la OS como complemento. Sin embargo, la práctica varía y depende de cómo esté estructurado tu plan. Consultá con tu prepaga.' },
+      ],
+      conclusion: 'La obra social es la base obligatoria; la prepaga es la mejora voluntaria. Tener las dos tiene sentido económico cuando la prepaga puede absorber los aportes de la OS. Para trabajadores con buen salario y alta demanda de salud, la combinación suele ser la mejor estrategia.',
+    },
+    keywords: ['prepaga vs obra social argentina', 'diferencia prepaga obra social', 'obra social o prepaga cual conviene', 'tener prepaga y obra social al mismo tiempo'],
+  },
+  {
+    slug: 'copago-coseguro-prepaga-diferencia',
+    titulo: 'Copago y coseguro en prepagas: diferencias y cuánto pagás de más',
+    bajada: 'Copago, coseguro, arancel: los términos suenan similares pero tienen consecuencias muy distintas en tu bolsillo. Te lo explicamos simple.',
+    metaDescripcion: 'Diferencia entre copago y coseguro en prepagas argentinas 2026. Cuánto pagás en realidad y cuándo conviene un plan con o sin copago.',
+    categoria: 'Información',
+    fechaPublicacion: '2026-05-04',
+    tiempoLectura: 5,
+    contenido: {
+      intro: 'Cuando comparás planes de prepagas, encontrás términos como "copago", "coseguro" y "arancel" que parecen similares pero son distintos. Entender la diferencia puede hacer que pagues miles de pesos menos al año.',
+      secciones: [
+        { titulo: 'El copago: un monto fijo por consulta', cuerpo: 'El copago es un monto fijo que pagás cada vez que usás un servicio. Por ejemplo: $5.500 por cada consulta médica. Si vas al médico 5 veces al año, pagás $27.500 extra además de la cuota mensual.' },
+        { titulo: 'El coseguro: un porcentaje del costo', cuerpo: 'El coseguro es un porcentaje del costo total de la prestación que queda a tu cargo. Por ejemplo: 20% coseguro en internación. Si una internación cuesta $200.000, pagás $40.000. Es más riesgoso que el copago porque el costo puede ser alto e impredecible.' },
+        { titulo: '¿Plan con o sin copago?', cuerpo: 'Si vas mucho al médico (3+ veces al mes), un plan sin copago puede ser más conveniente aunque sea más caro en la cuota. Si vas poco (1-2 veces al año), un plan con copago puede ser más económico en total.' },
+        { titulo: 'El "plan sin copago" no es gratuito', cuerpo: 'Un plan sin copago generalmente tiene cuota mensual más alta. La prepaga carga el costo del copago en la cuota. La ventaja es la predictibilidad: sabés exactamente cuánto vas a pagar al mes.' },
+      ],
+      conclusion: 'El tipo de copago que te conviene depende de con qué frecuencia usás el sistema de salud. Para uso frecuente: plan sin copago. Para uso esporádico: plan con copago puede ser más económico. Nuestra calculadora de costo real te ayuda a hacer el cálculo personalizado.',
+    },
+    keywords: ['copago prepaga argentina', 'coseguro prepaga diferencia', 'plan sin copago prepaga', 'cuanto pago de copago prepaga'],
+  },
+  {
+    slug: 'telemedicina-prepaga-argentina',
+    titulo: 'Telemedicina en prepagas argentinas: qué prepagas la incluyen y cómo usarla',
+    bajada: 'La consulta médica por videollamada llegó para quedarse. Te contamos qué prepagas la ofrecen, cómo funciona y para qué sirve realmente.',
+    metaDescripcion: 'Telemedicina en prepagas argentinas 2026. Qué empresas la incluyen, cómo funciona y qué consultas se pueden hacer por videollamada.',
+    categoria: 'Información',
+    fechaPublicacion: '2026-04-28',
+    tiempoLectura: 5,
+    contenido: {
+      intro: 'La telemedicina se convirtió en parte de la oferta estándar de las prepagas argentinas. Hoy varias la incluyen sin costo adicional. ¿Qué podés resolver por videollamada y qué no?',
+      secciones: [
+        { titulo: '¿Qué prepagas ofrecen telemedicina?', cuerpo: 'Las principales son: Swiss Medical (app con consultas online), OSDE (portal Telemedicina OSDE), Sancor Salud (plataforma propia), Galeno y Medifé. En todos los casos, la plataforma está integrada a la app o web de la prepaga.' },
+        { titulo: '¿Qué consultas se pueden hacer online?', cuerpo: 'Funciona bien para: clínica general y síntomas leves, seguimiento de tratamientos crónicos, renovación de recetas médicas, consultas psicológicas (muy valoradas), segundas opiniones y resultados de estudios.' },
+        { titulo: 'Ventajas para el afiliado', cuerpo: 'Sin traslado, sin sala de espera, horarios más flexibles, menos contagio para enfermedades respiratorias, y posibilidad de conectarse desde cualquier lugar del país.' },
+        { titulo: 'Las limitaciones', cuerpo: 'La telemedicina no puede reemplazar consultas que requieren auscultación, palpación o examen físico. Para emergencias, siempre es mejor la consulta presencial o el servicio de urgencias.' },
+      ],
+      conclusion: 'La telemedicina es un complemento muy útil, especialmente para consultas de seguimiento, renovación de recetas y salud mental. Verificá que tu prepaga la incluya antes de contratar si es algo que valorás.',
+    },
+    keywords: ['telemedicina prepaga argentina', 'consulta online prepaga', 'prepaga videollamada medica', 'telemedicina osde swiss medical'],
+  },
+  {
+    slug: 'osde-plan-210-vs-310',
+    titulo: 'OSDE Plan 210 vs 310: ¿cuál conviene en 2026?',
+    bajada: 'El 210 es la opción económica; el 310 tiene mucho más por un 60% de diferencia de precio. Analizamos en qué casos conviene cada uno.',
+    metaDescripcion: 'OSDE Plan 210 vs 310 2026. Diferencias de precio, cobertura y prestaciones. Cuándo conviene el 210 y cuándo pagar más por el 310.',
+    categoria: 'Análisis',
+    fechaPublicacion: '2026-05-27',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'El Plan 210 y el Plan 310 son los dos planes de OSDE más elegidos. Representan la propuesta económica y la estándar de la empresa más grande de Argentina.',
+      secciones: [
+        { titulo: 'Diferencia de precio', cuerpo: 'Para una persona de 30 años como aporte adicional a la OS sindical, el OSDE 210 cuesta aproximadamente $45.000/mes, mientras que el 310 llega a $110.000. La diferencia es casi del 60%.' },
+        { titulo: 'Las diferencias de cobertura', cuerpo: 'El 210 tiene la red OSDE completa pero con copago en consultas médicas y algunas restricciones en especialistas y medicamentos. El 310 incluye consultas sin copago en muchas especialidades y mejor cobertura de medicamentos.' },
+        { titulo: '¿Cuándo conviene el 210?', cuerpo: 'Ideal para: trabajadores jóvenes y sanos que van poco al médico, personas que acceden a OSDE a través del empleador y buscan principalmente la red OSDE, y para ahorrar si tienen buena salud.' },
+        { titulo: '¿Cuándo conviene el 310?', cuerpo: 'El 310 conviene cuando: vas frecuentemente al médico (el copago del 210 se acumula), tenés enfermedades crónicas con medicamentos, usás servicios de salud mental, o tenés familia a cargo con distintas necesidades.' },
+      ],
+      conclusion: 'Para jóvenes y sanos que principalmente valoran la red OSDE: el 210 puede ser suficiente. Para quienes usan frecuentemente el sistema, el 310 se paga solo con el ahorro en copagos y medicamentos.',
+    },
+    prepagasRelacionadas: ['osde'],
+    keywords: ['osde plan 210 vs 310', 'diferencia osde 210 y 310', 'osde 310 vale la pena', 'osde plan economico argentina'],
+  },
+  {
+    slug: 'cemic-para-quien-conviene',
+    titulo: 'CEMIC en 2026: ¿para quién es la mejor opción?',
+    bajada: 'CEMIC tiene clínicas propias de excelencia académica y precios más bajos que OSDE. Pero solo cubre Buenos Aires. ¿Es la prepaga para vos?',
+    metaDescripcion: 'CEMIC prepaga 2026: análisis completo. Para quién conviene, cobertura, precios, limitaciones y comparativa con OSDE y Swiss Medical.',
+    categoria: 'Análisis',
+    fechaPublicacion: '2026-05-22',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'CEMIC es una de las opciones más interesantes del mercado: tiene clínicas universitarias de altísimo nivel académico y precios más accesibles que OSDE. Pero tiene una limitación importante: su cobertura es principalmente en Buenos Aires.',
+      secciones: [
+        { titulo: 'Las clínicas CEMIC: por qué son únicas', cuerpo: 'CEMIC tiene sus propias clínicas en Palermo, Saavedra y Villa del Parque (Buenos Aires), con médicos de formación académica de altísimo nivel. Para casos complejos (oncología, neurología, cardiología), CEMIC es una referencia nacional.' },
+        { titulo: 'El precio: más accesible que los premium', cuerpo: 'El Plan A de CEMIC parte de $177.000/mes para una persona de 30 años, lo que lo hace más accesible que planes equivalentes de OSDE o Swiss Medical.' },
+        { titulo: 'La limitación: principalmente Buenos Aires', cuerpo: 'CEMIC tiene su fortaleza en la Ciudad de Buenos Aires y el GBA. Si viajás mucho o vivís en el interior, la red fuera de Buenos Aires es muy limitada.' },
+        { titulo: '¿Para quién es ideal CEMIC?', cuerpo: 'Conviene para: personas que viven en AMBA, que valoran la excelencia médica académica, con presupuesto intermedio, y que tienen sus médicos de cabecera en la red CEMIC.' },
+      ],
+      conclusion: 'CEMIC es una excelente opción para residentes de Buenos Aires que quieren calidad médica de primer nivel a precio razonable. No es la opción si vivís o viajás al interior del país. Su especialidad son los casos complejos y la medicina académica.',
+    },
+    prepagasRelacionadas: ['cemic', 'osde', 'swiss-medical'],
+    keywords: ['cemic prepaga conviene', 'cemic analisis 2026', 'cemic vs osde calidad', 'cemic clinicas universitarias'],
+  },
+  {
+    slug: 'medife-donde-conviene',
+    titulo: 'Medifé 2026: en qué provincias y situaciones conviene',
+    bajada: 'Medifé es una de las mejores opciones para el interior del país. Analizamos dónde brilla y dónde tiene limitaciones.',
+    metaDescripcion: 'Medifé prepaga 2026: en qué provincias conviene, cuál es su red de prestadores y comparativa con Sancor y OSDE para el interior de Argentina.',
+    categoria: 'Análisis',
+    fechaPublicacion: '2026-05-18',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'Medifé es una de las prepagas menos conocidas en Buenos Aires pero muy valorada en el interior del país. Su fortaleza está en la red de prestadores en ciudades medianas y pequeñas donde otras empresas tienen menos presencia.',
+      secciones: [
+        { titulo: 'La fortaleza de Medifé: el interior profundo', cuerpo: 'Medifé tiene prestadores en ciudades medianas del NOA, NEA, Cuyo y Patagonia donde otras prepagas tienen cobertura muy limitada. En ciudades como Resistencia, Posadas, La Rioja, San Luis o Neuquén, puede tener mejor cartilla que OSDE o Swiss Medical.' },
+        { titulo: 'Los precios', cuerpo: 'El Plan M200 parte desde $138.000/mes para 30 años, mientras que el M500 llega a $260.000. Son precios similares a Sancor y más bajos que OSDE en planes equivalentes.' },
+        { titulo: 'Limitaciones en Buenos Aires', cuerpo: 'En Buenos Aires, la red de Medifé es más pequeña que OSDE o Swiss Medical. Si vivís en AMBA, no es necesariamente la mejor opción a menos que tengas un médico específico que sea prestador Medifé.' },
+        { titulo: 'Comparando con Sancor Salud', cuerpo: 'Sancor tiene más prestadores en volumen total (30.000+), pero Medifé tiene mejor penetración en ciudades específicas del interior profundo. Lo mejor es verificar la cartilla para tu ciudad específica.' },
+      ],
+      conclusion: 'Medifé es una excelente opción si vivís en el interior de Argentina, especialmente en ciudades medianas. Su precio competitivo y buena cobertura en el interior hacen que sea difícil de ignorar si no vivís en AMBA.',
+    },
+    prepagasRelacionadas: ['medife', 'sancor-salud'],
+    keywords: ['medife prepaga conviene', 'medife interior argentina', 'medife vs sancor interior', 'medife prepaga analisis 2026'],
+  },
+  {
+    slug: 'prepagas-con-mejor-app',
+    titulo: 'Las prepagas con mejor aplicación móvil en Argentina 2026',
+    bajada: 'Pedir turno, ver la cartilla, solicitar autorizaciones: la app de la prepaga puede ser un infierno o una maravilla. Rankeamos las mejores.',
+    metaDescripcion: 'Ranking de prepagas con mejor app móvil en Argentina 2026. Qué funcionalidades tiene cada una y cuál tiene la experiencia digital más completa.',
+    categoria: 'Ranking',
+    fechaPublicacion: '2026-04-15',
+    tiempoLectura: 5,
+    contenido: {
+      intro: 'En 2026, la app de tu prepaga es casi tan importante como los médicos de su red. Una buena app te permite pedir turno, ver la cartilla actualizada, solicitar autorizaciones, pedir reintegros y acceder a telemedicina.',
+      secciones: [
+        { titulo: '1. Swiss Medical: la más completa', cuerpo: 'La app de Swiss Medical es consistentemente la mejor calificada por los usuarios. Permite pedir turno con cualquier médico de la red, ver resultados de estudios, solicitar medicamentos, acceder a telemedicina y hablar con un médico online.' },
+        { titulo: '2. OSDE: la más usada', cuerpo: 'OSDE tiene la app más usada por volumen de afiliados. Permite gestión completa del plan, cartilla en línea, solicitud de autorizaciones y pago de cuota. Ha mejorado mucho en los últimos años.' },
+        { titulo: '3. Sancor Salud Digital: buena para el interior', cuerpo: 'La app de Sancor Salud es especialmente valorada por sus afiliados del interior. La cartilla es fácil de usar para encontrar prestadores en ciudades medianas y la telemedicina está bien integrada.' },
+        { titulo: 'Premedic: la más básica', cuerpo: 'Premedic tiene la app más simple del mercado. Cumple las funciones básicas pero sin las prestaciones avanzadas de las empresas más grandes. Acorde al perfil económico de la empresa.' },
+      ],
+      conclusion: 'Si la experiencia digital es importante para vos, Swiss Medical y OSDE son las mejores opciones. Para el interior, Sancor Salud tiene una app muy bien adaptada. Antes de contratar, descargá la app de prueba para evaluar la experiencia.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
+    keywords: ['prepaga mejor app argentina', 'app prepaga argentina ranking', 'swiss medical app vs osde app', 'prepaga digital argentina 2026'],
+  },
+  {
+    slug: 'prepagas-para-empresas-beneficios-empleados',
+    titulo: 'Prepagas para empresas: cómo ofrecer salud como beneficio a empleados',
+    bajada: 'Sumar una prepaga a los beneficios de la empresa retiene talento y mejora el clima laboral. Cómo funciona y qué opciones existen.',
+    metaDescripcion: 'Prepagas para empresas en Argentina 2026. Cómo funciona la cobertura corporativa, cuánto cuesta y cuáles son las mejores opciones para empleados.',
+    categoria: 'Empresas',
+    fechaPublicacion: '2026-04-10',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'Ofrecer una prepaga como beneficio laboral se convirtió en uno de los diferenciales más valorados por los empleados argentinos. Más que el aguinaldo, la cobertura de salud premium es hoy un factor determinante en la retención de talento.',
+      secciones: [
+        { titulo: '¿Cómo funciona la prepaga corporativa?', cuerpo: 'Las empresas tienen dos opciones: derivar los aportes de los empleados a una obra social/prepaga (sin costo adicional para la empresa) o subsidiar directamente la diferencia de un plan premium como beneficio laboral adicional.' },
+        { titulo: 'El beneficio fiscal', cuerpo: 'Las empresas pueden deducir del impuesto a las ganancias el costo de la prepaga que brindan como beneficio. Esto reduce el costo neto del beneficio para la empresa.' },
+        { titulo: 'Planes corporativos', cuerpo: 'Las grandes prepagas (OSDE, Swiss Medical, Galeno, Medicus) tienen planes corporativos con precios por volumen más accesibles. Para empresas de 10+ empleados, los descuentos pueden ser del 15-25%.' },
+        { titulo: '¿Qué prepaga elegir como beneficio?', cuerpo: 'OSDE y Swiss Medical son las más valoradas como beneficio laboral por el reconocimiento de marca. Medicus y Galeno tienen muy buenos planes corporativos en Buenos Aires. Sancor Salud es excelente si los empleados están distribuidos en todo el país.' },
+      ],
+      conclusion: 'La prepaga como beneficio laboral tiene un alto ROI en retención de talento. La inversión de $150.000-$300.000/empleado/mes en un plan premium puede valer mucho más en reducción de rotación y compromiso del equipo.',
+    },
+    keywords: ['prepaga para empresas argentina', 'prepaga beneficio empleados', 'plan corporativo prepaga', 'prepaga empresas 2026'],
+  },
+  {
+    slug: 'prepagas-red-abierta-vs-cerrada',
+    titulo: 'Red abierta vs red cerrada en prepagas: la diferencia que más importa',
+    bajada: 'Con red abierta podés ir a cualquier médico. Con red cerrada, solo a los del listado. La diferencia afecta enormemente tu libertad de elección.',
+    metaDescripcion: 'Red abierta vs red cerrada en prepagas argentinas 2026. Qué significa cada una, cuánto cuestan y cómo afecta tu libertad de elección médica.',
+    categoria: 'Información',
+    fechaPublicacion: '2026-04-05',
+    tiempoLectura: 5,
+    contenido: {
+      intro: 'Cuando comparás planes de prepagas, uno de los primeros términos que encontrás es "red abierta" o "red cerrada". Puede determinar si podés seguir atendiendo con tu médico de siempre o tenés que cambiarlo.',
+      secciones: [
+        { titulo: '¿Qué es una red abierta?', cuerpo: 'Con red abierta, podés atenderte con cualquier médico del país que esté adherido al plan, sin importar si trabaja en una clínica propia de la prepaga o no. OSDE es el ejemplo más conocido: 90.000+ profesionales de distintas instituciones.' },
+        { titulo: '¿Qué es una red cerrada?', cuerpo: 'Con red cerrada, solo podés atenderte con los médicos y en las instituciones que son propiedad o tienen convenio exclusivo con la prepaga. Los planes S de Swiss Medical (S1, S2) son de red cerrada: solo usás los Swiss Medical Centers.' },
+        { titulo: 'Precio: la red cerrada es más barata', cuerpo: 'Los planes de red cerrada suelen ser 20-40% más baratos que los equivalentes de red abierta. La prepaga ahorra costos al dirigir a todos los afiliados a sus propios médicos y sanatorios.' },
+        { titulo: '¿Cuándo conviene cada una?', cuerpo: 'Red cerrada conviene cuando: la red propia está bien establecida en tu zona, estás dispuesto a cambiar tus médicos actuales y querés pagar menos. Red abierta conviene cuando: ya tenés médicos de confianza fuera de la red propia, vivís en el interior, o valorás la libertad de elección.' },
+      ],
+      conclusion: 'La elección entre red abierta y cerrada depende principalmente de si tenés médicos establecidos que querés mantener y de si la red propia de la prepaga está bien establecida en tu zona. Verificá cuántos médicos de tu especialidad tiene la prepaga en tu código postal antes de contratar.',
+    },
+    keywords: ['red abierta vs cerrada prepaga', 'prepaga red abierta argentina', 'plan red cerrada prepaga que significa', 'libertad de eleccion medica prepaga'],
+  },
+  {
+    slug: 'prepagas-que-mas-aumentaron',
+    titulo: 'Las prepagas que más aumentaron en Argentina en los últimos 12 meses',
+    bajada: 'Mientras algunas prepagas aumentaron un 80%, otras llegaron al 130%. Un análisis de quién subió más y por qué.',
+    metaDescripcion: 'Ranking de las prepagas que más aumentaron en Argentina en 2025-2026. Análisis de los incrementos por empresa y consejos para protegerte.',
+    categoria: 'Precios',
+    fechaPublicacion: '2026-04-20',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'Los aumentos de prepagas en Argentina son un tema recurrente y doloroso. Pero no todas las empresas aumentan igual: algunas son más agresivas que otras. Analizamos quiénes subieron más en el último año.',
+      secciones: [
+        { titulo: 'El marco regulatorio de los aumentos', cuerpo: 'Desde 2011, las prepagas deben pedir autorización a la SSS para aumentar las cuotas. La SSS puede aprobar, rechazar o modificar el aumento propuesto, pero las empresas tienen margen para trasladar costos.' },
+        { titulo: 'Por qué algunas suben más que otras', cuerpo: 'Los factores que determinan cuánto sube una prepaga son: la composición de su cartera de afiliados (más personas mayores = más costos), el tipo de planes que ofrece, cuánto han invertido en infraestructura propia y la eficiencia administrativa.' },
+        { titulo: 'Qué hacer si tu prepaga subió mucho', cuerpo: 'Pedí el historial de aumentos de los últimos 24 meses a la prepaga (tenés derecho), compará con la competencia, considerá bajar de plan dentro de la misma empresa, o analizá cambiar a una empresa con historial de menores aumentos.' },
+        { titulo: 'La estrategia de largo plazo', cuerpo: 'Elegir una empresa con historial de aumentos moderados y revisar el plan al menos una vez al año son las dos medidas más efectivas para manejar los aumentos de prepagas.' },
+      ],
+      conclusion: 'Los aumentos de prepagas son inevitables en la economía argentina. La estrategia: elegir una empresa con historial de aumentos moderados, revisar el plan al menos una vez al año, y tener siempre una opción alternativa clara para cambiar si es necesario.',
+    },
+    keywords: ['prepagas que mas aumentaron argentina', 'aumento prepaga ranking', 'prepaga sube precio 2026', 'como manejar aumento prepaga'],
+  },
+  // ─── NUEVOS POSTS ALTA DEMANDA ──────────────────────────────
+  {
+    slug: 'osde-plan-flux-que-es',
+    titulo: 'OSDE Plan Flux 2026: qué es, qué cubre y para quién conviene',
+    bajada: 'El plan de OSDE para menores de 35 años incluye psicología ilimitada, anticonceptivos al 100% y asistencia al viajero. ¿Vale la pena?',
+    metaDescripcion: 'OSDE Plan Flux 2026: qué cubre, precio estimado y si conviene frente al Plan 210 o 310. Todo sobre el plan de OSDE para jóvenes de 18 a 35 años.',
+    categoria: 'Análisis',
+    fechaPublicacion: '2026-06-25',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'OSDE lanzó el Plan Flux pensado específicamente para personas de 18 a 35 años que quieren algo más que el Plan 210 tradicional, con cobertura de salud mental ilimitada y sin las restricciones burocráticas de los planes standard.',
+      secciones: [
+        {
+          titulo: '¿Qué es el Plan Flux de OSDE?',
+          cuerpo: 'Flux es el plan de OSDE diseñado para el segmento joven (18-35 años). Se posiciona como un plan "ágil y moderno" con coberturas orientadas a las necesidades de los jóvenes: salud mental ilimitada, anticonceptivos cubiertos al 100%, asistencia al viajero gratuita en países limítrofes (Brasil, Chile, Uruguay, Paraguay, Bolivia) y reintegros sin tope.',
+        },
+        {
+          titulo: '¿Qué incluye el Plan Flux que no tiene el 210?',
+          cuerpo: 'Las diferencias clave frente al Plan 210: psicología y psiquiatría sin límite de sesiones (el 210 tiene restricciones), anticonceptivos con cobertura del 100% (en el 210 tienen coseguro), asistencia al viajero gratuita en Mercosur (en el 210 es adicional), y reintegros sin tope por gastos fuera de cartilla.',
+        },
+        {
+          titulo: 'El precio del Plan Flux',
+          cuerpo: 'OSDE no publica el precio del Plan Flux en su sitio web. Según cotizaciones directas, para una persona de 25-30 años el precio estimado es de $230.000-$280.000/mes como abono directo. Como diferencial sobre obra social, puede bajar considerablemente. Contactando a PrepagaYa podés obtener una cotización actualizada.',
+        },
+        {
+          titulo: '¿Conviene Flux frente al Plan 310?',
+          cuerpo: 'El Plan 310 de OSDE ($345.310/mes para 30 años) tiene cobertura más amplia en general, pero el Flux tiene ventajas específicas para jóvenes: la psicología ilimitada es su mayor diferencial. Si usás psicología regularmente (lo más común en el segmento 20-35), el Flux puede ser más conveniente a un precio menor.',
+        },
+        {
+          titulo: '¿Para quién es ideal el Plan Flux?',
+          cuerpo: 'Flux conviene especialmente a: jóvenes de 18-35 que priorizan salud mental, personas que viajan frecuentemente a países limítrofes, mujeres jóvenes que usan anticonceptivos y buscan cobertura total, y trabajadores independientes que contratan OSDE directamente.',
+        },
+      ],
+      conclusion: 'El Plan Flux es una propuesta inteligente de OSDE para captar al segmento joven con coberturas que realmente usan. Su diferencial más fuerte es la psicología ilimitada. Si tenés entre 18-35 años y usás salud mental con frecuencia, merece cotizarse junto al Plan 310 para comparar.',
+    },
+    prepagasRelacionadas: ['osde'],
+    keywords: ['osde plan flux', 'plan flux osde precio', 'osde flux para jovenes', 'osde plan jovenes 2026'],
+  },
+  {
+    slug: 'swiss-medical-smg20-vs-osde-310',
+    titulo: 'Swiss Medical SMG20 vs OSDE Plan 310: comparativa completa 2026',
+    bajada: 'Son los dos planes intermedios más elegidos de Argentina, con precios similares (~$325k vs ~$345k). ¿Cuál da más por tu dinero?',
+    metaDescripcion: 'Swiss Medical SMG20 vs OSDE Plan 310: precio, cobertura, red de prestadores y satisfacción comparados en 2026. Cuál conviene según tu perfil.',
+    categoria: 'Comparativas',
+    fechaPublicacion: '2026-06-25',
+    tiempoLectura: 8,
+    contenido: {
+      intro: 'El Swiss Medical SMG20 ($325.467/mes) y el OSDE Plan 310 ($345.310/mes) son los planes intermedios más buscados del mercado argentino. Compiten en el mismo segmento de precio y ambos incluyen cobertura sin copago. ¿Cuál conviene?',
+      secciones: [
+        {
+          titulo: 'Comparativa de precios (persona de 30 años)',
+          cuerpo: 'SMG20 de Swiss Medical: $325.467/mes sin copago. Plan 310 de OSDE: $345.310/mes sin copago. La diferencia mensual es de $19.843 a favor de Swiss Medical — casi $238.000 al año. Ambos precios son para contratación particular directa, sin descuento de obra social.',
+        },
+        {
+          titulo: 'Red de prestadores: OSDE es más grande',
+          cuerpo: 'El Plan 310 te da acceso a más de 140.000 profesionales en todo el país, incluyendo el Hospital Alemán sin costo adicional. El SMG20 tiene red más pequeña (81.500-100.000 profesionales) pero acceso a los 8 sanatorios propios de Swiss Medical (Suizo Argentina, Los Arcos, Agote, Zabala y más) que tienen nivel de hotelería y equipamiento superior.',
+        },
+        {
+          titulo: 'Coberturas diferenciales: cada plan tiene sus ventajas',
+          cuerpo: 'SMG20 incluye: ortodoncia hasta 15 años, 30 sesiones de psicología por año, cobertura de urgencias en Brasil. Plan 310 incluye: ortodoncia hasta 18 años, visita domiciliaria, consulta médica online incluida, Hospital Alemán en red, y reintegros sin tope por gastos fuera de cartilla.',
+        },
+        {
+          titulo: 'Satisfacción de afiliados',
+          cuerpo: 'Swiss Medical tiene 76% de satisfacción de afiliados con 3.8/5 estrellas. OSDE tiene 74% de satisfacción con 3.7/5. La diferencia es pequeña. Donde Swiss Medical marca diferencia es en la calidad de infraestructura de sus sanatorios propios.',
+        },
+        {
+          titulo: '¿Quién debería elegir cada uno?',
+          cuerpo: 'Elegí SMG20 si: valorás los sanatorios propios de Swiss Medical, vivís en CABA/GBA donde la red es más densa, o querés el plan más económico entre los dos. Elegí Plan 310 si: necesitás cobertura fuera de Buenos Aires (OSDE es mucho mejor en el interior), querés acceso al Hospital Alemán, o priorizás la red más amplia del país.',
+        },
+      ],
+      conclusion: 'Para afiliados en AMBA: el SMG20 gana por precio ($19.843 menos al mes) y por los sanatorios propios. Para afiliados con necesidad de cobertura nacional o que priorizan amplitud de red: el Plan 310 de OSDE no tiene competencia. En cualquier caso, cotizá los dos y verificá tu médico de cabecera en ambas cartillas.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde'],
+    keywords: ['smg20 vs osde 310', 'swiss medical smg20 osde plan 310', 'osde 310 vs swiss medical', 'comparar planes intermedios prepaga 2026'],
+  },
+  {
+    slug: 'prepaga-para-monotributistas-argentina-2026',
+    titulo: 'La mejor prepaga para monotributistas en Argentina 2026',
+    bajada: 'Trabajador independiente, freelancer, autónomo: cuál es la mejor prepaga para vos y cuánto sale contratarla directamente sin obra social.',
+    metaDescripcion: 'Mejor prepaga para monotributistas en Argentina 2026. Precios reales, opciones sin obra social y cómo elegir según tu presupuesto. Guía completa.',
+    categoria: 'Perfiles',
+    fechaPublicacion: '2026-06-25',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'Los monotributistas y trabajadores independientes tienen una situación particular: pueden contratar una prepaga o una obra social directamente, sin depender de ningún empleador. ¿Cuál es la mejor opción para 2026 y cuánto cuesta?',
+      secciones: [
+        {
+          titulo: 'Prepaga vs Obra Social: ¿qué conviene para un monotributista?',
+          cuerpo: 'Los monotributistas pueden contratar: (1) Una obra social sindical como titular directo — precio fijo independiente del ingreso, pero cobertura variable. (2) Una prepaga directamente como abono particular — mayor precio, pero mayor control sobre qué empresa y plan querés. Para quienes facturan bien y buscan calidad, la prepaga directa es la opción más común.',
+        },
+        {
+          titulo: 'Las opciones más elegidas por monotributistas',
+          cuerpo: 'En orden de precio para 30 años (Directo con IVA): Premedic Plan 200 (~$107.044/mes, solo AMBA y algunas ciudades), Medifé+ ($173.648/mes), Swiss Medical S1 (~$185.773/mes, red cerrada pero alta calidad), OSDE Plan Flux ($198.500/mes, jóvenes con psicología ilimitada), Sancor F700 ($257.337/mes, cobertura nacional), OSDE Plan 210 ($267.250/mes, la red más grande).',
+        },
+        {
+          titulo: 'Medifé Plan Indie: diseñado para independientes',
+          cuerpo: 'Medifé creó el Plan Indie específicamente para trabajadores independientes. Incluye Cam Doctor (médico por videollamada en menos de 10 minutos), acceso al Sanatorio Finochietto y cobertura en AMBA. Si sos freelancer o nómade digital en Buenos Aires, es una de las opciones más convenientes del mercado.',
+        },
+        {
+          titulo: 'El aporte del monotributo y la obra social incluida',
+          cuerpo: 'Cada monotributista tiene incluida en su cuota de monotributo un componente de obra social (aproximadamente $10.000-$20.000/mes según categoría). Ese aporte va automáticamente a la OS sindical de la actividad, que tiene cobertura muy básica. Muchos monotributistas contratan una prepaga adicional o en su lugar para tener mejor cobertura.',
+        },
+        {
+          titulo: 'Dedución AFIP: la prepaga reduce el impuesto a las ganancias',
+          cuerpo: 'Si estás alcanzado por el Impuesto a las Ganancias como monotributista o autónomo, la cuota de prepaga es deducible hasta el 5% de tu ganancia neta. Una prepaga de $250.000/mes puede generar un ahorro fiscal de $20.000-$30.000/mes, reduciendo el costo real considerablemente.',
+        },
+      ],
+      conclusion: 'Para monotributistas: si facturás bien y querés calidad, Swiss Medical S1 o OSDE 210 son los estándares del mercado. Si buscás el menor costo con cobertura decente, Premedic (AMBA) o Sancor Plan 1500 (cobertura nacional). Si sos freelancer en Buenos Aires, mirá el Plan Indie de Medifé. Y recordá que la cuota puede ser deducible de Ganancias.',
+    },
+    prepagasRelacionadas: ['premedic', 'sancor-salud', 'medife', 'swiss-medical', 'osde'],
+    keywords: ['prepaga para monotributistas argentina', 'prepaga freelancers argentina 2026', 'mejor prepaga trabajador independiente', 'prepaga autonomos argentina precio'],
+  },
+
+  // ─── RANKINGS ESPECIALIZADOS ─────────────────────────────────
+  {
+    slug: 'ranking-prepagas-argentina-2026',
+    titulo: 'Ranking de prepagas Argentina 2026: la mejor según cada criterio',
+    bajada: 'No existe una prepaga perfecta para todos. Pero sí existe la mejor para tu perfil. Ranking honesto con datos reales de junio 2026.',
+    metaDescripcion: 'Ranking completo de prepagas Argentina 2026. La mejor prepaga por precio, red, satisfacción, salud mental, maternidad y más. Datos actualizados junio 2026.',
+    categoria: 'Rankings',
+    fechaPublicacion: '2026-07-01',
+    tiempoLectura: 9,
+    contenido: {
+      intro: 'Elegir la mejor prepaga depende de qué valorás más: el precio, la red de prestadores, la calidad de los sanatorios o prestaciones específicas como salud mental o maternidad. En PrepagaYa analizamos cada categoría por separado con datos reales de junio 2026.',
+      secciones: [
+        {
+          titulo: '#1 Mayor red de prestadores: OSDE',
+          cuerpo: 'Con más de 140.000 profesionales en todo el país y presencia en todas las provincias, OSDE tiene la red más grande de Argentina sin competencia cercana. Su Plan 310 ($345.310/mes) es el estándar del mercado: sin copago, Hospital Alemán, Italiano y médico a domicilio. Si vivís en el interior o viajás seguido, ninguna se acerca a OSDE en cobertura nacional.',
+        },
+        {
+          titulo: '#2 Mejor infraestructura propia: Swiss Medical',
+          cuerpo: 'Swiss Medical tiene 8 sanatorios propios de alta complejidad (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas) y 30 centros de diagnóstico propios. Para quienes viven en CABA y GBA y quieren internarse en los mejores establecimientos del país, Swiss Medical es difícil de superar. El SMG20 ($325.467/mes) es su plan más popular.',
+        },
+        {
+          titulo: '#3 Mejor relación precio-calidad: Medifé+',
+          cuerpo: 'A $173.648/mes para una persona de 30 años, el Plan Medifé+ incluye el Sanatorio Finochietto (cirugía robótica, el más tecnológico del país), Cam Doctor (médico por videollamada en menos de 10 minutos) y cobertura PMO completa. Para alguien que busca calidad sin pagar de más, es el ganador claro de esta categoría.',
+        },
+        {
+          titulo: '#4 Mejor prepaga para salud mental: OSDE Flux',
+          cuerpo: 'El Plan Flux de OSDE ($198.500/mes, exclusivo 18-35 años) tiene psicología ilimitada sin copago — algo que ninguna otra prepaga ofrece a ese precio. Si la salud mental es una prioridad y tenés menos de 35 años, OSDE Flux no tiene competencia real en el mercado.',
+        },
+        {
+          titulo: '#5 Mayor satisfacción de afiliados: Medicus',
+          cuerpo: 'Con un 87% de satisfacción — el más alto de todas las prepagas analizadas —, Medicus es consistentemente valorada por la calidad de atención. Sus 11 centros propios en CABA, GBA, Mar del Plata, Mendoza, Rosario y Neuquén ofrecen una experiencia de atención de primer nivel. El Plan Celeste ($399.484/mes) sin copago es su estrella.',
+        },
+      ],
+      conclusion: 'El mejor ranking no es el que dice cuál es la número 1 en abstracto, sino el que te ayuda a encontrar la mejor para vos. Si usás mucho el sistema de salud y vivís en CABA/GBA: Swiss Medical o Medicus. Si vivís en el interior o viajás: OSDE. Si buscás precio: Medifé+ o Premedic. Si priorizás salud mental y tenés menos de 35: OSDE Flux.',
+    },
+    prepagasRelacionadas: ['osde', 'swiss-medical', 'medife', 'medicus', 'premedic'],
+    keywords: ['ranking prepagas argentina 2026', 'mejor prepaga argentina 2026', 'que prepaga elegir 2026', 'comparativa prepagas argentina 2026'],
+  },
+  {
+    slug: 'mejor-prepaga-salud-mental-psicologia-2026',
+    titulo: 'Mejor prepaga para psicología y salud mental 2026: OSDE Flux gana',
+    bajada: 'OSDE Flux tiene psicología ilimitada sin copago a $198.500/mes. Analizamos todas las opciones y elegimos la ganadora por perfil.',
+    metaDescripcion: 'Mejor prepaga para psicología y salud mental en Argentina 2026. OSDE Flux lidera con sesiones ilimitadas. Análisis completo con precios y coberturas reales.',
+    categoria: 'Rankings',
+    fechaPublicacion: '2026-07-03',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'La salud mental se convirtió en uno de los criterios más importantes al elegir prepaga. La Ley 26.657 garantiza cobertura ilimitada, pero la práctica varía enormemente. Analizamos qué prepaga realmente lo hace bien en 2026.',
+      secciones: [
+        {
+          titulo: 'Ganadora: OSDE Plan Flux',
+          cuerpo: 'Si tenés entre 18 y 35 años, el Plan Flux de OSDE ($198.500/mes) es la opción más completa del mercado para salud mental. Incluye psicología ilimitada sin copago, psiquiatría, acceso a los 140.000 profesionales de OSDE y anticonceptivos al 100%. Es exclusivo para menores de 35 años, pero si calificás, no hay nada mejor en relación precio-cobertura mental.',
+        },
+        {
+          titulo: '2do lugar: Medifé Plan Platinum',
+          cuerpo: 'El Plan Platinum de Medifé ($478.050/mes) tiene cobertura de salud mental ampliada con psicología sin copago, psiquiatría y acceso al Sanatorio Finochietto y los 60.000 prestadores nacionales. Para mayores de 35 años, o quienes buscan un plan más completo que el Flux, el Platinum de Medifé es la alternativa más sólida.',
+        },
+        {
+          titulo: '3er lugar: Swiss Medical SMG20',
+          cuerpo: 'El SMG20 ($325.467/mes) incluye 30 sesiones de psicología por año con copago mínimo o sin copago (según el profesional en cartilla). Para quien ya tiene plan SMG20 por otras razones, la cobertura de salud mental es más que suficiente. La cartilla de psicólogos en CABA y GBA es de las más amplias del país.',
+        },
+        {
+          titulo: 'Qué verificar en tu prepaga actual',
+          cuerpo: 'Antes de cambiar de prepaga por la salud mental, verificá: si tu psicólogo o psiquiatra actual está en la cartilla, si hay período de carencia para tratamientos psicológicos, cuántas sesiones al año autorizan en la práctica (aunque la ley dice ilimitadas, las trabas burocráticas existen), y si hay copago por sesión.',
+        },
+      ],
+      conclusion: 'Para salud mental, el ganador claro para menores de 35 años es OSDE Flux con psicología ilimitada sin copago. Para mayores de 35, Medifé Platinum o Swiss Medical SMG20 son las mejores opciones. La clave siempre es verificar que tu psicólogo de confianza esté en la cartilla.',
+    },
+    prepagasRelacionadas: ['osde', 'medife', 'swiss-medical'],
+    keywords: ['mejor prepaga para psicologia 2026', 'osde flux psicologia ilimitada', 'prepaga salud mental argentina', 'prepaga psicologia sin copago'],
+  },
+  {
+    slug: 'mejor-prepaga-odontologia-dental-2026',
+    titulo: 'Mejor prepaga para odontología en Argentina 2026: Swiss Medical SMG20 lidera',
+    bajada: 'El SMG20 cubre consultas, obturaciones, extracciones y 40% de descuento en farmacias. Analizamos qué prepaga tiene la mejor cobertura dental.',
+    metaDescripcion: 'Mejor prepaga para odontología en Argentina 2026. Swiss Medical SMG20 y Medicus Celeste lideran. Análisis completo de cobertura dental y precios reales.',
+    categoria: 'Rankings',
+    fechaPublicacion: '2026-07-05',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'La odontología es una de las coberturas más consultadas al elegir prepaga. No forma parte del PMO básico, por lo que las diferencias entre prepagas son enormes. ¿Cuál cubre mejor el dentista en 2026?',
+      secciones: [
+        {
+          titulo: 'Ganadora: Swiss Medical SMG20',
+          cuerpo: 'El Plan SMG20 ($325.467/mes) incluye odontología en sus planes SMG sin costo adicional: diagnóstico, radiografías, obturaciones simples, extracciones y tratamiento de conducto. Los Swiss Medical Centers tienen dentistas propios con atención de lunes a sábado. Para quien quiere un plan completo con buena cobertura dental incluida, el SMG20 es el estándar del mercado.',
+        },
+        {
+          titulo: '2do lugar: Medicus Plan Celeste',
+          cuerpo: 'El Plan Celeste de Medicus ($399.484/mes) destaca en odontología con cobertura de prótesis dental sin límite y acceso a la red de 11 centros médicos propios de Medicus, que incluyen módulos odontológicos de primer nivel. El plan Azul ($490.333/mes) suma implantes dentales cubiertos, siendo la mejor opción para quienes necesitan trabajo dental complejo.',
+        },
+        {
+          titulo: '3er lugar: OSDE Plan 410',
+          cuerpo: 'El Plan 410 de OSDE ($459.250/mes) incluye implantes dentales y ortodoncia sin límite de edad — algo que ningún otro plan de esa franja de precio ofrece en forma completa. Para familias que tienen adultos mayores con necesidades dentales avanzadas, el 410 es la opción más conveniente.',
+        },
+        {
+          titulo: 'Qué NO cubre casi ninguna prepaga',
+          cuerpo: 'Blanqueamiento dental, carillas estéticas y coronas de circonio rara vez están cubiertas. Tampoco la ortodoncia lingual o alineadores invisibles (salvo en planes muy premium). La odontología estética en general queda fuera de la cobertura prepaga. Para eso, las mutuales odontológicas específicas pueden ser más convenientes.',
+        },
+      ],
+      conclusion: 'Para odontología integral incluida en el plan: Swiss Medical SMG20. Para quien necesita implantes o trabajo dental de alta complejidad: Medicus Azul u OSDE 410. Para ortodoncia familiar: OSDE 310 o 410. Si solo necesitás urgencias dentales y mantenimiento básico, cualquier plan cubre lo suficiente.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'medicus', 'osde'],
+    keywords: ['mejor prepaga odontologia 2026', 'swiss medical smg20 dental', 'prepaga cubre dentista argentina', 'prepaga implantes dentales argentina'],
+  },
+  {
+    slug: 'mejor-prepaga-maternidad-embarazo-2026',
+    titulo: 'Mejor prepaga para embarazo y maternidad en Argentina 2026',
+    bajada: 'Swiss Medical y OSDE lideran en cobertura de maternidad. Analizamos controles prenatales, parto, internación y licencia de maternidad.',
+    metaDescripcion: 'Mejor prepaga para embarazo y maternidad en Argentina 2026. Análisis de Swiss Medical, OSDE y Medifé para cobertura prenatal, parto y postparto. Guía completa.',
+    categoria: 'Rankings',
+    fechaPublicacion: '2026-07-07',
+    tiempoLectura: 8,
+    contenido: {
+      intro: 'Si estás embarazada o planificando un embarazo, la elección de la prepaga es una de las decisiones más importantes. La cobertura de maternidad varía considerablemente entre empresas y planes. Te explicamos qué diferencia a las mejores en 2026.',
+      secciones: [
+        {
+          titulo: 'Lo que todas deben cubrir (PMO)',
+          cuerpo: 'Todas las prepagas están obligadas a cubrir: controles prenatales, parto vaginal o cesárea, internación de la madre hasta 48 horas (vaginal) o 72 horas (cesárea), y atención del recién nacido. Los vacíos en la práctica aparecen en la calidad de la clínica, los tiempos de autorización y qué obstetra podés elegir.',
+        },
+        {
+          titulo: 'Ganadora: Swiss Medical SMG20',
+          cuerpo: 'El SMG20 ($325.467/mes) con acceso a los 8 sanatorios propios de Swiss Medical — incluyendo Suizo Argentina y Los Arcos, con maternidades de primer nivel en CABA y GBA — es la opción más completa. Sin copago, elección libre de obstetra dentro de la red abierta, habitación privada en internación y neonatología propia de alta complejidad. Para dar a luz en las mejores condiciones, Swiss Medical es difícil de superar.',
+        },
+        {
+          titulo: '2do lugar: OSDE Plan 310',
+          cuerpo: 'El OSDE 310 ($345.310/mes) tiene la mayor cantidad de obstetras en cartilla de cualquier prepaga del país, lo que te da la máxima libertad para elegir tu médico de confianza. Cubre parto sin copago, Hospital Italiano y Hospital Alemán incluidos, y la red más amplia para atenderte donde estés en Argentina. Para quienes priorizan la elección de obstetra, OSDE 310 es el ganador.',
+        },
+        {
+          titulo: '3er lugar: Medifé Plan Plata',
+          cuerpo: 'El Plan Plata de Medifé ($309.892/mes) tiene acceso al Sanatorio Finochietto (uno de los más modernos del país), maternidad con habitación individual y Cam Doctor para consultas de urgencia. Es la mejor opción en la franja de precio intermedia para embarazadas en Buenos Aires.',
+        },
+        {
+          titulo: 'Período de carencia: el factor clave',
+          cuerpo: 'Casi todas las prepagas tienen un período de carencia de 10 a 11 meses para maternidad. Eso significa que si ya estás embarazada, en general no podés contratar una prepaga nueva y recibir la cobertura completa del parto. Verificá siempre el período de carencia antes de contratar.',
+        },
+      ],
+      conclusion: 'Para maternidad en CABA y GBA, Swiss Medical SMG20 es el ganador por infraestructura propia. Si priorizás la elección de obstetra y la red más amplia, OSDE 310. Para la mejor relación precio-calidad en maternidad, Medifé Plan Plata. Y recordá siempre verificar el período de carencia si ya estás embarazada.',
+    },
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'medife'],
+    keywords: ['mejor prepaga maternidad argentina 2026', 'prepaga para embarazo argentina', 'cobertura parto prepaga', 'prepaga embarazada argentina 2026'],
+  },
+  {
+    slug: 'mayor-aumento-prepagas-2026-que-paso',
+    titulo: 'Los aumentos de prepagas en el primer semestre 2026: cuánto subió cada empresa',
+    bajada: 'OSDE, Swiss Medical y Sancor aumentaron en promedio un 28% en el primer semestre de 2026. Desglosamos mes a mes y empresa por empresa.',
+    metaDescripcion: 'Cuánto aumentaron las prepagas en 2026. Análisis detallado por empresa: OSDE, Swiss Medical, Sancor, Medifé. Evolución mensual y proyección para el segundo semestre.',
+    categoria: 'Precios',
+    fechaPublicacion: '2026-07-09',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'El primer semestre de 2026 registró aumentos de prepagas significativamente más moderados que 2024, pero el impacto acumulado desde enero 2024 sigue siendo muy alto. Analizamos empresa por empresa cuánto aumentaron y qué esperar para el segundo semestre.',
+      secciones: [
+        {
+          titulo: 'OSDE: +26% acumulado en el primer semestre 2026',
+          cuerpo: 'OSDE aplicó aumentos bimestrales de entre el 3.5% y el 7% durante el primer semestre de 2026. El Plan 310 pasó de aproximadamente $274.000 en enero a $345.310 en junio. El aumento acumulado en 12 meses (junio 2025 a junio 2026) es del 22%. En perspectiva: en 2024, OSDE había aumentado más del 180% anual.',
+        },
+        {
+          titulo: 'Swiss Medical: aumentos en línea con OSDE',
+          cuerpo: 'Swiss Medical siguió una tendencia similar a OSDE con aumentos de 3-6% bimestrales. El SMG20 cerró junio 2026 en $325.467, partiendo de $258.000 en enero. Un aumento del 26% semestral que, aunque menor que en años anteriores, sigue siendo alto comparado con la inflación de períodos previos.',
+        },
+        {
+          titulo: 'Medifé y Sancor: los más moderados',
+          cuerpo: 'Medifé tuvo los aumentos más moderados del semestre: su Plan Plata pasó de $246.000 a $309.892, un 26% acumulado pero con menos variabilidad mes a mes. Sancor Salud fue similar con el Plan 1000 cerrando en $362.701. Ambas empresas optaron por aumentos más estables en lugar de los picos de 2024.',
+        },
+        {
+          titulo: 'Por qué los aumentos se moderaron',
+          cuerpo: 'La moderación tiene dos causas principales: la inflación general bajó del 25% mensual en 2024 a 3-5% en 2026, lo que reduce la presión sobre salarios médicos y costos operativos. Además, la Superintendencia de Servicios de Salud (SSS) implementó monitoreo más activo de los aumentos, moderando los picos más agresivos.',
+        },
+        {
+          titulo: 'Qué esperar para el segundo semestre 2026',
+          cuerpo: 'Los analistas del sector proyectan que los aumentos del segundo semestre de 2026 seguirán en la franja del 3-6% bimestral. El mayor riesgo es una aceleración inflacionaria que presione los salarios médicos. Las prepagas que más suelen aumentar en el segundo semestre son OSDE y Swiss Medical, que generalmente aplican actualizaciones en julio-agosto.',
+        },
+      ],
+      conclusion: 'Los aumentos de 2026 son más manejables que los de 2024, pero el acumulado desde 2024 es muy alto. Si la cuota te quedó difícil de pagar, la herramienta más efectiva es cambiar de plan (bajando al siguiente inferior en tu empresa actual) o comparar con Premedic o Sancor, que tienen las opciones de entrada más accesibles del mercado.',
+    },
+    prepagasRelacionadas: ['osde', 'swiss-medical', 'sancor-salud', 'medife'],
+    keywords: ['aumento prepagas 2026 cuanto subieron', 'osde aumento primer semestre 2026', 'swiss medical aumento 2026', 'cuanto aumentaron las prepagas primer semestre 2026'],
+  },
+  {
+    slug: 'mejor-prepaga-precio-calidad-argentina-2026',
+    titulo: 'La prepaga con mejor relación precio-calidad en Argentina 2026',
+    bajada: 'Medifé+ a $173.648 con Sanatorio Finochietto y telemedicina. Analizamos qué obtenés por lo que pagás en cada rango de precio.',
+    metaDescripcion: 'Mejor relación precio-calidad en prepagas argentinas 2026. Análisis por rango de precio con ganadores reales. Medifé, Sancor y Swiss Medical comparados.',
+    categoria: 'Rankings',
+    fechaPublicacion: '2026-07-10',
+    tiempoLectura: 8,
+    contenido: {
+      intro: 'La relación precio-calidad en prepagas no es lineal: pagar más no siempre significa cubrir mejor. Hay planes que ofrecen mucho por poco y planes caros que no justifican el costo extra. Analizamos los ganadores por franja de precio.',
+      secciones: [
+        {
+          titulo: 'Hasta $200.000/mes: Medifé+',
+          cuerpo: 'A $173.648/mes, el Plan Medifé+ incluye acceso al Sanatorio Finochietto (el más tecnológico del país), Cam Doctor (médico por videollamada en menos de 10 minutos) y cobertura PMO completa. En esta franja, ningún otro plan tiene acceso a un sanatorio de ese nivel. Para jóvenes o adultos sanos que quieren cobertura de respaldo con calidad, es el ganador indiscutido.',
+        },
+        {
+          titulo: 'Entre $200.000 y $280.000/mes: OSDE Flux (menores de 35)',
+          cuerpo: 'A $198.500/mes (exclusivo 18-35 años), el Plan Flux de OSDE ofrece la red más grande del país, psicología ilimitada sin copago y anticonceptivos al 100%. Si calificás por edad, supera ampliamente en cobertura al Sancor F700 ($257.337) y al Swiss Medical S1 ($185.773, red cerrada). El Flux es el mejor plan de su franja si tenés menos de 35 años.',
+        },
+        {
+          titulo: 'Entre $280.000 y $380.000/mes: Sancor Plan 1000',
+          cuerpo: 'El Plan 1000 de Sancor Salud ($362.701/mes) ofrece la mejor relación precio-calidad en la franja media: sin copago en especialistas, maternidad completa, óptica, dental básico y red nacional extensa con 45.000 profesionales. Compara favorablemente con el OSDE 310 ($345.310) y el Swiss Medical SMG20 ($325.467) para quienes valoran la cobertura nacional por sobre los sanatorios propios.',
+        },
+        {
+          titulo: 'Por encima de $380.000/mes: Medicus Plan Celeste',
+          cuerpo: 'A $399.484/mes, el Plan Celeste de Medicus tiene el 87% de satisfacción más alto del mercado, sin copago, acceso a 11 centros propios y a los mejores hospitales privados del país (Mater Dei, Alemán, Otamendi, Favaloro, CEMIC). Para quien puede pagar en esta franja, la calidad de atención de Medicus supera a OSDE 310 y Swiss Medical SMG20.',
+        },
+        {
+          titulo: 'El error más común al elegir por precio',
+          cuerpo: 'El error más frecuente es comparar el precio de lista sin considerar el costo real después de lo que cubrís. Un plan con copago del 30% en consultas puede costar más en la práctica que uno más caro sin copago si usás el sistema frecuentemente. Calculá cuántas consultas y estudios hacés al año antes de elegir solo por el precio mensual.',
+        },
+      ],
+      conclusion: 'Por precio-calidad: Medifé+ para entrada, OSDE Flux si tenés menos de 35, Sancor 1000 en la franja media, y Medicus Celeste en premium. El factor más importante no es el precio mensual sino el costo total incluyendo copagos, y la disponibilidad de la red en tu ciudad.',
+    },
+    prepagasRelacionadas: ['medife', 'osde', 'sancor-salud', 'medicus'],
+    keywords: ['mejor prepaga precio calidad argentina 2026', 'prepaga mejor relacion precio calidad', 'medife plus vs sancor 1000', 'cual es la mejor prepaga argentina costo beneficio'],
+  },
+  {
+    slug: 'mejor-prepaga-jovenes-argentina-2026',
+    titulo: 'La mejor prepaga para jóvenes en Argentina 2026: guía por perfil y presupuesto',
+    bajada: 'OSDE Flux, Premedic Plan 300 y Swiss Medical S1: analizamos cuál conviene según tu presupuesto, ciudad y si priorizás salud mental o precio.',
+    metaDescripcion: 'Mejor prepaga para jóvenes en Argentina 2026. Análisis de OSDE Flux, Premedic, Swiss Medical S1 y más. Guía por presupuesto y perfil para menores de 35 años.',
+    categoria: 'Rankings',
+    fechaPublicacion: '2026-07-08',
+    tiempoLectura: 7,
+    contenido: {
+      intro: 'Para los menores de 35 años el mercado de prepagas ofrece algunas de las mejores oportunidades: planes diseñados específicamente para jóvenes, precios más bajos por edad y prestaciones orientadas a las necesidades de esta franja. Analizamos las mejores opciones.',
+      secciones: [
+        {
+          titulo: 'Si priorizás la salud mental: OSDE Flux',
+          cuerpo: 'El Plan Flux de OSDE ($198.500/mes, exclusivo 18-35 años) es el mejor plan del mercado para jóvenes que usan psicología o psiquiatría: sesiones ilimitadas sin copago, la red más grande del país con +140.000 profesionales y anticonceptivos al 100% incluidos. Si la salud mental es importante para vos y estás dentro del rango de edad, OSDE Flux es la elección obvia.',
+        },
+        {
+          titulo: 'Si priorizás el precio: Premedic Plan 300',
+          cuerpo: 'A $134.000/mes, el Premedic Plan 300 ofrece cobertura PMO completa con acceso a especialistas en CABA, GBA, Córdoba y Tucumán. Para un joven sano que quiere cobertura de emergencia y consultas a precio mínimo, es la opción más accesible del mercado con buena satisfacción de afiliados (82%). La contrapartida: sin app, cobertura limitada al interior.',
+        },
+        {
+          titulo: 'Si valorás los sanatorios y la marca: Swiss Medical S1',
+          cuerpo: 'El Plan S1 de Swiss Medical ($185.773/mes) tiene red cerrada (solo Swiss Medical Centers), pero da acceso a los 8 sanatorios propios de la empresa, que son algunos de los más modernos del país. Para un joven en CABA que quiere el respaldo de la marca Swiss y no le importa la red cerrada, es una buena opción de entrada.',
+        },
+        {
+          titulo: 'Si vivís en el interior: Sancor F700',
+          cuerpo: 'El Plan F700 de Sancor ($257.337/mes) tiene red abierta nacional, con prestadores en todas las provincias. Para jóvenes fuera de CABA y GBA, es la opción más completa en la franja económica. Medifé+ ($173.648/mes) también sirve para AMBA pero la red nacional es más acotada.',
+        },
+        {
+          titulo: 'Omint Plan Vos: la opción premium para jóvenes',
+          cuerpo: 'Omint tiene el Plan Vos, exclusivo para 18-28 años, con telemedicina y acceso a los 3 sanatorios propios de Omint (Bazterrica, Del Sol, Santa Isabel). Para jóvenes que buscan calidad premium y pueden pagar un poco más, es la alternativa a OSDE Flux en el segmento de primera marca.',
+        },
+      ],
+      conclusion: 'Para jóvenes: si tenés menos de 35 y priorizás salud mental → OSDE Flux. Si buscás el precio más bajo en AMBA → Premedic Plan 300. Si vivís en el interior → Sancor F700. Si querés marca premium → Swiss Medical S1 u Omint Vos. Y si podés pagar un poco más → Medifé+ es el mejor precio-calidad del segmento.',
+    },
+    prepagasRelacionadas: ['osde', 'premedic', 'swiss-medical', 'sancor-salud', 'omint'],
+    keywords: ['mejor prepaga para jovenes argentina 2026', 'osde flux vs premedic joven', 'prepaga barata jovenes argentina', 'prepaga para menores 35 argentina'],
+  },
+]
+
+export function getBlogPostBySlug(slug: string): BlogPost | undefined {
+  return blogPosts.find((p) => p.slug === slug)
+}
