@@ -1,10 +1,9 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, formatPrecio } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
-import { TablaPreciosModalidad } from '@/components/ui/TablaPreciosModalidad'
 
 export const metadata: Metadata = {
   title: `Comparador de Prepagas Argentina 2026 — ${SITE_NAME}`,
@@ -89,14 +88,21 @@ const faqItems = [
   },
 ]
 
+const RANKING_ORDER = [
+  'swiss-medical', 'sancor-salud', 'cemic', 'osde', 'omint',
+  'medicus', 'medife', 'avalian', 'prevencion-salud', 'premedic',
+  'hospital-italiano', 'hominis', 'federada-salud',
+]
+
+// Iniciales para avatar
+function iniciales(nombre: string) {
+  return nombre.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
+}
+
 export default function HomePage(): React.ReactElement {
-  const prepagasDestacadas = [...prepagas]
-    .sort((a, b) => {
-      const maxA = Math.max(...a.planes.map((p) => p.precio))
-      const maxB = Math.max(...b.planes.map((p) => p.precio))
-      return maxB - maxA
-    })
-    .slice(0, 6)
+  const prepagasRanking = RANKING_ORDER
+    .map(slug => prepagas.find(p => p.slug === slug))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p))
 
   return (
     <>
@@ -241,23 +247,113 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      {/* ── Tabla de precios (con anchoring: más cara primero) ──────────── */}
+      {/* ── CTA consultar precios ────────────────────────────────────────── */}
+      <section className="py-12 bg-gradient-to-r from-[#E8002D] to-[#B8001F]">
+        <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="text-white text-center sm:text-left">
+            <h2 className="text-xl font-bold mb-1">¿Cuánto cuesta tu prepaga en {PRECIO_ACTUALIZADO}?</h2>
+            <p className="text-red-200 text-sm">Ingresá tu zona y tu edad — te calculamos el precio exacto en segundos, gratis.</p>
+          </div>
+          <Link
+            href="/comparador"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm whitespace-nowrap"
+          >
+            Cotizar precio →
+          </Link>
+        </div>
+      </section>
+
+      {/* ── Ranking de prepagas ──────────────────────────────────────────── */}
       <section className="py-14 bg-white border-b border-gray-100">
-        <div className="container">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">
-              Precios de prepagas — {PRECIO_ACTUALIZADO}
-            </h2>
-            <p className="text-gray-500 mt-2 text-sm max-w-xl mx-auto">
-              Publicamos precios reales actualizados cada mes. Sin registro, sin DNI.
-            </p>
+        <div className="container max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-700 text-xs font-semibold px-4 py-2 rounded-full mb-4">
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-amber-500">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              Ranking actualizado {PRECIO_ACTUALIZADO}
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900">Las mejores prepagas de Argentina</h2>
+            <p className="text-gray-500 text-sm mt-2">Ordenadas por popularidad, cobertura y relación precio/calidad</p>
           </div>
 
-          <TablaPreciosModalidad prepagas={prepagasDestacadas} />
+          <div className="space-y-3">
+            {prepagasRanking.map((prep, i) => {
+              const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
+              const pos = i + 1
+              const isTop3 = pos <= 3
+              const medalColor =
+                pos === 1 ? 'bg-amber-400 text-white' :
+                pos === 2 ? 'bg-gray-400 text-white' :
+                pos === 3 ? 'bg-amber-700 text-white' :
+                            'bg-gray-100 text-gray-500'
+              const initials = iniciales(prep.nombre)
+
+              return (
+                <Link
+                  key={prep.slug}
+                  href={`/prepagas/${prep.slug}`}
+                  className={`flex items-center gap-4 p-4 sm:p-5 bg-white rounded-2xl border-2 transition-all group hover:shadow-md ${
+                    isTop3 ? 'border-amber-200 hover:border-amber-400' : 'border-gray-100 hover:border-gray-200'
+                  }`}
+                >
+                  {/* Posición */}
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 ${medalColor}`}>
+                    {pos <= 3 ? (
+                      <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                      </svg>
+                    ) : pos}
+                  </div>
+
+                  {/* Avatar */}
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-black flex-shrink-0"
+                    style={{ backgroundColor: prep.colorPrimario }}
+                  >
+                    {initials}
+                  </div>
+
+                  {/* Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{prep.nombre}</span>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full border"
+                        style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
+                        ★ MÁS ELEGIDO
+                      </span>
+                    </div>
+                    <div className="text-xs text-gray-500 mt-0.5 truncate">{prep.planes.length} planes disponibles · {prep.satisfaccion}% satisfacción</div>
+                  </div>
+
+                  {/* Satisfaction bar — desktop */}
+                  <div className="hidden sm:flex flex-col items-center gap-1 flex-shrink-0 w-28">
+                    <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-[#E8002D] rounded-full" style={{ width: `${prep.satisfaccion}%` }} />
+                    </div>
+                    <span className="text-[10px] text-gray-400 font-medium">{prep.satisfaccion}% satisfacción</span>
+                  </div>
+
+                  {/* Precio */}
+                  <div className="text-right flex-shrink-0">
+                    <div className="text-xs text-gray-400">Desde</div>
+                    <div className="font-black text-gray-900 text-sm tabular-nums">{formatPrecio(precioMin)}</div>
+                    <div className="text-xs text-gray-400">/mes</div>
+                  </div>
+
+                  {/* Arrow */}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"
+                    className="w-4 h-4 text-gray-300 group-hover:text-[#E8002D] transition-colors flex-shrink-0 hidden sm:block">
+                    <path d="M9 18l6-6-6-6"/>
+                  </svg>
+                </Link>
+              )
+            })}
+          </div>
 
           <div className="text-center mt-8">
             <Button href="/prepagas" variant="outline" size="lg">
-              Ver todos los planes →
+              Ver todos los planes y precios →
             </Button>
           </div>
         </div>
