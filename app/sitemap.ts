@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/cartillas`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/historial-precios`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${BASE}/calculadora-costo`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.80 },
+    { url: `${BASE}/glosario`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/privacidad`, lastModified: NOW, changeFrequency: 'yearly', priority: 0.3 },
   ]
 

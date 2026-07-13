@@ -53,6 +53,7 @@ const herramientasMenu = [
   { href: '/historial-precios', label: 'Historial de precios' },
   { href: '/calculadora-costo', label: 'Calculadora' },
   { href: '/cartillas', label: 'Cartillas médicas' },
+  { href: '/glosario', label: 'Glosario de prepagas' },
 ]
 
 type DropdownKey = 'prepagas' | 'coberturas' | 'condiciones' | 'obras-sociales' | 'herramientas' | null
