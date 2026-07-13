@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
 import emailjs from '@emailjs/browser'
 import { prepagas } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
@@ -261,10 +262,18 @@ function ZonaStep({ onSelect }: { onSelect: (p: Provincia) => void }) {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export function ComparadorWizard() {
-  const [step, setStep] = useState<Step>('zona')
-  const [zonaKey, setZonaKey] = useState('')
-  const [provinciaNombre, setProvinciaNombre] = useState('')
+interface WizardProps {
+  initialZona?: string
+  initialProvincia?: string
+}
+
+export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps = {}) {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const [step, setStep] = useState<Step>(initialZona ? 'edades' : 'zona')
+  const [zonaKey, setZonaKey] = useState(initialZona ?? '')
+  const [provinciaNombre, setProvinciaNombre] = useState(initialProvincia ?? '')
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
 
   // Lead data
@@ -426,6 +435,10 @@ export function ComparadorWizard() {
   if (step === 'zona') {
     return (
       <ZonaStep onSelect={(prov) => {
+        if (pathname !== '/comparador') {
+          router.push(`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`)
+          return
+        }
         setZonaKey(prov.zonaKey)
         setProvinciaNombre(prov.nombre)
         setStep('edades')
