@@ -5,6 +5,7 @@ import { guias } from '@/lib/data/guias'
 import { prepagas } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
+import { StickySectionNav } from '@/components/ui/StickySectionNav'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -91,6 +92,10 @@ export default async function GuiaPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <StickySectionNav
+        items={guia.contenido.secciones.map((s) => ({ id: slugifyId(s.titulo), label: s.titulo }))}
+      />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

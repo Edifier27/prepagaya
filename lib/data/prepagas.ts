@@ -83,7 +83,7 @@ export const prepagas: Prepaga[] = [
         precio: 373881,
         descripcion: 'Plan premium de red abierta: reintegros por atención fuera de cartilla, ortodoncia hasta 18 años y mayor red de prestadores.',
         cobertura: ['Internación sin límite', 'Especialistas', 'Maternidad completa', 'Salud mental', 'Óptica', 'Dental', 'Ortodoncia hasta 18 años', 'Reintegros ampliados'],
-        copago: true,
+        copago: false,
         redAbierta: true,
       },
       {

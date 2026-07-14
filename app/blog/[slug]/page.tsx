@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/Badge'
 import { BlogAuthorBox } from '@/components/ui/BlogAuthorBox'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 import { BlogTOC } from '@/components/blog/BlogTOC'
+import { StickySectionNav } from '@/components/ui/StickySectionNav'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -115,6 +116,8 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <StickySectionNav items={tocSections.map((s) => ({ id: s.id, label: s.titulo }))} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

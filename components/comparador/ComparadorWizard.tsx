@@ -30,21 +30,21 @@ interface Resultado {
 // ─── Zone mapping ─────────────────────────────────────────────────────────────
 
 const ZONA_PREPAGAS: Record<string, string[]> = {
-  'caba':         ['swiss-medical','osde','cemic','sancor-salud','premedic','medife','omint','medicus','avalian','prevencion-salud','hospital-italiano','hominis'],
-  'buenos-aires': ['swiss-medical','osde','cemic','sancor-salud','premedic','medife','omint','medicus','avalian','prevencion-salud','hospital-italiano','hominis'],
-  'cordoba':      ['swiss-medical','osde','sancor-salud','premedic','medife','medicus','avalian','prevencion-salud','federada-salud'],
-  'santa-fe':     ['swiss-medical','osde','sancor-salud','medife','medicus','avalian','prevencion-salud','federada-salud'],
+  'caba':         ['swiss-medical','osde','galeno','cemic','sancor-salud','premedic','medife','omint','medicus','avalian','prevencion-salud','hospital-italiano','hominis'],
+  'buenos-aires': ['swiss-medical','osde','galeno','cemic','sancor-salud','premedic','medife','omint','medicus','avalian','prevencion-salud','hospital-italiano','hominis'],
+  'cordoba':      ['swiss-medical','osde','galeno','sancor-salud','premedic','medife','medicus','avalian','prevencion-salud','federada-salud'],
+  'santa-fe':     ['swiss-medical','osde','galeno','sancor-salud','medife','medicus','avalian','prevencion-salud','federada-salud'],
   'entre-rios':   ['swiss-medical','osde','sancor-salud','avalian','prevencion-salud','federada-salud'],
-  'mendoza':      ['swiss-medical','osde','sancor-salud','medicus','avalian','prevencion-salud'],
-  'tucuman':      ['swiss-medical','osde','sancor-salud','premedic','avalian','prevencion-salud'],
-  'salta':        ['swiss-medical','osde','sancor-salud','medife','prevencion-salud'],
+  'mendoza':      ['swiss-medical','osde','galeno','sancor-salud','medicus','avalian','prevencion-salud'],
+  'tucuman':      ['swiss-medical','osde','galeno','sancor-salud','premedic','avalian','prevencion-salud'],
+  'salta':        ['swiss-medical','osde','galeno','sancor-salud','medife','prevencion-salud'],
   'jujuy':        ['swiss-medical','osde','sancor-salud','medife','prevencion-salud'],
-  'neuquen':      ['swiss-medical','osde','sancor-salud','medicus','avalian','prevencion-salud'],
+  'neuquen':      ['swiss-medical','osde','galeno','sancor-salud','medicus','avalian','prevencion-salud'],
   'rio-negro':    ['swiss-medical','osde','sancor-salud','medicus'],
   'misiones':     ['osde','sancor-salud','prevencion-salud'],
   'corrientes':   ['osde','sancor-salud','prevencion-salud'],
   'chaco':        ['osde','sancor-salud','prevencion-salud'],
-  'otras':        ['swiss-medical','osde','sancor-salud','medife','avalian','prevencion-salud'],
+  'otras':        ['swiss-medical','osde','galeno','sancor-salud','medife','avalian','prevencion-salud'],
 }
 
 interface Provincia { slug: string; nombre: string; zonaKey: string }
@@ -119,12 +119,28 @@ function detalleCob(id: CobId, plan: Plan): string {
   return matches.length ? matches.join(' · ') : cob.generico
 }
 
-// Marca prioritaria: los planes de Swiss Medical encabezan el ranking por
-// relevancia (los ordenamientos por precio no se alteran).
-const MARCA_PRIORITARIA = 'swiss-medical'
+// Orden "mechado" del ranking por relevancia: el 1º es el mejor plan de Swiss
+// Medical y el 2º el mejor de Sancor o Galeno; del 3º en adelante se intercalan
+// marcas (nunca dos cards seguidas de la misma prepaga mientras haya
+// alternativa). Los ordenamientos por precio no se alteran.
+const MARCA_PRIMERA = 'swiss-medical'
+const MARCAS_SEGUNDAS = ['sancor-salud', 'galeno']
 
-function tierMarca(p: Prepaga): number {
-  return p.slug === MARCA_PRIORITARIA ? 1 : 0
+function mecharResultados(sorted: Resultado[]): Resultado[] {
+  const pool = [...sorted]
+  const out: Resultado[] = []
+  const take = (pred: (r: Resultado) => boolean) => {
+    const i = pool.findIndex(pred)
+    if (i >= 0) out.push(...pool.splice(i, 1))
+  }
+  take((r) => r.prepaga.slug === MARCA_PRIMERA)
+  take((r) => MARCAS_SEGUNDAS.includes(r.prepaga.slug))
+  while (pool.length) {
+    const prev = out[out.length - 1]?.prepaga.slug
+    const i = pool.findIndex((r) => r.prepaga.slug !== prev)
+    out.push(...pool.splice(Math.max(i, 0), 1))
+  }
+  return out
 }
 
 function calcResultados(personas: Persona[], zonaKey: string): Resultado[] {
@@ -141,7 +157,7 @@ function calcResultados(personas: Persona[], zonaKey: string): Resultado[] {
       out.push({ prepaga: prep, plan, score, precioGrupal, precioDesc: Math.round(precioGrupal * (1 - DESCUENTO_ONLINE)) })
     }
   }
-  return out.sort((a, b) => tierMarca(b.prepaga) - tierMarca(a.prepaga) || b.score - a.score)
+  return mecharResultados(out.sort((a, b) => b.score - a.score))
 }
 
 // ─── Coverage filter options ──────────────────────────────────────────────────
@@ -334,26 +350,18 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   )
 
   const resultadosFiltrados = useMemo((): Resultado[] => {
-    return allResultados
-      .filter((r) => {
-        if (copago === 'sin-copago' && r.plan.copago) return false
-        if (copago === 'con-copago' && !r.plan.copago) return false
-        for (const c of activeCobs) {
-          if (!checkCob(c, r.plan, r.prepaga)) return false
-        }
-        return true
-      })
-      .sort((a, b) => {
-        if (sortBy === 'precio-asc') return a.precioGrupal - b.precioGrupal
-        if (sortBy === 'precio-desc') return b.precioGrupal - a.precioGrupal
-        // Relevancia: marca prioritaria primero, después score + coincidencia de filtros
-        const tierDiff = tierMarca(b.prepaga) - tierMarca(a.prepaga)
-        if (tierDiff !== 0) return tierDiff
-        const scoreA = a.score + [...activeCobs].filter(c => checkCob(c, a.plan, a.prepaga)).length * 5
-        const scoreB = b.score + [...activeCobs].filter(c => checkCob(c, b.plan, b.prepaga)).length * 5
-        return scoreB - scoreA
-      })
-      .slice(0, 12)
+    const filtrados = allResultados.filter((r) => {
+      if (copago === 'sin-copago' && r.plan.copago) return false
+      if (copago === 'con-copago' && !r.plan.copago) return false
+      for (const c of activeCobs) {
+        if (!checkCob(c, r.plan, r.prepaga)) return false
+      }
+      return true
+    })
+    if (sortBy === 'precio-asc') return [...filtrados].sort((a, b) => a.precioGrupal - b.precioGrupal).slice(0, 12)
+    if (sortBy === 'precio-desc') return [...filtrados].sort((a, b) => b.precioGrupal - a.precioGrupal).slice(0, 12)
+    // Relevancia: score puro y después mechado de marcas (Swiss 1º, Sancor/Galeno 2º, sin repetir)
+    return mecharResultados([...filtrados].sort((a, b) => b.score - a.score)).slice(0, 12)
   }, [allResultados, copago, activeCobs, sortBy])
 
   // Cambia con cada combinación de filtros/orden: fuerza el remount de las cards
