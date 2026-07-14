@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
-import { LogoSlider } from '@/components/ui/LogoSlider'
 import {
   MiniPsicologia, MiniMaternidad, MiniOdontologia, MiniFertilidad, MiniOncologia,
   MiniDiabetes, MiniCeliacos, MiniSaludMental, MiniAutismo, MiniPreexistencias,
@@ -308,8 +307,6 @@ export function Header() {
           </div>
         )}
       </div>
-      {/* Logo slider full-width — fuera del container */}
-      <LogoSlider logos={prepagaLinks} />
     </header>
   )
 }
