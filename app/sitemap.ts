@@ -10,7 +10,7 @@ import { condiciones } from '@/lib/data/condiciones'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { cartillasInfo } from '@/lib/data/cartillas'
 
-const BASE = 'https://prepagaya.com.ar'
+const BASE = 'https://www.prepagaya.com.ar'
 
 // Los precios se actualizan al inicio de cada mes: las páginas con precios
 // declaran como última modificación el día 1 del mes en curso.

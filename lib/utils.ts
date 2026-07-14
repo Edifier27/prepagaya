@@ -30,7 +30,7 @@ export function slugify(text: string): string {
 }
 
 export const SITE_NAME = 'PrepagaYa'
-export const SITE_URL = 'https://prepagaya.com.ar'
+export const SITE_URL = 'https://www.prepagaya.com.ar'
 export const SITE_DESCRIPTION =
   'Compará prepagas en Argentina. Precios actualizados, opiniones reales y el comparador más completo para elegir la mejor prepaga para vos.'
 

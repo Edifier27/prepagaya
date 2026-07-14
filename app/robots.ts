@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://prepagaya.com.ar/sitemap.xml',
+    sitemap: 'https://www.prepagaya.com.ar/sitemap.xml',
   }
 }
