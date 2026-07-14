@@ -97,21 +97,26 @@ function calcGrupal(base: number, personas: Persona[]): number {
 // medicamentos mantienen fallback a nivel prepaga por ser coberturas universales.
 function checkCob(id: CobId, plan: Plan, p: Prepaga): boolean {
   const t = plan.cobertura.join(' ').toLowerCase()
-  const m: Record<CobId, boolean> = {
-    internacion:        t.includes('internaci'),
-    psicologia:         t.includes('psic') || t.includes('salud mental'),
-    kinesiologia:       t.includes('kinesio') || t.includes('rehabilit') || t.includes('fisioterap'),
-    maternidad:         t.includes('matern'),
-    odontologia:        t.includes('odont') || t.includes('dental'),
-    medicamentos:       t.includes('farmacia') || t.includes('medicament') || p.caracteristicas.farmacia,
-    estudios:           t.includes('complejidad') || t.includes('laborator') || t.includes('estudio') || !plan.copago,
-    urgencias:          t.includes('urgencia') || t.includes('emergencia') || t.includes('guardia') || p.caracteristicas.atencion24hs,
-    optica:             t.includes('optica') || t.includes('óptica'),
-    reintegros:         t.includes('reintegro'),
-    ortodoncia:         t.includes('ortodoncia'),
-    'cirugia-estetica': t.includes('estétic') || t.includes('estetic') || t.includes('plástic') || t.includes('plastic'),
-  }
-  return m[id]
+  const porKeyword = COB_MAP[id].keywords.some((k) => t.includes(k))
+  if (id === 'medicamentos') return porKeyword || p.caracteristicas.farmacia
+  if (id === 'urgencias')    return porKeyword || p.caracteristicas.atencion24hs
+  if (id === 'estudios')     return porKeyword || !plan.copago
+  return porKeyword
+}
+
+// Detalle de una cobertura para un plan: usa el texto real de plan.cobertura
+// (p. ej. "Psicología 30 sesiones sin cargo") y cae al texto genérico cuando
+// el plan solo lista la categoría a secas.
+function detalleCob(id: CobId, plan: Plan): string {
+  const cob = COB_MAP[id]
+  const matches = plan.cobertura
+    .filter((c) => {
+      const t = c.toLowerCase()
+      return cob.keywords.some((k) => t.includes(k))
+    })
+    .map((c) => c.replace(new RegExp(`^${cob.label}\\s*`, 'i'), '').trim())
+    .filter((c) => c.length > 0)
+  return matches.length ? matches.join(' · ') : cob.generico
 }
 
 // Marca prioritaria: los planes de Swiss Medical encabezan el ranking por
@@ -141,20 +146,32 @@ function calcResultados(personas: Persona[], zonaKey: string): Resultado[] {
 
 // ─── Coverage filter options ──────────────────────────────────────────────────
 
-const COBS: { id: CobId; label: string }[] = [
-  { id: 'psicologia',       label: 'Psicología' },
-  { id: 'maternidad',       label: 'Maternidad' },
-  { id: 'odontologia',      label: 'Odontología' },
-  { id: 'ortodoncia',       label: 'Ortodoncia' },
-  { id: 'reintegros',       label: 'Reintegros' },
-  { id: 'cirugia-estetica', label: 'Cirugía estética' },
-  { id: 'internacion',      label: 'Internación' },
-  { id: 'medicamentos',     label: 'Medicamentos' },
-  { id: 'urgencias',        label: 'Urgencias 24hs' },
-  { id: 'optica',           label: 'Óptica' },
-  { id: 'kinesiologia',     label: 'Kinesiología' },
-  { id: 'estudios',         label: 'Estudios complejos' },
+interface CobDef {
+  id: CobId
+  label: string
+  keywords: string[]
+  // Texto que se muestra cuando el plan incluye la cobertura pero su data no
+  // especifica detalle (solo lista la categoría). Debe ser válido para
+  // cualquier plan: describe el piso PMO / lo universal, no beneficios premium.
+  generico: string
+}
+
+const COBS: CobDef[] = [
+  { id: 'psicologia',       label: 'Psicología',        keywords: ['psic', 'salud mental'],                          generico: 'atención psicológica incluida (mínimo 30 sesiones anuales por PMO)' },
+  { id: 'maternidad',       label: 'Maternidad',        keywords: ['matern'],                                        generico: 'cobertura de embarazo, parto e internación para mamá y bebé' },
+  { id: 'odontologia',      label: 'Odontología',       keywords: ['odont', 'dental'],                               generico: 'consultas y tratamientos odontológicos incluidos' },
+  { id: 'ortodoncia',       label: 'Ortodoncia',        keywords: ['ortodoncia'],                                    generico: 'cobertura de ortodoncia incluida' },
+  { id: 'reintegros',       label: 'Reintegros',        keywords: ['reintegro'],                                     generico: 'reintegros por atención fuera de cartilla' },
+  { id: 'cirugia-estetica', label: 'Cirugía estética',  keywords: ['estétic', 'estetic', 'plástic', 'plastic'],      generico: 'cirugía estética incluida en el plan' },
+  { id: 'internacion',      label: 'Internación',       keywords: ['internaci'],                                     generico: 'internación clínica y quirúrgica cubierta' },
+  { id: 'medicamentos',     label: 'Medicamentos',      keywords: ['farmacia', 'medicament'],                        generico: 'descuento en medicamentos en farmacias adheridas' },
+  { id: 'urgencias',        label: 'Urgencias 24hs',    keywords: ['urgencia', 'emergencia', 'guardia'],             generico: 'urgencias y emergencias cubiertas las 24 horas' },
+  { id: 'optica',           label: 'Óptica',            keywords: ['optica', 'óptica'],                              generico: 'anteojos y lentes con cobertura' },
+  { id: 'kinesiologia',     label: 'Kinesiología',      keywords: ['kinesio', 'rehabilit', 'fisioterap'],            generico: 'sesiones de kinesiología y rehabilitación incluidas' },
+  { id: 'estudios',         label: 'Estudios complejos', keywords: ['complejidad', 'laborator', 'estudio'],          generico: 'estudios de laboratorio y alta complejidad cubiertos' },
 ]
+
+const COB_MAP = Object.fromEntries(COBS.map((c) => [c.id, c])) as Record<CobId, CobDef>
 
 // ─── Progress bar (3 steps) ───────────────────────────────────────────────────
 
@@ -904,6 +921,23 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                         )
                       })}
                     </div>
+
+                    {/* Detalle de las coberturas filtradas: cada card ya pasó
+                        todos los filtros activos, así que solo se describe qué
+                        incluye este plan para cada cobertura pedida */}
+                    {activeCobs.size > 0 && (
+                      <div className="bg-red-50/60 border border-red-100 rounded-xl px-3.5 py-2.5 mb-3 space-y-1.5">
+                        <p className="text-[10px] font-bold text-[#E8002D] uppercase tracking-widest">Lo que buscás, en este plan</p>
+                        {[...activeCobs].map((id) => (
+                          <div key={id} className="flex items-start gap-1.5 text-xs text-gray-700">
+                            <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-[#00875A] flex-shrink-0 mt-px">
+                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                            </svg>
+                            <span><span className="font-semibold text-gray-900">{COB_MAP[id].label}:</span> {detalleCob(id, res.plan)}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                     {/* Benefit pills */}
                     <div className="flex flex-wrap gap-1.5 mb-4">
