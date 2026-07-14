@@ -1,232 +1,283 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { obrasSociales } from '@/lib/data/obras-sociales'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
-import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
+import { notFound } from 'next/navigation'
+import { perfiles } from '@/lib/data/perfiles'
+import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 
-export const metadata: Metadata = {
-  title: `Obras Sociales Argentina 2026 — Comparativa y Guías Completas`,
-  description: 'Compará las principales obras sociales de Argentina: OSDE, Swiss Medical, Galeno, Medicus, PAMI, IOMA y más. Qué cubren, cómo afiliarse y cuánto cuestan en 2026.',
-  alternates: { canonical: `${SITE_URL}/obras-sociales` },
-  keywords: ['obras sociales argentina', 'mejores obras sociales 2026', 'comparar obras sociales', 'obra social o prepaga'],
+interface Props {
+  params: Promise<{ perfil: string }>
 }
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'Obras Sociales Argentina 2026',
-  numberOfItems: obrasSociales.length,
-  itemListElement: obrasSociales.map((os, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    name: os.nombre,
-    url: `${SITE_URL}/obras-sociales/${os.slug}`,
-  })),
+export async function generateStaticParams() {
+  return perfiles.map((p) => ({ perfil: p.slug }))
 }
 
-const tiposLabels: Record<string, string> = {
-  sindical: 'Sindical / Nacional',
-  provincial: 'Provincial',
-  estatal: 'Estatal',
-  jubilados: 'Para jubilados',
-  empresarial: 'Empresarial',
-}
-
-const tiposColores: Record<string, string> = {
-  sindical: 'bg-blue-100 text-blue-700',
-  provincial: 'bg-purple-100 text-purple-700',
-  estatal: 'bg-gray-100 text-gray-700',
-  jubilados: 'bg-orange-100 text-orange-700',
-  empresarial: 'bg-green-100 text-green-700',
-}
-
-export default function ObrasSocialesHubPage() {
-  const porTipo = {
-    jubilados: obrasSociales.filter((os) => os.tipo === 'jubilados'),
-    provincial: obrasSociales.filter((os) => os.tipo === 'provincial'),
-    empresarial: obrasSociales.filter((os) => os.tipo === 'empresarial'),
-    sindical: obrasSociales.filter((os) => os.tipo === 'sindical'),
-    estatal: obrasSociales.filter((os) => os.tipo === 'estatal'),
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { perfil } = await params
+  const perf = perfiles.find((p) => p.slug === perfil)
+  if (!perf) return {}
+  return {
+    title: `${perf.titulo} — ${PRECIO_ACTUALIZADO}`,
+    description: perf.metaDescripcion,
+    alternates: { canonical: `${SITE_URL}/para/${perfil}` },
+    keywords: perf.keywords,
+    openGraph: {
+      title: perf.titulo,
+      description: perf.metaDescripcion,
+      type: 'article',
+    },
   }
+}
+
+export default async function PerfilPage({ params }: Props) {
+  const { perfil } = await params
+  const perf = perfiles.find((p) => p.slug === perfil)
+  if (!perf) notFound()
+
+  const recomendadas = perf.prepagasRecomendadas
+    .map((rec) => {
+      const prep = prepagas.find((p) => p.slug === rec.slug)
+      return prep ? { rec, prep } : null
+    })
+    .filter((x): x is NonNullable<typeof x> => x !== null)
+
+  const planes = perf.planesRecomendados
+    .map((pr) => {
+      const prep = prepagas.find((p) => p.slug === pr.prepagaSlug)
+      const plan = prep?.planes.find((pl) => pl.slug === pr.planSlug)
+      return prep && plan ? { razon: pr.razon, prep, plan } : null
+    })
+    .filter((x): x is NonNullable<typeof x> => x !== null)
+    .sort((a, b) => a.plan.precio - b.plan.precio)
+
+  const otrosPerfiles = perfiles.filter((p) => p.slug !== perfil).slice(0, 8)
+
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: perf.titulo,
+      description: perf.metaDescripcion,
+      url: `${SITE_URL}/para/${perfil}`,
+      author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/para/${perfil}` },
+      inLanguage: 'es-AR',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: SITE_NAME, item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Prepagas por perfil', item: `${SITE_URL}/prepagas` },
+        { '@type': 'ListItem', position: 3, name: perf.nombre },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: perf.faq.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ]
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <div className="bg-gray-50 border-b border-gray-200 py-3">
+      {/* Breadcrumb */}
+      <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
-          <nav className="text-sm text-gray-500">
-            <Link href="/" className="hover:text-[#E8002D]">{SITE_NAME}</Link>
-            <span className="mx-2">›</span>
-            <span className="text-gray-900">Obras Sociales</span>
+          <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">
+            <Link href="/" className="hover:text-[#E8002D] transition-colors">{SITE_NAME}</Link>
+            <span className="text-gray-300">›</span>
+            <Link href="/prepagas" className="hover:text-[#E8002D] transition-colors">Prepagas</Link>
+            <span className="text-gray-300">›</span>
+            <span className="text-gray-700">Para {perf.nombre.toLowerCase()}</span>
           </nav>
         </div>
       </div>
 
-      <section className="bg-gradient-to-b from-purple-50 to-white border-b border-gray-100 py-12">
-        <div className="container max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 text-xs font-semibold px-4 py-2 rounded-full mb-4">
-            Guía completa de obras sociales en Argentina
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            Las mejores obras sociales de Argentina 2026
-          </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-6">
-            Comparativa completa de las principales obras sociales: OSDE, Swiss Medical, Galeno, Medicus, PAMI, IOMA y más. Qué cubren, quiénes pueden afiliarse y cómo derivar tus aportes.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/coberturas" className="text-sm font-medium bg-white border border-gray-200 px-4 py-2 rounded-xl hover:border-blue-300 hover:bg-red-50 transition-all">
-              Qué cubren por ley
-            </Link>
-            <Link href="/guias/obra-social-vs-prepaga" className="text-sm font-medium bg-white border border-gray-200 px-4 py-2 rounded-xl hover:border-blue-300 hover:bg-red-50 transition-all">
-              Obra social vs prepaga
-            </Link>
-            <Link href="/comparador" className="text-sm font-medium bg-[#E8002D] text-white px-4 py-2 rounded-xl hover:bg-[#B8001F] transition-all">
-              Comparador personalizado
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Diferencia clave */}
-      <section className="py-8 bg-amber-50 border-b border-amber-100">
+      {/* Hero */}
+      <section className="bg-gradient-to-b from-red-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-4xl mx-auto">
-          <div className="flex items-start gap-4">
-            <svg className="w-6 h-6 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-            <div>
-              <h2 className="font-bold text-gray-900 mb-1">¿Cuál es la diferencia entre obra social y prepaga?</h2>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                Las <strong>obras sociales</strong> se financian con aportes obligatorios del empleado (3%) y el empleador (6%) del salario. Las <strong>prepagas</strong> son de contratación voluntaria y se pagan directamente. Muchos argentinos tienen las dos: la obra social obligatoria por el trabajo + una prepaga complementaria para ampliar la red.{' '}
-                <Link href="/guias/obra-social-vs-prepaga" className="text-[#E8002D] hover:underline font-medium">Ver guía completa →</Link>
-              </p>
-            </div>
+          <span className="inline-block text-xs font-semibold text-[#E8002D] bg-red-100 px-3 py-1 rounded-full mb-4">
+            Guía por perfil · {PRECIO_ACTUALIZADO}
+          </span>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+            {perf.titulo} <span className="text-[#E8002D]">2026</span>
+          </h1>
+          <p className="text-gray-600 leading-relaxed max-w-3xl">{perf.descripcion}</p>
+        </div>
+      </section>
+
+      {/* Necesidades del perfil */}
+      <section className="py-10 bg-white">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">Qué tiene que cubrir tu prepaga</h2>
+          <p className="text-sm text-gray-500 mb-6">Los puntos que más importan para {perf.nombre.toLowerCase()}, según nuestra experiencia asesorando este perfil.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {perf.necesidades.map((n) => (
+              <div key={n} className="flex items-start gap-3 bg-gray-50 rounded-xl border border-gray-100 p-4">
+                <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-sm text-gray-700 leading-relaxed">{n}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="container max-w-4xl mx-auto py-12 space-y-12">
-
-        {/* PAMI destacado */}
-        {porTipo.jubilados.map((os) => (
-          <section key={os.slug}>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-lg font-bold text-gray-900">Para jubilados y pensionados</span>
-              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${tiposColores[os.tipo]}`}>{tiposLabels[os.tipo]}</span>
-            </div>
-            <Link href={`/obras-sociales/${os.slug}`} className="group block bg-white rounded-2xl border-2 border-orange-200 p-6 hover:shadow-md transition-all">
-              <div className="flex items-start gap-4">
-                <div className="group"><ObraSocialIcon slug={os.slug} size="lg" /></div>
-                <div className="flex-1">
-                  <h2 className="font-bold text-xl text-gray-900 group-hover:text-[#E8002D] mb-1">{os.nombre}</h2>
-                  <p className="text-gray-500 text-sm mb-3">{os.descripcion}</p>
-                  <div className="flex items-center gap-4 text-xs text-gray-400">
-                    <span>+{(os.beneficiarios / 1000000).toFixed(1)}M beneficiarios</span>
-                    <span className="font-medium text-orange-600">Cobertura automática para jubilados ANSES</span>
+      {/* Planes recomendados con precio */}
+      {planes.length > 0 && (
+        <section className="py-10 bg-gray-50 border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Planes recomendados — {PRECIO_ACTUALIZADO}</h2>
+            <p className="text-sm text-gray-500 mb-6">Precio base para persona de 30 años, contratación directa con IVA incluido.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {planes.map(({ prep, plan, razon }, i) => (
+                <Link
+                  key={`${prep.slug}-${plan.slug}`}
+                  href={`/prepagas/${prep.slug}/${plan.slug}`}
+                  className={`group relative bg-white rounded-2xl border-2 p-5 hover:shadow-lg transition-all ${
+                    i === 0 ? 'border-[#E8002D]' : 'border-gray-200 hover:border-red-200'
+                  }`}
+                >
+                  {i === 0 && (
+                    <span className="absolute -top-3 left-5 bg-[#E8002D] text-white text-[10px] font-black px-3 py-1 rounded-full tracking-wide">
+                      MEJOR PRECIO
+                    </span>
+                  )}
+                  <div className="flex items-center gap-2.5 mb-3 mt-1">
+                    <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="sm" />
+                    <div className="min-w-0">
+                      <div className="text-xs text-gray-400 leading-none">{prep.nombre}</div>
+                      <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{plan.nombre}</div>
+                    </div>
                   </div>
-                </div>
-                <span className="text-sm font-medium text-[#E8002D] flex-shrink-0">Ver guía →</span>
-              </div>
-            </Link>
-          </section>
-        ))}
-
-        {/* Provinciales */}
-        {porTipo.provincial.length > 0 && (
-          <section>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-lg font-bold text-gray-900">Obras sociales provinciales</span>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {porTipo.provincial.map((os) => (
-                <OsCard key={os.slug} os={os} tiposColores={tiposColores} tiposLabels={tiposLabels} />
+                  <div className="text-2xl font-black text-[#E8002D] tabular-nums">{formatPrecio(plan.precio)}</div>
+                  <div className="text-xs text-gray-400 mb-3">/mes</div>
+                  <p className="text-xs text-gray-500 leading-relaxed">{razon}</p>
+                  <div className="mt-3 text-xs font-bold text-[#E8002D]">Ver cobertura completa →</div>
+                </Link>
               ))}
             </div>
-          </section>
-        )}
-
-        {/* Empresariales (las que compiten con prepagas) */}
-        <section>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-lg font-bold text-gray-900">Obras sociales empresariales (compiten con prepagas)</span>
-          </div>
-          <p className="text-sm text-gray-500 mb-4">Estas entidades operan tanto como obra social como prepaga privada. Son las más elegidas por la red de prestadores premium.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {porTipo.empresarial.map((os) => (
-              <OsCard key={os.slug} os={os} tiposColores={tiposColores} tiposLabels={tiposLabels} />
-            ))}
           </div>
         </section>
+      )}
 
-        {/* Sindicales / para derivación */}
-        <section>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-lg font-bold text-gray-900">Obras sociales sindicales y destinos de derivación</span>
+      {/* Mid CTA */}
+      <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] py-5">
+        <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
+          <div>
+            <div className="text-white font-bold text-sm">¿Cuánto pagarías vos exactamente?</div>
+            <div className="text-red-200 text-xs">El precio cambia según tu edad y situación laboral. Cotizá gratis en 2 minutos.</div>
           </div>
-          <p className="text-sm text-gray-500 mb-4">Si trabajás en relación de dependencia, podés <strong>derivar tus aportes</strong> a cualquiera de estas obras sociales para mejorar tu cobertura.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[...porTipo.sindical, ...porTipo.estatal].map((os) => (
-              <OsCard key={os.slug} os={os} tiposColores={tiposColores} tiposLabels={tiposLabels} />
-            ))}
-          </div>
-        </section>
-
-        {/* FAQ general */}
-        <section>
-          <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes sobre obras sociales</h2>
-          <div className="space-y-4">
-            {[
-              { q: '¿Puedo cambiar de obra social cuando quiero?', a: 'Sí, podés pedir el cambio de obra social en cualquier momento del año. El proceso se realiza online a través del portal de la Superintendencia de Servicios de Salud. El cambio se hace efectivo en un plazo de 30-60 días hábiles.' },
-              { q: '¿Qué es la derivación de aportes?', a: 'La derivación es el proceso por el cual un trabajador en relación de dependencia redirige sus aportes obligatorios de salud (3% empleado + 6% empleador) a la obra social que prefiera, en lugar de ir a la obra social sindical de su actividad.' },
-              { q: '¿Puedo tener obra social y prepaga al mismo tiempo?', a: 'Sí. Una opción muy común es tener la obra social obligatoria (por el trabajo) y contratar una prepaga complementaria para ampliar la red de prestadores o acceder a sanatorios premium. La prepaga puede descontar los aportes de obra social, reduciendo el costo.' },
-              { q: '¿Cuánto se descuenta del sueldo para la obra social?', a: 'El empleado aporta el 3% del sueldo bruto y el empleador el 6%. Es decir, por cada $100 de sueldo, $3 van a la obra social del trabajador y $6 los pone la empresa. Ese dinero financia la cobertura de salud.' },
-            ].map((f, i) => (
-              <div key={i} className="bg-white rounded-xl border border-gray-200 p-5">
-                <h3 className="font-semibold text-gray-900 mb-2">{f.q}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{f.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA */}
-        <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 text-white text-center">
-          <h2 className="font-bold text-xl mb-2">La obra social tiene límites. La prepaga, no.</h2>
-          <p className="text-red-100 text-sm mb-5">Miles de argentinos suman una prepaga complementaria para turnos en días, más especialistas y sanatorios de primer nivel. Encontrá el plan ideal para vos.</p>
-          <Link href="/comparador" className="inline-flex items-center gap-2 px-6 py-3 bg-[#F97316] hover:bg-[#ea6c0b] text-white font-bold rounded-xl transition-colors">
-            Comparar planes →
+          <Link
+            href="/comparador"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors shadow-sm"
+          >
+            Cotizar mi precio →
           </Link>
         </div>
       </div>
-    </>
-  )
-}
 
-function OsCard({ os, tiposColores, tiposLabels }: {
-  os: { slug: string; nombre: string; emoji: string; tipo: string; descripcion: string; beneficiarios: number; derivacion: boolean }
-  tiposColores: Record<string, string>
-  tiposLabels: Record<string, string>
-}) {
-  return (
-    <Link
-      href={`/obras-sociales/${os.slug}`}
-      className="group bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md hover:border-red-200 transition-all"
-    >
-      <div className="flex items-start gap-3">
-        <ObraSocialIcon slug={os.slug} size="xs" />
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap mb-1">
-            <h2 className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">{os.nombre}</h2>
-            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full flex-shrink-0 ${tiposColores[os.tipo]}`}>
-              {tiposLabels[os.tipo]}
-            </span>
-          </div>
-          <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-2">{os.descripcion}</p>
-          <div className="flex items-center gap-3 text-xs text-gray-400">
-            <span>+{os.beneficiarios >= 1000000 ? (os.beneficiarios / 1000000).toFixed(1) + 'M' : (os.beneficiarios / 1000).toFixed(0) + 'k'} afiliados</span>
-            {os.derivacion && <span className="text-green-600 font-medium">✓ Acepta derivación</span>}
+      {/* Prepagas recomendadas */}
+      <section className="py-10 bg-white">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Las mejores prepagas para {perf.nombre.toLowerCase()}</h2>
+          <div className="space-y-4">
+            {recomendadas.map(({ rec, prep }, i) => {
+              const planBase = [...prep.planes].sort((a, b) => a.precio - b.precio)[0]
+              return (
+                <div key={prep.slug} className="bg-white rounded-2xl border border-gray-200 p-6 hover:border-red-200 hover:shadow-sm transition-all">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div className="flex items-center gap-3 sm:w-52 flex-shrink-0">
+                      <span className="w-7 h-7 rounded-full bg-red-50 border border-red-100 flex items-center justify-center text-xs font-bold text-[#E8002D] flex-shrink-0">
+                        {i + 1}
+                      </span>
+                      <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="md" />
+                      <div className="min-w-0">
+                        <Link href={`/prepagas/${prep.slug}`} className="font-bold text-gray-900 hover:text-[#E8002D] transition-colors block leading-tight">
+                          {prep.nombre}
+                        </Link>
+                        <div className="text-xs text-gray-400">desde {formatPrecio(planBase.precio)}/mes</div>
+                      </div>
+                    </div>
+                    <p className="flex-1 text-sm text-gray-600 leading-relaxed">{rec.razon}</p>
+                    <Link
+                      href={`/prepagas/${prep.slug}`}
+                      className="flex-shrink-0 text-xs font-bold text-[#E8002D] hover:underline"
+                    >
+                      Ver planes →
+                    </Link>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
-      </div>
-    </Link>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-10 bg-gray-50 border-t border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes</h2>
+          <div className="space-y-2">
+            {perf.faq.map(({ q, a }) => (
+              <details key={q} className="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold text-sm text-gray-900 select-none list-none">
+                  {q}
+                  <svg className="w-4 h-4 text-gray-400 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">{a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Otros perfiles */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-lg font-bold text-gray-900 mb-4">Guías para otros perfiles</h2>
+          <div className="flex flex-wrap gap-2">
+            {otrosPerfiles.map((p) => (
+              <Link
+                key={p.slug}
+                href={`/para/${p.slug}`}
+                className="text-xs px-3 py-1.5 bg-red-50 text-[#B8001F] border border-red-100 rounded-full hover:bg-red-100 transition-colors font-medium"
+              >
+                {p.nombre} →
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA final */}
+      <section className="py-12 bg-[#E8002D] text-white">
+        <div className="container max-w-xl mx-auto text-center">
+          <h2 className="text-2xl font-bold mb-2">Encontrá tu prepaga ideal</h2>
+          <p className="text-red-200 text-sm mb-6">
+            Compará precios reales de {PRECIO_ACTUALIZADO} para tu perfil. Gratis, sin registro y sin DNI.
+          </p>
+          <Link
+            href="/comparador"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
+          >
+            Comparar prepagas gratis →
+          </Link>
+        </div>
+      </section>
+    </>
   )
 }

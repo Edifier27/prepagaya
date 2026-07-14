@@ -2,7 +2,7 @@
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: `Metodología — Cómo elaboramos nuestros rankings | ${SITE_NAME}`,
+  title: 'Metodología — Cómo elaboramos nuestros rankings',
   description: `Explicamos cómo calculamos nuestros rankings de prepagas en Argentina: fuentes de precios, factores de satisfacción, y criterios de evaluación. Transparencia total.`,
   alternates: { canonical: `${SITE_URL}/metodologia` },
 }

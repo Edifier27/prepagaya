@@ -18,7 +18,7 @@ const cartillas = [
     url: 'https://www.swissmedical.com.ar/smg/cartilla',
     profesionales: '8.000+ en red propia / 50.000+ red abierta',
     tip: 'Filtrá por "Médicos SMG" para ver solo los centros Swiss Medical propios.',
-    planes: 'S1, S2, SMG20, Platinum',
+    planes: 'SMG02, S1, S2, SMG20, SMG30, SMG40, SMG50',
     inicial: 'S',
     bgColor: '#FECDD3',
     textColor: '#9F1239',
@@ -218,7 +218,7 @@ export default function CartillasPage(): React.ReactElement {
                     href={c.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#E8002D] hover:bg-[#0b7a70] text-white font-semibold rounded-xl text-sm transition-colors"
+                    className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-semibold rounded-xl text-sm transition-colors"
                   >
                     Abrir cartilla oficial
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -227,6 +227,12 @@ export default function CartillasPage(): React.ReactElement {
                       <path d="M10 14L21 3" />
                     </svg>
                   </a>
+                  <Link
+                    href={`/cartillas/${c.slug}`}
+                    className="flex items-center justify-center gap-2 w-full py-2.5 bg-white border border-red-100 text-[#E8002D] hover:bg-red-50 font-semibold rounded-xl text-sm transition-colors"
+                  >
+                    Guía de la cartilla {c.nombre} →
+                  </Link>
                   <Link
                     href={`/prepagas/${c.slug}`}
                     className="text-center text-sm font-medium text-[#E8002D] hover:underline"

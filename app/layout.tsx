@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -39,7 +40,6 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
-  alternates: { canonical: SITE_URL },
   verification: { google: 'xbu_9e5mpT91WGbFtdOe8q1P2GsLBko-V8jh8LA081c' },
 }
 
@@ -53,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <BottomNav />
         <FloatingActions />
         <ExitIntentPopup />
+        <Analytics />
       </body>
     </html>
   )

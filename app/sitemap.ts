@@ -8,40 +8,48 @@ import { blogPosts } from '@/lib/data/blog'
 import { coberturas } from '@/lib/data/coberturas'
 import { condiciones } from '@/lib/data/condiciones'
 import { obrasSociales } from '@/lib/data/obras-sociales'
+import { cartillasInfo } from '@/lib/data/cartillas'
 
 const BASE = 'https://prepagaya.com.ar'
-const NOW = new Date().toISOString()
+
+// Los precios se actualizan al inicio de cada mes: las páginas con precios
+// declaran como última modificación el día 1 del mes en curso.
+const now = new Date()
+const PRECIOS_UPDATE = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
+
+// Última revisión editorial del contenido estable (guías, coberturas, etc.)
+const CONTENT_UPDATE = new Date('2026-07-14').toISOString()
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: BASE, lastModified: NOW, changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${BASE}/prepagas`, lastModified: NOW, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE}/precios`, lastModified: NOW, changeFrequency: 'weekly', priority: 0.95 },
-    { url: `${BASE}/ranking`, lastModified: NOW, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE}/comparativas`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE}/guias`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${BASE}/coberturas`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.85 },
-    { url: `${BASE}/condiciones`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.85 },
-    { url: `${BASE}/comparador`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.95 },
-    { url: `${BASE}/calculadora`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.90 },
-    { url: `${BASE}/comparar`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.85 },
-    { url: `${BASE}/blog`, lastModified: NOW, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${BASE}/obras-sociales`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.85 },
-    { url: `${BASE}/sobre-nosotros`, lastModified: NOW, changeFrequency: 'yearly', priority: 0.4 },
-    { url: `${BASE}/metodologia`, lastModified: NOW, changeFrequency: 'yearly', priority: 0.4 },
-    { url: `${BASE}/prepaga-por-presupuesto`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.80 },
-    { url: `${BASE}/cartillas`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.75 },
-    { url: `${BASE}/historial-precios`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.70 },
-    { url: `${BASE}/calculadora-costo`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.80 },
-    { url: `${BASE}/glosario`, lastModified: NOW, changeFrequency: 'monthly', priority: 0.75 },
-    { url: `${BASE}/privacidad`, lastModified: NOW, changeFrequency: 'yearly', priority: 0.3 },
+    { url: BASE, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 1.0 },
+    { url: `${BASE}/prepagas`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE}/precios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${BASE}/aumentos`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/ranking`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE}/comparativas`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/guias`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE}/coberturas`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/condiciones`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/comparador`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.95 },
+    { url: `${BASE}/calculadora`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.90 },
+    { url: `${BASE}/comparar`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/blog`, lastModified: CONTENT_UPDATE, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE}/obras-sociales`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/sobre-nosotros`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
+    { url: `${BASE}/metodologia`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
+    { url: `${BASE}/prepaga-por-presupuesto`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.80 },
+    { url: `${BASE}/cartillas`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${BASE}/historial-precios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.70 },
+    { url: `${BASE}/glosario`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${BASE}/privacidad`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.3 },
   ]
 
   const prepagaRoutes: MetadataRoute.Sitemap = prepagas.flatMap((p) => [
-    { url: `${BASE}/prepagas/${p.slug}`, lastModified: NOW, changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${BASE}/prepagas/${p.slug}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly' as const, priority: 0.85 },
     ...p.planes.map((pl) => ({
       url: `${BASE}/prepagas/${p.slug}/${pl.slug}`,
-      lastModified: NOW,
+      lastModified: PRECIOS_UPDATE,
       changeFrequency: 'weekly' as const,
       priority: 0.75,
     })),
@@ -49,56 +57,63 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const comparativaRoutes: MetadataRoute.Sitemap = comparativas.map((c) => ({
     url: `${BASE}/comparativas/${c.slug}`,
-    lastModified: NOW,
+    lastModified: PRECIOS_UPDATE,
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }))
 
   const guiaRoutes: MetadataRoute.Sitemap = guias.map((g) => ({
     url: `${BASE}/guias/${g.slug}`,
-    lastModified: NOW,
+    lastModified: new Date(g.fechaActualizacion).toISOString(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
   const ciudadRoutes: MetadataRoute.Sitemap = ciudades.map((c) => ({
     url: `${BASE}/prepagas-en/${c.slug}`,
-    lastModified: NOW,
+    lastModified: PRECIOS_UPDATE,
     changeFrequency: 'monthly' as const,
     priority: 0.65,
   }))
 
   const perfilRoutes: MetadataRoute.Sitemap = perfiles.map((p) => ({
     url: `${BASE}/para/${p.slug}`,
-    lastModified: NOW,
+    lastModified: CONTENT_UPDATE,
     changeFrequency: 'monthly' as const,
     priority: 0.65,
   }))
 
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((p) => ({
     url: `${BASE}/blog/${p.slug}`,
-    lastModified: NOW,
+    lastModified: new Date(p.fechaPublicacion).toISOString(),
     changeFrequency: 'monthly' as const,
     priority: 0.65,
   }))
 
   const coberturaRoutes: MetadataRoute.Sitemap = coberturas.map((c) => ({
     url: `${BASE}/coberturas/${c.slug}`,
-    lastModified: NOW,
+    lastModified: CONTENT_UPDATE,
     changeFrequency: 'monthly' as const,
     priority: 0.80,
   }))
 
   const condicionRoutes: MetadataRoute.Sitemap = condiciones.map((c) => ({
     url: `${BASE}/condiciones/${c.slug}`,
-    lastModified: NOW,
+    lastModified: CONTENT_UPDATE,
     changeFrequency: 'monthly' as const,
     priority: 0.80,
   }))
 
+  const cartillaRoutes: MetadataRoute.Sitemap = cartillasInfo.map((c) => ({
+    url: `${BASE}/cartillas/${c.slug}`,
+    lastModified: CONTENT_UPDATE,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+  }))
+
   const obraSocialRoutes: MetadataRoute.Sitemap = obrasSociales.map((os) => ({
     url: `${BASE}/obras-sociales/${os.slug}`,
-    lastModified: NOW,
+    lastModified: CONTENT_UPDATE,
     changeFrequency: 'monthly' as const,
     priority: 0.80,
   }))
@@ -114,5 +129,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...coberturaRoutes,
     ...condicionRoutes,
     ...obraSocialRoutes,
+    ...cartillaRoutes,
   ]
 }

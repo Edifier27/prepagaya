@@ -54,10 +54,11 @@ const obrasSocialesMenu = [
 
 const herramientasMenu = [
   { href: '/precios', label: 'Precios julio 2026' },
+  { href: '/aumentos', label: 'Aumentos mes a mes' },
   { href: '/comparar', label: 'Comparar planes' },
   { href: '/prepaga-por-presupuesto', label: 'Encontrá tu prepaga por presupuesto' },
   { href: '/historial-precios', label: 'Historial de precios' },
-  { href: '/calculadora-costo', label: 'Calculadora' },
+  { href: '/calculadora', label: 'Calculadora' },
   { href: '/cartillas', label: 'Cartillas médicas' },
   { href: '/glosario', label: 'Glosario de prepagas' },
 ]

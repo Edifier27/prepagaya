@@ -1,11 +1,13 @@
 // "Ideal para" description por prepaga-plan
 export const planIdealPara: Record<string, string> = {
   // Swiss Medical
+  'swiss-medical-smg02': 'La puerta de entrada más económica a Swiss Medical. Ideal para CABA y GBA: consultas sin copago al precio más bajo de la línea.',
   'swiss-medical-s1':    'Ideal para jóvenes que buscan su primera prepaga a precio accesible. Cobertura esencial en la red Swiss Medical.',
   'swiss-medical-s2':    'Ideal si necesitás Hospital Italiano o Fundación Favaloro con una cuota moderada. Sube un escalón respecto al S1.',
-  'swiss-medical-smg20': 'La mejor relación calidad/precio del mercado. Ideal para quien quiere sin copago y acceso a toda la red abierta.',
-  'swiss-medical-smg30': 'Ideal si además del SMG20 necesitás Hospital Alemán y FLENI cubiertos en tu plan.',
-  'swiss-medical-smg40': 'El plan más completo de Swiss Medical. Para quien quiere acceso total sin restricciones.',
+  'swiss-medical-smg20': 'La mejor relación calidad/precio del mercado. Ideal para quien quiere sin copago, 30 sesiones de psicología sin cargo y toda la red abierta.',
+  'swiss-medical-smg30': 'Ideal si querés reintegros por atenderte fuera de cartilla, ortodoncia hasta 18 años y sumar Hospital Alemán y FLENI.',
+  'swiss-medical-smg40': 'Plan de alta gama de Swiss Medical. Para quien quiere acceso total sin restricciones.',
+  'swiss-medical-smg50': 'Línea premium: una cirugía estética por año, implantes por reintegro y los valores de reintegro más altos de la línea.',
 
   // OSDE
   'osde-210':  'Ideal para personas sanas que quieren acceder a la red más grande del país a precio de entrada.',

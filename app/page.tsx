@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 
 export const metadata: Metadata = {
-  title: `Comparador de Prepagas Argentina 2026 — ${SITE_NAME}`,
+  title: { absolute: `Comparador de Prepagas Argentina 2026 con Precios Reales — ${SITE_NAME}` },
   description: SITE_DESCRIPTION,
   alternates: { canonical: SITE_URL },
 }

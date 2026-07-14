@@ -89,7 +89,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!prep) return {}
   const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
   return {
-    title: `${prep.nombre}: Precios, Planes y Opiniones — ${PRECIO_ACTUALIZADO} | ${SITE_NAME}`,
+    title: `${prep.nombre}: Planes desde ${formatPrecio(precioMin)}/mes — ${PRECIO_ACTUALIZADO}`,
     description: `${prep.nombre} ${PRECIO_ACTUALIZADO}: desde ${formatPrecio(precioMin)}/mes. ${prep.satisfaccion}% satisfacción · ${prep.cantidadOpiniones.toLocaleString()} opiniones. Planes, coberturas, pros y contras. Sin registro.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [

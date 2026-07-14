@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: `Sobre Nosotros — ${SITE_NAME}`,
+  title: 'Sobre Nosotros',
   description: `Conocé quiénes somos en ${SITE_NAME}, cómo trabajamos y por qué somos el comparador de prepagas más confiable de Argentina.`,
   alternates: { canonical: `${SITE_URL}/sobre-nosotros` },
 }

@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import { CalculadoraEdad } from '@/components/calculadora/CalculadoraEdad'
+import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
@@ -66,7 +67,7 @@ export default function CalculadoraPage() {
       <section className="bg-gradient-to-b from-blue-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-blue-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-4">
-            Calculadora gratuita · Precios actualizados Junio 2026
+            Calculadora gratuita · Precios actualizados {PRECIO_ACTUALIZADO}
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             ¿Cuánto cuesta una prepaga según tu edad?

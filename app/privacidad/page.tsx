@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
-  title: `Política de Privacidad — ${SITE_NAME}`,
+  title: 'Política de Privacidad',
   description: `Política de privacidad de ${SITE_NAME}. Cómo recopilamos, usamos y protegemos tu información personal.`,
   alternates: { canonical: `${SITE_URL}/privacidad` },
   robots: { index: true, follow: true },

@@ -6,8 +6,8 @@ import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { ComparadorTable } from '@/components/comparador/ComparadorTable'
 
 export const metadata: Metadata = {
-  title: `Comparar Prepagas Argentina 2026 — Tabla Side-by-Side · ${SITE_NAME}`,
-  description: 'Compará hasta 3 prepagas argentinas lado a lado: precio, coberturas, satisfacción y más de 12 características. Actualizado Julio 2026.',
+  title: 'Comparar Prepagas Lado a Lado: Tabla Comparativa 2026',
+  description: 'Compará hasta 3 prepagas argentinas lado a lado: precio, coberturas, satisfacción y más de 12 características en una sola tabla. Actualizado Julio 2026.',
   alternates: { canonical: `${SITE_URL}/comparar` },
   keywords: [
     'comparar prepagas argentina 2026',
@@ -45,7 +45,7 @@ export default function CompararPage(): React.ReactElement {
             {prepagas.length} prepagas · 15 características · Julio 2026
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            Comparador de prepagas<br className="hidden md:block" />
+            Compará prepagas<br className="hidden md:block" />
             <span className="text-[#E8002D]"> lado a lado</span>
           </h1>
           <p className="text-gray-600 max-w-xl mx-auto">
@@ -98,7 +98,7 @@ export default function CompararPage(): React.ReactElement {
           </div>
           <div className="mt-6 flex flex-wrap gap-4 justify-center">
             <Link href="/precios" className="text-sm font-semibold text-[#E8002D] hover:underline">Ver tabla de precios →</Link>
-            <Link href="/calculadora-costo" className="text-sm font-semibold text-[#E8002D] hover:underline">Calculadora por edad →</Link>
+            <Link href="/calculadora" className="text-sm font-semibold text-[#E8002D] hover:underline">Calculadora por edad →</Link>
             <Link href="/ranking" className="text-sm font-semibold text-[#E8002D] hover:underline">Ranking de prepagas →</Link>
           </div>
         </div>

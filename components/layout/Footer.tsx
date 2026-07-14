@@ -241,6 +241,11 @@ export function Footer() {
                   Cartillas médicas
                 </Link>
               </li>
+              <li>
+                <Link href="/aumentos" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                  Aumentos de prepagas
+                </Link>
+              </li>
             </ul>
           </div>
 

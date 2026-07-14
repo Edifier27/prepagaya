@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) return {}
   return {
-    title: `${prep.nombre} ${plan.nombre}: Precio, Cobertura y Opiniones — ${PRECIO_ACTUALIZADO} | ${SITE_NAME}`,
+    title: `${prep.nombre} ${plan.nombre}: ${formatPrecio(plan.precio)}/mes — Precio Real ${PRECIO_ACTUALIZADO}`,
     description: `${prep.nombre} ${plan.nombre}: ${formatPrecio(plan.precio)}/mes (persona 30 años · IVA inc.). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. ${plan.descripcion}`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
     keywords: [
@@ -126,7 +126,8 @@ export default async function PlanPage({ params }: Props) {
         price: plan.precio,
         priceCurrency: 'ARS',
         availability: 'https://schema.org/InStock',
-        priceValidUntil: '2026-09-01',
+        // Los precios rigen hasta el próximo ajuste mensual
+        priceValidUntil: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1).toISOString().split('T')[0],
         seller: { '@type': 'Organization', name: prep.nombre },
       },
       aggregateRating: {

@@ -388,7 +388,7 @@ export default function PreciosPage(): React.ReactElement {
               <span className="text-xs text-gray-500">Evolución mensual 2024–2026</span>
             </Link>
             <Link
-              href="/calculadora-costo"
+              href="/calculadora"
               className="flex flex-col gap-1 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group"
             >
               <span className="text-sm font-bold text-gray-900 group-hover:text-[#E8002D]">Calculadora de costo →</span>

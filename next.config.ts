@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      // /calculadora-costo duplicaba la intención de /calculadora — consolidado (SEO)
+      {
+        source: "/calculadora-costo",
+        destination: "/calculadora",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

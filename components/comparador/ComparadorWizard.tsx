@@ -16,7 +16,7 @@ const DESCUENTO_ONLINE = 0.25
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type Step = 'zona' | 'edades' | 'preview' | 'resultados'
-type CobId = 'internacion' | 'psicologia' | 'kinesiologia' | 'maternidad' | 'odontologia' | 'medicamentos' | 'estudios' | 'urgencias' | 'optica'
+type CobId = 'internacion' | 'psicologia' | 'kinesiologia' | 'maternidad' | 'odontologia' | 'medicamentos' | 'estudios' | 'urgencias' | 'optica' | 'reintegros' | 'ortodoncia' | 'cirugia-estetica'
 type Copago = 'sin-copago' | 'con-copago' | null
 interface Persona { id: number; edad: string }
 interface Resultado {
@@ -92,20 +92,34 @@ function calcGrupal(base: number, personas: Persona[]): number {
   return Math.round(personas.reduce((s, p) => s + base * mult(parseInt(p.edad) || 30), 0))
 }
 
+// La cobertura se evalúa A NIVEL PLAN (no prepaga): un filtro solo muestra los
+// planes cuyo detalle de cobertura la incluye explícitamente. Urgencias y
+// medicamentos mantienen fallback a nivel prepaga por ser coberturas universales.
 function checkCob(id: CobId, plan: Plan, p: Prepaga): boolean {
   const t = plan.cobertura.join(' ').toLowerCase()
   const m: Record<CobId, boolean> = {
-    internacion:  t.includes('internaci'),
-    psicologia:   t.includes('psic') || t.includes('salud mental') || p.caracteristicas.saludMental,
-    kinesiologia: true,
-    maternidad:   t.includes('maternidad') || p.caracteristicas.maternidad,
-    odontologia:  t.includes('odont') || t.includes('dental') || p.caracteristicas.odontologia,
-    medicamentos: t.includes('farmacia') || t.includes('medicament') || p.caracteristicas.farmacia,
-    estudios:     t.includes('complejidad') || t.includes('laboratorio'),
-    urgencias:    t.includes('urgencia') || p.caracteristicas.atencion24hs,
-    optica:       t.includes('optica') || t.includes('óptica') || p.caracteristicas.optica,
+    internacion:        t.includes('internaci'),
+    psicologia:         t.includes('psic') || t.includes('salud mental'),
+    kinesiologia:       t.includes('kinesio') || t.includes('rehabilit') || t.includes('fisioterap'),
+    maternidad:         t.includes('matern'),
+    odontologia:        t.includes('odont') || t.includes('dental'),
+    medicamentos:       t.includes('farmacia') || t.includes('medicament') || p.caracteristicas.farmacia,
+    estudios:           t.includes('complejidad') || t.includes('laborator') || t.includes('estudio') || !plan.copago,
+    urgencias:          t.includes('urgencia') || t.includes('emergencia') || t.includes('guardia') || p.caracteristicas.atencion24hs,
+    optica:             t.includes('optica') || t.includes('óptica'),
+    reintegros:         t.includes('reintegro'),
+    ortodoncia:         t.includes('ortodoncia'),
+    'cirugia-estetica': t.includes('estétic') || t.includes('estetic') || t.includes('plástic') || t.includes('plastic'),
   }
   return m[id]
+}
+
+// Marca prioritaria: los planes de Swiss Medical encabezan el ranking por
+// relevancia (los ordenamientos por precio no se alteran).
+const MARCA_PRIORITARIA = 'swiss-medical'
+
+function tierMarca(p: Prepaga): number {
+  return p.slug === MARCA_PRIORITARIA ? 1 : 0
 }
 
 function calcResultados(personas: Persona[], zonaKey: string): Resultado[] {
@@ -122,21 +136,24 @@ function calcResultados(personas: Persona[], zonaKey: string): Resultado[] {
       out.push({ prepaga: prep, plan, score, precioGrupal, precioDesc: Math.round(precioGrupal * (1 - DESCUENTO_ONLINE)) })
     }
   }
-  return out.sort((a, b) => b.score - a.score)
+  return out.sort((a, b) => tierMarca(b.prepaga) - tierMarca(a.prepaga) || b.score - a.score)
 }
 
 // ─── Coverage filter options ──────────────────────────────────────────────────
 
 const COBS: { id: CobId; label: string }[] = [
-  { id: 'psicologia',   label: 'Psicología' },
-  { id: 'maternidad',   label: 'Maternidad' },
-  { id: 'odontologia',  label: 'Odontología' },
-  { id: 'internacion',  label: 'Internación' },
-  { id: 'medicamentos', label: 'Medicamentos' },
-  { id: 'urgencias',    label: 'Urgencias 24hs' },
-  { id: 'optica',       label: 'Óptica' },
-  { id: 'kinesiologia', label: 'Kinesiología' },
-  { id: 'estudios',     label: 'Estudios complejos' },
+  { id: 'psicologia',       label: 'Psicología' },
+  { id: 'maternidad',       label: 'Maternidad' },
+  { id: 'odontologia',      label: 'Odontología' },
+  { id: 'ortodoncia',       label: 'Ortodoncia' },
+  { id: 'reintegros',       label: 'Reintegros' },
+  { id: 'cirugia-estetica', label: 'Cirugía estética' },
+  { id: 'internacion',      label: 'Internación' },
+  { id: 'medicamentos',     label: 'Medicamentos' },
+  { id: 'urgencias',        label: 'Urgencias 24hs' },
+  { id: 'optica',           label: 'Óptica' },
+  { id: 'kinesiologia',     label: 'Kinesiología' },
+  { id: 'estudios',         label: 'Estudios complejos' },
 ]
 
 // ─── Progress bar (3 steps) ───────────────────────────────────────────────────
@@ -312,12 +329,22 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       .sort((a, b) => {
         if (sortBy === 'precio-asc') return a.precioGrupal - b.precioGrupal
         if (sortBy === 'precio-desc') return b.precioGrupal - a.precioGrupal
+        // Relevancia: marca prioritaria primero, después score + coincidencia de filtros
+        const tierDiff = tierMarca(b.prepaga) - tierMarca(a.prepaga)
+        if (tierDiff !== 0) return tierDiff
         const scoreA = a.score + [...activeCobs].filter(c => checkCob(c, a.plan, a.prepaga)).length * 5
         const scoreB = b.score + [...activeCobs].filter(c => checkCob(c, b.plan, b.prepaga)).length * 5
         return scoreB - scoreA
       })
       .slice(0, 12)
   }, [allResultados, copago, activeCobs, sortBy])
+
+  // Cambia con cada combinación de filtros/orden: fuerza el remount de las cards
+  // para disparar la animación de entrada en cascada (feedback visual del cambio).
+  const filtroVersion = useMemo(
+    () => `${[...activeCobs].sort().join('.')}|${copago ?? 'todos'}|${sortBy}`,
+    [activeCobs, copago, sortBy]
+  )
 
   // 3-second countdown when entering preview
   useEffect(() => {
@@ -799,7 +826,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           )}
 
           <div className="space-y-4 mb-8">
-            {resultadosFiltrados.map((res) => {
+            {resultadosFiltrados.map((res, i) => {
               const planKey = `${res.prepaga.slug}-${res.plan.slug}`
               const isBest = planKey === bestKey
               const isCheapest = planKey === cheapestKey && planKey !== bestKey
@@ -808,8 +835,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               const ahorroMensual = res.precioGrupal - res.precioDesc
 
               return (
-                <div key={planKey}
-                  className={`bg-white rounded-2xl border-2 overflow-hidden transition-all ${
+                <div key={`${planKey}::${filtroVersion}`}
+                  style={{ animationDelay: `${Math.min(i, 8) * 80}ms` }}
+                  className={`card-enter bg-white rounded-2xl border-2 overflow-hidden transition-all ${
                     isBest ? 'border-[#E8002D] shadow-md' : 'border-gray-100 hover:border-gray-200 hover:shadow-sm'
                   }`}>
 

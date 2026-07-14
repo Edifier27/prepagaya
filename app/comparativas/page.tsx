@@ -6,7 +6,7 @@ import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { SelectorComparativo } from '@/components/comparativas/SelectorComparativo'
 
 export const metadata: Metadata = {
-  title: `Comparar Prepagas Argentina 2026 — Swiss Medical vs OSDE y más | ${SITE_NAME}`,
+  title: 'Comparativas de Prepagas 2026 — Swiss Medical vs OSDE y más',
   description: 'Elegí dos prepagas y comparalas al instante: precio, red de prestadores, satisfacción y veredicto. Swiss Medical vs OSDE, Sancor vs OSDE y más.',
   alternates: { canonical: `${SITE_URL}/comparativas` },
 }
