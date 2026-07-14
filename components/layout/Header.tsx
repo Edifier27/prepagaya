@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
+import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { LogoSlider } from '@/components/ui/LogoSlider'
 import {
   MiniPsicologia, MiniMaternidad, MiniOdontologia, MiniFertilidad, MiniOncologia,
   MiniDiabetes, MiniCeliacos, MiniSaludMental, MiniAutismo, MiniPreexistencias,
@@ -10,16 +12,21 @@ import {
 } from '@/components/ui/CategoryIcon'
 
 const prepagaLinks = [
-  { slug: 'swiss-medical', nombre: 'Swiss Medical' },
-  { slug: 'osde', nombre: 'OSDE' },
-  { slug: 'medife', nombre: 'Medifé' },
-  { slug: 'sancor-salud', nombre: 'Sancor Salud' },
-  { slug: 'omint', nombre: 'Omint' },
-  { slug: 'medicus', nombre: 'Medicus' },
-  { slug: 'avalian', nombre: 'Avalian' },
-  { slug: 'cemic', nombre: 'CEMIC' },
-  { slug: 'hospital-italiano', nombre: 'Hospital Italiano' },
-  { slug: 'premedic', nombre: 'Premedic' },
+  { slug: 'swiss-medical', nombre: 'Swiss Medical', colorPrimario: '#E30613' },
+  { slug: 'osde',          nombre: 'OSDE',          colorPrimario: '#003087' },
+  { slug: 'medife',        nombre: 'Medifé',        colorPrimario: '#009639' },
+  { slug: 'sancor-salud',  nombre: 'Sancor Salud',  colorPrimario: '#E30613' },
+  { slug: 'omint',         nombre: 'Omint',         colorPrimario: '#005BAC' },
+  { slug: 'medicus',       nombre: 'Medicus',       colorPrimario: '#0057A8' },
+  { slug: 'avalian',       nombre: 'Avalian',       colorPrimario: '#0099D4' },
+  { slug: 'cemic',         nombre: 'CEMIC',         colorPrimario: '#1B4F9B' },
+  { slug: 'hospital-italiano', nombre: 'Hospital Italiano', colorPrimario: '#003087' },
+  { slug: 'premedic',      nombre: 'Premedic',      colorPrimario: '#0066CC' },
+  { slug: 'prevencion-salud', nombre: 'Prevención Salud', colorPrimario: '#0066A1' },
+  { slug: 'federada-salud',nombre: 'Federada Salud',colorPrimario: '#C0392B' },
+  { slug: 'hominis',       nombre: 'Hominis',       colorPrimario: '#1B5E20' },
+  { slug: 'galeno',        nombre: 'Galeno',        colorPrimario: '#005B9A' },
+  { slug: 'luis-pasteur',  nombre: 'Luis Pasteur',  colorPrimario: '#006837' },
 ]
 
 const coberturasMenu = [
@@ -98,16 +105,21 @@ export function Header() {
                 </svg>
               </button>
               {activeDropdown === 'prepagas' && (
-                <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
-                  <div className="grid grid-cols-2 gap-0">
-                    {prepagaLinks.map((p) => (
-                      <Link key={p.slug} href={`/prepagas/${p.slug}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-[#E8002D] transition-colors">
-                        {p.nombre}
-                      </Link>
-                    ))}
-                  </div>
+                <div className="absolute top-full left-0 mt-1 w-72 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                  {prepagaLinks.map((p) => (
+                    <Link
+                      key={p.slug}
+                      href={`/prepagas/${p.slug}`}
+                      className="flex items-center gap-3 px-3 py-1.5 text-sm text-gray-700 hover:bg-red-50 hover:text-[#E8002D] transition-colors"
+                    >
+                      <PrepagaLogo slug={p.slug} nombre={p.nombre} colorPrimario={p.colorPrimario} size="xs" />
+                      {p.nombre}
+                    </Link>
+                  ))}
                   <div className="border-t border-gray-100 mt-1 pt-1">
-                    <Link href="/prepagas" className="block px-4 py-2 text-sm font-medium text-[#E8002D] hover:bg-red-50 transition-colors">Ver todas las prepagas →</Link>
+                    <Link href="/prepagas" className="block px-4 py-2 text-sm font-medium text-[#E8002D] hover:bg-red-50 transition-colors">
+                      Ver todas las prepagas →
+                    </Link>
                   </div>
                 </div>
               )}
@@ -296,6 +308,8 @@ export function Header() {
           </div>
         )}
       </div>
+      {/* Logo slider full-width — fuera del container */}
+      <LogoSlider logos={prepagaLinks} />
     </header>
   )
 }

@@ -60,6 +60,15 @@ export const testimonios: Testimonio[] = [
   // Premedic
   { id: 29, nombre: 'Tomás A.',     ciudad: 'Buenos Aires', prepagaSlug: 'premedic', planNombre: 'Plan 300', fecha: 'Abril 2026',  rating: 4, texto: 'Para estar cubierto sin gastar mucho es ideal. Premedic Plan 300 cumple para consultas y urgencias. Para estudios complejos hay demoras pero para el precio que pago está bien.', },
   { id: 30, nombre: 'Julieta V.',   ciudad: 'Tucumán',      prepagaSlug: 'premedic', planNombre: 'Plan 200', fecha: 'Febrero 2026',rating: 3, texto: 'La más barata del mercado y se nota. Para jóvenes sanos es suficiente. Cuando tuve algo más serio tuve que esperar mucho para las autorizaciones.',                              },
+
+  // Galeno
+  { id: 31, nombre: 'Cecilia R.',   ciudad: 'Buenos Aires', prepagaSlug: 'galeno', planNombre: 'Plata 300', fecha: 'Junio 2026',   rating: 4, texto: 'El Plata 300 tiene una red muy buena para AMBA. Los Sanatorios de la Trinidad son de primer nivel y el Llamando al Doctor me salvó varias veces con los chicos por la noche.', },
+  { id: 32, nombre: 'Marcelo S.',   ciudad: 'Rosario',      prepagaSlug: 'galeno', planNombre: 'Azul 200',  fecha: 'Mayo 2026',    rating: 3, texto: 'El Azul 200 está bien para lo básico. En Rosario la cartilla es limitada para algunos especialistas. Para urgencias funciona perfecto, para electivo hay que esperar.', },
+  { id: 33, nombre: 'Patricia O.',  ciudad: 'Neuquén',      prepagaSlug: 'galeno', planNombre: 'Oro 440',   fecha: 'Abril 2026',   rating: 5, texto: 'Galeno en Neuquén tiene el Sanatorio de la Trinidad propio. El Oro 440 me da acceso a todos los especialistas sin tener que viajar a Buenos Aires. Excelente.',           ahorro: '$62.000/mes' },
+
+  // Luis Pasteur
+  { id: 34, nombre: 'Verónica M.',  ciudad: 'Buenos Aires', prepagaSlug: 'luis-pasteur', planNombre: 'Plan N', fecha: 'Junio 2026',  rating: 5, texto: 'El Plan N de Luis Pasteur es una joya escondida. Sin copago en consultas, el dental incluido y 60% en farmacias. Pasé de Hominis y la diferencia en cobertura es notable para el mismo precio.', ahorro: '$38.000/mes' },
+  { id: 35, nombre: 'Germán A.',    ciudad: 'Buenos Aires', prepagaSlug: 'luis-pasteur', planNombre: 'Plan N', fecha: 'Mayo 2026',   rating: 4, texto: 'Los centros médicos propios en AMBA son muy cómodos para atenderse. Saqué turno en menos de 24hs para cardiología. El descuento en farmacias es real y muy útil para medicación crónica.', },
 ]
 
 export function getTestimoniosByPrepaga(slug: string): Testimonio[] {

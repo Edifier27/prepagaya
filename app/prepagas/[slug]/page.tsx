@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -111,7 +112,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const precioMax = Math.max(...prep.planes.map(pl => pl.precio))
   const planEstrella = prep.planes.find(pl => pl.destacado) ?? planesOrdenados[0]
   const otrosPlanes = planesOrdenados.filter(pl => pl.slug !== planEstrella.slug)
-  const initials = prep.nombre.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
   const testisPrepaga = testimonios.filter(t => t.prepagaSlug === prep.slug).slice(0, 2)
   const perfiles = getPerfilesIdeales(prep, precioMin)
   const faqs = buildFAQs(prep, precioMin, precioMax, planEstrella)
@@ -194,12 +194,13 @@ export default async function PrepagaSlugPage({ params }: Props) {
             {/* Left */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-4 mb-4">
-                <div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-xl font-black flex-shrink-0 shadow-sm"
-                  style={{ backgroundColor: prep.colorPrimario }}
-                >
-                  {initials}
-                </div>
+                <PrepagaLogo
+                  slug={prep.slug}
+                  nombre={prep.nombre}
+                  colorPrimario={prep.colorPrimario}
+                  size="lg"
+                  className="shadow-sm"
+                />
                 <div>
                   <div className="flex flex-wrap items-center gap-2 mb-1">
                     <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full font-medium">

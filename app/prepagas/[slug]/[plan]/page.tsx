@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -102,7 +103,6 @@ export default async function PlanPage({ params }: Props) {
   const planSuperior = planIdx < planesOrdenados.length - 1 ? planesOrdenados[planIdx + 1] : null
   const otrosPlanes = planesOrdenados.filter(pl => pl.slug !== planSlug)
 
-  const initials = prep.nombre.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
   const perfilDelPlan = getPerfilDelPlan(plan)
   const faqs = buildPlanFAQs(plan, prep)
 
@@ -180,12 +180,13 @@ export default async function PlanPage({ params }: Props) {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-10">
         <div className="container max-w-4xl mx-auto">
           <div className="flex items-start gap-4 mb-6">
-            <div
-              className="w-14 h-14 rounded-2xl flex items-center justify-center text-white text-lg font-black flex-shrink-0 shadow-sm"
-              style={{ backgroundColor: prep.colorPrimario }}
-            >
-              {initials}
-            </div>
+            <PrepagaLogo
+              slug={prep.slug}
+              nombre={prep.nombre}
+              colorPrimario={prep.colorPrimario}
+              size="md"
+              className="shadow-sm mt-1"
+            />
             <div>
               <Link href={`/prepagas/${slug}`} className="text-sm text-gray-500 hover:text-[#E8002D] transition-colors font-medium">
                 {prep.nombre}
