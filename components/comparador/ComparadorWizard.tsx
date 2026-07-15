@@ -403,9 +403,10 @@ function SituacionSelector({ situacion, setSituacion, sueldoBruto, setSueldoBrut
           <div className="relative max-w-xs">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
             <input
-              type="number" min={0} value={sueldoBruto}
-              onChange={(e) => setSueldoBruto(e.target.value)}
-              placeholder="Ej: 1200000"
+              type="text" inputMode="numeric"
+              value={sueldoBruto ? Number(sueldoBruto).toLocaleString('es-AR') : ''}
+              onChange={(e) => setSueldoBruto(e.target.value.replace(/\D/g, ''))}
+              placeholder="Ej: 1.200.000"
               className="w-full border-2 border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm font-bold focus:outline-none focus:border-[#E8002D] transition-colors"
             />
           </div>
