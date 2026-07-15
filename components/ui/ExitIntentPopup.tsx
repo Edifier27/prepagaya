@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useRef } from 'react'
 
+const CUPON_CODE = 'SWISS15'
+
 export function ExitIntentPopup(): React.ReactElement | null {
   const [visible, setVisible] = useState(false)
   const [nombre, setNombre] = useState('')
@@ -59,7 +61,8 @@ export function ExitIntentPopup(): React.ReactElement | null {
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
-          fuente: 'exit-intent',
+          fuente: 'cupon-swiss-15',
+          prepaga_interes: `Swiss Medical — Cupón ${CUPON_CODE} (15% OFF)`,
         }),
       })
       setStatus('success')
@@ -91,10 +94,16 @@ export function ExitIntentPopup(): React.ReactElement | null {
               <path d="M18 6L6 18M6 6l12 12"/>
             </svg>
           </button>
-          <div className="text-2xl mb-1">Esperate un momento</div>
-          <p className="text-red-100 text-sm leading-relaxed">
-            Dejanos tu celular y te mandamos los 3 mejores planes por WhatsApp ahora mismo.
+          <div className="text-2xl mb-1">No te vayas</div>
+          <p className="text-red-100 text-sm leading-relaxed mb-3">
+            Te regalamos un cupón con 15% OFF en todos los planes de Swiss Medical.
           </p>
+          <div className="inline-flex items-center gap-2 bg-white/15 border border-dashed border-white/50 rounded-lg px-3 py-1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+              <path d="M9 5H5a2 2 0 00-2 2v3a2 2 0 002 2 2 2 0 010 4 2 2 0 00-2 2v3a2 2 0 002 2h4M15 5h4a2 2 0 012 2v3a2 2 0 01-2 2 2 2 0 000 4 2 2 0 012 2v3a2 2 0 01-2 2h-4M9 3v18"/>
+            </svg>
+            <span className="font-black tracking-widest text-sm">{CUPON_CODE}</span>
+          </div>
         </div>
 
         <div className="p-6">
@@ -105,8 +114,8 @@ export function ExitIntentPopup(): React.ReactElement | null {
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
                 </svg>
               </div>
-              <p className="font-bold text-gray-900 mb-1">Recibimos tu consulta</p>
-              <p className="text-sm text-gray-500">Un asesor te escribe por WhatsApp en menos de 2 horas.</p>
+              <p className="font-bold text-gray-900 mb-1">¡Cupón activado!</p>
+              <p className="text-sm text-gray-500">Un asesor te contacta para aplicar el 15% OFF a tu plan Swiss Medical.</p>
             </div>
           ) : (
             <>

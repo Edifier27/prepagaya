@@ -17,6 +17,7 @@ export interface Prepaga {
   descripcion: string
   satisfaccion: number // porcentaje 0-100
   rating: number // 0-5
+  calidadCartilla: number // 1-5, calidad de la red de prestadores (cartilla)
   cantidadOpiniones: number
   profesionales: number
   sanatoriosPropios: number

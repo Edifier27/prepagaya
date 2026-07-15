@@ -9,6 +9,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Swiss Medical es la 2da prepaga más grande de Argentina (~1 millón de afiliados). Destaca por sus 8 sanatorios propios, 13 centros ambulatorios propios y Centros Diagnóstico Maipu (30 centros). Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
     satisfaccion: 76,
+    calidadCartilla: 5,
     rating: 4.2,
     cantidadOpiniones: 1243,
     profesionales: 81500,
@@ -115,6 +116,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'OSDE es la prepaga líder de Argentina con más de 2 millones de afiliados. Tiene la red más grande del país (+140.000 profesionales, 380+ centros de atención). Cartilla Inteligente con IA para orientar al paciente. Plan Flux para jóvenes 18-35 con psicología ilimitada.',
     satisfaccion: 74,
+    calidadCartilla: 5,
     rating: 4.0,
     cantidadOpiniones: 2156,
     profesionales: 140000,
@@ -202,6 +204,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'CEMIC es una asociación civil sin fines de lucro que ofrece atención médica de excelencia. Destaca por sus propias clínicas universitarias y un modelo de atención integral enfocado en la calidad médica.',
     satisfaccion: 71,
+    calidadCartilla: 3,
     rating: 3.9,
     cantidadOpiniones: 567,
     profesionales: 12000,
@@ -269,6 +272,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Sancor Salud es la tercera prepaga más grande de Argentina. Destaca por su excelente relación precio-calidad, amplia cobertura nacional y planes accesibles para todos los perfiles.',
     satisfaccion: 72,
+    calidadCartilla: 3,
     rating: 3.8,
     cantidadOpiniones: 934,
     profesionales: 45000,
@@ -363,6 +367,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Premedic es consistentemente la prepaga más económica de Argentina. Con más de 20 años de trayectoria, ofrece cobertura en Capital Federal, GBA, Córdoba y Tucumán a precios muy competitivos.',
     satisfaccion: 82,
+    calidadCartilla: 3,
     rating: 4.0,
     cantidadOpiniones: 412,
     profesionales: 8000,
@@ -430,6 +435,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Medifé es una prepaga líder con +60.000 profesionales y 50+ sucursales nacionales. Destaca por Cam Doctor (médico por videoconsulta en menos de 10 minutos), acceso al Sanatorio Finochietto (cirugía robótica) y cobertura oficial de la AFA. Plan Indie para trabajadores independientes.',
     satisfaccion: 70,
+    calidadCartilla: 3,
     rating: 3.7,
     cantidadOpiniones: 689,
     profesionales: 60000,
@@ -516,6 +522,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Omint es una de las prepagas más prestigiosas de Argentina con 3 sanatorios propios de alta complejidad: Clínica Bazterrica, Clínica del Sol y Clínica Santa Isabel. Primera prepaga certificada ISO 9001. Planes desde Smart hasta Premium, con acceso a +10.000 profesionales y cobertura internacional en todos sus planes.',
     satisfaccion: 79,
+    calidadCartilla: 3,
     rating: 4.1,
     cantidadOpiniones: 386,
     profesionales: 10000,
@@ -593,6 +600,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Medicus es una prepaga de alta prestación con 11 centros médicos propios en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche. Acceso a hospitales de primer nivel como Mater Dei, Hospital Alemán, Otamendi y Fundación Favaloro. 87% satisfacción — uno de los más altos del mercado. Consulta online y presencial.',
     satisfaccion: 87,
+    calidadCartilla: 3,
     rating: 4.4,
     cantidadOpiniones: 521,
     profesionales: 10000,
@@ -670,6 +678,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Avalian (ex-Galeno) es una de las prepagas más grandes de Argentina con más de 1.2 millones de afiliados. Cuenta con sanatorios propios en AMBA, más de 40.000 prestadores y presencia en todo el país. Fuerte en cobertura digital, app propia y atención 24hs.',
     satisfaccion: 73,
+    calidadCartilla: 3,
     rating: 3.9,
     cantidadOpiniones: 1087,
     profesionales: 40000,
@@ -747,6 +756,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Prevención Salud es una prepaga de cobertura nacional con presencia en las principales ciudades argentinas. Destaca por su relación precio-calidad, atención personalizada y red de más de 25.000 prestadores en todo el país. Planes accesibles para individuos, familias y monotributistas.',
     satisfaccion: 71,
+    calidadCartilla: 3,
     rating: 3.8,
     cantidadOpiniones: 438,
     profesionales: 25000,
@@ -825,6 +835,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'El Plan de Salud del Hospital Italiano es la prepaga propia de uno de los hospitales más prestigiosos de Argentina. Ofrece atención integrada en la red del Hospital Italiano de Buenos Aires, con centros ambulatorios propios en toda el AMBA y acceso a los mejores especialistas del país. Modelo de medicina interna con historia clínica unificada.',
     satisfaccion: 81,
+    calidadCartilla: 3,
     rating: 4.2,
     cantidadOpiniones: 674,
     profesionales: 9000,
@@ -893,6 +904,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Federada Salud es una de las prepagas más importantes del interior del país, con especial fortaleza en Córdoba, Santa Fe, Entre Ríos, La Rioja y San Juan. Con más de 300.000 afiliados y presencia en 18 provincias, se destaca por su cobertura regional extensa y su relación precio-calidad en el interior argentino.',
     satisfaccion: 74,
+    calidadCartilla: 3,
     rating: 3.9,
     cantidadOpiniones: 512,
     profesionales: 30000,
@@ -961,6 +973,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Hominis es una prepaga de Buenos Aires con más de 20 años en el mercado y cerca de 120.000 afiliados. Se destaca por su relación precio-calidad, atención personalizada y acceso a una red de prestadores de calidad en AMBA. Incluye Cam Doctor (videoconsulta médica) en todos sus planes.',
     satisfaccion: 76,
+    calidadCartilla: 3,
     rating: 3.9,
     cantidadOpiniones: 289,
     profesionales: 12000,
@@ -1029,6 +1042,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Galeno es una de las prepagas más grandes de Argentina con más de 40 años de trayectoria y 750.000 afiliados. Cuenta con los Sanatorios de la Trinidad (red propia de alto nivel), cobertura nacional en más de 6.200 prestadores, 68.000 profesionales y 8.200 farmacias con descuentos de hasta 70%. Ofrece el servicio de telemedicina "Llamando al Doctor" y "Guardia Inteligente".',
     satisfaccion: 74,
+    calidadCartilla: 3,
     rating: 3.5,
     cantidadOpiniones: 2739,
     profesionales: 68000,
@@ -1134,6 +1148,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       'Luis Pasteur (OSLP) es una obra social fundada en 1975 que abrió sus puertas al público general. Con casi 50 años de trayectoria, ofrece 5 planes de salud con cobertura nacional, 25.000 profesionales, 6 centros médicos propios en AMBA y el descuento más alto del mercado en farmacias: 60%. Se destaca por incluir consultas sin copago y dental completo desde el plan base.',
     satisfaccion: 78,
+    calidadCartilla: 3,
     rating: 4.1,
     cantidadOpiniones: 156,
     profesionales: 25000,

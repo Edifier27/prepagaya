@@ -114,6 +114,16 @@ function calcGrupal(base: number, personas: Persona[]): number {
   return Math.round(personas.reduce((s, p) => s + base * mult(parseInt(p.edad) || 30), 0))
 }
 
+// La calidad de cartilla mostrada en cada card parte de calidadCartilla de la
+// prepaga (red de prestadores) y se ajusta por plan: red cerrada y copago son
+// las señales de una cartilla más acotada dentro de la misma prepaga.
+function calidadPlan(prep: Prepaga, plan: Plan): number {
+  let score = prep.calidadCartilla
+  if (!plan.redAbierta) score -= 1
+  if (plan.copago) score -= 1
+  return Math.max(1, Math.min(5, Math.round(score)))
+}
+
 // La cobertura se evalúa A NIVEL PLAN (no prepaga): un filtro solo muestra los
 // planes cuyo detalle de cobertura la incluye explícitamente. Urgencias y
 // medicamentos mantienen fallback a nivel prepaga por ser coberturas universales.
@@ -741,7 +751,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         {/* Preview cards — real prices shown for 3s, then blurred */}
         <div className={`space-y-3 mb-4 transition-all duration-500 ${showPopup ? 'blur-md pointer-events-none select-none' : ''}`}>
           {previewItems.map((r, i) => {
-            const calidad = Math.max(1, Math.min(5, Math.round(r.prepaga.satisfaccion / 20)))
+            const calidad = calidadPlan(r.prepaga, r.plan)
             return (
               <div key={`${r.prepaga.slug}-${r.plan.slug}`}
                 className={`bg-white rounded-2xl border-2 p-4 flex items-center justify-between ${i === 0 ? 'border-[#E8002D]' : 'border-gray-100'}`}>
@@ -1002,7 +1012,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               const isBest = planKey === bestKey
               const isCheapest = planKey === cheapestKey && planKey !== bestKey
               const isAccedido = planAccedido === planKey
-              const calidad = Math.max(1, Math.min(5, Math.round(res.prepaga.satisfaccion / 20)))
+              const calidad = calidadPlan(res.prepaga, res.plan)
               const precioAPagar = precioFinal(res.precioDesc)
               const ahorroMensual = res.precioGrupal - precioAPagar
 
