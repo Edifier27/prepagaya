@@ -12,11 +12,26 @@ import { formatPrecio } from '@/lib/utils'
 const EJS_SERVICE  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? ''
 const EJS_TEMPLATE = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? ''
 const EJS_KEY      = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY  ?? ''
-const DESCUENTO_ONLINE = 0.25
+
+// Descuento según cómo paga el usuario. Relación de dependencia combina el
+// 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
+// la alícuota de IVA en salud es del 10,5%, no el 21% general. Monotributo y
+// Responsable Inscripto acceden al 25% por facturar con IVA discriminado.
+const DESCUENTO_POR_SITUACION: Record<SituacionLaboral, number> = {
+  particular: 0.15,
+  'relacion-dependencia': 1 - (1 - 0.15) * (1 - 0.105),
+  monotributo: 0.25,
+  'responsable-inscripto': 0.25,
+}
+
+// Aporte del trabajador en relación de dependencia: 7,5% del sueldo bruto,
+// se descuenta directo de la cuota mostrada.
+const APORTE_PORCENTAJE = 0.075
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type Step = 'zona' | 'edades' | 'preview' | 'resultados'
+type Step = 'situacion' | 'zona' | 'edades' | 'preview' | 'resultados'
+type SituacionLaboral = 'particular' | 'relacion-dependencia' | 'monotributo' | 'responsable-inscripto'
 type CobId = 'internacion' | 'psicologia' | 'kinesiologia' | 'maternidad' | 'odontologia' | 'medicamentos' | 'estudios' | 'urgencias' | 'optica' | 'reintegros' | 'ortodoncia' | 'cirugia-estetica'
 type Copago = 'sin-copago' | 'con-copago' | null
 interface Persona { id: number; edad: string }
@@ -150,7 +165,7 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
   return out
 }
 
-function calcResultados(personas: Persona[], zonaKey: string): Resultado[] {
+function calcResultados(personas: Persona[], zonaKey: string, descuento: number): Resultado[] {
   const slugsZona = ZONA_PREPAGAS[zonaKey] ?? ZONA_PREPAGAS['otras']
   const prepagasFiltradas = prepagas.filter((p) => slugsZona.includes(p.slug))
   const out: Resultado[] = []
@@ -161,7 +176,7 @@ function calcResultados(personas: Persona[], zonaKey: string): Resultado[] {
       if (!plan.copago) score += 2
       if (plan.destacado) score += 3
       const precioGrupal = calcGrupal(plan.precio, personas)
-      out.push({ prepaga: prep, plan, score, precioGrupal, precioDesc: Math.round(precioGrupal * (1 - DESCUENTO_ONLINE)) })
+      out.push({ prepaga: prep, plan, score, precioGrupal, precioDesc: Math.round(precioGrupal * (1 - descuento)) })
     }
   }
   return mecharResultados(out.sort((a, b) => b.score - a.score))
@@ -196,10 +211,40 @@ const COBS: CobDef[] = [
 
 const COB_MAP = Object.fromEntries(COBS.map((c) => [c.id, c])) as Record<CobId, CobDef>
 
-// ─── Progress bar (3 steps) ───────────────────────────────────────────────────
+// ─── Situación laboral (define descuento + aporte) ─────────────────────────────
 
-const STEP_LABELS = ['Zona', 'Integrantes', 'Ver precios']
-const STEP_ORDER: Step[] = ['zona', 'edades', 'preview']
+interface SituacionDef {
+  id: SituacionLaboral
+  label: string
+  desc: string
+  badge: string
+}
+
+const SITUACIONES: SituacionDef[] = [
+  { id: 'particular',             label: 'Particular',              desc: 'Pagás la cuota completa de tu bolsillo', badge: '15% OFF' },
+  { id: 'relacion-dependencia',   label: 'Relación de dependencia', desc: 'Tenés recibo de sueldo — te descontamos el aporte', badge: 'Hasta 24% OFF + aporte' },
+  { id: 'monotributo',            label: 'Monotributista',          desc: 'Facturás como monotributista', badge: '25% OFF' },
+  { id: 'responsable-inscripto',  label: 'Responsable Inscripto',   desc: 'Facturás con IVA discriminado', badge: '25% OFF' },
+]
+
+function SituacionIcon({ id }: { id: SituacionLaboral }) {
+  const paths: Record<SituacionLaboral, React.ReactNode> = {
+    particular: <path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 20a8 8 0 0116 0" strokeLinecap="round" strokeLinejoin="round" />,
+    'relacion-dependencia': <path d="M4 7h16v13H4V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" strokeLinecap="round" strokeLinejoin="round" />,
+    monotributo: <path d="M6 2h12v20l-3-2-3 2-3-2-3 2V2zM9 7h6M9 11h6M9 15h3" strokeLinecap="round" strokeLinejoin="round" />,
+    'responsable-inscripto': <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" strokeLinecap="round" strokeLinejoin="round" />,
+  }
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
+      {paths[id]}
+    </svg>
+  )
+}
+
+// ─── Progress bar (4 steps) ───────────────────────────────────────────────────
+
+const STEP_LABELS = ['Vos', 'Zona', 'Integrantes', 'Ver precios']
+const STEP_ORDER: Step[] = ['situacion', 'zona', 'edades', 'preview']
 
 function ProgressBar({ step }: { step: Step }) {
   const idx = STEP_ORDER.indexOf(step)
@@ -248,7 +293,7 @@ function BackBtn({ onClick }: { onClick: () => void }) {
 
 // ─── ZonaStep ─────────────────────────────────────────────────────────────────
 
-function ZonaStep({ onSelect }: { onSelect: (p: Provincia) => void }) {
+function ZonaStep({ onSelect, onBack }: { onSelect: (p: Provincia) => void; onBack: () => void }) {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState<Provincia | null>(null)
   const ref = React.useRef<HTMLDivElement>(null)
@@ -270,6 +315,7 @@ function ZonaStep({ onSelect }: { onSelect: (p: Provincia) => void }) {
   return (
     <div>
       <ProgressBar step="zona" />
+      <BackBtn onClick={onBack} />
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">¿Desde dónde buscás cobertura?</h2>
         <p className="text-sm text-gray-500">Las prepagas disponibles varían según tu provincia</p>
@@ -317,6 +363,90 @@ function ZonaStep({ onSelect }: { onSelect: (p: Provincia) => void }) {
   )
 }
 
+// ─── SituacionStep ────────────────────────────────────────────────────────────
+
+function SituacionStep({ situacion, setSituacion, sueldoBruto, setSueldoBruto, onContinue }: {
+  situacion: SituacionLaboral | null
+  setSituacion: (s: SituacionLaboral) => void
+  sueldoBruto: string
+  setSueldoBruto: (v: string) => void
+  onContinue: () => void
+}) {
+  const bruto = parseFloat(sueldoBruto) || 0
+  const aportePreview = Math.round(bruto * APORTE_PORCENTAJE)
+  const sueldoOk = bruto > 0
+
+  function handlePick(id: SituacionLaboral) {
+    setSituacion(id)
+    if (id === 'relacion-dependencia') return
+    setTimeout(onContinue, id === 'particular' ? 180 : 900)
+  }
+
+  return (
+    <div>
+      <ProgressBar step="situacion" />
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">¿Cómo vas a pagar tu prepaga?</h2>
+        <p className="text-sm text-gray-500">El descuento (y el aporte que te descontamos, si corresponde) cambian según tu situación</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto">
+        {SITUACIONES.map((s) => {
+          const selected = situacion === s.id
+          return (
+            <button key={s.id} onClick={() => handlePick(s.id)}
+              className={`text-left p-4 rounded-2xl border-2 transition-all ${
+                selected ? 'border-[#E8002D] bg-red-50 shadow-md' : 'border-gray-200 bg-white hover:border-red-200 hover:shadow-sm'
+              }`}>
+              <div className={`mb-2 ${selected ? 'text-[#E8002D]' : 'text-gray-400'}`}>
+                <SituacionIcon id={s.id} />
+              </div>
+              <div className="flex items-center justify-between gap-2 mb-1">
+                <span className="font-bold text-gray-900 text-sm">{s.label}</span>
+              </div>
+              <p className="text-xs text-gray-500 leading-relaxed mb-2">{s.desc}</p>
+              <span className="inline-block text-[10px] font-bold text-[#00875A] bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">{s.badge}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      {situacion === 'relacion-dependencia' && (
+        <div className="max-w-xl mx-auto mt-5 bg-white border-2 border-red-100 rounded-2xl p-5">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">¿Cuál es tu sueldo bruto mensual?</label>
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
+            <input
+              type="number" min={0} value={sueldoBruto}
+              onChange={(e) => setSueldoBruto(e.target.value)}
+              placeholder="Ej: 1200000"
+              className="w-full border-2 border-gray-200 rounded-xl pl-8 pr-4 py-3 text-base font-bold focus:outline-none focus:border-[#E8002D] transition-colors"
+            />
+          </div>
+          {sueldoOk && (
+            <p className="text-xs text-gray-600 mt-2">
+              Tu aporte estimado: <span className="font-bold text-[#E8002D]">{formatPrecio(aportePreview)}/mes</span> (7,5% de tu sueldo bruto) — lo descontamos de la cuota.
+            </p>
+          )}
+          <p className="text-[11px] text-gray-400 mt-3 leading-relaxed">
+            Además del aporte, tu cuota ya sale más baja: sumamos el 15% de descuento general más un 10,5% adicional — la alícuota de IVA en salud es del 10,5%, no el 21% general.
+          </p>
+          <button onClick={onContinue} disabled={!sueldoOk}
+            className="w-full mt-4 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all">
+            Continuar →
+          </button>
+        </div>
+      )}
+
+      {situacion && (situacion === 'monotributo' || situacion === 'responsable-inscripto') && (
+        <p className="text-center text-xs text-gray-400 max-w-xl mx-auto mt-5 leading-relaxed">
+          25% de descuento especial para monotributistas y responsables inscriptos que facturan con IVA discriminado.
+        </p>
+      )}
+    </div>
+  )
+}
+
 // ─── Main component ───────────────────────────────────────────────────────────
 
 interface WizardProps {
@@ -328,10 +458,20 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const router = useRouter()
   const pathname = usePathname()
 
-  const [step, setStep] = useState<Step>(initialZona ? 'edades' : 'zona')
+  const [step, setStep] = useState<Step>('situacion')
   const [zonaKey, setZonaKey] = useState(initialZona ?? '')
   const [provinciaNombre, setProvinciaNombre] = useState(initialProvincia ?? '')
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
+
+  // Situación laboral: define descuento y, en relación de dependencia, el aporte descontado
+  const [situacion, setSituacion] = useState<SituacionLaboral | null>(null)
+  const [sueldoBruto, setSueldoBruto] = useState('')
+  const descuentoRate = DESCUENTO_POR_SITUACION[situacion ?? 'particular']
+  const aporteMensual = useMemo(() => {
+    if (situacion !== 'relacion-dependencia') return 0
+    return Math.round((parseFloat(sueldoBruto) || 0) * APORTE_PORCENTAJE)
+  }, [situacion, sueldoBruto])
+  const precioFinal = (precioDesc: number) => Math.max(0, precioDesc - aporteMensual)
 
   // Lead data
   const [nombre, setNombre] = useState('')
@@ -352,8 +492,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [planAccedidoStatus, setPlanAccedidoStatus] = useState<'idle' | 'loading' | 'success'>('idle')
 
   const allResultados = useMemo(() =>
-    (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey) : [],
-    [step, personas, zonaKey]
+    (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey, descuentoRate) : [],
+    [step, personas, zonaKey, descuentoRate]
   )
 
   const resultadosFiltrados = useMemo((): Resultado[] => {
@@ -424,7 +564,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       prepaga: planesTexto.split('\n')[0] ?? '',
       coberturas: [...activeCobs].map(c => COBS.find(o => o.id === c)?.label).filter(Boolean).join(', ') || 'Sin preferencia',
       copago_preferencia: copago === 'sin-copago' ? 'Sin copago' : copago === 'con-copago' ? 'Con copago' : 'Sin preferencia',
-      situacion: 'No especificada',
+      situacion: SITUACIONES.find(s => s.id === situacion)?.label ?? 'No especificada',
+      sueldo_bruto: situacion === 'relacion-dependencia' ? `$${(parseFloat(sueldoBruto) || 0).toLocaleString('es-AR')}` : '',
+      aporte_descontado: aporteMensual > 0 ? `$${aporteMensual.toLocaleString('es-AR')}/mes` : '',
       presupuesto: 'calculado por edad',
       fecha: new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }),
       ...extra,
@@ -465,7 +607,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         fuente: 'plan-accedido',
         plan_elegido: `${res.prepaga.nombre} — ${res.plan.nombre}`,
         precio_original: `$${res.precioGrupal.toLocaleString('es-AR')}/mes`,
-        precio_con_descuento: `$${res.precioDesc.toLocaleString('es-AR')}/mes`,
+        precio_con_descuento: `$${precioFinal(res.precioDesc).toLocaleString('es-AR')}/mes`,
       }))
       setPlanAccedidoStatus('success')
     } catch {
@@ -482,26 +624,44 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   }
 
   function resetWizard() {
-    setStep('zona'); setZonaKey(''); setProvinciaNombre('')
+    setStep('situacion'); setSituacion(null); setSueldoBruto('')
+    setZonaKey(''); setProvinciaNombre('')
     setPersonas([{ id: 1, edad: '' }]); setNombre(''); setCelular('')
     setLeadStatus('idle'); setActiveCobs(new Set()); setCopago(null)
     setSortBy('relevancia'); setPlanAccedido(null); setPlanAccedidoStatus('idle')
     setCountdown(3); setShowPopup(false)
   }
 
+  // ── Step: Situación laboral ────────────────────────────────────────────────────
+
+  if (step === 'situacion') {
+    return (
+      <SituacionStep
+        situacion={situacion}
+        setSituacion={setSituacion}
+        sueldoBruto={sueldoBruto}
+        setSueldoBruto={setSueldoBruto}
+        onContinue={() => setStep(initialZona ? 'edades' : 'zona')}
+      />
+    )
+  }
+
   // ── Step: Zona ───────────────────────────────────────────────────────────────
 
   if (step === 'zona') {
     return (
-      <ZonaStep onSelect={(prov) => {
-        if (pathname !== '/comparador') {
-          router.push(`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`)
-          return
-        }
-        setZonaKey(prov.zonaKey)
-        setProvinciaNombre(prov.nombre)
-        setStep('edades')
-      }} />
+      <ZonaStep
+        onBack={() => setStep('situacion')}
+        onSelect={(prov) => {
+          if (pathname !== '/comparador') {
+            router.push(`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`)
+            return
+          }
+          setZonaKey(prov.zonaKey)
+          setProvinciaNombre(prov.nombre)
+          setStep('edades')
+        }}
+      />
     )
   }
 
@@ -633,7 +793,10 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 <div className="text-right flex-shrink-0 ml-4">
                   <div className="text-[10px] text-[#E8002D] font-bold uppercase tracking-wide mb-0.5">Calidad {calidad}/5</div>
                   <div className="text-xs text-gray-400 line-through">{formatPrecio(r.precioGrupal)}/mes</div>
-                  <div className="text-xl font-black text-[#E8002D] tabular-nums">{formatPrecio(r.precioDesc)}</div>
+                  <div className="text-xl font-black text-[#E8002D] tabular-nums">{formatPrecio(precioFinal(r.precioDesc))}</div>
+                  {aporteMensual > 0 && (
+                    <div className="text-[10px] text-emerald-600 font-semibold">Aporte descontado: -{formatPrecio(aporteMensual)}</div>
+                  )}
                   <div className="text-xs text-gray-400">/mes · {personas.length} pers.</div>
                 </div>
               </div>
@@ -734,9 +897,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             </div>
           </div>
           <div className="bg-white/15 rounded-xl px-4 py-2.5 text-center flex-shrink-0">
-            <div className="text-xs text-red-200 mb-0.5">Descuento online</div>
-            <div className="text-2xl font-black">25% OFF</div>
-            <div className="text-xs text-red-200">por 12 meses</div>
+            <div className="text-xs text-red-200 mb-0.5">Descuento aplicado</div>
+            <div className="text-2xl font-black">{Math.round(descuentoRate * 100)}% OFF</div>
+            <div className="text-xs text-red-200">{aporteMensual > 0 ? 'más tu aporte descontado' : 'por 12 meses'}</div>
           </div>
         </div>
       </div>
@@ -864,7 +1027,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               const isCheapest = planKey === cheapestKey && planKey !== bestKey
               const isAccedido = planAccedido === planKey
               const calidad = Math.max(1, Math.min(5, Math.round(res.prepaga.satisfaccion / 20)))
-              const ahorroMensual = res.precioGrupal - res.precioDesc
+              const precioAPagar = precioFinal(res.precioDesc)
+              const ahorroMensual = res.precioGrupal - precioAPagar
 
               return (
                 <div key={`${planKey}::${filtroVersion}`}
@@ -967,8 +1131,11 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     <div className="flex items-end justify-between gap-4 pt-3 border-t border-gray-100">
                       <div>
                         <div className="text-xs text-gray-400 line-through tabular-nums">{formatPrecio(res.precioGrupal)}/mes</div>
-                        <div className="text-2xl font-black text-[#E8002D] tabular-nums leading-tight">{formatPrecio(res.precioDesc)}</div>
+                        <div className="text-2xl font-black text-[#E8002D] tabular-nums leading-tight">{formatPrecio(precioAPagar)}</div>
                         <div className="text-xs text-gray-500">/mes · {personas.length} persona{personas.length !== 1 ? 's' : ''}</div>
+                        {aporteMensual > 0 && (
+                          <div className="text-[11px] text-emerald-700 font-semibold mt-0.5">Aporte descontado: -{formatPrecio(aporteMensual)}/mes</div>
+                        )}
                         <div className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold px-2 py-0.5 rounded-full mt-1 border border-emerald-200">
                           Ahorrás {formatPrecio(ahorroMensual)}/mes
                         </div>
