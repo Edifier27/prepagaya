@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { provinciasSEO } from '@/lib/data/zonas'
 import {
   MiniPsicologia, MiniMaternidad, MiniOdontologia, MiniFertilidad, MiniOncologia,
   MiniDiabetes, MiniCeliacos, MiniSaludMental, MiniAutismo, MiniPreexistencias,
@@ -27,6 +28,13 @@ const prepagaLinks = [
   { slug: 'galeno',        nombre: 'Galeno',        colorPrimario: '#005B9A' },
   { slug: 'luis-pasteur',  nombre: 'Luis Pasteur',  colorPrimario: '#006837' },
 ]
+
+// Silo SEO local: hubs provinciales con cobertura verificada (lib/data/zonas.ts)
+const zonasMenu = provinciasSEO.map((p) => ({
+  href: `/prepagas/${p.slug}`,
+  label: `Prepagas en ${p.nombre}`,
+  ranking: `/prepagas/${p.slug}/mejores-prepagas`,
+}))
 
 const coberturasMenu = [
   { href: '/coberturas/psicologia',  label: 'Psicología',  Icon: MiniPsicologia },
@@ -63,7 +71,7 @@ const herramientasMenu = [
   { href: '/glosario', label: 'Glosario de prepagas' },
 ]
 
-type DropdownKey = 'prepagas' | 'coberturas' | 'condiciones' | 'obras-sociales' | 'herramientas' | null
+type DropdownKey = 'prepagas' | 'zonas' | 'coberturas' | 'condiciones' | 'obras-sociales' | 'herramientas' | null
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -119,6 +127,39 @@ export function Header() {
                   <div className="border-t border-gray-100 mt-1 pt-1">
                     <Link href="/prepagas" className="block px-4 py-2 text-sm font-medium text-[#E8002D] hover:bg-red-50 transition-colors">
                       Ver todas las prepagas →
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Por zona dropdown (silo SEO local) */}
+            <div className="relative" onMouseEnter={() => openDropdown('zonas')} onMouseLeave={closeDropdown}>
+              <button className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-[#E8002D] transition-colors">
+                Por zona
+                <svg className="w-3.5 h-3.5 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {activeDropdown === 'zonas' && (
+                <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                  {zonasMenu.map((item) => (
+                    <div key={item.href} className="flex items-center justify-between pr-3 hover:bg-red-50 transition-colors group">
+                      <Link href={item.href} className="flex items-center gap-2.5 px-4 py-2 text-sm text-gray-700 group-hover:text-[#E8002D] transition-colors flex-1">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 text-gray-300 group-hover:text-[#E8002D] flex-shrink-0 transition-colors">
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" strokeLinecap="round" strokeLinejoin="round"/>
+                          <circle cx="12" cy="9" r="2" fill="currentColor" stroke="none"/>
+                        </svg>
+                        {item.label}
+                      </Link>
+                      <Link href={item.ranking} className="text-[10px] font-semibold text-gray-400 hover:text-[#E8002D] transition-colors flex-shrink-0">
+                        Ranking
+                      </Link>
+                    </div>
+                  ))}
+                  <div className="border-t border-gray-100 mt-1 pt-1">
+                    <Link href="/prepagas" className="block px-4 py-2 text-sm font-medium text-[#E8002D] hover:bg-red-50 transition-colors">
+                      Todas las provincias →
                     </Link>
                   </div>
                 </div>
@@ -259,6 +300,14 @@ export function Header() {
                   {p.nombre}
                 </Link>
               ))}
+              <div className="border-t border-gray-100 mt-2 pt-2">
+                <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Por zona</p>
+                {zonasMenu.map((item) => (
+                  <Link key={item.href} href={item.href} className="px-2 py-2 text-sm text-gray-700 hover:text-[#E8002D] rounded-lg hover:bg-red-50 flex items-center gap-1" onClick={() => setMenuOpen(false)}>
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
               <div className="border-t border-gray-100 mt-2 pt-2">
                 <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Coberturas</p>
                 {coberturasMenu.map((item) => (

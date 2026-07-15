@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, formatPrecio } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
@@ -356,6 +357,43 @@ export default function HomePage(): React.ReactElement {
               Ver todos los planes y precios →
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* ── Prepagas por zona (silo SEO local) ───────────────────────────── */}
+      <section className="py-14">
+        <div className="container">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Prepagas por zona</h2>
+            <p className="text-gray-500 text-sm max-w-xl mx-auto">
+              La cartilla real cambia según dónde vivas. Verificamos qué prepagas tienen cobertura efectiva en cada provincia, incluyendo las regionales que las comparativas nacionales ignoran.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+            {provinciasSEO.map((prov) => (
+              <div key={prov.slug} className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-6 flex flex-col">
+                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center mb-4">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5 text-[#E8002D]">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none"/>
+                  </svg>
+                </div>
+                <h3 className="font-bold text-gray-900 text-lg mb-1">Prepagas en {prov.nombre}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed flex-1">
+                  {prov.prepagas.length} prepagas con cobertura verificada, precios {PRECIO_ACTUALIZADO.toLowerCase()} y cartillas en {prov.capitalNombre} y el interior.
+                </p>
+                <div className="flex items-center gap-4 mt-4 pt-3 border-t border-gray-50">
+                  <Link href={`/prepagas/${prov.slug}`} className="text-sm font-bold text-[#E8002D] hover:underline">
+                    Ver cobertura →
+                  </Link>
+                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                    Ranking
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-xs text-gray-400 mt-6">¿Tu provincia no está? Estamos sumando todas las provincias — mientras tanto <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">cotizá acá</Link> y te mostramos las prepagas de tu zona.</p>
         </div>
       </section>
 
