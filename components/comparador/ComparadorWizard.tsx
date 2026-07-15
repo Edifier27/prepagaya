@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import emailjs from '@emailjs/browser'
 import { prepagas } from '@/lib/data/prepagas'
+import { provinciasSEO } from '@/lib/data/zonas'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio } from '@/lib/utils'
 
@@ -45,6 +46,12 @@ const ZONA_PREPAGAS: Record<string, string[]> = {
   'corrientes':   ['osde','sancor-salud','prevencion-salud'],
   'chaco':        ['osde','sancor-salud','prevencion-salud'],
   'otras':        ['swiss-medical','osde','galeno','sancor-salud','medife','avalian','prevencion-salud'],
+}
+
+// Las zonas con dataset SEO local verificado (lib/data/zonas.ts) pisan el
+// mapping manual: fuente única para páginas de zona y cotizador.
+for (const prov of provinciasSEO) {
+  ZONA_PREPAGAS[prov.zonaKey] = prov.prepagas.filter((pz) => pz.enSitio).map((pz) => pz.slug)
 }
 
 interface Provincia { slug: string; nombre: string; zonaKey: string }

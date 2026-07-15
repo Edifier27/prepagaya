@@ -1034,7 +1034,7 @@ export const prepagas: Prepaga[] = [
     profesionales: 68000,
     sanatoriosPropios: 5,
     pros: [
-      'Red propia Sanatorios de la Trinidad (Palermo, San Isidro, Quilmes, Ramos Mejía, Neuquén)',
+      'Red propia Sanatorios de la Trinidad (Palermo, Mitre, San Isidro, Quilmes, Ramos Mejía)',
       '68.000 profesionales y 6.200 prestadores a nivel nacional',
       '8.200 farmacias con 40-70% de descuento en medicamentos',
       'Telemedicina "Llamando al Doctor" disponible 24/7',

@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { provinciasSEO } from '@/lib/data/zonas'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { StarRating } from '@/components/ui/StarRating'
 import { Badge } from '@/components/ui/Badge'
@@ -131,6 +132,24 @@ export default function PrepagasPage() {
                 </Link>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Silo SEO local: hubs provinciales */}
+      <section className="py-12 border-t border-gray-100">
+        <div className="container">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Prepagas por provincia</h2>
+          <p className="text-sm text-gray-500 mb-6">La cartilla real cambia según dónde vivas: mirá las prepagas con cobertura verificada en tu provincia.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {provinciasSEO.map((prov) => (
+              <Link key={prov.slug} href={`/prepagas/${prov.slug}`}
+                className="p-5 bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-sm transition-all group">
+                <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">Prepagas en {prov.nombre}</div>
+                <div className="text-xs text-gray-500 mt-1">{prov.prepagas.length} prepagas con cobertura · ranking y precios</div>
+                <div className="text-xs font-semibold text-[#E8002D] mt-3">Ver cobertura local →</div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

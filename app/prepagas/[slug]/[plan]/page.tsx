@@ -3,8 +3,12 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
+import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
+import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
+import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -67,14 +71,32 @@ function buildPlanFAQs(plan: Plan, prep: Prepaga) {
   ]
 }
 
+// Este segmento despacha dos silos: /prepagas/[prepaga]/[plan] (planes) y
+// /prepagas/[provincia]/{mejores-prepagas|prepaga|localidad} (SEO local).
 export async function generateStaticParams() {
-  return prepagas.flatMap((p) =>
-    p.planes.map((pl) => ({ slug: p.slug, plan: pl.slug }))
-  )
+  return [
+    ...prepagas.flatMap((p) =>
+      p.planes.map((pl) => ({ slug: p.slug, plan: pl.slug }))
+    ),
+    ...provinciasSEO.flatMap((prov) => [
+      { slug: prov.slug, plan: 'mejores-prepagas' },
+      ...prov.prepagas.filter((pz) => pz.enSitio).map((pz) => ({ slug: prov.slug, plan: pz.slug })),
+      ...prov.localidades.map((loc) => ({ slug: prov.slug, plan: loc.slug })),
+    ]),
+  ]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, plan: planSlug } = await params
+  const prov = getProvinciaSEO(slug)
+  if (prov) {
+    if (planSlug === 'mejores-prepagas') return rankingZonaMetadata(prov)
+    const pz = prov.prepagas.find((x) => x.slug === planSlug && x.enSitio)
+    if (pz) return prepagaZonaMetadata(prov, pz)
+    const loc = prov.localidades.find((l) => l.slug === planSlug)
+    if (loc) return localidadMetadata(prov, loc)
+    return {}
+  }
   const prep = prepagas.find((p) => p.slug === slug)
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) return {}
@@ -93,6 +115,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PlanPage({ params }: Props) {
   const { slug, plan: planSlug } = await params
+  const prov = getProvinciaSEO(slug)
+  if (prov) {
+    if (planSlug === 'mejores-prepagas') return <RankingZonaPage prov={prov} />
+    const pz = prov.prepagas.find((x) => x.slug === planSlug && x.enSitio)
+    if (pz) return <PrepagaZonaPage prov={prov} pz={pz} />
+    const loc = prov.localidades.find((l) => l.slug === planSlug)
+    if (loc) return <LocalidadPage prov={prov} loc={loc} />
+    notFound()
+  }
   const prep = prepagas.find((p) => p.slug === slug)
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) notFound()

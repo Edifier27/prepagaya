@@ -7,7 +7,8 @@ export interface ObraSocialData {
   metaDescripcion: string
   descripcion: string
   intro: string
-  beneficiarios: number
+  // Opcional: solo se publica si hay cifra verificada (regla: nada inventado)
+  beneficiarios?: number
   quienesPuedenAfiliarse: string[]
   aportes: { trabajador: string; empleador: string; monotributista?: string }
   cobertura: string[]
@@ -838,6 +839,165 @@ export const obrasSociales: ObraSocialData[] = [
       { q: '¿Cualquier persona puede derivar a OSSEG?', a: 'Sí, cualquier trabajador en relación de dependencia puede elegir OSSEG como destino de derivación de sus aportes. El trámite se hace a través de la Superintendencia de Servicios de Salud.' },
     ],
     keywords: ['osseg obra social', 'osseg seguridad privada', 'derivar a osseg', 'osseg cobertura'],
+  },
+  {
+    slug: 'osecac',
+    nombre: 'OSECAC',
+    emoji: '🛒',
+    tipo: 'sindical',
+    titulo: 'OSECAC 2026: planes, afiliación y cómo funciona',
+    metaDescripcion: 'OSECAC (Obra Social de los Empleados de Comercio y Actividades Civiles): la más grande del país. Plan básico y Plan Azul, afiliación de monotributistas y cómo derivar aportes.',
+    descripcion: 'La obra social de los empleados de comercio: la de mayor cantidad de beneficiarios de Argentina.',
+    intro: 'OSECAC (Obra Social de los Empleados de Comercio y Actividades Civiles) fue creada en 1964 y es la obra social con más beneficiarios del país: más de 2 millones de personas. Es la cobertura natural de los empleados de comercio y una de las más elegidas por monotributistas por su red nacional y su costo accesible.',
+    beneficiarios: 2081000,
+    quienesPuedenAfiliarse: [
+      'Empleados de comercio y actividades civiles (afiliación natural por convenio)',
+      'Monotributistas (una de las más elegidas del segmento)',
+      'Trabajadores de otros sectores por derivación de aportes',
+      'Grupo familiar del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto',
+      empleador: '6% del salario bruto',
+      monotributista: 'Componente de obra social de la cuota del monotributo (con adicional por familiar)',
+    },
+    cobertura: [
+      'PMO completo (Plan Médico Obligatorio)',
+      'Red nacional de prestadores y centros propios',
+      'Internación y urgencias',
+      'Maternidad y pediatría',
+      'Salud mental',
+      'Medicamentos con descuento',
+    ],
+    diferenciadores: [
+      'La mayor cantidad de beneficiarios del país',
+      'Plan Azul: plan superador con cartilla sanatorial más amplia',
+      'Presencia en todas las provincias',
+    ],
+    pros: [
+      'Red nacional con presencia real en el interior',
+      'Costo accesible para monotributistas',
+      'Plan Azul como upgrade sin cambiar de obra social',
+      'Trámites de afiliación simples',
+    ],
+    contras: [
+      'Alta demanda: turnos y autorizaciones pueden demorar',
+      'El plan básico se limita al PMO',
+      'Cartilla premium acotada frente a prepagas',
+    ],
+    derivacion: true,
+    web: 'osecac.org.ar',
+    faq: [
+      { q: '¿Qué significa OSECAC?', a: 'Obra Social de los Empleados de Comercio y Actividades Civiles. Fue creada en 1964 por el sindicato de comercio y hoy es la obra social con más beneficiarios de Argentina, superando los 2 millones.' },
+      { q: '¿OSECAC acepta monotributistas?', a: 'Sí, es una de las obras sociales más elegidas por monotributistas. Aportás el componente de obra social de tu cuota de monotributo, con un adicional por cada integrante del grupo familiar que sumes.' },
+      { q: '¿Qué diferencia hay entre el plan básico y el Plan Azul?', a: 'El plan básico cubre el PMO completo con la cartilla estándar. El Plan Azul es el plan superador: suma prestaciones adicionales y una cartilla de sanatorios más amplia, pagando una diferencia mensual.' },
+      { q: '¿Conviene OSECAC o una prepaga?', a: 'Depende de tu presupuesto y expectativa de cartilla. OSECAC resuelve la cobertura esencial a bajo costo; una prepaga suma sanatorios premium, menos demoras y más confort. Muchos monotributistas arrancan en OSECAC y después migran o complementan con una prepaga.' },
+    ],
+    keywords: ['osecac', 'osecac monotributo', 'osecac plan azul', 'obra social empleados de comercio', 'osecac afiliación'],
+  },
+  {
+    slug: 'ospe',
+    nombre: 'OSPe',
+    emoji: '⛽',
+    tipo: 'sindical',
+    titulo: 'OSPe (Obra Social de Petroleros) 2026: cobertura y afiliación',
+    metaDescripcion: 'OSPe, la Obra Social de Petroleros: quiénes pueden afiliarse, cómo funciona para monotributistas y qué cobertura ofrece en las zonas petroleras del país.',
+    descripcion: 'La obra social de los trabajadores petroleros, nacida en 1996 con origen en el personal de YPF.',
+    intro: 'OSPe (Obra Social de Petroleros) nació en 1996 para dar cobertura al personal de la industria del petróleo, con origen en los trabajadores de YPF. Tiene presencia fuerte en las cuencas hidrocarburíferas del país — Neuquén y Vaca Muerta, Patagonia sur, NOA — y también admite monotributistas abonando la diferencia entre sus aportes y la cuota del plan.',
+    quienesPuedenAfiliarse: [
+      'Trabajadores de la industria petrolera (afiliación por convenio)',
+      'Monotributistas (abonando la diferencia entre aporte y cuota)',
+      'Trabajadores de otros sectores por derivación de aportes',
+      'Grupo familiar del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto',
+      empleador: '6% del salario bruto',
+      monotributista: 'Componente de obra social del monotributo + diferencia de cuota según plan',
+    },
+    cobertura: [
+      'PMO completo',
+      'Red de prestadores en las principales zonas petroleras',
+      'Internación y urgencias',
+      'Maternidad',
+      'Salud mental',
+      'Medicamentos',
+    ],
+    diferenciadores: [
+      'Especializada en el perfil del trabajador petrolero',
+      'Presencia en cuencas hidrocarburíferas (Neuquén, Chubut, Santa Cruz, NOA)',
+    ],
+    pros: [
+      'Cobertura pensada para zonas petroleras donde otras redes flaquean',
+      'Acepta monotributistas',
+      'Trayectoria desde 1996 con origen en YPF',
+    ],
+    contras: [
+      'Red acotada fuera de las zonas de actividad petrolera',
+      'Cartilla premium limitada frente a prepagas en grandes ciudades',
+    ],
+    derivacion: true,
+    web: 'ospe.org.ar',
+    faq: [
+      { q: '¿Qué significa OSPe?', a: 'Obra Social de Petroleros. Nació en 1996 para dar cobertura de salud al personal de la industria del petróleo, con origen en los trabajadores de YPF.' },
+      { q: '¿Puedo afiliarme a OSPe siendo monotributista?', a: 'Sí. OSPe acepta monotributistas: aportás el componente de obra social de tu cuota y, si corresponde, abonás la diferencia hasta el valor del plan elegido.' },
+      { q: '¿OSPe conviene si trabajo en Vaca Muerta?', a: 'Si trabajás en la industria bajo convenio, probablemente ya la tengas. La cobertura en Neuquén y el Alto Valle es su terreno natural. Muchas familias del sector la complementan con una prepaga para ampliar cartilla privada.' },
+    ],
+    keywords: ['ospe', 'obra social de petroleros', 'ospe monotributo', 'ospe afiliación', 'ospe cobertura'],
+  },
+  {
+    slug: 'daspu',
+    nombre: 'DASPU',
+    emoji: '🎓',
+    tipo: 'estatal',
+    titulo: 'DASPU 2026: la obra social universitaria de Córdoba — planes y afiliación',
+    metaDescripcion: 'DASPU, la obra social de la Universidad Nacional de Córdoba: quiénes pueden afiliarse como adherentes, planes Integral y Esencial, y cómo funciona.',
+    descripcion: 'La obra social de la Universidad Nacional de Córdoba, abierta a adherentes voluntarios.',
+    intro: 'DASPU es la obra social universitaria de la Universidad Nacional de Córdoba (la sigla viene de su origen: Dirección de Asistencia Social del Personal Universitario). Además de los docentes y no docentes de la UNC, admite afiliación voluntaria de estudiantes, egresados menores de 35 años, profesionales colegiados y familiares — lo que la convierte en una opción real de cobertura en Córdoba más allá de la comunidad universitaria.',
+    quienesPuedenAfiliarse: [
+      'Docentes y no docentes de la UNC (afiliación obligatoria automática)',
+      'Estudiantes universitarios y egresados menores de 35 años (adherentes)',
+      'Profesionales colegiados (adherentes)',
+      'Familiares de 2º y 3º grado de agentes universitarios',
+      'Jubilados y pensionados universitarios',
+    ],
+    aportes: {
+      trabajador: 'Aporte sobre el salario (personal UNC)',
+      empleador: 'Contribución patronal UNC',
+      monotributista: 'Cuota de adherente según plan y edad',
+    },
+    cobertura: [
+      'PMO completo',
+      'Red de prestadores en Córdoba capital e interior provincial',
+      'Internación y urgencias',
+      'Maternidad',
+      'Salud mental',
+      'Farmacia y óptica con descuentos',
+    ],
+    diferenciadores: [
+      'Dos planes: DASPU Integral (completo) y DASPU Esencial (accesible)',
+      'Fuerte inserción en la red de salud cordobesa',
+      'Una de las pocas obras sociales universitarias abiertas a adherentes',
+    ],
+    pros: [
+      'Opción real y accesible para estudiantes y jóvenes profesionales en Córdoba',
+      'Red local cordobesa consolidada',
+      'Planes diferenciados según presupuesto',
+    ],
+    contras: [
+      'Cobertura centrada en Córdoba: limitada si te mudás de provincia',
+      'Requiere examen médico de admisión para adherentes',
+      'Cartilla premium acotada frente a prepagas nacionales',
+    ],
+    derivacion: false,
+    web: 'daspu.com.ar',
+    faq: [
+      { q: '¿Qué significa DASPU?', a: 'La sigla viene de su origen como Dirección de Asistencia Social del Personal Universitario de la Universidad Nacional de Córdoba. Hoy se denomina Obra Social Universitaria.' },
+      { q: '¿Puedo afiliarme a DASPU sin trabajar en la UNC?', a: 'Sí, como adherente: estudiantes universitarios, egresados menores de 35 años, profesionales colegiados y familiares de 2º/3º grado de agentes universitarios pueden afiliarse voluntariamente, con examen médico de admisión.' },
+      { q: '¿Qué planes tiene DASPU?', a: 'Dos: DASPU Integral, la opción más completa, y DASPU Esencial, la alternativa accesible. La cuota de adherente varía según plan y edad.' },
+      { q: '¿DASPU o una prepaga en Córdoba?', a: 'DASPU es competitiva en precio para estudiantes y jóvenes profesionales cordobeses. Si buscás cartilla premium (Sanatorio Allende, Hospital Privado sin restricciones) o cobertura nacional, compará contra las prepagas con presencia en Córdoba.' },
+    ],
+    keywords: ['daspu', 'daspu córdoba', 'daspu afiliación', 'daspu adherentes', 'obra social universitaria unc', 'daspu planes'],
   },
 ]
 

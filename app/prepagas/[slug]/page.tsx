@@ -3,8 +3,10 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
+import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { ProvinciaHubPage, provinciaHubMetadata } from '@/components/seo-local/ProvinciaHubPage'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -79,12 +81,19 @@ function getPerfilesIdeales(prep: Prepaga, precioMin: number): { titulo: string;
   return items.slice(0, 3)
 }
 
+// El segmento [slug] despacha dos tipos: prepaga (/prepagas/osde) y hub
+// provincial del silo SEO local (/prepagas/cordoba). Sin colisiones de slug.
 export async function generateStaticParams() {
-  return prepagas.map((p) => ({ slug: p.slug }))
+  return [
+    ...prepagas.map((p) => ({ slug: p.slug })),
+    ...provinciasSEO.map((p) => ({ slug: p.slug })),
+  ]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
+  const prov = getProvinciaSEO(slug)
+  if (prov) return provinciaHubMetadata(prov)
   const prep = prepagas.find((p) => p.slug === slug)
   if (!prep) return {}
   const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
@@ -104,6 +113,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PrepagaSlugPage({ params }: Props) {
   const { slug } = await params
+  const prov = getProvinciaSEO(slug)
+  if (prov) return <ProvinciaHubPage prov={prov} />
   const prep = prepagas.find((p) => p.slug === slug)
   if (!prep) notFound()
 
@@ -519,6 +530,31 @@ export default async function PrepagaSlugPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Cobertura por provincia (silo SEO local — link vertical) */}
+      {(() => {
+        const zonasConPagina = provinciasSEO.filter((prov) =>
+          prov.prepagas.some((pz) => pz.slug === prep.slug && pz.enSitio)
+        )
+        if (zonasConPagina.length === 0) return null
+        return (
+          <section className="py-10 bg-white border-t border-gray-100">
+            <div className="container max-w-5xl mx-auto">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">{prep.nombre} por provincia</h2>
+              <p className="text-sm text-gray-500 mb-5">La cartilla de {prep.nombre} cambia según la zona: mirá el detalle de tu provincia.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {zonasConPagina.map((prov) => (
+                  <Link key={prov.slug} href={`/prepagas/${prov.slug}/${prep.slug}`}
+                    className="p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
+                    <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">{prep.nombre} en {prov.nombre}</div>
+                    <div className="text-xs text-gray-400 mt-1">Cartilla y precios locales →</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      })()}
 
       {/* FAQ */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">

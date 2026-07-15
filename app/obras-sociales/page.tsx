@@ -120,7 +120,7 @@ export default function ObrasSocialesHubPage() {
                   <h2 className="font-bold text-xl text-gray-900 group-hover:text-[#E8002D] mb-1">{os.nombre}</h2>
                   <p className="text-gray-500 text-sm mb-3">{os.descripcion}</p>
                   <div className="flex items-center gap-4 text-xs text-gray-400">
-                    <span>+{(os.beneficiarios / 1000000).toFixed(1)}M beneficiarios</span>
+                    {typeof os.beneficiarios === 'number' && <span>+{(os.beneficiarios / 1000000).toFixed(1)}M beneficiarios</span>}
                     <span className="font-medium text-orange-600">Cobertura automática para jubilados ANSES</span>
                   </div>
                 </div>
@@ -202,7 +202,7 @@ export default function ObrasSocialesHubPage() {
 }
 
 function OsCard({ os, tiposColores, tiposLabels }: {
-  os: { slug: string; nombre: string; emoji: string; tipo: string; descripcion: string; beneficiarios: number; derivacion: boolean }
+  os: { slug: string; nombre: string; emoji: string; tipo: string; descripcion: string; beneficiarios?: number; derivacion: boolean }
   tiposColores: Record<string, string>
   tiposLabels: Record<string, string>
 }) {
@@ -222,7 +222,9 @@ function OsCard({ os, tiposColores, tiposLabels }: {
           </div>
           <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-2">{os.descripcion}</p>
           <div className="flex items-center gap-3 text-xs text-gray-400">
-            <span>+{os.beneficiarios >= 1000000 ? (os.beneficiarios / 1000000).toFixed(1) + 'M' : (os.beneficiarios / 1000).toFixed(0) + 'k'} afiliados</span>
+            {typeof os.beneficiarios === 'number' && (
+              <span>+{os.beneficiarios >= 1000000 ? (os.beneficiarios / 1000000).toFixed(1) + 'M' : (os.beneficiarios / 1000).toFixed(0) + 'k'} afiliados</span>
+            )}
             {os.derivacion && <span className="text-green-600 font-medium">✓ Acepta derivación</span>}
           </div>
         </div>

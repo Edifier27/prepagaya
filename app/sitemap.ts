@@ -9,6 +9,7 @@ import { coberturas } from '@/lib/data/coberturas'
 import { condiciones } from '@/lib/data/condiciones'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { cartillasInfo } from '@/lib/data/cartillas'
+import { provinciasSEO } from '@/lib/data/zonas'
 
 const BASE = 'https://www.prepagaya.com.ar'
 
@@ -69,12 +70,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  const ciudadRoutes: MetadataRoute.Sitemap = ciudades.map((c) => ({
-    url: `${BASE}/prepagas-en/${c.slug}`,
-    lastModified: PRECIOS_UPDATE,
-    changeFrequency: 'monthly' as const,
-    priority: 0.65,
-  }))
+  // Ciudades cuya provincia ya migró al silo /prepagas/[provincia] (301 en next.config)
+  const CIUDADES_MIGRADAS = new Set(provinciasSEO.map((p) => p.slug))
+  const ciudadRoutes: MetadataRoute.Sitemap = ciudades
+    .filter((c) => !CIUDADES_MIGRADAS.has(c.slug))
+    .map((c) => ({
+      url: `${BASE}/prepagas-en/${c.slug}`,
+      lastModified: PRECIOS_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.65,
+    }))
+
+  // Silo SEO local: hub provincial + ranking + prepaga×zona + localidades
+  const zonaRoutes: MetadataRoute.Sitemap = provinciasSEO.flatMap((prov) => [
+    { url: `${BASE}/prepagas/${prov.slug}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${BASE}/prepagas/${prov.slug}/mejores-prepagas`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly' as const, priority: 0.8 },
+    ...prov.prepagas.filter((pz) => pz.enSitio).map((pz) => ({
+      url: `${BASE}/prepagas/${prov.slug}/${pz.slug}`,
+      lastModified: PRECIOS_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    })),
+    ...prov.localidades.map((loc) => ({
+      url: `${BASE}/prepagas/${prov.slug}/${loc.slug}`,
+      lastModified: PRECIOS_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ])
 
   const perfilRoutes: MetadataRoute.Sitemap = perfiles.map((p) => ({
     url: `${BASE}/para/${p.slug}`,
@@ -121,6 +144,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes,
     ...prepagaRoutes,
+    ...zonaRoutes,
     ...comparativaRoutes,
     ...guiaRoutes,
     ...ciudadRoutes,

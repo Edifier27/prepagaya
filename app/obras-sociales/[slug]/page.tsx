@@ -113,14 +113,16 @@ export default async function ObraSocialPage({ params }: Props) {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">{os.titulo}</h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl mb-6">{os.intro}</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg">
-            <div className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm">
-              <div className="text-lg font-bold text-[#E8002D]">
-                {os.beneficiarios >= 1000000
-                  ? `${(os.beneficiarios / 1000000).toLocaleString('es-AR', { maximumFractionDigits: 1 })}M`
-                  : `${Math.round(os.beneficiarios / 1000)}k`}
+            {typeof os.beneficiarios === 'number' && (
+              <div className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm">
+                <div className="text-lg font-bold text-[#E8002D]">
+                  {os.beneficiarios >= 1000000
+                    ? `${(os.beneficiarios / 1000000).toLocaleString('es-AR', { maximumFractionDigits: 1 })}M`
+                    : `${Math.round(os.beneficiarios / 1000)}k`}
+                </div>
+                <div className="text-xs text-gray-500 mt-0.5">Beneficiarios</div>
               </div>
-              <div className="text-xs text-gray-500 mt-0.5">Beneficiarios</div>
-            </div>
+            )}
             <div className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm">
               <div className="text-lg font-bold text-[#E8002D]">{os.derivacion ? 'Sí' : 'No'}</div>
               <div className="text-xs text-gray-500 mt-0.5">Derivación</div>

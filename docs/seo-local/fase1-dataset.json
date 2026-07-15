@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "fase": 1,
+    "descripcion": "Dataset SEO local piloto: prepagas por provincia, cobertura real y obras sociales. NO genera páginas — insumo para Fase 2 (arquitectura) y Fase 3 (modelo de datos).",
+    "fecha_investigacion": "2026-07-14",
+    "provincias_piloto": ["cordoba", "salta", "neuquen"],
+    "provincias_pendientes": ["buenos-aires", "caba", "santa-fe", "mendoza", "tucuman", "entre-rios", "jujuy", "rio-negro", "misiones", "corrientes", "chaco", "santiago-del-estero", "san-juan", "san-luis", "la-pampa", "catamarca", "la-rioja", "chubut", "formosa", "santa-cruz", "tierra-del-fuego"],
+    "escala_confianza": ["alta = fuente oficial o multiple verificada con fecha", "media = fuente secundaria consistente", "a-verificar = conocimiento previo o dato unico sin confirmar"]
+  },
+  "provincias": {
+    "cordoba": {
+      "nombre": "Córdoba",
+      "ciudades_cabecera": ["cordoba-capital", "rio-cuarto", "villa-carlos-paz", "villa-maria", "san-francisco"],
+      "prepagas": [
+        { "slug": "nobis", "nombre": "Nobis Salud", "tipo": "regional", "fuerza": "fuerte", "en_data_actual": false, "cobertura": "Origen cordobés. Centros médicos propios en Córdoba capital + acceso a principales clínicas y sanatorios. 20+ sucursales en 8 provincias (Córdoba, Catamarca, Jujuy, La Rioja, Salta, San Luis, Santiago del Estero, Tucumán). Planes B200, N200, N400, N500.", "confianza": "alta", "fuente": "miobrasocial.com.ar/medicina-prepaga/nobis-salud + nobis.com.ar", "fecha": "2026-07-14" },
+        { "slug": "avalian", "nombre": "Avalian (ex ACA Salud)", "tipo": "regional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Origen cooperativo, muy fuerte en el interior. Presencia en todas las ciudades importantes (Córdoba, Rosario, Mendoza). Acceso a ~80% de los prestadores del país.", "confianza": "alta", "fuente": "avalian.com + elegimejor.com.ar/prepagas/avalian", "fecha": "2026-07-14" },
+        { "slug": "sancor-salud", "nombre": "Sancor Salud", "tipo": "regional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Origen Sunchales (Santa Fe), red nacional con fuerza histórica en el centro del país e interior productivo.", "confianza": "alta", "fuente": "data propia del sitio + repo.sancorsalud.com.ar (cartillas por provincia)", "fecha": "2026-07-14" },
+        { "slug": "prevencion-salud", "nombre": "Prevención Salud", "tipo": "regional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Grupo Sancor Seguros (Sunchales). Red en todo el país con presencia notable en el interior; plan A1 con cobertura nacional.", "confianza": "alta", "fuente": "elegimejor.com.ar/prepagas/prevencion-salud + prevencionsalud.com.ar/mapa-oficinas", "fecha": "2026-07-14" },
+        { "slug": "federada-salud", "nombre": "Federada Salud", "tipo": "regional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Nacida en Santa Fe, 250+ agencias en el país, 60.000+ profesionales. Muy fuerte en interior de Córdoba y Santa Fe.", "confianza": "alta", "fuente": "federada.com + miobrasocial.com.ar/medicina-prepaga/federada-salud", "fecha": "2026-07-14" },
+        { "slug": "jerarquicos-salud", "nombre": "Jerárquicos Salud", "tipo": "regional", "fuerza": "media", "en_data_actual": false, "cobertura": "Sede central en Santa Fe, cobertura nacional, sucursales estratégicas. Planes PMI / PMI 2000 / PMI 3000 / PMI Soltero (hasta 30 años). Farmacia: 40-70% descuento.", "confianza": "alta", "fuente": "jerarquicos.com/planes-de-salud + miobrasocial.com.ar", "fecha": "2026-07-14" },
+        { "slug": "swiss-medical", "nombre": "Swiss Medical", "tipo": "nacional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Presencia consolidada en Córdoba capital (sucursales y cartilla urbana). Menor densidad en interior provincial.", "confianza": "media", "fuente": "data propia del sitio (ciudades incluye cordoba); cartilla capital a verificar en detalle", "fecha": "2026-07-14" },
+        { "slug": "osde", "nombre": "OSDE", "tipo": "nacional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Filial Córdoba con red amplia capital + interior. Red más grande del país.", "confianza": "media", "fuente": "osde.com.ar (filiales); detalle interior a verificar", "fecha": "2026-07-14" },
+        { "slug": "galeno", "nombre": "Galeno", "tipo": "nacional", "fuerza": "media", "en_data_actual": true, "cobertura": "Sucursal Córdoba (Mariano Fragueiro 142). Cobertura nacional en todos sus planes; sanatorios propios (Trinidad) solo en AMBA.", "confianza": "alta", "fuente": "miobrasocial.com.ar/medicina-prepaga/galeno/sucursales", "fecha": "2026-07-14" },
+        { "slug": "medife", "nombre": "Medifé", "tipo": "nacional", "fuerza": "media", "en_data_actual": true, "cobertura": "Red nacional con buena relación precio-calidad; presencia en Córdoba a verificar en detalle de cartilla.", "confianza": "media", "fuente": "medife.com.ar", "fecha": "2026-07-14" },
+        { "slug": "omint", "nombre": "Omint", "tipo": "nacional", "fuerza": "marginal", "en_data_actual": true, "cobertura": "Foco AMBA; cartilla en Córdoba acotada.", "confianza": "a-verificar", "fuente": "conocimiento previo", "fecha": "2026-07-14" },
+        { "slug": "medicus", "nombre": "Medicus", "tipo": "nacional", "fuerza": "marginal", "en_data_actual": true, "cobertura": "Foco AMBA/segmento premium; presencia en Córdoba acotada.", "confianza": "a-verificar", "fuente": "conocimiento previo", "fecha": "2026-07-14" }
+      ],
+      "entidades_locales_no_comercializables": [
+        { "sigla": "DASPU", "nombre": "Obra Social Universitaria (ex Dirección de Asistencia Social del Personal Universitario)", "nota": "OS de la UNC. SÍ admite adherentes voluntarios: estudiantes, egresados <35, profesionales colegiados, familiares 2º/3º grado. Planes: DASPU Integral y DASPU Esencial. Vale página propia en silo 2 con intención local Córdoba.", "confianza": "alta", "fuente": "daspu.com.ar/quiero-afiliarme + unc.edu.ar", "fecha": "2026-07-14" },
+        { "sigla": "APROSS", "nombre": "Administración Provincial del Seguro de Salud (Córdoba)", "nota": "OS provincial estatal (empleados públicos de Córdoba). NO comercializable. Solo contenido informativo si se decide capturarla como keyword.", "confianza": "media", "fuente": "conocimiento previo; sigla a verificar", "fecha": "2026-07-14" }
+      ],
+      "prestadores_clave": [
+        { "nombre": "Hospital Privado Universitario de Córdoba", "confianza": "alta", "fuente": "convenios.hospitalprivado.com.ar" },
+        { "nombre": "Sanatorio Allende (Nueva Córdoba / Cerro)", "confianza": "a-verificar", "fuente": "conocimiento previo" },
+        { "nombre": "Clínica Universitaria Reina Fabiola", "confianza": "a-verificar", "fuente": "conocimiento previo" },
+        { "nombre": "Sanatorio del Salvador", "confianza": "a-verificar", "fuente": "conocimiento previo" }
+      ]
+    },
+    "salta": {
+      "nombre": "Salta",
+      "ciudades_cabecera": ["salta-capital", "san-ramon-de-la-nueva-oran", "tartagal", "metan"],
+      "prepagas": [
+        { "slug": "boreal", "nombre": "Boreal Salud", "tipo": "regional", "fuerza": "fuerte", "en_data_actual": false, "cobertura": "Prepaga del NOA (origen Tucumán). 30+ sucursales en NOA/NEA/Centro/Cuyo, 260.000+ beneficiarios. Cartilla Salta publicada (PDF oficial). Centros médicos propios, telemedicina, urgencias 24h, internación 100%.", "confianza": "alta", "fuente": "borealsalud.com.ar/cartillas/salta + borealsalud.com.ar/nosotros", "fecha": "2026-07-14" },
+        { "slug": "nobis", "nombre": "Nobis Salud", "tipo": "regional", "fuerza": "media", "en_data_actual": false, "cobertura": "Sucursal en Salta (parte de su expansión NOA desde Córdoba).", "confianza": "alta", "fuente": "miobrasocial.com.ar/medicina-prepaga/nobis-salud", "fecha": "2026-07-14" },
+        { "slug": "sancor-salud", "nombre": "Sancor Salud", "tipo": "regional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Red nacional con cartillas provinciales publicadas; fuerte en NOA.", "confianza": "media", "fuente": "repo.sancorsalud.com.ar", "fecha": "2026-07-14" },
+        { "slug": "prevencion-salud", "nombre": "Prevención Salud", "tipo": "regional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Red nacional con presencia notable en el interior.", "confianza": "media", "fuente": "prevencionsalud.com.ar/mapa-oficinas", "fecha": "2026-07-14" },
+        { "slug": "osde", "nombre": "OSDE", "tipo": "nacional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Filial Salta; red premium en capital.", "confianza": "media", "fuente": "osde.com.ar (filiales)", "fecha": "2026-07-14" },
+        { "slug": "swiss-medical", "nombre": "Swiss Medical", "tipo": "nacional", "fuerza": "media", "en_data_actual": true, "cobertura": "Presencia en Salta capital; cartilla más acotada que en AMBA.", "confianza": "media", "fuente": "data propia del sitio (ciudades incluye salta)", "fecha": "2026-07-14" },
+        { "slug": "galeno", "nombre": "Galeno", "tipo": "nacional", "fuerza": "media", "en_data_actual": false, "cobertura": "Sucursal Salta (España 414). OJO: galeno NO está hoy en ZONA_PREPAGAS['salta'] del cotizador — corregir en Fase 3/5.", "confianza": "alta", "fuente": "miobrasocial.com.ar/medicina-prepaga/galeno/sucursales", "fecha": "2026-07-14" },
+        { "slug": "medife", "nombre": "Medifé", "tipo": "nacional", "fuerza": "media", "en_data_actual": true, "cobertura": "Presencia declarada en zona (data actual del sitio); densidad de cartilla a verificar.", "confianza": "a-verificar", "fuente": "ZONA_PREPAGAS actual", "fecha": "2026-07-14" }
+      ],
+      "entidades_locales_no_comercializables": [
+        { "sigla": "IPS Salta", "nombre": "Instituto Provincial de Salud de Salta", "nota": "OS provincial con la cobertura más amplia de Salta. NO comercializable. Dato local valioso: convenio con ACLISASA (dic-2025) — afiliados atendidos en clínicas privadas sin copagos hasta mar-2026.", "confianza": "alta", "fuente": "ipssalta.gov.ar + eltribuno.com (18-dic-2025)", "fecha": "2026-07-14" }
+      ],
+      "prestadores_clave": [
+        { "nombre": "Clínica Urkupiña", "confianza": "alta", "fuente": "eltribuno.com convenio IPS-ACLISASA dic-2025" },
+        { "nombre": "Clínica Güemes", "confianza": "alta", "fuente": "idem" },
+        { "nombre": "Sanatorio San Roque", "confianza": "alta", "fuente": "idem" },
+        { "nombre": "Sanatorio Modelo", "confianza": "alta", "fuente": "idem" },
+        { "nombre": "Hospital Santa Clara de Asís", "confianza": "alta", "fuente": "idem" },
+        { "nombre": "Sanatorio El Carmen", "confianza": "alta", "fuente": "idem" },
+        { "nombre": "Cruz Azul", "confianza": "alta", "fuente": "idem" }
+      ]
+    },
+    "neuquen": {
+      "nombre": "Neuquén",
+      "ciudades_cabecera": ["neuquen-capital", "cutral-co", "san-martin-de-los-andes", "zapala", "villa-la-angostura"],
+      "prepagas": [
+        { "slug": "swiss-medical", "nombre": "Swiss Medical", "tipo": "nacional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Centro propio en Neuquén capital (Fotheringham 155) + sucursales Av. Argentina 376 y Diagonal 25 de Mayo 160.", "confianza": "alta", "fuente": "medicinaprepaga.com.ar/swiss-medical + swissmedical.com.ar", "fecha": "2026-07-14" },
+        { "slug": "osde", "nombre": "OSDE", "tipo": "nacional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Filial Neuquén; históricamente fuerte en Patagonia (perfil petrolero/salarios altos).", "confianza": "media", "fuente": "osde.com.ar (filiales)", "fecha": "2026-07-14" },
+        { "slug": "sancor-salud", "nombre": "Sancor Salud", "tipo": "regional", "fuerza": "fuerte", "en_data_actual": true, "cobertura": "Cartilla provincial Neuquén publicada (PDF oficial, vigencia mar-2025).", "confianza": "alta", "fuente": "repo.sancorsalud.com.ar/.../Provincia_Neuquen.pdf", "fecha": "2026-07-14" },
+        { "slug": "galeno", "nombre": "Galeno", "tipo": "nacional", "fuerza": "media", "en_data_actual": true, "cobertura": "Sucursal Neuquén (Santa Fe y Diagonal España) + Bariloche cercana. ALERTA DATA: la descripción de Galeno en lib/data menciona 'Trinidad Neuquén' — los Sanatorios de la Trinidad son AMBA; corregir ese texto.", "confianza": "alta", "fuente": "miobrasocial.com.ar/medicina-prepaga/galeno/sucursales", "fecha": "2026-07-14" },
+        { "slug": "medife", "nombre": "Medifé", "tipo": "nacional", "fuerza": "media", "en_data_actual": false, "cobertura": "Cobertura nacional; presencia patagónica razonable. NO está hoy en ZONA_PREPAGAS['neuquen'] — evaluar en Fase 3.", "confianza": "a-verificar", "fuente": "medife.com.ar", "fecha": "2026-07-14" },
+        { "slug": "prevencion-salud", "nombre": "Prevención Salud", "tipo": "regional", "fuerza": "media", "en_data_actual": true, "cobertura": "Red nacional; densidad en Neuquén a verificar.", "confianza": "media", "fuente": "prevencionsalud.com.ar/mapa-oficinas", "fecha": "2026-07-14" },
+        { "slug": "avalian", "nombre": "Avalian", "tipo": "regional", "fuerza": "media", "en_data_actual": true, "cobertura": "Presencia declarada en interior; densidad patagónica a verificar.", "confianza": "a-verificar", "fuente": "avalian.com", "fecha": "2026-07-14" },
+        { "slug": "medicus", "nombre": "Medicus", "tipo": "nacional", "fuerza": "marginal", "en_data_actual": true, "cobertura": "Está en ZONA_PREPAGAS['neuquen'] actual pero su foco es AMBA — revisar si corresponde mantenerla en el ranking de la zona.", "confianza": "a-verificar", "fuente": "ZONA_PREPAGAS actual", "fecha": "2026-07-14" }
+      ],
+      "entidades_locales_no_comercializables": [
+        { "sigla": "ISSN", "nombre": "Instituto de Seguridad Social del Neuquén", "nota": "OS provincial estatal (ley provincial 611, 1970; empleados públicos provinciales/municipales). Una de las 3 OS más grandes de la provincia junto a OSPEPRI y OSECAC. NO comercializable.", "confianza": "alta", "fuente": "issn.gov.ar + es.wikipedia.org", "fecha": "2026-07-14" },
+        { "sigla": "OSPEPRI", "nombre": "Obra Social de Petroleros Privados", "nota": "Muy relevante en Neuquén por Vaca Muerta. Sigla y detalle de planes a verificar antes de publicar.", "confianza": "a-verificar", "fuente": "rionegro.com.ar", "fecha": "2026-07-14" }
+      ],
+      "prestadores_clave": [
+        { "nombre": "Sanatorio San Carlos", "confianza": "media", "fuente": "rionegro.com.ar" },
+        { "nombre": "Clínica Pasteur (Neuquén capital)", "confianza": "a-verificar", "fuente": "conocimiento previo" },
+        { "nombre": "Policlínico Neuquén", "confianza": "a-verificar", "fuente": "conocimiento previo" }
+      ]
+    }
+  },
+  "obras_sociales_silo2": [
+    { "sigla": "OSDEPYM", "nombre_completo": "Obra Social de Empresarios, Profesionales y Monotributistas", "sigla_verificada": true, "sector": "Empresarios, profesionales, monotributistas y personal jerárquico", "planes": ["2000", "3000", "4000", "Plan Pyme", "Planes Combinados"], "monotributo": "Sí — una de las más elegidas, afilia sin trabas", "datos": "Creada 1971. 400.000+ afiliados. 13 filiales + 16 sucursales.", "confianza": "alta", "fuente": "osdepym.com.ar + elegimejor.com.ar + sssalud.gob.ar (RNOS 4-0170-4)", "fecha": "2026-07-14" },
+    { "sigla": "OSECAC", "nombre_completo": "Obra Social de los Empleados de Comercio y Actividades Civiles", "sigla_verificada": true, "sector": "Empleados de comercio; muy elegida por monotributistas", "planes": ["PMO (básico)", "Plan Azul (superador, cartilla sanatorial más amplia)"], "monotributo": "Sí — la más masiva del segmento", "datos": "Creada 1964. ~2.081.000 beneficiarios (top nacional).", "confianza": "alta", "fuente": "elegimejor.com.ar/actualidad/salud/obras-sociales-y-prepagas-con-mas-afiliados", "fecha": "2026-07-14" },
+    { "sigla": "OSPe", "nombre_completo": "Obra Social de Petroleros", "sigla_verificada": true, "sector": "Personal petrolero (origen YPF, 1996)", "planes": ["a relevar en detalle"], "monotributo": "Sí — abonando diferencia entre cuota y aportes", "datos": "Nace 1996 para personal de YPF.", "confianza": "alta", "fuente": "miobrasocial.com.ar/obras-sociales/ospe-petroleros + ar.linkedin.com/company/ospe--obra-social-de-petroleros", "fecha": "2026-07-14" },
+    { "sigla": "Unión Personal", "nombre_completo": "Obra Social Unión Personal de la Unión Personal Civil de la Nación (UPCN)", "sigla_verificada": true, "sector": "Personal civil del Estado nacional; abierta con derivación de aportes", "planes": ["Accord Salud (prepaga del grupo, 1998): planes 1.5, 2.2, 3.2, 4.2"], "monotributo": "Vía Accord Salud / derivación", "datos": "700.000+ afiliados propios (sin contar Accord).", "confianza": "alta", "fuente": "argentina.gob.ar/sssalud + unionpersonal.com.ar + accordsalud.com.ar", "fecha": "2026-07-14" },
+    { "sigla": "OSDE", "nombre_completo": "Organización de Servicios Directos Empresarios (origen como obra social de dirección)", "sigla_verificada": true, "sector": "Personal de dirección; opera de facto como prepaga vía derivación", "planes": ["Ya cubierto en silo 1 del sitio (osde 210/310/410/510 + Flux)"], "monotributo": "Vía derivación de aportes", "datos": "Ya existe página /obras-sociales/osde en el sitio.", "confianza": "alta", "fuente": "data propia del sitio + conocimiento verificado", "fecha": "2026-07-14" },
+    { "sigla": "OSPEDYC", "nombre_completo": "A VERIFICAR — probable 'Obra Social del Personal de Entidades Deportivas y Civiles' (gremio UTEDYC), NO confirmado en fuentes", "sigla_verificada": false, "sector": "Trabajadores de entidades deportivas y civiles (a confirmar)", "planes": ["a relevar"], "monotributo": "a verificar", "datos": "50 años de trayectoria, cobertura nacional, 70+ puntos de contacto.", "confianza": "a-verificar", "fuente": "ospedyc.org (no explicita la sigla)", "fecha": "2026-07-14" },
+    { "sigla": "DASPU", "nombre_completo": "Obra Social Universitaria (UNC) — sigla histórica: Dirección de Asistencia Social del Personal Universitario", "sigla_verificada": true, "sector": "Universitarios UNC; ABIERTA a adherentes (estudiantes, egresados <35, profesionales colegiados, familiares 2º/3º grado)", "planes": ["DASPU Integral", "DASPU Esencial"], "monotributo": "Adherentes con cuota", "datos": "Cruce perfecto silo 2 × Córdoba.", "confianza": "alta", "fuente": "daspu.com.ar/quiero-afiliarme + unc.edu.ar", "fecha": "2026-07-14" }
+  ],
+  "hallazgos_para_fases_siguientes": [
+    "Prepagas nuevas a incorporar a lib/data: Nobis, Boreal Salud, Jerárquicos Salud (regionales con cartilla verificable). Evaluar: William Hope, Hospital Alemán (planes propios) para AMBA.",
+    "Fix de data existente: la descripción de Galeno menciona 'Trinidad Neuquén' — las Trinidad son AMBA (Palermo, San Isidro, Quilmes, Ramos Mejía, Mitre). Corregir en Fase 3.",
+    "Fix de cotizador: Galeno falta en ZONA_PREPAGAS de salta (tiene sucursal verificada).",
+    "Regla de ranking por zona (b): en Córdoba las regionales (Nobis, Avalian, Sancor, Federada, Prevención) van arriba o intercaladas con OSDE/Swiss; Omint y Medicus NO van arriba en ninguna provincia piloto.",
+    "Las OS provinciales (IPS Salta, ISSN, APROSS) capturan mucha búsqueda local pero no son comercializables: decidir en Fase 2 si tienen página informativa con CTA al cotizador ('¿no te alcanza IPS? compará prepagas en Salta')."
+  ]
+}
