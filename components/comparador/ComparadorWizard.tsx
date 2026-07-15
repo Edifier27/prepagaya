@@ -30,7 +30,7 @@ const APORTE_PORCENTAJE = 0.075
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type Step = 'situacion' | 'zona' | 'edades' | 'preview' | 'resultados'
+type Step = 'zona' | 'edades' | 'preview' | 'resultados'
 type SituacionLaboral = 'particular' | 'relacion-dependencia' | 'monotributo' | 'responsable-inscripto'
 type CobId = 'internacion' | 'psicologia' | 'kinesiologia' | 'maternidad' | 'odontologia' | 'medicamentos' | 'estudios' | 'urgencias' | 'optica' | 'reintegros' | 'ortodoncia' | 'cirugia-estetica'
 type Copago = 'sin-copago' | 'con-copago' | null
@@ -241,10 +241,10 @@ function SituacionIcon({ id }: { id: SituacionLaboral }) {
   )
 }
 
-// ─── Progress bar (4 steps) ───────────────────────────────────────────────────
+// ─── Progress bar (3 steps) ───────────────────────────────────────────────────
 
-const STEP_LABELS = ['Vos', 'Zona', 'Integrantes', 'Ver precios']
-const STEP_ORDER: Step[] = ['situacion', 'zona', 'edades', 'preview']
+const STEP_LABELS = ['Zona', 'Integrantes', 'Ver precios']
+const STEP_ORDER: Step[] = ['zona', 'edades', 'preview']
 
 function ProgressBar({ step }: { step: Step }) {
   const idx = STEP_ORDER.indexOf(step)
@@ -293,7 +293,7 @@ function BackBtn({ onClick }: { onClick: () => void }) {
 
 // ─── ZonaStep ─────────────────────────────────────────────────────────────────
 
-function ZonaStep({ onSelect, onBack }: { onSelect: (p: Provincia) => void; onBack: () => void }) {
+function ZonaStep({ onSelect }: { onSelect: (p: Provincia) => void }) {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState<Provincia | null>(null)
   const ref = React.useRef<HTMLDivElement>(null)
@@ -315,7 +315,6 @@ function ZonaStep({ onSelect, onBack }: { onSelect: (p: Provincia) => void; onBa
   return (
     <div>
       <ProgressBar step="zona" />
-      <BackBtn onClick={onBack} />
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">¿Desde dónde buscás cobertura?</h2>
         <p className="text-sm text-gray-500">Las prepagas disponibles varían según tu provincia</p>
@@ -363,83 +362,68 @@ function ZonaStep({ onSelect, onBack }: { onSelect: (p: Provincia) => void; onBa
   )
 }
 
-// ─── SituacionStep ────────────────────────────────────────────────────────────
+// ─── SituacionSelector (inline, dentro de resultados) ──────────────────────────
+// Se muestra recién en la lista de precios (ya con el lead capturado): elegir
+// la situación ajusta el descuento y, en relación de dependencia, resta el
+// aporte de cada card en tiempo real.
 
-function SituacionStep({ situacion, setSituacion, sueldoBruto, setSueldoBruto, onContinue }: {
-  situacion: SituacionLaboral | null
+function SituacionSelector({ situacion, setSituacion, sueldoBruto, setSueldoBruto }: {
+  situacion: SituacionLaboral
   setSituacion: (s: SituacionLaboral) => void
   sueldoBruto: string
   setSueldoBruto: (v: string) => void
-  onContinue: () => void
 }) {
   const bruto = parseFloat(sueldoBruto) || 0
   const aportePreview = Math.round(bruto * APORTE_PORCENTAJE)
-  const sueldoOk = bruto > 0
-
-  function handlePick(id: SituacionLaboral) {
-    setSituacion(id)
-    if (id === 'relacion-dependencia') return
-    setTimeout(onContinue, id === 'particular' ? 180 : 900)
-  }
 
   return (
-    <div>
-      <ProgressBar step="situacion" />
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">¿Cómo vas a pagar tu prepaga?</h2>
-        <p className="text-sm text-gray-500">El descuento (y el aporte que te descontamos, si corresponde) cambian según tu situación</p>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto">
+    <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-6">
+      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">¿Cómo pagás tu prepaga? Elegí para ver tu precio real</p>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         {SITUACIONES.map((s) => {
           const selected = situacion === s.id
           return (
-            <button key={s.id} onClick={() => handlePick(s.id)}
-              className={`text-left p-4 rounded-2xl border-2 transition-all ${
-                selected ? 'border-[#E8002D] bg-red-50 shadow-md' : 'border-gray-200 bg-white hover:border-red-200 hover:shadow-sm'
+            <button key={s.id} onClick={() => setSituacion(s.id)}
+              className={`text-left p-3 rounded-xl border-2 transition-all ${
+                selected ? 'border-[#E8002D] bg-red-50' : 'border-gray-200 bg-white hover:border-red-200'
               }`}>
-              <div className={`mb-2 ${selected ? 'text-[#E8002D]' : 'text-gray-400'}`}>
+              <div className={`mb-1.5 ${selected ? 'text-[#E8002D]' : 'text-gray-400'}`}>
                 <SituacionIcon id={s.id} />
               </div>
-              <div className="flex items-center justify-between gap-2 mb-1">
-                <span className="font-bold text-gray-900 text-sm">{s.label}</span>
-              </div>
-              <p className="text-xs text-gray-500 leading-relaxed mb-2">{s.desc}</p>
-              <span className="inline-block text-[10px] font-bold text-[#00875A] bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">{s.badge}</span>
+              <div className="font-bold text-gray-900 text-xs leading-tight">{s.label}</div>
+              <span className="inline-block text-[9px] font-bold text-[#00875A] bg-green-50 border border-green-200 px-1.5 py-0.5 rounded-full mt-1">{s.badge}</span>
             </button>
           )
         })}
       </div>
 
       {situacion === 'relacion-dependencia' && (
-        <div className="max-w-xl mx-auto mt-5 bg-white border-2 border-red-100 rounded-2xl p-5">
-          <label className="block text-sm font-semibold text-gray-700 mb-2">¿Cuál es tu sueldo bruto mensual?</label>
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
+        <div className="mt-3 pt-3 border-t border-gray-100">
+          <label className="block text-xs font-semibold text-gray-600 mb-1.5">¿Cuál es tu sueldo bruto mensual?</label>
+          <div className="relative max-w-xs">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
             <input
               type="number" min={0} value={sueldoBruto}
               onChange={(e) => setSueldoBruto(e.target.value)}
               placeholder="Ej: 1200000"
-              className="w-full border-2 border-gray-200 rounded-xl pl-8 pr-4 py-3 text-base font-bold focus:outline-none focus:border-[#E8002D] transition-colors"
+              className="w-full border-2 border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm font-bold focus:outline-none focus:border-[#E8002D] transition-colors"
             />
           </div>
-          {sueldoOk && (
+          {bruto > 0 ? (
             <p className="text-xs text-gray-600 mt-2">
-              Tu aporte estimado: <span className="font-bold text-[#E8002D]">{formatPrecio(aportePreview)}/mes</span> (7,5% de tu sueldo bruto) — lo descontamos de la cuota.
+              Tu aporte estimado: <span className="font-bold text-[#E8002D]">{formatPrecio(aportePreview)}/mes</span> (7,5% de tu sueldo bruto) — ya descontado en los precios de abajo.
             </p>
+          ) : (
+            <p className="text-[11px] text-gray-400 mt-2">Ingresá tu sueldo para descontar el aporte de la cuota.</p>
           )}
-          <p className="text-[11px] text-gray-400 mt-3 leading-relaxed">
-            Además del aporte, tu cuota ya sale más baja: sumamos el 15% de descuento general más un 10,5% adicional — la alícuota de IVA en salud es del 10,5%, no el 21% general.
+          <p className="text-[11px] text-gray-400 mt-2 leading-relaxed">
+            Además sumamos el 15% de descuento general más un 10,5% adicional — la alícuota de IVA en salud es del 10,5%, no el 21% general.
           </p>
-          <button onClick={onContinue} disabled={!sueldoOk}
-            className="w-full mt-4 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all">
-            Continuar →
-          </button>
         </div>
       )}
 
-      {situacion && (situacion === 'monotributo' || situacion === 'responsable-inscripto') && (
-        <p className="text-center text-xs text-gray-400 max-w-xl mx-auto mt-5 leading-relaxed">
+      {(situacion === 'monotributo' || situacion === 'responsable-inscripto') && (
+        <p className="text-[11px] text-gray-400 mt-3 pt-3 border-t border-gray-100 leading-relaxed">
           25% de descuento especial para monotributistas y responsables inscriptos que facturan con IVA discriminado.
         </p>
       )}
@@ -458,15 +442,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const router = useRouter()
   const pathname = usePathname()
 
-  const [step, setStep] = useState<Step>('situacion')
+  const [step, setStep] = useState<Step>(initialZona ? 'edades' : 'zona')
   const [zonaKey, setZonaKey] = useState(initialZona ?? '')
   const [provinciaNombre, setProvinciaNombre] = useState(initialProvincia ?? '')
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
 
-  // Situación laboral: define descuento y, en relación de dependencia, el aporte descontado
-  const [situacion, setSituacion] = useState<SituacionLaboral | null>(null)
+  // Situación laboral: se elige recién en resultados (ya con el lead
+  // capturado). "Particular" es el default hasta que el usuario la cambie.
+  const [situacion, setSituacion] = useState<SituacionLaboral>('particular')
   const [sueldoBruto, setSueldoBruto] = useState('')
-  const descuentoRate = DESCUENTO_POR_SITUACION[situacion ?? 'particular']
+  const descuentoRate = DESCUENTO_POR_SITUACION[situacion]
   const aporteMensual = useMemo(() => {
     if (situacion !== 'relacion-dependencia') return 0
     return Math.round((parseFloat(sueldoBruto) || 0) * APORTE_PORCENTAJE)
@@ -624,44 +609,27 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   }
 
   function resetWizard() {
-    setStep('situacion'); setSituacion(null); setSueldoBruto('')
-    setZonaKey(''); setProvinciaNombre('')
+    setStep('zona'); setZonaKey(''); setProvinciaNombre('')
+    setSituacion('particular'); setSueldoBruto('')
     setPersonas([{ id: 1, edad: '' }]); setNombre(''); setCelular('')
     setLeadStatus('idle'); setActiveCobs(new Set()); setCopago(null)
     setSortBy('relevancia'); setPlanAccedido(null); setPlanAccedidoStatus('idle')
     setCountdown(3); setShowPopup(false)
   }
 
-  // ── Step: Situación laboral ────────────────────────────────────────────────────
-
-  if (step === 'situacion') {
-    return (
-      <SituacionStep
-        situacion={situacion}
-        setSituacion={setSituacion}
-        sueldoBruto={sueldoBruto}
-        setSueldoBruto={setSueldoBruto}
-        onContinue={() => setStep(initialZona ? 'edades' : 'zona')}
-      />
-    )
-  }
-
   // ── Step: Zona ───────────────────────────────────────────────────────────────
 
   if (step === 'zona') {
     return (
-      <ZonaStep
-        onBack={() => setStep('situacion')}
-        onSelect={(prov) => {
-          if (pathname !== '/comparador') {
-            router.push(`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`)
-            return
-          }
-          setZonaKey(prov.zonaKey)
-          setProvinciaNombre(prov.nombre)
-          setStep('edades')
-        }}
-      />
+      <ZonaStep onSelect={(prov) => {
+        if (pathname !== '/comparador') {
+          router.push(`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`)
+          return
+        }
+        setZonaKey(prov.zonaKey)
+        setProvinciaNombre(prov.nombre)
+        setStep('edades')
+      }} />
     )
   }
 
@@ -903,6 +871,13 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           </div>
         </div>
       </div>
+
+      <SituacionSelector
+        situacion={situacion}
+        setSituacion={setSituacion}
+        sueldoBruto={sueldoBruto}
+        setSueldoBruto={setSueldoBruto}
+      />
 
       {/* Layout: sidebar + cards */}
       <div className="flex gap-6">
