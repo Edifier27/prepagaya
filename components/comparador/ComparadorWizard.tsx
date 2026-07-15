@@ -797,8 +797,12 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 </svg>
               </div>
 
-              <h3 className="text-xl font-bold text-gray-900 text-center mb-1">Tus precios están listos</h3>
-              <p className="text-sm text-gray-500 text-center mb-6">Ingresá tus datos para ver la cotización completa</p>
+              <h3 className="text-xl font-bold text-gray-900 text-center mb-1">
+                {nombre.trim()
+                  ? `¡${nombre.trim().split(' ')[0]}, accedé a un 15% OFF en todos los planes de Swiss Medical ahora!`
+                  : '¡Accedé a un 15% OFF en todos los planes de Swiss Medical ahora!'}
+              </h3>
+              <p className="text-sm text-gray-500 text-center mb-6">Ingresá tus datos para desbloquear el precio con descuento</p>
 
               <div className="space-y-3 mb-5">
                 <div>
