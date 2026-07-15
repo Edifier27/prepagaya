@@ -279,7 +279,7 @@ export default function HomePage(): React.ReactElement {
           </div>
 
           <div className="space-y-3">
-            {prepagasRanking.map((prep, i) => {
+            {prepagasRanking.slice(0, 3).map((prep, i) => {
               const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
               const pos = i + 1
               const isTop3 = pos <= 3

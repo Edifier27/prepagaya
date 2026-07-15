@@ -5,11 +5,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { provinciasSEO } from '@/lib/data/zonas'
-import {
-  MiniPsicologia, MiniMaternidad, MiniOdontologia, MiniFertilidad, MiniOncologia,
-  MiniDiabetes, MiniCeliacos, MiniSaludMental, MiniAutismo, MiniPreexistencias,
-  MiniBuilding, MiniLeaf, MiniElder, MiniCross,
-} from '@/components/ui/CategoryIcon'
+import { MiniBuilding, MiniLeaf, MiniElder, MiniCross } from '@/components/ui/CategoryIcon'
 
 const prepagaLinks = [
   { slug: 'swiss-medical', nombre: 'Swiss Medical', colorPrimario: '#E30613' },
@@ -36,22 +32,6 @@ const zonasMenu = provinciasSEO.map((p) => ({
   ranking: `/prepagas/${p.slug}/mejores-prepagas`,
 }))
 
-const coberturasMenu = [
-  { href: '/coberturas/psicologia',  label: 'Psicología',  Icon: MiniPsicologia },
-  { href: '/coberturas/maternidad',  label: 'Maternidad',  Icon: MiniMaternidad },
-  { href: '/coberturas/odontologia', label: 'Odontología', Icon: MiniOdontologia },
-  { href: '/coberturas/fertilidad',  label: 'Fertilidad',  Icon: MiniFertilidad },
-  { href: '/coberturas/oncologia',   label: 'Oncología',   Icon: MiniOncologia },
-]
-
-const condicionesMenu = [
-  { href: '/condiciones/diabetes',        label: 'Diabetes',      Icon: MiniDiabetes },
-  { href: '/condiciones/celiacos',        label: 'Celiaquía',     Icon: MiniCeliacos },
-  { href: '/condiciones/salud-mental',    label: 'Salud mental',  Icon: MiniSaludMental },
-  { href: '/condiciones/autismo',         label: 'Autismo (TEA)', Icon: MiniAutismo },
-  { href: '/condiciones/preexistencias',  label: 'Preexistencias',Icon: MiniPreexistencias },
-]
-
 const obrasSocialesMenu = [
   { href: '/obras-sociales/osde',            label: 'OSDE',               Icon: MiniBuilding },
   { href: '/obras-sociales/swiss-medical-os',label: 'Swiss Medical Salud', Icon: MiniCross },
@@ -69,9 +49,10 @@ const herramientasMenu = [
   { href: '/calculadora', label: 'Calculadora' },
   { href: '/cartillas', label: 'Cartillas médicas' },
   { href: '/glosario', label: 'Glosario de prepagas' },
+  { href: '/blog', label: 'Blog' },
 ]
 
-type DropdownKey = 'prepagas' | 'zonas' | 'coberturas' | 'condiciones' | 'obras-sociales' | 'herramientas' | null
+type DropdownKey = 'prepagas' | 'zonas' | 'obras-sociales' | 'herramientas' | null
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -166,52 +147,6 @@ export function Header() {
               )}
             </div>
 
-            {/* Coberturas dropdown */}
-            <div className="relative" onMouseEnter={() => openDropdown('coberturas')} onMouseLeave={closeDropdown}>
-              <button className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-[#E8002D] transition-colors">
-                Coberturas
-                <svg className="w-3.5 h-3.5 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {activeDropdown === 'coberturas' && (
-                <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
-                  {coberturasMenu.map((item) => (
-                    <Link key={item.href} href={item.href} className="flex items-center gap-2.5 px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-[#E8002D] transition-colors group">
-                      <item.Icon />
-                      {item.label}
-                    </Link>
-                  ))}
-                  <div className="border-t border-gray-100 mt-1 pt-1">
-                    <Link href="/coberturas" className="block px-4 py-2 text-sm font-medium text-[#E8002D] hover:bg-red-50 transition-colors">Ver todas →</Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Condiciones dropdown */}
-            <div className="relative" onMouseEnter={() => openDropdown('condiciones')} onMouseLeave={closeDropdown}>
-              <button className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-[#E8002D] transition-colors">
-                Por condición
-                <svg className="w-3.5 h-3.5 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {activeDropdown === 'condiciones' && (
-                <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
-                  {condicionesMenu.map((item) => (
-                    <Link key={item.href} href={item.href} className="flex items-center gap-2.5 px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-[#E8002D] transition-colors group">
-                      <item.Icon />
-                      {item.label}
-                    </Link>
-                  ))}
-                  <div className="border-t border-gray-100 mt-1 pt-1">
-                    <Link href="/condiciones" className="block px-4 py-2 text-sm font-medium text-[#E8002D] hover:bg-red-50 transition-colors">Ver todas →</Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
             {/* Obras Sociales dropdown */}
             <div className="relative" onMouseEnter={() => openDropdown('obras-sociales')} onMouseLeave={closeDropdown}>
               <button className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-[#E8002D] transition-colors">
@@ -235,10 +170,6 @@ export function Header() {
               )}
             </div>
 
-            <Link href="/comparativas" className="text-sm font-medium text-gray-700 hover:text-[#E8002D] transition-colors">
-              Comparativas
-            </Link>
-
             {/* Herramientas dropdown */}
             <div className="relative" onMouseEnter={() => openDropdown('herramientas')} onMouseLeave={closeDropdown}>
               <button className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-[#E8002D] transition-colors">
@@ -257,10 +188,6 @@ export function Header() {
                 </div>
               )}
             </div>
-
-            <Link href="/blog" className="text-sm font-medium text-gray-700 hover:text-[#E8002D] transition-colors">
-              Blog
-            </Link>
           </nav>
 
           {/* CTA */}
@@ -309,32 +236,12 @@ export function Header() {
                 ))}
               </div>
               <div className="border-t border-gray-100 mt-2 pt-2">
-                <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Coberturas</p>
-                {coberturasMenu.map((item) => (
-                  <Link key={item.href} href={item.href} className="px-2 py-2 text-sm text-gray-700 hover:text-[#E8002D] rounded-lg hover:bg-red-50 flex items-center gap-1" onClick={() => setMenuOpen(false)}>
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="border-t border-gray-100 mt-2 pt-2">
-                <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Por condición</p>
-                {condicionesMenu.map((item) => (
-                  <Link key={item.href} href={item.href} className="px-2 py-2 text-sm text-gray-700 hover:text-[#E8002D] rounded-lg hover:bg-red-50 flex items-center gap-1" onClick={() => setMenuOpen(false)}>
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="border-t border-gray-100 mt-2 pt-2">
                 <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Obras Sociales</p>
                 {obrasSocialesMenu.map((item) => (
                   <Link key={item.href} href={item.href} className="px-2 py-2 text-sm text-gray-700 hover:text-purple-700 rounded-lg hover:bg-purple-50 flex items-center gap-1" onClick={() => setMenuOpen(false)}>
                     {item.label}
                   </Link>
                 ))}
-              </div>
-              <div className="border-t border-gray-100 mt-2 pt-2 flex flex-col gap-1">
-                <Link href="/comparativas" className="px-2 py-2 text-sm font-medium text-gray-700" onClick={() => setMenuOpen(false)}>Comparativas</Link>
-                <Link href="/blog" className="px-2 py-2 text-sm font-medium text-gray-700" onClick={() => setMenuOpen(false)}>Blog</Link>
               </div>
               <div className="border-t border-gray-100 mt-2 pt-2">
                 <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Herramientas</p>
