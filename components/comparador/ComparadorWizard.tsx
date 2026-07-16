@@ -6,8 +6,10 @@ import { useRouter, usePathname } from 'next/navigation'
 import emailjs from '@emailjs/browser'
 import { prepagas } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
+import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio } from '@/lib/utils'
+import { CartillaModal } from './CartillaModal'
 
 const EJS_SERVICE  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? ''
 const EJS_TEMPLATE = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? ''
@@ -112,6 +114,19 @@ function mult(edad: number) {
 function calcGrupal(base: number, personas: Persona[]): number {
   if (!personas.length) return base
   return Math.round(personas.reduce((s, p) => s + base * mult(parseInt(p.edad) || 30), 0))
+}
+
+// Testimonio real para mostrar en la card: prioriza el que menciona el plan
+// exacto (comparación laxa por substring del nombre) y cae al de la prepaga.
+function testimonioDePlan(prepagaSlug: string, planNombre: string) {
+  const delaPrepaga = testimonios.filter((t) => t.prepagaSlug === prepagaSlug)
+  const exacto = delaPrepaga.find((t) =>
+    t.planNombre && (
+      planNombre.toLowerCase().includes(t.planNombre.toLowerCase()) ||
+      t.planNombre.toLowerCase().includes(planNombre.toLowerCase().replace('plan ', ''))
+    )
+  )
+  return exacto ?? delaPrepaga[0]
 }
 
 // La calidad de cartilla mostrada en cada card parte de calidadCartilla de la
@@ -487,6 +502,21 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [planAccedido, setPlanAccedido] = useState<string | null>(null)
   const [planAccedidoStatus, setPlanAccedidoStatus] = useState<'idle' | 'loading' | 'success'>('idle')
 
+  // Popup de cartilla
+  const [cartillaAbierta, setCartillaAbierta] = useState<Resultado | null>(null)
+
+  // Comparar hasta 3 planes lado a lado
+  const [comparando, setComparando] = useState<Set<string>>(new Set())
+  const [tablaComparativa, setTablaComparativa] = useState(false)
+  function toggleComparar(planKey: string) {
+    setComparando((prev) => {
+      const next = new Set(prev)
+      if (next.has(planKey)) next.delete(planKey)
+      else if (next.size < 3) next.add(planKey)
+      return next
+    })
+  }
+
   const allResultados = useMemo(() =>
     (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey, descuentoRate) : [],
     [step, personas, zonaKey, descuentoRate]
@@ -626,6 +656,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     setLeadStatus('idle'); setActiveCobs(new Set()); setCopago(null)
     setSortBy('relevancia'); setPlanAccedido(null); setPlanAccedidoStatus('idle')
     setCountdown(3); setShowPopup(false)
+    setCartillaAbierta(null); setComparando(new Set()); setTablaComparativa(false)
   }
 
   // ── Step: Zona ───────────────────────────────────────────────────────────────
@@ -962,8 +993,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         {/* Cards column */}
         <div className="flex-1 min-w-0">
 
-          {/* Mobile filter chips */}
-          <div className="lg:hidden flex gap-2 overflow-x-auto pb-2 mb-4" style={{ scrollbarWidth: 'none' }}>
+          {/* Mobile filter chips — sticky bajo el header para no perderlos al scrollear */}
+          <div className="lg:hidden sticky top-16 z-30 -mx-4 px-4 sm:mx-0 sm:px-0 bg-white/95 backdrop-blur border-b border-gray-100 pt-2">
+            <div className="flex gap-2 overflow-x-auto pb-2 mb-2" style={{ scrollbarWidth: 'none' }}>
             {([
               { id: 'sin-copago', label: 'Sin copago', type: 'copago' },
               { id: 'con-copago', label: 'Con copago', type: 'copago' },
@@ -982,6 +1014,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 </button>
               )
             })}
+            </div>
           </div>
 
           {/* Count + clear */}
@@ -1015,6 +1048,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               const calidad = calidadPlan(res.prepaga, res.plan)
               const precioAPagar = precioFinal(res.precioDesc)
               const ahorroMensual = res.precioGrupal - precioAPagar
+              const testimonio = testimonioDePlan(res.prepaga.slug, res.plan.nombre)
 
               return (
                 <div key={`${planKey}::${filtroVersion}`}
@@ -1056,6 +1090,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                             <span className="text-xs font-black text-gray-900">{calidad}/5</span>
                           </div>
                         </div>
+                        <label className="flex items-center justify-center gap-1 mt-2 cursor-pointer select-none">
+                          <input
+                            type="checkbox"
+                            checked={comparando.has(planKey)}
+                            onChange={() => toggleComparar(planKey)}
+                            disabled={!comparando.has(planKey) && comparando.size >= 3}
+                            className="w-3.5 h-3.5 accent-[#E8002D] cursor-pointer disabled:cursor-not-allowed"
+                          />
+                          <span className="text-[10px] font-semibold text-gray-400">Comparar</span>
+                        </label>
                       </div>
                     </div>
 
@@ -1113,6 +1157,21 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       {checkCob('optica', res.plan, res.prepaga) && <span className="text-[11px] px-2.5 py-0.5 bg-cyan-50 text-cyan-700 border border-cyan-200 rounded-full font-semibold">Óptica</span>}
                     </div>
 
+                    {/* Testimonio real */}
+                    {testimonio && (
+                      <div className="bg-gray-50 rounded-xl border border-gray-100 px-3.5 py-3 mb-4">
+                        <div className="flex items-center gap-1 mb-1">
+                          {[1, 2, 3, 4, 5].map((s) => (
+                            <svg key={s} viewBox="0 0 20 20" fill={s <= testimonio.rating ? '#F59E0B' : '#E5E7EB'} className="w-3 h-3">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                          ))}
+                        </div>
+                        <p className="text-xs text-gray-600 leading-relaxed italic line-clamp-2">&ldquo;{testimonio.texto}&rdquo;</p>
+                        <p className="text-[11px] text-gray-400 mt-1 font-medium">{testimonio.nombre} · {testimonio.ciudad}</p>
+                      </div>
+                    )}
+
                     {/* Price + CTA */}
                     <div className="flex items-end justify-between gap-4 pt-3 border-t border-gray-100">
                       <div>
@@ -1127,10 +1186,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 items-end flex-shrink-0">
-                        <Link href={`/prepagas/${res.prepaga.slug}/${res.plan.slug}`}
-                          className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium">
-                          Ver detalles →
-                        </Link>
+                        <div className="flex items-center gap-3">
+                          <button onClick={() => setCartillaAbierta(res)}
+                            className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium">
+                            Cartilla
+                          </button>
+                          <Link href={`/prepagas/${res.prepaga.slug}/${res.plan.slug}`}
+                            className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium">
+                            Ver detalles →
+                          </Link>
+                        </div>
                         {isAccedido && planAccedidoStatus === 'success' ? (
                           <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2">
                             ¡Solicitud enviada!
@@ -1160,6 +1225,115 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           </div>
         </div>
       </div>
+
+      {cartillaAbierta && (
+        <CartillaModal
+          prepaga={cartillaAbierta.prepaga}
+          plan={cartillaAbierta.plan}
+          zonaKey={zonaKey}
+          provinciaNombre={provinciaNombre}
+          onClose={() => setCartillaAbierta(null)}
+        />
+      )}
+
+      {comparando.size > 0 && !tablaComparativa && (
+        <div className="fixed bottom-20 md:bottom-6 left-4 right-4 md:left-auto md:right-6 md:w-auto z-40 flex justify-center md:justify-end">
+          <button
+            onClick={() => setTablaComparativa(true)}
+            className="flex items-center gap-2 px-6 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-2xl shadow-2xl transition-all text-sm"
+          >
+            Comparar {comparando.size} plan{comparando.size !== 1 ? 'es' : ''} →
+          </button>
+        </div>
+      )}
+
+      {tablaComparativa && (() => {
+        const seleccionados = allResultados.filter((r) => comparando.has(`${r.prepaga.slug}-${r.plan.slug}`))
+        return (
+          <div
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setTablaComparativa(false) }}
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-3xl max-h-[85vh] overflow-hidden flex flex-col">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
+                <div className="font-bold text-gray-900">Comparar planes</div>
+                <button onClick={() => setTablaComparativa(false)} className="text-gray-400 hover:text-gray-700 transition-colors" aria-label="Cerrar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-5 h-5">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                  </svg>
+                </button>
+              </div>
+              <div className="overflow-auto p-6">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr>
+                      <th className="text-left text-xs text-gray-400 font-semibold pb-3 pr-3 align-bottom">&nbsp;</th>
+                      {seleccionados.map((r) => (
+                        <th key={`${r.prepaga.slug}-${r.plan.slug}`} className="text-left pb-3 px-3 align-bottom min-w-[160px]">
+                          <div className="font-bold text-gray-900">{r.prepaga.nombre}</div>
+                          <div className="text-xs text-gray-500">{r.plan.nombre}</div>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-700">
+                    <tr className="border-t border-gray-100">
+                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Precio con descuento</td>
+                      {seleccionados.map((r) => (
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-precio`} className="py-3 px-3 font-black text-[#E8002D] tabular-nums">{formatPrecio(precioFinal(r.precioDesc))}/mes</td>
+                      ))}
+                    </tr>
+                    <tr className="border-t border-gray-100">
+                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Calidad de cartilla</td>
+                      {seleccionados.map((r) => (
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-calidad`} className="py-3 px-3">{calidadPlan(r.prepaga, r.plan)}/5</td>
+                      ))}
+                    </tr>
+                    <tr className="border-t border-gray-100">
+                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Copago</td>
+                      {seleccionados.map((r) => (
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-copago`} className="py-3 px-3">
+                          {r.plan.copago
+                            ? <span className="text-amber-700">Con copago</span>
+                            : <span className="text-emerald-700 font-semibold">Sin copago</span>}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr className="border-t border-gray-100">
+                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Red</td>
+                      {seleccionados.map((r) => (
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-red`} className="py-3 px-3">{r.plan.redAbierta ? 'Abierta' : 'Cerrada'}</td>
+                      ))}
+                    </tr>
+                    {COBS.filter((c) => ['odontologia', 'psicologia', 'maternidad', 'urgencias', 'medicamentos', 'optica'].includes(c.id)).map((cob) => (
+                      <tr key={cob.id} className="border-t border-gray-100">
+                        <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">{cob.label}</td>
+                        {seleccionados.map((r) => {
+                          const incluida = checkCob(cob.id, r.plan, r.prepaga)
+                          return (
+                            <td key={`${r.prepaga.slug}-${r.plan.slug}-${cob.id}`} className="py-3 px-3">
+                              {incluida
+                                ? <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-[#00875A]"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
+                                : <span className="text-gray-300">—</span>}
+                            </td>
+                          )
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="px-6 py-4 border-t border-gray-100 flex-shrink-0">
+                <button onClick={() => { setComparando(new Set()); setTablaComparativa(false) }}
+                  className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+                  Limpiar comparación
+                </button>
+              </div>
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }

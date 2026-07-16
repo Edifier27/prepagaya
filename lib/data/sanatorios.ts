@@ -241,3 +241,41 @@ export function buscarSanatorio(query: string): Sanatorio[] {
       s.aliases.some((a) => a.includes(q))
   )
 }
+
+// zonaKey del cotizador (ZONA_PREPAGAS en ComparadorWizard) → tags de zona
+// usados acá. Las provincias sin sanatorios cargados devuelven [] a propósito:
+// el popup de Cartilla cae al fallback genérico en vez de mostrar datos de
+// otra zona como si fueran locales.
+const ZONA_SANATORIO: Record<string, string[]> = {
+  caba: ['caba'],
+  'buenos-aires': ['gba'],
+  cordoba: ['cordoba'],
+  'santa-fe': ['rosario'],
+}
+
+export interface SanatorioDePlan {
+  sanatorio: Sanatorio
+  cobertura: PlanCubre
+}
+
+// Sanatorios de alta complejidad que cubre un plan puntual, con la nota real
+// si existe (ej. "no incluido en S1/S2"). `enZona` prioriza los que matchean
+// la provincia elegida en el cotizador; si no hay ninguno ahí, devuelve los
+// de otras zonas igual (mejor mostrar cartilla de otra provincia con la
+// etiqueta correspondiente que no mostrar nada).
+export function sanatoriosDePlan(prepagaSlug: string, planSlug: string, zonaKey?: string): SanatorioDePlan[] {
+  const matches: SanatorioDePlan[] = []
+  for (const s of sanatorios) {
+    const cobertura = s.planesQueLoCubren.find(
+      (p) => p.prepagaSlug === prepagaSlug && p.planSlug === planSlug
+    )
+    if (cobertura) matches.push({ sanatorio: s, cobertura })
+  }
+  const zonasLocales = zonaKey ? (ZONA_SANATORIO[zonaKey] ?? []) : []
+  if (zonasLocales.length === 0) return matches
+  return [...matches].sort((a, b) => {
+    const aLocal = a.sanatorio.zonas.some((z) => zonasLocales.includes(z)) ? 0 : 1
+    const bLocal = b.sanatorio.zonas.some((z) => zonasLocales.includes(z)) ? 0 : 1
+    return aLocal - bLocal
+  })
+}
