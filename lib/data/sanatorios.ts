@@ -29,27 +29,17 @@ export const REFERENCIA_POR_ZONA: Record<string, string[]> = {
     'FLENI', 'Instituto Alexander Fleming', 'Sanatorio Los Arcos', 'Sanatorio Güemes', 'Clínica Bazterrica',
     'Sanatorio Finochietto', 'Sanatorio de la Providencia',
   ],
+  // Lista plana (GBA Norte+Sur+Oeste+interior/costa) para dedup y fallback.
+  // Para mostrar en el popup se usa REFERENCIA_GBA_SUBZONAS, agrupada.
   'buenos-aires': [
-    // GBA Norte
-    'Hospital Universitario Austral (Pilar)', 'Sanatorio de la Trinidad San Isidro', 'Sanatorio Las Lomas (San Isidro)',
-    'Sanatorio San Lucas (San Isidro)', 'Clínica Olivos (V. López)', 'Hospital Privado Modelo (V. López)',
-    'Sanatorio Vicente López', 'Sanatorio San Pablo (San Fernando)', 'Sanatorio General Sarmiento (San Miguel)',
-    'Clínica Privada Fátima (Pilar/Escobar)',
-    // GBA Sur
-    'Sanatorio Modelo Quilmes', 'Sanatorio Avellaneda', 'Clínica Modelo Lanús', 'Sanatorio San Juan (Lanús)',
-    'Sanatorio Juncal (Temperley)', 'Hospital Británico — Lomas de Zamora', 'Clínica Boedo (Lomas)',
-    'Clínica Monte Grande', 'Clínica Ima (Adrogué)', 'Sanatorio Modelo Adrogué', 'Nuevo Sanatorio Berazategui',
-    // GBA Oeste
-    'Sanatorio Nuestra Señora del Pilar (Ciudadela)', 'Casa Hospital San Juan de Dios (Ramos Mejía)',
-    'Sanatorio de la Trinidad Ramos Mejía', 'Sanatorio San Justo', 'Clínica Dres. Tachella (Haedo)',
-    'Clínica Modelo de Morón', 'Clínica Constituyentes (Morón)', 'Sanatorio del Oeste (Ituzaingó y Merlo)',
-    'Clínica Privada Provincial (Merlo)', 'Sanatorio Modelo de Caseros (Hurlingham)',
-    // Interior / costa
+    'Sanatorio de la Trinidad San Isidro', 'Sanatorio Las Lomas (San Isidro)', 'Sanatorio San Lucas (San Isidro)',
+    'Clínica Olivos (V. López)', 'Hospital Universitario Austral (Pilar)',
+    'Sanatorio Juncal (Temperley)', 'IMA (Instituto Médico de Adrogué)', 'Clínica Espora (Quilmes)',
+    'Clínica Monte Grande', 'SMG Center Lomas de Zamora', 'Sanatorio de la Trinidad Quilmes', 'Sanatorio Modelo Quilmes',
+    'Sanatorio de la Trinidad Ramos Mejía', 'Hospital Italiano (San Justo)', 'Casa Hospital San Juan de Dios (Ramos Mejía)',
+    'DIM (Diagnóstico e Imágenes Médicas)', 'CEPEM', 'Clínica Modelo de Morón',
     'Sanatorio Central Emhsa (Mar del Plata)', 'Hospital Privado de Comunidad (Mar del Plata)',
-    'Clínica Privada del Sol (Mar del Plata)', 'Sanatorio Belgrano (Mar del Plata)',
-    'Hospital Privado del Sur (Bahía Blanca)', 'Clínica Privada Bahiense (Bahía Blanca)',
-    'Hospital Italiano de La Plata', 'Hospital Privado Sudamericano (La Plata)', 'Sanatorio Ipensa (La Plata)',
-    'Sanatorio Tandil', 'Hospital Italiano Regional del Sur (Necochea)',
+    'Hospital Privado del Sur (Bahía Blanca)', 'Hospital Italiano de La Plata', 'Sanatorio Tandil',
   ],
   cordoba: [
     'Sanatorio Allende', 'Hospital Privado Universitario de Córdoba', 'Sanatorio Aconcagua', 'Sanatorio Mayo',
@@ -141,6 +131,40 @@ export const REFERENCIA_POR_ZONA: Record<string, string[]> = {
     'Clínica/Sanatorio San Jorge (Ushuaia)', 'Sanatorio Fueguino (Río Grande)', 'CEMEP (Río Grande)',
   ],
 }
+
+// El cotizador solo permite elegir "Buenos Aires (GBA/Pcia)" como una única
+// zona (sin distinguir Norte/Sur/Oeste), así que el popup de Cartilla agrupa
+// la referencia de GBA por sub-zona en vez de mostrarla como lista plana.
+export const REFERENCIA_GBA_SUBZONAS: { subzona: string; sanatorios: string[] }[] = [
+  {
+    subzona: 'GBA Norte',
+    sanatorios: [
+      'Clínica Olivos', 'Sanatorio Las Lomas', 'Sanatorio San Lucas', 'Sanatorio de la Trinidad San Isidro',
+      'Hospital Universitario Austral',
+    ],
+  },
+  {
+    subzona: 'GBA Sur',
+    sanatorios: [
+      'Sanatorio Juncal', 'IMA (Instituto Médico de Adrogué)', 'Clínica Espora', 'Clínica Monte Grande',
+      'SMG Center Lomas de Zamora', 'Sanatorio de la Trinidad Quilmes', 'Sanatorio Modelo Quilmes',
+    ],
+  },
+  {
+    subzona: 'GBA Oeste',
+    sanatorios: [
+      'Sanatorio de la Trinidad Ramos Mejía', 'Hospital Italiano (San Justo)', 'Casa Hospital San Juan de Dios',
+      'DIM (Diagnóstico e Imágenes Médicas)', 'CEPEM', 'Clínica Modelo de Morón',
+    ],
+  },
+  {
+    subzona: 'Buenos Aires — interior y costa',
+    sanatorios: [
+      'Sanatorio Central Emhsa (Mar del Plata)', 'Hospital Privado de Comunidad (Mar del Plata)',
+      'Hospital Privado del Sur (Bahía Blanca)', 'Hospital Italiano de La Plata', 'Sanatorio Tandil',
+    ],
+  },
+]
 
 // Swiss Medical tiene una red propia de más de 30 SMG Center: centros de
 // atención exclusivos para socios en todo el país, con turnos más rápidos
@@ -397,18 +421,20 @@ export interface SanatorioDePlan {
 // de otras zonas igual (mejor mostrar cartilla de otra provincia con la
 // etiqueta correspondiente que no mostrar nada).
 export function sanatoriosDePlan(prepagaSlug: string, planSlug: string, zonaKey?: string): SanatorioDePlan[] {
+  const zonasLocales = zonaKey ? (ZONA_SANATORIO[zonaKey] ?? []) : []
+  // Sin zona local conocida (todavía no tenemos data verificada de esa
+  // provincia) no hay que mostrar sanatorios de OTRA zona como si aplicaran:
+  // mejor devolver vacío y que el popup caiga al fallback genérico + red de
+  // referencia, que sí está filtrada por provincia.
+  if (zonasLocales.length === 0) return []
+
   const matches: SanatorioDePlan[] = []
   for (const s of sanatorios) {
+    if (!s.zonas.some((z) => zonasLocales.includes(z))) continue
     const cobertura = s.planesQueLoCubren.find(
       (p) => p.prepagaSlug === prepagaSlug && p.planSlug === planSlug
     )
     if (cobertura) matches.push({ sanatorio: s, cobertura })
   }
-  const zonasLocales = zonaKey ? (ZONA_SANATORIO[zonaKey] ?? []) : []
-  if (zonasLocales.length === 0) return matches
-  return [...matches].sort((a, b) => {
-    const aLocal = a.sanatorio.zonas.some((z) => zonasLocales.includes(z)) ? 0 : 1
-    const bLocal = b.sanatorio.zonas.some((z) => zonasLocales.includes(z)) ? 0 : 1
-    return aLocal - bLocal
-  })
+  return matches
 }

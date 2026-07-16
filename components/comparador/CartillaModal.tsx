@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { sanatoriosDePlan, REFERENCIA_POR_ZONA, SMG_CENTER_NOTA } from '@/lib/data/sanatorios'
+import { sanatoriosDePlan, REFERENCIA_POR_ZONA, REFERENCIA_GBA_SUBZONAS, SMG_CENTER_NOTA } from '@/lib/data/sanatorios'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import type { Plan, Prepaga } from '@/types'
 
@@ -14,15 +14,21 @@ interface Props {
 }
 
 export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose }: Props) {
+  // sanatoriosDePlan ya filtra por zona: todo lo que devuelve es local.
   const resultados = sanatoriosDePlan(prepaga.slug, plan.slug, zonaKey)
   const cartillaInfo = getCartillaInfo(prepaga.slug)
-  const zonasConDato = new Set(['caba', 'buenos-aires', 'cordoba', 'santa-fe'])
-  const hayDatoDeZona = zonasConDato.has(zonaKey)
 
   const nombresVerificados = new Set(resultados.map((r) => r.sanatorio.nombre.toLowerCase()))
-  const referenciaZona = (REFERENCIA_POR_ZONA[zonaKey] ?? []).filter(
+  const esGBA = zonaKey === 'buenos-aires'
+  const referenciaZona = esGBA ? [] : (REFERENCIA_POR_ZONA[zonaKey] ?? []).filter(
     (nombre) => !nombresVerificados.has(nombre.toLowerCase())
   )
+  const referenciaGBA = esGBA
+    ? REFERENCIA_GBA_SUBZONAS.map((g) => ({
+        ...g,
+        sanatorios: g.sanatorios.filter((nombre) => !nombresVerificados.has(nombre.toLowerCase())),
+      })).filter((g) => g.sanatorios.length > 0)
+    : []
 
   return (
     <div
@@ -62,29 +68,19 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
                 Sanatorios que cubre este plan puntual
               </p>
               <div className="space-y-3 mb-5">
-                {resultados.map(({ sanatorio, cobertura }) => {
-                  const esLocal = hayDatoDeZona && sanatorio.zonas.some((z) =>
-                    (zonaKey === 'caba' && z === 'caba') ||
-                    (zonaKey === 'buenos-aires' && z === 'gba') ||
-                    (zonaKey === 'cordoba' && z === 'cordoba') ||
-                    (zonaKey === 'santa-fe' && z === 'rosario')
-                  )
-                  return (
-                    <div key={sanatorio.slug} className="bg-gray-50 rounded-xl border border-gray-100 p-3.5">
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="font-semibold text-sm text-gray-900">{sanatorio.nombre}</div>
-                        {esLocal && (
-                          <span className="flex-shrink-0 text-[10px] font-bold text-[#00875A] bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">
-                            En tu zona
-                          </span>
-                        )}
-                      </div>
-                      {cobertura.nota && (
-                        <p className="text-xs text-gray-500 mt-1.5 leading-relaxed">{cobertura.nota}</p>
-                      )}
+                {resultados.map(({ sanatorio, cobertura }) => (
+                  <div key={sanatorio.slug} className="bg-gray-50 rounded-xl border border-gray-100 p-3.5">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="font-semibold text-sm text-gray-900">{sanatorio.nombre}</div>
+                      <span className="flex-shrink-0 text-[10px] font-bold text-[#00875A] bg-green-50 border border-green-200 px-2 py-0.5 rounded-full">
+                        En tu zona
+                      </span>
                     </div>
-                  )
-                })}
+                    {cobertura.nota && (
+                      <p className="text-xs text-gray-500 mt-1.5 leading-relaxed">{cobertura.nota}</p>
+                    )}
+                  </div>
+                ))}
               </div>
             </>
           )}
@@ -120,6 +116,29 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
                   <span key={nombre} className="text-[11px] px-2.5 py-1 bg-gray-50 text-gray-600 border border-gray-200 rounded-full">
                     {nombre}
                   </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {referenciaGBA.length > 0 && (
+            <div className="mb-5">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Red de referencia en Buenos Aires</p>
+              <p className="text-[11px] text-gray-400 mb-3 leading-relaxed">
+                Sanatorios de mayor complejidad por zona del GBA. Confirmá con {prepaga.nombre} cuáles están incluidos en tu cartilla exacta.
+              </p>
+              <div className="space-y-3">
+                {referenciaGBA.map((g) => (
+                  <div key={g.subzona}>
+                    <p className="text-[11px] font-bold text-gray-500 mb-1.5">{g.subzona}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {g.sanatorios.map((nombre) => (
+                        <span key={nombre} className="text-[11px] px-2.5 py-1 bg-gray-50 text-gray-600 border border-gray-200 rounded-full">
+                          {nombre}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
