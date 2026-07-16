@@ -1186,16 +1186,17 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 items-end flex-shrink-0">
-                        <div className="flex items-center gap-3">
-                          <button onClick={() => setCartillaAbierta(res)}
-                            className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium">
-                            Cartilla
-                          </button>
-                          <Link href={`/prepagas/${res.prepaga.slug}/${res.plan.slug}`}
-                            className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium">
-                            Ver detalles →
-                          </Link>
-                        </div>
+                        <button onClick={() => setCartillaAbierta(res)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E8002D] bg-red-50 hover:bg-red-100 border border-red-100 rounded-full px-3 py-1.5 transition-colors">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                            <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+                          </svg>
+                          Ver cartilla
+                        </button>
+                        <Link href={`/prepagas/${res.prepaga.slug}/${res.plan.slug}`}
+                          className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium">
+                          Ver detalles →
+                        </Link>
                         {isAccedido && planAccedidoStatus === 'success' ? (
                           <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2">
                             ¡Solicitud enviada!

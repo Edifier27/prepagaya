@@ -15,6 +15,139 @@ export interface Sanatorio {
   planesQueLoCubren: PlanCubre[]
 }
 
+// ─── Red de referencia por provincia ───────────────────────────────────────
+// Nivel de certeza DISTINTO al de `sanatorios` de arriba: acá sabemos que el
+// sanatorio existe y es relevante en la zona (aporte directo del equipo de
+// PrepagaYa), pero NO tenemos verificado qué plan puntual de qué prepaga lo
+// cubre. Por eso se muestra en el popup de Cartilla como "red de referencia"
+// con aclaración de que hay que confirmar con la prepaga, nunca como
+// "tu plan cubre esto". No mezclar con `planesQueLoCubren`.
+export const REFERENCIA_POR_ZONA: Record<string, string[]> = {
+  caba: [
+    'Hospital Italiano de Buenos Aires', 'Hospital Alemán', 'Sanatorio Otamendi', 'Sanatorio Mater Dei',
+    'Sanatorio de la Trinidad Palermo', 'Sanatorio de la Trinidad Mitre', 'Sanatorio Anchorena', 'CEMIC',
+    'FLENI', 'Instituto Alexander Fleming', 'Sanatorio Los Arcos', 'Sanatorio Güemes', 'Clínica Bazterrica',
+    'Sanatorio Finochietto', 'Sanatorio de la Providencia',
+  ],
+  'buenos-aires': [
+    // GBA Norte
+    'Hospital Universitario Austral (Pilar)', 'Sanatorio de la Trinidad San Isidro', 'Sanatorio Las Lomas (San Isidro)',
+    'Sanatorio San Lucas (San Isidro)', 'Clínica Olivos (V. López)', 'Hospital Privado Modelo (V. López)',
+    'Sanatorio Vicente López', 'Sanatorio San Pablo (San Fernando)', 'Sanatorio General Sarmiento (San Miguel)',
+    'Clínica Privada Fátima (Pilar/Escobar)',
+    // GBA Sur
+    'Sanatorio Modelo Quilmes', 'Sanatorio Avellaneda', 'Clínica Modelo Lanús', 'Sanatorio San Juan (Lanús)',
+    'Sanatorio Juncal (Temperley)', 'Hospital Británico — Lomas de Zamora', 'Clínica Boedo (Lomas)',
+    'Clínica Monte Grande', 'Clínica Ima (Adrogué)', 'Sanatorio Modelo Adrogué', 'Nuevo Sanatorio Berazategui',
+    // GBA Oeste
+    'Sanatorio Nuestra Señora del Pilar (Ciudadela)', 'Casa Hospital San Juan de Dios (Ramos Mejía)',
+    'Sanatorio de la Trinidad Ramos Mejía', 'Sanatorio San Justo', 'Clínica Dres. Tachella (Haedo)',
+    'Clínica Modelo de Morón', 'Clínica Constituyentes (Morón)', 'Sanatorio del Oeste (Ituzaingó y Merlo)',
+    'Clínica Privada Provincial (Merlo)', 'Sanatorio Modelo de Caseros (Hurlingham)',
+    // Interior / costa
+    'Sanatorio Central Emhsa (Mar del Plata)', 'Hospital Privado de Comunidad (Mar del Plata)',
+    'Clínica Privada del Sol (Mar del Plata)', 'Sanatorio Belgrano (Mar del Plata)',
+    'Hospital Privado del Sur (Bahía Blanca)', 'Clínica Privada Bahiense (Bahía Blanca)',
+    'Hospital Italiano de La Plata', 'Hospital Privado Sudamericano (La Plata)', 'Sanatorio Ipensa (La Plata)',
+    'Sanatorio Tandil', 'Hospital Italiano Regional del Sur (Necochea)',
+  ],
+  cordoba: [
+    'Sanatorio Allende', 'Hospital Privado Universitario de Córdoba', 'Sanatorio Aconcagua', 'Sanatorio Mayo',
+    'Sanatorio Córdoba', 'Sanatorio Duarte Quirós', 'Clínica del Sol (Córdoba)', 'Sanatorio Privado Río Cuarto',
+    'Instituto Médico Río Cuarto', 'Clínica Mediterránea San Martín (Villa María)',
+  ],
+  'la-pampa': [
+    'Sanatorio Santa Rosa', 'Clínica García Salinas', 'Clínica Vivencias', 'Científica Damico',
+    'Clínica Regional (Gral. Pico)', 'Clínica Argentina (Gral. Pico)', 'Instituto Cardiovascular (Gral. Pico)',
+  ],
+  'san-luis': [
+    'Sanatorio Ramos Mejía', 'Sanatorio y Clínica Rivadavia', 'Sanatorio de la Merced', 'Clínica CERHU',
+    'Clínica Privada Italia', 'Hospital Privado de la Villa (Villa Mercedes)',
+  ],
+  mendoza: [
+    'Hospital Italiano Mendoza', 'Hospital Privado de Mendoza', 'Sanatorio Clínica de Cuyo', 'Sanatorio Fleming',
+    'Clínica Santa María', 'Sanatorio Central', 'Clínica Sanatorio Mitre', 'Sanatorio Regional',
+  ],
+  'san-juan': [
+    'Sanatorio Argentino', 'Hospital Privado (San Juan)', 'Sanatorio Mayo (San Juan)', 'Clínica Alvear',
+    'Sanatorio Almirante Brown', 'Clínica Parque Universitario',
+  ],
+  'la-rioja': [
+    'Sanatorio Rioja S.A.', 'Sanatorio del Colegio Médico', 'Maternidad Privada', 'Centro Médico Alberdi',
+    'Clínica Finocchietto', 'Centro Privado de Maternidad y Ginecología',
+  ],
+  catamarca: [
+    'Sanatorio Pasteur', 'Sanatorio Junín', 'Clínica Sagrado Corazón de Jesús', 'IGOM', 'IMC',
+  ],
+  santiago: [
+    'Sanatorio Alvear', 'Sanatorio San Francisco', 'Sanatorio Norte SRL', 'Clínica Modelo', 'Clínica Privada del Norte',
+  ],
+  tucuman: [
+    'Sanatorio 9 de Julio', 'Clínica Mayo (Tucumán)', 'Sanatorio del Norte SRL', 'Sanatorio Modelo (Tucumán)',
+    'Sanatorio Parque', 'Clínica del Pilar', 'Sanatorio Rivadavia', 'Instituto de Cardiología', 'Sanatorio CIMSA',
+    'Sanatorio Infantil San Lucas',
+  ],
+  salta: [
+    'IMAC', 'Clínica Güemes', 'Hospital Privado Santa Clara de Asís', 'Sanatorio Parque (Salta)', 'Sanatorio San Roque',
+    'Sanatorio El Carmen', 'Hospital Privado Tres Cerritos', 'Clínica San Rafael', 'Sanatorio Modelo S.A. (Salta)',
+    'Maternidad Privada Salta',
+  ],
+  jujuy: [
+    'Sanatorio y Clínica Lavalle', 'Sanatorio Los Lapachos', 'Sanatorio Ntra. Sra. del Rosario',
+    'Clínica del Niño y del Recién Nacido', 'Sanatorio Santa María (San Pedro)', 'Clínica Ledesma (Libertador Gral. San Martín)',
+  ],
+  'santa-fe': [
+    'Sanatorio Parque (Rosario)', 'Sanatorio Británico (Rosario)', 'Sanatorio Americano (Rosario)',
+    'Sanatorio de la Mujer (Rosario)', 'Sanatorio Norte (Rosario)', 'Hospital Español (Rosario)',
+    'Sanatorio Güemes (Santa Fe cap.)', 'Sanatorio San Gerónimo', 'Sanatorio Mayo (Santa Fe cap.)',
+    'Sanatorio Médico Quirúrgico',
+  ],
+  'entre-rios': [
+    'Sanatorio Río (Paraná)', 'Sanatorio La Entrerriana (Paraná)', 'Clínica Modelo (Paraná)',
+    'Sanatorio Concordia', 'Instituto Médico Quirúrgico Garat (Concordia)', 'Sanatorio Cometra (Gualeguaychú)',
+    'Sanatorio AGOS (Gualeguaychú)', 'Clínica Pronto (Gualeguaychú)',
+  ],
+  chaco: [
+    'Sanatorio Güemes (Resistencia)', 'Sanatorio La Sagrada Familia', 'Sanatorio Modelo (Chaco)',
+    'Sanatorio Chaco Oeste', 'Sanatorio Materno Infantil', 'Sanatorio Palacio',
+  ],
+  corrientes: [
+    'Sanatorio del Norte (Corrientes)', 'Sanatorio del Litoral', 'Sanatorio San Juan (Corrientes)',
+    'Clínica Maternal del Iberá',
+  ],
+  formosa: [
+    'Sanatorio Formosa', 'Sanatorio González Lelong', 'Clínica Servimed', 'Clínica Neoform', 'Clínica EMI',
+  ],
+  misiones: [
+    'Sanatorio IOT (Posadas)', 'Sanatorio Camino', 'Sanatorio Boratti', 'Sanatorio Posadas',
+  ],
+  neuquen: [
+    'Clínica Pasteur', 'Policlínico Neuquén', 'Sanatorio San Agustín', 'Clínica Materno Infantil (CMI)',
+  ],
+  'rio-negro': [
+    'Sanatorio San Carlos (Bariloche)', 'Hospital Privado Regional (Bariloche)', 'Sanatorio del Sol (Bariloche)',
+    'Clínica Roca (Gral. Roca)', 'Sanatorio Juan XXIII (Gral. Roca)', 'Sanatorio Austral (Viedma)', 'Clínica Viedma',
+  ],
+  chubut: [
+    'Sanatorio Asoc. Española de Socorros Mutuos (Comodoro Rivadavia)', 'Sanatorio Prosalud Austral',
+    'Sanatorio Rivadavia (Chubut)', 'Clínica del Valle (Chubut)', 'Sanatorio Trelew', 'Sanatorio de la Ciudad (Pto. Madryn)',
+    'Clínica San Camilo (Pto. Madryn)',
+  ],
+  'santa-cruz': [
+    'Sanatorio San Juan Bosco (Río Gallegos)', 'Medisur Policlínico del Atlántico', 'Sanatorio Integral San Benito',
+    'Clínica del Valle (Santa Cruz)',
+  ],
+  'tierra-fuego': [
+    'Clínica/Sanatorio San Jorge (Ushuaia)', 'Sanatorio Fueguino (Río Grande)', 'CEMEP (Río Grande)',
+  ],
+}
+
+// Swiss Medical tiene una red propia de más de 30 SMG Center: centros de
+// atención exclusivos para socios en todo el país, con turnos más rápidos
+// que la cartilla general. No listamos ubicaciones puntuales por ciudad
+// porque no tenemos ese detalle verificado — es un dato general de la marca.
+export const SMG_CENTER_NOTA = 'Swiss Medical suma más de 30 SMG Center: centros de atención propios y exclusivos para socios, con acceso a turnos más rápidos que en el resto de la cartilla.'
+
 export const sanatorios: Sanatorio[] = [
   {
     slug: 'hospital-italiano',

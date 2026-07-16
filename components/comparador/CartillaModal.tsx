@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { sanatoriosDePlan } from '@/lib/data/sanatorios'
+import { sanatoriosDePlan, REFERENCIA_POR_ZONA, SMG_CENTER_NOTA } from '@/lib/data/sanatorios'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import type { Plan, Prepaga } from '@/types'
 
@@ -18,6 +18,11 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
   const cartillaInfo = getCartillaInfo(prepaga.slug)
   const zonasConDato = new Set(['caba', 'buenos-aires', 'cordoba', 'santa-fe'])
   const hayDatoDeZona = zonasConDato.has(zonaKey)
+
+  const nombresVerificados = new Set(resultados.map((r) => r.sanatorio.nombre.toLowerCase()))
+  const referenciaZona = (REFERENCIA_POR_ZONA[zonaKey] ?? []).filter(
+    (nombre) => !nombresVerificados.has(nombre.toLowerCase())
+  )
 
   return (
     <div
@@ -42,12 +47,21 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
         </div>
 
         <div className="p-6 overflow-y-auto">
-          {resultados.length > 0 ? (
+          {prepaga.slug === 'swiss-medical' && (
+            <div className="flex items-start gap-2.5 bg-red-50 border border-red-100 rounded-xl px-3.5 py-3 mb-4">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-[#E8002D] flex-shrink-0 mt-0.5">
+                <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 2"/>
+              </svg>
+              <p className="text-xs text-gray-700 leading-relaxed">{SMG_CENTER_NOTA}</p>
+            </div>
+          )}
+
+          {resultados.length > 0 && (
             <>
               <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
-                Sanatorios de alta complejidad que cubre este plan
+                Sanatorios que cubre este plan puntual
               </p>
-              <div className="space-y-3 mb-4">
+              <div className="space-y-3 mb-5">
                 {resultados.map(({ sanatorio, cobertura }) => {
                   const esLocal = hayDatoDeZona && sanatorio.zonas.some((z) =>
                     (zonaKey === 'caba' && z === 'caba') ||
@@ -73,10 +87,12 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
                 })}
               </div>
             </>
-          ) : (
-            <div className="mb-4">
+          )}
+
+          {resultados.length === 0 && (
+            <div className="mb-5">
               <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                Todavía no tenemos cargada la cartilla detallada de {prepaga.nombre} en {provinciaNombre || 'tu zona'}. Esto es lo que incluye el plan en general:
+                Todavía no tenemos verificado qué sanatorios cubre puntualmente este plan. Esto es lo que incluye en general:
               </p>
               <ul className="space-y-1.5">
                 {plan.cobertura.map((c) => (
@@ -91,19 +107,43 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
             </div>
           )}
 
-          {cartillaInfo && (
-            <div className="pt-4 border-t border-gray-100">
-              <p className="text-xs text-gray-500 mb-2">Para ver la cartilla completa y actualizada:</p>
-              <Link
+          {referenciaZona.length > 0 && (
+            <div className="mb-5">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                Red de referencia en {provinciaNombre || 'tu zona'}
+              </p>
+              <p className="text-[11px] text-gray-400 mb-3 leading-relaxed">
+                Sanatorios de mayor complejidad de la zona. Confirmá con {prepaga.nombre} cuáles están incluidos en tu cartilla exacta.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {referenciaZona.map((nombre) => (
+                  <span key={nombre} className="text-[11px] px-2.5 py-1 bg-gray-50 text-gray-600 border border-gray-200 rounded-full">
+                    {nombre}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="pt-4 border-t border-gray-100">
+            <p className="text-xs text-gray-500 mb-2">¿Querés ver el detalle completo?</p>
+            <Link
+              href={`/cartillas/${prepaga.slug}`}
+              className="text-sm font-semibold text-[#E8002D] hover:underline"
+            >
+              Guía de cartilla de {prepaga.nombre} →
+            </Link>
+            {cartillaInfo && (
+              <a
                 href={cartillaInfo.urlCartilla}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-semibold text-[#E8002D] hover:underline"
+                className="block text-xs text-gray-400 hover:text-gray-600 mt-1.5 transition-colors"
               >
-                Buscador oficial de {prepaga.nombre} →
-              </Link>
-            </div>
-          )}
+                Ver cartilla oficial en la web de {prepaga.nombre} ↗
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
