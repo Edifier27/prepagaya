@@ -6,6 +6,7 @@ import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
 import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
 import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
@@ -52,7 +53,7 @@ function buildPlanFAQs(plan: Plan, prep: Prepaga) {
   return [
     {
       q: `¿Cuánto cuesta el ${plan.nombre} de ${prep.nombre}?`,
-      a: `El ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes para una persona de 30 años con IVA incluido. El precio final varía según tu edad: a mayor edad, mayor es el costo mensual. Cotizá en PrepagaYa para ver tu precio exacto.`,
+      a: `El precio del ${plan.nombre} varía según tu edad y tu provincia: a mayor edad, mayor es el costo mensual. Cotizá gratis en PrepagaYa para ver el precio exacto de tu perfil, o pedí que un asesor te contacte con el valor sin necesidad de cotizar primero.`,
     },
     {
       q: `¿El ${plan.nombre} tiene copago en consultas?`,
@@ -232,21 +233,20 @@ export default async function PlanPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Price + CTA */}
+          {/* CTA — sin precio: se cotiza por edad en el comparador o se pide directo */}
           <div className="bg-white rounded-2xl border-2 border-[#E8002D] p-6 mb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <div className="text-xs text-gray-400 mb-1">Precio base — persona 30 años · con IVA · {PRECIO_ACTUALIZADO}</div>
-              <div className="text-4xl font-black text-[#E8002D] tabular-nums">{formatPrecio(plan.precio)}</div>
-              <div className="text-sm text-gray-500 mt-0.5">/mes</div>
+              <div className="text-sm font-bold text-gray-900">{prep.nombre} {plan.nombre}</div>
+              <div className="text-xs text-gray-400 mt-0.5">El precio final depende de tu edad y provincia</div>
             </div>
             <div className="flex flex-col gap-2 sm:items-end">
+              <ContratarPlanButton prepagaNombre={prep.nombre} planNombre={plan.nombre} />
               <Link
                 href="/comparador"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
+                className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium"
               >
-                Cotizar para mi edad →
+                O cotizá para mi edad primero →
               </Link>
-              <p className="text-xs text-gray-400 text-center">El precio varía según tu edad</p>
             </div>
           </div>
 
