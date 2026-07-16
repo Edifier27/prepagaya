@@ -1,57 +1,28 @@
-﻿'use client'
+'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useState } from 'react'
 
-const CUPON_CODE = 'SWISS15'
+interface Props {
+  open: boolean
+  onClose: () => void
+}
 
-export function ExitIntentPopup(): React.ReactElement | null {
-  const [visible, setVisible] = useState(false)
+export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement | null {
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
-  const fired = useRef(false)
 
-  useEffect(() => {
-    const dismissed = sessionStorage.getItem('exit-popup-dismissed')
-    if (dismissed) return
+  if (!open) return null
 
-    const onMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 10 && !fired.current) {
-        fired.current = true
-        setTimeout(() => setVisible(true), 300)
-      }
-    }
+  const ok = nombre.trim().length >= 2 && celular.trim().length >= 8
 
-    // Mobile: inactividad 90 segundos sin interacción
-    let idleTimer: ReturnType<typeof setTimeout>
-    const resetIdle = () => {
-      clearTimeout(idleTimer)
-      idleTimer = setTimeout(() => {
-        if (!fired.current) {
-          fired.current = true
-          setVisible(true)
-        }
-      }, 90_000)
-    }
-
-    document.addEventListener('mouseleave', onMouseLeave)
-    document.addEventListener('touchstart', resetIdle, { passive: true })
-    resetIdle()
-
-    return () => {
-      document.removeEventListener('mouseleave', onMouseLeave)
-      document.removeEventListener('touchstart', resetIdle)
-      clearTimeout(idleTimer)
-    }
-  }, [])
-
-  const dismiss = () => {
-    setVisible(false)
-    sessionStorage.setItem('exit-popup-dismissed', '1')
+  function handleClose() {
+    setNombre(''); setCelular(''); setStatus('idle')
+    onClose()
   }
 
-  const handleSubmit = async () => {
-    if (!nombre.trim() || celular.trim().length < 8) return
+  async function handleSubmit() {
+    if (!ok) return
     setStatus('loading')
     try {
       await fetch('/api/leads', {
@@ -61,49 +32,38 @@ export function ExitIntentPopup(): React.ReactElement | null {
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
-          fuente: 'cupon-swiss-15',
-          prepaga_interes: `Swiss Medical — Cupón ${CUPON_CODE} (15% OFF)`,
+          fuente: 'quiero-asesoramiento',
         }),
       })
       setStatus('success')
-      setTimeout(dismiss, 3000)
+      setTimeout(handleClose, 3000)
     } catch {
       setStatus('idle')
     }
   }
 
-  const ok = nombre.trim().length >= 2 && celular.trim().length >= 8
-
-  if (!visible) return null
-
   return (
     <div
       className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4"
-      onClick={(e) => { if (e.target === e.currentTarget) dismiss() }}
+      onClick={(e) => { if (e.target === e.currentTarget) handleClose() }}
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
       <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden">
-        {/* Header */}
         <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] px-6 py-5 text-white">
           <button
-            onClick={dismiss}
+            onClick={handleClose}
             className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
+            aria-label="Cerrar"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-5 h-5">
               <path d="M18 6L6 18M6 6l12 12"/>
             </svg>
           </button>
-          <div className="text-2xl mb-1">No te vayas</div>
-          <p className="text-red-100 text-sm leading-relaxed mb-3">
-            Te regalamos un cupón con 15% OFF en todos los planes de Swiss Medical.
+          <div className="text-2xl mb-1">Quiero asesoramiento</div>
+          <p className="text-red-100 text-sm leading-relaxed">
+            Dejanos tus datos y un asesor te contacta para ayudarte a elegir la mejor prepaga.
           </p>
-          <div className="inline-flex items-center gap-2 bg-white/15 border border-dashed border-white/50 rounded-lg px-3 py-1.5">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-              <path d="M9 5H5a2 2 0 00-2 2v3a2 2 0 002 2 2 2 0 010 4 2 2 0 00-2 2v3a2 2 0 002 2h4M15 5h4a2 2 0 012 2v3a2 2 0 01-2 2 2 2 0 000 4 2 2 0 012 2v3a2 2 0 01-2 2h-4M9 3v18"/>
-            </svg>
-            <span className="font-black tracking-widest text-sm">{CUPON_CODE}</span>
-          </div>
         </div>
 
         <div className="p-6">
@@ -114,8 +74,8 @@ export function ExitIntentPopup(): React.ReactElement | null {
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
                 </svg>
               </div>
-              <p className="font-bold text-gray-900 mb-1">¡Cupón activado!</p>
-              <p className="text-sm text-gray-500">Un asesor te contacta para aplicar el 15% OFF a tu plan Swiss Medical.</p>
+              <p className="font-bold text-gray-900 mb-1">¡Listo!</p>
+              <p className="text-sm text-gray-500">Un asesor te contacta a la brevedad.</p>
             </div>
           ) : (
             <>
@@ -150,11 +110,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
                 disabled={!ok || status === 'loading'}
                 className="w-full py-3.5 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition-colors"
               >
-                {status === 'loading' ? 'Enviando...' : 'ACCEDER AL 15% OFF'}
-              </button>
-
-              <button onClick={dismiss} className="w-full text-center text-xs text-gray-400 hover:text-gray-600 mt-3 py-1">
-                No gracias, prefiero seguir solo
+                {status === 'loading' ? 'Enviando...' : 'Solicitar asesoramiento'}
               </button>
             </>
           )}

@@ -5,7 +5,6 @@ import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BottomNav } from '@/components/layout/BottomNav'
-import { FloatingActions } from '@/components/ui/FloatingActions'
 import { ExitIntentPopup } from '@/components/ui/ExitIntentPopup'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/utils'
 
@@ -51,7 +50,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer />
         <BottomNav />
-        <FloatingActions />
         <ExitIntentPopup />
         <Analytics />
       </body>

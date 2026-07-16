@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
-import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { MiniBuilding, MiniLeaf, MiniElder, MiniCross } from '@/components/ui/CategoryIcon'
 
@@ -99,9 +98,8 @@ export function Header() {
                     <Link
                       key={p.slug}
                       href={`/prepagas/${p.slug}`}
-                      className="flex items-center gap-3 px-3 py-1.5 text-sm text-gray-700 hover:bg-red-50 hover:text-[#E8002D] transition-colors"
+                      className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-red-50 hover:text-[#E8002D] transition-colors"
                     >
-                      <PrepagaLogo slug={p.slug} nombre={p.nombre} colorPrimario={p.colorPrimario} size="xs" />
                       {p.nombre}
                     </Link>
                   ))}

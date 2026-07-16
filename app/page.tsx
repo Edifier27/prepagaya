@@ -95,11 +95,6 @@ const RANKING_ORDER = [
   'hospital-italiano', 'hominis', 'federada-salud',
 ]
 
-// Iniciales para avatar
-function iniciales(nombre: string) {
-  return nombre.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
-}
-
 export default function HomePage(): React.ReactElement {
   const prepagasRanking = RANKING_ORDER
     .map(slug => prepagas.find(p => p.slug === slug))
@@ -288,8 +283,6 @@ export default function HomePage(): React.ReactElement {
                 pos === 2 ? 'bg-gray-400 text-white' :
                 pos === 3 ? 'bg-amber-700 text-white' :
                             'bg-gray-100 text-gray-500'
-              const initials = iniciales(prep.nombre)
-
               return (
                 <Link
                   key={prep.slug}
@@ -299,20 +292,8 @@ export default function HomePage(): React.ReactElement {
                   }`}
                 >
                   {/* Posición */}
-                  <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-black flex-shrink-0 ${medalColor}`}>
-                    {pos <= 3 ? (
-                      <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                      </svg>
-                    ) : pos}
-                  </div>
-
-                  {/* Avatar */}
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-black flex-shrink-0"
-                    style={{ backgroundColor: prep.colorPrimario }}
-                  >
-                    {initials}
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-base font-black flex-shrink-0 ${medalColor}`}>
+                    {pos}
                   </div>
 
                   {/* Info */}
