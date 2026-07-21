@@ -1066,6 +1066,171 @@ export const guias: GuiaData[] = [
     keywords: ['requisitos para afiliarse a una prepaga', 'documentacion alta prepaga', 'declaracion jurada salud prepaga', 'afiliacion prepaga extranjeros'],
     relacionadas: ['como-contratar-prepaga-online', 'preexistencias-que-son-como-funcionan', 'derivar-obra-social-a-prepaga'],
   },
+  {
+    slug: 'seguro-medico-obligatorio-extranjeros',
+    titulo: 'Seguro médico obligatorio en Argentina: guía para extranjeros 2026',
+    metaDescripcion: 'El Decreto 366/25 hizo obligatorio el seguro médico para entrar a Argentina. Qué exige Migraciones, quiénes están exentos y cuándo conviene una prepaga local en vez de asistencia al viajero.',
+    tiempoLectura: 7,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-07-21',
+    contenido: {
+      intro: 'Desde mediados de 2025, entrar a Argentina sin cobertura médica dejó de ser una opción: el Decreto 366/25 exige que todo extranjero no residente cuente con un seguro médico válido durante su estadía, sin importar si viene por turismo, trabajo o estudio. Y para quienes se quedan a vivir, la pregunta cambia: ¿alcanza con la asistencia al viajero o conviene pasarse a una prepaga local? Esta guía responde las dos cosas.',
+      secciones: [
+        {
+          titulo: 'Qué exige el Decreto 366/25',
+          cuerpo: 'Desde julio de 2025 rige la obligación de contar con seguro médico para todos los extranjeros que ingresan como residentes transitorios o temporarios, por cualquier vía (aérea, marítima o terrestre). La cobertura debe incluir atención primaria y de emergencia, internación por accidente o enfermedad y asistencia durante toda la estadía. Los residentes permanentes y los ciudadanos naturalizados están exentos del requisito.',
+        },
+        {
+          titulo: 'Asistencia al viajero vs. prepaga local',
+          cuerpo: 'Para una visita corta, una asistencia al viajero cumple el requisito y es más barata. Pero si venís a radicarte —trabajo, estudio de largo plazo, residencia—, la ecuación se invierte: la asistencia tiene topes de reintegro por evento, no cubre tratamientos programados ni enfermedades crónicas, y no te da médico de cabecera. Una prepaga local te da cartilla completa, internación sin tope, medicamentos con descuento y continuidad de tratamiento, pagando lo mismo que un residente argentino de tu edad.',
+        },
+        {
+          titulo: 'Cómo afiliarte a una prepaga siendo extranjero',
+          cuerpo: 'La mayoría de las prepagas grandes aceptan la afiliación con pasaporte y el trámite de residencia iniciado (residencia precaria); algunas piden un CDI o CUIL provisorio para la facturación. El precio es el mismo que para cualquier persona de tu edad: la nacionalidad no cambia la cuota. Al momento de contratar, pedí el certificado de cobertura — sirve como comprobante ante Migraciones para el trámite de residencia.',
+        },
+        {
+          titulo: 'Cuánto cuesta en 2026',
+          cuerpo: 'Para un adulto de 30 años, los planes de entrada arrancan alrededor de $170.000 por mes y los premium superan el $1.000.000. Entre medio hay una franja amplia ($300.000 a $500.000) con planes sin copago y sanatorios de primer nivel, que es donde se ubica la mayoría de los expatriados. La cuota sube con la edad, así que cotizá con tu edad real para ver el número exacto.',
+        },
+        {
+          titulo: 'Errores comunes de extranjeros al elegir cobertura',
+          cuerpo: 'Los tres más frecuentes: contratar la asistencia al viajero más barata y descubrir el tope de reintegro recién en la primera internación; elegir prepaga por marca sin verificar la cartilla de la ciudad donde efectivamente van a vivir (la red fuera de Buenos Aires cambia mucho entre empresas); y no declarar preexistencias en la declaración jurada, lo que puede complicar coberturas futuras. La ley argentina prohíbe rechazar afiliaciones por preexistencia — declarala y evitá problemas.',
+        },
+      ],
+      conclusion: 'Si venís de visita, cualquier seguro que cumpla el Decreto 366/25 alcanza. Si venís a quedarte, una prepaga local es la única cobertura completa: mismo precio que un argentino, cartilla real y certificado válido para Migraciones. Compará los planes con precios reales y elegí según la ciudad donde vas a vivir.',
+    },
+    faq: [
+      {
+        q: '¿El seguro médico es obligatorio también para turistas?',
+        a: 'Sí. Desde julio de 2025 el requisito alcanza a todos los extranjeros no residentes, incluidos turistas, sin importar la vía de ingreso. Los residentes permanentes y naturalizados están exentos.',
+      },
+      {
+        q: '¿Puedo usar el hospital público siendo extranjero?',
+        a: 'El sistema público argentino atiende urgencias a cualquier persona. Pero el Decreto 366/25 exige igualmente contar con seguro al ingresar, y para radicarte la cobertura privada te evita las demoras del sistema público en consultas programadas y estudios.',
+      },
+      {
+        q: '¿Qué documento necesito para contratar una prepaga sin DNI?',
+        a: 'Depende de la empresa: en general pasaporte vigente y residencia precaria (constancia del trámite migratorio iniciado). Algunas piden CDI/CUIL provisorio para facturar. Cotizá y consultá tu caso — un asesor te confirma qué empresas aceptan tu documentación hoy.',
+      },
+      {
+        q: '¿La prepaga me sirve como comprobante para la residencia?',
+        a: 'Sí: el certificado de cobertura que emite la prepaga acredita cobertura médica ante Migraciones para los trámites de residencia temporaria.',
+      },
+    ],
+    keywords: ['seguro medico obligatorio argentina', 'decreto 366/25 seguro medico', 'prepaga para extranjeros', 'prepaga sin dni argentina', 'health insurance argentina requirement'],
+    relacionadas: ['como-afiliarse-prepaga-requisitos', 'prepaga-sin-periodo-carencia', 'como-contratar-prepaga-online'],
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'medife'],
+  },
+  {
+    slug: 'prepaga-o-pami-jubilados',
+    titulo: '¿Prepaga o PAMI? Guía completa para jubilados 2026',
+    metaDescripcion: 'Jubilados en Argentina: qué conviene entre PAMI y una prepaga, qué empresas aceptan mayores, el tope legal de 3x entre franjas etarias y la regla de los 65 años con 10 de antigüedad.',
+    tiempoLectura: 8,
+    categoria: 'Perfiles',
+    fechaActualizacion: '2026-07-21',
+    contenido: {
+      intro: 'Al jubilarte, el sistema te asigna PAMI por defecto — pero no estás obligado a quedarte ahí, y tampoco estás obligado a resignar la prepaga que tuviste toda tu vida. La ley te protege más de lo que la mayoría cree: ninguna empresa puede rechazarte por edad, hay un tope legal a lo que pueden cobrarte, y si tenés antigüedad como afiliado, ni siquiera pueden aumentarte la cuota por cumplir años. Esta guía ordena las opciones reales de un jubilado en 2026.',
+      secciones: [
+        {
+          titulo: 'No pueden rechazarte por edad: es ley',
+          cuerpo: 'La Ley 26.682 prohíbe rechazar afiliaciones por edad. Cualquier prepaga tiene que aceptarte a los 60, a los 70 o a los 85. Lo que sí pueden hacer es cobrarte la cuota de tu franja etaria, que es más alta — pero con un límite que muchos desconocen: la cuota de la franja más alta no puede superar TRES VECES la de la más baja. Si te pasan un presupuesto que rompe esa relación, está fuera de la norma.',
+        },
+        {
+          titulo: 'La regla de oro: 65 años + 10 de antigüedad',
+          cuerpo: 'Si tenés más de 65 años y más de 10 años de antigüedad continua en la misma prepaga, la empresa no puede aplicarte aumentos por edad: solo los aumentos generales autorizados que pagan todos. Esta regla convierte la antigüedad en un activo valioso — antes de darte de baja de una prepaga de toda la vida "porque está cara", comparalo contra lo que pagarías entrando de nuevo a otra a tu edad actual.',
+        },
+        {
+          titulo: 'Qué te da PAMI y qué no',
+          cuerpo: 'PAMI cubre la canasta completa de prestaciones para jubilados, con medicamentos gratuitos o con descuentos altos, y es gratis (se descuenta de los aportes ya hechos). Sus limitaciones conocidas: demoras en turnos con especialistas, cartilla acotada según la zona y burocracia en autorizaciones de alta complejidad. Para muchos jubilados sanos, PAMI + atención puntual privada paga por consulta es suficiente. Para quienes tienen condiciones crónicas o quieren acceso rápido a sanatorios privados, la prepaga marca la diferencia.',
+        },
+        {
+          titulo: 'Las tres estrategias posibles',
+          cuerpo: 'Opción 1 — Solo PAMI: costo cero, cobertura completa en los papeles, con las demoras del sistema. Opción 2 — Prepaga pura: pagás la cuota de tu franja etaria (en 2026, desde ~$250.000/mes en planes de entrada para +65) y accedés a la cartilla privada completa. Opción 3 — La mixta: mantenés PAMI para medicamentos (su punto más fuerte) y contratás una prepaga o un plan parcial para consultas e internación. Varias empresas ofrecen planes específicos para mayores que complementan PAMI a menor costo que un plan completo.',
+        },
+        {
+          titulo: 'Qué empresas aceptan mayores y qué mirar al cotizar',
+          cuerpo: 'Todas están obligadas a aceptarte; en la práctica, las que más afilian mayores de 60 son OSDE, Swiss Medical, Sancor Salud y Galeno, además de empresas regionales con planes senior. Al cotizar, mirá tres cosas: que la cartilla tenga los sanatorios donde ya te atendés, la cobertura de medicamentos crónicos (el gasto que más crece con la edad), y la letra chica de internación domiciliaria y rehabilitación, las prestaciones que más se usan después de los 70.',
+        },
+      ],
+      conclusion: 'La decisión no es PAMI o prepaga en abstracto: es cuánto valorás el acceso rápido y qué margen tiene tu jubilación. Con el tope legal de 3x y la regla de 65+10 a tu favor, cotizá tu edad real y comparalo contra lo que hoy no te da PAMI. Es una cuenta que cada jubilado puede hacer en cinco minutos con precios reales.',
+    },
+    faq: [
+      {
+        q: '¿Una prepaga puede rechazarme por tener 70 años?',
+        a: 'No. La Ley 26.682 prohíbe rechazar afiliaciones por edad. Pueden cobrarte la cuota de tu franja etaria, pero con tope: la franja más alta no puede pagar más de 3 veces lo que paga la más baja.',
+      },
+      {
+        q: '¿Me pueden aumentar la cuota por cumplir años?',
+        a: 'Si tenés más de 65 años y más de 10 años de antigüedad en esa prepaga, no pueden aplicarte aumentos por edad — solo los aumentos generales autorizados. Con menos antigüedad, pueden ajustarte al cambiar de franja etaria, dentro de los topes.',
+      },
+      {
+        q: '¿Puedo tener PAMI y una prepaga al mismo tiempo?',
+        a: 'Sí. Muchos jubilados mantienen PAMI (sobre todo por la cobertura de medicamentos) y suman una prepaga para consultas, especialistas e internación privada. También existen planes parciales pensados como complemento de PAMI.',
+      },
+      {
+        q: '¿Cuánto cuesta una prepaga para un jubilado en 2026?',
+        a: 'Depende de la edad y el plan: los planes de entrada para mayores de 65 arrancan alrededor de $250.000/mes y los completos superan los $500.000. Cotizá con tu edad real para ver el precio exacto — el número genérico de las notas de los diarios no aplica a tu caso.',
+      },
+    ],
+    keywords: ['prepaga o pami jubilados', 'prepagas que aceptan jubilados', 'prepaga adultos mayores 2026', 'pami vs prepaga', 'aumento prepaga por edad tope'],
+    relacionadas: ['prepaga-para-mayores-60', 'cuota-prepaga-por-edad', 'derivar-obra-social-a-prepaga'],
+    prepagasRelacionadas: ['osde', 'swiss-medical', 'sancor-salud', 'galeno'],
+  },
+  {
+    slug: 'sin-trabajo-obra-social',
+    titulo: 'Me quedé sin trabajo: ¿qué pasa con mi obra social y qué opciones tengo?',
+    metaDescripcion: 'Si te despidieron o renunciaste, conservás la obra social 3 meses. Qué hacer después: seguro de desempleo, monotributo, prepaga directa. Plazos y opciones 2026.',
+    tiempoLectura: 6,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-07-21',
+    contenido: {
+      intro: 'Perder el trabajo no significa quedarte sin cobertura médica al día siguiente: la ley te da un colchón de 3 meses, y después hay al menos cuatro caminos para no quedar descubierto. Lo importante es conocer los plazos, porque cada opción tiene su ventana. Esta guía te ordena qué hacer, semana a semana, desde el día del despido o la renuncia.',
+      secciones: [
+        {
+          titulo: 'Los primeros 3 meses: seguís cubierto por ley',
+          cuerpo: 'Si trabajaste en relación de dependencia al menos 6 meses, conservás tu obra social (y la de tu grupo familiar) durante los 3 meses posteriores al fin del contrato, sin hacer ningún trámite y sin pagar nada. Aplica tanto para despido como para renuncia. Este período es tu ventana para decidir con calma qué viene después — no la desperdicies esperando al día 89.',
+        },
+        {
+          titulo: 'Si te despidieron sin causa: el seguro de desempleo extiende la cobertura',
+          cuerpo: 'La Prestación por Desempleo de ANSES no es solo el cobro mensual: incluye la continuidad de tu obra social durante todo el período de la prestación (que puede llegar hasta 12 meses según tu antigüedad). Si tenés derecho al seguro de desempleo, tramitalo dentro de los 90 días hábiles del despido — extendés tu cobertura de salud gratis mientras buscás trabajo.',
+        },
+        {
+          titulo: 'El camino del monotributo',
+          cuerpo: 'Si arrancás a facturar como monotributista, tu cuota mensual incluye el componente de obra social: elegís una del listado (OSDE vía derivación, OSECAC, OSDEPYM y muchas más) y quedás cubierto vos, con un adicional por cada familiar que sumes. Es la opción más económica para independientes, y podés potenciarla derivando esos aportes a un plan de prepaga con derivación (pagás la diferencia entre tu aporte y la cuota del plan).',
+        },
+        {
+          titulo: 'Prepaga directa: cobertura sin depender del empleo',
+          cuerpo: 'La prepaga como particular no depende de tu situación laboral: contratás y pagás la cuota completa. Es la opción más cara pero la única que no se cae si tu situación vuelve a cambiar. Punto importante: las prestaciones del PMO no tienen carencia, así que si contratás antes de que venzan tus 3 meses de gracia, la transición es sin ningún hueco de cobertura.',
+        },
+        {
+          titulo: 'El error a evitar: dejar pasar los 3 meses sin decidir',
+          cuerpo: 'El escenario más caro es quedarse descubierto y necesitar atención: una internación privada sin cobertura se factura por día en cifras que superan cualquier cuota anual. Si al mes 2 todavía no conseguiste trabajo, activá una de las opciones: seguro de desempleo si te corresponde, monotributo si vas a facturar, o prepaga particular aunque sea con un plan de entrada — después la escalás.',
+        },
+      ],
+      conclusion: 'Tenés 3 meses de aire garantizados por ley y cuatro caminos para después: seguro de desempleo (hasta 12 meses más, gratis), monotributo (la más económica), derivación de aportes a prepaga, o prepaga particular (la más completa). La única mala decisión es no tomar ninguna antes de que se cumpla el plazo.',
+    },
+    faq: [
+      {
+        q: '¿Cuánto tiempo conservo la obra social después de renunciar?',
+        a: 'Tres meses desde el fin del contrato, igual que en un despido, siempre que hayas estado al menos 6 meses en relación de dependencia. Cubre también a tu grupo familiar y no requiere trámite.',
+      },
+      {
+        q: '¿El seguro de desempleo incluye obra social?',
+        a: 'Sí. Mientras cobrás la Prestación por Desempleo de ANSES mantenés tu obra social, hasta 12 meses según tu antigüedad laboral. Es la extensión de cobertura más barata que existe: gratis.',
+      },
+      {
+        q: '¿Puedo contratar una prepaga estando desempleado?',
+        a: 'Sí. Como particular no necesitás recibo de sueldo: pagás la cuota completa del plan. Y si después conseguís trabajo o te hacés monotributista, podés rearmar el esquema derivando aportes para bajar el costo.',
+      },
+      {
+        q: '¿Qué pasa si tengo un tratamiento en curso cuando pierdo el trabajo?',
+        a: 'Durante los 3 meses de continuidad tu cobertura sigue igual, tratamientos incluidos. Si después pasás a una prepaga, las prestaciones del PMO (incluida la medicación crónica y oncológica) no admiten carencia: la cobertura arranca desde el día uno.',
+      },
+    ],
+    keywords: ['me quede sin trabajo obra social', 'cuanto dura la obra social despues del despido', 'obra social despues de renunciar', 'cobertura medica sin trabajo', 'prepaga desempleado'],
+    relacionadas: ['obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'derivar-obra-social-a-prepaga'],
+    prepagasRelacionadas: ['sancor-salud', 'medife', 'prevencion-salud'],
+  },
 ]
 
 export function getGuiaBySlug(slug: string): GuiaData | undefined {

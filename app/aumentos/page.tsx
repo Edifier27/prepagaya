@@ -63,6 +63,18 @@ const jsonLd = [
   },
   {
     '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: 'Índice de aumentos de medicina prepaga en Argentina',
+    description: 'Serie mensual de aumentos porcentuales de las cuotas de medicina prepaga en Argentina, con acumulado anual y comparación contra inflación. Actualización mensual con precios de lista relevados.',
+    url: `${SITE_URL}/aumentos`,
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    creator: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    temporalCoverage: '2026-01/..',
+    spatialCoverage: 'Argentina',
+    keywords: ['medicina prepaga', 'aumentos', 'salud privada', 'Argentina'],
+  },
+  {
+    '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: faqs.map(({ q, a }) => ({
       '@type': 'Question',
@@ -296,6 +308,34 @@ export default function AumentosPage() {
                 <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">{a}</div>
               </details>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Metodología + cómo citar (informe de referencia para prensa) */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Metodología y uso de estos datos</h2>
+          <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6 space-y-4">
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Este informe se actualiza el primer día hábil de cada mes con los porcentajes de aumento comunicados por
+              las principales empresas de medicina prepaga y los precios de lista relevados directamente por el equipo
+              de {SITE_NAME} para un adulto de 30 años (IVA incluido). El promedio mensual pondera las empresas de mayor
+              cantidad de afiliados. La proyección del mes siguiente se estima con la inflación de dos meses atrás, el
+              mecanismo de ajuste que usa el sector desde la desregulación.
+            </p>
+            <div className="border-t border-gray-200 pt-4">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">¿Sos periodista o investigador?</p>
+              <p className="text-sm text-gray-600 leading-relaxed mb-2">
+                Estos datos pueden citarse libremente mencionando la fuente. Cita sugerida:
+              </p>
+              <p className="text-sm bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-700 font-mono">
+                Fuente: {SITE_NAME} — Índice de aumentos de medicina prepaga, {PRECIO_ACTUALIZADO}. prepagaya.com.ar/aumentos
+              </p>
+              <p className="text-xs text-gray-400 mt-3">
+                Para acceder a la serie completa por empresa y plan, o coordinar una nota, escribinos a hola@prepagaya.com.ar — respondemos en el día.
+              </p>
+            </div>
           </div>
         </div>
       </section>

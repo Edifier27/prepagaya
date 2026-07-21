@@ -44,6 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/historial-precios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${BASE}/glosario`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/privacidad`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE}/en/health-insurance-argentina`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
   ]
 
   const prepagaRoutes: MetadataRoute.Sitemap = prepagas.flatMap((p) => [
@@ -70,8 +71,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  // Ciudades cuya provincia ya migró al silo /prepagas/[provincia] (301 en next.config)
-  const CIUDADES_MIGRADAS = new Set(provinciasSEO.map((p) => p.slug))
+  // Ciudades cuya provincia ya migró al silo /prepagas/[provincia] (301 en next.config).
+  // 'rosario' redirige a la localidad /prepagas/santa-fe/rosario.
+  const CIUDADES_MIGRADAS = new Set([...provinciasSEO.map((p) => p.slug), 'rosario'])
   const ciudadRoutes: MetadataRoute.Sitemap = ciudades
     .filter((c) => !CIUDADES_MIGRADAS.has(c.slug))
     .map((c) => ({

@@ -284,6 +284,262 @@ export const provinciasSEO: ProvinciaSEO[] = [
     ],
     fechaVerificacion: '2026-07-14',
   },
+  {
+    slug: 'santa-fe',
+    nombre: 'Santa Fe',
+    zonaKey: 'santa-fe',
+    capitalNombre: 'Rosario y Santa Fe capital',
+    descripcion:
+      'Santa Fe es la cuna de la medicina prepaga del interior: acá nacieron Sancor Salud y Prevención Salud (Sunchales), Federada Salud (Rosario) y Jerárquicos Salud (Santa Fe capital). El resultado es el mercado más competitivo del país fuera de Buenos Aires, con dos polos privados fuertes: Rosario (Sanatorio Parque, Británico, Americano, de la Mujer) y Santa Fe capital (Sanatorio Güemes, San Gerónimo, Mayo). Las nacionales premium compiten fuerte en Rosario; en el interior provincial, las regionales suelen tener mejor cartilla efectiva.',
+    rankingIntro:
+      'Ranking según cartilla efectiva en la provincia de Santa Fe. Con cuatro prepagas de origen santafesino operando en su propia casa, acá las regionales juegan de local: el tamaño nacional pesa menos que en cualquier otra provincia.',
+    prepagas: [
+      {
+        slug: 'sancor-salud', nombre: 'Sancor Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Juega de local: nació en Sunchales y su cartilla santafesina es de las más profundas de la empresa, tanto en Rosario y la capital como en el interior productivo (Rafaela, Venado Tuerto, Reconquista).',
+        cartillaLocal: ['Origen y casa central en Sunchales', 'Cartilla profunda en Rosario, Santa Fe capital e interior', 'Cartillas provinciales publicadas (PDF oficial)'],
+      },
+      {
+        slug: 'federada-salud', nombre: 'Federada Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Nacida en Rosario, con 250+ agencias en el país y 60.000+ profesionales. En su provincia de origen tiene una de las redes más consolidadas, especialmente fuerte en el sur santafesino.',
+        cartillaLocal: ['Origen rosarino con red histórica en la provincia', 'Agencias de atención en las principales ciudades', 'Cobertura consolidada en el corredor Rosario–Santa Fe'],
+      },
+      {
+        slug: 'swiss-medical', nombre: 'Swiss Medical', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Presencia consolidada en Rosario con cartilla premium en los grandes sanatorios de la ciudad. Es la opción de gama alta más elegida del sur provincial.',
+        cartillaLocal: ['Cartilla premium en Rosario', 'Acceso a los principales sanatorios privados', 'Menor densidad en el interior provincial'],
+      },
+      {
+        slug: 'osde', nombre: 'OSDE', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Filiales en Rosario y Santa Fe capital con la red abierta más amplia del segmento premium en ambas ciudades.',
+        cartillaLocal: ['Filiales en Rosario y Santa Fe capital', 'Red premium en los dos polos privados de la provincia'],
+      },
+      {
+        slug: 'prevencion-salud', nombre: 'Prevención Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'La otra sunchalense (grupo Sancor Seguros): red nacional con fuerza particular en su provincia de origen y planes accesibles con cobertura nacional.',
+        cartillaLocal: ['Casa central en Sunchales', 'Red en capital, Rosario e interior', 'Respaldo del grupo Sancor Seguros'],
+      },
+      {
+        slug: 'galeno', nombre: 'Galeno', enSitio: true, fuerza: 'media', verificado: true,
+        resumen: 'Sucursales en Rosario y Santa Fe capital, con cobertura nacional por convenio. Sus sanatorios propios (Trinidad) están en Buenos Aires.',
+        cartillaLocal: ['Sucursales en Rosario y Santa Fe capital', 'Atención por cartilla de convenio'],
+      },
+      {
+        slug: 'medife', nombre: 'Medifé', enSitio: true, fuerza: 'media', verificado: false,
+        resumen: 'Red nacional con buena relación precio-calidad y presencia razonable en Rosario. Para el interior provincial conviene verificar la cartilla al cotizar.',
+        cartillaLocal: ['Cobertura nacional declarada', 'Cartilla del interior santafesino sujeta a verificación'],
+      },
+      {
+        slug: 'avalian', nombre: 'Avalian', enSitio: true, fuerza: 'media', verificado: false,
+        resumen: 'La cooperativa de origen agropecuario tiene llegada natural al interior santafesino. Compite en precio frente a las locales.',
+        cartillaLocal: ['Presencia declarada en las principales ciudades', 'Cartilla sujeta a verificación al cotizar'],
+      },
+      {
+        slug: 'jerarquicos-salud', nombre: 'Jerárquicos Salud', enSitio: false, fuerza: 'fuerte', verificado: true,
+        resumen: 'Con casa central en Santa Fe capital, es una de las obras sociales/prepagas más elegidas de la ciudad y el centro-norte provincial. Planes PMI, PMI 2000, PMI 3000 y PMI Soltero (hasta 30 años), con descuentos de farmacia del 40 al 70%.',
+        cartillaLocal: ['Casa central en Santa Fe capital', 'Muy fuerte en la capital y el centro-norte provincial', 'Red de farmacias con 40-70% de descuento'],
+      },
+    ],
+    localidades: [
+      {
+        slug: 'rosario', nombre: 'Rosario',
+        descripcion: 'El principal polo de salud privada del interior del país: Sanatorio Parque, Sanatorio Británico, Sanatorio Americano, Sanatorio de la Mujer, Sanatorio Norte y el Hospital Español, más el Hospital Italiano de Rosario. Acá compiten todas las prepagas con sus cartillas más completas de la provincia; la diferencia entre planes está en qué sanatorios de esta lista incluye cada uno.',
+        prestadores: ['Sanatorio Parque', 'Sanatorio Británico', 'Sanatorio Americano', 'Sanatorio de la Mujer', 'Hospital Italiano de Rosario', 'Sanatorio Español'],
+      },
+      {
+        slug: 'santa-fe-capital', nombre: 'Santa Fe capital',
+        descripcion: 'La capital provincial tiene su propia red privada — Sanatorio Güemes, Sanatorio San Gerónimo, Sanatorio Mayo, Sanatorio Médico Quirúrgico — y un jugador local dominante: Jerárquicos Salud, con casa central en la ciudad. Las nacionales cubren, pero acá las regionales santafesinas tienen ventaja de cartilla.',
+        prestadores: ['Sanatorio Güemes (Santa Fe)', 'Sanatorio San Gerónimo', 'Sanatorio Mayo (Santa Fe)', 'Sanatorio Médico Quirúrgico'],
+      },
+      {
+        slug: 'rafaela', nombre: 'Rafaela',
+        descripcion: 'El corazón de la cuenca lechera queda a 90 km de Sunchales, la ciudad donde nacieron Sancor Salud y Prevención Salud: acá esas dos marcas son casi la opción por defecto, con cartillas locales que las nacionales no igualan. Para alta complejidad, las derivaciones van a Santa Fe capital o Rosario.',
+        prestadores: [],
+      },
+      {
+        slug: 'venado-tuerto', nombre: 'Venado Tuerto',
+        descripcion: 'Cabecera del sur agrícola santafesino, con atención local para consultas y urgencias y derivación a Rosario (160 km) para alta complejidad. Federada y Sancor tienen presencia histórica en la zona; al elegir plan, pesá la cartilla rosarina tanto como la local.',
+        prestadores: [],
+      },
+    ],
+    prestadoresClave: ['Sanatorio Parque (Rosario)', 'Sanatorio Británico (Rosario)', 'Sanatorio Americano (Rosario)', 'Sanatorio de la Mujer (Rosario)', 'Sanatorio Güemes (Santa Fe)', 'Sanatorio San Gerónimo'],
+    obraSocialProvincial: {
+      sigla: 'IAPOS',
+      nombre: 'Instituto Autárquico Provincial de Obra Social',
+      nota: 'La obra social de los empleados públicos de la provincia de Santa Fe; no es de contratación voluntaria. Muchos afiliados la complementan con una prepaga para acceder sin restricciones a los sanatorios privados de Rosario y la capital.',
+    },
+    faq: [
+      { q: '¿Cuál es la mejor prepaga en Santa Fe?', a: 'Depende de la ciudad. En Rosario, Swiss Medical y OSDE tienen las cartillas premium más completas y Federada juega de local. En Santa Fe capital y el centro-norte, Jerárquicos Salud es el jugador dominante y Sancor/Prevención (nacidas en Sunchales) tienen cartillas muy profundas. Nuestro ranking pondera la cartilla efectiva por zona.' },
+      { q: '¿Qué prepagas nacieron en Santa Fe?', a: 'Cuatro de las más importantes del interior: Sancor Salud y Prevención Salud (Sunchales), Federada Salud (Rosario) y Jerárquicos Salud (Santa Fe capital). Eso hace de Santa Fe el mercado más competitivo del país fuera de Buenos Aires — y suele traducirse en mejor relación precio/cartilla.' },
+      { q: 'Tengo IAPOS, ¿puedo contratar una prepaga?', a: 'Sí. IAPOS es la obra social de los empleados públicos santafesinos y no se elige voluntariamente, pero podés contratar una prepaga en paralelo para sumar cartilla privada sin restricciones.' },
+      { q: '¿Las prepagas cubren igual en Rosario que en el interior?', a: 'No. Las nacionales premium concentran su cartilla en Rosario y la capital; en ciudades como Rafaela, Venado Tuerto o Reconquista, las regionales santafesinas suelen tener redes más profundas. Verificá la cartilla de tu ciudad antes de decidir.' },
+    ],
+    fechaVerificacion: '2026-07-21',
+  },
+  {
+    slug: 'mendoza',
+    nombre: 'Mendoza',
+    zonaKey: 'mendoza',
+    capitalNombre: 'Mendoza capital',
+    descripcion:
+      'Mendoza tiene el mercado de salud privada más desarrollado de Cuyo, concentrado en el Gran Mendoza: Hospital Italiano de Mendoza, Hospital Privado, Clínica de Cuyo y Clínica Santa María encabezan la red. Las nacionales premium (OSDE, Swiss Medical) compiten con las regionales de precio (Sancor, Prevención, Avalian) y Galeno mantiene sucursal propia. Un dato local: el sur provincial (San Rafael, General Alvear) tiene su propia dinámica de cartilla, distinta a la del Gran Mendoza.',
+    rankingIntro:
+      'Ranking según cartilla efectiva en la provincia de Mendoza: pondera la red en el Gran Mendoza y la cobertura real en el interior provincial (San Rafael, este mendocino), no el tamaño nacional de cada empresa.',
+    prepagas: [
+      {
+        slug: 'osde', nombre: 'OSDE', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Filial Mendoza con la red abierta más completa del segmento premium: los grandes sanatorios del Gran Mendoza están en cartilla y la marca es la referencia histórica de la provincia.',
+        cartillaLocal: ['Filial propia en Mendoza', 'Cartilla premium en el Gran Mendoza', 'Cobertura de derivaciones de alta complejidad'],
+      },
+      {
+        slug: 'swiss-medical', nombre: 'Swiss Medical', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Presencia consolidada en Mendoza capital con cartilla premium. Sus sanatorios propios están en Buenos Aires: acá la atención es por convenio con los grandes privados locales.',
+        cartillaLocal: ['Cartilla premium en el Gran Mendoza', 'Convenios con los principales sanatorios privados', 'Menor densidad en el interior provincial'],
+      },
+      {
+        slug: 'sancor-salud', nombre: 'Sancor Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Red nacional con cartillas provinciales publicadas y buena profundidad en Mendoza, incluido el interior. De las opciones más equilibradas en precio/cartilla de la provincia.',
+        cartillaLocal: ['Cartilla provincial publicada (PDF oficial)', 'Red en el Gran Mendoza y el interior'],
+      },
+      {
+        slug: 'galeno', nombre: 'Galeno', enSitio: true, fuerza: 'media', verificado: true,
+        resumen: 'Sucursal propia en Mendoza y cobertura nacional en todos sus planes. La atención es por cartilla de convenio: sus sanatorios propios (Trinidad) están en Buenos Aires.',
+        cartillaLocal: ['Sucursal propia en Mendoza', 'Cobertura por convenios locales'],
+      },
+      {
+        slug: 'prevencion-salud', nombre: 'Prevención Salud', enSitio: true, fuerza: 'media', verificado: true,
+        resumen: 'Del grupo Sancor Seguros, con presencia notable en el interior del país. En Mendoza compite en el segmento accesible con cobertura nacional incluida.',
+        cartillaLocal: ['Oficinas en la región', 'Plan A1 con cobertura nacional'],
+      },
+      {
+        slug: 'avalian', nombre: 'Avalian', enSitio: true, fuerza: 'media', verificado: false,
+        resumen: 'La cooperativa declara presencia en todas las ciudades importantes, Mendoza incluida. Compite en precio; la densidad exacta de su cartilla local conviene confirmarla al cotizar.',
+        cartillaLocal: ['Presencia declarada en Mendoza', 'Cartilla sujeta a verificación al cotizar'],
+      },
+      {
+        slug: 'medicus', nombre: 'Medicus', enSitio: true, fuerza: 'marginal', verificado: false,
+        resumen: 'Su foco histórico es AMBA y el segmento premium. En Mendoza opera con red acotada: si tu prioridad es la cartilla local, hay opciones con más profundidad en la provincia.',
+        cartillaLocal: ['Presencia acotada fuera de AMBA', 'Verificar cartilla local antes de contratar'],
+      },
+    ],
+    localidades: [
+      {
+        slug: 'mendoza-capital', nombre: 'Mendoza capital',
+        descripcion: 'El Gran Mendoza concentra la red privada de Cuyo: Hospital Italiano de Mendoza, Hospital Privado, Clínica de Cuyo, Clínica Santa María y el Sanatorio Fleming. Acá compiten todas las prepagas con sus mejores cartillas; la diferencia entre planes está en cuáles de estos centros incluye cada uno.',
+        prestadores: ['Hospital Italiano Mendoza', 'Hospital Privado de Mendoza', 'Sanatorio Clínica de Cuyo', 'Clínica Santa María', 'Sanatorio Fleming'],
+      },
+      {
+        slug: 'godoy-cruz', nombre: 'Godoy Cruz',
+        descripcion: 'El departamento más poblado del Gran Mendoza comparte la red privada de la capital — la mayoría de los afiliados se atiende en los sanatorios del centro, a minutos de distancia. Al cotizar, la cartilla que importa es la del Gran Mendoza completo.',
+        prestadores: [],
+      },
+      {
+        slug: 'san-rafael', nombre: 'San Rafael',
+        descripcion: 'La cabecera del sur mendocino, a 230 km de la capital, tiene su propia dinámica: la atención cotidiana es local y la alta complejidad deriva al Gran Mendoza. Acá el filtro decisivo es qué prepagas tienen prestadores reales en la ciudad — las regionales de precio suelen defenderse mejor que las premium.',
+        prestadores: [],
+      },
+    ],
+    prestadoresClave: ['Hospital Italiano Mendoza', 'Hospital Privado de Mendoza', 'Sanatorio Clínica de Cuyo', 'Clínica Santa María'],
+    obraSocialProvincial: {
+      sigla: 'OSEP',
+      nombre: 'Obra Social de Empleados Públicos de Mendoza',
+      nota: 'La obra social de los empleados públicos mendocinos, con red propia importante; no es de contratación voluntaria. Si tenés OSEP y buscás sanatorios privados sin restricciones, podés complementarla con una prepaga.',
+    },
+    faq: [
+      { q: '¿Cuál es la mejor prepaga en Mendoza?', a: 'OSDE tiene la red abierta más completa del Gran Mendoza y Swiss Medical compite en el mismo segmento premium. En relación precio/cartilla, Sancor Salud y Prevención son las alternativas regionales más equilibradas. El ranking completo pondera cartilla local, precio y satisfacción.' },
+      { q: '¿Qué sanatorios privados hay en Mendoza?', a: 'Los principales son el Hospital Italiano de Mendoza, el Hospital Privado, la Clínica de Cuyo, la Clínica Santa María y el Sanatorio Fleming, concentrados en el Gran Mendoza. Qué cubra cada prepaga depende del plan: verificalo al cotizar.' },
+      { q: 'Tengo OSEP, ¿puedo sumar una prepaga?', a: 'Sí. OSEP es la obra social provincial de los empleados públicos y no se elige voluntariamente, pero muchos afiliados contratan una prepaga en paralelo para acceder a la red privada sin las demoras y restricciones del sistema.' },
+      { q: '¿Las prepagas cubren bien en San Rafael?', a: 'La cobertura del sur mendocino es más acotada que la del Gran Mendoza en todas las empresas. Antes de contratar, verificá qué prestadores locales incluye tu plan y cómo funciona la derivación a la capital para alta complejidad.' },
+    ],
+    fechaVerificacion: '2026-07-21',
+  },
+  {
+    slug: 'tucuman',
+    nombre: 'Tucumán',
+    zonaKey: 'tucuman',
+    capitalNombre: 'San Miguel de Tucumán',
+    descripcion:
+      'Tucumán es la capital sanitaria del NOA: San Miguel de Tucumán concentra la red privada más densa del norte argentino — Sanatorio 9 de Julio, Clínica Mayo, Sanatorio Modelo, Sanatorio Parque, Instituto de Cardiología — y recibe derivaciones de todas las provincias vecinas. Además es la casa de Boreal Salud, la prepaga regional del NOA, que acá juega de local. Las nacionales compiten en el segmento premium y las regionales del centro (Sancor, Prevención, Nobis) completan un mercado con mucha oferta.',
+    rankingIntro:
+      'Ranking según cartilla efectiva en Tucumán: en la provincia con la red privada más densa del NOA, lo que pesa es qué sanatorios de San Miguel incluye cada plan y la cobertura real en el interior (Concepción, Tafí Viejo, Monteros).',
+    prepagas: [
+      {
+        slug: 'boreal', nombre: 'Boreal Salud', enSitio: false, fuerza: 'fuerte', verificado: true,
+        resumen: 'La prepaga del NOA juega de local: nació en Tucumán, tiene centros médicos propios en la región y 260.000+ beneficiarios en el norte. Para quien vive en la provincia es la referencia regional a comparar antes que cualquier nacional.',
+        cartillaLocal: ['Origen tucumano con centros médicos propios', '30+ sucursales en NOA/NEA', 'Urgencias 24 hs y telemedicina incluidas'],
+      },
+      {
+        slug: 'swiss-medical', nombre: 'Swiss Medical', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Presencia consolidada en San Miguel de Tucumán con cartilla premium en los grandes sanatorios de la ciudad. La opción de gama alta más elegida de la provincia junto a OSDE.',
+        cartillaLocal: ['Cartilla premium en San Miguel de Tucumán', 'Convenios con los principales sanatorios'],
+      },
+      {
+        slug: 'osde', nombre: 'OSDE', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Filial Tucumán con la red abierta más reconocida del segmento premium en el NOA, incluyendo los centros de alta complejidad que reciben derivaciones de toda la región.',
+        cartillaLocal: ['Filial propia en Tucumán', 'Red premium con los centros de alta complejidad de la capital'],
+      },
+      {
+        slug: 'sancor-salud', nombre: 'Sancor Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Red nacional con cartillas provinciales publicadas y buena profundidad en el NOA. Para grupos familiares tucumanos es de las opciones más equilibradas en precio/cartilla.',
+        cartillaLocal: ['Cartilla provincial publicada (PDF oficial)', 'Red en la capital y el interior tucumano'],
+      },
+      {
+        slug: 'premedic', nombre: 'Premedic', enSitio: true, fuerza: 'media', verificado: true,
+        resumen: 'Su cartilla declarada cubre AMBA, Córdoba, Rosario, Tucumán y Mendoza: la provincia es una de sus cinco zonas de operación. Alternativa de precio accesible con red más acotada que las grandes.',
+        cartillaLocal: ['Tucumán entre sus cinco zonas de cobertura declaradas', 'Red más acotada que las prepagas grandes'],
+      },
+      {
+        slug: 'prevencion-salud', nombre: 'Prevención Salud', enSitio: true, fuerza: 'media', verificado: true,
+        resumen: 'Del grupo Sancor Seguros, con presencia en el interior del país. En Tucumán compite en el segmento accesible.',
+        cartillaLocal: ['Oficinas en la región', 'Plan A1 con cobertura nacional'],
+      },
+      {
+        slug: 'nobis', nombre: 'Nobis Salud', enSitio: false, fuerza: 'media', verificado: true,
+        resumen: 'La cordobesa Nobis tiene sucursal en Tucumán como parte de su expansión por el norte. Cartilla en crecimiento: vale cotizarla como alternativa accesible.',
+        cartillaLocal: ['Sucursal de atención en Tucumán', 'Red en expansión en el NOA'],
+      },
+      {
+        slug: 'avalian', nombre: 'Avalian', enSitio: true, fuerza: 'media', verificado: false,
+        resumen: 'Presencia declarada en las principales ciudades del país. En Tucumán compite en precio; verificá la densidad de su cartilla local al cotizar.',
+        cartillaLocal: ['Presencia declarada en la provincia', 'Cartilla sujeta a verificación al cotizar'],
+      },
+      {
+        slug: 'galeno', nombre: 'Galeno', enSitio: true, fuerza: 'marginal', verificado: false,
+        resumen: 'Cobertura nacional por convenio, con presencia comercial acotada en el NOA — sus sucursales regionales más cercanas verificadas están en Salta. Si tu prioridad es la cartilla tucumana, hay opciones con más profundidad local.',
+        cartillaLocal: ['Cobertura nacional declarada', 'Presencia local a verificar al cotizar'],
+      },
+    ],
+    localidades: [
+      {
+        slug: 'san-miguel-de-tucuman', nombre: 'San Miguel de Tucumán',
+        descripcion: 'La red privada más densa del NOA: Sanatorio 9 de Julio, Clínica Mayo, Sanatorio Modelo, Sanatorio Parque, Sanatorio Rivadavia, el Instituto de Cardiología y el Sanatorio Infantil San Lucas. La capital tucumana recibe derivaciones de Santiago del Estero, Catamarca y el sur de Salta — acá se define la cartilla que importa para toda la región.',
+        prestadores: ['Sanatorio 9 de Julio', 'Clínica Mayo (Tucumán)', 'Sanatorio Modelo (Tucumán)', 'Sanatorio Parque', 'Instituto de Cardiología', 'Sanatorio Infantil San Lucas'],
+      },
+      {
+        slug: 'yerba-buena', nombre: 'Yerba Buena',
+        descripcion: 'La ciudad residencial del Gran San Miguel comparte la red privada de la capital, a minutos de distancia. Al cotizar, lo relevante es la cartilla del Gran Tucumán completo, no solo la local.',
+        prestadores: [],
+      },
+      {
+        slug: 'concepcion', nombre: 'Concepción',
+        descripcion: 'La segunda ciudad de la provincia y cabecera del sur tucumano. La atención cotidiana es local y la alta complejidad deriva a San Miguel (80 km): al elegir prepaga, verificá tanto los prestadores locales como la cartilla de la capital.',
+        prestadores: [],
+      },
+    ],
+    prestadoresClave: ['Sanatorio 9 de Julio', 'Clínica Mayo (Tucumán)', 'Sanatorio Modelo (Tucumán)', 'Sanatorio Parque', 'Instituto de Cardiología'],
+    obraSocialProvincial: {
+      sigla: 'Subsidio de Salud',
+      nombre: 'Instituto de Previsión y Seguridad Social de Tucumán (IPSST)',
+      nota: 'La obra social de los empleados públicos tucumanos (conocida como Subsidio de Salud); no es de contratación voluntaria. Muchos afiliados la complementan con una prepaga para acceder a los sanatorios privados de San Miguel sin restricciones.',
+    },
+    faq: [
+      { q: '¿Cuál es la mejor prepaga en Tucumán?', a: 'Boreal Salud juega de local con centros propios y precios regionales; Swiss Medical y OSDE lideran el segmento premium con los grandes sanatorios de San Miguel en cartilla; y Sancor Salud es la alternativa más equilibrada en precio/cartilla. El ranking completo pondera la cartilla efectiva en la provincia.' },
+      { q: '¿Boreal Salud es buena opción en Tucumán?', a: 'Es la prepaga con más identidad regional del NOA y Tucumán es su casa: centros médicos propios, urgencias 24 hs, telemedicina y precios pensados para el norte. Para residentes tucumanos suele ser la primera a cotizar y comparar contra las nacionales.' },
+      { q: 'Tengo el Subsidio de Salud (IPSST), ¿puedo sumar una prepaga?', a: 'Sí. El Subsidio es la obra social provincial de los empleados públicos y no se elige voluntariamente, pero podés contratar una prepaga en paralelo para acceder a la red privada de San Miguel sin restricciones.' },
+      { q: '¿Qué sanatorios privados hay en San Miguel de Tucumán?', a: 'Los principales son el Sanatorio 9 de Julio, la Clínica Mayo, el Sanatorio Modelo, el Sanatorio Parque, el Sanatorio Rivadavia, el Instituto de Cardiología y el Sanatorio Infantil San Lucas. Qué cubra cada prepaga depende del plan: verificalo al cotizar.' },
+    ],
+    fechaVerificacion: '2026-07-21',
+  },
 ]
 
 export function getProvinciaSEO(slug: string): ProvinciaSEO | undefined {

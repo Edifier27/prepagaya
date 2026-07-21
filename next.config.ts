@@ -33,6 +33,26 @@ const nextConfig: NextConfig = {
         destination: "/prepagas/neuquen",
         permanent: true,
       },
+      {
+        source: "/prepagas-en/mendoza",
+        destination: "/prepagas/mendoza",
+        permanent: true,
+      },
+      {
+        source: "/prepagas-en/tucuman",
+        destination: "/prepagas/tucuman",
+        permanent: true,
+      },
+      {
+        source: "/prepagas-en/santa-fe",
+        destination: "/prepagas/santa-fe",
+        permanent: true,
+      },
+      {
+        source: "/prepagas-en/rosario",
+        destination: "/prepagas/santa-fe/rosario",
+        permanent: true,
+      },
     ];
   },
 };

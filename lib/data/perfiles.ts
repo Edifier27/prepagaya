@@ -252,6 +252,52 @@ export const perfiles: PerfilData[] = [
     ],
     keywords: ['prepaga para empresas argentina', 'prepaga corporativa pymes', 'swiss medical empresas', 'osde corporativo argentina'],
   },
+  {
+    slug: 'extranjeros',
+    nombre: 'Extranjeros',
+    emoji: '🌎',
+    titulo: 'Prepaga para extranjeros en Argentina',
+    metaDescripcion: 'Guía de cobertura médica para extranjeros en Argentina: el seguro obligatorio del Decreto 366/25, qué prepagas te afilian sin DNI argentino y cuánto cuesta en 2026.',
+    descripcion: 'Desde julio de 2025, todo extranjero no residente necesita seguro médico para entrar a Argentina (Decreto 366/25). Y si venís a quedarte —por trabajo, estudio o residencia—, una prepaga local suele ser más conveniente que una asistencia al viajero: cobertura completa, cartilla real y sin límites de reintegro por evento. Te contamos qué opciones tenés según tu situación migratoria.',
+    necesidades: [
+      'Cumplir el requisito migratorio de cobertura médica (Decreto 366/25)',
+      'Afiliación sin DNI argentino (con pasaporte o residencia precaria, según la empresa)',
+      'Cobertura desde el primer día para urgencias e internación',
+      'Atención en inglés o portugués (según la prepaga y la zona)',
+      'Facturación sin CUIL/CUIT o con formas de pago internacionales',
+      'Red fuerte en la ciudad donde vas a vivir',
+    ],
+    prepagasRecomendadas: [
+      { slug: 'swiss-medical', razon: 'La más elegida por expatriados y personal de empresas internacionales: sanatorios propios de primer nivel en Buenos Aires y gestión digital completa.' },
+      { slug: 'osde', razon: 'La red más grande del país y el plan con mejor cobertura de urgencias para quien todavía no conoce el sistema de salud argentino.' },
+      { slug: 'medife', razon: 'Buena relación precio-calidad para estadías largas, con planes que no exigen relación de dependencia local.' },
+      { slug: 'sancor-salud', razon: 'Alternativa accesible con red nacional, útil si tu destino no es Buenos Aires.' },
+    ],
+    planesRecomendados: [
+      { prepagaSlug: 'swiss-medical', planSlug: 'smg20', razon: 'El estándar de los expatriados en CABA: sin copagos y sanatorios propios' },
+      { prepagaSlug: 'osde', planSlug: '310', razon: 'Red amplia en todo el país, ideal si vas a moverte entre provincias' },
+      { prepagaSlug: 'medife', planSlug: 'bronce', razon: 'Entrada económica con cobertura completa para estadías largas' },
+    ],
+    faq: [
+      {
+        q: '¿Es obligatorio tener seguro médico para entrar a Argentina?',
+        a: 'Sí. Desde el Decreto 366/25 (vigente desde julio de 2025), todos los extranjeros no residentes deben contar con un seguro médico que cubra su estadía —turistas, estudiantes y trabajadores incluidos. Los residentes permanentes y ciudadanos naturalizados están exentos. Para el ingreso alcanza una asistencia al viajero; para radicarte, una prepaga local es la opción más completa.',
+      },
+      {
+        q: '¿Puedo contratar una prepaga sin DNI argentino?',
+        a: 'Depende de la empresa. La mayoría de las prepagas grandes aceptan afiliación con pasaporte y residencia precaria (el trámite migratorio iniciado), y algunas piden CDI o CUIL provisorio para facturar. Lo más práctico es cotizar y consultar tu caso puntual: un asesor te confirma qué empresa acepta tu documentación actual.',
+      },
+      {
+        q: '¿Cuánto cuesta una prepaga para un extranjero?',
+        a: 'Pagás lo mismo que un argentino: el precio depende de la edad y el plan, no de la nacionalidad. En 2026 los planes van desde ~$170.000/mes (planes de entrada) hasta más de $1.000.000/mes (premium) para un adulto de 30 años. Cotizá gratis para ver el valor exacto de tu edad.',
+      },
+      {
+        q: '¿La prepaga sirve como seguro para el trámite de residencia?',
+        a: 'Una prepaga local cubre de sobra los requisitos de cobertura médica que exige Migraciones para residencias temporarias. Pedile a la empresa el certificado de cobertura para presentarlo en tu trámite.',
+      },
+    ],
+    keywords: ['prepaga para extranjeros argentina', 'seguro medico obligatorio argentina', 'prepaga sin dni', 'health insurance argentina', 'cobertura medica extranjeros residencia'],
+  },
 ]
 
 export function getPerfilBySlug(slug: string): PerfilData | undefined {
