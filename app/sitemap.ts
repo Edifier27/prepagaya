@@ -72,8 +72,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   // Ciudades cuya provincia ya migró al silo /prepagas/[provincia] (301 en next.config).
-  // 'rosario' redirige a la localidad /prepagas/santa-fe/rosario.
-  const CIUDADES_MIGRADAS = new Set([...provinciasSEO.map((p) => p.slug), 'rosario'])
+  // 'rosario' y 'la-plata' redirigen a su localidad dentro del hub provincial.
+  const CIUDADES_MIGRADAS = new Set([...provinciasSEO.map((p) => p.slug), 'rosario', 'la-plata'])
   const ciudadRoutes: MetadataRoute.Sitemap = ciudades
     .filter((c) => !CIUDADES_MIGRADAS.has(c.slug))
     .map((c) => ({

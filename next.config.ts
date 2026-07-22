@@ -53,6 +53,16 @@ const nextConfig: NextConfig = {
         destination: "/prepagas/santa-fe/rosario",
         permanent: true,
       },
+      {
+        source: "/prepagas-en/buenos-aires",
+        destination: "/prepagas/buenos-aires",
+        permanent: true,
+      },
+      {
+        source: "/prepagas-en/la-plata",
+        destination: "/prepagas/buenos-aires/la-plata",
+        permanent: true,
+      },
     ];
   },
 };
