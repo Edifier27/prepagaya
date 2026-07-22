@@ -63,6 +63,31 @@ const nextConfig: NextConfig = {
         destination: "/prepagas/buenos-aires/la-plata",
         permanent: true,
       },
+      {
+        source: "/prepagas-en/posadas",
+        destination: "/prepagas/misiones/posadas",
+        permanent: true,
+      },
+      {
+        source: "/prepagas-en/entre-rios",
+        destination: "/prepagas/entre-rios",
+        permanent: true,
+      },
+      {
+        source: "/prepagas-en/chaco",
+        destination: "/prepagas/chaco",
+        permanent: true,
+      },
+      {
+        source: "/prepagas-en/corrientes",
+        destination: "/prepagas/corrientes",
+        permanent: true,
+      },
+      {
+        source: "/prepagas-en/misiones",
+        destination: "/prepagas/misiones",
+        permanent: true,
+      },
     ];
   },
 };
