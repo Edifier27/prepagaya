@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
+import { cambiosRecomendados } from '@/lib/data/cambios'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, formatPrecio } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
@@ -375,6 +376,58 @@ export default function HomePage(): React.ReactElement {
             ))}
           </div>
           <p className="text-center text-xs text-gray-400 mt-6">¿Tu provincia no está? Estamos sumando todas las provincias — mientras tanto <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">cotizá acá</Link> y te mostramos las prepagas de tu zona.</p>
+        </div>
+      </section>
+
+      {/* ── ¿A qué prepaga cambiarte? ──────────────────────────────────────── */}
+      <section className="py-14 bg-white border-t border-gray-100">
+        <div className="container">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">¿Estás pagando de más o cubierto de menos?</h2>
+            <p className="text-gray-500 text-sm max-w-xl mx-auto">
+              Analizamos precio real y cartilla, empresa por empresa. Si estás en alguna de estas, esto es lo que te conviene.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {cambiosRecomendados.slice(0, 3).map((c) => {
+              const origen = prepagas.find((p) => p.slug === c.origenSlug)
+              const destino = prepagas.find((p) => p.slug === c.destinoSlug)
+              if (!origen || !destino) return null
+              const ahorra = c.deltaMensual > 0
+              return (
+                <Link key={c.slug} href={`/cambios/${c.slug}`}
+                  className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-6 flex flex-col group">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0"
+                      style={{ backgroundColor: origen.colorPrimario + '22', color: origen.colorPrimario }}>
+                      {origen.nombre[0]}
+                    </div>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" className="w-4 h-4 text-gray-300 flex-shrink-0">
+                      <path d="M5 12h14m-6-6l6 6-6 6"/>
+                    </svg>
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0"
+                      style={{ backgroundColor: destino.colorPrimario + '22', color: destino.colorPrimario }}>
+                      {destino.nombre[0]}
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors mb-1">
+                    ¿Estás en {origen.nombre}?
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed flex-1">{c.gancho}</p>
+                  <div className={`inline-flex self-start items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-full border mt-4 ${
+                    ahorra ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
+                  }`}>
+                    {ahorra ? `Ahorrás ${formatPrecio(Math.abs(c.deltaMensual))}/mes` : `Solo ${formatPrecio(Math.abs(c.deltaMensual))}/mes más`}
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+          <div className="text-center mt-8">
+            <Button href="/cambios" variant="outline" size="lg">
+              Ver todos los cambios recomendados →
+            </Button>
+          </div>
         </div>
       </section>
 

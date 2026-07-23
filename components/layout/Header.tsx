@@ -41,6 +41,7 @@ const obrasSocialesMenu = [
 
 const herramientasMenu = [
   { href: '/precios', label: 'Precios julio 2026' },
+  { href: '/cambios', label: '¿A qué prepaga cambiarte?' },
   { href: '/aumentos', label: 'Aumentos mes a mes' },
   { href: '/comparar', label: 'Comparar planes' },
   { href: '/prepaga-por-presupuesto', label: 'Encontrá tu prepaga por presupuesto' },

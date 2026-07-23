@@ -10,6 +10,7 @@ import { condiciones } from '@/lib/data/condiciones'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { provinciasSEO } from '@/lib/data/zonas'
+import { cambiosRecomendados } from '@/lib/data/cambios'
 
 const BASE = 'https://www.prepagaya.com.ar'
 
@@ -45,7 +46,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/glosario`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/privacidad`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE}/en/health-insurance-argentina`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE}/cambios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
   ]
+
+  const cambioRoutes: MetadataRoute.Sitemap = cambiosRecomendados.map((c) => ({
+    url: `${BASE}/cambios/${c.slug}`,
+    lastModified: PRECIOS_UPDATE,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
 
   const prepagaRoutes: MetadataRoute.Sitemap = prepagas.flatMap((p) => [
     { url: `${BASE}/prepagas/${p.slug}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly' as const, priority: 0.85 },
@@ -145,6 +154,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
+    ...cambioRoutes,
     ...prepagaRoutes,
     ...zonaRoutes,
     ...comparativaRoutes,
