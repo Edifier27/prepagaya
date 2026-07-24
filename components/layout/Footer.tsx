@@ -273,7 +273,8 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t border-white/[0.06] mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-600">
-            © 2026 PrepagaYa · Sitio independiente, no afiliado a ninguna prepaga ni obra social.
+            © 2026 PrepagaYa · Sitio independiente, no afiliado a ninguna prepaga ni obra social. Las empresas comparadas
+            están reguladas por la Superintendencia de Servicios de Salud (SSSalud).
           </p>
           <div className="flex gap-5 text-xs text-gray-600">
             <Link href="/sobre-nosotros" className="hover:text-gray-400 transition-colors">Sobre nosotros</Link>

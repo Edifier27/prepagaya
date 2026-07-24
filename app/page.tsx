@@ -148,6 +148,25 @@ export default function HomePage(): React.ReactElement {
             </div>
           </div>
 
+          {/* Cómo funciona: baja la fricción de "¿qué pasa con mis datos?" antes de empezar */}
+          <div className="container max-w-2xl mx-auto pb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[
+                { n: '1', t: 'Cotizás gratis', d: 'Sin DNI, en menos de 2 minutos' },
+                { n: '2', t: 'Comparás precios reales', d: 'De todas las prepagas en tu zona' },
+                { n: '3', t: 'Vos decidís', d: 'Un asesor te contacta solo si pedís más info' },
+              ].map((s) => (
+                <div key={s.n} className="flex flex-col items-center text-center gap-1.5">
+                  <div className="w-9 h-9 rounded-full bg-white border-2 border-red-100 flex items-center justify-center font-bold text-sm text-[#E8002D] shadow-sm">
+                    {s.n}
+                  </div>
+                  <div className="text-sm font-bold text-gray-900">{s.t}</div>
+                  <div className="text-xs text-gray-500">{s.d}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Wizard card */}
           <div className="container max-w-3xl mx-auto pb-16">
             <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-white p-6 md:p-10">
