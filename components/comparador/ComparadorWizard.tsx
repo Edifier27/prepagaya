@@ -11,6 +11,8 @@ import type { Plan, Prepaga } from '@/types'
 import { formatPrecio } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
+import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { getCambiosPorOrigen } from '@/lib/data/cambios'
 
 const EJS_SERVICE  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? ''
 const EJS_TEMPLATE = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? ''
@@ -33,7 +35,7 @@ const APORTE_PORCENTAJE = 0.075
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type Step = 'zona' | 'edades' | 'preview' | 'resultados'
+type Step = 'zona' | 'edades' | 'origen' | 'preview' | 'resultados'
 type SituacionLaboral = 'particular' | 'relacion-dependencia' | 'monotributo' | 'responsable-inscripto'
 type CobId = 'internacion' | 'psicologia' | 'kinesiologia' | 'maternidad' | 'odontologia' | 'medicamentos' | 'estudios' | 'urgencias' | 'optica' | 'reintegros' | 'ortodoncia' | 'cirugia-estetica'
 type Copago = 'sin-copago' | 'con-copago' | null
@@ -269,8 +271,8 @@ function SituacionIcon({ id }: { id: SituacionLaboral }) {
 
 // ─── Progress bar (3 steps) ───────────────────────────────────────────────────
 
-const STEP_LABELS = ['Zona', 'Integrantes', 'Ver precios']
-const STEP_ORDER: Step[] = ['zona', 'edades', 'preview']
+const STEP_LABELS = ['Zona', 'Integrantes', 'Tu prepaga', 'Ver precios']
+const STEP_ORDER: Step[] = ['zona', 'edades', 'origen', 'preview']
 
 function ProgressBar({ step }: { step: Step }) {
   const idx = STEP_ORDER.indexOf(step)
@@ -473,6 +475,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [zonaKey, setZonaKey] = useState(initialZona ?? '')
   const [provinciaNombre, setProvinciaNombre] = useState(initialProvincia ?? '')
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
+  const [prepagaOrigen, setPrepagaOrigen] = useState<string | null>(null)
 
   // Modo enfocado: apenas se elige la zona y se avanza, se oculta el
   // header/footer/bottom-nav para que la cotización no tenga forma de
@@ -662,7 +665,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   function resetWizard() {
     setStep('zona'); setZonaKey(''); setProvinciaNombre('')
     setSituacion('particular'); setSueldoBruto('')
-    setPersonas([{ id: 1, edad: '' }]); setNombre(''); setCelular('')
+    setPersonas([{ id: 1, edad: '' }]); setPrepagaOrigen(null); setNombre(''); setCelular('')
     setLeadStatus('idle'); setActiveCobs(new Set()); setCopago(null)
     setSortBy('relevancia'); setPlanAccedido(null); setPlanAccedidoStatus('idle')
     setCountdown(3); setShowPopup(false)
@@ -757,11 +760,51 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         )}
 
         <div className="flex justify-end">
-          <button onClick={() => setStep('preview')} disabled={!edadesOk}
+          <button onClick={() => setStep('origen')} disabled={!edadesOk}
             className="inline-flex items-center gap-2 px-10 py-4 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-2xl transition-all shadow-md hover:shadow-lg text-base">
             Ver precios →
           </button>
         </div>
+      </div>
+    )
+  }
+
+  // ── Step: Origen (¿de qué prepaga venís?) ───────────────────────────────────────
+
+  if (step === 'origen') {
+    function elegirOrigen(slug: string | null) {
+      setPrepagaOrigen(slug)
+      setTimeout(() => setStep('preview'), 220)
+    }
+
+    return (
+      <div>
+        <ProgressBar step="origen" />
+        <BackBtn onClick={() => setStep('edades')} />
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">¿De qué prepaga venís?</h2>
+          <p className="text-sm text-gray-500">Así te mostramos la comparación más útil para tu caso</p>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-4">
+          {prepagas.map((prep) => {
+            const selected = prepagaOrigen === prep.slug
+            return (
+              <button key={prep.slug} onClick={() => elegirOrigen(prep.slug)}
+                className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all ${
+                  selected ? 'border-[#E8002D] bg-red-50 shadow-md' : 'border-gray-100 bg-white hover:border-red-200 hover:shadow-sm'
+                }`}>
+                <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="md" />
+                <span className="text-xs font-semibold text-gray-700 text-center leading-tight">{prep.nombre}</span>
+              </button>
+            )
+          })}
+        </div>
+
+        <button onClick={() => elegirOrigen(null)}
+          className="w-full flex items-center justify-center gap-2 py-3 border-2 border-dashed border-gray-200 rounded-2xl text-sm font-semibold text-gray-400 hover:border-[#E8002D] hover:text-[#E8002D] hover:bg-red-50 transition-all">
+          Otras / Ninguna
+        </button>
       </div>
     )
   }
@@ -903,6 +946,17 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const cheapestKey = cheapestResult ? `${cheapestResult.prepaga.slug}-${cheapestResult.plan.slug}` : null
   const bestKey = resultadosFiltrados[0] ? `${resultadosFiltrados[0].prepaga.slug}-${resultadosFiltrados[0].plan.slug}` : null
 
+  // Recomendación personalizada según "¿de qué prepaga venís?" — usa la data
+  // real y verificada de lib/data/cambios.ts, con el precio recalculado para
+  // el grupo familiar real (no el precio de referencia a 30 años).
+  const cambioOrigen = prepagaOrigen ? getCambiosPorOrigen(prepagaOrigen)[0] : null
+  const destinoKey = cambioOrigen ? `${cambioOrigen.destinoSlug}-${cambioOrigen.destinoPlanSlug}` : null
+  const destinoPlanBase = cambioOrigen
+    ? prepagas.find((p) => p.slug === cambioOrigen.destinoSlug)?.planes.find((pl) => pl.slug === cambioOrigen.destinoPlanSlug)
+    : null
+  const destinoPrecioGrupal = destinoPlanBase ? calcGrupal(destinoPlanBase.precio, personas) : 0
+  const destinoPrecioFinal = destinoPlanBase ? precioFinal(Math.round(destinoPrecioGrupal * (1 - descuentoRate))) : 0
+
   return (
     <div>
       {/* Summary header */}
@@ -930,6 +984,30 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         sueldoBruto={sueldoBruto}
         setSueldoBruto={setSueldoBruto}
       />
+
+      {cambioOrigen && destinoPlanBase && (
+        <div className="bg-white rounded-2xl border-2 border-[#E8002D] p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <PrepagaLogo slug={cambioOrigen.destinoSlug} nombre={cambioOrigen.destinoNombre} colorPrimario="#E8002D" size="lg" />
+          </div>
+          <div className="flex-1">
+            <span className="inline-block text-[10px] font-bold text-[#E8002D] bg-red-50 border border-red-200 px-2 py-0.5 rounded-full mb-1.5">
+              Para vos, que venís de {cambioOrigen.origenNombre}
+            </span>
+            <p className="text-sm text-gray-800 leading-snug">
+              Como venís de <span className="font-bold">{cambioOrigen.origenNombre}</span> y buscás {cambioOrigen.gancho.toLowerCase()}, <span className="font-bold">{cambioOrigen.destinoNombre} — {cambioOrigen.destinoPlanNombre}</span> es el plan que te conviene.
+            </p>
+            <div className="flex items-center gap-2 mt-2">
+              <span className="text-lg font-black text-[#E8002D] tabular-nums">{formatPrecio(destinoPrecioFinal)}</span>
+              <span className="text-xs text-gray-400">/mes para tu grupo</span>
+            </div>
+          </div>
+          <Link href={`/cambios/${cambioOrigen.slug}`}
+            className="flex-shrink-0 text-xs font-bold text-[#E8002D] bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl px-4 py-2.5 transition-colors self-start sm:self-center">
+            Ver por qué →
+          </Link>
+        </div>
+      )}
 
       {/* Layout: sidebar + cards */}
       <div className="flex gap-6">
@@ -1054,6 +1132,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               const planKey = `${res.prepaga.slug}-${res.plan.slug}`
               const isBest = planKey === bestKey
               const isCheapest = planKey === cheapestKey && planKey !== bestKey
+              const isRecomendadoOrigen = planKey === destinoKey
               const isAccedido = planAccedido === planKey
               const calidad = calidadPlan(res.prepaga, res.plan)
               const precioAPagar = precioFinal(res.precioDesc)
@@ -1064,9 +1143,15 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 <div key={`${planKey}::${filtroVersion}`}
                   style={{ animationDelay: `${Math.min(i, 8) * 80}ms` }}
                   className={`card-enter bg-white rounded-2xl border-2 overflow-hidden transition-all ${
-                    isBest ? 'border-[#E8002D] shadow-md' : 'border-gray-100 hover:border-gray-200 hover:shadow-sm'
+                    isBest || isRecomendadoOrigen ? 'border-[#E8002D] shadow-md' : 'border-gray-100 hover:border-gray-200 hover:shadow-sm'
                   }`}>
 
+                  {isRecomendadoOrigen && !isBest && cambioOrigen && (
+                    <div className="bg-[#E8002D] text-white text-xs font-bold px-4 py-2 flex items-center gap-2">
+                      <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      Como venís de {cambioOrigen.origenNombre}, este es tu plan
+                    </div>
+                  )}
                   {isBest && (
                     <div className="bg-[#E8002D] text-white text-xs font-bold px-4 py-2 flex items-center gap-2">
                       <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
