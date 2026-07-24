@@ -11,18 +11,40 @@ export const metadata: Metadata = {
   keywords: ['cambiar de prepaga', 'cambiar de osde a swiss medical', 'cambiar de sancor a swiss medical', 'que prepaga conviene', 'mejor prepaga para cambiarse 2026'],
 }
 
-const itemListSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemList',
-  name: 'A qué prepaga cambiarse según tu prepaga actual',
-  numberOfItems: cambiosRecomendados.length,
-  itemListElement: cambiosRecomendados.map((c, i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    name: `De ${c.origenNombre} a ${c.destinoNombre}`,
-    url: `${SITE_URL}/cambios/${c.slug}`,
-  })),
-}
+const faqs = [
+  {
+    q: '¿Cómo eligen a qué prepaga conviene cambiarse?',
+    a: 'Comparamos el plan sin copago y red abierta más representativo de cada empresa (el nivel de cobertura que la mayoría de la gente termina eligiendo) contra alternativas equivalentes, usando precios de lista reales para una persona de 30 años, calidad de cartilla, satisfacción declarada y cantidad de sanatorios propios. No usamos precios promocionales de ingreso.',
+  },
+  {
+    q: '¿Por qué tantas recomendaciones apuntan a Swiss Medical?',
+    a: 'Porque en la franja de planes "sin copago, red abierta" que la mayoría contrata, el SMG20 de Swiss Medical resulta consistentemente competitivo en precio con 8 sanatorios propios — un combo que pocas empresas igualan. No es la única recomendación: para quien viene de Omint, por ejemplo, OSDE es la mejor opción por su red mucho más amplia.',
+  },
+  {
+    q: '¿Pierdo cobertura o carencias al cambiarme de prepaga?',
+    a: 'No. La Ley 26.682 prohíbe aplicar períodos de carencia sobre las prestaciones del Programa Médico Obligatorio (consultas, estudios, internación, parto, urgencias) al cambiar de prepaga. Solo pueden tener carencia las prestaciones superadoras, como ortodoncia en adultos o habitación individual.',
+  },
+]
+
+const itemListSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'A qué prepaga cambiarse según tu prepaga actual',
+    numberOfItems: cambiosRecomendados.length,
+    itemListElement: cambiosRecomendados.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `De ${c.origenNombre} a ${c.destinoNombre}`,
+      url: `${SITE_URL}/cambios/${c.slug}`,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+]
 
 export default function CambiosPage() {
   return (
@@ -87,6 +109,46 @@ export default function CambiosPage() {
                 </Link>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Metodología */}
+      <section className="py-10 bg-gray-50 border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Cómo armamos estas recomendaciones</h2>
+          <div className="bg-white rounded-2xl border border-gray-200 p-6">
+            <p className="text-sm text-gray-600 leading-relaxed mb-3">
+              Para cada empresa, tomamos el plan sin copago y red abierta más elegido (el nivel de cobertura al que la mayoría
+              termina migrando) y lo comparamos contra alternativas equivalentes en precio de lista real
+              ({PRECIO_ACTUALIZADO}, persona de 30 años, IVA incluido), calidad de cartilla, satisfacción declarada de
+              afiliados y cantidad de sanatorios propios.
+            </p>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              No recomendamos un cambio si no se sostiene con los números: por eso Medifé, que ya es una de las prepagas más
+              económicas del mercado en su categoría, no aparece con una promesa de ahorro sino de mejor cartilla por una
+              diferencia de precio menor. Cada página explica también cuándo el cambio <strong>no</strong> conviene.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes</h2>
+          <div className="space-y-2">
+            {faqs.map(({ q, a }) => (
+              <details key={q} className="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold text-sm text-gray-900 select-none list-none">
+                  {q}
+                  <svg className="w-4 h-4 text-gray-400 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-4 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">{a}</div>
+              </details>
+            ))}
           </div>
         </div>
       </section>

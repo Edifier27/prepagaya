@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { comparativas } from '@/lib/data/comparativas'
+import { cambiosRecomendados } from '@/lib/data/cambios'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
@@ -224,6 +225,30 @@ export default async function ComparativaPage({ params }: Props) {
             </h2>
             <p className="text-gray-700 leading-relaxed">{comp.veredicto}</p>
           </div>
+
+          {/* Link cruzado a la página de cambio, si existe para este par */}
+          {(() => {
+            const cambio = cambiosRecomendados.find(
+              (c) =>
+                (c.origenSlug === comp.prepaga1Slug && c.destinoSlug === comp.prepaga2Slug) ||
+                (c.origenSlug === comp.prepaga2Slug && c.destinoSlug === comp.prepaga1Slug)
+            )
+            if (!cambio) return null
+            return (
+              <Link href={`/cambios/${cambio.slug}`}
+                className="mt-4 flex items-center justify-between p-5 bg-white rounded-2xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
+                <div>
+                  <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors">
+                    ¿Estás en {cambio.origenNombre}? Mirá si te conviene cambiarte a {cambio.destinoNombre}
+                  </div>
+                  <div className="text-xs text-gray-400 mt-1">{cambio.gancho} →</div>
+                </div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-5 h-5 text-gray-300 group-hover:text-[#E8002D] flex-shrink-0">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </Link>
+            )
+          })()}
         </div>
       </section>
 

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
+import { getCambiosPorOrigen } from '@/lib/data/cambios'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ProvinciaHubPage, provinciaHubMetadata } from '@/components/seo-local/ProvinciaHubPage'
@@ -550,6 +551,37 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     <div className="text-xs text-gray-400 mt-1">Cartilla y precios locales →</div>
                   </Link>
                 ))}
+              </div>
+            </div>
+          </section>
+        )
+      })()}
+
+      {/* ¿Pensás cambiarte? (link a /cambios cuando esta prepaga es origen) */}
+      {(() => {
+        const cambios = getCambiosPorOrigen(prep.slug)
+        if (cambios.length === 0) return null
+        return (
+          <section className="py-10 bg-white border-t border-gray-100">
+            <div className="container max-w-5xl mx-auto">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">¿Estás en {prep.nombre} y pensás cambiarte?</h2>
+              <p className="text-sm text-gray-500 mb-5">Analizamos con precios reales si conviene el cambio y cuánto ahorrarías.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {cambios.map((c) => {
+                  const ahorra = c.deltaMensual > 0
+                  return (
+                    <Link key={c.slug} href={`/cambios/${c.slug}`}
+                      className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
+                      <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">A {c.destinoNombre}</div>
+                      <div className="text-xs text-gray-400 mt-1 mb-2">{c.gancho}</div>
+                      <div className={`inline-flex text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                        ahorra ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
+                      }`}>
+                        {ahorra ? `Ahorrás ${formatPrecio(Math.abs(c.deltaMensual))}/mes` : `Solo ${formatPrecio(Math.abs(c.deltaMensual))}/mes más`}
+                      </div>
+                    </Link>
+                  )
+                })}
               </div>
             </div>
           </section>
