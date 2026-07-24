@@ -10,6 +10,7 @@ import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
+import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
 
 const EJS_SERVICE  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? ''
 const EJS_TEMPLATE = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? ''
@@ -472,6 +473,15 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [zonaKey, setZonaKey] = useState(initialZona ?? '')
   const [provinciaNombre, setProvinciaNombre] = useState(initialProvincia ?? '')
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
+
+  // Modo enfocado: apenas se elige la zona y se avanza, se oculta el
+  // header/footer/bottom-nav para que la cotización no tenga forma de
+  // distraerse ni salir del flujo a mitad de camino.
+  const { setHideChrome } = useChromeVisibility()
+  useEffect(() => {
+    setHideChrome(step !== 'zona')
+  }, [step, setHideChrome])
+  useEffect(() => () => setHideChrome(false), [setHideChrome])
 
   // Situación laboral: se elige recién en resultados (ya con el lead
   // capturado). "Particular" es el default hasta que el usuario la cambie.

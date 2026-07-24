@@ -2,10 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
-import { BottomNav } from '@/components/layout/BottomNav'
-import { ExitIntentPopup } from '@/components/ui/ExitIntentPopup'
+import { SiteChrome } from '@/components/layout/SiteChrome'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/utils'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
@@ -45,12 +42,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es-AR" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col pb-16 md:pb-0">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <BottomNav />
-        <ExitIntentPopup />
+      <body className="min-h-full flex flex-col">
+        <SiteChrome>{children}</SiteChrome>
         <Analytics />
       </body>
     </html>
