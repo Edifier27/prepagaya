@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getCambiosPorOrigen } from '@/lib/data/cambios'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { ProvinciaHubPage, provinciaHubMetadata } from '@/components/seo-local/ProvinciaHubPage'
 import type { Prepaga } from '@/types'
 
@@ -19,14 +21,16 @@ type Plan = Prepaga['planes'][number]
 function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstrella: Plan) {
   const sinCopago = prep.planes.filter(p => !p.copago).map(p => p.nombre)
   const conCopago = prep.planes.filter(p => p.copago).map(p => p.nombre)
+  const nivelMin = NIVEL_PRECIO_LABEL[nivelPrecio(precioMin)].label.toLowerCase()
+  const nivelMax = NIVEL_PRECIO_LABEL[nivelPrecio(precioMax)].label.toLowerCase()
   return [
     {
       q: `¿Cuánto cuesta ${prep.nombre} en ${PRECIO_ACTUALIZADO}?`,
-      a: `Los planes de ${prep.nombre} van desde ${formatPrecio(precioMin)}/mes hasta ${formatPrecio(precioMax)}/mes (precio para persona de 30 años con IVA). El precio varía según edad y zona.`,
+      a: `Los planes de ${prep.nombre} van de nivel de precio ${nivelMin} a ${nivelMax} según la cobertura elegida. El precio exacto varía según tu edad y zona — cotizalo gratis en el comparador de PrepagaYa.`,
     },
     {
       q: `¿Qué plan de ${prep.nombre} conviene más?`,
-      a: `El plan más elegido es el ${planEstrella.nombre} (${formatPrecio(planEstrella.precio)}/mes). ${planEstrella.descripcion}`,
+      a: `El plan más elegido es el ${planEstrella.nombre}, de nivel de precio ${NIVEL_PRECIO_LABEL[nivelPrecio(planEstrella.precio)].label.toLowerCase()}. ${planEstrella.descripcion}`,
     },
     {
       q: `¿${prep.nombre} tiene copago en consultas?`,
@@ -51,9 +55,9 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
 
 function getPerfilesIdeales(prep: Prepaga, precioMin: number): { titulo: string; desc: string }[] {
   const items: { titulo: string; desc: string }[] = []
-  if (precioMin < 175000) items.push({
+  if (nivelPrecio(precioMin) === 'economico') items.push({
     titulo: 'Quienes buscan el mejor precio del mercado',
-    desc: `Desde ${formatPrecio(precioMin)}/mes con cobertura PMO completa. Ideal si necesitás cobertura sin pagar de más.`,
+    desc: 'Nivel de precio económico con cobertura PMO completa. Ideal si necesitás cobertura sin pagar de más.',
   })
   if (prep.sanatoriosPropios >= 3) items.push({
     titulo: 'Familias que quieren sanatorios propios',
@@ -97,13 +101,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (prov) return provinciaHubMetadata(prov)
   const prep = prepagas.find((p) => p.slug === slug)
   if (!prep) return {}
-  const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
   return {
-    title: `${prep.nombre}: Planes desde ${formatPrecio(precioMin)}/mes — ${PRECIO_ACTUALIZADO}`,
-    description: `${prep.nombre} ${PRECIO_ACTUALIZADO}: desde ${formatPrecio(precioMin)}/mes. ${prep.satisfaccion}% satisfacción · ${prep.cantidadOpiniones.toLocaleString()} opiniones. Planes, coberturas, pros y contras. Sin registro.`,
+    title: `${prep.nombre}: Planes, cobertura y cartilla — ${PRECIO_ACTUALIZADO}`,
+    description: `${prep.nombre} ${PRECIO_ACTUALIZADO}: ${prep.satisfaccion}% satisfacción · ${prep.cantidadOpiniones.toLocaleString()} opiniones. Planes, coberturas, pros y contras. Cotizá tu precio exacto gratis, sin registro.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [
-      `${prep.nombre.toLowerCase()} precios ${PRECIO_ACTUALIZADO.split(' ')[1]}`,
       `${prep.nombre.toLowerCase()} planes`,
       `${prep.nombre.toLowerCase()} opiniones`,
       `${prep.nombre.toLowerCase()} cobertura`,
@@ -250,15 +252,16 @@ export default async function PrepagaSlugPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Right: price card */}
+            {/* Right: nivel de precio card */}
             <div className="sm:w-52 flex-shrink-0">
               <div className="bg-white rounded-2xl border-2 border-[#E8002D] p-5 text-center shadow-sm">
-                <div className="text-xs text-gray-400 mb-1 uppercase tracking-wide font-medium">Desde</div>
-                <div className="text-3xl font-black text-[#E8002D] tabular-nums">{formatPrecio(precioMin)}</div>
-                <div className="text-xs text-gray-400 mt-1">/mes · 30 años · IVA inc.</div>
+                <div className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">Nivel de precio</div>
+                <div className="flex justify-center">
+                  <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
+                </div>
                 <div className="mt-4 pt-3 border-t border-gray-100 space-y-1">
                   <div className="text-xs text-gray-500 font-medium">{prep.planes.length} planes disponibles</div>
-                  <div className="text-xs text-gray-400">hasta {formatPrecio(precioMax)}</div>
+                  <div className="text-xs text-gray-400">El precio exacto depende de tu edad y zona</div>
                 </div>
               </div>
             </div>
@@ -286,7 +289,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
         <div className="container max-w-5xl mx-auto">
           <div className="flex items-end justify-between mb-5">
             <h2 className="text-xl font-bold text-gray-900">Planes de {prep.nombre} — {PRECIO_ACTUALIZADO}</h2>
-            <span className="text-xs text-gray-400 hidden sm:block">Precio base · 30 años · IVA inc.</span>
+            <span className="text-xs text-gray-400 hidden sm:block">Nivel de precio relativo</span>
           </div>
 
           {/* Plan destacado — más grande */}
@@ -323,8 +326,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 </div>
               </div>
               <div className="flex-shrink-0 sm:text-right">
-                <div className="text-3xl font-black text-[#E8002D] tabular-nums">{formatPrecio(planEstrella.precio)}</div>
-                <div className="text-xs text-gray-400">/mes</div>
+                <div className="flex sm:justify-end">
+                  <NivelPrecioBadge nivel={nivelPrecio(planEstrella.precio)} />
+                </div>
                 <div className="mt-3 inline-flex items-center gap-1.5 px-4 py-2 bg-[#E8002D] text-white rounded-xl text-xs font-bold group-hover:bg-[#B8001F] transition-colors">
                   Ver cobertura completa →
                 </div>
@@ -358,9 +362,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
                         </span>
                       </div>
                     </div>
-                    <div className="flex-shrink-0 text-right">
-                      <div className="font-black text-[#E8002D] text-lg tabular-nums">{formatPrecio(plan.precio)}</div>
-                      <div className="text-xs text-gray-400">/mes</div>
+                    <div className="flex-shrink-0">
+                      <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                     </div>
                   </div>
                 </Link>
@@ -369,8 +372,12 @@ export default async function PrepagaSlugPage({ params }: Props) {
           )}
 
           <p className="text-xs text-gray-400 mt-4">
-            * Precios para persona de 30 años · contratación directa · IVA incluido · {PRECIO_ACTUALIZADO}. El precio varía según tu edad.
+            * Nivel de precio relativo al resto del mercado · {PRECIO_ACTUALIZADO}. Cotizá tu precio exacto según tu edad y zona.
           </p>
+
+          <div className="mt-5">
+            <ContratarPlanButton prepagaNombre={prep.nombre} fuente="ficha-prepaga" />
+          </div>
         </div>
       </section>
 
@@ -558,7 +565,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
           <section className="py-10 bg-white border-t border-gray-100">
             <div className="container max-w-5xl mx-auto">
               <h2 className="text-xl font-bold text-gray-900 mb-2">¿Estás en {prep.nombre} y pensás cambiarte?</h2>
-              <p className="text-sm text-gray-500 mb-5">Analizamos con precios reales si conviene el cambio y cuánto ahorrarías.</p>
+              <p className="text-sm text-gray-500 mb-5">Analizamos con datos reales si conviene el cambio.</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {cambios.map((c) => {
                   const ahorra = c.deltaMensual > 0
@@ -570,7 +577,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                       <div className={`inline-flex text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                         ahorra ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
                       }`}>
-                        {ahorra ? `Ahorrás ${formatPrecio(Math.abs(c.deltaMensual))}/mes` : `Solo ${formatPrecio(Math.abs(c.deltaMensual))}/mes más`}
+                        {ahorra ? 'Cuota más accesible' : 'Mejor cartilla, cuota similar'}
                       </div>
                     </Link>
                   )

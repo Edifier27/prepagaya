@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
 import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
@@ -102,12 +103,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) return {}
   return {
-    title: `${prep.nombre} ${plan.nombre}: ${formatPrecio(plan.precio)}/mes — Precio Real ${PRECIO_ACTUALIZADO}`,
-    description: `${prep.nombre} ${plan.nombre}: ${formatPrecio(plan.precio)}/mes (persona 30 años · IVA inc.). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. ${plan.descripcion}`,
+    title: `${prep.nombre} ${plan.nombre}: cobertura y cartilla — ${PRECIO_ACTUALIZADO}`,
+    description: `${prep.nombre} ${plan.nombre}: ${plan.copago ? 'con copago.' : 'sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. ${plan.descripcion} Cotizá tu precio exacto gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
-      `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} precio`,
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} cobertura`,
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} opiniones`,
     ],
@@ -318,10 +318,7 @@ export default async function PlanPage({ params }: Props) {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold text-gray-700 text-sm">{formatPrecio(planInferior.precio)}</div>
-                    <div className="text-xs text-green-600 font-semibold">
-                      -{formatPrecio(plan.precio - planInferior.precio)}/mes
-                    </div>
+                    <NivelPrecioBadge nivel={nivelPrecio(planInferior.precio)} />
                   </div>
                 </Link>
               )}
@@ -338,10 +335,7 @@ export default async function PlanPage({ params }: Props) {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold text-[#E8002D] text-sm">{formatPrecio(planSuperior.precio)}</div>
-                    <div className="text-xs text-gray-500">
-                      +{formatPrecio(planSuperior.precio - plan.precio)}/mes
-                    </div>
+                    <NivelPrecioBadge nivel={nivelPrecio(planSuperior.precio)} />
                   </div>
                 </Link>
               )}
@@ -407,9 +401,9 @@ export default async function PlanPage({ params }: Props) {
                     {pl.copago ? 'Con copago' : 'Sin copago'} · Red {pl.redAbierta ? 'abierta' : 'cerrada'}
                   </div>
                 </div>
-                <div className="text-right flex-shrink-0">
-                  <div className="font-bold text-[#E8002D] text-sm">{formatPrecio(pl.precio)}/mes</div>
-                  <div className="text-xs text-gray-400">→</div>
+                <div className="text-right flex-shrink-0 flex items-center gap-2">
+                  <NivelPrecioBadge nivel={nivelPrecio(pl.precio)} />
+                  <span className="text-xs text-gray-400">→</span>
                 </div>
               </Link>
             ))}
