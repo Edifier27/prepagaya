@@ -1,15 +1,16 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
-import { formatPrecio, SITE_URL } from '@/lib/utils'
+import { SITE_URL } from '@/lib/utils'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdBreadcrumb } from './shared'
 
 export function rankingZonaMetadata(prov: ProvinciaSEO): Metadata {
   const year = new Date().getFullYear()
   return {
-    title: `Mejores prepagas en ${prov.nombre} (${year}): ranking y precios`,
-    description: `Ranking ${year} de prepagas en ${prov.nombre} según cartilla local, precio y satisfacción — con prestadores como ${prov.prestadoresClave[0]}. Precios ${PRECIO_ACTUALIZADO.toLowerCase()} y cotización online.`,
+    title: `Mejores prepagas en ${prov.nombre} (${year}): ranking y cartilla`,
+    description: `Ranking ${year} de prepagas en ${prov.nombre} según cartilla local y satisfacción — con prestadores como ${prov.prestadoresClave[0]}. Actualizado ${PRECIO_ACTUALIZADO.toLowerCase()}, cotización online sin DNI.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/mejores-prepagas` },
     keywords: [`mejores prepagas ${prov.nombre.toLowerCase()}`, `mejor prepaga en ${prov.nombre.toLowerCase()}`, `ranking prepagas ${prov.nombre.toLowerCase()} ${year}`],
   }
@@ -74,11 +75,7 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
                         </div>
                         <div className="text-right flex-shrink-0">
                           {precioMin ? (
-                            <>
-                              <div className="text-xs text-gray-400">desde</div>
-                              <div className="text-lg font-black text-[#E8002D] tabular-nums">{formatPrecio(precioMin)}</div>
-                              <div className="text-xs text-gray-400">/mes</div>
-                            </>
+                            <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
                           ) : (
                             <div className="text-xs text-gray-400 max-w-[90px]">Precio sujeto a cotización</div>
                           )}

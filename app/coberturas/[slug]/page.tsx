@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { coberturas } from '@/lib/data/coberturas'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 
 interface Props {
@@ -162,9 +163,9 @@ export default async function CoberturaPage({ params }: Props) {
                       {plan && (
                         <Link
                           href={`/prepagas/${prep.slug}/${plan.slug}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#E8002D] bg-red-50 border border-red-100 px-3 py-1.5 rounded-full hover:bg-red-100 transition-colors"
+                          className="inline-flex items-center gap-2 text-xs font-bold text-[#E8002D] bg-red-50 border border-red-100 px-3 py-1.5 rounded-full hover:bg-red-100 transition-colors"
                         >
-                          Plan {plan.nombre} · {formatPrecio(plan.precio)}/mes →
+                          Plan {plan.nombre} <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} /> →
                         </Link>
                       )}
                       <Link href={`/prepagas/${prep.slug}`} className="text-xs font-semibold text-gray-500 hover:text-[#E8002D] transition-colors">

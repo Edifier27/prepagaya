@@ -1,11 +1,12 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { SITE_URL } from '@/lib/utils'
 import { StarRating } from '@/components/ui/StarRating'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 export const metadata: Metadata = {
   title: `Ranking Mejores Prepagas Argentina ${new Date().getFullYear()} — Actualizado`,
@@ -84,7 +85,7 @@ export default function RankingPage() {
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{p.nombre}</h3>
                     {i === 0 && <Badge variant="green">Mejor valorada</Badge>}
-                    {p.planes[0].precio < 130000 && <Badge variant="gray">Más económica</Badge>}
+                    {nivelPrecio(p.planes[0].precio) === 'economico' && <Badge variant="gray">Más económica</Badge>}
                   </div>
                   <div className="flex items-center gap-3">
                     <StarRating rating={p.rating} size="sm" />
@@ -97,10 +98,8 @@ export default function RankingPage() {
 
                 <div className="text-right flex-shrink-0">
                   <div className="text-2xl font-bold text-[#00875A]">{p.satisfaccion}%</div>
-                  <div className="text-xs text-gray-400">satisfacción</div>
-                  <div className="text-sm font-medium text-[#E8002D] mt-1">
-                    desde {formatPrecio(p.planes[0].precio)}/mes
-                  </div>
+                  <div className="text-xs text-gray-400 mb-1.5">satisfacción</div>
+                  <NivelPrecioBadge nivel={nivelPrecio(p.planes[0].precio)} />
                 </div>
               </Link>
             ))}
@@ -113,7 +112,7 @@ export default function RankingPage() {
             Prepagas más económicas
           </h2>
           <p className="text-gray-500 text-sm mb-6">
-            Ordenadas por precio del plan más económico — persona de 30 años
+            Ordenadas por nivel de precio del plan más económico de cada una
           </p>
 
           <div className="overflow-x-auto">
@@ -123,7 +122,7 @@ export default function RankingPage() {
                   <th className="text-left p-4 text-sm font-semibold text-gray-700">#</th>
                   <th className="text-left p-4 text-sm font-semibold text-gray-700">Prepaga</th>
                   <th className="text-left p-4 text-sm font-semibold text-gray-700">Plan más económico</th>
-                  <th className="text-right p-4 text-sm font-semibold text-gray-700">Precio/mes</th>
+                  <th className="text-right p-4 text-sm font-semibold text-gray-700">Nivel de precio</th>
                   <th className="text-center p-4 text-sm font-semibold text-gray-700">Satisfacción</th>
                 </tr>
               </thead>
@@ -139,7 +138,7 @@ export default function RankingPage() {
                         </Link>
                       </td>
                       <td className="p-4 text-sm text-gray-600">{planMasBarato.nombre}</td>
-                      <td className="p-4 text-right font-bold text-[#E8002D]">{formatPrecio(planMasBarato.precio)}</td>
+                      <td className="p-4 text-right"><NivelPrecioBadge nivel={nivelPrecio(planMasBarato.precio)} /></td>
                       <td className="p-4 text-center">
                         <span className="text-sm font-semibold text-[#00875A]">{p.satisfaccion}%</span>
                       </td>

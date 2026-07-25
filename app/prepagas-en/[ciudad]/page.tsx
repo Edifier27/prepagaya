@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ciudades } from '@/lib/data/ciudades'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 interface Props {
   params: Promise<{ ciudad: string }>
@@ -19,8 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = ciudades.find((c) => c.slug === ciudad)
   if (!city) return {}
   return {
-    title: `Prepagas en ${city.nombre}: Precios y Planes — ${PRECIO_ACTUALIZADO}`,
-    description: `Las ${city.prepagasDisponibles.length} prepagas con cobertura en ${city.nombre}, ${city.provincia}. Precios reales de ${PRECIO_ACTUALIZADO}, planes y comparativa para elegir la mejor de tu zona.`,
+    title: `Prepagas en ${city.nombre}: Cobertura y Planes — ${PRECIO_ACTUALIZADO}`,
+    description: `Las ${city.prepagasDisponibles.length} prepagas con cobertura en ${city.nombre}, ${city.provincia}. Planes, cartilla y comparativa de ${PRECIO_ACTUALIZADO} para elegir la mejor de tu zona.`,
     alternates: { canonical: `${SITE_URL}/prepagas-en/${ciudad}` },
     keywords: [
       `prepagas en ${city.nombre.toLowerCase()}`,
@@ -49,7 +50,7 @@ export default async function CiudadPage({ params }: Props) {
     {
       q: `¿Cuál es la prepaga más barata en ${city.nombre}?`,
       a: masBarata
-        ? `En ${PRECIO_ACTUALIZADO}, la opción más económica con cobertura en ${city.nombre} es ${masBarata.prep.nombre}, desde ${formatPrecio(masBarata.precioMin)}/mes para una persona de 30 años con contratación directa.`
+        ? `En ${PRECIO_ACTUALIZADO}, la opción de nivel de precio más económico con cobertura en ${city.nombre} es ${masBarata.prep.nombre}. El precio exacto depende de tu edad — cotizalo gratis en el comparador de PrepagaYa.`
         : `Depende de tu edad y situación laboral. Usá el comparador para ver precios exactos en tu zona.`,
     },
     {
@@ -124,9 +125,9 @@ export default async function CiudadPage({ params }: Props) {
           <p className="text-gray-600 leading-relaxed max-w-3xl">{city.descripcion}</p>
           {masBarata && (
             <div className="mt-6 inline-flex items-center gap-3 bg-white rounded-2xl border border-gray-200 px-5 py-3 shadow-sm">
-              <span className="text-sm text-gray-500">Opción más económica en tu zona:</span>
+              <span className="text-sm text-gray-500">Opción de nivel de precio más económico en tu zona:</span>
               <Link href={`/prepagas/${masBarata.prep.slug}`} className="font-bold text-[#E8002D] hover:underline text-sm">
-                {masBarata.prep.nombre} desde {formatPrecio(masBarata.precioMin)}/mes →
+                {masBarata.prep.nombre} →
               </Link>
             </div>
           )}
@@ -140,7 +141,7 @@ export default async function CiudadPage({ params }: Props) {
             <h2 className="text-xl font-bold text-gray-900">
               Las {disponibles.length} prepagas con cobertura en {city.nombre}
             </h2>
-            <span className="text-xs text-gray-400 hidden sm:block">Ordenadas por precio · 30 años · IVA inc.</span>
+            <span className="text-xs text-gray-400 hidden sm:block">Ordenadas por nivel de precio</span>
           </div>
           <div className="space-y-3">
             {disponibles.map(({ prep, precioMin }, i) => (
@@ -161,15 +162,13 @@ export default async function CiudadPage({ params }: Props) {
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <div className="text-sm text-gray-400">desde</div>
-                  <div className="text-lg font-black text-[#E8002D] tabular-nums">{formatPrecio(precioMin)}</div>
-                  <div className="text-xs text-gray-400">/mes</div>
+                  <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
                 </div>
               </Link>
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            * Precio base del plan más económico de cada prepaga · persona de 30 años · contratación directa · IVA incluido · {PRECIO_ACTUALIZADO}.
+            * Nivel de precio del plan más económico de cada prepaga, relativo al resto del mercado · {PRECIO_ACTUALIZADO}. Cotizá tu precio exacto según tu edad.
           </p>
         </div>
       </section>

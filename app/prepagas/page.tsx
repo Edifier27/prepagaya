@@ -1,10 +1,11 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { StarRating } from '@/components/ui/StarRating'
 import { Badge } from '@/components/ui/Badge'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 export const metadata: Metadata = {
   title: `Prepagas Argentina ${new Date().getFullYear()}: Listado, Precios y Comparativas`,
@@ -116,11 +117,8 @@ export default function PrepagasPage() {
                   {/* Card footer */}
                   <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
                     <div>
-                      <div className="text-xs text-gray-400">Desde</div>
-                      <div className="text-xl font-bold text-[#E8002D]">
-                        {formatPrecio(planMasBarato.precio)}
-                        <span className="text-sm font-normal text-gray-400">/mes</span>
-                      </div>
+                      <div className="text-xs text-gray-400 mb-1.5">Nivel de precio</div>
+                      <NivelPrecioBadge nivel={nivelPrecio(planMasBarato.precio)} />
                     </div>
                     <div className="text-right">
                       <div className="text-xs text-[#00875A] font-semibold">{p.satisfaccion}% satisfacción</div>

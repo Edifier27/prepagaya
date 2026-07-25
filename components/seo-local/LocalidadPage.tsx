@@ -1,15 +1,16 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { LocalidadZona, ProvinciaSEO } from '@/lib/data/zonas'
-import { formatPrecio, SITE_URL } from '@/lib/utils'
+import { SITE_URL } from '@/lib/utils'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { BreadcrumbBar, CtaCotizador, jsonLdBreadcrumb } from './shared'
 
 export function localidadMetadata(prov: ProvinciaSEO, loc: LocalidadZona): Metadata {
   const year = new Date().getFullYear()
   return {
-    title: `Prepagas en ${loc.nombre}: precios y cobertura ${year}`,
-    description: `Las prepagas con cartilla en ${loc.nombre}, ${prov.nombre}: precios ${PRECIO_ACTUALIZADO.toLowerCase()}, qué prestadores locales cubren y cotización online gratis.`,
+    title: `Prepagas en ${loc.nombre}: cobertura ${year}`,
+    description: `Las prepagas con cartilla en ${loc.nombre}, ${prov.nombre}: qué prestadores locales cubren, planes actualizados ${PRECIO_ACTUALIZADO.toLowerCase()} y cotización online gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${loc.slug}` },
     keywords: [`prepagas en ${loc.nombre.toLowerCase()}`, `prepagas ${loc.nombre.toLowerCase()}`, `medicina prepaga ${loc.nombre.toLowerCase()}`],
   }
@@ -67,10 +68,7 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
                   </div>
                   <div className="text-right flex-shrink-0 ml-4">
                     {precioMin ? (
-                      <>
-                        <div className="text-sm font-bold text-[#E8002D] tabular-nums">desde {formatPrecio(precioMin)}</div>
-                        <div className="text-xs text-gray-400">/mes</div>
-                      </>
+                      <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
                     ) : (
                       <div className="text-xs text-gray-400">Sujeto a cotización</div>
                     )}

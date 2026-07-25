@@ -282,7 +282,7 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Las emergencias tienen copago en la prepaga?',
-        a: 'Depende del plan. Los planes con copago generalmente aplican un copago en guardia (usualmente $3.000-$8.000). Los planes sin copago como Swiss Medical SMG40 u OSDE 410/510 no cobran copago en guardia. En emergencias graves (código rojo), muchas prepagas no cobran copago aunque el plan lo tenga.',
+        a: 'Depende del plan. Los planes con copago generalmente aplican un copago en guardia. Los planes sin copago como Swiss Medical SMG40 u OSDE 410/510 no cobran copago en guardia. En emergencias graves (código rojo), muchas prepagas no cobran copago aunque el plan lo tenga.',
       },
       {
         q: '¿La prepaga me cubre si tengo una emergencia de vacaciones en otra provincia?',
@@ -322,7 +322,7 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Cuánto cubre la prepaga para anteojos?',
-        a: 'Los topes varían: Swiss Medical SMG20 cubre hasta $80.000-120.000 por año. OSDE 310 tiene un tope similar. Los planes básicos no suelen incluir óptica. Para lentes de contacto, la cobertura es más limitada y generalmente requiere indicación médica (queratocono, etc.).',
+        a: 'Los topes varían según el plan: Swiss Medical SMG20 y OSDE 310 tienen topes anuales razonables para lentes recetados. Los planes básicos no suelen incluir óptica. Para lentes de contacto, la cobertura es más limitada y generalmente requiere indicación médica (queratocono, etc.).',
       },
       {
         q: '¿La prepaga cubre cirugía láser de ojos?',

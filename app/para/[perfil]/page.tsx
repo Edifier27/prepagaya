@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { perfiles } from '@/lib/data/perfiles'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 interface Props {
   params: Promise<{ perfil: string }>
@@ -139,7 +140,7 @@ export default async function PerfilPage({ params }: Props) {
         <section className="py-10 bg-gray-50 border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">
             <h2 className="text-xl font-bold text-gray-900 mb-1">Planes recomendados — {PRECIO_ACTUALIZADO}</h2>
-            <p className="text-sm text-gray-500 mb-6">Precio base para persona de 30 años, contratación directa con IVA incluido.</p>
+            <p className="text-sm text-gray-500 mb-6">Nivel de precio relativo al resto del mercado. Cotizá tu precio exacto según tu edad.</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {planes.map(({ prep, plan, razon }, i) => (
                 <Link
@@ -151,7 +152,7 @@ export default async function PerfilPage({ params }: Props) {
                 >
                   {i === 0 && (
                     <span className="absolute -top-3 left-5 bg-[#E8002D] text-white text-[10px] font-black px-3 py-1 rounded-full tracking-wide">
-                      MEJOR PRECIO
+                      RECOMENDADO
                     </span>
                   )}
                   <div className="flex items-center gap-2.5 mb-3 mt-1">
@@ -161,8 +162,9 @@ export default async function PerfilPage({ params }: Props) {
                       <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{plan.nombre}</div>
                     </div>
                   </div>
-                  <div className="text-2xl font-black text-[#E8002D] tabular-nums">{formatPrecio(plan.precio)}</div>
-                  <div className="text-xs text-gray-400 mb-3">/mes</div>
+                  <div className="mb-3">
+                    <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                  </div>
                   <p className="text-xs text-gray-500 leading-relaxed">{razon}</p>
                   <div className="mt-3 text-xs font-bold text-[#E8002D]">Ver cobertura completa →</div>
                 </Link>
@@ -207,7 +209,7 @@ export default async function PerfilPage({ params }: Props) {
                         <Link href={`/prepagas/${prep.slug}`} className="font-bold text-gray-900 hover:text-[#E8002D] transition-colors block leading-tight">
                           {prep.nombre}
                         </Link>
-                        <div className="text-xs text-gray-400">desde {formatPrecio(planBase.precio)}/mes</div>
+                        <NivelPrecioBadge nivel={nivelPrecio(planBase.precio)} className="mt-1" />
                       </div>
                     </div>
                     <p className="flex-1 text-sm text-gray-600 leading-relaxed">{rec.razon}</p>

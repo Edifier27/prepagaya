@@ -1,15 +1,16 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { PrepagaZona, ProvinciaSEO } from '@/lib/data/zonas'
-import { formatPrecio, SITE_URL } from '@/lib/utils'
+import { SITE_URL } from '@/lib/utils'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdBreadcrumb } from './shared'
 
 export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metadata {
   const year = new Date().getFullYear()
   return {
-    title: `${pz.nombre} en ${prov.nombre}: cartilla, planes y precios ${year}`,
-    description: `¿Qué cubre ${pz.nombre} en ${prov.nombre}? Cartilla local, sucursales, planes y precios ${PRECIO_ACTUALIZADO.toLowerCase()}. Compará con las demás prepagas de ${prov.nombre} y cotizá online.`,
+    title: `${pz.nombre} en ${prov.nombre}: cartilla y planes ${year}`,
+    description: `¿Qué cubre ${pz.nombre} en ${prov.nombre}? Cartilla local, sucursales y planes actualizados ${PRECIO_ACTUALIZADO.toLowerCase()}. Compará con las demás prepagas de ${prov.nombre} y cotizá online.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${pz.slug}` },
     keywords: [`${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} en ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${prov.capitalNombre.toLowerCase()}`, `cartilla ${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()}`],
   }
@@ -18,7 +19,6 @@ export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metada
 export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZona }) {
   const prepData = prepagas.find((p) => p.slug === pz.slug)
   const planesOrdenados = prepData ? [...prepData.planes].sort((a, b) => a.precio - b.precio) : []
-  const precioMin = planesOrdenados[0]?.precio
   const hermanas = prov.prepagas.filter((h) => h.slug !== pz.slug && h.enSitio).slice(0, 3)
   const fuerza = FUERZA_LABEL[pz.fuerza]
   const crumbs = [
@@ -68,8 +68,8 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
         {/* Planes y precios */}
         {prepData && planesOrdenados.length > 0 && (
           <section className="mb-10">
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Planes de {pz.nombre}: precios {PRECIO_ACTUALIZADO}</h2>
-            <p className="text-sm text-gray-500 mb-5">Precios de lista para una persona de 30 años. En {prov.nombre} aplican los mismos precios de lista; tu edad y grupo familiar definen el valor final.</p>
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Planes de {pz.nombre} — {PRECIO_ACTUALIZADO}</h2>
+            <p className="text-sm text-gray-500 mb-5">Nivel de precio relativo al resto del mercado. En {prov.nombre} aplican los mismos planes; tu edad y grupo familiar definen el valor final.</p>
             <div className="space-y-3">
               {planesOrdenados.map((plan) => (
                 <Link key={plan.slug} href={`/prepagas/${pz.slug}/${plan.slug}`}
@@ -79,8 +79,7 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
                     <div className="text-xs text-gray-500 mt-0.5 line-clamp-1">{plan.descripcion}</div>
                   </div>
                   <div className="text-right flex-shrink-0 ml-4">
-                    <div className="text-sm font-bold text-[#E8002D] tabular-nums">{formatPrecio(plan.precio)}</div>
-                    <div className="text-xs text-gray-400">/mes</div>
+                    <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                   </div>
                 </Link>
               ))}

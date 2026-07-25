@@ -44,7 +44,7 @@ export const perfiles: PerfilData[] = [
     faq: [
       {
         q: '¿Cuánto sale una prepaga para una familia de 4 personas?',
-        a: 'Depende de la edad de cada integrante. Una familia tipo (2 adultos de 35 años + 2 hijos menores) puede pagar desde $580.000 con Sancor Plan 3000 hasta $1.300.000 con OSDE 410. Los niños menores de 18 años suelen pagar entre el 50% y 70% del valor del adulto.',
+        a: 'Depende de la edad de cada integrante y de si buscás un plan de nivel económico o premium. Una familia tipo (2 adultos de 35 años + 2 hijos menores) puede pagar desde nivel de precio medio en las opciones más accesibles hasta nivel premium en las prepagas de cartilla más amplia. Los niños menores de 18 años suelen pagar entre el 50% y 70% del valor del adulto. Cotizá gratis para ver el monto exacto de tu grupo familiar.',
       },
       {
         q: '¿Las prepagas dan descuento por grupo familiar?',
@@ -133,7 +133,7 @@ export const perfiles: PerfilData[] = [
       },
       {
         q: '¿Cuánto cuesta una prepaga para un monotributista en 2026?',
-        a: 'Los precios van desde $107.044/mes (Premedic Plan 200) hasta más de $400.000/mes (OSDE Plan 510). Para un monotributista, la recomendación es el rango $130.000-$200.000, donde encontrás buena cobertura con Sancor, Medife o Premedic Plan 300.',
+        a: 'Los precios van de nivel económico a nivel premium según el plan y la prepaga que elijas. Para un monotributista, la recomendación es apuntar a un plan de nivel de precio medio, donde encontrás buena cobertura con opciones como Sancor, Medife o Premedic. Además accedés al 25% de descuento por facturar con IVA discriminado. Cotizá gratis para ver el monto exacto.',
       },
     ],
     keywords: ['prepagas para monotributistas', 'prepaga monotributista argentina', 'contratar prepaga sin obra social', 'mejor prepaga monotributo 2026'],
@@ -182,8 +182,8 @@ export const perfiles: PerfilData[] = [
     slug: 'jovenes',
     nombre: 'Jóvenes',
     emoji: '🧑',
-    titulo: 'Prepaga económica para jóvenes: planes desde $107.000 en 2026',
-    metaDescripcion: 'Las mejores prepagas económicas para jóvenes en Argentina. Planes desde $107.000/mes con buena cobertura. Compará Swiss Medical S1, Premedic 200, Medife y más.',
+    titulo: 'Prepaga económica para jóvenes en 2026',
+    metaDescripcion: 'Las mejores prepagas económicas para jóvenes en Argentina. Planes de nivel de precio accesible con buena cobertura. Compará Swiss Medical S1, Premedic 200, Medife y más.',
     descripcion: 'Si sos joven y sano, probablemente no necesitás el plan más completo del mercado. Te mostramos las opciones más económicas con cobertura real para el día a día.',
     necesidades: [
       'Precio accesible (budget-friendly)',
@@ -194,7 +194,7 @@ export const perfiles: PerfilData[] = [
       'Cobertura odontológica básica',
     ],
     prepagasRecomendadas: [
-      { slug: 'premedic', razon: 'La más económica del mercado. El Plan 200 desde $107.044 cubre todo lo esencial para un joven sano en CABA/GBA.' },
+      { slug: 'premedic', razon: 'De nivel de precio más económico del mercado. El Plan 200 cubre todo lo esencial para un joven sano en CABA/GBA.' },
       { slug: 'swiss-medical', razon: 'El plan S1 está diseñado especialmente para jóvenes. Precio accesible con el respaldo de la mejor red de sanatorios.' },
       { slug: 'medife', razon: 'Plan Económico accesible con buena cobertura para jóvenes en AMBA.' },
       { slug: 'sancor-salud', razon: 'El Plan 1500 ofrece buena cobertura a precio competitivo.' },
@@ -207,11 +207,11 @@ export const perfiles: PerfilData[] = [
     faq: [
       {
         q: '¿Vale la pena tener prepaga siendo joven?',
-        a: 'Sí, especialmente si no tenés obra social (por ser monotributista, estudiante o trabajar informal). Los accidentes, urgencias y la salud mental son las principales razones por las que los jóvenes usan la prepaga. Un plan básico desde $107.000 te da cobertura en esas situaciones.',
+        a: 'Sí, especialmente si no tenés obra social (por ser monotributista, estudiante o trabajar informal). Los accidentes, urgencias y la salud mental son las principales razones por las que los jóvenes usan la prepaga. Un plan de nivel de precio económico ya te da cobertura en esas situaciones.',
       },
       {
         q: '¿Cuál es la prepaga más barata para jóvenes?',
-        a: 'Premedic Plan 200 ($107.044/mes a los 30 años) es consistentemente la más barata. Swiss Medical S1 ($185.773/mes) es la más barata entre las prepagas grandes con sanatorios propios. Ambas cubren el PMO completo.',
+        a: 'Premedic Plan 200 es consistentemente una de las de nivel de precio más económico. Swiss Medical S1 es la opción más accesible entre las prepagas grandes con sanatorios propios. Ambas cubren el PMO completo. Cotizá gratis para ver el monto exacto a tu edad.',
       },
     ],
     keywords: ['prepaga economica jovenes', 'prepaga barata argentina 2026', 'prepaga para estudiantes', 'prepaga mas barata argentina'],
