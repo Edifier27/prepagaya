@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { prepagas } from '@/lib/data/prepagas'
+import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { comparativas } from '@/lib/data/comparativas'
-import { formatPrecio } from '@/lib/utils'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
 
 const logoColors: Record<string, { bg: string; text: string }> = {
@@ -65,8 +65,9 @@ function PrepagaCard({
           <div className={`font-bold text-gray-900 leading-tight truncate ${size === 'sm' ? 'text-sm' : 'text-base'}`}>
             {prepaga.nombre}
           </div>
-          <div className="text-xs text-gray-400 mt-0.5">
-            Desde {formatPrecio(minPrecio)}/mes · {prepaga.satisfaccion}% satisf.
+          <div className="flex items-center gap-1.5 mt-1">
+            <NivelPrecioBadge nivel={nivelPrecio(minPrecio)} />
+            <span className="text-xs text-gray-400">{prepaga.satisfaccion}% satisf.</span>
           </div>
         </div>
         {selected && (
@@ -95,11 +96,17 @@ function ResultadoComparacion({ p1, p2 }: { p1: Prepaga; p2: Prepaga }) {
   const ganaSat = p1.satisfaccion >= p2.satisfaccion ? p1 : p2
   const ganaPlanes = p1.planes.length >= p2.planes.length ? p1 : p2
 
-  const metrics = [
+  const metrics: {
+    label: string
+    val1: React.ReactNode
+    val2: React.ReactNode
+    winner: string
+    icon: React.ReactNode
+  }[] = [
     {
-      label: 'Precio de entrada',
-      val1: formatPrecio(min1) + '/mes',
-      val2: formatPrecio(min2) + '/mes',
+      label: 'Nivel de precio',
+      val1: <NivelPrecioBadge nivel={nivelPrecio(min1)} />,
+      val2: <NivelPrecioBadge nivel={nivelPrecio(min2)} />,
       winner: ganaPrecio.slug,
       icon: (
         <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -225,10 +232,7 @@ function ResultadoComparacion({ p1, p2 }: { p1: Prepaga; p2: Prepaga }) {
               >
                 {planBase.nombre}
               </div>
-              <div className="text-lg font-black text-gray-900">
-                {formatPrecio(planBase.precio)}
-                <span className="text-xs font-normal text-gray-400">/mes</span>
-              </div>
+              <NivelPrecioBadge nivel={nivelPrecio(planBase.precio)} />
               <div className="flex gap-1 mt-2 flex-wrap">
                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${planBase.copago ? 'bg-amber-50 text-amber-700' : 'bg-green-50 text-green-700'}`}>
                   {planBase.copago ? 'Con copago' : 'Sin copago'}

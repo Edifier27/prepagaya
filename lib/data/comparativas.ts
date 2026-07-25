@@ -10,7 +10,7 @@ export const comparativas: Comparativa[] = [
     ganadorPrecio: 'swiss-medical',
     ganadorRed: 'osde',
     ganadorSatisfaccion: 'swiss-medical',
-    veredicto: 'Swiss Medical gana en precio (SMG20 a $325.467 vs Plan 310 de OSDE a $345.310, diferencia de $20k/mes) y en sanatorios propios de primer nivel. OSDE gana en amplitud de red (140.000 vs 81.500 profesionales) y cobertura nacional. Para AMBA con presupuesto ajustado, Swiss Medical. Para cobertura nacional o el Hospital Alemán en red, OSDE.',
+    veredicto: 'Swiss Medical gana en nivel de precio (el SMG20 queda por debajo del Plan 310 de OSDE) y en sanatorios propios de primer nivel. OSDE gana en amplitud de red (140.000 vs 81.500 profesionales) y cobertura nacional. Para AMBA con presupuesto ajustado, Swiss Medical. Para cobertura nacional o el Hospital Alemán en red, OSDE.',
   },
   {
     slug: 'swiss-medical-vs-sancor-salud',
@@ -32,7 +32,7 @@ export const comparativas: Comparativa[] = [
     ganadorPrecio: 'sancor-salud',
     ganadorRed: 'osde',
     ganadorSatisfaccion: 'osde',
-    veredicto: 'OSDE 310 ($345.310/mes) vs Sancor Plan 2000 (~$250.000/mes). OSDE tiene la red más grande (140.000 profesionales) pero Sancor cuesta entre 20-40% menos. Para cobertura en todo el país y buena relación precio-calidad, Sancor Salud. Para quienes valoran la mayor red y el Hospital Alemán en cartilla, OSDE.',
+    veredicto: 'OSDE 310 es de nivel de precio superior al Plan 2000 de Sancor Salud. OSDE tiene la red más grande (140.000 profesionales) pero Sancor cuesta significativamente menos. Para cobertura en todo el país y buena relación precio-calidad, Sancor Salud. Para quienes valoran la mayor red y el Hospital Alemán en cartilla, OSDE.',
   },
   {
     slug: 'swiss-medical-vs-cemic',

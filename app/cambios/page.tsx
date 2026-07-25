@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: `¿A qué prepaga conviene cambiarse en 2026? Guía por empresa`,
@@ -104,7 +104,7 @@ export default function CambiosPage() {
                   <div className={`inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-full border ${
                     ahorra ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
                   }`}>
-                    {ahorra ? `Ahorrás ${formatPrecio(Math.abs(c.deltaMensual))}/mes` : `Solo ${formatPrecio(Math.abs(c.deltaMensual))}/mes más`}
+                    {ahorra ? 'Cuota más accesible' : 'Mejor cartilla, cuota similar'}
                   </div>
                 </Link>
               )

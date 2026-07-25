@@ -1,10 +1,11 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, formatPrecio } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 
 export const metadata: Metadata = {
@@ -336,11 +337,9 @@ export default function HomePage(): React.ReactElement {
                     <span className="text-[10px] text-gray-400 font-medium">{prep.satisfaccion}% satisfacción</span>
                   </div>
 
-                  {/* Precio */}
+                  {/* Nivel de precio */}
                   <div className="text-right flex-shrink-0">
-                    <div className="text-xs text-gray-400">Desde</div>
-                    <div className="font-black text-gray-900 text-sm tabular-nums">{formatPrecio(precioMin)}</div>
-                    <div className="text-xs text-gray-400">/mes</div>
+                    <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
                   </div>
 
                   {/* Arrow */}
@@ -436,7 +435,7 @@ export default function HomePage(): React.ReactElement {
                   <div className={`inline-flex self-start items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-full border mt-4 ${
                     ahorra ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
                   }`}>
-                    {ahorra ? `Ahorrás ${formatPrecio(Math.abs(c.deltaMensual))}/mes` : `Solo ${formatPrecio(Math.abs(c.deltaMensual))}/mes más`}
+                    {ahorra ? 'Cuota más accesible' : 'Mejor cartilla, cuota similar'}
                   </div>
                 </Link>
               )

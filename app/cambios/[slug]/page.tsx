@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { cambiosRecomendados, getCambioBySlug, getCambiosPorDestino } from '@/lib/data/cambios'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -20,12 +21,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCambioBySlug(slug)
   if (!c) return {}
   const ahorra = c.deltaMensual > 0
-  const resumenPrecio = ahorra
-    ? `Ahorrás ${formatPrecio(c.deltaMensual)}/mes`
-    : `${formatPrecio(Math.abs(c.deltaMensual))}/mes más, con mucha más cartilla`
+  const resumenPrecio = ahorra ? 'Cuota más accesible' : 'Mejor cartilla, cuota similar'
   return {
     title: `De ${c.origenNombre} a ${c.destinoNombre}: ¿conviene cambiarse? ${PRECIO_ACTUALIZADO}`,
-    description: `${resumenPrecio}. Comparamos ${c.origenPlanNombre} de ${c.origenNombre} ($${c.origenPrecio.toLocaleString('es-AR')}) vs ${c.destinoPlanNombre} de ${c.destinoNombre} ($${c.destinoPrecio.toLocaleString('es-AR')}) con precios reales, sanatorios y cuándo NO conviene cambiarte.`,
+    description: `${resumenPrecio}. Comparamos ${c.origenPlanNombre} de ${c.origenNombre} vs ${c.destinoPlanNombre} de ${c.destinoNombre}: nivel de precio, sanatorios y cuándo NO conviene cambiarte.`,
     alternates: { canonical: `${SITE_URL}/cambios/${slug}` },
     keywords: [
       `cambiar de ${c.origenNombre.toLowerCase()} a ${c.destinoNombre.toLowerCase()}`,
@@ -52,7 +51,6 @@ export default async function CambioPage({ params }: Props) {
   const testimonioDestino = testimonios.find((t) => t.prepagaSlug === c.destinoSlug && t.rating >= 4) ?? testimonios.find((t) => t.prepagaSlug === c.destinoSlug)
 
   const filas = [
-    { label: 'Precio de lista (30 años)', origen: formatPrecio(c.origenPrecio), destino: formatPrecio(c.destinoPrecio) },
     { label: 'Copago', origen: 'Sin copago', destino: 'Sin copago' },
     { label: 'Calidad de cartilla', origen: `${origen.calidadCartilla}/5`, destino: `${destino.calidadCartilla}/5` },
     { label: 'Satisfacción declarada', origen: `${origen.satisfaccion}%`, destino: `${destino.satisfaccion}%` },
@@ -64,8 +62,8 @@ export default async function CambioPage({ params }: Props) {
     {
       q: `¿Cuánto ahorro cambiando de ${c.origenNombre} a ${c.destinoNombre}?`,
       a: ahorra
-        ? `${formatPrecio(c.deltaMensual)} por mes, comparando el ${c.origenPlanNombre} de ${c.origenNombre} ($${c.origenPrecio.toLocaleString('es-AR')}) contra el ${c.destinoPlanNombre} de ${c.destinoNombre} ($${c.destinoPrecio.toLocaleString('es-AR')}), precios de lista para una persona de 30 años.`
-        : `No hay ahorro en este caso: el ${c.destinoPlanNombre} de ${c.destinoNombre} cuesta ${formatPrecio(Math.abs(c.deltaMensual))} más por mes que el ${c.origenPlanNombre} de ${c.origenNombre}. Lo que ganás es cartilla, no precio.`,
+        ? `El ${c.destinoPlanNombre} de ${c.destinoNombre} tiene un nivel de precio más accesible que el ${c.origenPlanNombre} de ${c.origenNombre}. Cotizá gratis para ver el monto exacto de tu ahorro según tu edad.`
+        : `No hay ahorro en este caso: el ${c.destinoPlanNombre} de ${c.destinoNombre} tiene un nivel de precio apenas superior al ${c.origenPlanNombre} de ${c.origenNombre}. Lo que ganás es cartilla, no precio.`,
     },
     {
       q: `¿Pierdo cobertura si cambio de ${c.origenNombre} a ${c.destinoNombre}?`,
@@ -152,25 +150,27 @@ export default async function CambioPage({ params }: Props) {
       <section className="py-10 bg-white">
         <div className="container max-w-3xl mx-auto">
 
-          {/* Precio destacado */}
+          {/* Nivel de precio destacado */}
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div className="bg-gray-50 rounded-2xl border border-gray-200 p-5 text-center">
-              <div className="text-xs text-gray-400 mb-1">{origen.nombre} — {c.origenPlanNombre}</div>
-              <div className="text-2xl font-black text-gray-700 tabular-nums">{formatPrecio(c.origenPrecio)}</div>
-              <div className="text-xs text-gray-400">/mes · 30 años</div>
+              <div className="text-xs text-gray-400 mb-2">{origen.nombre} — {c.origenPlanNombre}</div>
+              <div className="flex justify-center">
+                <NivelPrecioBadge nivel={nivelPrecio(c.origenPrecio)} />
+              </div>
             </div>
             <div className="bg-red-50 rounded-2xl border-2 border-[#E8002D] p-5 text-center">
-              <div className="text-xs text-[#E8002D] font-semibold mb-1">{destino.nombre} — {c.destinoPlanNombre}</div>
-              <div className="text-2xl font-black text-[#E8002D] tabular-nums">{formatPrecio(c.destinoPrecio)}</div>
-              <div className="text-xs text-gray-400">/mes · 30 años</div>
+              <div className="text-xs text-[#E8002D] font-semibold mb-2">{destino.nombre} — {c.destinoPlanNombre}</div>
+              <div className="flex justify-center">
+                <NivelPrecioBadge nivel={nivelPrecio(c.destinoPrecio)} />
+              </div>
             </div>
           </div>
           <div className={`text-center rounded-2xl p-5 mb-10 ${ahorra ? 'bg-emerald-50 border border-emerald-200' : 'bg-amber-50 border border-amber-200'}`}>
-            <div className={`text-2xl font-black ${ahorra ? 'text-emerald-700' : 'text-amber-700'}`}>
-              {ahorra ? `Ahorrás ${formatPrecio(Math.abs(c.deltaMensual))}/mes` : `Pagás ${formatPrecio(Math.abs(c.deltaMensual))} más por mes`}
+            <div className={`text-lg font-black ${ahorra ? 'text-emerald-700' : 'text-amber-700'}`}>
+              {ahorra ? 'Cuota más accesible' : 'Cuota similar, con mucha más cartilla'}
             </div>
             <p className="text-sm text-gray-600 mt-1">
-              {ahorra ? 'Cambiándote, con cobertura equivalente o mejor.' : 'Pero con una cartilla notablemente más grande.'}
+              {ahorra ? 'Cambiándote, con cobertura equivalente o mejor. Cotizá gratis para ver el ahorro exacto según tu edad.' : 'Pero con una cartilla notablemente más grande.'}
             </p>
           </div>
 
@@ -187,6 +187,11 @@ export default async function CambioPage({ params }: Props) {
                   </tr>
                 </thead>
                 <tbody>
+                  <tr className="border-b border-gray-100">
+                    <td className="px-4 py-3 text-gray-500 font-medium">Nivel de precio</td>
+                    <td className="px-4 py-3"><NivelPrecioBadge nivel={nivelPrecio(c.origenPrecio)} /></td>
+                    <td className="px-4 py-3"><NivelPrecioBadge nivel={nivelPrecio(c.destinoPrecio)} /></td>
+                  </tr>
                   {filas.map((f, i) => (
                     <tr key={f.label} className={i < filas.length - 1 ? 'border-b border-gray-100' : ''}>
                       <td className="px-4 py-3 text-gray-500 font-medium">{f.label}</td>

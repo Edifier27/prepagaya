@@ -3,9 +3,10 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { comparativas } from '@/lib/data/comparativas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -50,7 +51,6 @@ export default async function ComparativaPage({ params }: Props) {
     valor: (p: Prepaga) => string
     ganador?: string
   }[] = [
-    { label: `Precio base (${PRECIO_ACTUALIZADO})`, valor: (p) => `desde ${formatPrecio(precioMin(p))}/mes`, ganador: comp.ganadorPrecio },
     { label: 'Profesionales en cartilla', valor: (p) => p.profesionales.toLocaleString('es-AR'), ganador: comp.ganadorRed },
     { label: 'Sanatorios propios', valor: (p) => (p.sanatoriosPropios > 0 ? String(p.sanatoriosPropios) : 'Red por convenio') },
     { label: 'Satisfacción de afiliados', valor: (p) => `${p.satisfaccion}%`, ganador: comp.ganadorSatisfaccion },
@@ -62,9 +62,9 @@ export default async function ComparativaPage({ params }: Props) {
   const faqs = [
     {
       q: `¿Cuál es más barata: ${p1.nombre} o ${p2.nombre}?`,
-      a: `En ${PRECIO_ACTUALIZADO}, ${p1.nombre} arranca desde ${formatPrecio(precioMin(p1))}/mes y ${p2.nombre} desde ${formatPrecio(precioMin(p2))}/mes (persona de 30 años, contratación directa con IVA). ${
+      a: `En ${PRECIO_ACTUALIZADO}, ${p1.nombre} es de nivel de precio ${NIVEL_PRECIO_LABEL[nivelPrecio(precioMin(p1))].label.toLowerCase()} y ${p2.nombre} de nivel ${NIVEL_PRECIO_LABEL[nivelPrecio(precioMin(p2))].label.toLowerCase()} en su plan de entrada. ${
         comp.ganadorPrecio === p1.slug ? p1.nombre : p2.nombre
-      } gana en precio.`,
+      } gana en precio. Cotizá gratis para ver el monto exacto a tu edad.`,
     },
     {
       q: `¿Cuál tiene más red de prestadores?`,
@@ -162,7 +162,7 @@ export default async function ComparativaPage({ params }: Props) {
                 <Link href={`/prepagas/${p.slug}`} className="group flex flex-col items-center gap-2">
                   <PrepagaLogo slug={p.slug} nombre={p.nombre} colorPrimario={p.colorPrimario} size="lg" className="shadow-sm" />
                   <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{p.nombre}</div>
-                  <div className="text-xs text-gray-400">desde {formatPrecio(precioMin(p))}/mes</div>
+                  <NivelPrecioBadge nivel={nivelPrecio(precioMin(p))} />
                 </Link>
                 {i === 0 && (
                   <div className="w-12 h-12 rounded-full bg-[#E8002D] text-white font-black text-sm flex items-center justify-center flex-shrink-0 shadow-md">
@@ -189,8 +189,19 @@ export default async function ComparativaPage({ params }: Props) {
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td className="p-4 text-gray-500 font-medium">Nivel de precio</td>
+                  <td className="p-4 whitespace-nowrap">
+                    <NivelPrecioBadge nivel={nivelPrecio(precioMin(p1))} />
+                    {comp.ganadorPrecio === p1.slug && <CheckBadge />}
+                  </td>
+                  <td className="p-4 whitespace-nowrap">
+                    <NivelPrecioBadge nivel={nivelPrecio(precioMin(p2))} />
+                    {comp.ganadorPrecio === p2.slug && <CheckBadge />}
+                  </td>
+                </tr>
                 {filas.map((fila, i) => (
-                  <tr key={fila.label} className={i % 2 === 1 ? 'bg-gray-50/50' : ''}>
+                  <tr key={fila.label} className={i % 2 === 0 ? 'bg-gray-50/50' : ''}>
                     <td className="p-4 text-gray-500 font-medium">{fila.label}</td>
                     <td className="p-4 text-gray-900 font-semibold whitespace-nowrap">
                       {fila.valor(p1)}
@@ -206,7 +217,7 @@ export default async function ComparativaPage({ params }: Props) {
             </table>
           </div>
           <p className="text-xs text-gray-400 mt-3">
-            * Precios base para persona de 30 años, contratación directa con IVA incluido · {PRECIO_ACTUALIZADO}.
+            * Nivel de precio relativo al resto del mercado, plan de entrada de cada prepaga · {PRECIO_ACTUALIZADO}. Cotizá tu precio exacto según tu edad.
           </p>
         </div>
       </section>
@@ -276,8 +287,8 @@ export default async function ComparativaPage({ params }: Props) {
                   <p className="text-sm text-gray-600 leading-relaxed line-clamp-3 mb-4">{p.descripcion}</p>
                   <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                     <div>
-                      <div className="text-xs text-gray-400">Plan más elegido: {planEstrella.nombre}</div>
-                      <div className="text-lg font-black text-[#E8002D] tabular-nums">{formatPrecio(planEstrella.precio)}<span className="text-xs font-normal text-gray-400">/mes</span></div>
+                      <div className="text-xs text-gray-400 mb-1.5">Plan más elegido: {planEstrella.nombre}</div>
+                      <NivelPrecioBadge nivel={nivelPrecio(planEstrella.precio)} />
                     </div>
                     <span className="text-xs font-bold text-[#E8002D]">Ver planes →</span>
                   </div>
