@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { guias } from '@/lib/data/guias'
-import { prepagas } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { StickySectionNav } from '@/components/ui/StickySectionNav'
 
 interface Props {
@@ -193,8 +194,7 @@ export default async function GuiaPage({ params }: Props) {
                       <div className="text-xs text-gray-500 mt-0.5">{p.planes.length} planes · {p.satisfaccion}% satisfacción</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm font-bold text-[#E8002D]">desde {formatPrecio(planBase.precio)}</div>
-                      <div className="text-xs text-gray-400">/mes</div>
+                      <NivelPrecioBadge nivel={nivelPrecio(planBase.precio)} />
                     </div>
                   </Link>
                 )

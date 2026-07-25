@@ -89,7 +89,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'La tercera vía: derivar aportes a una prepaga',
-          cuerpo: 'Si trabajás en relación de dependencia, podés derivar tus aportes de obra social a una prepaga: tus contribuciones se descuentan del precio del plan y además el precio "deriva aporte" no paga el IVA del 21% que paga la contratación directa. En la práctica, el mismo plan puede costarte entre 30% y 40% menos derivando aportes. Por ejemplo, un plan intermedio de Galeno cuesta $307.804 directo y $195.527 con aportes (julio 2026).',
+          cuerpo: 'Si trabajás en relación de dependencia, podés derivar tus aportes de obra social a una prepaga: tus contribuciones se descuentan del precio del plan y además el precio "deriva aporte" no paga el IVA del 21% que paga la contratación directa. En la práctica, el mismo plan puede costarte entre 30% y 40% menos derivando aportes. Por ejemplo, un plan intermedio de Galeno baja de nivel de precio medio-alto a un nivel bastante más accesible con aportes (julio 2026).',
         },
         {
           titulo: 'Cuándo conviene quedarse en la obra social',
@@ -101,7 +101,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Los números de 2026',
-          cuerpo: 'Una prepaga de entrada (Premedic, Hominis) cuesta desde ~$110.000/mes por persona. El segmento medio (Galeno Plata, Sancor 3000, Medifé Bronce) va de $250.000 a $400.000. Las premium (OSDE 410/510, Swiss SMG40+) superan los $450.000 y llegan a $1.100.000. Contra eso, la obra social ya la pagás con tus aportes. La pregunta correcta no es cuál es mejor en abstracto, sino cuánto valorás el acceso rápido y la cartilla premium.',
+          cuerpo: 'Una prepaga de nivel de precio económico (Premedic, Hominis) ya cubre el PMO completo. El segmento medio (Galeno Plata, Sancor 3000, Medifé Bronce) suma más cartilla. Las premium (OSDE 410/510, Swiss SMG40+) son las de mayor nivel de precio. Contra eso, la obra social ya la pagás con tus aportes. La pregunta correcta no es cuál es mejor en abstracto, sino cuánto valorás el acceso rápido y la cartilla premium.',
         },
       ],
       conclusion: 'No hay una respuesta única: la obra social gana en costo (ya la pagás), la prepaga gana en servicio. El punto medio que la mayoría no conoce es la derivación de aportes, que te da servicio de prepaga descontando lo que ya aportás. Antes de decidir, compará el plan que te interesa en las dos modalidades.',
@@ -194,7 +194,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Cuánto te sale según lo que busques',
-          cuerpo: 'Con precios de julio 2026, un monotributista de 30 años paga aproximadamente: opciones de entrada como Hominis (~$105.000) o Premedic (~$109.000); segmento medio como Federada 4000 (~$139.000), Luis Pasteur Novo (~$148.000) o Swiss Medical S1 ($185.773); segmento medio-alto como Galeno Plata 300 ($307.804) u OSDE 210 (~$270.000). De estos montos se descuenta tu componente de obra social si la prepaga acepta la derivación.',
+          cuerpo: 'Para un monotributista de 30 años, hay opciones en todos los niveles de precio: de entrada como Hominis o Premedic; segmento medio como Federada 4000, Luis Pasteur Novo o Swiss Medical S1; segmento medio-alto como Galeno Plata 300 u OSDE 210. Sobre el precio de lista se descuenta tu componente de obra social si la prepaga acepta la derivación — cotizá gratis para ver el monto exacto.',
         },
         {
           titulo: 'Ojo con el IVA: la trampa de la contratación directa',
@@ -287,7 +287,7 @@ export const guias: GuiaData[] = [
       secciones: [
         {
           titulo: 'El podio de precios (julio 2026, 30 años, contratación directa)',
-          cuerpo: 'Hominis Aqua Más: ~$105.000/mes, con atención centrada en el Sanatorio Güemes. Premedic C200: ~$109.000/mes, PMO completo con alta satisfacción de afiliados. Federada 4000: ~$139.000/mes, con la red de Federada fuerte en Santa Fe, Córdoba y el interior. Luis Pasteur Novo: ~$148.000/mes con el mejor descuento en farmacia del mercado (60%). Swiss Medical S1: $185.773/mes, la puerta de entrada más barata a una prepaga premium.',
+          cuerpo: 'Hominis Aqua Más: de nivel de precio más económico del mercado, con atención centrada en el Sanatorio Güemes. Premedic C200: también de nivel económico, PMO completo con alta satisfacción de afiliados. Federada 4000: nivel de precio económico-medio, con la red de Federada fuerte en Santa Fe, Córdoba y el interior. Luis Pasteur Novo: nivel medio, con el mejor descuento en farmacia del mercado (60%). Swiss Medical S1: nivel medio, la puerta de entrada más accesible a una prepaga premium.',
         },
         {
           titulo: 'Qué resignás en una prepaga económica',
@@ -299,15 +299,15 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'El truco para bajar el precio sin bajar de prepaga',
-          cuerpo: 'Antes de irte a una prepaga más barata, mirá el plan de entrada de tu prepaga actual: bajar de plan dentro de la misma empresa conserva tu antigüedad y tu historia clínica. También compará la modalidad: si estás pagando como particular y podés derivar aportes (relación de dependencia o monotributo), el mismo plan puede bajar 30-40%. Un Galeno Plata 300 pasa de $307.804 a $195.527 con aportes.',
+          cuerpo: 'Antes de irte a una prepaga más barata, mirá el plan de entrada de tu prepaga actual: bajar de plan dentro de la misma empresa conserva tu antigüedad y tu historia clínica. También compará la modalidad: si estás pagando como particular y podés derivar aportes (relación de dependencia o monotributo), el mismo plan puede bajar 30-40%. Un Galeno Plata 300, por ejemplo, baja un escalón entero de nivel de precio con aportes.',
         },
       ],
-      conclusion: 'La prepaga más barata de Argentina en 2026 es Hominis (~$105.000), seguida de cerca por Premedic. Ambas son opciones legítimas con PMO completo. Pero antes de elegir por precio, verificá que la cartilla cubra tu zona y tus médicos: una prepaga barata que no tiene prestadores cerca tuyo es cara.',
+      conclusion: 'La prepaga de nivel de precio más económico de Argentina en 2026 es Hominis, seguida de cerca por Premedic. Ambas son opciones legítimas con PMO completo. Pero antes de elegir por precio, verificá que la cartilla cubra tu zona y tus médicos: una prepaga barata que no tiene prestadores cerca tuyo es cara.',
     },
     faq: [
       {
         q: '¿Cuál es la prepaga más barata de Argentina en 2026?',
-        a: 'Hominis, con el plan Aqua Más desde ~$105.000/mes para una persona de 30 años (julio 2026). Le siguen Premedic (~$109.000) y Federada 4000 (~$139.000). Los precios varían por edad y zona.',
+        a: 'Hominis, con el plan Aqua Más, es la de nivel de precio más económico del mercado (julio 2026). Le siguen Premedic y Federada 4000, también de nivel accesible. El precio exacto varía por edad y zona — cotizalo gratis.',
       },
       {
         q: '¿Las prepagas baratas cubren internación y oncología?',
@@ -481,7 +481,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Recomendaciones por presupuesto (julio 2026)',
-          cuerpo: 'Presupuesto ajustado: Sancor Salud plan medio o Federada, con buena pediatría a precio contenido, especialmente fuera de AMBA. Presupuesto medio: Galeno Plata 300 ($307.804 base individual) con acceso a los sanatorios Trinidad, o Medifé Bronce con Finochietto y Cam Doctor. Presupuesto alto: Swiss Medical SMG20 ($325.467 base) por sus sanatorios propios y maternidades, u OSDE 310 ($345.310) por la red pediátrica más grande del país. El Hospital Italiano tiene planes familiares con acceso directo a su hospital, una opción excelente si vivís cerca de sus sedes.',
+          cuerpo: 'Presupuesto ajustado: Sancor Salud plan medio o Federada, con buena pediatría a precio contenido, especialmente fuera de AMBA. Presupuesto medio: Galeno Plata 300 con acceso a los sanatorios Trinidad, o Medifé Bronce con Finochietto y Cam Doctor. Presupuesto alto: Swiss Medical SMG20 por sus sanatorios propios y maternidades, u OSDE 310 por la red pediátrica más grande del país. El Hospital Italiano tiene planes familiares con acceso directo a su hospital, una opción excelente si vivís cerca de sus sedes.',
         },
         {
           titulo: 'Trucos para bajar la cuota familiar',
@@ -617,7 +617,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'El doble ahorro: aportes + IVA',
-          cuerpo: 'La derivación tiene dos descuentos acumulados. Primero, tus aportes se restan del precio. Segundo, el precio base es otro: la lista "deriva aporte" no incluye el IVA del 21% que sí paga la contratación particular. Ejemplo real con Galeno (julio 2026): el plan Plata 300 cuesta $307.804 particular y $195.527 con aportes, un 36% menos, antes incluso de considerar sueldos altos con aportes que cubren más.',
+          cuerpo: 'La derivación tiene dos descuentos acumulados. Primero, tus aportes se restan del precio. Segundo, el precio base es otro: la lista "deriva aporte" no incluye el IVA del 21% que sí paga la contratación particular. Ejemplo real con Galeno (julio 2026): el plan Plata 300 baja alrededor de un 36% pasando de particular a aportes, antes incluso de considerar sueldos altos con aportes que cubren más.',
         },
         {
           titulo: 'El trámite paso a paso',
@@ -752,7 +752,7 @@ export const guias: GuiaData[] = [
       secciones: [
         {
           titulo: 'Si sos monotributista: usá tu componente de obra social',
-          cuerpo: 'Es la situación más favorable: tu monotributo ya incluye un aporte de salud que podés dirigir a la prepaga (directamente o vía convenio), descontándolo de la cuota, y en general accedés a precios sin IVA. Cotizá siempre "como monotributista": es la palabra clave que activa la lista de precios correcta. Con aportes derivados, un plan medio como Galeno Plata 300 baja de $307.804 a alrededor de $195.527 (julio 2026).',
+          cuerpo: 'Es la situación más favorable: tu monotributo ya incluye un aporte de salud que podés dirigir a la prepaga (directamente o vía convenio), descontándolo de la cuota, y en general accedés a precios sin IVA. Cotizá siempre "como monotributista": es la palabra clave que activa la lista de precios correcta. Con aportes derivados, un plan medio como Galeno Plata 300 baja un escalón entero de nivel de precio (julio 2026).',
         },
         {
           titulo: 'Si sos autónomo puro: contratación particular con deducción',
@@ -895,7 +895,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'La cuenta que tenés que hacer',
-          cuerpo: 'La diferencia de cuota entre un plan con copago y su equivalente sin copago ronda el 15-30%. Ejemplo con Swiss Medical (julio 2026): el S2 con copagos cuesta $233.226 y el SMG20 sin copagos $325.467, una brecha de $92.000 mensuales. Para que el plan sin copago se justifique económicamente, tendrías que hacer más de 8-10 consultas o prácticas por mes, todos los meses. La mayoría de las personas sanas no llega ni cerca.',
+          cuerpo: 'La diferencia de cuota entre un plan con copago y su equivalente sin copago ronda el 15-30%. Ejemplo con Swiss Medical (julio 2026): el S2 con copagos tiene un nivel de precio notablemente más bajo que el SMG20 sin copagos. Para que el plan sin copago se justifique económicamente, tendrías que hacer más de 8-10 consultas o prácticas por mes, todos los meses. La mayoría de las personas sanas no llega ni cerca.',
         },
         {
           titulo: 'Para quién conviene cada modalidad',
