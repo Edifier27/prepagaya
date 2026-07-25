@@ -1259,8 +1259,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     )}
 
                     {/* Nivel de precio + CTA */}
-                    <div className="flex items-end justify-between gap-4 pt-3 border-t border-gray-100">
-                      <div className="space-y-1.5">
+                    <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pt-3 border-t border-gray-100">
+                      <div className="space-y-1.5 min-w-0">
                         <NivelPrecioBadge nivel={nivelPrecio(res.plan.precio)} />
                         <div className="text-xs text-gray-500">Para {personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoRate * 100)}% de descuento aplicado</div>
                         {isCheapest && (
@@ -1269,28 +1269,30 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                           </div>
                         )}
                       </div>
-                      <div className="flex flex-col gap-2 items-end flex-shrink-0">
-                        <button onClick={() => setCartillaAbierta(res)}
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E8002D] bg-red-50 hover:bg-red-100 border border-red-100 rounded-full px-3 py-1.5 transition-colors">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
-                            <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
-                          </svg>
-                          Ver cartilla
-                        </button>
-                        <Link href={`/prepagas/${res.prepaga.slug}/${res.plan.slug}`}
-                          className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium">
-                          Ver detalles →
-                        </Link>
+                      <div className="flex flex-col gap-2 items-stretch sm:items-end flex-shrink-0">
+                        <div className="flex items-center gap-3 justify-between sm:justify-end">
+                          <button onClick={() => setCartillaAbierta(res)}
+                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E8002D] bg-red-50 hover:bg-red-100 border border-red-100 rounded-full px-3 py-1.5 transition-colors whitespace-nowrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 flex-shrink-0">
+                              <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
+                            </svg>
+                            Ver cartilla
+                          </button>
+                          <Link href={`/prepagas/${res.prepaga.slug}/${res.plan.slug}`}
+                            className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium whitespace-nowrap">
+                            Ver detalles →
+                          </Link>
+                        </div>
                         {isAccedido && planAccedidoStatus === 'success' ? (
-                          <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2">
+                          <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center">
                             ¡Solicitud enviada!
                           </div>
                         ) : (
                           <button onClick={() => handleAccederPlan(res)}
                             disabled={isAccedido && planAccedidoStatus === 'loading'}
-                            className="px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white text-sm font-bold rounded-xl transition-all shadow-sm hover:shadow-md disabled:opacity-60 flex items-center gap-2">
+                            className="w-full sm:w-auto px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white text-sm font-bold rounded-xl transition-all shadow-sm hover:shadow-md disabled:opacity-60 flex items-center justify-center gap-2 whitespace-nowrap">
                             {isAccedido && planAccedidoStatus === 'loading' ? (
-                              <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+                              <svg className="animate-spin w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                             ) : null}
                             Cotización personalizada →
                           </button>
