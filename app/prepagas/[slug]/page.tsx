@@ -137,13 +137,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
       description: prep.descripcion,
       url: `${SITE_URL}/prepagas/${slug}`,
       brand: { '@type': 'Brand', name: prep.nombre },
-      offers: {
-        '@type': 'AggregateOffer',
-        lowPrice: precioMin,
-        highPrice: precioMax,
-        priceCurrency: 'ARS',
-        offerCount: prep.planes.length,
-      },
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: prep.rating,

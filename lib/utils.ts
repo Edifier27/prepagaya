@@ -1,8 +1,15 @@
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import type { NivelPrecio } from '@/lib/data/prepagas'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
+}
+
+export const NIVEL_PRECIO_LABEL: Record<NivelPrecio, { simbolo: string; label: string }> = {
+  economico: { simbolo: '$', label: 'Económico' },
+  medio: { simbolo: '$$', label: 'Precio medio' },
+  premium: { simbolo: '$$$', label: 'Premium' },
 }
 
 export function formatPrecio(precio: number): string {

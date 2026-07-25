@@ -4,10 +4,15 @@ import { useState } from 'react'
 
 interface Props {
   prepagaNombre: string
-  planNombre: string
+  planNombre?: string
+  /** De qué página/flujo viene el lead — se manda a /api/leads para trackear el origen. */
+  fuente?: string
+  /** Texto del botón. Por defecto "Contratar {planNombre}" o "Cotización personalizada" si no hay plan. */
+  label?: string
+  className?: string
 }
 
-export function ContratarPlanButton({ prepagaNombre, planNombre }: Props) {
+export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className }: Props) {
   const [open, setOpen] = useState(false)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
@@ -15,6 +20,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre }: Props) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
 
   const ok = nombre.trim().length >= 2 && celular.trim().length >= 8 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
+  const interes = planNombre ? `${prepagaNombre} — ${planNombre}` : prepagaNombre
 
   function handleClose() {
     setOpen(false)
@@ -32,8 +38,8 @@ export function ContratarPlanButton({ prepagaNombre, planNombre }: Props) {
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: email.trim(),
-          fuente: 'contratar-plan',
-          prepaga_interes: `${prepagaNombre} — ${planNombre}`,
+          fuente,
+          prepaga_interes: interes,
         }),
       })
       setStatus('success')
@@ -47,9 +53,9 @@ export function ContratarPlanButton({ prepagaNombre, planNombre }: Props) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"
+        className={className ?? "inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"}
       >
-        Contratar {planNombre} →
+        {label ?? (planNombre ? `Contratar ${planNombre}` : 'Cotización personalizada')} →
       </button>
 
       {open && (
@@ -70,9 +76,9 @@ export function ContratarPlanButton({ prepagaNombre, planNombre }: Props) {
                   <path d="M18 6L6 18M6 6l12 12"/>
                 </svg>
               </button>
-              <div className="text-xl font-bold mb-1">Contratar {planNombre}</div>
+              <div className="text-xl font-bold mb-1">{planNombre ? `Contratar ${planNombre}` : `Cotización de ${prepagaNombre}`}</div>
               <p className="text-red-100 text-sm leading-relaxed">
-                Dejanos tus datos y un asesor te contacta con el precio exacto de {prepagaNombre} {planNombre} para tu edad, y te ayuda con el alta.
+                Dejanos tus datos y un asesor te contacta con el precio exacto de {interes} para tu edad, y te ayuda con el alta.
               </p>
             </div>
 

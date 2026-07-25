@@ -1241,3 +1241,23 @@ export function getPlanBySlug(prepagaSlug: string, planSlug: string) {
 
 export const PRECIO_ACTUALIZADO = 'Julio 2026'
 export const PRECIO_REFERENCIA = '30 años, contratación individual'
+
+// Nivel de precio: posición relativa de un plan dentro de la distribución de
+// precios de todo el sitio, sin exponer el monto. Reemplaza a formatPrecio()
+// en toda superficie pública que asocie precio a una marca puntual (las
+// prepagas no permiten publicar esa combinación) — el monto real sigue
+// existiendo para ordenar/filtrar puertas adentro, solo deja de renderizarse.
+export type NivelPrecio = 'economico' | 'medio' | 'premium'
+
+const TODOS_LOS_PRECIOS = prepagas
+  .flatMap((p) => p.planes.map((pl) => pl.precio))
+  .sort((a, b) => a - b)
+
+export function nivelPrecio(precio: number): NivelPrecio {
+  let i = 0
+  while (i < TODOS_LOS_PRECIOS.length && TODOS_LOS_PRECIOS[i] < precio) i++
+  const pct = i / TODOS_LOS_PRECIOS.length
+  if (pct < 0.33) return 'economico'
+  if (pct < 0.66) return 'medio'
+  return 'premium'
+}

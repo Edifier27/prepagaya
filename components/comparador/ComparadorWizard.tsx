@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import emailjs from '@emailjs/browser'
-import { prepagas } from '@/lib/data/prepagas'
+import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
@@ -12,6 +12,7 @@ import { formatPrecio } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { getCambiosPorOrigen } from '@/lib/data/cambios'
 
 const EJS_SERVICE  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? ''
@@ -819,7 +820,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
 
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            {!showPopup ? `Planes disponibles en ${provinciaNombre}` : 'Tus precios están listos'}
+            {!showPopup ? `Planes disponibles en ${provinciaNombre}` : 'Tu comparación está lista'}
           </h2>
           {!showPopup && countdown > 0 && (
             <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-800 text-sm font-semibold px-4 py-2 rounded-full">
@@ -832,7 +833,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           )}
         </div>
 
-        {/* Preview cards — real prices shown for 3s, then blurred */}
+        {/* Preview cards — se muestran 3s, después se difuminan hasta dejar los datos */}
         <div className={`space-y-3 mb-4 transition-all duration-500 ${showPopup ? 'blur-md pointer-events-none select-none' : ''}`}>
           {previewItems.map((r, i) => {
             const calidad = calidadPlan(r.prepaga, r.plan)
@@ -853,14 +854,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     {r.plan.redAbierta && <span className="text-[10px] px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full border border-blue-200 font-semibold">Red abierta</span>}
                   </div>
                 </div>
-                <div className="text-right flex-shrink-0 ml-4">
-                  <div className="text-[10px] text-[#E8002D] font-bold uppercase tracking-wide mb-0.5">Calidad {calidad}/5</div>
-                  <div className="text-xs text-gray-400 line-through">{formatPrecio(r.precioGrupal)}/mes</div>
-                  <div className="text-xl font-black text-[#E8002D] tabular-nums">{formatPrecio(precioFinal(r.precioDesc))}</div>
-                  {aporteMensual > 0 && (
-                    <div className="text-[10px] text-emerald-600 font-semibold">Aporte descontado: -{formatPrecio(aporteMensual)}</div>
-                  )}
-                  <div className="text-xs text-gray-400">/mes · {personas.length} pers.</div>
+                <div className="text-right flex-shrink-0 ml-4 flex flex-col items-end gap-1.5">
+                  <div className="text-[10px] text-[#E8002D] font-bold uppercase tracking-wide">Calidad {calidad}/5</div>
+                  <NivelPrecioBadge nivel={nivelPrecio(r.plan.precio)} />
                 </div>
               </div>
             )
@@ -891,8 +887,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 </svg>
               </div>
 
-              <h3 className="text-xl font-bold text-gray-900 text-center mb-1">Tus precios están listos</h3>
-              <p className="text-sm text-gray-500 text-center mb-6">Ingresá tus datos para ver la cotización completa</p>
+              <h3 className="text-xl font-bold text-gray-900 text-center mb-1">Tu comparación está lista</h3>
+              <p className="text-sm text-gray-500 text-center mb-6">Ingresá tus datos para ver el resultado completo</p>
 
               <div className="space-y-3 mb-5">
                 <div>
@@ -924,7 +920,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 className="w-full py-4 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-2xl transition-all shadow-lg text-base flex items-center justify-center gap-2">
                 {leadStatus === 'loading' ? (
                   <><svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg> Procesando...</>
-                ) : 'Ver precios →'}
+                ) : 'Ver mi resultado →'}
               </button>
 
               <p className="text-center text-xs text-gray-400 mt-3 flex items-center justify-center gap-1">
@@ -947,15 +943,13 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const bestKey = resultadosFiltrados[0] ? `${resultadosFiltrados[0].prepaga.slug}-${resultadosFiltrados[0].plan.slug}` : null
 
   // Recomendación personalizada según "¿de qué prepaga venís?" — usa la data
-  // real y verificada de lib/data/cambios.ts, con el precio recalculado para
-  // el grupo familiar real (no el precio de referencia a 30 años).
+  // real y verificada de lib/data/cambios.ts. El nivel de precio reemplaza al
+  // monto exacto (no se puede publicar precio ligado a una marca puntual).
   const cambioOrigen = prepagaOrigen ? getCambiosPorOrigen(prepagaOrigen)[0] : null
   const destinoKey = cambioOrigen ? `${cambioOrigen.destinoSlug}-${cambioOrigen.destinoPlanSlug}` : null
   const destinoPlanBase = cambioOrigen
     ? prepagas.find((p) => p.slug === cambioOrigen.destinoSlug)?.planes.find((pl) => pl.slug === cambioOrigen.destinoPlanSlug)
     : null
-  const destinoPrecioGrupal = destinoPlanBase ? calcGrupal(destinoPlanBase.precio, personas) : 0
-  const destinoPrecioFinal = destinoPlanBase ? precioFinal(Math.round(destinoPrecioGrupal * (1 - descuentoRate))) : 0
 
   return (
     <div>
@@ -998,8 +992,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               Como venís de <span className="font-bold">{cambioOrigen.origenNombre}</span> y buscás {cambioOrigen.gancho.toLowerCase()}, <span className="font-bold">{cambioOrigen.destinoNombre} — {cambioOrigen.destinoPlanNombre}</span> es el plan que te conviene.
             </p>
             <div className="flex items-center gap-2 mt-2">
-              <span className="text-lg font-black text-[#E8002D] tabular-nums">{formatPrecio(destinoPrecioFinal)}</span>
-              <span className="text-xs text-gray-400">/mes para tu grupo</span>
+              <NivelPrecioBadge nivel={nivelPrecio(destinoPlanBase.precio)} />
             </div>
           </div>
           <Link href={`/cambios/${cambioOrigen.slug}`}
@@ -1135,8 +1128,6 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               const isRecomendadoOrigen = planKey === destinoKey
               const isAccedido = planAccedido === planKey
               const calidad = calidadPlan(res.prepaga, res.plan)
-              const precioAPagar = precioFinal(res.precioDesc)
-              const ahorroMensual = res.precioGrupal - precioAPagar
               const testimonio = testimonioDePlan(res.prepaga.slug, res.plan.nombre)
 
               return (
@@ -1267,18 +1258,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       </div>
                     )}
 
-                    {/* Price + CTA */}
+                    {/* Nivel de precio + CTA */}
                     <div className="flex items-end justify-between gap-4 pt-3 border-t border-gray-100">
-                      <div>
-                        <div className="text-xs text-gray-400 line-through tabular-nums">{formatPrecio(res.precioGrupal)}/mes</div>
-                        <div className="text-2xl font-black text-[#E8002D] tabular-nums leading-tight">{formatPrecio(precioAPagar)}</div>
-                        <div className="text-xs text-gray-500">/mes · {personas.length} persona{personas.length !== 1 ? 's' : ''}</div>
-                        {aporteMensual > 0 && (
-                          <div className="text-[11px] text-emerald-700 font-semibold mt-0.5">Aporte descontado: -{formatPrecio(aporteMensual)}/mes</div>
+                      <div className="space-y-1.5">
+                        <NivelPrecioBadge nivel={nivelPrecio(res.plan.precio)} />
+                        <div className="text-xs text-gray-500">Para {personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoRate * 100)}% de descuento aplicado</div>
+                        {isCheapest && (
+                          <div className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold px-2 py-0.5 rounded-full border border-emerald-200">
+                            Plan más accesible en tu categoría
+                          </div>
                         )}
-                        <div className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold px-2 py-0.5 rounded-full mt-1 border border-emerald-200">
-                          Ahorrás {formatPrecio(ahorroMensual)}/mes
-                        </div>
                       </div>
                       <div className="flex flex-col gap-2 items-end flex-shrink-0">
                         <button onClick={() => setCartillaAbierta(res)}
@@ -1303,7 +1292,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                             {isAccedido && planAccedidoStatus === 'loading' ? (
                               <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                             ) : null}
-                            Pedir más info →
+                            Cotización personalizada →
                           </button>
                         )}
                       </div>
@@ -1375,9 +1364,11 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   </thead>
                   <tbody className="text-gray-700">
                     <tr className="border-t border-gray-100">
-                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Precio con descuento</td>
+                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Nivel de precio</td>
                       {seleccionados.map((r) => (
-                        <td key={`${r.prepaga.slug}-${r.plan.slug}-precio`} className="py-3 px-3 font-black text-[#E8002D] tabular-nums">{formatPrecio(precioFinal(r.precioDesc))}/mes</td>
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-precio`} className="py-3 px-3">
+                          <NivelPrecioBadge nivel={nivelPrecio(r.plan.precio)} />
+                        </td>
                       ))}
                     </tr>
                     <tr className="border-t border-gray-100">

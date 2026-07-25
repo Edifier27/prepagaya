@@ -153,15 +153,6 @@ export default async function PlanPage({ params }: Props) {
       description: plan.descripcion,
       url: `${SITE_URL}/prepagas/${slug}/${planSlug}`,
       brand: { '@type': 'Brand', name: prep.nombre },
-      offers: {
-        '@type': 'Offer',
-        price: plan.precio,
-        priceCurrency: 'ARS',
-        availability: 'https://schema.org/InStock',
-        // Los precios rigen hasta el próximo ajuste mensual
-        priceValidUntil: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1).toISOString().split('T')[0],
-        seller: { '@type': 'Organization', name: prep.nombre },
-      },
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: prep.rating,
