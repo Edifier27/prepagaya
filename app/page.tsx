@@ -92,8 +92,8 @@ const faqItems = [
 ]
 
 const RANKING_ORDER = [
-  'swiss-medical', 'sancor-salud', 'cemic', 'osde', 'omint',
-  'medicus', 'medife', 'avalian', 'prevencion-salud', 'premedic',
+  'swiss-medical', 'sancor-salud', 'premedic', 'cemic', 'osde',
+  'omint', 'medicus', 'medife', 'avalian', 'prevencion-salud',
   'hospital-italiano', 'hominis', 'federada-salud',
 ]
 
