@@ -55,8 +55,8 @@ export const provinciasSEO: ProvinciaSEO[] = [
       },
       {
         slug: 'sancor-salud', nombre: 'Sancor Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
-        resumen: 'Nacida en Sunchales, es una de las redes más fuertes del centro del país. En Córdoba tiene cartilla tanto en capital como en el interior productivo (Villa María, San Francisco, Río Cuarto), donde muchas nacionales flaquean.',
-        cartillaLocal: ['Cartilla provincial publicada por provincia (PDF oficial)', 'Fuerte presencia en el interior productivo cordobés', 'Convenios con clínicas regionales'],
+        resumen: 'Nacida en Sunchales, es una de las redes más fuertes del centro del país. En Córdoba capital tiene algo que ninguna nacional puede igualar: su propio Centro Médico Vitus (Cerro de las Rosas), con 30+ especialidades y chequeos preventivos con resultados el mismo día. También tiene cartilla en el interior productivo (Villa María, San Francisco, Río Cuarto), donde muchas nacionales flaquean.',
+        cartillaLocal: ['Centro Médico Vitus propio en Cerro de las Rosas, Córdoba capital', 'Farmavitus y Óptica Vitus: farmacia y óptica propias con descuentos exclusivos', 'Cartilla provincial publicada por provincia (PDF oficial)', 'Fuerte presencia en el interior productivo cordobés'],
       },
       {
         slug: 'nobis', nombre: 'Nobis Salud', enSitio: false, fuerza: 'fuerte', verificado: true,
@@ -296,8 +296,8 @@ export const provinciasSEO: ProvinciaSEO[] = [
     prepagas: [
       {
         slug: 'sancor-salud', nombre: 'Sancor Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
-        resumen: 'Juega de local: nació en Sunchales y su cartilla santafesina es de las más profundas de la empresa, tanto en Rosario y la capital como en el interior productivo (Rafaela, Venado Tuerto, Reconquista).',
-        cartillaLocal: ['Origen y casa central en Sunchales', 'Cartilla profunda en Rosario, Santa Fe capital e interior', 'Cartillas provinciales publicadas (PDF oficial)'],
+        resumen: 'Juega de local: nació en Sunchales y su cartilla santafesina es de las más profundas de la empresa, tanto en Rosario y la capital como en el interior productivo (Rafaela, Venado Tuerto, Reconquista). Su red odontológica propia (Vitus) también tiene clínica en la provincia.',
+        cartillaLocal: ['Origen y casa central en Sunchales', 'Clínica odontológica propia Vitus en la provincia', 'Cartilla profunda en Rosario, Santa Fe capital e interior', 'Cartillas provinciales publicadas (PDF oficial)'],
       },
       {
         slug: 'federada-salud', nombre: 'Federada Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
