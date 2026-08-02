@@ -16,6 +16,7 @@ export const prepagas: Prepaga[] = [
     sanatoriosPropios: 8,
     pros: [
       '8 sanatorios propios (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas)',
+      'Sport Plan: el único plan del mercado con reintegros por gimnasio, nutrición y kinesiología para quienes entrenan en serio',
       'Guardia Ágil: reservá turno en guardia desde el celular',
       '100.000+ profesionales, 18.300 centros diagnóstico',
       '75+ sucursales en todo el país',
