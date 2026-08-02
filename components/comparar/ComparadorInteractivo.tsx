@@ -3,11 +3,11 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio } from '@/lib/utils'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 const FILAS = [
-  { key: 'precio', label: 'Precio base (30 años)', tipo: 'precio' },
+  { key: 'precio', label: 'Nivel de precio', tipo: 'precio' },
   { key: 'satisfaccion', label: 'Satisfacción de afiliados', tipo: 'porcentaje' },
   { key: 'rating', label: 'Valoración usuarios', tipo: 'rating' },
   { key: 'profesionales', label: 'Profesionales adheridos', tipo: 'numero' },
@@ -43,7 +43,7 @@ function ganador(val1: unknown, val2: unknown, tipo: string, key: string): 0 | 1
 
 function renderValor(val: unknown, tipo: string): React.ReactNode {
   if (tipo === 'bool') return val ? <span className="text-green-600 text-lg">✓</span> : <span className="text-gray-300 text-lg">—</span>
-  if (tipo === 'precio') return <span className="font-bold text-[#E8002D]">{formatPrecio(val as number)}</span>
+  if (tipo === 'precio') return <NivelPrecioBadge nivel={nivelPrecio(val as number)} />
   if (tipo === 'porcentaje') return <span className="font-semibold text-[#00875A]">{String(val)}%</span>
   if (tipo === 'rating') return <span className="font-semibold">{String(val)} / 5</span>
   if (tipo === 'numero') return <span className="font-semibold">{(val as number).toLocaleString('es-AR')}</span>
@@ -205,7 +205,7 @@ export function ComparadorInteractivo() {
                           {plan.copago ? 'Con copago' : 'Sin copago'} · {plan.redAbierta ? 'Red abierta' : 'Red cerrada'}
                         </div>
                       </div>
-                      <div className="text-sm font-bold text-[#E8002D]">{formatPrecio(plan.precio)}</div>
+                      <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                     </Link>
                   ))}
                 </div>
@@ -235,7 +235,7 @@ export function ComparadorInteractivo() {
           </div>
 
           <p className="text-xs text-gray-400 text-center mt-4">
-            Precios de referencia para 30 años, contratación individual · {PRECIO_ACTUALIZADO}
+            Nivel de precio relativo al mercado · {PRECIO_ACTUALIZADO} · Pedí tu cotización exacta gratis
           </p>
         </>
       )}

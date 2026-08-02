@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { prepagas } from '@/lib/data/prepagas'
-import { formatPrecio } from '@/lib/utils'
+import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 function Check({ ok }: { ok: boolean }) {
   return ok ? (
@@ -22,7 +22,7 @@ function Check({ ok }: { ok: boolean }) {
 }
 
 const FILAS = [
-  { key: 'precio',           label: 'Precio desde' },
+  { key: 'precio',           label: 'Nivel de precio' },
   { key: 'precioEstrella',   label: 'Plan estrella' },
   { key: 'satisfaccion',     label: 'Satisfacción afiliados' },
   { key: 'profesionales',    label: 'Red de profesionales' },
@@ -40,8 +40,9 @@ const FILAS = [
 ]
 
 interface FilaValor {
-  precio: string
-  precioEstrella: string
+  precio: number
+  precioEstrellaNombre: string
+  precioEstrellaValor: number
   satisfaccion: string
   profesionales: string
   planes: string
@@ -63,8 +64,9 @@ function buildValores(slug: string): FilaValor | null {
   const precioMin = Math.min(...p.planes.map((pl) => pl.precio))
   const planEstrella = p.planes.find((pl) => pl.destacado) ?? p.planes[0]
   return {
-    precio: formatPrecio(precioMin) + '/mes',
-    precioEstrella: `${planEstrella.nombre} · ${formatPrecio(planEstrella.precio)}/mes`,
+    precio: precioMin,
+    precioEstrellaNombre: planEstrella.nombre,
+    precioEstrellaValor: planEstrella.precio,
     satisfaccion: `${p.satisfaccion}%`,
     profesionales: p.profesionales.toLocaleString('es-AR'),
     planes: `${p.planes.length} planes`,
@@ -176,20 +178,27 @@ export function ComparadorTable() {
                 {prepagasSeleccionadas.map((p) => {
                   const vals = valoresMap[p.slug]
                   if (!vals) return <td key={p.slug} className="px-5 py-3.5 text-center text-gray-300">—</td>
-                  const val = vals[fila.key as keyof FilaValor]
                   const isBool = BOOL_KEYS.has(fila.key)
                   return (
                     <td key={p.slug} className="px-5 py-3.5 text-center">
                       {isBool ? (
                         <div className="flex justify-center">
-                          <Check ok={val as boolean} />
+                          <Check ok={vals[fila.key as keyof FilaValor] as boolean} />
+                        </div>
+                      ) : fila.key === 'precio' ? (
+                        <div className="flex justify-center">
+                          <NivelPrecioBadge nivel={nivelPrecio(vals.precio)} />
+                        </div>
+                      ) : fila.key === 'precioEstrella' ? (
+                        <div className="flex flex-col items-center gap-1">
+                          <span className="text-xs text-gray-500">{vals.precioEstrellaNombre}</span>
+                          <NivelPrecioBadge nivel={nivelPrecio(vals.precioEstrellaValor)} />
                         </div>
                       ) : (
                         <span className={`text-sm font-semibold ${
-                          fila.key === 'satisfaccion' ? 'text-[#00875A]' :
-                          fila.key === 'precio' ? 'text-[#E8002D]' : 'text-gray-900'
+                          fila.key === 'satisfaccion' ? 'text-[#00875A]' : 'text-gray-900'
                         }`}>
-                          {String(val)}
+                          {String(vals[fila.key as keyof FilaValor])}
                         </span>
                       )}
                     </td>

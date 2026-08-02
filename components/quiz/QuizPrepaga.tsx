@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { prepagas } from '@/lib/data/prepagas'
-import { formatPrecio } from '@/lib/utils'
+import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 type PrepagaSlug =
   | 'swiss-medical'
@@ -230,12 +230,8 @@ export function QuizPrepaga(): React.ReactElement {
                         {prepaga.descripcion.split('.')[0]}.
                       </p>
                     </div>
-                    <div className="flex-shrink-0 text-right">
-                      <div className="text-xs text-gray-400 mb-0.5">Desde</div>
-                      <div className="text-xl font-black text-[#00875A]">
-                        {formatPrecio(planDestacado.precio)}
-                      </div>
-                      <div className="text-xs text-gray-400">/mes</div>
+                    <div className="flex-shrink-0">
+                      <NivelPrecioBadge nivel={nivelPrecio(planDestacado.precio)} />
                     </div>
                   </div>
 

@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { cartillasInfo } from '@/lib/data/cartillas'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { sanatorios } from '@/lib/data/sanatorios'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -203,8 +204,8 @@ export default async function CartillaPrepagaPage({ params }: Props) {
                   <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">
                     {sanatorio.nombre}
                   </div>
-                  <div className="text-xs text-gray-500 mt-1">
-                    Desde {planMinimo.planNombre} · {formatPrecio(planMinimo.precio)}/mes
+                  <div className="text-xs text-gray-500 mt-1 flex items-center gap-1.5">
+                    Desde {planMinimo.planNombre} <NivelPrecioBadge nivel={nivelPrecio(planMinimo.precio)} />
                   </div>
                   {planMinimo.nota && (
                     <div className="text-[11px] text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-2 py-1 mt-2 leading-snug">
@@ -236,8 +237,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-black text-[#E8002D] tabular-nums">{formatPrecio(plan.precio)}</div>
-                  <div className="text-xs text-gray-400">/mes</div>
+                  <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                 </div>
               </Link>
             ))}

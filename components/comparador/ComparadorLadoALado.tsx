@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { prepagas } from '@/lib/data/prepagas'
+import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, precioDeriva } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, precioDeriva } from '@/lib/utils'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 type Lado = {
   prepagaSlug: string
@@ -73,7 +74,7 @@ function SelectPlan({
         <option value="">Elegí un plan</option>
         {prepaga.planes.map((pl) => (
           <option key={pl.slug} value={pl.slug}>
-            {pl.nombre} — {formatPrecio(pl.precio)}/mes
+            {pl.nombre} — {NIVEL_PRECIO_LABEL[nivelPrecio(pl.precio)].simbolo}
           </option>
         ))}
       </select>
@@ -247,10 +248,10 @@ export function ComparadorLadoALado(): React.ReactElement {
                   Precio {sinIva ? '(sin IVA, relación dependencia)' : '(con IVA, particular)'}
                 </td>
                 <CeldaValor ganador={ganadorPrecio === 1}>
-                  {formatPrecio(precioA!)}/mes
+                  <NivelPrecioBadge nivel={nivelPrecio(precioA!)} />
                 </CeldaValor>
                 <CeldaValor ganador={ganadorPrecio === 2}>
-                  {formatPrecio(precioB!)}/mes
+                  <NivelPrecioBadge nivel={nivelPrecio(precioB!)} />
                 </CeldaValor>
               </tr>
 

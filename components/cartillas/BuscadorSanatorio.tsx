@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { buscarSanatorio } from '@/lib/data/sanatorios'
-import { formatPrecio } from '@/lib/utils'
+import { nivelPrecio } from '@/lib/data/prepagas'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Sanatorio } from '@/lib/data/sanatorios'
 
 export function BuscadorSanatorio(): React.ReactElement {
@@ -103,10 +104,9 @@ export function BuscadorSanatorio(): React.ReactElement {
                         )}
                       </div>
 
-                      {/* Precio */}
+                      {/* Nivel de precio */}
                       <div className="text-right flex-shrink-0">
-                        <div className="font-bold text-[#E8002D] text-sm">{formatPrecio(plan.precio)}</div>
-                        <div className="text-xs text-gray-400">/mes · 30 años</div>
+                        <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                       </div>
 
                       {/* CTA */}
@@ -123,16 +123,11 @@ export function BuscadorSanatorio(): React.ReactElement {
               {/* Footer */}
               <div className="bg-gray-50 px-6 py-3 border-t border-gray-100">
                 <p className="text-xs text-gray-400">
-                  El plan más económico que cubre {san.nombre} es{' '}
+                  El plan de nivel de precio más accesible que cubre {san.nombre} es{' '}
                   <span className="font-semibold text-gray-600">
                     {san.planesQueLoCubren.sort((a, b) => a.precio - b.precio)[0].prepagaNombre}{' '}
                     {san.planesQueLoCubren.sort((a, b) => a.precio - b.precio)[0].planNombre}
-                  </span>{' '}
-                  a{' '}
-                  <span className="font-semibold text-[#E8002D]">
-                    {formatPrecio(Math.min(...san.planesQueLoCubren.map((p) => p.precio)))}
-                  </span>
-                  /mes.
+                  </span>.
                 </p>
               </div>
             </div>

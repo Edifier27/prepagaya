@@ -2,9 +2,10 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio } from '@/lib/utils'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 // ─── Tramos etarios (multiplicadores sobre precio base 30 años) ───────────────
 // Basados en cuadros tarifarios promedio del mercado. Los valores reales varían
@@ -208,7 +209,7 @@ export function CalculadoraEdad() {
         </div>
 
         <div className="divide-y divide-gray-100">
-          {planes.map(({ prepaga, plan, precioAjustado, costoReal }, i) => (
+          {planes.map(({ prepaga, plan }, i) => (
             <div
               key={`${prepaga.slug}-${plan.slug}`}
               className={`px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:bg-gray-50 transition-colors ${
@@ -238,14 +239,7 @@ export function CalculadoraEdad() {
                 </div>
               </div>
               <div className="flex items-center gap-4 sm:flex-col sm:items-end">
-                <div className="text-right">
-                  <div className="text-xl font-bold text-[#E8002D]">{formatPrecio(precioAjustado)}/mes</div>
-                  {mostrarSimulador && costoReal !== precioAjustado && (
-                    <div className="text-xs text-gray-500">
-                      Costo real est.: <span className={`font-bold ${costoReal < precioAjustado ? 'text-green-700' : 'text-orange-600'}`}>{formatPrecio(costoReal)}/mes</span>
-                    </div>
-                  )}
-                </div>
+                <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                 <Link
                   href={`/prepagas/${prepaga.slug}/${plan.slug}`}
                   className="text-sm font-semibold text-[#E8002D] hover:underline whitespace-nowrap"

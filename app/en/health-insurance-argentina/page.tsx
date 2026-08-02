@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 export const metadata: Metadata = {
   title: { absolute: `Health Insurance in Argentina for Foreigners (2026 Guide) — ${SITE_NAME}` },
@@ -130,7 +131,7 @@ export default function HealthInsuranceArgentinaPage() {
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-2">Popular options among expats</h2>
-          <p className="text-sm text-gray-500 mb-6">Real list prices for a 30-year-old adult, VAT included — {PRECIO_ACTUALIZADO}.</p>
+          <p className="text-sm text-gray-500 mb-6">Price level relative to the market — {PRECIO_ACTUALIZADO}. Get your exact quote for free.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {destacadas.map((p) => {
               const desde = Math.min(...p.planes.map((pl) => pl.precio))
@@ -138,7 +139,7 @@ export default function HealthInsuranceArgentinaPage() {
                 <Link key={p.slug} href={`/prepagas/${p.slug}`}
                   className="group bg-white rounded-xl border border-gray-200 p-4 hover:border-red-200 hover:shadow-sm transition-all">
                   <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors">{p.nombre}</div>
-                  <div className="text-xs text-gray-500 mt-1">{p.planes.length} plans · from <span className="font-bold text-[#E8002D]">{formatPrecio(desde)}</span>/month</div>
+                  <div className="text-xs text-gray-500 mt-1 flex items-center gap-2">{p.planes.length} plans <NivelPrecioBadge nivel={nivelPrecio(desde)} /></div>
                 </Link>
               )
             })}
