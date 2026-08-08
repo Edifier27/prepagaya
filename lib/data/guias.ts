@@ -1,3 +1,6 @@
+import { prepagas, PRECIO_ACTUALIZADO } from './prepagas'
+import { formatPrecio } from '@/lib/utils'
+
 export interface GuiaSeccion {
   titulo: string
   cuerpo: string
@@ -20,6 +23,25 @@ export interface GuiaData {
   relacionadas: string[] // slugs de otras guías
   prepagasRelacionadas?: string[] // slugs de prepagas
 }
+
+// ─── Datos calculados para la guía de precios mensuales ──────────────────
+// Se recalculan solos a partir de lib/data/prepagas.ts en cada build: no hay
+// que tocar esta guía a mano cada mes, alcanza con mantener los precios y
+// PRECIO_ACTUALIZADO al día (que ya se actualizan mensualmente para el resto del sitio).
+const todosLosPlanes = prepagas.flatMap((p) =>
+  p.planes.map((pl) => ({ ...pl, prepagaNombre: p.nombre, prepagaSlug: p.slug }))
+)
+const planMasBarato = todosLosPlanes.reduce((min, pl) => (pl.precio < min.precio ? pl : min))
+const planMasCaro = todosLosPlanes.reduce((max, pl) => (pl.precio > max.precio ? pl : max))
+
+const PARTNER_SLUGS = ['premedic', 'sancor-salud', 'swiss-medical'] as const
+const partnersData = PARTNER_SLUGS.map((slug) => {
+  const p = prepagas.find((pp) => pp.slug === slug)!
+  const planes = [...p.planes].sort((a, b) => a.precio - b.precio)
+  const planEstrella = p.planes.find((pl) => pl.destacado) ?? planes[0]
+  return { prepaga: p, planMasBarato: planes[0], planEstrella }
+})
+const [premedicData, sancorData, swissData] = partnersData
 
 export const guias: GuiaData[] = [
   {
@@ -1230,6 +1252,57 @@ export const guias: GuiaData[] = [
     keywords: ['me quede sin trabajo obra social', 'cuanto dura la obra social despues del despido', 'obra social despues de renunciar', 'cobertura medica sin trabajo', 'prepaga desempleado'],
     relacionadas: ['obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'derivar-obra-social-a-prepaga'],
     prepagasRelacionadas: ['sancor-salud', 'medife', 'prevencion-salud'],
+  },
+  {
+    slug: 'precios-prepagas-actualizados',
+    titulo: `Precios de las prepagas en ${PRECIO_ACTUALIZADO}: cuánto sale cada plan`,
+    metaDescripcion: `Cuánto cuestan los planes de prepaga en Argentina en ${PRECIO_ACTUALIZADO}: desde el más económico hasta el premium, con precios reales verificados. Actualizado todos los meses.`,
+    tiempoLectura: 5,
+    categoria: 'Precios',
+    fechaActualizacion: new Date().toISOString().slice(0, 10),
+    contenido: {
+      intro: `Esta es la foto de precios de ${PRECIO_ACTUALIZADO}: la actualizamos todos los meses con los valores de lista vigentes, así siempre tenés el número real a mano antes de cotizar. Los precios son de referencia para una persona de 30 años contratando de forma individual — tu precio final depende de tu edad, zona y modalidad de contratación.`,
+      secciones: [
+        {
+          titulo: `El rango de precios en ${PRECIO_ACTUALIZADO}`,
+          cuerpo: `El plan más económico del mercado es ${planMasBarato.nombre} de ${planMasBarato.prepagaNombre}, desde ${formatPrecio(planMasBarato.precio)}/mes. En el otro extremo, ${planMasCaro.nombre} de ${planMasCaro.prepagaNombre} llega a ${formatPrecio(planMasCaro.precio)}/mes. Entre esos dos extremos hay más de 50 planes con distintas combinaciones de copago, red y cobertura — por eso conviene comparar por perfil y no solo por precio de lista.`,
+        },
+        {
+          titulo: 'Opción económica: Premedic',
+          cuerpo: `El plan de entrada de Premedic (${premedicData.planMasBarato.nombre}) arranca en ${formatPrecio(premedicData.planMasBarato.precio)}/mes. Es consistentemente una de las opciones más accesibles del mercado, con cobertura PMO completa en CABA, GBA, Córdoba y Tucumán.`,
+        },
+        {
+          titulo: 'Opción intermedia: Sancor Salud',
+          cuerpo: `El plan más elegido de Sancor Salud, ${sancorData.planEstrella.nombre}, cuesta ${formatPrecio(sancorData.planEstrella.precio)}/mes: sin copago en especialistas y con fuerte presencia en el interior del país (Córdoba, Santa Fe, Entre Ríos).`,
+        },
+        {
+          titulo: 'Opción premium: Swiss Medical',
+          cuerpo: `El plan más elegido de Swiss Medical, ${swissData.planEstrella.nombre}, cuesta ${formatPrecio(swissData.planEstrella.precio)}/mes: sin copago, con 8 sanatorios propios y red abierta.`,
+        },
+        {
+          titulo: 'Por qué el precio de lista no es lo único que importa',
+          cuerpo: 'Dos planes "sin copago" de dos empresas distintas pueden tener cartillas muy diferentes: cantidad de sanatorios propios, cobertura en tu ciudad puntual, y calidad de la red de especialistas. Antes de decidir por precio, verificá que la cartilla cubra los prestadores que realmente usás.',
+        },
+      ],
+      conclusion: `Los precios de lista cambian todos los meses, así que esta página se actualiza junto con el resto del sitio. Para tu precio exacto según tu edad y zona (con descuentos incluidos), usá el comparador gratuito.`,
+    },
+    faq: [
+      {
+        q: '¿Cada cuánto se actualizan estos precios?',
+        a: 'Todos los meses, al mismo tiempo que actualizamos el resto de los precios del sitio contra los valores de lista vigentes.',
+      },
+      {
+        q: '¿Por qué el precio que veo acá puede ser distinto al que me cotizan?',
+        a: 'Estos son precios de referencia para una persona de 30 años contratando de forma individual. El precio final varía según tu edad, tu zona y si derivás aportes de obra social. Cotizá gratis para ver tu precio exacto.',
+      },
+      {
+        q: '¿Cuál conviene según mi presupuesto?',
+        a: 'Como referencia general: Premedic para priorizar el precio más bajo, Sancor Salud como punto medio con buena cartilla en el interior, y Swiss Medical si buscás la cartilla más completa con sanatorios propios.',
+      },
+    ],
+    keywords: ['precio prepaga', `precio prepaga ${PRECIO_ACTUALIZADO.toLowerCase()}`, 'cuanto sale una prepaga', 'aumento prepagas 2026', 'precios medicina prepaga argentina'],
+    relacionadas: ['prepagas-economicas', 'cuota-prepaga-por-edad', 'como-cambiar-de-prepaga'],
+    prepagasRelacionadas: ['premedic', 'sancor-salud', 'swiss-medical'],
   },
 ]
 

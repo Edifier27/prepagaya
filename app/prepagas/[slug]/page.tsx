@@ -121,6 +121,13 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const prep = prepagas.find((p) => p.slug === slug)
   if (!prep) notFound()
 
+  const PARTNERS_TIER: Record<string, string> = {
+    'swiss-medical': 'Premium',
+    'sancor-salud': 'Intermedia',
+    'premedic': 'Económica',
+  }
+  const isPartner = slug in PARTNERS_TIER
+
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
   const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
   const precioMax = Math.max(...prep.planes.map(pl => pl.precio))
@@ -220,6 +227,11 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     }`}>
                       {prep.satisfaccion}% satisfacción
                     </span>
+                    {isPartner && (
+                      <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+                        ✓ Opción {PARTNERS_TIER[slug]} de PrepagaYa
+                      </span>
+                    )}
                   </div>
                   <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{prep.nombre}</h1>
                 </div>
@@ -239,7 +251,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   href="/comparador"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
                 >
-                  Cotizar mi precio exacto →
+                  {isPartner ? 'Cotizar y contratar online →' : 'Cotizar mi precio exacto →'}
                 </Link>
                 <a
                   href={`https://${prep.web}`}
