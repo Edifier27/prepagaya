@@ -71,7 +71,7 @@ const faqItems = [
   },
   {
     q: '¿Cuál es la mejor prepaga de Argentina?',
-    a: 'Según satisfacción de afiliados, Swiss Medical lidera con 92-93% de satisfacción. Le siguen OSDE (74%) y Sancor Salud (72%). La "mejor" depende de tu presupuesto, zona geográfica y necesidades de cobertura. Usá el comparador para ver cuál encaja con tu perfil.',
+    a: 'Según satisfacción de afiliados, Swiss Medical lidera con 76% de satisfacción. Le siguen OSDE (74%) y Sancor Salud (72%). La "mejor" depende de tu presupuesto, zona geográfica y necesidades de cobertura. Usá el comparador para ver cuál encaja con tu perfil.',
   },
   {
     q: '¿Cuál es la prepaga más barata?',

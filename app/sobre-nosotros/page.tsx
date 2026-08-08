@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 const valores = [
   {
-    titulo: 'Independencia total',
-    descripcion: 'No recibimos dinero de las prepagas para mejorar su posición en nuestros rankings. Nuestros ingresos provienen de publicidad y comisiones transparentes cuando una persona contrata a través nuestro, sin afectar el orden de nuestras comparativas.',
+    titulo: 'Sin costo para vos',
+    descripcion: 'Trabajamos con un grupo curado de prepagas, seleccionadas por calidad de cobertura, proceso de contratación y atención post-venta. No te cobramos nada extra por contratar a través nuestro: pagás exactamente lo mismo que yendo directo a la prepaga.',
     letters: 'IN', bg: 'bg-blue-100', text: 'text-blue-800',
   },
   {

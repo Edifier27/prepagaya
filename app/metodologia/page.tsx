@@ -91,15 +91,18 @@ export default function MetodologiaPage() {
         </div>
       </section>
 
-      {/* Independencia */}
+      {/* Cómo ganamos dinero / partners */}
       <section className="mb-10">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Nuestra independencia editorial</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Cómo ganamos dinero y cómo elegimos nuestros partners</h2>
         <div className="bg-green-50 rounded-2xl p-6 border border-green-100">
           <p className="text-gray-800 leading-relaxed mb-3">
-            <strong>{SITE_NAME} es editorialmente independiente.</strong> Las prepagas no pueden pagar para mejorar su posición en nuestros rankings o comparativas. Nuestros análisis reflejan únicamente los datos objetivos y la experiencia de los afiliados.
+            {SITE_NAME} <strong>no te cobra nada</strong> por usar el comparador ni por contratar a través nuestro: pagás exactamente lo mismo que yendo directo a la prepaga. Nuestro ingreso viene de las comisiones que nos paga la prepaga cuando una contratación se concreta.
+          </p>
+          <p className="text-gray-700 text-sm leading-relaxed mb-3">
+            Para poder ofrecerte un proceso de contratación rápido y acompañado, trabajamos activamente con un <strong>grupo curado de prepagas partner</strong>, elegidas por calidad de cobertura, relación precio-cartilla y agilidad del proceso de alta. Son las que vas a ver con opción de cotización directa y mayor protagonismo en el comparador y el ranking.
           </p>
           <p className="text-gray-700 text-sm leading-relaxed">
-            Nuestros ingresos provienen de publicidad contextual y de comisiones cuando un usuario contrata una prepaga a través de nuestro sitio. Estas comisiones <strong>no afectan el orden ni los contenidos</strong> de nuestros rankings y análisis. Cuando existe algún acuerdo comercial con una prepaga, lo indicamos explícitamente con una etiqueta "Patrocinado".
+            El resto de las prepagas del mercado también aparecen en el sitio con información de precios, cartillas y coberturas verificada de la misma forma — para que puedas comparar el panorama completo — aunque no gestionemos la contratación de esas de forma directa.
           </p>
         </div>
       </section>
