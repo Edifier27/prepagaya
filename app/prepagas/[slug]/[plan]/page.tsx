@@ -129,6 +129,8 @@ export default async function PlanPage({ params }: Props) {
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) notFound()
 
+  const isPartner = ['swiss-medical', 'sancor-salud', 'premedic'].includes(slug)
+
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
   const planIdx = planesOrdenados.findIndex(p => p.slug === planSlug)
   const planInferior = planIdx > 0 ? planesOrdenados[planIdx - 1] : null
@@ -231,13 +233,24 @@ export default async function PlanPage({ params }: Props) {
               <div className="text-xs text-gray-400 mt-0.5">El precio final depende de tu edad y provincia</div>
             </div>
             <div className="flex flex-col gap-2 sm:items-end">
-              <ContratarPlanButton prepagaNombre={prep.nombre} planNombre={plan.nombre} />
-              <Link
-                href="/comparador"
-                className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium"
-              >
-                O cotizá para mi edad primero →
-              </Link>
+              {isPartner ? (
+                <>
+                  <ContratarPlanButton prepagaNombre={prep.nombre} planNombre={plan.nombre} />
+                  <Link
+                    href="/comparador"
+                    className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium"
+                  >
+                    O cotizá para mi edad primero →
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  href="/comparador"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"
+                >
+                  Cotizar mi precio →
+                </Link>
+              )}
             </div>
           </div>
 

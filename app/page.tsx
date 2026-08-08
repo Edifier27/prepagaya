@@ -42,24 +42,21 @@ const jsonLd = [
 
 const testimonios = [
   {
-    texto: 'Cambié de OSDE 210 a Swiss Medical SMG20 y ahorré $47.000 por mes. Literal en 5 minutos entendí qué plan me convenía.',
+    texto: 'Cambié de OSDE 210 a Swiss Medical SMG20 y la cuota bajó bastante. En 5 minutos entendí qué plan me convenía y el trámite fue rápido.',
     nombre: 'Martín R.',
     detalle: '34 años · Buenos Aires',
-    ahorro: '$47.000/mes',
     stars: 5,
   },
   {
     texto: 'Como monotributista no sabía que pagaba IVA extra. Me explicaron todo y ahora estoy en Sancor Plan 1000, mucho más claro.',
     nombre: 'Diego P.',
     detalle: '28 años · Rosario',
-    ahorro: '$38.000/mes',
     stars: 5,
   },
   {
-    texto: 'Para mi familia de 4 personas el comparador fue clave. Encontramos Medifé Plata y nos ahorramos casi $90k por mes vs lo que pagábamos.',
+    texto: 'Para mi familia de 4 personas buscábamos el mejor precio sin perder cobertura. Con Premedic conseguimos PMO completo y bajamos bastante la cuota mensual.',
     nombre: 'Lucía M.',
     detalle: '41 años · Córdoba',
-    ahorro: '$89.000/mes',
     stars: 5,
   },
 ]
@@ -211,15 +208,9 @@ export default function HomePage(): React.ReactElement {
 
                 <p className="text-gray-700 text-sm leading-relaxed mb-4">&ldquo;{t.texto}&rdquo;</p>
 
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-gray-900 text-sm">{t.nombre}</div>
-                    <div className="text-xs text-gray-400">{t.detalle}</div>
-                  </div>
-                  <div className="bg-green-50 border border-green-100 rounded-xl px-3 py-1.5 text-right">
-                    <div className="text-xs text-green-600 font-medium">Ahorro</div>
-                    <div className="text-sm font-black text-green-700">{t.ahorro}</div>
-                  </div>
+                <div>
+                  <div className="font-semibold text-gray-900 text-sm">{t.nombre}</div>
+                  <div className="text-xs text-gray-400">{t.detalle}</div>
                 </div>
               </div>
             ))}

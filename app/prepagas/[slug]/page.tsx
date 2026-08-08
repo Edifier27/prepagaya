@@ -388,7 +388,16 @@ export default async function PrepagaSlugPage({ params }: Props) {
           </p>
 
           <div className="mt-5">
-            <ContratarPlanButton prepagaNombre={prep.nombre} fuente="ficha-prepaga" />
+            {isPartner ? (
+              <ContratarPlanButton prepagaNombre={prep.nombre} fuente="ficha-prepaga" />
+            ) : (
+              <Link
+                href="/comparador"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"
+              >
+                Cotizar mi precio →
+              </Link>
+            )}
           </div>
         </div>
       </section>

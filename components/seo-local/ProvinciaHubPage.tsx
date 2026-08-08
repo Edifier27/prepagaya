@@ -16,9 +16,19 @@ export function provinciaHubMetadata(prov: ProvinciaSEO): Metadata {
   }
 }
 
+const PARTNER_ORDER = ['swiss-medical', 'sancor-salud', 'premedic']
+
 export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
   const crumbs = [{ nombre: 'Prepagas', href: '/prepagas' }, { nombre: prov.nombre }]
   const jsonLd = [jsonLdBreadcrumb(crumbs), jsonLdFaq(prov.faq)]
+  const prepagasOrdenadas = [...prov.prepagas].sort((a, b) => {
+    const ia = PARTNER_ORDER.indexOf(a.slug)
+    const ib = PARTNER_ORDER.indexOf(b.slug)
+    if (ia === -1 && ib === -1) return 0
+    if (ia === -1) return 1
+    if (ib === -1) return -1
+    return ia - ib
+  })
 
   return (
     <>
@@ -47,12 +57,15 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
         <section className="mb-10">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Las {prov.prepagas.length} prepagas con cobertura en {prov.nombre}</h2>
           <div className="space-y-4">
-            {prov.prepagas.map((pz) => {
+            {prepagasOrdenadas.map((pz) => {
               const prepData = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
               const precioMin = prepData ? Math.min(...prepData.planes.map((pl) => pl.precio)) : null
               const fuerza = FUERZA_LABEL[pz.fuerza]
+              const isPartner = PARTNER_ORDER.includes(pz.slug)
               return (
-                <div key={pz.slug} className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-100 transition-colors p-5">
+                <div key={pz.slug} className={`bg-white rounded-2xl border-2 transition-colors p-5 ${
+                  isPartner ? 'border-amber-200 hover:border-amber-300' : 'border-gray-100 hover:border-red-100'
+                }`}>
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-start gap-3 flex-1 min-w-0">
                       {prepData ? (
@@ -63,7 +76,15 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
                         </div>
                       )}
                       <div className="min-w-0">
-                        <div className="font-bold text-gray-900">{pz.nombre}</div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <div className="font-bold text-gray-900">{pz.nombre}</div>
+                          {isPartner && (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full border"
+                              style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
+                              ★ MÁS ELEGIDA
+                            </span>
+                          )}
+                        </div>
                         <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border mt-1 ${fuerza.cls}`}>{fuerza.label}</span>
                         <p className="text-sm text-gray-600 leading-relaxed mt-2">{pz.resumen}</p>
                       </div>
@@ -82,7 +103,12 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
                         {pz.nombre} en {prov.nombre} →
                       </Link>
                     )}
-                    <Link href={`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`} className="text-sm text-gray-400 hover:text-[#E8002D] transition-colors font-medium">
+                    <Link
+                      href={`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`}
+                      className={isPartner
+                        ? 'text-sm font-bold text-[#E8002D] hover:underline'
+                        : 'text-sm text-gray-400 hover:text-[#E8002D] transition-colors font-medium'}
+                    >
                       Cotizar
                     </Link>
                   </div>

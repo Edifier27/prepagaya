@@ -280,6 +280,7 @@ export function Footer() {
             <Link href="/sobre-nosotros" className="hover:text-gray-400 transition-colors">Sobre nosotros</Link>
             <Link href="/metodologia" className="hover:text-gray-400 transition-colors">Metodología</Link>
             <Link href="/privacidad" className="hover:text-gray-400 transition-colors">Privacidad</Link>
+            <Link href="/terminos-y-condiciones" className="hover:text-gray-400 transition-colors">Términos y Condiciones</Link>
           </div>
         </div>
 

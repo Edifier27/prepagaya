@@ -171,11 +171,12 @@ function detalleCob(id: CobId, plan: Plan): string {
 }
 
 // Orden "mechado" del ranking por relevancia: el 1º es el mejor plan de Swiss
-// Medical y el 2º el mejor de Sancor o Galeno; del 3º en adelante se intercalan
-// marcas (nunca dos cards seguidas de la misma prepaga mientras haya
-// alternativa). Los ordenamientos por precio no se alteran.
+// Medical (partner premium) y el 2º el mejor de Sancor Salud o Premedic
+// (partners intermedio/económico); del 3º en adelante se intercalan marcas
+// (nunca dos cards seguidas de la misma prepaga mientras haya alternativa).
+// Los ordenamientos por precio no se alteran.
 const MARCA_PRIMERA = 'swiss-medical'
-const MARCAS_SEGUNDAS = ['sancor-salud', 'galeno']
+const MARCAS_SEGUNDAS = ['sancor-salud', 'premedic']
 
 function mecharResultados(sorted: Resultado[]): Resultado[] {
   const pool = [...sorted]
