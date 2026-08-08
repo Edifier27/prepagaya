@@ -1,4 +1,4 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
@@ -181,104 +181,7 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      {/* ── Testimonios ─────────────────────────────────────────────────── */}
-      <section className="py-14 bg-white border-b border-gray-100">
-        <div className="container max-w-5xl mx-auto">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-100 text-amber-700 text-xs font-semibold px-4 py-2 rounded-full mb-4">
-              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-              4.7 · Más de 800 valoraciones
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900">Lo que dicen quienes ya compararon</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {testimonios.map((t, i) => (
-              <div key={i} className="bg-gray-50 rounded-2xl p-6 border border-gray-100 relative">
-                {/* Stars */}
-                <div className="flex gap-0.5 mb-3">
-                  {Array.from({ length: t.stars }).map((_, j) => (
-                    <svg key={j} viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-amber-400">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </svg>
-                  ))}
-                </div>
-
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">&ldquo;{t.texto}&rdquo;</p>
-
-                <div>
-                  <div className="font-semibold text-gray-900 text-sm">{t.nombre}</div>
-                  <div className="text-xs text-gray-400">{t.detalle}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Por qué PrepagaYa ───────────────────────────────────────────── */}
-      <section className="py-14 bg-gray-50 border-b border-gray-100">
-        <div className="container">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900">¿Por qué PrepagaYa?</h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              {
-                icon: <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />,
-                title: 'Precios reales publicados',
-                desc: 'El único comparador con precios actualizados mes a mes. Sin sorpresas.',
-              },
-              {
-                icon: <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />,
-                title: 'Sin DNI, sin registro',
-                desc: 'Solo necesitamos tu edad y coberturas deseadas. Nada más.',
-              },
-              {
-                icon: <path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />,
-                title: 'Comparativa imparcial',
-                desc: 'No recibimos dinero de prepagas para mejorar su posición.',
-              },
-              {
-                icon: <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />,
-                title: 'Expertos en el mercado',
-                desc: 'Verificamos precios contra cuadros tarifarios de la Superintendencia.',
-              },
-            ].map((card, i) => (
-              <div key={i} className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center mb-4">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#E8002D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                    {card.icon}
-                  </svg>
-                </div>
-                <h3 className="font-bold text-gray-900 text-sm mb-2">{card.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{card.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA consultar precios ────────────────────────────────────────── */}
-      <section className="py-12 bg-gradient-to-r from-[#E8002D] to-[#B8001F]">
-        <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="text-white text-center sm:text-left">
-            <h2 className="text-xl font-bold mb-1">¿Cuánto cuesta tu prepaga en {PRECIO_ACTUALIZADO}?</h2>
-            <p className="text-red-200 text-sm">Ingresá tu zona y tu edad — te calculamos el precio exacto en segundos, gratis.</p>
-          </div>
-          <Link
-            href="/comparador"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm whitespace-nowrap"
-          >
-            Cotizar precio →
-          </Link>
-        </div>
-      </section>
-
-      {/* ── Ranking de prepagas ──────────────────────────────────────────── */}
+      {/* ── Ranking de prepagas: intención "mejor prepaga argentina" / precios ── */}
       <section className="py-14 bg-white border-b border-gray-100">
         <div className="container max-w-4xl mx-auto">
           <div className="text-center mb-10">
@@ -360,8 +263,8 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      {/* ── Prepagas por zona (silo SEO local) ───────────────────────────── */}
-      <section className="py-14">
+      {/* ── Prepagas por zona (silo SEO local): intención "prepagas en [ciudad]" ── */}
+      <section id="zonas" className="py-14">
         <div className="container">
           <div className="text-center mb-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Prepagas por zona</h2>
@@ -394,6 +297,103 @@ export default function HomePage(): React.ReactElement {
             ))}
           </div>
           <p className="text-center text-xs text-gray-400 mt-6">¿Tu provincia no está? Estamos sumando todas las provincias — mientras tanto <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">cotizá acá</Link> y te mostramos las prepagas de tu zona.</p>
+        </div>
+      </section>
+
+      {/* ── Testimonios ─────────────────────────────────────────────────── */}
+      <section className="py-14 bg-white border-b border-gray-100">
+        <div className="container max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-100 text-amber-700 text-xs font-semibold px-4 py-2 rounded-full mb-4">
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              4.7 · Más de 800 valoraciones
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900">Lo que dicen quienes ya compararon</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {testimonios.map((t, i) => (
+              <div key={i} className="bg-gray-50 rounded-2xl p-6 border border-gray-100 relative">
+                {/* Stars */}
+                <div className="flex gap-0.5 mb-3">
+                  {Array.from({ length: t.stars }).map((_, j) => (
+                    <svg key={j} viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-amber-400">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+
+                <p className="text-gray-700 text-sm leading-relaxed mb-4">&ldquo;{t.texto}&rdquo;</p>
+
+                <div>
+                  <div className="font-semibold text-gray-900 text-sm">{t.nombre}</div>
+                  <div className="text-xs text-gray-400">{t.detalle}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Por qué PrepagaYa ───────────────────────────────────────────── */}
+      <section className="py-14 bg-gray-50 border-b border-gray-100">
+        <div className="container">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900">¿Por qué PrepagaYa?</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              {
+                icon: <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />,
+                title: 'Precios reales publicados',
+                desc: 'El único comparador con precios actualizados mes a mes. Sin sorpresas.',
+              },
+              {
+                icon: <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />,
+                title: 'Sin DNI, sin registro',
+                desc: 'Solo necesitamos tu edad y coberturas deseadas. Nada más.',
+              },
+              {
+                icon: <path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />,
+                title: 'Partners curados, sin costo extra',
+                desc: 'Trabajamos con Swiss Medical, Sancor Salud y Premedic. Ganamos comisión si contratás con nosotros, nunca de tu bolsillo.',
+              },
+              {
+                icon: <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />,
+                title: 'Expertos en el mercado',
+                desc: 'Verificamos precios contra cuadros tarifarios de la Superintendencia.',
+              },
+            ].map((card, i) => (
+              <div key={i} className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center mb-4">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#E8002D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                    {card.icon}
+                  </svg>
+                </div>
+                <h3 className="font-bold text-gray-900 text-sm mb-2">{card.title}</h3>
+                <p className="text-xs text-gray-500 leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA consultar precios ────────────────────────────────────────── */}
+      <section className="py-12 bg-gradient-to-r from-[#E8002D] to-[#B8001F]">
+        <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="text-white text-center sm:text-left">
+            <h2 className="text-xl font-bold mb-1">¿Cuánto cuesta tu prepaga en {PRECIO_ACTUALIZADO}?</h2>
+            <p className="text-red-200 text-sm">Ingresá tu zona y tu edad — te calculamos el precio exacto en segundos, gratis.</p>
+          </div>
+          <Link
+            href="/comparador"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm whitespace-nowrap"
+          >
+            Cotizar precio →
+          </Link>
         </div>
       </section>
 
@@ -449,7 +449,7 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      {/* ── FAQ ─────────────────────────────────────────────────────────── */}
+      {/* ── FAQ: intención "cuánto cuesta / cuál es la mejor / más barata" ── */}
       <section className="py-14 bg-gray-50">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-10">
@@ -475,7 +475,7 @@ export default function HomePage(): React.ReactElement {
             {faqItems.map((item, i) => (
               <details key={i} className="bg-white rounded-xl border border-gray-200 group">
                 <summary className="flex items-center justify-between p-5 cursor-pointer font-semibold text-gray-900 text-sm list-none gap-3">
-                  {item.q}
+                  <h3 className="font-semibold text-sm text-gray-900 m-0">{item.q}</h3>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-4 h-4 flex-shrink-0 transition-transform group-open:rotate-180">
                     <path d="M19 9l-7 7-7-7"/>
                   </svg>

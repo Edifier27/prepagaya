@@ -307,7 +307,7 @@ export default async function ComparativaPage({ params }: Props) {
             {faqs.map(({ q, a }) => (
               <details key={q} className="group bg-white rounded-xl border border-gray-200 overflow-hidden">
                 <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold text-sm text-gray-900 select-none list-none">
-                  {q}
+                  <h3 className="font-semibold text-sm text-gray-900 m-0">{q}</h3>
                   <svg className="w-4 h-4 text-gray-400 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>

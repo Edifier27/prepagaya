@@ -6,6 +6,10 @@ import { SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdBreadcrumb } from './shared'
 
+// Partners comerciales de PrepagaYa: siempre se destacan visualmente en el ranking,
+// aunque el orden del ranking en sí se mantiene honesto según cartilla real de la zona.
+const PARTNER_ORDER = ['swiss-medical', 'sancor-salud', 'premedic']
+
 export function rankingZonaMetadata(prov: ProvinciaSEO): Metadata {
   const year = new Date().getFullYear()
   return {
@@ -50,6 +54,14 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">Las mejores prepagas en {prov.nombre} ({year})</h1>
           <p className="text-gray-600 leading-relaxed">{prov.rankingIntro}</p>
           <p className="text-xs text-gray-400 mt-3">Cobertura verificada al {new Date(prov.fechaVerificacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })} · Precios de lista {PRECIO_ACTUALIZADO}</p>
+          {!PARTNER_ORDER.includes(prov.prepagas[0]?.slug) && (
+            <div className="flex items-start gap-2.5 bg-amber-50 border border-amber-100 rounded-xl px-4 py-3 mt-4">
+              <span className="text-amber-500 flex-shrink-0">★</span>
+              <p className="text-xs text-amber-800 leading-relaxed">
+                Este ranking pondera cartilla local real, así que en {prov.nombre} puede quedar arriba una regional que no vendemos nosotros. Dicho eso: en PrepagaYa trabajamos directo con Swiss Medical y Sancor Salud, así que si alguna de las dos te sirve, podés cotizar y contratar con nosotros con asesoramiento incluido.
+              </p>
+            </div>
+          )}
         </header>
 
         <div className="space-y-5 mb-10">
@@ -57,8 +69,11 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
             const prepData = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
             const precioMin = prepData ? Math.min(...prepData.planes.map((pl) => pl.precio)) : null
             const fuerza = FUERZA_LABEL[pz.fuerza]
+            const isPartner = PARTNER_ORDER.includes(pz.slug)
             return (
-              <div key={pz.slug} className={`bg-white rounded-2xl border-2 overflow-hidden ${i === 0 ? 'border-[#E8002D] shadow-md' : 'border-gray-100'}`}>
+              <div key={pz.slug} className={`bg-white rounded-2xl border-2 overflow-hidden ${
+                i === 0 ? 'border-[#E8002D] shadow-md' : isPartner ? 'border-amber-200' : 'border-gray-100'
+              }`}>
                 {i === 0 && (
                   <div className="bg-[#E8002D] text-white text-xs font-bold px-4 py-2">Nº 1 en {prov.nombre} según cartilla local</div>
                 )}
@@ -70,7 +85,15 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <h2 className="font-bold text-gray-900 text-lg leading-tight">{pz.nombre}</h2>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h2 className="font-bold text-gray-900 text-lg leading-tight">{pz.nombre}</h2>
+                            {isPartner && (
+                              <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full border"
+                                style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
+                                ★ TRABAJAMOS CON ELLOS
+                              </span>
+                            )}
+                          </div>
                           <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border mt-1 ${fuerza.cls}`}>{fuerza.label}</span>
                         </div>
                         <div className="text-right flex-shrink-0">

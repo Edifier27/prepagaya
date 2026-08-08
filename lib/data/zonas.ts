@@ -146,9 +146,9 @@ export const provinciasSEO: ProvinciaSEO[] = [
         cartillaLocal: ['Cartilla de Salta publicada (PDF oficial en borealsalud.com.ar)', 'Centros médicos propios en la región NOA', 'Urgencias 24 hs y telemedicina incluidas'],
       },
       {
-        slug: 'swiss-medical', nombre: 'Swiss Medical', enSitio: true, fuerza: 'media', verificado: true,
-        resumen: 'Presencia en Salta capital con cartilla premium más acotada que en Buenos Aires o Córdoba. Es una buena opción si viajás seguido o querés respaldo nacional, verificando antes qué sanatorios salteños incluye tu plan.',
-        cartillaLocal: ['Cobertura en Salta capital', 'Cartilla más acotada que en AMBA — verificar prestadores por plan'],
+        slug: 'swiss-medical', nombre: 'Swiss Medical', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Tiene sanatorio propio en la ciudad: Altos de Salta (Laprida 145), inaugurado por Swiss Medical Group en 2017 con una inversión de USD 50 millones, 120 camas y alta complejidad (terapia intensiva, neonatología, diagnóstico por imágenes de última generación). Es el único caso de un jugador premium nacional con infraestructura propia de alta complejidad en la provincia.',
+        cartillaLocal: ['Sanatorio propio: Altos de Salta (Laprida 145)', '120 camas, terapia intensiva y neonatología', 'Centro de diagnóstico por imágenes propio (resonancia, tomografía)'],
       },
       {
         slug: 'osde', nombre: 'OSDE', enSitio: true, fuerza: 'fuerte', verificado: true,
@@ -179,8 +179,8 @@ export const provinciasSEO: ProvinciaSEO[] = [
     localidades: [
       {
         slug: 'salta-capital', nombre: 'Salta capital',
-        descripcion: 'La capital concentra la red privada provincial: Sanatorio El Carmen, Clínica Güemes, Sanatorio San Roque, Clínica Urkupiña, Sanatorio Modelo y el Hospital Santa Clara de Asís. Acá Boreal juega de local y las nacionales premium tienen sus cartillas más completas de la provincia.',
-        prestadores: ['Sanatorio El Carmen', 'Clínica Güemes', 'Sanatorio San Roque', 'Clínica Urkupiña', 'Sanatorio Modelo', 'Hospital Santa Clara de Asís'],
+        descripcion: 'La capital concentra la red privada provincial: Sanatorio El Carmen, Clínica Güemes, Sanatorio San Roque, Clínica Urkupiña, Sanatorio Modelo, el Hospital Santa Clara de Asís y el Sanatorio Altos de Salta (de Swiss Medical Group, alta complejidad). Acá Boreal juega de local y las nacionales premium tienen sus cartillas más completas de la provincia.',
+        prestadores: ['Sanatorio El Carmen', 'Clínica Güemes', 'Sanatorio San Roque', 'Clínica Urkupiña', 'Sanatorio Modelo', 'Hospital Santa Clara de Asís', 'Sanatorio Altos de Salta'],
       },
       {
         slug: 'oran', nombre: 'San Ramón de la Nueva Orán',
@@ -193,19 +193,20 @@ export const provinciasSEO: ProvinciaSEO[] = [
         prestadores: [],
       },
     ],
-    prestadoresClave: ['Sanatorio El Carmen', 'Clínica Güemes', 'Sanatorio San Roque', 'Clínica Urkupiña', 'Sanatorio Modelo', 'Hospital Santa Clara de Asís'],
+    prestadoresClave: ['Sanatorio El Carmen', 'Clínica Güemes', 'Sanatorio San Roque', 'Clínica Urkupiña', 'Sanatorio Modelo', 'Hospital Santa Clara de Asís', 'Sanatorio Altos de Salta'],
     obraSocialProvincial: {
       sigla: 'IPS Salta',
       nombre: 'Instituto Provincial de Salud de Salta',
       nota: 'La obra social provincial con mayor cobertura de Salta (empleados públicos provinciales); no es de contratación voluntaria. En diciembre de 2025 firmó un convenio con las clínicas privadas de ACLISASA para atención de guardia sin copagos. Si tenés IPS y buscás cartilla privada completa, podés complementar con una prepaga.',
     },
     faq: [
-      { q: '¿Cuál es la mejor prepaga en Salta?', a: 'Para cartilla local, Boreal Salud es la referencia regional del NOA con red propia en Salta; OSDE y Swiss Medical lideran el segmento premium en la capital; Sancor Salud y Prevención destacan en relación precio/cartilla, especialmente fuera de la capital.' },
+      { q: '¿Cuál es la mejor prepaga en Salta?', a: 'Para cartilla local, Boreal Salud es la referencia regional del NOA con red propia en Salta. Swiss Medical tiene sanatorio propio de alta complejidad (Altos de Salta, 120 camas), lo que la pone al nivel de OSDE en el segmento premium. Sancor Salud y Prevención destacan en relación precio/cartilla, especialmente fuera de la capital.' },
       { q: '¿Boreal Salud es buena opción en Salta?', a: 'Es la prepaga con más presencia regional del NOA: 30+ sucursales, 260.000 beneficiarios, cartilla salteña publicada, centros propios, urgencias 24 hs y telemedicina. Para residentes de Salta suele ser la primera a cotizar y comparar contra las nacionales.' },
+      { q: '¿Swiss Medical tiene sanatorio propio en Salta?', a: 'Sí. Swiss Medical Group inauguró en 2017 el Sanatorio Altos de Salta (Laprida 145), con una inversión de USD 50 millones: 120 camas, terapia intensiva, neonatología y diagnóstico por imágenes de alta complejidad. Es el único caso de un jugador premium nacional con sanatorio propio en la provincia.' },
       { q: 'Tengo IPS Salta, ¿puedo sumar una prepaga?', a: 'Sí. IPS es la obra social provincial y no se puede elegir voluntariamente, pero muchos afiliados contratan además una prepaga para acceder a sanatorios privados sin restricciones. Desde el convenio IPS–ACLISASA (dic. 2025) la guardia privada mejoró, pero la cartilla completa sigue siendo terreno de las prepagas.' },
-      { q: '¿Qué sanatorios privados hay en Salta capital?', a: 'Los principales son el Sanatorio El Carmen, la Clínica Güemes, el Sanatorio San Roque, la Clínica Urkupiña, el Sanatorio Modelo y el Hospital Santa Clara de Asís. Qué cubra cada prepaga depende del plan: verificalo al cotizar.' },
+      { q: '¿Qué sanatorios privados hay en Salta capital?', a: 'Los principales son el Sanatorio El Carmen, la Clínica Güemes, el Sanatorio San Roque, la Clínica Urkupiña, el Sanatorio Modelo, el Hospital Santa Clara de Asís y el Sanatorio Altos de Salta (Swiss Medical). Qué cubra cada prepaga depende del plan: verificalo al cotizar.' },
     ],
-    fechaVerificacion: '2026-07-14',
+    fechaVerificacion: '2026-08-08',
   },
   {
     slug: 'neuquen',
@@ -701,9 +702,9 @@ provinciasSEO.push(
       { slug: 'sancor-salud', nombre: 'Sancor Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
         resumen: 'Red nacional con fuerte presencia en el litoral, incluida Entre Ríos. De las opciones con mejor relación precio/cartilla en la provincia.',
         cartillaLocal: ['Cartilla provincial publicada (PDF oficial)', 'Presencia en Paraná, Concordia y Gualeguaychú'] },
-      { slug: 'swiss-medical', nombre: 'Swiss Medical', enSitio: true, fuerza: 'media', verificado: false,
-        resumen: 'Cobertura nacional declarada en Entre Ríos; la densidad de cartilla en Paraná y el interior provincial conviene confirmarla al cotizar.',
-        cartillaLocal: ['Cobertura nacional declarada', 'Cartilla local sujeta a verificación al cotizar'] },
+      { slug: 'swiss-medical', nombre: 'Swiss Medical', enSitio: true, fuerza: 'fuerte', verificado: true,
+        resumen: 'Sucursal propia en Paraná (Buenos Aires 263) con cartilla de convenio que incluye a los principales sanatorios de la capital: Sanatorio Río, Sanatorio La Entrerriana, Instituto Rawson e Instituto Cardiovascular Entre Ríos. No tiene sanatorio propio en la provincia, pero su red de convenios cubre los mismos prestadores de referencia que el resto del mercado.',
+        cartillaLocal: ['Sucursal propia en Paraná (Buenos Aires 263)', 'Convenio con Sanatorio Río y Sanatorio La Entrerriana', 'Convenio con Instituto Rawson e Instituto Cardiovascular Entre Ríos'] },
       { slug: 'osde', nombre: 'OSDE', enSitio: true, fuerza: 'media', verificado: false,
         resumen: 'Red nacional con presencia en la provincia; en Entre Ríos su cartilla es menos profunda que en las capitales vecinas (Santa Fe, Córdoba).',
         cartillaLocal: ['Cobertura declarada en Entre Ríos', 'Cartilla más acotada que en provincias vecinas'] },
@@ -738,12 +739,12 @@ provinciasSEO.push(
       nota: 'La obra social de los empleados públicos entrerrianos, con más de 300.000 afiliados; no es de contratación voluntaria. Está en proceso de transformación institucional hacia una nueva entidad (OSER). Si sos afiliado y buscás cartilla privada sin restricciones, podés complementarla con una prepaga.',
     },
     faq: [
-      { q: '¿Cuál es la mejor prepaga en Entre Ríos?', a: 'Sancor Salud y Federada Salud, ambas de fuerte tradición en el litoral, tienen la cartilla más profunda en la provincia. Amur Salud es una alternativa regional en expansión con sucursal en Paraná. Las nacionales premium (Swiss Medical, OSDE) cubren, pero con redes más acotadas que en Santa Fe o Córdoba.' },
+      { q: '¿Cuál es la mejor prepaga en Entre Ríos?', a: 'Sancor Salud y Federada Salud, ambas de fuerte tradición en el litoral, tienen la cartilla más profunda en la provincia. Swiss Medical tiene sucursal propia en Paraná con convenio en los sanatorios de referencia de la capital (Río, La Entrerriana, Rawson). Amur Salud es una alternativa regional en expansión con sucursal en Paraná. OSDE cubre, pero con red más acotada que en Santa Fe o Córdoba.' },
       { q: '¿Qué sanatorios privados hay en Paraná?', a: 'Los principales son el Sanatorio Río, el Sanatorio La Entrerriana, el Instituto Rawson y el Instituto Privado de Pediatría. Qué cubra cada prepaga depende del plan: verificalo al cotizar.' },
       { q: 'Tengo IOSPER, ¿puedo contratar una prepaga?', a: 'Sí. IOSPER es la obra social provincial de los empleados públicos entrerrianos y no se elige voluntariamente, pero podés sumar una prepaga en paralelo para acceder a cartilla privada sin restricciones.' },
       { q: '¿Las prepagas cubren igual en Concordia y Gualeguaychú que en Paraná?', a: 'No. La capital tiene la red más completa; en Concordia y Gualeguaychú la cartilla es más acotada y varios estudios de alta complejidad derivan a Paraná. Verificá los prestadores locales de tu plan antes de contratar.' },
     ],
-    fechaVerificacion: '2026-07-22',
+    fechaVerificacion: '2026-08-08',
   },
   {
     slug: 'misiones',

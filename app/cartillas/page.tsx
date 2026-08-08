@@ -285,7 +285,7 @@ export default function CartillasPage(): React.ReactElement {
             {faqItems.map((item) => (
               <details key={item.q} className="bg-gray-50 rounded-xl border border-gray-200 group">
                 <summary className="flex items-center justify-between gap-4 px-5 py-4 font-semibold text-gray-900 text-sm cursor-pointer list-none select-none">
-                  {item.q}
+                  <h3 className="font-semibold text-sm text-gray-900 m-0">{item.q}</h3>
                   <svg className="w-4 h-4 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                     <path d="M19 9l-7 7-7-7" />
                   </svg>

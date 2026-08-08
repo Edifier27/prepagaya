@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_URL } from '@/lib/utils'
 import { StarRating } from '@/components/ui/StarRating'
 import { Badge } from '@/components/ui/Badge'
@@ -147,6 +148,20 @@ export default function RankingPage() {
                 })}
               </tbody>
             </table>
+          </div>
+        </section>
+
+        {/* Ranking por provincia */}
+        <section className="mb-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">¿Vivís fuera de CABA? Mirá el ranking de tu provincia</h2>
+          <p className="text-sm text-gray-500 mb-5">Este ranking nacional pondera satisfacción general. La cartilla real cambia mucho según dónde vivas — por eso armamos un ranking específico por provincia.</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+            {provinciasSEO.map((prov) => (
+              <Link key={prov.slug} href={`/prepagas/${prov.slug}/mejores-prepagas`}
+                className="text-sm font-medium text-gray-600 hover:text-[#E8002D] bg-gray-50 hover:bg-red-50 border border-gray-200 hover:border-red-200 rounded-lg px-3 py-2 transition-colors">
+                {prov.nombre} →
+              </Link>
+            ))}
           </div>
         </section>
 

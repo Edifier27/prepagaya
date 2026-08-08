@@ -1,4 +1,5 @@
 ﻿import Link from 'next/link'
+import { provinciasSEO } from '@/lib/data/zonas'
 
 const prepagaLinks = [
   { slug: 'swiss-medical', nombre: 'Swiss Medical' },
@@ -103,7 +104,7 @@ export function Footer() {
       <div className="container py-14">
 
         {/* Top grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-7 gap-x-6 gap-y-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-x-6 gap-y-10">
 
           {/* Brand */}
           <div className="col-span-2 md:col-span-4 xl:col-span-2">
@@ -263,6 +264,25 @@ export function Footer() {
               <li>
                 <Link href="/guias" className="inline-flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium mt-1">
                   Ver todas <IconArrow />
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Por provincia (silo SEO local) */}
+          <div>
+            <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Por provincia</h3>
+            <ul className="space-y-2.5">
+              {provinciasSEO.map((prov) => (
+                <li key={prov.slug}>
+                  <Link href={`/prepagas/${prov.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
+                    {prov.nombre}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/#zonas" className="inline-flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium mt-1">
+                  Ver mapa completo <IconArrow />
                 </Link>
               </li>
             </ul>
