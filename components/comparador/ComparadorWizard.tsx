@@ -8,8 +8,9 @@ import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio } from '@/lib/utils'
+import { formatPrecio, whatsappLink } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
+import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -519,6 +520,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
 
   // Popup de cartilla
   const [cartillaAbierta, setCartillaAbierta] = useState<Resultado | null>(null)
+  const [planAbierto, setPlanAbierto] = useState<Resultado | null>(null)
 
   // Comparar hasta 3 planes lado a lado
   const [comparando, setComparando] = useState<Set<string>>(new Set())
@@ -1099,6 +1101,25 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             </div>
           </div>
 
+          {/* Asesoramiento inmediato */}
+          <a
+            href={whatsappLink('Hola! Quiero que me asesoren en el momento sobre prepagas.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 bg-[#25D366]/10 border border-[#25D366]/30 rounded-2xl px-4 py-3 mb-4 hover:bg-[#25D366]/15 transition-colors group"
+          >
+            <span className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
+              <svg viewBox="0 0 24 24" fill="white" className="w-4.5 h-4.5">
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39c1.45.79 3.08 1.21 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.51 2 12.04 2zm5.83 14.07c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.1.11-1.77-.11-.41-.13-.93-.3-1.6-.58-2.83-1.22-4.67-4.06-4.81-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.56-.35.75-.35.19 0 .37 0 .53.01.17.01.4-.06.62.48.24.58.81 2 .88 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.17-.29.37-.42.5-.14.13-.29.28-.12.56.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.62.77 1.9.91.28.14.46.21.53.33.07.12.07.68-.17 1.36z"/>
+              </svg>
+            </span>
+            <div className="flex-1 min-w-0">
+              <div className="text-sm font-bold text-gray-900">¿Preferís que te asesoren ahora mismo?</div>
+              <div className="text-xs text-gray-500">10 años en el rubro · asesoramiento en el acto por WhatsApp</div>
+            </div>
+            <span className="text-xs font-bold text-[#128C7E] flex-shrink-0 hidden sm:inline group-hover:underline">Escribinos →</span>
+          </a>
+
           {/* Count + clear */}
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-semibold text-gray-700">
@@ -1279,10 +1300,13 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                             </svg>
                             Ver cartilla
                           </button>
-                          <Link href={`/prepagas/${res.prepaga.slug}/${res.plan.slug}`}
-                            className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium whitespace-nowrap">
-                            Ver detalles →
-                          </Link>
+                          <button onClick={() => setPlanAbierto(res)}
+                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E8002D] bg-red-50 hover:bg-red-100 border border-red-100 rounded-full px-3 py-1.5 transition-colors whitespace-nowrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 flex-shrink-0">
+                              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 7h6m-6 4h6"/>
+                            </svg>
+                            Ver plan
+                          </button>
                         </div>
                         {isAccedido && planAccedidoStatus === 'success' ? (
                           <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center">
@@ -1323,6 +1347,22 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           onClose={() => setCartillaAbierta(null)}
         />
       )}
+
+      {planAbierto && (() => {
+        const key = `${planAbierto.prepaga.slug}-${planAbierto.plan.slug}`
+        const yaEnviado = planAccedido === key && planAccedidoStatus === 'success'
+        const enviando = planAccedido === key && planAccedidoStatus === 'loading'
+        return (
+          <PlanModal
+            prepaga={planAbierto.prepaga}
+            plan={planAbierto.plan}
+            onClose={() => setPlanAbierto(null)}
+            onQuiero={() => handleAccederPlan(planAbierto)}
+            quieroDisabled={enviando || yaEnviado}
+            quieroLabel={yaEnviado ? '¡Solicitud enviada!' : enviando ? 'Enviando...' : 'Cotización personalizada →'}
+          />
+        )
+      })()}
 
       {comparando.size > 0 && !tablaComparativa && (
         <div className="fixed bottom-20 md:bottom-6 left-4 right-4 md:left-auto md:right-6 md:w-auto z-40 flex justify-center md:justify-end">

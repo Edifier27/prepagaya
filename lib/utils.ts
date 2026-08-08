@@ -56,3 +56,14 @@ export function precioDeriva(precioDirecto: number): number {
 export function ahorroDeriva(precioDirecto: number): number {
   return precioDirecto - precioDeriva(precioDirecto)
 }
+
+// ── WhatsApp de asesoramiento ───────────────────────────────────────────────
+// TODO(Dario): reemplazar por el número real en formato internacional sin
+// espacios ni signos, ej: '5491122334455' (54 = Argentina, 9 = celular, luego
+// código de área + número). Mientras este placeholder siga acá, el botón de
+// WhatsApp queda apuntando a un número inexistente.
+export const WHATSAPP_NUMBER = '5491100000000'
+
+export function whatsappLink(mensaje: string): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`
+}
