@@ -22,7 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${perf.titulo} — ${PRECIO_ACTUALIZADO}`,
     description: perf.metaDescripcion,
-    alternates: { canonical: `${SITE_URL}/para/${perfil}` },
+    alternates: {
+      canonical: `${SITE_URL}/para/${perfil}`,
+      // 'extranjeros' tiene una versión en inglés dedicada (/en/health-insurance-argentina);
+      // el hreflang recíproco evita que Google las trate como contenido no relacionado.
+      ...(perfil === 'extranjeros' ? { languages: { 'es-AR': `${SITE_URL}/para/extranjeros`, en: `${SITE_URL}/en/health-insurance-argentina` } } : {}),
+    },
     keywords: perf.keywords,
     openGraph: {
       title: perf.titulo,
@@ -114,6 +119,11 @@ export default async function PerfilPage({ params }: Props) {
             {perf.titulo} <span className="text-[#E8002D]">2026</span>
           </h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl">{perf.descripcion}</p>
+          {perfil === 'extranjeros' && (
+            <Link href="/en/health-insurance-argentina" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#E8002D] hover:underline mt-4">
+              Reading this in English? →
+            </Link>
+          )}
         </div>
       </section>
 

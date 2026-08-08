@@ -45,6 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/historial-precios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${BASE}/glosario`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/privacidad`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE}/terminos-y-condiciones`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE}/en/health-insurance-argentina`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/cambios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
   ]
