@@ -64,6 +64,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/prepagas-en/mar-del-plata",
+        destination: "/prepagas/buenos-aires/mar-del-plata",
+        permanent: true,
+      },
+      {
         source: "/prepagas-en/posadas",
         destination: "/prepagas/misiones/posadas",
         permanent: true,

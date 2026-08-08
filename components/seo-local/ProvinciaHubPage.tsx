@@ -18,6 +18,14 @@ export function provinciaHubMetadata(prov: ProvinciaSEO): Metadata {
 
 const PARTNER_ORDER = ['swiss-medical', 'sancor-salud', 'premedic']
 
+// Prepagas con sanatorio/centro médico propio verificado, por provincia (no un cálculo
+// automático sobre el texto: cada lista está chequeada a mano contra la ficha de cada
+// una para evitar falsos positivos, ej. "sus sanatorios propios están en Buenos Aires").
+const PROPIO_POR_PROVINCIA: Record<string, string[]> = {
+  caba: ['swiss-medical', 'omint', 'cemic', 'medicus', 'hospital-italiano', 'galeno'],
+  'buenos-aires': ['galeno', 'swiss-medical', 'medicus'],
+}
+
 export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
   const crumbs = [{ nombre: 'Prepagas', href: '/prepagas' }, { nombre: prov.nombre }]
   const jsonLd = [jsonLdBreadcrumb(crumbs), jsonLdFaq(prov.faq)]
@@ -40,6 +48,18 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">Prepagas en {prov.nombre}</h1>
           <p className="text-gray-600 leading-relaxed">{prov.descripcion}</p>
           <p className="text-xs text-gray-400 mt-3">Información de cobertura verificada al {new Date(prov.fechaVerificacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })} · Precios de lista {PRECIO_ACTUALIZADO}</p>
+
+          {prov.localidades.length > 1 && (
+            <div className="flex flex-wrap items-center gap-2 mt-5">
+              <span className="text-xs font-semibold text-gray-400 mr-1">Elegí tu zona:</span>
+              {prov.localidades.map((loc) => (
+                <Link key={loc.slug} href={`/prepagas/${prov.slug}/${loc.slug}`}
+                  className="text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-red-50 hover:text-[#E8002D] border border-gray-200 hover:border-red-200 rounded-full px-3 py-1.5 transition-colors">
+                  {loc.nombre.split(' (')[0]}
+                </Link>
+              ))}
+            </div>
+          )}
         </header>
 
         {/* Ranking teaser */}
@@ -62,6 +82,7 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
               const precioMin = prepData ? Math.min(...prepData.planes.map((pl) => pl.precio)) : null
               const fuerza = FUERZA_LABEL[pz.fuerza]
               const isPartner = PARTNER_ORDER.includes(pz.slug)
+              const tienePropio = (PROPIO_POR_PROVINCIA[prov.slug] ?? []).includes(pz.slug)
               return (
                 <div key={pz.slug} className={`bg-white rounded-2xl border-2 transition-colors p-5 ${
                   isPartner ? 'border-amber-200 hover:border-amber-300' : 'border-gray-100 hover:border-red-100'
@@ -85,7 +106,14 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
                             </span>
                           )}
                         </div>
-                        <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border mt-1 ${fuerza.cls}`}>{fuerza.label}</span>
+                        <div className="flex items-center gap-1.5 flex-wrap mt-1">
+                          <span className={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border ${fuerza.cls}`}>{fuerza.label}</span>
+                          {tienePropio && (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full border bg-blue-50 text-blue-700 border-blue-200">
+                              🏥 Sanatorio propio
+                            </span>
+                          )}
+                        </div>
                         <p className="text-sm text-gray-600 leading-relaxed mt-2">{pz.resumen}</p>
                       </div>
                     </div>
