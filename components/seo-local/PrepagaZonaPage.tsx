@@ -2,9 +2,9 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { PrepagaZona, ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL } from '@/lib/utils'
+import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdBreadcrumb } from './shared'
+import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdBreadcrumb, jsonLdFaq } from './shared'
 
 export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metadata {
   const year = new Date().getFullYear()
@@ -27,9 +27,40 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
     { nombre: pz.nombre },
   ]
 
+  const precios = planesOrdenados.map((p) => p.precio)
+  const precioMin = precios.length ? Math.min(...precios) : null
+  const precioMax = precios.length ? Math.max(...precios) : null
+
+  const faq = [
+    {
+      q: `¿${pz.nombre} tiene buena cobertura en ${prov.nombre}?`,
+      a: pz.fuerza === 'fuerte'
+        ? `Sí, ${pz.nombre} tiene cartilla fuerte en ${prov.nombre}: ${pz.cartillaLocal.slice(0, 3).join(', ')}. Es una de las opciones con mejor presencia real en la provincia.`
+        : pz.fuerza === 'media'
+        ? `${pz.nombre} tiene presencia media en ${prov.nombre}, con cobertura en ${pz.cartillaLocal.slice(0, 2).join(' y ')}. Conviene confirmar la cartilla exacta de tu zona antes de contratar.`
+        : `${pz.nombre} tiene presencia acotada en ${prov.nombre}. Antes de contratar, confirmá que la cartilla cubra los prestadores que usás habitualmente.`,
+    },
+    ...(precioMin !== null && precioMax !== null
+      ? [{
+          q: `¿Cuánto cuesta ${pz.nombre} en ${prov.nombre}?`,
+          a: `Los planes de ${pz.nombre} van de ${formatPrecio(precioMin)} a ${formatPrecio(precioMax)} por mes en precio de lista (${PRECIO_ACTUALIZADO.toLowerCase()}). El valor final depende de tu edad y tu grupo familiar — podés cotizarlo gratis y sin DNI.`,
+        }]
+      : []),
+    {
+      q: `¿${pz.nombre} es igual en toda la provincia de ${prov.nombre}?`,
+      a: `Los planes y precios de lista son los mismos en toda la provincia. Lo que cambia según la localidad es la cartilla de sanatorios y centros médicos disponibles cerca tuyo.`,
+    },
+    ...(hermanas.length > 0
+      ? [{
+          q: `¿Qué otras prepagas puedo comparar en ${prov.nombre}?`,
+          a: `Además de ${pz.nombre}, en ${prov.nombre} tenés cobertura de ${hermanas.map((h) => h.nombre).join(', ')}. Te conviene comparar precios y cartilla de las tres antes de decidir.`,
+        }]
+      : []),
+  ]
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb(crumbs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLdBreadcrumb(crumbs), jsonLdFaq(faq)]) }} />
       <BreadcrumbBar crumbs={crumbs} />
 
       <div className="container py-10 max-w-4xl mx-auto">
@@ -100,7 +131,7 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
 
         {/* Hermanas del silo */}
         {hermanas.length > 0 && (
-          <section>
+          <section className="mb-10">
             <h2 className="text-lg font-bold text-gray-900 mb-4">Otras prepagas en {prov.nombre}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {hermanas.map((h) => (
@@ -113,6 +144,8 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
             </div>
           </section>
         )}
+
+        <FaqSection faq={faq} />
 
         <div className="mt-10 text-center">
           <Link href={`/prepagas/${prov.slug}`} className="text-sm text-gray-400 hover:text-[#E8002D] transition-colors">
