@@ -97,6 +97,13 @@ const RANKING_ORDER = [
   'hospital-italiano', 'hominis', 'federada-salud',
 ]
 
+// Las 3 prepagas partner: una etiqueta de tier por presupuesto en vez del genérico "MÁS ELEGIDO"
+const TIER_PARTNER: Record<string, string> = {
+  'swiss-medical': 'PREMIUM',
+  'sancor-salud': 'INTERMEDIA',
+  'premedic': 'ECONÓMICA',
+}
+
 export default function HomePage(): React.ReactElement {
   const prepagasRanking = RANKING_ORDER
     .map(slug => prepagas.find(p => p.slug === slug))
@@ -291,7 +298,7 @@ export default function HomePage(): React.ReactElement {
               Ranking actualizado {PRECIO_ACTUALIZADO}
             </div>
             <h2 className="text-2xl font-bold text-gray-900">Las mejores prepagas de Argentina</h2>
-            <p className="text-gray-500 text-sm mt-2">Ordenadas por popularidad, cobertura y relación precio/calidad</p>
+            <p className="text-gray-500 text-sm mt-2">Nuestras 3 prepagas partner, una para cada presupuesto: económica, intermedia y premium</p>
           </div>
 
           <div className="space-y-3">
@@ -321,10 +328,12 @@ export default function HomePage(): React.ReactElement {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{prep.nombre}</span>
-                      <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full border"
-                        style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
-                        ★ MÁS ELEGIDO
-                      </span>
+                      {TIER_PARTNER[prep.slug] && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full border"
+                          style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
+                          ★ OPCIÓN {TIER_PARTNER[prep.slug]}
+                        </span>
+                      )}
                     </div>
                     <div className="text-xs text-gray-500 mt-0.5 truncate">{prep.planes.length} planes disponibles · {prep.satisfaccion}% satisfacción</div>
                   </div>
