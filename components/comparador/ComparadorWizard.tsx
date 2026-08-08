@@ -1280,16 +1280,28 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       </div>
                     )}
 
-                    {/* Nivel de precio + CTA */}
+                    {/* Precio estimado + CTA */}
                     <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pt-3 border-t border-gray-100">
                       <div className="space-y-1.5 min-w-0">
-                        <NivelPrecioBadge nivel={nivelPrecio(res.plan.precio)} />
+                        <div className="flex items-baseline gap-2 flex-wrap">
+                          {res.precioGrupal > precioFinal(res.precioDesc) && (
+                            <span className="text-sm text-gray-400 line-through">{formatPrecio(res.precioGrupal)}</span>
+                          )}
+                          <span className="text-xl font-black text-gray-900">
+                            {formatPrecio(precioFinal(res.precioDesc))}
+                            <span className="text-xs font-medium text-gray-400">/mes*</span>
+                          </span>
+                        </div>
                         <div className="text-xs text-gray-500">Para {personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoRate * 100)}% de descuento aplicado</div>
+                        <p className="text-[10px] text-gray-400 leading-snug max-w-[220px]">*Estimado sobre precios de lista. El valor final se confirma con un asesor.</p>
                         {isCheapest && (
                           <div className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold px-2 py-0.5 rounded-full border border-emerald-200">
                             Plan más accesible en tu categoría
                           </div>
                         )}
+                        <div className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 text-[11px] font-bold px-2.5 py-1 rounded-full border border-amber-200">
+                          💬 En el asesoramiento podés acceder a más descuento
+                        </div>
                       </div>
                       <div className="flex flex-col gap-2 items-stretch sm:items-end flex-shrink-0">
                         <div className="flex items-center gap-3 justify-between sm:justify-end">
