@@ -33,12 +33,12 @@ const historialOSDE310 = [
 ]
 
 const preciosJunio2026 = [
-  { prepaga: 'Swiss Medical', plan: 'SMG20', precio: 325467, precioEne2024: 87500 },
+  { prepaga: 'Swiss Medical', plan: 'SMG20', precio: 331300, precioEne2024: 87500 },
   { prepaga: 'OSDE', plan: 'Plan 310', precio: 345310, precioEne2024: 87500 },
   { prepaga: 'Medifé', plan: 'Plan Plata', precio: 309892, precioEne2024: 87500 },
-  { prepaga: 'Sancor Salud', plan: 'Plan 1000', precio: 362701, precioEne2024: 87500 },
+  { prepaga: 'Sancor Salud', plan: 'Plan 1000', precio: 369200, precioEne2024: 87500 },
   { prepaga: 'CEMIC', plan: 'Plan Individual (Plan B)', precio: 245000, precioEne2024: 87500 },
-  { prepaga: 'Premedic', plan: 'Plan 300', precio: 135000, precioEne2024: 87500 },
+  { prepaga: 'Premedic', plan: 'Plan 300', precio: 137400, precioEne2024: 87500 },
 ]
 
 const maxPrecio = Math.max(...historialOSDE310.map((d) => d.precio))

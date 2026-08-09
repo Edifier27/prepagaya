@@ -45,7 +45,7 @@ export const prepagas: Prepaga[] = [
         slug: 'smg02',
         nombre: 'Plan SMG02',
         // Precio estimado — confirmar con lista oficial Swiss Medical
-        precio: 168900,
+        precio: 171900,
         descripcion: 'La puerta de entrada a Swiss Medical. Cobertura en CABA y GBA con consultas sin copago: el mejor precio para entrar a la red Swiss sin pagar por cada visita.',
         cobertura: ['Internación', 'Urgencias', 'Consultas sin copago', 'Maternidad PMO', 'Cobertura CABA y GBA'],
         copago: false,
@@ -54,7 +54,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 's1',
         nombre: 'Plan S1',
-        precio: 185773,
+        precio: 189100,
         descripcion: 'Plan económico con copago para jóvenes y personas que buscan cobertura esencial a bajo costo con la calidad Swiss Medical.',
         cobertura: ['Internación', 'Urgencias', 'Consultas generales', 'Maternidad básica'],
         copago: true,
@@ -63,7 +63,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 's2',
         nombre: 'Plan S2',
-        precio: 233226,
+        precio: 237400,
         descripcion: 'Suma Hospital Italiano y Fundación Favaloro a la red del S1. Con copago en consultas y estudios.',
         cobertura: ['Internación', 'Urgencias', 'Especialistas', 'Maternidad', 'Salud mental', 'Hospital Italiano', 'Fundación Favaloro'],
         copago: true,
@@ -72,7 +72,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'smg20',
         nombre: 'Plan SMG20',
-        precio: 325467,
+        precio: 331300,
         descripcion: 'El plan más elegido de Swiss Medical. Sin copago en consultas, estudios, kinesio y fonoaudiología. 30 sesiones de psicología por año sin cargo. Ortodoncia hasta 15 años. 40% descuento farmacias.',
         cobertura: ['Internación completa', 'Consultas sin copago', 'Especialistas', 'Maternidad', 'Psicología 30 sesiones sin cargo', 'Óptica', 'Dental', 'Kinesioterapia sin copago', 'Ortodoncia hasta 15 años', '40% descuento farmacias'],
         copago: false,
@@ -82,7 +82,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'smg30',
         nombre: 'Plan SMG30',
-        precio: 373881,
+        precio: 380600,
         descripcion: 'Plan premium de red abierta: reintegros por atención fuera de cartilla, ortodoncia hasta 18 años y mayor red de prestadores.',
         cobertura: ['Internación sin límite', 'Especialistas', 'Maternidad completa', 'Salud mental', 'Óptica', 'Dental', 'Ortodoncia hasta 18 años', 'Reintegros ampliados'],
         copago: false,
@@ -91,7 +91,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'smg40',
         nombre: 'Plan SMG40',
-        precio: 390775,
+        precio: 397800,
         descripcion: 'Alta cobertura con acceso a los mejores centros médicos del país.',
         cobertura: ['Internación full', 'Red exclusiva', 'Maternidad VIP', 'Salud mental ampliada', 'Óptica premium', 'Dental completo', 'Reintegros'],
         copago: false,
@@ -101,7 +101,7 @@ export const prepagas: Prepaga[] = [
         slug: 'smg50',
         nombre: 'Plan SMG50',
         // Precio estimado — confirmar con lista oficial Swiss Medical
-        precio: 455000,
+        precio: 463200,
         descripcion: 'Línea premium: equivale al SMG30 con adicionales top. Una cirugía estética por año para titular o cónyuge, implantes dentales por reintegro y valores de reintegro superiores.',
         cobertura: ['Internación habitación individual', 'Especialistas', 'Maternidad completa', 'Salud mental', 'Óptica', 'Dental + implantes (reintegro)', 'Cirugía estética 1 por año', 'Reintegros máximos'],
         copago: false,
@@ -307,7 +307,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'f700',
         nombre: 'Plan F700',
-        precio: 257337,
+        precio: 262000,
         descripcion: 'El plan más accesible de Sancor Salud. Cobertura PMO completa con copago en consultas. Red nacional de prestadores.',
         cobertura: ['Internación', 'Urgencias', 'Consultas generales', 'Maternidad', 'Salud mental PMO'],
         copago: true,
@@ -316,7 +316,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'f800',
         nombre: 'Plan F800',
-        precio: 320358,
+        precio: 326100,
         descripcion: 'Mayor cobertura y menor copago que el F700. Acceso a especialistas con menores restricciones.',
         cobertura: ['Internación completa', 'Especialistas', 'Maternidad', 'Salud mental', 'Óptica básica'],
         copago: true,
@@ -325,7 +325,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'plan-1000',
         nombre: 'Plan 1000',
-        precio: 362701,
+        precio: 369200,
         descripcion: 'El plan más elegido de Sancor. Sin copago en especialistas, maternidad completa y óptica. Cobertura nacional extensa.',
         cobertura: ['Internación completa', 'Especialistas sin copago', 'Maternidad', 'Salud mental', 'Óptica', 'Dental básico'],
         copago: false,
@@ -335,7 +335,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'plan-1500',
         nombre: 'Plan 1500',
-        precio: 393292,
+        precio: 400400,
         descripcion: 'Plan premium con cobertura amplia, habitación individual en internación y reintegros fuera de cartilla.',
         cobertura: ['Internación habitación individual', 'Especialistas', 'Maternidad VIP', 'Salud mental ampliada', 'Óptica', 'Dental', 'Reintegros fuera de cartilla'],
         copago: false,
@@ -344,7 +344,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'plan-3000',
         nombre: 'Plan 3000',
-        precio: 458614,
+        precio: 466900,
         descripcion: 'Plan de alta cobertura con ortodoncia incluida, implantes dentales y cobertura internacional en países limítrofes.',
         cobertura: ['Internación', 'Especialistas', 'Maternidad', 'Salud mental', 'Óptica premium', 'Dental + implantes', 'Ortodoncia', 'Cobertura internacional limítrofes'],
         copago: false,
@@ -353,7 +353,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'plan-4500',
         nombre: 'Plan 4500',
-        precio: 710625,
+        precio: 723400,
         descripcion: 'El plan más completo de Sancor. Máxima cobertura sin límites, suite en internación y cobertura internacional ampliada.',
         cobertura: ['Internación en suite', 'Todos los especialistas', 'Maternidad VIP', 'Salud mental ilimitada', 'Óptica premium', 'Dental completo', 'Ortodoncia sin límite', 'Cobertura internacional'],
         copago: false,
@@ -403,7 +403,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'plan-200',
         nombre: 'Plan 200',
-        precio: 107044,
+        precio: 109000,
         descripcion: 'La opción más económica del mercado. Cubre el PMO con red acotada.',
         cobertura: ['Internación básica', 'Urgencias', 'Consultas generales', 'Maternidad PMO'],
         copago: true,
@@ -413,7 +413,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'plan-300',
         nombre: 'Plan 300',
-        precio: 134000,
+        precio: 136400,
         descripcion: 'Mayor acceso a especialistas manteniendo el precio competitivo.',
         cobertura: ['Internación', 'Especialistas', 'Maternidad', 'Salud mental'],
         copago: true,
@@ -422,7 +422,7 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'plan-400',
         nombre: 'Plan 400',
-        precio: 167000,
+        precio: 170000,
         descripcion: 'La opción más completa de Premedic con mayor red de prestadores.',
         cobertura: ['Internación completa', 'Especialistas', 'Maternidad', 'Salud mental', 'Óptica básica'],
         copago: true,
@@ -1242,6 +1242,11 @@ export function getPlanBySlug(prepagaSlug: string, planSlug: string) {
   return prepaga?.planes.find((p) => p.slug === planSlug)
 }
 
+// Nota 2-ago-2026: los planes de Swiss Medical, Sancor Salud y Premedic llevan
+// un ajuste estimado de +1,8% (aumento promedio de agosto informado por el
+// mercado) sobre la última lista de julio verificada — no se encontró lista
+// oficial de agosto todavía. El resto de las prepagas sigue en precio de julio.
+// Reemplazar por precio real de agosto en cuanto se publique.
 export const PRECIO_ACTUALIZADO = 'Julio 2026'
 export const PRECIO_REFERENCIA = '30 años, contratación individual'
 
