@@ -242,6 +242,13 @@ const COBS: CobDef[] = [
 
 const COB_MAP = Object.fromEntries(COBS.map((c) => [c.id, c])) as Record<CobId, CobDef>
 
+// Coberturas con página propia en /coberturas/[slug]: al activar el filtro,
+// se muestra un link directo a la comparativa a fondo de esa prestación.
+const COB_GUIA: Partial<Record<CobId, string>> = {
+  ortodoncia: 'ortodoncia',
+  'cirugia-estetica': 'cirugia-estetica',
+}
+
 // ─── Situación laboral (define descuento + aporte) ─────────────────────────────
 
 interface SituacionDef {
@@ -277,35 +284,43 @@ function SituacionIcon({ id }: { id: SituacionLaboral }) {
 const STEP_LABELS = ['Zona', 'Integrantes', 'Tu prepaga', 'Ver precios']
 const STEP_ORDER: Step[] = ['zona', 'edades', 'origen', 'preview']
 
-function ProgressBar({ step }: { step: Step }) {
+function ProgressBar({ step, onStepClick }: { step: Step; onStepClick?: (step: Step) => void }) {
   const idx = STEP_ORDER.indexOf(step)
   if (idx < 0) return null
   return (
     <div className="mb-10">
       <div className="flex items-center">
-        {STEP_LABELS.map((label, i) => (
-          <div key={label} className="flex items-center flex-1 last:flex-none">
-            <div className="flex flex-col items-center gap-1">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
-                i < idx  ? 'bg-[#00875A] text-white' :
-                i === idx ? 'bg-[#E8002D] text-white ring-4 ring-red-100' :
-                            'bg-gray-100 text-gray-400'
-              }`}>
-                {i < idx ? (
-                  <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                  </svg>
-                ) : i + 1}
-              </div>
-              <span className={`text-[10px] font-semibold hidden sm:block whitespace-nowrap ${
-                i === idx ? 'text-[#E8002D]' : i < idx ? 'text-[#00875A]' : 'text-gray-400'
-              }`}>{label}</span>
+        {STEP_LABELS.map((label, i) => {
+          const clickable = i < idx && Boolean(onStepClick)
+          return (
+            <div key={label} className="flex items-center flex-1 last:flex-none">
+              <button
+                type="button"
+                disabled={!clickable}
+                onClick={() => clickable && onStepClick?.(STEP_ORDER[i])}
+                className={`flex flex-col items-center gap-1 ${clickable ? 'cursor-pointer group' : 'cursor-default'}`}
+              >
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                  i < idx  ? `bg-[#00875A] text-white ${clickable ? 'group-hover:ring-4 group-hover:ring-green-100' : ''}` :
+                  i === idx ? 'bg-[#E8002D] text-white ring-4 ring-red-100' :
+                              'bg-gray-100 text-gray-400'
+                }`}>
+                  {i < idx ? (
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                  ) : i + 1}
+                </div>
+                <span className={`text-[10px] font-semibold hidden sm:block whitespace-nowrap ${
+                  i === idx ? 'text-[#E8002D]' : i < idx ? `text-[#00875A] ${clickable ? 'group-hover:underline' : ''}` : 'text-gray-400'
+                }`}>{label}</span>
+              </button>
+              {i < STEP_LABELS.length - 1 && (
+                <div className={`flex-1 h-px mx-2 mb-4 transition-all duration-500 ${i < idx ? 'bg-[#00875A]' : 'bg-gray-200'}`} />
+              )}
             </div>
-            {i < STEP_LABELS.length - 1 && (
-              <div className={`flex-1 h-px mx-2 mb-4 transition-all duration-500 ${i < idx ? 'bg-[#00875A]' : 'bg-gray-200'}`} />
-            )}
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )
@@ -479,6 +494,24 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [provinciaNombre, setProvinciaNombre] = useState(initialProvincia ?? '')
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
   const [prepagaOrigen, setPrepagaOrigen] = useState<string | null>(null)
+
+  // Grupo familiar: se puede editar durante el paso "edades" y también desde
+  // el panel de resultados (agregar/sacar integrantes recalcula el precio
+  // grupal en el momento, sin volver atrás en el wizard).
+  function addPersona() {
+    setPersonas(prev => {
+      if (prev.length >= 6) return prev
+      const newId = Math.max(...prev.map(p => p.id)) + 1
+      return [...prev, { id: newId, edad: '' }]
+    })
+  }
+  function removePersona(id: number) {
+    setPersonas(prev => prev.length <= 1 ? prev : prev.filter(p => p.id !== id))
+  }
+  function updateEdad(id: number, edad: string) {
+    setPersonas(prev => prev.map(p => p.id === id ? { ...p, edad } : p))
+  }
+  const [editandoGrupo, setEditandoGrupo] = useState(false)
 
   // Modo enfocado: apenas se elige la zona y se avanza, se oculta el
   // header/footer/bottom-nav para que la cotización no tenga forma de
@@ -695,22 +728,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   // ── Step: Edades ─────────────────────────────────────────────────────────────
 
   if (step === 'edades') {
-    function addPersona() {
-      if (personas.length >= 6) return
-      const newId = Math.max(...personas.map(p => p.id)) + 1
-      setPersonas(prev => [...prev, { id: newId, edad: '' }])
-    }
-    function removePersona(id: number) {
-      if (personas.length <= 1) return
-      setPersonas(prev => prev.filter(p => p.id !== id))
-    }
-    function updateEdad(id: number, edad: string) {
-      setPersonas(prev => prev.map(p => p.id === id ? { ...p, edad } : p))
-    }
-
     return (
       <div>
-        <ProgressBar step="edades" />
+        <ProgressBar step="edades" onStepClick={setStep} />
         <BackBtn onClick={() => setStep('zona')} />
         {provinciaNombre && (
           <div className="inline-flex items-center gap-2 bg-red-50 border border-red-100 text-[#E8002D] text-xs font-semibold px-3 py-1.5 rounded-full mb-5">
@@ -736,13 +756,23 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 <div className="text-xs text-gray-400">Edad en años</div>
               </div>
               <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => updateEdad(p.id, String(Math.max(0, (parseInt(p.edad) || 0) - 1)))}
+                  className="w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
+                >−</button>
                 <input
                   type="number" min={0} max={110}
                   value={p.edad}
                   onChange={(e) => updateEdad(p.id, e.target.value)}
                   placeholder="Ej: 35"
-                  className="w-24 text-center text-lg font-bold border-2 border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:border-[#E8002D] transition-colors"
+                  className="w-20 text-center text-lg font-bold border-2 border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:border-[#E8002D] transition-colors"
                 />
+                <button
+                  type="button"
+                  onClick={() => updateEdad(p.id, String(Math.min(110, (parseInt(p.edad) || 0) + 1)))}
+                  className="w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
+                >+</button>
                 <span className="text-sm text-gray-400 font-medium">años</span>
                 {i > 0 && (
                   <button onClick={() => removePersona(p.id)}
@@ -783,7 +813,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
 
     return (
       <div>
-        <ProgressBar step="origen" />
+        <ProgressBar step="origen" onStepClick={setStep} />
         <BackBtn onClick={() => setStep('edades')} />
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">¿De qué prepaga venís?</h2>
@@ -819,7 +849,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     const previewItems = allResultados.slice(0, 4)
     return (
       <div>
-        <ProgressBar step="preview" />
+        <ProgressBar step="preview" onStepClick={setStep} />
 
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -959,13 +989,22 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       {/* Summary header */}
       <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-5 text-white mb-6">
         <div className="flex items-center justify-between gap-4">
-          <div>
+          <div className="min-w-0">
             <div className="text-red-200 text-xs mb-1">Cotización para</div>
             <div className="font-bold text-lg">{nombre}</div>
-            <div className="text-red-200 text-sm mt-0.5">
-              {personas.length} persona{personas.length !== 1 ? 's' : ''} · {personas.map(p => `${p.edad} años`).join(', ')}
-              {provinciaNombre ? ` · ${provinciaNombre}` : ''}
-            </div>
+            <button
+              onClick={() => setEditandoGrupo((v) => !v)}
+              className="flex items-center gap-1.5 text-red-200 text-sm mt-0.5 hover:text-white transition-colors group"
+            >
+              <span>
+                {personas.length} persona{personas.length !== 1 ? 's' : ''} · {personas.map(p => `${p.edad} años`).join(', ')}
+                {provinciaNombre ? ` · ${provinciaNombre}` : ''}
+              </span>
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 flex-shrink-0 opacity-70 group-hover:opacity-100">
+                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                <path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clipRule="evenodd" />
+              </svg>
+            </button>
           </div>
           <div className="bg-white/15 rounded-xl px-4 py-2.5 text-center flex-shrink-0">
             <div className="text-xs text-red-200 mb-0.5">Descuento aplicado</div>
@@ -973,6 +1012,58 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             <div className="text-xs text-red-200">{aporteMensual > 0 ? 'más tu aporte descontado' : 'por 12 meses'}</div>
           </div>
         </div>
+
+        {/* Editor de integrantes — agregar/sacar sin volver atrás en el wizard */}
+        {editandoGrupo && (
+          <div className="mt-4 pt-4 border-t border-white/20 space-y-2">
+            {personas.map((p, i) => (
+              <div key={p.id} className="flex items-center gap-3 bg-white/10 rounded-xl px-3 py-2">
+                <span className="text-xs font-semibold text-red-100 w-20 flex-shrink-0">
+                  {i === 0 ? 'Titular' : `Integrante ${i + 1}`}
+                </span>
+                <div className="flex items-center gap-1.5 flex-shrink-0">
+                  <button
+                    onClick={() => updateEdad(p.id, String(Math.max(0, (parseInt(p.edad) || 0) - 1)))}
+                    className="w-7 h-7 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white font-bold transition-colors"
+                  >−</button>
+                  <input
+                    type="number" min={0} max={110}
+                    value={p.edad}
+                    onChange={(e) => updateEdad(p.id, e.target.value)}
+                    placeholder="Edad"
+                    className="w-16 text-center text-sm font-bold bg-white/90 text-gray-900 rounded-lg px-1 py-1.5 focus:outline-none"
+                  />
+                  <button
+                    onClick={() => updateEdad(p.id, String(Math.min(110, (parseInt(p.edad) || 0) + 1)))}
+                    className="w-7 h-7 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white font-bold transition-colors"
+                  >+</button>
+                </div>
+                {i > 0 && (
+                  <button
+                    onClick={() => removePersona(p.id)}
+                    className="ml-auto w-7 h-7 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white transition-colors text-sm flex-shrink-0"
+                  >×</button>
+                )}
+              </div>
+            ))}
+            <div className="flex items-center gap-2 pt-1">
+              {personas.length < 6 && (
+                <button
+                  onClick={addPersona}
+                  className="flex-1 flex items-center justify-center gap-1.5 py-2 border border-dashed border-white/40 rounded-xl text-xs font-semibold text-white hover:bg-white/10 transition-colors"
+                >
+                  + Agregar integrante
+                </button>
+              )}
+              <button
+                onClick={() => setEditandoGrupo(false)}
+                className="px-4 py-2 bg-white text-[#E8002D] rounded-xl text-xs font-bold hover:bg-red-50 transition-colors"
+              >
+                Listo
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       <SituacionSelector
@@ -1057,15 +1148,23 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               <div className="space-y-2.5">
                 {COBS.map((cob) => {
                   const on = activeCobs.has(cob.id)
+                  const guiaSlug = COB_GUIA[cob.id]
                   return (
-                    <label key={cob.id} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => toggleCob(cob.id)}>
-                      <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
-                        on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
-                      }`}>
-                        {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
-                      </div>
-                      <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{cob.label}</span>
-                    </label>
+                    <div key={cob.id} className="flex items-center gap-2.5">
+                      <label className="flex items-center gap-2.5 cursor-pointer group flex-1" onClick={() => toggleCob(cob.id)}>
+                        <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                          on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                        }`}>
+                          {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                        </div>
+                        <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{cob.label}</span>
+                      </label>
+                      {on && guiaSlug && (
+                        <Link href={`/coberturas/${guiaSlug}`} className="text-[10px] font-semibold text-[#E8002D] hover:underline flex-shrink-0">
+                          Ver detalle →
+                        </Link>
+                      )}
+                    </div>
                   )
                 })}
               </div>
