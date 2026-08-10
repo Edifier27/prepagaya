@@ -111,9 +111,10 @@ export const coberturas: CoberturaData[] = [
       { slug: 'swiss-medical', razon: 'Swiss Medical incluye cobertura dental en sus planes SMG20 en adelante. Tienen Swiss Dental en sus propios centros médicos. Cubre consultas, radiografías, obturaciones y con los planes superiores acceso a endodoncia y periodoncia.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene convenio con la red de odontólogos más amplia del país. El Plan 310 incluye cobertura dental básica-media con copago. El Plan 410 amplía significativamente la cobertura con acceso a más especialidades.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud Plan 3000 incluye cobertura dental con buena relación precio-calidad. Red amplia en el interior del país, donde otras prepagas tienen menos odontólogos adheridos.', planSlug: 'plan-3000' },
+      { slug: 'premedic', razon: 'Premedic tiene Smile Group, su propia red de 7 centros odontológicos en CABA, GBA e interior, con hasta 50% de descuento en implantes y ortodoncia — un diferencial fuerte en una prepaga de entrada.', planSlug: 'plan-400' },
     ],
     prepagasRestrictivas: [
-      { slug: 'premedic', detalle: 'Sin cobertura dental incluida. PMO odontológico básico únicamente.' },
+      { slug: 'prevencion-salud', detalle: 'Cobertura dental básica en los planes de entrada; recién en el Plan Platino suma implantes dentales.' },
     ],
     quePreguntar: [
       '¿La cobertura dental incluye ortodoncia? ¿Hay tope?',
@@ -401,6 +402,88 @@ export const coberturas: CoberturaData[] = [
     ],
     relacionadas: ['medicamentos', 'psicologia', 'rehabilitacion'],
     keywords: ['prepaga que cubre cirugía bariátrica', 'manga gástrica cobertura prepaga', 'bypass gástrico prepaga argentina', 'ley 26396 bariátrica prepagas', 'prepaga obesidad cirugía'],
+  },
+  {
+    slug: 'ortodoncia',
+    nombre: 'Ortodoncia y brackets',
+    emoji: '😁',
+    titulo: '¿Qué prepaga cubre ortodoncia y hasta qué edad?',
+    metaDescripcion: 'Comparamos qué prepagas cubren ortodoncia y brackets en Argentina, y hasta qué edad. Desde planes con tope en 18 años hasta los que la cubren sin límite de edad.',
+    intro: 'La ortodoncia es una de las coberturas dentales con más variación entre prepagas: no es parte del PMO, así que cada empresa decide si la incluye, en qué planes y con qué límite de edad. La diferencia entre un plan y otro puede ser la diferencia entre pagar un tratamiento completo de tu bolsillo o tenerlo cubierto.',
+    queEstableceLaLey: 'La ortodoncia NO está en el PMO: es una prestación "superadora" que cada prepaga cubre a discreción, plan por plan. Al no ser obligatoria, las prepagas pueden aplicar límites de edad, topes de reintegro y períodos de carencia más largos que en las prestaciones del PMO.',
+    prepagasRecomendadas: [
+      { slug: 'osde', razon: 'El Plan 410 de OSDE cubre ortodoncia sin límite de edad, además de implantes dentales y cirugía estética cada 3 años. Es de los pocos planes que no restringe la ortodoncia a menores.', planSlug: '410' },
+      { slug: 'medife', razon: 'El Plan Platinum de Medifé cubre ortodoncia sin límite de edad, sumado a cobertura internacional en el Tratado Schengen. Es la opción más completa de Medifé para tratamientos prolongados.', planSlug: 'platinum' },
+      { slug: 'swiss-medical', razon: 'El Plan SMG30 de Swiss Medical cubre ortodoncia hasta los 18 años en un escalón más accesible que el tope de línea, sin necesidad de ir directo al plan más caro para tener esta cobertura.', planSlug: 'smg30' },
+    ],
+    prepagasRestrictivas: [
+      { slug: 'premedic', detalle: 'Ninguno de sus 3 planes menciona cobertura de ortodoncia — no es una prestación que ofrezcan hoy.' },
+      { slug: 'prevencion-salud', detalle: 'Incluso en el Plan Platino (el más alto), la ortodoncia tiene tope en los 18 años.' },
+    ],
+    quePreguntar: [
+      '¿Hasta qué edad cubre la ortodoncia mi plan puntual (no solo la prepaga en general)?',
+      '¿Cubre el tratamiento completo o un porcentaje con tope?',
+      '¿Hay período de carencia específico para ortodoncia?',
+      '¿La cobertura incluye brackets estéticos/linguales o solo metálicos?',
+      '¿Qué ortodoncistas de la cartilla están cerca de mi zona?',
+    ],
+    faq: [
+      {
+        q: '¿Qué prepaga cubre ortodoncia sin límite de edad?',
+        a: 'Entre los planes de tope de línea, OSDE 410, Medifé Platinum, Sancor Plan 4500, Omint Premium, Medicus Celeste y Avalian Premium cubren ortodoncia sin límite de edad. En casi todos los casos es el plan más alto de la empresa, no uno intermedio.',
+      },
+      {
+        q: '¿Por qué la ortodoncia tiene tope de edad en tantos planes?',
+        a: 'Al no estar en el PMO, cada prepaga la trata como una prestación adicional y suele orientarla a tratamientos en la infancia/adolescencia (cuando más se indica clínicamente), dejando la ortodoncia adulta como cobertura de planes superiores o sin cobertura directamente.',
+      },
+      {
+        q: '¿Los brackets estéticos (transparentes) tienen cobertura aparte?',
+        a: 'Sí, en general están fuera de la cobertura estándar de ortodoncia o tienen un reintegro menor: la mayoría de los planes cubre el tratamiento con brackets metálicos convencionales. Confirmá esto puntualmente si buscás una opción estética.',
+      },
+    ],
+    relacionadas: ['odontologia', 'optica'],
+    keywords: ['prepaga que cubre ortodoncia', 'ortodoncia sin límite de edad prepaga', 'brackets cobertura prepaga argentina', 'qué prepaga cubre brackets adultos'],
+  },
+  {
+    slug: 'cirugia-estetica',
+    nombre: 'Cirugía estética',
+    emoji: '💉',
+    titulo: '¿Qué prepaga cubre cirugía estética y con qué condiciones?',
+    metaDescripcion: 'Comparamos la cobertura de cirugía estética entre prepagas argentinas: quién la incluye, desde qué antigüedad y con qué frecuencia. Solo en planes premium.',
+    intro: 'La cirugía estética no reconstructiva es una cobertura exclusiva de los planes más altos del mercado, y las condiciones varían mucho: hay prepagas que la habilitan desde el primer año de antigüedad y otras que exigen 2 años o más. Ninguna la incluye en planes de entrada.',
+    queEstableceLaLey: 'La cirugía estética (no reconstructiva) NO está en el PMO. Es distinta de la cirugía reparadora/reconstructiva (post-mastectomía, accidentes, malformaciones), que sí es de cobertura obligatoria. Cuando una prepaga la ofrece, es un beneficio adicional de sus planes premium, con reglas propias de antigüedad y frecuencia.',
+    prepagasRecomendadas: [
+      { slug: 'swiss-medical', razon: 'El Plan SMG50 de Swiss Medical incluye una cirugía estética por año para el titular o su cónyuge — la frecuencia más generosa que encontramos en el mercado, la mayoría de las prepagas la limita a una vez cada 2 o 3 años.', planSlug: 'smg50' },
+      { slug: 'medife', razon: 'El Plan Platinum de Medifé habilita cirugía estética desde el primer año de antigüedad, mucho antes que la media del mercado (2-3 años).', planSlug: 'platinum' },
+      { slug: 'osde', razon: 'El Plan 410 de OSDE cubre cirugía estética cada 3 años, en un escalón más accesible que el plan tope de línea (510).', planSlug: '410' },
+    ],
+    prepagasRestrictivas: [
+      { slug: 'sancor-salud', detalle: 'Ningún plan del listado menciona cirugía estética como cobertura explícita.' },
+      { slug: 'premedic', detalle: 'No forma parte de la oferta en ninguno de sus 3 planes — coherente con ser la opción más económica del mercado.' },
+    ],
+    quePreguntar: [
+      '¿Desde qué antigüedad como afiliado puedo acceder a la cirugía estética?',
+      '¿Con qué frecuencia la cubre (anual, cada 2 años, cada 3 años)?',
+      '¿Qué procedimientos puntuales incluye y cuáles quedan afuera?',
+      '¿Es para el titular únicamente o también para el grupo familiar?',
+      '¿Hay un cirujano de cartilla o reintegro por atención particular?',
+    ],
+    faq: [
+      {
+        q: '¿La prepaga cubre cirugía estética desde que me afilio?',
+        a: 'No. Todas las prepagas que ofrecen esta cobertura exigen un período mínimo de antigüedad como afiliado, que va de 1 año (Medifé Platinum) a 2-3 años en la mayoría de los demás planes que la incluyen.',
+      },
+      {
+        q: '¿Cuál es la diferencia entre cirugía estética y cirugía reconstructiva?',
+        a: 'La reconstructiva (por ejemplo, tras una mastectomía o un accidente) es de cobertura obligatoria por el PMO en todas las prepagas, sin excepción. La estética (por elección, sin indicación médica) es un beneficio adicional que solo ofrecen los planes premium.',
+      },
+      {
+        q: '¿Todas las prepagas premium cubren cirugía estética?',
+        a: 'No todas. Es exclusiva de los planes más altos de cada empresa, y algunas prepagas (como Sancor Salud o Premedic) directamente no la ofrecen en ningún plan de su cartilla actual.',
+      },
+    ],
+    relacionadas: ['odontologia', 'psicologia'],
+    keywords: ['prepaga que cubre cirugía estética', 'cirugía plástica prepaga argentina', 'prepagas más lujosas cirugía estética', 'qué prepaga cubre cirugía reconstructiva'],
   },
 ]
 
