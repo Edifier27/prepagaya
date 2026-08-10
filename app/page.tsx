@@ -197,7 +197,7 @@ export default function HomePage(): React.ReactElement {
 
           <div className="space-y-3">
             {prepagasRanking.slice(0, 3).map((prep, i) => {
-              const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
+              const planReferencia = prep.planes.find(pl => pl.destacado) ?? prep.planes[0]
               const pos = i + 1
               const isTop3 = pos <= 3
               const medalColor =
@@ -242,7 +242,7 @@ export default function HomePage(): React.ReactElement {
 
                   {/* Nivel de precio */}
                   <div className="text-right flex-shrink-0">
-                    <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
+                    <NivelPrecioBadge nivel={nivelPrecio(planReferencia.precio)} />
                   </div>
 
                   {/* Arrow */}

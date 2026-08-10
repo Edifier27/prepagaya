@@ -442,6 +442,41 @@ export function buscarSanatorio(query: string): Sanatorio[] {
   )
 }
 
+const ZONA_NOMBRE: Record<string, string> = {
+  caba: 'CABA', 'buenos-aires': 'Buenos Aires (GBA e interior)', cordoba: 'Córdoba',
+  'la-pampa': 'La Pampa', 'san-luis': 'San Luis', mendoza: 'Mendoza', 'san-juan': 'San Juan',
+  'la-rioja': 'La Rioja', catamarca: 'Catamarca', santiago: 'Santiago del Estero', tucuman: 'Tucumán',
+  salta: 'Salta', jujuy: 'Jujuy', 'santa-fe': 'Santa Fe', 'entre-rios': 'Entre Ríos', chaco: 'Chaco',
+  corrientes: 'Corrientes', formosa: 'Formosa', misiones: 'Misiones', neuquen: 'Neuquén',
+  'rio-negro': 'Río Negro', chubut: 'Chubut', 'santa-cruz': 'Santa Cruz', 'tierra-fuego': 'Tierra del Fuego',
+}
+
+export interface SanatorioReferenciaResult {
+  nombre: string
+  zonaKey: string
+  zonaNombre: string
+}
+
+// Busca en REFERENCIA_POR_ZONA (24 provincias, sin verificación por plan) para
+// que el buscador no devuelva "no encontrado" en sanatorios reales que ya
+// identificamos pero no tenemos mapeados a un plan puntual. Se muestra
+// siempre con la aclaración de "confirmá con la prepaga" — nunca como
+// planesQueLoCubren. No duplica resultados ya presentes en `sanatorios`.
+export function buscarSanatorioReferencia(query: string): SanatorioReferenciaResult[] {
+  const q = query.toLowerCase().trim()
+  if (q.length < 2) return []
+  const yaVerificados = new Set(buscarSanatorio(query).map((s) => s.nombre.toLowerCase()))
+  const resultados: SanatorioReferenciaResult[] = []
+  for (const [zonaKey, nombres] of Object.entries(REFERENCIA_POR_ZONA)) {
+    for (const nombre of nombres) {
+      if (nombre.toLowerCase().includes(q) && !yaVerificados.has(nombre.toLowerCase())) {
+        resultados.push({ nombre, zonaKey, zonaNombre: ZONA_NOMBRE[zonaKey] ?? zonaKey })
+      }
+    }
+  }
+  return resultados
+}
+
 // zonaKey del cotizador (ZONA_PREPAGAS en ComparadorWizard) → tags de zona
 // usados acá. Las provincias sin sanatorios cargados devuelven [] a propósito:
 // el popup de Cartilla cae al fallback genérico en vez de mostrar datos de

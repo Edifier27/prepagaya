@@ -1304,6 +1304,60 @@ export const guias: GuiaData[] = [
     relacionadas: ['prepagas-economicas', 'cuota-prepaga-por-edad', 'como-cambiar-de-prepaga'],
     prepagasRelacionadas: ['premedic', 'sancor-salud', 'swiss-medical'],
   },
+  {
+    slug: 'discapacidad-obra-social-cobertura-100',
+    titulo: 'Discapacidad y Certificado Único de Discapacidad (CUD): qué cubre tu obra social al 100%',
+    metaDescripcion: 'Con el Certificado Único de Discapacidad (CUD), la Ley 24.901 obliga a cubrir al 100% tratamientos, medicación, rehabilitación y transporte. Te explicamos cómo funciona con tu obra social.',
+    tiempoLectura: 9,
+    categoria: 'Derechos',
+    fechaActualizacion: '2026-08-02',
+    contenido: {
+      intro: 'El Certificado Único de Discapacidad (CUD) es la puerta de entrada a un sistema de cobertura al 100% que muy poca gente conoce en detalle: medicación, rehabilitación, transporte, apoyos educativos y prótesis, sin copagos ni límites de sesiones. La Ley 24.901 pone esta obligación en cabeza de las obras sociales (reguladas por la Superintendencia de Servicios de Salud), que es donde este sistema funciona de forma más consistente y donde conviene enfocar el trámite.',
+      secciones: [
+        {
+          titulo: 'Qué es el CUD y quién lo puede tramitar',
+          cuerpo: 'El CUD es un documento público, gratuito y válido en todo el país que acredita una discapacidad según la definición de la Ley 22.431. Lo tramita cualquier persona con una condición física, sensorial, intelectual o psicosocial que le genere una desventaja para su participación plena, ante una Junta Evaluadora provincial o de CABA. El trámite es voluntario: nadie está obligado a sacarlo, pero sin él no se puede acceder a las prestaciones de la Ley 24.901.',
+        },
+        {
+          titulo: 'Qué cubre al 100% la Ley 24.901',
+          cuerpo: 'Con CUD vigente, la cobertura incluye: medicación específica para la condición, rehabilitación (kinesiología, fonoaudiología, terapia ocupacional, psicopedagogía), transporte especial hacia los tratamientos, apoyo a la integración escolar, prótesis y órtesis, y en los casos que corresponda, centros de día o residenciales. Todo sin copago y sin límite de sesiones prefijado — el criterio es lo que indique el equipo tratante, no un tope administrativo.',
+        },
+        {
+          titulo: 'Por qué esto es un tema de obra social, no de prepaga',
+          cuerpo: 'La Ley 24.901 nombra a obras sociales, prepagas y al Estado como sujetos obligados. En la práctica, el circuito funciona de forma mucho más consistente en obras sociales: tienen áreas y prestadores especializados en discapacidad rodados desde hace décadas, mientras que en muchas prepagas la gestión de estas prestaciones es más lenta o directamente friccionada, más allá de lo que dice la letra de la ley. Si tenés CUD y estás evaluando dónde afiliarte, no asumas que cualquier prepaga te va a resolver esto igual que una obra social — conviene preguntar explícitamente por el área de discapacidad antes de decidir.',
+        },
+        {
+          titulo: 'Cómo se tramita paso a paso',
+          cuerpo: 'Se pide turno en la Junta Evaluadora de discapacidad de tu provincia (o de CABA), se presenta documentación médica que respalde el diagnóstico, y un equipo interdisciplinario evalúa el caso. Si se aprueba, el certificado tiene una vigencia definida (o permanente en condiciones que no varían) y hay que renovarlo antes del vencimiento. Para 2026 rige una prórroga automática para los certificados que vencían durante 2025, que se extienden hasta la misma fecha de este año.',
+        },
+        {
+          titulo: 'Qué hacer si tu cobertura te rechaza una prestación',
+          cuerpo: 'El rechazo de una prestación incluida en el nomenclador de la Ley 24.901 a una persona con CUD vigente es reclamable ante la Superintendencia de Servicios de Salud (para obras sociales) o ante la autoridad de contralor de prepagas de tu jurisdicción. Guardá siempre el rechazo por escrito: es lo que necesitás para iniciar el reclamo formal.',
+        },
+      ],
+      conclusion: 'El CUD no es un trámite más: es la llave a una cobertura del 100% que en la práctica se ejerce mejor a través de una obra social que de una prepaga. Si estás evaluando opciones y tenés (o vas a tramitar) el certificado, priorizá entender cómo funciona el área de discapacidad de cada cobertura antes de mirar cualquier otra variable.',
+    },
+    faq: [
+      {
+        q: '¿El CUD sirve en todo el país?',
+        a: 'Sí, es un documento de validez nacional. Una vez otorgado por la Junta Evaluadora de tu jurisdicción, tus derechos y prestaciones aplican en cualquier provincia.',
+      },
+      {
+        q: '¿Las prepagas están obligadas a cubrir lo mismo que las obras sociales?',
+        a: 'Por ley sí, la Ley 24.901 las incluye como sujeto obligado igual que a las obras sociales. En la práctica, el nivel de organización y experiencia en gestionar estas prestaciones suele ser mayor en obras sociales — confirmá esto puntualmente con cada cobertura antes de decidir, no lo des por sentado.',
+      },
+      {
+        q: '¿El CUD tiene costo?',
+        a: 'No, el trámite es gratuito tanto en el sistema público como el certificado en sí.',
+      },
+      {
+        q: '¿Qué pasa si mi certificado vence en 2026?',
+        a: 'Para certificados que vencían durante 2025 rige una prórroga automática hasta la misma fecha de 2026. Para vencimientos propios de 2026, hay que iniciar la renovación con anticipación ante la Junta Evaluadora.',
+      },
+    ],
+    keywords: ['certificado unico de discapacidad', 'CUD cobertura 100', 'ley 24901 obra social', 'discapacidad obra social cobertura', 'que cubre el CUD'],
+    relacionadas: ['obra-social-vs-prepaga', 'preexistencias-que-son-como-funcionan', 'como-reclamar-a-una-prepaga'],
+  },
 ]
 
 export function getGuiaBySlug(slug: string): GuiaData | undefined {

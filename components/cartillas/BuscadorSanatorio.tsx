@@ -2,20 +2,23 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { buscarSanatorio } from '@/lib/data/sanatorios'
+import { buscarSanatorio, buscarSanatorioReferencia } from '@/lib/data/sanatorios'
 import { nivelPrecio } from '@/lib/data/prepagas'
+import { getProvinciaSEO } from '@/lib/data/zonas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import type { Sanatorio } from '@/lib/data/sanatorios'
+import type { Sanatorio, SanatorioReferenciaResult } from '@/lib/data/sanatorios'
 
 export function BuscadorSanatorio(): React.ReactElement {
   const [query, setQuery] = useState('')
   const [resultados, setResultados] = useState<Sanatorio[]>([])
+  const [referencia, setReferencia] = useState<SanatorioReferenciaResult[]>([])
   const [buscado, setBuscado] = useState(false)
 
   const handleSearch = (val: string) => {
     setQuery(val)
     setBuscado(val.length >= 2)
     setResultados(val.length >= 2 ? buscarSanatorio(val) : [])
+    setReferencia(val.length >= 2 ? buscarSanatorioReferencia(val) : [])
   }
 
   return (
@@ -62,10 +65,40 @@ export function BuscadorSanatorio(): React.ReactElement {
       )}
 
       {/* Sin resultados */}
-      {buscado && resultados.length === 0 && (
+      {buscado && resultados.length === 0 && referencia.length === 0 && (
         <div className="mt-8 text-center py-10 bg-gray-50 rounded-2xl border border-gray-100">
           <div className="text-gray-400 text-sm mb-1">No encontramos "{query}" en nuestra base de datos.</div>
           <p className="text-xs text-gray-400">Probá con otro nombre o consultá directamente la cartilla de cada prepaga.</p>
+        </div>
+      )}
+
+      {/* Red de referencia (sin plan puntual verificado) */}
+      {referencia.length > 0 && (
+        <div className="mt-8 space-y-2">
+          {resultados.length === 0 && (
+            <p className="text-xs text-gray-400 text-center mb-3">
+              No tenemos verificado qué plan puntual lo cubre, pero identificamos este centro como parte de la red de referencia en su zona:
+            </p>
+          )}
+          {referencia.map((ref) => {
+            const tieneHub = Boolean(getProvinciaSEO(ref.zonaKey))
+            return (
+              <div key={`${ref.zonaKey}-${ref.nombre}`} className="flex items-center justify-between gap-3 bg-amber-50 border border-amber-100 rounded-xl px-5 py-3.5">
+                <div>
+                  <div className="font-semibold text-gray-900 text-sm">{ref.nombre}</div>
+                  <div className="text-xs text-amber-700 mt-0.5">Red de referencia en {ref.zonaNombre} — confirmá cobertura exacta con la prepaga</div>
+                </div>
+                {tieneHub && (
+                  <Link
+                    href={`/prepagas/${ref.zonaKey}`}
+                    className="flex-shrink-0 text-xs font-semibold text-amber-700 hover:text-amber-900 whitespace-nowrap"
+                  >
+                    Ver prepagas en la zona →
+                  </Link>
+                )}
+              </div>
+            )
+          })}
         </div>
       )}
 
