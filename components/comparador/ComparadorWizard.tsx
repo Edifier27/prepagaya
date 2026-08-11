@@ -766,7 +766,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   value={p.edad}
                   onChange={(e) => updateEdad(p.id, e.target.value)}
                   placeholder="Ej: 35"
-                  className="w-20 text-center text-lg font-bold border-2 border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:border-[#E8002D] transition-colors"
+                  className="w-20 text-center text-lg font-bold border-2 border-gray-200 rounded-xl px-2 py-2 focus:outline-none focus:border-[#E8002D] transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
                 <button
                   type="button"
@@ -1031,7 +1031,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     value={p.edad}
                     onChange={(e) => updateEdad(p.id, e.target.value)}
                     placeholder="Edad"
-                    className="w-16 text-center text-sm font-bold bg-white/90 text-gray-900 rounded-lg px-1 py-1.5 focus:outline-none"
+                    className="w-16 text-center text-sm font-bold bg-white/90 text-gray-900 rounded-lg px-1 py-1.5 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <button
                     onClick={() => updateEdad(p.id, String(Math.min(110, (parseInt(p.edad) || 0) + 1)))}
