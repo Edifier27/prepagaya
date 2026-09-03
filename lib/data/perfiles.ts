@@ -120,7 +120,7 @@ export const perfiles: PerfilData[] = [
     planesRecomendados: [
       { prepagaSlug: 'premedic', planSlug: 'plan-200', razon: 'El plan más económico del mercado con cobertura PMO completa' },
       { prepagaSlug: 'sancor-salud', planSlug: 'plan-3000', razon: 'Mejor precio-calidad para monotributistas' },
-      { prepagaSlug: 'medife', planSlug: 'individual', razon: 'Buena cobertura en AMBA a precio competitivo' },
+      { prepagaSlug: 'medife', planSlug: 'medife-plus', razon: 'El plan de entrada de Medifé: buena cobertura en AMBA a precio competitivo, con acceso a Cam Doctor y Sanatorio Finochietto.' },
     ],
     faq: [
       {
@@ -135,8 +135,12 @@ export const perfiles: PerfilData[] = [
         q: '¿Cuánto cuesta una prepaga para un monotributista en 2026?',
         a: 'Los precios van de nivel económico a nivel premium según el plan y la prepaga que elijas. Para un monotributista, la recomendación es apuntar a un plan de nivel de precio medio, donde encontrás buena cobertura con opciones como Sancor, Medife o Premedic. Además accedés al 25% de descuento por facturar con IVA discriminado. Cotizá gratis para ver el monto exacto.',
       },
+      {
+        q: '¿Es lo mismo para un freelancer o trabajador remoto que no vive en CABA?',
+        a: 'Sí, aplica igual: si facturás por monotributo, contratás la prepaga en forma directa sin depender de un empleador. Si trabajás remoto y no tenés una ubicación fija, priorizá cobertura nacional real por sobre la cartilla premium de una sola ciudad — OSDE, Sancor Salud y Medifé son las que más red tienen fuera de CABA/GBA.',
+      },
     ],
-    keywords: ['prepagas para monotributistas', 'prepaga monotributista argentina', 'contratar prepaga sin obra social', 'mejor prepaga monotributo 2026'],
+    keywords: ['prepagas para monotributistas', 'prepaga monotributista argentina', 'contratar prepaga sin obra social', 'mejor prepaga monotributo 2026', 'prepaga freelancers autonomos', 'prepaga trabajadores remotos argentina'],
   },
   {
     slug: 'adultos-mayores',
@@ -175,8 +179,12 @@ export const perfiles: PerfilData[] = [
         q: '¿Qué prepaga tiene mejor cobertura geriátrica?',
         a: 'OSDE y Swiss Medical destacan por su cobertura geriátrica integral. CEMIC tiene un centro geriátrico universitario de referencia. Para adultos mayores en CABA, estas tres son las mejores opciones.',
       },
+      {
+        q: '¿Conviene una prepaga complementaria a PAMI en vez de reemplazarlo?',
+        a: 'Para muchos jubilados sí: la prepaga contratada puede descontar el aporte que ya hacés a PAMI (3% del haber), lo que reduce el costo de bolsillo. A cambio ganás turnos con especialistas en días en vez de semanas, internación en clínicas de mayor nivel y gestión más ágil de autorizaciones — pero seguís teniendo PAMI como red de respaldo y para medicamentos. Si tenés el haber mínimo, evaluá bien: el costo extra puede no ser sostenible, y ahí conviene aprovechar al máximo los beneficios de PAMI (Médico de Cabecera, medicamentos gratuitos).',
+      },
     ],
-    keywords: ['prepaga para mayores de 60', 'prepaga adultos mayores argentina', 'mejor prepaga jubilados', 'prepaga geriatrica argentina'],
+    keywords: ['prepaga para mayores de 60', 'prepaga adultos mayores argentina', 'mejor prepaga jubilados', 'prepaga geriatrica argentina', 'prepaga complementaria pami', 'prepaga o pami jubilados'],
   },
   {
     slug: 'jovenes',

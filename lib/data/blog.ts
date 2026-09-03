@@ -216,27 +216,6 @@ export const blogPosts: BlogPost[] = [
   },
   // ─── PRECIOS Y COSTOS ───────────────────────────────────────
   {
-    slug: 'cuanto-cuesta-prepaga-familia',
-    titulo: '¿Cuánto cuesta una prepaga para una familia de 4 en Argentina?',
-    bajada: 'El costo real de cubrir a un matrimonio con 2 hijos puede superar el millón de pesos. Desglosamos los precios y opciones para familias.',
-    metaDescripcion: 'Cuánto cuesta una prepaga para una familia de 4 en Argentina 2026. Comparativa de precios por empresa, tips para pagar menos y las mejores opciones para familias.',
-    categoria: 'Precios',
-    fechaPublicacion: '2026-06-20',
-    tiempoLectura: 8,
-    contenido: {
-      intro: 'Una de las preguntas más comunes al buscar prepaga es: ¿cuánto sale cubrir a toda la familia? La respuesta depende de la edad de cada integrante, la empresa elegida y el plan. Para una familia tipo (matrimonio de 35 años + 2 hijos menores), los precios pueden variar entre $500.000 y $1.500.000 al mes.',
-      secciones: [
-        { titulo: 'Cómo se calcula el precio familiar', cuerpo: 'Las prepagas no tienen un "precio familia fijo". Cada integrante paga según su edad. Un matrimonio de 35 años con dos hijos menores de 18 puede tener precios muy distintos a un matrimonio de 55 años con los mismos hijos ya adultos.' },
-        { titulo: 'Ejemplo real: familia de 4, 35 años', cuerpo: 'Con dos adultos de 35 años y dos hijos menores de 18: Premedic Plan 300 rondaría $350.000 para los dos adultos (los menores gratis o arancel bajo). Sancor Plan 2000: ~$480.000. Swiss Medical SMG10: ~$600.000. OSDE 310: ~$580.000.' },
-        { titulo: 'Hijos mayores de 18: el costo se dispara', cuerpo: 'Cuando los hijos cumplen 18-21 años (el límite varía por prepaga), empiezan a pagar como adultos. Verificá el límite de edad para hijos en cada empresa antes de contratar.' },
-        { titulo: 'El plan familiar vs planes individuales', cuerpo: 'Algunas prepagas ofrecen planes familiares con descuento por grupo, pero en muchos casos es más conveniente comparar precios individuales. Siempre pedí cotización para el grupo completo y comparala con la suma de planes individuales.' },
-      ],
-      conclusion: 'Para familias, la clave es comparar no solo el precio actual sino la proyección de cómo escala con la edad. Una prepaga económica hoy puede volverse inaccesible a los 50-60 años si los multiplicadores por edad son altos.',
-    },
-    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud', 'premedic'],
-    keywords: ['cuanto cuesta prepaga familia argentina', 'prepaga para familia 4 personas', 'precio prepaga matrimonio hijos', 'mejor prepaga para familias 2026'],
-  },
-  {
     slug: 'aumento-prepaga-2026',
     titulo: 'Aumentos de prepagas en 2026: cuánto subieron y por qué',
     bajada: 'Las prepagas aumentaron entre un 60% y 120% en el último año. Analizamos los motivos, qué dicen las empresas y cómo protegerte.',
@@ -277,27 +256,6 @@ export const blogPosts: BlogPost[] = [
     },
     keywords: ['como pagar menos prepaga', 'reducir costo prepaga argentina', 'bajar cuota prepaga', 'prepaga mas barata sin perder cobertura'],
   },
-  {
-    slug: 'prepaga-para-jubilados-pami-complementaria',
-    titulo: 'Prepaga complementaria a PAMI: cómo combinarlas y cuánto cuesta',
-    bajada: 'Muchos jubilados combinan PAMI con una prepaga privada. Analizamos qué conviene sumar, qué paga cada uno y cuánto cuesta.',
-    metaDescripcion: 'Prepaga complementaria a PAMI 2026: cómo funciona, cuánto cuesta y cuáles son las mejores opciones. Guía completa para jubilados que quieren mejorar su cobertura.',
-    categoria: 'Perfiles',
-    fechaPublicacion: '2026-06-08',
-    tiempoLectura: 7,
-    contenido: {
-      intro: 'PAMI cubre a todos los jubilados del sistema nacional, pero muchos eligen complementarla con una prepaga privada para acceder a mejores prestadores y reducir tiempos de espera.',
-      secciones: [
-        { titulo: 'Cómo funciona la combinación PAMI + prepaga', cuerpo: 'Cuando un jubilado tiene PAMI y prepaga, la prepaga actúa como el seguro principal. La prepaga contratada puede descontar el aporte de PAMI (3% del haber), reduciendo el costo de bolsillo.' },
-        { titulo: 'Cuánto más cuesta', cuerpo: 'Las prepagas tienen planes especiales para jubilados que parten desde $80.000 al mes (sobre lo que ya descuenta PAMI). OSDE, Swiss Medical y Medicus tienen planes para mayores de 65 que incluyen las coberturas más demandadas.' },
-        { titulo: 'Qué gana el jubilado con la complementaria', cuerpo: 'Los beneficios más citados son: turnos con especialistas en días (vs. semanas en PAMI), internación en clínicas de mayor nivel, cobertura de medicamentos adicionales y gestión más ágil de autorizaciones.' },
-        { titulo: 'Cuándo NO vale la pena', cuerpo: 'Si el jubilado tiene haber mínimo, el costo extra puede no ser sostenible. En ese caso, conviene aprovechar al máximo los beneficios de PAMI: Médico de Cabecera, medicamentos gratuitos y la red de prestadores.' },
-      ],
-      conclusion: 'La combinación PAMI + prepaga complementaria tiene sentido para jubilados con haberes medios o altos que usan frecuentemente el sistema de salud. Para haberes mínimos, optimizar el uso de PAMI es la mejor estrategia.',
-    },
-    keywords: ['prepaga complementaria pami', 'pami mas prepaga costo', 'jubilados prepaga argentina', 'mejor prepaga para jubilados'],
-  },
-  // ─── OBRAS SOCIALES ─────────────────────────────────────────
   {
     slug: 'como-derivar-obra-social',
     titulo: 'Cómo derivar tu obra social: guía paso a paso 2026',
@@ -358,27 +316,6 @@ export const blogPosts: BlogPost[] = [
     },
     keywords: ['pami que cubre 2026', 'beneficios pami jubilados', 'pami medicamentos gratis', 'pami turno medico'],
   },
-  {
-    slug: 'obra-social-monotributistas',
-    titulo: 'Obra social para monotributistas 2026: opciones y precios',
-    bajada: 'Los monotributistas pagan en promedio $45.000-$90.000 al mes por su obra social. ¿Cómo elegir la mejor opción?',
-    metaDescripcion: 'Obra social para monotributistas en Argentina 2026. Cuánto cuesta, qué opciones hay y cómo elegir la mejor. Comparativa completa.',
-    categoria: 'Perfiles',
-    fechaPublicacion: '2026-06-06',
-    tiempoLectura: 7,
-    contenido: {
-      intro: 'Los monotributistas tienen la libertad de elegir su obra social de forma directa, sin depender del sindicato de la actividad. Pero esa libertad puede ser confusa: ¿es mejor una obra social o una prepaga? ¿Cuánto debo gastar?',
-      secciones: [
-        { titulo: 'Obra social vs prepaga para monotributistas', cuerpo: 'Los monotributistas pueden optar por una obra social (cuota fija mensual) o una prepaga privada. La diferencia real está en el precio y la red: OSDE o Sancor tienen precios similares a las prepagas, mientras que OS sindicales de menor costo pueden ser más económicas.' },
-        { titulo: 'Precios 2026 para monotributistas', cuerpo: 'Las opciones más elegidas (precios directos con IVA, persona de 30 años): Premedic Plan 200 (~$107.000/mes), Swiss Medical S1 (~$185.773/mes), OSDE Plan 210 (~$267.250/mes), Sancor F700 (~$257.337/mes entrada, red abierta nacional).' },
-        { titulo: '¿Familia o individual?', cuerpo: 'Si tenés familia, la cuota aumenta por cada integrante según su edad. Para una familia de 4, podés estar pagando entre $400.000 y $800.000 al mes según la empresa.' },
-        { titulo: 'El aporte en el monotributo', cuerpo: 'Parte del pago mensual del monotributo incluye un componente de obra social. Sin embargo, ese aporte suele ser bajo y cubre solo la OS de la categoría mínima. Para acceder a mejores coberturas, los monotributistas pagan directamente a la OS o prepaga.' },
-      ],
-      conclusion: 'Los monotributistas tienen buenas opciones en el mercado, pero el precio varía enormemente. Antes de elegir, usá nuestra calculadora para ver el costo ajustado a tu edad.',
-    },
-    keywords: ['obra social para monotributistas', 'monotributistas obra social 2026', 'cuanto cuesta obra social monotributo', 'mejor obra social monotributista argentina'],
-  },
-  // ─── COBERTURAS ESPECÍFICAS ─────────────────────────────────
   {
     slug: 'prepaga-que-cubre-psicologia',
     titulo: 'Prepagas que mejor cubren psicología en Argentina 2026',
@@ -585,92 +522,6 @@ export const blogPosts: BlogPost[] = [
     },
     keywords: ['cambiar plan prepaga argentina', 'bajar plan prepaga', 'como cambiar plan en prepaga', 'periodo de carencia cambio plan prepaga'],
   },
-  // ─── PERFILES DE USUARIO ────────────────────────────────────
-  {
-    slug: 'mejor-prepaga-para-embarazadas',
-    titulo: 'Mejor prepaga para embarazadas en Argentina 2026',
-    bajada: 'El embarazo es el momento más crítico para elegir bien la prepaga. Qué cobertura ofrecen, períodos de espera y cuál conviene según tu situación.',
-    metaDescripcion: 'Mejor prepaga para embarazadas en Argentina 2026. Cobertura de maternidad, períodos de espera y qué incluye cada empresa. Guía completa.',
-    categoria: 'Perfiles',
-    fechaPublicacion: '2026-06-22',
-    tiempoLectura: 8,
-    contenido: {
-      intro: 'Si estás embarazada o planeás estarlo, la cobertura de maternidad de la prepaga se vuelve el criterio más importante. No solo importa el parto: el control prenatal, las ecografías, la neonatología y el posparto también deben estar cubiertos.',
-      secciones: [
-        { titulo: 'El período de carencia: el gran problema', cuerpo: 'La mayoría de las prepagas aplica un período de espera de 6 a 10 meses para la cobertura de maternidad. Si te afiliás estando embarazada, puede que no tengas cobertura para el parto. Afiliarte antes de quedar embarazada es clave.' },
-        { titulo: 'Qué debe cubrir la prepaga obligatoriamente', cuerpo: 'Por el PMO, la prepaga debe cubrir: control prenatal completo (consultas mensuales, ecografías, análisis), internación en maternidad para el parto (vaginal y cesárea), neonatología para el recién nacido y atención del puerperio.' },
-        { titulo: 'Swiss Medical: la mejor infraestructura de maternidad', cuerpo: 'Los Swiss Medical Centers tienen maternidades modernas con habitación individual, sala de parto integrada y neonatología de alta complejidad. La opción de mayor confort, aunque la más cara.' },
-        { titulo: 'OSDE: la mayor red obstétrica', cuerpo: 'OSDE tiene la mayor red de obstetras y maternidades del país. En cualquier ciudad encontrarás opciones de parto en la cartilla. Su plan 310 incluye maternidad completa con buena calidad.' },
-      ],
-      conclusion: 'Para embarazadas, la prioridad es: verificar el período de carencia, confirmar que el obstetra de tu preferencia está en cartilla, y elegir una maternidad en tu zona. Si ya estás embarazada, algunas prepagas permiten la afiliación con cobertura inmediata de urgencias aunque apliquen carencia para el parto electivo.',
-    },
-    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
-    keywords: ['mejor prepaga para embarazadas argentina', 'prepaga maternidad sin periodo espera', 'cobertura maternidad prepaga 2026', 'prepaga embarazo argentina'],
-  },
-  {
-    slug: 'mejor-prepaga-jovenes-2026',
-    titulo: 'La mejor prepaga para jóvenes en Argentina 2026: la guía definitiva',
-    bajada: 'Entre 18 y 30 años, ¿conviene Premedic, Sancor, Swiss Medical S1 o OSDE 210? Comparamos precio, cobertura y lo que más importa a los jóvenes.',
-    metaDescripcion: 'Mejor prepaga para jóvenes en Argentina 2026. Comparativa de Premedic, Sancor, Swiss Medical S1 y OSDE para menores de 30 años.',
-    categoria: 'Perfiles',
-    fechaPublicacion: '2026-06-03',
-    tiempoLectura: 7,
-    contenido: {
-      intro: 'Para los jóvenes de 18 a 30 años, la prepaga tiene otras prioridades: precio accesible, buena cobertura de salud mental, urgencias, y no pagar de más por coberturas que no van a usar.',
-      secciones: [
-        { titulo: 'La lógica del joven sano: minimizar el riesgo', cuerpo: 'Un joven sano sin enfermedades crónicas necesita cobertura para urgencias, consultas básicas y salud mental. No necesita oncología de alta complejidad ni trasplante. Por eso, un plan económico puede ser perfectamente suficiente.' },
-        { titulo: 'Premedic Plan 200-300: la opción más económica', cuerpo: 'Para jóvenes en CABA, GBA, Córdoba o Tucumán, Premedic ofrece la mejor relación precio-cobertura básica. Su Plan 200 a ~$107.000/mes cubre el PMO completo.' },
-        { titulo: 'OSDE Plan Flux: psicología ilimitada para jóvenes', cuerpo: 'OSDE creó el Plan Flux específicamente para 18-35 años. Incluye psicología ilimitada sin copago, anticonceptivos al 100% y asistencia al viajero. Precio aproximado: $198.500/mes para 30 años.' },
-        { titulo: 'Sancor Salud F700: la opción nacional con copago', cuerpo: 'Para jóvenes que viven o viajan por el interior del país, Sancor F700 ($257.337/mes) tiene cobertura nacional con 30.000 profesionales. Es el plan de entrada de Sancor.' },
-        { titulo: 'OSDE 210: la opción de respaldo laboral', cuerpo: 'Si tu empresa te ofrece OSDE 210 como parte de los beneficios, es una excelente base. El plan 210 es el más básico de OSDE pero cubre el PMO completo con la red más grande del país.' },
-      ],
-      conclusion: 'Para jóvenes sanos en AMBA: Premedic es lo más económico. Para salud mental ilimitada: OSDE Plan Flux. Para el interior: Sancor F700. OSDE 210 si tu empresa lo ofrece como beneficio.',
-    },
-    prepagasRelacionadas: ['premedic', 'sancor-salud', 'swiss-medical', 'osde'],
-    keywords: ['mejor prepaga para jovenes argentina', 'prepaga joven economica argentina', 'prepaga menores 30 anos', 'prepaga barata jovenes 2026'],
-  },
-  {
-    slug: 'prepaga-para-adultos-mayores',
-    titulo: 'Prepagas para adultos mayores: costos reales y mejores opciones',
-    bajada: 'A los 60 años la cuota puede costar el triple que a los 30. Qué prepagas tienen mejor relación precio-cobertura para mayores de 60.',
-    metaDescripcion: 'Prepagas para adultos mayores en Argentina 2026. Cuánto cuestan, cuáles tienen mejor cobertura y qué tener en cuenta al elegir con más de 60 años.',
-    categoria: 'Perfiles',
-    fechaPublicacion: '2026-05-30',
-    tiempoLectura: 8,
-    contenido: {
-      intro: 'Para personas mayores de 60 años, la elección de prepaga tiene características particulares: los precios son 2-3 veces más altos que para alguien de 30 años, pero la demanda de servicios de salud también es mayor.',
-      secciones: [
-        { titulo: 'El impacto de la edad en el precio', cuerpo: 'Las prepagas aplican multiplicadores por edad. Para alguien de 60 años, la cuota puede ser 2 a 2.5 veces la de una persona de 30. A los 70 años, puede ser 3 veces más.' },
-        { titulo: 'Las coberturas más importantes para mayores de 60', cuerpo: 'Cardiología, traumatología, oncología, diabetes y enfermedades crónicas, oftalmología y audiología. Las prepagas premium (OSDE 310+, Swiss Medical SMG20+) tienen las mejores redes para estas especialidades.' },
-        { titulo: 'Preexistencias: el gran tema', cuerpo: 'A medida que envejecés, aumenta la chance de tener preexistencias. La ley argentina prohíbe a las prepagas rechazar la afiliación por preexistencias, pero sí pueden aplicar períodos de carencia de hasta 12 meses.' },
-        { titulo: 'Las mejores opciones para mayores de 60', cuerpo: 'OSDE 310 y 410 son las más elegidas por la red de especialistas. Swiss Medical SMG10 y SMG20 tienen la mejor infraestructura de internación. Para quienes tienen PAMI, una prepaga complementaria de $100.000-$150.000/mes puede ampliar significativamente el acceso.' },
-      ],
-      conclusion: 'Para adultos mayores, priorizar la calidad y amplitud de la red de especialistas es más importante que el precio. Un plan barato que no tiene el cardiólogo o traumatólogo que necesitás en tu zona no tiene valor.',
-    },
-    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
-    keywords: ['prepaga adultos mayores argentina', 'prepaga mayores 60 anos precio', 'mejor prepaga jubilados activos', 'prepaga para personas de 65 anos'],
-  },
-  {
-    slug: 'prepaga-para-trabajadores-remotos',
-    titulo: 'Prepaga para trabajadores remotos y freelancers en Argentina',
-    bajada: 'Si trabajás desde casa o sos nómade digital, tu prepaga debe cubrir en todo el país y tener buenas herramientas digitales. Las mejores opciones.',
-    metaDescripcion: 'Mejor prepaga para trabajadores remotos y freelancers en Argentina 2026. Cobertura nacional, telemedicina y opciones para quienes se mueven entre ciudades.',
-    categoria: 'Perfiles',
-    fechaPublicacion: '2026-05-25',
-    tiempoLectura: 6,
-    contenido: {
-      intro: 'El trabajo remoto cambió las necesidades de salud de miles de argentinos. Si trabajás desde casa o te movés entre ciudades, necesitás una prepaga con cobertura en todo el país y herramientas digitales para gestionar tu salud sin ir a una sucursal.',
-      secciones: [
-        { titulo: 'El criterio clave: cobertura nacional real', cuerpo: 'Para un trabajador remoto o nómade, la cobertura nacional es indispensable. Las prepagas con mejor cobertura en todo el territorio son OSDE (140.000+ profesionales), Sancor Salud (30.000+) y Medifé (60.000+, muy fuerte en el interior).' },
-        { titulo: 'Telemedicina: el diferencial moderno', cuerpo: 'Muchas prepagas incluyen telemedicina (consultas por videollamada). Swiss Medical, OSDE y Sancor tienen plataformas propias. Para un trabajador remoto sano, la telemedicina puede ser suficiente para la mayoría de las consultas de rutina.' },
-        { titulo: 'Gestión digital: sin ir a la sucursal', cuerpo: 'Para alguien que trabaja remotamente, poder gestionar todo online es clave. Swiss Medical y OSDE tienen las apps más completas para gestionar autorizaciones, pedidos de reintegro y cartilla.' },
-        { titulo: 'Cobertura en el exterior', cuerpo: 'Si viajás al exterior con frecuencia, algunos planes premium incluyen cobertura básica de urgencias en el exterior. OSDE Plan 410 y Swiss Medical SMG30+ la tienen.' },
-      ],
-      conclusion: 'Para trabajadores remotos y freelancers, Sancor Salud y OSDE son las mejores opciones por cobertura nacional. Si te movés mucho, priorizá la app y telemedicina. Si viajás al exterior frecuentemente, verificá la cobertura internacional.',
-    },
-    keywords: ['prepaga trabajadores remotos argentina', 'prepaga freelancers argentina', 'prepaga nomade digital', 'mejor prepaga cobertura nacional argentina'],
-  },
-  // ─── INFORMACIÓN GENERAL ────────────────────────────────────
   {
     slug: 'que-es-el-pmo',
     titulo: 'Qué es el PMO: el Plan Médico Obligatorio explicado en simple',
@@ -856,26 +707,6 @@ export const blogPosts: BlogPost[] = [
     keywords: ['prepaga mejor app argentina', 'app prepaga argentina ranking', 'swiss medical app vs osde app', 'prepaga digital argentina 2026'],
   },
   {
-    slug: 'prepagas-para-empresas-beneficios-empleados',
-    titulo: 'Prepagas para empresas: cómo ofrecer salud como beneficio a empleados',
-    bajada: 'Sumar una prepaga a los beneficios de la empresa retiene talento y mejora el clima laboral. Cómo funciona y qué opciones existen.',
-    metaDescripcion: 'Prepagas para empresas en Argentina 2026. Cómo funciona la cobertura corporativa, cuánto cuesta y cuáles son las mejores opciones para empleados.',
-    categoria: 'Empresas',
-    fechaPublicacion: '2026-04-10',
-    tiempoLectura: 7,
-    contenido: {
-      intro: 'Ofrecer una prepaga como beneficio laboral se convirtió en uno de los diferenciales más valorados por los empleados argentinos. Más que el aguinaldo, la cobertura de salud premium es hoy un factor determinante en la retención de talento.',
-      secciones: [
-        { titulo: '¿Cómo funciona la prepaga corporativa?', cuerpo: 'Las empresas tienen dos opciones: derivar los aportes de los empleados a una obra social/prepaga (sin costo adicional para la empresa) o subsidiar directamente la diferencia de un plan premium como beneficio laboral adicional.' },
-        { titulo: 'El beneficio fiscal', cuerpo: 'Las empresas pueden deducir del impuesto a las ganancias el costo de la prepaga que brindan como beneficio. Esto reduce el costo neto del beneficio para la empresa.' },
-        { titulo: 'Planes corporativos', cuerpo: 'Las grandes prepagas (OSDE, Swiss Medical, Galeno, Medicus) tienen planes corporativos con precios por volumen más accesibles. Para empresas de 10+ empleados, los descuentos pueden ser del 15-25%.' },
-        { titulo: '¿Qué prepaga elegir como beneficio?', cuerpo: 'OSDE y Swiss Medical son las más valoradas como beneficio laboral por el reconocimiento de marca. Medicus y Galeno tienen muy buenos planes corporativos en Buenos Aires. Sancor Salud es excelente si los empleados están distribuidos en todo el país.' },
-      ],
-      conclusion: 'La prepaga como beneficio laboral tiene un alto ROI en retención de talento. La inversión de $150.000-$300.000/empleado/mes en un plan premium puede valer mucho más en reducción de rotación y compromiso del equipo.',
-    },
-    keywords: ['prepaga para empresas argentina', 'prepaga beneficio empleados', 'plan corporativo prepaga', 'prepaga empresas 2026'],
-  },
-  {
     slug: 'prepagas-red-abierta-vs-cerrada',
     titulo: 'Red abierta vs red cerrada en prepagas: la diferencia que más importa',
     bajada: 'Con red abierta podés ir a cualquier médico. Con red cerrada, solo a los del listado. La diferencia afecta enormemente tu libertad de elección.',
@@ -991,45 +822,6 @@ export const blogPosts: BlogPost[] = [
     keywords: ['smg20 vs osde 310', 'swiss medical smg20 osde plan 310', 'osde 310 vs swiss medical', 'comparar planes intermedios prepaga 2026'],
   },
   {
-    slug: 'prepaga-para-monotributistas-argentina-2026',
-    titulo: 'La mejor prepaga para monotributistas en Argentina 2026',
-    bajada: 'Trabajador independiente, freelancer, autónomo: cuál es la mejor prepaga para vos y cuánto sale contratarla directamente sin obra social.',
-    metaDescripcion: 'Mejor prepaga para monotributistas en Argentina 2026. Precios reales, opciones sin obra social y cómo elegir según tu presupuesto. Guía completa.',
-    categoria: 'Perfiles',
-    fechaPublicacion: '2026-06-25',
-    tiempoLectura: 7,
-    contenido: {
-      intro: 'Los monotributistas y trabajadores independientes tienen una situación particular: pueden contratar una prepaga o una obra social directamente, sin depender de ningún empleador. ¿Cuál es la mejor opción para 2026 y cuánto cuesta?',
-      secciones: [
-        {
-          titulo: 'Prepaga vs Obra Social: ¿qué conviene para un monotributista?',
-          cuerpo: 'Los monotributistas pueden contratar: (1) Una obra social sindical como titular directo — precio fijo independiente del ingreso, pero cobertura variable. (2) Una prepaga directamente como abono particular — mayor precio, pero mayor control sobre qué empresa y plan querés. Para quienes facturan bien y buscan calidad, la prepaga directa es la opción más común.',
-        },
-        {
-          titulo: 'Las opciones más elegidas por monotributistas',
-          cuerpo: 'En orden de precio para 30 años (Directo con IVA): Premedic Plan 200 (~$107.044/mes, solo AMBA y algunas ciudades), Medifé+ ($173.648/mes), Swiss Medical S1 (~$185.773/mes, red cerrada pero alta calidad), OSDE Plan Flux ($198.500/mes, jóvenes con psicología ilimitada), Sancor F700 ($257.337/mes, cobertura nacional), OSDE Plan 210 ($267.250/mes, la red más grande).',
-        },
-        {
-          titulo: 'Medifé Plan Indie: diseñado para independientes',
-          cuerpo: 'Medifé creó el Plan Indie específicamente para trabajadores independientes. Incluye Cam Doctor (médico por videollamada en menos de 10 minutos), acceso al Sanatorio Finochietto y cobertura en AMBA. Si sos freelancer o nómade digital en Buenos Aires, es una de las opciones más convenientes del mercado.',
-        },
-        {
-          titulo: 'El aporte del monotributo y la obra social incluida',
-          cuerpo: 'Cada monotributista tiene incluida en su cuota de monotributo un componente de obra social (aproximadamente $10.000-$20.000/mes según categoría). Ese aporte va automáticamente a la OS sindical de la actividad, que tiene cobertura muy básica. Muchos monotributistas contratan una prepaga adicional o en su lugar para tener mejor cobertura.',
-        },
-        {
-          titulo: 'Dedución AFIP: la prepaga reduce el impuesto a las ganancias',
-          cuerpo: 'Si estás alcanzado por el Impuesto a las Ganancias como monotributista o autónomo, la cuota de prepaga es deducible hasta el 5% de tu ganancia neta. Una prepaga de $250.000/mes puede generar un ahorro fiscal de $20.000-$30.000/mes, reduciendo el costo real considerablemente.',
-        },
-      ],
-      conclusion: 'Para monotributistas: si facturás bien y querés calidad, Swiss Medical S1 o OSDE 210 son los estándares del mercado. Si buscás el menor costo con cobertura decente, Premedic (AMBA) o Sancor Plan 1500 (cobertura nacional). Si sos freelancer en Buenos Aires, mirá el Plan Indie de Medifé. Y recordá que la cuota puede ser deducible de Ganancias.',
-    },
-    prepagasRelacionadas: ['premedic', 'sancor-salud', 'medife', 'swiss-medical', 'osde'],
-    keywords: ['prepaga para monotributistas argentina', 'prepaga freelancers argentina 2026', 'mejor prepaga trabajador independiente', 'prepaga autonomos argentina precio'],
-  },
-
-  // ─── RANKINGS ESPECIALIZADOS ─────────────────────────────────
-  {
     slug: 'ranking-prepagas-argentina-2026',
     titulo: 'Ranking de prepagas Argentina 2026: la mejor según cada criterio',
     bajada: 'No existe una prepaga perfecta para todos. Pero sí existe la mejor para tu perfil. Ranking honesto con datos reales de junio 2026.',
@@ -1131,43 +923,6 @@ export const blogPosts: BlogPost[] = [
     },
     prepagasRelacionadas: ['swiss-medical', 'medicus', 'osde'],
     keywords: ['mejor prepaga odontologia 2026', 'swiss medical smg20 dental', 'prepaga cubre dentista argentina', 'prepaga implantes dentales argentina'],
-  },
-  {
-    slug: 'mejor-prepaga-maternidad-embarazo-2026',
-    titulo: 'Mejor prepaga para embarazo y maternidad en Argentina 2026',
-    bajada: 'Swiss Medical y OSDE lideran en cobertura de maternidad. Analizamos controles prenatales, parto, internación y licencia de maternidad.',
-    metaDescripcion: 'Mejor prepaga para embarazo y maternidad en Argentina 2026. Análisis de Swiss Medical, OSDE y Medifé para cobertura prenatal, parto y postparto. Guía completa.',
-    categoria: 'Rankings',
-    fechaPublicacion: '2026-07-07',
-    tiempoLectura: 8,
-    contenido: {
-      intro: 'Si estás embarazada o planificando un embarazo, la elección de la prepaga es una de las decisiones más importantes. La cobertura de maternidad varía considerablemente entre empresas y planes. Te explicamos qué diferencia a las mejores en 2026.',
-      secciones: [
-        {
-          titulo: 'Lo que todas deben cubrir (PMO)',
-          cuerpo: 'Todas las prepagas están obligadas a cubrir: controles prenatales, parto vaginal o cesárea, internación de la madre hasta 48 horas (vaginal) o 72 horas (cesárea), y atención del recién nacido. Los vacíos en la práctica aparecen en la calidad de la clínica, los tiempos de autorización y qué obstetra podés elegir.',
-        },
-        {
-          titulo: 'Ganadora: Swiss Medical SMG20',
-          cuerpo: 'El SMG20 ($325.467/mes) con acceso a los 8 sanatorios propios de Swiss Medical — incluyendo Suizo Argentina y Los Arcos, con maternidades de primer nivel en CABA y GBA — es la opción más completa. Sin copago, elección libre de obstetra dentro de la red abierta, habitación privada en internación y neonatología propia de alta complejidad. Para dar a luz en las mejores condiciones, Swiss Medical es difícil de superar.',
-        },
-        {
-          titulo: '2do lugar: OSDE Plan 310',
-          cuerpo: 'El OSDE 310 ($345.310/mes) tiene la mayor cantidad de obstetras en cartilla de cualquier prepaga del país, lo que te da la máxima libertad para elegir tu médico de confianza. Cubre parto sin copago, Hospital Italiano y Hospital Alemán incluidos, y la red más amplia para atenderte donde estés en Argentina. Para quienes priorizan la elección de obstetra, OSDE 310 es el ganador.',
-        },
-        {
-          titulo: '3er lugar: Medifé Plan Plata',
-          cuerpo: 'El Plan Plata de Medifé ($309.892/mes) tiene acceso al Sanatorio Finochietto (uno de los más modernos del país), maternidad con habitación individual y Cam Doctor para consultas de urgencia. Es la mejor opción en la franja de precio intermedia para embarazadas en Buenos Aires.',
-        },
-        {
-          titulo: 'Período de carencia: el factor clave',
-          cuerpo: 'Casi todas las prepagas tienen un período de carencia de 10 a 11 meses para maternidad. Eso significa que si ya estás embarazada, en general no podés contratar una prepaga nueva y recibir la cobertura completa del parto. Verificá siempre el período de carencia antes de contratar.',
-        },
-      ],
-      conclusion: 'Para maternidad en CABA y GBA, Swiss Medical SMG20 es el ganador por infraestructura propia. Si priorizás la elección de obstetra y la red más amplia, OSDE 310. Para la mejor relación precio-calidad en maternidad, Medifé Plan Plata. Y recordá siempre verificar el período de carencia si ya estás embarazada.',
-    },
-    prepagasRelacionadas: ['swiss-medical', 'osde', 'medife'],
-    keywords: ['mejor prepaga maternidad argentina 2026', 'prepaga para embarazo argentina', 'cobertura parto prepaga', 'prepaga embarazada argentina 2026'],
   },
   {
     slug: 'mayor-aumento-prepagas-2026-que-paso',

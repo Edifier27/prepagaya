@@ -39,7 +39,7 @@ const obrasSocialesLinks = [
 const guiaLinks = [
   { slug: 'como-cambiar-de-prepaga', label: 'Cómo cambiar de prepaga' },
   { slug: 'obra-social-vs-prepaga', label: 'Obra social vs prepaga' },
-  { slug: 'prepagas-para-monotributistas', label: 'Para monotributistas' },
+  { slug: 'discapacidad-obra-social-cobertura-100', label: 'Discapacidad y CUD' },
   { slug: 'prepagas-economicas', label: 'Prepagas económicas' },
   { slug: 'que-cubre-la-prepaga', label: 'Qué cubre la prepaga' },
   { slug: 'cuota-prepaga-por-edad', label: 'Cuota por edad' },

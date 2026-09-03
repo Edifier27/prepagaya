@@ -93,6 +93,89 @@ const nextConfig: NextConfig = {
         destination: "/prepagas/misiones",
         permanent: true,
       },
+      // Consolidación "mejor prepaga para X": /para/[perfil] queda como
+      // página canónica única. /guias y /blog tenían versiones casi
+      // idénticas compitiendo por la misma búsqueda (canibalización).
+      {
+        source: "/blog/cuanto-cuesta-prepaga-familia",
+        destination: "/para/familias",
+        permanent: true,
+      },
+      {
+        source: "/guias/mejor-prepaga-para-familias",
+        destination: "/para/familias",
+        permanent: true,
+      },
+      {
+        source: "/blog/mejor-prepaga-para-embarazadas",
+        destination: "/para/embarazadas",
+        permanent: true,
+      },
+      {
+        source: "/blog/mejor-prepaga-maternidad-embarazo-2026",
+        destination: "/para/embarazadas",
+        permanent: true,
+      },
+      {
+        source: "/guias/prepaga-para-embarazadas",
+        destination: "/para/embarazadas",
+        permanent: true,
+      },
+      {
+        source: "/blog/obra-social-monotributistas",
+        destination: "/para/monotributistas",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepaga-para-monotributistas-argentina-2026",
+        destination: "/para/monotributistas",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepaga-para-trabajadores-remotos",
+        destination: "/para/monotributistas",
+        permanent: true,
+      },
+      {
+        source: "/guias/prepagas-para-monotributistas",
+        destination: "/para/monotributistas",
+        permanent: true,
+      },
+      {
+        source: "/guias/prepaga-para-freelancers-autonomos",
+        destination: "/para/monotributistas",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepaga-para-jubilados-pami-complementaria",
+        destination: "/para/adultos-mayores",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepaga-para-adultos-mayores",
+        destination: "/para/adultos-mayores",
+        permanent: true,
+      },
+      {
+        source: "/guias/prepaga-para-mayores-60",
+        destination: "/para/adultos-mayores",
+        permanent: true,
+      },
+      {
+        source: "/guias/prepaga-o-pami-jubilados",
+        destination: "/para/adultos-mayores",
+        permanent: true,
+      },
+      {
+        source: "/blog/mejor-prepaga-jovenes-2026",
+        destination: "/para/jovenes",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepagas-para-empresas-beneficios-empleados",
+        destination: "/para/empresas",
+        permanent: true,
+      },
     ];
   },
 };
