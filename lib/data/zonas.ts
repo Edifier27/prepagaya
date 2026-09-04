@@ -607,6 +607,12 @@ provinciasSEO.push(
       { slug: 'caballito', nombre: 'Caballito',
         descripcion: 'Barrio residencial con buena densidad de salud privada: el Centro Médico Caballito del Hospital Alemán (más de 20 especialidades) funciona como extensión ambulatoria del hospital de Recoleta, sumado al Sanatorio Antártida y la Clínica San Camilo. Zona con fuerte presencia de hospitales públicos (Durand, Álvarez) que conviven con la oferta privada.',
         prestadores: ['Centro Médico Caballito (Hospital Alemán)', 'Sanatorio Antártida', 'Clínica San Camilo'] },
+      { slug: 'villa-devoto', nombre: 'Villa Devoto',
+        descripcion: 'Barrio residencial del noroeste porteño con una sede propia de CEMIC (Emilio Lamarca 3388), lo que le da acceso directo a esa cartilla premium sin depender de derivar al campus central de Saavedra o Palermo.',
+        prestadores: ['CEMIC — sede Villa Devoto'] },
+      { slug: 'flores', nombre: 'Flores',
+        descripcion: 'Uno de los barrios más poblados del sur de la Ciudad, con la Clínica Santa Isabel como referencia de internación privada y el Hospital Universitario UAI sumando cartilla académica. Buena parte de la alta complejidad deriva a Caballito o al centro.',
+        prestadores: ['Clínica Santa Isabel', 'Hospital Universitario UAI'] },
     ],
     prestadoresClave: ['Hospital Italiano de Buenos Aires', 'Hospital Alemán', 'Sanatorio Otamendi', 'CEMIC', 'Clínica Bazterrica', 'Sanatorio Finochietto'],
     faq: [
