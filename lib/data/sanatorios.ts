@@ -1,3 +1,5 @@
+import { provinciasSEO } from './zonas'
+
 export interface PlanCubre {
   prepagaSlug: string
   prepagaNombre: string
@@ -29,17 +31,17 @@ export const REFERENCIA_POR_ZONA: Record<string, string[]> = {
     'FLENI', 'Instituto Alexander Fleming', 'Sanatorio Los Arcos', 'Sanatorio Güemes', 'Clínica Bazterrica',
     'Sanatorio Finochietto', 'Sanatorio de la Providencia',
   ],
-  // Lista plana (GBA Norte+Sur+Oeste+interior/costa) para dedup y fallback.
-  // Para mostrar en el popup se usa REFERENCIA_GBA_SUBZONAS, agrupada.
+  // Lista plana — SOLO lo que todavía no tiene página de localidad propia en
+  // el silo (lib/data/zonas.ts). Lo que ya está cubierto ahí (San Isidro,
+  // Vicente López, Lomas de Zamora, Quilmes, Adrogué, Ramos Mejía/San Justo,
+  // Morón, La Plata, Bahía Blanca) se sacó de acá para que buscarSanatorioReferencia()
+  // no muestre el mismo centro dos veces con redacción distinta. Para mostrar
+  // en el popup se usa REFERENCIA_GBA_SUBZONAS, agrupada.
   'buenos-aires': [
-    'Sanatorio de la Trinidad San Isidro', 'Sanatorio Las Lomas (San Isidro)', 'Sanatorio San Lucas (San Isidro)',
-    'Clínica Olivos (V. López)', 'Hospital Universitario Austral (Pilar)',
-    'Sanatorio Juncal (Temperley)', 'IMA (Instituto Médico de Adrogué)', 'Clínica Espora (Quilmes)',
-    'Clínica Monte Grande', 'SMG Center Lomas de Zamora', 'Sanatorio de la Trinidad Quilmes', 'Sanatorio Modelo Quilmes',
-    'Sanatorio de la Trinidad Ramos Mejía', 'Hospital Italiano (San Justo)', 'Casa Hospital San Juan de Dios (Ramos Mejía)',
-    'DIM (Diagnóstico e Imágenes Médicas)', 'CEPEM', 'Clínica Modelo de Morón',
+    'Hospital Universitario Austral (Pilar)', 'Clínica Espora (Quilmes)', 'Clínica Monte Grande',
+    'DIM (Diagnóstico e Imágenes Médicas)', 'CEPEM',
     'Sanatorio Central Emhsa (Mar del Plata)', 'Hospital Privado de Comunidad (Mar del Plata)',
-    'Hospital Privado del Sur (Bahía Blanca)', 'Hospital Italiano de La Plata', 'Sanatorio Tandil',
+    'Sanatorio Tandil',
   ],
   cordoba: [
     'Sanatorio Allende', 'Hospital Privado Universitario de Córdoba', 'Sanatorio Aconcagua', 'Sanatorio Mayo',
@@ -455,10 +457,17 @@ export interface SanatorioReferenciaResult {
   nombre: string
   zonaKey: string
   zonaNombre: string
+  /** Ruta a la página más específica que tenemos: partido/localidad si hay
+   *  match ahí, si no la provincia/zona genérica. Siempre empieza con /prepagas/. */
+  href: string
 }
 
-// Busca en REFERENCIA_POR_ZONA (24 provincias, sin verificación por plan) para
-// que el buscador no devuelva "no encontrado" en sanatorios reales que ya
+// Busca primero en las localidades del silo (lib/data/zonas.ts): son más
+// precisas que REFERENCIA_POR_ZONA porque ya están mapeadas a un partido
+// puntual (ej. "SMG Center Lomas de Zamora" -> /prepagas/buenos-aires/lomas-de-zamora
+// en vez de al hub genérico de la provincia). Si no hay match ahí, cae a
+// REFERENCIA_POR_ZONA (24 provincias, sin verificación por plan) para que el
+// buscador no devuelva "no encontrado" en sanatorios reales que ya
 // identificamos pero no tenemos mapeados a un plan puntual. Se muestra
 // siempre con la aclaración de "confirmá con la prepaga" — nunca como
 // planesQueLoCubren. No duplica resultados ya presentes en `sanatorios`.
@@ -467,10 +476,31 @@ export function buscarSanatorioReferencia(query: string): SanatorioReferenciaRes
   if (q.length < 2) return []
   const yaVerificados = new Set(buscarSanatorio(query).map((s) => s.nombre.toLowerCase()))
   const resultados: SanatorioReferenciaResult[] = []
+  const yaAgregados = new Set<string>()
+
+  for (const prov of provinciasSEO) {
+    for (const loc of prov.localidades) {
+      for (const nombre of loc.prestadores) {
+        const key = nombre.toLowerCase()
+        if (nombre.toLowerCase().includes(q) && !yaVerificados.has(key) && !yaAgregados.has(key)) {
+          yaAgregados.add(key)
+          resultados.push({
+            nombre,
+            zonaKey: loc.slug,
+            zonaNombre: `${loc.nombre.split(' (')[0]}, ${prov.nombre}`,
+            href: `/prepagas/${prov.slug}/${loc.slug}`,
+          })
+        }
+      }
+    }
+  }
+
   for (const [zonaKey, nombres] of Object.entries(REFERENCIA_POR_ZONA)) {
     for (const nombre of nombres) {
-      if (nombre.toLowerCase().includes(q) && !yaVerificados.has(nombre.toLowerCase())) {
-        resultados.push({ nombre, zonaKey, zonaNombre: ZONA_NOMBRE[zonaKey] ?? zonaKey })
+      const key = nombre.toLowerCase()
+      if (nombre.toLowerCase().includes(q) && !yaVerificados.has(key) && !yaAgregados.has(key)) {
+        yaAgregados.add(key)
+        resultados.push({ nombre, zonaKey, zonaNombre: ZONA_NOMBRE[zonaKey] ?? zonaKey, href: `/prepagas/${zonaKey}` })
       }
     }
   }

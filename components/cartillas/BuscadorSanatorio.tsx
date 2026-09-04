@@ -81,7 +81,13 @@ export function BuscadorSanatorio(): React.ReactElement {
             </p>
           )}
           {referencia.map((ref) => {
-            const tieneHub = Boolean(getProvinciaSEO(ref.zonaKey))
+            // Match de localidad (ref.href tiene 2 segmentos despues de /prepagas/,
+            // ej. /prepagas/buenos-aires/lomas-de-zamora): siempre valido, viene
+            // directo del silo. Match de REFERENCIA_POR_ZONA (1 solo segmento,
+            // ej. /prepagas/cordoba): solo mostrar el link si esa provincia ya
+            // tiene hub armado.
+            const esLocalidad = ref.href.split('/').length > 3
+            const tieneHub = esLocalidad || Boolean(getProvinciaSEO(ref.zonaKey))
             return (
               <div key={`${ref.zonaKey}-${ref.nombre}`} className="flex items-center justify-between gap-3 bg-amber-50 border border-amber-100 rounded-xl px-5 py-3.5">
                 <div>
@@ -90,10 +96,10 @@ export function BuscadorSanatorio(): React.ReactElement {
                 </div>
                 {tieneHub && (
                   <Link
-                    href={`/prepagas/${ref.zonaKey}`}
+                    href={ref.href}
                     className="flex-shrink-0 text-xs font-semibold text-amber-700 hover:text-amber-900 whitespace-nowrap"
                   >
-                    Ver prepagas en la zona →
+                    {esLocalidad ? 'Ver prepagas acá →' : 'Ver prepagas en la zona →'}
                   </Link>
                 )}
               </div>
