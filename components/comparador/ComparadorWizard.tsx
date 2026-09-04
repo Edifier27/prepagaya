@@ -1214,7 +1214,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             </span>
             <div className="flex-1 min-w-0">
               <div className="text-sm font-bold text-gray-900">¿Preferís que te asesoren ahora mismo?</div>
-              <div className="text-xs text-gray-500">10 años en el rubro · asesoramiento en el acto por WhatsApp</div>
+              <div className="text-xs text-gray-500">Asesor oficial · 10 años en el rubro · asesoramiento en el acto por WhatsApp</div>
             </div>
             <span className="text-xs font-bold text-[#128C7E] flex-shrink-0 hidden sm:inline group-hover:underline">Escribinos →</span>
           </a>

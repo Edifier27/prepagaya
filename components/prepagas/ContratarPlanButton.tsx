@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { whatsappLink } from '@/lib/utils'
 
 interface Props {
   prepagaNombre: string
@@ -43,7 +44,13 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
         }),
       })
       setStatus('success')
-      setTimeout(handleClose, 3000)
+      // Conexión automática con el asesor oficial por WhatsApp para avanzar
+      // con el alta, en vez de dejar a la persona esperando que la llamen.
+      setTimeout(() => {
+        window.location.href = whatsappLink(
+          `Hola! Soy ${nombre.trim()}, quiero contratar ${interes}. Dejé mis datos en PrepagaYa para avanzar con el alta.`
+        )
+      }, 1500)
     } catch {
       setStatus('idle')
     }
@@ -78,7 +85,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
               </button>
               <div className="text-xl font-bold mb-1">{planNombre ? `Contratar ${planNombre}` : `Cotización de ${prepagaNombre}`}</div>
               <p className="text-red-100 text-sm leading-relaxed">
-                Dejanos tus datos y un asesor te contacta con el precio exacto de {interes} para tu edad, y te ayuda con el alta.
+                Dejanos tus datos y te conectamos al instante por WhatsApp con un asesor oficial, con el precio exacto de {interes} para tu edad.
               </p>
             </div>
 
@@ -91,7 +98,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                     </svg>
                   </div>
                   <p className="font-bold text-gray-900 mb-1">¡Listo!</p>
-                  <p className="text-sm text-gray-500">Un asesor te contacta a la brevedad para avanzar con la contratación.</p>
+                  <p className="text-sm text-gray-500">Te conectamos ahora con un asesor oficial por WhatsApp para avanzar con la contratación.</p>
                 </div>
               ) : (
                 <>

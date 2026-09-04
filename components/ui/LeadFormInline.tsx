@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useState } from 'react'
+import { whatsappLink } from '@/lib/utils'
 
 interface Props {
   prepagaNombre?: string
@@ -32,6 +33,15 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
         }),
       })
       setStatus(res.ok ? 'success' : 'error')
+      if (res.ok) {
+        // Conexión automática con el asesor oficial por WhatsApp, en vez de
+        // dejar a la persona esperando que la llamen.
+        setTimeout(() => {
+          window.location.href = whatsappLink(
+            `Hola! Soy ${nombre.trim()}${prepagaNombre ? `, me interesa ${prepagaNombre}` : ''} y dejé mis datos en PrepagaYa. Quiero que un asesor oficial me ayude a elegir la mejor prepaga.`
+          )
+        }, 1500)
+      }
     } catch {
       setStatus('error')
     }
@@ -45,8 +55,8 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
           </svg>
         </div>
-        <div className="font-bold text-green-800 mb-1">Consulta recibida</div>
-        <p className="text-sm text-green-600">Te contactamos en las próximas horas para asesorarte sin cargo.</p>
+        <div className="font-bold text-green-800 mb-1">¡Listo!</div>
+        <p className="text-sm text-green-600">Te conectamos ahora con un asesor oficial por WhatsApp...</p>
       </div>
     )
   }
@@ -57,7 +67,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
         <h3 className="font-bold text-gray-900 text-base">
           {titulo ?? (prepagaNombre ? `¿Te interesa ${prepagaNombre}?` : 'Cotizá sin cargo')}
         </h3>
-        <p className="text-xs text-gray-500 mt-0.5">Un asesor te llama para explicarte todo</p>
+        <p className="text-xs text-gray-500 mt-0.5">Te conectamos al instante con un asesor oficial por WhatsApp</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-3">

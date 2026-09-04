@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { formatPrecio } from '@/lib/utils'
+import { formatPrecio, whatsappLink } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
 import type { Plan } from '@/types'
 
@@ -178,12 +178,20 @@ export function PlanesSinPrecio({ planes, prepagaNombre }: Props): React.ReactEl
                   <div className="text-4xl font-black text-[#E8002D] mb-1">{formatPrecio(modal.plan.precio)}</div>
                   <div className="text-sm text-gray-500 mb-4">/mes · Directo con IVA</div>
                   <div className="bg-amber-50 border border-amber-100 rounded-xl px-4 py-2.5 text-xs text-amber-700 mb-5">
-                    El precio final varía según tu edad. Un asesor te enviará la cotización exacta en breve.
+                    El precio final varía según tu edad. Un asesor oficial te confirma la cotización exacta.
                   </div>
                   <div className="flex flex-col gap-2">
+                    <a
+                      href={whatsappLink(`Hola! Vi el precio de ${modal.plan.prepagaNombre} — ${modal.plan.nombre} en PrepagaYa y quiero avanzar con un asesor oficial.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full py-3 bg-[#25D366] hover:bg-[#1DA851] text-white font-bold rounded-xl text-sm text-center transition-colors"
+                    >
+                      Hablar con un asesor ahora →
+                    </a>
                     <Link
                       href={`/prepagas/${modal.plan.prepagaSlug}/${modal.plan.slug}`}
-                      className="block w-full py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm text-center transition-colors"
+                      className="block w-full py-3 border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold rounded-xl text-sm text-center transition-colors"
                     >
                       Ver detalles del plan →
                     </Link>
@@ -199,7 +207,7 @@ export function PlanesSinPrecio({ planes, prepagaNombre }: Props): React.ReactEl
                 /* Formulario */
                 <>
                   <p className="text-sm text-gray-600 mb-5">
-                    Dejá tus datos y te mostramos el precio real para tu edad, más un asesor te contacta para ayudarte.
+                    Dejá tus datos y te mostramos el precio real para tu edad, con la opción de hablar al instante con un asesor oficial.
                   </p>
 
                   <div className="space-y-3 mb-5">

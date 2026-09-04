@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { whatsappLink } from '@/lib/utils'
 
 interface Props {
   open: boolean
@@ -36,7 +37,14 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
         }),
       })
       setStatus('success')
-      setTimeout(handleClose, 3000)
+      // Conexión automática con el asesor oficial: a los 1.5s (tiempo para leer
+      // el "¡Listo!") redirige directo al chat de WhatsApp con los datos ya
+      // cargados en el mensaje, en vez de dejar a la persona esperando un llamado.
+      setTimeout(() => {
+        window.location.href = whatsappLink(
+          `Hola! Soy ${nombre.trim()}, dejé mis datos en PrepagaYa y quiero que un asesor oficial me ayude a elegir la mejor prepaga.`
+        )
+      }, 1500)
     } catch {
       setStatus('idle')
     }
@@ -62,7 +70,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
           </button>
           <div className="text-2xl mb-1">Quiero asesoramiento</div>
           <p className="text-red-100 text-sm leading-relaxed">
-            Dejanos tus datos y un asesor te contacta para ayudarte a elegir la mejor prepaga.
+            Dejanos tus datos y te conectamos al instante por WhatsApp con un asesor oficial de PrepagaYa.
           </p>
         </div>
 
@@ -75,7 +83,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
                 </svg>
               </div>
               <p className="font-bold text-gray-900 mb-1">¡Listo!</p>
-              <p className="text-sm text-gray-500">Un asesor te contacta a la brevedad.</p>
+              <p className="text-sm text-gray-500">Te conectamos ahora con un asesor oficial por WhatsApp...</p>
             </div>
           ) : (
             <>

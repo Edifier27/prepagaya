@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useEffect, useState, useRef } from 'react'
+import { whatsappLink } from '@/lib/utils'
 
 const CUPON_CODE = 'SWISS15'
 
@@ -66,7 +67,13 @@ export function ExitIntentPopup(): React.ReactElement | null {
         }),
       })
       setStatus('success')
-      setTimeout(dismiss, 3000)
+      // Conexión automática con el asesor oficial por WhatsApp para aplicar
+      // el cupón, en vez de dejar a la persona esperando que la llamen.
+      setTimeout(() => {
+        window.location.href = whatsappLink(
+          `Hola! Soy ${nombre.trim()}, quiero aplicar el cupón ${CUPON_CODE} (15% OFF) en un plan de Swiss Medical. Dejé mis datos en PrepagaYa.`
+        )
+      }, 1500)
     } catch {
       setStatus('idle')
     }
@@ -115,7 +122,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
                 </svg>
               </div>
               <p className="font-bold text-gray-900 mb-1">¡Cupón activado!</p>
-              <p className="text-sm text-gray-500">Un asesor te contacta para aplicar el 15% OFF a tu plan Swiss Medical.</p>
+              <p className="text-sm text-gray-500">Te conectamos ahora con un asesor oficial por WhatsApp para aplicar el 15% OFF.</p>
             </div>
           ) : (
             <>
