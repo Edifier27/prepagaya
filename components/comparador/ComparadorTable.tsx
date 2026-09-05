@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, nivelPrecio, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
 function Check({ ok }: { ok: boolean }) {
@@ -227,7 +227,7 @@ export function ComparadorTable() {
       </div>
 
       <p className="text-xs text-gray-400 mt-4 text-center">
-        * Precios para persona de 30 años, contratación directa. Datos actualizados Julio 2026.
+        * Precios para persona de 30 años, contratación directa. Datos actualizados {PRECIO_ACTUALIZADO}.
       </p>
     </div>
   )

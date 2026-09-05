@@ -5,10 +5,12 @@ import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { Badge } from '@/components/ui/Badge'
 
-// ── Actualizar este dato cada mes ────────────────────────────────────────────
-const MES_ACTUAL = 'Julio 2026'
-const FECHA_ACTUALIZACION = '10 de julio de 2026'
-const VARIACION_PROMEDIO = '+2.1%'
+// El mes se toma de PRECIO_ACTUALIZADO (lib/data/prepagas.ts) — única fuente
+// de verdad para evitar que esta página quede desincronizada del resto del sitio.
+const MES_ACTUAL = PRECIO_ACTUALIZADO
+// ── Actualizar estos dos datos cada mes junto con PRECIO_ACTUALIZADO ─────────
+const FECHA_ACTUALIZACION = '1 de septiembre de 2026'
+const VARIACION_PROMEDIO = '+2.2%'
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {

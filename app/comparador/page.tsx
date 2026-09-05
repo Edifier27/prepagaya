@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
+import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
@@ -53,7 +54,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
               </span>
               <span className="flex items-center gap-2">
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-blue-400"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
-                Precios <strong className="text-gray-700">Julio 2026</strong>
+                Precios <strong className="text-gray-700">{PRECIO_ACTUALIZADO}</strong>
               </span>
               <span className="flex items-center gap-2">
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-gray-400"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
@@ -83,6 +84,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
               {[
                 { href: '/prepagas', label: 'Ver todas las prepagas' },
                 { href: '/ranking', label: 'Ranking por satisfacción' },
+                { href: '/aumentos#ranking-estabilidad', label: '🏆 Quién aumenta menos' },
                 { href: '/comparativas/swiss-medical-vs-osde', label: 'Swiss Medical vs OSDE' },
                 { href: '/guias/como-cambiar-de-prepaga', label: 'Cómo cambiar de prepaga' },
               ].map((link) => (

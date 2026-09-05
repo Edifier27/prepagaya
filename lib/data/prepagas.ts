@@ -1247,7 +1247,7 @@ export function getPlanBySlug(prepagaSlug: string, planSlug: string) {
 // mercado) sobre la última lista de julio verificada — no se encontró lista
 // oficial de agosto todavía. El resto de las prepagas sigue en precio de julio.
 // Reemplazar por precio real de agosto en cuanto se publique.
-export const PRECIO_ACTUALIZADO = 'Julio 2026'
+export const PRECIO_ACTUALIZADO = 'Septiembre 2026'
 export const PRECIO_REFERENCIA = '30 años, contratación individual'
 
 // Nivel de precio: posición relativa de un plan dentro de la distribución de

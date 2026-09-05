@@ -1,13 +1,13 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { ComparadorTable } from '@/components/comparador/ComparadorTable'
 
 export const metadata: Metadata = {
   title: 'Comparar Prepagas Lado a Lado: Tabla Comparativa 2026',
-  description: 'Compará hasta 3 prepagas argentinas lado a lado: precio, coberturas, satisfacción y más de 12 características en una sola tabla. Actualizado Julio 2026.',
+  description: `Compará hasta 3 prepagas argentinas lado a lado: precio, coberturas, satisfacción y más de 12 características en una sola tabla. Actualizado ${PRECIO_ACTUALIZADO}.`,
   alternates: { canonical: `${SITE_URL}/comparar` },
   keywords: [
     'comparar prepagas argentina 2026',
@@ -42,7 +42,7 @@ export default function CompararPage(): React.ReactElement {
       <section className="py-12 bg-gradient-to-b from-blue-50 to-white border-b border-gray-100">
         <div className="container max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-xs font-bold px-4 py-2 rounded-full mb-5">
-            {prepagas.length} prepagas · 15 características · Julio 2026
+            {prepagas.length} prepagas · 15 características · {PRECIO_ACTUALIZADO}
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             Compará prepagas<br className="hidden md:block" />
