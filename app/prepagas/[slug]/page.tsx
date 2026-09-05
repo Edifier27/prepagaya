@@ -5,6 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getCambiosPorOrigen } from '@/lib/data/cambios'
+import { obrasSociales } from '@/lib/data/obras-sociales'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -17,6 +18,17 @@ interface Props {
 }
 
 type Plan = Prepaga['planes'][number]
+
+// Mapea el slug de prepaga al slug de obra social cuando la misma marca
+// opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
+const PREPAGA_A_OS_SLUG: Record<string, string> = {
+  'swiss-medical': 'swiss-medical-os',
+  'sancor-salud': 'sancor-os',
+}
+function obraSocialHermana(prepagaSlug: string) {
+  const osSlug = PREPAGA_A_OS_SLUG[prepagaSlug] ?? prepagaSlug
+  return obrasSociales.find((o) => o.slug === osSlug)
+}
 
 function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstrella: Plan) {
   const sinCopago = prep.planes.filter(p => !p.copago).map(p => p.nombre)
@@ -127,6 +139,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
     'premedic': 'Económica',
   }
   const isPartner = slug in PARTNERS_TIER
+  const osMatch = obraSocialHermana(prep.slug)
 
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
   const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
@@ -577,6 +590,28 @@ export default async function PrepagaSlugPage({ params }: Props) {
           </section>
         )
       })()}
+
+      {/* Cross-link a la ficha de obra social de la misma marca, cuando existe */}
+      {osMatch && (
+        <section className="py-10 bg-gray-50 border-t border-gray-100">
+          <div className="container max-w-5xl mx-auto">
+            <div className="bg-white rounded-2xl border border-gray-200 p-6 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
+              <div>
+                <h2 className="text-lg font-bold text-gray-900 mb-1">{prep.nombre} también existe como obra social</h2>
+                <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
+                  Esta ficha es la contratación directa (prepaga). Si trabajás en relación de dependencia, también podés derivar tu aporte a {osMatch.nombre} y mantener la cobertura del PMO garantizada por ley, algo que la prepaga sola no reemplaza si dejás de pagarla.
+                </p>
+              </div>
+              <Link
+                href={`/obras-sociales/${osMatch.slug}`}
+                className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] font-bold rounded-xl text-sm transition-colors"
+              >
+                Ver {osMatch.nombre} como obra social →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ¿Pensás cambiarte? (link a /cambios cuando esta prepaga es origen) */}
       {(() => {

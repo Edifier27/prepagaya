@@ -2,8 +2,20 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { obrasSociales } from '@/lib/data/obras-sociales'
+import { prepagas } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
+
+// Mapea el slug de obra social al slug de prepaga cuando la misma marca
+// opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
+const OS_A_PREPAGA_SLUG: Record<string, string> = {
+  'swiss-medical-os': 'swiss-medical',
+  'sancor-os': 'sancor-salud',
+}
+function prepagaHermana(osSlug: string) {
+  const prepagaSlug = OS_A_PREPAGA_SLUG[osSlug] ?? osSlug
+  return prepagas.find((p) => p.slug === prepagaSlug)
+}
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -44,6 +56,7 @@ export default async function ObraSocialPage({ params }: Props) {
   if (!os) notFound()
 
   const otras = obrasSociales.filter((o) => o.slug !== slug).slice(0, 8)
+  const prepagaMatch = prepagaHermana(os.slug)
 
   const jsonLd = [
     {
@@ -203,6 +216,28 @@ export default async function ObraSocialPage({ params }: Props) {
           )}
         </div>
       </section>
+
+      {/* Cross-link a la ficha de prepaga de la misma marca, cuando existe */}
+      {prepagaMatch && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
+              <div>
+                <h2 className="text-lg font-bold text-gray-900 mb-1">{os.nombre} también existe como prepaga privada</h2>
+                <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
+                  Con tu aporte derivado a {os.nombre} tenés cobertura del PMO. Si además querés contratar {prepagaMatch.nombre} de forma directa —sin depender de un aporte en blanco— podés ver sus planes, precios y cartilla en la ficha de prepaga.
+                </p>
+              </div>
+              <Link
+                href={`/prepagas/${prepagaMatch.slug}`}
+                className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] font-bold rounded-xl text-sm transition-colors"
+              >
+                Ver {prepagaMatch.nombre} como prepaga →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Mid CTA */}
       <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] py-5">
