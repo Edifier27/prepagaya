@@ -233,7 +233,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                       </span>
                     )}
                   </div>
-                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{prep.nombre}</h1>
+                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Planes de {prep.nombre}</h1>
                 </div>
               </div>
 
