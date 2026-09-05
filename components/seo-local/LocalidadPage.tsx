@@ -4,7 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { LocalidadZona, ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { BreadcrumbBar, CtaCotizador, FaqSection, jsonLdBreadcrumb, jsonLdFaq } from './shared'
+import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, jsonLdBreadcrumb, jsonLdFaq } from './shared'
 
 // Algunas localidades tienen nombres largos con aclaración entre paréntesis
 // (ej: "Zona Norte (San Isidro, Vicente López, Pilar)"). Para title/H1 usamos
@@ -27,7 +27,9 @@ export function localidadMetadata(prov: ProvinciaSEO, loc: LocalidadZona): Metad
 export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: LocalidadZona }) {
   const corto = nombreCorto(loc.nombre)
   const destacadas = prov.prepagas.slice(0, 4)
-  const hermanas = prov.localidades.filter((l) => l.slug !== loc.slug)
+  const grupoActual = agruparPorZona(prov.localidades).find((g) => g.items.some((l) => l.slug === loc.slug))
+  const hermanas = (grupoActual?.items ?? prov.localidades).filter((l) => l.slug !== loc.slug)
+  const tituloHermanas = grupoActual?.titulo ? `Otras localidades de ${grupoActual.titulo}` : `Otras ciudades de ${prov.nombre}`
   const crumbs = [
     { nombre: 'Prepagas', href: '/prepagas' },
     { nombre: prov.nombre, href: `/prepagas/${prov.slug}` },
@@ -131,7 +133,7 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
 
         {hermanas.length > 0 && (
           <section className="mb-10">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Otras ciudades de {prov.nombre}</h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-4">{tituloHermanas}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {hermanas.map((h) => (
                 <Link key={h.slug} href={`/prepagas/${prov.slug}/${h.slug}`}

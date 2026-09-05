@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import type { LocalidadZona } from '@/lib/data/zonas'
 
 export interface Crumb {
   nombre: string
@@ -98,6 +99,36 @@ export function jsonLdFaq(faq: { q: string; a: string }[]) {
       acceptedAnswer: { '@type': 'Answer', text: a },
     })),
   }
+}
+
+// Agrupa localidades por zona cuando la provincia usa el patrón de hubs
+// "zona-*" (hoy solo Buenos Aires, con 25 localidades) — evita una lista
+// plana gigante. En provincias sin ese patrón devuelve un único grupo sin
+// título, igual que antes.
+// 'la-plata' marca el cierre del bloque de conurbano (zona-norte/sur/oeste)
+// y el inicio de las ciudades del interior que van sueltas al final del
+// array: sin este corte quedarían agrupadas dentro de la última zona-*.
+const CIERRE_CONURBANO = 'la-plata'
+export interface GrupoLocalidades { titulo: string | null; items: LocalidadZona[] }
+export function agruparPorZona(localidades: LocalidadZona[]): GrupoLocalidades[] {
+  const grupos: GrupoLocalidades[] = []
+  let actual: GrupoLocalidades = { titulo: null, items: [] }
+  for (const loc of localidades) {
+    if (loc.slug.startsWith('zona-')) {
+      if (actual.items.length) grupos.push(actual)
+      actual = { titulo: loc.nombre.split(' (')[0], items: [loc] }
+    } else if (loc.slug === CIERRE_CONURBANO && actual.titulo !== null) {
+      grupos.push(actual)
+      actual = { titulo: null, items: [loc] }
+    } else {
+      actual.items.push(loc)
+    }
+  }
+  if (actual.items.length) grupos.push(actual)
+  if (grupos.length > 1) {
+    for (const g of grupos) if (g.titulo === null) g.titulo = 'Otras ciudades'
+  }
+  return grupos
 }
 
 export const FUERZA_LABEL: Record<string, { label: string; cls: string }> = {
