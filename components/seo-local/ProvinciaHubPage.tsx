@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import type { ProvinciaSEO } from '@/lib/data/zonas'
+import type { ProvinciaSEO, LocalidadZona } from '@/lib/data/zonas'
 import { SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -17,6 +17,36 @@ export function provinciaHubMetadata(prov: ProvinciaSEO): Metadata {
 }
 
 const PARTNER_ORDER = ['swiss-medical', 'sancor-salud', 'premedic']
+
+// Agrupa localidades por zona cuando la provincia usa el patrón de hubs
+// "zona-*" (hoy solo Buenos Aires, con 25 localidades) — evita una lista
+// plana gigante. En provincias sin ese patrón devuelve un único grupo sin
+// título, igual que antes.
+// 'la-plata' marca el cierre del bloque de conurbano (zona-norte/sur/oeste)
+// y el inicio de las ciudades del interior que van sueltas al final del
+// array: sin este corte quedarían agrupadas dentro de la última zona-*.
+const CIERRE_CONURBANO = 'la-plata'
+interface GrupoLocalidades { titulo: string | null; items: LocalidadZona[] }
+function agruparPorZona(localidades: LocalidadZona[]): GrupoLocalidades[] {
+  const grupos: GrupoLocalidades[] = []
+  let actual: GrupoLocalidades = { titulo: null, items: [] }
+  for (const loc of localidades) {
+    if (loc.slug.startsWith('zona-')) {
+      if (actual.items.length) grupos.push(actual)
+      actual = { titulo: loc.nombre.split(' (')[0], items: [loc] }
+    } else if (loc.slug === CIERRE_CONURBANO && actual.titulo !== null) {
+      grupos.push(actual)
+      actual = { titulo: null, items: [loc] }
+    } else {
+      actual.items.push(loc)
+    }
+  }
+  if (actual.items.length) grupos.push(actual)
+  if (grupos.length > 1) {
+    for (const g of grupos) if (g.titulo === null) g.titulo = 'Otras ciudades'
+  }
+  return grupos
+}
 
 // Prepagas con sanatorio/centro médico propio verificado, por provincia (no un cálculo
 // automático sobre el texto: cada lista está chequeada a mano contra la ficha de cada
@@ -37,6 +67,7 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
     if (ib === -1) return -1
     return ia - ib
   })
+  const gruposLocalidades = agruparPorZona(prov.localidades)
 
   return (
     <>
@@ -50,13 +81,19 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
           <p className="text-xs text-gray-400 mt-3">Información de cobertura verificada al {new Date(prov.fechaVerificacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })} · Precios de lista {PRECIO_ACTUALIZADO}</p>
 
           {prov.localidades.length > 1 && (
-            <div className="flex flex-wrap items-center gap-2 mt-5">
-              <span className="text-xs font-semibold text-gray-400 mr-1">Elegí tu zona:</span>
-              {prov.localidades.map((loc) => (
-                <Link key={loc.slug} href={`/prepagas/${prov.slug}/${loc.slug}`}
-                  className="text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-red-50 hover:text-[#E8002D] border border-gray-200 hover:border-red-200 rounded-full px-3 py-1.5 transition-colors">
-                  {loc.nombre.split(' (')[0]}
-                </Link>
+            <div className="mt-5 space-y-2.5">
+              {gruposLocalidades.map((grupo, i) => (
+                <div key={grupo.titulo ?? i} className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-semibold text-gray-400 mr-1">
+                    {grupo.titulo ? `${grupo.titulo}:` : 'Elegí tu zona:'}
+                  </span>
+                  {grupo.items.map((loc) => (
+                    <Link key={loc.slug} href={`/prepagas/${prov.slug}/${loc.slug}`}
+                      className="text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-red-50 hover:text-[#E8002D] border border-gray-200 hover:border-red-200 rounded-full px-3 py-1.5 transition-colors">
+                      {loc.nombre.split(' (')[0]}
+                    </Link>
+                  ))}
+                </div>
               ))}
             </div>
           )}
@@ -150,13 +187,22 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
         <section className="mb-10">
           <h2 className="text-xl font-bold text-gray-900 mb-2">Prepagas por ciudad en {prov.nombre}</h2>
           <p className="text-sm text-gray-500 mb-5">La cartilla cambia mucho entre {prov.capitalNombre} y el interior: mirá tu ciudad.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {prov.localidades.map((loc) => (
-              <Link key={loc.slug} href={`/prepagas/${prov.slug}/${loc.slug}`}
-                className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
-                <span className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">Prepagas en {loc.nombre}</span>
-                <span className="text-gray-300 group-hover:text-[#E8002D]">→</span>
-              </Link>
+          <div className="space-y-6">
+            {gruposLocalidades.map((grupo, i) => (
+              <div key={grupo.titulo ?? i}>
+                {grupo.titulo && (
+                  <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">{grupo.titulo}</h3>
+                )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {grupo.items.map((loc) => (
+                    <Link key={loc.slug} href={`/prepagas/${prov.slug}/${loc.slug}`}
+                      className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
+                      <span className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">Prepagas en {loc.nombre}</span>
+                      <span className="text-gray-300 group-hover:text-[#E8002D]">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </section>
