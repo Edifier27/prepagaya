@@ -10,6 +10,7 @@ import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
 import { ProvinciaHubPage, provinciaHubMetadata } from '@/components/seo-local/ProvinciaHubPage'
 import type { Prepaga } from '@/types'
 
@@ -318,17 +319,14 @@ export default async function PrepagaSlugPage({ params }: Props) {
           </div>
 
           {/* Plan destacado — más grande */}
-          <Link
-            href={`/prepagas/${slug}/${planEstrella.slug}`}
-            className="relative block bg-gradient-to-r from-[#fff5f5] to-white border-2 border-[#E8002D] rounded-2xl p-6 mb-4 hover:shadow-lg transition-all group"
-          >
+          <div className="relative bg-gradient-to-r from-[#fff5f5] to-white border-2 border-[#E8002D] rounded-2xl p-6 mb-4">
             <div className="absolute -top-3.5 left-6">
               <span className="bg-[#E8002D] text-white text-[11px] font-black px-4 py-1.5 rounded-full shadow-sm tracking-wide">
                 MÁS ELEGIDO
               </span>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-1">
-              <div className="flex-1 min-w-0">
+              <Link href={`/prepagas/${slug}/${planEstrella.slug}`} className="flex-1 min-w-0 group">
                 <div className="font-bold text-gray-900 text-lg group-hover:text-[#E8002D] transition-colors">{planEstrella.nombre}</div>
                 <p className="text-sm text-gray-600 mt-1 leading-relaxed">{planEstrella.descripcion}</p>
                 <div className="flex flex-wrap gap-1.5 mt-3">
@@ -349,49 +347,63 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     <span className="text-[11px] text-gray-400 py-1">+{planEstrella.cobertura.length - 3} más</span>
                   )}
                 </div>
-              </div>
-              <div className="flex-shrink-0 sm:text-right">
+              </Link>
+              <div className="flex-shrink-0 flex flex-col items-stretch sm:items-end gap-2">
                 <div className="flex sm:justify-end">
                   <NivelPrecioBadge nivel={nivelPrecio(planEstrella.precio)} />
                 </div>
-                <div className="mt-3 inline-flex items-center gap-1.5 px-4 py-2 bg-[#E8002D] text-white rounded-xl text-xs font-bold group-hover:bg-[#B8001F] transition-colors">
-                  Ver cobertura completa →
+                <div className="flex gap-2 flex-wrap sm:justify-end">
+                  <CartillaModalTrigger prepaga={prep} plan={planEstrella} zonaKey="buenos-aires" provinciaNombre="Buenos Aires (AMBA)" />
+                  <Link href={`/prepagas/${slug}/${planEstrella.slug}`}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#E8002D] hover:bg-[#B8001F] text-white rounded-xl text-xs font-bold transition-colors whitespace-nowrap">
+                    Ver ficha completa →
+                  </Link>
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
 
           {/* Otros planes */}
           {otrosPlanes.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {otrosPlanes.map((plan) => (
-                <Link
+                <div
                   key={plan.slug}
-                  href={`/prepagas/${slug}/${plan.slug}`}
                   className="group bg-white rounded-xl border border-gray-200 p-4 hover:border-red-200 hover:shadow-sm transition-all"
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1 min-w-0">
-                      <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">{plan.nombre}</div>
-                      <div className="text-xs text-gray-500 mt-0.5 leading-snug line-clamp-2">{plan.descripcion}</div>
-                      <div className="flex gap-1.5 mt-2">
-                        <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
-                          plan.copago ? 'bg-gray-100 text-gray-500' : 'bg-green-50 text-green-700'
-                        }`}>
-                          {plan.copago ? 'Con copago' : 'Sin copago'}
-                        </span>
-                        <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
-                          plan.redAbierta ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-500'
-                        }`}>
-                          Red {plan.redAbierta ? 'abierta' : 'cerrada'}
-                        </span>
+                  <Link href={`/prepagas/${slug}/${plan.slug}`} className="block">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">{plan.nombre}</div>
+                        <div className="text-xs text-gray-500 mt-0.5 leading-snug line-clamp-2">{plan.descripcion}</div>
+                        <div className="flex gap-1.5 mt-2">
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
+                            plan.copago ? 'bg-gray-100 text-gray-500' : 'bg-green-50 text-green-700'
+                          }`}>
+                            {plan.copago ? 'Con copago' : 'Sin copago'}
+                          </span>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
+                            plan.redAbierta ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-500'
+                          }`}>
+                            Red {plan.redAbierta ? 'abierta' : 'cerrada'}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex-shrink-0">
+                        <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                       </div>
                     </div>
-                    <div className="flex-shrink-0">
-                      <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
-                    </div>
+                  </Link>
+                  <div className="mt-3 pt-3 border-t border-gray-100">
+                    <CartillaModalTrigger
+                      prepaga={prep}
+                      plan={plan}
+                      zonaKey="buenos-aires"
+                      provinciaNombre="Buenos Aires (AMBA)"
+                      className="w-full justify-center inline-flex items-center gap-1.5 text-xs font-bold text-gray-600 hover:text-[#E8002D] border-2 border-gray-200 hover:border-red-200 rounded-lg px-3 py-2 transition-colors"
+                    />
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           )}

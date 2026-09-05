@@ -5,6 +5,7 @@ import type { PrepagaZona, ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
 import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdBreadcrumb, jsonLdFaq } from './shared'
 
 export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metadata {
@@ -110,8 +111,14 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
                     <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors">{plan.nombre}</div>
                     <div className="text-xs text-gray-500 mt-0.5 line-clamp-1">{plan.descripcion}</div>
                   </Link>
-                  <div className="flex items-center gap-3 flex-shrink-0">
+                  <div className="flex items-center gap-2 flex-shrink-0 flex-wrap sm:flex-nowrap">
                     <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                    <CartillaModalTrigger
+                      prepaga={prepData}
+                      plan={plan}
+                      zonaKey={prov.zonaKey}
+                      provinciaNombre={prov.nombre}
+                    />
                     <ContratarPlanButton
                       prepagaNombre={pz.nombre}
                       planNombre={plan.nombre}

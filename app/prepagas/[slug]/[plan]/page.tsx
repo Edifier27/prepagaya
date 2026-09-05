@@ -8,6 +8,7 @@ import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
 import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
 import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
@@ -298,7 +299,10 @@ export default async function PlanPage({ params }: Props) {
       {/* Coberturas */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-gray-900 mb-5">¿Qué incluye el {plan.nombre}?</h2>
+          <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
+            <h2 className="text-xl font-bold text-gray-900">¿Qué incluye el {plan.nombre}?</h2>
+            <CartillaModalTrigger prepaga={prep} plan={plan} zonaKey="buenos-aires" provinciaNombre="Buenos Aires (AMBA)" />
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {plan.cobertura.map((c) => (
               <div key={c} className="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 shadow-sm">
