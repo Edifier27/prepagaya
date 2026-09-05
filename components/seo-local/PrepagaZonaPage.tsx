@@ -4,6 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { PrepagaZona, ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdBreadcrumb, jsonLdFaq } from './shared'
 
 export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metadata {
@@ -103,16 +104,22 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
             <p className="text-sm text-gray-500 mb-5">Nivel de precio relativo al resto del mercado. En {prov.nombre} aplican los mismos planes; tu edad y grupo familiar definen el valor final.</p>
             <div className="space-y-3">
               {planesOrdenados.map((plan) => (
-                <Link key={plan.slug} href={`/prepagas/${pz.slug}/${plan.slug}`}
-                  className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
-                  <div className="min-w-0">
+                <div key={plan.slug}
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all">
+                  <Link href={`/prepagas/${pz.slug}/${plan.slug}`} className="min-w-0 flex-1 group">
                     <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors">{plan.nombre}</div>
                     <div className="text-xs text-gray-500 mt-0.5 line-clamp-1">{plan.descripcion}</div>
-                  </div>
-                  <div className="text-right flex-shrink-0 ml-4">
+                  </Link>
+                  <div className="flex items-center gap-3 flex-shrink-0">
                     <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                    <ContratarPlanButton
+                      prepagaNombre={pz.nombre}
+                      planNombre={plan.nombre}
+                      fuente="ficha-zona"
+                      className="text-xs font-bold px-4 py-2 rounded-lg bg-[#E8002D] hover:bg-[#B8001F] text-white transition-colors whitespace-nowrap flex-shrink-0"
+                    />
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
             <div className="mt-4">
