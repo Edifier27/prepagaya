@@ -183,9 +183,16 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
             <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6">
               <h2 className="text-lg font-bold text-gray-900 mb-2">¿Y {prov.obraSocialProvincial.sigla}?</h2>
               <p className="text-sm text-gray-600 leading-relaxed mb-4">{prov.obraSocialProvincial.nota}</p>
-              <Link href={`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`} className="text-sm font-semibold text-[#E8002D] hover:underline">
-                Comparar prepagas para complementar →
-              </Link>
+              <div className="flex flex-wrap gap-x-5 gap-y-2">
+                {prov.obraSocialProvincial.slug && (
+                  <Link href={`/obras-sociales/${prov.obraSocialProvincial.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">
+                    Ver ficha completa de {prov.obraSocialProvincial.sigla} →
+                  </Link>
+                )}
+                <Link href={`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`} className="text-sm font-semibold text-gray-500 hover:text-[#E8002D] hover:underline">
+                  Comparar prepagas para complementar →
+                </Link>
+              </div>
             </div>
           </section>
         )}

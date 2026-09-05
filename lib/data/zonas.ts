@@ -32,7 +32,8 @@ export interface ProvinciaSEO {
   prepagas: PrepagaZona[]
   localidades: LocalidadZona[]
   prestadoresClave: string[]
-  obraSocialProvincial?: { sigla: string; nombre: string; nota: string }
+  // slug: ficha completa en /obras-sociales/[slug], cuando existe
+  obraSocialProvincial?: { sigla: string; nombre: string; nota: string; slug?: string }
   faq: { q: string; a: string }[]
   fechaVerificacion: string
 }
@@ -121,6 +122,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       sigla: 'APROSS',
       nombre: 'Administración Provincial del Seguro de Salud',
       nota: 'Es la obra social de los empleados públicos de la provincia de Córdoba: no se puede contratar de forma voluntaria. Si tenés APROSS y buscás más cobertura, podés complementar con una prepaga.',
+      slug: 'apross',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Córdoba?', a: 'Depende de dónde vivas y qué priorices. En Córdoba capital, Swiss Medical y OSDE tienen las cartillas premium más completas; Nobis (cordobesa) suma centros propios; y en el interior provincial las regionales como Sancor Salud, Federada y Avalian suelen tener mejor cartilla efectiva que las nacionales. Nuestro ranking pondera cartilla local, precio y satisfacción.' },
@@ -198,6 +200,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       sigla: 'IPS Salta',
       nombre: 'Instituto Provincial de Salud de Salta',
       nota: 'La obra social provincial con mayor cobertura de Salta (empleados públicos provinciales); no es de contratación voluntaria. En diciembre de 2025 firmó un convenio con las clínicas privadas de ACLISASA para atención de guardia sin copagos. Si tenés IPS y buscás cartilla privada completa, podés complementar con una prepaga.',
+      slug: 'ips-salta',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Salta?', a: 'Para cartilla local, Boreal Salud es la referencia regional del NOA con red propia en Salta. Swiss Medical tiene sanatorio propio de alta complejidad (Altos de Salta, 120 camas), lo que la pone al nivel de OSDE en el segmento premium. Sancor Salud y Prevención destacan en relación precio/cartilla, especialmente fuera de la capital.' },
@@ -276,6 +279,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       sigla: 'ISSN',
       nombre: 'Instituto de Seguridad Social del Neuquén',
       nota: 'La obra social de los empleados públicos provinciales y municipales de Neuquén (creada por ley provincial 611 en 1970); no es de contratación voluntaria. Junto a OSPEPRI (petroleros privados) y OSECAC concentra la mayor cantidad de afiliados de la provincia. Se puede complementar con una prepaga.',
+      slug: 'issn',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Neuquén?', a: 'Swiss Medical es la única premium con centro médico propio en la capital y OSDE tiene la red abierta más consolidada de la región. Sancor Salud, con cartilla provincial publicada, es la alternativa regional más equilibrada en precio. El ranking completo pondera cartilla local, precio y satisfacción.' },
@@ -368,6 +372,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       sigla: 'IAPOS',
       nombre: 'Instituto Autárquico Provincial de Obra Social',
       nota: 'La obra social de los empleados públicos de la provincia de Santa Fe; no es de contratación voluntaria. Muchos afiliados la complementan con una prepaga para acceder sin restricciones a los sanatorios privados de Rosario y la capital.',
+      slug: 'iapos',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Santa Fe?', a: 'Depende de la ciudad. En Rosario, Swiss Medical y OSDE tienen las cartillas premium más completas y Federada juega de local. En Santa Fe capital y el centro-norte, Jerárquicos Salud es el jugador dominante y Sancor/Prevención (nacidas en Sunchales) tienen cartillas muy profundas. Nuestro ranking pondera la cartilla efectiva por zona.' },
@@ -445,6 +450,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       sigla: 'OSEP',
       nombre: 'Obra Social de Empleados Públicos de Mendoza',
       nota: 'La obra social de los empleados públicos mendocinos, con red propia importante; no es de contratación voluntaria. Si tenés OSEP y buscás sanatorios privados sin restricciones, podés complementarla con una prepaga.',
+      slug: 'osep-mendoza',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Mendoza?', a: 'OSDE tiene la red abierta más completa del Gran Mendoza y Swiss Medical compite en el mismo segmento premium. En relación precio/cartilla, Sancor Salud y Prevención son las alternativas regionales más equilibradas. El ranking completo pondera cartilla local, precio y satisfacción.' },
@@ -532,6 +538,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       sigla: 'Subsidio de Salud',
       nombre: 'Instituto de Previsión y Seguridad Social de Tucumán (IPSST)',
       nota: 'La obra social de los empleados públicos tucumanos (conocida como Subsidio de Salud); no es de contratación voluntaria. Muchos afiliados la complementan con una prepaga para acceder a los sanatorios privados de San Miguel sin restricciones.',
+      slug: 'ipsst',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Tucumán?', a: 'Boreal Salud juega de local con centros propios y precios regionales; Swiss Medical y OSDE lideran el segmento premium con los grandes sanatorios de San Miguel en cartilla; y Sancor Salud es la alternativa más equilibrada en precio/cartilla. El ranking completo pondera la cartilla efectiva en la provincia.' },
@@ -615,6 +622,12 @@ provinciasSEO.push(
         prestadores: ['Clínica Santa Isabel', 'Hospital Universitario UAI'] },
     ],
     prestadoresClave: ['Hospital Italiano de Buenos Aires', 'Hospital Alemán', 'Sanatorio Otamendi', 'CEMIC', 'Clínica Bazterrica', 'Sanatorio Finochietto'],
+    obraSocialProvincial: {
+      sigla: 'ObSBA',
+      nombre: 'Obra Social de la Ciudad de Buenos Aires',
+      nota: 'La obra social de los trabajadores activos y pasivos del Gobierno de la Ciudad de Buenos Aires (Ley 472), con su propio centro de salud, el Sanatorio Méndez; no es de contratación voluntaria. Si sos afiliado y buscás cartilla premium sin restricciones, podés complementarla con una prepaga.',
+      slug: 'obsba',
+    },
     faq: [
       { q: '¿Cuál es la mejor prepaga en CABA?', a: 'En CABA casi todas las premium tienen sanatorios propios en la Ciudad: Swiss Medical, Omint, CEMIC, Medicus y el Plan Hospital Italiano lideran por infraestructura propia; OSDE por amplitud de red. La elección pasa más por precio, copago y qué sanatorio puntual te queda cerca que por falta de cobertura.' },
       { q: '¿Qué prepagas tienen sanatorio propio en CABA?', a: 'Swiss Medical (Suizo Argentina, Los Arcos, Agote), Omint (Bazterrica, Del Sol, Santa Isabel), CEMIC (Las Heras, Galván, Saavedra), Medicus (11 centros entre CABA y GBA), el Plan Hospital Italiano y Galeno (Trinidad Palermo y Mitre) son las que tienen infraestructura propia dentro de la Ciudad.' },
@@ -753,6 +766,7 @@ provinciasSEO.push(
       sigla: 'IOMA',
       nombre: 'Instituto de Obra Médico Asistencial',
       nota: 'La obra social de los empleados públicos de la provincia de Buenos Aires, una de las más grandes del país; no es de contratación voluntaria. Muchos afiliados la complementan con una prepaga para acceder a sanatorios privados sin las demoras del sistema.',
+      slug: 'ioma',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en el conurbano bonaerense?', a: 'Depende de la zona: Galeno es la única con sanatorios propios (Trinidad) en Norte, Sur y Oeste al mismo tiempo, lo que la hace pareja en toda la provincia. Swiss Medical y OSDE son fuertes en Zona Norte. Nuestro ranking pondera la cartilla real por corredor, no solo la presencia declarada.' },
@@ -812,6 +826,7 @@ provinciasSEO.push(
       sigla: 'IOSPER',
       nombre: 'Instituto de Obra Social de la Provincia de Entre Ríos',
       nota: 'La obra social de los empleados públicos entrerrianos, con más de 300.000 afiliados; no es de contratación voluntaria. Está en proceso de transformación institucional hacia una nueva entidad (OSER). Si sos afiliado y buscás cartilla privada sin restricciones, podés complementarla con una prepaga.',
+      slug: 'iosper',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Entre Ríos?', a: 'Sancor Salud y Federada Salud, ambas de fuerte tradición en el litoral, tienen la cartilla más profunda en la provincia. Swiss Medical tiene sucursal propia en Paraná con convenio en los sanatorios de referencia de la capital (Río, La Entrerriana, Rawson). Amur Salud es una alternativa regional en expansión con sucursal en Paraná. OSDE cubre, pero con red más acotada que en Santa Fe o Córdoba.' },
@@ -854,6 +869,7 @@ provinciasSEO.push(
       sigla: 'IPS',
       nombre: 'Instituto de Previsión Social de la Provincia de Misiones',
       nota: 'La obra social de los empleados públicos misioneros de los tres poderes del Estado; no es de contratación voluntaria. Tiene visitadores sanatoriales en Posadas, Eldorado, Oberá, Montecarlo, Puerto Rico y Leandro N. Além. Si sos afiliado y buscás cartilla privada sin restricciones, podés complementarla con una prepaga.',
+      slug: 'ips-misiones',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Misiones?', a: 'Sancor Salud tiene la cartilla más completa de la provincia con red publicada oficialmente. Galeno suma sucursal propia en Posadas. OSDE y Prevención Salud completan la oferta, más acotada que en provincias vecinas. Verificá siempre si el plan cubre Sanatorio Boratti o Sanatorio Camino, las dos referencias de la capital.' },
@@ -896,6 +912,7 @@ provinciasSEO.push(
       sigla: 'INSSSEP',
       nombre: 'Instituto de Seguridad Social, Seguros y Préstamos',
       nota: 'La obra social de los empleados de la Administración Pública provincial y municipal del Chaco, con más de 65 años de historia; no es de contratación voluntaria. Si sos afiliado y buscás cartilla privada sin restricciones, podés complementarla con una prepaga.',
+      slug: 'insssep',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Chaco?', a: 'Sancor Salud tiene la cartilla más completa con red publicada oficialmente. Galeno y Prevención Salud suman oficina propia en Resistencia. OSDE completa la oferta. El mercado chaqueño tiene menos jugadores que el centro del país: comparar las opciones disponibles pesa más antes de contratar.' },
@@ -935,6 +952,7 @@ provinciasSEO.push(
       sigla: 'IOSCOR',
       nombre: 'Instituto de Obra Social de Corrientes',
       nota: 'La obra social de los empleados públicos correntinos; no es de contratación voluntaria. Si sos afiliado y buscás cartilla privada sin restricciones, podés complementarla con una prepaga.',
+      slug: 'ioscor',
     },
     faq: [
       { q: '¿Cuál es la mejor prepaga en Corrientes?', a: 'OSDE es la única con filial propia y cartilla oficial publicada en la provincia. Sancor Salud tiene también cartilla provincial publicada y buena relación precio/cartilla. Prevención Salud completa una oferta más acotada que en el centro del país.' },
