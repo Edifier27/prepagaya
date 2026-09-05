@@ -38,7 +38,7 @@ export const REFERENCIA_POR_ZONA: Record<string, string[]> = {
   // no muestre el mismo centro dos veces con redacción distinta. Para mostrar
   // en el popup se usa REFERENCIA_GBA_SUBZONAS, agrupada.
   'buenos-aires': [
-    'Hospital Universitario Austral (Pilar)', 'Clínica Espora (Quilmes)', 'Clínica Monte Grande',
+    'Clínica Espora (Quilmes)', 'Clínica Monte Grande',
     'DIM (Diagnóstico e Imágenes Médicas)', 'CEPEM',
     'Sanatorio Central Emhsa (Mar del Plata)', 'Hospital Privado de Comunidad (Mar del Plata)',
     'Sanatorio Tandil',
@@ -470,26 +470,42 @@ export interface SanatorioReferenciaResult {
 // buscador no devuelva "no encontrado" en sanatorios reales que ya
 // identificamos pero no tenemos mapeados a un plan puntual. Se muestra
 // siempre con la aclaración de "confirmá con la prepaga" — nunca como
-// planesQueLoCubren. No duplica resultados ya presentes en `sanatorios`.
+// planesQueLoCubren.
+//
+// Si la búsqueda ya matcheó algo verificado (buscarSanatorio, con plan y
+// precio real), no mostramos referencia para la misma consulta: mostrar un
+// "no verificado, confirmá con la prepaga" al lado de un resultado con datos
+// reales y precisos del mismo lugar (con nombre apenas distinto, ej.
+// "Hospital Austral" vs "Hospital Universitario Austral") confunde más de lo
+// que ayuda.
 export function buscarSanatorioReferencia(query: string): SanatorioReferenciaResult[] {
   const q = query.toLowerCase().trim()
   if (q.length < 2) return []
-  const yaVerificados = new Set(buscarSanatorio(query).map((s) => s.nombre.toLowerCase()))
+  if (buscarSanatorio(query).length > 0) return []
+
   const resultados: SanatorioReferenciaResult[] = []
   const yaAgregados = new Set<string>()
 
-  for (const prov of provinciasSEO) {
-    for (const loc of prov.localidades) {
-      for (const nombre of loc.prestadores) {
-        const key = nombre.toLowerCase()
-        if (nombre.toLowerCase().includes(q) && !yaVerificados.has(key) && !yaAgregados.has(key)) {
-          yaAgregados.add(key)
-          resultados.push({
-            nombre,
-            zonaKey: loc.slug,
-            zonaNombre: `${loc.nombre.split(' (')[0]}, ${prov.nombre}`,
-            href: `/prepagas/${prov.slug}/${loc.slug}`,
-          })
+  // Dos pasadas: primero localidades puntuales (partido/barrio), recién
+  // después los hubs de zona ('zona-norte'/'zona-sur'/'zona-oeste') — así un
+  // mismo prestador listado en ambos niveles linkea siempre al más
+  // específico, no al hub genérico que aparece antes en el array.
+  const esHub = (slug: string) => slug.startsWith('zona-')
+  for (const soloHubs of [false, true]) {
+    for (const prov of provinciasSEO) {
+      for (const loc of prov.localidades) {
+        if (esHub(loc.slug) !== soloHubs) continue
+        for (const nombre of loc.prestadores) {
+          const key = nombre.toLowerCase()
+          if (nombre.toLowerCase().includes(q) && !yaAgregados.has(key)) {
+            yaAgregados.add(key)
+            resultados.push({
+              nombre,
+              zonaKey: loc.slug,
+              zonaNombre: `${loc.nombre.split(' (')[0]}, ${prov.nombre}`,
+              href: `/prepagas/${prov.slug}/${loc.slug}`,
+            })
+          }
         }
       }
     }
@@ -498,7 +514,7 @@ export function buscarSanatorioReferencia(query: string): SanatorioReferenciaRes
   for (const [zonaKey, nombres] of Object.entries(REFERENCIA_POR_ZONA)) {
     for (const nombre of nombres) {
       const key = nombre.toLowerCase()
-      if (nombre.toLowerCase().includes(q) && !yaVerificados.has(key) && !yaAgregados.has(key)) {
+      if (nombre.toLowerCase().includes(q) && !yaAgregados.has(key)) {
         yaAgregados.add(key)
         resultados.push({ nombre, zonaKey, zonaNombre: ZONA_NOMBRE[zonaKey] ?? zonaKey, href: `/prepagas/${zonaKey}` })
       }
