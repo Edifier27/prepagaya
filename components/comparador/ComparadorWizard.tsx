@@ -76,8 +76,8 @@ for (const prov of provinciasSEO) {
   ZONA_PREPAGAS[prov.zonaKey] = prov.prepagas.filter((pz) => pz.enSitio).map((pz) => pz.slug)
 }
 
-interface Provincia { slug: string; nombre: string; zonaKey: string }
-const PROVINCIAS: Provincia[] = [
+export interface Provincia { slug: string; nombre: string; zonaKey: string }
+export const PROVINCIAS: Provincia[] = [
   { slug: 'caba',         nombre: 'CABA',                    zonaKey: 'caba' },
   { slug: 'buenos-aires', nombre: 'Buenos Aires (GBA/Pcia)', zonaKey: 'buenos-aires' },
   { slug: 'cordoba',      nombre: 'Córdoba',                 zonaKey: 'cordoba' },

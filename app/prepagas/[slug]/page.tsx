@@ -6,6 +6,7 @@ import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getCambiosPorOrigen } from '@/lib/data/cambios'
 import { obrasSociales } from '@/lib/data/obras-sociales'
+import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -145,7 +146,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
   const precioMax = Math.max(...prep.planes.map(pl => pl.precio))
   const planEstrella = prep.planes.find(pl => pl.destacado) ?? planesOrdenados[0]
-  const otrosPlanes = planesOrdenados.filter(pl => pl.slug !== planEstrella.slug)
+  // Los planes que comparten cartilla real van pegados en vez de ordenados
+  // solo por precio (hoy solo hay data cargada para Swiss Medical).
+  const otrosPlanes = ordenarPorCartilla(prep.slug, planesOrdenados).filter(pl => pl.slug !== planEstrella.slug)
   const testisPrepaga = testimonios.filter(t => t.prepagaSlug === prep.slug).slice(0, 2)
   const perfiles = getPerfilesIdeales(prep, precioMin)
   const faqs = buildFAQs(prep, precioMin, precioMax, planEstrella)
@@ -371,17 +374,19 @@ export default async function PrepagaSlugPage({ params }: Props) {
           {/* Otros planes */}
           {otrosPlanes.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {otrosPlanes.map((plan) => (
+              {otrosPlanes.map((plan) => {
+                const grupoCartilla = getGrupoCartilla(prep.slug, plan.slug)
+                return (
                 <div
                   key={plan.slug}
-                  className="group bg-white rounded-xl border border-gray-200 p-4 hover:border-red-200 hover:shadow-sm transition-all"
+                  className="group bg-white rounded-xl border border-gray-200 p-4 hover:border-red-200 hover:shadow-sm transition-all h-full flex flex-col"
                 >
-                  <Link href={`/prepagas/${slug}/${plan.slug}`} className="block">
+                  <Link href={`/prepagas/${slug}/${plan.slug}`} className="block flex-1">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
                         <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">{plan.nombre}</div>
-                        <div className="text-xs text-gray-500 mt-0.5 leading-snug line-clamp-2">{plan.descripcion}</div>
-                        <div className="flex gap-1.5 mt-2">
+                        <div className="text-xs text-gray-500 mt-0.5 leading-snug line-clamp-2 min-h-[2.5em]">{plan.descripcion}</div>
+                        <div className="flex gap-1.5 mt-2 flex-wrap">
                           <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
                             plan.copago ? 'bg-gray-100 text-gray-500' : 'bg-green-50 text-green-700'
                           }`}>
@@ -392,6 +397,11 @@ export default async function PrepagaSlugPage({ params }: Props) {
                           }`}>
                             Red {plan.redAbierta ? 'abierta' : 'cerrada'}
                           </span>
+                          {grupoCartilla && (
+                            <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold bg-red-50 text-[#E8002D]">
+                              {grupoCartilla.nombre}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="flex-shrink-0">
@@ -413,7 +423,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     />
                   </div>
                 </div>
-              ))}
+              )})}
             </div>
           )}
 

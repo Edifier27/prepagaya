@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
+import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -133,11 +134,12 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
   const { cartilla, provincia } = await searchParams
   const abrirCartilla = cartilla === '1'
-  // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba"), usar
-  // la cartilla verificada de esa provincia en vez del default AMBA.
+  // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba") ya
+  // sabemos la provincia. Si no, CartillaModalTrigger pregunta una vez (o usa
+  // la última guardada) en vez de asumir Buenos Aires por default.
   const provDelLink = provincia ? getProvinciaSEO(provincia) : undefined
-  const zonaKeyCartilla = provDelLink?.zonaKey ?? 'buenos-aires'
-  const provinciaNombreCartilla = provDelLink?.nombre ?? 'Buenos Aires (AMBA)'
+  const zonaKeyCartilla = provDelLink?.zonaKey
+  const provinciaNombreCartilla = provDelLink?.nombre
 
   const isPartner = ['swiss-medical', 'sancor-salud', 'premedic'].includes(slug)
 
@@ -145,7 +147,9 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const planIdx = planesOrdenados.findIndex(p => p.slug === planSlug)
   const planInferior = planIdx > 0 ? planesOrdenados[planIdx - 1] : null
   const planSuperior = planIdx < planesOrdenados.length - 1 ? planesOrdenados[planIdx + 1] : null
-  const otrosPlanes = planesOrdenados.filter(pl => pl.slug !== planSlug)
+  const otrosPlanes = ordenarPorCartilla(slug, planesOrdenados).filter(pl => pl.slug !== planSlug)
+  const planMenosCopagoSlug = getPlanMenosCopago(slug, planSlug, prep.planes)
+  const planMenosCopago = planMenosCopagoSlug ? prep.planes.find((p) => p.slug === planMenosCopagoSlug) : undefined
 
   const perfilDelPlan = getPerfilDelPlan(plan)
   const faqs = buildPlanFAQs(plan, prep)
@@ -325,6 +329,28 @@ export default async function PlanPage({ params, searchParams }: Props) {
         </div>
       </section>
 
+      {/* Sugerencia: mismo grupo de cartilla, sin copago */}
+      {planMenosCopago && (
+        <section className="py-8 bg-gray-50 border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <Link
+              href={`/prepagas/${slug}/${planMenosCopago.slug}`}
+              className="group flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white border-2 border-[#E8002D] rounded-2xl p-5 hover:shadow-sm transition-all"
+            >
+              <div>
+                <div className="text-xs font-bold text-[#E8002D] mb-1">¿Buscás menos copago?</div>
+                <div className="text-sm text-gray-700">
+                  El <span className="font-semibold text-gray-900">{planMenosCopago.nombre}</span> tiene la misma cartilla que el {plan.nombre}, sin copago.
+                </div>
+              </div>
+              <span className="flex-shrink-0 inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors whitespace-nowrap">
+                Ver {planMenosCopago.nombre} →
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* Comparar con planes adyacentes */}
       {(planInferior || planSuperior) && (
         <section className="py-10 bg-white border-t border-gray-100">
@@ -410,17 +436,22 @@ export default async function PlanPage({ params, searchParams }: Props) {
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Otros planes de {prep.nombre}</h2>
           <div className="space-y-2">
-            {otrosPlanes.map((pl) => (
+            {otrosPlanes.map((pl) => {
+              const grupoCartilla = getGrupoCartilla(slug, pl.slug)
+              return (
               <Link
                 key={pl.slug}
                 href={`/prepagas/${slug}/${pl.slug}`}
                 className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group"
               >
                 <div>
-                  <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm flex items-center gap-2">
+                  <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm flex items-center gap-2 flex-wrap">
                     {pl.nombre}
                     {pl.destacado && (
                       <span className="text-[10px] bg-[#E8002D] text-white px-2 py-0.5 rounded-full font-bold">MÁS ELEGIDO</span>
+                    )}
+                    {grupoCartilla && (
+                      <span className="text-[10px] bg-red-50 text-[#E8002D] px-2 py-0.5 rounded-full font-bold">{grupoCartilla.nombre}</span>
                     )}
                   </div>
                   <div className="text-xs text-gray-400 mt-0.5">
@@ -432,7 +463,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
                   <span className="text-xs text-gray-400">→</span>
                 </div>
               </Link>
-            ))}
+            )})}
           </div>
           <div className="mt-4">
             <Link href={`/prepagas/${slug}`} className="text-sm text-[#E8002D] font-semibold hover:underline">
