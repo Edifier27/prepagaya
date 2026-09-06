@@ -7,6 +7,7 @@ import { sanatorios } from '@/lib/data/sanatorios'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -139,22 +140,28 @@ export default async function CartillaPrepagaPage({ params }: Props) {
             {prep.sanatoriosPropios > 0 ? ` y ${prep.sanatoriosPropios} centros propios` : ' con sanatorios por convenio'}.
             Acá te contamos qué incluye su cartilla, cómo consultarla online y qué plan necesitás para acceder a cada sanatorio.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={info.urlCartilla}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="flex flex-wrap items-center gap-3 mb-3">
+            <ContratarPlanButton
+              prepagaNombre={prep.nombre}
+              fuente="cartilla-prepaga"
+              label={`Cotizar ${prep.nombre}`}
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-            >
-              Ver cartilla oficial ↗
-            </a>
+            />
             <Link
               href={`/prepagas/${prep.slug}`}
               className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-600 font-semibold rounded-xl transition-all text-sm"
             >
-              Planes y precios de {prep.nombre} →
+              Ver planes y precios →
             </Link>
           </div>
+          <a
+            href={info.urlCartilla}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            ¿Preferís confirmarlo vos mismo? Mirá la cartilla oficial de {prep.nombre} ↗
+          </a>
         </div>
       </section>
 

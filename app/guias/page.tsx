@@ -62,6 +62,22 @@ export default function GuiasPage() {
           ))}
         </div>
       </section>
+
+      {/* CTA de cierre */}
+      <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] py-6">
+        <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
+          <div>
+            <div className="text-white font-bold">¿Ya sabés qué buscás? Cotizá directo</div>
+            <div className="text-red-200 text-xs">Precio exacto según tu edad y zona. Gratis, sin registro y sin DNI.</div>
+          </div>
+          <Link
+            href="/comparador"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors shadow-sm"
+          >
+            Cotizar gratis en 2 minutos →
+          </Link>
+        </div>
+      </div>
     </>
   )
 }

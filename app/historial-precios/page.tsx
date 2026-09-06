@@ -269,7 +269,7 @@ export default function HistorialPreciosPage(): React.ReactElement {
             Compará los precios actuales de todas las prepagas con tu edad real y encontrá el plan que mejor se ajusta a tu presupuesto.
           </p>
           <Link
-            href="/"
+            href="/comparador"
             className="inline-flex items-center justify-center font-semibold rounded-lg px-7 py-3.5 text-base bg-[#00875A] text-white hover:bg-[#006644] transition-colors shadow-sm"
           >
             Ver precios actualizados y cotizá

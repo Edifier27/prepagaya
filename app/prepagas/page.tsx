@@ -162,6 +162,22 @@ export default function PrepagasPage() {
         </div>
       </section>
 
+      {/* CTA cotizador */}
+      <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] py-6">
+        <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
+          <div>
+            <div className="text-white font-bold">¿Ya viste las {prepagas.length}? Ahora comparalas con tu precio real</div>
+            <div className="text-red-200 text-xs">Precio exacto según tu edad y zona. Gratis, sin registro y sin DNI.</div>
+          </div>
+          <Link
+            href="/comparador"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors shadow-sm"
+          >
+            Cotizar gratis en 2 minutos →
+          </Link>
+        </div>
+      </div>
+
       {/* Silo SEO local: hubs provinciales */}
       <section className="py-12 border-t border-gray-100">
         <div className="container">
@@ -189,7 +205,7 @@ export default function PrepagasPage() {
           </p>
           <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">¿Cómo elegir la mejor prepaga?</h3>
           <p className="text-gray-600 leading-relaxed">
-            Para elegir la prepaga adecuada debés considerar: tu presupuesto mensual, la red de prestadores disponible en tu zona, el tipo de cobertura que necesitás (individual, familiar, maternidad), y la calidad de atención. Usá nuestro comparador para analizar todas las opciones de forma simultánea.
+            Para elegir la prepaga adecuada debés considerar: tu presupuesto mensual, la red de prestadores disponible en tu zona, el tipo de cobertura que necesitás (individual, familiar, maternidad), y la calidad de atención. Usá <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">nuestro comparador</Link> para analizar todas las opciones de forma simultánea.
           </p>
         </div>
       </section>

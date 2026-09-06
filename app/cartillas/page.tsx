@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
 import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
 export const metadata: Metadata = {
   title: 'Cartillas Médicas por Prepaga Argentina 2026 — PrepagaYa',
@@ -214,31 +215,26 @@ export default function CartillasPage(): React.ReactElement {
 
                 {/* Footer de card */}
                 <div className="px-6 pb-6 flex flex-col gap-2">
-                  <a
-                    href={c.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <ContratarPlanButton
+                    prepagaNombre={c.nombre}
+                    fuente="cartillas-grilla"
+                    label={`Cotizar ${c.nombre}`}
                     className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-semibold rounded-xl text-sm transition-colors"
-                  >
-                    Abrir cartilla oficial
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                      <path d="M15 3h6v6" />
-                      <path d="M10 14L21 3" />
-                    </svg>
-                  </a>
+                  />
                   <Link
                     href={`/cartillas/${c.slug}`}
                     className="flex items-center justify-center gap-2 w-full py-2.5 bg-white border border-red-100 text-[#E8002D] hover:bg-red-50 font-semibold rounded-xl text-sm transition-colors"
                   >
                     Guía de la cartilla {c.nombre} →
                   </Link>
-                  <Link
-                    href={`/prepagas/${c.slug}`}
-                    className="text-center text-sm font-medium text-[#E8002D] hover:underline"
+                  <a
+                    href={c.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-center text-xs text-gray-400 hover:text-gray-600 transition-colors"
                   >
-                    Ver planes y precios →
-                  </Link>
+                    ¿Preferís confirmarlo vos mismo? Cartilla oficial ↗
+                  </a>
                 </div>
               </div>
             ))}

@@ -6,6 +6,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
 // ─── Tramos etarios (multiplicadores sobre precio base 30 años) ───────────────
 // Basados en cuadros tarifarios promedio del mercado. Los valores reales varían
@@ -111,6 +112,25 @@ export function CalculadoraEdad() {
           </div>
         </div>
       </div>
+
+      {/* ── CTA contextual con el resultado ────────────────────────────────── */}
+      {planes[0] && (
+        <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-5 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div className="text-white font-bold text-sm">
+              A los {edad} años, {planes[0].prepaga.nombre} {planes[0].plan.nombre} te sale desde {formatPrecio(planes[0].precioAjustado)}/mes
+            </div>
+            <div className="text-red-200 text-xs">Este es un valor estimado. ¿Querés el precio exacto para tu zona y grupo familiar?</div>
+          </div>
+          <ContratarPlanButton
+            prepagaNombre={planes[0].prepaga.nombre}
+            planNombre={planes[0].plan.nombre}
+            fuente="calculadora-edad"
+            label="Cotizar mi precio exacto"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors shadow-sm whitespace-nowrap"
+          />
+        </div>
+      )}
 
       {/* ── Toggle simulador ───────────────────────────────────────────────── */}
       <button

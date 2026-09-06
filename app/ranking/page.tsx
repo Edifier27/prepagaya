@@ -167,13 +167,13 @@ export default function RankingPage() {
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-8 text-white text-center">
-          <h2 className="text-2xl font-bold mb-3">¿Querés comparar en detalle?</h2>
-          <p className="text-blue-100 mb-6">
-            Analizá planes, precios y coberturas de cada prepaga side by side.
+          <h2 className="text-2xl font-bold mb-3">¿Cuál de este ranking te conviene a vos?</h2>
+          <p className="text-red-100 mb-6">
+            El ranking es general — tu precio exacto depende de tu edad, tu zona y tu grupo familiar. Cotizalo gratis.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button href="/prepagas" variant="secondary" size="lg">
-              Comparar prepagas
+            <Button href="/comparador" variant="secondary" size="lg">
+              Cotizar gratis en 2 minutos →
             </Button>
             <Button href="/comparativas" variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
               Ver comparativas

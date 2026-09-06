@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { sanatoriosDePlan, REFERENCIA_POR_ZONA, REFERENCIA_GBA_SUBZONAS, SMG_CENTER_NOTA } from '@/lib/data/sanatorios'
 import { getCartillaInfo } from '@/lib/data/cartillas'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import type { Plan, Prepaga } from '@/types'
 
 interface Props {
@@ -145,10 +146,18 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
           )}
 
           <div className="pt-4 border-t border-gray-100">
+            <ContratarPlanButton
+              prepagaNombre={prepaga.nombre}
+              planNombre={plan.nombre}
+              fuente="cartilla-modal"
+              label="Cotizar este plan"
+              className="w-full mb-4 inline-flex items-center justify-center gap-2 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors"
+            />
             <p className="text-xs text-gray-500 mb-2">¿Querés ver el detalle completo?</p>
             <Link
               href={`/cartillas/${prepaga.slug}`}
               className="text-sm font-semibold text-[#E8002D] hover:underline"
+              onClick={onClose}
             >
               Guía de cartilla de {prepaga.nombre} →
             </Link>
@@ -159,7 +168,7 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
                 rel="noopener noreferrer"
                 className="block text-xs text-gray-400 hover:text-gray-600 mt-1.5 transition-colors"
               >
-                Ver cartilla oficial en la web de {prepaga.nombre} ↗
+                ¿Preferís confirmarlo vos mismo? Cartilla oficial de {prepaga.nombre} ↗
               </a>
             )}
           </div>
