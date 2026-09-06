@@ -8,7 +8,7 @@ import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, whatsappLink } from '@/lib/utils'
+import { formatPrecio, whatsappLink, calidadPlan } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -132,16 +132,6 @@ function testimonioDePlan(prepagaSlug: string, planNombre: string) {
     )
   )
   return exacto ?? delaPrepaga[0]
-}
-
-// La calidad de cartilla mostrada en cada card parte de calidadCartilla de la
-// prepaga (red de prestadores) y se ajusta por plan: red cerrada y copago son
-// las señales de una cartilla más acotada dentro de la misma prepaga.
-function calidadPlan(prep: Prepaga, plan: Plan): number {
-  let score = prep.calidadCartilla
-  if (!plan.redAbierta) score -= 1
-  if (plan.copago) score -= 1
-  return Math.max(1, Math.min(5, Math.round(score)))
 }
 
 // La cobertura se evalúa A NIVEL PLAN (no prepaga): un filtro solo muestra los

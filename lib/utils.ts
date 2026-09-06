@@ -1,9 +1,20 @@
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import type { NivelPrecio } from '@/lib/data/prepagas'
+import type { Prepaga, Plan } from '@/types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
+}
+
+// Calidad de cartilla a nivel plan: parte de calidadCartilla de la prepaga
+// (red de prestadores) y se ajusta por plan — red cerrada y copago son las
+// señales de una cartilla más acotada dentro de la misma prepaga.
+export function calidadPlan(prep: Prepaga, plan: Plan): number {
+  let score = prep.calidadCartilla
+  if (!plan.redAbierta) score -= 1
+  if (plan.copago) score -= 1
+  return Math.max(1, Math.min(5, Math.round(score)))
 }
 
 export const NIVEL_PRECIO_LABEL: Record<NivelPrecio, { simbolo: string; label: string }> = {
