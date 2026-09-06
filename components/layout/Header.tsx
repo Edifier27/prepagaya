@@ -36,14 +36,14 @@ const zonasMenu = provinciasSEO.map((p) => ({
 // Medical, Sancor, Galeno y Medifé son prepagas para el usuario del sitio —
 // aunque tengan una rama registrada como obra social, no van en este menú.
 const obrasSocialesMenu = [
-  { href: '/obras-sociales/pami',            label: 'PAMI',               Icon: MiniElder },
-  { href: '/obras-sociales/ioma',            label: 'IOMA (Buenos Aires)', Icon: MiniBuilding },
   { href: '/obras-sociales/apross',          label: 'APROSS (Córdoba)',   Icon: MiniBuilding },
   { href: '/obras-sociales/obsba',           label: 'ObSBA (CABA)',       Icon: MiniBuilding },
   { href: '/obras-sociales/osecac',          label: 'OSECAC',             Icon: MiniLeaf },
   { href: '/obras-sociales/iosfa',           label: 'IOSFA',              Icon: MiniCross },
   { href: '/obras-sociales/osdepym',         label: 'OSDEPYM',            Icon: MiniBuilding },
   { href: '/obras-sociales/ospoce',          label: 'OSPOCE',             Icon: MiniBuilding },
+  { href: '/obras-sociales/pami',            label: 'PAMI',               Icon: MiniElder },
+  { href: '/obras-sociales/ioma',            label: 'IOMA (Buenos Aires)', Icon: MiniBuilding },
 ]
 
 const herramientasMenu = [
