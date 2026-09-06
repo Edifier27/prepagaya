@@ -546,6 +546,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [activeCobs, setActiveCobs] = useState<Set<CobId>>(new Set())
   const [copago, setCopago] = useState<Copago>(null)
   const [sortBy, setSortBy] = useState<'relevancia' | 'precio-asc' | 'precio-desc'>('relevancia')
+  const [filtrosMenuOpen, setFiltrosMenuOpen] = useState(false)
 
   // Plan access
   const [planAccedido, setPlanAccedido] = useState<string | null>(null)
@@ -1178,29 +1179,141 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
 
           {/* Mobile filter chips — sticky bajo el header para no perderlos al scrollear */}
           <div className="lg:hidden sticky top-16 z-30 bg-white/95 backdrop-blur border-b border-gray-100 pt-2 relative">
-            <div className="flex gap-2 overflow-x-auto pb-2 mb-2 scroll-smooth" style={{ scrollbarWidth: 'none' }}>
-            {([
-              { id: 'sin-copago', label: 'Sin copago', type: 'copago' },
-              { id: 'con-copago', label: 'Con copago', type: 'copago' },
-              ...COBS.map(c => ({ id: c.id, label: c.label, type: 'cob' }))
-            ]).map((f) => {
-              const on = f.type === 'copago' ? copago === f.id : activeCobs.has(f.id as CobId)
-              return (
-                <button key={f.id} onClick={() => {
-                  if (f.type === 'copago') setCopago(copago === (f.id as Copago) ? null : (f.id as Copago))
-                  else toggleCob(f.id as CobId)
-                }}
-                  className={`flex-shrink-0 text-xs px-3 py-1.5 rounded-full font-semibold border transition-all ${
-                    on ? 'bg-[#E8002D] text-white border-[#E8002D]' : 'bg-white text-gray-600 border-gray-200'
-                  }`}>
-                  {on ? '✓ ' : ''}{f.label}
-                </button>
-              )
-            })}
+            <div className="flex gap-2 items-start">
+              {/* "Oreja" — abre el menú completo de filtros (orden + coberturas) */}
+              <button
+                onClick={() => setFiltrosMenuOpen(true)}
+                aria-label="Abrir filtros"
+                className={`relative flex-shrink-0 flex items-center justify-center w-9 h-9 mb-2 rounded-full border transition-all ${
+                  (activeCobs.size > 0 || copago) ? 'bg-[#E8002D] border-[#E8002D] text-white' : 'bg-white border-gray-200 text-gray-600'
+                }`}>
+                <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                  <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 01.8 1.6l-4.6 6.13V16a1 1 0 01-.5.87l-3 1.71A1 1 0 017.2 17.8v-7.07L2.6 4.6A1 1 0 013 3z" clipRule="evenodd" />
+                </svg>
+                {(activeCobs.size + (copago ? 1 : 0)) > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-white border border-[#E8002D] text-[#E8002D] text-[9px] font-bold flex items-center justify-center">
+                    {activeCobs.size + (copago ? 1 : 0)}
+                  </span>
+                )}
+              </button>
+
+              <div className="relative flex-1 min-w-0">
+                <div className="flex gap-2 overflow-x-auto pb-2 mb-2 scroll-smooth" style={{ scrollbarWidth: 'none' }}>
+                {([
+                  { id: 'sin-copago', label: 'Sin copago', type: 'copago' },
+                  { id: 'con-copago', label: 'Con copago', type: 'copago' },
+                  ...COBS.map(c => ({ id: c.id, label: c.label, type: 'cob' }))
+                ]).map((f) => {
+                  const on = f.type === 'copago' ? copago === f.id : activeCobs.has(f.id as CobId)
+                  return (
+                    <button key={f.id} onClick={() => {
+                      if (f.type === 'copago') setCopago(copago === (f.id as Copago) ? null : (f.id as Copago))
+                      else toggleCob(f.id as CobId)
+                    }}
+                      className={`flex-shrink-0 text-xs px-3 py-1.5 rounded-full font-semibold border transition-all ${
+                        on ? 'bg-[#E8002D] text-white border-[#E8002D]' : 'bg-white text-gray-600 border-gray-200'
+                      }`}>
+                      {on ? '✓ ' : ''}{f.label}
+                    </button>
+                  )
+                })}
+                </div>
+                {/* Fade a la derecha: indica que hay mas chips para scrollear */}
+                <div className="pointer-events-none absolute right-0 top-2 bottom-2 w-10 bg-gradient-to-l from-white via-white/90 to-transparent" />
+              </div>
             </div>
-            {/* Fade a la derecha: indica que hay mas chips para scrollear */}
-            <div className="pointer-events-none absolute right-0 top-2 bottom-2 w-10 bg-gradient-to-l from-white via-white/90 to-transparent" />
           </div>
+
+          {/* Menú completo de filtros — bottom sheet mobile */}
+          {filtrosMenuOpen && (
+            <div className="lg:hidden fixed inset-0 z-[70] flex items-end justify-center" onClick={(e) => { if (e.target === e.currentTarget) setFiltrosMenuOpen(false) }}>
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+              <div className="relative bg-white rounded-t-3xl shadow-2xl w-full max-h-[85vh] flex flex-col">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 flex-shrink-0">
+                  <div className="text-base font-bold text-gray-900">Filtros</div>
+                  <button onClick={() => setFiltrosMenuOpen(false)} aria-label="Cerrar" className="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-5 h-5">
+                      <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="overflow-y-auto p-5 space-y-5">
+                  {/* Ordenar por */}
+                  <div>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Ordenar por</p>
+                    <div className="space-y-0.5">
+                      {([
+                        { id: 'relevancia', label: 'Relevancia' },
+                        { id: 'precio-asc', label: 'Menor precio' },
+                        { id: 'precio-desc', label: 'Mayor precio' },
+                      ] as { id: typeof sortBy; label: string }[]).map((opt) => (
+                        <button key={opt.id} onClick={() => setSortBy(opt.id)}
+                          className={`w-full text-left text-sm px-3 py-2 rounded-xl transition-all font-medium ${
+                            sortBy === opt.id ? 'bg-red-50 text-[#E8002D]' : 'text-gray-600 hover:bg-gray-50'
+                          }`}>
+                          {sortBy === opt.id && <span className="mr-1">·</span>}{opt.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Tipo de consulta */}
+                  <div>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Tipo de consulta</p>
+                    <div className="space-y-2.5">
+                      {([
+                        { id: 'sin-copago', label: 'Sin copago' },
+                        { id: 'con-copago', label: 'Con copago' },
+                      ] as { id: Copago; label: string }[]).map((opt) => (
+                        <label key={String(opt.id)} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => setCopago(copago === opt.id ? null : opt.id)}>
+                          <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                            copago === opt.id ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                          }`}>
+                            {copago === opt.id && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                          </div>
+                          <span className={`text-sm font-medium transition-colors ${copago === opt.id ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{opt.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Coberturas */}
+                  <div>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Me interesa incluir</p>
+                    <div className="space-y-2.5">
+                      {COBS.map((cob) => {
+                        const on = activeCobs.has(cob.id)
+                        return (
+                          <label key={cob.id} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => toggleCob(cob.id)}>
+                            <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                              on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                            }`}>
+                              {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                            </div>
+                            <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{cob.label}</span>
+                          </label>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 px-5 py-4 border-t border-gray-100 flex-shrink-0">
+                  {(activeCobs.size > 0 || copago) && (
+                    <button onClick={() => { setActiveCobs(new Set()); setCopago(null) }}
+                      className="text-sm text-gray-500 font-semibold hover:text-gray-700">
+                      Limpiar
+                    </button>
+                  )}
+                  <button onClick={() => setFiltrosMenuOpen(false)}
+                    className="flex-1 bg-[#E8002D] text-white text-sm font-bold rounded-xl py-3 hover:bg-[#C4001F] transition-colors">
+                    Ver {resultadosFiltrados.length} resultado{resultadosFiltrados.length !== 1 ? 's' : ''}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Asesoramiento inmediato */}
           <a
@@ -1490,6 +1603,14 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
 
       {tablaComparativa && (() => {
         const seleccionados = allResultados.filter((r) => comparando.has(`${r.prepaga.slug}-${r.plan.slug}`))
+        // Entre los planes que el usuario eligió comparar, destacamos el de mejor
+        // score (mismo criterio que ordena los resultados) para que la persona
+        // tenga una recomendación clara además de la comparación cruda.
+        const mejor = seleccionados.length > 1
+          ? seleccionados.reduce((best, r) => (r.score > best.score ? r : best), seleccionados[0])
+          : null
+        const mejorKey = mejor ? `${mejor.prepaga.slug}-${mejor.plan.slug}` : null
+        const celda = (r: Resultado) => `${r.prepaga.slug}-${r.plan.slug}` === mejorKey ? 'bg-red-50/60' : ''
         return (
           <div
             className="fixed inset-0 z-[60] flex items-center justify-center p-4"
@@ -1510,19 +1631,38 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   <thead>
                     <tr>
                       <th className="text-left text-xs text-gray-400 font-semibold pb-3 pr-3 align-bottom">&nbsp;</th>
-                      {seleccionados.map((r) => (
-                        <th key={`${r.prepaga.slug}-${r.plan.slug}`} className="text-left pb-3 px-3 align-bottom min-w-[160px]">
-                          <div className="font-bold text-gray-900">{r.prepaga.nombre}</div>
-                          <div className="text-xs text-gray-500">{r.plan.nombre}</div>
-                        </th>
-                      ))}
+                      {seleccionados.map((r) => {
+                        const key = `${r.prepaga.slug}-${r.plan.slug}`
+                        const esMejor = key === mejorKey
+                        return (
+                          <th key={key} className={`text-left pb-3 px-3 pt-3 align-bottom min-w-[160px] rounded-t-xl ${celda(r)}`}>
+                            {esMejor && (
+                              <div className="text-[10px] font-bold text-[#E8002D] uppercase tracking-wide mb-1 flex items-center gap-1">
+                                <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                Recomendado
+                              </div>
+                            )}
+                            <div className="font-bold text-gray-900">{r.prepaga.nombre}</div>
+                            <div className="text-xs text-gray-500">{r.plan.nombre}</div>
+                          </th>
+                        )
+                      })}
                     </tr>
                   </thead>
                   <tbody className="text-gray-700">
                     <tr className="border-t border-gray-100">
+                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Precio aprox.</td>
+                      {seleccionados.map((r) => (
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-precioaprox`} className={`py-3 px-3 ${celda(r)}`}>
+                          <span className="font-bold text-gray-900">{formatPrecio(precioFinal(r.precioDesc))}</span>
+                          <span className="text-[10px] text-gray-400">/mes</span>
+                        </td>
+                      ))}
+                    </tr>
+                    <tr className="border-t border-gray-100">
                       <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Nivel de precio</td>
                       {seleccionados.map((r) => (
-                        <td key={`${r.prepaga.slug}-${r.plan.slug}-precio`} className="py-3 px-3">
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-precio`} className={`py-3 px-3 ${celda(r)}`}>
                           <NivelPrecioBadge nivel={nivelPrecio(r.plan.precio)} />
                         </td>
                       ))}
@@ -1530,13 +1670,13 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     <tr className="border-t border-gray-100">
                       <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Calidad de cartilla</td>
                       {seleccionados.map((r) => (
-                        <td key={`${r.prepaga.slug}-${r.plan.slug}-calidad`} className="py-3 px-3">{calidadPlan(r.prepaga, r.plan)}/5</td>
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-calidad`} className={`py-3 px-3 ${celda(r)}`}>{calidadPlan(r.prepaga, r.plan)}/5</td>
                       ))}
                     </tr>
                     <tr className="border-t border-gray-100">
                       <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Copago</td>
                       {seleccionados.map((r) => (
-                        <td key={`${r.prepaga.slug}-${r.plan.slug}-copago`} className="py-3 px-3">
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-copago`} className={`py-3 px-3 ${celda(r)}`}>
                           {r.plan.copago
                             ? <span className="text-amber-700">Con copago</span>
                             : <span className="text-emerald-700 font-semibold">Sin copago</span>}
@@ -1546,7 +1686,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     <tr className="border-t border-gray-100">
                       <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Red</td>
                       {seleccionados.map((r) => (
-                        <td key={`${r.prepaga.slug}-${r.plan.slug}-red`} className="py-3 px-3">{r.plan.redAbierta ? 'Abierta' : 'Cerrada'}</td>
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-red`} className={`py-3 px-3 ${celda(r)}`}>{r.plan.redAbierta ? 'Abierta' : 'Cerrada'}</td>
                       ))}
                     </tr>
                     {COBS.filter((c) => ['odontologia', 'psicologia', 'maternidad', 'urgencias', 'medicamentos', 'optica'].includes(c.id)).map((cob) => (
@@ -1555,7 +1695,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                         {seleccionados.map((r) => {
                           const incluida = checkCob(cob.id, r.plan, r.prepaga)
                           return (
-                            <td key={`${r.prepaga.slug}-${r.plan.slug}-${cob.id}`} className="py-3 px-3">
+                            <td key={`${r.prepaga.slug}-${r.plan.slug}-${cob.id}`} className={`py-3 px-3 ${celda(r)}`}>
                               {incluida
                                 ? <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-[#00875A]"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
                                 : <span className="text-gray-300">—</span>}
