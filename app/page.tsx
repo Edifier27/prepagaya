@@ -195,61 +195,51 @@ export default function HomePage(): React.ReactElement {
             <p className="text-gray-500 text-sm mt-2">Nuestras 3 prepagas partner, una para cada presupuesto: económica, intermedia y premium</p>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {prepagasRanking.slice(0, 3).map((prep, i) => {
               const planReferencia = prep.planes.find(pl => pl.destacado) ?? prep.planes[0]
               const pos = i + 1
-              const isTop3 = pos <= 3
               const medalColor =
                 pos === 1 ? 'bg-amber-400 text-white' :
                 pos === 2 ? 'bg-gray-400 text-white' :
-                pos === 3 ? 'bg-amber-700 text-white' :
-                            'bg-gray-100 text-gray-500'
+                            'bg-amber-700 text-white'
               return (
                 <Link
                   key={prep.slug}
                   href={`/prepagas/${prep.slug}`}
-                  className={`flex items-center gap-4 p-4 sm:p-5 bg-white rounded-2xl border-2 transition-all group hover:shadow-md ${
-                    isTop3 ? 'border-amber-200 hover:border-amber-400' : 'border-gray-100 hover:border-gray-200'
-                  }`}
+                  className="flex flex-col gap-3 p-5 bg-white rounded-2xl border-2 border-amber-200 hover:border-amber-400 transition-all group hover:shadow-md"
                 >
-                  {/* Posición */}
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-base font-black flex-shrink-0 ${medalColor}`}>
-                    {pos}
-                  </div>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{prep.nombre}</span>
+                  {/* Posición + nombre */}
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-base font-black flex-shrink-0 ${medalColor}`}>
+                      {pos}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors truncate">{prep.nombre}</div>
                       {TIER_PARTNER[prep.slug] && (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full border"
+                        <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full border mt-0.5"
                           style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
                           ★ OPCIÓN {TIER_PARTNER[prep.slug]}
                         </span>
                       )}
                     </div>
-                    <div className="text-xs text-gray-500 mt-0.5 truncate">{prep.planes.length} planes disponibles · {prep.satisfaccion}% satisfacción</div>
                   </div>
 
-                  {/* Satisfaction bar — desktop */}
-                  <div className="hidden sm:flex flex-col items-center gap-1 flex-shrink-0 w-28">
-                    <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                      <div className="h-full bg-[#E8002D] rounded-full" style={{ width: `${prep.satisfaccion}%` }} />
-                    </div>
-                    <span className="text-[10px] text-gray-400 font-medium">{prep.satisfaccion}% satisfacción</span>
+                  <div className="text-xs text-gray-500">{prep.planes.length} planes disponibles · {prep.satisfaccion}% satisfacción</div>
+
+                  {/* Satisfaction bar */}
+                  <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-[#E8002D] rounded-full" style={{ width: `${prep.satisfaccion}%` }} />
                   </div>
 
-                  {/* Nivel de precio */}
-                  <div className="text-right flex-shrink-0">
+                  {/* Nivel de precio + arrow */}
+                  <div className="flex items-center justify-between mt-auto pt-1">
                     <NivelPrecioBadge nivel={nivelPrecio(planReferencia.precio)} />
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"
+                      className="w-4 h-4 text-gray-300 group-hover:text-[#E8002D] transition-colors flex-shrink-0">
+                      <path d="M9 18l6-6-6-6"/>
+                    </svg>
                   </div>
-
-                  {/* Arrow */}
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"
-                    className="w-4 h-4 text-gray-300 group-hover:text-[#E8002D] transition-colors flex-shrink-0 hidden sm:block">
-                    <path d="M9 18l6-6-6-6"/>
-                  </svg>
                 </Link>
               )
             })}

@@ -1177,8 +1177,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         <div className="flex-1 min-w-0">
 
           {/* Mobile filter chips — sticky bajo el header para no perderlos al scrollear */}
-          <div className="lg:hidden sticky top-16 z-30 -mx-4 px-4 sm:mx-0 sm:px-0 bg-white/95 backdrop-blur border-b border-gray-100 pt-2">
-            <div className="flex gap-2 overflow-x-auto pb-2 mb-2" style={{ scrollbarWidth: 'none' }}>
+          <div className="lg:hidden sticky top-16 z-30 bg-white/95 backdrop-blur border-b border-gray-100 pt-2 relative">
+            <div className="flex gap-2 overflow-x-auto pb-2 mb-2 scroll-smooth" style={{ scrollbarWidth: 'none' }}>
             {([
               { id: 'sin-copago', label: 'Sin copago', type: 'copago' },
               { id: 'con-copago', label: 'Con copago', type: 'copago' },
@@ -1198,6 +1198,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               )
             })}
             </div>
+            {/* Fade a la derecha: indica que hay mas chips para scrollear */}
+            <div className="pointer-events-none absolute right-0 top-2 bottom-2 w-10 bg-gradient-to-l from-white via-white/90 to-transparent" />
           </div>
 
           {/* Asesoramiento inmediato */}

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { provinciasSEO } from '@/lib/data/zonas'
+import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { MiniBuilding, MiniLeaf, MiniElder, MiniCross } from '@/components/ui/CategoryIcon'
 
 const prepagaLinks = [
@@ -34,13 +35,17 @@ const zonasMenu = provinciasSEO.map((p) => ({
 const obrasSocialesMenu = [
   { href: '/obras-sociales/osde',            label: 'OSDE',               Icon: MiniBuilding },
   { href: '/obras-sociales/swiss-medical-os',label: 'Swiss Medical Salud', Icon: MiniCross },
-  { href: '/obras-sociales/pami',            label: 'PAMI',               Icon: MiniElder },
-  { href: '/obras-sociales/ioma',            label: 'IOMA',               Icon: MiniBuilding },
   { href: '/obras-sociales/sancor-os',       label: 'Sancor OS',          Icon: MiniLeaf },
+  { href: '/obras-sociales/pami',            label: 'PAMI',               Icon: MiniElder },
+  { href: '/obras-sociales/ioma',            label: 'IOMA (Buenos Aires)', Icon: MiniBuilding },
+  { href: '/obras-sociales/apross',          label: 'APROSS (Córdoba)',   Icon: MiniBuilding },
+  { href: '/obras-sociales/galeno',          label: 'Galeno',             Icon: MiniCross },
+  { href: '/obras-sociales/medife',          label: 'Medifé',             Icon: MiniLeaf },
+  { href: '/obras-sociales/ospoce',          label: 'OSPOCE',             Icon: MiniBuilding },
 ]
 
 const herramientasMenu = [
-  { href: '/precios', label: 'Precios julio 2026' },
+  { href: '/precios', label: `Precios ${PRECIO_ACTUALIZADO.toLowerCase()}` },
   { href: '/cambios', label: '¿A qué prepaga cambiarte?' },
   { href: '/aumentos', label: 'Aumentos mes a mes' },
   { href: '/comparar', label: 'Comparar planes' },

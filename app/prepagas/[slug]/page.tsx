@@ -421,17 +421,17 @@ export default async function PrepagaSlugPage({ params }: Props) {
             * Nivel de precio relativo al resto del mercado · {PRECIO_ACTUALIZADO}. Cotizá tu precio exacto según tu edad y zona.
           </p>
 
-          <div className="mt-5">
-            {isPartner ? (
-              <ContratarPlanButton prepagaNombre={prep.nombre} fuente="ficha-prepaga" />
-            ) : (
-              <Link
-                href="/comparador"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"
-              >
-                Cotizar mi precio →
-              </Link>
-            )}
+          <div className="mt-6 bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-center sm:text-left">
+              <div className="text-white font-bold text-lg">¿Cuánto te sale {prep.nombre} a vos?</div>
+              <div className="text-red-200 text-sm mt-0.5">El precio final depende de tu edad y tu zona. Cotizalo gratis, sin registro y sin DNI.</div>
+            </div>
+            <ContratarPlanButton
+              prepagaNombre={prep.nombre}
+              fuente="ficha-prepaga-final"
+              label="Cotizar mi precio"
+              className="flex-shrink-0 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-[#E8002D] font-bold rounded-xl transition-all shadow-md text-sm hover:bg-red-50 whitespace-nowrap"
+            />
           </div>
         </div>
       </section>
