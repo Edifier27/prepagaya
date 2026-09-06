@@ -16,6 +16,7 @@ import type { Prepaga } from '@/types'
 
 interface Props {
   params: Promise<{ slug: string; plan: string }>
+  searchParams: Promise<{ cartilla?: string; provincia?: string }>
 }
 
 type Plan = Prepaga['planes'][number]
@@ -115,7 +116,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function PlanPage({ params }: Props) {
+export default async function PlanPage({ params, searchParams }: Props) {
   const { slug, plan: planSlug } = await params
   const prov = getProvinciaSEO(slug)
   if (prov) {
@@ -129,6 +130,14 @@ export default async function PlanPage({ params }: Props) {
   const prep = prepagas.find((p) => p.slug === slug)
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) notFound()
+
+  const { cartilla, provincia } = await searchParams
+  const abrirCartilla = cartilla === '1'
+  // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba"), usar
+  // la cartilla verificada de esa provincia en vez del default AMBA.
+  const provDelLink = provincia ? getProvinciaSEO(provincia) : undefined
+  const zonaKeyCartilla = provDelLink?.zonaKey ?? 'buenos-aires'
+  const provinciaNombreCartilla = provDelLink?.nombre ?? 'Buenos Aires (AMBA)'
 
   const isPartner = ['swiss-medical', 'sancor-salud', 'premedic'].includes(slug)
 
@@ -301,7 +310,7 @@ export default async function PlanPage({ params }: Props) {
         <div className="container max-w-4xl mx-auto">
           <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
             <h2 className="text-xl font-bold text-gray-900">¿Qué incluye el {plan.nombre}?</h2>
-            <CartillaModalTrigger prepaga={prep} plan={plan} zonaKey="buenos-aires" provinciaNombre="Buenos Aires (AMBA)" />
+            <CartillaModalTrigger prepaga={prep} plan={plan} zonaKey={zonaKeyCartilla} provinciaNombre={provinciaNombreCartilla} autoOpen={abrirCartilla} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {plan.cobertura.map((c) => (

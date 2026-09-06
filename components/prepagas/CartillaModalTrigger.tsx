@@ -10,13 +10,15 @@ interface Props {
   zonaKey: string
   provinciaNombre: string
   className?: string
+  /** Abre el modal solo al montar (llegada desde el link "Ver más" de un listado, vía ?cartilla=1). No se activa en visitas directas/orgánicas para no mostrar un interstitial. */
+  autoOpen?: boolean
 }
 
 // Wrapper con estado propio para reutilizar CartillaModal (ya construido y
 // probado dentro del comparador) también en las páginas estáticas de SEO,
 // donde no hay un componente padre manejando el open/close del modal.
-export function CartillaModalTrigger({ prepaga, plan, zonaKey, provinciaNombre, className }: Props) {
-  const [open, setOpen] = useState(false)
+export function CartillaModalTrigger({ prepaga, plan, zonaKey, provinciaNombre, className, autoOpen }: Props) {
+  const [open, setOpen] = useState(Boolean(autoOpen))
 
   return (
     <>

@@ -10,7 +10,6 @@ import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
-import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
 import { ProvinciaHubPage, provinciaHubMetadata } from '@/components/seo-local/ProvinciaHubPage'
 import type { Prepaga } from '@/types'
 
@@ -353,11 +352,17 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   <NivelPrecioBadge nivel={nivelPrecio(planEstrella.precio)} />
                 </div>
                 <div className="flex gap-2 flex-wrap sm:justify-end">
-                  <CartillaModalTrigger prepaga={prep} plan={planEstrella} zonaKey="buenos-aires" provinciaNombre="Buenos Aires (AMBA)" />
-                  <Link href={`/prepagas/${slug}/${planEstrella.slug}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#E8002D] hover:bg-[#B8001F] text-white rounded-xl text-xs font-bold transition-colors whitespace-nowrap">
-                    Ver ficha completa →
+                  <Link href={`/prepagas/${slug}/${planEstrella.slug}?cartilla=1`}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] rounded-xl text-xs font-bold transition-colors whitespace-nowrap">
+                    Ver más →
                   </Link>
+                  <ContratarPlanButton
+                    prepagaNombre={prep.nombre}
+                    planNombre={planEstrella.nombre}
+                    fuente="ficha-prepaga"
+                    label="Cotizar plan"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#E8002D] hover:bg-[#B8001F] text-white rounded-xl text-xs font-bold transition-colors whitespace-nowrap"
+                  />
                 </div>
               </div>
             </div>
@@ -394,13 +399,17 @@ export default async function PrepagaSlugPage({ params }: Props) {
                       </div>
                     </div>
                   </Link>
-                  <div className="mt-3 pt-3 border-t border-gray-100">
-                    <CartillaModalTrigger
-                      prepaga={prep}
-                      plan={plan}
-                      zonaKey="buenos-aires"
-                      provinciaNombre="Buenos Aires (AMBA)"
-                      className="w-full justify-center inline-flex items-center gap-1.5 text-xs font-bold text-gray-600 hover:text-[#E8002D] border-2 border-gray-200 hover:border-red-200 rounded-lg px-3 py-2 transition-colors"
+                  <div className="mt-3 pt-3 border-t border-gray-100 flex gap-2">
+                    <Link href={`/prepagas/${slug}/${plan.slug}?cartilla=1`}
+                      className="flex-1 justify-center inline-flex items-center gap-1.5 text-xs font-bold text-gray-600 hover:text-[#E8002D] border-2 border-gray-200 hover:border-red-200 rounded-lg px-3 py-2 transition-colors">
+                      Ver más →
+                    </Link>
+                    <ContratarPlanButton
+                      prepagaNombre={prep.nombre}
+                      planNombre={plan.nombre}
+                      fuente="ficha-prepaga"
+                      label="Cotizar plan"
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg bg-[#E8002D] hover:bg-[#B8001F] text-white transition-colors"
                     />
                   </div>
                 </div>

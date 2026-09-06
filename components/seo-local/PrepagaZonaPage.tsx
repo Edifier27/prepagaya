@@ -5,7 +5,6 @@ import type { PrepagaZona, ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
-import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
 import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdBreadcrumb, jsonLdFaq } from './shared'
 
 export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metadata {
@@ -107,22 +106,21 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
               {planesOrdenados.map((plan) => (
                 <div key={plan.slug}
                   className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all">
-                  <Link href={`/prepagas/${pz.slug}/${plan.slug}`} className="min-w-0 flex-1 group">
+                  <Link href={`/prepagas/${pz.slug}/${plan.slug}?cartilla=1&provincia=${prov.slug}`} className="min-w-0 flex-1 group">
                     <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors">{plan.nombre}</div>
                     <div className="text-xs text-gray-500 mt-0.5 line-clamp-1">{plan.descripcion}</div>
                   </Link>
                   <div className="flex items-center gap-2 flex-shrink-0 flex-wrap sm:flex-nowrap">
                     <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
-                    <CartillaModalTrigger
-                      prepaga={prepData}
-                      plan={plan}
-                      zonaKey={prov.zonaKey}
-                      provinciaNombre={prov.nombre}
-                    />
+                    <Link href={`/prepagas/${pz.slug}/${plan.slug}?cartilla=1&provincia=${prov.slug}`}
+                      className="text-xs font-bold px-4 py-2 rounded-lg border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] transition-colors whitespace-nowrap flex-shrink-0">
+                      Ver más →
+                    </Link>
                     <ContratarPlanButton
                       prepagaNombre={pz.nombre}
                       planNombre={plan.nombre}
                       fuente="ficha-zona"
+                      label="Cotizar plan"
                       className="text-xs font-bold px-4 py-2 rounded-lg bg-[#E8002D] hover:bg-[#B8001F] text-white transition-colors whitespace-nowrap flex-shrink-0"
                     />
                   </div>
