@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { comparativas } from '@/lib/data/comparativas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { formatPrecio } from '@/lib/utils'
 import type { Prepaga } from '@/types'
 
 const logoColors: Record<string, { bg: string; text: string }> = {
@@ -65,7 +66,8 @@ function PrepagaCard({
           <div className={`font-bold text-gray-900 leading-tight truncate ${size === 'sm' ? 'text-sm' : 'text-base'}`}>
             {prepaga.nombre}
           </div>
-          <div className="flex items-center gap-1.5 mt-1">
+          <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+            <span className="text-xs font-bold text-gray-700">{formatPrecio(minPrecio)}</span>
             <NivelPrecioBadge nivel={nivelPrecio(minPrecio)} />
             <span className="text-xs text-gray-400">{prepaga.satisfaccion}% satisf.</span>
           </div>
@@ -95,6 +97,9 @@ function ResultadoComparacion({ p1, p2 }: { p1: Prepaga; p2: Prepaga }) {
   const ganaRed = p1.profesionales >= p2.profesionales ? p1 : p2
   const ganaSat = p1.satisfaccion >= p2.satisfaccion ? p1 : p2
   const ganaPlanes = p1.planes.length >= p2.planes.length ? p1 : p2
+  const ganaCartilla = p1.calidadCartilla >= p2.calidadCartilla ? p1 : p2
+  const sinCopago1 = p1.planes.some((pl) => !pl.copago)
+  const sinCopago2 = p2.planes.some((pl) => !pl.copago)
 
   const metrics: {
     label: string
@@ -104,12 +109,40 @@ function ResultadoComparacion({ p1, p2 }: { p1: Prepaga; p2: Prepaga }) {
     icon: React.ReactNode
   }[] = [
     {
-      label: 'Nivel de precio',
-      val1: <NivelPrecioBadge nivel={nivelPrecio(min1)} />,
-      val2: <NivelPrecioBadge nivel={nivelPrecio(min2)} />,
+      label: 'Precio desde',
+      val1: (
+        <div className="flex flex-col items-center gap-1">
+          <span>{formatPrecio(min1)}</span>
+          <NivelPrecioBadge nivel={nivelPrecio(min1)} />
+        </div>
+      ),
+      val2: (
+        <div className="flex flex-col items-center gap-1">
+          <span>{formatPrecio(min2)}</span>
+          <NivelPrecioBadge nivel={nivelPrecio(min2)} />
+        </div>
+      ),
       winner: ganaPrecio.slug,
       icon: (
         <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      ),
+    },
+    {
+      label: 'Plan sin copago disponible',
+      val1: sinCopago1 ? 'Sí' : 'No',
+      val2: sinCopago2 ? 'Sí' : 'No',
+      winner: sinCopago1 === sinCopago2 ? '' : sinCopago1 ? p1.slug : p2.slug,
+      icon: (
+        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      ),
+    },
+    {
+      label: 'Calidad de cartilla',
+      val1: `${p1.calidadCartilla}/5`,
+      val2: `${p2.calidadCartilla}/5`,
+      winner: ganaCartilla.slug,
+      icon: (
+        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
       ),
     },
     {

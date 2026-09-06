@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { prepagas, nivelPrecio, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { formatPrecio } from '@/lib/utils'
 
 function Check({ ok }: { ok: boolean }) {
   return ok ? (
@@ -25,6 +26,7 @@ const FILAS = [
   { key: 'precio',           label: 'Nivel de precio' },
   { key: 'precioEstrella',   label: 'Plan estrella' },
   { key: 'satisfaccion',     label: 'Satisfacción afiliados' },
+  { key: 'calidadCartilla',  label: 'Calidad de cartilla' },
   { key: 'profesionales',    label: 'Red de profesionales' },
   { key: 'planes',           label: 'Cantidad de planes' },
   { key: 'sinCopago',        label: 'Plan sin copago disponible' },
@@ -44,6 +46,7 @@ interface FilaValor {
   precioEstrellaNombre: string
   precioEstrellaValor: number
   satisfaccion: string
+  calidadCartilla: string
   profesionales: string
   planes: string
   sinCopago: boolean
@@ -68,6 +71,7 @@ function buildValores(slug: string): FilaValor | null {
     precioEstrellaNombre: planEstrella.nombre,
     precioEstrellaValor: planEstrella.precio,
     satisfaccion: `${p.satisfaccion}%`,
+    calidadCartilla: `${p.calidadCartilla}/5`,
     profesionales: p.profesionales.toLocaleString('es-AR'),
     planes: `${p.planes.length} planes`,
     sinCopago: p.planes.some((pl) => !pl.copago),
@@ -186,12 +190,14 @@ export function ComparadorTable() {
                           <Check ok={vals[fila.key as keyof FilaValor] as boolean} />
                         </div>
                       ) : fila.key === 'precio' ? (
-                        <div className="flex justify-center">
+                        <div className="flex flex-col items-center gap-1">
+                          <span className="text-sm font-bold text-gray-900">{formatPrecio(vals.precio)}</span>
                           <NivelPrecioBadge nivel={nivelPrecio(vals.precio)} />
                         </div>
                       ) : fila.key === 'precioEstrella' ? (
                         <div className="flex flex-col items-center gap-1">
                           <span className="text-xs text-gray-500">{vals.precioEstrellaNombre}</span>
+                          <span className="text-sm font-bold text-gray-900">{formatPrecio(vals.precioEstrellaValor)}</span>
                           <NivelPrecioBadge nivel={nivelPrecio(vals.precioEstrellaValor)} />
                         </div>
                       ) : (

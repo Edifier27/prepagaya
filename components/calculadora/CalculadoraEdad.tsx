@@ -229,7 +229,7 @@ export function CalculadoraEdad() {
         </div>
 
         <div className="divide-y divide-gray-100">
-          {planes.map(({ prepaga, plan }, i) => (
+          {planes.map(({ prepaga, plan, precioAjustado, costoReal }, i) => (
             <div
               key={`${prepaga.slug}-${plan.slug}`}
               className={`px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:bg-gray-50 transition-colors ${
@@ -259,7 +259,10 @@ export function CalculadoraEdad() {
                 </div>
               </div>
               <div className="flex items-center gap-4 sm:flex-col sm:items-end">
-                <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                <div className="text-right">
+                  <div className="font-black text-gray-900">{formatPrecio(mostrarSimulador ? costoReal : precioAjustado)}</div>
+                  <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                </div>
                 <Link
                   href={`/prepagas/${prepaga.slug}/${plan.slug}`}
                   className="text-sm font-semibold text-[#E8002D] hover:underline whitespace-nowrap"

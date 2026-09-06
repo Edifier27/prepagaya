@@ -7,7 +7,7 @@ import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getCambiosPorOrigen } from '@/lib/data/cambios'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
-import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -283,8 +283,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
             {/* Right: nivel de precio card */}
             <div className="sm:w-52 flex-shrink-0">
               <div className="bg-white rounded-2xl border-2 border-[#E8002D] p-5 text-center shadow-sm">
-                <div className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">Nivel de precio</div>
-                <div className="flex justify-center">
+                <div className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">Desde</div>
+                <div className="text-2xl font-black text-gray-900">{formatPrecio(precioMin)}</div>
+                <div className="flex justify-center mt-1.5">
                   <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
                 </div>
                 <div className="mt-4 pt-3 border-t border-gray-100 space-y-1">
@@ -342,6 +343,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   }`}>
                     Red {planEstrella.redAbierta ? 'abierta' : 'cerrada'}
                   </span>
+                  <span className="text-[11px] px-2.5 py-1 rounded-full font-semibold bg-gray-50 text-gray-600 border border-gray-200">
+                    Cartilla {calidadPlan(prep, planEstrella)}/5
+                  </span>
                   {planEstrella.cobertura.slice(0, 3).map(c => (
                     <span key={c} className="text-[11px] px-2 py-1 bg-gray-50 text-gray-500 rounded-full border border-gray-100">{c}</span>
                   ))}
@@ -351,8 +355,11 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 </div>
               </Link>
               <div className="flex-shrink-0 flex flex-col items-stretch sm:items-end gap-2">
-                <div className="flex sm:justify-end">
-                  <NivelPrecioBadge nivel={nivelPrecio(planEstrella.precio)} />
+                <div className="text-right sm:text-right">
+                  <div className="font-black text-gray-900 text-lg">{formatPrecio(planEstrella.precio)}</div>
+                  <div className="flex sm:justify-end">
+                    <NivelPrecioBadge nivel={nivelPrecio(planEstrella.precio)} />
+                  </div>
                 </div>
                 <div className="flex gap-2 flex-wrap sm:justify-end">
                   <Link href={`/prepagas/${slug}/${planEstrella.slug}?cartilla=1`}
@@ -404,7 +411,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
                           )}
                         </div>
                       </div>
-                      <div className="flex-shrink-0">
+                      <div className="flex-shrink-0 text-right">
+                        <div className="font-bold text-gray-900 text-sm">{formatPrecio(plan.precio)}</div>
                         <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                       </div>
                     </div>

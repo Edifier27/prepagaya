@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { comparativas } from '@/lib/data/comparativas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
@@ -51,6 +51,9 @@ export default async function ComparativaPage({ params }: Props) {
     valor: (p: Prepaga) => string
     ganador?: string
   }[] = [
+    { label: 'Plan sin copago disponible', valor: (p) => (p.planes.some((pl) => !pl.copago) ? 'Sí' : 'No') },
+    { label: 'Red abierta disponible', valor: (p) => (p.planes.some((pl) => pl.redAbierta) ? 'Sí' : 'No') },
+    { label: 'Calidad de cartilla', valor: (p) => `${p.calidadCartilla}/5` },
     { label: 'Profesionales en cartilla', valor: (p) => p.profesionales.toLocaleString('es-AR'), ganador: comp.ganadorRed },
     { label: 'Sanatorios propios', valor: (p) => (p.sanatoriosPropios > 0 ? String(p.sanatoriosPropios) : 'Red por convenio') },
     { label: 'Satisfacción de afiliados', valor: (p) => `${p.satisfaccion}%`, ganador: comp.ganadorSatisfaccion },
@@ -162,6 +165,7 @@ export default async function ComparativaPage({ params }: Props) {
                 <Link href={`/prepagas/${p.slug}`} className="group flex flex-col items-center gap-2">
                   <PrepagaLogo slug={p.slug} nombre={p.nombre} colorPrimario={p.colorPrimario} size="lg" className="shadow-sm" />
                   <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{p.nombre}</div>
+                  <div className="text-sm font-black text-gray-900">{formatPrecio(precioMin(p))}</div>
                   <NivelPrecioBadge nivel={nivelPrecio(precioMin(p))} />
                 </Link>
                 {i === 0 && (
@@ -190,12 +194,14 @@ export default async function ComparativaPage({ params }: Props) {
               </thead>
               <tbody>
                 <tr>
-                  <td className="p-4 text-gray-500 font-medium">Nivel de precio</td>
+                  <td className="p-4 text-gray-500 font-medium">Precio de lista desde</td>
                   <td className="p-4 whitespace-nowrap">
+                    <span className="font-bold text-gray-900 mr-2">{formatPrecio(precioMin(p1))}</span>
                     <NivelPrecioBadge nivel={nivelPrecio(precioMin(p1))} />
                     {comp.ganadorPrecio === p1.slug && <CheckBadge />}
                   </td>
                   <td className="p-4 whitespace-nowrap">
+                    <span className="font-bold text-gray-900 mr-2">{formatPrecio(precioMin(p2))}</span>
                     <NivelPrecioBadge nivel={nivelPrecio(precioMin(p2))} />
                     {comp.ganadorPrecio === p2.slug && <CheckBadge />}
                   </td>
@@ -288,6 +294,7 @@ export default async function ComparativaPage({ params }: Props) {
                   <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                     <div>
                       <div className="text-xs text-gray-400 mb-1.5">Plan más elegido: {planEstrella.nombre}</div>
+                      <div className="font-bold text-gray-900 text-sm">{formatPrecio(planEstrella.precio)}</div>
                       <NivelPrecioBadge nivel={nivelPrecio(planEstrella.precio)} />
                     </div>
                     <span className="text-xs font-bold text-[#E8002D]">Ver planes →</span>

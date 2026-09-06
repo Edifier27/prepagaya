@@ -5,11 +5,13 @@ import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { formatPrecio } from '@/lib/utils'
 
 const FILAS = [
-  { key: 'precio', label: 'Nivel de precio', tipo: 'precio' },
+  { key: 'precio', label: 'Precio desde', tipo: 'precio' },
   { key: 'satisfaccion', label: 'Satisfacción de afiliados', tipo: 'porcentaje' },
   { key: 'rating', label: 'Valoración usuarios', tipo: 'rating' },
+  { key: 'calidadCartilla', label: 'Calidad de cartilla', tipo: 'sobre5' },
   { key: 'profesionales', label: 'Profesionales adheridos', tipo: 'numero' },
   { key: 'sanatoriosPropios', label: 'Sanatorios propios', tipo: 'numero' },
   { key: 'appMovil', label: 'App móvil', tipo: 'bool' },
@@ -23,9 +25,10 @@ const FILAS = [
 ]
 
 function getValor(prepaga: (typeof prepagas)[0], key: string): unknown {
-  if (key === 'precio') return prepaga.planes[0]?.precio ?? 0
+  if (key === 'precio') return Math.min(...prepaga.planes.map((pl) => pl.precio))
   if (key === 'satisfaccion') return prepaga.satisfaccion
   if (key === 'rating') return prepaga.rating
+  if (key === 'calidadCartilla') return prepaga.calidadCartilla
   if (key === 'profesionales') return prepaga.profesionales
   if (key === 'sanatoriosPropios') return prepaga.sanatoriosPropios
   return prepaga.caracteristicas[key as keyof typeof prepaga.caracteristicas]
@@ -43,9 +46,15 @@ function ganador(val1: unknown, val2: unknown, tipo: string, key: string): 0 | 1
 
 function renderValor(val: unknown, tipo: string): React.ReactNode {
   if (tipo === 'bool') return val ? <span className="text-green-600 text-lg">✓</span> : <span className="text-gray-300 text-lg">—</span>
-  if (tipo === 'precio') return <NivelPrecioBadge nivel={nivelPrecio(val as number)} />
+  if (tipo === 'precio') return (
+    <div className="flex flex-col items-center gap-1">
+      <span className="font-bold text-gray-900">{formatPrecio(val as number)}</span>
+      <NivelPrecioBadge nivel={nivelPrecio(val as number)} />
+    </div>
+  )
   if (tipo === 'porcentaje') return <span className="font-semibold text-[#00875A]">{String(val)}%</span>
   if (tipo === 'rating') return <span className="font-semibold">{String(val)} / 5</span>
+  if (tipo === 'sobre5') return <span className="font-semibold">{String(val)} / 5</span>
   if (tipo === 'numero') return <span className="font-semibold">{(val as number).toLocaleString('es-AR')}</span>
   return String(val)
 }
@@ -205,7 +214,10 @@ export function ComparadorInteractivo() {
                           {plan.copago ? 'Con copago' : 'Sin copago'} · {plan.redAbierta ? 'Red abierta' : 'Red cerrada'}
                         </div>
                       </div>
-                      <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                      <div className="text-right flex-shrink-0">
+                        <div className="font-bold text-gray-900 text-sm">{formatPrecio(plan.precio)}</div>
+                        <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                      </div>
                     </Link>
                   ))}
                 </div>

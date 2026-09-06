@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { perfiles } from '@/lib/data/perfiles'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
@@ -172,8 +172,21 @@ export default async function PerfilPage({ params }: Props) {
                       <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{plan.nombre}</div>
                     </div>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3 flex items-center gap-2 flex-wrap">
+                    <span className="font-bold text-gray-900 text-sm">{formatPrecio(plan.precio)}</span>
                     <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
+                      plan.copago ? 'bg-gray-100 text-gray-500' : 'bg-green-50 text-green-700'
+                    }`}>
+                      {plan.copago ? 'Con copago' : 'Sin copago'}
+                    </span>
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
+                      plan.redAbierta ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-500'
+                    }`}>
+                      Red {plan.redAbierta ? 'abierta' : 'cerrada'}
+                    </span>
                   </div>
                   <p className="text-xs text-gray-500 leading-relaxed">{razon}</p>
                   <div className="mt-3 text-xs font-bold text-[#E8002D]">Ver cobertura completa →</div>
@@ -219,7 +232,10 @@ export default async function PerfilPage({ params }: Props) {
                         <Link href={`/prepagas/${prep.slug}`} className="font-bold text-gray-900 hover:text-[#E8002D] transition-colors block leading-tight">
                           {prep.nombre}
                         </Link>
-                        <NivelPrecioBadge nivel={nivelPrecio(planBase.precio)} className="mt-1" />
+                        <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                          <span className="text-xs font-bold text-gray-700">{formatPrecio(planBase.precio)}</span>
+                          <NivelPrecioBadge nivel={nivelPrecio(planBase.precio)} />
+                        </div>
                       </div>
                     </div>
                     <p className="flex-1 text-sm text-gray-600 leading-relaxed">{rec.razon}</p>

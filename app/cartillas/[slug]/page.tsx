@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { sanatorios } from '@/lib/data/sanatorios'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -212,7 +212,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
                     {sanatorio.nombre}
                   </div>
                   <div className="text-xs text-gray-500 mt-1 flex items-center gap-1.5">
-                    Desde {planMinimo.planNombre} <NivelPrecioBadge nivel={nivelPrecio(planMinimo.precio)} />
+                    Desde {planMinimo.planNombre} · {formatPrecio(planMinimo.precio)}
                   </div>
                   {planMinimo.nota && (
                     <div className="text-[11px] text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-2 py-1 mt-2 leading-snug">
@@ -244,6 +244,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
                   </div>
                 </div>
                 <div className="text-right">
+                  <div className="font-bold text-gray-900 text-sm">{formatPrecio(plan.precio)}</div>
                   <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                 </div>
               </Link>

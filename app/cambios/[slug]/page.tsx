@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { cambiosRecomendados, getCambioBySlug, getCambiosPorDestino } from '@/lib/data/cambios'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
@@ -50,8 +50,15 @@ export default async function CambioPage({ params }: Props) {
   const otrosCambios = (otrosAlDestino.length > 0 ? otrosAlDestino : cambiosRecomendados.filter((x) => x.slug !== c.slug)).slice(0, 3)
   const testimonioDestino = testimonios.find((t) => t.prepagaSlug === c.destinoSlug && t.rating >= 4) ?? testimonios.find((t) => t.prepagaSlug === c.destinoSlug)
 
+  // Copago y red se leen del plan real de cada lado (no se asumen "sin
+  // copago" para ambos): origen se matchea por nombre porque el dato
+  // curado solo trae origenPlanNombre, destino por su slug real.
+  const origenPlan = origen.planes.find((pl) => pl.nombre === c.origenPlanNombre)
+  const destinoPlan = destino.planes.find((pl) => pl.slug === c.destinoPlanSlug) ?? destino.planes.find((pl) => pl.nombre === c.destinoPlanNombre)
+
   const filas = [
-    { label: 'Copago', origen: 'Sin copago', destino: 'Sin copago' },
+    { label: 'Copago', origen: origenPlan?.copago ? 'Con copago' : 'Sin copago', destino: destinoPlan?.copago ? 'Con copago' : 'Sin copago' },
+    { label: 'Red', origen: origenPlan?.redAbierta === false ? 'Cerrada' : 'Abierta', destino: destinoPlan?.redAbierta === false ? 'Cerrada' : 'Abierta' },
     { label: 'Calidad de cartilla', origen: `${origen.calidadCartilla}/5`, destino: `${destino.calidadCartilla}/5` },
     { label: 'Satisfacción declarada', origen: `${origen.satisfaccion}%`, destino: `${destino.satisfaccion}%` },
     { label: 'Sanatorios propios', origen: String(origen.sanatoriosPropios), destino: String(destino.sanatoriosPropios) },
@@ -154,12 +161,14 @@ export default async function CambioPage({ params }: Props) {
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div className="bg-gray-50 rounded-2xl border border-gray-200 p-5 text-center">
               <div className="text-xs text-gray-400 mb-2">{origen.nombre} — {c.origenPlanNombre}</div>
+              <div className="font-black text-gray-900 text-lg mb-1">{formatPrecio(c.origenPrecio)}</div>
               <div className="flex justify-center">
                 <NivelPrecioBadge nivel={nivelPrecio(c.origenPrecio)} />
               </div>
             </div>
             <div className="bg-red-50 rounded-2xl border-2 border-[#E8002D] p-5 text-center">
               <div className="text-xs text-[#E8002D] font-semibold mb-2">{destino.nombre} — {c.destinoPlanNombre}</div>
+              <div className="font-black text-gray-900 text-lg mb-1">{formatPrecio(c.destinoPrecio)}</div>
               <div className="flex justify-center">
                 <NivelPrecioBadge nivel={nivelPrecio(c.destinoPrecio)} />
               </div>
@@ -187,6 +196,11 @@ export default async function CambioPage({ params }: Props) {
                   </tr>
                 </thead>
                 <tbody>
+                  <tr className="border-b border-gray-100">
+                    <td className="px-4 py-3 text-gray-500 font-medium">Precio de lista</td>
+                    <td className="px-4 py-3 text-gray-700 font-semibold">{formatPrecio(c.origenPrecio)}</td>
+                    <td className="px-4 py-3 text-gray-900 font-semibold">{formatPrecio(c.destinoPrecio)}</td>
+                  </tr>
                   <tr className="border-b border-gray-100">
                     <td className="px-4 py-3 text-gray-500 font-medium">Nivel de precio</td>
                     <td className="px-4 py-3"><NivelPrecioBadge nivel={nivelPrecio(c.origenPrecio)} /></td>

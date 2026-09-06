@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { StarRating } from '@/components/ui/StarRating'
 import { Badge } from '@/components/ui/Badge'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -65,7 +65,8 @@ function PrepagaCard({ p, destacado }: { p: Prepaga; destacado?: boolean }) {
       {/* Card footer */}
       <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between">
         <div>
-          <div className="text-xs text-gray-400 mb-1.5">Nivel de precio</div>
+          <div className="text-xs text-gray-400 mb-1.5">Desde</div>
+          <div className="font-black text-gray-900">{formatPrecio(planMasBarato.precio)}</div>
           <NivelPrecioBadge nivel={nivelPrecio(planMasBarato.precio)} />
         </div>
         <div className="text-right">

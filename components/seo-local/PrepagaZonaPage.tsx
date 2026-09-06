@@ -111,6 +111,7 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
                     <div className="text-xs text-gray-500 mt-0.5 line-clamp-1">{plan.descripcion}</div>
                   </Link>
                   <div className="flex items-center gap-2 flex-shrink-0 flex-wrap sm:flex-nowrap">
+                    <span className="text-sm font-bold text-gray-900">{formatPrecio(plan.precio)}</span>
                     <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                     <Link href={`/prepagas/${pz.slug}/${plan.slug}?cartilla=1&provincia=${prov.slug}`}
                       className="text-xs font-bold px-4 py-2 rounded-lg border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] transition-colors whitespace-nowrap flex-shrink-0">

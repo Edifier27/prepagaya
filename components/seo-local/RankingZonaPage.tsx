@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL } from '@/lib/utils'
+import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdBreadcrumb } from './shared'
 
@@ -98,9 +98,15 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
                         </div>
                         <div className="text-right flex-shrink-0">
                           {precioMin ? (
-                            <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
+                            <>
+                              <div className="font-bold text-gray-900 text-sm">{formatPrecio(precioMin)}</div>
+                              <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
+                            </>
                           ) : (
                             <div className="text-xs text-gray-400 max-w-[90px]">Precio sujeto a cotización</div>
+                          )}
+                          {prepData && (
+                            <div className="text-[10px] text-[#00875A] font-semibold mt-1">{prepData.satisfaccion}% satisf.</div>
                           )}
                         </div>
                       </div>

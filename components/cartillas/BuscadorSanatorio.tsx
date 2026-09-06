@@ -6,6 +6,7 @@ import { buscarSanatorio, buscarSanatorioReferencia } from '@/lib/data/sanatorio
 import { nivelPrecio } from '@/lib/data/prepagas'
 import { getProvinciaSEO } from '@/lib/data/zonas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { formatPrecio } from '@/lib/utils'
 import type { Sanatorio, SanatorioReferenciaResult } from '@/lib/data/sanatorios'
 
 export function BuscadorSanatorio(): React.ReactElement {
@@ -143,8 +144,9 @@ export function BuscadorSanatorio(): React.ReactElement {
                         )}
                       </div>
 
-                      {/* Nivel de precio */}
+                      {/* Precio */}
                       <div className="text-right flex-shrink-0">
+                        <div className="font-bold text-gray-900 text-sm">{formatPrecio(plan.precio)}</div>
                         <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
                       </div>
 

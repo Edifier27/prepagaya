@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
-import { SITE_URL } from '@/lib/utils'
+import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { StarRating } from '@/components/ui/StarRating'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
@@ -100,6 +100,7 @@ export default function RankingPage() {
                 <div className="text-right flex-shrink-0">
                   <div className="text-2xl font-bold text-[#00875A]">{p.satisfaccion}%</div>
                   <div className="text-xs text-gray-400 mb-1.5">satisfacción</div>
+                  <div className="text-sm font-bold text-gray-900">{formatPrecio(p.planes[0].precio)}</div>
                   <NivelPrecioBadge nivel={nivelPrecio(p.planes[0].precio)} />
                 </div>
               </Link>
@@ -123,7 +124,7 @@ export default function RankingPage() {
                   <th className="text-left p-4 text-sm font-semibold text-gray-700">#</th>
                   <th className="text-left p-4 text-sm font-semibold text-gray-700">Prepaga</th>
                   <th className="text-left p-4 text-sm font-semibold text-gray-700">Plan más económico</th>
-                  <th className="text-right p-4 text-sm font-semibold text-gray-700">Nivel de precio</th>
+                  <th className="text-right p-4 text-sm font-semibold text-gray-700">Precio de lista</th>
                   <th className="text-center p-4 text-sm font-semibold text-gray-700">Satisfacción</th>
                 </tr>
               </thead>
@@ -139,7 +140,10 @@ export default function RankingPage() {
                         </Link>
                       </td>
                       <td className="p-4 text-sm text-gray-600">{planMasBarato.nombre}</td>
-                      <td className="p-4 text-right"><NivelPrecioBadge nivel={nivelPrecio(planMasBarato.precio)} /></td>
+                      <td className="p-4 text-right">
+                        <div className="font-bold text-gray-900 text-sm">{formatPrecio(planMasBarato.precio)}</div>
+                        <NivelPrecioBadge nivel={nivelPrecio(planMasBarato.precio)} />
+                      </td>
                       <td className="p-4 text-center">
                         <span className="text-sm font-semibold text-[#00875A]">{p.satisfaccion}%</span>
                       </td>
