@@ -32,15 +32,17 @@ const zonasMenu = provinciasSEO.map((p) => ({
   ranking: `/prepagas/${p.slug}/mejores-prepagas`,
 }))
 
+// Solo obras sociales "puras" (sin ficha de prepaga hermana). OSDE, Swiss
+// Medical, Sancor, Galeno y Medifé son prepagas para el usuario del sitio —
+// aunque tengan una rama registrada como obra social, no van en este menú.
 const obrasSocialesMenu = [
-  { href: '/obras-sociales/osde',            label: 'OSDE',               Icon: MiniBuilding },
-  { href: '/obras-sociales/swiss-medical-os',label: 'Swiss Medical Salud', Icon: MiniCross },
-  { href: '/obras-sociales/sancor-os',       label: 'Sancor OS',          Icon: MiniLeaf },
   { href: '/obras-sociales/pami',            label: 'PAMI',               Icon: MiniElder },
   { href: '/obras-sociales/ioma',            label: 'IOMA (Buenos Aires)', Icon: MiniBuilding },
   { href: '/obras-sociales/apross',          label: 'APROSS (Córdoba)',   Icon: MiniBuilding },
-  { href: '/obras-sociales/galeno',          label: 'Galeno',             Icon: MiniCross },
-  { href: '/obras-sociales/medife',          label: 'Medifé',             Icon: MiniLeaf },
+  { href: '/obras-sociales/obsba',           label: 'ObSBA (CABA)',       Icon: MiniBuilding },
+  { href: '/obras-sociales/osecac',          label: 'OSECAC',             Icon: MiniLeaf },
+  { href: '/obras-sociales/iosfa',           label: 'IOSFA',              Icon: MiniCross },
+  { href: '/obras-sociales/osdepym',         label: 'OSDEPYM',            Icon: MiniBuilding },
   { href: '/obras-sociales/ospoce',          label: 'OSPOCE',             Icon: MiniBuilding },
 ]
 
