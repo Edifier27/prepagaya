@@ -1,7 +1,16 @@
 import type { Metadata } from 'next'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
-import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
+import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+
+// Trabajamos directo con estas — van primero en "Cotizar por prepaga".
+const PARTNER_ORDER = ['swiss-medical', 'sancor-salud', 'premedic']
+const prepagasParaCotizar = [
+  ...PARTNER_ORDER.map((slug) => prepagas.find((p) => p.slug === slug)).filter((p): p is (typeof prepagas)[number] => Boolean(p)),
+  ...prepagas.filter((p) => !PARTNER_ORDER.includes(p.slug)).sort((a, b) => b.satisfaccion - a.satisfaccion),
+]
 
 export const metadata: Metadata = {
   title: `Comparador de Prepagas Argentina ${new Date().getFullYear()} — Encontrá tu plan ideal`,
@@ -71,6 +80,50 @@ export default async function ComparadorPage({ searchParams }: Props) {
           initialZona={zona}
           initialProvincia={provincia}
         />
+      </section>
+
+      {/* Cotizar por prepaga — para quien ya sabe cuál quiere y no necesita el wizard */}
+      <section className="bg-white border-t border-gray-100 py-12">
+        <div className="container max-w-5xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Cotizar por prepaga</h2>
+            <p className="text-gray-500 text-sm max-w-lg mx-auto">
+              ¿Ya sabés cuál te interesa? Elegí la prepaga y dejá tus datos directamente, sin pasar por el comparador.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {prepagasParaCotizar.map((p) => {
+              const planEstrella = p.planes.find((pl) => pl.destacado) ?? [...p.planes].sort((a, b) => a.precio - b.precio)[0]
+              const precioMin = Math.min(...p.planes.map((pl) => pl.precio))
+              const isPartner = PARTNER_ORDER.includes(p.slug)
+              return (
+                <div key={p.slug}
+                  className={`flex flex-col items-center text-center bg-white rounded-2xl border-2 p-4 ${
+                    isPartner ? 'border-amber-200' : 'border-gray-100'
+                  }`}>
+                  {isPartner && (
+                    <span className="text-[9px] font-black px-2 py-0.5 rounded-full border mb-2"
+                      style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
+                      ★ TRABAJAMOS CON ELLOS
+                    </span>
+                  )}
+                  <PrepagaLogo slug={p.slug} nombre={p.nombre} colorPrimario={p.colorPrimario} size="md" className="mb-2" />
+                  <div className="font-bold text-gray-900 text-sm leading-tight">{p.nombre}</div>
+                  <div className="text-xs text-gray-400 mt-0.5 mb-3">
+                    Desde <span className="font-semibold text-gray-600">{formatPrecio(precioMin)}</span>
+                  </div>
+                  <ContratarPlanButton
+                    prepagaNombre={p.nombre}
+                    planNombre={planEstrella.nombre}
+                    fuente="comparador-por-prepaga"
+                    label="Cotizar"
+                    className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#E8002D] hover:bg-[#B8001F] text-white rounded-lg text-xs font-bold transition-colors"
+                  />
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </section>
 
       {/* Footer trust — solo si no hay zona (página limpia de cotización) */}
