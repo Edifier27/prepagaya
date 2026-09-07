@@ -68,7 +68,7 @@ export const planIdealPara: Record<string, string> = {
   'hominis-gold':   'El plan más elegido de Hominis. Acceso al Sanatorio Finochietto y videoconsultas ilimitadas sin pagar de más.',
   'hominis-platinum': 'Sin copago, dental y habitación individual. Para quienes quieren la máxima cobertura Hominis en AMBA.',
 
-  // Avalian (ex-Galeno)
+  // Avalian (ex ACA Salud)
   'avalian-basico':   'Ideal para jóvenes y monotributistas que buscan entrar a la red Avalian con cobertura PMO completa.',
   'avalian-plus':     'Mayor acceso a especialistas y sanatorios propios. Para quien usa el sistema con cierta frecuencia.',
   'avalian-full':     'El más elegido de Avalian. Sin copago y telemedicina 24hs incluida. La mejor relación costo-beneficio de la marca.',

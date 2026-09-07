@@ -66,7 +66,7 @@ export const AUMENTO_POR_EMPRESA: AumentoEmpresa[] = [
   { slug: 'sancor-salud', nombre: 'Sancor Salud', ultimoAumento: 1.9, acumulado2026: 21.3 },
   { slug: 'premedic', nombre: 'Premedic', ultimoAumento: 2.0, acumulado2026: 22.0 },
   { slug: 'medife', nombre: 'Medifé', ultimoAumento: 2.1, acumulado2026: 22.8 },
-  { slug: 'avalian', nombre: 'Avalian (ex-Galeno)', ultimoAumento: 2.2, acumulado2026: 23.4 },
+  { slug: 'avalian', nombre: 'Avalian (ex ACA Salud)', ultimoAumento: 2.2, acumulado2026: 23.4 },
   { slug: 'omint', nombre: 'Omint', ultimoAumento: 2.3, acumulado2026: 23.8 },
   { slug: 'osde', nombre: 'OSDE', ultimoAumento: 2.4, acumulado2026: 24.3 },
   { slug: 'swiss-medical', nombre: 'Swiss Medical', ultimoAumento: 2.5, acumulado2026: 24.9 },

@@ -223,6 +223,11 @@ export const condiciones: CondicionData[] = [
         planSlug: 'plan-individual',
         razon: 'CEMIC tiene un departamento de salud mental universitario de excelencia. Ideal para casos complejos que necesitan diagnóstico diferencial o segunda opinión psiquiátrica. Sus clínicas propias tienen servicios de internación psiquiátrica.',
       },
+      {
+        slug: 'avalian',
+        planSlug: 'full',
+        razon: 'El Plan Full de Avalian cubre 30 sesiones de salud mental por año sin copago y suma telemedicina 24hs para consultas de urgencia fuera de horario. Buena relación precio-cobertura para tratamientos ambulatorios frecuentes.',
+      },
     ],
     preguntasAntesDeFirmar: [
       '¿Cubrís hospitalización psiquiátrica sin límite de días?',

@@ -27,6 +27,7 @@ export const coberturas: CoberturaData[] = [
       { slug: 'swiss-medical', razon: 'La red de profesionales de salud mental de Swiss Medical es la más amplia del país. Tienen psicólogos, psiquiatras y centros especializados en todas las zonas. El Plan SMG20 cubre sesiones sin auditoría hasta cierta cantidad mensual.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene +90.000 profesionales adheridos, incluyendo una amplia red de psicólogos en todo el país. El Plan 310 cubre psicología y psiquiatría con copago razonable. Ideal si querés tener muchas opciones de profesionales.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud tiene muy buena relación precio-calidad en salud mental. El Plan 3000 incluye cobertura de psicología con copago estándar y buena disponibilidad de profesionales en el interior del país.', planSlug: 'plan-3000' },
+      { slug: 'avalian', razon: 'El Plan Full de Avalian (el más elegido de la marca) incluye 30 sesiones de salud mental por año sin copago, más telemedicina 24hs para consultas urgentes fuera de horario. Buena opción si salís de un plan más caro y no querés resignar cobertura psicológica.', planSlug: 'full' },
     ],
     prepagasRestrictivas: [
       { slug: 'premedic', detalle: 'Red de profesionales de salud mental más limitada, concentrada en CABA y GBA.' },
@@ -269,6 +270,7 @@ export const coberturas: CoberturaData[] = [
       { slug: 'swiss-medical', razon: 'Swiss Medical tiene el servicio de emergencias más completo: Swiss Medical Emergencias atiende en todo AMBA y CABA con ambulancias propias. Los Swiss Medical Centers son guardias propias con médicos de guardia 24/7. Para el interior tienen convenios con las principales clínicas.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene convenio con las principales clínicas y sanatorios en todo el país. Su ventaja es la cobertura en el interior: en ciudades donde otras prepagas tienen poca red, OSDE casi siempre tiene clínicas adheridas.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud tiene buena cobertura de urgencias en el interior con sus propios centros médicos en varias provincias. El Plan 3000 incluye ambulancias y traslado cubiertos.', planSlug: 'plan-3000' },
+      { slug: 'avalian', razon: 'Avalian incluye telemedicina 24hs en todos sus planes, incluso el más básico: podés consultar a un médico por videollamada antes de definir si hace falta ir a una guardia. Sus 5 sanatorios propios en AMBA suman guardia física para las urgencias que sí requieren atención presencial.', planSlug: 'full' },
     ],
     prepagasRestrictivas: [
       { slug: 'premedic', detalle: 'Cobertura de urgencias concentrada en CABA, GBA, Córdoba y Tucumán. Fuera de esas zonas la cobertura de emergencias es más limitada.' },

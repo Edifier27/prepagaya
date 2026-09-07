@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
-import { getCambiosPorOrigen } from '@/lib/data/cambios'
+import { getCambiosPorOrigen, getCambiosPorDestino } from '@/lib/data/cambios'
+import { getComparativasByPrepaga } from '@/lib/data/comparativas'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan } from '@/lib/utils'
@@ -108,6 +109,13 @@ export async function generateStaticParams() {
   ]
 }
 
+// Keywords de cola larga con volumen de búsqueda real confirmado (research de
+// mercado), específicas por marca. Se suman a las genéricas de cada ficha.
+const KEYWORDS_EXTRA: Record<string, string[]> = {
+  'sancor-salud': ['sancor salud precios', 'sancor salud cordoba', 'sancor plan 1000', 'sancor salud interior del país'],
+  'avalian': ['avalian ex aca salud', 'aca salud ahora avalian', 'avalian planes precios', 'avalian plan full'],
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const prov = getProvinciaSEO(slug)
@@ -123,6 +131,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${prep.nombre.toLowerCase()} opiniones`,
       `${prep.nombre.toLowerCase()} cobertura`,
       `prepaga ${prep.nombre.toLowerCase()}`,
+      ...(KEYWORDS_EXTRA[slug] ?? []),
     ],
   }
 }
@@ -677,6 +686,59 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     </Link>
                   )
                 })}
+              </div>
+            </div>
+          </section>
+        )
+      })()}
+
+      {/* ¿Te interesa cambiarte A esta prepaga? (link a /cambios cuando esta prepaga es destino) */}
+      {(() => {
+        const cambiosDestino = getCambiosPorDestino(prep.slug)
+        if (cambiosDestino.length === 0) return null
+        return (
+          <section className="py-10 bg-gray-50 border-t border-gray-100">
+            <div className="container max-w-5xl mx-auto">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">¿Te conviene cambiarte a {prep.nombre}?</h2>
+              <p className="text-sm text-gray-500 mb-5">Comparamos con datos reales si vale la pena el cambio desde otras prepagas.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {cambiosDestino.map((c) => {
+                  const ahorra = c.deltaMensual > 0
+                  return (
+                    <Link key={c.slug} href={`/cambios/${c.slug}`}
+                      className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
+                      <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">Desde {c.origenNombre}</div>
+                      <div className="text-xs text-gray-400 mt-1 mb-2">{c.gancho}</div>
+                      <div className={`inline-flex text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                        ahorra ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
+                      }`}>
+                        {ahorra ? 'Cuota más accesible' : 'Mejor cartilla, cuota similar'}
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </section>
+        )
+      })()}
+
+      {/* Comparativas relacionadas */}
+      {(() => {
+        const comps = getComparativasByPrepaga(prep.slug)
+        if (comps.length === 0) return null
+        return (
+          <section className="py-10 bg-white border-t border-gray-100">
+            <div className="container max-w-5xl mx-auto">
+              <h2 className="text-xl font-bold text-gray-900 mb-5">Comparativas de {prep.nombre}</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {comps.map((c) => (
+                  <Link key={c.slug} href={`/comparativas/${c.slug}`}
+                    className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
+                    <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">{c.titulo}</div>
+                    <div className="text-xs text-gray-400 mt-1 line-clamp-2">{c.descripcion}</div>
+                  </Link>
+                ))}
               </div>
             </div>
           </section>

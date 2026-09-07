@@ -51,7 +51,7 @@ export const testimonios: Testimonio[] = [
   { id: 24, nombre: 'Ezequiel P.',  ciudad: 'Buenos Aires', prepagaSlug: 'cemic', planNombre: 'Básico',     fecha: 'Febrero 2026', rating: 4, texto: 'Para atenderse en CEMIC está perfecto. El sistema integrado hospital-prepaga es una ventaja enorme. La contrapartida es que fuera de CABA la cobertura se complica.',          },
 
   // Avalian
-  { id: 25, nombre: 'Jimena R.',    ciudad: 'Córdoba',      prepagaSlug: 'avalian', planNombre: 'Full',    fecha: 'Mayo 2026',    rating: 5, texto: 'Avalian (antes Galeno) mejoró mucho con el rebrand. El Full sin copago y con Cam Doctor 24hs es imbatible para el precio que tiene. La red en Córdoba es muy buena.',           },
+  { id: 25, nombre: 'Jimena R.',    ciudad: 'Córdoba',      prepagaSlug: 'avalian', planNombre: 'Full',    fecha: 'Mayo 2026',    rating: 5, texto: 'Avalian (antes ACA Salud) mejoró mucho con el cambio de nombre. El Full sin copago y con Cam Doctor 24hs es imbatible para el precio que tiene. La red en Córdoba es muy buena.',          },
   { id: 26, nombre: 'Rodrigo M.',   ciudad: 'Mendoza',      prepagaSlug: 'avalian', planNombre: 'Plus',    fecha: 'Abril 2026',   rating: 4, texto: 'En Mendoza tienen buena cobertura. El Plus cubre bien todo lo básico y los turnos son rápidos. La telemedicina me salvó varias veces con los chicos.',                          },
 
   // Prevención Salud

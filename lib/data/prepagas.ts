@@ -679,7 +679,7 @@ export const prepagas: Prepaga[] = [
     logo: '/logos/avalian.svg',
     colorPrimario: '#0099D4',
     descripcion:
-      'Avalian (ex-Galeno) es una de las prepagas más grandes de Argentina con más de 1.2 millones de afiliados. Cuenta con sanatorios propios en AMBA, más de 40.000 prestadores y presencia en todo el país. Fuerte en cobertura digital, app propia y atención 24hs.',
+      'Avalian (ex ACA Salud, rebautizada en 2020) es una de las prepagas más grandes de Argentina con más de 1.2 millones de afiliados. Cuenta con sanatorios propios en AMBA, más de 40.000 prestadores y presencia en todo el país. Fuerte en cobertura digital, app propia y atención 24hs.',
     satisfaccion: 73,
     calidadCartilla: 3,
     rating: 3.9,

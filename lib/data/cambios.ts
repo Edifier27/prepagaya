@@ -184,6 +184,28 @@ export const cambiosRecomendados: CambioRecomendado[] = [
       { q: '¿Por qué Omint es tan cara si su red es más chica que Sancor Salud?', a: 'Omint invierte en infraestructura propia de alta complejidad (Bazterrica, Del Sol, Santa Isabel) y en beneficios como cobertura internacional incluida en todos los planes, lo que eleva el costo de estructura frente a una prepaga con más despliegue territorial como Sancor Salud.' },
     ],
   },
+  {
+    slug: 'medife-a-avalian',
+    origenSlug: 'medife',
+    origenNombre: 'Medifé',
+    origenPlanNombre: 'Plan Oro',
+    origenPrecio: 393744,
+    destinoSlug: 'avalian',
+    destinoNombre: 'Avalian',
+    destinoPlanSlug: 'full',
+    destinoPlanNombre: 'Plan Full',
+    destinoPrecio: 378200,
+    deltaMensual: 393744 - 378200,
+    gancho: 'Cuota más baja y mejor satisfacción declarada',
+    razon: 'El Plan Oro de Medifé y el Plan Full de Avalian están en la misma categoría: sin copago, red abierta, ambos el plan más completo dentro de su franja de precio. Avalian sale un poco menos y tiene mejor satisfacción declarada de afiliados (73% contra 70%), además de sumar 5 sanatorios propios en AMBA (Medifé no tiene sanatorios propios) y telemedicina 24hs incluida en todos sus planes.',
+    paraQuienNo: 'Si elegiste Medifé específicamente por el Cam Doctor (video consulta en menos de 10 minutos) o por el acceso al Sanatorio Finochietto para cirugía robótica, Avalian no replica esos dos puntos exactos — quedate en Medifé.',
+    ganas: ['5 sanatorios propios en AMBA (Las Lomas, 25 de Mayo y más)', 'Telemedicina 24hs incluida en todos los planes, no solo en el más caro', 'Mejor satisfacción declarada (73% contra 70%)', 'Cuota más baja por el mismo nivel de plan'],
+    perdes: ['Cam Doctor de Medifé: video consulta médica en menos de 10 minutos', 'Acceso al Sanatorio Finochietto (cirugía robótica)', 'Cobertura oficial de la AFA que tiene Medifé'],
+    faqExtra: [
+      { q: '¿Avalian tiene telemedicina como el Cam Doctor de Medifé?', a: 'Sí, Avalian incluye telemedicina 24hs en todos sus planes, pero es un servicio propio distinto al Cam Doctor de Medifé (que promete conexión en menos de 10 minutos). Si ese tiempo de respuesta puntual es tu prioridad, verificalo antes de cambiarte.' },
+      { q: '¿Por qué Avalian es más barata si tiene sanatorios propios y Medifé no?', a: 'Avalian mantiene su Plan Full en un nivel de precio competitivo pese a sus 5 sanatorios propios en AMBA. Medifé, en cambio, apoya buena parte de su propuesta en convenios puntuales (como el Sanatorio Finochietto), lo que no necesariamente se traduce en una cuota menor en su plan equivalente.' },
+    ],
+  },
 ]
 
 export function getCambioBySlug(slug: string): CambioRecomendado | undefined {
