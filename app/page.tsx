@@ -7,6 +7,7 @@ import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
+import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
 
 export const metadata: Metadata = {
   title: { absolute: `Comparador de Prepagas Argentina 2026 con Precios Reales — ${SITE_NAME}` },
@@ -180,6 +181,9 @@ export default function HomePage(): React.ReactElement {
           </div>
         </div>
       </section>
+
+      {/* ── Cotizar por prepaga — debajo del cotizador ─────────────────────── */}
+      <CotizarPorPrepaga fuente="home-por-prepaga" />
 
       {/* ── Ranking de prepagas: intención "mejor prepaga argentina" / precios ── */}
       <section className="py-14 bg-white border-b border-gray-100">
