@@ -619,19 +619,28 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     const planesTexto = allResultados.slice(0, 5).map((r, i) =>
       `${i + 1}. ${r.prepaga.nombre} — ${r.plan.nombre} | $${r.precioGrupal.toLocaleString('es-AR')}/mes`
     ).join('\n')
+    // "interes" prioriza el plan puntual que la persona eligió (plan_elegido,
+    // seteado por handleAccederPlan cuando aprieta "Cotización personalizada"
+    // en un plan específico) y si no hay uno, cae al primer resultado
+    // mostrado. Este es el valor que termina en el mail como "Interesado en".
     const interes = extra.plan_elegido ?? (planesTexto.split('\n')[0] ?? '')
     return {
       name: nombre.trim(),
       nombre: nombre.trim(),
       celular: celular.trim(),
       reply_to: 'cotizaciones@prepagaya.com.ar',
-      email: '',
+      // /api/leads exige un email válido para aceptar el lead; el wizard no
+      // pide email (solo nombre y celular), así que se sintetiza uno propio
+      // — mismo patrón que AsesoramientoPopup y ExitIntentPopup.
+      email: `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
       provincia: provinciaNombre,
       personas: `${personas.length} persona${personas.length !== 1 ? 's' : ''} — edades: ${personas.map(p => p.edad + ' años').join(', ')}`,
       fuente: 'cotizacion-wizard',
       planes_mostrados: planesTexto,
       planes_recomendados: planesTexto,
-      prepaga: planesTexto.split('\n')[0] ?? '',
+      // OJO: /api/leads lee "prepaga_interes", no "prepaga" — este es el
+      // campo que de verdad llega al template de EmailJS como {{prepaga}}.
+      prepaga_interes: interes,
       whatsapp_link: celular.trim() ? whatsappLinkParaLead(nombre.trim(), celular.trim(), interes) : '',
       coberturas: [...activeCobs].map(c => COBS.find(o => o.id === c)?.label).filter(Boolean).join(', ') || 'Sin preferencia',
       copago_preferencia: copago === 'sin-copago' ? 'Sin copago' : copago === 'con-copago' ? 'Con copago' : 'Sin preferencia',
@@ -648,11 +657,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     if (EJS_SERVICE && EJS_TEMPLATE && EJS_KEY) {
       await emailjs.send(EJS_SERVICE, EJS_TEMPLATE, payload, { publicKey: EJS_KEY })
     } else {
-      await fetch('/api/leads', {
+      const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
+      // fetch() no rechaza por status HTTP (solo por error de red): sin este
+      // chequeo, un 400 de /api/leads (ej. email inválido) queda como
+      // "éxito" silencioso — la persona ve el cartel de listo pero el mail
+      // nunca sale. Lanzamos para que los try/catch de arriba lo detecten.
+      if (!res.ok) throw new Error(`/api/leads respondió ${res.status}`)
     }
   }
 
