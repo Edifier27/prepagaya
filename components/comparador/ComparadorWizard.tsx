@@ -8,7 +8,7 @@ import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, whatsappLink, calidadPlan } from '@/lib/utils'
+import { formatPrecio, whatsappLink, whatsappLinkParaLead, calidadPlan } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -617,6 +617,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     const planesTexto = allResultados.slice(0, 5).map((r, i) =>
       `${i + 1}. ${r.prepaga.nombre} — ${r.plan.nombre} | $${r.precioGrupal.toLocaleString('es-AR')}/mes`
     ).join('\n')
+    const interes = extra.plan_elegido ?? (planesTexto.split('\n')[0] ?? '')
     return {
       name: nombre.trim(),
       nombre: nombre.trim(),
@@ -629,6 +630,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       planes_mostrados: planesTexto,
       planes_recomendados: planesTexto,
       prepaga: planesTexto.split('\n')[0] ?? '',
+      whatsapp_link: celular.trim() ? whatsappLinkParaLead(nombre.trim(), celular.trim(), interes) : '',
       coberturas: [...activeCobs].map(c => COBS.find(o => o.id === c)?.label).filter(Boolean).join(', ') || 'Sin preferencia',
       copago_preferencia: copago === 'sin-copago' ? 'Sin copago' : copago === 'con-copago' ? 'Con copago' : 'Sin preferencia',
       situacion: SITUACIONES.find(s => s.id === situacion)?.label ?? 'No especificada',

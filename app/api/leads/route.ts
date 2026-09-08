@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { whatsappLinkParaLead } from '@/lib/utils'
 
 const EMAILJS_SERVICE_ID  = 'service_m8w2gtu'
 const EMAILJS_TEMPLATE_ID = 'template_a8qzzg8'
@@ -33,6 +34,8 @@ export async function POST(req: NextRequest) {
 
   console.log('[LEAD]', JSON.stringify({ nombre, email, celular, prepaga, fuente, fecha }))
 
+  const whatsapp_link = celular ? whatsappLinkParaLead(nombre, celular, prepaga) : ''
+
   // Enviar email via EmailJS REST API
   try {
     const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
@@ -49,6 +52,7 @@ export async function POST(req: NextRequest) {
           prepaga: prepaga || 'No especificada',
           fuente,
           fecha,
+          whatsapp_link,
         },
       }),
     })

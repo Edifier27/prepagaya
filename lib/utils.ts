@@ -75,3 +75,23 @@ export const WHATSAPP_NUMBER = '5491134142247'
 export function whatsappLink(mensaje: string): string {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`
 }
+
+// ── WhatsApp hacia el lead (el asesor le escribe a quien dejó sus datos) ───
+// Los formularios piden el celular como "11 2345-6789" (código de área +
+// número, sin 0 ni 15, sin código de país — así lo dice el placeholder en
+// todos los forms). WhatsApp necesita 549 + área + número, solo dígitos.
+export function normalizarCelularAR(raw: string): string {
+  let digits = raw.replace(/\D/g, '')
+  if (digits.startsWith('0')) digits = digits.slice(1)
+  if (!digits.startsWith('54')) digits = `54${digits}`
+  if (!digits.startsWith('549')) digits = `${digits.slice(0, 2)}9${digits.slice(2)}`
+  return digits
+}
+
+/** Link de WhatsApp con mensaje pre-armado para que el asesor le escriba al lead. */
+export function whatsappLinkParaLead(nombre: string, celular: string, interes: string): string {
+  const numero = normalizarCelularAR(celular)
+  const primerNombre = nombre.trim().split(' ')[0] || nombre.trim()
+  const mensaje = `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Recibí tu consulta sobre: ${interes || 'tu cotización'}. ¿Tenés 2 minutos para que te pase el precio exacto para tu perfil?`
+  return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
+}
