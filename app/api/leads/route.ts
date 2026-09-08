@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { whatsappLinkParaLead } from '@/lib/utils'
 
-const EMAILJS_SERVICE_ID  = 'service_m8w2gtu'
-const EMAILJS_TEMPLATE_ID = 'template_a8qzzg8'
-const EMAILJS_PUBLIC_KEY  = 'DsKn9OmLBr6211IOF'
+// Credenciales de la cuenta EmailJS de Darío, confirmadas con un envío de
+// prueba real (8-sep-2026). Service/Template/Public ID no son secretos (el
+// Public Key está diseñado para exponerse), así que tienen fallback acá para
+// que funcione igual en local/preview sin .env. EMAILJS_PRIVATE_KEY SÍ es un
+// secreto real — la cuenta quedó en "modo estricto" (API calls from
+// non-browser apps), así que sin accessToken EmailJS rechaza el envío con
+// 403 — y por eso NO tiene fallback hardcodeado ni prefijo NEXT_PUBLIC_: solo
+// vive en la env var de Vercel.
+const EMAILJS_SERVICE_ID  = process.env.EMAILJS_SERVICE_ID  ?? 'PREPAGAYA'
+const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID ?? 'template_rxgrviu'
+const EMAILJS_PUBLIC_KEY  = process.env.EMAILJS_PUBLIC_KEY  ?? '-a6t4QSJQUEVpaEVe'
+const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY ?? ''
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -36,6 +45,10 @@ export async function POST(req: NextRequest) {
 
   const whatsapp_link = celular ? whatsappLinkParaLead(nombre, celular, prepaga) : ''
 
+  if (!EMAILJS_PRIVATE_KEY) {
+    console.error('[LEAD] Falta EMAILJS_PRIVATE_KEY — EmailJS va a rechazar el envío (modo estricto).')
+  }
+
   // Enviar email via EmailJS REST API
   try {
     const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
@@ -45,6 +58,7 @@ export async function POST(req: NextRequest) {
         service_id:  EMAILJS_SERVICE_ID,
         template_id: EMAILJS_TEMPLATE_ID,
         user_id:     EMAILJS_PUBLIC_KEY,
+        accessToken: EMAILJS_PRIVATE_KEY,
         template_params: {
           name:    nombre,
           email:   email.toLowerCase(),
