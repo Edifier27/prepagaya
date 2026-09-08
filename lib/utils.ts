@@ -69,11 +69,12 @@ export function ahorroDeriva(precioDirecto: number): number {
 }
 
 // ── WhatsApp de asesoramiento ───────────────────────────────────────────────
-// Número real del asesor oficial de PrepagaYa (confirmado por Dario, 3-sep-2026).
-export const WHATSAPP_NUMBER = '5491134142247'
-
+// El número real del asesor vive solo server-side (app/api/wa/route.ts) — acá
+// solo se arma la URL al redirect propio, nunca el link wa.me directo, para
+// que el celular no quede expuesto en el bundle de cliente (pedido explícito
+// de Darío, 8-sep-2026: "no puede estar mi cel por ningún lado").
 export function whatsappLink(mensaje: string): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`
+  return `/api/wa?m=${encodeURIComponent(mensaje)}`
 }
 
 // ── WhatsApp hacia el lead (el asesor le escribe a quien dejó sus datos) ───

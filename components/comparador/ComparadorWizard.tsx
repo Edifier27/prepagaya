@@ -14,6 +14,7 @@ import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { AsesoramientoPopup } from '@/components/ui/AsesoramientoPopup'
 import { getCambiosPorOrigen } from '@/lib/data/cambios'
 
 const EJS_SERVICE  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? ''
@@ -537,6 +538,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [copago, setCopago] = useState<Copago>(null)
   const [sortBy, setSortBy] = useState<'relevancia' | 'precio-asc' | 'precio-desc'>('relevancia')
   const [filtrosMenuOpen, setFiltrosMenuOpen] = useState(false)
+  const [asesoramientoUrgenteOpen, setAsesoramientoUrgenteOpen] = useState(false)
 
   // Plan access
   const [planAccedido, setPlanAccedido] = useState<string | null>(null)
@@ -1307,12 +1309,10 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             </div>
           )}
 
-          {/* Asesoramiento inmediato */}
-          <a
-            href={whatsappLink('Hola! Quiero que me asesoren en el momento sobre prepagas.')}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 bg-[#25D366]/10 border border-[#25D366]/30 rounded-2xl px-4 py-3 mb-4 hover:bg-[#25D366]/15 transition-colors group"
+          {/* Asesoramiento inmediato — abre formulario, no un link directo de WhatsApp */}
+          <button
+            onClick={() => setAsesoramientoUrgenteOpen(true)}
+            className="w-full flex items-center gap-3 bg-[#25D366]/10 border border-[#25D366]/30 rounded-2xl px-4 py-3 mb-4 hover:bg-[#25D366]/15 transition-colors group text-left"
           >
             <span className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
               <svg viewBox="0 0 24 24" fill="white" className="w-4.5 h-4.5">
@@ -1320,11 +1320,14 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               </svg>
             </span>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-bold text-gray-900">¿Preferís que te asesoren ahora mismo?</div>
+              <div className="text-sm font-bold text-gray-900 flex items-center gap-1.5 flex-wrap">
+                ¿Preferís que te asesoren ahora mismo?
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-[#E8002D] text-white tracking-wide">ATENCIÓN URGENTE</span>
+              </div>
               <div className="text-xs text-gray-500">Asesor oficial · 10 años en el rubro · asesoramiento en el acto por WhatsApp</div>
             </div>
             <span className="text-xs font-bold text-[#128C7E] flex-shrink-0 hidden sm:inline group-hover:underline">Escribinos →</span>
-          </a>
+          </button>
 
           {/* Count + clear */}
           <div className="flex items-center justify-between mb-4">
@@ -1709,6 +1712,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           </div>
         )
       })()}
+
+      <AsesoramientoPopup open={asesoramientoUrgenteOpen} onClose={() => setAsesoramientoUrgenteOpen(false)} />
     </div>
   )
 }
