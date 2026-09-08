@@ -68,7 +68,10 @@ export default function RankingPage() {
             Mejores prepagas por satisfacción de afiliados
           </h2>
           <p className="text-gray-500 text-sm mb-6">
-            Basado en encuestas a afiliados activos — {PRECIO_ACTUALIZADO}
+            Basado en encuestas a afiliados activos — {PRECIO_ACTUALIZADO}.{' '}
+            <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">
+              Ver cómo calculamos esto →
+            </Link>
           </p>
 
           <div className="space-y-4">

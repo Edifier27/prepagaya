@@ -11,6 +11,7 @@ export interface CoberturaData {
   quePreguntar: string[]
   faq: { q: string; a: string }[]
   relacionadas: string[] // slugs de otras coberturas
+  guiasRelacionadas?: string[] // slugs de guías (lib/data/guias.ts), solo donde hay relación real
   keywords: string[]
 }
 
@@ -152,7 +153,7 @@ export const coberturas: CoberturaData[] = [
     prepagasRecomendadas: [
       { slug: 'swiss-medical', razon: 'Swiss Medical tiene convenio con los mejores centros de fertilidad del país (CEGYR, Procrearte). Cubre los 4 ciclos por ley más la medicación con descuento en farmacia. Atención personalizada y coordinación entre ginecólogo y especialista en fertilidad.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene la red de centros de fertilidad adheridos más amplia. El Plan 310 cubre los tratamientos por ley. Su ventaja es la cantidad de opciones de centros especializados en todo el país.', planSlug: '310' },
-      { slug: 'sancor-salud', razon: 'Sancor Salud cumple la ley 26.862 en todas sus modalidades. Buena opción para el interior del país donde Swiss y OSDE tienen menos centros de fertilidad habilitados.', planSlug: 'plan-5000' },
+      { slug: 'sancor-salud', razon: 'Sancor Salud cumple la ley 26.862 en todas sus modalidades. Buena opción para el interior del país donde Swiss y OSDE tienen menos centros de fertilidad habilitados.', planSlug: 'plan-4500' },
     ],
     prepagasRestrictivas: [],
     quePreguntar: [
@@ -218,6 +219,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['medicamentos', 'psicologia', 'urgencias'],
+    guiasRelacionadas: ['reintegros-en-prepagas'],
     keywords: ['prepaga cobertura oncológica', 'mejor prepaga para cáncer Argentina', 'quimioterapia cobertura prepaga', 'medicamentos alto costo prepaga', 'prepaga diagnóstico cáncer'],
   },
   {
@@ -256,6 +258,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['oncologia', 'psicologia', 'urgencias'],
+    guiasRelacionadas: ['reintegros-en-prepagas'],
     keywords: ['descuento medicamentos prepaga', 'prepaga farmacia argentina', 'cobertura medicación crónica prepaga', 'prepaga medicamentos diabetes', 'farmacia adherida prepaga'],
   },
   {
@@ -297,6 +300,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['medicamentos', 'oncologia', 'psicologia'],
+    guiasRelacionadas: ['urgencias-guardia-prepaga'],
     keywords: ['urgencias emergencias prepaga', 'guardia 24hs prepaga', 'prepaga sin copago emergencias', 'ambulancia prepaga cobertura', 'emergencias interior del país prepaga'],
   },
   {

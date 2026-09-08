@@ -247,6 +247,21 @@ export function Footer() {
                   Aumentos de prepagas
                 </Link>
               </li>
+              <li>
+                <Link href="/prepaga-por-presupuesto" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                  Prepaga por presupuesto
+                </Link>
+              </li>
+              <li>
+                <Link href="/glosario" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                  Glosario
+                </Link>
+              </li>
+              <li>
+                <Link href="/en/health-insurance-argentina" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                  English version
+                </Link>
+              </li>
             </ul>
           </div>
 

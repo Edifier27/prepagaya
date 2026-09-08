@@ -223,7 +223,8 @@ export default async function ComparativaPage({ params }: Props) {
             </table>
           </div>
           <p className="text-xs text-gray-400 mt-3">
-            * Nivel de precio relativo al resto del mercado, plan de entrada de cada prepaga · {PRECIO_ACTUALIZADO}. Cotizá tu precio exacto según tu edad.
+            * Nivel de precio relativo al resto del mercado, plan de entrada de cada prepaga · {PRECIO_ACTUALIZADO}. Cotizá tu precio exacto según tu edad.{' '}
+            <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo calculamos la calidad de cartilla →</Link>
           </p>
         </div>
       </section>

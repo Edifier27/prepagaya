@@ -10,6 +10,7 @@ export interface CondicionData {
   preguntasAntesDeFirmar: string[]
   faq: { q: string; a: string }[]
   coberturasRelacionadas: string[] // slugs de coberturas
+  guiasRelacionadas?: string[] // slugs de guías (lib/data/guias.ts), solo donde hay relación real
   keywords: string[]
 }
 
@@ -172,7 +173,7 @@ export const condiciones: CondicionData[] = [
       },
       {
         slug: 'medife',
-        planSlug: 'individual',
+        planSlug: 'medife-plus',
         razon: 'Medife tiene una política de preexistencias razonable. Para condiciones estables y controladas, los períodos de carencia son relativamente cortos.',
       },
     ],
@@ -197,6 +198,7 @@ export const condiciones: CondicionData[] = [
       },
     ],
     coberturasRelacionadas: ['medicamentos', 'psicologia', 'urgencias'],
+    guiasRelacionadas: ['preexistencias-que-son-como-funcionan', 'prepaga-sin-periodo-carencia'],
     keywords: ['prepaga con preexistencias', 'período de carencia prepaga', 'ley 26682 preexistencias', 'prepaga flexible preexistencias', 'cómo afectan las preexistencias a la prepaga'],
   },
   {
@@ -332,6 +334,7 @@ export const condiciones: CondicionData[] = [
       },
     ],
     coberturasRelacionadas: ['psicologia', 'rehabilitacion', 'medicamentos'],
+    guiasRelacionadas: ['discapacidad-obra-social-cobertura-100'],
     keywords: ['mejor prepaga para autismo', 'prepaga TEA Argentina', 'prepaga terapia ABA', 'ley 27043 prepagas autismo', 'prepaga TEA cobertura'],
   },
   {

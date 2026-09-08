@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { condiciones } from '@/lib/data/condiciones'
 import { coberturas } from '@/lib/data/coberturas'
+import { guias } from '@/lib/data/guias'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
@@ -50,6 +51,10 @@ export default async function CondicionPage({ params }: Props) {
   const coberturasRel = cond.coberturasRelacionadas
     .map((s) => coberturas.find((c) => c.slug === s))
     .filter((c): c is NonNullable<typeof c> => Boolean(c))
+
+  const guiasRel = (cond.guiasRelacionadas ?? [])
+    .map((s) => guias.find((g) => g.slug === s))
+    .filter((g): g is NonNullable<typeof g> => Boolean(g))
 
   const otrasCondiciones = condiciones.filter((c) => c.slug !== slug).slice(0, 6)
 
@@ -244,6 +249,23 @@ export default async function CondicionPage({ params }: Props) {
                   >
                     <CoberturaIcon slug={c.slug} size="sm" />
                     <span className="text-xs font-medium text-gray-700 group-hover:text-[#E8002D] leading-tight">{c.nombre}</span>
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+          {guiasRel.length > 0 && (
+            <>
+              <h2 className="text-lg font-bold text-gray-900 mb-4">Guías que te pueden servir</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                {guiasRel.map((g) => (
+                  <Link
+                    key={g.slug}
+                    href={`/guias/${g.slug}`}
+                    className="flex items-center justify-between gap-2 p-3 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group"
+                  >
+                    <span className="text-xs font-medium text-gray-700 group-hover:text-[#E8002D] leading-tight">{g.titulo}</span>
+                    <span className="text-gray-300 group-hover:text-[#E8002D] flex-shrink-0">→</span>
                   </Link>
                 ))}
               </div>
