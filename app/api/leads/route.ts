@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { whatsappLinkParaLead } from '@/lib/utils'
 
-// Credenciales de la cuenta EmailJS de Darío, confirmadas con un envío de
-// prueba real (8-sep-2026). Service/Template/Public ID no son secretos (el
-// Public Key está diseñado para exponerse), así que tienen fallback acá para
-// que funcione igual en local/preview sin .env. EMAILJS_PRIVATE_KEY SÍ es un
-// secreto real — la cuenta quedó en "modo estricto" (API calls from
-// non-browser apps), así que sin accessToken EmailJS rechaza el envío con
-// 403 — y por eso NO tiene fallback hardcodeado ni prefijo NEXT_PUBLIC_: solo
-// vive en la env var de Vercel.
+// Credenciales de la cuenta EmailJS de Darío — cuenta nueva (9-sep-2026),
+// confirmada con un envío de prueba real. Service/Template/Public ID no son
+// secretos (el Public Key está diseñado para exponerse), así que tienen
+// fallback acá para que funcione igual en local/preview sin .env.
+// EMAILJS_PRIVATE_KEY SÍ es un secreto real — la cuenta quedó en "modo
+// estricto" (API calls from non-browser apps), así que sin accessToken
+// EmailJS rechaza el envío con 403 — y por eso NO tiene fallback hardcodeado
+// ni prefijo NEXT_PUBLIC_: solo vive en la env var de Vercel.
 const EMAILJS_SERVICE_ID  = process.env.EMAILJS_SERVICE_ID  ?? 'PREPAGAYA'
-const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID ?? 'template_rxgrviu'
-const EMAILJS_PUBLIC_KEY  = process.env.EMAILJS_PUBLIC_KEY  ?? '-a6t4QSJQUEVpaEVe'
+const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID ?? 'template_8p5ihaj'
+const EMAILJS_PUBLIC_KEY  = process.env.EMAILJS_PUBLIC_KEY  ?? 'lVlSZHupNk1R5ZDES'
 const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY ?? ''
 
 function isValidEmail(email: string) {
