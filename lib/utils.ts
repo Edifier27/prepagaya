@@ -68,16 +68,12 @@ export function ahorroDeriva(precioDirecto: number): number {
   return precioDirecto - precioDeriva(precioDirecto)
 }
 
-// ── WhatsApp de asesoramiento ───────────────────────────────────────────────
-// El número real del asesor vive solo server-side (app/api/wa/route.ts) — acá
-// solo se arma la URL al redirect propio, nunca el link wa.me directo, para
-// que el celular no quede expuesto en el bundle de cliente (pedido explícito
-// de Darío, 8-sep-2026: "no puede estar mi cel por ningún lado").
-export function whatsappLink(mensaje: string): string {
-  return `/api/wa?m=${encodeURIComponent(mensaje)}`
-}
-
 // ── WhatsApp hacia el lead (el asesor le escribe a quien dejó sus datos) ───
+// Ya no existe la función inversa (visitante → asesor): pedido explícito de
+// Darío, 9-sep-2026 — no quiere que el visitante lo contacte directo por
+// WhatsApp después de dejar sus datos, solo recibir el lead por mail y
+// contactarlo él cuando le convenga. Todos los formularios del sitio dejaron
+// de redirigir a WhatsApp tras el envío.
 // Los formularios piden el celular como "11 2345-6789" (código de área +
 // número, sin 0 ni 15, sin código de país — así lo dice el placeholder en
 // todos los forms). WhatsApp necesita 549 + área + número, solo dígitos.

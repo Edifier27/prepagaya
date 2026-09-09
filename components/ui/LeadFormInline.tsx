@@ -1,7 +1,6 @@
 ﻿'use client'
 
 import { useState } from 'react'
-import { whatsappLink } from '@/lib/utils'
 
 interface Props {
   prepagaNombre?: string
@@ -32,16 +31,10 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
           fecha: new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }),
         }),
       })
+      // Ya no redirige al WhatsApp del asesor — el lead solo llega por mail
+      // y el asesor contacta desde ahí cuando le conviene (pedido de Darío,
+      // 9-sep-2026: no quiere que el visitante le escriba directo).
       setStatus(res.ok ? 'success' : 'error')
-      if (res.ok) {
-        // Conexión automática con el asesor oficial por WhatsApp, en vez de
-        // dejar a la persona esperando que la llamen.
-        setTimeout(() => {
-          window.location.href = whatsappLink(
-            `Hola! Soy ${nombre.trim()}${prepagaNombre ? `, me interesa ${prepagaNombre}` : ''} y dejé mis datos en PrepagaYa. Quiero que un asesor oficial me ayude a elegir la mejor prepaga.`
-          )
-        }, 1500)
-      }
     } catch {
       setStatus('error')
     }
@@ -56,7 +49,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
           </svg>
         </div>
         <div className="font-bold text-green-800 mb-1">¡Listo!</div>
-        <p className="text-sm text-green-600">Te conectamos ahora con un asesor oficial por WhatsApp...</p>
+        <p className="text-sm text-green-600">Recibimos tus datos. Un asesor oficial te va a contactar a la brevedad.</p>
       </div>
     )
   }
@@ -67,7 +60,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
         <h3 className="font-bold text-gray-900 text-base">
           {titulo ?? (prepagaNombre ? `¿Te interesa ${prepagaNombre}?` : 'Cotizá sin cargo')}
         </h3>
-        <p className="text-xs text-gray-500 mt-0.5">Te conectamos al instante con un asesor oficial por WhatsApp</p>
+        <p className="text-xs text-gray-500 mt-0.5">Un asesor oficial te contacta a la brevedad</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-3">

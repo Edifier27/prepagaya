@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { whatsappLink } from '@/lib/utils'
 
 interface Props {
   prepagaNombre: string
@@ -43,14 +42,10 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
           prepaga_interes: interes,
         }),
       })
+      // Ya no redirige al WhatsApp del asesor — el lead solo llega por mail
+      // y el asesor contacta desde ahí cuando le conviene (pedido de Darío,
+      // 9-sep-2026: no quiere que el visitante le escriba directo).
       setStatus('success')
-      // Conexión automática con el asesor oficial por WhatsApp para avanzar
-      // con el alta, en vez de dejar a la persona esperando que la llamen.
-      setTimeout(() => {
-        window.location.href = whatsappLink(
-          `Hola! Soy ${nombre.trim()}, quiero contratar ${interes}. Dejé mis datos en PrepagaYa para avanzar con el alta.`
-        )
-      }, 1500)
     } catch {
       setStatus('idle')
     }
@@ -85,7 +80,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
               </button>
               <div className="text-xl font-bold mb-1">{planNombre ? `Contratar ${planNombre}` : `Cotización de ${prepagaNombre}`}</div>
               <p className="text-red-100 text-sm leading-relaxed">
-                Dejanos tus datos y te conectamos al instante por WhatsApp con un asesor oficial, con el precio exacto de {interes} para tu edad.
+                Dejanos tus datos y un asesor oficial te contacta con el precio exacto de {interes} para tu edad.
               </p>
             </div>
 
@@ -98,7 +93,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                     </svg>
                   </div>
                   <p className="font-bold text-gray-900 mb-1">¡Listo!</p>
-                  <p className="text-sm text-gray-500">Te conectamos ahora con un asesor oficial por WhatsApp para avanzar con la contratación.</p>
+                  <p className="text-sm text-gray-500">Recibimos tus datos. Un asesor oficial te va a contactar a la brevedad para avanzar con la contratación.</p>
                 </div>
               ) : (
                 <>

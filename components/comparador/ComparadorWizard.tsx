@@ -8,7 +8,7 @@ import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, whatsappLink, whatsappLinkParaLead, calidadPlan } from '@/lib/utils'
+import { formatPrecio, whatsappLinkParaLead, calidadPlan } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -705,20 +705,12 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   function handleAccederPlan(res: Resultado) {
     const planKey = `${res.prepaga.slug}-${res.plan.slug}`
     setPlanAccedido(planKey)
-    setPlanAccedidoStatus('success')
     // Nombre y celular ya se mandaron por mail en el popup inicial (único
-    // envío por lead, para no gastar cupo de EmailJS). Acá vamos directo a
-    // WhatsApp con el plan puntual en el mensaje — Darío se entera al toque,
-    // sin un segundo mail.
-    setTimeout(() => {
-      window.location.href = whatsappLinkParaLead(
-        nombre.trim(),
-        celular.trim(),
-        `${res.prepaga.nombre} — ${res.plan.nombre}`,
-        provinciaNombre,
-        resumenEdadesNatural()
-      )
-    }, 600)
+    // envío por lead, para no gastar cupo de EmailJS) — acá no se manda un
+    // segundo mail ni se redirige a WhatsApp (pedido de Darío, 9-sep-2026: no
+    // quiere que el visitante le escriba directo, solo recibir el lead por
+    // mail y contactar él cuando quiera). Solo queda un "anotado" local.
+    setPlanAccedidoStatus('success')
   }
 
   function toggleCob(id: CobId) {
@@ -1545,7 +1537,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                         </div>
                         {isAccedido && planAccedidoStatus === 'success' ? (
                           <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center">
-                            ¡Solicitud enviada!
+                            ¡Anotado! Te contactamos por este plan
                           </div>
                         ) : (
                           <button onClick={() => handleAccederPlan(res)}
@@ -1594,7 +1586,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             onClose={() => setPlanAbierto(null)}
             onQuiero={() => handleAccederPlan(planAbierto)}
             quieroDisabled={enviando || yaEnviado}
-            quieroLabel={yaEnviado ? '¡Solicitud enviada!' : enviando ? 'Enviando...' : 'Cotización personalizada →'}
+            quieroLabel={yaEnviado ? '¡Anotado!' : enviando ? 'Enviando...' : 'Cotización personalizada →'}
           />
         )
       })()}
