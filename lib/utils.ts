@@ -91,18 +91,21 @@ export function normalizarCelularAR(raw: string): string {
 
 /**
  * Link de WhatsApp con mensaje pre-armado para que el asesor le escriba al
- * lead. Cuando hay zona/edad (las manda el wizard del comparador — los
- * formularios más simples como AsesoramientoPopup no las piden), el mensaje
- * se arma como confirmación comercial directa ("cotizaste X para Y en Z,
- * ¿es correcto?"), pensado para reenviarse tal cual sin editar. Sin ese
- * contexto, cae al mensaje genérico de siempre.
+ * lead. No menciona precio a propósito (pedido de Darío, 9-sep-2026: la idea
+ * es abrir con la promo, no con "te paso el precio", para no anclar la
+ * conversación a un número antes de hablar). Cuando hay zona/edad (las manda
+ * el wizard del comparador — los formularios más simples como
+ * AsesoramientoPopup no las piden), el mensaje confirma esos datos y ofrece
+ * la promo de contratación online (25% OFF, la misma que ya se promociona en
+ * todo el sitio). Sin ese contexto, cae a una versión más corta del mismo
+ * gancho. Pensado para reenviarse tal cual, sin editar.
  */
 export function whatsappLinkParaLead(nombre: string, celular: string, interes: string, zona?: string, edad?: string): string {
   const numero = normalizarCelularAR(celular)
   const primerNombre = nombre.trim().split(' ')[0] || nombre.trim()
   const contexto = [edad, zona].filter(Boolean).join(' en ')
   const mensaje = contexto
-    ? `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Cotizaste ${interes || 'un plan'} en la web para ${contexto}. ¿Es correcto? Contame y te paso el precio exacto.`
-    : `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Recibí tu consulta sobre: ${interes || 'tu cotización'}. ¿Tenés 2 minutos para que te pase el precio exacto para tu perfil?`
+    ? `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Vi que cotizaste ${interes || 'un plan'} en la web para ${contexto}. Tenemos una promo especial por contratar online — ¿confirmamos estos datos y te cuento los beneficios?`
+    : `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Recibí tu consulta sobre ${interes || 'tu cotización'}. Tenemos una promo especial por contratar online — ¿tenés 2 minutos para contarte los beneficios?`
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
 }
