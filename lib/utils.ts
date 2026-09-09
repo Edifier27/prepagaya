@@ -102,10 +102,9 @@ export function normalizarCelularAR(raw: string): string {
  */
 export function whatsappLinkParaLead(nombre: string, celular: string, interes: string, zona?: string, edad?: string): string {
   const numero = normalizarCelularAR(celular)
-  const primerNombre = nombre.trim().split(' ')[0] || nombre.trim()
   const contexto = [edad, zona].filter(Boolean).join(' en ')
   const mensaje = contexto
-    ? `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Vi que cotizaste ${interes || 'un plan'} en la web para ${contexto}. Tenemos una promo especial por contratar online — ¿confirmamos estos datos y te cuento los beneficios?`
-    : `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Recibí tu consulta sobre ${interes || 'tu cotización'}. Tenemos una promo especial por contratar online — ¿tenés 2 minutos para contarte los beneficios?`
+    ? `Hola, soy Darío de PrepagaYa 👋. Vi que cotizaste ${interes || 'un plan'} en la web para ${contexto}. Tenemos una promo especial por contratar online — ¿confirmamos estos datos y te cuento los beneficios?`
+    : `Hola, soy Darío de PrepagaYa 👋. Recibí tu consulta sobre ${interes || 'tu cotización'}. Tenemos una promo especial por contratar online — ¿tenés 2 minutos para contarte los beneficios?`
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
 }
