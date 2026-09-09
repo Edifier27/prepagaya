@@ -8,7 +8,7 @@ import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, whatsappLinkParaLead, calidadPlan } from '@/lib/utils'
+import { formatPrecio, whatsappLinkParaLead, calidadPlan, esCelularArgentinoValido } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -530,6 +530,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   // Lead data
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const [email, setEmail] = useState('')
   const [leadStatus, setLeadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   // Preview countdown
@@ -616,7 +617,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     const n = parseInt(p.edad)
     return p.edad !== '' && !isNaN(n) && n > 0 && n < 110
   })
-  const popupOk = nombre.trim().length > 0 && celular.trim().length >= 6
+  const popupOk = nombre.trim().length > 0 && esCelularArgentinoValido(celular) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
 
   // Frase en lenguaje natural para el mensaje de WhatsApp ("una persona de
   // 35 años" / "un grupo de 3 personas (35, 8 y 5 años)") — pensada para que
@@ -646,10 +647,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       nombre: nombre.trim(),
       celular: celular.trim(),
       reply_to: 'cotizaciones@prepagaya.com.ar',
-      // /api/leads exige un email válido para aceptar el lead; el wizard no
-      // pide email (solo nombre y celular), así que se sintetiza uno propio
-      // — mismo patrón que AsesoramientoPopup y ExitIntentPopup.
-      email: `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
+      email: email.trim(),
       provincia: provinciaNombre,
       // En lenguaje natural (no "1 persona — edades: 35 años") porque este
       // mismo valor se reusa tal cual para armar el mensaje de WhatsApp.
@@ -922,6 +920,23 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     </span>
                     <input type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
                       placeholder="11 2345-6789"
+                      className="w-full border-2 border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors" />
+                  </div>
+                  {celular.trim().length > 0 && !esCelularArgentinoValido(celular) && (
+                    <p className="text-[11px] text-amber-600 mt-1">Revisá el número — parece incompleto o inválido.</p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">Email *</label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" className="w-4 h-4">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <path d="M22 6l-10 7L2 6"/>
+                      </svg>
+                    </span>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                      placeholder="tu@email.com" autoComplete="email"
                       className="w-full border-2 border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors" />
                   </div>
                 </div>

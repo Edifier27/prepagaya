@@ -86,6 +86,32 @@ export function normalizarCelularAR(raw: string): string {
 }
 
 /**
+ * Filtro anti-"celular basura" para los formularios de lead (pedido de
+ * Darío, 9-sep-2026). No puede confirmar que el número exista de verdad —
+ * eso solo lo sabe un WhatsApp real — pero descarta los casos más obvios de
+ * alguien tipeando cualquier cosa para pasar el formulario: muy corto/largo
+ * para ser un número argentino, todos los dígitos iguales (1111111111) o una
+ * secuencia ascendente/descendente (1234567890, 0987654321).
+ */
+export function esCelularArgentinoValido(raw: string): boolean {
+  const digits = raw.replace(/\D/g, '')
+  if (digits.length < 8 || digits.length > 13) return false
+  if (/^(\d)\1+$/.test(digits)) return false
+  // Secuencias clásicas de "número de prueba" — el chequeo de rachas de abajo
+  // no las detecta solo porque el 9→0 corta la racha en términos de código
+  // de carácter (57 → 48 no es +1), así que se buscan explícitas primero.
+  const secuenciasFalsas = ['0123456789', '1234567890', '9876543210', '0987654321']
+  if (secuenciasFalsas.some((s) => digits.includes(s))) return false
+  let asc = true, desc = true
+  for (let i = 1; i < digits.length; i++) {
+    const diff = digits.charCodeAt(i) - digits.charCodeAt(i - 1)
+    if (diff !== 1) asc = false
+    if (diff !== -1) desc = false
+  }
+  return !asc && !desc
+}
+
+/**
  * Link de WhatsApp con mensaje pre-armado para que el asesor le escriba al
  * lead. No menciona precio a propósito (pedido de Darío, 9-sep-2026: la idea
  * es abrir con la promo, no con "te paso el precio", para no anclar la
