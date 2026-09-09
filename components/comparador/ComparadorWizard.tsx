@@ -38,7 +38,10 @@ const APORTE_PORCENTAJE = 0.075
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type Step = 'zona' | 'edades' | 'origen' | 'preview' | 'resultados'
+// "origen" (¿de qué prepaga venís?) dejó de ser un paso bloqueante — ahora es
+// un filtro opcional dentro de resultados (ver "¿De qué prepaga venís?" más
+// abajo), así se llega a precios reales en 2 pasos en vez de 3.
+type Step = 'zona' | 'edades' | 'preview' | 'resultados'
 type SituacionLaboral = 'particular' | 'relacion-dependencia' | 'monotributo' | 'responsable-inscripto'
 type CobId = 'internacion' | 'psicologia' | 'kinesiologia' | 'maternidad' | 'odontologia' | 'medicamentos' | 'estudios' | 'urgencias' | 'optica' | 'reintegros' | 'ortodoncia' | 'cirugia-estetica'
 type Copago = 'sin-copago' | 'con-copago' | null
@@ -272,8 +275,8 @@ function SituacionIcon({ id }: { id: SituacionLaboral }) {
 
 // ─── Progress bar (3 steps) ───────────────────────────────────────────────────
 
-const STEP_LABELS = ['Zona', 'Integrantes', 'Tu prepaga', 'Ver precios']
-const STEP_ORDER: Step[] = ['zona', 'edades', 'origen', 'preview']
+const STEP_LABELS = ['Zona', 'Integrantes', 'Ver precios']
+const STEP_ORDER: Step[] = ['zona', 'edades', 'preview']
 
 function ProgressBar({ step, onStepClick }: { step: Step; onStepClick?: (step: Step) => void }) {
   const idx = STEP_ORDER.indexOf(step)
@@ -615,6 +618,19 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   })
   const popupOk = nombre.trim().length > 0 && celular.trim().length >= 6
 
+  // Frase en lenguaje natural para el mensaje de WhatsApp ("una persona de
+  // 35 años" / "un grupo de 3 personas (35, 8 y 5 años)") — pensada para que
+  // Darío pueda reenviar el mensaje tal cual, sin reescribirlo.
+  function resumenEdadesNatural(): string {
+    const edades = personas.map(p => p.edad).filter(Boolean)
+    if (edades.length === 0) return ''
+    if (edades.length === 1) return `una persona de ${edades[0]} años`
+    const lista = edades.length === 2
+      ? edades.join(' y ')
+      : `${edades.slice(0, -1).join(', ')} y ${edades[edades.length - 1]}`
+    return `un grupo de ${edades.length} personas (${lista} años)`
+  }
+
   function buildPayload(extra: Record<string, string> = {}): Record<string, string> {
     const planesTexto = allResultados.slice(0, 5).map((r, i) =>
       `${i + 1}. ${r.prepaga.nombre} — ${r.plan.nombre} | $${r.precioGrupal.toLocaleString('es-AR')}/mes`
@@ -624,6 +640,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     // en un plan específico) y si no hay uno, cae al primer resultado
     // mostrado. Este es el valor que termina en el mail como "Interesado en".
     const interes = extra.plan_elegido ?? (planesTexto.split('\n')[0] ?? '')
+    const edadResumen = resumenEdadesNatural()
     return {
       name: nombre.trim(),
       nombre: nombre.trim(),
@@ -634,14 +651,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       // — mismo patrón que AsesoramientoPopup y ExitIntentPopup.
       email: `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
       provincia: provinciaNombre,
-      personas: `${personas.length} persona${personas.length !== 1 ? 's' : ''} — edades: ${personas.map(p => p.edad + ' años').join(', ')}`,
+      // En lenguaje natural (no "1 persona — edades: 35 años") porque este
+      // mismo valor se reusa tal cual para armar el mensaje de WhatsApp.
+      personas: edadResumen,
       fuente: 'cotizacion-wizard',
       planes_mostrados: planesTexto,
       planes_recomendados: planesTexto,
       // OJO: /api/leads lee "prepaga_interes", no "prepaga" — este es el
       // campo que de verdad llega al template de EmailJS como {{prepaga}}.
       prepaga_interes: interes,
-      whatsapp_link: celular.trim() ? whatsappLinkParaLead(nombre.trim(), celular.trim(), interes) : '',
+      whatsapp_link: celular.trim() ? whatsappLinkParaLead(nombre.trim(), celular.trim(), interes, provinciaNombre, edadResumen) : '',
       coberturas: [...activeCobs].map(c => COBS.find(o => o.id === c)?.label).filter(Boolean).join(', ') || 'Sin preferencia',
       copago_preferencia: copago === 'sin-copago' ? 'Sin copago' : copago === 'con-copago' ? 'Con copago' : 'Sin preferencia',
       situacion: SITUACIONES.find(s => s.id === situacion)?.label ?? 'No especificada',
@@ -683,21 +702,23 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     }
   }
 
-  async function handleAccederPlan(res: Resultado) {
+  function handleAccederPlan(res: Resultado) {
     const planKey = `${res.prepaga.slug}-${res.plan.slug}`
     setPlanAccedido(planKey)
-    setPlanAccedidoStatus('loading')
-    try {
-      await sendEmail(buildPayload({
-        fuente: 'plan-accedido',
-        plan_elegido: `${res.prepaga.nombre} — ${res.plan.nombre}`,
-        precio_original: `$${res.precioGrupal.toLocaleString('es-AR')}/mes`,
-        precio_con_descuento: `$${precioFinal(res.precioDesc).toLocaleString('es-AR')}/mes`,
-      }))
-      setPlanAccedidoStatus('success')
-    } catch {
-      setPlanAccedidoStatus('idle')
-    }
+    setPlanAccedidoStatus('success')
+    // Nombre y celular ya se mandaron por mail en el popup inicial (único
+    // envío por lead, para no gastar cupo de EmailJS). Acá vamos directo a
+    // WhatsApp con el plan puntual en el mensaje — Darío se entera al toque,
+    // sin un segundo mail.
+    setTimeout(() => {
+      window.location.href = whatsappLinkParaLead(
+        nombre.trim(),
+        celular.trim(),
+        `${res.prepaga.nombre} — ${res.plan.nombre}`,
+        provinciaNombre,
+        resumenEdadesNatural()
+      )
+    }, 600)
   }
 
   function toggleCob(id: CobId) {
@@ -803,51 +824,11 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         )}
 
         <div className="flex justify-end">
-          <button onClick={() => setStep('origen')} disabled={!edadesOk}
+          <button onClick={() => setStep('preview')} disabled={!edadesOk}
             className="inline-flex items-center gap-2 px-10 py-4 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-2xl transition-all shadow-md hover:shadow-lg text-base">
             Ver precios →
           </button>
         </div>
-      </div>
-    )
-  }
-
-  // ── Step: Origen (¿de qué prepaga venís?) ───────────────────────────────────────
-
-  if (step === 'origen') {
-    function elegirOrigen(slug: string | null) {
-      setPrepagaOrigen(slug)
-      setTimeout(() => setStep('preview'), 220)
-    }
-
-    return (
-      <div>
-        <ProgressBar step="origen" onStepClick={setStep} />
-        <BackBtn onClick={() => setStep('edades')} />
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">¿De qué prepaga venís?</h2>
-          <p className="text-sm text-gray-500">Así te mostramos la comparación más útil para tu caso</p>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-4">
-          {prepagas.map((prep) => {
-            const selected = prepagaOrigen === prep.slug
-            return (
-              <button key={prep.slug} onClick={() => elegirOrigen(prep.slug)}
-                className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all ${
-                  selected ? 'border-[#E8002D] bg-red-50 shadow-md' : 'border-gray-100 bg-white hover:border-red-200 hover:shadow-sm'
-                }`}>
-                <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="md" />
-                <span className="text-xs font-semibold text-gray-700 text-center leading-tight">{prep.nombre}</span>
-              </button>
-            )
-          })}
-        </div>
-
-        <button onClick={() => elegirOrigen(null)}
-          className="w-full flex items-center justify-center gap-2 py-3 border-2 border-dashed border-gray-200 rounded-2xl text-sm font-semibold text-gray-400 hover:border-[#E8002D] hover:text-[#E8002D] hover:bg-red-50 transition-all">
-          Otras / Ninguna
-        </button>
       </div>
     )
   }
@@ -1081,6 +1062,25 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         sueldoBruto={sueldoBruto}
         setSueldoBruto={setSueldoBruto}
       />
+
+      {/* "¿De qué prepaga venís?" — ya no es un paso obligatorio del wizard,
+          es un filtro opcional acá: si lo elegís, más abajo aparece el
+          banner de "te conviene cambiarte a X" con datos reales. */}
+      {!prepagaOrigen && (
+        <div className="bg-gray-50 border border-gray-100 rounded-2xl p-4 mb-6">
+          <div className="text-sm font-bold text-gray-900 mb-0.5">¿De qué prepaga venís? <span className="text-gray-400 font-normal">(opcional)</span></div>
+          <p className="text-xs text-gray-500 mb-3">Te mostramos si te conviene cambiarte</p>
+          <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+            {prepagas.map((prep) => (
+              <button key={prep.slug} onClick={() => setPrepagaOrigen(prep.slug)}
+                className="flex-shrink-0 flex flex-col items-center gap-1.5 p-2.5 rounded-xl border-2 border-gray-200 hover:border-red-200 bg-white transition-all">
+                <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="sm" />
+                <span className="text-[10px] font-semibold text-gray-600 whitespace-nowrap">{prep.nombre}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {cambioOrigen && destinoPlanBase && (
         <div className="bg-white rounded-2xl border-2 border-[#E8002D] p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">

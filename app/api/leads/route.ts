@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 
   console.log('[LEAD]', JSON.stringify({ nombre, email, celular, prepaga, provincia, personas, fuente, fecha }))
 
-  const whatsapp_link = celular ? whatsappLinkParaLead(nombre, celular, prepaga) : ''
+  const whatsapp_link = celular ? whatsappLinkParaLead(nombre, celular, prepaga, provincia, personas) : ''
 
   if (!EMAILJS_PRIVATE_KEY) {
     console.error('[LEAD] Falta EMAILJS_PRIVATE_KEY — EmailJS va a rechazar el envío (modo estricto).')

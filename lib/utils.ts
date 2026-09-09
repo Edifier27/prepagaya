@@ -89,10 +89,20 @@ export function normalizarCelularAR(raw: string): string {
   return digits
 }
 
-/** Link de WhatsApp con mensaje pre-armado para que el asesor le escriba al lead. */
-export function whatsappLinkParaLead(nombre: string, celular: string, interes: string): string {
+/**
+ * Link de WhatsApp con mensaje pre-armado para que el asesor le escriba al
+ * lead. Cuando hay zona/edad (las manda el wizard del comparador — los
+ * formularios más simples como AsesoramientoPopup no las piden), el mensaje
+ * se arma como confirmación comercial directa ("cotizaste X para Y en Z,
+ * ¿es correcto?"), pensado para reenviarse tal cual sin editar. Sin ese
+ * contexto, cae al mensaje genérico de siempre.
+ */
+export function whatsappLinkParaLead(nombre: string, celular: string, interes: string, zona?: string, edad?: string): string {
   const numero = normalizarCelularAR(celular)
   const primerNombre = nombre.trim().split(' ')[0] || nombre.trim()
-  const mensaje = `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Recibí tu consulta sobre: ${interes || 'tu cotización'}. ¿Tenés 2 minutos para que te pase el precio exacto para tu perfil?`
+  const contexto = [edad, zona].filter(Boolean).join(' en ')
+  const mensaje = contexto
+    ? `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Cotizaste ${interes || 'un plan'} en la web para ${contexto}. ¿Es correcto? Contame y te paso el precio exacto.`
+    : `¡Hola ${primerNombre}! Soy Darío de PrepagaYa 👋. Recibí tu consulta sobre: ${interes || 'tu cotización'}. ¿Tenés 2 minutos para que te pase el precio exacto para tu perfil?`
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
 }
