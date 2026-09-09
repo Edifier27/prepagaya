@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
@@ -92,10 +93,10 @@ export default async function ComparadorPage({ searchParams }: Props) {
                 { href: '/comparativas/swiss-medical-vs-osde', label: 'Swiss Medical vs OSDE' },
                 { href: '/guias/como-cambiar-de-prepaga', label: 'Cómo cambiar de prepaga' },
               ].map((link) => (
-                <a key={link.href} href={link.href}
+                <Link key={link.href} href={link.href}
                   className="px-4 py-2 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 hover:border-red-200 hover:text-[#E8002D] transition-all">
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

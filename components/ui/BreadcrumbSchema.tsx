@@ -1,4 +1,5 @@
-﻿import { SITE_URL, SITE_NAME } from '@/lib/utils'
+﻿import Link from 'next/link'
+import { SITE_URL, SITE_NAME } from '@/lib/utils'
 
 interface Crumb {
   label: string
@@ -35,7 +36,7 @@ export function BreadcrumbSchema({ crumbs }: Props): React.ReactElement {
           <span key={i} className="flex items-center gap-1.5">
             {i > 0 && <span aria-hidden>›</span>}
             {c.href && i < all.length - 1 ? (
-              <a href={c.href} className="hover:text-[#E8002D] transition-colors">{c.label}</a>
+              <Link href={c.href} className="hover:text-[#E8002D] transition-colors">{c.label}</Link>
             ) : (
               <span className={i === all.length - 1 ? 'text-gray-700 font-medium' : ''}>{c.label}</span>
             )}

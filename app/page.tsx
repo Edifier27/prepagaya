@@ -41,6 +41,14 @@ const jsonLd = [
   },
 ]
 
+// Avatar con iniciales para los testimonios (mismo patrón que el fallback de
+// PrepagaLogo): evita usar fotos de stock genéricas mientras le da más
+// cuerpo visual a la sección que el nombre solo.
+const TESTIMONIO_COLORS = ['#E8002D', '#0057A8', '#B45309']
+function iniciales(nombre: string): string {
+  return nombre.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()
+}
+
 const testimonios = [
   {
     texto: 'Cambié de OSDE 210 a Swiss Medical SMG20 y la cuota bajó bastante. En 5 minutos entendí qué plan me convenía y el trámite fue rápido.',
@@ -321,9 +329,18 @@ export default function HomePage(): React.ReactElement {
 
                 <p className="text-gray-700 text-sm leading-relaxed mb-4">&ldquo;{t.texto}&rdquo;</p>
 
-                <div>
-                  <div className="font-semibold text-gray-900 text-sm">{t.nombre}</div>
-                  <div className="text-xs text-gray-400">{t.detalle}</div>
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center text-white font-black text-xs flex-shrink-0"
+                    style={{ backgroundColor: TESTIMONIO_COLORS[i % TESTIMONIO_COLORS.length] }}
+                    aria-hidden="true"
+                  >
+                    {iniciales(t.nombre)}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900 text-sm">{t.nombre}</div>
+                    <div className="text-xs text-gray-400">{t.detalle}</div>
+                  </div>
                 </div>
               </div>
             ))}

@@ -198,13 +198,13 @@ export function Header() {
 
           {/* CTA */}
           <div className="hidden md:block">
-            <a href="/comparador"
+            <Link href="/comparador"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-all shadow-sm hover:shadow-md">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-4 h-4">
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
               Cotizá gratis
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -258,13 +258,13 @@ export function Header() {
                 ))}
               </div>
               <div className="mt-3">
-                <a href="/comparador" onClick={() => setMenuOpen(false)}
+                <Link href="/comparador" onClick={() => setMenuOpen(false)}
                   className="flex items-center justify-center gap-2 w-full py-3 bg-[#F97316] hover:bg-[#ea6c0b] text-white font-bold rounded-xl text-sm transition-all">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-4 h-4">
                     <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                   </svg>
                   Cotizá gratis
-                </a>
+                </Link>
               </div>
             </div>
           </div>
