@@ -27,12 +27,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'JSON inválido' }, { status: 400 })
   }
 
-  const nombre  = String(body.nombre ?? '').trim()
-  const email   = String(body.email ?? body.reply_to ?? '').trim()
-  const celular = String(body.celular ?? '').trim()
-  const prepaga = String(body.prepaga_interes ?? '').trim()
-  const fuente  = String(body.fuente ?? 'web').trim()
-  const fecha   = String(body.fecha ?? new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }))
+  const nombre    = String(body.nombre ?? '').trim()
+  const email     = String(body.email ?? body.reply_to ?? '').trim()
+  const celular   = String(body.celular ?? '').trim()
+  const prepaga   = String(body.prepaga_interes ?? '').trim()
+  const fuente    = String(body.fuente ?? 'web').trim()
+  const fecha     = String(body.fecha ?? new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }))
+  // Zona y edades: solo el wizard del comparador los manda (provincia +
+  // personas en buildPayload) — los otros formularios no piden esta info,
+  // así que quedan en "No especificada" para esos leads.
+  const provincia = String(body.provincia ?? '').trim()
+  const personas  = String(body.personas ?? '').trim()
 
   if (!nombre || !email) {
     return NextResponse.json({ error: 'Nombre y email son requeridos' }, { status: 400 })
@@ -41,7 +46,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Email inválido' }, { status: 400 })
   }
 
-  console.log('[LEAD]', JSON.stringify({ nombre, email, celular, prepaga, fuente, fecha }))
+  console.log('[LEAD]', JSON.stringify({ nombre, email, celular, prepaga, provincia, personas, fuente, fecha }))
 
   const whatsapp_link = celular ? whatsappLinkParaLead(nombre, celular, prepaga) : ''
 
@@ -60,10 +65,12 @@ export async function POST(req: NextRequest) {
         user_id:     EMAILJS_PUBLIC_KEY,
         accessToken: EMAILJS_PRIVATE_KEY,
         template_params: {
-          name:    nombre,
-          email:   email.toLowerCase(),
-          celular: celular || 'No informado',
-          prepaga: prepaga || 'No especificada',
+          name:      nombre,
+          email:     email.toLowerCase(),
+          celular:   celular || 'No informado',
+          prepaga:   prepaga || 'No especificada',
+          zona:      provincia || 'No especificada',
+          edades:    personas || 'No especificado',
           fuente,
           fecha,
           whatsapp_link,
