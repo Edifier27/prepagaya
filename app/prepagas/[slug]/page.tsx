@@ -122,9 +122,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (prov) return provinciaHubMetadata(prov)
   const prep = prepagas.find((p) => p.slug === slug)
   if (!prep) return {}
+  // Título y descripción con precio real "desde" (Search Console, sept 2026:
+  // estas fichas tenían 1000+ impresiones y CTR menor a 0.5% — el título
+  // genérico anterior no respondía la intención de búsqueda "precio" ni
+  // "cartilla", que son las dos consultas de mayor volumen sin clics).
+  const precioMinTitulo = Math.min(...prep.planes.map((pl) => pl.precio))
   return {
-    title: `${prep.nombre}: Planes, cobertura y cartilla — ${PRECIO_ACTUALIZADO}`,
-    description: `${prep.nombre} ${PRECIO_ACTUALIZADO}: ${prep.satisfaccion}% satisfacción · ${prep.cantidadOpiniones.toLocaleString()} opiniones. Planes, coberturas, pros y contras. Cotizá tu precio exacto gratis, sin registro.`,
+    title: `${prep.nombre}: desde ${formatPrecio(precioMinTitulo)}/mes — Planes y Cartilla`,
+    description: `${prep.nombre} ${PRECIO_ACTUALIZADO}: planes desde ${formatPrecio(precioMinTitulo)}/mes. Cartilla completa, coberturas y ${prep.satisfaccion}% de satisfacción. Cotizá tu precio exacto gratis, sin registro.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} planes`,
