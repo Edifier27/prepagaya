@@ -22,9 +22,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const info = cartillasInfo.find((c) => c.slug === slug)
   const prep = prepagas.find((p) => p.slug === slug)
   if (!info || !prep) return {}
+  // Título con número real de profesionales en vez de "cómo consultarla":
+  // Search Console (sept 2026) mostraba "cartilla osde" (535 impr), "cartilla
+  // swiss medical" (80 impr) y variantes en 0% CTR — el título viejo sonaba a
+  // guía genérica, no prometía la lista real. Mismo criterio que /prepagas/[slug].
+  const profesionalesFmt = prep.profesionales.toLocaleString('es-AR')
   return {
-    title: `Cartilla ${prep.nombre} 2026: sanatorios, médicos y cómo consultarla`,
-    description: `Guía de la cartilla de ${prep.nombre}: qué sanatorios y cuántos profesionales incluye, cómo consultarla online y qué plan necesitás para cada centro. Actualizado ${PRECIO_ACTUALIZADO}.`,
+    title: `Cartilla ${prep.nombre} 2026: +${profesionalesFmt} profesionales y sanatorios`,
+    description: `${prep.nombre}: cartilla con +${profesionalesFmt} profesionales${prep.sanatoriosPropios > 0 ? ` y ${prep.sanatoriosPropios} sanatorio${prep.sanatoriosPropios === 1 ? '' : 's'} propio${prep.sanatoriosPropios === 1 ? '' : 's'}` : ''}. Mirá qué plan necesitás para cada centro y cómo consultarla online. Actualizado ${PRECIO_ACTUALIZADO}.`,
     alternates: { canonical: `${SITE_URL}/cartillas/${slug}` },
     keywords: [
       `cartilla ${prep.nombre.toLowerCase()}`,
