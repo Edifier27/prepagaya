@@ -7,6 +7,13 @@ export interface Crumb {
   href?: string
 }
 
+// Algunas localidades tienen nombres largos con aclaración entre paréntesis
+// (ej: "Zona Norte (San Isidro, Vicente López, Pilar)"). Para title/H1 usamos
+// solo la parte corta; el detalle completo queda en el body y la descripción.
+export function nombreCorto(nombre: string): string {
+  return nombre.split(' (')[0]
+}
+
 // Breadcrumb visual + JSON-LD BreadcrumbList (regla silo: presente en todas)
 export function jsonLdBreadcrumb(crumbs: Crumb[]) {
   return {

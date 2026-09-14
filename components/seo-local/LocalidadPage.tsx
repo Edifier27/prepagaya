@@ -4,14 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { LocalidadZona, ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, jsonLdBreadcrumb, jsonLdFaq } from './shared'
-
-// Algunas localidades tienen nombres largos con aclaración entre paréntesis
-// (ej: "Zona Norte (San Isidro, Vicente López, Pilar)"). Para title/H1 usamos
-// solo la parte corta; el detalle completo queda en el body y en la descripción.
-function nombreCorto(nombre: string): string {
-  return nombre.split(' (')[0]
-}
+import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
 
 export function localidadMetadata(prov: ProvinciaSEO, loc: LocalidadZona): Metadata {
   const year = new Date().getFullYear()
@@ -108,7 +101,7 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
                 </>
               )
               return pz.enSitio ? (
-                <Link key={pz.slug} href={`/prepagas/${prov.slug}/${pz.slug}`}
+                <Link key={pz.slug} href={`/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`}
                   className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
                   {inner}
                 </Link>

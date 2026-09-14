@@ -109,6 +109,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
+    // Cruce localidad × prepaga (ej. "Swiss Medical en Bahía Blanca") —
+    // un nivel más específico que la ficha de prepaga a nivel provincial.
+    ...prov.localidades.flatMap((loc) =>
+      prov.prepagas.filter((pz) => pz.enSitio).map((pz) => ({
+        url: `${BASE}/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`,
+        lastModified: PRECIOS_UPDATE,
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      }))
+    ),
   ])
 
   const perfilRoutes: MetadataRoute.Sitemap = perfiles.map((p) => ({

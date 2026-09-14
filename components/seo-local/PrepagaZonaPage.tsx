@@ -136,6 +136,21 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
           </section>
         )}
 
+        {/* Localidades: cruce prepaga × ciudad, para bajar de "en toda la provincia" a "en tu ciudad puntual" */}
+        {prov.localidades.length > 0 && (
+          <section className="mb-10">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">{pz.nombre} en cada ciudad de {prov.nombre}</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {prov.localidades.map((loc) => (
+                <Link key={loc.slug} href={`/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`}
+                  className="px-3 py-2.5 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:text-[#E8002D] transition-all text-sm text-gray-700 text-center truncate">
+                  {loc.nombre.split(' (')[0]}
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
         <div className="mb-10">
           <CtaCotizador zonaKey={prov.zonaKey} provinciaNombre={prov.nombre}
             titulo={`¿${pz.nombre} es tu mejor opción en ${prov.nombre}?`}
