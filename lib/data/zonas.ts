@@ -104,17 +104,17 @@ export const provinciasSEO: ProvinciaSEO[] = [
       {
         slug: 'rio-cuarto', nombre: 'Río Cuarto',
         descripcion: 'Segunda ciudad de la provincia y cabecera del sur cordobés. Acá el mapa cambia: las regionales del interior (Sancor Salud, Federada, Avalian, Prevención) tienen cartillas más profundas que varias nacionales premium. Antes de contratar, verificá qué sanatorios locales incluye tu plan.',
-        prestadores: [],
+        prestadores: ['Instituto Médico Río Cuarto', 'Clínica Regional del Sud', 'Sanatorio Privado Río Cuarto'],
       },
       {
         slug: 'villa-carlos-paz', nombre: 'Villa Carlos Paz',
         descripcion: 'La ciudad turística del Valle de Punilla suma población estable año a año. La mayoría de los afiliados combina atención local para consultas con derivación a Córdoba capital (a 36 km) para alta complejidad — un factor clave al elegir prepaga: mirá la cartilla de capital, no solo la local.',
-        prestadores: [],
+        prestadores: ['Clínica Privada San Antonio', 'Sanatorio Privado San José'],
       },
       {
         slug: 'villa-maria', nombre: 'Villa María',
         descripcion: 'Polo agroindustrial del centro-este cordobés donde las prepagas de origen cooperativo y regional (Sancor Salud, Federada, Avalian) son históricamente fuertes. Las nacionales premium cubren, pero con redes más chicas que en capital.',
-        prestadores: [],
+        prestadores: ['Clínica de Especialidades (Villa María)', 'Sanatorio de la Cañada'],
       },
     ],
     prestadoresClave: ['Hospital Privado Universitario de Córdoba', 'Sanatorio Allende', 'Clínica Universitaria Reina Fabiola', 'Sanatorio del Salvador'],
@@ -266,12 +266,12 @@ export const provinciasSEO: ProvinciaSEO[] = [
       {
         slug: 'cutral-co', nombre: 'Cutral Có – Plaza Huincul',
         descripcion: 'El corazón petrolero histórico de la provincia. La mayoría de los trabajadores tiene cobertura por convenio (OSPEPRI u otras del sector) y complementa con prepaga para la familia; la alta complejidad deriva a Neuquén capital, a 100 km.',
-        prestadores: [],
+        prestadores: ['Cardio Sur', 'CEM (Cutral Có)'],
       },
       {
         slug: 'san-martin-de-los-andes', nombre: 'San Martín de los Andes',
         descripcion: 'Destino cordillerano con población estable creciente. La atención local cubre consultas y urgencias; la alta complejidad deriva a Neuquén capital o Bariloche. Al elegir prepaga, pesá la cartilla de esas dos ciudades además de la local.',
-        prestadores: [],
+        prestadores: ['Centro Médico Roca', 'Centro Médico del Sur'],
       },
     ],
     prestadoresClave: ['Sanatorio San Carlos', 'Clínica Pasteur'],
@@ -359,12 +359,12 @@ export const provinciasSEO: ProvinciaSEO[] = [
       {
         slug: 'rafaela', nombre: 'Rafaela',
         descripcion: 'El corazón de la cuenca lechera queda a 90 km de Sunchales, la ciudad donde nacieron Sancor Salud y Prevención Salud: acá esas dos marcas son casi la opción por defecto, con cartillas locales que las nacionales no igualan. Para alta complejidad, las derivaciones van a Santa Fe capital o Rosario.',
-        prestadores: [],
+        prestadores: ['Clínica Parra', 'Sanatorio Rafaela', 'Clínica Nacer'],
       },
       {
         slug: 'venado-tuerto', nombre: 'Venado Tuerto',
         descripcion: 'Cabecera del sur agrícola santafesino, con atención local para consultas y urgencias y derivación a Rosario (160 km) para alta complejidad. Federada y Sancor tienen presencia histórica en la zona; al elegir plan, pesá la cartilla rosarina tanto como la local.',
-        prestadores: [],
+        prestadores: ['Instituto Cardiovascular (Venado Tuerto)'],
       },
     ],
     prestadoresClave: ['Sanatorio Parque (Rosario)', 'Sanatorio Británico (Rosario)', 'Sanatorio Americano (Rosario)', 'Sanatorio de la Mujer (Rosario)', 'Sanatorio Güemes (Santa Fe)', 'Sanatorio San Gerónimo'],
@@ -437,12 +437,12 @@ export const provinciasSEO: ProvinciaSEO[] = [
       {
         slug: 'godoy-cruz', nombre: 'Godoy Cruz',
         descripcion: 'El departamento más poblado del Gran Mendoza comparte la red privada de la capital — la mayoría de los afiliados se atiende en los sanatorios del centro, a minutos de distancia. Al cotizar, la cartilla que importa es la del Gran Mendoza completo.',
-        prestadores: [],
+        prestadores: ['Hospital Privado Godoy Cruz', 'Clínica Godoy Cruz'],
       },
       {
         slug: 'san-rafael', nombre: 'San Rafael',
         descripcion: 'La cabecera del sur mendocino, a 230 km de la capital, tiene su propia dinámica: la atención cotidiana es local y la alta complejidad deriva al Gran Mendoza. Acá el filtro decisivo es qué prepagas tienen prestadores reales en la ciudad — las regionales de precio suelen defenderse mejor que las premium.',
-        prestadores: [],
+        prestadores: ['Clínica de Especialidades (San Rafael)', 'Sanatorio de Cuyo (Sede San Rafael)'],
       },
     ],
     prestadoresClave: ['Hospital Italiano Mendoza', 'Hospital Privado de Mendoza', 'Sanatorio Clínica de Cuyo', 'Clínica Santa María'],
@@ -525,12 +525,12 @@ export const provinciasSEO: ProvinciaSEO[] = [
       {
         slug: 'yerba-buena', nombre: 'Yerba Buena',
         descripcion: 'La ciudad residencial del Gran San Miguel comparte la red privada de la capital, a minutos de distancia. Al cotizar, lo relevante es la cartilla del Gran Tucumán completo, no solo la local.',
-        prestadores: [],
+        prestadores: ['Centro de Diagnóstico Los Ceibos', 'Centro Médico Trinidad'],
       },
       {
         slug: 'concepcion', nombre: 'Concepción',
         descripcion: 'La segunda ciudad de la provincia y cabecera del sur tucumano. La atención cotidiana es local y la alta complejidad deriva a San Miguel (80 km): al elegir prepaga, verificá tanto los prestadores locales como la cartilla de la capital.',
-        prestadores: [],
+        prestadores: ['Centro de Alta Complejidad España'],
       },
     ],
     prestadoresClave: ['Sanatorio 9 de Julio', 'Clínica Mayo (Tucumán)', 'Sanatorio Modelo (Tucumán)', 'Sanatorio Parque', 'Instituto de Cardiología'],
