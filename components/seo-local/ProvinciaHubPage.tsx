@@ -2,15 +2,25 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL } from '@/lib/utils'
+import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdBreadcrumb, jsonLdFaq } from './shared'
 
 export function provinciaHubMetadata(prov: ProvinciaSEO): Metadata {
+  // Precio real "desde" con las prepagas enSitio de la provincia — mismo
+  // criterio que /prepagas/[slug] (Search Console, sept 2026: los hubs
+  // provinciales de mayor volumen — Mendoza, Córdoba — tenían CTR menor a
+  // 1.5% con un título genérico sin ningún número).
+  const preciosProv = prov.prepagas
+    .filter((pz) => pz.enSitio)
+    .flatMap((pz) => prepagas.find((p) => p.slug === pz.slug)?.planes.map((pl) => pl.precio) ?? [])
+  const precioMin = preciosProv.length ? Math.min(...preciosProv) : null
   return {
-    title: `Prepagas en ${prov.nombre}: cobertura y cartillas — ${PRECIO_ACTUALIZADO}`,
-    description: `Compará las ${prov.prepagas.length} prepagas con cobertura real en ${prov.nombre}: cartillas verificadas en ${prov.capitalNombre} y el interior, y cotización online sin DNI. Actualizado ${PRECIO_ACTUALIZADO.toLowerCase()}.`,
+    title: precioMin
+      ? `Prepagas en ${prov.nombre}: desde ${formatPrecio(precioMin)}/mes — Cartillas ${new Date().getFullYear()}`
+      : `Prepagas en ${prov.nombre}: cobertura y cartillas — ${PRECIO_ACTUALIZADO}`,
+    description: `Compará las ${prov.prepagas.length} prepagas con cobertura real en ${prov.nombre}${precioMin ? `, desde ${formatPrecio(precioMin)}/mes` : ''}: cartillas verificadas en ${prov.capitalNombre} y el interior, y cotización online sin DNI. Actualizado ${PRECIO_ACTUALIZADO.toLowerCase()}.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}` },
     keywords: [`prepagas en ${prov.nombre.toLowerCase()}`, `mejor prepaga ${prov.nombre.toLowerCase()}`, `medicina prepaga ${prov.nombre.toLowerCase()}`, `prepagas ${prov.capitalNombre.toLowerCase()}`],
   }

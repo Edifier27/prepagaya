@@ -8,10 +8,17 @@ import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdBreadcrumb, jsonLdFaq } from './shared'
 
 export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metadata {
-  const year = new Date().getFullYear()
+  // Mismo criterio de precio real "desde" que /prepagas/[slug] y el hub
+  // provincial (Search Console, sept 2026): "sancor salud mendoza" y
+  // similares ya rankeaban en página 1 con CTR bajo por un título sin
+  // ningún dato concreto.
+  const prepData = prepagas.find((p) => p.slug === pz.slug)
+  const precioMin = prepData ? Math.min(...prepData.planes.map((pl) => pl.precio)) : null
   return {
-    title: `${pz.nombre} en ${prov.nombre}: cartilla y planes ${year}`,
-    description: `¿Qué cubre ${pz.nombre} en ${prov.nombre}? Cartilla local, sucursales y planes actualizados ${PRECIO_ACTUALIZADO.toLowerCase()}. Compará con las demás prepagas de ${prov.nombre} y cotizá online.`,
+    title: precioMin
+      ? `${pz.nombre} en ${prov.nombre}: desde ${formatPrecio(precioMin)}/mes — Cartilla`
+      : `${pz.nombre} en ${prov.nombre}: cartilla y planes ${new Date().getFullYear()}`,
+    description: `¿Qué cubre ${pz.nombre} en ${prov.nombre}?${precioMin ? ` Planes desde ${formatPrecio(precioMin)}/mes.` : ''} Cartilla local, sucursales y planes actualizados ${PRECIO_ACTUALIZADO.toLowerCase()}. Compará con las demás prepagas de ${prov.nombre} y cotizá online.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${pz.slug}` },
     keywords: [`${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} en ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${prov.capitalNombre.toLowerCase()}`, `cartilla ${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()}`],
   }
