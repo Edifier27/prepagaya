@@ -3,7 +3,6 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import emailjs from '@emailjs/browser'
 import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
@@ -16,10 +15,6 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { AsesoramientoPopup } from '@/components/ui/AsesoramientoPopup'
 import { getCambiosPorOrigen } from '@/lib/data/cambios'
-
-const EJS_SERVICE  = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID  ?? ''
-const EJS_TEMPLATE = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? ''
-const EJS_KEY      = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY  ?? ''
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
@@ -670,21 +665,24 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     }
   }
 
+  // Único camino de envío de leads: /api/leads (server-side). Antes existía
+  // una rama que mandaba el mail directo desde el navegador con
+  // @emailjs/browser si estaban seteadas NEXT_PUBLIC_EMAILJS_* — se sacó
+  // (14-sep-2026, auditoría de código): esas variables no se usan en
+  // producción, pero si alguien las cargaba por error el wizard empezaba a
+  // saltarse en silencio el filtro de celular y el accessToken del modo
+  // estricto de EmailJS. Un solo camino, con todas las validaciones.
   async function sendEmail(payload: Record<string, string>) {
-    if (EJS_SERVICE && EJS_TEMPLATE && EJS_KEY) {
-      await emailjs.send(EJS_SERVICE, EJS_TEMPLATE, payload, { publicKey: EJS_KEY })
-    } else {
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      // fetch() no rechaza por status HTTP (solo por error de red): sin este
-      // chequeo, un 400 de /api/leads (ej. email inválido) queda como
-      // "éxito" silencioso — la persona ve el cartel de listo pero el mail
-      // nunca sale. Lanzamos para que los try/catch de arriba lo detecten.
-      if (!res.ok) throw new Error(`/api/leads respondió ${res.status}`)
-    }
+    const res = await fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    // fetch() no rechaza por status HTTP (solo por error de red): sin este
+    // chequeo, un 400 de /api/leads (ej. email inválido) queda como
+    // "éxito" silencioso — la persona ve el cartel de listo pero el mail
+    // nunca sale. Lanzamos para que los try/catch de arriba lo detecten.
+    if (!res.ok) throw new Error(`/api/leads respondió ${res.status}`)
   }
 
   async function handleVerPrecios() {
