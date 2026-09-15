@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { whatsappLinkParaLead, SITE_URL } from '@/lib/utils'
-import { buildKommoLink, buscarContactoExistente, nombreCuenta } from '@/lib/kommo'
+import { buildKommoLink, crearLeadEnKommo, kommoLeadUrl, nombreCuenta } from '@/lib/kommo'
 
 // Aviso de "ya es tu contacto" que va arriba del mail cuando la búsqueda
 // anti-duplicado (ver lib/kommo.ts) encuentra coincidencia por celular o
@@ -60,20 +60,36 @@ export async function POST(req: NextRequest) {
   console.log('[LEAD]', JSON.stringify({ nombre, email, celular, prepaga, provincia, personas, fuente, fecha }))
 
   const whatsapp_link = celular ? whatsappLinkParaLead(nombre, celular, prepaga, provincia, personas) : ''
-  // Botón "Cargar en Kommo" del mail (pedido de Darío, 15-sep-2026) — ver
-  // lib/kommo.ts para el porqué del link firmado en vez de un botón directo.
-  const kommo_link = buildKommoLink(SITE_URL, {
-    nombre, celular, email, interes: prepaga, provincia, edades: personas, fuente, fecha,
-  })
 
-  // Aviso de duplicado en el mail — best-effort: si Kommo está lento o caído
-  // esto nunca frena ni rompe el envío del lead (ver timeout en lib/kommo.ts).
+  // Carga automática en Kommo (pedido de Darío, 15-sep-2026 — antes requería
+  // apretar el botón del mail). El botón sigue existiendo pero cambia de rol:
+  // si la carga automática funcionó, es un link directo a la tarjeta que ya
+  // se creó ("Ver en Kommo"); si Kommo estuvo caído justo en este momento,
+  // cae al link firmado de siempre ("Cargar en Kommo") como respaldo, para
+  // que el dato nunca se pierda del todo. Nunca bloquea ni rompe el envío
+  // del mail si Kommo falla (ver timeout en lib/kommo.ts).
+  let kommo_link = ''
+  let kommo_label = 'Ver en Kommo'
   let duplicado_banner = ''
   try {
-    const existente = await buscarContactoExistente({ celular, email })
-    if (existente) duplicado_banner = bannerDuplicado(nombreCuenta(existente.cuenta))
+    const resultado = await crearLeadEnKommo({
+      nombre, celular, email, interes: prepaga, provincia, edades: personas, fuente, fecha,
+      ts: String(Date.now()),
+    })
+    if (resultado.ok && resultado.cuenta && resultado.leadId) {
+      kommo_link = kommoLeadUrl(resultado.cuenta, resultado.leadId)
+      if (resultado.duplicado) duplicado_banner = bannerDuplicado(nombreCuenta(resultado.cuenta))
+    } else {
+      console.error('[LEAD] no se pudo cargar en Kommo automáticamente, cae al link manual:', resultado.error)
+    }
   } catch (err) {
-    console.error('[LEAD] error chequeando duplicado en Kommo (no bloquea el envío):', err)
+    console.error('[LEAD] error cargando en Kommo automáticamente, cae al link manual:', err)
+  }
+  if (!kommo_link) {
+    kommo_link = buildKommoLink(SITE_URL, {
+      nombre, celular, email, interes: prepaga, provincia, edades: personas, fuente, fecha,
+    })
+    kommo_label = 'Cargar en Kommo'
   }
 
   if (!EMAILJS_PRIVATE_KEY) {
@@ -101,6 +117,7 @@ export async function POST(req: NextRequest) {
           fecha,
           whatsapp_link,
           kommo_link,
+          kommo_label,
           duplicado_banner,
         },
       }),
