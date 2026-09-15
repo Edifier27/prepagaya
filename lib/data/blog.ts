@@ -53,8 +53,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'cual-es-la-prepaga-mas-grande-argentina',
     titulo: '¿Cuál es la prepaga más grande de Argentina en 2026?',
-    bajada: 'OSDE, Swiss Medical y Sancor concentran más de 4 millones de afiliados. Analizamos el ranking por cantidad de usuarios.',
-    metaDescripcion: '¿Cuál es la prepaga más grande de Argentina? Ranking por cantidad de afiliados, red de prestadores y cobertura. OSDE vs Swiss Medical vs Sancor Salud.',
+    bajada: 'OSDE, Avalian, Swiss Medical y Sancor concentran millones de afiliados. Analizamos el ranking por cantidad de usuarios.',
+    metaDescripcion: '¿Cuál es la prepaga más grande de Argentina? Ranking por cantidad de afiliados, red de prestadores y cobertura. OSDE vs Avalian vs Swiss Medical vs Sancor Salud.',
     categoria: 'Mercado',
     fechaPublicacion: '2026-06-10',
     tiempoLectura: 6,
@@ -63,7 +63,7 @@ export const blogPosts: BlogPost[] = [
       secciones: [
         {
           titulo: 'Ranking por cantidad de afiliados',
-          cuerpo: 'Si bien OSDE nació como obra social sindical, hoy compite directamente con las prepagas privadas. Entre las prepagas puras, Swiss Medical lidera con más de 900.000 afiliados directos, seguida por Sancor Salud con aproximadamente 700.000 y Galeno con 600.000. Si incluimos los afiliados por derivación de obra social, los números cambian significativamente.',
+          cuerpo: 'Si bien OSDE nació como obra social sindical, hoy compite directamente con las prepagas privadas. Entre las prepagas puras, Avalian (ex ACA Salud) declara la base más grande con más de 1.2 millones de afiliados, seguida por Swiss Medical con más de 900.000 afiliados directos, Sancor Salud con aproximadamente 700.000 y Galeno con 600.000. Si incluimos los afiliados por derivación de obra social, los números cambian significativamente.',
         },
         {
           titulo: 'Por red de prestadores: OSDE lidera',
@@ -71,17 +71,17 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: 'Por sanatorios propios: Swiss Medical',
-          cuerpo: 'Swiss Medical tiene 8 sanatorios propios incluyendo algunos de los más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas). Ninguna otra prepaga tiene una red propia de esa magnitud.',
+          cuerpo: 'Swiss Medical tiene 8 sanatorios propios incluyendo algunos de los más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas). Avalian le sigue con 5 sanatorios propios concentrados en AMBA (Las Lomas, 25 de Mayo y más). Ninguna otra prepaga tiene una red propia de esa magnitud.',
         },
         {
           titulo: 'El mercado está concentrado',
-          cuerpo: 'Las primeras 5 empresas (OSDE, Swiss Medical, Sancor Salud, Galeno y Omint) concentran más del 60% de los afiliados al sistema de medicina prepaga. Este oligopolio hace que los precios sean similares entre competidores y que la diferenciación sea por calidad de red y experiencia.',
+          cuerpo: 'Las primeras empresas (OSDE, Avalian, Swiss Medical, Sancor Salud, Galeno y Omint) concentran más del 60% de los afiliados al sistema de medicina prepaga. Este oligopolio hace que los precios sean similares entre competidores y que la diferenciación sea por calidad de red y experiencia.',
         },
       ],
-      conclusion: 'No hay una respuesta única: OSDE tiene la mayor red de prestadores, Swiss Medical tiene los mejores sanatorios propios, y Sancor es la más grande en cobertura geográfica nacional. Todo depende del criterio que uses para medir "grande".',
+      conclusion: 'No hay una respuesta única: Avalian declara la mayor cantidad de afiliados entre las prepagas puras, OSDE tiene la mayor red de prestadores, Swiss Medical tiene los mejores sanatorios propios, y Sancor es la más grande en cobertura geográfica nacional. Todo depende del criterio que uses para medir "grande".',
     },
-    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
-    keywords: ['prepaga mas grande argentina', 'mayor prepaga argentina', 'cuantos afiliados tiene osde', 'ranking prepagas argentina'],
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud', 'avalian'],
+    keywords: ['prepaga mas grande argentina', 'mayor prepaga argentina', 'cuantos afiliados tiene osde', 'ranking prepagas argentina', 'avalian cuantos afiliados tiene'],
   },
   {
     slug: 'que-pasa-si-dejo-de-pagar-la-prepaga',
