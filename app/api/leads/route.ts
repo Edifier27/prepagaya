@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { whatsappLinkParaLead } from '@/lib/utils'
+import { whatsappLinkParaLead, SITE_URL } from '@/lib/utils'
+import { buildKommoLink } from '@/lib/kommo'
 
 // Credenciales de la cuenta EmailJS de Darío — cuenta nueva (9-sep-2026),
 // confirmada con un envío de prueba real. Service/Template/Public ID no son
@@ -49,6 +50,11 @@ export async function POST(req: NextRequest) {
   console.log('[LEAD]', JSON.stringify({ nombre, email, celular, prepaga, provincia, personas, fuente, fecha }))
 
   const whatsapp_link = celular ? whatsappLinkParaLead(nombre, celular, prepaga, provincia, personas) : ''
+  // Botón "Cargar en Kommo" del mail (pedido de Darío, 15-sep-2026) — ver
+  // lib/kommo.ts para el porqué del link firmado en vez de un botón directo.
+  const kommo_link = buildKommoLink(SITE_URL, {
+    nombre, celular, email, interes: prepaga, provincia, edades: personas, fuente, fecha,
+  })
 
   if (!EMAILJS_PRIVATE_KEY) {
     console.error('[LEAD] Falta EMAILJS_PRIVATE_KEY — EmailJS va a rechazar el envío (modo estricto).')
@@ -74,6 +80,7 @@ export async function POST(req: NextRequest) {
           fuente,
           fecha,
           whatsapp_link,
+          kommo_link,
         },
       }),
     })
