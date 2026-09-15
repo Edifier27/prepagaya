@@ -41,6 +41,12 @@ export function PrepagaLogo({ slug, nombre, colorPrimario, size = 'md', classNam
   const { px, cls } = sizeConfig[size]
   const initials = nombre.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
   const ext = LOGO_EXT[slug] ?? 'svg'
+  // Next.js no optimiza SVG por defecto (son vectoriales, no lo necesitan, y
+  // habilitarlo requiere dangerouslyAllowSVG). Los raster (png/webp/jpg) sí
+  // se benefician: sin `unoptimized` Next los redimensiona al tamaño real de
+  // cada `size` y los sirve en el formato moderno que soporte el navegador,
+  // en vez del PNG/WEBP/JPG completo a cualquier size que se pida.
+  const esSvg = ext === 'svg'
 
   if (!error) {
     return (
@@ -52,7 +58,7 @@ export function PrepagaLogo({ slug, nombre, colorPrimario, size = 'md', classNam
           height={px}
           className="w-full h-full object-contain"
           onError={() => setError(true)}
-          unoptimized
+          unoptimized={esSvg}
         />
       </div>
     )
