@@ -175,7 +175,9 @@ export interface ResultadoKommo {
 
 function notaTexto(d: KommoLeadData, esDuplicado: boolean): string {
   const lineas = [
-    esDuplicado ? 'Volvió a consultar desde la web.' : null,
+    // Explícito el origen en el texto (no se toca el tag del lead existente
+    // en el caso duplicado, por si ese lead ya tiene tags de otro sistema).
+    esDuplicado ? '📍 PrepagaYa — volvió a consultar desde la web.' : null,
     d.interes ? `Interesado en: ${d.interes}` : null,
     d.provincia ? `Zona: ${d.provincia}` : null,
     d.edades ? `Edades: ${d.edades}` : null,
@@ -232,8 +234,19 @@ export async function crearLeadEnKommo(d: KommoLeadData): Promise<ResultadoKommo
     ? { id: existente.contactId } // engancha al contacto ya existente, no crea uno nuevo
     : { first_name: d.nombre, custom_fields_values: customFieldsContacto }
 
-  const nombreLead = `${d.nombre || 'Lead web'} — ${d.provincia || 'PrepagaYa'}`.trim()
-  const lead = { name: nombreLead, price: 0, _embedded: { contacts: [contacto] } }
+  // Prefijo + etiqueta "PrepagaYa" — pedido de Darío, 15-sep-2026: en las
+  // mismas cuentas de Kommo también entran leads de SGC y Salesforce (otros
+  // scripts, otros orígenes), y sin esto no había forma de distinguir de un
+  // vistazo cuáles vinieron del comparador de la web. La etiqueta sirve para
+  // filtrar; el prefijo en el nombre se ve directo en la lista sin filtrar.
+  // Si el tag "PrepagaYa" no existe todavía en esa cuenta, Kommo lo crea
+  // solo la primera vez.
+  const nombreLead = `PrepagaYa · ${d.nombre || 'Lead web'} — ${d.provincia || ''}`.trim().replace(/—\s*$/, '').trim()
+  const lead = {
+    name: nombreLead,
+    price: 0,
+    _embedded: { contacts: [contacto], tags: [{ name: 'PrepagaYa' }] },
+  }
 
   let res: Response
   try {
