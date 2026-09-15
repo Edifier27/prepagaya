@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
 
   console.log('[LEAD]', JSON.stringify({ nombre, email, celular, prepaga, provincia, personas, fuente, fecha }))
 
-  const whatsapp_link = celular ? whatsappLinkParaLead(nombre, celular, prepaga, provincia, personas) : ''
+  const whatsapp_link = celular ? whatsappLinkParaLead(nombre, celular) : ''
 
   // Carga automática en Kommo (pedido de Darío, 15-sep-2026 — antes requería
   // apretar el botón del mail). El botón sigue existiendo pero cambia de rol:

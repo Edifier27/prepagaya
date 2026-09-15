@@ -113,20 +113,13 @@ export function esCelularArgentinoValido(raw: string): boolean {
 
 /**
  * Link de WhatsApp con mensaje pre-armado para que el asesor le escriba al
- * lead. No menciona precio a propósito (pedido de Darío, 9-sep-2026: la idea
- * es abrir con la promo, no con "te paso el precio", para no anclar la
- * conversación a un número antes de hablar). Cuando hay zona/edad (las manda
- * el wizard del comparador — los formularios más simples como
- * AsesoramientoPopup no las piden), el mensaje confirma esos datos y ofrece
- * la promo de contratación online (25% OFF, la misma que ya se promociona en
- * todo el sitio). Sin ese contexto, cae a una versión más corta del mismo
- * gancho. Pensado para reenviarse tal cual, sin editar.
+ * lead. Mensaje corto a propósito (pedido de Darío, 15-sep-2026: nada de
+ * contexto de cotización ni promo, solo la apertura — el resto de la
+ * conversación la lleva él a mano). Pensado para reenviarse tal cual, sin
+ * editar.
  */
-export function whatsappLinkParaLead(nombre: string, celular: string, interes: string, zona?: string, edad?: string): string {
+export function whatsappLinkParaLead(nombre: string, celular: string): string {
   const numero = normalizarCelularAR(celular)
-  const contexto = [edad, zona].filter(Boolean).join(' en ')
-  const mensaje = contexto
-    ? `Hola, soy Darío de PrepagaYa 👋. Vi que cotizaste ${interes || 'un plan'} en la web para ${contexto}. Tenemos una promo especial por contratar online — ¿confirmamos estos datos y te cuento los beneficios?`
-    : `Hola, soy Darío de PrepagaYa 👋. Recibí tu consulta sobre ${interes || 'tu cotización'}. Tenemos una promo especial por contratar online — ¿tenés 2 minutos para contarte los beneficios?`
+  const mensaje = `Hola ${nombre}. Soy Dario de Swiss Medical. Te contacto por tu consulta.`
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
 }

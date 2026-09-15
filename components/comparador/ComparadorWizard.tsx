@@ -7,7 +7,7 @@ import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, whatsappLinkParaLead, calidadPlan, esCelularArgentinoValido } from '@/lib/utils'
+import { formatPrecio, calidadPlan, esCelularArgentinoValido } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -653,7 +653,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       // OJO: /api/leads lee "prepaga_interes", no "prepaga" — este es el
       // campo que de verdad llega al template de EmailJS como {{prepaga}}.
       prepaga_interes: interes,
-      whatsapp_link: celular.trim() ? whatsappLinkParaLead(nombre.trim(), celular.trim(), interes, provinciaNombre, edadResumen) : '',
+      // whatsapp_link NO se manda desde acá: /api/leads arma el suyo propio
+      // server-side con whatsappLinkParaLead(nombre, celular) y nunca lee
+      // este campo del payload — calcularlo acá era trabajo de más.
       coberturas: [...activeCobs].map(c => COBS.find(o => o.id === c)?.label).filter(Boolean).join(', ') || 'Sin preferencia',
       copago_preferencia: copago === 'sin-copago' ? 'Sin copago' : copago === 'con-copago' ? 'Con copago' : 'Sin preferencia',
       situacion: SITUACIONES.find(s => s.id === situacion)?.label ?? 'No especificada',
