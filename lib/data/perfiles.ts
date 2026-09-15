@@ -243,10 +243,12 @@ export const perfiles: PerfilData[] = [
       { slug: 'swiss-medical', razon: 'Líder en planes corporativos. Excelente servicio de RRHH, plataforma digital para gestión y reconocimiento de marca que retiene talento.' },
       { slug: 'osde', razon: 'La opción más solicitada por empleados. Su marca y red son las más reconocidas, facilitando la atracción de talento.' },
       { slug: 'sancor-salud', razon: 'Muy competitiva en precio para PyMEs. Buena relación precio-calidad para equipos de hasta 50 personas.' },
+      { slug: 'avalian', razon: 'Una de las 3 prepagas más grandes del país (1.2 millones de afiliados), con cobertura declarada en más de 24 provincias — sólida para empresas con equipos distribuidos en varias ciudades, no solo en CABA.' },
     ],
     planesRecomendados: [
       { prepagaSlug: 'swiss-medical', planSlug: 'smg20', razon: 'El plan corporativo más elegido por empresas tech y servicios' },
       { prepagaSlug: 'osde', planSlug: '310', razon: 'Estándar corporativo para empresas que priorizan la marca' },
+      { prepagaSlug: 'avalian', planSlug: 'full', razon: 'Sin copago, red abierta y telemedicina 24hs para equipos con presencia en varias provincias' },
     ],
     faq: [
       {
@@ -280,11 +282,13 @@ export const perfiles: PerfilData[] = [
       { slug: 'osde', razon: 'La red más grande del país y el plan con mejor cobertura de urgencias para quien todavía no conoce el sistema de salud argentino.' },
       { slug: 'medife', razon: 'Buena relación precio-calidad para estadías largas, con planes que no exigen relación de dependencia local.' },
       { slug: 'sancor-salud', razon: 'Alternativa accesible con red nacional, útil si tu destino no es Buenos Aires.' },
+      { slug: 'avalian', razon: 'Telemedicina 24hs incluida en todos los planes — útil mientras todavía no armaste tu red de médicos de confianza — y cobertura declarada en más de 24 provincias, con app propia para turnos y credencial digital.' },
     ],
     planesRecomendados: [
       { prepagaSlug: 'swiss-medical', planSlug: 'smg20', razon: 'El estándar de los expatriados en CABA: sin copagos y sanatorios propios' },
       { prepagaSlug: 'osde', planSlug: '310', razon: 'Red amplia en todo el país, ideal si vas a moverte entre provincias' },
       { prepagaSlug: 'medife', planSlug: 'bronce', razon: 'Entrada económica con cobertura completa para estadías largas' },
+      { prepagaSlug: 'avalian', planSlug: 'full', razon: 'Telemedicina 24hs desde el primer día, sin esperar a tener un médico de referencia' },
     ],
     faq: [
       {
