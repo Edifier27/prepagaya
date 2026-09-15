@@ -39,6 +39,13 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
   const nivelMax = NIVEL_PRECIO_LABEL[nivelPrecio(precioMax)].label.toLowerCase()
   return [
     {
+      // FAQ pensada para "{prepaga} planes" (pedido de Darío, 15-sep-2026):
+      // nombra los planes explícitamente en texto visible, no solo en el
+      // título — es la señal más directa que puede leer Google.
+      q: `¿Cuántos planes tiene ${prep.nombre} y cuáles son?`,
+      a: `${prep.nombre} tiene ${prep.planes.length} planes: ${prep.planes.map(pl => pl.nombre).join(', ')}. Van de ${formatPrecio(precioMin)} a ${formatPrecio(precioMax)} por mes (precio de lista, ${PRECIO_ACTUALIZADO.toLowerCase()}) — el valor exacto depende de tu edad y zona.`,
+    },
+    {
       q: `¿Cuánto cuesta ${prep.nombre} en ${PRECIO_ACTUALIZADO}?`,
       a: `Los planes de ${prep.nombre} van de nivel de precio ${nivelMin} a ${nivelMax} según la cobertura elegida. El precio exacto varía según tu edad y zona — cotizalo gratis en el comparador de PrepagaYa.`,
     },
@@ -182,6 +189,18 @@ export default async function PrepagaSlugPage({ params }: Props) {
         ratingValue: prep.rating,
         reviewCount: prep.cantidadOpiniones,
         bestRating: 5,
+      },
+      // AggregateOffer con el rango real de precios de los planes — sin esto
+      // Google no tiene forma de mostrar "desde $X" en el resultado de
+      // búsqueda para consultas tipo "{prepaga} planes" (pedido de Darío,
+      // 15-sep-2026: posicionar justo esa keyword).
+      offers: {
+        '@type': 'AggregateOffer',
+        priceCurrency: 'ARS',
+        lowPrice: precioMin,
+        highPrice: precioMax,
+        offerCount: prep.planes.length,
+        availability: 'https://schema.org/InStock',
       },
     },
     {
