@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { crearLeadEnKommo, kommoLeadUrl, verificarKommoLink, type KommoLeadData } from '@/lib/kommo'
 
+// Nota: crearLeadEnKommo ya decide sola a qué cuenta (Darío/Gabriela) va el
+// lead — reparto automático si es alguien nuevo, o la cuenta del contacto
+// existente si ya estaba cargado (ver lib/kommo.ts).
+
 // GET porque lo dispara el botón del mail (un link, no puede mandar un POST
 // con body). Ver lib/kommo.ts para el porqué de la firma HMAC.
 
@@ -37,7 +41,7 @@ export async function GET(req: NextRequest) {
   }
 
   const resultado = await crearLeadEnKommo(datos)
-  if (!resultado.ok || !resultado.leadId) {
+  if (!resultado.ok || !resultado.leadId || !resultado.cuenta) {
     console.error('[KOMMO] error creando el lead:', resultado.error)
     return new NextResponse(paginaError('Hubo un error de conexión con Kommo. Probá de nuevo en unos minutos.'), {
       status: 502,
@@ -45,5 +49,5 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  return NextResponse.redirect(kommoLeadUrl(resultado.leadId))
+  return NextResponse.redirect(kommoLeadUrl(resultado.cuenta, resultado.leadId))
 }

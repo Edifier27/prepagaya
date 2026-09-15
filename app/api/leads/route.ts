@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { whatsappLinkParaLead, SITE_URL } from '@/lib/utils'
-import { buildKommoLink } from '@/lib/kommo'
+import { buildKommoLink, buscarContactoExistente, nombreCuenta } from '@/lib/kommo'
+
+// Aviso de "ya es tu contacto" que va arriba del mail cuando la búsqueda
+// anti-duplicado (ver lib/kommo.ts) encuentra coincidencia por celular o
+// mail en cualquiera de las dos cuentas de Kommo. Siempre HTML propio
+// (nunca dato de la persona sin escapar) — se inserta tal cual en la
+// plantilla en un {{duplicado_banner}} suelto, así que si viene vacío no
+// deja ningún resto de markup.
+function bannerDuplicado(cuenta: string): string {
+  return `<tr><td style="padding:16px 32px 0 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FEF3C7;border:1px solid #FDE68A;border-radius:12px;"><tr><td style="padding:14px 18px;"><span style="display:block;font-size:13px;font-weight:700;color:#92400E;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">⚠️ Ya es un contacto en Kommo (cuenta de ${cuenta})</span><span style="display:block;font-size:12px;color:#92400E;margin-top:4px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">Puede que ya lo hayas contactado antes — revisá el historial en Kommo antes de escribirle de nuevo.</span></td></tr></table></td></tr>`
+}
 
 // Credenciales de la cuenta EmailJS de Darío — cuenta nueva (9-sep-2026),
 // confirmada con un envío de prueba real. Service/Template/Public ID no son
@@ -56,6 +66,16 @@ export async function POST(req: NextRequest) {
     nombre, celular, email, interes: prepaga, provincia, edades: personas, fuente, fecha,
   })
 
+  // Aviso de duplicado en el mail — best-effort: si Kommo está lento o caído
+  // esto nunca frena ni rompe el envío del lead (ver timeout en lib/kommo.ts).
+  let duplicado_banner = ''
+  try {
+    const existente = await buscarContactoExistente({ celular, email })
+    if (existente) duplicado_banner = bannerDuplicado(nombreCuenta(existente.cuenta))
+  } catch (err) {
+    console.error('[LEAD] error chequeando duplicado en Kommo (no bloquea el envío):', err)
+  }
+
   if (!EMAILJS_PRIVATE_KEY) {
     console.error('[LEAD] Falta EMAILJS_PRIVATE_KEY — EmailJS va a rechazar el envío (modo estricto).')
   }
@@ -81,6 +101,7 @@ export async function POST(req: NextRequest) {
           fecha,
           whatsapp_link,
           kommo_link,
+          duplicado_banner,
         },
       }),
     })
