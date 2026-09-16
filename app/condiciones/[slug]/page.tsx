@@ -5,7 +5,7 @@ import { condiciones } from '@/lib/data/condiciones'
 import { coberturas } from '@/lib/data/coberturas'
 import { guias } from '@/lib/data/guias'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
+import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CondicionIcon, CoberturaIcon } from '@/components/ui/CategoryIcon'
 
@@ -165,7 +165,7 @@ export default async function CondicionPage({ params }: Props) {
                           href={`/prepagas/${prep.slug}/${plan.slug}`}
                           className="inline-flex items-center gap-2 text-xs font-bold text-[#E8002D] bg-red-50 border border-red-100 px-3 py-1.5 rounded-full hover:bg-red-100 transition-colors"
                         >
-                          Plan {plan.nombre} · {formatPrecio(plan.precio)} →
+                          Ver {plan.nombre} →
                         </Link>
                       )}
                       <Link href={`/prepagas/${prep.slug}`} className="text-xs font-semibold text-gray-500 hover:text-[#E8002D] transition-colors">
@@ -291,7 +291,7 @@ export default async function CondicionPage({ params }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Encontrá tu prepaga ideal con {cond.nombre.toLowerCase()}</h2>
           <p className="text-red-200 text-sm mb-6">
-            Compará precios reales y cobertura específica para tu condición. Gratis, sin registro y sin DNI.
+            Comparación gratuita de cobertura específica para tu condición, sin registro y sin DNI.
           </p>
           <Link
             href="/comparador"
