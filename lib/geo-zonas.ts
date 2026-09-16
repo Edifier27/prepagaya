@@ -24,8 +24,8 @@ export interface ZonaDetectada {
 }
 
 const REGION_A_PROVINCIA: Record<string, { nombre: string; wizardSlug: string; provinciaSEOSlug?: string }> = {
-  C: { nombre: 'CABA', wizardSlug: 'caba' },
-  B: { nombre: 'Buenos Aires', wizardSlug: 'buenos-aires' },
+  C: { nombre: 'CABA', wizardSlug: 'caba', provinciaSEOSlug: 'caba' },
+  B: { nombre: 'Buenos Aires', wizardSlug: 'buenos-aires', provinciaSEOSlug: 'buenos-aires' },
   X: { nombre: 'Córdoba', wizardSlug: 'cordoba', provinciaSEOSlug: 'cordoba' },
   S: { nombre: 'Santa Fe', wizardSlug: 'santa-fe', provinciaSEOSlug: 'santa-fe' },
   M: { nombre: 'Mendoza', wizardSlug: 'mendoza', provinciaSEOSlug: 'mendoza' },
@@ -163,8 +163,12 @@ export function detectarZona(countryRegion: string | null, ciudad: string | null
     }
     const interior = matchSlugSimple(BUENOS_AIRES_INTERIOR, ciudadLimpia)
     if (interior) {
-      return { label: `${ciudadLimpia} (Buenos Aires)`, wizardSlug: 'buenos-aires', provinciaSEOSlug: 'buenos-aires', localidadSlug: interior }
+      return { label: `${ciudadLimpia} (Interior de Buenos Aires)`, wizardSlug: 'buenos-aires', provinciaSEOSlug: 'buenos-aires', localidadSlug: interior }
     }
+    // Ni GBA ni una de las ciudades con página propia (La Plata, Mar del
+    // Plata, Bahía Blanca): sigue siendo "interior" en el sentido de "no
+    // GBA", aunque no tengamos página específica de esa localidad.
+    return { label: `${ciudadLimpia} (Interior de Buenos Aires)`, wizardSlug: 'buenos-aires', provinciaSEOSlug: 'buenos-aires' }
   }
 
   if (prov.wizardSlug === 'caba' && ciudadLimpia) {
