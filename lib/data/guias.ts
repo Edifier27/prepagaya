@@ -337,7 +337,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['precio prepaga por edad', 'cuanto sube la prepaga con la edad', 'prepaga mayores 60', 'bandas etarias prepagas'],
-    relacionadas: ['prepaga-para-mayores-60', 'prepagas-economicas', 'cuota-prepaga-aumento-inflacion'],
+    relacionadas: ['prepaga-para-mayores-60', 'prepagas-economicas', 'cuota-prepaga-aumento-inflacion', 'afiliar-recien-nacido-prepaga'],
   },
   {
     slug: 'como-reclamar-a-una-prepaga',
@@ -568,7 +568,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['preexistencias prepaga', 'prepaga con enfermedad preexistente', 'declaracion jurada salud prepaga', 'pueden rechazarme por preexistencia'],
-    relacionadas: ['como-reclamar-a-una-prepaga', 'prepaga-sin-periodo-carencia', 'que-cubre-la-prepaga'],
+    relacionadas: ['como-reclamar-a-una-prepaga', 'prepaga-sin-periodo-carencia', 'que-cubre-la-prepaga', 'afiliar-recien-nacido-prepaga'],
   },
   {
     slug: 'baja-de-prepaga-proceso',
@@ -847,7 +847,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['requisitos para afiliarse a una prepaga', 'documentacion alta prepaga', 'declaracion jurada salud prepaga', 'afiliacion prepaga extranjeros'],
-    relacionadas: ['como-contratar-prepaga-online', 'preexistencias-que-son-como-funcionan', 'derivar-obra-social-a-prepaga'],
+    relacionadas: ['como-contratar-prepaga-online', 'preexistencias-que-son-como-funcionan', 'derivar-obra-social-a-prepaga', 'afiliar-recien-nacido-prepaga'],
   },
   {
     slug: 'seguro-medico-obligatorio-extranjeros',
@@ -1063,6 +1063,56 @@ export const guias: GuiaData[] = [
     ],
     keywords: ['certificado unico de discapacidad', 'CUD cobertura 100', 'ley 24901 obra social', 'discapacidad obra social cobertura', 'que cubre el CUD'],
     relacionadas: ['obra-social-vs-prepaga', 'preexistencias-que-son-como-funcionan', 'como-reclamar-a-una-prepaga'],
+  },
+  {
+    slug: 'afiliar-recien-nacido-prepaga',
+    titulo: 'Afiliar a tu bebé recién nacido a la prepaga: plazos y requisitos',
+    metaDescripcion: 'Cómo y cuándo afiliar a un recién nacido a la prepaga, qué documentos pedir, qué pasa si te pasás del plazo y cuánto empieza a costar. Guía práctica.',
+    tiempoLectura: 6,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-09-17',
+    contenido: {
+      intro: 'El nacimiento de un hijo trae un trámite administrativo que muchos padres primerizos descubren tarde: la prepaga no incorpora automáticamente al bebé para siempre, hay una ventana para inscribirlo formalmente. Te contamos cómo funciona, qué pedir y qué pasa si te atrasás.',
+      secciones: [
+        {
+          titulo: 'La cobertura del parto está garantizada, la inscripción del bebé no es automática de por vida',
+          cuerpo: 'Por la Ley 26.682, el Plan Materno Infantil cubre el embarazo, el parto y la atención del recién nacido durante los primeros días sin copagos ni carencias, sea cual sea tu plan. Pero esa cobertura inicial es transitoria: para que tu hijo quede como beneficiario permanente con su propia credencial, tenés que inscribirlo formalmente ante la prepaga. Es habitual que las empresas den un plazo de gracia (muchas manejan 30 días corridos desde el nacimiento) para hacerlo sin pedir declaración jurada de salud ni aplicar carencias — pero el plazo exacto lo define cada contrato, así que confirmalo con tu prepaga apenas nazca, no lo asumas.',
+        },
+        {
+          titulo: 'Qué documentación piden',
+          cuerpo: 'Mientras se tramita el DNI del bebé (que en Argentina puede demorar semanas), la mayoría de las prepagas acepta iniciar el trámite con el Certificado de Nacido Vivo que entrega el sanatorio o la partida de nacimiento provisoria del Registro Civil, más el número de afiliado del progenitor titular. El DNI definitivo se presenta después, cuando llega. Iniciá el trámite con lo que tengas en el momento — no esperes a tener el DNI para no perder el plazo de inscripción sin carencias.',
+        },
+        {
+          titulo: 'Qué pasa si te pasás del plazo',
+          cuerpo: 'Si inscribís al bebé después de la ventana sin carencias, la prepaga puede tratarlo como una afiliación nueva: pedir declaración jurada de salud y aplicar los períodos de espera habituales a cualquier preexistencia que se detecte, igual que a un adulto. Es la principal razón para no dejar pasar el trámite: no es solo burocracia, es la diferencia entre cobertura inmediata y una carencia evitable.',
+        },
+        {
+          titulo: 'Cuánto empieza a costar',
+          cuerpo: 'El bebé se suma como un integrante más de tu grupo familiar, con el valor de la franja de edad más baja del plan que tengas contratado — generalmente la cuota más económica de toda la tabla de precios por edad de esa prepaga. El monto exacto varía según la empresa y el plan: usá la calculadora para ver cuánto se sumaría a tu cuota familiar antes de inscribirlo.',
+        },
+      ],
+      conclusion: 'El resumen práctico: el parto y los primeros días del bebé están cubiertos pase lo que pase, pero la inscripción formal como beneficiario tiene plazo. Llamá a tu prepaga apenas nazca para confirmar la fecha límite exacta de tu contrato, iniciá el trámite con el Certificado de Nacido Vivo si el DNI todavía no está, y no dejes pasar la ventana sin carencias.',
+    },
+    faq: [
+      {
+        q: '¿Cuánto tiempo tengo para afiliar a mi bebé recién nacido a la prepaga?',
+        a: 'Depende del contrato de cada empresa, pero es habitual un plazo de gracia de alrededor de 30 días corridos desde el nacimiento para inscribirlo sin declaración jurada de salud ni carencias. Confirmá la fecha exacta con tu prepaga apenas nazca.',
+      },
+      {
+        q: '¿Puedo afiliar al bebé sin el DNI todavía?',
+        a: 'Sí. La mayoría de las prepagas acepta iniciar el trámite con el Certificado de Nacido Vivo del sanatorio o la partida de nacimiento provisoria, y completar con el DNI cuando llegue.',
+      },
+      {
+        q: '¿Qué pasa si me atraso en inscribir al bebé?',
+        a: 'La prepaga puede tratarlo como una afiliación nueva fuera de plazo: pedir declaración jurada de salud y aplicar carencias a preexistencias que detecte, igual que haría con un adulto que se afilia por primera vez.',
+      },
+      {
+        q: '¿Cuánto cuesta agregar un bebé a la prepaga?',
+        a: 'Se suma como un integrante más de tu grupo familiar al valor de la franja de edad más baja del plan, que suele ser la más económica de la tabla de precios por edad. El monto exacto depende de la empresa y el plan — podés calcularlo en nuestra calculadora.',
+      },
+    ],
+    keywords: ['afiliar bebe recien nacido prepaga', 'plazo para afiliar recien nacido obra social', 'cuanto cuesta afiliar un bebe a la prepaga', 'plan materno infantil recien nacido', 'documentos para afiliar bebe prepaga'],
+    relacionadas: ['preexistencias-que-son-como-funcionan', 'como-afiliarse-prepaga-requisitos', 'cuota-prepaga-por-edad'],
   },
 ]
 
