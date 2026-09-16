@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 
-const CUPON_CODE = 'SWISS15'
+const CUPON_CODE = 'PREPAGAYA15'
 
 export function ExitIntentPopup(): React.ReactElement | null {
   const [visible, setVisible] = useState(false)
@@ -61,8 +61,8 @@ export function ExitIntentPopup(): React.ReactElement | null {
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
-          fuente: 'cupon-swiss-15',
-          prepaga_interes: `Swiss Medical — Cupón ${CUPON_CODE} (15% OFF)`,
+          fuente: 'cupon-prepagaya-15',
+          prepaga_interes: `Cupón ${CUPON_CODE} (15% OFF)`,
         }),
       })
       // Ya no redirige al WhatsApp del asesor — el lead solo llega por mail
@@ -98,7 +98,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
           </button>
           <div className="text-2xl mb-1">No te vayas</div>
           <p className="text-red-100 text-sm leading-relaxed mb-3">
-            Te regalamos un cupón con 15% OFF en todos los planes de Swiss Medical.
+            Te regalamos un cupón con 15% OFF en todos los planes.
           </p>
           <div className="inline-flex items-center gap-2 bg-white/15 border border-dashed border-white/50 rounded-lg px-3 py-1.5">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
