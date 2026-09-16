@@ -12,8 +12,8 @@ export interface GrupoCartilla {
 export const CARTILLA_GRUPOS: Record<string, GrupoCartilla[]> = {
   'swiss-medical': [
     { nombre: 'Cartilla Nubial', planes: ['s1', 'smg02'] },
-    { nombre: 'Cartilla Global', planes: ['s2', 'smg20'] },
-    { nombre: 'Cartilla Premium', planes: ['smg30', 'smg40', 'smg50'] },
+    { nombre: 'Cartilla Global', planes: ['s2', 'smg20', 'sport-s', 'sport'] },
+    { nombre: 'Cartilla Premium', planes: ['smg30', 'smg40', 'smg50', 'sport-plus'] },
   ],
 }
 
