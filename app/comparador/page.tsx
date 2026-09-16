@@ -4,6 +4,7 @@ import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
+import { ZonaBanner } from '@/components/ui/ZonaBanner'
 
 export const metadata: Metadata = {
   title: `Comparador de Prepagas Argentina ${new Date().getFullYear()} — Encontrá tu plan ideal`,
@@ -38,6 +39,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
       {!zona && (
         <section className="bg-gradient-to-b from-[#FFF1F2] to-white border-b border-red-100 py-14">
           <div className="container max-w-3xl mx-auto text-center">
+            <ZonaBanner variant="cotizador" />
             <div className="inline-flex items-center gap-2 bg-white border border-red-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] animate-pulse" />
               Comparador personalizado · Gratis · Sin registro

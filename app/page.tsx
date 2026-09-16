@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
+import { ZonaBanner } from '@/components/ui/ZonaBanner'
 
 export const metadata: Metadata = {
   title: { absolute: `Comparador de Prepagas Argentina 2026 con Precios Reales — ${SITE_NAME}` },
@@ -133,6 +134,7 @@ export default function HomePage(): React.ReactElement {
 
         <div className="relative z-10">
           <div className="container max-w-3xl mx-auto text-center pt-14 pb-8">
+            <ZonaBanner variant="home" />
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-red-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] animate-pulse" />
               Comparador personalizado · Gratis · Sin registro
