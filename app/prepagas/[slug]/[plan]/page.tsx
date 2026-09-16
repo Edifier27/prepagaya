@@ -57,7 +57,7 @@ function buildPlanFAQs(plan: Plan, prep: Prepaga) {
   return [
     {
       q: `¿Cuánto cuesta el ${plan.nombre} de ${prep.nombre}?`,
-      a: `El precio del ${plan.nombre} varía según tu edad y tu provincia: a mayor edad, mayor es el costo mensual. Cotizá gratis en PrepagaYa para ver el precio exacto de tu perfil, o pedí que un asesor te contacte con el valor sin necesidad de cotizar primero.`,
+      a: `El ${plan.nombre} de ${prep.nombre} cuesta ${formatPrecio(plan.precio)} por mes (precio de lista para una persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}). El valor final varía según tu edad y tu provincia: a mayor edad, mayor es el costo mensual. Cotizá gratis en PrepagaYa para ver el precio exacto de tu perfil.`,
     },
     {
       q: `¿El ${plan.nombre} tiene copago en consultas?`,
@@ -106,11 +106,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) return {}
   return {
-    title: `${prep.nombre} ${plan.nombre}: cobertura y cartilla — ${PRECIO_ACTUALIZADO}`,
-    description: `${prep.nombre} ${plan.nombre}: ${plan.copago ? 'con copago.' : 'sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. ${plan.descripcion} Cotizá tu precio exacto gratis.`,
+    title: `${prep.nombre} ${plan.nombre}: Precio ${formatPrecio(plan.precio)} — Cobertura y Cartilla ${PRECIO_ACTUALIZADO}`,
+    description: `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
+      `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} precio`,
+      `precio ${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
+      `cuanto sale ${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
+      `cuanto cuesta ${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} cobertura`,
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} opiniones`,
     ],
@@ -169,6 +173,13 @@ export default async function PlanPage({ params, searchParams }: Props) {
       description: plan.descripcion,
       url: `${SITE_URL}/prepagas/${slug}/${planSlug}`,
       brand: { '@type': 'Brand', name: prep.nombre },
+      offers: {
+        '@type': 'Offer',
+        price: plan.precio,
+        priceCurrency: 'ARS',
+        availability: 'https://schema.org/InStock',
+        url: `${SITE_URL}/prepagas/${slug}/${planSlug}`,
+      },
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: prep.rating,

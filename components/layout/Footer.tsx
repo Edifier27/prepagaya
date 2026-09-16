@@ -196,6 +196,14 @@ export function Footer() {
             <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Herramientas</h3>
             <ul className="space-y-3">
               <li>
+                <Link href="/precios" className="group flex items-center gap-2.5 text-sm text-gray-500 hover:text-white transition-colors">
+                  <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-red-500/20 flex items-center justify-center transition-colors text-blue-400">
+                    <IconChart />
+                  </span>
+                  Precios de prepagas
+                </Link>
+              </li>
+              <li>
                 <Link href="/comparador" className="group flex items-center gap-2.5 text-sm text-gray-500 hover:text-white transition-colors">
                   <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-red-500/20 flex items-center justify-center transition-colors text-blue-400">
                     <IconTarget />
