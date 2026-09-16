@@ -728,14 +728,14 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'prepagas-que-mas-aumentaron',
-    titulo: 'Las prepagas que más aumentaron en Argentina en los últimos 12 meses',
-    bajada: 'Mientras algunas prepagas aumentaron un 80%, otras llegaron al 130%. Un análisis de quién subió más y por qué.',
-    metaDescripcion: 'Ranking de las prepagas que más aumentaron en Argentina en 2025-2026. Análisis de los incrementos por empresa y consejos para protegerte.',
+    titulo: '¿Tu prepaga aumentó mucho? Qué hacer y cómo protegerte',
+    bajada: 'El marco regulatorio, por qué unas empresas suben más que otras, y los pasos concretos para no pagar de más cuando te llega un aumento fuerte.',
+    metaDescripcion: 'Qué hacer si tu prepaga aumentó mucho en Argentina: marco regulatorio, por qué varía el aumento entre empresas, y la estrategia para protegerte. Guía práctica.',
     categoria: 'Precios',
     fechaPublicacion: '2026-04-20',
     tiempoLectura: 6,
     contenido: {
-      intro: 'Los aumentos de prepagas en Argentina son un tema recurrente y doloroso. Pero no todas las empresas aumentan igual: algunas son más agresivas que otras. Analizamos quiénes subieron más en el último año.',
+      intro: 'Los aumentos de prepagas en Argentina son un tema recurrente y doloroso. Pero no todas las empresas aumentan igual: algunas son más agresivas que otras. Te contamos por qué pasa esto y, sobre todo, qué podés hacer al respecto. (Si buscás el desglose empresa por empresa de cuánto subió cada una este semestre, lo tenés en nuestra nota de aumentos del primer semestre 2026.)',
       secciones: [
         { titulo: 'El marco regulatorio de los aumentos', cuerpo: 'Desde 2011, las prepagas deben pedir autorización a la SSS para aumentar las cuotas. La SSS puede aprobar, rechazar o modificar el aumento propuesto, pero las empresas tienen margen para trasladar costos.' },
         { titulo: 'Por qué algunas suben más que otras', cuerpo: 'Los factores que determinan cuánto sube una prepaga son: la composición de su cartera de afiliados (más personas mayores = más costos), el tipo de planes que ofrece, cuánto han invertido en infraestructura propia y la eficiencia administrativa.' },
@@ -744,7 +744,7 @@ export const blogPosts: BlogPost[] = [
       ],
       conclusion: 'Los aumentos de prepagas son inevitables en la economía argentina. La estrategia: elegir una empresa con historial de aumentos moderados, revisar el plan al menos una vez al año, y tener siempre una opción alternativa clara para cambiar si es necesario.',
     },
-    keywords: ['prepagas que mas aumentaron argentina', 'aumento prepaga ranking', 'prepaga sube precio 2026', 'como manejar aumento prepaga'],
+    keywords: ['que hacer si aumenta la prepaga', 'como protegerte de aumentos prepaga', 'prepaga sube precio que hacer', 'derechos aumento prepaga argentina'],
   },
   // ─── NUEVOS POSTS ALTA DEMANDA ──────────────────────────────
   {

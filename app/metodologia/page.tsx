@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from 'next'
+import Link from 'next/link'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
@@ -125,6 +126,10 @@ export default function MetodologiaPage() {
           </div>
         </div>
       </section>
+
+      <p className="text-center text-sm text-gray-500 mt-8">
+        ¿Querés saber quiénes estamos detrás de {SITE_NAME}? <Link href="/sobre-nosotros" className="text-[#E8002D] font-semibold hover:underline">Conocé al equipo →</Link>
+      </p>
     </div>
   )
 }

@@ -336,6 +336,9 @@ export default async function PlanPage({ params, searchParams }: Props) {
               <div className="text-[10px] text-gray-400">{prep.cantidadOpiniones} opiniones</div>
             </div>
           </div>
+          <Link href="/calculadora" className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-[#E8002D] font-medium mt-2 transition-colors">
+            ¿Cuánto te sale a tu edad? Calculalo acá →
+          </Link>
         </div>
       </section>
 

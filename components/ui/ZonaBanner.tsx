@@ -19,7 +19,11 @@ export function ZonaBanner({ variant = 'home' }: { variant?: 'home' | 'cotizador
 
   if (!zona) return null
 
-  const href = zona.provinciaSEOSlug ? `/prepagas/${zona.provinciaSEOSlug}` : '/comparador'
+  const href = zona.localidadSlug && zona.provinciaSEOSlug
+    ? `/prepagas/${zona.provinciaSEOSlug}/${zona.localidadSlug}`
+    : zona.provinciaSEOSlug
+      ? `/prepagas/${zona.provinciaSEOSlug}`
+      : '/comparador'
 
   return (
     <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-red-100 rounded-full pl-3 pr-1.5 py-1.5 text-xs shadow-sm mb-4">
