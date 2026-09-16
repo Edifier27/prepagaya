@@ -230,12 +230,15 @@ export async function crearLeadEnKommo(d: KommoLeadData): Promise<ResultadoKommo
   if (telefono) customFieldsContacto.push({ field_code: 'PHONE', values: [{ value: telefono, enum_code: 'MOB' }] })
   if (d.email) customFieldsContacto.push({ field_code: 'EMAIL', values: [{ value: d.email, enum_code: 'WORK' }] })
 
-  // Apellido fijo "Prepaga Ya" (pedido de Darío, 15-sep-2026) — mismo
-  // criterio que el tag y el prefijo del lead: identificar de un vistazo,
-  // ahora también en la ficha del contacto, qué llegó del sitio.
+  // El apellido fijo "Prepaga Ya" que se probó el 15-sep-2026 se sacó el
+  // 16-sep-2026: el SalesBot de Kommo arma el saludo con {{contact.name}}
+  // (nombre + apellido juntos), así que terminaba mandando "Hola Juan
+  // PrepagaYa" a leads reales. La identificación de origen queda solo en
+  // el tag "PrepagaYa" y el prefijo del nombre del lead (abajo), que no se
+  // usan en ningún mensaje saliente.
   const contacto = existente
     ? { id: existente.contactId } // engancha al contacto ya existente, no crea uno nuevo
-    : { first_name: d.nombre, last_name: 'Prepaga Ya', custom_fields_values: customFieldsContacto }
+    : { first_name: d.nombre, custom_fields_values: customFieldsContacto }
 
   // Prefijo + etiqueta "PrepagaYa" — pedido de Darío, 15-sep-2026: en las
   // mismas cuentas de Kommo también entran leads de SGC y Salesforce (otros
