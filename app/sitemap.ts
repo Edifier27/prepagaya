@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { prepagas } from '@/lib/data/prepagas'
+import { comparativasPlanes } from '@/lib/data/comparativas-planes'
 import { comparativas } from '@/lib/data/comparativas'
 import { guias } from '@/lib/data/guias'
 import { ciudades } from '@/lib/data/ciudades'
@@ -72,6 +73,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: PRECIOS_UPDATE,
     changeFrequency: 'monthly' as const,
     priority: 0.8,
+  }))
+
+  const comparativaPlanesRoutes: MetadataRoute.Sitemap = comparativasPlanes.map((c) => ({
+    url: `${BASE}/prepagas/${c.prepagaSlug}/${c.slug}`,
+    lastModified: PRECIOS_UPDATE,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
   }))
 
   const guiaRoutes: MetadataRoute.Sitemap = guias.map((g) => ({
@@ -169,6 +177,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...prepagaRoutes,
     ...zonaRoutes,
     ...comparativaRoutes,
+    ...comparativaPlanesRoutes,
     ...guiaRoutes,
     ...ciudadRoutes,
     ...perfilRoutes,

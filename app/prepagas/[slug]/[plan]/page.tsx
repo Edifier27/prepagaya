@@ -13,6 +13,8 @@ import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
 import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
 import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
+import { comparativasPlanes, getComparativaPlanes, getComparativaParaPlan } from '@/lib/data/comparativas-planes'
+import { ComparativaPlanesPage, comparativaPlanesMetadata } from '@/components/prepagas/ComparativaPlanesPage'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -83,6 +85,7 @@ export async function generateStaticParams() {
     ...prepagas.flatMap((p) =>
       p.planes.map((pl) => ({ slug: p.slug, plan: pl.slug }))
     ),
+    ...comparativasPlanes.map((c) => ({ slug: c.prepagaSlug, plan: c.slug })),
     ...provinciasSEO.flatMap((prov) => [
       { slug: prov.slug, plan: 'mejores-prepagas' },
       ...prov.prepagas.filter((pz) => pz.enSitio).map((pz) => ({ slug: prov.slug, plan: pz.slug })),
@@ -100,6 +103,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (pz) return prepagaZonaMetadata(prov, pz)
     const loc = prov.localidades.find((l) => l.slug === planSlug)
     if (loc) return localidadMetadata(prov, loc)
+    return {}
+  }
+  const comp = getComparativaPlanes(slug, planSlug)
+  if (comp) {
+    const prepComp = prepagas.find((p) => p.slug === comp.prepagaSlug)
+    const plan1Comp = prepComp?.planes.find((pl) => pl.slug === comp.plan1Slug)
+    const plan2Comp = prepComp?.planes.find((pl) => pl.slug === comp.plan2Slug)
+    if (prepComp && plan1Comp && plan2Comp) return comparativaPlanesMetadata(comp, prepComp, plan1Comp, plan2Comp)
     return {}
   }
   const prep = prepagas.find((p) => p.slug === slug)
@@ -132,6 +143,14 @@ export default async function PlanPage({ params, searchParams }: Props) {
     if (loc) return <LocalidadPage prov={prov} loc={loc} />
     notFound()
   }
+  const comp = getComparativaPlanes(slug, planSlug)
+  if (comp) {
+    const prepComp = prepagas.find((p) => p.slug === comp.prepagaSlug)
+    const plan1Comp = prepComp?.planes.find((pl) => pl.slug === comp.plan1Slug)
+    const plan2Comp = prepComp?.planes.find((pl) => pl.slug === comp.plan2Slug)
+    if (!prepComp || !plan1Comp || !plan2Comp) notFound()
+    return <ComparativaPlanesPage comp={comp} prep={prepComp} plan1={plan1Comp} plan2={plan2Comp} />
+  }
   const prep = prepagas.find((p) => p.slug === slug)
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) notFound()
@@ -157,6 +176,10 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
   const perfilDelPlan = getPerfilDelPlan(plan)
   const faqs = buildPlanFAQs(plan, prep)
+  const comparativaPlan = getComparativaParaPlan(slug, planSlug)
+  const otroPlanComparativa = comparativaPlan
+    ? prep.planes.find((p) => p.slug === (comparativaPlan.plan1Slug === planSlug ? comparativaPlan.plan2Slug : comparativaPlan.plan1Slug))
+    : undefined
 
   const testisPlan = testimonios
     .filter(t => t.prepagaSlug === prep.slug && t.planNombre?.toLowerCase().includes(plan.nombre.toLowerCase().slice(0, 6)))
@@ -358,6 +381,28 @@ export default async function PlanPage({ params, searchParams }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Comparativa directa contra otro plan puntual (ej. Flux vs 210) */}
+      {comparativaPlan && otroPlanComparativa && (
+        <section className="py-8 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <Link
+              href={`/prepagas/${slug}/${comparativaPlan.slug}`}
+              className="group flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gray-50 border-2 border-gray-200 hover:border-[#E8002D] rounded-2xl p-5 transition-all"
+            >
+              <div>
+                <div className="text-xs font-bold text-gray-400 mb-1">¿{plan.nombre} o {otroPlanComparativa.nombre}?</div>
+                <div className="text-sm text-gray-700">
+                  Comparamos los dos punto por punto: precio, copago y cobertura.
+                </div>
+              </div>
+              <span className="flex-shrink-0 inline-flex items-center gap-1.5 px-5 py-2.5 bg-white group-hover:bg-[#E8002D] border-2 border-gray-200 group-hover:border-[#E8002D] text-gray-700 group-hover:text-white font-bold rounded-xl text-sm transition-colors whitespace-nowrap">
+                Ver comparativa →
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Sugerencia: mismo grupo de cartilla, sin copago */}
       {planMenosCopago && (
