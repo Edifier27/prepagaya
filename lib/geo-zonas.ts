@@ -4,7 +4,11 @@
 // de zona del cotizador — nunca para recomendar un plan puntual: no tenemos
 // cartilla verificada localidad por localidad, solo por provincia/zona de GBA.
 //
-// Los códigos de región son ISO 3166-2:AR (los manda Vercel tal cual).
+// Los códigos de región son ISO 3166-2:AR, pero Vercel los manda SIN el
+// prefijo de país en x-vercel-ip-country-region (ej. "B", no "AR-B" —
+// confirmado con /api/debug-geo contra un visitante real en Tandil, que
+// devolvió region: "B"). Se normaliza por las dudas de que algún edge
+// location mande el prefijo completo.
 // La subdivisión de partidos del GBA en Norte/Sur/Oeste es geografía pública
 // conocida (no es un dato de cobertura de salud que haya que verificar).
 
@@ -18,20 +22,20 @@ export interface ZonaDetectada {
 }
 
 const REGION_A_PROVINCIA: Record<string, { nombre: string; wizardSlug: string; provinciaSEOSlug?: string }> = {
-  'AR-C': { nombre: 'CABA', wizardSlug: 'caba' },
-  'AR-B': { nombre: 'Buenos Aires', wizardSlug: 'buenos-aires' },
-  'AR-X': { nombre: 'Córdoba', wizardSlug: 'cordoba', provinciaSEOSlug: 'cordoba' },
-  'AR-S': { nombre: 'Santa Fe', wizardSlug: 'santa-fe', provinciaSEOSlug: 'santa-fe' },
-  'AR-M': { nombre: 'Mendoza', wizardSlug: 'mendoza', provinciaSEOSlug: 'mendoza' },
-  'AR-T': { nombre: 'Tucumán', wizardSlug: 'tucuman', provinciaSEOSlug: 'tucuman' },
-  'AR-A': { nombre: 'Salta', wizardSlug: 'salta', provinciaSEOSlug: 'salta' },
-  'AR-Q': { nombre: 'Neuquén', wizardSlug: 'neuquen', provinciaSEOSlug: 'neuquen' },
-  'AR-E': { nombre: 'Entre Ríos', wizardSlug: 'entre-rios' },
-  'AR-N': { nombre: 'Misiones', wizardSlug: 'misiones' },
-  'AR-H': { nombre: 'Chaco', wizardSlug: 'chaco' },
-  'AR-W': { nombre: 'Corrientes', wizardSlug: 'corrientes' },
-  'AR-R': { nombre: 'Río Negro', wizardSlug: 'rio-negro' },
-  'AR-Y': { nombre: 'Jujuy', wizardSlug: 'jujuy' },
+  C: { nombre: 'CABA', wizardSlug: 'caba' },
+  B: { nombre: 'Buenos Aires', wizardSlug: 'buenos-aires' },
+  X: { nombre: 'Córdoba', wizardSlug: 'cordoba', provinciaSEOSlug: 'cordoba' },
+  S: { nombre: 'Santa Fe', wizardSlug: 'santa-fe', provinciaSEOSlug: 'santa-fe' },
+  M: { nombre: 'Mendoza', wizardSlug: 'mendoza', provinciaSEOSlug: 'mendoza' },
+  T: { nombre: 'Tucumán', wizardSlug: 'tucuman', provinciaSEOSlug: 'tucuman' },
+  A: { nombre: 'Salta', wizardSlug: 'salta', provinciaSEOSlug: 'salta' },
+  Q: { nombre: 'Neuquén', wizardSlug: 'neuquen', provinciaSEOSlug: 'neuquen' },
+  E: { nombre: 'Entre Ríos', wizardSlug: 'entre-rios' },
+  N: { nombre: 'Misiones', wizardSlug: 'misiones' },
+  H: { nombre: 'Chaco', wizardSlug: 'chaco' },
+  W: { nombre: 'Corrientes', wizardSlug: 'corrientes' },
+  R: { nombre: 'Río Negro', wizardSlug: 'rio-negro' },
+  Y: { nombre: 'Jujuy', wizardSlug: 'jujuy' },
 }
 
 // Partidos del GBA por zona — geografía pública, no dato de salud.
@@ -69,7 +73,8 @@ function subzonaGBA(ciudad: string): string | null {
 // A partir de los headers de geolocalización que manda Vercel Edge Network.
 export function detectarZona(countryRegion: string | null, ciudad: string | null): ZonaDetectada | null {
   if (!countryRegion) return null
-  const prov = REGION_A_PROVINCIA[countryRegion.toUpperCase()]
+  const codigo = countryRegion.toUpperCase().replace(/^AR-/, '')
+  const prov = REGION_A_PROVINCIA[codigo]
   if (!prov) return null
 
   const ciudadLimpia = ciudad ? decodeURIComponent(ciudad).trim() : null
