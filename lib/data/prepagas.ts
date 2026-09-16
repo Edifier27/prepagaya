@@ -44,8 +44,8 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'smg02',
         nombre: 'Plan SMG02',
-        // Precio estimado — confirmar con lista oficial Swiss Medical
-        precio: 171900,
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 277558,
         descripcion: 'La puerta de entrada a Swiss Medical. Cobertura en CABA y GBA con consultas sin copago: el mejor precio para entrar a la red Swiss sin pagar por cada visita.',
         cobertura: ['Internación', 'Urgencias', 'Consultas sin copago', 'Maternidad PMO', 'Cobertura CABA y GBA'],
         copago: false,
@@ -54,7 +54,8 @@ export const prepagas: Prepaga[] = [
       {
         slug: 's1',
         nombre: 'Plan S1',
-        precio: 189100,
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 197336,
         descripcion: 'Plan económico con copago para jóvenes y personas que buscan cobertura esencial a bajo costo con la calidad Swiss Medical.',
         cobertura: ['Internación', 'Urgencias', 'Consultas generales', 'Maternidad básica'],
         copago: true,
@@ -63,16 +64,28 @@ export const prepagas: Prepaga[] = [
       {
         slug: 's2',
         nombre: 'Plan S2',
-        precio: 237400,
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 247743,
         descripcion: 'Suma Hospital Italiano y Fundación Favaloro a la red del S1. Con copago en consultas y estudios.',
         cobertura: ['Internación', 'Urgencias', 'Especialistas', 'Maternidad', 'Salud mental', 'Hospital Italiano', 'Fundación Favaloro'],
         copago: true,
         redAbierta: false,
       },
       {
+        slug: 'sport-s',
+        nombre: 'Plan Sport-S',
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 307805,
+        descripcion: 'Para quienes empiezan a entrenar: reintegro de hasta $338.740 por año en gimnasio, tenis, natación y otras actividades deportivas, más consultas de nutrición y traumatología con reintegro fuera de cartilla.',
+        cobertura: ['Internación', '50 consultas ambulatorias por año', 'Nutrición y traumatología con reintegro', 'Kinesiología y fonoaudiología', 'Reintegro actividad física hasta $338.740/año', 'Chequeo médico anual', 'Óptica'],
+        copago: true,
+        redAbierta: false,
+      },
+      {
         slug: 'smg20',
         nombre: 'Plan SMG20',
-        precio: 331300,
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 346404,
         descripcion: 'El plan más elegido de Swiss Medical. Sin copago en consultas, estudios, kinesio y fonoaudiología. 30 sesiones de psicología por año sin cargo. Ortodoncia hasta 15 años. 40% descuento farmacias.',
         cobertura: ['Internación completa', 'Consultas sin copago', 'Especialistas', 'Maternidad', 'Psicología 30 sesiones sin cargo', 'Óptica', 'Dental', 'Kinesioterapia sin copago', 'Ortodoncia hasta 15 años', '40% descuento farmacias'],
         copago: false,
@@ -82,26 +95,48 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'smg30',
         nombre: 'Plan SMG30',
-        precio: 380600,
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 397934,
         descripcion: 'Plan premium de red abierta: reintegros por atención fuera de cartilla, ortodoncia hasta 18 años y mayor red de prestadores.',
         cobertura: ['Internación sin límite', 'Especialistas', 'Maternidad completa', 'Salud mental', 'Óptica', 'Dental', 'Ortodoncia hasta 18 años', 'Reintegros ampliados'],
         copago: false,
         redAbierta: true,
       },
       {
+        slug: 'sport',
+        nombre: 'Plan Sport',
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 405293,
+        descripcion: 'Para quienes hacen del movimiento parte de su vida: sin copago en consultas, más reintegro de hasta $406.487 por año en gimnasio y actividades deportivas y estudio biomecánico de la marcha incluido.',
+        cobertura: ['Internación completa', 'Consultas sin copago', 'Salud mental 30 sesiones sin cargo', 'Nutrición y traumatología con reintegro', 'Reintegro actividad física hasta $406.487/año', 'Estudio biomecánico de la marcha', 'Óptica', 'Odontología'],
+        copago: false,
+        redAbierta: false,
+      },
+      {
         slug: 'smg40',
         nombre: 'Plan SMG40',
-        precio: 397800,
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 415914,
         descripcion: 'Alta cobertura con acceso a los mejores centros médicos del país.',
         cobertura: ['Internación full', 'Red exclusiva', 'Maternidad VIP', 'Salud mental ampliada', 'Óptica premium', 'Dental completo', 'Reintegros'],
         copago: false,
         redAbierta: true,
       },
       {
+        slug: 'sport-plus',
+        nombre: 'Plan Sport+',
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 474143,
+        descripcion: 'Para quienes entrenan intensamente: la línea Sport más completa, con reintegro de hasta $541.983 por año en actividad física, consultas y estudios con reintegro amplio fuera de cartilla, cobertura internacional de viaje y un test genético incluido.',
+        cobertura: ['Internación premium habitación individual', 'Consultas y estudios con reintegro amplio', 'Salud mental ampliada', 'Reintegro actividad física hasta $541.983/año', 'Test genético (1 de por vida)', 'Cobertura internacional de viaje', 'Óptica', 'Odontología'],
+        copago: false,
+        redAbierta: true,
+      },
+      {
         slug: 'smg50',
         nombre: 'Plan SMG50',
-        // Precio estimado — confirmar con lista oficial Swiss Medical
-        precio: 463200,
+        // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
+        precio: 519697,
         descripcion: 'Línea premium: equivale al SMG30 con adicionales top. Una cirugía estética por año para titular o cónyuge, implantes dentales por reintegro y valores de reintegro superiores.',
         cobertura: ['Internación habitación individual', 'Especialistas', 'Maternidad completa', 'Salud mental', 'Óptica', 'Dental + implantes (reintegro)', 'Cirugía estética 1 por año', 'Reintegros máximos'],
         copago: false,
