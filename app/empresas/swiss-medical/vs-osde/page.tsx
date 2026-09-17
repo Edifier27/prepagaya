@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: '¿Por qué el plan corporativo de Swiss Medical suele salir más económico que el de OSDE?',
-    a: 'OSDE no tiene sanatorios propios: terceriza el 100% de la atención con convenios, lo que encarece su estructura de costos. Swiss Medical tiene 8 sanatorios propios y controla mejor ese costo, y lo traslada a una cuota corporativa más accesible en planes de nivel equivalente.',
+    a: 'OSDE no tiene sanatorios propios: terceriza el 100% de la atención con convenios, lo que encarece su estructura de costos. Swiss Medical tiene 9 sanatorios propios y controla mejor ese costo, y lo traslada a una cuota corporativa más accesible en planes de nivel equivalente.',
   },
   {
     q: '¿Cuánto puede ahorrar mi empresa cambiando de OSDE a Swiss Medical?',
@@ -104,7 +104,7 @@ export default function SwissMedicalVsOsdeEmpresasPage() {
           </div>
           <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6">
             <h3 className="font-bold text-gray-900 text-sm mb-2">Swiss Medical controla su propia infraestructura</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">Con 8 sanatorios propios (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas) y centros ambulatorios propios, Swiss Medical maneja directamente buena parte de su costo de atención, en vez de pagarlo íntegro a terceros. Esa eficiencia es la que permite planes corporativos más accesibles en el mismo nivel de cobertura.</p>
+            <p className="text-sm text-gray-600 leading-relaxed">Con 9 sanatorios propios (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas) y centros ambulatorios propios, Swiss Medical maneja directamente buena parte de su costo de atención, en vez de pagarlo íntegro a terceros. Esa eficiencia es la que permite planes corporativos más accesibles en el mismo nivel de cobertura.</p>
           </div>
         </div>
       </section>

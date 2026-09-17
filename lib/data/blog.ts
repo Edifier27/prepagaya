@@ -38,7 +38,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: 'Swiss Medical SMG40 y superiores',
-          cuerpo: 'Los planes SMG40, SMG50 y superiores de Swiss Medical tienen acceso exclusivo a los 8 sanatorios propios más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala y más), con hotelería de primer nivel, médico de cabecera y gestores de salud personales. El SMG40 parte de $390.775 para 30 años.',
+          cuerpo: 'Los planes SMG40, SMG50 y superiores de Swiss Medical tienen acceso exclusivo a los 9 sanatorios propios más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala y más), con hotelería de primer nivel, médico de cabecera y gestores de salud personales. El SMG40 parte de $390.775 para 30 años.',
         },
         {
           titulo: '¿Vale la pena pagar tanto?',
@@ -70,8 +70,8 @@ export const blogPosts: BlogPost[] = [
           cuerpo: 'Con más de 140.000 profesionales adheridos y presencia en todos los rincones del país, OSDE tiene la red más extensa de Argentina. Ninguna prepaga privada se acerca a esa cobertura geográfica y de especialidades.',
         },
         {
-          titulo: 'Por sanatorios propios: Swiss Medical',
-          cuerpo: 'Swiss Medical tiene 8 sanatorios propios incluyendo algunos de los más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas). Avalian le sigue con 5 sanatorios propios concentrados en AMBA (Las Lomas, 25 de Mayo y más). Ninguna otra prepaga tiene una red propia de esa magnitud.',
+          titulo: 'Por sanatorios propios: Medicus y Swiss Medical',
+          cuerpo: 'Medicus tiene la red propia más numerosa, con 11 centros médicos propios en CABA, GBA y el interior. Swiss Medical le sigue de cerca con 9 sanatorios propios, incluyendo algunos de los más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas y el Sanatorio Las Lomas, incorporado en 2024). Avalian, en cambio, no tiene sanatorios propios: trabaja con una red de convenio de instituciones de terceros como el Hospital Alemán, CEMIC y Fleni.',
         },
         {
           titulo: 'El mercado está concentrado',
@@ -288,7 +288,7 @@ export const blogPosts: BlogPost[] = [
       intro: 'Con más de 300 obras sociales registradas en Argentina, elegir la mejor puede ser abrumador. Te presentamos el ranking de las más valoradas en 2026, con análisis honesto de qué tiene cada una.',
       secciones: [
         { titulo: '#1 OSDE: la red más grande', cuerpo: 'OSDE tiene 140.000+ profesionales en todo el país. Sus planes 310 y 410 son los más elegidos por trabajadores de empresas medianas y grandes. La desventaja: es de las más caras como destino de derivación.' },
-        { titulo: '#2 Swiss Medical: los mejores sanatorios', cuerpo: 'Swiss Medical Salud destaca por sus 8 sanatorios propios de última generación incluyendo Suizo Argentina, Los Arcos y Agote. Si vivís en CABA o GBA y valorás la infraestructura médica, es difícil de superar.' },
+        { titulo: '#2 Swiss Medical: los mejores sanatorios', cuerpo: 'Swiss Medical Salud destaca por sus 9 sanatorios propios de última generación incluyendo Suizo Argentina, Los Arcos y Agote. Si vivís en CABA o GBA y valorás la infraestructura médica, es difícil de superar.' },
         { titulo: '#3 Sancor Salud: la mejor cobertura nacional', cuerpo: 'Para quienes viven o viajan al interior del país, Sancor Salud tiene la red más amplia con 30.000+ profesionales en todas las provincias. Es también una de las más elegidas por familias por su balance precio-cobertura.' },
         { titulo: '¿Y las obras sociales sindicales?', cuerpo: 'Las OS sindicales tienen la obligación de dar cobertura del PMO, pero la calidad varía enormemente. Las más grandes y bien gestionadas ofrecen cobertura comparable a las prepagas premium; otras tienen prestadores limitados.' },
       ],
@@ -801,7 +801,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: 'Red de prestadores: OSDE es más grande',
-          cuerpo: 'El Plan 310 te da acceso a más de 140.000 profesionales en todo el país, incluyendo el Hospital Alemán sin costo adicional. El SMG20 tiene red más pequeña (81.500-100.000 profesionales) pero acceso a los 8 sanatorios propios de Swiss Medical (Suizo Argentina, Los Arcos, Agote, Zabala y más) que tienen nivel de hotelería y equipamiento superior.',
+          cuerpo: 'El Plan 310 te da acceso a más de 140.000 profesionales en todo el país, incluyendo el Hospital Alemán sin costo adicional. El SMG20 tiene red más pequeña (81.500-100.000 profesionales) pero acceso a los 9 sanatorios propios de Swiss Medical (Suizo Argentina, Los Arcos, Agote, Zabala y más) que tienen nivel de hotelería y equipamiento superior.',
         },
         {
           titulo: 'Coberturas diferenciales: cada plan tiene sus ventajas',
@@ -838,7 +838,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: '#2 Mejor infraestructura propia: Swiss Medical',
-          cuerpo: 'Swiss Medical tiene 8 sanatorios propios de alta complejidad (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas) y 30 centros de diagnóstico propios. Para quienes viven en CABA y GBA y quieren internarse en los mejores establecimientos del país, Swiss Medical es difícil de superar. El SMG20 ($325.467/mes) es su plan más popular.',
+          cuerpo: 'Swiss Medical tiene 9 sanatorios propios de alta complejidad (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas) y 30 centros de diagnóstico propios. Para quienes viven en CABA y GBA y quieren internarse en los mejores establecimientos del país, Swiss Medical es difícil de superar. El SMG20 ($325.467/mes) es su plan más popular.',
         },
         {
           titulo: '#3 Mejor relación precio-calidad: Medifé+',
@@ -1019,7 +1019,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: 'Si valorás los sanatorios y la marca: Swiss Medical S1',
-          cuerpo: 'El Plan S1 de Swiss Medical ($185.773/mes) tiene red cerrada (solo Swiss Medical Centers), pero da acceso a los 8 sanatorios propios de la empresa, que son algunos de los más modernos del país. Para un joven en CABA que quiere el respaldo de la marca Swiss y no le importa la red cerrada, es una buena opción de entrada.',
+          cuerpo: 'El Plan S1 de Swiss Medical ($185.773/mes) tiene red cerrada (solo Swiss Medical Centers), pero da acceso a los 9 sanatorios propios de la empresa, que son algunos de los más modernos del país. Para un joven en CABA que quiere el respaldo de la marca Swiss y no le importa la red cerrada, es una buena opción de entrada.',
         },
         {
           titulo: 'Si vivís en el interior: Sancor F700',

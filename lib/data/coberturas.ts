@@ -273,7 +273,7 @@ export const coberturas: CoberturaData[] = [
       { slug: 'swiss-medical', razon: 'Swiss Medical tiene el servicio de emergencias más completo: Swiss Medical Emergencias atiende en todo AMBA y CABA con ambulancias propias. Los Swiss Medical Centers son guardias propias con médicos de guardia 24/7. Para el interior tienen convenios con las principales clínicas.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene convenio con las principales clínicas y sanatorios en todo el país. Su ventaja es la cobertura en el interior: en ciudades donde otras prepagas tienen poca red, OSDE casi siempre tiene clínicas adheridas.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud tiene buena cobertura de urgencias en el interior con sus propios centros médicos en varias provincias. El Plan 3000 incluye ambulancias y traslado cubiertos.', planSlug: 'plan-3000' },
-      { slug: 'avalian', razon: 'Avalian incluye telemedicina 24hs en todos sus planes, incluso el más básico: podés consultar a un médico por videollamada antes de definir si hace falta ir a una guardia. Sus 5 sanatorios propios en AMBA suman guardia física para las urgencias que sí requieren atención presencial.', planSlug: 'full' },
+      { slug: 'avalian', razon: 'Avalian incluye telemedicina 24hs en todos sus planes, incluso el más básico: podés consultar a un médico por videollamada antes de definir si hace falta ir a una guardia. Para la atención presencial depende de guardias de su red de convenio, no de sanatorios propios.', planSlug: 'full' },
     ],
     prepagasRestrictivas: [
       { slug: 'premedic', detalle: 'Cobertura de urgencias concentrada en CABA, GBA, Córdoba y Tucumán. Fuera de esas zonas la cobertura de emergencias es más limitada.' },

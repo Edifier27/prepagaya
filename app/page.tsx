@@ -90,7 +90,7 @@ const faqItems = [
   },
   {
     q: '¿Qué diferencia hay entre el Plan SMG20 de Swiss Medical y el Plan 310 de OSDE?',
-    a: 'Son los planes estrella de cada prepaga. El SMG20 de Swiss Medical incluye 8 sanatorios propios (Suizo Argentina, Los Arcos). El Plan 310 de OSDE incluye el Hospital Alemán y médico a domicilio. Si necesitás Hospital Italiano, ambos lo cubren desde estos planes.',
+    a: 'Son los planes estrella de cada prepaga. El SMG20 de Swiss Medical incluye 9 sanatorios propios (Suizo Argentina, Los Arcos). El Plan 310 de OSDE incluye el Hospital Alemán y médico a domicilio. Si necesitás Hospital Italiano, ambos lo cubren desde estos planes.',
   },
   {
     q: '¿Qué es la Lista Deriva Aporte? ¿Pago menos si trabajo en relación de dependencia?',

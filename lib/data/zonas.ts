@@ -687,10 +687,10 @@ provinciasSEO.push(
     localidades: [
       { slug: 'zona-norte', nombre: 'Zona Norte (San Isidro, Vicente López, Pilar)',
         descripcion: 'El corredor de mayor poder adquisitivo del conurbano concentra la cartilla privada más densa fuera de CABA: Hospital Universitario Austral en Pilar, Sanatorio de la Trinidad y Las Lomas en San Isidro, Clínica Olivos en Vicente López. Es la zona donde Swiss Medical y Galeno tienen infraestructura propia.',
-        prestadores: ['Hospital Universitario Austral', 'Sanatorio de la Trinidad San Isidro', 'Sanatorio Las Lomas', 'Clínica Olivos'] },
+        prestadores: ['Hospital Universitario Austral', 'Sanatorio de la Trinidad San Isidro', 'Sanatorio Las Lomas (Swiss Medical)', 'Clínica Olivos'] },
       { slug: 'san-isidro', nombre: 'San Isidro',
-        descripcion: 'Cabecera de Zona Norte y uno de los partidos de mayor poder adquisitivo del conurbano: el Sanatorio de la Trinidad y el Sanatorio Las Lomas tienen sede propia acá, con cartilla premium equivalente a la de CABA. Swiss Medical también tiene centro propio (Sanatorio San Lucas) en el partido.',
-        prestadores: ['Sanatorio de la Trinidad San Isidro', 'Sanatorio Las Lomas', 'Sanatorio San Lucas (Swiss Medical)'] },
+        descripcion: 'Cabecera de Zona Norte y uno de los partidos de mayor poder adquisitivo del conurbano: el Sanatorio de la Trinidad tiene sede propia acá, con cartilla premium equivalente a la de CABA. Swiss Medical también tiene dos centros propios en el partido: el Sanatorio San Lucas y el Sanatorio Las Lomas.',
+        prestadores: ['Sanatorio de la Trinidad San Isidro', 'Sanatorio Las Lomas (Swiss Medical)', 'Sanatorio San Lucas (Swiss Medical)'] },
       { slug: 'vicente-lopez', nombre: 'Vicente López (Olivos)',
         descripcion: 'El partido más cercano a CABA por el norte, con buena cartilla premium heredada de su cercanía con la Ciudad. Clínica Olivos es la referencia de mediana complejidad de la zona; Swiss Medical también tiene un centro propio en Olivos.',
         prestadores: ['Clínica Olivos', 'Sanatorio propio Swiss Medical (Olivos)'] },

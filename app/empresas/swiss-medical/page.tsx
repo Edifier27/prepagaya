@@ -7,7 +7,7 @@ import { EmpresasForm } from '@/components/empresas/EmpresasForm'
 
 export const metadata: Metadata = {
   title: `Swiss Medical para Empresas: Plan Corporativo y Convenio de Afinidad`,
-  description: 'Plan corporativo de Swiss Medical para tu empresa: convenio de afinidad, facturación individual sin trabajo administrativo para RRHH, 8 sanatorios propios. Cotizá gratis.',
+  description: 'Plan corporativo de Swiss Medical para tu empresa: convenio de afinidad, facturación individual sin trabajo administrativo para RRHH, 9 sanatorios propios. Cotizá gratis.',
   alternates: { canonical: `${SITE_URL}/empresas/swiss-medical` },
   keywords: [
     'swiss medical empresas', 'swiss medical plan corporativo', 'swiss medical convenio afinidad',
@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     q: '¿Por qué Swiss Medical para mi empresa y no otra prepaga?',
-    a: 'Swiss Medical tiene 8 sanatorios propios y más de 81.500 profesionales, con la cartilla premium más amplia del mercado según satisfacción de afiliados (76%). Para una empresa, eso significa menos derivaciones y mejor experiencia para el equipo — y es la prepaga con la que tenemos mayor poder de negociación para armar convenios a medida.',
+    a: 'Swiss Medical tiene 9 sanatorios propios y más de 81.500 profesionales, con la cartilla premium más amplia del mercado según satisfacción de afiliados (76%). Para una empresa, eso significa menos derivaciones y mejor experiencia para el equipo — y es la prepaga con la que tenemos mayor poder de negociación para armar convenios a medida.',
   },
   {
     q: '¿Qué documentación pide Swiss Medical para dar de alta el convenio corporativo?',
@@ -107,7 +107,7 @@ export default function EmpresasSwissMedicalPage() {
         <div className="container max-w-4xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { v: '8', l: 'Sanatorios propios' },
+              { v: '9', l: 'Sanatorios propios' },
               { v: '81.500+', l: 'Profesionales' },
               { v: '76%', l: 'Satisfacción de afiliados' },
               { v: '13', l: 'Centros ambulatorios propios' },

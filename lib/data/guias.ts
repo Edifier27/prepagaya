@@ -991,7 +991,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Opción premium: Swiss Medical',
-          cuerpo: `El plan más elegido de Swiss Medical, ${swissData.planEstrella.nombre}, cuesta ${formatPrecio(swissData.planEstrella.precio)}/mes: sin copago, con 8 sanatorios propios y red abierta.`,
+          cuerpo: `El plan más elegido de Swiss Medical, ${swissData.planEstrella.nombre}, cuesta ${formatPrecio(swissData.planEstrella.precio)}/mes: sin copago, con 9 sanatorios propios y red abierta.`,
         },
         {
           titulo: 'Por qué el precio de lista no es lo único que importa',

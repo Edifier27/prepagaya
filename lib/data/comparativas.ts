@@ -258,7 +258,7 @@ export const comparativas: Comparativa[] = [
     ganadorPrecio: 'avalian',
     ganadorRed: 'sancor-salud',
     ganadorSatisfaccion: 'avalian',
-    veredicto: 'Están muy parejas. Avalian tiene en promedio planes más accesibles y una satisfacción declarada apenas superior (73% contra 72%). Sancor Salud tiene más profesionales en cartilla (60.000 contra 40.000) y es la opción más fuerte si vivís en el interior, sobre todo Córdoba y Santa Fe, donde tiene su Centro Médico Vitus propio. Avalian compensa con telemedicina 24hs en todos los planes y sanatorios propios en AMBA. Para el interior, Sancor Salud. Para AMBA con presupuesto ajustado, Avalian.',
+    veredicto: 'Están muy parejas. Avalian tiene en promedio planes más accesibles y una satisfacción declarada apenas superior (73% contra 72%). Sancor Salud tiene más profesionales en cartilla (60.000 contra 40.000) y es la opción más fuerte si vivís en el interior, sobre todo Córdoba y Santa Fe, donde tiene su Centro Médico Vitus propio. Avalian compensa con telemedicina 24hs en todos los planes, aunque ninguna de las dos tiene sanatorios propios en AMBA. Para el interior, Sancor Salud. Para AMBA con presupuesto ajustado, Avalian.',
   },
 ]
 
