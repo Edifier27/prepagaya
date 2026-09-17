@@ -169,6 +169,10 @@ function detalleCob(id: CobId, plan: Plan): string {
 const MARCA_PRIMERA = 'swiss-medical'
 const MARCAS_SEGUNDAS = ['sancor-salud', 'premedic']
 
+// Orden del filtro de prepaga (sidebar/bottom sheet): Swiss Medical y OSDE
+// siempre arriba (pedido de Darío, 17-sep-2026), el resto alfabético debajo.
+const ORDEN_PREPAGA_FILTRO = ['swiss-medical', 'osde']
+
 function mecharResultados(sorted: Resultado[]): Resultado[] {
   const pool = [...sorted]
   const out: Resultado[] = []
@@ -625,7 +629,12 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     for (const r of allResultados) {
       if (!vistos.has(r.prepaga.slug)) { vistos.add(r.prepaga.slug); out.push(r.prepaga) }
     }
-    return out.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+    return out.sort((a, b) => {
+      const ia = ORDEN_PREPAGA_FILTRO.indexOf(a.slug)
+      const ib = ORDEN_PREPAGA_FILTRO.indexOf(b.slug)
+      if (ia !== -1 || ib !== -1) return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib)
+      return a.nombre.localeCompare(b.nombre, 'es')
+    })
   }, [allResultados])
 
   function togglePrepaga(slug: string) {
