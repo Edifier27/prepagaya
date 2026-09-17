@@ -97,6 +97,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/empresas/osde`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE}/empresas/swiss-medical/plan-black`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${BASE}/empresas/swiss-medical/vs-osde`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.75 },
+    { url: `${BASE}/empresas/ranking`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.75 },
   ]
 
   // Ciudades cuya provincia ya migró al silo /prepagas/[provincia] (301 en next.config).

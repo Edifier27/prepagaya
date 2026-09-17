@@ -235,6 +235,10 @@ export default function EmpresasPage() {
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-5">Más sobre planes corporativos</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/empresas/ranking" className="flex flex-col gap-1 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
+              <span className="text-sm font-bold text-gray-900 group-hover:text-[#E8002D]">Ranking de planes corporativos →</span>
+              <span className="text-xs text-gray-500">Cómo comparamos Swiss Medical y OSDE</span>
+            </Link>
             <Link href="/empresas/swiss-medical" className="flex flex-col gap-1 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
               <span className="text-sm font-bold text-gray-900 group-hover:text-[#E8002D]">Plan corporativo de Swiss Medical →</span>
               <span className="text-xs text-gray-500">Convenio de afinidad y Plan Black</span>
