@@ -1222,9 +1222,15 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       {/* Layout: sidebar + cards */}
       <div className="flex gap-6">
 
-        {/* Left sidebar — desktop only */}
+        {/* Left sidebar — desktop only. max-h + overflow-y-auto propio (no solo
+            sticky) para que, si el contenido del sidebar es más alto que la
+            pantalla, tenga su scroll interno: pasar el mouse por arriba del
+            menú scrollea el menú, y por arriba de las cards scrollea la lista
+            de planes — sin esto, la parte de abajo del sidebar quedaba
+            inaccesible hasta scrollear toda la página (pedido de Darío,
+            17-sep-2026). */}
         <div className="hidden lg:block w-52 flex-shrink-0">
-          <div className="sticky top-24 self-start space-y-4">
+          <div className="sticky top-24 self-start space-y-4 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1">
 
             {/* Sort */}
             <div className="bg-white rounded-2xl border border-gray-100 p-4">
