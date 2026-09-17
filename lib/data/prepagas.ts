@@ -7,8 +7,8 @@ export const prepagas: Prepaga[] = [
     logo: '/logos/swiss-medical.svg',
     colorPrimario: '#E30613',
     descripcion:
-      'Swiss Medical es la 2da prepaga más grande de Argentina (~1 millón de afiliados). Destaca por sus 9 sanatorios propios (incluido el Sanatorio Las Lomas, adquirido en 2024), 13 centros ambulatorios propios y Centros Diagnóstico Maipu (30 centros). Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
-    satisfaccion: 76,
+      'Swiss Medical es la 2da prepaga más grande de Argentina (~1.5 millones de afiliados). Destaca por sus 9 sanatorios propios (incluido el Sanatorio Las Lomas, adquirido en 2024), 13 centros ambulatorios propios y Centros Diagnóstico Maipu (30 centros). Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
+    satisfaccion: 91,
     calidadCartilla: 5,
     rating: 4.2,
     cantidadOpiniones: 1243,
@@ -151,7 +151,7 @@ export const prepagas: Prepaga[] = [
     colorPrimario: '#003087',
     descripcion:
       'OSDE es la prepaga líder de Argentina con más de 2 millones de afiliados. Tiene la red más grande del país (+140.000 profesionales, 380+ centros de atención). Cartilla Inteligente con IA para orientar al paciente. Plan Flux para jóvenes 18-35 con psicología ilimitada.',
-    satisfaccion: 74,
+    satisfaccion: 84,
     calidadCartilla: 5,
     rating: 4.0,
     cantidadOpiniones: 2156,

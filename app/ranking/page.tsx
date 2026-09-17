@@ -15,20 +15,24 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/ranking` },
 }
 
+// Orden curado por nuestros asesores (no es el ranking por satisfacción):
+// prioriza estructura propia, poder de negociación y experiencia de atención
+// diaria por sobre el dato aislado de la encuesta de satisfacción.
+const SELECCION_ASESORES = ['swiss-medical', 'osde', 'sancor-salud', 'galeno', 'medicus']
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: `Ranking Mejores Prepagas Argentina ${new Date().getFullYear()}`,
-  description: 'Ranking de las mejores prepagas de Argentina por satisfacción de afiliados',
+  description: 'Selección de nuestros asesores de las mejores prepagas de Argentina',
   numberOfItems: prepagas.length,
-  itemListElement: [...prepagas]
-    .sort((a, b) => b.satisfaccion - a.satisfaccion)
-    .map((p, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: p.nombre,
-      url: `${SITE_URL}/prepagas/${p.slug}`,
-    })),
+  itemListElement: [
+    ...SELECCION_ASESORES,
+    ...prepagas.map((p) => p.slug).filter((s) => !SELECCION_ASESORES.includes(s)),
+  ].map((slug, i) => {
+    const p = prepagas.find((x) => x.slug === slug)!
+    return { '@type': 'ListItem', position: i + 1, name: p.nombre, url: `${SITE_URL}/prepagas/${p.slug}` }
+  }),
 }
 
 export default function RankingPage() {
@@ -56,19 +60,58 @@ export default function RankingPage() {
             Ranking Mejores Prepagas Argentina {new Date().getFullYear()}
           </h1>
           <p className="text-gray-600 max-w-2xl">
-            Ranking actualizado al {PRECIO_ACTUALIZADO}, basado en satisfacción de afiliados, precio-calidad y opiniones reales. {prepagas.length} prepagas analizadas.
+            Actualizado al {PRECIO_ACTUALIZADO}: nuestra selección como asesores, el ranking por satisfacción de afiliados y el de precio-calidad. {prepagas.length} prepagas analizadas.
           </p>
         </div>
       </section>
 
       <div className="container py-12">
+        {/* Selección de nuestros asesores */}
+        <section className="mb-14">
+          <div className="flex items-center gap-2 mb-1">
+            <h2 className="text-2xl font-bold text-gray-900">Nuestra selección</h2>
+            <span className="text-xs font-bold text-white bg-gray-900 px-2.5 py-1 rounded-full">Opinión de nuestros asesores</span>
+          </div>
+          <p className="text-gray-500 text-sm mb-6 max-w-2xl">
+            A diferencia del ranking por satisfacción de más abajo (que sale de datos de encuestas), este orden es nuestra recomendación como asesores, en base a la experiencia de atención diaria de cada prepaga, no de una encuesta.
+          </p>
+          <div className="space-y-3">
+            {SELECCION_ASESORES.map((slug, i) => {
+              const p = prepagas.find((x) => x.slug === slug)
+              if (!p) return null
+              return (
+                <Link
+                  key={p.slug}
+                  href={`/prepagas/${p.slug}`}
+                  className="flex items-center gap-5 bg-white rounded-2xl border border-gray-200 p-5 hover:shadow-md hover:border-red-200 transition-all group"
+                >
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold border flex-shrink-0 ${positionStyles[i] ?? 'bg-gray-50 text-gray-500 border-gray-100'}`}>
+                    {i + 1}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{p.nombre}</h3>
+                      {i === 0 && <Badge variant="green">Nuestra recomendación #1</Badge>}
+                    </div>
+                    <p className="text-sm text-gray-500 mt-1 truncate hidden md:block">{p.pros[0]}</p>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <div className="text-sm font-bold text-gray-900">{formatPrecio(p.planes[0].precio)}</div>
+                    <NivelPrecioBadge nivel={nivelPrecio(p.planes[0].precio)} />
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </section>
+
         {/* Ranking principal — por satisfacción */}
         <section className="mb-14">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Mejores prepagas por satisfacción de afiliados
           </h2>
           <p className="text-gray-500 text-sm mb-6">
-            Basado en encuestas a afiliados activos — {PRECIO_ACTUALIZADO}.{' '}
+            Basado en encuestas de satisfacción de cada prepaga a sus propios afiliados — {PRECIO_ACTUALIZADO}.{' '}
             <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">
               Ver cómo calculamos esto →
             </Link>

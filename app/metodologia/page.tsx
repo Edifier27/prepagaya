@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 const factores = [
-  { nombre: 'Satisfacción de afiliados', peso: '35%', descripcion: 'Encuestas periódicas a afiliados activos verificados. Evaluamos atención, tiempos de respuesta, calidad de prestadores y facilidad de trámites.' },
+  { nombre: 'Satisfacción de afiliados', peso: '35%', descripcion: 'Encuestas internas de cada prepaga sobre sus propios afiliados, a las que accedemos como asesores que trabajamos con esas empresas. Donde no tenemos ese dato de una prepaga puntual, usamos una estimación conservadora y lo aclaramos.' },
   { nombre: 'Relación precio-calidad', peso: '25%', descripcion: 'Comparamos el precio de cada plan contra la cobertura real que ofrece, la red de prestadores y la experiencia de atención.' },
   { nombre: 'Amplitud de red', peso: '20%', descripcion: 'Cantidad de profesionales adheridos, cobertura geográfica, presencia de especialidades y disponibilidad de turnos en plazos razonables.' },
   { nombre: 'Experiencia digital', peso: '10%', descripcion: 'Calidad de la app móvil, portal web para gestión de turnos y trámites, facilidad de autorización de estudios y prácticas.' },
@@ -18,7 +18,7 @@ const factores = [
 
 const fuentes = [
   { nombre: 'Superintendencia de Servicios de Salud (SSSalud)', descripcion: 'Fuente oficial para cuadros tarifarios. Accedemos mensualmente a los valores actualizados de todos los planes.' },
-  { nombre: 'Encuestas propias a afiliados', descripcion: 'Realizamos encuestas periódicas a afiliados verificados de cada prepaga. La verificación se hace mediante número de afiliado.' },
+  { nombre: 'Encuestas de satisfacción de cada prepaga', descripcion: 'Cada prepaga realiza su propia encuesta interna de satisfacción a sus afiliados. Como asesores, accedemos a esos resultados para las prepagas con las que trabajamos activamente. No es una encuesta propia de PrepagaYa ni cubre a todas las empresas del mercado por igual.' },
   { nombre: 'Cartillas médicas oficiales', descripcion: 'Accedemos a las cartillas de prestadores de cada prepaga para verificar la amplitud real de la red.' },
   { nombre: 'Reclamos ante SSSalud', descripcion: 'Monitoreamos el índice de reclamos ante el organismo regulador como indicador de calidad de servicio.' },
 ]
@@ -117,7 +117,7 @@ export default function MetodologiaPage() {
             <div className="text-sm text-gray-500">Actualización de precios</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-[#E8002D]">Trimestral</div>
+            <div className="text-2xl font-bold text-[#E8002D]">Según disponibilidad</div>
             <div className="text-sm text-gray-500">Encuestas de satisfacción</div>
           </div>
           <div className="text-center">
