@@ -312,6 +312,11 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   Web oficial ↗
                 </a>
               </div>
+              {prep.slug === 'swiss-medical' && (
+                <Link href="/empresas/swiss-medical" className="inline-block mt-3 text-xs text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                  ¿Buscás cobertura para tu empresa? Plan corporativo de Swiss Medical →
+                </Link>
+              )}
             </div>
 
             {/* Right: nivel de precio card */}

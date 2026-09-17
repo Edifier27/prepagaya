@@ -138,7 +138,8 @@ export default function EmpresasPage() {
                 <PrepagaLogo slug="swiss-medical" nombre="Swiss Medical" colorPrimario={swissMedical.colorPrimario} size="xs" />
                 <h3 className="font-bold text-gray-900 text-sm">3. Afinidad (exclusivo de Swiss Medical)</h3>
               </div>
-              <p className="text-sm text-gray-600 leading-relaxed">La empresa cierra el convenio y toda la nómina accede al precio corporativo, pero la factura llega directo a cada empleado — nunca a la empresa. Es la opción para cuando RRHH no quiere sumar el trabajo administrativo de gestionar descuentos de sueldo, y sigue siendo la misma condición de precio por volumen.</p>
+              <p className="text-sm text-gray-600 leading-relaxed mb-2">La empresa cierra el convenio y toda la nómina accede al precio corporativo, pero la factura llega directo a cada empleado — nunca a la empresa. Es la opción para cuando RRHH no quiere sumar el trabajo administrativo de gestionar descuentos de sueldo, y sigue siendo la misma condición de precio por volumen.</p>
+              <Link href="/empresas/swiss-medical" className="text-xs font-semibold text-[#E8002D] hover:underline">Ver plan corporativo de Swiss Medical →</Link>
             </div>
           </div>
         </div>
@@ -218,7 +219,11 @@ export default function EmpresasPage() {
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-5">Más sobre planes corporativos</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link href="/empresas/swiss-medical" className="flex flex-col gap-1 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
+              <span className="text-sm font-bold text-gray-900 group-hover:text-[#E8002D]">Plan corporativo de Swiss Medical →</span>
+              <span className="text-xs text-gray-500">Convenio de afinidad y Plan Black</span>
+            </Link>
             <Link href="/empresas/como-cotizar" className="flex flex-col gap-1 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
               <span className="text-sm font-bold text-gray-900 group-hover:text-[#E8002D]">Cómo cotizar un plan corporativo →</span>
               <span className="text-xs text-gray-500">Mínimos, documentación y paso a paso</span>

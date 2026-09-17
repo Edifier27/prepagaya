@@ -15,7 +15,12 @@ const MODALIDADES = [
 // asesor arme la propuesta. Todo lead de esta fuente va directo a la cuenta
 // de Darío en Kommo (pedido de Darío, 17-sep-2026: no entra al reparto
 // automático con Gabriela — ver lib/kommo.ts).
-export function EmpresasForm() {
+interface Props {
+  /** Contexto de la página desde la que se cotiza, para que el lead en Kommo diga de dónde vino (ej. "Swiss Medical", "Swiss Medical — Plan Black"). Si no se pasa, el lead queda genérico. */
+  prepagaContexto?: string
+}
+
+export function EmpresasForm({ prepagaContexto }: Props = {}) {
   const [empresa, setEmpresa] = useState('')
   const [nombre, setNombre] = useState('')
   const [empleados, setEmpleados] = useState('')
@@ -45,7 +50,7 @@ export function EmpresasForm() {
           celular: celular.trim(),
           email: email.trim(),
           fuente: 'pyme-empresas',
-          prepaga_interes: `PyME · ${empresa.trim()} · ${empleados} empleados · ${modalidadLabel}`,
+          prepaga_interes: `PyME${prepagaContexto ? ` · ${prepagaContexto}` : ''} · ${empresa.trim()} · ${empleados} empleados · ${modalidadLabel}`,
         }),
       })
       setStatus('success')
