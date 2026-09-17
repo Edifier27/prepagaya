@@ -194,6 +194,10 @@ export function Header() {
                 </div>
               )}
             </div>
+
+            <Link href="/empresas" className="text-sm font-medium text-gray-700 hover:text-[#E8002D] transition-colors">
+              Empresas
+            </Link>
           </nav>
 
           {/* CTA */}
@@ -256,6 +260,11 @@ export function Header() {
                     {item.label}
                   </Link>
                 ))}
+              </div>
+              <div className="border-t border-gray-100 mt-2 pt-2">
+                <Link href="/empresas" className="px-2 py-2 text-sm text-gray-700 hover:text-[#E8002D] rounded-lg hover:bg-red-50 block transition-colors" onClick={() => setMenuOpen(false)}>
+                  Empresas
+                </Link>
               </div>
               <div className="mt-3">
                 <Link href="/comparador" onClick={() => setMenuOpen(false)}

@@ -203,6 +203,19 @@ export default async function GuiaPage({ params }: Props) {
           </section>
         )}
 
+        {/* Cross-link al silo de empresas — solo en las guías sobre planes corporativos */}
+        {(guia.slug === 'prepaga-corporativa-vs-particular' || guia.slug === 'derivar-obra-social-a-prepaga') && (
+          <div className="bg-gray-50 border-2 border-gray-200 rounded-2xl p-6 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <div className="text-xs font-bold text-blue-700 mb-1">¿Estás del lado de la empresa?</div>
+              <div className="text-sm text-gray-700">Armamos propuestas corporativas comparadas según la cantidad de gente de tu equipo.</div>
+            </div>
+            <Link href="/empresas" className="flex-shrink-0 px-5 py-2.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl text-sm transition-colors whitespace-nowrap">
+              Ver planes para empresas →
+            </Link>
+          </div>
+        )}
+
         {/* CTA */}
         <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-7 text-white text-center mb-10">
           <h2 className="text-xl font-bold mb-2">¿Querés comparar prepagas con precios reales?</h2>

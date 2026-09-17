@@ -212,6 +212,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/empresas" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                  Prepagas para empresas
+                </Link>
+              </li>
+              <li>
                 <Link href="/calculadora" className="group flex items-center gap-2.5 text-sm text-gray-500 hover:text-white transition-colors">
                   <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-red-500/20 flex items-center justify-center transition-colors text-blue-400">
                     <IconCalculator />

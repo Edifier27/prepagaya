@@ -394,6 +394,29 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
+      {/* ── Empresas: intención B2B, distinta del resto del home ──────────── */}
+      <section className="py-14 bg-white border-b border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <div className="bg-gray-50 rounded-3xl border border-gray-200 p-8 sm:p-10 flex flex-col sm:flex-row items-center gap-8">
+            <div className="flex-1">
+              <span className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1.5 rounded-full mb-3">
+                Para empresas y pymes
+              </span>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">¿Buscás cobertura para tu equipo?</h2>
+              <p className="text-sm text-gray-600 leading-relaxed max-w-lg">
+                Un plan corporativo no se cotiza igual que uno individual: depende de cuántos son y qué edad tienen. Te armamos la propuesta comparada, con precio por volumen y sin las carencias de un plan particular.
+              </p>
+            </div>
+            <Link
+              href="/empresas"
+              className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl text-sm transition-colors whitespace-nowrap"
+            >
+              Cotizar para mi empresa →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA consultar precios ────────────────────────────────────────── */}
       <section className="py-12 bg-gradient-to-r from-[#E8002D] to-[#B8001F]">
         <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">

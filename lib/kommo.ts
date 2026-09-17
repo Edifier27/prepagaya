@@ -217,9 +217,11 @@ export async function crearLeadEnKommo(d: KommoLeadData): Promise<ResultadoKommo
     return { ok: true, cuenta: existente.cuenta, leadId: existente.leadId, duplicado: true }
   }
 
-  // Cuenta destino: la del contacto existente (si hay uno sin lead propio)
-  // o la que le toca por reparto automático si es una persona nueva.
-  const cuenta = existente?.cuenta ?? elegirCuenta(d.ts)
+  // Cuenta destino: la del contacto existente (si hay uno sin lead propio),
+  // Darío fijo si es un lead de pyme/empresas (pedido de Darío, 17-sep-2026:
+  // no entra al reparto automático con Gabriela), o la que le toca por
+  // reparto automático si es una persona nueva particular.
+  const cuenta = existente?.cuenta ?? (d.fuente.startsWith('pyme') ? 'dario' : elegirCuenta(d.ts))
   const cfg = cuentaConfig(cuenta)
   if (!cfg.subdominio || !cfg.token) {
     return { ok: false, error: `Falta configurar Kommo para la cuenta de ${cfg.nombreDisplay} en el servidor.` }

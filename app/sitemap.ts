@@ -89,6 +89,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
+  const empresasRoutes: MetadataRoute.Sitemap = [
+    { url: `${BASE}/empresas`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${BASE}/empresas/como-cotizar`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.7 },
+    { url: `${BASE}/empresas/beneficios-impositivos`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.7 },
+  ]
+
   // Ciudades cuya provincia ya migró al silo /prepagas/[provincia] (301 en next.config).
   // 'rosario', 'la-plata' y 'posadas' redirigen a su localidad dentro del hub provincial.
   const CIUDADES_MIGRADAS = new Set([...provinciasSEO.map((p) => p.slug), 'rosario', 'la-plata', 'posadas', 'mar-del-plata'])
@@ -179,6 +185,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...comparativaRoutes,
     ...comparativaPlanesRoutes,
     ...guiaRoutes,
+    ...empresasRoutes,
     ...ciudadRoutes,
     ...perfilRoutes,
     ...blogRoutes,
