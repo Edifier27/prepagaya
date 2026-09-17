@@ -573,6 +573,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   // Results filters
   const [activeCobs, setActiveCobs] = useState<Set<CobId>>(new Set())
   const [copago, setCopago] = useState<Copago>(null)
+  const [activePrepagas, setActivePrepagas] = useState<Set<string>>(new Set())
   const [sortBy, setSortBy] = useState<'relevancia' | 'precio-asc' | 'precio-desc'>('relevancia')
   const [filtrosMenuOpen, setFiltrosMenuOpen] = useState(false)
   const [asesoramientoUrgenteOpen, setAsesoramientoUrgenteOpen] = useState(false)
@@ -602,10 +603,32 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     [step, personas, zonaKey, descuentoRate]
   )
 
+  // Prepagas presentes en los resultados de esta zona — la lista del filtro
+  // se arma sola a partir de acá, así nunca queda desactualizada ni hardcodeada
+  // a "7 prepagas": si mañana sumamos o sacamos una prepaga de una zona, el
+  // filtro se ajusta solo.
+  const prepagasDisponibles = useMemo(() => {
+    const vistos = new Set<string>()
+    const out: Prepaga[] = []
+    for (const r of allResultados) {
+      if (!vistos.has(r.prepaga.slug)) { vistos.add(r.prepaga.slug); out.push(r.prepaga) }
+    }
+    return out.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+  }, [allResultados])
+
+  function togglePrepaga(slug: string) {
+    setActivePrepagas((prev) => {
+      const next = new Set(prev)
+      next.has(slug) ? next.delete(slug) : next.add(slug)
+      return next
+    })
+  }
+
   const resultadosFiltrados = useMemo((): Resultado[] => {
     const filtrados = allResultados.filter((r) => {
       if (copago === 'sin-copago' && r.plan.copago) return false
       if (copago === 'con-copago' && !r.plan.copago) return false
+      if (activePrepagas.size > 0 && !activePrepagas.has(r.prepaga.slug)) return false
       for (const c of activeCobs) {
         if (!checkCob(c, r.plan, r.prepaga)) return false
       }
@@ -615,13 +638,13 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     if (sortBy === 'precio-desc') return [...filtrados].sort((a, b) => b.precioGrupal - a.precioGrupal).slice(0, 12)
     // Relevancia: score puro y después mechado de marcas (Swiss 1º, Sancor/Galeno 2º, sin repetir)
     return mecharResultados([...filtrados].sort((a, b) => b.score - a.score)).slice(0, 12)
-  }, [allResultados, copago, activeCobs, sortBy])
+  }, [allResultados, copago, activeCobs, activePrepagas, sortBy])
 
   // Cambia con cada combinación de filtros/orden: fuerza el remount de las cards
   // para disparar la animación de entrada en cascada (feedback visual del cambio).
   const filtroVersion = useMemo(
-    () => `${[...activeCobs].sort().join('.')}|${copago ?? 'todos'}|${sortBy}`,
-    [activeCobs, copago, sortBy]
+    () => `${[...activeCobs].sort().join('.')}|${copago ?? 'todos'}|${[...activePrepagas].sort().join('.')}|${sortBy}`,
+    [activeCobs, copago, activePrepagas, sortBy]
   )
 
   // 3-second countdown when entering preview
@@ -761,7 +784,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     setStep('zona'); setZonaKey(''); setProvinciaNombre('')
     setSituacion('particular'); setSueldoBruto('')
     setPersonas([{ id: 1, edad: '' }]); setPrepagaOrigen(null); setNombre(''); setCelular('')
-    setLeadStatus('idle'); setActiveCobs(new Set()); setCopago(null)
+    setLeadStatus('idle'); setActiveCobs(new Set()); setCopago(null); setActivePrepagas(new Set())
     setSortBy('relevancia'); setPlanAccedido(null); setPlanAccedidoStatus('idle')
     setCountdown(3); setShowPopup(false)
     setCartillaAbierta(null); setComparando(new Set()); setTablaComparativa(false)
@@ -1199,6 +1222,28 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               </div>
             </div>
 
+            {/* Prepaga */}
+            {prepagasDisponibles.length > 1 && (
+              <div className="bg-white rounded-2xl border border-gray-100 p-4">
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Prepaga</p>
+                <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1">
+                  {prepagasDisponibles.map((p) => {
+                    const on = activePrepagas.has(p.slug)
+                    return (
+                      <label key={p.slug} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => togglePrepaga(p.slug)}>
+                        <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                          on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                        }`}>
+                          {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                        </div>
+                        <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{p.nombre}</span>
+                      </label>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
             {/* Coberturas */}
             <div className="bg-white rounded-2xl border border-gray-100 p-4">
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Me interesa incluir</p>
@@ -1241,14 +1286,14 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 onClick={() => setFiltrosMenuOpen(true)}
                 aria-label="Abrir filtros"
                 className={`relative flex-shrink-0 flex items-center justify-center w-9 h-9 mb-2 rounded-full border transition-all ${
-                  (activeCobs.size > 0 || copago) ? 'bg-[#E8002D] border-[#E8002D] text-white' : 'bg-white border-gray-200 text-gray-600'
+                  (activeCobs.size > 0 || copago || activePrepagas.size > 0) ? 'bg-[#E8002D] border-[#E8002D] text-white' : 'bg-white border-gray-200 text-gray-600'
                 }`}>
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
                   <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 01.8 1.6l-4.6 6.13V16a1 1 0 01-.5.87l-3 1.71A1 1 0 017.2 17.8v-7.07L2.6 4.6A1 1 0 013 3z" clipRule="evenodd" />
                 </svg>
-                {(activeCobs.size + (copago ? 1 : 0)) > 0 && (
+                {(activeCobs.size + (copago ? 1 : 0) + activePrepagas.size) > 0 && (
                   <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-white border border-[#E8002D] text-[#E8002D] text-[9px] font-bold flex items-center justify-center">
-                    {activeCobs.size + (copago ? 1 : 0)}
+                    {activeCobs.size + (copago ? 1 : 0) + activePrepagas.size}
                   </span>
                 )}
               </button>
@@ -1258,12 +1303,14 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 {([
                   { id: 'sin-copago', label: 'Sin copago', type: 'copago' },
                   { id: 'con-copago', label: 'Con copago', type: 'copago' },
+                  ...prepagasDisponibles.map(p => ({ id: p.slug, label: p.nombre, type: 'prepaga' })),
                   ...COBS.map(c => ({ id: c.id, label: c.label, type: 'cob' }))
                 ]).map((f) => {
-                  const on = f.type === 'copago' ? copago === f.id : activeCobs.has(f.id as CobId)
+                  const on = f.type === 'copago' ? copago === f.id : f.type === 'prepaga' ? activePrepagas.has(f.id) : activeCobs.has(f.id as CobId)
                   return (
                     <button key={f.id} onClick={() => {
                       if (f.type === 'copago') setCopago(copago === (f.id as Copago) ? null : (f.id as Copago))
+                      else if (f.type === 'prepaga') togglePrepaga(f.id)
                       else toggleCob(f.id as CobId)
                     }}
                       className={`flex-shrink-0 text-xs px-3 py-1.5 rounded-full font-semibold border transition-all ${
@@ -1334,6 +1381,28 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     </div>
                   </div>
 
+                  {/* Prepaga */}
+                  {prepagasDisponibles.length > 1 && (
+                    <div>
+                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Prepaga</p>
+                      <div className="space-y-2.5">
+                        {prepagasDisponibles.map((p) => {
+                          const on = activePrepagas.has(p.slug)
+                          return (
+                            <label key={p.slug} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => togglePrepaga(p.slug)}>
+                              <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                                on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                              }`}>
+                                {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                              </div>
+                              <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{p.nombre}</span>
+                            </label>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+
                   {/* Coberturas */}
                   <div>
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Me interesa incluir</p>
@@ -1356,8 +1425,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 </div>
 
                 <div className="flex items-center gap-3 px-5 py-4 border-t border-gray-100 flex-shrink-0">
-                  {(activeCobs.size > 0 || copago) && (
-                    <button onClick={() => { setActiveCobs(new Set()); setCopago(null) }}
+                  {(activeCobs.size > 0 || copago || activePrepagas.size > 0) && (
+                    <button onClick={() => { setActiveCobs(new Set()); setCopago(null); setActivePrepagas(new Set()) }}
                       className="text-sm text-gray-500 font-semibold hover:text-gray-700">
                       Limpiar
                     </button>
@@ -1395,10 +1464,10 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm font-semibold text-gray-700">
               {resultadosFiltrados.length} resultado{resultadosFiltrados.length !== 1 ? 's' : ''}
-              {(activeCobs.size > 0 || copago) ? ' con filtros' : ''}
+              {(activeCobs.size > 0 || copago || activePrepagas.size > 0) ? ' con filtros' : ''}
             </p>
-            {(activeCobs.size > 0 || copago) && (
-              <button onClick={() => { setActiveCobs(new Set()); setCopago(null) }}
+            {(activeCobs.size > 0 || copago || activePrepagas.size > 0) && (
+              <button onClick={() => { setActiveCobs(new Set()); setCopago(null); setActivePrepagas(new Set()) }}
                 className="text-xs text-[#E8002D] font-semibold hover:underline">
                 Limpiar filtros
               </button>
@@ -1408,7 +1477,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           {resultadosFiltrados.length === 0 && (
             <div className="text-center py-12 text-gray-400">
               <p className="text-sm mb-2">Ningún plan cumple todos los filtros.</p>
-              <button onClick={() => { setActiveCobs(new Set()); setCopago(null) }}
+              <button onClick={() => { setActiveCobs(new Set()); setCopago(null); setActivePrepagas(new Set()) }}
                 className="text-sm text-[#E8002D] font-semibold hover:underline">Quitar filtros</button>
             </div>
           )}
