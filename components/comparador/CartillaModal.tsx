@@ -12,9 +12,21 @@ interface Props {
   zonaKey: string
   provinciaNombre: string
   onClose: () => void
+  /**
+   * Cuando el modal se abre desde el wizard (que ya mandó el lead en el
+   * popup inicial), el caller pasa esto para anotar el interés sin abrir el
+   * formulario de ContratarPlanButton ni mandar un segundo mail — mismo
+   * patrón que PlanModal (pedido de Darío, 17-sep-2026: un solo mail por
+   * lead, cupo limitado de EmailJS). Si no viene, se muestra el formulario
+   * completo (uso standalone fuera del wizard, donde todavía no tenemos los
+   * datos de la persona).
+   */
+  onQuiero?: () => void
+  quieroDisabled?: boolean
+  quieroLabel?: string
 }
 
-export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose }: Props) {
+export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose, onQuiero, quieroDisabled, quieroLabel }: Props) {
   // sanatoriosDePlan ya filtra por zona: todo lo que devuelve es local.
   const resultados = sanatoriosDePlan(prepaga.slug, plan.slug, zonaKey)
   const cartillaInfo = getCartillaInfo(prepaga.slug)
@@ -146,13 +158,23 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
           )}
 
           <div className="pt-4 border-t border-gray-100">
-            <ContratarPlanButton
-              prepagaNombre={prepaga.nombre}
-              planNombre={plan.nombre}
-              fuente="cartilla-modal"
-              label="Cotizar este plan"
-              className="w-full mb-4 inline-flex items-center justify-center gap-2 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors"
-            />
+            {onQuiero ? (
+              <button
+                onClick={onQuiero}
+                disabled={quieroDisabled}
+                className="w-full mb-4 inline-flex items-center justify-center gap-2 py-3 bg-[#E8002D] hover:bg-[#B8001F] disabled:opacity-60 text-white font-bold rounded-xl text-sm transition-colors"
+              >
+                {quieroLabel ?? 'Cotizar este plan →'}
+              </button>
+            ) : (
+              <ContratarPlanButton
+                prepagaNombre={prepaga.nombre}
+                planNombre={plan.nombre}
+                fuente="cartilla-modal"
+                label="Cotizar este plan"
+                className="w-full mb-4 inline-flex items-center justify-center gap-2 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors"
+              />
+            )}
             <p className="text-xs text-gray-500 mb-2">¿Querés ver el detalle completo?</p>
             <Link
               href={`/cartillas/${prepaga.slug}`}

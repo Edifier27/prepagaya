@@ -1621,15 +1621,23 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         </div>
       </div>
 
-      {cartillaAbierta && (
-        <CartillaModal
-          prepaga={cartillaAbierta.prepaga}
-          plan={cartillaAbierta.plan}
-          zonaKey={zonaKey}
-          provinciaNombre={provinciaNombre}
-          onClose={() => setCartillaAbierta(null)}
-        />
-      )}
+      {cartillaAbierta && (() => {
+        const key = `${cartillaAbierta.prepaga.slug}-${cartillaAbierta.plan.slug}`
+        const yaEnviado = planAccedido === key && planAccedidoStatus === 'success'
+        const enviando = planAccedido === key && planAccedidoStatus === 'loading'
+        return (
+          <CartillaModal
+            prepaga={cartillaAbierta.prepaga}
+            plan={cartillaAbierta.plan}
+            zonaKey={zonaKey}
+            provinciaNombre={provinciaNombre}
+            onClose={() => setCartillaAbierta(null)}
+            onQuiero={() => handleAccederPlan(cartillaAbierta)}
+            quieroDisabled={enviando || yaEnviado}
+            quieroLabel={yaEnviado ? '¡Anotado!' : enviando ? 'Enviando...' : 'Cotizar este plan →'}
+          />
+        )
+      })()}
 
       {planAbierto && (() => {
         const key = `${planAbierto.prepaga.slug}-${planAbierto.plan.slug}`
