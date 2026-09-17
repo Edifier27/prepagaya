@@ -6,8 +6,11 @@ import { formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
-// Orden fijo pedido por el asesor para las 6 que se ven de entrada.
-const VISIBLE_ORDER = ['avalian', 'sancor-salud', 'premedic', 'galeno', 'osde', 'swiss-medical']
+// Orden fijo pedido por el asesor para las 6 que se ven de entrada: Swiss
+// Medical y OSDE primero (pedido de Darío, 17-sep-2026 — mismo criterio de
+// prioridad de marca que ya usan el ranking de resultados y el filtro de
+// prepaga del wizard), el resto detrás.
+const VISIBLE_ORDER = ['swiss-medical', 'osde', 'avalian', 'sancor-salud', 'premedic', 'galeno']
 const visibles = VISIBLE_ORDER.map((slug) => prepagas.find((p) => p.slug === slug)).filter((p): p is (typeof prepagas)[number] => Boolean(p))
 const ocultas = prepagas.filter((p) => !VISIBLE_ORDER.includes(p.slug)).sort((a, b) => b.satisfaccion - a.satisfaccion)
 
