@@ -163,9 +163,14 @@ export default function EmpresasPage() {
             <p className="text-sm text-gray-700 leading-relaxed mb-2">
               La Corte Suprema resolvió en agosto de 2026 (causa contra Swiss Medical) que la prepaga no está obligada a mantener las condiciones exactas del plan corporativo, pero cada empleado tiene derecho a pasar a un plan de venta pública de la misma prepaga conservando su antigüedad. Con más de 12 meses de antigüedad, no le pueden aplicar carencias nuevas ni cobrarle de más por preexistencias.
             </p>
-            <Link href="/guias/prepaga-corporativa-vs-particular" className="text-sm font-semibold text-blue-700 hover:underline">
-              Ver la guía completa →
-            </Link>
+            <div className="flex flex-wrap gap-x-5 gap-y-1">
+              <Link href="/guias/prepaga-corporativa-vs-particular" className="text-sm font-semibold text-blue-700 hover:underline">
+                Ver la guía completa →
+              </Link>
+              <Link href="/blog/fallo-corte-suprema-plan-corporativo-2026" className="text-sm font-semibold text-blue-700 hover:underline">
+                Leer el fallo explicado →
+              </Link>
+            </div>
           </div>
         </div>
       </section>

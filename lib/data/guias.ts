@@ -337,7 +337,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['precio prepaga por edad', 'cuanto sube la prepaga con la edad', 'prepaga mayores 60', 'bandas etarias prepagas'],
-    relacionadas: ['prepaga-para-mayores-60', 'prepagas-economicas', 'cuota-prepaga-aumento-inflacion', 'afiliar-recien-nacido-prepaga'],
+    relacionadas: ['prepaga-para-mayores-60', 'prepagas-economicas', 'edad-maxima-afiliarse-prepaga', 'afiliar-recien-nacido-prepaga'],
   },
   {
     slug: 'como-reclamar-a-una-prepaga',
@@ -530,7 +530,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['prepaga sin carencia', 'periodo de carencia prepaga', 'carencia prepaga ilegal PMO', 'cuanto dura la carencia prepaga'],
-    relacionadas: ['que-cubre-la-prepaga', 'como-cambiar-de-prepaga', 'preexistencias-que-son-como-funcionan', 'prepaga-corporativa-vs-particular'],
+    relacionadas: ['que-cubre-la-prepaga', 'como-cambiar-de-prepaga', 'preexistencias-que-son-como-funcionan', 'prepaga-cubre-vasectomia-ligadura-cirugia-bariatrica'],
   },
   {
     slug: 'preexistencias-que-son-como-funcionan',
@@ -1148,6 +1148,10 @@ export const guias: GuiaData[] = [
           titulo: 'Recontratar como particular: qué esperar',
           cuerpo: 'Al pasar de corporativo a particular pagás la cuota completa (sin el aporte de tu empleador ni el descuento por volumen del convenio grupal), así que el mismo plan sale más caro. Las prestaciones del PMO nunca tienen carencia, así que esa parte no cambia. Lo que sí puede cambiar son las prestaciones superadoras que el convenio corporativo te daba sin espera: mostrando el certificado de cobertura previa, muchas prepagas te las mantienen sin reiniciar el plazo — pedilo explícitamente, no es automático.',
         },
+        {
+          titulo: 'El fallo de la Corte Suprema que le da respaldo legal a esto',
+          cuerpo: 'En agosto de 2026 la Corte Suprema de Justicia (CSJN) resolvió, en una causa contra Swiss Medical, que la prepaga no está obligada a mantener idénticas las condiciones del plan corporativo después de terminada la relación laboral — pero reconoció que el empleado tiene derecho a pasar a un plan de venta pública de la misma prepaga conservando la antigüedad acumulada. Con más de 12 meses de antigüedad, no te pueden aplicar carencias nuevas ni cobrarte de más por preexistencias. Es exactamente el respaldo legal que confirma todo lo anterior: el certificado de cobertura no es solo una formalidad, es lo que te permite hacer valer este derecho.',
+        },
       ],
       conclusion: 'Un plan corporativo es un beneficio real mientras estás en la empresa, pero no tiene la misma red de protección legal que la derivación de aportes de obra social. Antes de dejar el trabajo (por lo que sea), pedí el certificado de cobertura y confirmá con RRHH la fecha exacta en que se corta tu plan — son dos minutos que evitan quedarte con un hueco de cobertura sin darte cuenta.',
     },
@@ -1164,9 +1168,106 @@ export const guias: GuiaData[] = [
         q: '¿El plan corporativo tiene carencia para prestaciones superadoras?',
         a: 'Generalmente no: es una de las ventajas de negociar como grupo. Cada convenio es distinto, así que confirmalo en tu caso puntual con RRHH o la prepaga.',
       },
+      {
+        q: '¿Qué dijo exactamente la Corte Suprema sobre esto?',
+        a: 'Que la prepaga no tiene obligación de mantener las condiciones corporativas para siempre, pero que el empleado con más de 12 meses de antigüedad tiene derecho a pasar a un plan individual de la misma prepaga sin carencias nuevas ni recargo por preexistencias.',
+      },
     ],
     keywords: ['prepaga corporativa vs particular', 'plan de salud de la empresa que pasa si me voy', 'prepaga de la empresa despido', 'certificado de cobertura prepaga', 'plan corporativo prepaga carencia'],
     relacionadas: ['derivar-obra-social-a-prepaga', 'sin-trabajo-obra-social', 'prepaga-sin-periodo-carencia'],
+  },
+  {
+    slug: 'edad-maxima-afiliarse-prepaga',
+    titulo: '¿Hay edad máxima para afiliarse a una prepaga?',
+    metaDescripcion: '¿Existe un límite de edad para afiliarse a una prepaga en Argentina? Legalmente no, pero en la práctica hay un corte cerca de los 65 años. Te explicamos los planes complementarios para esa etapa.',
+    tiempoLectura: 6,
+    categoria: 'Cobertura',
+    fechaActualizacion: '2026-09-17',
+    contenido: {
+      intro: 'Legalmente, ninguna prepaga puede rechazar tu afiliación solo por tu edad. Pero en la práctica, a partir de los 65 años el panorama cambia: los planes integrales tradicionales se vuelven mucho más caros o dejan de ofrecerse como primera opción, y aparecen los planes complementarios, pensados específicamente para esa etapa. Te explicamos cómo funciona.',
+      secciones: [
+        {
+          titulo: 'No hay un límite de edad legal',
+          cuerpo: 'La Ley 26.682 (Marco Regulatorio de Medicina Prepaga) prohíbe rechazar una afiliación por edad. Lo que sí puede pasar es que, a partir de cierta edad, el plan integral tradicional tenga una cuota muy alta, o que directamente la prepaga te oriente hacia un plan pensado para adultos mayores en lugar del plan general.',
+        },
+        {
+          titulo: 'Por qué en la práctica el corte está cerca de los 65',
+          cuerpo: 'A los 65 años, en general, ya se tiene acceso a una obra social de base: PAMI para la mayoría de los jubilados, o en algunos casos una obra social de convenio que la persona mantiene de su actividad anterior (por ejemplo, quienes trabajaron en el sector salud pueden conservar de por vida la obra social del gremio, como Sanidad, en vez de pasar a PAMI). Sobre esa base, muchas prepagas — Swiss Medical entre ellas — ofrecen planes parciales complementarios en lugar de (o además de) el plan integral.',
+        },
+        {
+          titulo: 'Los planes complementarios: cómo se dividen la cobertura',
+          cuerpo: 'La lógica de estos planes parciales es dividir la cobertura en dos partes —ambulatoria e internación— y cubrir solo una de las dos, dejando la otra a cargo de la obra social de base. Un plan tipo "ambulatorio" cubre consultas, tratamientos y estudios, pero la internación queda a cargo de PAMI o la obra social que tengas. Un plan tipo "internación" cubre la parte hospitalaria, mientras que consultas y estudios ambulatorios los resuelve tu obra social. En los dos casos, es un requisito tener una obra social de apoyo vigente (PAMI u otra): estos planes están diseñados para combinar, no para reemplazar por completo una cobertura.',
+        },
+        {
+          titulo: 'Por qué conviene este esquema en vez de forzar un plan integral',
+          cuerpo: 'Un plan integral completo a partir de los 65 puede tener una cuota muy elevada. Combinando un plan complementario con la obra social de base, se cubre el punto débil típico de PAMI (comodidad y tiempos de espera en consultas e internación) a un costo más razonable que pagar la cobertura completa de forma privada. Es la misma lógica que explicamos en nuestra guía sobre combinar PAMI con una prepaga particular, pero con productos específicamente diseñados para complementar en vez de duplicar cobertura.',
+        },
+      ],
+      conclusion: 'No hay edad máxima legal para afiliarte a una prepaga, pero a partir de los 65 el camino más habitual deja de ser el plan integral y pasa a ser un plan complementario (ambulatorio o de internación) que trabaja junto a tu obra social de base. Confirmá con la prepaga qué planes complementarios tiene disponibles y cuál conviene según tu obra social actual.',
+    },
+    faq: [
+      {
+        q: '¿Una prepaga me puede rechazar por tener 70 años?',
+        a: 'No puede rechazarte solo por la edad — está prohibido por ley. Lo que sí puede pasar es que te oriente hacia un plan complementario en lugar del plan integral general, sobre todo si ya tenés una obra social de base.',
+      },
+      {
+        q: '¿Necesito tener PAMI para acceder a un plan complementario?',
+        a: 'Necesitás tener alguna obra social de apoyo vigente, sea PAMI u otra (como una obra social de convenio que hayas mantenido de tu actividad laboral anterior). El plan complementario está diseñado para trabajar junto a esa cobertura, no de forma aislada.',
+      },
+      {
+        q: '¿Qué conviene, el plan que cubre ambulatorio o el que cubre internación?',
+        a: 'Depende de qué te resuelve peor tu obra social de base. Si tu obra social tiene buena cobertura de internación pero consultas y estudios ambulatorios tardan mucho, conviene el plan complementario ambulatorio. Si es al revés, conviene el de internación. Conversalo con un asesor para definirlo según tu caso.',
+      },
+    ],
+    keywords: ['edad maxima para afiliarse a una prepaga', 'limite de edad prepaga argentina', 'prepaga para mayores de 65 años', 'plan complementario prepaga jubilados', 'prepaga ambulatorio internacion mayores'],
+    relacionadas: ['cuota-prepaga-por-edad'],
+    prepagasRelacionadas: ['swiss-medical'],
+  },
+  {
+    slug: 'prepaga-cubre-vasectomia-ligadura-cirugia-bariatrica',
+    titulo: '¿La prepaga cubre vasectomía, ligadura tubaria y cirugía bariátrica?',
+    metaDescripcion: 'Vasectomía, ligadura de trompas y cirugía bariátrica: qué cubren las prepagas en Argentina, el paso por auditoría médica y cómo puede afectar tu cuota.',
+    tiempoLectura: 5,
+    categoria: 'Cobertura',
+    fechaActualizacion: '2026-09-17',
+    contenido: {
+      intro: 'Vasectomía, ligadura tubaria y cirugía bariátrica están cubiertas por las prepagas en Argentina — son prestaciones incluidas en el Programa Médico Obligatorio (PMO) y en la Ley de Salud Reproductiva. Pero cubierto no siempre significa automático: estos procedimientos pasan por auditoría médica antes de autorizarse, y eso puede tener consecuencias en tu cuota.',
+      secciones: [
+        {
+          titulo: 'Sí, están cubiertas',
+          cuerpo: 'La vasectomía y la ligadura tubaria (anticoncepción quirúrgica) están garantizadas por la Ley 26.130 de Contracepción Quirúrgica y forman parte de las prestaciones obligatorias de cualquier prepaga. La cirugía bariátrica está incluida en el PMO para casos de obesidad que cumplen determinados criterios clínicos (generalmente relacionados al índice de masa corporal y a comorbilidades asociadas).',
+        },
+        {
+          titulo: 'El paso obligado: la auditoría médica',
+          cuerpo: 'Ninguno de estos tres procedimientos se autoriza de forma directa con solo pedir el turno. Pasan por auditoría médica: un equipo de la prepaga revisa la historia clínica, los estudios previos y los criterios clínicos que justifican la cirugía. En el caso de la cirugía bariátrica en particular, suele exigirse un proceso previo con nutricionista, endocrinólogo y a veces psicólogo, documentando el intento de tratamiento no quirúrgico antes de aprobar la cirugía.',
+        },
+        {
+          titulo: 'Por qué la auditoría puede afectar tu cuota',
+          cuerpo: 'La auditoría médica no es solo un trámite de aprobación: dependiendo del caso, puede derivar en un ajuste de la cuota, especialmente si el procedimiento se solicita poco tiempo después de la afiliación o si hay antecedentes que la prepaga considera relevantes para el riesgo cubierto. No es una regla fija ni automática — cada caso se evalúa puntualmente — pero es importante saberlo antes de asumir que el trámite va a ser inmediato y sin ningún impacto.',
+        },
+        {
+          titulo: 'Qué conviene hacer antes de pedir el turno',
+          cuerpo: 'Consultá primero con tu asesor o directamente con la prepaga qué documentación específica pide para tu caso, y si corresponde algún período de carencia si te afiliaste recientemente. Tener los estudios y antecedentes ordenados de antemano acelera la auditoría.',
+        },
+      ],
+      conclusion: 'Vasectomía, ligadura tubaria y cirugía bariátrica están cubiertas por ley en todas las prepagas, pero ninguna se autoriza sin pasar antes por auditoría médica, que evalúa el caso puntual y puede implicar un ajuste de cuota según la situación. Confirmá los requisitos específicos con tu prepaga antes de avanzar.',
+    },
+    faq: [
+      {
+        q: '¿La vasectomía tiene carencia en la prepaga?',
+        a: 'Depende de cuándo te afiliaste. Si tenés una afiliación reciente, puede aplicar un período de carencia para prácticas quirúrgicas programadas. Confirmalo con tu prepaga antes de pedir el turno.',
+      },
+      {
+        q: '¿Qué estudios piden para autorizar una cirugía bariátrica?',
+        a: 'Generalmente un proceso previo con nutricionista y endocrinólogo (y en algunos casos psicólogo), documentando intentos previos de tratamiento no quirúrgico y los criterios clínicos que justifican la cirugía. La auditoría médica de la prepaga define el detalle exacto según tu caso.',
+      },
+      {
+        q: '¿Es verdad que puede aumentar la cuota después de una cirugía así?',
+        a: 'Puede pasar en algunos casos, dependiendo de la evaluación de auditoría médica, pero no es una regla automática ni universal. No hay un porcentaje fijo: cada caso se analiza puntualmente.',
+      },
+    ],
+    keywords: ['prepaga cubre vasectomia', 'prepaga cubre ligadura de trompas', 'prepaga cubre cirugia bariatrica', 'auditoria medica prepaga cirugia', 'anticoncepcion quirurgica prepaga argentina'],
+    relacionadas: ['prepaga-sin-periodo-carencia'],
   },
 ]
 

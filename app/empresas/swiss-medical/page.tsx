@@ -34,6 +34,10 @@ const faqs = [
     q: '¿Por qué Swiss Medical para mi empresa y no otra prepaga?',
     a: 'Swiss Medical tiene 8 sanatorios propios y más de 81.500 profesionales, con la cartilla premium más amplia del mercado según satisfacción de afiliados (76%). Para una empresa, eso significa menos derivaciones y mejor experiencia para el equipo — y es la prepaga con la que tenemos mayor poder de negociación para armar convenios a medida.',
   },
+  {
+    q: '¿Qué documentación pide Swiss Medical para dar de alta el convenio corporativo?',
+    a: 'El formulario de Ingresos Brutos, el estatuto de la empresa, el último formulario 931 de AFIP con el comprobante de pago, y una nómina con los datos básicos de cada empleado (nombre, apellido, edad y sueldo bruto). Con eso se arma la propuesta a medida.',
+  },
 ]
 
 const jsonLd = [
@@ -154,6 +158,40 @@ export default function EmpresasSwissMedicalPage() {
                 <span className="text-sm text-gray-700">{b}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Estructura propia: por qué se nota en el día a día */}
+      <section className="py-10 bg-gray-50 border-t border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">Estructura propia: por qué se nota en el día a día</h2>
+          <p className="text-sm text-gray-500 mb-6">No es solo tener sanatorios: es no depender de terceros para lo que más se usa.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-5">
+              <h3 className="text-sm font-bold text-gray-900 mb-1.5">Swiss Medical Centers exclusivos</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Los Swiss Medical Center en Capital y Gran Buenos Aires atienden solo a socios de Swiss Medical, no a afiliados de otras prepagas. En temporada alta de demanda (por ejemplo la gripe en invierno, cuando los sanatorios de red compartida se saturan), eso se traduce en turnos más rápidos para tu equipo.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl border border-gray-200 p-5">
+              <h3 className="text-sm font-bold text-gray-900 mb-1.5">Avión sanitario propio</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Cobertura en todo el país con infraestructura propia, incluyendo traslados de alta complejidad. Relevante para empresas con personal viajando o trabajando fuera de AMBA.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl border border-gray-200 p-5">
+              <h3 className="text-sm font-bold text-gray-900 mb-1.5">Médico online propio</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                El servicio de consulta médica online es de Swiss Medical, no un partner tercerizado — mismo estándar de calidad que la atención presencial, disponible para consultas rápidas del equipo.
+              </p>
+            </div>
+            <div className="bg-white rounded-xl border border-gray-200 p-5">
+              <h3 className="text-sm font-bold text-gray-900 mb-1.5">Ambulancias propias</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                El servicio de emergencias también es propio de Swiss Medical, no un convenio con un tercero — coordinación directa con la red de sanatorios propios.
+              </p>
+            </div>
           </div>
         </div>
       </section>

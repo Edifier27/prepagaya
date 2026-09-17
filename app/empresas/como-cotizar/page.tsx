@@ -90,7 +90,14 @@ export default function ComoCotizarEmpresasPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-gray-900 mb-2">4. La documentación para el alta definitiva</h2>
-              <p className="text-sm text-gray-600 leading-relaxed">Una vez elegida la prepaga y firmado el convenio, se pide la nómina completa: nombre, DNI y fecha de nacimiento de cada empleado (y de su grupo familiar, si lo suman). Con eso arman el alta individual de cada uno.</p>
+              <p className="text-sm text-gray-600 leading-relaxed mb-3">Una vez elegida la prepaga y firmado el convenio, se pide la documentación de la empresa y la nómina del equipo. En general es:</p>
+              <ul className="text-sm text-gray-600 leading-relaxed space-y-1.5 list-disc pl-5">
+                <li>Formulario de Ingresos Brutos de la empresa</li>
+                <li>Estatuto (o contrato social)</li>
+                <li>Último formulario 931 de AFIP, con el comprobante de pago</li>
+                <li>Nómina básica del equipo: nombre, apellido, edad y sueldo bruto de cada empleado</li>
+              </ul>
+              <p className="text-sm text-gray-600 leading-relaxed mt-3">Con esa información arman la propuesta a medida. Los datos completos de cada empleado (DNI, fecha de nacimiento, grupo familiar) se piden después, ya para el alta individual definitiva.</p>
             </div>
             <div>
               <h2 className="text-lg font-bold text-gray-900 mb-2">5. Los plazos reales</h2>

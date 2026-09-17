@@ -1035,6 +1035,73 @@ export const blogPosts: BlogPost[] = [
     prepagasRelacionadas: ['osde', 'premedic', 'swiss-medical', 'sancor-salud', 'omint'],
     keywords: ['mejor prepaga para jovenes argentina 2026', 'osde flux vs premedic joven', 'prepaga barata jovenes argentina', 'prepaga para menores 35 argentina'],
   },
+  // ─── ACTUALIDAD / LEGAL ───────────────────────────────────────
+  {
+    slug: 'fallo-corte-suprema-plan-corporativo-2026',
+    titulo: 'La Corte Suprema falló: qué pasa con tu plan corporativo si dejás la empresa',
+    bajada: 'La CSJN resolvió que la prepaga no está obligada a mantener las mismas condiciones del plan corporativo, pero reconoció un derecho clave para el empleado con antigüedad.',
+    metaDescripcion: 'Fallo de la Corte Suprema (agosto 2026) sobre planes corporativos de prepaga: qué pasa cuando termina la relación laboral, antigüedad y carencias. Explicado en simple.',
+    categoria: 'Actualidad',
+    fechaPublicacion: '2026-09-17',
+    tiempoLectura: 6,
+    contenido: {
+      intro: 'El 27 de agosto de 2026 la Corte Suprema de Justicia de la Nación (CSJN) dictó un fallo que aclara un punto que generaba mucha incertidumbre: qué pasa con tu cobertura de prepaga corporativa cuando dejás la empresa que la contrató. La causa es "S., L. M. y otro c/ Swiss Medical S.A. s/ prestaciones médicas", y el fallo tiene implicancias directas para cualquiera que hoy tenga un plan corporativo.',
+      secciones: [
+        {
+          titulo: 'Qué dijo la Corte',
+          cuerpo: 'La Corte resolvió que la prepaga NO está obligada a mantener idénticas las condiciones del plan corporativo una vez que termina la relación laboral que le dio origen. Es decir: un plan corporativo no es "para siempre" en las mismas condiciones que tenía como beneficio de la empresa. Esto tiene lógica comercial — el precio corporativo existe porque hay un volumen de nómina detrás, y ese volumen desaparece cuando el vínculo laboral se corta.',
+        },
+        {
+          titulo: 'El derecho que sí te protege: pasar a un plan individual con tu antigüedad',
+          cuerpo: 'Acá está la parte más importante para el afiliado: la Corte reconoció que el empleado tiene derecho a pasar a un plan de venta pública de la misma prepaga, conservando la antigüedad acumulada durante todo el tiempo que estuvo en el plan corporativo. No arrancás de cero. Y con más de 12 meses de antigüedad en la prepaga, no te pueden aplicar nuevas carencias ni diferenciales de precio por preexistencias. Eso significa que si veníamos, por ejemplo, tratando una condición durante el plan corporativo, esa cobertura sigue protegida al pasar al plan individual.',
+        },
+        {
+          titulo: 'Por qué esto importa si tu empresa tiene un plan corporativo hoy',
+          cuerpo: 'Si en algún momento cambiás de trabajo, te desvinculás o la empresa deja de pagar el plan, este fallo te da un piso de derechos claro: podés exigir el pase a un plan público de la misma prepaga sin perder la antigüedad ni sumar carencias nuevas, siempre que tengas más de 12 meses de permanencia. Lo que sí puede cambiar es el precio (pasás a pagar el valor de lista del plan individual) y los beneficios específicos que solo existían por ser corporativo.',
+        },
+        {
+          titulo: 'Qué conviene hacer en la práctica',
+          cuerpo: 'Antes de dejar la empresa, pedí por escrito un certificado de cobertura que acredite tu antigüedad real en la prepaga (no solo en la empresa). Ese documento es tu respaldo si después hay alguna discusión sobre carencias o antigüedad al momento de pasar a un plan individual. Si estás evaluando un cambio de trabajo y te ofrecen un plan corporativo, preguntá directamente qué pasa si en el futuro te vas — ahora hay jurisprudencia clara para exigir una respuesta.',
+        },
+      ],
+      conclusion: 'El fallo no le garantiza al empleado mantener el plan corporativo tal cual para siempre, pero sí le da una protección concreta: con más de 12 meses de antigüedad, tenés derecho a pasar a un plan individual de la misma prepaga sin carencias nuevas ni recargos por preexistencias. Es un antecedente importante a tener en cuenta si tu cobertura hoy depende de un empleador.',
+    },
+    prepagasRelacionadas: ['swiss-medical'],
+    keywords: ['fallo corte suprema plan corporativo prepaga', 'plan corporativo no es para siempre', 'que pasa con la prepaga si dejo la empresa', 'antiguedad prepaga corporativa individual', 'csjn swiss medical fallo 2026'],
+  },
+  {
+    slug: 'pami-y-prepaga-al-mismo-tiempo',
+    titulo: '¿Se puede tener PAMI y una prepaga al mismo tiempo?',
+    bajada: 'Sí: son dos coberturas independientes y no hay que dar de baja una para tener la otra. Te contamos cuándo conviene combinarlas.',
+    metaDescripcion: '¿Se puede tener PAMI y prepaga particular al mismo tiempo? Sí, son compatibles. Cuándo conviene combinarlas y qué cubre mejor cada una.',
+    categoria: 'Información',
+    fechaPublicacion: '2026-09-17',
+    tiempoLectura: 5,
+    contenido: {
+      intro: 'Es una duda muy frecuente entre quienes se jubilan o ya tienen PAMI: ¿hay que elegir entre PAMI y una prepaga, o se pueden tener las dos? La respuesta es simple: sí, se pueden tener las dos coberturas al mismo tiempo, de forma totalmente independiente.',
+      secciones: [
+        {
+          titulo: 'PAMI y prepaga particular no son excluyentes',
+          cuerpo: 'PAMI es tu obra social y una prepaga contratada como particular es un contrato aparte. No hay ninguna norma que te obligue a dar de baja PAMI para afiliarte a una prepaga, ni viceversa. Vas a tener dos coberturas de salud simultáneas, y podés elegir con cuál atenderte según la situación.',
+        },
+        {
+          titulo: 'Por qué mucha gente combina las dos',
+          cuerpo: 'La razón más común es práctica: PAMI tiene muy buena cobertura de medicamentos (con descuentos importantes, en muchos casos superiores a los de las prepagas), pero la calidad de la atención médica presencial suele ser un punto débil — turnos más largos, menos comodidad. Combinando las dos, muchas personas usan PAMI para medicación crónica y la prepaga particular para consultas, estudios e internación, donde la diferencia en comodidad y tiempos de espera se nota más.',
+        },
+        {
+          titulo: 'Cómo se contrata la prepaga en este caso',
+          cuerpo: 'Se contrata como afiliación particular, igual que cualquier persona sin obra social. La cuota se calcula por franja etaria (a partir de los 65 años el valor sube, pero sigue siendo una opción viable para quien puede afrontarla). No hace falta ningún trámite de baja ni aviso a PAMI — son sistemas que funcionan en paralelo.',
+        },
+        {
+          titulo: 'Una alternativa: los planes complementarios para mayores de 65',
+          cuerpo: 'Si el costo de un plan particular completo es alto, algunas prepagas ofrecen planes parciales pensados específicamente para combinar con una obra social como PAMI, cubriendo solo una parte (por ejemplo, todo lo ambulatorio o toda la internación) a un costo menor que un plan integral. Es una forma de sumar cobertura privada sin pagar por algo que PAMI ya te resuelve bien.',
+        },
+      ],
+      conclusion: 'PAMI y una prepaga particular son totalmente compatibles. No hay que elegir: podés mantener PAMI (sobre todo por medicamentos) y sumar una prepaga particular para mejorar la calidad de atención en consultas e internación. Si el presupuesto es un tema, un plan complementario puede ser más conveniente que uno integral.',
+    },
+    prepagasRelacionadas: ['swiss-medical'],
+    keywords: ['tener pami y prepaga al mismo tiempo', 'pami y prepaga particular juntos', 'complementar pami con prepaga', 'jubilado prepaga particular pami'],
+  },
 ]
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
