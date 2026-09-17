@@ -210,6 +210,19 @@ export default function EmpresasSwissMedicalPage() {
           </div>
         </div>
       </section>
+
+      {/* ¿Ya tenés OSDE corporativo? */}
+      <section className="py-10 bg-gray-900 border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h2 className="text-xl font-bold text-white mb-1">¿Tu empresa ya paga OSDE corporativo?</h2>
+            <p className="text-sm text-gray-300">Comparamos tu convenio actual con un plan equivalente de Swiss Medical — la cuota suele bajar bastante.</p>
+          </div>
+          <Link href="/empresas/swiss-medical/vs-osde" className="flex-shrink-0 px-6 py-3 bg-white text-gray-900 font-bold rounded-xl text-sm hover:bg-gray-100 transition-colors whitespace-nowrap">
+            Ver comparativo →
+          </Link>
+        </div>
+      </section>
     </>
   )
 }
