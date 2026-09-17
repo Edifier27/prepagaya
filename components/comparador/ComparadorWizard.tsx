@@ -1292,20 +1292,23 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           {/* Mobile: solo la "oreja" a la izquierda — sin fila de chips (pedido de
               Darío, 17-sep-2026: la fila de chips quedaba en medio de la pantalla
               y confundía). Todos los filtros (copago, prepaga, coberturas) viven
-              únicamente en el bottom sheet que abre este botón. */}
-          <div className="lg:hidden sticky top-16 z-30 bg-white/95 backdrop-blur border-b border-gray-100 py-2">
+              únicamente en el bottom sheet que abre este botón.
+              top-0 (no top-16): en este paso el Header del sitio está oculto
+              (hideChrome), así que no hay nada arriba que "esquivar" — con
+              top-16 quedaba flotando con un hueco en blanco en vez de pegarse
+              al borde superior real de la pantalla (pedido de Darío, 17-sep-2026). */}
+          <div className="lg:hidden sticky top-0 z-30 bg-white/90 backdrop-blur-sm border-b border-gray-100 py-2.5 shadow-sm">
             <button
               onClick={() => setFiltrosMenuOpen(true)}
               aria-label="Abrir filtros"
-              className={`relative flex items-center gap-1.5 pl-2.5 pr-3.5 py-1.5 rounded-full border transition-all ${
-                (activeCobs.size > 0 || copago || activePrepagas.size > 0) ? 'bg-[#E8002D] border-[#E8002D] text-white' : 'bg-white border-gray-200 text-gray-600'
-              }`}>
-              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 flex-shrink-0">
-                <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 01.8 1.6l-4.6 6.13V16a1 1 0 01-.5.87l-3 1.71A1 1 0 017.2 17.8v-7.07L2.6 4.6A1 1 0 013 3z" clipRule="evenodd" />
+              className="relative flex items-center gap-2 pl-3 pr-4 py-2 rounded-full bg-gradient-to-r from-[#E8002D] to-[#B8001F] text-white shadow-md shadow-red-200 active:scale-95 transition-transform"
+            >
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 flex-shrink-0">
+                <path d="M3 6h14M6 10h8M8.5 14h3" />
               </svg>
-              <span className="text-xs font-bold">Filtros</span>
+              <span className="text-xs font-bold tracking-wide">Filtros</span>
               {(activeCobs.size + (copago ? 1 : 0) + activePrepagas.size) > 0 && (
-                <span className="w-4 h-4 rounded-full bg-white border border-[#E8002D] text-[#E8002D] text-[9px] font-bold flex items-center justify-center">
+                <span className="w-4 h-4 rounded-full bg-white text-[#E8002D] text-[9px] font-bold flex items-center justify-center flex-shrink-0">
                   {activeCobs.size + (copago ? 1 : 0) + activePrepagas.size}
                 </span>
               )}
