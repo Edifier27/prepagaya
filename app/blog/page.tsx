@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { blogPosts } from '@/lib/data/blog'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { BlogGrid } from '@/components/blog/BlogGrid'
 import Link from 'next/link'
@@ -11,11 +11,25 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/blog` },
 }
 
+// GEO (17-sep-2026): ver mismo criterio en app/coberturas/page.tsx.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Blog de Prepagas Argentina',
+  description: 'Artículos sobre prepagas en Argentina: análisis de planes, comparativas, noticias del mercado y guías para elegir mejor tu cobertura médica.',
+  url: `${SITE_URL}/blog`,
+  author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  dateModified: CONTENT_UPDATE,
+  inLanguage: 'es-AR',
+}
+
 export default function BlogPage(): React.ReactElement {
   const categorias = [...new Set(blogPosts.map((p) => p.categoria))]
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Hero */}
       <section className="bg-white border-b border-gray-100 py-10">
         <div className="container">

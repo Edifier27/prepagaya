@@ -1,11 +1,24 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Metodología — Cómo elaboramos nuestros rankings',
   description: `Explicamos cómo calculamos nuestros rankings de prepagas en Argentina: fuentes de precios, factores de satisfacción, y criterios de evaluación. Transparencia total.`,
   alternates: { canonical: `${SITE_URL}/metodologia` },
+}
+
+// GEO (17-sep-2026): ver mismo criterio en app/coberturas/page.tsx.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: `Metodología de ${SITE_NAME}`,
+  description: 'Cómo elaboramos nuestros rankings de prepagas: fuentes de precios, factores de satisfacción y criterios de evaluación.',
+  url: `${SITE_URL}/metodologia`,
+  author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  dateModified: CONTENT_UPDATE,
+  inLanguage: 'es-AR',
 }
 
 const factores = [
@@ -26,6 +39,7 @@ const fuentes = [
 export default function MetodologiaPage() {
   return (
     <div className="container py-12 max-w-4xl mx-auto">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
         Metodología de {SITE_NAME}

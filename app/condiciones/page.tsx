@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { condiciones } from '@/lib/data/condiciones'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { CondicionIcon } from '@/components/ui/CategoryIcon'
 
 export const metadata: Metadata = {
@@ -10,9 +10,23 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/condiciones` },
 }
 
+// GEO (17-sep-2026): ver mismo criterio en app/coberturas/page.tsx.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Prepagas por Condición de Salud',
+  description: 'Encontrá la mejor prepaga según tu condición de salud: diabetes, celiaquía, hipertensión, autismo, artritis, salud mental y más.',
+  url: `${SITE_URL}/condiciones`,
+  author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  dateModified: CONTENT_UPDATE,
+  inLanguage: 'es-AR',
+}
+
 export default function CondicionesHubPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-200 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500">

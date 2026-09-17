@@ -1,11 +1,26 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Sobre Nosotros',
   description: `Conocé quiénes somos en ${SITE_NAME}, cómo trabajamos y por qué somos el comparador de prepagas más confiable de Argentina.`,
   alternates: { canonical: `${SITE_URL}/sobre-nosotros` },
+}
+
+// GEO (17-sep-2026): ver mismo criterio en app/coberturas/page.tsx. Además
+// de dateModified, esta es la página de mayor peso para señales E-E-A-T
+// (quién está detrás del sitio) — se agrega Organization con más detalle.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: `Sobre Nosotros — ${SITE_NAME}`,
+  description: `Quiénes somos en ${SITE_NAME}, cómo trabajamos y por qué somos el comparador de prepagas más confiable de Argentina.`,
+  url: `${SITE_URL}/sobre-nosotros`,
+  author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  dateModified: CONTENT_UPDATE,
+  inLanguage: 'es-AR',
 }
 
 const valores = [
@@ -52,6 +67,7 @@ const equipo = [
 export default function SobreNosotrosPage() {
   return (
     <div className="container py-12 max-w-4xl mx-auto">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Header */}
       <div className="text-center mb-12">

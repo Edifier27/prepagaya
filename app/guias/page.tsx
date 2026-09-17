@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { guias } from '@/lib/data/guias'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
 
 export const metadata: Metadata = {
@@ -10,11 +10,25 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/guias` },
 }
 
+// GEO (17-sep-2026): ver mismo criterio en app/coberturas/page.tsx.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Guías de Prepagas Argentina',
+  description: 'Guías completas sobre prepagas en Argentina: cómo cambiar, qué cubre el PMO, prepagas para monotributistas, cómo deducir en ganancias y mucho más.',
+  url: `${SITE_URL}/guias`,
+  author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  dateModified: CONTENT_UPDATE,
+  inLanguage: 'es-AR',
+}
+
 export default function GuiasPage() {
   const categorias = [...new Set(guias.map((g) => g.categoria))]
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="bg-gradient-to-b from-gray-50 to-white py-12 border-b border-gray-200">
         <div className="container">
           <nav className="text-sm text-gray-500 mb-4">

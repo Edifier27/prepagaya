@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { coberturas } from '@/lib/data/coberturas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 
 export const metadata: Metadata = {
@@ -10,9 +10,25 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SITE_URL}/coberturas` },
 }
 
+// GEO (17-sep-2026): esta página de listado no tenía ningún schema.org —
+// CollectionPage sí define dateModified (hereda de CreativeWork), a
+// diferencia de ItemList/WebSite que se usan en otros índices del sitio.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Coberturas de Prepagas en Argentina',
+  description: 'Guía completa de coberturas de prepagas en Argentina: psicología, maternidad, odontología, fertilidad, oncología, medicamentos y más.',
+  url: `${SITE_URL}/coberturas`,
+  author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  dateModified: CONTENT_UPDATE,
+  inLanguage: 'es-AR',
+}
+
 export default function CoberturasHubPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-200 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500">
