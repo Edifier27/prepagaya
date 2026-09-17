@@ -624,6 +624,15 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     })
   }
 
+  // Selección "una sola por vez" para el bottom sheet mobile (pedido de Darío,
+  // 17-sep-2026: en el celular no quiere marcar checkboxes en una lista larga,
+  // sino tocar una prepaga y que quede solo esa — tocar la misma de nuevo
+  // vuelve a mostrar todas). El sidebar de desktop sigue siendo multi-select
+  // (togglePrepaga), esto es exclusivo del flujo mobile.
+  function selectSoloPrepaga(slug: string) {
+    setActivePrepagas((prev) => (prev.size === 1 && prev.has(slug) ? new Set() : new Set([slug])))
+  }
+
   const resultadosFiltrados = useMemo((): Resultado[] => {
     const filtrados = allResultados.filter((r) => {
       if (copago === 'sin-copago' && r.plan.copago) return false
@@ -1355,7 +1364,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     </div>
                   </div>
 
-                  {/* Prepaga */}
+                  {/* Prepaga — selección única: tocás una y queda solo esa,
+                      tocás la misma de nuevo y volvés a ver todas */}
                   {prepagasDisponibles.length > 1 && (
                     <div>
                       <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Prepaga</p>
@@ -1363,11 +1373,11 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                         {prepagasDisponibles.map((p) => {
                           const on = activePrepagas.has(p.slug)
                           return (
-                            <label key={p.slug} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => togglePrepaga(p.slug)}>
-                              <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
-                                on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                            <label key={p.slug} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => selectSoloPrepaga(p.slug)}>
+                              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                                on ? 'border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
                               }`}>
-                                {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                                {on && <div className="w-2 h-2 rounded-full bg-[#E8002D]" />}
                               </div>
                               <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{p.nombre}</span>
                             </label>
