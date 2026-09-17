@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/Badge'
 import { BlogAuthorBox } from '@/components/ui/BlogAuthorBox'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 import { BlogTOC } from '@/components/blog/BlogTOC'
+import { RankingResumen } from '@/components/blog/RankingResumen'
 import { StickySectionNav } from '@/components/ui/StickySectionNav'
 
 interface Props {
@@ -168,6 +169,14 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
               <p className="text-gray-800 leading-relaxed">{post.contenido.intro}</p>
             </div>
+
+            {/* Resumen citable para posts de ranking/listicle (GEO,
+                17-sep-2026): pros/contras/precio por prepaga, armado con
+                datos reales de prepagas.ts — no reescribe el post, lo
+                complementa con el formato que más citan los motores de IA. */}
+            {(post.categoria === 'Ranking' || post.categoria === 'Rankings') && post.prepagasRelacionadas && (
+              <RankingResumen slugs={post.prepagasRelacionadas} />
+            )}
 
             {/* TOC mobile (solo < lg) */}
             <div className="lg:hidden mb-8 bg-gray-50 rounded-2xl border border-gray-200 p-4">
