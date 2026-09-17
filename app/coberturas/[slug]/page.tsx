@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { coberturas } from '@/lib/data/coberturas'
 import { guias } from '@/lib/data/guias'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 
@@ -72,6 +72,7 @@ export default async function CoberturaPage({ params }: Props) {
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/coberturas/${slug}` },
+      dateModified: CONTENT_UPDATE,
       inLanguage: 'es-AR',
     },
     {

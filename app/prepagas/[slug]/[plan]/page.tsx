@@ -5,7 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
-import { SITE_NAME, SITE_URL, formatPrecio, calidadPlan } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -205,6 +205,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
         priceCurrency: 'ARS',
         availability: 'https://schema.org/InStock',
         url: `${SITE_URL}/prepagas/${slug}/${planSlug}`,
+        priceValidUntil: PRECIO_VALIDO_HASTA,
       },
       aggregateRating: {
         '@type': 'AggregateRating',

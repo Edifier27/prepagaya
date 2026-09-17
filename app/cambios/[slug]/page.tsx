@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { cambiosRecomendados, getCambioBySlug, getCambiosPorDestino } from '@/lib/data/cambios'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
-import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
@@ -93,6 +93,7 @@ export default async function CambioPage({ params }: Props) {
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/cambios/${slug}` },
+      dateModified: PRECIOS_UPDATE,
       inLanguage: 'es-AR',
     },
     {

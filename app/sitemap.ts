@@ -12,16 +12,9 @@ import { obrasSociales } from '@/lib/data/obras-sociales'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
+import { PRECIOS_UPDATE, CONTENT_UPDATE } from '@/lib/utils'
 
 const BASE = 'https://www.prepagaya.com.ar'
-
-// Los precios se actualizan al inicio de cada mes: las páginas con precios
-// declaran como última modificación el día 1 del mes en curso.
-const now = new Date()
-const PRECIOS_UPDATE = new Date(now.getFullYear(), now.getMonth(), 1).toISOString()
-
-// Última revisión editorial del contenido estable (guías, coberturas, etc.)
-const CONTENT_UPDATE = new Date('2026-07-14').toISOString()
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

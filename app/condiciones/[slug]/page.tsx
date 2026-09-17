@@ -5,7 +5,7 @@ import { condiciones } from '@/lib/data/condiciones'
 import { coberturas } from '@/lib/data/coberturas'
 import { guias } from '@/lib/data/guias'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CondicionIcon, CoberturaIcon } from '@/components/ui/CategoryIcon'
 
@@ -68,6 +68,7 @@ export default async function CondicionPage({ params }: Props) {
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/condiciones/${slug}` },
+      dateModified: CONTENT_UPDATE,
       inLanguage: 'es-AR',
     },
     {

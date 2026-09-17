@@ -8,7 +8,7 @@ import { getCambiosPorOrigen, getCambiosPorDestino } from '@/lib/data/cambios'
 import { getComparativasByPrepaga } from '@/lib/data/comparativas'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
-import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -206,6 +206,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
         highPrice: precioMax,
         offerCount: prep.planes.length,
         availability: 'https://schema.org/InStock',
+        priceValidUntil: PRECIO_VALIDO_HASTA,
       },
     },
     {

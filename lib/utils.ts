@@ -52,6 +52,26 @@ export const SITE_URL = 'https://www.prepagaya.com.ar'
 export const SITE_DESCRIPTION =
   'Compará prepagas en Argentina. Precios actualizados, opiniones reales y el comparador más completo para elegir la mejor prepaga para vos.'
 
+// dateModified compartido entre sitemap.ts y el JSON-LD (schema Article) de
+// cada plantilla de página (GEO, 17-sep-2026): la evidencia 2026 dice que
+// las páginas con dateModified dentro de los últimos 90 días tienen
+// prioridad en búsquedas sensibles al tiempo. Antes solo lo usaba el
+// sitemap — ningún schema Article del sitio declaraba dateModified.
+// PRECIOS_UPDATE: para páginas cuyo contenido depende del precio mensual
+// (prepagas, planes, cambios recomendados) — rueda solo cada 1° del mes.
+export const PRECIOS_UPDATE = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
+// CONTENT_UPDATE: última revisión editorial del contenido estable
+// (coberturas, condiciones, comparativas, obras sociales, perfiles).
+export const CONTENT_UPDATE = new Date('2026-07-14').toISOString()
+
+// priceValidUntil para los schema Offer/AggregateOffer de precios de planes
+// (GEO, 17-sep-2026): a diferencia de dateModified, esta propiedad es la
+// correcta según schema.org para señalar hasta cuándo vale un precio — más
+// preciso que forzar dateModified en un schema Service/Offer, que no lo
+// define. Fin del mes en curso, ya que los precios se actualizan recién al
+// mes siguiente.
+export const PRECIO_VALIDO_HASTA = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).toISOString().slice(0, 10)
+
 // Sistema de precios: Argentina tiene 2 listas de precios desregulados
 // - Directo con IVA (21%): para monotributistas y particulares
 // - Deriva Aporte (sin IVA): para empleados en relación de dependencia

@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { comparativas } from '@/lib/data/comparativas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
@@ -101,6 +101,7 @@ export default async function ComparativaPage({ params }: Props) {
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/comparativas/${slug}` },
+      dateModified: CONTENT_UPDATE,
       inLanguage: 'es-AR',
     },
     {
