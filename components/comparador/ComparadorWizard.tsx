@@ -1278,53 +1278,27 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         {/* Cards column */}
         <div className="flex-1 min-w-0">
 
-          {/* Mobile filter chips — sticky bajo el header para no perderlos al scrollear */}
-          <div className="lg:hidden sticky top-16 z-30 bg-white/95 backdrop-blur border-b border-gray-100 pt-2 relative">
-            <div className="flex gap-2 items-start">
-              {/* "Oreja" — abre el menú completo de filtros (orden + coberturas) */}
-              <button
-                onClick={() => setFiltrosMenuOpen(true)}
-                aria-label="Abrir filtros"
-                className={`relative flex-shrink-0 flex items-center justify-center w-9 h-9 mb-2 rounded-full border transition-all ${
-                  (activeCobs.size > 0 || copago || activePrepagas.size > 0) ? 'bg-[#E8002D] border-[#E8002D] text-white' : 'bg-white border-gray-200 text-gray-600'
-                }`}>
-                <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                  <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 01.8 1.6l-4.6 6.13V16a1 1 0 01-.5.87l-3 1.71A1 1 0 017.2 17.8v-7.07L2.6 4.6A1 1 0 013 3z" clipRule="evenodd" />
-                </svg>
-                {(activeCobs.size + (copago ? 1 : 0) + activePrepagas.size) > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-white border border-[#E8002D] text-[#E8002D] text-[9px] font-bold flex items-center justify-center">
-                    {activeCobs.size + (copago ? 1 : 0) + activePrepagas.size}
-                  </span>
-                )}
-              </button>
-
-              <div className="relative flex-1 min-w-0">
-                <div className="flex gap-2 overflow-x-auto pb-2 mb-2 scroll-smooth" style={{ scrollbarWidth: 'none' }}>
-                {([
-                  { id: 'sin-copago', label: 'Sin copago', type: 'copago' },
-                  { id: 'con-copago', label: 'Con copago', type: 'copago' },
-                  ...prepagasDisponibles.map(p => ({ id: p.slug, label: p.nombre, type: 'prepaga' })),
-                  ...COBS.map(c => ({ id: c.id, label: c.label, type: 'cob' }))
-                ]).map((f) => {
-                  const on = f.type === 'copago' ? copago === f.id : f.type === 'prepaga' ? activePrepagas.has(f.id) : activeCobs.has(f.id as CobId)
-                  return (
-                    <button key={f.id} onClick={() => {
-                      if (f.type === 'copago') setCopago(copago === (f.id as Copago) ? null : (f.id as Copago))
-                      else if (f.type === 'prepaga') togglePrepaga(f.id)
-                      else toggleCob(f.id as CobId)
-                    }}
-                      className={`flex-shrink-0 text-xs px-3 py-1.5 rounded-full font-semibold border transition-all ${
-                        on ? 'bg-[#E8002D] text-white border-[#E8002D]' : 'bg-white text-gray-600 border-gray-200'
-                      }`}>
-                      {on ? '✓ ' : ''}{f.label}
-                    </button>
-                  )
-                })}
-                </div>
-                {/* Fade a la derecha: indica que hay mas chips para scrollear */}
-                <div className="pointer-events-none absolute right-0 top-2 bottom-2 w-10 bg-gradient-to-l from-white via-white/90 to-transparent" />
-              </div>
-            </div>
+          {/* Mobile: solo la "oreja" a la izquierda — sin fila de chips (pedido de
+              Darío, 17-sep-2026: la fila de chips quedaba en medio de la pantalla
+              y confundía). Todos los filtros (copago, prepaga, coberturas) viven
+              únicamente en el bottom sheet que abre este botón. */}
+          <div className="lg:hidden sticky top-16 z-30 bg-white/95 backdrop-blur border-b border-gray-100 py-2">
+            <button
+              onClick={() => setFiltrosMenuOpen(true)}
+              aria-label="Abrir filtros"
+              className={`relative flex items-center gap-1.5 pl-2.5 pr-3.5 py-1.5 rounded-full border transition-all ${
+                (activeCobs.size > 0 || copago || activePrepagas.size > 0) ? 'bg-[#E8002D] border-[#E8002D] text-white' : 'bg-white border-gray-200 text-gray-600'
+              }`}>
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 flex-shrink-0">
+                <path fillRule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 01.8 1.6l-4.6 6.13V16a1 1 0 01-.5.87l-3 1.71A1 1 0 017.2 17.8v-7.07L2.6 4.6A1 1 0 013 3z" clipRule="evenodd" />
+              </svg>
+              <span className="text-xs font-bold">Filtros</span>
+              {(activeCobs.size + (copago ? 1 : 0) + activePrepagas.size) > 0 && (
+                <span className="w-4 h-4 rounded-full bg-white border border-[#E8002D] text-[#E8002D] text-[9px] font-bold flex items-center justify-center">
+                  {activeCobs.size + (copago ? 1 : 0) + activePrepagas.size}
+                </span>
+              )}
+            </button>
           </div>
 
           {/* Menú completo de filtros — bottom sheet mobile */}
