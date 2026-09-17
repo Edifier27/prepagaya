@@ -500,6 +500,18 @@ interface WizardProps {
 export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps = {}) {
   const router = useRouter()
   const pathname = usePathname()
+  // Modo de prueba para Darío: entrando con ?testing=dario se salta el
+  // popup de nombre/celular/mail y no se manda el lead — para poder probar
+  // el wizard las veces que haga falta sin gastar cupo de EmailJS ni
+  // mandarse un mail real cada vez (pedido de Darío, 17-sep-2026).
+  // Se lee con window.location en un useEffect (no useSearchParams) porque
+  // ComparadorWizard también vive en la home, que es 100% estática —
+  // useSearchParams hubiera forzado esa página a Suspense/dinámica.
+  const [modoPrueba, setModoPrueba] = useState(false)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setModoPrueba(new URLSearchParams(window.location.search).get('testing') === 'dario')
+  }, [])
 
   const [step, setStep] = useState<Step>(initialZona ? 'edades' : 'zona')
   const [zonaKey, setZonaKey] = useState(initialZona ?? '')
@@ -659,6 +671,12 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   // 3-second countdown when entering preview
   useEffect(() => {
     if (step !== 'preview') return
+    if (modoPrueba) {
+      // Salta directo a resultados: sin popup, sin mandar el lead.
+      if (!nombre) setNombre('Darío (prueba)')
+      setStep('resultados')
+      return
+    }
     setCountdown(3)
     setShowPopup(false)
     const timer = setInterval(() => {
@@ -668,7 +686,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       })
     }, 1000)
     return () => clearInterval(timer)
-  }, [step])
+  }, [step, modoPrueba, nombre])
 
   // Block page close while popup is showing
   useEffect(() => {
