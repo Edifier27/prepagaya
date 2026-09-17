@@ -457,6 +457,10 @@ export const guias: GuiaData[] = [
           titulo: 'Casos particulares: pareja, cambio de trabajo, despido',
           cuerpo: 'Si los dos trabajan en relación de dependencia, pueden unificar ambos aportes en el mismo plan familiar: los dos descuentos se suman. Si cambiás de trabajo, la derivación te sigue: informá el nuevo empleador a la prepaga para que los aportes no se corten. Si te quedás sin trabajo, tenés derecho a la cobertura de la obra social por 3 meses post-despido con aportes; después, la prepaga te ofrecerá recontratar como particular o monotributista, un buen momento para recotizar todo.',
         },
+        {
+          titulo: 'Si recién empezás un trabajo nuevo: pedí el código de la prepaga en el alta',
+          cuerpo: 'Este paso lo conoce poca gente y ahorra hasta dos meses de espera. Cuando te dan de alta temprana en un trabajo nuevo, el formulario de alta ante AFIP/RRHH te pide indicar una obra social — y ahí mismo podés indicar directamente el código de la obra social con la que opera tu prepaga elegida, en vez de dejar que te asignen la obra social por default de tu convenio colectivo de trabajo (CCT) y tener que derivar después. Por ejemplo, si vas a Swiss Medical, tu empleador puede cargar directamente el código de la obra social asociada (cada convenio colectivo tiene el suyo — confirmalo con la prepaga o con tu asesor antes de indicarlo, porque varía según el CCT de tu actividad, no es un único número para todos). Decirlo en el alta, en vez de derivar después, evita dos demoras que se suman: el trámite de derivación en sí (hasta 90 días corridos) y, un problema menos conocido, que la Superintendencia de Servicios de Salud tarde en reflejar en su sistema que ya estás en relación de dependencia — mientras eso no impacte, ninguna prepaga puede procesar tu derivación, y esa demora sola puede llevarse otros 2 meses. Pedir el código correcto desde el día uno evita las dos esperas.',
+        },
       ],
       conclusion: 'Si estás en relación de dependencia y pagás tu prepaga como particular, estás pagando de más: la derivación descuenta tus aportes y elimina el IVA del precio. El trámite lo gestiona la propia prepaga y el ahorro es inmediato. Cotizá siempre en las dos modalidades para ver la diferencia con tus números reales.',
     },
@@ -473,9 +477,13 @@ export const guias: GuiaData[] = [
         q: '¿Qué pasa si mi aporte supera el valor del plan?',
         a: 'Si tus aportes superan la cuota, no pagás diferencia de bolsillo. El excedente no se devuelve en efectivo, pero muchas empresas permiten aplicarlo a upgrades de plan o a integrantes adicionales del grupo.',
       },
+      {
+        q: '¿Cómo evito esperar 1 o 2 meses para derivar el aporte si recién empiezo un trabajo?',
+        a: 'Pedile a Recursos Humanos que, en el alta temprana, cargue directamente el código de la obra social de tu prepaga elegida en vez del default del convenio colectivo. Así evitás el trámite de derivación posterior (hasta 90 días) y el riesgo de que la Superintendencia de Servicios de Salud tarde en reflejar tu alta en relación de dependencia, que puede sumar otros 2 meses de espera. Confirmá el código exacto con tu prepaga, varía según el convenio colectivo de cada actividad.',
+      },
     ],
-    keywords: ['derivar aportes a prepaga', 'derivacion obra social prepaga', 'prepaga con aportes precio', 'plan deriva aporte'],
-    relacionadas: ['obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'como-cambiar-de-prepaga'],
+    keywords: ['derivar aportes a prepaga', 'derivacion obra social prepaga', 'prepaga con aportes precio', 'plan deriva aporte', 'codigo obra social alta temprana', 'derivar aporte trabajo nuevo'],
+    relacionadas: ['obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'como-cambiar-de-prepaga', 'prepaga-corporativa-vs-particular'],
     prepagasRelacionadas: ['galeno', 'swiss-medical', 'medife'],
   },
   {
@@ -522,7 +530,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['prepaga sin carencia', 'periodo de carencia prepaga', 'carencia prepaga ilegal PMO', 'cuanto dura la carencia prepaga'],
-    relacionadas: ['que-cubre-la-prepaga', 'como-cambiar-de-prepaga', 'preexistencias-que-son-como-funcionan'],
+    relacionadas: ['que-cubre-la-prepaga', 'como-cambiar-de-prepaga', 'preexistencias-que-son-como-funcionan', 'prepaga-corporativa-vs-particular'],
   },
   {
     slug: 'preexistencias-que-son-como-funcionan',
@@ -956,7 +964,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['me quede sin trabajo obra social', 'cuanto dura la obra social despues del despido', 'obra social despues de renunciar', 'cobertura medica sin trabajo', 'prepaga desempleado'],
-    relacionadas: ['obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'derivar-obra-social-a-prepaga'],
+    relacionadas: ['obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'derivar-obra-social-a-prepaga', 'prepaga-corporativa-vs-particular'],
     prepagasRelacionadas: ['sancor-salud', 'medife', 'prevencion-salud'],
   },
   {
@@ -1113,6 +1121,52 @@ export const guias: GuiaData[] = [
     ],
     keywords: ['afiliar bebe recien nacido prepaga', 'plazo para afiliar recien nacido obra social', 'cuanto cuesta afiliar un bebe a la prepaga', 'plan materno infantil recien nacido', 'documentos para afiliar bebe prepaga'],
     relacionadas: ['preexistencias-que-son-como-funcionan', 'como-afiliarse-prepaga-requisitos', 'cuota-prepaga-por-edad'],
+  },
+  {
+    slug: 'prepaga-corporativa-vs-particular',
+    titulo: 'Prepaga corporativa vs. particular: diferencias y qué pasa si dejás la empresa',
+    metaDescripcion: 'Diferencia entre la prepaga que te da tu empresa como beneficio y contratarla vos como particular: carencias, cartilla y qué pasa con tu cobertura si renunciás o te despiden.',
+    tiempoLectura: 7,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-09-17',
+    contenido: {
+      intro: 'Que tu empresa te dé una prepaga como beneficio no es lo mismo que derivar tus aportes de obra social a una prepaga: son dos mecanismos distintos, con reglas distintas para cuando dejás ese trabajo. Esta guía es sobre el primero — el convenio corporativo directo entre tu empleador y la prepaga — y qué conviene saber antes de que decidan por vos.',
+      secciones: [
+        {
+          titulo: 'Qué es exactamente un plan corporativo',
+          cuerpo: 'Es un contrato entre la empresa y la prepaga para todo (o parte de) su personal, negociado como grupo. Al sumar muchos afiliados de una sola vez, la prepaga suele ofrecer mejores condiciones que a un particular: cartilla más amplia, menos restricciones, y es habitual que estos convenios entren directamente sin las carencias que sí aplican a prestaciones superadoras (ortodoncia, cirugía estética) en una contratación individual. No es una obra social derivada — es un contrato aparte que arma tu empleador, y las condiciones exactas las define ese acuerdo puntual, no una ley general.',
+        },
+        {
+          titulo: 'La diferencia clave con la derivación de obra social',
+          cuerpo: 'Si derivás tus aportes de obra social a una prepaga (el mecanismo más común y el que tiene protección legal más clara), tenés 3 meses de continuidad garantizados por ley si perdés el trabajo, porque en el fondo seguís cubierto por tu obra social. Un plan corporativo directo es distinto: no está atado a tu obra social, sino al contrato que tiene tu empresa con la prepaga. Cuando dejás la empresa —renuncia o despido— esa cobertura puntual generalmente termina con la última liquidación de sueldo o a fin de mes, según lo que diga el contrato de tu empleador con la prepaga. No asumas que tenés la misma ventana de 3 meses: confirmalo con RRHH, porque depende de ese acuerdo específico, no de una garantía legal uniforme.',
+        },
+        {
+          titulo: 'Qué hacer antes de irte de la empresa',
+          cuerpo: 'Pedí el certificado de cobertura (o "certificado de antigüedad" en la prepaga) antes de que se corte tu plan corporativo: acredita cuánto tiempo estuviste cubierto y con qué plan, y sirve para pedir que te reconozcan la antigüedad si te afiliás como particular o negociás la continuidad de las prestaciones superadoras sin nuevas carencias. Pedilo mientras todavía sos empleado — después de la baja es más difícil de gestionar.',
+        },
+        {
+          titulo: 'Recontratar como particular: qué esperar',
+          cuerpo: 'Al pasar de corporativo a particular pagás la cuota completa (sin el aporte de tu empleador ni el descuento por volumen del convenio grupal), así que el mismo plan sale más caro. Las prestaciones del PMO nunca tienen carencia, así que esa parte no cambia. Lo que sí puede cambiar son las prestaciones superadoras que el convenio corporativo te daba sin espera: mostrando el certificado de cobertura previa, muchas prepagas te las mantienen sin reiniciar el plazo — pedilo explícitamente, no es automático.',
+        },
+      ],
+      conclusion: 'Un plan corporativo es un beneficio real mientras estás en la empresa, pero no tiene la misma red de protección legal que la derivación de aportes de obra social. Antes de dejar el trabajo (por lo que sea), pedí el certificado de cobertura y confirmá con RRHH la fecha exacta en que se corta tu plan — son dos minutos que evitan quedarte con un hueco de cobertura sin darte cuenta.',
+    },
+    faq: [
+      {
+        q: '¿Tengo los mismos 3 meses de continuidad que con la obra social si me despiden?',
+        a: 'No necesariamente. Los 3 meses de continuidad son una garantía legal ligada a la obra social. Un plan corporativo directo depende del contrato entre tu empresa y la prepaga: puede cortarse antes. Confirmá la fecha exacta con RRHH.',
+      },
+      {
+        q: '¿Puedo pedir que me mantengan la cartilla del plan corporativo si me voy particular?',
+        a: 'La cartilla exacta del convenio corporativo (que suele ser más amplia) generalmente no se traslada tal cual a un plan particular: vas a un plan equivalente de la oferta individual de esa prepaga. Lo que sí podés pedir, con el certificado de cobertura, es que no te apliquen de nuevo las carencias de las prestaciones superadoras.',
+      },
+      {
+        q: '¿El plan corporativo tiene carencia para prestaciones superadoras?',
+        a: 'Generalmente no: es una de las ventajas de negociar como grupo. Cada convenio es distinto, así que confirmalo en tu caso puntual con RRHH o la prepaga.',
+      },
+    ],
+    keywords: ['prepaga corporativa vs particular', 'plan de salud de la empresa que pasa si me voy', 'prepaga de la empresa despido', 'certificado de cobertura prepaga', 'plan corporativo prepaga carencia'],
+    relacionadas: ['derivar-obra-social-a-prepaga', 'sin-trabajo-obra-social', 'prepaga-sin-periodo-carencia'],
   },
 ]
 
