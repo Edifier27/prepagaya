@@ -840,15 +840,23 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
 
         <div className="space-y-3 mb-4">
           {personas.map((p, i) => (
-            <div key={p.id} className="flex items-center gap-4 bg-white border-2 border-gray-100 rounded-2xl p-4 hover:border-red-100 transition-colors">
-              <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                <span className="text-sm font-bold text-[#E8002D]">{i + 1}</span>
+            <div key={p.id} className="relative flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 bg-white border-2 border-gray-100 rounded-2xl p-4 hover:border-red-100 transition-colors">
+              {i > 0 && (
+                <button onClick={() => removePersona(p.id)} aria-label="Quitar integrante"
+                  className="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-[#E8002D] hover:bg-[#B8001F] text-white flex items-center justify-center transition-colors text-sm font-bold leading-none shadow-sm ring-2 ring-white">
+                  ×
+                </button>
+              )}
+              <div className="flex items-center gap-4 min-w-0">
+                <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-[#E8002D]">{i + 1}</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm font-semibold text-gray-700 truncate">{i === 0 ? 'Titular' : `Integrante ${i + 1}`}</div>
+                  <div className="text-xs text-gray-400">Edad en años</div>
+                </div>
               </div>
-              <div className="flex-1">
-                <div className="text-sm font-semibold text-gray-700">{i === 0 ? 'Titular' : `Integrante ${i + 1}`}</div>
-                <div className="text-xs text-gray-400">Edad en años</div>
-              </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-shrink-0 sm:ml-auto">
                 <button
                   type="button"
                   onClick={() => updateEdad(p.id, String(Math.max(0, (parseInt(p.edad) || 0) - 1)))}
@@ -859,20 +867,14 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   value={p.edad}
                   onChange={(e) => updateEdad(p.id, e.target.value)}
                   placeholder="Ej: 35"
-                  className="w-20 text-center text-lg font-bold border-2 border-gray-200 rounded-xl px-2 py-2 focus:outline-none focus:border-[#E8002D] transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="w-20 flex-shrink-0 text-center text-lg font-bold border-2 border-gray-200 rounded-xl px-2 py-2 focus:outline-none focus:border-[#E8002D] transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
                 <button
                   type="button"
                   onClick={() => updateEdad(p.id, String(Math.min(110, (parseInt(p.edad) || 0) + 1)))}
                   className="w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
                 >+</button>
-                <span className="text-sm text-gray-400 font-medium">años</span>
-                {i > 0 && (
-                  <button onClick={() => removePersona(p.id)}
-                    className="w-7 h-7 rounded-full bg-gray-100 hover:bg-red-100 hover:text-red-500 text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none">
-                    ×
-                  </button>
-                )}
+                <span className="text-sm text-gray-400 font-medium flex-shrink-0">años</span>
               </div>
             </div>
           ))}
