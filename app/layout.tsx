@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col">
         <SiteChrome>{children}</SiteChrome>
         <Analytics />
+        <Script src="https://analytics.ahrefs.com/analytics.js" data-key="tHgjdB6lLUXEizZ508Qw3A" strategy="afterInteractive" />
       </body>
     </html>
   )
