@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { aumentos2026, aumentoAcumulado, INFLACION_ACUMULADA_2026, AUMENTO_POR_EMPRESA } from '@/lib/data/aumentos'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { formatPrecio, SITE_NAME, SITE_URL, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 
 const acumulado = aumentoAcumulado()
@@ -58,6 +58,7 @@ const jsonLd = [
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/aumentos` },
+    dateModified: PRECIOS_UPDATE,
     inLanguage: 'es-AR',
   },
   {
@@ -79,6 +80,7 @@ const jsonLd = [
     temporalCoverage: '2026-01/..',
     spatialCoverage: 'Argentina',
     keywords: ['medicina prepaga', 'aumentos', 'salud privada', 'Argentina'],
+    dateModified: PRECIOS_UPDATE,
   },
   {
     '@context': 'https://schema.org',
