@@ -179,11 +179,16 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
-      '@type': 'Product',
+      // Service, no Product: un plan de salud no es un bien físico y
+      // "Product" hace que Search Console lo valide como ficha de compras
+      // (Merchant Listing), pidiendo campos que no aplican como "image" de
+      // producto, política de devolución o envío. Corregido 17-sep-2026
+      // tras el error real reportado en Search Console.
+      '@type': 'Service',
       name: `${prep.nombre} — Medicina Prepaga Argentina`,
       description: prep.descripcion,
       url: `${SITE_URL}/prepagas/${slug}`,
-      brand: { '@type': 'Brand', name: prep.nombre },
+      provider: { '@type': 'Organization', name: prep.nombre },
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: prep.rating,

@@ -191,11 +191,14 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const jsonLd = [
     {
       '@context': 'https://schema.org',
-      '@type': 'Product',
+      // Service, no Product: ver nota en app/prepagas/[slug]/page.tsx —
+      // evita que Search Console lo valide como Merchant Listing (pide
+      // imagen de producto, devolución, envío, que no aplican a un plan de salud).
+      '@type': 'Service',
       name: `${prep.nombre} ${plan.nombre}`,
       description: plan.descripcion,
       url: `${SITE_URL}/prepagas/${slug}/${planSlug}`,
-      brand: { '@type': 'Brand', name: prep.nombre },
+      provider: { '@type': 'Organization', name: prep.nombre },
       offers: {
         '@type': 'Offer',
         price: plan.precio,

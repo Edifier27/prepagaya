@@ -38,10 +38,10 @@ const faqs = [
 const jsonLd = [
   {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'Service',
     name: 'Plan Black Swiss Medical',
     description: 'Línea corporativa premium de Swiss Medical con atención preferencial y exclusiva.',
-    brand: { '@type': 'Brand', name: 'Swiss Medical' },
+    provider: { '@type': 'Organization', name: 'Swiss Medical' },
     url: `${SITE_URL}/empresas/swiss-medical/plan-black`,
   },
   {
