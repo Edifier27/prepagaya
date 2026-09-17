@@ -142,6 +142,32 @@ export const prepagas: Prepaga[] = [
         copago: false,
         redAbierta: true,
       },
+      {
+        slug: 'smg60',
+        nombre: 'Plan SMG60',
+        // Precio estimado a partir de la lista oficial de agosto 2026 del cotizador de Swiss Medical,
+        // ajustado +2,20% (mismo incremento aplicado a todos los demás planes en la actualización de
+        // 09/2026, verificado contra el resto de los precios ya publicados) — confirmar contra la lista
+        // oficial de septiembre cuando esté disponible.
+        precio: 732788,
+        descripcion: 'Sistema Combinado, línea Premium: habitación individual, cirugía estética una vez por año para titular o cónyuge, chequeo médico ejecutivo anual y cobertura internacional para todo el grupo familiar.',
+        cobertura: ['Internación habitación individual', 'Consultas y estudios con reintegro amplio', 'Salud mental 30 sesiones sin cargo', 'Óptica', 'Odontología según plan', 'Cirugía estética 1 vez por año (titular o cónyuge)', 'Chequeo médico ejecutivo anual', 'Swiss Medical Internacional para el grupo familiar', 'Seguro de continuidad familiar'],
+        copago: false,
+        redAbierta: true,
+      },
+      {
+        slug: 'smg70',
+        nombre: 'Plan SMG70',
+        // Precio estimado a partir de la lista oficial de agosto 2026 del cotizador de Swiss Medical,
+        // ajustado +2,20% (mismo incremento aplicado a todos los demás planes en la actualización de
+        // 09/2026, verificado contra el resto de los precios ya publicados) — confirmar contra la lista
+        // oficial de septiembre cuando esté disponible.
+        precio: 890547,
+        descripcion: 'El plan más alto de Swiss Medical: mismos beneficios que el SMG60 con topes de reintegro más altos, consultas 100% cubiertas, 36 sesiones de psicología por año y dermo-estética incluida para titular o cónyuge.',
+        cobertura: ['Internación habitación individual', 'Consultas 100% cubiertas', 'Salud mental 36 sesiones sin cargo', 'Óptica', 'Odontología según plan', 'Cirugía estética 1 vez por año (titular o cónyuge)', 'Dermo-estética (titular o cónyuge)', 'Chequeo médico ejecutivo anual', 'Swiss Medical Internacional para el grupo familiar', 'Seguro de continuidad familiar'],
+        copago: false,
+        redAbierta: true,
+      },
     ],
   },
   {
