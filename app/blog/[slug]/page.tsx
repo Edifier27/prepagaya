@@ -160,6 +160,15 @@ export default async function BlogPostPage({ params }: Props) {
 
             <BlogAuthorBox fechaPublicacion={post.fechaPublicacion} />
 
+            {/* Intro: va ANTES del índice a propósito (GEO, 17-sep-2026). Los
+                crawlers de IA no ejecutan JS ni CSS (a un "lg:hidden" lo
+                siguen leyendo como texto presente): evalúan relevancia por
+                lo primero que aparece en el HTML, así que la respuesta
+                directa tiene que ir antes que cualquier índice de navegación. */}
+            <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
+              <p className="text-gray-800 leading-relaxed">{post.contenido.intro}</p>
+            </div>
+
             {/* TOC mobile (solo < lg) */}
             <div className="lg:hidden mb-8 bg-gray-50 rounded-2xl border border-gray-200 p-4">
               <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">En este artículo</p>
@@ -178,11 +187,6 @@ export default async function BlogPostPage({ params }: Props) {
                   </li>
                 ))}
               </ul>
-            </div>
-
-            {/* Intro */}
-            <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
-              <p className="text-gray-800 leading-relaxed">{post.contenido.intro}</p>
             </div>
 
             {/* Secciones */}

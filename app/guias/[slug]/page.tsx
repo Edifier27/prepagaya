@@ -130,6 +130,15 @@ export default async function GuiaPage({ params }: Props) {
           </div>
         </header>
 
+        {/* Intro: va ANTES del índice a propósito (GEO, 17-sep-2026). Los
+            crawlers de IA (GPTBot, ClaudeBot, PerplexityBot) no ejecutan JS
+            ni CSS: leen el HTML en el orden en que aparece, y evalúan
+            relevancia principalmente por lo primero que encuentran. Un índice
+            de navegación antes de la respuesta diluye esa señal. */}
+        <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
+          <p className="text-gray-800 leading-relaxed">{guia.contenido.intro}</p>
+        </div>
+
         {/* Índice */}
         <div className="mb-8 bg-gray-50 rounded-2xl border border-gray-200 p-4">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">En esta guía</p>
@@ -148,11 +157,6 @@ export default async function GuiaPage({ params }: Props) {
               </li>
             ))}
           </ul>
-        </div>
-
-        {/* Intro */}
-        <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
-          <p className="text-gray-800 leading-relaxed">{guia.contenido.intro}</p>
         </div>
 
         {/* Secciones */}
