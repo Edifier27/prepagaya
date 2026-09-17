@@ -4,7 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdBreadcrumb } from './shared'
+import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb } from './shared'
 
 // Partners comerciales de PrepagaYa: siempre se destacan visualmente en el ranking,
 // aunque el orden del ranking en sí se mantiene honesto según cartilla real de la zona.
@@ -29,6 +29,7 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
   ]
   const jsonLd = [
     jsonLdBreadcrumb(crumbs),
+    jsonLdArticle(`Mejores prepagas en ${prov.nombre}`, `Ranking de prepagas en ${prov.nombre} según cartilla local y satisfacción.`, `/prepagas/${prov.slug}/mejores-prepagas`),
     {
       '@context': 'https://schema.org',
       '@type': 'ItemList',

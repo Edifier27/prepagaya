@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { EmpresasForm } from '@/components/empresas/EmpresasForm'
 
@@ -46,6 +46,7 @@ const jsonLd = [
     url: `${SITE_URL}/empresas/ranking`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    dateModified: CONTENT_UPDATE,
     inLanguage: 'es-AR',
   },
   {

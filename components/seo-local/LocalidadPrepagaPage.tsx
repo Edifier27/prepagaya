@@ -5,7 +5,7 @@ import type { PrepagaZona, ProvinciaSEO, LocalidadZona } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
-import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
+import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
 
 // Debajo de este número de prestadores de referencia relevados en la
 // localidad puntual, la cartilla local se considera "fina": en vez de
@@ -75,7 +75,11 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLdBreadcrumb(crumbs), jsonLdFaq(faq)]) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+        jsonLdBreadcrumb(crumbs),
+        jsonLdFaq(faq),
+        jsonLdArticle(`${pz.nombre} en ${corto}, ${prov.nombre}`, `Cartilla y cobertura de ${pz.nombre} en ${loc.nombre}, ${prov.nombre}.`, `/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`),
+      ]) }} />
       <BreadcrumbBar crumbs={crumbs} />
 
       <div className="container py-10 max-w-4xl mx-auto">

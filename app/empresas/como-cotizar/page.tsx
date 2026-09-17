@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Cómo Cotizar un Plan Corporativo de Prepaga: Guía Paso a Paso',
@@ -33,6 +33,7 @@ const jsonLd = [
     url: `${SITE_URL}/empresas/como-cotizar`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    dateModified: CONTENT_UPDATE,
     inLanguage: 'es-AR',
   },
   {

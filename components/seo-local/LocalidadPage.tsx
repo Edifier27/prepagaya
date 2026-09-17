@@ -4,7 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { LocalidadZona, ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
+import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
 
 export function localidadMetadata(prov: ProvinciaSEO, loc: LocalidadZona): Metadata {
   const year = new Date().getFullYear()
@@ -52,7 +52,11 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLdBreadcrumb(crumbs), jsonLdFaq(faq)]) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+        jsonLdBreadcrumb(crumbs),
+        jsonLdFaq(faq),
+        jsonLdArticle(`Prepagas en ${corto}, ${prov.nombre}`, `Las prepagas con cartilla en ${loc.nombre}, ${prov.nombre}.`, `/prepagas/${prov.slug}/${loc.slug}`),
+      ]) }} />
       <BreadcrumbBar crumbs={crumbs} />
 
       <div className="container py-10 max-w-4xl mx-auto">

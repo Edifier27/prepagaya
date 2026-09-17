@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { EmpresasForm } from '@/components/empresas/EmpresasForm'
 
 export const metadata: Metadata = {
@@ -41,6 +41,7 @@ const jsonLd = [
     url: `${SITE_URL}/empresas/swiss-medical/vs-osde`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    dateModified: CONTENT_UPDATE,
     inLanguage: 'es-AR',
   },
   {

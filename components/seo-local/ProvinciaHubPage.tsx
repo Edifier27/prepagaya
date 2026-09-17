@@ -5,7 +5,7 @@ import type { ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdBreadcrumb, jsonLdFaq } from './shared'
+import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq } from './shared'
 
 export function provinciaHubMetadata(prov: ProvinciaSEO): Metadata {
   // Precio real "desde" con las prepagas enSitio de la provincia — mismo
@@ -38,7 +38,11 @@ const PROPIO_POR_PROVINCIA: Record<string, string[]> = {
 
 export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
   const crumbs = [{ nombre: 'Prepagas', href: '/prepagas' }, { nombre: prov.nombre }]
-  const jsonLd = [jsonLdBreadcrumb(crumbs), jsonLdFaq(prov.faq)]
+  const jsonLd = [
+    jsonLdBreadcrumb(crumbs),
+    jsonLdFaq(prov.faq),
+    jsonLdArticle(`Prepagas en ${prov.nombre}`, `Compará las ${prov.prepagas.length} prepagas con cobertura real en ${prov.nombre}.`, `/prepagas/${prov.slug}`),
+  ]
   const prepagasOrdenadas = [...prov.prepagas].sort((a, b) => {
     const ia = PARTNER_ORDER.indexOf(a.slug)
     const ib = PARTNER_ORDER.indexOf(b.slug)

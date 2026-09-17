@@ -5,7 +5,7 @@ import type { PrepagaZona, ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
-import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdBreadcrumb, jsonLdFaq } from './shared'
+import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq } from './shared'
 
 export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metadata {
   // Mismo criterio de precio real "desde" que /prepagas/[slug] y el hub
@@ -68,7 +68,11 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLdBreadcrumb(crumbs), jsonLdFaq(faq)]) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+        jsonLdBreadcrumb(crumbs),
+        jsonLdFaq(faq),
+        jsonLdArticle(`${pz.nombre} en ${prov.nombre}`, `Cartilla y cobertura de ${pz.nombre} en ${prov.nombre}.`, `/prepagas/${prov.slug}/${pz.slug}`),
+      ]) }} />
       <BreadcrumbBar crumbs={crumbs} />
 
       <div className="container py-10 max-w-4xl mx-auto">

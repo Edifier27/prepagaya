@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import type { LocalidadZona } from '@/lib/data/zonas'
 
 export interface Crumb {
@@ -28,6 +28,24 @@ export function jsonLdBreadcrumb(crumbs: Crumb[]) {
         ...(c.href ? { item: `${SITE_URL}${c.href}` } : {}),
       })),
     ],
+  }
+}
+
+// Article + dateModified (GEO, 17-sep-2026): estas páginas de zona/localidad
+// solo tenían BreadcrumbList y FAQPage — sin headline/description/dateModified
+// no había forma de que un motor de IA supiera cuándo se actualizó el
+// contenido. Un solo helper compartido cubre los 5 componentes del silo.
+export function jsonLdArticle(headline: string, description: string, url: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline,
+    description,
+    url: `${SITE_URL}${url}`,
+    author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    dateModified: CONTENT_UPDATE,
+    inLanguage: 'es-AR',
   }
 }
 
