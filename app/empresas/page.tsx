@@ -4,6 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { EmpresasForm } from '@/components/empresas/EmpresasForm'
+import { EmpresasComparador } from '@/components/empresas/EmpresasComparador'
 
 export const metadata: Metadata = {
   title: `Prepaga para Empresas y PyMEs: Planes Corporativos — ${PRECIO_ACTUALIZADO}`,
@@ -145,6 +146,15 @@ export default function EmpresasPage() {
         </div>
       </section>
 
+      {/* Comparador: las 2 prepagas corporativas que manejamos */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">Swiss Medical y OSDE, lado a lado</h2>
+          <p className="text-sm text-gray-500 mb-6">Las dos prepagas con las que armamos convenios corporativos. Deslizá para ver cada una y compará antes de cotizar.</p>
+          <EmpresasComparador />
+        </div>
+      </section>
+
       {/* Fallo Corte Suprema */}
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
@@ -223,6 +233,10 @@ export default function EmpresasPage() {
             <Link href="/empresas/swiss-medical" className="flex flex-col gap-1 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
               <span className="text-sm font-bold text-gray-900 group-hover:text-[#E8002D]">Plan corporativo de Swiss Medical →</span>
               <span className="text-xs text-gray-500">Convenio de afinidad y Plan Black</span>
+            </Link>
+            <Link href="/empresas/osde" className="flex flex-col gap-1 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
+              <span className="text-sm font-bold text-gray-900 group-hover:text-[#E8002D]">Plan corporativo de OSDE →</span>
+              <span className="text-xs text-gray-500">La red más grande del país</span>
             </Link>
             <Link href="/empresas/como-cotizar" className="flex flex-col gap-1 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
               <span className="text-sm font-bold text-gray-900 group-hover:text-[#E8002D]">Cómo cotizar un plan corporativo →</span>

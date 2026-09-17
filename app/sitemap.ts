@@ -94,6 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/empresas/como-cotizar`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${BASE}/empresas/beneficios-impositivos`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${BASE}/empresas/swiss-medical`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${BASE}/empresas/osde`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE}/empresas/swiss-medical/plan-black`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${BASE}/empresas/swiss-medical/vs-osde`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.75 },
   ]
