@@ -240,7 +240,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
     prepagas: [
       {
         slug: 'swiss-medical', nombre: 'Swiss Medical', enSitio: true, fuerza: 'fuerte', verificado: true,
-        resumen: 'Es la única premium con centro médico propio en Neuquén capital (Fotheringham 155) más dos puntos de atención (Av. Argentina 376 y Diagonal 25 de Mayo 160). Para el perfil de ingresos altos del sector energético, es la referencia local.',
+        resumen: 'Centro médico propio en Neuquén capital (Fotheringham 155) más dos puntos de atención (Av. Argentina 376 y Diagonal 25 de Mayo 160). Para el perfil de ingresos altos del sector energético, es una de las referencias premium locales.',
         cartillaLocal: ['Centro médico propio: Fotheringham 155', 'Sucursales: Av. Argentina 376 y Diag. 25 de Mayo 160', 'Cartilla premium en capital y Alto Valle'],
       },
       {
@@ -257,6 +257,11 @@ export const provinciasSEO: ProvinciaSEO[] = [
         slug: 'galeno', nombre: 'Galeno', enSitio: true, fuerza: 'media', verificado: true,
         resumen: 'Sucursal propia en Neuquén capital (Santa Fe y Diagonal España) y otra en Bariloche. Cobertura nacional por convenio: sus sanatorios propios (Trinidad) están en Buenos Aires.',
         cartillaLocal: ['Sucursal Neuquén: Santa Fe y Diagonal España', 'Sucursal cercana en Bariloche', 'Atención por cartilla de convenio'],
+      },
+      {
+        slug: 'medicus', nombre: 'Medicus', enSitio: true, fuerza: 'media', verificado: true,
+        resumen: 'Es la otra premium con centro médico propio en Neuquén, algo que muy pocas prepagas ofrecen en la Patagonia. Junto a Swiss Medical, es la opción a comparar si el sector energético es tu perfil y buscás atención propia en capital.',
+        cartillaLocal: ['Centro médico propio en Neuquén capital', 'Uno de los niveles de satisfacción más altos del mercado (87%)'],
       },
       {
         slug: 'prevencion-salud', nombre: 'Prevención Salud', enSitio: true, fuerza: 'media', verificado: false,

@@ -260,6 +260,55 @@ export const comparativas: Comparativa[] = [
     ganadorSatisfaccion: 'avalian',
     veredicto: 'Están muy parejas. Avalian tiene en promedio planes más accesibles y una satisfacción declarada apenas superior (73% contra 72%). Sancor Salud tiene más profesionales en cartilla (60.000 contra 40.000) y es la opción más fuerte si vivís en el interior, sobre todo Córdoba y Santa Fe, donde tiene su Centro Médico Vitus propio. Avalian compensa con telemedicina 24hs en todos los planes, aunque ninguna de las dos tiene sanatorios propios en AMBA. Para el interior, Sancor Salud. Para AMBA con presupuesto ajustado, Avalian.',
   },
+
+  // ── Galeno, Medicus, Hospital Italiano y Federada Salud no tenían ninguna
+  // comparativa en el sitio pese a ser jugadores grandes con búsqueda real
+  // ("galeno vs medife", "galeno vs swiss medical") — brecha detectada en
+  // auditoría de keywords de septiembre 2026.
+  {
+    slug: 'galeno-vs-medife',
+    prepaga1Slug: 'galeno',
+    prepaga2Slug: 'medife',
+    titulo: 'Galeno vs Medifé: ¿cuál conviene? 2026',
+    descripcion: 'Dos de las prepagas nacionales más elegidas en el segmento medio: comparamos Galeno y Medifé en precio, red y satisfacción.',
+    ganadorPrecio: 'medife',
+    ganadorRed: 'galeno',
+    ganadorSatisfaccion: 'galeno',
+    veredicto: 'Medifé tiene el plan de entrada más económico. Galeno tiene mayor satisfacción declarada (74% contra 70%) y una cartilla más grande, con sanatorios propios (Trinidad) en AMBA y su sistema de planes por color en todo el país. Si el precio de entrada es lo que más pesa, Medifé. Si buscás mayor red y estabilidad de marca por un poco más, Galeno.',
+  },
+  {
+    slug: 'galeno-vs-swiss-medical',
+    prepaga1Slug: 'galeno',
+    prepaga2Slug: 'swiss-medical',
+    titulo: 'Galeno vs Swiss Medical: comparativa completa 2026',
+    descripcion: 'Dos prepagas nacionales de trayectoria similar: comparamos Galeno y Swiss Medical en precio, cobertura y satisfacción de afiliados.',
+    ganadorPrecio: 'swiss-medical',
+    ganadorRed: 'swiss-medical',
+    ganadorSatisfaccion: 'swiss-medical',
+    veredicto: 'Swiss Medical gana en las tres puntas: plan de entrada más barato, más sanatorios propios distribuidos en el país y mayor satisfacción declarada (91% contra 74%). Galeno sigue siendo una opción sólida y de trayectoria (más de 35 años), con su cartilla por colores y buena cobertura de farmacia, pero hoy no logra igualar a Swiss Medical en ninguno de los tres frentes.',
+  },
+  {
+    slug: 'hospital-italiano-vs-cemic',
+    prepaga1Slug: 'hospital-italiano',
+    prepaga2Slug: 'cemic',
+    titulo: 'Hospital Italiano vs CEMIC: ¿cuál elegir? 2026',
+    descripcion: 'Los dos modelos de medicina universitaria más elegidos de Buenos Aires, comparados en precio, red y satisfacción.',
+    ganadorPrecio: 'cemic',
+    ganadorRed: 'hospital-italiano',
+    ganadorSatisfaccion: 'hospital-italiano',
+    veredicto: 'Ambas son prepagas de modelo hospitalario/universitario concentradas en AMBA. CEMIC es más económica. El Plan de Salud del Hospital Italiano tiene centros ambulatorios propios repartidos por toda el AMBA (no solo CABA) y una satisfacción declarada más alta (81% contra 71%). Si tu prioridad es historia clínica unificada en una red más extendida, Hospital Italiano. Si buscás el precio de entrada más bajo del segmento académico, CEMIC.',
+  },
+  {
+    slug: 'federada-salud-vs-sancor-salud',
+    prepaga1Slug: 'federada-salud',
+    prepaga2Slug: 'sancor-salud',
+    titulo: 'Federada Salud vs Sancor Salud: ¿cuál es mejor en el interior? 2026',
+    descripcion: 'Las dos regionales más fuertes del centro del país, comparadas para quienes viven en Córdoba, Santa Fe y el resto del interior.',
+    ganadorPrecio: 'federada-salud',
+    ganadorRed: 'sancor-salud',
+    ganadorSatisfaccion: 'federada-salud',
+    veredicto: 'Federada Salud tiene el plan de entrada más accesible y una satisfacción declarada apenas superior (74% contra 72%). Sancor Salud compensa con su Centro Médico Vitus propio en Córdoba capital (farmacia y óptica incluidas) y una red algo más grande a nivel nacional. Ambas son la referencia para el interior productivo (Córdoba, Santa Fe, Villa María, Rafaela) por sobre las nacionales premium. Para el precio más bajo, Federada. Para sumar un centro propio en Córdoba, Sancor Salud.',
+  },
 ]
 
 export function getComparativaBySlug(slug: string): Comparativa | undefined {
