@@ -69,6 +69,7 @@ export default async function CoberturaPage({ params }: Props) {
       headline: cob.titulo,
       description: cob.metaDescripcion,
       url: `${SITE_URL}/coberturas/${slug}`,
+      image: `${SITE_URL}/opengraph-image`,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/coberturas/${slug}` },

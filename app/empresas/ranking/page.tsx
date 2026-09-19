@@ -44,6 +44,7 @@ const jsonLd = [
     headline: 'Ranking de planes corporativos de prepaga en Argentina',
     description: 'Comparamos infraestructura propia, facturación y costo entre las prepagas corporativas que evaluamos activamente.',
     url: `${SITE_URL}/empresas/ranking`,
+    image: `${SITE_URL}/opengraph-image`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     dateModified: CONTENT_UPDATE,

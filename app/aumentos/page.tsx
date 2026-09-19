@@ -55,6 +55,7 @@ const jsonLd = [
     headline: `Aumentos de prepagas 2026: serie mensual y acumulado`,
     description: `Registro mensual de los aumentos de medicina prepaga en Argentina durante 2026, con el acumulado del año y la proyección del próximo mes.`,
     url: `${SITE_URL}/aumentos`,
+    image: `${SITE_URL}/opengraph-image`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/aumentos` },

@@ -91,6 +91,7 @@ export default async function BlogPostPage({ params }: Props) {
       headline: post.titulo,
       description: post.metaDescripcion,
       url: `${SITE_URL}/blog/${slug}`,
+      image: `${SITE_URL}/opengraph-image`,
       datePublished: post.fechaPublicacion,
       dateModified: post.fechaPublicacion,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },

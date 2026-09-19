@@ -50,6 +50,7 @@ const jsonLd = [
     headline: 'Health Insurance in Argentina for Foreigners: the 2026 Guide',
     description: 'Mandatory insurance requirement, joining a prepaga without a DNI, and real prices.',
     url: `${SITE_URL}/en/health-insurance-argentina`,
+    image: `${SITE_URL}/opengraph-image`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/en/health-insurance-argentina` },

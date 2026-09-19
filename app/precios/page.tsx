@@ -33,6 +33,7 @@ const jsonLd = [
     headline: `Precios de prepagas Argentina — ${MES_ACTUAL}`,
     description: `Tabla completa y actualizada de precios de prepagas en Argentina al ${MES_ACTUAL}. Todos los planes sin formularios.`,
     url: `${SITE_URL}/precios`,
+    image: `${SITE_URL}/opengraph-image`,
     datePublished: '2026-01-01',
     dateModified: '2026-07-10',
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },

@@ -49,6 +49,7 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2 }: { comp: Comp
       headline: comp.titulo,
       description: comp.descripcion,
       url: `${SITE_URL}/prepagas/${prep.slug}/${comp.slug}`,
+      image: `${SITE_URL}/opengraph-image`,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/prepagas/${prep.slug}/${comp.slug}` },

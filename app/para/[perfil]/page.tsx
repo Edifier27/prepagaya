@@ -67,6 +67,7 @@ export default async function PerfilPage({ params }: Props) {
       headline: perf.titulo,
       description: perf.metaDescripcion,
       url: `${SITE_URL}/para/${perfil}`,
+      image: `${SITE_URL}/opengraph-image`,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/para/${perfil}` },

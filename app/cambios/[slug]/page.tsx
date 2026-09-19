@@ -90,6 +90,7 @@ export default async function CambioPage({ params }: Props) {
       headline: `De ${c.origenNombre} a ${c.destinoNombre}: ¿conviene cambiarse?`,
       description: c.gancho,
       url: `${SITE_URL}/cambios/${slug}`,
+      image: `${SITE_URL}/opengraph-image`,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/cambios/${slug}` },

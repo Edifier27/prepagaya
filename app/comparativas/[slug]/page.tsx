@@ -98,6 +98,7 @@ export default async function ComparativaPage({ params }: Props) {
       headline: comp.titulo,
       description: comp.descripcion,
       url: `${SITE_URL}/comparativas/${slug}`,
+      image: `${SITE_URL}/opengraph-image`,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/comparativas/${slug}` },

@@ -218,6 +218,7 @@ const jsonLd = [
     headline: 'PMO: Qué Cubre el Programa Médico Obligatorio por Ley',
     description: 'Guía completa del Programa Médico Obligatorio en Argentina: cada categoría de cobertura, porcentajes de medicamentos y leyes especiales.',
     url: `${SITE_URL}/pmo`,
+    image: `${SITE_URL}/opengraph-image`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     dateModified: CONTENT_UPDATE,

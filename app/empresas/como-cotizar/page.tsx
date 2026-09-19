@@ -31,6 +31,7 @@ const jsonLd = [
     headline: 'Cómo cotizar un plan corporativo de prepaga',
     description: 'Guía paso a paso para cotizar cobertura médica corporativa para una empresa o pyme en Argentina.',
     url: `${SITE_URL}/empresas/como-cotizar`,
+    image: `${SITE_URL}/opengraph-image`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     dateModified: CONTENT_UPDATE,

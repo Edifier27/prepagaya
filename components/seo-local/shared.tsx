@@ -42,6 +42,7 @@ export function jsonLdArticle(headline: string, description: string, url: string
     headline,
     description,
     url: `${SITE_URL}${url}`,
+    image: `${SITE_URL}/opengraph-image`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     dateModified: CONTENT_UPDATE,

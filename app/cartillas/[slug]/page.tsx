@@ -84,6 +84,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
       headline: `Cartilla ${prep.nombre}: sanatorios, médicos y cómo consultarla`,
       description: `Guía completa de la cartilla médica de ${prep.nombre} en Argentina.`,
       url: `${SITE_URL}/cartillas/${slug}`,
+      image: `${SITE_URL}/opengraph-image`,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/cartillas/${slug}` },

@@ -64,6 +64,7 @@ export default async function GuiaPage({ params }: Props) {
       headline: guia.titulo,
       description: guia.metaDescripcion,
       url: `${SITE_URL}/guias/${slug}`,
+      image: `${SITE_URL}/opengraph-image`,
       dateModified: guia.fechaActualizacion,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },

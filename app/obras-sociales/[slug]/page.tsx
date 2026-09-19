@@ -67,6 +67,7 @@ export default async function ObraSocialPage({ params }: Props) {
       headline: os.titulo,
       description: os.metaDescripcion,
       url: `${SITE_URL}/obras-sociales/${slug}`,
+      image: `${SITE_URL}/opengraph-image`,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/obras-sociales/${slug}` },

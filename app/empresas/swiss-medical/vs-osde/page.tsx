@@ -39,6 +39,7 @@ const jsonLd = [
     headline: 'Swiss Medical vs. OSDE para empresas',
     description: 'Comparativa de planes corporativos entre Swiss Medical y OSDE para empresas y pymes.',
     url: `${SITE_URL}/empresas/swiss-medical/vs-osde`,
+    image: `${SITE_URL}/opengraph-image`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     dateModified: CONTENT_UPDATE,

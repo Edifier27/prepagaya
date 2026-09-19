@@ -62,6 +62,7 @@ const jsonLd = {
   headline: 'Historial de precios de prepagas Argentina 2024–2026',
   description: 'Evolución mensual de precios de OSDE Plan 310, Swiss Medical, Sancor Salud y más. Actualizado junio 2026.',
   url: `${SITE_URL}/historial-precios`,
+  image: `${SITE_URL}/opengraph-image`,
   dateModified: '2026-06-01',
   inLanguage: 'es-AR',
   author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },

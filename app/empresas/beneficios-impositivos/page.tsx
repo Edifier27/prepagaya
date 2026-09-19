@@ -31,6 +31,7 @@ const jsonLd = [
     headline: 'Beneficios impositivos de la prepaga corporativa',
     description: 'Guía sobre deducción de Ganancias en planes corporativos de medicina prepaga en Argentina.',
     url: `${SITE_URL}/empresas/beneficios-impositivos`,
+    image: `${SITE_URL}/opengraph-image`,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     dateModified: CONTENT_UPDATE,
