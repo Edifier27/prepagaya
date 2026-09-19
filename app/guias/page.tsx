@@ -47,6 +47,23 @@ export default function GuiasPage() {
 
       <section className="py-12">
         <div className="container">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+            <Link href="/tramites" className="flex items-center justify-between gap-3 bg-red-50 border border-red-100 rounded-2xl px-5 py-4 hover:border-red-200 transition-colors">
+              <div>
+                <div className="font-bold text-gray-900 text-sm">¿Qué trámite necesitás hacer?</div>
+                <div className="text-xs text-gray-500">Alta, autorización, traspaso, baja y derivación de aportes, todo agrupado</div>
+              </div>
+              <span className="flex-shrink-0 text-sm font-bold text-[#E8002D]">Ver trámites →</span>
+            </Link>
+            <Link href="/pmo" className="flex items-center justify-between gap-3 bg-blue-50 border border-blue-100 rounded-2xl px-5 py-4 hover:border-blue-200 transition-colors">
+              <div>
+                <div className="font-bold text-gray-900 text-sm">¿Qué te cubre tu prepaga por ley?</div>
+                <div className="text-xs text-gray-500">Guía completa del PMO, con fuente oficial de la SSSalud</div>
+              </div>
+              <span className="flex-shrink-0 text-sm font-bold text-blue-700">Ver PMO →</span>
+            </Link>
+          </div>
+
           {categorias.map((cat) => (
             <div key={cat} className="mb-10">
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">

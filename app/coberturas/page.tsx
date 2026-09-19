@@ -51,6 +51,17 @@ export default function CoberturasHubPage() {
       </section>
 
       <div className="container max-w-4xl mx-auto py-12">
+        <Link
+          href="/pmo"
+          className="flex items-center justify-between gap-3 bg-blue-50 border border-blue-100 rounded-2xl px-5 py-4 mb-8 hover:border-blue-200 transition-colors"
+        >
+          <div>
+            <div className="font-bold text-gray-900 text-sm">¿Buscás el piso legal completo, no cobertura por cobertura?</div>
+            <div className="text-xs text-gray-500">Guía completa del Programa Médico Obligatorio (PMO), con fuente oficial de la SSSalud</div>
+          </div>
+          <span className="flex-shrink-0 text-sm font-bold text-blue-700">Ver PMO →</span>
+        </Link>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {coberturas.map((cob) => (
             <Link

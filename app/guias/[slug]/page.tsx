@@ -191,6 +191,16 @@ export default async function GuiaPage({ params }: Props) {
               </Link>
             </div>
           )}
+          {slug === 'discapacidad-obra-social-cobertura-100' && (
+            <div className="bg-teal-50 border border-teal-100 rounded-2xl p-5 flex items-start justify-between gap-4 flex-wrap">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                ¿Ya tenés el CUD y buscás comparar prepagas específicamente por esto? Mirá qué prepaga conviene según nuestra ficha dedicada a discapacidad.
+              </p>
+              <Link href="/condiciones/discapacidad" className="flex-shrink-0 text-sm font-bold text-teal-700 hover:underline">
+                Ver mejores prepagas para discapacidad →
+              </Link>
+            </div>
+          )}
         </article>
 
         {/* Prepagas relacionadas */}

@@ -254,6 +254,30 @@ export default async function PerfilPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Condiciones específicas más relevantes para este perfil */}
+      {perf.slug === 'adultos-mayores' && (
+        <section className="py-8 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Link href="/condiciones/enfermedad-renal-cronica" className="flex items-center justify-between gap-3 bg-rose-50 border border-rose-100 rounded-xl px-5 py-4 hover:border-rose-200 transition-colors">
+                <div>
+                  <div className="font-bold text-gray-900 text-sm">¿Tenés enfermedad renal o estás en diálisis?</div>
+                  <div className="text-xs text-gray-500">Mejor prepaga para enfermedad renal crónica y diálisis</div>
+                </div>
+                <span className="flex-shrink-0 text-sm font-bold text-rose-700">Ver →</span>
+              </Link>
+              <Link href="/condiciones/discapacidad" className="flex items-center justify-between gap-3 bg-teal-50 border border-teal-100 rounded-xl px-5 py-4 hover:border-teal-200 transition-colors">
+                <div>
+                  <div className="font-bold text-gray-900 text-sm">¿Tenés Certificado Único de Discapacidad?</div>
+                  <div className="text-xs text-gray-500">Mejor prepaga para discapacidad (cobertura 100% por ley)</div>
+                </div>
+                <span className="flex-shrink-0 text-sm font-bold text-teal-700">Ver →</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">

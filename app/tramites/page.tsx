@@ -113,6 +113,17 @@ export default function TramitesPage() {
       </section>
 
       <div className="container max-w-4xl mx-auto py-12">
+        <Link
+          href="/pmo"
+          className="flex items-center justify-between gap-3 bg-blue-50 border border-blue-100 rounded-2xl px-5 py-4 mb-10 hover:border-blue-200 transition-colors"
+        >
+          <div>
+            <div className="font-bold text-gray-900 text-sm">Antes de tramitar algo, confirmá si está cubierto por ley</div>
+            <div className="text-xs text-gray-500">Guía completa del Programa Médico Obligatorio (PMO): qué cubre cada categoría y con qué porcentaje</div>
+          </div>
+          <span className="flex-shrink-0 text-sm font-bold text-blue-700">Ver PMO →</span>
+        </Link>
+
         <div className="space-y-10">
           {GRUPOS.map((grupo) => {
             const items = grupo.slugs.map((s) => bySlug[s]).filter((g): g is NonNullable<typeof g> => Boolean(g))

@@ -49,6 +49,8 @@ const obrasSocialesMenu = [
 const herramientasMenu = [
   { href: '/precios', label: `Precios ${PRECIO_ACTUALIZADO.toLowerCase()}` },
   { href: '/cambios', label: '¿A qué prepaga cambiarte?' },
+  { href: '/tramites', label: 'Trámites de prepaga' },
+  { href: '/pmo', label: 'Qué cubre el PMO' },
   { href: '/aumentos', label: 'Aumentos mes a mes' },
   { href: '/comparar', label: 'Comparar planes' },
   { href: '/prepaga-por-presupuesto', label: 'Encontrá tu prepaga por presupuesto' },

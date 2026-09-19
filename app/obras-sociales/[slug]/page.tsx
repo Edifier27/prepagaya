@@ -250,7 +250,7 @@ export default async function ObraSocialPage({ params }: Props) {
               <div>
                 <h2 className="text-lg font-bold text-gray-900 mb-1">{os.nombre} también existe como prepaga privada</h2>
                 <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
-                  Con tu aporte derivado a {os.nombre} tenés cobertura del PMO. Si además querés contratar {prepagaMatch.nombre} de forma directa —sin depender de un aporte en blanco— podés ver sus planes, precios y cartilla en la ficha de prepaga.
+                  Con tu aporte derivado a {os.nombre} tenés <Link href="/pmo" className="font-semibold text-gray-800 hover:text-[#E8002D] hover:underline">cobertura del PMO</Link>. Si además querés contratar {prepagaMatch.nombre} de forma directa —sin depender de un aporte en blanco— podés ver sus planes, precios y cartilla en la ficha de prepaga.
                 </p>
               </div>
               <Link
