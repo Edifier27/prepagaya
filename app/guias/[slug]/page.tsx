@@ -178,6 +178,19 @@ export default async function GuiaPage({ params }: Props) {
             <h2 className="text-lg font-bold text-gray-900 mb-2">En resumen</h2>
             <p className="text-gray-600 leading-relaxed">{guia.contenido.conclusion}</p>
           </div>
+
+          {/* Guía dedicada al PMO: se referencia desde acá y desde todas las
+              fichas de condiciones y coberturas — es el desglose legal completo. */}
+          {slug === 'que-cubre-la-prepaga' && (
+            <div className="bg-blue-50 border border-blue-100 rounded-2xl p-5 flex items-start justify-between gap-4 flex-wrap">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Este resumen cubre lo esencial. Para el desglose legal completo, categoría por categoría, con la fuente oficial de la SSSalud, mirá la guía dedicada del PMO.
+              </p>
+              <Link href="/pmo" className="flex-shrink-0 text-sm font-bold text-blue-700 hover:underline">
+                Ver el PMO completo →
+              </Link>
+            </div>
+          )}
         </article>
 
         {/* Prepagas relacionadas */}

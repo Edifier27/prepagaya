@@ -47,7 +47,7 @@ export const terminos: Termino[] = [
   // COBERTURA
   {
     termino: 'PMO',
-    definicion: 'Plan Médico Obligatorio. Conjunto mínimo de prestaciones que toda prepaga u obra social debe cubrir por ley en Argentina. Ninguna empresa puede negar las prácticas del PMO.',
+    definicion: 'Programa Médico Obligatorio. Conjunto mínimo de prestaciones que toda prepaga u obra social debe cubrir por ley en Argentina, regulado por la Resolución 201/2002 de la SSSalud. Ninguna empresa puede negar las prácticas del PMO.',
     categoria: 'Cobertura',
     ejemplo: 'El PMO incluye consultas médicas, análisis clínicos, internación, parto y medicamentos.',
   },

@@ -137,6 +137,9 @@ export default async function CoberturaPage({ params }: Props) {
               Qué establece la ley
             </h2>
             <p className="text-sm text-gray-700 leading-relaxed">{cob.queEstableceLaLey}</p>
+            <Link href="/pmo" className="inline-block mt-3 text-sm font-semibold text-blue-700 hover:underline">
+              Ver el Programa Médico Obligatorio completo →
+            </Link>
           </div>
         </div>
       </section>

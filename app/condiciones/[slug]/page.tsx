@@ -133,6 +133,9 @@ export default async function CondicionPage({ params }: Props) {
               Qué te cubre cualquier prepaga por ley
             </h2>
             <p className="text-sm text-gray-700 leading-relaxed">{cond.queCubreElPMO}</p>
+            <Link href="/pmo" className="inline-block mt-3 text-sm font-semibold text-blue-700 hover:underline">
+              Ver el Programa Médico Obligatorio completo →
+            </Link>
           </div>
         </div>
       </section>

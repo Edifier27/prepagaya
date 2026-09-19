@@ -287,6 +287,11 @@ export function Footer() {
                   Trámites de prepaga
                 </Link>
               </li>
+              <li>
+                <Link href="/pmo" className="text-sm text-gray-300 hover:text-white transition-colors font-medium">
+                  Qué cubre el PMO
+                </Link>
+              </li>
               {guiaLinks.map((g) => (
                 <li key={g.slug}>
                   <Link href={`/guias/${g.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">

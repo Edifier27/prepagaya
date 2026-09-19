@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/comparativas`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/guias`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/tramites`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/pmo`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/coberturas`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/condiciones`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/comparador`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.95 },
