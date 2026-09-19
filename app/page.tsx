@@ -276,24 +276,27 @@ export default function HomePage(): React.ReactElement {
               La cartilla real cambia según dónde vivas. Verificamos qué prepagas tienen cobertura efectiva en cada provincia, incluyendo las regionales que las comparativas nacionales ignoran.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 max-w-4xl mx-auto">
             {provinciasSEO.map((prov) => (
-              <div key={prov.slug} className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-6 flex flex-col">
-                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center mb-4">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5 text-[#E8002D]">
+              <div key={prov.slug} className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-4 sm:p-6 flex flex-col">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-red-50 flex items-center justify-center mb-3 sm:mb-4">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 sm:w-5 sm:h-5 text-[#E8002D]">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" strokeLinecap="round" strokeLinejoin="round"/>
                     <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none"/>
                   </svg>
                 </div>
-                <h3 className="font-bold text-gray-900 text-lg mb-1">Prepagas en {prov.nombre}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed flex-1">
+                <h3 className="font-bold text-gray-900 text-sm sm:text-lg mb-1 leading-snug">Prepagas en {prov.nombre}</h3>
+                <p className="hidden sm:block text-sm text-gray-500 leading-relaxed flex-1">
                   {prov.prepagas.length} prepagas con cobertura verificada, precios {PRECIO_ACTUALIZADO.toLowerCase()} y cartillas en {prov.capitalNombre} y el interior.
                 </p>
-                <div className="flex items-center gap-4 mt-4 pt-3 border-t border-gray-50">
-                  <Link href={`/prepagas/${prov.slug}`} className="text-sm font-bold text-[#E8002D] hover:underline">
+                <p className="sm:hidden text-xs text-gray-500 flex-1">
+                  {prov.prepagas.length} prepagas verificadas
+                </p>
+                <div className="flex items-center gap-3 sm:gap-4 mt-3 sm:mt-4 pt-3 border-t border-gray-50 flex-wrap">
+                  <Link href={`/prepagas/${prov.slug}`} className="text-xs sm:text-sm font-bold text-[#E8002D] hover:underline">
                     Ver cobertura →
                   </Link>
-                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="text-xs sm:text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
                     Ranking
                   </Link>
                 </div>
