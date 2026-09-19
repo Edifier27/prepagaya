@@ -61,47 +61,47 @@ export function EmpresasForm({ prepagaContexto }: Props = {}) {
 
   if (status === 'success') {
     return (
-      <div className="bg-white rounded-2xl border-2 border-green-200 p-6 text-center">
-        <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-          <svg viewBox="0 0 20 20" fill="currentColor" className="w-7 h-7 text-green-500">
+      <div className="bg-white/[0.03] rounded-2xl border border-[#C7A046]/30 p-7 text-center">
+        <div className="w-14 h-14 bg-[#C7A046]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+          <svg viewBox="0 0 20 20" fill="currentColor" className="w-7 h-7 text-[#C7A046]">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
           </svg>
         </div>
-        <p className="font-bold text-gray-900 mb-1">¡Listo! Recibimos los datos de {empresa}</p>
+        <p className="font-semibold text-white mb-1">¡Listo! Recibimos los datos de {empresa}</p>
         <p className="text-sm text-gray-500">Un asesor va a armar la propuesta comparada para tu equipo y te contacta a la brevedad.</p>
       </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-2xl border-2 border-gray-200 p-6">
+    <div className="bg-white/[0.03] rounded-2xl border border-white/[0.08] p-6 sm:p-7">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
         <div>
-          <label className="block text-xs font-semibold text-gray-700 mb-1">Nombre de la empresa *</label>
+          <label className="block text-xs font-semibold text-gray-400 mb-1.5">Nombre de la empresa *</label>
           <input
             type="text" value={empresa} onChange={(e) => setEmpresa(e.target.value)}
             placeholder="Ferretería del Sur SRL"
-            className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
+            className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
           />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-gray-700 mb-1">Tu nombre *</label>
+          <label className="block text-xs font-semibold text-gray-400 mb-1.5">Tu nombre *</label>
           <input
             type="text" value={nombre} onChange={(e) => setNombre(e.target.value)}
             placeholder="Nombre del contacto"
-            className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
+            className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
           />
         </div>
       </div>
 
       <div className="mb-4">
-        <label className="block text-xs font-semibold text-gray-700 mb-2">Cantidad de empleados *</label>
+        <label className="block text-xs font-semibold text-gray-400 mb-2">Cantidad de empleados *</label>
         <div className="flex flex-wrap gap-2">
           {RANGOS_EMPLEADOS.map((r) => (
             <button
               key={r} type="button" onClick={() => setEmpleados(r)}
-              className={`px-4 py-2 rounded-xl text-sm font-semibold border-2 transition-colors ${
-                empleados === r ? 'border-[#E8002D] bg-red-50 text-[#E8002D]' : 'border-gray-200 text-gray-600 hover:border-gray-300'
+              className={`px-4 py-2 rounded-lg text-sm font-semibold border transition-colors ${
+                empleados === r ? 'border-[#C7A046] bg-[#C7A046]/10 text-[#C7A046]' : 'border-white/[0.12] text-gray-400 hover:border-white/25'
               }`}
             >
               {r}
@@ -111,13 +111,13 @@ export function EmpresasForm({ prepagaContexto }: Props = {}) {
       </div>
 
       <div className="mb-4">
-        <label className="block text-xs font-semibold text-gray-700 mb-2">¿Cómo querés cotizar? *</label>
+        <label className="block text-xs font-semibold text-gray-400 mb-2">¿Cómo querés cotizar? *</label>
         <div className="flex flex-col gap-2">
           {MODALIDADES.map((m) => (
             <button
               key={m.value} type="button" onClick={() => setModalidad(m.value)}
-              className={`text-left px-4 py-2.5 rounded-xl text-sm font-medium border-2 transition-colors ${
-                modalidad === m.value ? 'border-[#E8002D] bg-red-50 text-[#E8002D]' : 'border-gray-200 text-gray-600 hover:border-gray-300'
+              className={`text-left px-4 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
+                modalidad === m.value ? 'border-[#C7A046] bg-[#C7A046]/10 text-[#C7A046]' : 'border-white/[0.12] text-gray-400 hover:border-white/25'
               }`}
             >
               {m.label}
@@ -128,19 +128,19 @@ export function EmpresasForm({ prepagaContexto }: Props = {}) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
         <div>
-          <label className="block text-xs font-semibold text-gray-700 mb-1">Teléfono de contacto *</label>
+          <label className="block text-xs font-semibold text-gray-400 mb-1.5">Teléfono de contacto *</label>
           <input
             type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
             placeholder="11 4567-8900" inputMode="numeric"
-            className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
+            className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
           />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-gray-700 mb-1">Email *</label>
+          <label className="block text-xs font-semibold text-gray-400 mb-1.5">Email *</label>
           <input
             type="email" value={email} onChange={(e) => setEmail(e.target.value)}
             placeholder="vos@tuempresa.com"
-            className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
+            className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
           />
         </div>
       </div>
@@ -148,12 +148,12 @@ export function EmpresasForm({ prepagaContexto }: Props = {}) {
       <button
         onClick={handleSubmit}
         disabled={!ok || status === 'loading'}
-        className="w-full py-3.5 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition-colors"
+        className="w-full py-3.5 bg-[#C7A046] hover:bg-[#DDBB63] disabled:bg-white/10 disabled:text-gray-600 disabled:cursor-not-allowed text-[#0A0B0D] font-bold rounded-lg text-sm transition-colors"
       >
         {status === 'loading' ? 'Enviando...' : 'Pedir propuesta para mi equipo'}
       </button>
       {status === 'error' && (
-        <p className="text-xs text-red-600 mt-2 text-center">No pudimos enviar el formulario. Probá de nuevo en un momento.</p>
+        <p className="text-xs text-red-400 mt-2 text-center">No pudimos enviar el formulario. Probá de nuevo en un momento.</p>
       )}
     </div>
   )
