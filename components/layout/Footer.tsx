@@ -282,6 +282,11 @@ export function Footer() {
           <div>
             <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Guías</h3>
             <ul className="space-y-2.5">
+              <li>
+                <Link href="/tramites" className="text-sm text-gray-300 hover:text-white transition-colors font-medium">
+                  Trámites de prepaga
+                </Link>
+              </li>
               {guiaLinks.map((g) => (
                 <li key={g.slug}>
                   <Link href={`/guias/${g.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">

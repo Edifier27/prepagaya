@@ -383,7 +383,50 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['como reclamar a una prepaga', 'denuncia sssalud prepaga', 'prepaga me niega cobertura que hacer', 'amparo salud prepaga'],
-    relacionadas: ['que-cubre-la-prepaga', 'preexistencias-que-son-como-funcionan', 'baja-de-prepaga-proceso'],
+    relacionadas: ['que-cubre-la-prepaga', 'preexistencias-que-son-como-funcionan', 'baja-de-prepaga-proceso', 'como-pedir-autorizacion-prepaga'],
+  },
+  {
+    slug: 'como-pedir-autorizacion-prepaga',
+    titulo: 'Cómo pedir autorización a la prepaga: guía completa 2026',
+    metaDescripcion: 'Qué estudios y cirugías necesitan autorización previa, cómo pedirla online desde la app o el portal de tu prepaga, cuánto tarda y qué hacer si te la niegan.',
+    tiempoLectura: 7,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-09-19',
+    contenido: {
+      intro: 'La autorización previa (también llamada "auditoría médica") es el trámite que más dudas genera una vez que ya sos afiliado: no sabés si tu estudio la necesita, cómo pedirla, ni cuánto vas a tener que esperar. La buena noticia es que hoy casi todo se resuelve online, en minutos, y hay reglas claras (y una ley de tu lado) para lo que tarda más de la cuenta.',
+      secciones: [
+        {
+          titulo: 'Qué es la autorización y para qué sirve',
+          cuerpo: 'Es el control que hace la prepaga antes de cubrir una prestación de mayor costo o complejidad: confirma que el estudio o la cirugía que pidió tu médico está indicado, corresponde a tu plan y entra dentro de lo que la empresa va a pagar. No es un trámite para "decidir si te atienden": si la indicación médica es correcta y la prestación forma parte del PMO, la autorización es un paso administrativo, no una segunda opinión que pueda negarte algo obligatorio.',
+        },
+        {
+          titulo: 'Qué necesita autorización previa (y qué no)',
+          cuerpo: 'Por lo general piden autorización: cirugías programadas, internaciones que no son de urgencia, estudios de alta complejidad (resonancias, tomografías, estudios genéticos), medicación de alto costo, prótesis y tratamientos prolongados (kinesiología, salud mental, discapacidad). NO necesitás autorización para: consultas médicas, análisis de rutina de baja complejidad, y nunca para una urgencia real — ahí la autorización es posterior, entre el sanatorio y la empresa, nunca una condición para atenderte.',
+        },
+        {
+          titulo: 'Cómo pedirla online, paso a paso',
+          cuerpo: 'Todas las prepagas grandes tienen el trámite digitalizado: en OSDE es desde la app o el sitio, en la sección "Trámites → Autorizar una prestación"; en Swiss Medical desde el portal de Autorizaciones o la app; el resto de las empresas (Sancor Salud, Galeno, Medifé, Avalian) tiene circuitos equivalentes en su portal de afiliados. En general subís la orden médica escaneada o fotografiada, indicás la prestación y el prestador donde te la vas a hacer, y el sistema te da una respuesta o un número de trámite para seguir el estado.',
+        },
+        {
+          titulo: 'Cuánto tarda',
+          cuerpo: 'Las autorizaciones simples (un estudio de rutina, una práctica ambulatoria) suelen resolverse en el momento o dentro de las 24 a 48 horas. Las cirugías programadas y las prestaciones de mayor complejidad pueden tardar más: como regla general, conviene iniciar el trámite con al menos 72 horas de anticipación a la fecha del turno o la cirugía para no quedarte sin margen si piden algún dato adicional.',
+        },
+        {
+          titulo: 'Qué hacer si te la niegan o no responden',
+          cuerpo: 'Si la prestación es parte del PMO y tenés indicación médica, la prepaga no puede negarla: puede auditarla, pero no rechazarla sin fundamento. Si te dicen que no, o simplemente no te contestan, pedí la negativa por escrito (mail o número de reclamo) y hacé la denuncia en sssalud.gob.ar — la mayoría de estos casos se revierten en esa instancia sin necesidad de llegar a la justicia. Para el detalle completo del circuito de reclamo, ver la guía de cómo reclamar a una prepaga.',
+        },
+      ],
+      conclusion: 'El 90% de las autorizaciones hoy se resuelven online y sin drama: la clave es pedirla con anticipación (72 horas para lo programado), guardar el número de trámite, y saber que si la prestación es del PMO, la ley está de tu lado si te la niegan sin motivo.',
+    },
+    faq: [
+      { q: '¿Necesito autorización para una consulta médica?', a: 'No. Las consultas con especialistas de cartilla no requieren autorización previa en ninguna prepaga; solo necesitás la orden si tu plan lo pide para reintegro.' },
+      { q: '¿Cuánto tarda la autorización de una cirugía programada?', a: 'Varía según la prepaga y la complejidad, pero como referencia conviene iniciar el trámite con al menos 72 horas de anticipación. Las cirugías de mayor complejidad o con insumos especiales pueden tardar más.' },
+      { q: '¿Puedo pedir la autorización desde la app de mi prepaga?', a: 'Sí, todas las prepagas grandes (OSDE, Swiss Medical, Sancor Salud, Galeno, Medifé) tienen el trámite digitalizado desde su app o portal de afiliados: subís la orden médica y el sistema te da una respuesta o un número de seguimiento.' },
+      { q: '¿Qué pasa si me hago un estudio sin la autorización correspondiente?', a: 'Corrés el riesgo de que la prepaga no lo reconozca y tengas que pagarlo particular, salvo que sea una urgencia real (ahí la autorización se tramita después). Por eso conviene siempre confirmar antes si tu estudio la necesita.' },
+    ],
+    keywords: ['como pedir autorizacion prepaga', 'autorizacion online prepaga', 'codigo de autorizacion prepaga', 'cuanto tarda la autorizacion de una cirugia', 'que estudios necesitan autorizacion prepaga', 'autorizar una prestacion osde'],
+    relacionadas: ['como-reclamar-a-una-prepaga', 'urgencias-guardia-prepaga', 'reintegros-en-prepagas', 'que-cubre-la-prepaga'],
+    prepagasRelacionadas: ['osde', 'swiss-medical', 'sancor-salud'],
   },
   {
     slug: 'como-contratar-prepaga-online',

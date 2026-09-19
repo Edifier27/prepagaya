@@ -7,7 +7,7 @@ interface Props {
 }
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
+  return new Date(iso + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
 export function BlogAuthorBox({ fechaPublicacion, fechaRevision }: Props): React.ReactElement {

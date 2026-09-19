@@ -94,6 +94,16 @@ export const provinciasSEO: ProvinciaSEO[] = [
         resumen: 'Red nacional con buena relación precio-calidad. Su densidad de cartilla en Córdoba es menor que la de las regionales fuertes; para el interior provincial conviene verificar prestadores al cotizar.',
         cartillaLocal: ['Cobertura nacional declarada', 'Cartilla cordobesa sujeta a verificación al cotizar'],
       },
+      {
+        slug: 'premedic', nombre: 'Premedic', enSitio: true, fuerza: 'media', verificado: true,
+        resumen: 'La prepaga más económica del mercado también cotiza en Córdoba capital: es de las pocas opciones de entrada realmente baratas disponibles en la provincia, con red odontológica propia (Smile Group) como diferencial. Buena alternativa para monotributistas y jóvenes que buscan cobertura básica sin pagar de más.',
+        cartillaLocal: ['Cobertura declarada en Córdoba capital', 'Smile Group: red odontológica propia con descuentos', 'El plan de entrada más económico disponible en la provincia'],
+      },
+      {
+        slug: 'medicus', nombre: 'Medicus', enSitio: true, fuerza: 'marginal', verificado: true,
+        resumen: 'Sus centros médicos propios están en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche — en Córdoba no tiene sede propia, así que la atención es por cartilla de convenio. Igual cotiza para la provincia; conviene revisar qué sanatorios cordobeses incluye antes de contratar.',
+        cartillaLocal: ['Sin centro médico propio en Córdoba (atención por convenio)', 'Cobertura nacional declarada en todos sus planes', 'Uno de los niveles de satisfacción más altos del mercado (87%)'],
+      },
     ],
     localidades: [
       {
@@ -129,6 +139,8 @@ export const provinciasSEO: ProvinciaSEO[] = [
       { q: '¿Qué prepagas tienen cartilla en el interior de Córdoba?', a: 'Sancor Salud, Federada Salud, Avalian y Prevención Salud son las de mayor presencia en ciudades como Río Cuarto, Villa María y San Francisco. Las premium nacionales cubren el interior pero con redes más acotadas que en capital.' },
       { q: 'Tengo APROSS, ¿puedo contratar una prepaga igual?', a: 'Sí. APROSS es la obra social de los empleados públicos cordobeses y no se elige voluntariamente, pero podés contratar una prepaga en paralelo para acceder a cartilla privada. Muchos afiliados lo hacen para internación y especialistas.' },
       { q: '¿Cuánto cuesta una prepaga en Córdoba?', a: 'Los precios de lista son los mismos que en el resto del país para la mayoría de las prepagas nacionales: van desde ~$150.000/mes para un adulto joven en planes de entrada hasta más de $450.000 en planes premium. Cotizá por edad y zona para ver el precio exacto con descuentos.' },
+      { q: '¿Cuál es la prepaga más barata en Córdoba?', a: 'Premedic es, en general, la opción más económica con cobertura declarada en Córdoba capital: su plan de entrada arranca bien por debajo del promedio del mercado. Sancor Salud y Avalian también tienen planes accesibles con buena cartilla local. Si sos joven y sano y buscás bajar la cuota, empezá comparando estas tres.' },
+      { q: '¿Qué prepaga conviene si soy monotributista en Córdoba capital?', a: 'Como monotributista podés usar tus aportes de obra social para pagar parte de la cuota de una prepaga por derivación. En Córdoba, Sancor Salud, Avalian y Prevención Salud suelen tener los planes de entrada más convenientes para esa combinación; Premedic es la opción más barata si preferís pagar la cuota completa sin derivación. Cotizá con tu edad para ver el descuento real por aportes.' },
     ],
     fechaVerificacion: '2026-07-14',
   },
@@ -176,6 +188,11 @@ export const provinciasSEO: ProvinciaSEO[] = [
         slug: 'nobis', nombre: 'Nobis Salud', enSitio: false, fuerza: 'media', verificado: true,
         resumen: 'La cordobesa Nobis abrió sucursal en Salta como parte de su expansión por el norte. Cartilla en crecimiento: vale cotizarla como alternativa accesible frente a las nacionales.',
         cartillaLocal: ['Sucursal de atención en Salta', 'Red en expansión en el NOA'],
+      },
+      {
+        slug: 'medife', nombre: 'Medifé', enSitio: true, fuerza: 'marginal', verificado: false,
+        resumen: 'Red nacional con más de 50 sucursales en el país. Su presencia en Salta es menor que la de Boreal o las regionales del centro; conviene verificar qué sanatorios salteños incluye tu plan antes de contratar.',
+        cartillaLocal: ['Cobertura nacional declarada', 'Cartilla salteña sujeta a verificación al cotizar'],
       },
     ],
     localidades: [
@@ -343,6 +360,11 @@ export const provinciasSEO: ProvinciaSEO[] = [
         slug: 'jerarquicos-salud', nombre: 'Jerárquicos Salud', enSitio: false, fuerza: 'fuerte', verificado: true,
         resumen: 'Con casa central en Santa Fe capital, es una de las obras sociales/prepagas más elegidas de la ciudad y el centro-norte provincial. Planes PMI, PMI 2000, PMI 3000 y PMI Soltero (hasta 30 años), con descuentos de farmacia del 40 al 70%.',
         cartillaLocal: ['Casa central en Santa Fe capital', 'Muy fuerte en la capital y el centro-norte provincial', 'Red de farmacias con 40-70% de descuento'],
+      },
+      {
+        slug: 'medicus', nombre: 'Medicus', enSitio: true, fuerza: 'media', verificado: true,
+        resumen: 'Tiene uno de sus centros médicos propios en Rosario, algo que muy pocas prepagas premium pueden ofrecer fuera de Buenos Aires. Para quien vive en Rosario y busca atención de alta gama sin depender solo de cartilla de convenio, es una opción a comparar con Swiss Medical y OSDE.',
+        cartillaLocal: ['Centro médico propio en Rosario', 'Uno de los niveles de satisfacción más altos del mercado (87%)', 'Fuera de Rosario, cobertura por cartilla de convenio'],
       },
     ],
     localidades: [
@@ -680,6 +702,9 @@ provinciasSEO.push(
       { slug: 'omint', nombre: 'Omint', enSitio: true, fuerza: 'marginal', verificado: true,
         resumen: 'Sus tres sanatorios propios (Bazterrica, Del Sol, Santa Isabel) están dentro de CABA; en GBA opera con red de convenios.',
         cartillaLocal: ['Sin sanatorios propios en el conurbano', 'Cobertura internacional en todos los planes'] },
+      { slug: 'hospital-italiano', nombre: 'Plan de Salud Hospital Italiano', enSitio: true, fuerza: 'marginal', verificado: true,
+        resumen: 'Sus centros ambulatorios propios se extienden por toda el AMBA, no solo CABA, así que buena parte del conurbano tiene acceso directo a la red del Hospital Italiano sin depender de convenios.',
+        cartillaLocal: ['Centros ambulatorios propios en varios puntos del conurbano (AMBA)', 'Historia clínica unificada en toda la red', 'Internación en el Hospital Italiano de Buenos Aires'] },
       { slug: 'hominis', nombre: 'Hominis', enSitio: true, fuerza: 'marginal', verificado: false,
         resumen: 'Prepaga de menor escala en el segmento de precio accesible, con presencia acotada en la provincia.',
         cartillaLocal: ['Alternativa de precio en el segmento de entrada'] },

@@ -118,7 +118,7 @@ export default async function GuiaPage({ params }: Props) {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">{guia.titulo}</h1>
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 pb-6 border-b border-gray-100">
             <span>
-              Actualizado el {new Date(guia.fechaActualizacion).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}
+              Actualizado el {new Date(guia.fechaActualizacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}
             </span>
             <span className="flex items-center gap-1.5">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-3.5 h-3.5">

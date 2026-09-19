@@ -79,7 +79,7 @@ export function BlogGrid({ posts, categorias }: Props) {
                 {destacado.bajada}
               </p>
               <div className="flex items-center gap-5 text-sm text-red-200">
-                <span>{new Date(destacado.fechaPublicacion).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                <span>{new Date(destacado.fechaPublicacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                 <span className="flex items-center gap-1.5">
                   <ClockIcon />
                   {destacado.tiempoLectura} min de lectura
@@ -121,7 +121,7 @@ export function BlogGrid({ posts, categorias }: Props) {
                   {post.bajada}
                 </p>
                 <div className="flex items-center justify-between text-xs text-gray-400 pt-4 border-t border-gray-100">
-                  <span>{new Date(post.fechaPublicacion).toLocaleDateString('es-AR', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                  <span>{new Date(post.fechaPublicacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
                   <span className="flex items-center gap-1">
                     <ClockIcon />
                     {post.tiempoLectura} min
