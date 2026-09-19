@@ -45,6 +45,8 @@ const condicionMap: Record<string, LetterCfg> = {
   'adultos-mayores':   { letters: 'AM', bg: 'bg-red-100',   text: 'text-red-800',   bgHover: 'group-hover:bg-red-200' },
   artritis:            { letters: 'AR', bg: 'bg-indigo-100', text: 'text-indigo-800', bgHover: 'group-hover:bg-indigo-200' },
   'enfermedad-cronica':{ letters: 'EC', bg: 'bg-gray-100',   text: 'text-gray-700',   bgHover: 'group-hover:bg-gray-200' },
+  discapacidad:        { letters: 'DI', bg: 'bg-teal-100',   text: 'text-teal-800',   bgHover: 'group-hover:bg-teal-200' },
+  'enfermedad-renal-cronica': { letters: 'ER', bg: 'bg-rose-100', text: 'text-rose-800', bgHover: 'group-hover:bg-rose-200' },
 }
 
 // ─── Obras Sociales ───────────────────────────────────────────────────────────

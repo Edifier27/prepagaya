@@ -382,6 +382,89 @@ export const condiciones: CondicionData[] = [
     coberturasRelacionadas: ['medicamentos', 'urgencias', 'rehabilitacion'],
     keywords: ['prepaga enfermedad cardiovascular', 'prepaga infarto miocardio', 'prepaga stent angioplastia', 'cardiología cobertura prepaga', 'mejor prepaga para el corazón'],
   },
+  {
+    slug: 'discapacidad',
+    nombre: 'Discapacidad',
+    emoji: '♿',
+    titulo: 'Mejor prepaga para personas con discapacidad (CUD) 2026',
+    metaDescripcion: 'Qué prepaga conviene si tenés Certificado Único de Discapacidad (CUD). Cobertura 100% por Ley 24.901: terapias, transporte, apoyos y escolaridad especial.',
+    intro: 'Si tenés Certificado Único de Discapacidad (CUD), la Ley 24.901 obliga a las prepagas a cubrir el 100% de un conjunto amplio de prestaciones —no solo las médicas básicas del PMO— y esa cobertura no depende del plan que elijas ni puede limitarse por preexistencia. Lo que sí cambia mucho de una prepaga a otra es la red real de prestadores de discapacidad en tu zona y la agilidad para autorizar cada prestación.',
+    queCubreElPMO: 'Por la Ley 24.901 (extendida a las prepagas por la Ley 26.682), la cobertura para afiliados con CUD incluye al 100%: prestaciones de rehabilitación (kinesiología, fonoaudiología, terapia ocupacional, psicopedagogía), apoyo a la integración escolar (maestra integradora), transporte especial hacia los tratamientos, centros de día y talleres protegidos, prestaciones asistenciales (residencias, hogares) cuando corresponde, y todas las prestaciones médicas del PMO sin límite de sesiones cuando están indicadas.',
+    prepagasRecomendadas: [
+      {
+        slug: 'osde',
+        planSlug: '310',
+        razon: 'La red más grande del país juega a favor en discapacidad: más variedad de centros de rehabilitación, escuelas de integración y transporte especial habilitados cerca de donde vivís, algo clave cuando las terapias son varias veces por semana.',
+      },
+      {
+        slug: 'swiss-medical',
+        planSlug: 'smg20',
+        razon: 'Cartilla amplia con proceso de autorizaciones digitalizado, que en la práctica agiliza la aprobación mensual de las prestaciones de Ley 24.901 frente a circuitos más manuales.',
+      },
+      {
+        slug: 'sancor-salud',
+        planSlug: 'plan-3000',
+        razon: 'Buena opción si estás en el interior del país, donde la red de prestadores de discapacidad de las nacionales premium suele ser más chica que la de las regionales fuertes.',
+      },
+    ],
+    preguntasAntesDeFirmar: [
+      '¿Tienen prestadores de rehabilitación y centros de día en mi zona?',
+      '¿Cómo es el circuito de autorización mensual de las prestaciones de Ley 24.901?',
+      '¿Cubren transporte especial hacia los tratamientos?',
+      '¿Tienen convenio con la escuela o el centro educativo terapéutico que necesito?',
+      '¿Qué pasa si el prestador que necesito no está en cartilla?',
+    ],
+    faq: [
+      { q: '¿La prepaga me puede rechazar por tener discapacidad o CUD?', a: 'No. La Ley 26.682 prohíbe expresamente el rechazo de afiliados por discapacidad o cualquier condición preexistente. La prepaga debe aceptarte y cubrir las prestaciones de Ley 24.901 desde el ingreso, sin período de carencia para esas prestaciones.' },
+      { q: '¿Qué es exactamente el CUD y cómo lo tramito?', a: 'El Certificado Único de Discapacidad es un documento gratuito que acredita la condición ante juntas evaluadoras provinciales o ANDIS (Agencia Nacional de Discapacidad). Con el CUD tramitado, cualquier prepaga u obra social está obligada a cubrir el 100% de las prestaciones de la Ley 24.901.' },
+      { q: '¿Las prestaciones de discapacidad tienen copago?', a: 'No. Las prestaciones cubiertas por la Ley 24.901 (rehabilitación, transporte, apoyos escolares, centros de día) deben cubrirse al 100%, sin copago, a diferencia de otras prestaciones del plan donde sí puede haber coseguro según el plan contratado.' },
+      { q: '¿Puedo cambiar de prepaga si ya tengo CUD y estoy en tratamiento?', a: 'Sí. La cobertura de la Ley 24.901 se mantiene en cualquier prepaga a la que te afilies, sin carencia. Igual conviene chequear antes que la nueva prepaga tenga en cartilla el centro de rehabilitación o la escuela donde ya estás en tratamiento, para no tener que cambiar de prestador.' },
+    ],
+    coberturasRelacionadas: ['rehabilitacion', 'psicologia', 'medicamentos'],
+    guiasRelacionadas: ['discapacidad-obra-social-cobertura-100'],
+    keywords: ['mejor prepaga para discapacidad', 'prepaga cud cobertura', 'ley 24901 prepagas', 'prepaga discapacidad 100 cobertura', 'certificado unico de discapacidad prepaga'],
+  },
+  {
+    slug: 'enfermedad-renal-cronica',
+    nombre: 'Enfermedad renal crónica y diálisis',
+    emoji: '🩸',
+    titulo: 'Mejor prepaga para enfermedad renal crónica y diálisis 2026',
+    metaDescripcion: 'Qué prepaga conviene si tenés enfermedad renal crónica. Cobertura 100% de hemodiálisis, diálisis peritoneal y trasplante renal en Argentina.',
+    intro: 'La enfermedad renal crónica es una de las condiciones de mayor costo del sistema de salud, y por eso está específicamente protegida: la SSSalud reintegra a las prepagas parte del gasto en diálisis y trasplante a través del Sistema Único de Reintegro (SUR), lo que en la práctica elimina el argumento de "es muy caro" para negarte la cobertura. Lo que sí importa al elegir prepaga es tener un centro de diálisis cerca de casa, porque el tratamiento es varias veces por semana de por vida (o hasta el trasplante).',
+    queCubreElPMO: 'El PMO cubre al 100% y sin límite de sesiones: hemodiálisis, diálisis peritoneal (incluidos los insumos), los controles nefrológicos periódicos, y el trasplante renal con su tratamiento inmunosupresor de por vida (regulado por la Ley 24.193 de Trasplantes, en articulación con el INCUCAI). También cubre el traslado hacia el centro de diálisis cuando el afiliado no puede trasladarse por sus propios medios.',
+    prepagasRecomendadas: [
+      {
+        slug: 'osde',
+        planSlug: '310',
+        razon: 'La red más grande del país es una ventaja concreta acá: más centros de diálisis habilitados en más ciudades, lo que reduce la distancia que tenés que viajar tres veces por semana.',
+      },
+      {
+        slug: 'swiss-medical',
+        planSlug: 'smg20',
+        razon: 'Sanatorios propios con servicio de nefrología y diálisis integrado, y buena coordinación entre el nefrólogo de cabecera y el centro donde te dializás.',
+      },
+      {
+        slug: 'sancor-salud',
+        planSlug: 'plan-3000',
+        razon: 'Buena opción si vivís en el interior del país: su red en ciudades medianas suele tener centros de diálisis donde las nacionales premium tienen menos presencia.',
+      },
+    ],
+    preguntasAntesDeFirmar: [
+      '¿Qué centros de diálisis tienen en convenio cerca de mi domicilio?',
+      '¿Cubren el traslado hacia el centro de diálisis si lo necesito?',
+      '¿Cómo es el seguimiento para pacientes en lista de espera de trasplante?',
+      '¿La medicación inmunosupresora post-trasplante está cubierta al 100% de por vida?',
+      '¿Qué pasa si me mudo de ciudad: mantengo la continuidad del tratamiento?',
+    ],
+    faq: [
+      { q: '¿La prepaga puede negarme la cobertura de diálisis por el costo?', a: 'No. Es una prestación obligatoria del PMO al 100%, y además la SSSalud reintegra parte del costo a la prepaga a través del Sistema Único de Reintegro (SUR), un fondo pensado justamente para que el alto costo de tratamientos como la diálisis no sea excusa para negarlos.' },
+      { q: '¿Puedo afiliarme a una prepaga si ya estoy en diálisis?', a: 'Sí. La Ley 26.682 prohíbe el rechazo por preexistencias. La prepaga debe aceptarte y cubrir la diálisis desde el ingreso, sin período de carencia para esta prestación.' },
+      { q: '¿Qué cubre la prepaga después de un trasplante renal?', a: 'Cobertura completa e indefinida de la medicación inmunosupresora (para evitar el rechazo del órgano) y el seguimiento nefrológico periódico. Es una de las prestaciones de mayor costo sostenido y está protegida por ley igual que la diálisis.' },
+      { q: '¿Conviene elegir la prepaga con el plan más caro para diálisis?', a: 'No necesariamente: la cobertura de diálisis y trasplante es la misma (100%) en todos los planes de una misma prepaga, porque la exige la ley. Lo que cambia entre planes es la cartilla general (otras especialidades, habitación, etc.), no la cobertura renal en sí. Lo que sí conviene comparar entre prepagas es la cantidad de centros de diálisis disponibles en tu zona.' },
+    ],
+    coberturasRelacionadas: ['medicamentos', 'urgencias', 'rehabilitacion'],
+    keywords: ['prepaga enfermedad renal cronica', 'prepaga dialisis cobertura', 'prepaga trasplante renal', 'hemodialisis prepaga argentina', 'mejor prepaga insuficiencia renal'],
+  },
 ]
 
 export function getCondicionBySlug(slug: string) {
