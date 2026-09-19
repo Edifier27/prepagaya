@@ -221,38 +221,41 @@ export default function HomePage(): React.ReactElement {
                 <Link
                   key={prep.slug}
                   href={`/prepagas/${prep.slug}`}
-                  className="flex flex-col gap-3 p-5 bg-white rounded-2xl border-2 border-amber-200 hover:border-amber-400 transition-all group hover:shadow-md"
+                  className="flex items-center gap-3 p-3 sm:flex-col sm:items-stretch sm:gap-3 sm:p-5 bg-white rounded-2xl border-2 border-amber-200 hover:border-amber-400 transition-all group hover:shadow-md"
                 >
-                  {/* Posición + nombre */}
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-base font-black flex-shrink-0 ${medalColor}`}>
-                      {pos}
-                    </div>
-                    <div className="min-w-0">
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base font-black flex-shrink-0 ${medalColor}`}>
+                    {pos}
+                  </div>
+
+                  <div className="min-w-0 flex-1 sm:flex-none">
+                    {/* Posición + nombre — en mobile todo en una fila compacta */}
+                    <div className="flex items-center gap-2 flex-wrap">
                       <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors truncate">{prep.nombre}</div>
                       {TIER_PARTNER[prep.slug] && (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-black px-2 py-0.5 rounded-full border mt-0.5"
+                        <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-black px-1.5 sm:px-2 py-0.5 rounded-full border flex-shrink-0"
                           style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
-                          ★ OPCIÓN {TIER_PARTNER[prep.slug]}
+                          ★ {TIER_PARTNER[prep.slug]}
                         </span>
                       )}
                     </div>
-                  </div>
 
-                  <div className="text-xs text-gray-500">{prep.planes.length} planes disponibles · {prep.satisfaccion}% satisfacción</div>
+                    <div className="text-xs text-gray-500 mt-0.5 sm:mt-0">{prep.planes.length} planes · {prep.satisfaccion}% satisfacción</div>
 
-                  {/* Satisfaction bar */}
-                  <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#E8002D] rounded-full" style={{ width: `${prep.satisfaccion}%` }} />
-                  </div>
+                    {/* Satisfaction bar */}
+                    <div className="w-full h-1 sm:h-1.5 bg-gray-100 rounded-full overflow-hidden mt-1.5 sm:mt-2">
+                      <div className="h-full bg-[#E8002D] rounded-full" style={{ width: `${prep.satisfaccion}%` }} />
+                    </div>
 
-                  {/* Nivel de precio + arrow */}
-                  <div className="flex items-center justify-between mt-auto pt-1">
-                    <NivelPrecioBadge nivel={nivelPrecio(planReferencia.precio)} />
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"
-                      className="w-4 h-4 text-gray-300 group-hover:text-[#E8002D] transition-colors flex-shrink-0">
-                      <path d="M9 18l6-6-6-6"/>
-                    </svg>
+                    {/* Nivel de precio + arrow — solo desktop: en mobile
+                        sobraba (pedido de Darío, 17-sep-2026: la card ya
+                        tenía toda la info que necesita de un vistazo) */}
+                    <div className="hidden sm:flex items-center justify-between mt-3">
+                      <NivelPrecioBadge nivel={nivelPrecio(planReferencia.precio)} />
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"
+                        className="w-4 h-4 text-gray-300 group-hover:text-[#E8002D] transition-colors flex-shrink-0">
+                        <path d="M9 18l6-6-6-6"/>
+                      </svg>
+                    </div>
                   </div>
                 </Link>
               )
