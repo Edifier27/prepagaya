@@ -3,11 +3,11 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, calidadPlan, esCelularArgentinoValido } from '@/lib/utils'
+import { formatPrecio, calidadPlan, esCelularArgentinoValido, NIVEL_PRECIO_LABEL } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -40,6 +40,7 @@ const APORTE_PORCENTAJE = 0.075
 type Step = 'zona' | 'edades' | 'preview' | 'resultados'
 type SituacionLaboral = 'particular' | 'relacion-dependencia' | 'monotributo' | 'responsable-inscripto'
 type CobId = 'internacion' | 'psicologia' | 'kinesiologia' | 'maternidad' | 'odontologia' | 'medicamentos' | 'estudios' | 'urgencias' | 'optica' | 'reintegros' | 'ortodoncia' | 'cirugia-estetica'
+type CaracteristicaId = 'red-abierta' | 'sanatorio-propio' | 'cobertura-nacional'
 type Copago = 'sin-copago' | 'con-copago' | null
 interface Persona { id: number; edad: string }
 interface Resultado {
@@ -241,6 +242,23 @@ const COB_MAP = Object.fromEntries(COBS.map((c) => [c.id, c])) as Record<CobId, 
 const COB_GUIA: Partial<Record<CobId, string>> = {
   ortodoncia: 'ortodoncia',
   'cirugia-estetica': 'cirugia-estetica',
+}
+
+// ─── Características (atributos de plan/prepaga, como los filtros de
+// "envío gratis" o "con garantía" en un e-commerce) — todos calculados a
+// partir de datos reales ya existentes en lib/data/prepagas.ts, ninguno
+// inventado para esta grilla de filtros. ────────────────────────────────────
+interface CaracteristicaDef { id: CaracteristicaId; label: string; check: (plan: Plan, p: Prepaga) => boolean }
+
+const CARACTERISTICAS: CaracteristicaDef[] = [
+  { id: 'sanatorio-propio',   label: 'Con sanatorio propio', check: (_plan, p) => p.sanatoriosPropios > 0 },
+  { id: 'red-abierta',        label: 'Red abierta',          check: (plan) => plan.redAbierta },
+  { id: 'cobertura-nacional', label: 'Cobertura nacional',   check: (_plan, p) => p.caracteristicas.coberturaNacional },
+]
+
+function checkCaracteristica(id: CaracteristicaId, plan: Plan, p: Prepaga): boolean {
+  const def = CARACTERISTICAS.find((c) => c.id === id)
+  return def ? def.check(plan, p) : true
 }
 
 // ─── Situación laboral (define descuento + aporte) ─────────────────────────────
@@ -590,6 +608,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [activeCobs, setActiveCobs] = useState<Set<CobId>>(new Set())
   const [copago, setCopago] = useState<Copago>(null)
   const [activePrepagas, setActivePrepagas] = useState<Set<string>>(new Set())
+  const [activeNivelPrecio, setActiveNivelPrecio] = useState<Set<NivelPrecio>>(new Set())
+  const [activeCaracteristicas, setActiveCaracteristicas] = useState<Set<CaracteristicaId>>(new Set())
   const [sortBy, setSortBy] = useState<'relevancia' | 'precio-asc' | 'precio-desc'>('relevancia')
   const [filtrosMenuOpen, setFiltrosMenuOpen] = useState(false)
   const [asesoramientoUrgenteOpen, setAsesoramientoUrgenteOpen] = useState(false)
@@ -654,27 +674,81 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     setActivePrepagas((prev) => (prev.size === 1 && prev.has(slug) ? new Set() : new Set([slug])))
   }
 
-  const resultadosFiltrados = useMemo((): Resultado[] => {
-    const filtrados = allResultados.filter((r) => {
+  function toggleNivelPrecio(n: NivelPrecio) {
+    setActiveNivelPrecio((prev) => {
+      const next = new Set(prev)
+      next.has(n) ? next.delete(n) : next.add(n)
+      return next
+    })
+  }
+
+  function toggleCaracteristica(id: CaracteristicaId) {
+    setActiveCaracteristicas((prev) => {
+      const next = new Set(prev)
+      next.has(id) ? next.delete(id) : next.add(id)
+      return next
+    })
+  }
+
+  function limpiarFiltros() {
+    setActiveCobs(new Set())
+    setCopago(null)
+    setActivePrepagas(new Set())
+    setActiveNivelPrecio(new Set())
+    setActiveCaracteristicas(new Set())
+  }
+
+  // Predicado único de filtrado — se reutiliza tal cual para calcular los
+  // resultados finales Y, por separado, el conteo en vivo de cada opción de
+  // filtro (facetado tipo e-commerce: "excluir" es el propio grupo de filtro
+  // que se está contando, para que la cifra muestre "si sumás esta opción").
+  type GrupoFiltro = 'copago' | 'prepaga' | 'cobertura' | 'precio' | 'caracteristicas'
+  function pasaFiltros(r: Resultado, excluir?: GrupoFiltro): boolean {
+    if (excluir !== 'copago') {
       if (copago === 'sin-copago' && r.plan.copago) return false
       if (copago === 'con-copago' && !r.plan.copago) return false
-      if (activePrepagas.size > 0 && !activePrepagas.has(r.prepaga.slug)) return false
-      for (const c of activeCobs) {
-        if (!checkCob(c, r.plan, r.prepaga)) return false
-      }
-      return true
-    })
+    }
+    if (excluir !== 'prepaga' && activePrepagas.size > 0 && !activePrepagas.has(r.prepaga.slug)) return false
+    if (excluir !== 'cobertura') {
+      for (const c of activeCobs) if (!checkCob(c, r.plan, r.prepaga)) return false
+    }
+    if (excluir !== 'precio' && activeNivelPrecio.size > 0 && !activeNivelPrecio.has(nivelPrecio(r.plan.precio))) return false
+    if (excluir !== 'caracteristicas') {
+      for (const c of activeCaracteristicas) if (!checkCaracteristica(c, r.plan, r.prepaga)) return false
+    }
+    return true
+  }
+
+  // Cuántos resultados quedarían si, a los filtros ya activos, le sumás esta
+  // opción puntual — el número que se muestra al lado de cada checkbox.
+  function contarFacet(excluir: GrupoFiltro, opcion: (r: Resultado) => boolean): number {
+    return allResultados.filter((r) => pasaFiltros(r, excluir) && opcion(r)).length
+  }
+
+  const resultadosFiltrados = useMemo((): Resultado[] => {
+    const filtrados = allResultados.filter((r) => pasaFiltros(r))
     if (sortBy === 'precio-asc') return [...filtrados].sort((a, b) => a.precioGrupal - b.precioGrupal).slice(0, 12)
     if (sortBy === 'precio-desc') return [...filtrados].sort((a, b) => b.precioGrupal - a.precioGrupal).slice(0, 12)
     // Relevancia: score puro y después mechado de marcas (Swiss 1º, Sancor/Galeno 2º, sin repetir)
     return mecharResultados([...filtrados].sort((a, b) => b.score - a.score)).slice(0, 12)
-  }, [allResultados, copago, activeCobs, activePrepagas, sortBy])
+  }, [allResultados, copago, activeCobs, activePrepagas, activeNivelPrecio, activeCaracteristicas, sortBy])
+
+  // Cantidad total de resultados que matchean (sin el tope de 12 para mostrar
+  // en las cards) — se usa en el contador de "X resultados" arriba de la lista.
+  const totalResultadosFiltrados = useMemo(
+    () => allResultados.filter((r) => pasaFiltros(r)).length,
+    [allResultados, copago, activeCobs, activePrepagas, activeNivelPrecio, activeCaracteristicas]
+  )
+
+  const cantidadFiltrosActivos =
+    activeCobs.size + (copago ? 1 : 0) + activePrepagas.size + activeNivelPrecio.size + activeCaracteristicas.size
+  const hayFiltrosActivos = cantidadFiltrosActivos > 0
 
   // Cambia con cada combinación de filtros/orden: fuerza el remount de las cards
   // para disparar la animación de entrada en cascada (feedback visual del cambio).
   const filtroVersion = useMemo(
-    () => `${[...activeCobs].sort().join('.')}|${copago ?? 'todos'}|${[...activePrepagas].sort().join('.')}|${sortBy}`,
-    [activeCobs, copago, activePrepagas, sortBy]
+    () => `${[...activeCobs].sort().join('.')}|${copago ?? 'todos'}|${[...activePrepagas].sort().join('.')}|${[...activeNivelPrecio].sort().join('.')}|${[...activeCaracteristicas].sort().join('.')}|${sortBy}`,
+    [activeCobs, copago, activePrepagas, activeNivelPrecio, activeCaracteristicas, sortBy]
   )
 
   // 3-second countdown when entering preview
@@ -820,7 +894,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     setStep('zona'); setZonaKey(''); setProvinciaNombre('')
     setSituacion('particular'); setSueldoBruto('')
     setPersonas([{ id: 1, edad: '' }]); setPrepagaOrigen(null); setNombre(''); setCelular('')
-    setLeadStatus('idle'); setActiveCobs(new Set()); setCopago(null); setActivePrepagas(new Set())
+    setLeadStatus('idle'); limpiarFiltros()
     setSortBy('relevancia'); setPlanAccedido(null); setPlanAccedidoStatus('idle')
     setCountdown(3); setShowPopup(false)
     setCartillaAbierta(null); setComparando(new Set()); setTablaComparativa(false)
@@ -1258,16 +1332,45 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 {([
                   { id: 'sin-copago', label: 'Sin copago' },
                   { id: 'con-copago', label: 'Con copago' },
-                ] as { id: Copago; label: string }[]).map((opt) => (
-                  <label key={String(opt.id)} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => setCopago(copago === opt.id ? null : opt.id)}>
-                    <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
-                      copago === opt.id ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
-                    }`}>
-                      {copago === opt.id && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
-                    </div>
-                    <span className={`text-sm font-medium transition-colors ${copago === opt.id ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{opt.label}</span>
-                  </label>
-                ))}
+                ] as { id: Copago; label: string }[]).map((opt) => {
+                  const count = contarFacet('copago', (r) => opt.id === 'sin-copago' ? !r.plan.copago : r.plan.copago)
+                  return (
+                    <label key={String(opt.id)} className={`flex items-center gap-2.5 cursor-pointer group ${count === 0 && copago !== opt.id ? 'opacity-40' : ''}`} onClick={() => setCopago(copago === opt.id ? null : opt.id)}>
+                      <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                        copago === opt.id ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                      }`}>
+                        {copago === opt.id && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                      </div>
+                      <span className={`text-sm font-medium transition-colors flex-1 ${copago === opt.id ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{opt.label}</span>
+                      <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
+                    </label>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Rango de precio — el facet más usado en e-commerce (MercadoLibre,
+                Amazon) casi siempre va arriba de todo, cerca de "marca". Acá se
+                reutilizan los mismos 3 niveles ($/$$/$$$) que ya se usan en todo
+                el sitio (NivelPrecioBadge), en vez de inventar un slider nuevo. */}
+            <div className="bg-white rounded-2xl border border-gray-100 p-4">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Rango de precio</p>
+              <div className="space-y-2.5">
+                {(['economico', 'medio', 'premium'] as NivelPrecio[]).map((n) => {
+                  const on = activeNivelPrecio.has(n)
+                  const count = contarFacet('precio', (r) => nivelPrecio(r.plan.precio) === n)
+                  return (
+                    <label key={n} className={`flex items-center gap-2.5 cursor-pointer group ${count === 0 && !on ? 'opacity-40' : ''}`} onClick={() => toggleNivelPrecio(n)}>
+                      <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                        on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                      }`}>
+                        {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                      </div>
+                      <span className={`text-sm font-medium transition-colors flex-1 ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{NIVEL_PRECIO_LABEL[n].label}</span>
+                      <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
+                    </label>
+                  )
+                })}
               </div>
             </div>
 
@@ -1278,20 +1381,46 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1">
                   {prepagasDisponibles.map((p) => {
                     const on = activePrepagas.has(p.slug)
+                    const count = contarFacet('prepaga', (r) => r.prepaga.slug === p.slug)
                     return (
-                      <label key={p.slug} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => togglePrepaga(p.slug)}>
+                      <label key={p.slug} className={`flex items-center gap-2.5 cursor-pointer group ${count === 0 && !on ? 'opacity-40' : ''}`} onClick={() => togglePrepaga(p.slug)}>
                         <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
                           on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
                         }`}>
                           {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
                         </div>
-                        <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{p.nombre}</span>
+                        <span className={`text-sm font-medium transition-colors flex-1 truncate ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{p.nombre}</span>
+                        <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
                       </label>
                     )
                   })}
                 </div>
               </div>
             )}
+
+            {/* Características — atributos del plan/prepaga (equivalente a
+                filtros de "envío gratis" o "con garantía" en un e-commerce),
+                todos calculados sobre datos reales ya cargados en el sitio. */}
+            <div className="bg-white rounded-2xl border border-gray-100 p-4">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Características</p>
+              <div className="space-y-2.5">
+                {CARACTERISTICAS.map((c) => {
+                  const on = activeCaracteristicas.has(c.id)
+                  const count = contarFacet('caracteristicas', (r) => c.check(r.plan, r.prepaga))
+                  return (
+                    <label key={c.id} className={`flex items-center gap-2.5 cursor-pointer group ${count === 0 && !on ? 'opacity-40' : ''}`} onClick={() => toggleCaracteristica(c.id)}>
+                      <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                        on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                      }`}>
+                        {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                      </div>
+                      <span className={`text-sm font-medium transition-colors flex-1 ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{c.label}</span>
+                      <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
+                    </label>
+                  )
+                })}
+              </div>
+            </div>
 
             {/* Coberturas */}
             <div className="bg-white rounded-2xl border border-gray-100 p-4">
@@ -1300,15 +1429,17 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 {COBS.map((cob) => {
                   const on = activeCobs.has(cob.id)
                   const guiaSlug = COB_GUIA[cob.id]
+                  const count = contarFacet('cobertura', (r) => checkCob(cob.id, r.plan, r.prepaga))
                   return (
                     <div key={cob.id} className="flex items-center gap-2.5">
-                      <label className="flex items-center gap-2.5 cursor-pointer group flex-1" onClick={() => toggleCob(cob.id)}>
+                      <label className={`flex items-center gap-2.5 cursor-pointer group flex-1 ${count === 0 && !on ? 'opacity-40' : ''}`} onClick={() => toggleCob(cob.id)}>
                         <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
                           on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
                         }`}>
                           {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
                         </div>
-                        <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{cob.label}</span>
+                        <span className={`text-sm font-medium transition-colors flex-1 ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{cob.label}</span>
+                        <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
                       </label>
                       {on && guiaSlug && (
                         <Link href={`/coberturas/${guiaSlug}`} className="text-[10px] font-semibold text-[#E8002D] hover:underline flex-shrink-0">
@@ -1346,9 +1477,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   <path d="M3 6h14M6 10h8M8.5 14h3" />
                 </svg>
                 <span className="text-xs font-bold tracking-wide">Filtros</span>
-                {(activeCobs.size + (copago ? 1 : 0) + activePrepagas.size) > 0 && (
+                {hayFiltrosActivos && (
                   <span className="w-4 h-4 rounded-full bg-white text-[#E8002D] text-[9px] font-bold flex items-center justify-center flex-shrink-0">
-                    {activeCobs.size + (copago ? 1 : 0) + activePrepagas.size}
+                    {cantidadFiltrosActivos}
                   </span>
                 )}
               </button>
@@ -1410,16 +1541,42 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       {([
                         { id: 'sin-copago', label: 'Sin copago' },
                         { id: 'con-copago', label: 'Con copago' },
-                      ] as { id: Copago; label: string }[]).map((opt) => (
-                        <label key={String(opt.id)} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => setCopago(copago === opt.id ? null : opt.id)}>
-                          <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
-                            copago === opt.id ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
-                          }`}>
-                            {copago === opt.id && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
-                          </div>
-                          <span className={`text-sm font-medium transition-colors ${copago === opt.id ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{opt.label}</span>
-                        </label>
-                      ))}
+                      ] as { id: Copago; label: string }[]).map((opt) => {
+                        const count = contarFacet('copago', (r) => opt.id === 'sin-copago' ? !r.plan.copago : r.plan.copago)
+                        return (
+                          <label key={String(opt.id)} className={`flex items-center gap-2.5 cursor-pointer group ${count === 0 && copago !== opt.id ? 'opacity-40' : ''}`} onClick={() => setCopago(copago === opt.id ? null : opt.id)}>
+                            <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                              copago === opt.id ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                            }`}>
+                              {copago === opt.id && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                            </div>
+                            <span className={`text-sm font-medium transition-colors flex-1 ${copago === opt.id ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{opt.label}</span>
+                            <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
+                          </label>
+                        )
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Rango de precio */}
+                  <div>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Rango de precio</p>
+                    <div className="space-y-2.5">
+                      {(['economico', 'medio', 'premium'] as NivelPrecio[]).map((n) => {
+                        const on = activeNivelPrecio.has(n)
+                        const count = contarFacet('precio', (r) => nivelPrecio(r.plan.precio) === n)
+                        return (
+                          <label key={n} className={`flex items-center gap-2.5 cursor-pointer group ${count === 0 && !on ? 'opacity-40' : ''}`} onClick={() => toggleNivelPrecio(n)}>
+                            <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                              on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                            }`}>
+                              {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                            </div>
+                            <span className={`text-sm font-medium transition-colors flex-1 ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{NIVEL_PRECIO_LABEL[n].label}</span>
+                            <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
+                          </label>
+                        )
+                      })}
                     </div>
                   </div>
 
@@ -1431,14 +1588,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       <div className="space-y-2.5">
                         {prepagasDisponibles.map((p) => {
                           const on = activePrepagas.has(p.slug)
+                          const count = contarFacet('prepaga', (r) => r.prepaga.slug === p.slug)
                           return (
-                            <label key={p.slug} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => selectSoloPrepaga(p.slug)}>
+                            <label key={p.slug} className={`flex items-center gap-2.5 cursor-pointer group ${count === 0 && !on ? 'opacity-40' : ''}`} onClick={() => selectSoloPrepaga(p.slug)}>
                               <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all flex-shrink-0 ${
                                 on ? 'border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
                               }`}>
                                 {on && <div className="w-2 h-2 rounded-full bg-[#E8002D]" />}
                               </div>
-                              <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{p.nombre}</span>
+                              <span className={`text-sm font-medium transition-colors flex-1 truncate ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{p.nombre}</span>
+                              <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
                             </label>
                           )
                         })}
@@ -1446,20 +1605,44 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     </div>
                   )}
 
+                  {/* Características */}
+                  <div>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Características</p>
+                    <div className="space-y-2.5">
+                      {CARACTERISTICAS.map((c) => {
+                        const on = activeCaracteristicas.has(c.id)
+                        const count = contarFacet('caracteristicas', (r) => c.check(r.plan, r.prepaga))
+                        return (
+                          <label key={c.id} className={`flex items-center gap-2.5 cursor-pointer group ${count === 0 && !on ? 'opacity-40' : ''}`} onClick={() => toggleCaracteristica(c.id)}>
+                            <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                              on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
+                            }`}>
+                              {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
+                            </div>
+                            <span className={`text-sm font-medium transition-colors flex-1 ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{c.label}</span>
+                            <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
+                          </label>
+                        )
+                      })}
+                    </div>
+                  </div>
+
                   {/* Coberturas */}
                   <div>
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Me interesa incluir</p>
                     <div className="space-y-2.5">
                       {COBS.map((cob) => {
                         const on = activeCobs.has(cob.id)
+                        const count = contarFacet('cobertura', (r) => checkCob(cob.id, r.plan, r.prepaga))
                         return (
-                          <label key={cob.id} className="flex items-center gap-2.5 cursor-pointer group" onClick={() => toggleCob(cob.id)}>
+                          <label key={cob.id} className={`flex items-center gap-2.5 cursor-pointer group ${count === 0 && !on ? 'opacity-40' : ''}`} onClick={() => toggleCob(cob.id)}>
                             <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all flex-shrink-0 ${
                               on ? 'bg-[#E8002D] border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
                             }`}>
                               {on && <svg viewBox="0 0 12 12" fill="white" className="w-2.5 h-2.5"><path fillRule="evenodd" d="M10.28 1.28L3.989 9.05 1.695 6.288a.75.75 0 00-1.14.976l2.939 3.425a.75.75 0 001.07.093l7-8.5a.75.75 0 00-1.284-.802z" clipRule="evenodd"/></svg>}
                             </div>
-                            <span className={`text-sm font-medium transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{cob.label}</span>
+                            <span className={`text-sm font-medium transition-colors flex-1 ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{cob.label}</span>
+                            <span className="text-[11px] text-gray-400 tabular-nums flex-shrink-0">{count}</span>
                           </label>
                         )
                       })}
@@ -1468,15 +1651,15 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 </div>
 
                 <div className="flex items-center gap-3 px-5 py-4 border-t border-gray-100 flex-shrink-0">
-                  {(activeCobs.size > 0 || copago || activePrepagas.size > 0) && (
-                    <button onClick={() => { setActiveCobs(new Set()); setCopago(null); setActivePrepagas(new Set()) }}
+                  {hayFiltrosActivos && (
+                    <button onClick={limpiarFiltros}
                       className="text-sm text-gray-500 font-semibold hover:text-gray-700">
                       Limpiar
                     </button>
                   )}
                   <button onClick={() => setFiltrosMenuOpen(false)}
                     className="flex-1 bg-[#E8002D] text-white text-sm font-bold rounded-xl py-3 hover:bg-[#C4001F] transition-colors">
-                    Ver {resultadosFiltrados.length} resultado{resultadosFiltrados.length !== 1 ? 's' : ''}
+                    Ver {totalResultadosFiltrados} resultado{totalResultadosFiltrados !== 1 ? 's' : ''}
                   </button>
                 </div>
               </div>
@@ -1503,24 +1686,67 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             <span className="text-xs font-bold text-[#128C7E] flex-shrink-0 hidden sm:inline group-hover:underline">Escribinos →</span>
           </button>
 
-          {/* Count + clear */}
-          <div className="flex items-center justify-between mb-4">
+          {/* Count */}
+          <div className="flex items-center justify-between mb-3">
             <p className="text-sm font-semibold text-gray-700">
-              {resultadosFiltrados.length} resultado{resultadosFiltrados.length !== 1 ? 's' : ''}
-              {(activeCobs.size > 0 || copago || activePrepagas.size > 0) ? ' con filtros' : ''}
+              {totalResultadosFiltrados} resultado{totalResultadosFiltrados !== 1 ? 's' : ''}
+              {hayFiltrosActivos ? ' con filtros' : ''}
             </p>
-            {(activeCobs.size > 0 || copago || activePrepagas.size > 0) && (
-              <button onClick={() => { setActiveCobs(new Set()); setCopago(null); setActivePrepagas(new Set()) }}
-                className="text-xs text-[#E8002D] font-semibold hover:underline">
-                Limpiar filtros
-              </button>
-            )}
           </div>
+
+          {/* Chips de filtros aplicados — patrón estándar de e-commerce
+              (MercadoLibre, Amazon): cada filtro activo se ve como una
+              píldora removible arriba de los resultados, no solo dentro
+              del panel de filtros, para que el usuario vea de un vistazo
+              qué está filtrando y pueda sacar uno sin abrir nada. */}
+          {hayFiltrosActivos && (
+            <div className="flex flex-wrap items-center gap-2 mb-5">
+              {copago && (
+                <button onClick={() => setCopago(null)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full pl-3 pr-2 py-1.5 transition-colors">
+                  {copago === 'sin-copago' ? 'Sin copago' : 'Con copago'}
+                  <span className="text-gray-400">×</span>
+                </button>
+              )}
+              {[...activePrepagas].map((slug) => (
+                <button key={slug} onClick={() => togglePrepaga(slug)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full pl-3 pr-2 py-1.5 transition-colors">
+                  {prepagasDisponibles.find((p) => p.slug === slug)?.nombre ?? slug}
+                  <span className="text-gray-400">×</span>
+                </button>
+              ))}
+              {[...activeNivelPrecio].map((n) => (
+                <button key={n} onClick={() => toggleNivelPrecio(n)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full pl-3 pr-2 py-1.5 transition-colors">
+                  {NIVEL_PRECIO_LABEL[n].label}
+                  <span className="text-gray-400">×</span>
+                </button>
+              ))}
+              {[...activeCaracteristicas].map((c) => (
+                <button key={c} onClick={() => toggleCaracteristica(c)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full pl-3 pr-2 py-1.5 transition-colors">
+                  {CARACTERISTICAS.find((x) => x.id === c)?.label ?? c}
+                  <span className="text-gray-400">×</span>
+                </button>
+              ))}
+              {[...activeCobs].map((c) => (
+                <button key={c} onClick={() => toggleCob(c)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full pl-3 pr-2 py-1.5 transition-colors">
+                  {COB_MAP[c].label}
+                  <span className="text-gray-400">×</span>
+                </button>
+              ))}
+              <button onClick={limpiarFiltros}
+                className="text-xs text-[#E8002D] font-bold hover:underline px-1">
+                Limpiar todo
+              </button>
+            </div>
+          )}
 
           {resultadosFiltrados.length === 0 && (
             <div className="text-center py-12 text-gray-400">
               <p className="text-sm mb-2">Ningún plan cumple todos los filtros.</p>
-              <button onClick={() => { setActiveCobs(new Set()); setCopago(null); setActivePrepagas(new Set()) }}
+              <button onClick={limpiarFiltros}
                 className="text-sm text-[#E8002D] font-semibold hover:underline">Quitar filtros</button>
             </div>
           )}
@@ -1643,6 +1869,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                     <div className="flex flex-wrap gap-1.5 mb-4">
                       {!res.plan.copago && <span className="text-[11px] px-2.5 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded-full font-semibold">Sin copago</span>}
                       {res.plan.redAbierta && <span className="text-[11px] px-2.5 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-full font-semibold">Red abierta</span>}
+                      {res.prepaga.sanatoriosPropios > 0 && <span className="text-[11px] px-2.5 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full font-semibold">Sanatorio propio</span>}
+                      {res.prepaga.caracteristicas.coberturaNacional && <span className="text-[11px] px-2.5 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-full font-semibold">Cobertura nacional</span>}
                       {checkCob('urgencias', res.plan, res.prepaga) && <span className="text-[11px] px-2.5 py-0.5 bg-orange-50 text-orange-700 border border-orange-200 rounded-full font-semibold">Urgencias 24hs</span>}
                       {checkCob('medicamentos', res.plan, res.prepaga) && <span className="text-[11px] px-2.5 py-0.5 bg-purple-50 text-purple-700 border border-purple-200 rounded-full font-semibold">Medicamentos</span>}
                       {checkCob('optica', res.plan, res.prepaga) && <span className="text-[11px] px-2.5 py-0.5 bg-cyan-50 text-cyan-700 border border-cyan-200 rounded-full font-semibold">Óptica</span>}
