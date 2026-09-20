@@ -790,6 +790,12 @@ provinciasSEO.push(
       { slug: 'bahia-blanca', nombre: 'Bahía Blanca',
         descripcion: 'Cabecera del sur bonaerense y polo de referencia para toda la región pampeana, con el Hospital Privado del Sur (70+ años de trayectoria) y el Hospital Italiano Regional del Sur como principales centros de alta complejidad. Sancor Salud y Galeno tienen oficina propia en la ciudad.',
         prestadores: ['Hospital Privado del Sur', 'Hospital Italiano Regional del Sur', 'Clínica Privada Bahiense'] },
+      { slug: 'tandil', nombre: 'Tandil',
+        descripcion: 'El Sanatorio Tandil (Sarmiento 770), con más de 100 años de trayectoria y guardia 24hs, es la principal institución privada de la ciudad. Swiss Medical (San Martín 365), Galeno (Chacabuco 739) y Sancor Salud (Gral. Rodríguez 921) tienen oficina de atención propia en Tandil.',
+        prestadores: ['Sanatorio Tandil', 'Clínica y Maternidad Privada Sanatorio Juárez'] },
+      { slug: 'azul', nombre: 'Azul',
+        descripcion: 'El Sanatorio Azul (Av. Mitre 943), con 98 años de trayectoria, es la principal institución médica privada de la ciudad. Sancor Salud tiene oficina propia (Av. Juan Domingo Perón 984).',
+        prestadores: ['Sanatorio Azul'] },
     ],
     prestadoresClave: ['Sanatorio de la Trinidad (San Isidro, Quilmes, Ramos Mejía)', 'Hospital Universitario Austral', 'Sanatorio Juncal', 'Hospital Italiano de La Plata', 'Sanatorio Belgrano (Mar del Plata)', 'Hospital Privado del Sur (Bahía Blanca)'],
     obraSocialProvincial: {

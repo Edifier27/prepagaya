@@ -124,6 +124,8 @@ const BUENOS_AIRES_INTERIOR: [string, string][] = [
   ['mar del plata', 'mar-del-plata'],
   ['bahia blanca', 'bahia-blanca'],
   ['bahía blanca', 'bahia-blanca'],
+  ['tandil', 'tandil'],
+  ['azul', 'azul'],
 ]
 // Barrios de CABA con página propia.
 const CABA_BARRIOS: [string, string][] = [
