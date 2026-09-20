@@ -769,7 +769,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       })
     }, 1000)
     return () => clearInterval(timer)
-  }, [step, modoPrueba, nombre])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `nombre` se lee solo para el atajo de modoPrueba; si entra en las deps, cada tecla que se escribe en el popup reinicia el countdown y lo cierra (bug reportado: "se sale cuando pones el nombre").
+  }, [step, modoPrueba])
 
   // Block page close while popup is showing
   useEffect(() => {
