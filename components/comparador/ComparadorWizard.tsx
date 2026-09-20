@@ -11,10 +11,8 @@ import { formatPrecio, calidadPlan, esCelularArgentinoValido, NIVEL_PRECIO_LABEL
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
-import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { AsesoramientoPopup } from '@/components/ui/AsesoramientoPopup'
-import { getCambiosPorOrigen } from '@/lib/data/cambios'
 import { leerZonaGeoDeCookie } from '@/lib/geo-zonas'
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
@@ -173,21 +171,6 @@ const MARCAS_SEGUNDAS = ['sancor-salud', 'premedic']
 // Orden del filtro de prepaga (sidebar/bottom sheet): Swiss Medical y OSDE
 // siempre arriba (pedido de Darío, 17-sep-2026), el resto alfabético debajo.
 const ORDEN_PREPAGA_FILTRO = ['swiss-medical', 'osde']
-
-// Orden de la franja "¿De qué prepaga venís?" del cotizador: partners
-// prioritarios primero, en este orden fijo (pedido de Darío, 20-sep-2026);
-// el resto de las prepagas va después, seguido del botón "Otros".
-const ORDEN_PREPAGA_VENIS = [
-  'swiss-medical', 'osde', 'sancor-salud', 'medife', 'avalian',
-  'omint', 'medicus', 'galeno', 'prevencion-salud', 'hospital-italiano',
-]
-const NOMBRE_VENIS: Record<string, string> = { 'hospital-italiano': 'H.Italiano' }
-const PREPAGAS_VENIS = [
-  ...ORDEN_PREPAGA_VENIS.map((slug) => prepagas.find((p) => p.slug === slug)).filter(
-    (p): p is (typeof prepagas)[number] => Boolean(p)
-  ),
-  ...prepagas.filter((p) => !ORDEN_PREPAGA_VENIS.includes(p.slug)),
-]
 
 function mecharResultados(sorted: Resultado[]): Resultado[] {
   const pool = [...sorted]
@@ -545,7 +528,6 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
-  const [prepagaOrigen, setPrepagaOrigen] = useState<string | null>(null)
 
   // Grupo familiar: se puede editar durante el paso "edades" y también desde
   // el panel de resultados (agregar/sacar integrantes recalcula el precio
@@ -885,7 +867,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   function resetWizard() {
     setStep('zona'); setZonaKey(''); setProvinciaNombre('')
     setSituacion('particular'); setSueldoBruto('')
-    setPersonas([{ id: 1, edad: '' }]); setPrepagaOrigen(null); setNombre(''); setCelular('')
+    setPersonas([{ id: 1, edad: '' }]); setNombre(''); setCelular('')
     setLeadStatus('idle'); limpiarFiltros()
     setSortBy('relevancia'); setPlanAccedido(null); setPlanAccedidoStatus('idle')
     setCountdown(3); setShowPopup(false)
@@ -1140,15 +1122,6 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const cheapestKey = cheapestResult ? `${cheapestResult.prepaga.slug}-${cheapestResult.plan.slug}` : null
   const bestKey = resultadosFiltrados[0] ? `${resultadosFiltrados[0].prepaga.slug}-${resultadosFiltrados[0].plan.slug}` : null
 
-  // Recomendación personalizada según "¿de qué prepaga venís?" — usa la data
-  // real y verificada de lib/data/cambios.ts. El nivel de precio reemplaza al
-  // monto exacto (no se puede publicar precio ligado a una marca puntual).
-  const cambioOrigen = prepagaOrigen ? getCambiosPorOrigen(prepagaOrigen)[0] : null
-  const destinoKey = cambioOrigen ? `${cambioOrigen.destinoSlug}-${cambioOrigen.destinoPlanSlug}` : null
-  const destinoPlanBase = cambioOrigen
-    ? prepagas.find((p) => p.slug === cambioOrigen.destinoSlug)?.planes.find((pl) => pl.slug === cambioOrigen.destinoPlanSlug)
-    : null
-
   return (
     <div>
       {/* Summary header — sticky en desktop (pedido de Darío, 17-sep-2026: que
@@ -1160,7 +1133,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           <div className="min-w-0">
             <div className="text-red-200 text-xs mb-1">Tu cotización personalizada</div>
             <div className="font-bold text-lg leading-snug">
-              {nombre}, estos son los mejores planes para vos{personas.length > 1 ? ' y tu grupo familiar' : ''}
+              <span className="uppercase text-black">{nombre}</span>, estos son los mejores planes para vos{personas.length > 1 ? ' y tu grupo familiar' : ''}
             </div>
             <button
               onClick={() => setEditandoGrupo((v) => !v)}
@@ -1235,52 +1208,6 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           </div>
         )}
       </div>
-
-      {/* "¿De qué prepaga venís?" — ya no es un paso obligatorio del wizard,
-          es un filtro opcional acá: si lo elegís, más abajo aparece el
-          banner de "te conviene cambiarte a X" con datos reales. */}
-      {!prepagaOrigen && (
-        <div className="bg-gray-50 border border-gray-100 rounded-2xl p-4 mb-6">
-          <div className="text-sm font-bold text-gray-900 mb-0.5">¿De qué prepaga venís? <span className="text-gray-400 font-normal">(opcional)</span></div>
-          <p className="text-xs text-gray-500 mb-3">Te mostramos si te conviene cambiarte</p>
-          <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
-            {PREPAGAS_VENIS.map((prep) => (
-              <button key={prep.slug} onClick={() => setPrepagaOrigen(prep.slug)}
-                className="flex-shrink-0 flex flex-col items-center gap-1.5 p-2.5 rounded-xl border-2 border-gray-200 hover:border-red-200 bg-white transition-all">
-                <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="sm" />
-                <span className="text-[10px] font-semibold text-gray-600 whitespace-nowrap">{NOMBRE_VENIS[prep.slug] ?? prep.nombre}</span>
-              </button>
-            ))}
-            <button onClick={() => setPrepagaOrigen('otros')}
-              className="flex-shrink-0 flex flex-col items-center justify-center gap-1.5 p-2.5 w-[60px] rounded-xl border-2 border-gray-200 hover:border-red-200 bg-white transition-all">
-              <span className="text-[10px] font-semibold text-gray-600 whitespace-nowrap">Otros</span>
-            </button>
-          </div>
-        </div>
-      )}
-
-      {cambioOrigen && destinoPlanBase && (
-        <div className="bg-white rounded-2xl border-2 border-[#E8002D] p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <PrepagaLogo slug={cambioOrigen.destinoSlug} nombre={cambioOrigen.destinoNombre} colorPrimario="#E8002D" size="lg" />
-          </div>
-          <div className="flex-1">
-            <span className="inline-block text-[10px] font-bold text-[#E8002D] bg-red-50 border border-red-200 px-2 py-0.5 rounded-full mb-1.5">
-              Para vos, que venís de {cambioOrigen.origenNombre}
-            </span>
-            <p className="text-sm text-gray-800 leading-snug">
-              Como venís de <span className="font-bold">{cambioOrigen.origenNombre}</span> y buscás {cambioOrigen.gancho.toLowerCase()}, <span className="font-bold">{cambioOrigen.destinoNombre} — {cambioOrigen.destinoPlanNombre}</span> es el plan que te conviene.
-            </p>
-            <div className="flex items-center gap-2 mt-2">
-              <NivelPrecioBadge nivel={nivelPrecio(destinoPlanBase.precio)} />
-            </div>
-          </div>
-          <Link href={`/cambios/${cambioOrigen.slug}`}
-            className="flex-shrink-0 text-xs font-bold text-[#E8002D] bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl px-4 py-2.5 transition-colors self-start sm:self-center">
-            Ver por qué →
-          </Link>
-        </div>
-      )}
 
       {/* Layout: sidebar + cards */}
       <div className="flex gap-6">
@@ -1757,7 +1684,6 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               const planKey = `${res.prepaga.slug}-${res.plan.slug}`
               const isBest = planKey === bestKey
               const isCheapest = planKey === cheapestKey && planKey !== bestKey
-              const isRecomendadoOrigen = planKey === destinoKey
               const isAccedido = planAccedido === planKey
               const calidad = calidadPlan(res.prepaga, res.plan)
               const testimonio = testimonioDePlan(res.prepaga.slug, res.plan.nombre)
@@ -1766,15 +1692,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 <div key={`${planKey}::${filtroVersion}`}
                   style={{ animationDelay: `${Math.min(i, 8) * 80}ms` }}
                   className={`card-enter bg-white rounded-2xl border-2 overflow-hidden transition-all ${
-                    isBest || isRecomendadoOrigen ? 'border-[#E8002D] shadow-md' : 'border-gray-100 hover:border-gray-200 hover:shadow-sm'
+                    isBest ? 'border-[#E8002D] shadow-md' : 'border-gray-100 hover:border-gray-200 hover:shadow-sm'
                   }`}>
 
-                  {isRecomendadoOrigen && !isBest && cambioOrigen && (
-                    <div className="bg-[#E8002D] text-white text-xs font-bold px-4 py-2 flex items-center gap-2">
-                      <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      Como venís de {cambioOrigen.origenNombre}, este es tu plan
-                    </div>
-                  )}
                   {isBest && (
                     <div className="bg-[#E8002D] text-white text-xs font-bold px-4 py-2 flex items-center gap-2">
                       <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
