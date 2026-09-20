@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col">
         <SiteChrome>{children}</SiteChrome>
         <Analytics />
-        <Script src="https://analytics.ahrefs.com/analytics.js" data-key="tHgjdB6lLUXEizZ508Qw3A" strategy="afterInteractive" />
+        <Script src="https://analytics.ahrefs.com/analytics.js" data-key="n963Y9CAcOEi8wFIGX2/pw" strategy="afterInteractive" />
       </body>
     </html>
   )
