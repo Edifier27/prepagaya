@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: 'How much does private health insurance cost in Argentina?',
-    a: `Foreigners pay the same as locals: price depends on age and plan, not nationality. As of ${PRECIO_ACTUALIZADO_EN}, entry-level plans start around AR$170,000/month for a 30-year-old, mid-range plans with no copays run AR$300,000–500,000, and premium plans exceed AR$1,000,000.`,
+    a: <>Foreigners pay the same as locals: price depends on age and plan, not nationality. As of {PRECIO_ACTUALIZADO_EN}, entry-level plans start around AR$170,000/month for a 30-year-old, mid-range plans with no copays run AR$300,000–500,000, and premium plans exceed AR$1,000,000. <Link href="/en/health-insurance-cost-argentina" className="text-[#E8002D] hover:underline font-medium">Full price breakdown →</Link></>,
   },
   {
     q: 'Travel insurance or a local prepaga — which one do I need?',

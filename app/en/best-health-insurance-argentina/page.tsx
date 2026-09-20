@@ -150,6 +150,9 @@ export default function BestHealthInsuranceArgentinaPage() {
               )
             })}
           </div>
+          <Link href="/en/health-insurance-cost-argentina" className="inline-block text-sm font-semibold text-[#E8002D] hover:underline mt-4">
+            Full price breakdown by coverage tier →
+          </Link>
         </div>
       </section>
 
