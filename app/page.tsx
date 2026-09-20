@@ -134,7 +134,14 @@ export default function HomePage(): React.ReactElement {
 
         <div className="relative z-10">
           <div className="container max-w-3xl mx-auto text-center pt-14 pb-8">
-            <ZonaBanner variant="home" />
+            {/* Envuelta en su propia fila centrada: el banner de zona y el
+                badge de abajo son dos pastillas "inline-flex" del mismo
+                ancho de contenido — sin esto, cuando el banner de zona se
+                muestra, quedaban las dos apretadas una al lado de la otra
+                en la misma línea (pedido de Darío, 20-sep-2026). */}
+            <div className="flex justify-center">
+              <ZonaBanner variant="home" />
+            </div>
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-red-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] animate-pulse" />
               Comparador personalizado · Gratis · Sin registro
