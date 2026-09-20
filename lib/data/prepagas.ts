@@ -1312,6 +1312,19 @@ export function getPlanBySlug(prepagaSlug: string, planSlug: string) {
 export const PRECIO_ACTUALIZADO = 'Septiembre 2026'
 export const PRECIO_REFERENCIA = '30 años, contratación individual'
 
+// Versión en inglés de PRECIO_ACTUALIZADO para el silo /en/* — se deriva del
+// mismo valor de arriba en vez de mantenerlo a mano aparte, así nunca queda
+// desincronizado cuando se actualiza el precio cada mes.
+const MESES_EN: Record<string, string> = {
+  enero: 'January', febrero: 'February', marzo: 'March', abril: 'April',
+  mayo: 'May', junio: 'June', julio: 'July', agosto: 'August',
+  septiembre: 'September', octubre: 'October', noviembre: 'November', diciembre: 'December',
+}
+export const PRECIO_ACTUALIZADO_EN = PRECIO_ACTUALIZADO.replace(
+  /^(\p{L}+)/u,
+  (mes) => MESES_EN[mes.toLowerCase()] ?? mes,
+)
+
 // Nivel de precio: posición relativa de un plan dentro de la distribución de
 // precios de todo el sitio, sin exponer el monto. Reemplaza a formatPrecio()
 // en toda superficie pública que asocie precio a una marca puntual (las

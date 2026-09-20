@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: 'How much does private health insurance cost in Argentina?',
-    a: `Foreigners pay the same as locals: price depends on age and plan, not nationality. As of ${PRECIO_ACTUALIZADO}, entry-level plans start around AR$170,000/month for a 30-year-old, mid-range plans with no copays run AR$300,000–500,000, and premium plans exceed AR$1,000,000.`,
+    a: `Foreigners pay the same as locals: price depends on age and plan, not nationality. As of ${PRECIO_ACTUALIZADO_EN}, entry-level plans start around AR$170,000/month for a 30-year-old, mid-range plans with no copays run AR$300,000–500,000, and premium plans exceed AR$1,000,000.`,
   },
   {
     q: 'Travel insurance or a local prepaga — which one do I need?',
@@ -80,7 +80,7 @@ export default function HealthInsuranceArgentinaPage() {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-3xl mx-auto">
           <span className="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">
-            English guide · Updated {PRECIO_ACTUALIZADO}
+            English guide · Updated {PRECIO_ACTUALIZADO_EN}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             Health Insurance in Argentina: the Guide for Foreigners
@@ -132,7 +132,7 @@ export default function HealthInsuranceArgentinaPage() {
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-2">Popular options among expats</h2>
-          <p className="text-sm text-gray-500 mb-6">Price level relative to the market — {PRECIO_ACTUALIZADO}. Get your exact quote for free.</p>
+          <p className="text-sm text-gray-500 mb-6">Price level relative to the market — {PRECIO_ACTUALIZADO_EN}. Get your exact quote for free.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {destacadas.map((p) => {
               const desde = Math.min(...p.planes.map((pl) => pl.precio))
@@ -145,6 +145,9 @@ export default function HealthInsuranceArgentinaPage() {
               )
             })}
           </div>
+          <Link href="/en/best-health-insurance-argentina" className="inline-block text-sm font-semibold text-[#E8002D] hover:underline mt-4">
+            Full comparison: which one is actually best for you →
+          </Link>
         </div>
       </section>
 

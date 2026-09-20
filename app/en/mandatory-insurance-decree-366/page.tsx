@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 
 export const metadata: Metadata = {
@@ -38,7 +38,7 @@ const faqs = [
   },
   {
     q: 'I am relocating to Argentina for months, not just visiting — do I still need travel insurance?',
-    a: `No — and you shouldn't buy it. A short-term travel policy is priced and designed for a trip of days or weeks. If you are staying for months or settling in, a local prepaga (OSDE, Swiss Medical, Galeno, and others) costs about the same per month as your age group pays locally, covers you continuously with no per-trip limit, and its coverage certificate is what Migraciones actually accepts for temporary residency paperwork. As of ${PRECIO_ACTUALIZADO}, entry-level plans start around AR$170,000/month for a 30-year-old.`,
+    a: `No — and you shouldn't buy it. A short-term travel policy is priced and designed for a trip of days or weeks. If you are staying for months or settling in, a local prepaga (OSDE, Swiss Medical, Galeno, and others) costs about the same per month as your age group pays locally, covers you continuously with no per-trip limit, and its coverage certificate is what Migraciones actually accepts for temporary residency paperwork. As of ${PRECIO_ACTUALIZADO_EN}, entry-level plans start around AR$170,000/month for a 30-year-old.`,
   },
   {
     q: 'Are permanent residents or naturalized citizens exempt?',
@@ -79,7 +79,7 @@ export default function MandatoryInsuranceDecree366Page() {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-3xl mx-auto">
           <span className="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">
-            English guide · Updated {PRECIO_ACTUALIZADO}
+            English guide · Updated {PRECIO_ACTUALIZADO_EN}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             Argentina&apos;s Mandatory Insurance Requirement, Explained
@@ -124,6 +124,9 @@ export default function MandatoryInsuranceDecree366Page() {
               </p>
             </div>
           </div>
+          <Link href="/en/best-health-insurance-argentina" className="inline-block text-sm font-semibold text-[#E8002D] hover:underline mt-4">
+            Relocating? Compare the top prepaga options →
+          </Link>
         </div>
       </section>
 
