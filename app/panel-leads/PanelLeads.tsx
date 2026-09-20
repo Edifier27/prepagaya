@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { logout } from './actions'
 import type { LeadRow } from '@/lib/db'
 
@@ -124,6 +124,28 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
 
   const sinLeer = leads.filter((l) => !l.leido).length
 
+  // Estadísticas del "mini CRM" (pedido de Darío, 20-sep-2026): cuántos
+  // datos entran y de dónde — se calculan solas de los leads ya cargados
+  // en el panel, sin pedir nada nuevo al servidor.
+  const stats = useMemo(() => {
+    const hoyStr = new Date().toDateString()
+    const hoy = leads.filter((l) => new Date(l.creado_en).toDateString() === hoyStr).length
+    const contar = (valores: (string | null)[]) => {
+      const mapa = new Map<string, number>()
+      for (const v of valores) {
+        const key = v?.trim() || 'Sin especificar'
+        mapa.set(key, (mapa.get(key) ?? 0) + 1)
+      }
+      return [...mapa.entries()].sort((a, b) => b[1] - a[1])
+    }
+    return {
+      total: leads.length,
+      hoy,
+      porZona: contar(leads.map((l) => l.provincia)),
+      porFuente: contar(leads.map((l) => l.fuente)),
+    }
+  }, [leads])
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white border-b border-gray-100 sticky top-0 z-10">
@@ -154,13 +176,59 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto p-4 space-y-2.5">
-        {leads.length === 0 && (
-          <p className="text-center text-sm text-gray-400 py-16">Todavía no entró ningún lead.</p>
-        )}
-        {leads.map((lead) => (
-          <LeadCard key={lead.id} lead={lead} onToggleLeido={toggleLeido} />
+      <div className="max-w-3xl mx-auto p-4">
+        <StatsPanel stats={stats} />
+
+        <div className="space-y-1.5">
+          {leads.length === 0 && (
+            <p className="text-center text-sm text-gray-400 py-16">Todavía no entró ningún lead.</p>
+          )}
+          {leads.map((lead) => (
+            <LeadRow key={lead.id} lead={lead} onToggleLeido={toggleLeido} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function StatsPanel({ stats }: { stats: { total: number; hoy: number; porZona: [string, number][]; porFuente: [string, number][] } }) {
+  return (
+    <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-4">
+      <div className="grid grid-cols-2 gap-3 mb-4">
+        <div className="bg-gray-50 rounded-xl p-3">
+          <div className="text-2xl font-black text-gray-900 leading-none">{stats.total}</div>
+          <div className="text-[11px] text-gray-500 mt-1">Leads totales</div>
+        </div>
+        <div className="bg-red-50 rounded-xl p-3">
+          <div className="text-2xl font-black text-[#E8002D] leading-none">{stats.hoy}</div>
+          <div className="text-[11px] text-gray-500 mt-1">Hoy</div>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <StatBreakdown titulo="Por zona" items={stats.porZona} />
+        <StatBreakdown titulo="Por fuente" items={stats.porFuente} />
+      </div>
+    </div>
+  )
+}
+
+function StatBreakdown({ titulo, items }: { titulo: string; items: [string, number][] }) {
+  if (items.length === 0) return null
+  const top = items.slice(0, 6)
+  const resto = items.slice(6).reduce((acc, [, n]) => acc + n, 0)
+  return (
+    <div>
+      <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">{titulo}</div>
+      <div className="flex flex-wrap gap-1.5">
+        {top.map(([nombre, n]) => (
+          <span key={nombre} className="text-[11px] font-semibold text-gray-600 bg-gray-100 rounded-full px-2 py-1">
+            {nombre} <span className="text-gray-400">· {n}</span>
+          </span>
         ))}
+        {resto > 0 && (
+          <span className="text-[11px] font-semibold text-gray-400 bg-gray-50 rounded-full px-2 py-1">+{resto} más</span>
+        )}
       </div>
     </div>
   )
@@ -192,61 +260,62 @@ function extraerCuentaKommo(estado: string | null): string | null {
   return m ? m[1] : null
 }
 
-function LeadCard({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: number, leidoActual: boolean) => void }) {
+// Fila compacta y plegable (pedido de Darío, 20-sep-2026: la card anterior
+// ocupaba demasiado alto siempre expandida). El resumen de una línea trae
+// lo que hace falta para escanear la lista rápido; el resto se abre al
+// tocarla — mismo patrón <details>/<summary> que ya usan las FAQ del sitio.
+function LeadRow({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: number, leidoActual: boolean) => void }) {
   const cuenta = extraerCuentaKommo(lead.kommo_estado)
+  const kommoOk = lead.kommo_estado?.startsWith('OK') ?? false
+
   return (
-    <div className={`bg-white rounded-2xl border-2 p-4 transition-colors ${lead.leido ? 'border-gray-100' : 'border-red-200'}`}>
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-bold text-gray-900 text-sm">{lead.nombre}</span>
-            {!lead.leido && <span className="w-2 h-2 rounded-full bg-[#E8002D] flex-shrink-0" />}
-            {cuenta && (
-              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                cuenta === 'Gabriela'
-                  ? 'text-purple-700 bg-purple-50 border-purple-200'
-                  : 'text-blue-700 bg-blue-50 border-blue-200'
-              }`}>
-                → {cuenta}
-              </span>
-            )}
-          </div>
-          <p className="text-xs text-gray-400 mt-0.5">{formatFecha(lead.creado_en)}</p>
-        </div>
-        <button
-          onClick={() => onToggleLeido(lead.id, lead.leido)}
-          className="text-[11px] font-semibold text-gray-400 hover:text-gray-600 flex-shrink-0 transition-colors"
-        >
-          {lead.leido ? 'Marcar no leído' : 'Marcar leído'}
-        </button>
-      </div>
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-1.5 mt-3 text-xs">
-        {lead.celular && <Campo label="Celular"><a href={`tel:${lead.celular}`} className="text-[#E8002D] font-semibold hover:underline">{lead.celular}</a></Campo>}
-        {lead.email && <Campo label="Email"><a href={`mailto:${lead.email}`} className="text-gray-700 hover:underline break-all">{lead.email}</a></Campo>}
-        {lead.prepaga && <Campo label="Interés">{lead.prepaga}</Campo>}
-        {lead.provincia && <Campo label="Zona">{lead.provincia}</Campo>}
-        {lead.edades && <Campo label="Integrantes">{lead.edades}</Campo>}
-        {lead.fuente && <Campo label="Fuente">{lead.fuente}</Campo>}
-      </div>
-
-      <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-50">
-        {lead.kommo_estado && (
-          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-            lead.kommo_estado.startsWith('OK')
-              ? 'text-emerald-700 bg-emerald-50 border-emerald-200'
-              : 'text-amber-700 bg-amber-50 border-amber-200'
+    <details className={`group bg-white rounded-xl border transition-colors overflow-hidden ${lead.leido ? 'border-gray-100' : 'border-red-200'}`}>
+      <summary className="flex items-center gap-2 px-3 py-2.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
+        {!lead.leido && <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] flex-shrink-0" />}
+        <span className="font-bold text-gray-900 text-sm truncate">{lead.nombre}</span>
+        {cuenta && (
+          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 ${
+            cuenta === 'Gabriela' ? 'text-purple-700 bg-purple-50' : 'text-blue-700 bg-blue-50'
           }`}>
-            {lead.kommo_estado.startsWith('OK') ? '✓ Kommo' : '⚠ Kommo falló'}
+            {cuenta}
           </span>
         )}
-        {lead.kommo_link && (
-          <a href={lead.kommo_link} target="_blank" rel="noopener noreferrer" className="text-[11px] font-semibold text-[#E8002D] hover:underline">
-            Ver en Kommo →
-          </a>
-        )}
+        {lead.provincia && <span className="text-[11px] text-gray-400 truncate hidden sm:inline">{lead.provincia}</span>}
+        <span className="flex-1" />
+        <span className={`text-[11px] flex-shrink-0 ${kommoOk ? 'text-emerald-500' : 'text-amber-500'}`} title={kommoOk ? 'Kommo OK' : 'Kommo falló'}>
+          {kommoOk ? '✓' : '⚠'}
+        </span>
+        <span className="text-[11px] text-gray-400 flex-shrink-0 whitespace-nowrap">{formatFecha(lead.creado_en)}</span>
+        <svg className="w-3.5 h-3.5 text-gray-300 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+
+      <div className="px-3 pb-3 border-t border-gray-50 pt-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-1.5 text-xs">
+          {lead.celular && <Campo label="Celular"><a href={`tel:${lead.celular}`} className="text-[#E8002D] font-semibold hover:underline">{lead.celular}</a></Campo>}
+          {lead.email && <Campo label="Email"><a href={`mailto:${lead.email}`} className="text-gray-700 hover:underline break-all">{lead.email}</a></Campo>}
+          {lead.prepaga && <Campo label="Interés">{lead.prepaga}</Campo>}
+          {lead.provincia && <Campo label="Zona">{lead.provincia}</Campo>}
+          {lead.edades && <Campo label="Integrantes">{lead.edades}</Campo>}
+          {lead.fuente && <Campo label="Fuente">{lead.fuente}</Campo>}
+        </div>
+
+        <div className="flex items-center gap-3 mt-3 pt-3 border-t border-gray-50">
+          {lead.kommo_link && (
+            <a href={lead.kommo_link} target="_blank" rel="noopener noreferrer" className="text-[11px] font-semibold text-[#E8002D] hover:underline">
+              Ver en Kommo →
+            </a>
+          )}
+          <button
+            onClick={() => onToggleLeido(lead.id, lead.leido)}
+            className="text-[11px] font-semibold text-gray-400 hover:text-gray-600 transition-colors ml-auto"
+          >
+            {lead.leido ? 'Marcar no leído' : 'Marcar leído'}
+          </button>
+        </div>
       </div>
-    </div>
+    </details>
   )
 }
 
