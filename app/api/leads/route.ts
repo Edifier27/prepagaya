@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { whatsappLinkParaLead, SITE_URL } from '@/lib/utils'
 import { buildKommoLink, crearLeadEnKommo, kommoLeadUrl, nombreCuenta } from '@/lib/kommo'
+import { avisarLeadPorTelegram, textoAlertaLead } from '@/lib/telegram'
+import { guardarLeadEnPlanilla } from '@/lib/sheets'
 
 // Aviso de "ya es tu contacto" que va arriba del mail cuando la búsqueda
 // anti-duplicado (ver lib/kommo.ts) encuentra coincidencia por celular o
@@ -66,23 +68,29 @@ export async function POST(req: NextRequest) {
   // si la carga automática funcionó, es un link directo a la tarjeta que ya
   // se creó ("Ver en Kommo"); si Kommo estuvo caído justo en este momento,
   // cae al link firmado de siempre ("Cargar en Kommo") como respaldo, para
-  // que el dato nunca se pierda del todo. Nunca bloquea ni rompe el envío
-  // del mail si Kommo falla (ver timeout en lib/kommo.ts).
+  // que el dato nunca se pierda del todo. Nunca bloquea ni rompe el resto del
+  // flujo si Kommo falla (ver timeout en lib/kommo.ts).
   let kommo_link = ''
   let kommo_label = 'Ver en Kommo'
   let duplicado_banner = ''
+  let kommoOk = false
+  let kommoResumen = ''
   try {
     const resultado = await crearLeadEnKommo({
       nombre, celular, email, interes: prepaga, provincia, edades: personas, fuente, fecha,
       ts: String(Date.now()),
     })
     if (resultado.ok && resultado.cuenta && resultado.leadId) {
+      kommoOk = true
       kommo_link = kommoLeadUrl(resultado.cuenta, resultado.leadId)
+      kommoResumen = `OK (${nombreCuenta(resultado.cuenta)})${resultado.duplicado ? ' — ya era contacto' : ''}`
       if (resultado.duplicado) duplicado_banner = bannerDuplicado(nombreCuenta(resultado.cuenta))
     } else {
+      kommoResumen = `Error: ${resultado.error ?? 'sin detalle'}`
       console.error('[LEAD] no se pudo cargar en Kommo automáticamente, cae al link manual:', resultado.error)
     }
   } catch (err) {
+    kommoResumen = `Error: ${err}`
     console.error('[LEAD] error cargando en Kommo automáticamente, cae al link manual:', err)
   }
   if (!kommo_link) {
@@ -92,42 +100,61 @@ export async function POST(req: NextRequest) {
     kommo_label = 'Cargar en Kommo'
   }
 
-  if (!EMAILJS_PRIVATE_KEY) {
-    console.error('[LEAD] Falta EMAILJS_PRIVATE_KEY — EmailJS va a rechazar el envío (modo estricto).')
-  }
+  // Alerta por Telegram + fila en la planilla de respaldo — siempre, haya
+  // andado Kommo o no (pedido de Darío, 20-sep-2026). Ninguna de las dos
+  // rompe el flujo si falla o no está configurada (ver lib/telegram.ts y
+  // lib/sheets.ts): se corren en paralelo y nunca tiran.
+  await Promise.allSettled([
+    avisarLeadPorTelegram(textoAlertaLead({
+      nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommoLink: kommoOk ? kommo_link : '',
+    })),
+    guardarLeadEnPlanilla({
+      fecha, nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommo: kommoResumen,
+    }),
+  ])
 
-  // Enviar email via EmailJS REST API
-  try {
-    const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        service_id:  EMAILJS_SERVICE_ID,
-        template_id: EMAILJS_TEMPLATE_ID,
-        user_id:     EMAILJS_PUBLIC_KEY,
-        accessToken: EMAILJS_PRIVATE_KEY,
-        template_params: {
-          name:      nombre,
-          email:     email.toLowerCase(),
-          celular:   celular || 'No informado',
-          prepaga:   prepaga || 'No especificada',
-          zona:      provincia || 'No especificada',
-          edades:    personas || 'No especificado',
-          fuente,
-          fecha,
-          whatsapp_link,
-          kommo_link,
-          kommo_label,
-          duplicado_banner,
-        },
-      }),
-    })
-    if (!res.ok) {
-      const text = await res.text()
-      console.error('[LEAD] EmailJS error:', res.status, text)
+  // El mail por EmailJS ahora es solo respaldo: Kommo ya recibe el lead
+  // automático (con toda la data) y Telegram ya avisó al toque, así que
+  // mandar un mail por cada lead solo gastaba cupo de EmailJS sin sumar nada
+  // (pedido de Darío, 20-sep-2026, para no seguir quedándose sin límite
+  // mensual). Si Kommo falló, el mail sigue siendo la red de contención de
+  // siempre, con el link manual de carga incluido.
+  if (!kommoOk) {
+    if (!EMAILJS_PRIVATE_KEY) {
+      console.error('[LEAD] Falta EMAILJS_PRIVATE_KEY — EmailJS va a rechazar el envío (modo estricto).')
     }
-  } catch (err) {
-    console.error('[LEAD] EmailJS fetch error:', err)
+    try {
+      const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id:  EMAILJS_SERVICE_ID,
+          template_id: EMAILJS_TEMPLATE_ID,
+          user_id:     EMAILJS_PUBLIC_KEY,
+          accessToken: EMAILJS_PRIVATE_KEY,
+          template_params: {
+            name:      nombre,
+            email:     email.toLowerCase(),
+            celular:   celular || 'No informado',
+            prepaga:   prepaga || 'No especificada',
+            zona:      provincia || 'No especificada',
+            edades:    personas || 'No especificado',
+            fuente,
+            fecha,
+            whatsapp_link,
+            kommo_link,
+            kommo_label,
+            duplicado_banner,
+          },
+        }),
+      })
+      if (!res.ok) {
+        const text = await res.text()
+        console.error('[LEAD] EmailJS error:', res.status, text)
+      }
+    } catch (err) {
+      console.error('[LEAD] EmailJS fetch error:', err)
+    }
   }
 
   return NextResponse.json({ ok: true })
