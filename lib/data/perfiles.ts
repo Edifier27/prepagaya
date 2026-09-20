@@ -65,7 +65,7 @@ export const perfiles: PerfilData[] = [
     metaDescripcion: 'Guía completa: las mejores prepagas para embarazadas en Argentina. Cobertura del parto, período de carencia, maternidad y atención prenatal. Actualizado junio 2026.',
     descripcion: 'Si estás embarazada o planificando un embarazo, la elección de prepaga es una decisión urgente. Te explicamos qué buscar, qué períodos de carencia existen y cuáles son las mejores opciones.',
     necesidades: [
-      'Cobertura del parto sin período de carencia (si ya estás afiliada)',
+      'Cobertura del parto sin cargo de carencia (afiliándote con más de 2 meses de margen antes de la FUM)',
       'Obstetricia y controles prenatales',
       'Neonatología de alta complejidad',
       'Hotelería materna de calidad',
@@ -84,7 +84,7 @@ export const perfiles: PerfilData[] = [
     faq: [
       {
         q: '¿Las prepagas tienen período de carencia para el parto?',
-        a: 'Sí. Si te afiliás estando embarazada, la mayoría de las prepagas aplica un período de carencia de 9 a 10 meses para la cobertura del parto y cesárea. Sin embargo, la atención prenatal (controles, ecografías) suele tener carencias menores o estar cubierta desde el inicio. Si ya sos afiliada y quedás embarazada, no aplica ninguna carencia.',
+        a: 'La carencia estándar es de 2 meses desde la fecha de afiliación: para que el embarazo quede cubierto sin ningún cargo extra, la FUM (fecha de última menstruación) tiene que ser posterior a esos 2 meses. Si resulta que ya estabas embarazada sin saberlo al afiliarte (por ejemplo, de 1 mes), no se te niega la cobertura, pero tenés que abonar una carencia equivalente a 3 cuotas del plan. Lo que no se puede hacer es afiliarse declarando el embarazo ya confirmado — en ese caso, es poco probable que la afiliación se acepte.',
       },
       {
         q: '¿Qué cubre el PMO en el embarazo?',
@@ -92,7 +92,7 @@ export const perfiles: PerfilData[] = [
       },
       {
         q: '¿Conviene afiliarse antes de quedar embarazada?',
-        a: 'Totalmente. Si te afiliás antes del embarazo, evitás los períodos de carencia y tenés cobertura completa del parto. También podés elegir con calma qué prepaga y plan se adapta mejor a tus necesidades sin la presión del tiempo.',
+        a: 'Sí. Afiliándote con margen (más de 2 meses antes de la FUM) te asegurás la cobertura completa sin ningún cargo de carencia, y podés elegir con calma qué prepaga y plan se adapta mejor a tus necesidades sin la presión del tiempo.',
       },
     ],
     keywords: ['prepaga para embarazadas', 'prepaga maternidad argentina', 'prepaga cubre parto', 'mejor prepaga embarazo'],
