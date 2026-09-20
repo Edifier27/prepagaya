@@ -231,7 +231,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
                         onChange={(e) => setNombre(e.target.value)}
                         placeholder="Tu nombre"
                         autoComplete="given-name"
-                        className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
+                        className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-[#E8002D] transition-colors"
                       />
                     </div>
                     <div>
@@ -243,7 +243,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
                         placeholder="11 2345-6789"
                         autoComplete="tel"
                         inputMode="numeric"
-                        className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
+                        className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-[#E8002D] transition-colors"
                       />
                     </div>
                   </div>

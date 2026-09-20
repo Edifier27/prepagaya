@@ -284,7 +284,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                   <input
                     type="text" value={empresa} onChange={(e) => setEmpresa(e.target.value)}
                     placeholder="Crossover S.A." autoComplete="organization"
-                    className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
+                    className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#C7A046] transition-colors"
                   />
                 </div>
                 <div>
@@ -292,7 +292,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                   <input
                     type="text" value={nombre} onChange={(e) => setNombre(e.target.value)}
                     placeholder="Nombre del contacto" autoComplete="name"
-                    className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
+                    className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#C7A046] transition-colors"
                   />
                 </div>
                 <div>
@@ -300,7 +300,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                   <input
                     type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
                     placeholder="11 4567-8900" inputMode="numeric" autoComplete="tel"
-                    className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
+                    className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#C7A046] transition-colors"
                   />
                 </div>
                 <div>
@@ -308,7 +308,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                   <input
                     type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                     placeholder="vos@tuempresa.com" autoComplete="email"
-                    className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
+                    className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#C7A046] transition-colors"
                   />
                 </div>
               </div>
