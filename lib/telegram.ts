@@ -44,10 +44,12 @@ export async function avisarLeadPorTelegram(texto: string): Promise<void> {
 export function textoAlertaLead(d: {
   nombre: string; celular: string; email: string; prepaga: string
   provincia: string; edades: string; fuente: string; kommoLink: string
+  cuenta?: string // "Darío" o "Gabriela" — a quién le tocó este lead
 }): string {
   const escapar = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   const lineas = [
     '🆕 <b>Lead nuevo — PrepagaYa</b>',
+    d.cuenta ? `👉 Le toca a: <b>${escapar(d.cuenta)}</b>` : null,
     `👤 ${escapar(d.nombre || 'Sin nombre')}`,
     d.celular ? `📱 ${escapar(d.celular)}` : null,
     d.email ? `✉️ ${escapar(d.email)}` : null,

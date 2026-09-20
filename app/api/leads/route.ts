@@ -77,6 +77,7 @@ export async function POST(req: NextRequest) {
   let duplicado_banner = ''
   let kommoOk = false
   let kommoResumen = ''
+  let cuentaDisplay = '' // "Darío" o "Gabriela" — a quién le tocó este lead, para mostrar apenas llega
   try {
     const resultado = await crearLeadEnKommo({
       nombre, celular, email, interes: prepaga, provincia, edades: personas, fuente, fecha,
@@ -84,9 +85,10 @@ export async function POST(req: NextRequest) {
     })
     if (resultado.ok && resultado.cuenta && resultado.leadId) {
       kommoOk = true
+      cuentaDisplay = nombreCuenta(resultado.cuenta)
       kommo_link = kommoLeadUrl(resultado.cuenta, resultado.leadId)
-      kommoResumen = `OK (${nombreCuenta(resultado.cuenta)})${resultado.duplicado ? ' — ya era contacto' : ''}`
-      if (resultado.duplicado) duplicado_banner = bannerDuplicado(nombreCuenta(resultado.cuenta))
+      kommoResumen = `OK (${cuentaDisplay})${resultado.duplicado ? ' — ya era contacto' : ''}`
+      if (resultado.duplicado) duplicado_banner = bannerDuplicado(cuentaDisplay)
     } else {
       kommoResumen = `Error: ${resultado.error ?? 'sin detalle'}`
       console.error('[LEAD] no se pudo cargar en Kommo automáticamente, cae al link manual:', resultado.error)
@@ -113,9 +115,13 @@ export async function POST(req: NextRequest) {
       kommoEstado: kommoResumen, kommoLink: kommoOk ? kommo_link : '',
     }),
     avisarLeadPorTelegram(textoAlertaLead({
-      nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommoLink: kommoOk ? kommo_link : '',
+      nombre, celular, email, prepaga, provincia, edades: personas, fuente,
+      kommoLink: kommoOk ? kommo_link : '', cuenta: cuentaDisplay,
     })),
-    avisarLeadPorPush('PrepagaYa — Lead nuevo', `${nombre} · ${prepaga || 'Sin especificar'} · ${provincia || 'Sin zona'}`),
+    avisarLeadPorPush(
+      'PrepagaYa — Lead nuevo',
+      `${nombre} · ${prepaga || 'Sin especificar'}${cuentaDisplay ? ` · → ${cuentaDisplay}` : ''}`
+    ),
     guardarLeadEnPlanilla({
       fecha, nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommo: kommoResumen,
     }),

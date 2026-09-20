@@ -23,7 +23,40 @@ type EstadoAlertas = 'desconocido' | 'inactivas' | 'activando' | 'activas' | 'no
 export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow[] }) {
   const [leads, setLeads] = useState(leadsIniciales)
   const [estadoAlertas, setEstadoAlertas] = useState<EstadoAlertas>('desconocido')
+  const [refrescando, setRefrescando] = useState(false)
   const ultimoId = useRef(leadsIniciales[0]?.id ?? 0)
+
+  // Trae los leads más nuevos que el último visto — la usan tanto el
+  // polling automático como el botón "Refrescar" (pedido de Darío,
+  // 20-sep-2026: poder forzar la actualización sin esperar los 20s).
+  const refrescar = useCallback(async (notificarSiHayNuevos: boolean) => {
+    try {
+      const res = await fetch(`/api/panel/leads?after=${ultimoId.current}`)
+      if (!res.ok) return
+      const { leads: nuevos } = (await res.json()) as { leads: LeadRow[] }
+      if (nuevos.length === 0) return
+
+      setLeads((prev) => [...nuevos, ...prev])
+      ultimoId.current = Math.max(ultimoId.current, ...nuevos.map((l) => l.id))
+
+      if (notificarSiHayNuevos && document.hidden && Notification.permission === 'granted') {
+        const l = nuevos[0]
+        const cuenta = extraerCuentaKommo(l.kommo_estado)
+        new Notification('PrepagaYa — Lead nuevo', {
+          body: `${l.nombre} · ${l.prepaga || 'Sin especificar'}${cuenta ? ` · → ${cuenta}` : ''}`,
+          icon: '/panel-icon-192',
+        })
+      }
+    } catch {
+      // silencioso — el polling reintenta solo en el próximo tick
+    }
+  }, [])
+
+  const refrescarManual = useCallback(async () => {
+    setRefrescando(true)
+    await refrescar(false)
+    setRefrescando(false)
+  }, [refrescar])
 
   // Chequea el estado real (permiso + suscripción activa) al entrar, para no
   // mostrar "Activar alertas" si esta compu ya las tiene prendidas.
@@ -46,29 +79,9 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   // Si el usuario tiene la pestaña abierta, además de sumarlos a la lista
   // dispara una notificación local al toque (sin esperar el viaje del push).
   useEffect(() => {
-    const interval = setInterval(async () => {
-      try {
-        const res = await fetch(`/api/panel/leads?after=${ultimoId.current}`)
-        if (!res.ok) return
-        const { leads: nuevos } = (await res.json()) as { leads: LeadRow[] }
-        if (nuevos.length === 0) return
-
-        setLeads((prev) => [...nuevos, ...prev])
-        ultimoId.current = Math.max(ultimoId.current, ...nuevos.map((l) => l.id))
-
-        if (document.hidden && Notification.permission === 'granted') {
-          const l = nuevos[0]
-          new Notification('PrepagaYa — Lead nuevo', {
-            body: `${l.nombre} · ${l.prepaga || 'Sin especificar'}`,
-            icon: '/panel-icon-192',
-          })
-        }
-      } catch {
-        // silencioso — se reintenta solo en el próximo tick
-      }
-    }, POLL_MS)
+    const interval = setInterval(() => refrescar(true), POLL_MS)
     return () => clearInterval(interval)
-  }, [])
+  }, [refrescar])
 
   const activarAlertas = useCallback(async () => {
     if (!VAPID_PUBLIC_KEY) {
@@ -123,6 +136,14 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={refrescarManual}
+              disabled={refrescando}
+              className="text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 disabled:opacity-60 rounded-full px-3 py-1.5 transition-colors flex items-center gap-1.5"
+            >
+              <span className={refrescando ? 'animate-spin' : ''}>↻</span>
+              {refrescando ? 'Actualizando…' : 'Refrescar'}
+            </button>
             <BotonAlertas estado={estadoAlertas} onActivar={activarAlertas} />
             <form action={logout}>
               <button type="submit" className="text-xs font-semibold text-gray-400 hover:text-gray-600 transition-colors px-2 py-1.5">
@@ -164,7 +185,15 @@ function BotonAlertas({ estado, onActivar }: { estado: EstadoAlertas; onActivar:
   )
 }
 
+// "OK (Darío)" / "OK (Gabriela) — ya era contacto" → "Darío" / "Gabriela".
+function extraerCuentaKommo(estado: string | null): string | null {
+  if (!estado) return null
+  const m = estado.match(/OK \(([^)]+)\)/)
+  return m ? m[1] : null
+}
+
 function LeadCard({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: number, leidoActual: boolean) => void }) {
+  const cuenta = extraerCuentaKommo(lead.kommo_estado)
   return (
     <div className={`bg-white rounded-2xl border-2 p-4 transition-colors ${lead.leido ? 'border-gray-100' : 'border-red-200'}`}>
       <div className="flex items-start justify-between gap-3">
@@ -172,6 +201,15 @@ function LeadCard({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: 
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-bold text-gray-900 text-sm">{lead.nombre}</span>
             {!lead.leido && <span className="w-2 h-2 rounded-full bg-[#E8002D] flex-shrink-0" />}
+            {cuenta && (
+              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                cuenta === 'Gabriela'
+                  ? 'text-purple-700 bg-purple-50 border-purple-200'
+                  : 'text-blue-700 bg-blue-50 border-blue-200'
+              }`}>
+                → {cuenta}
+              </span>
+            )}
           </div>
           <p className="text-xs text-gray-400 mt-0.5">{formatFecha(lead.creado_en)}</p>
         </div>
