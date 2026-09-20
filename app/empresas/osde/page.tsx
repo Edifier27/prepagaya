@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
-import { EmpresasForm } from '@/components/empresas/EmpresasForm'
+import { PedirPropuestaCard } from '@/components/empresas/PedirPropuestaCard'
 
 export const metadata: Metadata = {
   title: 'OSDE para Empresas: Plan Corporativo y Convenio para PyMEs',
@@ -150,7 +150,7 @@ export default function EmpresasOsdePage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Cotizá OSDE para tu empresa</h2>
             <p className="text-sm text-gray-500">Gratis, sin compromiso. Te contactamos en menos de 24hs hábiles.</p>
           </div>
-          <EmpresasForm prepagaContexto="OSDE" />
+          <PedirPropuestaCard prepagaContexto="OSDE" />
         </div>
       </section>
 

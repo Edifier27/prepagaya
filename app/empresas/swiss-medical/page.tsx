@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
-import { EmpresasForm } from '@/components/empresas/EmpresasForm'
+import { PedirPropuestaCard } from '@/components/empresas/PedirPropuestaCard'
 
 export const metadata: Metadata = {
   title: `Swiss Medical para Empresas: Plan Corporativo y Convenio de Afinidad`,
@@ -203,7 +203,7 @@ export default function EmpresasSwissMedicalPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Cotizá Swiss Medical para tu empresa</h2>
             <p className="text-sm text-gray-500">Gratis, sin compromiso. Te contactamos en menos de 24hs hábiles.</p>
           </div>
-          <EmpresasForm prepagaContexto="Swiss Medical" />
+          <PedirPropuestaCard prepagaContexto="Swiss Medical" />
         </div>
       </section>
 

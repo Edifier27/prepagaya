@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
-import { EmpresasForm } from '@/components/empresas/EmpresasForm'
+import { PedirPropuestaCard } from '@/components/empresas/PedirPropuestaCard'
 
 export const metadata: Metadata = {
   title: 'Plan Black de Swiss Medical: Línea Corporativa Premium para Empresas',
@@ -117,7 +117,7 @@ export default function PlanBlackPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Cotizá el Plan Black para tu equipo</h2>
             <p className="text-sm text-gray-500">Contanos cuántos van con Black y cuántos con el plan corporativo estándar — armamos la propuesta combinada.</p>
           </div>
-          <EmpresasForm prepagaContexto="Swiss Medical — Plan Black" />
+          <PedirPropuestaCard prepagaContexto="Swiss Medical — Plan Black" />
         </div>
       </section>
 

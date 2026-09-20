@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
-import { EmpresasForm } from '@/components/empresas/EmpresasForm'
+import { PedirPropuestaCard } from '@/components/empresas/PedirPropuestaCard'
 
 export const metadata: Metadata = {
   title: 'Swiss Medical vs. OSDE para Empresas: Plan Corporativo Más Económico',
@@ -130,7 +130,7 @@ export default function SwissMedicalVsOsdeEmpresasPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Comparemos tu convenio actual</h2>
             <p className="text-sm text-gray-500">Contanos que hoy tenés OSDE y armamos el comparativo con números reales de tu equipo.</p>
           </div>
-          <EmpresasForm prepagaContexto="Swiss Medical vs. OSDE — ya tiene OSDE corporativo" />
+          <PedirPropuestaCard prepagaContexto="Swiss Medical vs. OSDE — ya tiene OSDE corporativo" />
         </div>
       </section>
 

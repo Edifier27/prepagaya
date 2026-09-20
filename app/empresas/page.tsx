@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
-import { EmpresasForm } from '@/components/empresas/EmpresasForm'
+import { PedirPropuestaCard } from '@/components/empresas/PedirPropuestaCard'
 import { EmpresasComparador } from '@/components/empresas/EmpresasComparador'
 
 export const metadata: Metadata = {
@@ -186,7 +186,7 @@ export default function EmpresasPage() {
             <h2 className="text-3xl font-semibold text-white mb-2.5">Pedí tu propuesta corporativa</h2>
             <p className="text-sm text-gray-500">Gratis, sin compromiso. Te contactamos en menos de 24hs hábiles.</p>
           </div>
-          <EmpresasForm />
+          <PedirPropuestaCard />
         </div>
       </section>
 
