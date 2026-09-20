@@ -24,9 +24,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: perf.metaDescripcion,
     alternates: {
       canonical: `${SITE_URL}/para/${perfil}`,
-      // 'extranjeros' tiene una versión en inglés dedicada (/en/health-insurance-argentina);
-      // el hreflang recíproco evita que Google las trate como contenido no relacionado.
-      ...(perfil === 'extranjeros' ? { languages: { 'es-AR': `${SITE_URL}/para/extranjeros`, en: `${SITE_URL}/en/health-insurance-argentina` } } : {}),
+      // 'extranjeros' tiene versiones en inglés y ruso dedicadas
+      // (/en/health-insurance-argentina, /ru/strahovanie-argentina); el
+      // hreflang recíproco evita que Google las trate como contenido no
+      // relacionado.
+      ...(perfil === 'extranjeros' ? { languages: {
+        'es-AR': `${SITE_URL}/para/extranjeros`,
+        en: `${SITE_URL}/en/health-insurance-argentina`,
+        ru: `${SITE_URL}/ru/strahovanie-argentina`,
+      } } : {}),
     },
     keywords: perf.keywords,
     openGraph: {
@@ -122,9 +128,14 @@ export default async function PerfilPage({ params }: Props) {
           </h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl">{perf.descripcion}</p>
           {perfil === 'extranjeros' && (
-            <Link href="/en/health-insurance-argentina" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#E8002D] hover:underline mt-4">
-              Reading this in English? →
-            </Link>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4">
+              <Link href="/en/health-insurance-argentina" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#E8002D] hover:underline">
+                Reading this in English? →
+              </Link>
+              <Link href="/ru/strahovanie-argentina" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#E8002D] hover:underline">
+                Читаете по-русски? →
+              </Link>
+            </div>
           )}
         </div>
       </section>

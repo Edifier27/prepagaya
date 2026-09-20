@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     languages: {
       'es-AR': `${SITE_URL}/para/extranjeros`,
       en: `${SITE_URL}/en/health-insurance-argentina`,
+      ru: `${SITE_URL}/ru/strahovanie-argentina`,
     },
   },
   keywords: [
