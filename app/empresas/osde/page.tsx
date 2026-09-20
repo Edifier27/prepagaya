@@ -150,7 +150,7 @@ export default function EmpresasOsdePage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Cotizá OSDE para tu empresa</h2>
             <p className="text-sm text-gray-500">Gratis, sin compromiso. Te contactamos en menos de 24hs hábiles.</p>
           </div>
-          <PedirPropuestaCard prepagaContexto="OSDE" />
+          <PedirPropuestaCard prepagaContexto="OSDE" variant="light" />
         </div>
       </section>
 

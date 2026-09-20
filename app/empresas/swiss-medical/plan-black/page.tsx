@@ -117,7 +117,7 @@ export default function PlanBlackPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Cotizá el Plan Black para tu equipo</h2>
             <p className="text-sm text-gray-500">Contanos cuántos van con Black y cuántos con el plan corporativo estándar — armamos la propuesta combinada.</p>
           </div>
-          <PedirPropuestaCard prepagaContexto="Swiss Medical — Plan Black" />
+          <PedirPropuestaCard prepagaContexto="Swiss Medical — Plan Black" variant="light" />
         </div>
       </section>
 

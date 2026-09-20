@@ -198,7 +198,7 @@ export default function RankingEmpresasPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Pedí la propuesta comparada para tu empresa</h2>
             <p className="text-sm text-gray-500">Gratis, sin compromiso. Te contactamos en menos de 24hs hábiles.</p>
           </div>
-          <PedirPropuestaCard />
+          <PedirPropuestaCard variant="light" />
         </div>
       </section>
 

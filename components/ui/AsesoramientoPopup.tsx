@@ -106,10 +106,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
   const pct = Math.round((pasoNum / STEPS.length) * 100)
 
   return (
-    <div
-      className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4"
-      onClick={(e) => { if (e.target === e.currentTarget) handleClose() }}
-    >
+    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
       <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden max-h-[90vh] flex flex-col">

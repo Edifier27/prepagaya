@@ -158,7 +158,6 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
   return (
     <div
       className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center p-0 sm:p-4"
-      onClick={(e) => { if (e.target === e.currentTarget) handleClose() }}
     >
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
 
@@ -284,7 +283,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                   <label className="block text-xs font-semibold text-gray-400 mb-1.5">Nombre de la empresa *</label>
                   <input
                     type="text" value={empresa} onChange={(e) => setEmpresa(e.target.value)}
-                    placeholder="Ferretería del Sur SRL"
+                    placeholder="Crossover S.A." autoComplete="organization"
                     className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
                   />
                 </div>
@@ -292,7 +291,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                   <label className="block text-xs font-semibold text-gray-400 mb-1.5">Tu nombre *</label>
                   <input
                     type="text" value={nombre} onChange={(e) => setNombre(e.target.value)}
-                    placeholder="Nombre del contacto"
+                    placeholder="Nombre del contacto" autoComplete="name"
                     className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
                   />
                 </div>
@@ -300,7 +299,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                   <label className="block text-xs font-semibold text-gray-400 mb-1.5">Teléfono de contacto *</label>
                   <input
                     type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
-                    placeholder="11 4567-8900" inputMode="numeric"
+                    placeholder="11 4567-8900" inputMode="numeric" autoComplete="tel"
                     className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
                   />
                 </div>
@@ -308,7 +307,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                   <label className="block text-xs font-semibold text-gray-400 mb-1.5">Email *</label>
                   <input
                     type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                    placeholder="vos@tuempresa.com"
+                    placeholder="vos@tuempresa.com" autoComplete="email"
                     className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#C7A046] transition-colors"
                   />
                 </div>

@@ -203,7 +203,7 @@ export default function EmpresasSwissMedicalPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Cotizá Swiss Medical para tu empresa</h2>
             <p className="text-sm text-gray-500">Gratis, sin compromiso. Te contactamos en menos de 24hs hábiles.</p>
           </div>
-          <PedirPropuestaCard prepagaContexto="Swiss Medical" />
+          <PedirPropuestaCard prepagaContexto="Swiss Medical" variant="light" />
         </div>
       </section>
 

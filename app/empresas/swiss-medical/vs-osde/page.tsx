@@ -130,7 +130,7 @@ export default function SwissMedicalVsOsdeEmpresasPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Comparemos tu convenio actual</h2>
             <p className="text-sm text-gray-500">Contanos que hoy tenés OSDE y armamos el comparativo con números reales de tu equipo.</p>
           </div>
-          <PedirPropuestaCard prepagaContexto="Swiss Medical vs. OSDE — ya tiene OSDE corporativo" />
+          <PedirPropuestaCard prepagaContexto="Swiss Medical vs. OSDE — ya tiene OSDE corporativo" variant="light" />
         </div>
       </section>
 
