@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { perfiles } from '@/lib/data/perfiles'
+import { PERFIL_IDIOMAS } from '@/lib/data/perfil-idiomas'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
@@ -24,14 +25,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: perf.metaDescripcion,
     alternates: {
       canonical: `${SITE_URL}/para/${perfil}`,
-      // 'extranjeros' tiene versiones en inglés y ruso dedicadas
-      // (/en/health-insurance-argentina, /ru/strahovanie-argentina); el
+      // Perfiles con versión dedicada en otro idioma (PERFIL_IDIOMAS): el
       // hreflang recíproco evita que Google las trate como contenido no
       // relacionado.
-      ...(perfil === 'extranjeros' ? { languages: {
-        'es-AR': `${SITE_URL}/para/extranjeros`,
-        en: `${SITE_URL}/en/health-insurance-argentina`,
-        ru: `${SITE_URL}/ru/strahovanie-argentina`,
+      ...(PERFIL_IDIOMAS[perfil] ? { languages: {
+        'es-AR': `${SITE_URL}/para/${perfil}`,
+        ...Object.fromEntries(PERFIL_IDIOMAS[perfil].map((pi) => [pi.codigo, `${SITE_URL}${pi.href}`])),
       } } : {}),
     },
     keywords: perf.keywords,
@@ -127,14 +126,13 @@ export default async function PerfilPage({ params }: Props) {
             {perf.titulo} <span className="text-[#E8002D]">2026</span>
           </h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl">{perf.descripcion}</p>
-          {perfil === 'extranjeros' && (
+          {PERFIL_IDIOMAS[perfil] && (
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4">
-              <Link href="/en/health-insurance-argentina" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#E8002D] hover:underline">
-                Reading this in English? →
-              </Link>
-              <Link href="/ru/strahovanie-argentina" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#E8002D] hover:underline">
-                Читаете по-русски? →
-              </Link>
+              {PERFIL_IDIOMAS[perfil].map((pi) => (
+                <Link key={pi.codigo} href={pi.href} className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#E8002D] hover:underline">
+                  {pi.etiqueta} →
+                </Link>
+              ))}
             </div>
           )}
         </div>
