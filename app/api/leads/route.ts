@@ -3,6 +3,8 @@ import { whatsappLinkParaLead, SITE_URL } from '@/lib/utils'
 import { buildKommoLink, crearLeadEnKommo, kommoLeadUrl, nombreCuenta } from '@/lib/kommo'
 import { avisarLeadPorTelegram, textoAlertaLead } from '@/lib/telegram'
 import { guardarLeadEnPlanilla } from '@/lib/sheets'
+import { guardarLead } from '@/lib/db'
+import { avisarLeadPorPush } from '@/lib/push'
 
 // Aviso de "ya es tu contacto" que va arriba del mail cuando la búsqueda
 // anti-duplicado (ver lib/kommo.ts) encuentra coincidencia por celular o
@@ -100,14 +102,20 @@ export async function POST(req: NextRequest) {
     kommo_label = 'Cargar en Kommo'
   }
 
-  // Alerta por Telegram + fila en la planilla de respaldo — siempre, haya
-  // andado Kommo o no (pedido de Darío, 20-sep-2026). Ninguna de las dos
-  // rompe el flujo si falla o no está configurada (ver lib/telegram.ts y
-  // lib/sheets.ts): se corren en paralelo y nunca tiran.
+  // Base propia + alerta por Telegram + push de escritorio + fila en la
+  // planilla de respaldo — siempre, haya andado Kommo o no (pedido de Darío,
+  // 20-sep-2026). Ninguna rompe el flujo si falla o no está configurada (ver
+  // lib/db.ts, lib/telegram.ts, lib/push.ts y lib/sheets.ts): se corren en
+  // paralelo y nunca tiran.
   await Promise.allSettled([
+    guardarLead({
+      nombre, celular, email, prepaga, provincia, edades: personas, fuente,
+      kommoEstado: kommoResumen, kommoLink: kommoOk ? kommo_link : '',
+    }),
     avisarLeadPorTelegram(textoAlertaLead({
       nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommoLink: kommoOk ? kommo_link : '',
     })),
+    avisarLeadPorPush('PrepagaYa — Lead nuevo', `${nombre} · ${prepaga || 'Sin especificar'} · ${provincia || 'Sin zona'}`),
     guardarLeadEnPlanilla({
       fecha, nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommo: kommoResumen,
     }),

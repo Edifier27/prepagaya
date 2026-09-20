@@ -1,0 +1,14 @@
+{
+  "name": "PrepagaYa — Panel de Leads",
+  "short_name": "Leads PrepagaYa",
+  "description": "Bandeja interna de leads de PrepagaYa",
+  "start_url": "/panel-leads",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#E8002D",
+  "icons": [
+    { "src": "/panel-icon-192", "sizes": "192x192", "type": "image/png" },
+    { "src": "/panel-icon-512", "sizes": "512x512", "type": "image/png" }
+  ]
+}

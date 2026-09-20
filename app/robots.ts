@@ -23,8 +23,11 @@ const AI_BOTS = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: '*', allow: '/' },
-      ...AI_BOTS.map((userAgent) => ({ userAgent, allow: '/' })),
+      // /panel-leads: bandeja interna de leads, protegida con password —
+      // igual se bloquea acá para que ningún buscador la rastree ni la
+      // guarde en caché (pedido de Darío, 20-sep-2026).
+      { userAgent: '*', allow: '/', disallow: '/panel-leads' },
+      ...AI_BOTS.map((userAgent) => ({ userAgent, allow: '/', disallow: '/panel-leads' })),
     ],
     sitemap: 'https://www.prepagaya.com.ar/sitemap.xml',
   }
