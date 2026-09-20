@@ -109,7 +109,7 @@ export default function HealthInsuranceArgentinaPage() {
           <h2 className="text-xl font-bold text-gray-900 mb-6">The 4 things to know</h2>
           <div className="space-y-4">
             {[
-              { t: 'Insurance is now mandatory at the border', d: 'Decree 366/25 (in force since July 2025) requires every foreign non-resident to hold medical coverage for the whole stay — entering by air, land or sea. Permanent residents and naturalized citizens are exempt.' },
+              { t: 'Insurance is now mandatory at the border', d: <>Decree 366/25 (in force since July 2025) requires every foreign non-resident to hold medical coverage for the whole stay — entering by air, land or sea. Permanent residents and naturalized citizens are exempt. <Link href="/en/mandatory-insurance-decree-366" className="text-[#E8002D] hover:underline font-medium">Full breakdown of the requirement →</Link></> },
               { t: 'You can join a prepaga without a DNI', d: 'Most major companies enroll foreigners with a passport and a filed residency application (precaria). Some ask for a provisional tax ID for billing. Same price as locals — nationality does not change the fee.' },
               { t: 'No waiting periods on essential care', d: 'By law (Ley 26.682), mandatory health program (PMO) services — doctor visits, tests, hospitalization, emergencies, maternity — cannot carry waiting periods. Coverage of essentials starts on day one.' },
               { t: 'Your prepaga certificate works for immigration paperwork', d: 'The coverage certificate issued by any prepaga is accepted by Migraciones as proof of medical coverage for temporary residency applications.' },

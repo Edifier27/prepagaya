@@ -16,12 +16,47 @@ export function rankingZonaMetadata(prov: ProvinciaSEO): Metadata {
     title: `Mejores prepagas en ${prov.nombre} (${year}): ranking y cartilla`,
     description: `Ranking ${year} de prepagas en ${prov.nombre} según cartilla local y satisfacción — con prestadores como ${prov.prestadoresClave[0]}. Actualizado ${PRECIO_ACTUALIZADO.toLowerCase()}, cotización online sin DNI.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/mejores-prepagas` },
-    keywords: [`mejores prepagas ${prov.nombre.toLowerCase()}`, `mejor prepaga en ${prov.nombre.toLowerCase()}`, `ranking prepagas ${prov.nombre.toLowerCase()} ${year}`],
+    keywords: [
+      `mejores prepagas ${prov.nombre.toLowerCase()}`,
+      `mejor prepaga en ${prov.nombre.toLowerCase()}`,
+      `ranking prepagas ${prov.nombre.toLowerCase()} ${year}`,
+      `prepagas económicas ${prov.nombre.toLowerCase()}`,
+      `prepagas premium ${prov.nombre.toLowerCase()}`,
+      `prepaga con mejor cobertura ${prov.nombre.toLowerCase()}`,
+    ],
   }
+}
+
+// Arma, a partir de datos ya verificados (precio real y la fuerza de
+// cartilla ya curada a mano por provincia), quién es la opción más
+// económica, la premium y la de mejor cobertura en ESA provincia — pedido
+// de Darío, 20-sep-2026: que "mejores prepagas {ciudad} económicas" /
+// "premium" / "con mejor cobertura" tengan esas palabras en el contenido
+// visible, no solo en el título. Nada inventado: es el mismo precioMin y
+// el mismo campo `fuerza` que ya arma el resto de la página, para
+// cualquier provincia — no hace falta cargarlo ciudad por ciudad.
+function destacadosPorObjetivo(prov: ProvinciaSEO) {
+  const conPrecio = prov.prepagas
+    .map((pz) => {
+      const prepData = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
+      const precioMin = prepData ? Math.min(...prepData.planes.map((pl) => pl.precio)) : null
+      return { pz, precioMin }
+    })
+    .filter((x): x is { pz: typeof x.pz; precioMin: number } => x.precioMin !== null)
+
+  const economica = conPrecio.length ? conPrecio.reduce((a, b) => (b.precioMin < a.precioMin ? b : a)) : null
+  const premiumCandidatas = conPrecio.filter((x) => nivelPrecio(x.precioMin) === 'premium')
+  const premium = premiumCandidatas.length
+    ? premiumCandidatas.reduce((a, b) => (b.precioMin > a.precioMin ? b : a))
+    : (conPrecio.length ? conPrecio.reduce((a, b) => (b.precioMin > a.precioMin ? b : a)) : null)
+  const coberturaCandidata = prov.prepagas.find((pz) => pz.fuerza === 'fuerte')
+
+  return { economica, premium, coberturaCandidata }
 }
 
 export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
   const year = new Date().getFullYear()
+  const { economica, premium, coberturaCandidata } = destacadosPorObjetivo(prov)
   const crumbs = [
     { nombre: 'Prepagas', href: '/prepagas' },
     { nombre: prov.nombre, href: `/prepagas/${prov.slug}` },
@@ -64,6 +99,38 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
             </div>
           )}
         </header>
+
+        {(economica || premium || coberturaCandidata) && (
+          <section className="mb-8">
+            <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">¿Qué buscás en {prov.nombre}?</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {economica && (
+                <Link href={economica.pz.enSitio ? `/prepagas/${prov.slug}/${economica.pz.slug}` : `/prepagas/${prov.slug}`}
+                  className="block bg-white rounded-2xl border border-gray-200 hover:border-red-200 p-4 transition-colors">
+                  <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Más económica</div>
+                  <div className="font-bold text-gray-900 text-sm">{economica.pz.nombre}</div>
+                  <div className="text-xs text-gray-500 mt-0.5">Desde {formatPrecio(economica.precioMin)}/mes</div>
+                </Link>
+              )}
+              {premium && (
+                <Link href={premium.pz.enSitio ? `/prepagas/${prov.slug}/${premium.pz.slug}` : `/prepagas/${prov.slug}`}
+                  className="block bg-white rounded-2xl border border-gray-200 hover:border-red-200 p-4 transition-colors">
+                  <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Premium</div>
+                  <div className="font-bold text-gray-900 text-sm">{premium.pz.nombre}</div>
+                  <div className="text-xs text-gray-500 mt-0.5">Desde {formatPrecio(premium.precioMin)}/mes</div>
+                </Link>
+              )}
+              {coberturaCandidata && (
+                <Link href={coberturaCandidata.enSitio ? `/prepagas/${prov.slug}/${coberturaCandidata.slug}` : `/prepagas/${prov.slug}`}
+                  className="block bg-white rounded-2xl border border-gray-200 hover:border-red-200 p-4 transition-colors">
+                  <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Mejor cobertura</div>
+                  <div className="font-bold text-gray-900 text-sm">{coberturaCandidata.nombre}</div>
+                  <div className="text-xs text-gray-500 mt-0.5">Cartilla más fuerte en {prov.nombre}</div>
+                </Link>
+              )}
+            </div>
+          </section>
+        )}
 
         <div className="space-y-5 mb-10">
           {prov.prepagas.map((pz, i) => {

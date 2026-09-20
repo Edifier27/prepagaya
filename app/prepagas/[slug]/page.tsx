@@ -37,6 +37,12 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
   const conCopago = prep.planes.filter(p => p.copago).map(p => p.nombre)
   const nivelMin = NIVEL_PRECIO_LABEL[nivelPrecio(precioMin)].label.toLowerCase()
   const nivelMax = NIVEL_PRECIO_LABEL[nivelPrecio(precioMax)].label.toLowerCase()
+  // Mismos planes ya ordenados por precio arriba — solo se nombra el más
+  // barato y el más caro explícitamente (pedido de Darío, 20-sep-2026: que
+  // "planes económicos"/"planes premium" aparezcan en texto visible, igual
+  // que ya pasa con "{prepaga} planes").
+  const planMasBarato = prep.planes.find(pl => pl.precio === precioMin) ?? prep.planes[0]
+  const planMasCaro = prep.planes.find(pl => pl.precio === precioMax) ?? prep.planes[0]
   return [
     {
       // FAQ pensada para "{prepaga} planes" (pedido de Darío, 15-sep-2026):
@@ -52,6 +58,12 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
     {
       q: `¿Qué plan de ${prep.nombre} conviene más?`,
       a: `El plan más elegido es el ${planEstrella.nombre}, de nivel de precio ${NIVEL_PRECIO_LABEL[nivelPrecio(planEstrella.precio)].label.toLowerCase()}. ${planEstrella.descripcion}`,
+    },
+    {
+      q: `¿Cuál es el plan más económico y cuál el premium de ${prep.nombre}?`,
+      a: planMasBarato.slug === planMasCaro.slug
+        ? `${prep.nombre} tiene un solo nivel de plan: ${planMasBarato.nombre}, a ${formatPrecio(precioMin)}/mes.`
+        : `El plan más económico es ${planMasBarato.nombre}, desde ${formatPrecio(precioMin)}/mes. El plan premium con mejor cobertura es ${planMasCaro.nombre}, desde ${formatPrecio(precioMax)}/mes.`,
     },
     {
       q: `¿${prep.nombre} tiene copago en consultas?`,
