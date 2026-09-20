@@ -174,6 +174,21 @@ const MARCAS_SEGUNDAS = ['sancor-salud', 'premedic']
 // siempre arriba (pedido de Darío, 17-sep-2026), el resto alfabético debajo.
 const ORDEN_PREPAGA_FILTRO = ['swiss-medical', 'osde']
 
+// Orden de la franja "¿De qué prepaga venís?" del cotizador: partners
+// prioritarios primero, en este orden fijo (pedido de Darío, 20-sep-2026);
+// el resto de las prepagas va después, seguido del botón "Otros".
+const ORDEN_PREPAGA_VENIS = [
+  'swiss-medical', 'osde', 'sancor-salud', 'medife', 'avalian',
+  'omint', 'medicus', 'galeno', 'prevencion-salud', 'hospital-italiano',
+]
+const NOMBRE_VENIS: Record<string, string> = { 'hospital-italiano': 'H.Italiano' }
+const PREPAGAS_VENIS = [
+  ...ORDEN_PREPAGA_VENIS.map((slug) => prepagas.find((p) => p.slug === slug)).filter(
+    (p): p is (typeof prepagas)[number] => Boolean(p)
+  ),
+  ...prepagas.filter((p) => !ORDEN_PREPAGA_VENIS.includes(p.slug)),
+]
+
 function mecharResultados(sorted: Resultado[]): Resultado[] {
   const pool = [...sorted]
   const out: Resultado[] = []
@@ -276,20 +291,6 @@ const SITUACIONES: SituacionDef[] = [
   { id: 'monotributo',            label: 'Monotributista',          desc: 'Facturás como monotributista', badge: '25% OFF' },
   { id: 'responsable-inscripto',  label: 'Responsable Inscripto',   desc: 'Facturás con IVA discriminado', badge: '25% OFF' },
 ]
-
-function SituacionIcon({ id }: { id: SituacionLaboral }) {
-  const paths: Record<SituacionLaboral, React.ReactNode> = {
-    particular: <path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 20a8 8 0 0116 0" strokeLinecap="round" strokeLinejoin="round" />,
-    'relacion-dependencia': <path d="M4 7h16v13H4V7zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 12h16" strokeLinecap="round" strokeLinejoin="round" />,
-    monotributo: <path d="M6 2h12v20l-3-2-3 2-3-2-3 2V2zM9 7h6M9 11h6M9 15h3" strokeLinecap="round" strokeLinejoin="round" />,
-    'responsable-inscripto': <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" strokeLinecap="round" strokeLinejoin="round" />,
-  }
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-6 h-6">
-      {paths[id]}
-    </svg>
-  )
-}
 
 // ─── Progress bar (3 steps) ───────────────────────────────────────────────────
 
@@ -442,12 +443,14 @@ function ZonaStep({ onSelect, zonaSugerida }: { onSelect: (p: Provincia) => void
   )
 }
 
-// ─── SituacionSelector (inline, dentro de resultados) ──────────────────────────
-// Se muestra recién en la lista de precios (ya con el lead capturado): elegir
-// la situación ajusta el descuento y, en relación de dependencia, resta el
-// aporte de cada card en tiempo real.
+// ─── SituacionFiltro (radio-list, vive en el panel de filtros) ────────────────
+// Mismo patrón visual que el resto de los filtros (radio/checkbox + label +
+// dato a la derecha): "Particular" queda tildado por default, y sólo
+// "Relación de dependencia" abre un campo extra para el sueldo bruto — el
+// resto (Monotributista, Responsable Inscripto) se ve exactamente igual que
+// "Particular", solo con su % de descuento (pedido de Darío, 20-sep-2026).
 
-function SituacionSelector({ situacion, setSituacion, sueldoBruto, setSueldoBruto }: {
+function SituacionFiltro({ situacion, setSituacion, sueldoBruto, setSueldoBruto }: {
   situacion: SituacionLaboral
   setSituacion: (s: SituacionLaboral) => void
   sueldoBruto: string
@@ -457,57 +460,45 @@ function SituacionSelector({ situacion, setSituacion, sueldoBruto, setSueldoBrut
   const aportePreview = Math.round(bruto * APORTE_PORCENTAJE)
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-6">
-      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">¿Cómo pagás tu prepaga? Elegí para ver tu precio real</p>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        {SITUACIONES.map((s) => {
-          const selected = situacion === s.id
-          return (
-            <button key={s.id} onClick={() => setSituacion(s.id)}
-              className={`text-left p-3 rounded-xl border-2 transition-all ${
-                selected ? 'border-[#E8002D] bg-red-50' : 'border-gray-200 bg-white hover:border-red-200'
+    <div className="space-y-2.5">
+      {SITUACIONES.map((s) => {
+        const on = situacion === s.id
+        return (
+          <div key={s.id}>
+            <label className="flex items-center gap-2.5 cursor-pointer group" onClick={() => setSituacion(s.id)}>
+              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+                on ? 'border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
               }`}>
-              <div className={`mb-1.5 ${selected ? 'text-[#E8002D]' : 'text-gray-400'}`}>
-                <SituacionIcon id={s.id} />
+                {on && <div className="w-2 h-2 rounded-full bg-[#E8002D]" />}
               </div>
-              <div className="font-bold text-gray-900 text-xs leading-tight">{s.label}</div>
-              <span className="inline-block text-[9px] font-bold text-[#00875A] bg-green-50 border border-green-200 px-1.5 py-0.5 rounded-full mt-1">{s.badge}</span>
-            </button>
-          )
-        })}
-      </div>
+              <span className={`text-sm font-medium transition-colors flex-1 ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{s.label}</span>
+              <span className="text-[9px] font-bold text-[#00875A] bg-green-50 border border-green-200 px-1.5 py-0.5 rounded-full flex-shrink-0 text-right leading-tight">{s.badge}</span>
+            </label>
 
-      {situacion === 'relacion-dependencia' && (
-        <div className="mt-3 pt-3 border-t border-gray-100">
-          <label className="block text-xs font-semibold text-gray-600 mb-1.5">¿Cuál es tu sueldo bruto mensual?</label>
-          <div className="relative max-w-xs">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-            <input
-              type="text" inputMode="numeric"
-              value={sueldoBruto ? Number(sueldoBruto).toLocaleString('es-AR') : ''}
-              onChange={(e) => setSueldoBruto(e.target.value.replace(/\D/g, ''))}
-              placeholder="Ej: 1.200.000"
-              className="w-full border-2 border-gray-200 rounded-lg pl-7 pr-3 py-2 text-sm font-bold focus:outline-none focus:border-[#E8002D] transition-colors"
-            />
+            {s.id === 'relacion-dependencia' && on && (
+              <div className="mt-2 ml-[26px]">
+                <div className="relative">
+                  <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-xs">$</span>
+                  <input
+                    type="text" inputMode="numeric"
+                    value={sueldoBruto ? Number(sueldoBruto).toLocaleString('es-AR') : ''}
+                    onChange={(e) => setSueldoBruto(e.target.value.replace(/\D/g, ''))}
+                    placeholder="Sueldo bruto"
+                    className="w-full border-2 border-gray-200 rounded-lg pl-6 pr-2 py-1.5 text-xs font-bold focus:outline-none focus:border-[#E8002D] transition-colors"
+                  />
+                </div>
+                {bruto > 0 ? (
+                  <p className="text-[10px] text-gray-500 mt-1.5 leading-snug">
+                    Aporte: <span className="font-bold text-[#E8002D]">{formatPrecio(aportePreview)}/mes</span> — ya descontado abajo.
+                  </p>
+                ) : (
+                  <p className="text-[10px] text-gray-400 mt-1.5 leading-snug">Para descontar el aporte de la cuota.</p>
+                )}
+              </div>
+            )}
           </div>
-          {bruto > 0 ? (
-            <p className="text-xs text-gray-600 mt-2">
-              Tu aporte estimado: <span className="font-bold text-[#E8002D]">{formatPrecio(aportePreview)}/mes</span> (7,5% de tu sueldo bruto) — ya descontado en los precios de abajo.
-            </p>
-          ) : (
-            <p className="text-[11px] text-gray-400 mt-2">Ingresá tu sueldo para descontar el aporte de la cuota.</p>
-          )}
-          <p className="text-[11px] text-gray-400 mt-2 leading-relaxed">
-            Además sumamos el 15% de descuento general más un 10,5% adicional — la alícuota de IVA en salud es del 10,5%, no el 21% general.
-          </p>
-        </div>
-      )}
-
-      {(situacion === 'monotributo' || situacion === 'responsable-inscripto') && (
-        <p className="text-[11px] text-gray-400 mt-3 pt-3 border-t border-gray-100 leading-relaxed">
-          25% de descuento especial para monotributistas y responsables inscriptos que facturan con IVA discriminado.
-        </p>
-      )}
+        )
+      })}
     </div>
   )
 }
@@ -1245,13 +1236,6 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         )}
       </div>
 
-      <SituacionSelector
-        situacion={situacion}
-        setSituacion={setSituacion}
-        sueldoBruto={sueldoBruto}
-        setSueldoBruto={setSueldoBruto}
-      />
-
       {/* "¿De qué prepaga venís?" — ya no es un paso obligatorio del wizard,
           es un filtro opcional acá: si lo elegís, más abajo aparece el
           banner de "te conviene cambiarte a X" con datos reales. */}
@@ -1260,13 +1244,17 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           <div className="text-sm font-bold text-gray-900 mb-0.5">¿De qué prepaga venís? <span className="text-gray-400 font-normal">(opcional)</span></div>
           <p className="text-xs text-gray-500 mb-3">Te mostramos si te conviene cambiarte</p>
           <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
-            {prepagas.map((prep) => (
+            {PREPAGAS_VENIS.map((prep) => (
               <button key={prep.slug} onClick={() => setPrepagaOrigen(prep.slug)}
                 className="flex-shrink-0 flex flex-col items-center gap-1.5 p-2.5 rounded-xl border-2 border-gray-200 hover:border-red-200 bg-white transition-all">
                 <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="sm" />
-                <span className="text-[10px] font-semibold text-gray-600 whitespace-nowrap">{prep.nombre}</span>
+                <span className="text-[10px] font-semibold text-gray-600 whitespace-nowrap">{NOMBRE_VENIS[prep.slug] ?? prep.nombre}</span>
               </button>
             ))}
+            <button onClick={() => setPrepagaOrigen('otros')}
+              className="flex-shrink-0 flex flex-col items-center justify-center gap-1.5 p-2.5 w-[60px] rounded-xl border-2 border-gray-200 hover:border-red-200 bg-white transition-all">
+              <span className="text-[10px] font-semibold text-gray-600 whitespace-nowrap">Otros</span>
+            </button>
           </div>
         </div>
       )}
@@ -1324,6 +1312,12 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* ¿Cómo pagás? */}
+            <div className="bg-white rounded-2xl border border-gray-100 p-4">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">¿Cómo pagás?</p>
+              <SituacionFiltro situacion={situacion} setSituacion={setSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
             </div>
 
             {/* Tipo de consulta */}
@@ -1533,6 +1527,12 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                         </button>
                       ))}
                     </div>
+                  </div>
+
+                  {/* ¿Cómo pagás? */}
+                  <div>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">¿Cómo pagás?</p>
+                    <SituacionFiltro situacion={situacion} setSituacion={setSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
                   </div>
 
                   {/* Tipo de consulta */}
