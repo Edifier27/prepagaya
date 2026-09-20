@@ -18,12 +18,24 @@ function formatFecha(iso: string): string {
   return new Date(iso).toLocaleString('es-AR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 }
 
+// "2026-09" — ordena bien como string (año-mes) sin tener que parsear fechas.
+function mesKey(iso: string): string {
+  const d = new Date(iso)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+}
+function mesLabel(key: string): string {
+  const [anio, mes] = key.split('-').map(Number)
+  const texto = new Date(anio, mes - 1, 1).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' })
+  return texto.charAt(0).toUpperCase() + texto.slice(1)
+}
+
 type EstadoAlertas = 'desconocido' | 'inactivas' | 'activando' | 'activas' | 'no-soportado' | 'rechazadas'
 
 export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow[] }) {
   const [leads, setLeads] = useState(leadsIniciales)
   const [estadoAlertas, setEstadoAlertas] = useState<EstadoAlertas>('desconocido')
   const [refrescando, setRefrescando] = useState(false)
+  const [filtroMes, setFiltroMes] = useState<string | null>(null)
   const ultimoId = useRef(leadsIniciales[0]?.id ?? 0)
 
   // Trae los leads más nuevos que el último visto — la usan tanto el
@@ -138,13 +150,29 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
       }
       return [...mapa.entries()].sort((a, b) => b[1] - a[1])
     }
+    // Por mes ordenado por fecha (más reciente primero), no por cantidad —
+    // pedido de Darío, 21-sep-2026: "datos de agosto, datos de septiembre",
+    // filtrable tocando el mes.
+    const porMesMapa = new Map<string, number>()
+    for (const l of leads) {
+      const key = mesKey(l.creado_en)
+      porMesMapa.set(key, (porMesMapa.get(key) ?? 0) + 1)
+    }
+    const porMes = [...porMesMapa.entries()].sort((a, b) => (a[0] < b[0] ? 1 : -1))
+
     return {
       total: leads.length,
       hoy,
       porZona: contar(leads.map((l) => l.provincia)),
       porFuente: contar(leads.map((l) => l.fuente)),
+      porMes,
     }
   }, [leads])
+
+  const leadsFiltrados = useMemo(
+    () => (filtroMes ? leads.filter((l) => mesKey(l.creado_en) === filtroMes) : leads),
+    [leads, filtroMes]
+  )
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -177,13 +205,24 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
       </div>
 
       <div className="max-w-3xl mx-auto p-4">
-        <StatsPanel stats={stats} />
+        <StatsPanel stats={stats} filtroMes={filtroMes} onFiltrarMes={(mes) => setFiltroMes((prev) => (prev === mes ? null : mes))} />
+
+        {filtroMes && (
+          <div className="flex items-center gap-2 mb-3 text-xs">
+            <span className="text-gray-500">Mostrando <strong className="text-gray-900">{leadsFiltrados.length}</strong> de {mesLabel(filtroMes)}</span>
+            <button onClick={() => setFiltroMes(null)} className="text-[#E8002D] font-semibold hover:underline">
+              Ver todos →
+            </button>
+          </div>
+        )}
 
         <div className="space-y-1.5">
-          {leads.length === 0 && (
-            <p className="text-center text-sm text-gray-400 py-16">Todavía no entró ningún lead.</p>
+          {leadsFiltrados.length === 0 && (
+            <p className="text-center text-sm text-gray-400 py-16">
+              {filtroMes ? 'No hay leads en ese mes.' : 'Todavía no entró ningún lead.'}
+            </p>
           )}
-          {leads.map((lead) => (
+          {leadsFiltrados.map((lead) => (
             <LeadRow key={lead.id} lead={lead} onToggleLeido={toggleLeido} />
           ))}
         </div>
@@ -192,7 +231,9 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   )
 }
 
-function StatsPanel({ stats }: { stats: { total: number; hoy: number; porZona: [string, number][]; porFuente: [string, number][] } }) {
+interface Stats { total: number; hoy: number; porZona: [string, number][]; porFuente: [string, number][]; porMes: [string, number][] }
+
+function StatsPanel({ stats, filtroMes, onFiltrarMes }: { stats: Stats; filtroMes: string | null; onFiltrarMes: (mes: string) => void }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-4">
       <div className="grid grid-cols-2 gap-3 mb-4">
@@ -205,6 +246,29 @@ function StatsPanel({ stats }: { stats: { total: number; hoy: number; porZona: [
           <div className="text-[11px] text-gray-500 mt-1">Hoy</div>
         </div>
       </div>
+
+      {stats.porMes.length > 0 && (
+        <div className="mb-4">
+          <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">Por mes</div>
+          <div className="flex flex-wrap gap-1.5">
+            {stats.porMes.map(([mes, n]) => {
+              const activo = filtroMes === mes
+              return (
+                <button
+                  key={mes}
+                  onClick={() => onFiltrarMes(mes)}
+                  className={`text-[11px] font-semibold rounded-full px-2 py-1 transition-colors ${
+                    activo ? 'bg-[#E8002D] text-white' : 'bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-[#E8002D]'
+                  }`}
+                >
+                  {mesLabel(mes)} <span className={activo ? 'text-red-100' : 'text-gray-400'}>· {n}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <StatBreakdown titulo="Por zona" items={stats.porZona} />
         <StatBreakdown titulo="Por fuente" items={stats.porFuente} />
