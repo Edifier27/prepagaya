@@ -36,6 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `cartilla medica ${prep.nombre.toLowerCase()}`,
       `${prep.nombre.toLowerCase()} sanatorios`,
       `${prep.nombre.toLowerCase()} prestadores`,
+      // Variantes por plan: volumen real relevante en OSDE ("osde cartilla
+      // 210" y "osde cartilla 310" suman varios miles de búsquedas/mes,
+      // según el export de Ahrefs que pasó Darío el 21-sep-2026) — la
+      // página ya cubre el detalle plan por plan más abajo (sanatorios con
+      // nota de qué plan los incluye), esto es solo para que el buscador
+      // la matchee con esas queries puntuales.
+      ...(slug === 'osde' ? ['cartilla osde 210', 'osde cartilla 210', 'cartilla osde 310', 'osde cartilla 310'] : []),
+      ...(slug === 'sancor-salud' ? ['sancor cartilla', 'sancor salud cartilla f800'] : []),
     ],
   }
 }
@@ -75,6 +83,14 @@ export default async function CartillaPrepagaPage({ params }: Props) {
       q: `¿La cartilla de ${prep.nombre} es igual en todos los planes?`,
       a: `No. Cada plan habilita una porción de la red: los planes de entrada tienen cartilla más acotada y los superiores suman sanatorios de mayor complejidad y reintegros por fuera de cartilla. Antes de contratar, verificá que tu médico o sanatorio esté cubierto por el plan específico que vas a contratar, no por la prepaga en general.`,
     },
+    // FAQ específica de OSDE (no templada al resto): la diferencia real de
+    // cartilla entre 210 y 310 son estos dos centros puntuales, verificado
+    // en lib/data/sanatorios.ts (nota de Hospital Alemán y FLENI) — no un
+    // "la cartilla es más chica en general" genérico.
+    ...(slug === 'osde' ? [{
+      q: '¿En qué cambia la cartilla entre el Plan 210 y el Plan 310 de OSDE?',
+      a: 'En los centros de mayor complejidad: el Plan 210 no incluye el Hospital Alemán, y en FLENI solo cubre consultas ambulatorias (la internación arranca recién en el Plan 310). El Plan 310 suma ambos con cobertura completa. Para el resto de la cartilla — consultorios, laboratorios y la mayoría de las especialidades — el acceso es el mismo en los dos planes.',
+    }] : []),
   ]
 
   const jsonLd = [
