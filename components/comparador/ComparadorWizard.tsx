@@ -30,6 +30,25 @@ const DESCUENTO_POR_SITUACION: Record<SituacionLaboral, number> = {
 // se descuenta directo de la cuota mostrada.
 const APORTE_PORCENTAJE = 0.075
 
+// Precio "bloqueado": el número real sigue ahí (blureado, no reemplazado por
+// texto falso), con un candado al lado — pedido de Darío, 21-sep-2026, para
+// probar si ocultar el precio y forzar el paso de "Ver precio" mejora la
+// calidad de los leads. El texto sigue siendo accesible para lectores de
+// pantalla via aria-hidden en el span blureado + un texto alternativo.
+function PrecioBloqueado({ texto, size = 'lg' }: { texto: React.ReactNode; size?: 'lg' | 'sm' }) {
+  return (
+    <span className="relative inline-flex items-center gap-1.5">
+      <span aria-hidden className={`select-none blur-[5px] ${size === 'lg' ? 'text-xl font-black text-gray-900' : 'font-bold text-gray-900'}`}>
+        {texto}
+      </span>
+      <svg viewBox="0 0 20 20" fill="currentColor" className={`${size === 'lg' ? 'w-4 h-4' : 'w-3.5 h-3.5'} text-gray-400 flex-shrink-0`}>
+        <path fillRule="evenodd" d="M10 1a4 4 0 00-4 4v2H5a1 1 0 00-1 1v9a1 1 0 001 1h10a1 1 0 001-1V8a1 1 0 00-1-1h-1V5a4 4 0 00-4-4zm2 6V5a2 2 0 10-4 0v2h4z" clipRule="evenodd" />
+      </svg>
+      <span className="sr-only">Precio disponible al cotizar</span>
+    </span>
+  )
+}
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 // "origen" (¿de qué prepaga venís?) dejó de ser un paso bloqueante — ahora es
@@ -1817,12 +1836,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       <div className="space-y-1.5 min-w-0">
                         <div className="flex items-baseline gap-2 flex-wrap">
                           {res.precioGrupal > precioFinal(res.precioDesc) && (
-                            <span className="text-sm text-gray-400 line-through">{formatPrecio(res.precioGrupal)}</span>
+                            <span className="text-sm text-gray-400 line-through blur-[3px] select-none" aria-hidden>{formatPrecio(res.precioGrupal)}</span>
                           )}
-                          <span className="text-xl font-black text-gray-900">
-                            {formatPrecio(precioFinal(res.precioDesc))}
-                            <span className="text-xs font-medium text-gray-400">/mes*</span>
-                          </span>
+                          <PrecioBloqueado texto={<>{formatPrecio(precioFinal(res.precioDesc))}<span className="text-xs font-medium text-gray-400">/mes*</span></>} />
                         </div>
                         <div className="text-xs text-gray-500">Para {personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoRate * 100)}% de descuento aplicado</div>
                         <p className="text-[10px] text-gray-400 leading-snug max-w-[220px]">*Estimado sobre precios de lista. El valor final se confirma con un asesor.</p>
@@ -1854,7 +1870,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                         </div>
                         {isAccedido && planAccedidoStatus === 'success' ? (
                           <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center">
-                            ¡Anotado! Te contactamos por este plan
+                            ¡Excelente! En breve te enviamos la cotización
                           </div>
                         ) : (
                           <button onClick={() => handleAccederPlan(res)}
@@ -1863,7 +1879,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                             {isAccedido && planAccedidoStatus === 'loading' ? (
                               <svg className="animate-spin w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                             ) : null}
-                            Cotización personalizada →
+                            Ver precio →
                           </button>
                         )}
                       </div>
@@ -1911,7 +1927,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             onClose={() => setPlanAbierto(null)}
             onQuiero={() => handleAccederPlan(planAbierto)}
             quieroDisabled={enviando || yaEnviado}
-            quieroLabel={yaEnviado ? '¡Anotado!' : enviando ? 'Enviando...' : 'Cotización personalizada →'}
+            quieroLabel={yaEnviado ? '¡Excelente! Ya te la enviamos' : enviando ? 'Enviando...' : 'Ver precio →'}
           />
         )
       })()}
@@ -1980,8 +1996,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Precio aprox.</td>
                       {seleccionados.map((r) => (
                         <td key={`${r.prepaga.slug}-${r.plan.slug}-precioaprox`} className={`py-3 px-3 ${celda(r)}`}>
-                          <span className="font-bold text-gray-900">{formatPrecio(precioFinal(r.precioDesc))}</span>
-                          <span className="text-[10px] text-gray-400">/mes</span>
+                          <PrecioBloqueado size="sm" texto={<>{formatPrecio(precioFinal(r.precioDesc))}<span className="text-[10px] text-gray-400">/mes</span></>} />
                         </td>
                       ))}
                     </tr>
