@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     languages: {
       'es-AR': `${SITE_URL}/para/extranjeros`,
       en: `${SITE_URL}/en/health-insurance-cost-argentina`,
+      ru: `${SITE_URL}/ru/stoimost-strahovaniya-argentina`,
     },
   },
   keywords: [

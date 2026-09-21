@@ -162,6 +162,9 @@ export default function LuchshayaStrahovkaArgentinaPage() {
               )
             })}
           </div>
+          <Link href="/ru/stoimost-strahovaniya-argentina" className="inline-block text-sm font-semibold text-[#E8002D] hover:underline mt-4">
+            Полный разбор цен по уровню покрытия →
+          </Link>
         </div>
       </section>
 
