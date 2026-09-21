@@ -34,9 +34,15 @@ function asegurarTablas(): Promise<unknown> {
           fuente TEXT,
           kommo_estado TEXT,
           kommo_link TEXT,
-          leido BOOLEAN NOT NULL DEFAULT false
+          leido BOOLEAN NOT NULL DEFAULT false,
+          veces INTEGER NOT NULL DEFAULT 1,
+          actualizado_en TIMESTAMPTZ
         )
       `,
+      // ADD COLUMN IF NOT EXISTS para las tablas que ya existían en producción
+      // antes de sumar el apilado de leads repetidos (21-sep-2026).
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS veces INTEGER NOT NULL DEFAULT 1`,
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS actualizado_en TIMESTAMPTZ`,
       sql`
         CREATE TABLE IF NOT EXISTS push_subscriptions (
           id SERIAL PRIMARY KEY,
@@ -64,6 +70,8 @@ export interface LeadRow {
   kommo_estado: string | null
   kommo_link: string | null
   leido: boolean
+  veces: number
+  actualizado_en: string | null
 }
 
 export interface NuevoLead {
@@ -82,11 +90,64 @@ export function dbConfigurada(): boolean {
   return DB_CONFIGURADA
 }
 
-/** Guarda el lead como fila nueva. Nunca tira: si falla, solo loguea. */
+/**
+ * Guarda el lead. Si la misma persona (mismo celular, o mismo mail cuando no
+ * dejó celular) ya generó un lead en las últimas 24hs, apila todo en esa
+ * fila en vez de crear una nueva — pasa seguido cuando alguien prueba
+ * "elegir plan" en más de una prepaga desde el comparador y cada click
+ * dispara su propio POST a /api/leads (pedido de Darío, 21-sep-2026: antes
+ * cada click generaba una fila distinta en el panel). Nunca tira: si falla,
+ * solo loguea.
+ */
 export async function guardarLead(d: NuevoLead): Promise<void> {
   if (!sql) return
   try {
     await asegurarTablas()
+
+    // interval hardcodeado (no interpolado) a propósito: el tag `sql` de Neon
+    // parametriza cada ${...} como bind variable, así que un valor dentro de
+    // comillas SQL (interval '$1') no es válido — solo puede ir literal.
+    const existente = d.celular
+      ? await sql`
+          SELECT id, prepaga FROM leads
+          WHERE celular <> '' AND celular = ${d.celular}
+            AND creado_en > now() - interval '24 hours'
+          ORDER BY creado_en DESC LIMIT 1
+        `
+      : d.email
+        ? await sql`
+            SELECT id, prepaga FROM leads
+            WHERE email <> '' AND email = ${d.email}
+              AND creado_en > now() - interval '24 hours'
+            ORDER BY creado_en DESC LIMIT 1
+          `
+        : []
+
+    if (existente.length > 0) {
+      const fila = existente[0] as { id: number; prepaga: string | null }
+      const intereses = (fila.prepaga ?? '')
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+      if (d.prepaga && !intereses.includes(d.prepaga)) intereses.push(d.prepaga)
+
+      await sql`
+        UPDATE leads SET
+          nombre = ${d.nombre},
+          prepaga = ${intereses.join(', ')},
+          provincia = COALESCE(NULLIF(${d.provincia}, ''), provincia),
+          edades = COALESCE(NULLIF(${d.edades}, ''), edades),
+          fuente = ${d.fuente},
+          kommo_estado = ${d.kommoEstado},
+          kommo_link = COALESCE(NULLIF(${d.kommoLink}, ''), kommo_link),
+          veces = veces + 1,
+          actualizado_en = now(),
+          leido = false
+        WHERE id = ${fila.id}
+      `
+      return
+    }
+
     await sql`
       INSERT INTO leads (nombre, celular, email, prepaga, provincia, edades, fuente, kommo_estado, kommo_link)
       VALUES (${d.nombre}, ${d.celular}, ${d.email}, ${d.prepaga}, ${d.provincia}, ${d.edades}, ${d.fuente}, ${d.kommoEstado}, ${d.kommoLink})

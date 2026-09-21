@@ -337,6 +337,11 @@ function LeadRow({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: n
       <summary className="flex items-center gap-2 px-3 py-2.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
         {!lead.leido && <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] flex-shrink-0" />}
         <span className="font-bold text-gray-900 text-sm truncate">{lead.nombre}</span>
+        {lead.veces > 1 && (
+          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 text-amber-700 bg-amber-50" title={`Se repitió ${lead.veces} veces en 24hs`}>
+            ×{lead.veces}
+          </span>
+        )}
         {cuenta && (
           <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 ${
             cuenta === 'Gabriela' ? 'text-purple-700 bg-purple-50' : 'text-blue-700 bg-blue-50'
@@ -363,6 +368,7 @@ function LeadRow({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: n
           {lead.provincia && <Campo label="Zona">{lead.provincia}</Campo>}
           {lead.edades && <Campo label="Integrantes">{lead.edades}</Campo>}
           {lead.fuente && <Campo label="Fuente">{lead.fuente}</Campo>}
+          {lead.veces > 1 && lead.actualizado_en && <Campo label="Última actividad">{formatFecha(lead.actualizado_en)}</Campo>}
         </div>
 
         <div className="flex items-center gap-3 mt-3 pt-3 border-t border-gray-50">
