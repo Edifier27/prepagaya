@@ -1,0 +1,7 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PrepagaYa">
+  <rect width="200" height="200" rx="32" fill="#E8002D"/>
+  <rect x="58" y="46" width="18" height="18" rx="2" fill="#FFFFFF"/>
+  <circle cx="67" cy="112" r="13" fill="#FFFFFF"/>
+  <path d="M 78,110 C 86,134 76,160 52,170 C 66,150 72,128 64,110 Z" fill="#FFFFFF"/>
+  <path d="M 138,38 C 186,70 186,146 138,180" fill="none" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round"/>
+</svg>

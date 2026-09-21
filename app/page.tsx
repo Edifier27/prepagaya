@@ -9,6 +9,7 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
+import { BrandMarquee } from '@/components/ui/BrandMarquee'
 
 export const metadata: Metadata = {
   title: { absolute: `Comparador de Prepagas Argentina 2026 con Precios Reales — ${SITE_NAME}` },
@@ -198,6 +199,9 @@ export default function HomePage(): React.ReactElement {
           </div>
         </div>
       </section>
+
+      {/* ── Franja animada de marca ──────────────────────────────────────── */}
+      <BrandMarquee />
 
       {/* ── Cotizar por prepaga — debajo del cotizador ─────────────────────── */}
       <CotizarPorPrepaga fuente="home-por-prepaga" />
