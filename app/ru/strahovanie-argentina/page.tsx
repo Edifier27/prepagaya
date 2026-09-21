@@ -14,6 +14,7 @@ export const metadata: Metadata = {
       'es-AR': `${SITE_URL}/para/extranjeros`,
       en: `${SITE_URL}/en/health-insurance-argentina`,
       ru: `${SITE_URL}/ru/strahovanie-argentina`,
+      zh: `${SITE_URL}/zh/yiliao-baoxian-agenting`,
     },
   },
   keywords: [
@@ -102,8 +103,9 @@ export default function StrahovanieArgentinaPage() {
           >
             Сравнить реальные цены (бесплатно, без DNI) →
           </Link>
-          <p className="text-xs text-gray-400 mt-3">
-            Read in English? <Link href="/en/health-insurance-argentina" className="text-[#E8002D] hover:underline font-medium">English guide →</Link>
+          <p className="text-xs text-gray-400 mt-3 flex flex-wrap gap-x-3 gap-y-1">
+            <span>Read in English? <Link href="/en/health-insurance-argentina" className="text-[#E8002D] hover:underline font-medium">English guide →</Link></span>
+            <span>· <Link href="/zh/yiliao-baoxian-agenting" className="text-[#E8002D] hover:underline font-medium">中文阅读 →</Link></span>
           </p>
         </div>
       </section>
