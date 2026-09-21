@@ -150,6 +150,9 @@ export default function StrahovanieArgentinaPage() {
               )
             })}
           </div>
+          <Link href="/ru/luchshaya-strahovka-argentina" className="inline-block text-sm font-semibold text-[#E8002D] hover:underline mt-4">
+            Полное сравнение: какая компания подходит именно вам →
+          </Link>
         </div>
       </section>
 
