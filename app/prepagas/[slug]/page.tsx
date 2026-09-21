@@ -8,6 +8,7 @@ import { getCambiosPorOrigen, getCambiosPorDestino } from '@/lib/data/cambios'
 import { getComparativasByPrepaga } from '@/lib/data/comparativas'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
+import { getCartillaInfo } from '@/lib/data/cartillas'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -367,6 +368,15 @@ export default async function PrepagaSlugPage({ params }: Props) {
               </div>
             ))}
           </div>
+
+          {getCartillaInfo(prep.slug) && (
+            <Link
+              href={`/cartillas/${prep.slug}`}
+              className="inline-block mt-3 text-xs text-gray-400 hover:text-[#E8002D] font-medium transition-colors"
+            >
+              ¿Buscás un médico puntual? Cartilla de {prep.nombre}: sanatorios y cómo consultarla →
+            </Link>
+          )}
         </div>
       </section>
 
