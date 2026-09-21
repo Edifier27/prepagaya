@@ -61,7 +61,12 @@ export default async function PerfilPage({ params }: Props) {
       return prep && plan ? { razon: pr.razon, prep, plan } : null
     })
     .filter((x): x is NonNullable<typeof x> => x !== null)
-    .sort((a, b) => a.plan.precio - b.plan.precio)
+    // Swiss Medical siempre encabeza la grilla (y se lleva el badge
+    // "RECOMENDADO", que va sobre el primer elemento) cuando está en la
+    // lista curada del perfil — pedido de Darío, 21-sep-2026. El resto
+    // mantiene el orden en que está escrito en lib/data/perfiles.ts (sort
+    // estable, no se reordena por precio).
+    .sort((a, b) => Number(b.prep.slug === 'swiss-medical') - Number(a.prep.slug === 'swiss-medical'))
 
   const otrosPerfiles = perfiles.filter((p) => p.slug !== perfil).slice(0, 8)
 

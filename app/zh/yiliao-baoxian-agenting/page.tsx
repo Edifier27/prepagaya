@@ -41,7 +41,7 @@ const faqs = [
   },
   {
     q: '阿根廷的私人医疗保险费用是多少?',
-    a: `价格取决于年龄和保险计划,而非国籍。截至${PRECIO_ACTUALIZADO_EN},基础计划约为每月AR$170,000起(以30岁为例),中端计划(门诊无需自付)约为AR$300,000–500,000,高端计划则超过AR$1,000,000。`,
+    a: <>价格取决于年龄和保险计划,而非国籍。截至{PRECIO_ACTUALIZADO_EN},基础计划约为每月AR$170,000起(以30岁为例),中端计划(门诊无需自付)约为AR$300,000–500,000,高端计划则超过AR$1,000,000。 <Link href="/zh/yiliao-baoxian-feiyong-agenting" className="text-[#E8002D] hover:underline font-medium">完整价格明细 →</Link></>,
   },
   {
     q: '旅行保险还是当地prepaga——该如何选择?',
