@@ -80,26 +80,3 @@ body {
     animation: none;
   }
 }
-
-/* Franja animada de marca (home, debajo del cotizador): contenido duplicado
-   por JS + translateX en loop, mismo patrón que la cinta de Zabala Bienes
-   Raíces. Se pausa al pasar el mouse. */
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.animate-marquee-band {
-  animation: marquee-scroll 26s linear infinite;
-  will-change: transform;
-}
-
-.animate-marquee-band:hover {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee-band {
-    animation: none;
-  }
-}
