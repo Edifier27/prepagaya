@@ -15,13 +15,11 @@
 // y cargar leads falsos en el CRM. Vence a los 90 días por las dudas de que
 // quede dando vueltas en una bandeja de entrada vieja.
 //
-// Reparto entre cuentas: el sitio no tiene base de datos, así que no hay
-// forma de llevar la cuenta real de "a quién le tocaba el próximo" en orden
-// estricto. En cambio se decide de forma determinística a partir del
-// timestamp de cuando se generó el link (par → Darío, impar → Gabriela):
-// da un reparto parejo (~50/50) sin necesitar estado compartido, y el mismo
-// lead siempre resuelve a la misma cuenta sin importar cuántas veces se
-// clickee el botón.
+// Reparto entre cuentas: todos los leads nuevos van a la cuenta de Gabriela
+// (pedido de Darío, 21-sep-2026 — reemplaza el reparto 50/50 por timestamp
+// y la excepción de pyme/empresas que iban fijas a Darío). Un contacto que
+// ya existía en la cuenta de Darío de antes sigue resolviendo ahí (ver
+// `existente?.cuenta` en crearLeadEnKommo) para no duplicarlo.
 import crypto from 'crypto'
 import { normalizarCelularAR } from './utils'
 
@@ -46,11 +44,6 @@ function cuentaConfig(cuenta: KommoCuenta): CuentaConfig {
         token: process.env.KOMMO_TOKEN ?? '',
         nombreDisplay: 'Darío',
       }
-}
-
-/** Cuenta a la que le toca este lead, en base al timestamp firmado (ver comentario arriba). */
-export function elegirCuenta(ts: string): KommoCuenta {
-  return (Number(ts) || 0) % 2 === 0 ? 'dario' : 'gabriela'
 }
 
 // ─── Link firmado del botón del mail ───────────────────────────────────────
@@ -217,11 +210,9 @@ export async function crearLeadEnKommo(d: KommoLeadData): Promise<ResultadoKommo
     return { ok: true, cuenta: existente.cuenta, leadId: existente.leadId, duplicado: true }
   }
 
-  // Cuenta destino: la del contacto existente (si hay uno sin lead propio),
-  // Darío fijo si es un lead de pyme/empresas (pedido de Darío, 17-sep-2026:
-  // no entra al reparto automático con Gabriela), o la que le toca por
-  // reparto automático si es una persona nueva particular.
-  const cuenta = existente?.cuenta ?? (d.fuente.startsWith('pyme') ? 'dario' : elegirCuenta(d.ts))
+  // Cuenta destino: la del contacto existente (si hay uno sin lead propio,
+  // para no duplicarlo), o Gabriela para cualquier lead nuevo.
+  const cuenta = existente?.cuenta ?? 'gabriela'
   const cfg = cuentaConfig(cuenta)
   if (!cfg.subdominio || !cfg.token) {
     return { ok: false, error: `Falta configurar Kommo para la cuenta de ${cfg.nombreDisplay} en el servidor.` }
