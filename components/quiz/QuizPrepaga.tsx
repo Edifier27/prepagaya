@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
 type PrepagaSlug =
   | 'swiss-medical'
@@ -109,6 +110,10 @@ function calcularResultados(respuestas: (number | null)[]): PrepagaSlug[] {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
     .map(([slug]) => slug)
+    // Swiss Medical encabeza el resultado cuando queda entre las 3 mejores
+    // (mismo criterio que el badge "RECOMENDADO" de /para/[perfil] — pedido
+    // de Darío, 21-sep-2026). El resto mantiene el orden por puntaje.
+    .sort((a, b) => Number(b === 'swiss-medical') - Number(a === 'swiss-medical'))
 }
 
 function BarraProgreso({ actual, total }: { actual: number; total: number }): React.ReactElement {
@@ -246,12 +251,12 @@ export function QuizPrepaga(): React.ReactElement {
                   </div>
 
                   <div className="flex gap-3 mt-4">
-                    <Link
-                      href="/"
+                    <ContratarPlanButton
+                      prepagaNombre={prepaga.nombre}
+                      fuente="quiz-resultado"
+                      label="Cotizar"
                       className="flex-1 text-center py-3 rounded-xl font-bold text-sm bg-[#00875A] hover:bg-[#006644] text-white transition-all shadow-sm hover:shadow-md"
-                    >
-                      Cotizar
-                    </Link>
+                    />
                     <Link
                       href={`/prepagas/${slug}`}
                       className="flex-1 text-center py-3 rounded-xl font-bold text-sm border-2 border-[#E8002D] text-[#E8002D] hover:bg-red-50 transition-all"
