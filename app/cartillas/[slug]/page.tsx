@@ -8,6 +8,7 @@ import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -184,6 +185,15 @@ export default async function CartillaPrepagaPage({ params }: Props) {
           >
             ¿Preferís confirmarlo vos mismo? Mirá la cartilla oficial de {prep.nombre} ↗
           </a>
+        </div>
+      </section>
+
+      {/* Buscador filtrado a esta prepaga */}
+      <section className="py-10 bg-gray-50 border-b border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-1 text-center">¿Tu sanatorio está en la cartilla de {prep.nombre}?</h2>
+          <p className="text-sm text-gray-500 mb-6 text-center">Buscalo por nombre — te decimos qué plan de {prep.nombre} lo cubre.</p>
+          <BuscadorSanatorio soloPrepagaSlug={prep.slug} soloPrepagaNombre={prep.nombre} />
         </div>
       </section>
 

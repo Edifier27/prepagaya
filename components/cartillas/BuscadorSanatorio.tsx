@@ -9,7 +9,13 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { formatPrecio } from '@/lib/utils'
 import type { Sanatorio, SanatorioReferenciaResult } from '@/lib/data/sanatorios'
 
-export function BuscadorSanatorio(): React.ReactElement {
+interface Props {
+  /** Cuando se pasa, filtra los resultados a solo esa prepaga (para embeber en /cartillas/[slug]) — pedido de Darío, 22-sep-2026, para reforzar "cartilla osde" y similares. */
+  soloPrepagaSlug?: string
+  soloPrepagaNombre?: string
+}
+
+export function BuscadorSanatorio({ soloPrepagaSlug, soloPrepagaNombre }: Props = {}): React.ReactElement {
   const [query, setQuery] = useState('')
   const [resultados, setResultados] = useState<Sanatorio[]>([])
   const [referencia, setReferencia] = useState<SanatorioReferenciaResult[]>([])
@@ -18,9 +24,20 @@ export function BuscadorSanatorio(): React.ReactElement {
   const handleSearch = (val: string) => {
     setQuery(val)
     setBuscado(val.length >= 2)
-    setResultados(val.length >= 2 ? buscarSanatorio(val) : [])
-    setReferencia(val.length >= 2 ? buscarSanatorioReferencia(val) : [])
+    const encontrados = val.length >= 2 ? buscarSanatorio(val) : []
+    setResultados(
+      soloPrepagaSlug
+        ? encontrados.filter((s) => s.planesQueLoCubren.some((p) => p.prepagaSlug === soloPrepagaSlug))
+        : encontrados
+    )
+    // La red de referencia (por zona, no por prepaga puntual) no aplica en
+    // modo filtrado: no sirve para responder "¿lo cubre ESTA prepaga?".
+    setReferencia(!soloPrepagaSlug && val.length >= 2 ? buscarSanatorioReferencia(val) : [])
   }
+
+  const resultadosFiltrados = soloPrepagaSlug
+    ? resultados.map((s) => ({ ...s, planesQueLoCubren: s.planesQueLoCubren.filter((p) => p.prepagaSlug === soloPrepagaSlug) }))
+    : resultados
 
   return (
     <div>
@@ -35,7 +52,7 @@ export function BuscadorSanatorio(): React.ReactElement {
           type="text"
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
-          placeholder="Escribí el nombre del sanatorio u hospital..."
+          placeholder={soloPrepagaNombre ? `Buscá tu sanatorio en la cartilla de ${soloPrepagaNombre}...` : 'Escribí el nombre del sanatorio u hospital...'}
           className="w-full pl-12 pr-4 py-4 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-[#E8002D] transition-colors shadow-sm"
         />
         {query && (
@@ -66,10 +83,16 @@ export function BuscadorSanatorio(): React.ReactElement {
       )}
 
       {/* Sin resultados */}
-      {buscado && resultados.length === 0 && referencia.length === 0 && (
+      {buscado && resultadosFiltrados.length === 0 && referencia.length === 0 && (
         <div className="mt-8 text-center py-10 bg-gray-50 rounded-2xl border border-gray-100">
-          <div className="text-gray-400 text-sm mb-1">No encontramos "{query}" en nuestra base de datos.</div>
-          <p className="text-xs text-gray-400">Probá con otro nombre o consultá directamente la cartilla de cada prepaga.</p>
+          <div className="text-gray-400 text-sm mb-1">
+            {soloPrepagaNombre
+              ? `No encontramos "${query}" en la cartilla de ${soloPrepagaNombre}.`
+              : `No encontramos "${query}" en nuestra base de datos.`}
+          </div>
+          <p className="text-xs text-gray-400">
+            {soloPrepagaNombre ? 'Probá con otro nombre o confirmá directamente con la cartilla oficial.' : 'Probá con otro nombre o consultá directamente la cartilla de cada prepaga.'}
+          </p>
         </div>
       )}
 
@@ -110,9 +133,9 @@ export function BuscadorSanatorio(): React.ReactElement {
       )}
 
       {/* Resultados */}
-      {resultados.length > 0 && (
+      {resultadosFiltrados.length > 0 && (
         <div className="mt-8 space-y-6">
-          {resultados.map((san) => (
+          {resultadosFiltrados.map((san) => (
             <div key={san.slug} className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
               {/* Header del sanatorio */}
               <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] px-6 py-4 text-white">
@@ -129,34 +152,38 @@ export function BuscadorSanatorio(): React.ReactElement {
                 {san.planesQueLoCubren
                   .sort((a, b) => a.precio - b.precio)
                   .map((plan) => (
-                    <div key={`${plan.prepagaSlug}-${plan.planSlug}`} className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors">
-                      {/* Iniciales prepaga */}
-                      <div className="w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold flex-shrink-0 bg-gray-100 text-gray-600">
-                        {plan.prepagaNombre.split(' ').slice(0, 2).map((w) => w[0]).join('')}
+                    <div key={`${plan.prepagaSlug}-${plan.planSlug}`} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 px-6 py-4 hover:bg-gray-50 transition-colors">
+                      <div className="flex items-start gap-4 flex-1 min-w-0">
+                        {/* Iniciales prepaga */}
+                        <div className="w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold flex-shrink-0 bg-gray-100 text-gray-600">
+                          {plan.prepagaNombre.split(' ').slice(0, 2).map((w) => w[0]).join('')}
+                        </div>
+
+                        {/* Info */}
+                        <div className="flex-1 min-w-0">
+                          <div className="font-semibold text-gray-900 text-sm">{plan.prepagaNombre}</div>
+                          <div className="text-xs text-gray-500">{plan.planNombre}</div>
+                          {plan.nota && (
+                            <div className="text-xs text-amber-600 mt-0.5 font-medium">{plan.nota}</div>
+                          )}
+                        </div>
                       </div>
 
-                      {/* Info */}
-                      <div className="flex-1 min-w-0">
-                        <div className="font-semibold text-gray-900 text-sm">{plan.prepagaNombre}</div>
-                        <div className="text-xs text-gray-500">{plan.planNombre}</div>
-                        {plan.nota && (
-                          <div className="text-xs text-amber-600 mt-0.5 font-medium">{plan.nota}</div>
-                        )}
-                      </div>
+                      <div className="flex items-center justify-between sm:justify-end gap-3 flex-shrink-0 pl-13 sm:pl-0">
+                        {/* Precio */}
+                        <div className="text-left sm:text-right">
+                          <div className="font-bold text-gray-900 text-sm">{formatPrecio(plan.precio)}</div>
+                          <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                        </div>
 
-                      {/* Precio */}
-                      <div className="text-right flex-shrink-0">
-                        <div className="font-bold text-gray-900 text-sm">{formatPrecio(plan.precio)}</div>
-                        <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                        {/* CTA */}
+                        <Link
+                          href={`/prepagas/${plan.prepagaSlug}/${plan.planSlug}`}
+                          className="flex-shrink-0 text-xs font-semibold text-[#E8002D] hover:text-[#B8001F] border border-[#E8002D] hover:border-[#B8001F] px-3 py-1.5 rounded-lg transition-colors"
+                        >
+                          Ver plan
+                        </Link>
                       </div>
-
-                      {/* CTA */}
-                      <Link
-                        href={`/prepagas/${plan.prepagaSlug}/${plan.planSlug}`}
-                        className="flex-shrink-0 text-xs font-semibold text-[#E8002D] hover:text-[#B8001F] border border-[#E8002D] hover:border-[#B8001F] px-3 py-1.5 rounded-lg transition-colors"
-                      >
-                        Ver plan
-                      </Link>
                     </div>
                   ))}
               </div>
