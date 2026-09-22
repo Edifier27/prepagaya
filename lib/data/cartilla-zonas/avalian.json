@@ -1,0 +1,9284 @@
+{
+ "fuente": "Buscador oficial de cartilla de Avalian (avalian.com/cartilla)",
+ "vigencia": [
+  "22/09/2026"
+ ],
+ "planes": [
+  "Cerca",
+  "Integral",
+  "Superior",
+  "Selecta",
+  "Clásica"
+ ],
+ "faltantes": [],
+ "zonas": [
+  {
+   "slug": "salta",
+   "nombre": "Salta",
+   "provincias": [
+    "Salta"
+   ],
+   "centros": [
+    {
+     "nombre": "Cenesa",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Zabala 432",
+       "localidad": "Salta",
+       "tel": "387 4237373",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Emprendimiento Adolfo Guemes",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Adolfo Guemes 82",
+       "localidad": "Salta",
+       "tel": "387 4954900 / 387 4954999",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. del Señor del Milagro",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Sarmiento 557",
+       "localidad": "Salta",
+       "tel": "387 4317400 / 387 4213148",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Privado SANTA CLARA de ASIS",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Justo J. De Urquiza 946",
+       "localidad": "Salta",
+       "tel": "387 4321440",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Privado TRES Cerritos",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juan B. Justo 93",
+       "localidad": "Salta",
+       "tel": "387 4398880",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "\"hosp. Publico de Gestion \"dr Arturo Oativia\"\"",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dr. Eduardo Paz Chain 36",
+       "localidad": "Salta",
+       "tel": "387 4221804 / 387 4221605",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. San Bernardo",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Tobias 69",
+       "localidad": "Salta",
+       "tel": "387 4320300",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. de Clinica y Cardiologia",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Zabala 432",
+       "localidad": "Salta",
+       "tel": "387 4230898",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Maternidad Privada SALTA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Urquiza 150",
+       "localidad": "Salta",
+       "tel": "387 4320385 / 387 4220654",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Medical CARE",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Zuviria 631",
+       "localidad": "Salta",
+       "tel": "387 4317000",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio el Carmen",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Belgrano 981",
+       "localidad": "Salta",
+       "tel": "387 4311556",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San ROQUE",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. R.Catolicos 1518",
+       "localidad": "Salta",
+       "tel": "387 4390202 / 387 4392357",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av. Reyes Catolicos 1518",
+       "localidad": "Salta",
+       "tel": "3874326000",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Servicio de Neonatologia y Pediatria",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Urquiza 150 Piso 1",
+       "localidad": "Salta",
+       "tel": null,
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "tartagal",
+   "nombre": "Tartagal",
+   "provincias": [
+    "Salta"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica San Antonio",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Warner Y Cornejo",
+       "localidad": "Tartagal",
+       "tel": "03873-421499",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "azul",
+   "nombre": "Azul",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio AZUL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av.Mitre 943",
+       "localidad": "Azul",
+       "tel": "2281422670",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "bahia-blanca",
+   "nombre": "Bahía Blanca",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Hosp. Italiano Regional del SUR",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Necochea 675",
+       "localidad": "Bahía Blanca",
+       "tel": "291 4810560",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Privado del SUR",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Las Heras 164",
+       "localidad": "Bahía Blanca",
+       "tel": "291 4550270",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Regional Español",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Estomba 571",
+       "localidad": "Bahía Blanca",
+       "tel": "291 4565555",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sermex",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 De Julio 445",
+       "localidad": "Bahía Blanca",
+       "tel": "291 4558880",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de OJOS del SUD",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alsina 89",
+       "localidad": "Bahía Blanca",
+       "tel": "291 4551055",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "campana",
+   "nombre": "Campana",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica DELTA",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sarmiento 154",
+       "localidad": "Campana",
+       "tel": "03489 434600",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "chivilcoy",
+   "nombre": "Chivilcoy",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio Chivilcoy",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Soarez 321",
+       "localidad": "Chivilcoy",
+       "tel": "2346 434583",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "junin",
+   "nombre": "Junín",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Centro Medico Privado",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Quintana 249",
+       "localidad": "Junín",
+       "tel": "0236 463-7865",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica la Pequeña Familia",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juan B. Alberdi Y Ruta 188",
+       "localidad": "Junín",
+       "tel": "236 4441411",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada Villafañe",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bdo De Irigoyen 130",
+       "localidad": "Junín",
+       "tel": "236 4443288",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio JUNIN",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Almafuerte 68",
+       "localidad": "Junín",
+       "tel": "236 4433058",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "la-plata",
+   "nombre": "La Plata",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Hosp. Español",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 175",
+       "localidad": "La Plata",
+       "tel": "0221 412-9400",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Italiano de la PLATA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. E 29 Y 30 51",
+       "localidad": "La Plata",
+       "tel": "0221 512-9500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. de Diagnostico de la PLATA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Calle 62 370",
+       "localidad": "La Plata",
+       "tel": "221 425-9700",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Medico Platense",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "51 315",
+       "localidad": "La Plata",
+       "tel": "221 4258390",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "NUEVA Clinica del Niño de la PLATA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Calle 63 763",
+       "localidad": "La Plata",
+       "tel": "221 4534940",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "lujan",
+   "nombre": "Luján",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Guemes",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "M. Moreno 1360",
+       "localidad": "Luján",
+       "tel": "02323 441400",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "mar-del-plata",
+   "nombre": "Mar del Plata",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica de Fracturas y Ortopedia",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Independencia 1475",
+       "localidad": "Mar del Plata",
+       "tel": "223 4945506",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del Niño y la MADRE",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Colon 2749",
+       "localidad": "Mar del Plata",
+       "tel": "223 499-0600",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Neuropsiquiatrica CLARA del MAR S.A.",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Corbeta Uruguay 3444",
+       "localidad": "Mar del Plata",
+       "tel": "0223 4671209",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica PRIV OJOS SANTA LUCIA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jujuy 1466",
+       "localidad": "Mar del Plata",
+       "tel": "223 4748686",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada Pueyrredon",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jujuy 2176",
+       "localidad": "Mar del Plata",
+       "tel": "223 4992400",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica y Maternidad COLON",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Colon 3629",
+       "localidad": "Mar del Plata",
+       "tel": "223 4992656",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Privado de Comunidad",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Cordoba 4545",
+       "localidad": "Mar del Plata",
+       "tel": "0223 499-0000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Psiquis Clinica Neuropsiquiatrica Atlantica",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sargento Cabral 51",
+       "localidad": "Mar del Plata",
+       "tel": "223 4741607",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Belgrano",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Belgrano 4327",
+       "localidad": "Mar del Plata",
+       "tel": "223 4991900",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Traumatologos Asociados",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dorrego 1811",
+       "localidad": "Mar del Plata",
+       "tel": "223 4918877",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "necochea",
+   "nombre": "Necochea",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica CRUZ AZUL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Calle 60 2651",
+       "localidad": "Necochea",
+       "tel": "02262 526000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "olavarria",
+   "nombre": "Olavarría",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica y Maternidad MARIA Auxiliadora",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "España 2759",
+       "localidad": "Olavarría",
+       "tel": "2284 445100",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Neonatologia Olavarria",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Moreno 2626",
+       "localidad": "Olavarría",
+       "tel": "2284 423557",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "pergamino",
+   "nombre": "Pergamino",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Centro",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pueyrredon 840",
+       "localidad": "Pergamino",
+       "tel": "2477436701",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Puyrredon 840",
+       "localidad": "Pergamino",
+       "tel": "2477 436701",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Pergamino",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Mayo 1115",
+       "localidad": "Pergamino",
+       "tel": "2477 432004",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-nicolas-de-los-arroyos",
+   "nombre": "San Nicolás de los Arroyos",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica San Nicolas",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 96",
+       "localidad": "San Nicolás de los Arroyos",
+       "tel": "336 4422347 / 336 4424049",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Fund. Nuestra SRA del Rosario",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mitre 598",
+       "localidad": "San Nicolás de los Arroyos",
+       "tel": "0336 4437528 / 0336 4437527",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro Oftalmologico Policlinica Privada",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Belgrano 207",
+       "localidad": "San Nicolás de los Arroyos",
+       "tel": "336 4430092",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "tandil",
+   "nombre": "Tandil",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Modelo",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "España 799",
+       "localidad": "Tandil",
+       "tel": "249 443 1010 / 249 444 5792",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "NUEVA Clinica Chacabuco",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Chacabuco 340",
+       "localidad": "Tandil",
+       "tel": "0249 4424690",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Tandil",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sarmiento 770",
+       "localidad": "Tandil",
+       "tel": "249 4442870",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de OJOS Tandil",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Santamarina 760",
+       "localidad": "Tandil",
+       "tel": "0249-4448301 / 4448300",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "tres-arroyos",
+   "nombre": "Tres Arroyos",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Municipal de SALUD Dr Ignacio Pirovano",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Primera Junta 400",
+       "localidad": "Tres Arroyos",
+       "tel": "2983 439400",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada Hispano Argentina",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dorrego 298",
+       "localidad": "Tres Arroyos",
+       "tel": "2983 431365",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "zarate",
+   "nombre": "Zárate",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Privada del Carmen",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 585",
+       "localidad": "Zárate",
+       "tel": "3487 422565",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "caba",
+   "nombre": "Ciudad de Buenos Aires",
+   "provincias": [
+    "Ciudad de Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Alexander Fleming",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Cramer 1180",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 32218900",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "CEMIC",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Las Heras 2939",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 52990600",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Ciarec - de Intense LIFE",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Monroe 4770",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 4548-7400",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Adventista Belgrano",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Estomba 1710",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 40141500",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Bazterrica",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juncal 3002",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 48211600",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de los Virreyes",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ciudad De La Paz 1157",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 48960038",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del SOL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Coronel Diaz 2211",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 48277600",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica la Sagrada Familia",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "J Hernandez 1642",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 40146000",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica SANTA Isabel",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Directorio 2037",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 46708000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Congregacion HIJAS de San Camilo",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Angel Gallardo 899",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "114858-8600",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av. Angel Gallardo 899",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 48588195",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "FLENI",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Montañeses 2325",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "1157773200",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Fund. Favaloro",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Belgrano 1746",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11-5958-4817 / 1313",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Fund. Hospitalaria",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Cramer 4601",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "7078-0873",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Fundaleu",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Uriburu 1450",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11-4877-1000 / 11 48771091",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Britanico de Buenos AIRES",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Perdriel 74",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 4309-6400",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Italiano",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juan Domingo Perón 4190",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11-49590200",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Gascon 450",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11-49590200",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Aleman",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Pueyrredón 1640",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 4827-7000",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Pueyrredon 1640",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "1148277000",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital NAVAL",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ramos Mejia 985",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "0800-333-4530 / 11 152792 3224",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Cardiovascular de Buenos AIRES",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Blanco Encalada 1543",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 41057500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto Argentino de Diagnostico y Tratamiento S.A.",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Marcelo T. De Alvear 2346",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "1149651100",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto O Gorman Atencio Medica Integral",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Entre Rios 2144",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 2060-4300",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Macropsicologia",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Santa Fe 1461 Piso 4",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 48150802 / 11 55780960",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Anchorena",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Tomas De Anchorena 1872",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 48085400",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Dr. Tomás Manuel De Anchorena 1877",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 4808-5400",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Colegiales",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Teodoro Garcia 3185",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "4556 4800",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la Providencia",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Tucuman 1863",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 5299-9000",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Finochietto",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av.Cordoba 2678",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 3752-8000",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Guemes",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Francisco Acuña De Figueroa 1228",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 49598200 / 11 49598300",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio MATER DEI",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martín De Tours 2952",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 4809-5555",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Otamendi",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Azcuenaga 870",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "4965-2900",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San JOSE",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sánchez De Bustamante 1674",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 48211001",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Asistencia Privada Odontológica S.A.",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Cordoba 1870",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 70781870 / 11 2273 4436",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro de OJOS Buenos AIRES SA",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Azcuenaga 1677",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 4805-9035",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Cito-centro de Oftalmologia y Tratamiento Ocular",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Tucuman 1772",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011 4123 9300",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Consulmed Emprendimientos Odontologicos",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ayacucho 1314",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "1152174400 / 345-4400",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. de la Vision",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "M T De Alvear 2261",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "1160912900",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-luis",
+   "nombre": "San Luis",
+   "provincias": [
+    "San Luis"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio y Clinica Rivadavia",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 1059",
+       "localidad": "San Luis",
+       "tel": "0266 4422175",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio y Clinica",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 1059",
+       "localidad": "San Luis",
+       "tel": "2664415221",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "villa-mercedes",
+   "nombre": "Villa Mercedes",
+   "provincias": [
+    "San Luis"
+   ],
+   "centros": [
+    {
+     "nombre": "Hosp. Privado de la VILLA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Balcarce 1040",
+       "localidad": "Villa Mercedes",
+       "tel": "2657 442727",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la Merced",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda. Mitre 638 638",
+       "localidad": "Villa Mercedes",
+       "tel": "2657434098",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av. Mitre 638",
+       "localidad": "Villa Mercedes",
+       "tel": "2657 435004",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "concepcion-del-uruguay",
+   "nombre": "Concepción del Uruguay",
+   "provincias": [
+    "Entre Ríos"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Uruguay",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Galarza 574",
+       "localidad": "Concepción del Uruguay",
+       "tel": "3442 422743 / 3442 425928",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Coop. Medica C D del Uruguay Inst. del Diagnostico y Cirugia",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "14 De Julio 377",
+       "localidad": "Concepción del Uruguay",
+       "tel": "3442 424555 / 3442 425901",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Coop. Medica Uruguay",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "14 De Julio 377",
+       "localidad": "Concepción del Uruguay",
+       "tel": "03442-428004 / 425901",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "concordia",
+   "nombre": "Concordia",
+   "provincias": [
+    "Entre Ríos"
+   ],
+   "centros": [
+    {
+     "nombre": "Inst. de Pediatria",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Urquiza 323",
+       "localidad": "Concordia",
+       "tel": "345 4217788",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Medico Quirurgico GARAT",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "C. Veiga 660",
+       "localidad": "Concordia",
+       "tel": "0345 421-3150",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Concordia",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "1° De Mayo 393",
+       "localidad": "Concordia",
+       "tel": "345 4230912",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "SOGYN",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "1 De Mayo 393",
+       "localidad": "Concordia",
+       "tel": "345 4230429",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de OJOS Dr. Razzari",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin 76",
+       "localidad": "Concordia",
+       "tel": "3454 210137",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Delicia Concepcion Masvernat",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Monseñor Tavella 2000",
+       "localidad": "Concordia",
+       "tel": "0345-4251135",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Mutual Medica Concordia",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Independencia 63",
+       "localidad": "Concordia",
+       "tel": "3454163987",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "parana",
+   "nombre": "Paraná",
+   "provincias": [
+    "Entre Ríos"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Modelo",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin 1246",
+       "localidad": "Paraná",
+       "tel": "343 4231200",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Privado de Pediatria",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "España 312",
+       "localidad": "Paraná",
+       "tel": "343 4310554",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Rawson",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Enrique Carbo 531",
+       "localidad": "Paraná",
+       "tel": "343 4315133",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "ITEO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin 1247",
+       "localidad": "Paraná",
+       "tel": null,
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio del Niño",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Libertad 78",
+       "localidad": "Paraná",
+       "tel": "0343 4315331",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio la Entrerriana",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Buenos Aires 550",
+       "localidad": "Paraná",
+       "tel": "343 4200500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio RIO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "España 350",
+       "localidad": "Paraná",
+       "tel": "343 4313618 / 343 4314856",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Circulo Odontologico de Parana",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Corrientes 218",
+       "localidad": "Paraná",
+       "tel": "4318362",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto Rawson",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "E. Carbo 531",
+       "localidad": "Paraná",
+       "tel": "343 4315133",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-norte",
+   "nombre": "GBA Zona Norte",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Medico Nordelta",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av.De Los Lagos 6785",
+       "localidad": "Nordelta",
+       "tel": "114871-2222",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Angelus",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Fondo Delalegua 390",
+       "localidad": "San Isidro",
+       "tel": "0810-444-0550",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Bessone",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Paunero 1668",
+       "localidad": "San Miguel",
+       "tel": "11 46672040",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica DELTA",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sarmiento 154",
+       "localidad": "Campana",
+       "tel": "03489 434600",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Nuestra Señora de Fatima",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Victor Vergani 830",
+       "localidad": "Pilar",
+       "tel": "230 4420395",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada del Carmen",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 585",
+       "localidad": "Zárate",
+       "tel": "3487 422565",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada Fatima",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Spadaccini 1084",
+       "localidad": "Escobar",
+       "tel": "0348 442-1000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica SANTA MARIA - Osteon",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "E Marengo 3945",
+       "localidad": "Villa Ballester",
+       "tel": "011-63394600",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Marengo 3945",
+       "localidad": "Villa Ballester",
+       "tel": "1163394600",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Corporac. Medica de GRAL San Martin",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Matheu 4015",
+       "localidad": "General San Martin",
+       "tel": "47547500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Universitario Austral",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "J. D. Peron 1500",
+       "localidad": "Pilar",
+       "tel": "02304482013",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Privado Modelo",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gral.Roca 1811",
+       "localidad": "Vicente Lopez",
+       "tel": "11 47963400",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Anchorena de San Martin",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pedriel 4186",
+       "localidad": "General San Martin",
+       "tel": "11 4724 1400",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la Trinidad San Isidro",
+     "internacion": [
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sir Alexander Fleming 590",
+       "localidad": "San Isidro",
+       "tel": "0810-777-2583",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av. Sir Alexander Fleming 590",
+       "localidad": "San Isidro",
+       "tel": "0810-777-2583",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio las LOMAS",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Diego Carman 555",
+       "localidad": "San Isidro",
+       "tel": "41295501",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San LUCAS",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Blgrano 369",
+       "localidad": "San Isidro",
+       "tel": "47328888",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Belgrano 369",
+       "localidad": "San Isidro",
+       "tel": "47328888",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Martin",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "18 De Diciembre De 1856",
+       "localidad": "General San Martin",
+       "tel": "011- 4014-4300",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San PABLO",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alvear 1444",
+       "localidad": "San Fernando",
+       "tel": "48902002 / 11 20291490",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Sarmiento",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Pte. Peron 1796",
+       "localidad": "San Miguel",
+       "tel": "11 44697300",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro de Traumatologia Ortopedia Rehabilit",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Libertador 16664",
+       "localidad": "San Isidro",
+       "tel": "1152632121 / 52632121",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de OJOS NANNO",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sarmiento 1431",
+       "localidad": "San Miguel",
+       "tel": "011 4451-4500",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto Medico de OJOS SA",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Marengo 4464",
+       "localidad": "Villa Ballester",
+       "tel": "4768-1001",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-oeste",
+   "nombre": "GBA Zona Oeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "CASA Hosp. San JUAN de DIOS",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Santa Rosa 1355",
+       "localidad": "Castelar",
+       "tel": "011-4469-9500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Ardoino 714",
+       "localidad": "Ramos Mejia",
+       "tel": "11 44699500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica CRUZ Celeste S A C y M",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bermudez 2895",
+       "localidad": "Villa Luzuriaga",
+       "tel": "1146599191 / 46599462",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del BUEN Pastor",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mosconi 1716",
+       "localidad": "Lomas del Mirador",
+       "tel": "11 46512891",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Guemes",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "M. Moreno 1360",
+       "localidad": "Luján",
+       "tel": "02323 441400",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Modelo de MORON",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Uruguay 224",
+       "localidad": "Moron",
+       "tel": "11 56271000",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Psiquiatrica Privada del Parque",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Martin Fierro Esq Del Cielito",
+       "localidad": "Ituzaingo",
+       "tel": "011 4621-9047 / 0580",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Psiquiatrica Privada del SOL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Chacabuco 770",
+       "localidad": "Ramos Mejia",
+       "tel": "11 46546989",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Fundacion Vivire",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Durán 2355",
+       "localidad": "Merlo",
+       "tel": "0220-4894337",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Av. De Mayo 1705",
+       "localidad": "Ramos Mejia",
+       "tel": "011 4658 9902",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio del OESTE Ituzaingo",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Olazabal 319",
+       "localidad": "Ituzaingo",
+       "tel": "11 5068-9100",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Av. Del Libertador 295",
+       "localidad": "Merlo",
+       "tel": "0810-333-4411",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio del OESTE MERLO",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Libertador 295",
+       "localidad": "Merlo",
+       "tel": "220 4863419 / 220 4121152",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "AMOI SA Centro OESTE",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. De Mayo 1598",
+       "localidad": "Ramos Mejia",
+       "tel": "011 4658-5583",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-sudeste",
+   "nombre": "GBA Zona Sudeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica del Niño de Quilmes",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Lamadrid 444",
+       "localidad": "Quilmes",
+       "tel": "011 4364-9900",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Español",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 175",
+       "localidad": "La Plata",
+       "tel": "0221 412-9400",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Italiano de la PLATA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. E 29 Y 30 51",
+       "localidad": "La Plata",
+       "tel": "0221 512-9500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. de Diagnostico de la PLATA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Calle 62 370",
+       "localidad": "La Plata",
+       "tel": "221 425-9700",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Medico Platense",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "51 315",
+       "localidad": "La Plata",
+       "tel": "221 4258390",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "NUEVA Clinica del Niño de la PLATA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Calle 63 763",
+       "localidad": "La Plata",
+       "tel": "221 4534940",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio ITOIZ",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alsina 174",
+       "localidad": "Avellaneda",
+       "tel": "0810-222-4864",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio SANTA CLARA F. Varela",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gral S. M. Pueyrredon 349",
+       "localidad": "Florencio Varela",
+       "tel": "0810-220-0216",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio SANTA CLARA Quilmes",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ayacucho 1048",
+       "localidad": "Don Bosco",
+       "tel": "(011)5263-8277",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Prodonto",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Fabian Onsari",
+       "localidad": "Wilde",
+       "tel": "1140645710",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Modelo Quilmes",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Andres Baranda 282",
+       "localidad": "Quilmes",
+       "tel": "4350-3803 URG",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-sudoeste",
+   "nombre": "GBA Zona Sudoeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica IMA S.A",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Francisco Segui 593",
+       "localidad": "Adrogue",
+       "tel": "11 42141414",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Montegrande",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gral Rodriguez 158 Pb",
+       "localidad": "Monte Grande",
+       "tel": "011 4367-6700",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Policlinico LOMAS",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Hipolito Irigoyen 8439",
+       "localidad": "Lomas de Zamora",
+       "tel": "1142440051",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Juncal",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Almirante Brown 2779",
+       "localidad": "Temperley",
+       "tel": "42398000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "la-banda",
+   "nombre": "La Banda",
+   "provincias": [
+    "Santiago del Estero"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio Central BANDA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Amadeo Jacques 175",
+       "localidad": "La Banda",
+       "tel": "0385 4270142",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Jozami",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pellegrini 367",
+       "localidad": "La Banda",
+       "tel": "0385 4272922",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San ROQUE",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "España 431",
+       "localidad": "La Banda",
+       "tel": "0385 4272735",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "santiago-del-estero",
+   "nombre": "Santiago del Estero",
+   "provincias": [
+    "Santiago del Estero"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica YUNES",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Libertad 626",
+       "localidad": "Santiago del Estero",
+       "tel": "0385 4211741",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "NUEVO Sanatorio Santiago",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av.Belgrano Sud 127",
+       "localidad": "Santiago del Estero",
+       "tel": "0385 4221157",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio 9 de JULIO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 De Julio 580",
+       "localidad": "Santiago del Estero",
+       "tel": "0385 4218008",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Libertad",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Libertad 647",
+       "localidad": "Santiago del Estero",
+       "tel": "0385 4219009",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio NORTE",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 De Mayo 138",
+       "localidad": "Santiago del Estero",
+       "tel": "0385 4224722",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Francisco",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Buenos Aires 555",
+       "localidad": "Santiago del Estero",
+       "tel": "0385 4223000",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "presidencia-roque-saenz-pena",
+   "nombre": "Presidencia Roque Sáenz Peña",
+   "provincias": [
+    "Chaco"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Centro Medico",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Laprida 771",
+       "localidad": "Presidencia Roque Sáenz Peña",
+       "tel": "S/N / S/N",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica SAENZ Peña SA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Belgrano 155",
+       "localidad": "Presidencia Roque Sáenz Peña",
+       "tel": "0364 4421605",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "resistencia",
+   "nombre": "Resistencia",
+   "provincias": [
+    "Chaco"
+   ],
+   "centros": [
+    {
+     "nombre": "CUORE",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Carlos Pellegrini 673",
+       "localidad": "Resistencia",
+       "tel": "362 4427511",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Cardiovascular del CHACO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Guemes 501",
+       "localidad": "Resistencia",
+       "tel": "362 4446500",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. de OJOS y OIDOS",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Belgrano 647",
+       "localidad": "Resistencia",
+       "tel": "362 4435964",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Oncochaco Center Inst. Medico Privado",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Lopez Y Planes 742 Piso 2",
+       "localidad": "Resistencia",
+       "tel": "362 4429176",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Antartida",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Lorenzo 190",
+       "localidad": "Resistencia",
+       "tel": "362 4429155",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio CHACO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Brown 315",
+       "localidad": "Resistencia",
+       "tel": "362 4413441",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio CHACO OESTE",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Marconi 1486",
+       "localidad": "Resistencia",
+       "tel": "362 4468530",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Frangioli",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Cordoba 198",
+       "localidad": "Resistencia",
+       "tel": "362 4444333",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio la Sagrada Familia",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda. Italia 266",
+       "localidad": "Resistencia",
+       "tel": "0362 4411969",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Materno Infantil",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Guemes 501",
+       "localidad": "Resistencia",
+       "tel": "362 4446500",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Sarmiento",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Sarmiento 391",
+       "localidad": "Resistencia",
+       "tel": "362 4424922",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "EME - CHACO",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 De Julio 1577",
+       "localidad": "Resistencia",
+       "tel": "4456200",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Oftalmologico",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ameghino 75",
+       "localidad": "Resistencia",
+       "tel": "362 4426177",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-juan",
+   "nombre": "San Juan",
+   "provincias": [
+    "San Juan"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Integral de la MUJER y el Niño",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Catamarca 417 Sur",
+       "localidad": "San Juan",
+       "tel": "0264 4309100",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Privado de San JUAN",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 542 E",
+       "localidad": "San Juan",
+       "tel": null,
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Argentino",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Luis 432 Oeste",
+       "localidad": "San Juan",
+       "tel": "2644220100",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio MAYO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mitre (Oeste 192",
+       "localidad": "San Juan",
+       "tel": "264 4229377",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio SANTA CLARA San JUAN",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mendoza Sur 602",
+       "localidad": "San Juan",
+       "tel": "0810-220-0216",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Servicios Medicos el Castaño",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Libertador San Martin 952",
+       "localidad": "San Juan",
+       "tel": "2644277879",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "santa-rosa",
+   "nombre": "Santa Rosa",
+   "provincias": [
+    "La Pampa"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Modelo",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. San Martin 452",
+       "localidad": "Santa Rosa",
+       "tel": "2954 457777",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Fund. AYUDA Enfermos Renales y ALTA Complejidad Faerac",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Roque Saenzpeña 852",
+       "localidad": "Santa Rosa",
+       "tel": "2954 425857",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Polymedic",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "1 De Mayo 640",
+       "localidad": "Santa Rosa",
+       "tel": "2954 454777",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio SANTA ROSA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bartolome Mitre 188",
+       "localidad": "Santa Rosa",
+       "tel": "2954 457000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Col. Medico de la PAMPA",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. San Martin 655",
+       "localidad": "Santa Rosa",
+       "tel": "2954 436448",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "godoy-cruz",
+   "nombre": "Godoy Cruz",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Hosp. Español de Mendoza",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. El Libertador 950",
+       "localidad": "Godoy Cruz",
+       "tel": "261 4490300",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Privado AMANO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Beltran",
+       "localidad": "Godoy Cruz",
+       "tel": "2613911116",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio SANTA CLARA Mendoza",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. San Martín 835",
+       "localidad": "Godoy Cruz",
+       "tel": "0810-220-0216",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Medikids",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juan De Garay 75",
+       "localidad": "Godoy Cruz",
+       "tel": "2616 83-8860",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "guaymallen",
+   "nombre": "Guaymallén",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Francesa",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ejercito De Los Andes 1696",
+       "localidad": "Guaymallén",
+       "tel": "0810-333-8763",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica SANTA ROSA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Las Heras 742",
+       "localidad": "Guaymallén",
+       "tel": "261-4419001",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Italiano Mendoza",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Acceso Este Lateral Norte 1070",
+       "localidad": "Guaymallén",
+       "tel": "261 4058600",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. SANTA Isabel de Hungria",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pedro 2854",
+       "localidad": "Guaymallén",
+       "tel": "261 4637000",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Pedro Del Castillo 2854",
+       "localidad": "Guaymallén",
+       "tel": "261 4637000",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "maipu",
+   "nombre": "Maipú",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Medikids",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juan Domingo Perón 120",
+       "localidad": "Maipú",
+       "tel": "2616 83-8860",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Pediatrix",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mazza 144",
+       "localidad": "Maipú",
+       "tel": "2616687466",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "mendoza",
+   "nombre": "Mendoza",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica de CUYO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jose Vte Zapata 63",
+       "localidad": "Mendoza",
+       "tel": "4059000",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro de Procedimientos Ambulatorios SA Uroclinica",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Paso De Los Andes 45",
+       "localidad": "Mendoza",
+       "tel": "2614768780",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centrovision Mendoza",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mitre 540",
+       "localidad": "Mendoza",
+       "tel": "0261-4232020",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Medikids",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Coronel Rodriguez 118",
+       "localidad": "Mendoza",
+       "tel": "2616 83-8860",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Lamadrid 202",
+       "localidad": "Mendoza",
+       "tel": "2616 83-8860",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-rafael",
+   "nombre": "San Rafael",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Hosp. Español del SUR Mendocino",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Libertador 950",
+       "localidad": "San Rafael",
+       "tel": "0260-4423690",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "obera",
+   "nombre": "Oberá",
+   "provincias": [
+    "Misiones"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Integral OBERA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "French 822",
+       "localidad": "Oberá",
+       "tel": "3755 422777",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "EPSOM SRL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "J. Ingenieros 187",
+       "localidad": "Oberá",
+       "tel": "03755 407473",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto Mattos",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ralf Singer 282",
+       "localidad": "Oberá",
+       "tel": "03755-402951",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Policlinico Bertoldi",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Jose Ingeniero 86",
+       "localidad": "Oberá",
+       "tel": null,
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio DERNA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gob. Barreyro 1031",
+       "localidad": "Oberá",
+       "tel": "03755-401186",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Virgen del Rosario",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gdor Barreyro 1280",
+       "localidad": "Oberá",
+       "tel": "03755 407474",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "UCIN - Interneo SRL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av De Los Inmigrantes 1750",
+       "localidad": "Oberá",
+       "tel": "03755-408297",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "posadas",
+   "nombre": "Posadas",
+   "provincias": [
+    "Misiones"
+   ],
+   "centros": [
+    {
+     "nombre": "IOT Sanatorio Integral",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bolivar 2376",
+       "localidad": "Posadas",
+       "tel": "376 4440540",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "NEUMA Respiratoria",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 De Mayo 2241",
+       "localidad": "Posadas",
+       "tel": "376 4425175",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Camino",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Junin 2459 Piso 4",
+       "localidad": "Posadas",
+       "tel": "376 4421119",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "formosa",
+   "nombre": "Formosa",
+   "provincias": [
+    "Formosa"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio Formosa",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pringles 131",
+       "localidad": "Formosa",
+       "tel": "370 4431000 / 370 4429347",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "neuquen",
+   "nombre": "Neuquén",
+   "provincias": [
+    "Neuquén"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica de Imagenes",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Santa Fe 273",
+       "localidad": "Neuquén",
+       "tel": "0299 445-7713",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Pasteur",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rioja 36",
+       "localidad": "Neuquén",
+       "tel": "4422470",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica San Agustin",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Candelaria 45",
+       "localidad": "Neuquén",
+       "tel": "299 567 7442",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Funsal Centro Quirurgico",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bartolomé Mitre 564",
+       "localidad": "Neuquén",
+       "tel": "0299 430-3558",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "zapala",
+   "nombre": "Zapala",
+   "provincias": [
+    "Neuquén"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Zapala",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Luis Monti 752",
+       "localidad": "Zapala",
+       "tel": "02942 43-1777",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cipolletti",
+   "nombre": "Cipolletti",
+   "provincias": [
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Fund. Medica de RIO NEGRO y Neuquen",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mengelle 273",
+       "localidad": "Cipolletti",
+       "tel": "299 4039200",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Policlinico Modelo de Cipoletti",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin Y Libertad 987",
+       "localidad": "Cipolletti",
+       "tel": "299 4039090",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio RIO NEGRO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Alem Y 25 De Mayo 60",
+       "localidad": "Cipolletti",
+       "tel": "299 4781225",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "general-roca",
+   "nombre": "General Roca",
+   "provincias": [
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica ROCA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mitre 310",
+       "localidad": "General Roca",
+       "tel": "298 4431821",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio JUAN XXIII",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Buenos Aires 1429",
+       "localidad": "General Roca",
+       "tel": "298 4424624",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica CEMYN",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Hipólito Yrigoyen 939",
+       "localidad": "General Roca",
+       "tel": "0298 442-2373",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de OJOS ROMAN",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Hipólito Yrigoyen 499",
+       "localidad": "General Roca",
+       "tel": "0298 442-0192 / 4277",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-carlos-de-bariloche",
+   "nombre": "San Carlos de Bariloche",
+   "provincias": [
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Hosp. Privado Regional",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "20 De Febrero 598",
+       "localidad": "San Carlos de Bariloche",
+       "tel": "294 4525000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Materno Infantil",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Villegas 436",
+       "localidad": "San Carlos de Bariloche",
+       "tel": "0294 464-3137",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Intecnus",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ruta 82 S/N",
+       "localidad": "San Carlos de Bariloche",
+       "tel": "0294 474-6050",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Carlos",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ezequiel Bustillo Km 1",
+       "localidad": "San Carlos de Bariloche",
+       "tel": "294 4409800",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "viedma",
+   "nombre": "Viedma",
+   "provincias": [
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Viedma",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sarmiento 253",
+       "localidad": "Viedma",
+       "tel": "02920 422509",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "reconquista",
+   "nombre": "Reconquista",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio PADRE PIO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ludueña 1037",
+       "localidad": "Reconquista",
+       "tel": "03482 429233",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Reconquista",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 De Julio 1040",
+       "localidad": "Reconquista",
+       "tel": "3482 421521",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "rosario",
+   "nombre": "Rosario",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Medico IPAM",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sarmiento 3125",
+       "localidad": "Rosario",
+       "tel": "341 4858585",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica San Felipe",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ameghino 960",
+       "localidad": "Rosario",
+       "tel": "341 4634749",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Español",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sarmiento 3150",
+       "localidad": "Rosario",
+       "tel": "341 4854999",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Italiano Garibaldi",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Virasoro 1249",
+       "localidad": "Rosario",
+       "tel": "341 4858888",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Privado de Rosario",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Presidente Roca 2440",
+       "localidad": "Rosario",
+       "tel": "341 4893500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Cardiovascular de Rosario",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bv. Oroño 450",
+       "localidad": "Rosario",
+       "tel": "341 4203040",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Medicina Alvear",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Tucuman 2074",
+       "localidad": "Rosario",
+       "tel": "341 4211717 / 341 4214999",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio ALEM",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alem 3144",
+       "localidad": "Rosario",
+       "tel": "341 4810527",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Aliare",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Italia 1447",
+       "localidad": "Rosario",
+       "tel": "5288715",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Americano",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rioja 1527",
+       "localidad": "Rosario",
+       "tel": "341 4202500",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Britanico",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Paraguay 40",
+       "localidad": "Rosario",
+       "tel": "341 4205500",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Centro",
+     "internacion": [
+      "Selecta"
+     ],
+     "guardia": [
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Paraguay 975",
+       "localidad": "Rosario",
+       "tel": "341 5309000",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la MUJER",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Luis 2493",
+       "localidad": "Rosario",
+       "tel": "341 4217403 / 341 4478600",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de Niños",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alvear 863",
+       "localidad": "Rosario",
+       "tel": "341 4204400",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio DELTA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mendoza 1560",
+       "localidad": "Rosario",
+       "tel": "341 4208300",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Laprida",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Laprida 1070",
+       "localidad": "Rosario",
+       "tel": "341 4213412",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Mapaci",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bv. Oroño -Zeballos 22 1458",
+       "localidad": "Rosario",
+       "tel": "341 5228888",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio NORTE",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Rondeau 1365",
+       "localidad": "Rosario",
+       "tel": "341 4551011",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Parque",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bv. Oroño 860",
+       "localidad": "Rosario",
+       "tel": "341 4200222 / 341 4200223",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio PLAZA",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dorrego 1550",
+       "localidad": "Rosario",
+       "tel": "341 4203600 / 5051272",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Vieytes Clinica de la COSTA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Vieytes 374",
+       "localidad": "Rosario",
+       "tel": "341 4550367 / 341 4552184",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Asociacion Mutual de Especialidades Odontologicas de Rosario",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Comunicarse Telefonicamente",
+       "localidad": "Rosario",
+       "tel": "155555087 / 871-452",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. de Oft.centrode Cirugia Ocular",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Balcarce 1085",
+       "localidad": "Rosario",
+       "tel": "0341-5232800",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "santa-fe",
+   "nombre": "Santa Fe",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica de Nefrologia, Urologia y Enfermedades Cardiovasculares",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Freyre 3074",
+       "localidad": "Santa Fe",
+       "tel": "342 4537262",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Rizzoli",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Belgrano 3101",
+       "localidad": "Santa Fe",
+       "tel": "342 4555403 / 342 4552100",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Integracion Medica",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 3161",
+       "localidad": "Santa Fe",
+       "tel": "342 4536606",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio GARAY",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 3130",
+       "localidad": "Santa Fe",
+       "tel": "342 4561901",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio MAYO",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Suipacha 2453",
+       "localidad": "Santa Fe",
+       "tel": "342 4553255",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Servicios Oftalmologicos",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Garay 2534",
+       "localidad": "Santa Fe",
+       "tel": "342 4591633 / 342 4593315",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-lorenzo",
+   "nombre": "San Lorenzo",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Mutual Portuaria 21 de Diciembre",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Hipolito Irigoyen 1292",
+       "localidad": "San Lorenzo",
+       "tel": "3476 430136 / 3476 436674",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "venado-tuerto",
+   "nombre": "Venado Tuerto",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio Castelli",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Castelli 200",
+       "localidad": "Venado Tuerto",
+       "tel": "421592 / 3462 421716",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Martin",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin 261",
+       "localidad": "Venado Tuerto",
+       "tel": "435500 / 03462 434400",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-miguel-de-tucuman",
+   "nombre": "San Miguel de Tucumán",
+   "provincias": [
+    "Tucumán"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio del SUR S.A",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Las Heras 575",
+       "localidad": "San Miguel de Tucumán",
+       "tel": "0381424802",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Sarmiento SRL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Sarmiento 790",
+       "localidad": "San Miguel de Tucumán",
+       "tel": "0381431280",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "comodoro-rivadavia",
+   "nombre": "Comodoro Rivadavia",
+   "provincias": [
+    "Chubut"
+   ],
+   "centros": [
+    {
+     "nombre": "Asoc. Española de Socorros Mutuos",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mitre 860",
+       "localidad": "Comodoro Rivadavia",
+       "tel": "297 4470600",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del VALLE",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ameghino 1334",
+       "localidad": "Comodoro Rivadavia",
+       "tel": "297 4061001",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Pueyrredon",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Olavarria 292",
+       "localidad": "Comodoro Rivadavia",
+       "tel": "297 4484567 / 0297 4480652",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "esquel",
+   "nombre": "Esquel",
+   "provincias": [
+    "Chubut"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Esquel",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Roca 543",
+       "localidad": "Esquel",
+       "tel": "02945-454557",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Medico los Alerces",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia Y A.Argentina",
+       "localidad": "Esquel",
+       "tel": "2945 452559",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "puerto-madryn",
+   "nombre": "Puerto Madryn",
+   "provincias": [
+    "Chubut"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio de la Ciudad SRL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Laprida 42",
+       "localidad": "Puerto Madryn",
+       "tel": "280 4451270",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio y Maternidad \"santa Maria\"",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "B.Mitre 651",
+       "localidad": "Puerto Madryn",
+       "tel": "280 4457386",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "rawson-chubut",
+   "nombre": "Rawson",
+   "provincias": [
+    "Chubut"
+   ],
+   "centros": [
+    {
+     "nombre": "Inst. Cardiovascular",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "P. Martinez 45",
+       "localidad": "Rawson",
+       "tel": "280 4486055",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "trelew",
+   "nombre": "Trelew",
+   "provincias": [
+    "Chubut"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Medica del VALLE S.R.L",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pellegrini 631",
+       "localidad": "Trelew",
+       "tel": "0280-4368628",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica San Miguel - Sofimed",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Edison 430",
+       "localidad": "Trelew",
+       "tel": "280 4420928 / 280 4420985",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto Medico del SUR",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Moreno 333",
+       "localidad": "Trelew",
+       "tel": "0280- 4421121",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Trelew",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pecoraro 460",
+       "localidad": "Trelew",
+       "tel": "280 4420916",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro Medico Gaiman",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Moreno 443",
+       "localidad": "Trelew",
+       "tel": "2804608567",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Tremed",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Inmigrantes 50",
+       "localidad": "Trelew",
+       "tel": "280 4429966",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "ushuaia",
+   "nombre": "Ushuaia",
+   "provincias": [
+    "Tierra del Fuego"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio San JORGE",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Onachaga 184",
+       "localidad": "Ushuaia",
+       "tel": "2901 422635",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "corrientes",
+   "nombre": "Corrientes",
+   "provincias": [
+    "Corrientes"
+   ],
+   "centros": [
+    {
+     "nombre": "Cardiocentro",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 1741",
+       "localidad": "Corrientes",
+       "tel": "4436192",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del Niño",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Belgrano 1774",
+       "localidad": "Corrientes",
+       "tel": "4428381",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del PILAR",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin 555",
+       "localidad": "Corrientes",
+       "tel": "4422334",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del SOL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Medrano 1612",
+       "localidad": "Corrientes",
+       "tel": "0379-4456005",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Sagrado Corazon",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gutemberg 2184",
+       "localidad": "Corrientes",
+       "tel": "4434113",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto Cardiologico (funcacorr)",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bolivar 1334",
+       "localidad": "Corrientes",
+       "tel": "0379 441-0000 / 379 4410050",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San JUAN",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Juan 975",
+       "localidad": "Corrientes",
+       "tel": "0379-427366",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Equipo Medico de Emergencias Corrientes S.A",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Maipu 675",
+       "localidad": "Corrientes",
+       "tel": "3794742481",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "alta-gracia",
+   "nombre": "Alta Gracia",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Privada SANTA MARIA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Belisario Roldan 40",
+       "localidad": "Alta Gracia",
+       "tel": "3513754535",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio ALTA Gracia",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dino, Carignani 180",
+       "localidad": "Alta Gracia",
+       "tel": "3572404061",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "bell-ville",
+   "nombre": "Bell Ville",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Privada MAYO BELL VILLE",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 De Mayo 102",
+       "localidad": "Bell Ville",
+       "tel": null,
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "25 De Mayo 144",
+       "localidad": "Bell Ville",
+       "tel": null,
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica UNION Privada",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Hipolito Yrigoyen 325",
+       "localidad": "Bell Ville",
+       "tel": "3537 423774",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cordoba",
+   "nombre": "Córdoba",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Camara de Entidades de SALUD - CES",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Pueyrredón 650",
+       "localidad": "Córdoba",
+       "tel": "3514143000",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro Privado de Tomografias Computadas Oulton",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Velez Sarsfield 562",
+       "localidad": "Córdoba",
+       "tel": "351 4267700",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada SAINT Michel",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Sagrada Familia 551",
+       "localidad": "Córdoba",
+       "tel": "3517060073",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Universitaria Privada REINA Fabiola",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jacinto Ríos 554",
+       "localidad": "Córdoba",
+       "tel": "351-4142121",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Oncativo 1248",
+       "localidad": "Córdoba",
+       "tel": "351-4142121",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica VELEZ Sarfield",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Emilio Caraffa 2532",
+       "localidad": "Córdoba",
+       "tel": "3514691758",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Fray Mamerto Esquiu 111",
+       "localidad": "Córdoba",
+       "tel": "3514691758",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Ethikos",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Rafael Nuñez 3692",
+       "localidad": "Córdoba",
+       "tel": "3513069296",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hosp. Privado Centro Medico de Cordoba",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Rafael Núñez 5229",
+       "localidad": "Córdoba",
+       "tel": "351-4688200",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Naciones Unidas 346",
+       "localidad": "Córdoba",
+       "tel": "351-4688200",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Modelo de Cardiologia Privado",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Sagrada Familia 357/59",
+       "localidad": "Córdoba",
+       "tel": "3514858585",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. Modelo Priv. Ginecologia y Obstetricia",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Arturo M.Bas 57",
+       "localidad": "Córdoba",
+       "tel": "351 570-9300",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Allende",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pedro Simón Laplace 5749",
+       "localidad": "Córdoba",
+       "tel": "351-4269200",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Obispo Oro 42",
+       "localidad": "Córdoba",
+       "tel": "351-4269200",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio del Salvador Privado",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "General Deheza 542",
+       "localidad": "Córdoba",
+       "tel": "3516649965",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Gral. Deheza 542",
+       "localidad": "Córdoba",
+       "tel": "0351-4529600",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Duarte Quiros",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Duarte Quirós 1948",
+       "localidad": "Córdoba",
+       "tel": "0351-4807922",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Frances",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Baigorri 749",
+       "localidad": "Córdoba",
+       "tel": "3515611300",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "José De Baigorrí 749",
+       "localidad": "Córdoba",
+       "tel": "3515611300",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sociedad de Beneficencia Hosp. Italiano",
+     "internacion": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Roma 550",
+       "localidad": "Córdoba",
+       "tel": "3514106500",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro Odontologico Garden Independencia",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Independencia 244",
+       "localidad": "Córdoba",
+       "tel": "3512899977",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de OJOS Maldonado BAS",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Achaval Rodriguez 544",
+       "localidad": "Córdoba",
+       "tel": null,
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del SOL",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Chacabuco 709",
+       "localidad": "Córdoba",
+       "tel": "3515680600",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Odonto Clinica S&g",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "N. Avellaneda 1389",
+       "localidad": "Córdoba",
+       "tel": "3516 068160 / 0351 156068160",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Privado Aconcagua",
+     "internacion": [],
+     "guardia": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rondeau 455",
+       "localidad": "Córdoba",
+       "tel": "3512450336",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "rio-cuarto",
+   "nombre": "Río Cuarto",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Inst. Medico RIO Cuarto",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Hipólito Yrigoyen 1020",
+       "localidad": "Río Cuarto",
+       "tel": "358 4679333",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Neoclinica",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alvear 1493",
+       "localidad": "Río Cuarto",
+       "tel": "358-4755700",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Privado RIO Cuarto",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bv. Roca 949",
+       "localidad": "Río Cuarto",
+       "tel": "3584636880",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Privado de RIO Cuarto",
+     "internacion": [],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bv. Roca 949",
+       "localidad": "Río Cuarto",
+       "tel": "3584636880",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-francisco",
+   "nombre": "San Francisco",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica de Especilidades Enrique CARRA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 De Julio 1501",
+       "localidad": "San Francisco",
+       "tel": "3564 423228",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "San Francisco SALUD Consorcio de Cooperacion",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Belgrano 2261",
+       "localidad": "San Francisco",
+       "tel": "3564 426672",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "villa-carlos-paz",
+   "nombre": "Villa Carlos Paz",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio San Patricio",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Florencio Sanchez 25",
+       "localidad": "Villa Carlos Paz",
+       "tel": "3541 421453",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "villa-maria",
+   "nombre": "Villa María",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Circulo Medico de VILLA MARIA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Buenos Aires 1070 Piso 1 Dpto P",
+       "localidad": "Villa María",
+       "tel": "353 4526407",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Dr Gregorio Maraon",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Catamarca 1364",
+       "localidad": "Villa María",
+       "tel": "353 4523119",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Fusavim Privada",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Chile 67",
+       "localidad": "Villa María",
+       "tel": "3534537171",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Mediterranea SALUD",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mendoza 1237",
+       "localidad": "Villa María",
+       "tel": null,
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada de Especialidades de VILLA MARIA",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Corrientes 733",
+       "localidad": "Villa María",
+       "tel": null,
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hemodinamia Digital Maraon",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Catamarca 1364",
+       "localidad": "Villa María",
+       "tel": null,
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio CRUZ AZUL",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "guardia": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Juan 1255",
+       "localidad": "Villa María",
+       "tel": "3534114160",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "palpala",
+   "nombre": "Palpalá",
+   "provincias": [
+    "Jujuy"
+   ],
+   "centros": [
+    {
+     "nombre": "Col. Medico de JUJUY",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Italia 116",
+       "localidad": "Palpalá",
+       "tel": "03884050985",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-salvador-de-jujuy",
+   "nombre": "San Salvador de Jujuy",
+   "provincias": [
+    "Jujuy"
+   ],
+   "centros": [
+    {
+     "nombre": "Col. Medico de JUJUY",
+     "internacion": [
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alvear 1299",
+       "localidad": "San Salvador de Jujuy",
+       "tel": "03884833411",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

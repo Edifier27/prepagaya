@@ -9,6 +9,9 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
+import { BuscadorCartillaZona } from '@/components/cartillas/BuscadorCartillaZona'
+import { getCartilla, nombreCortoZona, slugPlan, textoFecha, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
+import { centrosConPlanSuperior } from '@/components/cartillas/CentrosLista'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -54,6 +57,25 @@ export default async function CartillaPrepagaPage({ params }: Props) {
   const info = cartillasInfo.find((c) => c.slug === slug)
   const prep = prepagas.find((p) => p.slug === slug)
   if (!info || !prep) notFound()
+  const cartillaZonas = getCartilla(slug)
+  const faqsCartillaZonas: { q: string; a: string }[] = []
+  if (cartillaZonas) {
+    const [p1, p2] = cartillaZonas.escalera.map((id) => cartillaZonas.planes.find((p) => p.id === id)!)
+    const caba = cartillaZonas.zonas.find((z) => z.slug === 'caba')
+    const suma = caba && p1 && p2
+      ? centrosConPlanSuperior(caba.centros, p1.id, cartillaZonas.planes, cartillaZonas.escalera, 'internacion').filter((x) => x.desde.id === p2.id)
+      : []
+    if (p1 && p2 && suma.length > 0) {
+      faqsCartillaZonas.push({
+        q: `¿En qué cambia la cartilla entre el ${p1.label} y el ${p2.label} de ${prep.nombre}?`,
+        a: `Según la ${textoFecha(cartillaZonas)}, en la Ciudad de Buenos Aires el ${p2.label} suma para internación ${suma.length} sanatorio${suma.length === 1 ? '' : 's'} que el ${p1.label} no incluye: ${suma.map((x) => x.nombre).join(', ')}. En cada zona la diferencia es distinta: elegí tu zona en el buscador de arriba para verla.`,
+      })
+    }
+    faqsCartillaZonas.push({
+      q: `¿Cómo veo la cartilla de ${prep.nombre} de mi zona?`,
+      a: `Elegí tu zona y tu plan en el buscador de esta página: te mostramos los sanatorios para internación y ${cartillaZonas.labelGuardia.toLowerCase()} de ${prep.nombre} con dirección y teléfono. Los datos salen de la ${textoFecha(cartillaZonas)}.`,
+    })
+  }
 
   // Sanatorios destacados cubiertos por esta prepaga, con el plan mínimo que los incluye
   const sanatoriosCubiertos = sanatorios
@@ -84,14 +106,12 @@ export default async function CartillaPrepagaPage({ params }: Props) {
       q: `¿La cartilla de ${prep.nombre} es igual en todos los planes?`,
       a: `No. Cada plan habilita una porción de la red: los planes de entrada tienen cartilla más acotada y los superiores suman sanatorios de mayor complejidad y reintegros por fuera de cartilla. Antes de contratar, verificá que tu médico o sanatorio esté cubierto por el plan específico que vas a contratar, no por la prepaga en general.`,
     },
-    // FAQ específica de OSDE (no templada al resto): la diferencia real de
-    // cartilla entre 210 y 310 son estos dos centros puntuales, verificado
-    // en lib/data/sanatorios.ts (nota de Hospital Alemán y FLENI) — no un
-    // "la cartilla es más chica en general" genérico.
-    ...(slug === 'osde' ? [{
-      q: '¿En qué cambia la cartilla entre el Plan 210 y el Plan 310 de OSDE?',
-      a: 'En los centros de mayor complejidad: el Plan 210 no incluye el Hospital Alemán, y en FLENI solo cubre consultas ambulatorias (la internación arranca recién en el Plan 310). El Plan 310 suma ambos con cobertura completa. Para el resto de la cartilla — consultorios, laboratorios y la mayoría de las especialidades — el acceso es el mismo en los dos planes.',
-    }] : []),
+    // FAQ con datos de la cartilla oficial por zona (lib/data/cartilla-zonas):
+    // qué sanatorios de CABA suma el segundo plan frente al de entrada. Antes
+    // había un texto fijo para OSDE ("FLENI solo ambulatorio con el 210", "el
+    // resto es igual") que la cartilla PDF oficial vigente al 22/09/2026
+    // desmiente — corregido a pedido de Darío.
+    ...faqsCartillaZonas,
   ]
 
   const jsonLd = [
@@ -187,6 +207,47 @@ export default async function CartillaPrepagaPage({ params }: Props) {
           </a>
         </div>
       </section>
+
+      {/* Cartilla por zona y plan (OSDE / Premedic / Avalian): sanatorios de
+          internación y guardias de la fuente oficial (lib/data/cartilla-zonas),
+          con la zona del visitante preseleccionada por geolocalización. Va
+          arriba de todo: es lo que busca quien llega por "cartilla <prepaga>". */}
+      {cartillaZonas && (
+        <section className="py-10 bg-white border-b border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-1 text-center">
+              Cartilla {prep.nombre} por zona y plan: sanatorios y {cartillaZonas.labelGuardia.toLowerCase()}
+            </h2>
+            <p className="text-sm text-gray-500 mb-6 text-center">
+              Elegí tu zona y tu plan y mirá qué sanatorios y {cartillaZonas.labelGuardia.toLowerCase()} tiene {prep.nombre} cerca tuyo. Datos de la {textoFecha(cartillaZonas)}.
+            </p>
+            <BuscadorCartillaZona
+              prepagaSlug={cartillaZonas.prepagaSlug}
+              prepagaNombre={cartillaZonas.prepagaNombre}
+              grupos={zonasPorProvincia(cartillaZonas.prepagaSlug)}
+              planes={cartillaZonas.planes}
+              escalera={cartillaZonas.escalera}
+              planesConPagina={cartillaZonas.planesConPagina}
+              labelGuardia={cartillaZonas.labelGuardia}
+              textoFecha={textoFecha(cartillaZonas)}
+            />
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {cartillaZonas.planesConPagina.map((id) => {
+                const pl = cartillaZonas.planes.find((x) => x.id === id)!
+                return (
+                  <Link
+                    key={id}
+                    href={`/cartillas/${slug}/${slugPlan(id)}`}
+                    className="text-xs px-3 py-1.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-full hover:border-red-200 hover:text-[#E8002D] transition-colors font-semibold"
+                  >
+                    Cartilla {pl.label}
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Buscador filtrado a esta prepaga */}
       <section className="py-10 bg-gray-50 border-b border-gray-100">
@@ -320,6 +381,33 @@ export default async function CartillaPrepagaPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Índice de zonas (links internos a /cartillas/[prepaga]/[zona]) */}
+      {cartillaZonas && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Cartilla {prep.nombre} por zona</h2>
+            <div className="space-y-4">
+              {zonasPorProvincia(slug).map((g) => (
+                <div key={g.provincia}>
+                  <h3 className="text-sm font-semibold text-gray-700 mb-2">{g.provincia}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {g.zonas.map((z) => (
+                      <Link
+                        key={z.slug}
+                        href={`/cartillas/${slug}/${z.slug}`}
+                        className="text-xs px-3 py-1.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-full hover:border-red-200 hover:text-[#E8002D] transition-colors font-medium"
+                      >
+                        {nombreCortoZona(z.nombre)}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Otras cartillas */}
       <section className="py-10 bg-white border-t border-gray-100">

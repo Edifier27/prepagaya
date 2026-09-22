@@ -10,6 +10,7 @@ import { coberturas } from '@/lib/data/coberturas'
 import { condiciones } from '@/lib/data/condiciones'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { cartillasInfo } from '@/lib/data/cartillas'
+import { CARTILLAS, combinacionesPlanZona, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { PRECIOS_UPDATE, CONTENT_UPDATE } from '@/lib/utils'
@@ -170,6 +171,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }))
 
+  // Silo de cartilla por zona (OSDE / Premedic / Avalian): solo las zonas
+  // indexables (las de 1 centro y las subzonas Sudeste/Sudoeste van noindex).
+  const cartillaZonaRoutes: MetadataRoute.Sitemap = Object.values(CARTILLAS).flatMap((c) => [
+    ...c.planesConPagina.map((p) => ({
+      url: `${BASE}/cartillas/${c.prepagaSlug}/${slugPlan(p)}`,
+      lastModified: CONTENT_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.72,
+    })),
+    ...indiceZonas(c.prepagaSlug)
+      .filter((z) => z.indexable)
+      .map((z) => ({
+        url: `${BASE}/cartillas/${c.prepagaSlug}/${z.slug}`,
+        lastModified: CONTENT_UPDATE,
+        changeFrequency: 'monthly' as const,
+        priority: 0.68,
+      })),
+    ...combinacionesPlanZona(c.prepagaSlug).map((x) => ({
+      url: `${BASE}/cartillas/${c.prepagaSlug}/${x.plan}/${x.zona}`,
+      lastModified: CONTENT_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.62,
+    })),
+  ])
+
   const obraSocialRoutes: MetadataRoute.Sitemap = obrasSociales.map((os) => ({
     url: `${BASE}/obras-sociales/${os.slug}`,
     lastModified: CONTENT_UPDATE,
@@ -193,5 +219,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...condicionRoutes,
     ...obraSocialRoutes,
     ...cartillaRoutes,
+    ...cartillaZonaRoutes,
   ]
 }

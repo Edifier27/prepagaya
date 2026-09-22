@@ -1,0 +1,5947 @@
+{
+ "fuente": "Buscador oficial de cartilla de Premedic (web.grupopremedic.com.ar/cartilla-medica)",
+ "vigencia": [
+  "22/09/2026"
+ ],
+ "planes": [
+  "C-100",
+  "200",
+  "300",
+  "400",
+  "500",
+  "Por aportes",
+  "0-50",
+  "Básico",
+  "Bronce",
+  "Plata",
+  "Simple"
+ ],
+ "faltantes": [],
+ "zonas": [
+  {
+   "slug": "caba",
+   "nombre": "Ciudad de Buenos Aires",
+   "provincias": [
+    "Ciudad de Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Cemic - Fundación Hermenegilda Pombo de Rodríguez",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av Cnel Diaz 2423 Palermo",
+       "localidad": null,
+       "tel": "Central de Turnos: 5299-1300",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Cemic - Saavedra",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Galvan 4102 Saavedra",
+       "localidad": null,
+       "tel": "Central de Turnos: 5299-0100",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av Galvan 4102 Capital Federal",
+       "localidad": null,
+       "tel": "Central de Turnos: 011-5299-0000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Adventista Belgrano",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Estomba 1710 Capital Federal",
+       "localidad": null,
+       "tel": "Central de turnos: 4014-1500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Bazterrica",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Juncal 3002 Palermo",
+       "localidad": null,
+       "tel": "4821-1600",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del Sol",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Juncal 3091 Capital Federal,Palermo",
+       "localidad": null,
+       "tel": "4821-1000 4827-7600",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica La Sagrada Familia",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Jose Hernandez 1642 Capital Federal,Belgrano",
+       "localidad": null,
+       "tel": "4014-6000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada Climedica",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Saavedra 1039 San Cristobal",
+       "localidad": null,
+       "tel": "4943-0183",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica San Camilo",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Angel Gallardo 899 Capital Federal,Caballito",
+       "localidad": null,
+       "tel": "4858-8100",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Santa Isabel",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Directorio 2037 Capital Federal",
+       "localidad": null,
+       "tel": "Tel. 4670-8000",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av. Directorio 2037 Capital Federal,Todas",
+       "localidad": null,
+       "tel": "4670-8000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Fundacion Hospitalaria",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Cramer 4601 Capital Federal",
+       "localidad": null,
+       "tel": null,
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Alemán",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Cachimayo 301",
+       "localidad": null,
+       "tel": "4827-7000 las 24 horas",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Av. Pueyrredon 1640 Recoleta",
+       "localidad": null,
+       "tel": "4827-7000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Britanico",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Perdriel 74 Barracas",
+       "localidad": null,
+       "tel": "Central de Turnos: 0810-222-2748",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Sirio Libanés",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Campana 4658 Capital Federal",
+       "localidad": null,
+       "tel": "Central de Turnos: 4574-4343 4573-4416",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Colegiales",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Conde 851 Colegiales",
+       "localidad": null,
+       "tel": "Central de Turnos: 4556-4848 4888 – 15-4460-7787",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la Providencia",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Tucuman 1863 Capital Federal",
+       "localidad": null,
+       "tel": "Central de Turnos: 5299-9090",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la Trinidad Mitre",
+     "internacion": [
+      "500"
+     ],
+     "guardia": [
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Bartolome Mitre 2553 Caba",
+       "localidad": null,
+       "tel": "Central de Turnos:4954-7070 5371-3200",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Finochietto",
+     "internacion": [
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Cordoba 2678 CABA",
+       "localidad": null,
+       "tel": "3752-8100",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av. Cordoba 2678",
+       "localidad": null,
+       "tel": "3752-8100",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Jose",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Sanchez de Bustamante 1674 Capital Federal,Palermo",
+       "localidad": null,
+       "tel": "4821-1001",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Guemes 3154 Capital Federal,Palermo",
+       "localidad": null,
+       "tel": "4821-1001",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorios de la Trinidad Palermo",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Cerviño 4720 - Palermo Palermo",
+       "localidad": null,
+       "tel": "Central de turnos:011 4127-5500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Cemic - Belgrano",
+     "internacion": [],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Ciudad de la Paz 2426 Belgrano",
+       "localidad": null,
+       "tel": "Central de Turnos: 011 5299-0450",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Cemic - Caba",
+     "internacion": [],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Talcahuano 1234 Capital Federal",
+       "localidad": null,
+       "tel": "52990850",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Cemic - Recoleta",
+     "internacion": [],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av Las Heras 2867 Recoleta",
+       "localidad": null,
+       "tel": "52992630",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av Las Heras 2900 Recoleta",
+       "localidad": null,
+       "tel": "52990630",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Cemic - Sede Caballito",
+     "internacion": [],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av Rivadavia 6044 Caballito",
+       "localidad": null,
+       "tel": "Central de Turnos: 5299-0750",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de la Esperanza",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Tres Arroyos 2060 Villa General Mitre, Capital Federal",
+       "localidad": null,
+       "tel": "4588-5700",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de Microcirugia",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Tte Juan Domingo Peron 1834 Capital Federal",
+       "localidad": null,
+       "tel": "4372-2265",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto de la Vision",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50",
+      "Simple"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Marcelo T. de Alvear 2261 Barrio Norte",
+       "localidad": null,
+       "tel": "4827-7900",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto de la Visión (24hs.)",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Marcelo T. de Alvear 2261 Capital Federal,Barrio Norte",
+       "localidad": null,
+       "tel": "4827-7900",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Policlinico Central UOM",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Hipolito Yrigoyen 3352 Almagro",
+       "localidad": null,
+       "tel": "Central de Turnos: 0810-122-2424",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-norte",
+   "nombre": "GBA Zona Norte",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Medico Nogoya",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Hipolito Yrigoyen 2270 Tigre, General Pacheco",
+       "localidad": null,
+       "tel": "7700-7333 11-2524-6040 Imágenes 15-3139-4925",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro Médico Talar",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Panamericana y Ruta 197, El Talar Tigre, El Talar",
+       "localidad": null,
+       "tel": "4726-7200 5263-3211",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Angelus",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Fondo de la Legua 390 San Isidro",
+       "localidad": null,
+       "tel": "4708-5018",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Fátima de Escobar",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Spadaccini 1084 Escobar, Belen de Escobar",
+       "localidad": null,
+       "tel": "03484-420011",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Ntra. Sra. de Fátima",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "V. Vergani 830 Pilar",
+       "localidad": null,
+       "tel": "0230-442-0303 442-0395",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Spadaccini 1084 Belen de Escobar",
+       "localidad": null,
+       "tel": "Central de Turnos: 03484-420011",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Sagrado Corazón",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Alvear (Ruta 202) Nº 650 Tigre, Don Torcuato",
+       "localidad": null,
+       "tel": "0810-122-2424 115578-3099",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Santa Clara",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "H. Yrigoyen 523 Zarate",
+       "localidad": null,
+       "tel": "Central de Turnos:0810 122 2424",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Santa Maria",
+     "internacion": [
+      "300",
+      "400",
+      "500",
+      "Bronce",
+      "Plata"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Marengo 3945 Villa Ballester",
+       "localidad": null,
+       "tel": "6339-4600",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Privado Modelo",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Pte.Gral. J. A Roca 1811 Vicente Lopez, Florida",
+       "localidad": null,
+       "tel": "4796-3400 4795-7771 WhatsApp 11-4194-0077",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio A.T. Vandor",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Belgrano 76 Campana",
+       "localidad": null,
+       "tel": "03489-439488",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Anchorena I",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Calle 97 (Ex Liniers) Nº 1632 San Martin",
+       "localidad": null,
+       "tel": "Central de Turnos: 0800-222-7276",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio La Torre Vicente Lopez",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. San Martin 2142 Vicente Lopez",
+       "localidad": null,
+       "tel": "Central de Turnos: 011 4797-9697",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Las Lomas - Pilar",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Las Magnolias 533 Pilar",
+       "localidad": null,
+       "tel": "0810-444-0550",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Las Lomas - San Isidro",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Diego Carman 555 San Isidro",
+       "localidad": null,
+       "tel": "4708-5040 4129-5540",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Las Lomas - Tigre",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av de los Lagos 6785 Tigre",
+       "localidad": null,
+       "tel": "4129-5500 4708-5000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Lucas",
+     "internacion": [
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Belgrano 363 69 San Isidro",
+       "localidad": null,
+       "tel": "4732-8888",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Belgrano 363 69",
+       "localidad": null,
+       "tel": "4732-8888",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Pablo",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Alvear 1444 San Fernando",
+       "localidad": null,
+       "tel": "Tel. 4745-4111 4890-2002",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Vicente Lopez La Torre",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "San Martin 2142 Vicente Lopez, Florida",
+       "localidad": null,
+       "tel": "4797-9697",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de Ojos Dr. Nano (8 a 20hs)",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Blas Parera 4201 Vicente Lopez, Olivos",
+       "localidad": null,
+       "tel": "4717-4000",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Ntra Sra de Fatima Pilar",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "V. Vergani 830 Pilar",
+       "localidad": null,
+       "tel": "Centro de Turnos: 0230-442-0303 442-0395",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "I.M.O. (Instituto Médico de Ojos)",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Marengo 4464 General San Martin, Villa Ballester",
+       "localidad": null,
+       "tel": "4768-1001 (LRot)",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-oeste",
+   "nombre": "GBA Zona Oeste y Noroeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Casa Hospital San Juan de Dios",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Ardoino 714 Ramos Mejia",
+       "localidad": null,
+       "tel": "Central de Turnos: 4469-9500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro Pediatrico Del Buen Pastor",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Mosconi 1525 Lomas del Mirador",
+       "localidad": null,
+       "tel": "Central de Turnos: 011 2112-5592",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Cruz Celeste",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Bermudez 2895 La Matanza, Villa Luzuriaga",
+       "localidad": null,
+       "tel": "4650-0333 1266",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Medicina Catán",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "J.Larre (Icalma) 250 La Matanza, Gonzalez Catan",
+       "localidad": null,
+       "tel": "(02202) - 427188 421015",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Modelo Moron",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "R. O. del Uruguay 224 Moron",
+       "localidad": null,
+       "tel": "5627-1000",
+       "servicios": [
+        "guardia",
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada Alcorta",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "A. del Valle 2669 Moreno",
+       "localidad": null,
+       "tel": "0237-4632277",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "A. del Valle 2629 Moreno",
+       "localidad": null,
+       "tel": "0237-4632277",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada Centro",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. España 352 General Rodriguez",
+       "localidad": null,
+       "tel": "(0237) 4841 904",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Privada del Buen Pastor",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Mosconi 1716 Lomas del Mirador",
+       "localidad": null,
+       "tel": "(011) 4616-8900 4616-8800",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada Provincial",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Bronce",
+      "Plata"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Garay 2260 Libertad",
+       "localidad": null,
+       "tel": "Central de Turnos:11-3680-3557 11-3680-5717 11-3680-4881 11-3680-3746",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "CLINICA QUIRURGICA DEL OESTE",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Segunda Rivadavia 15577 Moron, Haedo",
+       "localidad": null,
+       "tel": "4460-9000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Santa Maria",
+     "internacion": [
+      "300",
+      "400",
+      "500",
+      "Bronce",
+      "Plata"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Marengo 3945 Villa Ballester",
+       "localidad": null,
+       "tel": "6339-4600",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Privado Mariano Moreno",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Uruguay 146 Moreno",
+       "localidad": null,
+       "tel": "0237-4635000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Privado Nuestra Sra. de la Merced",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50",
+      "Bronce",
+      "Plata"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Julio Besada 6969 - Martin Coronado Tres de Febrero, Ciudadela",
+       "localidad": null,
+       "tel": "4842-0093",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto Medico Agüero",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Int. Agüero 1395 Moron",
+       "localidad": null,
+       "tel": "4645-9000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Anchorena I",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Calle 97 (Ex Liniers) Nº 1632 San Martin",
+       "localidad": null,
+       "tel": "Central de Turnos: 0800-222-7276",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la Trinidad Ramos Mejia",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Rivadavia 13280 Ramos Mejia",
+       "localidad": null,
+       "tel": "Central de turnos: 4433-0421",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio del Oeste Ituzaingo",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Olazabal 319 21 Ituzaingo",
+       "localidad": null,
+       "tel": "Central de Turnos: 4458-2639",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio del Oeste Merlo",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Libertador 295 Merlo",
+       "localidad": null,
+       "tel": "Central de Turnos: 5068-9100",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Estrada",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Estrada 81 Merlo, Libertad",
+       "localidad": null,
+       "tel": "0220-4942782",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Figueroa Paredes",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Tres Sargentos 540 - Mariano Acosta La Matanza, Ciudad Madero",
+       "localidad": null,
+       "tel": "0220-499-6262",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av. Juan Manuel De Rosas 10841 La Matanza, Gregorio de Laferrere",
+       "localidad": null,
+       "tel": "4480-2700",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Dante Alighieri 3637 La Matanza, Isidro Casanova",
+       "localidad": null,
+       "tel": "4480-2500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio General Sarmiento",
+     "internacion": [
+      "Bronce",
+      "Plata"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Pte. J. D. Perón 1796 San Miguel",
+       "localidad": null,
+       "tel": "0810-122-2424",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Gral. Sarmiento",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Pte. Peron 1796 San Miguel",
+       "localidad": null,
+       "tel": "4469-7300",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Modelo de Caseros",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Lisandro Medina 2285 - Caseros Tres de Febrero, Ciudadela",
+       "localidad": null,
+       "tel": "4716-3200",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Ntra. Sra. del Pilar",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Gaona 3979 Tres de Febrero, Ciudadela",
+       "localidad": null,
+       "tel": "4469-6700",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Privado San Mauricio",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Avda. Saenz 456 Gonzalez Catán",
+       "localidad": null,
+       "tel": "Turnos por Whatsapp 11-6374-2305",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Martin",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "18 de Diciembre 1856 San Martin",
+       "localidad": null,
+       "tel": "Turnos 0810 122 2424",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Cristo Rey",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Gaspar Campos 4988, esq. Chile Jose C. Paz, Jose Clemente Paz",
+       "localidad": null,
+       "tel": "02320-426114 441025 433618",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de Ojos Dr. Nano (24hs)",
+     "internacion": [],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Sarmiento 1431 San Miguel",
+       "localidad": null,
+       "tel": "4451-4500",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de Ojos Dr. Nano (8 a 20hs)",
+     "internacion": [],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Mendoza 45 61 Moron",
+       "localidad": null,
+       "tel": "4489-4100",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del Buen Pastor - (Demanda Espontanea)",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Mosconi 1701 Lomas del Mirador",
+       "localidad": null,
+       "tel": "Central de Turnos: (011) 4616-8900 4616-8800",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Consultorios Medicos Nuestra Señora del Rosario",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "República de Portugal 2823 Isidro Casanova",
+       "localidad": null,
+       "tel": "Central de Turnos: 4486-2200 4600-1365",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "I.M.O. (Instituto Médico de Ojos)",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Marengo 4464 General San Martin, Villa Ballester",
+       "localidad": null,
+       "tel": "4768-1001 (LRot)",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Juan Bautista",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Eva Perón 4855 Merlo",
+       "localidad": null,
+       "tel": "Teléfono: 0220 494 0000",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-sur",
+   "nombre": "GBA Zona Sur",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Boedo",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Boedo 535 545 Lomas de Zamora",
+       "localidad": null,
+       "tel": "0810-222-3670 5263-3330",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Calchaqui",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Calchaqui 24 Quilmes, Quilmes Oeste",
+       "localidad": null,
+       "tel": "6065-4010 4000 4004 15-39055589 15-72870749",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica del Niño Quilmes",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Lamadrid 444 Quilmes",
+       "localidad": null,
+       "tel": "Central de Turnos: 4364-9999",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Ima",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Francisco Seguí 593 Adrogue",
+       "localidad": null,
+       "tel": "Central de Turnos: 5034-9000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Modelo de Lanus",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias traumatológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. H. Yrigoyen 4843 Lanus, Lanus Este",
+       "localidad": null,
+       "tel": "4229-6000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av. H. Yrigoyen 4843 Lanus",
+       "localidad": null,
+       "tel": "Central de Turnos: 4229-6000",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Monte Grande - Canning Healt Institute",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Mariano Castex 1078 Canning",
+       "localidad": null,
+       "tel": "Central de Turnos: 4367-6800 - 11 6392-9296 (WhatsApp)",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Neuropsiquiatrica Alvear",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Leandro N. Alem 1250",
+       "localidad": null,
+       "tel": "4202-6556",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Nuestra Sra. De la Dulce Espera",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Básico"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Básico"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Ferre 521 Sarandi",
+       "localidad": null,
+       "tel": "4205-7100",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada del Niño y La Familia Solano",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Calle 843 N 2416 Quilmes, San Francisco Solano",
+       "localidad": null,
+       "tel": "52779990 Whatsapp turnos 1162648227",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Calle 843 Nº 2416 Quilmes, San Francisco Solano",
+       "localidad": null,
+       "tel": "4212-6606",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Privada Lujan",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Buenos Aires n 50 Florencio Varela",
+       "localidad": null,
+       "tel": "2125-2301 2094-9650",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Psiquiatrica San Jorge",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Eva Peron 1536 Lanus - Lanus Oeste",
+       "localidad": null,
+       "tel": "Turnos 11 5069 2370",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Ranelagh",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Gral. Belgrano 4786 Berazategui, Ranelagh",
+       "localidad": null,
+       "tel": "4223-0990",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Nuevo Sanatorio Berazategui",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Rigolleau y Calle 141 Berazategui, Berazategui",
+       "localidad": null,
+       "tel": "4356-9444",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Policlinico Regional Avellaneda",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Hipólito Yrigoyen 670 Avellaneda",
+       "localidad": null,
+       "tel": "6345-5500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Bernal",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "San Martin 572 Bernal",
+       "localidad": null,
+       "tel": "Central de Turnos: 4229-4600",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "San Martin 572 Quilmes, Bernal",
+       "localidad": null,
+       "tel": "4229-4600",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la Trinidad Quilmes",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Carlos Pellegrini 499 Quilmes",
+       "localidad": null,
+       "tel": "Central de Turnos: 4365-0500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Modelo de Adrogue",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Espora 2250 Almirante Brown",
+       "localidad": null,
+       "tel": "4299-4440 7138 WP 1140949837",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Modelo de Burzaco",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Espora 3250 Almirante Brown, Burzaco",
+       "localidad": null,
+       "tel": "4238-4444 4299-1242 1556 WP 1140949837",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Profesor Itoiz",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Alsina 174 Avellaneda",
+       "localidad": null,
+       "tel": "Central de turnos: 4001-0707 0708 WhatsApp:1164847063",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Juan Lanus",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Básico"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Básico"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. H. Yrigoyen 5132 Lanus",
+       "localidad": null,
+       "tel": "0810-222-0097",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Santa Clara",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Gral. Juan M de Pueyrredón Nº 349 Florencio Varela",
+       "localidad": null,
+       "tel": "5263-3459 15-6567-3584 (Turnos WS)",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Solano",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Calle 841 Nº 2469 Quilmes, San Francisco Solano",
+       "localidad": null,
+       "tel": "4212-1443",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Urquiza",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Urquiza 1537 Quilmes",
+       "localidad": null,
+       "tel": "3986-6762 0810-999-0133",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro Medico Oftalmologi",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Avda. Mitre 5202 Villa Dominico",
+       "localidad": null,
+       "tel": "Central de turnos:11 2150 8899",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Uno Visión",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Hipólito Yrigoyen 4796 Lanus",
+       "localidad": null,
+       "tel": "Central de Turnos: 1128814150 1121508899",
+       "servicios": [
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Av. Mitre 5202 Villa Domínico",
+       "localidad": null,
+       "tel": "Central de Turnos: 1128814150 1121508899",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Inst. de Ojos Santa Lucia",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Vélez Sarsfield 256 Florencio Varela",
+       "localidad": null,
+       "tel": "4255-6001 4287-5114 WP 15-69636939",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Policlinico Lomas",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. H. Yrigoyen 8439 Lomas de Zamora",
+       "localidad": null,
+       "tel": "Central de turnos: 4244-0051 whatsapp 116133-3458 115858-9369 whats.",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Nuevos Aires",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "0-50"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Gaddini 185 (Ruta 205 Km.40) Tristán Suarez",
+       "localidad": null,
+       "tel": "Central de Turnos: 4234-8142 8803 8206",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cordoba",
+   "nombre": "Córdoba",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Chutro",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Básico"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Básico"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Colón 788 Cordoba",
+       "localidad": null,
+       "tel": "Central de turnos: (0351) 245 3356",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Cooperativa Calchín",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "San Martín 947 Calchin",
+       "localidad": null,
+       "tel": "Central de Turnos: 549 3573 497555 Wpp: +549 3573 405078",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica de la Familia I",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 881 General Paz",
+       "localidad": null,
+       "tel": "0810-555-3264 4-291200",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica privada de pediatria y neonatologia",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Juan Jose Paso 690 Marcos Juarez",
+       "localidad": null,
+       "tel": "03472 426447",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Privada Maternidad",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica"
+     ],
+     "sedes": [
+      {
+       "direccion": "Vicente Agüero 837 Jesus Maria",
+       "localidad": null,
+       "tel": "03525-420031",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Privada San Isidro S.R.L. Jesús María",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Italia 639 Jesús María",
+       "localidad": null,
+       "tel": "Central de Turnos: 352-5421701",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Regional Arroyito",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Fulvio Salvador Pagani 622 Arroyito",
+       "localidad": null,
+       "tel": "03576 45-0931",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica regional del Este",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Corrientes 291 San Francisco",
+       "localidad": null,
+       "tel": "03564-438000 423117 429555 421544",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Reina Fabiola",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Oncativo 1248 General Paz",
+       "localidad": null,
+       "tel": "0351-4142121",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Oncativo 1248 Córdoba",
+       "localidad": null,
+       "tel": "0351-4142121",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Sanagec",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Blvrd Guzman 65 Cordoba Capital",
+       "localidad": null,
+       "tel": "Central de Turnos: 0351 423-7849",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Velez Sarfield",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Naciones Unidas 984 Cordoba",
+       "localidad": null,
+       "tel": "0810-122-9898",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica y maternidad del Sol",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas",
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Bv. Chacabuco 709 Cordoba",
+       "localidad": null,
+       "tel": "Central de Turnos: 0810-555-2765",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Privado universitario de Cordoba",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Naciones Unidas 346 Cordoba Velez Sarfield",
+       "localidad": null,
+       "tel": "0351-4688200",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      },
+      {
+       "direccion": "Naciones Unidas 346 Córdoba",
+       "localidad": null,
+       "tel": "0351-4688200",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto Medico Rio Cuarto",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Hipolito Irigoyen 1020 Rio Cuarto",
+       "localidad": null,
+       "tel": "0810-444-4672",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Policlínico Freyre",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "San Martin 367 Freyre",
+       "localidad": null,
+       "tel": "03564-461149 462124",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Aconcagua",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Rondeau 455 Cordoba",
+       "localidad": null,
+       "tel": "Central de Turnos: Salud Mental 351-7661956 ; Oftalmología 351- 2045759 Odontología what 3516989838 llamadas 0351 - 4426300 especialidades 351- 2017666 llamadas 0351 - 4426300",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Allende",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas",
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Obispo Oro 42 Cordoba Capital",
+       "localidad": null,
+       "tel": "0810 555 2553",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Allende - Sede cerro de las rosas",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Pedro Simón Laplace 5749, Esq Blas Pascal Cerro Las Rosas",
+       "localidad": null,
+       "tel": "0810 555 2553",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Argentino SRL",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Iturraspe 1321 San Francisco",
+       "localidad": null,
+       "tel": "03564-422224 426161 426273",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio De la Cañada Villa Maria",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Cnel Larrabure 1466 Villa María",
+       "localidad": null,
+       "tel": "0353-4618900",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Duarte Quiros",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Duarte Quiros 1948 Córdoba Capital",
+       "localidad": null,
+       "tel": "0351-4807922 4891397",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Frances",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Internación obstétrica",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Baigorri 749 Alta Cordoba",
+       "localidad": null,
+       "tel": "0351-5611300",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Mayo",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Humberto primo 520 Córdoba",
+       "localidad": null,
+       "tel": "03514217041",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Parque Córdoba",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "San Jerónimo 3115 Cordoba",
+       "localidad": null,
+       "tel": "Central de Turnos: 0351 - 4564000 0351 - 4561213",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Privado Caroya",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. San Martín 1998 Colonia Caroya",
+       "localidad": null,
+       "tel": "03525-466208 466557",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Privado del Interior (Ex Alpa)",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Figueroa Alcorta 37 Rio Ceballos",
+       "localidad": null,
+       "tel": "Central de Turnos: 03543-459050",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Privado Rio Cuarto",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Bv. Roca Nº 949 Rio Cuarto",
+       "localidad": null,
+       "tel": "0358-4675800",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio San Roque",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Pellegrini 75 Villa Carlos Paz",
+       "localidad": null,
+       "tel": "03541-431500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio y clínica San Justo privado",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 2686 San Francisco",
+       "localidad": null,
+       "tel": "03564-423117",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro oftalmológico Alvear - Dr. Borrego Ignacio",
+     "internacion": [],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Gral. Alvear 379 Cordoba capital",
+       "localidad": null,
+       "tel": "Central de Turnos: 0351) 423 - 5621",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Gallia",
+     "internacion": [],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Evangelista Toricelli 5615 Villa Belgrano",
+       "localidad": null,
+       "tel": "03543-402100 402200",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Ospia",
+     "internacion": [],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Rivadavia 339 Córdoba",
+       "localidad": null,
+       "tel": "Central de Turnos: 03576-453605",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Privada SRL",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Bronce",
+      "Plata"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Domingo F. Sarmiento 151 Villa Dolores",
+       "localidad": null,
+       "tel": "03544-421122 421714",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "HOSPITAL MUNICIPAL DR PROF GUMERSINDO SAYAGO",
+     "internacion": [],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Brasil y Perón Córdoba",
+       "localidad": null,
+       "tel": "03541-364467447",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio De la Cañada",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Pueyrredon 650 Córdoba",
+       "localidad": null,
+       "tel": "Teléfono: 0810-122-5800",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "tucuman",
+   "nombre": "Tucumán",
+   "provincias": [
+    "Tucumán"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Mayo",
+     "internacion": [
+      "500"
+     ],
+     "guardia": [
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "9 de Julio 279 San Miguel de Tucuman",
+       "localidad": null,
+       "tel": "Central de Turnos:(0381)4502600",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Pilar",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Balcarce 565 San Miguel de Tucuman",
+       "localidad": null,
+       "tel": "Tel: (0381) 4210822 431281",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "INSTITUTO DE CARDIOLOGIA S.R.L",
+     "internacion": [
+      "500"
+     ],
+     "guardia": [
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av San Martin 760 Tucuman",
+       "localidad": null,
+       "tel": "(0381) 4330389",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio 9 de Julio SA",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias traumatológicas",
+      "Urgencias ginecológicas",
+      "Urgencias obstétricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 372 San Miguel de Tucuman",
+       "localidad": null,
+       "tel": "(381)4504504 Guardia (381)4504504",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Mayo",
+     "internacion": [
+      "200",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "24 de Septiembre 1544 San Miguel de Tucuman",
+       "localidad": null,
+       "tel": "03865-421755",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Modelo",
+     "internacion": [
+      "200",
+      "500"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "25 DE MAYO 559 Tucuman",
+       "localidad": null,
+       "tel": "(0381) 497 9500",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Pasquini",
+     "internacion": [
+      "500"
+     ],
+     "guardia": [
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Monteagudo 75 Tucuman",
+       "localidad": null,
+       "tel": null,
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Sama",
+     "internacion": [
+      "500"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Monteagudo 261 Tucuman",
+       "localidad": null,
+       "tel": "(0381) 461-5888",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Sarmiento Tucumán",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Básico"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Básico"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. Domingo F. Sarmiento 790 San Miguel de Tucuman",
+       "localidad": null,
+       "tel": "Central de Turnos: (0381) 431-2800 (011) 4469-7300",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Sur",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Las Heras 575 San Miguel de Tucuman",
+       "localidad": null,
+       "tel": "Tel: (0381) 4247610 8027 8066",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro de la Vision Dr Jure - Guardia 24hs",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Maipu 555 San Miguel de Tucumán",
+       "localidad": null,
+       "tel": "Tel: (0381) 4228080",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Centro de la Vision Noroeste Srl",
+     "internacion": [],
+     "guardia": [
+      "200",
+      "300",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Maipu 550 San Miguel de Tucuman",
+       "localidad": null,
+       "tel": "0381-4228080",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Fundacion Clinica San Pablo",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Ruta Prov 301 Km 12,2 Ohuanta Tucuman",
+       "localidad": null,
+       "tel": "381 4392203-4392088",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Racedo (American Salud)",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Juan Bautista Alberdi 255 Tucuman",
+       "localidad": null,
+       "tel": "03863 42-6020",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "misiones",
+   "nombre": "Misiones",
+   "provincias": [
+    "Misiones"
+   ],
+   "centros": [
+    {
+     "nombre": "Clinica Clides",
+     "internacion": [
+      "200",
+      "300",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Monseñor Joaquin Piña 63 Misiones San Vicente",
+       "localidad": null,
+       "tel": "(03755) 461475",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Integra Cerro Azul Misiones",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Yapeyu 547 Misiones Capital",
+       "localidad": null,
+       "tel": "Central de Turnos: (0376) 481-8447",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Integral Oberá - Cio",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "French 822 Obera",
+       "localidad": null,
+       "tel": "Central de Turnos: (03755) 42-0340",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Integral Iot (Ortopedia y Traumatologia)",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Bolivar 2376 Posadas",
+       "localidad": null,
+       "tel": "Central de Turnos: 0376 - 4440540",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Simes",
+     "internacion": [
+      "200",
+      "300",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Córdoba 2344 Posadas",
+       "localidad": null,
+       "tel": "Central de Turnos:0376 543-0283",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Asociacion de Ortopedia y Traumatologia de Misiones Aotmi",
+     "internacion": [],
+     "guardia": [
+      "200",
+      "300",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Santa Fe 1686 , edificio RIO VII. 4º piso Posadas",
+       "localidad": null,
+       "tel": "Central de Turnos: (0376) 4426872 - 4426026",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Derna",
+     "internacion": [],
+     "guardia": [
+      "200",
+      "300",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Gdor. Barreyro Nº1031 Obera",
+       "localidad": null,
+       "tel": "Central de Turnos:03755 40-1186",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "mendoza",
+   "nombre": "Mendoza",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Clínica de Cuyo",
+     "internacion": [
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. José Vicente Zapata 63 Mendoza",
+       "localidad": null,
+       "tel": "Central de Turnos: 0261 405-9000:",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica de Urologia - Uroclinica",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias ginecológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Sáenz Peña 1246 Tunuyán",
+       "localidad": null,
+       "tel": "Central de Turnos: 261 64163432",
+       "servicios": [
+        "internacion"
+       ]
+      },
+      {
+       "direccion": "Av. El Libertador 982 San Rafael",
+       "localidad": null,
+       "tel": "Central de Turnos: 260 400453",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Francesa - Sede Dorrego",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Ejercito de los andes 1696 Guaymallén",
+       "localidad": null,
+       "tel": "Central de Turnos: 261 2052999 261 2065320",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Godoy Cruz Mendoza (Urgencias Nariz Garganta Oído)",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Godoy Cruz 333 Mendoza Centro",
+       "localidad": null,
+       "tel": "Central de Turnos: 261 441-0500",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica San Dona",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. San Martín 650 Godoy Cruz",
+       "localidad": null,
+       "tel": "Central de Turnos: 0261 578-3002",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Santa Rosa",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias"
+     ],
+     "sedes": [
+      {
+       "direccion": "Las Heras 742 Guaymallen",
+       "localidad": null,
+       "tel": "Central de Turnos: 261 441-9001",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Español Sede Central",
+     "internacion": [
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas",
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. San Martín 965 Godoy Cruz",
+       "localidad": null,
+       "tel": "Central de Turnos: 2612114017 0810-122-0000",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Universitario Mendoza",
+     "internacion": [
+      "200",
+      "300",
+      "400",
+      "500"
+     ],
+     "guardia": [],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación"
+     ],
+     "sedes": [
+      {
+       "direccion": "Paso de los Andes 3051 Mendoza",
+       "localidad": null,
+       "tel": "Central de Turnos: 2615644000 wpss 261- 2053408",
+       "servicios": [
+        "internacion"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio Regional",
+     "internacion": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes",
+      "Básico"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Internación",
+      "Urgencias",
+      "Urgencias pediátricas"
+     ],
+     "sedes": [
+      {
+       "direccion": "San Martín 928 Luján de Cuyo",
+       "localidad": null,
+       "tel": "Central de Turnos: 2612 05-4526",
+       "servicios": [
+        "internacion",
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Clinica Arizu",
+     "internacion": [],
+     "guardia": [
+      "300",
+      "400",
+      "500"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias traumatológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av. San Martín 1510 Godoy Cruz",
+       "localidad": null,
+       "tel": "Central de Turnos: 261 4764018 (WhatsApp) 261 251-1237",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital de Ojos Mendoza",
+     "internacion": [],
+     "guardia": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "marca": null,
+     "notas": [],
+     "servicios": [
+      "Urgencias oftalmológicas"
+     ],
+     "sedes": [
+      {
+       "direccion": "Necochea 756 Mendoza Capital",
+       "localidad": null,
+       "tel": "Central de Turnos: 0261 255-8189",
+       "servicios": [
+        "guardia"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

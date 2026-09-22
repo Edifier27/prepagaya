@@ -1,0 +1,44 @@
+{idProv:1,provincia:"Buenos Aires",codFilial:14,filial:"LOBOS"}
+{idProv:1,provincia:"Buenos Aires",codFilial:24,filial:"MAR DEL PLATA"}
+{idProv:1,provincia:"Buenos Aires",codFilial:25,filial:"LA PLATA"}
+{idProv:1,provincia:"Buenos Aires",codFilial:31,filial:"BAHÍA BLANCA"}
+{idProv:1,provincia:"Buenos Aires",codFilial:32,filial:"BUENOS AIRES CENTRO"}
+{idProv:1,provincia:"Buenos Aires",codFilial:33,filial:"PERGAMINO"}
+{idProv:1,provincia:"Buenos Aires",codFilial:35,filial:"CHIVILCOY"}
+{idProv:1,provincia:"Buenos Aires",codFilial:36,filial:"TRENQUE LAUQUEN"}
+{idProv:1,provincia:"Buenos Aires",codFilial:37,filial:"JUNÍN"}
+{idProv:1,provincia:"Buenos Aires",codFilial:60,filial:"METROPOLITANA"}
+{idProv:10,provincia:"La Pampa",codFilial:9,filial:"LA PAMPA"}
+{idProv:11,provincia:"La Rioja",codFilial:10,filial:"LA RIOJA"}
+{idProv:12,provincia:"Mendoza",codFilial:11,filial:"MENDOZA"}
+{idProv:13,provincia:"Misiones",codFilial:12,filial:"MISIONES"}
+{idProv:14,provincia:"Neuquén",codFilial:13,filial:"NORPATAGÓNICA"}
+{idProv:14,provincia:"Neuquén",codFilial:30,filial:"BARILOCHE"}
+{idProv:15,provincia:"Río Negro",codFilial:13,filial:"NORPATAGÓNICA"}
+{idProv:15,provincia:"Río Negro",codFilial:30,filial:"BARILOCHE"}
+{idProv:15,provincia:"Río Negro",codFilial:31,filial:"BAHÍA BLANCA"}
+{idProv:15,provincia:"Río Negro",codFilial:5,filial:"TRELEW"}
+{idProv:16,provincia:"Salta",codFilial:15,filial:"SALTA"}
+{idProv:17,provincia:"San Juan",codFilial:16,filial:"SAN JUAN"}
+{idProv:18,provincia:"San Luis",codFilial:17,filial:"SAN LUIS"}
+{idProv:19,provincia:"Santa Cruz",codFilial:18,filial:"SANTA CRUZ"}
+{idProv:19,provincia:"Santa Cruz",codFilial:26,filial:"COMODORO RIVADAVIA"}
+{idProv:2,provincia:"Catamarca",codFilial:1,filial:"CATAMARCA"}
+{idProv:20,provincia:"Santa Fe",codFilial:19,filial:"SANTA FE"}
+{idProv:20,provincia:"Santa Fe",codFilial:23,filial:"ROSARIO"}
+{idProv:21,provincia:"Santiago del Estero",codFilial:20,filial:"SGO DEL ESTERO"}
+{idProv:22,provincia:"Tierra del Fuego",codFilial:22,filial:"TIERRA DEL FUEGO"}
+{idProv:23,provincia:"Tucumán",codFilial:21,filial:"TUCUMÁN"}
+{idProv:24,provincia:"Ciudad de Buenos Aires",codFilial:60,filial:"METROPOLITANA"}
+{idProv:3,provincia:"Chaco",codFilial:4,filial:"CHACO"}
+{idProv:4,provincia:"Chubut",codFilial:26,filial:"COMODORO RIVADAVIA"}
+{idProv:4,provincia:"Chubut",codFilial:30,filial:"BARILOCHE"}
+{idProv:4,provincia:"Chubut",codFilial:5,filial:"TRELEW"}
+{idProv:5,provincia:"Córdoba",codFilial:2,filial:"CÓRDOBA"}
+{idProv:5,provincia:"Córdoba",codFilial:39,filial:"VILLA MARÍA"}
+{idProv:5,provincia:"Córdoba",codFilial:40,filial:"RIO CUARTO"}
+{idProv:6,provincia:"Corrientes",codFilial:3,filial:"CORRIENTES"}
+{idProv:7,provincia:"Entre Ríos",codFilial:42,filial:"RÍO URUGUAY"}
+{idProv:7,provincia:"Entre Ríos",codFilial:6,filial:"DEL PARANÁ"}
+{idProv:8,provincia:"Formosa",codFilial:7,filial:"FORMOSA"}
+{idProv:9,provincia:"Jujuy",codFilial:8,filial:"JUJUY"}

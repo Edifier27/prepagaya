@@ -366,8 +366,8 @@ export const sanatorios: Sanatorio[] = [
     aliases: ['fleni', 'fundación fleni'],
     zonas: ['caba', 'gba'],
     planesQueLoCubren: [
-      { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '210', planNombre: 'Plan 210', precio: 267250, nota: 'Solo consultas ambulatorias. Internación desde Plan 310.' },
-      { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '310', planNombre: 'Plan 310', precio: 345310, nota: 'Internación completa desde Plan 310.' },
+      { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '210', planNombre: 'Plan 210', precio: 267250 },
+      { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '310', planNombre: 'Plan 310', precio: 345310 },
       { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '410', planNombre: 'Plan 410', precio: 459250 },
       { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '510', planNombre: 'Plan 510', precio: 1139396 },
       { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934, nota: 'Suma desde SMG30 (cartilla Premium).' },
@@ -414,7 +414,6 @@ export const sanatorios: Sanatorio[] = [
       { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
       { prepagaSlug: 'medicus', prepagaNombre: 'Medicus', planSlug: 'celeste', planNombre: 'Plan Celeste', precio: 399484 },
       { prepagaSlug: 'medicus', prepagaNombre: 'Medicus', planSlug: 'azul', planNombre: 'Plan Azul', precio: 490333 },
-      { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '210', planNombre: 'Plan 210', precio: 267250 },
       { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '310', planNombre: 'Plan 310', precio: 345310 },
     ],
   },
@@ -707,6 +706,7 @@ export const sanatorios: Sanatorio[] = [
       { prepagaSlug: 'omint', prepagaNombre: 'Omint', planSlug: 'smart', planNombre: 'Plan Smart', precio: 262000, nota: 'Incluido desde el plan más básico de Omint.' },
       { prepagaSlug: 'omint', prepagaNombre: 'Omint', planSlug: 'global', planNombre: 'Plan Global', precio: 437027 },
       { prepagaSlug: 'omint', prepagaNombre: 'Omint', planSlug: 'clasico', planNombre: 'Plan Clásico', precio: 568962 },
+      { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '210', planNombre: 'Plan 210', precio: 267250 },
       { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '310', planNombre: 'Plan 310', precio: 345310 },
     ],
   },
@@ -740,6 +740,7 @@ export const sanatorios: Sanatorio[] = [
     aliases: ['austral', 'hospital universitario austral'],
     zonas: ['gba'],
     planesQueLoCubren: [
+      { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '210', planNombre: 'Plan 210', precio: 267250 },
       { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '310', planNombre: 'Plan 310', precio: 345310 },
       { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '410', planNombre: 'Plan 410', precio: 459250 },
       { prepagaSlug: 'medicus', prepagaNombre: 'Medicus', planSlug: 'celeste', planNombre: 'Plan Celeste', precio: 399484 },
@@ -789,6 +790,7 @@ export const sanatorios: Sanatorio[] = [
     aliases: ['italiano rosario', 'hospital italiano rosario'],
     zonas: ['rosario'],
     planesQueLoCubren: [
+      { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '210', planNombre: 'Plan 210', precio: 267250 },
       { prepagaSlug: 'osde', prepagaNombre: 'OSDE', planSlug: '310', planNombre: 'Plan 310', precio: 345310 },
       { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
       { prepagaSlug: 'sancor-salud', prepagaNombre: 'Sancor Salud', planSlug: 'plan-1000', planNombre: 'Plan 1000', precio: 369200 },
