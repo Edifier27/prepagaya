@@ -160,7 +160,10 @@ export default function RankingPage() {
             Prepagas más económicas
           </h2>
           <p className="text-gray-500 text-sm mb-6">
-            Ordenadas por nivel de precio del plan más económico de cada una
+            Ordenadas por nivel de precio del plan más económico de cada una.{' '}
+            <Link href="/prepagas-economicas" className="text-[#E8002D] font-semibold hover:underline">
+              Ver el ranking completo de económicas, con detalle de cada una →
+            </Link>
           </p>
 
           <div className="overflow-x-auto">

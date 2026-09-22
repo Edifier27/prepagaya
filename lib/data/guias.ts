@@ -254,11 +254,15 @@ export const guias: GuiaData[] = [
     categoria: 'Precios',
     fechaActualizacion: '2026-07-14',
     contenido: {
-      intro: 'Una prepaga no tiene por qué costar medio millón de pesos: en 2026 hay opciones desde ~$105.000 por mes que cubren el PMO completo, el mismo piso legal que cubre OSDE 510. La diferencia está en la cartilla, los sanatorios y los tiempos de espera. Acá está el ranking real de las más baratas y, más importante, qué resignás en cada una.',
+      intro: `Una prepaga no tiene por qué costar medio millón de pesos: en ${PRECIO_ACTUALIZADO} hay opciones desde ~${formatPrecio(109000)} por mes que cubren el PMO completo, el mismo piso legal que cubre el plan más caro del mercado. La diferencia está en la cartilla, los sanatorios y los tiempos de espera. Acá está el ranking real de las más baratas y, más importante, qué resignás en cada una — el ranking completo y actualizado está en prepagas económicas: ranking actualizado.`,
       secciones: [
         {
-          titulo: 'El podio de precios (julio 2026, 30 años, contratación directa)',
-          cuerpo: 'Hominis Aqua Más: de nivel de precio más económico del mercado, con atención centrada en el Sanatorio Güemes. Premedic C200: también de nivel económico, PMO completo con alta satisfacción de afiliados. Federada 4000: nivel de precio económico-medio, con la red de Federada fuerte en Santa Fe, Córdoba y el interior. Luis Pasteur Novo: nivel medio, con el mejor descuento en farmacia del mercado (60%). Swiss Medical S1: nivel medio, la puerta de entrada más accesible a una prepaga premium.',
+          titulo: `El podio de precios (${PRECIO_ACTUALIZADO}, 30 años, contratación directa)`,
+          cuerpo: 'Premedic Plan 200: el plan de nivel de precio más económico del mercado, PMO completo con alta satisfacción de afiliados. Medicus Integra X: también de nivel económico, con red propia en varias ciudades. Luis Pasteur Novo: nivel económico, con el mejor descuento en farmacia del mercado (60%). Hominis Silver: nivel económico, con atención centrada en el Sanatorio Güemes. Medifé+: nivel económico, con buena cobertura en AMBA.',
+        },
+        {
+          titulo: 'La entrada más accesible a una prepaga premium: Swiss Medical S1/S2',
+          cuerpo: 'Si buscás algo económico pero dentro de una prepaga de primer nivel, Swiss Medical S1 y S2 son la puerta de entrada más accesible a esa red: no son los planes más baratos del mercado (esos son los de arriba), pero sí el escalón de precio más bajo dentro de una prepaga con sanatorios propios y cartilla premium — para quien prioriza marca y red por sobre el precio mínimo.',
         },
         {
           titulo: 'Qué resignás en una prepaga económica',
@@ -273,12 +277,12 @@ export const guias: GuiaData[] = [
           cuerpo: 'Antes de irte a una prepaga más barata, mirá el plan de entrada de tu prepaga actual: bajar de plan dentro de la misma empresa conserva tu antigüedad y tu historia clínica. También compará la modalidad: si estás pagando como particular y podés derivar aportes (relación de dependencia o monotributo), el mismo plan puede bajar 30-40%. Un Galeno Plata 300, por ejemplo, baja un escalón entero de nivel de precio con aportes.',
         },
       ],
-      conclusion: 'La prepaga de nivel de precio más económico de Argentina en 2026 es Hominis, seguida de cerca por Premedic. Ambas son opciones legítimas con PMO completo. Pero antes de elegir por precio, verificá que la cartilla cubra tu zona y tus médicos: una prepaga barata que no tiene prestadores cerca tuyo es cara.',
+      conclusion: `La prepaga de precio de lista más económico de Argentina en ${PRECIO_ACTUALIZADO} es Premedic, seguida por Medicus y Luis Pasteur. Las tres son opciones legítimas con PMO completo. Si preferís quedarte dentro de una prepaga premium pagando lo menos posible, Swiss Medical S1/S2 es la entrada más accesible a esa red. Antes de elegir por precio, verificá que la cartilla cubra tu zona y tus médicos: una prepaga barata que no tiene prestadores cerca tuyo es cara.`,
     },
     faq: [
       {
         q: '¿Cuál es la prepaga más barata de Argentina en 2026?',
-        a: 'Hominis, con el plan Aqua Más, es la de nivel de precio más económico del mercado (julio 2026). Le siguen Premedic y Federada 4000, también de nivel accesible. El precio exacto varía por edad y zona — cotizalo gratis.',
+        a: 'Premedic, con el Plan 200, es la de precio de lista más económico del mercado. Le siguen Medicus y Luis Pasteur, también de nivel accesible. El precio exacto varía por edad y zona — cotizalo gratis.',
       },
       {
         q: '¿Las prepagas baratas cubren internación y oncología?',
