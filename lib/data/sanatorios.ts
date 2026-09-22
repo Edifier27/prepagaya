@@ -233,6 +233,18 @@ const PLANES_SWISS_MEDICAL_TODOS: PlanCubre[] = [
   { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
 ]
 
+// Los mismos planes de arriba, pero sin S1/SMG02 (cartilla Nubial) — para
+// sanatorios que la cartilla oficial confirma que arrancan desde S2/SMG20
+// (cartilla Global). Corregido 22-sep-2026 contra los PDF oficiales
+// SMMP-GLOBAL/PREMIUM-CAP-Y-GBA que pasó Darío: Suizo Argentina, Sanatorio
+// de los Arcos, Clínica Zabala y Sanatorio Agote NO aparecen en el PDF
+// Nubial (SMMP-NUBIAL-QUALITY-CAP-Y-GBA) — el dato anterior de "incluido en
+// todos los planes, incluso los de entrada" no estaba verificado y era
+// incorrecto para estos cuatro en particular.
+const PLANES_SWISS_MEDICAL_DESDE_S2: PlanCubre[] = PLANES_SWISS_MEDICAL_TODOS.filter(
+  (p) => p.planSlug !== 's1' && p.planSlug !== 'smg02'
+)
+
 export const sanatorios: Sanatorio[] = [
   {
     slug: 'clinica-suizo-argentina',
@@ -240,8 +252,8 @@ export const sanatorios: Sanatorio[] = [
     aliases: ['suizo argentina', 'clinica suizo argentina', 'clínica suizo argentina'],
     zonas: ['caba'],
     planesQueLoCubren: [
-      { ...PLANES_SWISS_MEDICAL_TODOS[0], nota: 'Sanatorio propio de Swiss Medical — incluido en todos los planes, incluso los de entrada.' },
-      ...PLANES_SWISS_MEDICAL_TODOS.slice(1),
+      { ...PLANES_SWISS_MEDICAL_DESDE_S2[0], nota: 'No incluido en S1/SMG02 (cartilla Nubial). Suma desde S2/SMG20 (cartilla Global).' },
+      ...PLANES_SWISS_MEDICAL_DESDE_S2.slice(1),
     ],
   },
   {
@@ -250,8 +262,8 @@ export const sanatorios: Sanatorio[] = [
     aliases: ['los arcos', 'sanatorio de los arcos', 'sanatorio los arcos'],
     zonas: ['caba'],
     planesQueLoCubren: [
-      { ...PLANES_SWISS_MEDICAL_TODOS[0], nota: 'Sanatorio propio de Swiss Medical — incluido en todos los planes, incluso los de entrada.' },
-      ...PLANES_SWISS_MEDICAL_TODOS.slice(1),
+      { ...PLANES_SWISS_MEDICAL_DESDE_S2[0], nota: 'No incluido en S1/SMG02 (cartilla Nubial). Suma desde S2/SMG20 (cartilla Global).' },
+      ...PLANES_SWISS_MEDICAL_DESDE_S2.slice(1),
     ],
   },
   {
@@ -260,8 +272,8 @@ export const sanatorios: Sanatorio[] = [
     aliases: ['zabala', 'clinica zabala', 'clínica zabala'],
     zonas: ['caba'],
     planesQueLoCubren: [
-      { ...PLANES_SWISS_MEDICAL_TODOS[0], nota: 'Sanatorio propio de Swiss Medical — incluido en todos los planes, incluso los de entrada.' },
-      ...PLANES_SWISS_MEDICAL_TODOS.slice(1),
+      { ...PLANES_SWISS_MEDICAL_DESDE_S2[0], nota: 'No incluido en S1/SMG02 (cartilla Nubial). Suma desde S2/SMG20 (cartilla Global).' },
+      ...PLANES_SWISS_MEDICAL_DESDE_S2.slice(1),
     ],
   },
   {
@@ -270,8 +282,8 @@ export const sanatorios: Sanatorio[] = [
     aliases: ['agote', 'sanatorio agote'],
     zonas: ['caba'],
     planesQueLoCubren: [
-      { ...PLANES_SWISS_MEDICAL_TODOS[0], nota: 'Sanatorio propio de Swiss Medical — incluido en todos los planes, incluso los de entrada.' },
-      ...PLANES_SWISS_MEDICAL_TODOS.slice(1),
+      { ...PLANES_SWISS_MEDICAL_DESDE_S2[0], nota: 'No incluido en S1/SMG02 (cartilla Nubial). Suma desde S2/SMG20 (cartilla Global).' },
+      ...PLANES_SWISS_MEDICAL_DESDE_S2.slice(1),
     ],
   },
   {
@@ -451,6 +463,239 @@ export const sanatorios: Sanatorio[] = [
       { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
       { prepagaSlug: 'medicus', prepagaNombre: 'Medicus', planSlug: 'celeste', planNombre: 'Plan Celeste', precio: 399484 },
       { prepagaSlug: 'sancor-salud', prepagaNombre: 'Sancor Salud', planSlug: 'plan-1000', planNombre: 'Plan 1000', precio: 369200 },
+    ],
+  },
+  // ─── Cartilla real de Swiss Medical, Capital Federal (archivos oficiales
+  // SMMP-NUBIAL/GLOBAL/PREMIUM-CAP-Y-GBA que pasó Darío, 22-sep-2026) ───────
+  // Nubial = S1/SMG02 (tier de entrada). Global = S2/SMG20/Sport-S/Sport.
+  // Premium = SMG30/SMG40/SMG50/Sport+ (superset de Global). Los que
+  // aparecen en el PDF Nubial tienen cobertura desde S1; el resto recién
+  // desde S2 — mismo patrón que ya tenían cargados Hospital Italiano/
+  // Favaloro (desde S2) vs Hospital Británico/Mater Dei (desde S1).
+  {
+    slug: 'cemic-almagro',
+    nombre: 'CEMIC',
+    aliases: ['cemic', 'cemic almagro'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's1', planNombre: 'Plan S1', precio: 197336, nota: 'Incluido desde el plan de entrada (cartilla Nubial).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg02', planNombre: 'Plan SMG02', precio: 277558 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'clinica-la-sagrada-familia',
+    nombre: 'Clínica La Sagrada Familia',
+    aliases: ['sagrada familia', 'clinica la sagrada familia'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's1', planNombre: 'Plan S1', precio: 197336, nota: 'Incluido desde el plan de entrada (cartilla Nubial).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg02', planNombre: 'Plan SMG02', precio: 277558 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'clinica-medica-adventista-belgrano',
+    nombre: 'Clínica Médica Adventista Belgrano',
+    aliases: ['adventista belgrano', 'clinica medica adventista belgrano'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's1', planNombre: 'Plan S1', precio: 197336, nota: 'Incluido desde el plan de entrada (cartilla Nubial).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg02', planNombre: 'Plan SMG02', precio: 277558 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'instituto-arauz',
+    nombre: 'Instituto Oto-Rino-Laringológico Arauz',
+    aliases: ['instituto arauz', 'arauz'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's1', planNombre: 'Plan S1', precio: 197336, nota: 'Incluido desde el plan de entrada (cartilla Nubial).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg02', planNombre: 'Plan SMG02', precio: 277558 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'clinica-san-camilo',
+    nombre: 'Clínica San Camilo',
+    aliases: ['san camilo', 'clinica san camilo'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's1', planNombre: 'Plan S1', precio: 197336, nota: 'Incluido desde el plan de entrada (cartilla Nubial).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg02', planNombre: 'Plan SMG02', precio: 277558 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'icba',
+    nombre: 'ICBA Instituto Cardiovascular de Buenos Aires',
+    aliases: ['icba', 'instituto cardiovascular de buenos aires'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's1', planNombre: 'Plan S1', precio: 197336, nota: 'Incluido desde el plan de entrada (cartilla Nubial).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg02', planNombre: 'Plan SMG02', precio: 277558 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'instituto-dupuytren',
+    nombre: 'Instituto Dupuytren de Traumatología y Ortopedia',
+    aliases: ['dupuytren', 'instituto dupuytren'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's1', planNombre: 'Plan S1', precio: 197336, nota: 'Incluido desde el plan de entrada (cartilla Nubial).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg02', planNombre: 'Plan SMG02', precio: 277558 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'sanatorio-de-la-trinidad-palermo',
+    nombre: 'Sanatorio de la Trinidad Palermo',
+    aliases: ['trinidad palermo', 'sanatorio trinidad', 'sanatorio de la trinidad'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's1', planNombre: 'Plan S1', precio: 197336, nota: 'Incluido desde el plan de entrada (cartilla Nubial).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg02', planNombre: 'Plan SMG02', precio: 277558 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'sanatorio-anchorena',
+    nombre: 'Sanatorio Anchorena',
+    aliases: ['anchorena', 'sanatorio anchorena'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's1', planNombre: 'Plan S1', precio: 197336, nota: 'Incluido desde el plan de entrada (cartilla Nubial).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg02', planNombre: 'Plan SMG02', precio: 277558 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'alexander-fleming',
+    nombre: 'Alexander Fleming - Instituto Médico Especializado',
+    aliases: ['alexander fleming', 'instituto fleming'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743, nota: 'No incluido en S1/SMG02 (cartilla Nubial). Suma desde S2/SMG20 (cartilla Global).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'sanatorio-de-la-providencia',
+    nombre: 'Sanatorio de la Providencia',
+    aliases: ['sanatorio de la providencia', 'la providencia'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743, nota: 'No incluido en S1/SMG02 (cartilla Nubial). Suma desde S2/SMG20 (cartilla Global).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'sanatorio-finochietto',
+    nombre: 'Sanatorio Finochietto',
+    aliases: ['sanatorio finochietto', 'finochietto'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743, nota: 'No incluido en S1/SMG02 (cartilla Nubial). Suma desde S2/SMG20 (cartilla Global).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
+    ],
+  },
+  {
+    slug: 'instituto-superior-otorrinolaringologia',
+    nombre: 'Instituto Superior de Otorrinolaringología',
+    aliases: ['instituto superior de otorrinolaringologia'],
+    zonas: ['caba'],
+    planesQueLoCubren: [
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 's2', planNombre: 'Plan S2', precio: 247743, nota: 'No incluido en S1/SMG02 (cartilla Nubial). Suma desde S2/SMG20 (cartilla Global).' },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg20', planNombre: 'Plan SMG20', precio: 346404 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-s', planNombre: 'Plan Sport-S', precio: 307805 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport', planNombre: 'Plan Sport', precio: 405293 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg30', planNombre: 'Plan SMG30', precio: 397934 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg40', planNombre: 'Plan SMG40', precio: 415914 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'smg50', planNombre: 'Plan SMG50', precio: 519697 },
+      { prepagaSlug: 'swiss-medical', prepagaNombre: 'Swiss Medical', planSlug: 'sport-plus', planNombre: 'Plan Sport+', precio: 474143 },
     ],
   },
   {
