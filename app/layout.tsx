@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
@@ -38,6 +38,12 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
   },
   verification: { google: 'xbu_9e5mpT91WGbFtdOe8q1P2GsLBko-V8jh8LA081c' },
+}
+
+// Pinta la barra del navegador (Chrome/Android) del rojo de marca, igual que
+// hace Mercado Libre con su amarillo — pedido de Darío, 21-sep-2026.
+export const viewport: Viewport = {
+  themeColor: '#E8002D',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
