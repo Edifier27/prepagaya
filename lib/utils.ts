@@ -143,3 +143,29 @@ export function whatsappLinkParaLead(nombre: string, celular: string): string {
   const mensaje = `Hola ${nombre}. Soy Dario de Swiss Medical. Te contacto por tu consulta.`
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
 }
+
+/**
+ * Código de país (sin "+") de cada silo internacional — pedido de Darío,
+ * 22-sep-2026: el popup de cotización de las páginas en inglés/ruso/chino
+ * ya sabe de qué país es el visitante (por la página en la que está), así
+ * que fija el prefijo en vez de pedirle que elija uno de una lista.
+ */
+export const CODIGO_PAIS_INTL: Record<'us' | 'ru' | 'zh', { prefijo: string; placeholder: string }> = {
+  us: { prefijo: '1', placeholder: '(212) 555-0142' },
+  ru: { prefijo: '7', placeholder: '912 345-67-89' },
+  zh: { prefijo: '86', placeholder: '138 0013 8000' },
+}
+
+/**
+ * Arma el celular internacional completo (código de país + número) para
+ * mandar a Kommo/la base tal cual, sin la normalización a formato argentino
+ * de normalizarCelularAR (que le pondría 549 adelante y rompería el
+ * número). Ver `pais` en KommoLeadData/NuevoLead: cuando viene seteado,
+ * todo el resto del pipeline usa el celular tal cual llega en vez de
+ * normalizarlo.
+ */
+export function formatearCelularInternacional(prefijoPais: string, numeroLocal: string): string {
+  const soloDigitosPrefijo = prefijoPais.replace(/\D/g, '')
+  const soloDigitosNumero = numeroLocal.replace(/\D/g, '')
+  return `${soloDigitosPrefijo}${soloDigitosNumero}`
+}

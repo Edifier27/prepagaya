@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `Best Health Insurance in Argentina for Foreigners (${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
@@ -100,12 +101,12 @@ export default function BestHealthInsuranceArgentinaPage() {
             hospital, or price. Here is how the four most popular options among expats actually compare, with real
             {' '}{PRECIO_ACTUALIZADO_EN.toLowerCase()} prices.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="us"
+            fuente="en-best-comparison"
+            label="Get your exact price by age (free, no DNI) →"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-          >
-            Get your exact price by age (free, no DNI) →
-          </Link>
+          />
           <p className="text-xs text-gray-400 mt-3">
             ¿Preferís leer en español? <Link href="/ranking" className="text-[#E8002D] hover:underline font-medium">Ranking en español →</Link>
           </p>
@@ -184,12 +185,12 @@ export default function BestHealthInsuranceArgentinaPage() {
           <p className="text-red-200 text-sm mb-6">
             Free, no registration, no DNI required. An advisor who works with foreigners will contact you.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="us"
+            fuente="en-best-comparison-cta"
+            label="Get my quote →"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Get my quote →
-          </Link>
+          />
         </div>
       </section>
     </>

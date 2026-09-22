@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `Медицинская страховка в Аргентине: гид для иностранцев (${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
@@ -97,12 +98,12 @@ export default function StrahovanieArgentinaPage() {
             (<em>prepaga</em>) обычно намного выгоднее международной туристической страховки: полная сеть клиник,
             без лимитов на госпитализацию, и вы платите столько же, сколько местные жители вашего возраста.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="ru"
+            fuente="ru-pillar"
+            label="Сравнить реальные цены (бесплатно, без DNI) →"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-          >
-            Сравнить реальные цены (бесплатно, без DNI) →
-          </Link>
+          />
           <p className="text-xs text-gray-400 mt-3 flex flex-wrap gap-x-3 gap-y-1">
             <span>Read in English? <Link href="/en/health-insurance-argentina" className="text-[#E8002D] hover:underline font-medium">English guide →</Link></span>
             <span>· <Link href="/zh/yiliao-baoxian-agenting" className="text-[#E8002D] hover:underline font-medium">中文阅读 →</Link></span>
@@ -185,12 +186,12 @@ export default function StrahovanieArgentinaPage() {
           <p className="text-red-200 text-sm mb-6">
             Бесплатно, без регистрации, без DNI. С вами свяжется консультант, который работает с иностранцами.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="ru"
+            fuente="ru-pillar-cta"
+            label="Узнать мою цену →"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Узнать мою цену →
-          </Link>
+          />
         </div>
       </section>
     </>

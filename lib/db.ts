@@ -36,13 +36,16 @@ function asegurarTablas(): Promise<unknown> {
           kommo_link TEXT,
           leido BOOLEAN NOT NULL DEFAULT false,
           veces INTEGER NOT NULL DEFAULT 1,
-          actualizado_en TIMESTAMPTZ
+          actualizado_en TIMESTAMPTZ,
+          pais TEXT
         )
       `,
       // ADD COLUMN IF NOT EXISTS para las tablas que ya existían en producción
-      // antes de sumar el apilado de leads repetidos (21-sep-2026).
+      // antes de sumar el apilado de leads repetidos (21-sep-2026) y los
+      // leads internacionales (22-sep-2026).
       sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS veces INTEGER NOT NULL DEFAULT 1`,
       sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS actualizado_en TIMESTAMPTZ`,
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS pais TEXT`,
       sql`
         CREATE TABLE IF NOT EXISTS push_subscriptions (
           id SERIAL PRIMARY KEY,
@@ -72,6 +75,7 @@ export interface LeadRow {
   leido: boolean
   veces: number
   actualizado_en: string | null
+  pais: string | null
 }
 
 export interface NuevoLead {
@@ -82,9 +86,12 @@ export interface NuevoLead {
   provincia: string
   edades: string
   fuente: string
-  kommoEstado: string
-  kommoLink: string
+  /** 'us'/'ru'/'zh' para leads de los silos internacionales — ver lib/kommo.ts. */
+  pais?: string
 }
+
+/** Sentinela de kommo_estado para leads que todavía no se mandaron a Kommo — ver KOMMO_DELAY_MIN en app/api/leads/route.ts. */
+export const KOMMO_PENDIENTE = 'Pendiente'
 
 export function dbConfigurada(): boolean {
   return DB_CONFIGURADA
@@ -98,6 +105,16 @@ export function dbConfigurada(): boolean {
  * dispara su propio POST a /api/leads (pedido de Darío, 21-sep-2026: antes
  * cada click generaba una fila distinta en el panel). Nunca tira: si falla,
  * solo loguea.
+ *
+ * El envío a Kommo NO pasa por acá: todo lead nuevo entra con
+ * kommo_estado = 'Pendiente' y lo procesa el cron de
+ * /api/cron/procesar-leads-kommo recién 3 minutos después de la última
+ * actividad de esa persona (pedido de Darío, 22-sep-2026, con Vercel Pro ya
+ * activo) — así si alguien toca "elegir plan" en varias prepagas seguidas,
+ * Kommo recibe un solo contacto con todos los intereses juntos, en vez de
+ * uno por cada click. El "apilado" de acá abajo, al actualizar
+ * actualizado_en en cada touch, extiende esa ventana de 3 minutos
+ * automáticamente — no hace falta tocar kommo_estado en el UPDATE.
  */
 export async function guardarLead(d: NuevoLead): Promise<void> {
   if (!sql) return
@@ -138,8 +155,6 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
           provincia = COALESCE(NULLIF(${d.provincia}, ''), provincia),
           edades = COALESCE(NULLIF(${d.edades}, ''), edades),
           fuente = ${d.fuente},
-          kommo_estado = ${d.kommoEstado},
-          kommo_link = COALESCE(NULLIF(${d.kommoLink}, ''), kommo_link),
           veces = veces + 1,
           actualizado_en = now(),
           leido = false
@@ -149,12 +164,36 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
     }
 
     await sql`
-      INSERT INTO leads (nombre, celular, email, prepaga, provincia, edades, fuente, kommo_estado, kommo_link)
-      VALUES (${d.nombre}, ${d.celular}, ${d.email}, ${d.prepaga}, ${d.provincia}, ${d.edades}, ${d.fuente}, ${d.kommoEstado}, ${d.kommoLink})
+      INSERT INTO leads (nombre, celular, email, prepaga, provincia, edades, fuente, kommo_estado, kommo_link, pais)
+      VALUES (${d.nombre}, ${d.celular}, ${d.email}, ${d.prepaga}, ${d.provincia}, ${d.edades}, ${d.fuente}, ${KOMMO_PENDIENTE}, '', ${d.pais ?? null})
     `
   } catch (err) {
     console.error('[DB] error guardando lead:', err)
   }
+}
+
+/**
+ * Leads con kommo_estado = 'Pendiente' cuya última actividad tiene 3+
+ * minutos — lo que procesa el cron cada 1 minuto. `minutos` es parametrizable
+ * solo para poder testear con una ventana más corta sin tocar el código.
+ */
+export async function leadsPendientesDeKommo(minutosEspera = 3): Promise<LeadRow[]> {
+  if (!sql) return []
+  await asegurarTablas()
+  const rows = await sql`
+    SELECT * FROM leads
+    WHERE kommo_estado = ${KOMMO_PENDIENTE}
+      AND COALESCE(actualizado_en, creado_en) <= now() - (${minutosEspera}::text || ' minutes')::interval
+    ORDER BY creado_en ASC
+    LIMIT 50
+  `
+  return rows as unknown as LeadRow[]
+}
+
+export async function marcarResultadoKommo(id: number, estado: string, link: string): Promise<void> {
+  if (!sql) return
+  await asegurarTablas()
+  await sql`UPDATE leads SET kommo_estado = ${estado}, kommo_link = ${link} WHERE id = ${id}`
 }
 
 export async function listarLeads(limite = 300): Promise<LeadRow[]> {

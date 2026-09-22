@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `How Much Does Health Insurance Cost in Argentina? (${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
@@ -97,12 +98,12 @@ export default function HealthInsuranceCostArgentinaPage() {
             AR$1,000,000/month for premium plans, as of {PRECIO_ACTUALIZADO_EN.toLowerCase()}. Your own price
             depends mainly on age, plan tier, and whether you want copays or not.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="us"
+            fuente="en-cost"
+            label="See your exact price by age (free, no DNI) →"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-          >
-            See your exact price by age (free, no DNI) →
-          </Link>
+          />
           <p className="text-xs text-gray-400 mt-3">
             ¿Preferís leer en español? <Link href="/para/extranjeros" className="text-[#E8002D] hover:underline font-medium">Guía en español →</Link>
           </p>
@@ -183,12 +184,12 @@ export default function HealthInsuranceCostArgentinaPage() {
           <p className="text-red-200 text-sm mb-6">
             Free, no registration, no DNI required. An advisor who works with foreigners will contact you.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="us"
+            fuente="en-cost-cta"
+            label="Get my quote →"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Get my quote →
-          </Link>
+          />
         </div>
       </section>
     </>

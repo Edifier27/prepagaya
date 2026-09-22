@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `Health Insurance in Argentina for Foreigners (2026 Guide) — ${SITE_NAME}` },
@@ -93,12 +94,12 @@ export default function HealthInsuranceArgentinaPage() {
             (<em>prepaga</em>) is usually far better value than international travel insurance: full hospital
             network, no per-event caps, and you pay the same monthly fee as any Argentine your age.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="us"
+            fuente="en-pillar"
+            label="Compare real prices (free, no DNI required) →"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-          >
-            Compare real prices (free, no DNI required) →
-          </Link>
+          />
           <p className="text-xs text-gray-400 mt-3 flex flex-wrap gap-x-3 gap-y-1">
             <span>¿Preferís leer en español? <Link href="/para/extranjeros" className="text-[#E8002D] hover:underline font-medium">Guía en español →</Link></span>
             <span>· <Link href="/zh/yiliao-baoxian-agenting" className="text-[#E8002D] hover:underline font-medium">中文阅读 →</Link></span>
@@ -181,12 +182,12 @@ export default function HealthInsuranceArgentinaPage() {
           <p className="text-red-200 text-sm mb-6">
             Free, no registration, no DNI required. An advisor who works with expats will contact you.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="us"
+            fuente="en-pillar-cta"
+            label="Get my quote →"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Get my quote →
-          </Link>
+          />
         </div>
       </section>
     </>

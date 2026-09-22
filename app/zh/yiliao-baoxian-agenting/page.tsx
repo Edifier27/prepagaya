@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `阿根廷医疗保险指南:外国人须知(${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
@@ -96,12 +97,12 @@ export default function YiliaoBaoxianAgentingPage() {
             工作或办理居留手续,当地的私人医疗保险(<em>prepaga</em>)通常比国际旅行保险更划算:覆盖范围更广、
             住院无次数限制,且保费与同龄本地居民完全相同。
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="zh"
+            fuente="zh-pillar"
+            label="免费比较真实价格(无需DNI)→"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-          >
-            免费比较真实价格(无需DNI)→
-          </Link>
+          />
           <p className="text-xs text-gray-400 mt-3">
             Read in English? <Link href="/en/health-insurance-argentina" className="text-[#E8002D] hover:underline font-medium">English guide →</Link>
           </p>
@@ -180,12 +181,12 @@ export default function YiliaoBaoxianAgentingPage() {
           <p className="text-red-200 text-sm mb-6">
             免费、无需注册、无需DNI。专门服务外国客户的顾问将与您联系。
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="zh"
+            fuente="zh-pillar-cta"
+            label="获取我的报价 →"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            获取我的报价 →
-          </Link>
+          />
         </div>
       </section>
     </>

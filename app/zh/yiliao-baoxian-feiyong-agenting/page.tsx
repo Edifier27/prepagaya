@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `阿根廷医疗保险费用是多少?(${PRECIO_ACTUALIZADO_EN}真实价格) — ${SITE_NAME}` },
@@ -96,12 +97,12 @@ export default function YiliaoBaoxianFeiyongAgentingPage() {
             以30岁参保人为例,基础级保障的价格约为每月AR$170,000起,高端计划则超过每月AR$1,000,000
             (截至{PRECIO_ACTUALIZADO_EN})。您的具体价格主要取决于年龄、保障级别,以及是否需要门诊免自付。
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="zh"
+            fuente="zh-cost"
+            label="按年龄查看我的确切价格(免费,无需DNI)→"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-          >
-            按年龄查看我的确切价格(免费,无需DNI)→
-          </Link>
+          />
           <p className="text-xs text-gray-400 mt-3">
             <Link href="/zh/yiliao-baoxian-agenting" className="text-[#E8002D] hover:underline font-medium">← 阿根廷医疗保险总览指南</Link>
           </p>
@@ -181,12 +182,12 @@ export default function YiliaoBaoxianFeiyongAgentingPage() {
           <p className="text-red-200 text-sm mb-6">
             免费、无需注册、无需DNI。专门服务外国客户的顾问将与您联系。
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="zh"
+            fuente="zh-cost-cta"
+            label="获取我的报价 →"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            获取我的报价 →
-          </Link>
+          />
         </div>
       </section>
     </>

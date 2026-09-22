@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `Страховка для беременных в Аргентине: роды и ведение беременности — ${SITE_NAME}` },
@@ -105,12 +106,12 @@ export default function StrahovkaDlyaBeremennyhPage() {
             сумму, равную 3 ежемесячным взносам. А вот заявить об уже подтверждённой беременности в момент
             оформления нельзя — в этом случае заявку, скорее всего, просто не примут.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="ru"
+            fuente="ru-pregnancy"
+            label="Сравнить планы (бесплатно, без DNI) →"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-          >
-            Сравнить планы (бесплатно, без DNI) →
-          </Link>
+          />
           <p className="text-xs text-gray-400 mt-3">
             <Link href="/ru/strahovanie-argentina" className="text-[#E8002D] hover:underline font-medium">← Общий гид по страховке в Аргентине</Link>
           </p>
@@ -185,12 +186,12 @@ export default function StrahovkaDlyaBeremennyhPage() {
           <p className="text-red-200 text-sm mb-6">
             Бесплатно, без регистрации, без DNI. С вами свяжется консультант, который работает с иностранцами.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="ru"
+            fuente="ru-pregnancy-cta"
+            label="Узнать мою цену →"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Узнать мою цену →
-          </Link>
+          />
         </div>
       </section>
     </>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `Argentina Mandatory Insurance Requirement 2026 (Decree 366/25) — ${SITE_NAME}` },
@@ -89,12 +90,12 @@ export default function MandatoryInsuranceDecree366Page() {
             entire stay (Decree 366/2025) — it can be checked at check-in or on arrival. The type of coverage you
             actually need depends on one thing: are you visiting for a few weeks, or moving here?
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="us"
+            fuente="en-decree366"
+            label="Compare local prepaga plans (free, no DNI required) →"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-          >
-            Compare local prepaga plans (free, no DNI required) →
-          </Link>
+          />
           <p className="text-xs text-gray-400 mt-3">
             ¿Preferís leer en español? <Link href="/para/extranjeros" className="text-[#E8002D] hover:underline font-medium">Guía en español →</Link>
           </p>
@@ -185,12 +186,12 @@ export default function MandatoryInsuranceDecree366Page() {
           <p className="text-red-200 text-sm mb-6">
             Free, no registration, no DNI required. An advisor who works with foreigners will contact you.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="us"
+            fuente="en-decree366-cta"
+            label="Get my quote →"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Get my quote →
-          </Link>
+          />
         </div>
       </section>
     </>

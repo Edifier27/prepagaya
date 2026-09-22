@@ -25,6 +25,14 @@ import { normalizarCelularAR } from './utils'
 
 const KOMMO_LINK_SECRET = process.env.KOMMO_LINK_SECRET ?? ''
 
+/** Celular listo para mandar a Kommo con "+" adelante: normalizado a
+ *  Argentina salvo que sea un lead internacional (d.pais seteado), en cuyo
+ *  caso ya viene armado con su propio código de país y se manda tal cual. */
+function telefonoConPrefijo(d: Pick<KommoLeadData, 'celular' | 'pais'>): string {
+  if (!d.celular) return ''
+  return d.pais ? `+${d.celular.replace(/\D/g, '')}` : `+${normalizarCelularAR(d.celular)}`
+}
+
 const VENCIMIENTO_MS = 1000 * 60 * 60 * 24 * 90 // 90 días
 const TIMEOUT_BUSQUEDA_MS = 3000 // nunca dejar que una consulta a Kommo frene el envío del lead
 
@@ -58,9 +66,13 @@ export interface KommoLeadData {
   fuente: string
   fecha: string
   ts: string // epoch ms al firmar, para el chequeo de vencimiento y el reparto
+  /** Leads de los silos internacionales (pedido de Darío, 22-sep-2026): 'us'/'ru'/'zh' —
+   *  cuando viene seteado, el celular ya llegó armado con su código de país real
+   *  (ver formatearCelularInternacional) y NO pasa por normalizarCelularAR. */
+  pais?: string
 }
 
-const CAMPOS: (keyof KommoLeadData)[] = ['nombre', 'celular', 'email', 'interes', 'provincia', 'edades', 'fuente', 'fecha', 'ts']
+const CAMPOS: (keyof KommoLeadData)[] = ['nombre', 'celular', 'email', 'interes', 'provincia', 'edades', 'fuente', 'fecha', 'ts', 'pais']
 
 function canonico(d: KommoLeadData): string {
   return CAMPOS.map((k) => d[k] ?? '').join('')
@@ -139,8 +151,8 @@ async function buscarEnCuenta(cuenta: KommoCuenta, query: string): Promise<Conta
  * Nunca tira: si Kommo está lento o caído, devuelve null y el flujo normal
  * sigue sin bloquearse (ver TIMEOUT_BUSQUEDA_MS).
  */
-export async function buscarContactoExistente(d: Pick<KommoLeadData, 'celular' | 'email'>): Promise<ContactoExistente | null> {
-  const telefono = d.celular ? `+${normalizarCelularAR(d.celular)}` : ''
+export async function buscarContactoExistente(d: Pick<KommoLeadData, 'celular' | 'email' | 'pais'>): Promise<ContactoExistente | null> {
+  const telefono = telefonoConPrefijo(d)
   const query = telefono || d.email
   if (!query) return null
 
@@ -172,6 +184,7 @@ function notaTexto(d: KommoLeadData, esDuplicado: boolean): string {
     // en el caso duplicado, por si ese lead ya tiene tags de otro sistema).
     esDuplicado ? '📍 PrepagaYa — volvió a consultar desde la web.' : null,
     d.interes ? `Interesado en: ${d.interes}` : null,
+    d.pais ? `🌎 Lead internacional (${d.pais.toUpperCase()}) — llamar con código de país` : null,
     d.provincia ? `Zona: ${d.provincia}` : null,
     d.edades ? `Edades: ${d.edades}` : null,
     d.fuente ? `Fuente: ${d.fuente}` : null,
@@ -218,7 +231,7 @@ export async function crearLeadEnKommo(d: KommoLeadData): Promise<ResultadoKommo
     return { ok: false, error: `Falta configurar Kommo para la cuenta de ${cfg.nombreDisplay} en el servidor.` }
   }
 
-  const telefono = d.celular ? `+${normalizarCelularAR(d.celular)}` : ''
+  const telefono = telefonoConPrefijo(d)
   const customFieldsContacto: Record<string, unknown>[] = []
   if (telefono) customFieldsContacto.push({ field_code: 'PHONE', values: [{ value: telefono, enum_code: 'MOB' }] })
   if (d.email) customFieldsContacto.push({ field_code: 'EMAIL', values: [{ value: d.email, enum_code: 'WORK' }] })

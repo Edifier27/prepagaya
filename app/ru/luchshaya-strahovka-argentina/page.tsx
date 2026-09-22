@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 // Declinación rusa de "clínica" según el número (1 клиника / 2-4 клиники /
 // 0,5+,11-14 клиник) — sanatoriosPropios varía por prepaga (0, 1, 9, 11...)
@@ -111,12 +112,12 @@ export default function LuchshayaStrahovkaArgentinaPage() {
             собственная клиника или цена. Вот как реально сравниваются четыре самых популярных варианта среди
             иностранцев, с реальными ценами на {PRECIO_ACTUALIZADO_EN.toLowerCase()}.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="ru"
+            fuente="ru-comparison"
+            label="Узнать точную цену для моего возраста →"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
-          >
-            Узнать точную цену для моего возраста →
-          </Link>
+          />
           <p className="text-xs text-gray-400 mt-3">
             <Link href="/ru/strahovanie-argentina" className="text-[#E8002D] hover:underline font-medium">← Общий гид по страховке в Аргентине</Link>
           </p>
@@ -195,12 +196,12 @@ export default function LuchshayaStrahovkaArgentinaPage() {
           <p className="text-red-200 text-sm mb-6">
             Бесплатно, без регистрации, без DNI. С вами свяжется консультант, который работает с иностранцами.
           </p>
-          <Link
-            href="/comparador"
+          <ContratarPlanButtonIntl
+            locale="ru"
+            fuente="ru-comparison-cta"
+            label="Узнать мою цену →"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Узнать мою цену →
-          </Link>
+          />
         </div>
       </section>
     </>
