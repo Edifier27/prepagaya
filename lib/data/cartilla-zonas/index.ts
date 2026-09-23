@@ -1,6 +1,7 @@
 import osdeData from './osde.json'
 import premedicData from './premedic.json'
 import avalianData from './avalian.json'
+import swissData from './swiss-medical.json'
 import {
   nombreCortoZona,
   normalizarTexto,
@@ -201,6 +202,28 @@ export const CARTILLAS: Record<string, CartillaPrepaga> = {
       labelGuardia: 'Guardias',
     },
     avalianData as CartillaJson,
+  ),
+  'swiss-medical': armar(
+    {
+      prepagaSlug: 'swiss-medical',
+      prepagaNombre: 'Swiss Medical',
+      fuenteUrl: 'https://www.swissmedical.com.ar/prepagaclientes/cartilla',
+      tipoFecha: 'consulta',
+      // Cada id es una cartilla del buscador oficial; qué planes usan cada
+      // una sale de la lista de planes del propio buscador (NU2/NU3/CL1/CLE/CLS).
+      // Los planes Sport no figuran en esa lista: no se asignan a ninguna.
+      planes: [
+        { id: 'SMG01', label: 'SMG01 (Nubial Clásica)' },
+        { id: 'SMG02', label: 'SMG02 y S1 (Nubial Quality)', comparadorSlug: 'smg02' },
+        { id: 'SMG10', label: 'SMG10 (Advance)' },
+        { id: 'SMG20', label: 'SMG20 y S2 (Global)', comparadorSlug: 'smg20' },
+        { id: 'SMG30', label: 'SMG30 a SMG70 (Premium)', comparadorSlug: 'smg30' },
+      ],
+      planesConPagina: ['SMG02', 'SMG20', 'SMG30'],
+      escalera: ['SMG01', 'SMG02', 'SMG10', 'SMG20', 'SMG30'],
+      labelGuardia: 'Guardias',
+    },
+    swissData as CartillaJson,
   ),
 }
 

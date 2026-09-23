@@ -11,7 +11,6 @@ import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 import { BuscadorCartillaZona } from '@/components/cartillas/BuscadorCartillaZona'
 import { getCartilla, nombreCortoZona, slugPlan, textoFecha, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
-import { centrosConPlanSuperior } from '@/components/cartillas/CentrosLista'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -60,10 +59,13 @@ export default async function CartillaPrepagaPage({ params }: Props) {
   const cartillaZonas = getCartilla(slug)
   const faqsCartillaZonas: { q: string; a: string }[] = []
   if (cartillaZonas) {
-    const [p1, p2] = cartillaZonas.escalera.map((id) => cartillaZonas.planes.find((p) => p.id === id)!)
+    const [p1, p2] = cartillaZonas.escalera
+      .filter((id) => cartillaZonas.planesConPagina.includes(id))
+      .map((id) => cartillaZonas.planes.find((p) => p.id === id)!)
     const caba = cartillaZonas.zonas.find((z) => z.slug === 'caba')
+    // Sanatorios de CABA que el segundo plan incluye para internación y el primero no
     const suma = caba && p1 && p2
-      ? centrosConPlanSuperior(caba.centros, p1.id, cartillaZonas.planes, cartillaZonas.escalera, 'internacion').filter((x) => x.desde.id === p2.id)
+      ? caba.centros.filter((c) => c.internacion.includes(p2.id) && !c.internacion.includes(p1.id)).map((c) => ({ nombre: c.nombre }))
       : []
     if (p1 && p2 && suma.length > 0) {
       faqsCartillaZonas.push({
