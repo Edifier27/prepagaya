@@ -172,6 +172,10 @@ export default function CartillasPage(): React.ReactElement {
             </p>
           </div>
           <BuscadorSanatorio />
+          <p className="text-sm text-gray-500 mt-3">
+            ¿Buscás un sanatorio puntual? Mirá{' '}
+            <Link href="/sanatorios" className="text-[#E8002D] font-semibold hover:underline">qué prepagas atienden en cada sanatorio</Link>.
+          </p>
         </div>
       </section>
 

@@ -13,6 +13,7 @@ import { cartillasInfo } from '@/lib/data/cartillas'
 import { CARTILLAS, combinacionesPlanZona, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { provinciasSEO } from '@/lib/data/zonas'
+import { sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { PRECIOS_UPDATE, CONTENT_UPDATE } from '@/lib/utils'
 
@@ -78,6 +79,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
     priority: 0.75,
   }))
+
+  // Qué prepagas atienden en cada sanatorio (cartillas oficiales, 23-sep-2026)
+  const sanatorioRoutes: MetadataRoute.Sitemap = [
+    { url: `${BASE}/sanatorios`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.6 },
+    ...sanatoriosPublicables().map((s) => ({
+      url: `${BASE}/sanatorios/${s.slug}`,
+      lastModified: CONTENT_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ]
 
   const guiaRoutes: MetadataRoute.Sitemap = guias.map((g) => ({
     url: `${BASE}/guias/${g.slug}`,
@@ -222,6 +234,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...comparativaRoutes,
     ...comparativaPlanesRoutes,
     ...guiaRoutes,
+    ...sanatorioRoutes,
     ...empresasRoutes,
     ...ciudadRoutes,
     ...perfilRoutes,
