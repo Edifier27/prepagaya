@@ -6,6 +6,8 @@ import Link from 'next/link'
 const NAV = [
   { href: '/empresas/swiss-medical', label: 'Swiss Medical' },
   { href: '/empresas/osde', label: 'OSDE' },
+  { href: '/empresas/sancor-salud', label: 'Sancor Salud' },
+  { href: '/empresas/avalian', label: 'Avalian' },
   { href: '/empresas/ranking', label: 'Ranking' },
   { href: '/empresas/como-cotizar', label: 'Cómo cotizar' },
   { href: '/empresas/beneficios-impositivos', label: 'Impositivo' },

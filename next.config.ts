@@ -331,6 +331,12 @@ const nextConfig: NextConfig = {
         destination: "/prepagas/prevencion-salud/a5",
         permanent: true,
       },
+      // Silo de empresas (23-sep-2026): /para/empresas canibalizaba al hub /empresas
+      {
+        source: "/para/empresas",
+        destination: "/empresas",
+        permanent: true,
+      },
     ];
   },
 };

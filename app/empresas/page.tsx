@@ -85,7 +85,7 @@ export default function EmpresasPage() {
             Para empresas y pymes · {PRECIO_ACTUALIZADO}
           </span>
           <h1 className="text-4xl sm:text-5xl font-semibold text-white mb-6 leading-[1.1] tracking-tight">
-            Cobertura médica para tu equipo, al precio de una empresa
+            Prepaga para empresas y pymes: cobertura médica para tu equipo
           </h1>
           <p className="text-gray-400 max-w-xl mx-auto text-base sm:text-lg leading-relaxed">
             Un plan corporativo no se cotiza como uno individual: depende de cuántos son y qué edad tienen. Dejanos tus datos y un asesor te arma la propuesta comparada entre las prepagas que mejor encajan con tu equipo.
@@ -253,6 +253,14 @@ export default function EmpresasPage() {
             <Link href="/empresas/osde" className="flex flex-col gap-1 p-4 bg-white/[0.03] rounded-xl border border-white/[0.08] hover:border-[#C7A046]/40 transition-all group">
               <span className="text-sm font-semibold text-white group-hover:text-[#C7A046]">Plan corporativo de OSDE →</span>
               <span className="text-xs text-gray-500">La red más grande del país</span>
+            </Link>
+            <Link href="/empresas/sancor-salud" className="flex flex-col gap-1 p-4 bg-white/[0.03] rounded-xl border border-white/[0.08] hover:border-[#C7A046]/40 transition-all group">
+              <span className="text-sm font-semibold text-white group-hover:text-[#C7A046]">Sancor Salud para empresas →</span>
+              <span className="text-xs text-gray-500">Plan a medida y club de beneficios</span>
+            </Link>
+            <Link href="/empresas/avalian" className="flex flex-col gap-1 p-4 bg-white/[0.03] rounded-xl border border-white/[0.08] hover:border-[#C7A046]/40 transition-all group">
+              <span className="text-sm font-semibold text-white group-hover:text-[#C7A046]">Avalian para empresas →</span>
+              <span className="text-xs text-gray-500">Plan corporativo Superior Plus</span>
             </Link>
             <Link href="/empresas/como-cotizar" className="flex flex-col gap-1 p-4 bg-white/[0.03] rounded-xl border border-white/[0.08] hover:border-[#C7A046]/40 transition-all group">
               <span className="text-sm font-semibold text-white group-hover:text-[#C7A046]">Cómo cotizar un plan corporativo →</span>

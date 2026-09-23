@@ -225,44 +225,6 @@ export const perfiles: PerfilData[] = [
     keywords: ['prepaga economica jovenes', 'prepaga barata argentina 2026', 'prepaga para estudiantes', 'prepaga mas barata argentina'],
   },
   {
-    slug: 'empresas',
-    nombre: 'Empresas y PyMEs',
-    emoji: '🏢',
-    titulo: 'Prepagas para empresas y PyMEs',
-    metaDescripcion: 'Compará prepagas corporativas para empresas y PyMEs en Argentina. Swiss Medical, OSDE y Sancor ofrecen planes grupales con precios especiales. Descubrí cuál conviene más.',
-    descripcion: 'Ofrecer una prepaga a tus empleados es uno de los beneficios más valorados en Argentina. Las prepagas corporativas tienen precios especiales y condiciones diferentes a los planes individuales.',
-    necesidades: [
-      'Precios corporativos (más bajos que individuales)',
-      'Gestión centralizada de afiliados',
-      'Incorporación y baja rápida de empleados',
-      'Un solo punto de contacto para RRHH',
-      'Facturación unificada',
-      'Planes diferenciados por jerarquía',
-    ],
-    prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'Líder en planes corporativos. Excelente servicio de RRHH, plataforma digital para gestión y reconocimiento de marca que retiene talento.' },
-      { slug: 'osde', razon: 'La opción más solicitada por empleados. Su marca y red son las más reconocidas, facilitando la atracción de talento.' },
-      { slug: 'sancor-salud', razon: 'Muy competitiva en precio para PyMEs. Buena relación precio-calidad para equipos de hasta 50 personas.' },
-      { slug: 'avalian', razon: 'Una de las 3 prepagas más grandes del país (1.2 millones de afiliados), con cobertura declarada en más de 24 provincias — sólida para empresas con equipos distribuidos en varias ciudades, no solo en CABA.' },
-    ],
-    planesRecomendados: [
-      { prepagaSlug: 'swiss-medical', planSlug: 'smg20', razon: 'El plan corporativo más elegido por empresas tech y servicios' },
-      { prepagaSlug: 'osde', planSlug: '310', razon: 'Estándar corporativo para empresas que priorizan la marca' },
-      { prepagaSlug: 'avalian', planSlug: 'as300', razon: 'Sin copago en consultas, cobertura nacional y telemedicina (e-doc) para equipos con presencia en varias provincias' },
-    ],
-    faq: [
-      {
-        q: '¿Cuántos empleados necesito para acceder a precios corporativos?',
-        a: 'Generalmente desde 5-10 empleados ya podés negociar precios corporativos con la mayoría de las prepagas. Swiss Medical y OSDE tienen equipos dedicados a empresas desde 5 empleados. Sancor Salud ofrece condiciones grupales desde 3 personas.',
-      },
-      {
-        q: '¿La empresa paga la prepaga completa o solo un porcentaje?',
-        a: 'Depende de lo que negocia la empresa. Lo más común es que la empresa pague el 100% del empleado y este contribuya con un porcentaje para agregar a su familia. Algunas empresas pagan solo el 50-80% del plan base.',
-      },
-    ],
-    keywords: ['prepaga para empresas argentina', 'prepaga corporativa pymes', 'swiss medical empresas', 'osde corporativo argentina'],
-  },
-  {
     slug: 'extranjeros',
     nombre: 'Extranjeros',
     emoji: '🌎',
