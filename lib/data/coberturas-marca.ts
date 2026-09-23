@@ -612,7 +612,190 @@ const premedic: CoberturaMarca[] = [
   },
 ]
 
-export const coberturasMarca: CoberturaMarca[] = [...swiss, ...avalian, ...premedic]
+// ─── OSDE ───────────────────────────────────────────────────────────────────
+// Fuente: páginas oficiales "Información al socio → Servicios y cobertura" de
+// osde.com.ar (una por tema), consultadas el 22-sep-2026. Donde la página no
+// menciona un plan (en general Flux) va "sin dato". Exterior queda afuera:
+// sus páginas de asistencia al viajero y urgencias en países limítrofes dan 404.
+const OSDE_URL = 'https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura'
+const osdeFuente = (tema: string, slug: string): FuenteCobertura => ({
+  nombre: `OSDE, Información al socio: Servicios y cobertura – ${tema}`,
+  fecha: 'septiembre 2026',
+  url: `${OSDE_URL}/${slug}`,
+})
+
+const OS = (plan: string, planSlugs: string[], incluido: boolean, detalle?: string, sinDato = false): PlanCobertura => ({ plan, planSlugs, incluido, detalle, sinDato })
+const OS_SIN = (plan: string, planSlugs: string[] = []): PlanCobertura => OS(plan, planSlugs, false, undefined, true)
+
+const osde: CoberturaMarca[] = [
+  {
+    tema: 'ortodoncia',
+    temaNombre: 'Ortodoncia',
+    prepagaSlug: 'osde',
+    prepagaNombre: 'OSDE',
+    pregunta: '¿OSDE cubre ortodoncia?',
+    title: '¿OSDE cubre ortodoncia? Edad por plan: 210, 310, 410, 450 y 510 (2026)',
+    description: 'Ortodoncia en OSDE: en los planes 210 y 310 de 8 a 18 años inclusive; en 410, 450 y 510, un tratamiento de por vida, con especialistas de cartilla. Datos oficiales de OSDE.',
+    keywords: ['osde cubre ortodoncia', 'osde ortodoncia', 'osde 210 ortodoncia', 'osde 310 ortodoncia', 'osde ortodoncia adultos'],
+    respuesta: 'Sí. En los planes 210 y 310 cubre ortodoncia de los 8 a los 18 años inclusive; en los planes 410, 450 y 510, un tratamiento de por vida. Siempre con especialistas de la cartilla, e incluye ajustes y aparatología.',
+    planes: [
+      OS('210', ['210'], true, 'De 8 a 18 años inclusive'),
+      OS('310', ['310'], true, 'De 8 a 18 años inclusive'),
+      OS('410', ['410'], true, 'Un tratamiento de por vida'),
+      OS('450', [], true, 'Un tratamiento de por vida'),
+      OS('510', ['510'], true, 'Un tratamiento de por vida'),
+      OS_SIN('Flux', ['flux']),
+    ],
+    detalles: [
+      { texto: 'El tratamiento incluye los ajustes y la aparatología necesaria, con profesionales de la cartilla.', fuente: 'Servicios y cobertura – Ortodoncia y ortopedia funcional' },
+      { texto: 'Si el tratamiento se interrumpe más de cuatro meses, la nueva etapa queda a cargo del socio.', fuente: 'Servicios y cobertura – Ortodoncia y ortopedia funcional' },
+    ],
+    fuentes: [osdeFuente('Ortodoncia y ortopedia funcional', 'ortodoncia-y-ortopedia-funcional')],
+    planCta: '210',
+  },
+  {
+    tema: 'optica',
+    temaNombre: 'Anteojos y lentes',
+    prepagaSlug: 'osde',
+    prepagaNombre: 'OSDE',
+    pregunta: '¿OSDE cubre anteojos y lentes de contacto?',
+    title: '¿OSDE cubre anteojos y lentes? Cobertura de óptica por plan (2026)',
+    description: 'Óptica en OSDE: desde el plan 410, un par de anteojos completos o de lentes de contacto cada dos años. Menores de 15 años: un par por año (PMO) en todos los planes. Datos oficiales de OSDE.',
+    keywords: ['osde cobertura lentes', 'osde reintegro anteojos', 'osde anteojos', 'osde optica', 'osde lentes de contacto'],
+    respuesta: 'Desde el plan 410: un par de anteojos completos con armazón estándar o un par de lentes de contacto cada dos años calendario. En todos los planes, los menores de 15 años tienen un par de anteojos por año (PMO).',
+    planes: [
+      OS('210', ['210'], true, 'Solo menores de 15 años: 1 par por año (PMO)'),
+      OS('310', ['310'], true, 'Solo menores de 15 años: 1 par por año (PMO)'),
+      OS('410', ['410'], true, '1 par de anteojos o lentes de contacto cada 2 años'),
+      OS('450', [], true, '1 par de anteojos o lentes de contacto cada 2 años'),
+      OS('510', ['510'], true, '1 par de anteojos o lentes de contacto cada 2 años'),
+      OS_SIN('Flux', ['flux']),
+    ],
+    detalles: [
+      { texto: 'Anteojos con cristales orgánicos, minerales blancos con tratamiento antirreflejo u otro material; esféricos hasta ±6 dioptrías, esferocilíndricos hasta ±4 (esf) ±2 (cil) y cilíndricos hasta ±2. Excluye bifocales y multifocales.', fuente: 'Servicios y cobertura – Óptica' },
+      { texto: 'Lentes de contacto flexibles o blandas esféricas, independientemente de las dioptrías; excluye tóricas y descartables.', fuente: 'Servicios y cobertura – Óptica' },
+      { texto: 'La cirugía refractiva tiene cobertura del 100% con profesionales de cartilla y autorización previa.', fuente: 'Servicios y cobertura – Cirugías' },
+    ],
+    fuentes: [osdeFuente('Óptica', 'optica'), osdeFuente('Cirugías', 'cirugias')],
+    planCta: '410',
+  },
+  {
+    tema: 'implantes-dentales',
+    temaNombre: 'Implantes dentales',
+    prepagaSlug: 'osde',
+    prepagaNombre: 'OSDE',
+    pregunta: '¿OSDE cubre implantes dentales?',
+    title: '¿OSDE cubre implantes dentales? Qué planes los incluyen (2026)',
+    description: 'Implantes dentales en OSDE: cobertura en los planes 410, 450 y 510 con prestadores contratados, con tope anual por beneficiario. Prótesis en todos los planes binarios. Datos oficiales de OSDE.',
+    keywords: ['osde cubre implantes dentales', 'osde implantes', 'osde 410 cubre implantes dentales', 'osde protesis dental'],
+    respuesta: 'Sí, en los planes 410, 450 y 510: cobertura en implantes con prestadores contratados, con tope por año calendario y por beneficiario. Las prótesis dentales tienen cobertura en todos los planes binarios.',
+    planes: [
+      OS('210', ['210'], false, 'Solo prótesis'),
+      OS('310', ['310'], false, 'Solo prótesis'),
+      OS('410', ['410'], true, 'Con tope anual'),
+      OS('450', [], true, 'Con tope anual'),
+      OS('510', ['510'], true, 'Con tope anual'),
+      OS_SIN('Flux', ['flux']),
+    ],
+    detalles: [
+      { texto: 'Con un profesional de la cartilla, el socio abona una diferencia solo si el tratamiento supera el tope anual. Los topes no son acumulativos y se renuevan el 1° de enero.', fuente: 'Servicios y cobertura – Prótesis' },
+    ],
+    fuentes: [osdeFuente('Prótesis', 'protesis')],
+    planCta: '410',
+  },
+  {
+    tema: 'odontologia',
+    temaNombre: 'Odontología',
+    prepagaSlug: 'osde',
+    prepagaNombre: 'OSDE',
+    pregunta: '¿Qué cubre OSDE en odontología?',
+    title: 'OSDE odontología: qué cubre el 210, 310, 410 y 510 (2026)',
+    description: 'Odontología en OSDE: cobertura al 100% con prestadores contratados en consultas, endodoncia, cirugía bucal, radiología, odontopediatría y periodoncia en los planes binarios. Datos oficiales de OSDE.',
+    keywords: ['osde cobertura odontologica', 'osde odontologia', 'osde 210 que cubre en odontologia', 'osde 310 que cubre en odontologia'],
+    respuesta: 'Los planes binarios (210, 310, 410, 450 y 510) cubren al 100%, con prestadores contratados, consultas, endodoncia, cirugía bucal, radiología, odontopediatría, periodoncia y más. La ortodoncia y los implantes dependen del plan.',
+    planes: [
+      OS('210', ['210'], true, '100% con prestadores contratados'),
+      OS('310', ['310'], true, '100% con prestadores contratados'),
+      OS('410', ['410'], true, '100% con prestadores contratados'),
+      OS('450', [], true, '100% con prestadores contratados'),
+      OS('510', ['510'], true, '100% con prestadores contratados'),
+      OS_SIN('Flux', ['flux']),
+    ],
+    detalles: [
+      { texto: 'Ortodoncia: de 8 a 18 años en 210 y 310; un tratamiento de por vida en 410, 450 y 510.', fuente: 'Servicios y cobertura – Ortodoncia' },
+      { texto: 'Implantes: planes 410, 450 y 510, con tope anual. Prótesis: todos los planes binarios.', fuente: 'Servicios y cobertura – Prótesis' },
+    ],
+    fuentes: [osdeFuente('Odontología general', 'odontologia-general'), osdeFuente('Prótesis', 'protesis')],
+    planCta: '210',
+  },
+  {
+    tema: 'cirugia-estetica',
+    temaNombre: 'Cirugía estética',
+    prepagaSlug: 'osde',
+    prepagaNombre: 'OSDE',
+    pregunta: '¿OSDE cubre cirugía estética?',
+    title: '¿OSDE cubre cirugía estética? Cada cuánto en 410, 450 y 510 (2026)',
+    description: 'Cirugía estética bonificada en OSDE: una cada 3 años en el 410, una cada 2 años en el 450 y una por año en el 510, para cada integrante del grupo familiar. Datos oficiales de OSDE.',
+    keywords: ['osde cubre cirugia estetica', 'osde cirugia estetica', 'osde 510 cirugia estetica', 'osde 450 cirugía estética'],
+    respuesta: 'Sí, bonificada en los planes 410, 450 y 510, para cada integrante del grupo familiar: una cada 3 años calendario en el 410, una cada 2 años en el 450 y una por año en el 510.',
+    planes: [
+      OS('210', ['210'], false),
+      OS('310', ['310'], false),
+      OS('410', ['410'], true, '1 cada 3 años calendario'),
+      OS('450', [], true, '1 cada 2 años calendario'),
+      OS('510', ['510'], true, '1 por año calendario'),
+      OS_SIN('Flux', ['flux']),
+    ],
+    detalles: [
+      { texto: 'Para cada integrante del grupo familiar.', fuente: 'Servicios y cobertura – Cirugías' },
+    ],
+    fuentes: [osdeFuente('Cirugías', 'cirugias')],
+    planCta: '410',
+  },
+  {
+    tema: 'anticonceptivos',
+    temaNombre: 'Anticonceptivos',
+    prepagaSlug: 'osde',
+    prepagaNombre: 'OSDE',
+    pregunta: '¿OSDE cubre anticonceptivos?',
+    title: '¿OSDE cubre anticonceptivos? Cobertura al 100% y cómo pedirla (2026)',
+    description: 'OSDE cubre al 100% anticonceptivos orales, DIU, espermicidas, diafragmas y preservativos. Para los orales, parches y anillos hay que empadronarse una vez al año. Datos oficiales de OSDE.',
+    keywords: ['osde anticonceptivos', 'osde cubre anticonceptivos', 'osde pastillas anticonceptivas', 'osde diu'],
+    respuesta: 'Sí, al 100%: anticonceptivos orales, intrauterinos (DIU), espermicidas, diafragmas y preservativos. Para los orales, parches y anillos vaginales hay que empadronarse una vez por año en la app o en Gestiones online.',
+    planes: [
+      OS('Todos los planes', ['210', '310', '410', '510', 'flux'], true, '100%'),
+    ],
+    detalles: [
+      { texto: 'El empadronamiento anual se hace desde la app OSDE (Trámites > Gestiones médicas > Anticonceptivos) o en la web (Gestiones online).', fuente: 'Servicios y cobertura – Anticonceptivos' },
+      { texto: 'Los preservativos se cubren por reintegro, con el ticket o factura de una farmacia de la cartilla.', fuente: 'Servicios y cobertura – Anticonceptivos' },
+    ],
+    fuentes: [osdeFuente('Anticonceptivos', 'anticonceptivos')],
+    planCta: '210',
+  },
+  {
+    tema: 'medicamentos',
+    temaNombre: 'Medicamentos',
+    prepagaSlug: 'osde',
+    prepagaNombre: 'OSDE',
+    pregunta: '¿Cuánto cubre OSDE en medicamentos?',
+    title: 'OSDE medicamentos: 40% de descuento en farmacias adheridas (2026)',
+    description: 'OSDE cubre el 40% en medicamentos recetados en su red de farmacias adheridas. No cubre venta libre, preparados, recetas magistrales ni cosméticos. Datos oficiales de OSDE.',
+    keywords: ['osde cobertura medicamentos', 'osde medicamentos', 'osde descuento farmacia', 'osde farmacias'],
+    respuesta: 'El 40% en medicamentos recetados en la red de farmacias adheridas (receta, credencial y DNI), y el 70% en ciertos medicamentos para patologías crónicas. Los de venta libre, preparados, recetas magistrales o con fines cosméticos no tienen cobertura.',
+    planes: [
+      OS('Todos los planes', ['210', '310', '410', '510', 'flux'], true, '40% en farmacias adheridas'),
+    ],
+    detalles: [
+      { texto: 'Las recetas vencen a los 30 días desde el inicio de su vigencia; solo el médico tratante puede extenderla.', fuente: 'Servicios y cobertura – Medicamentos ambulatorios' },
+      { texto: 'Hasta tres medicamentos por receta.', fuente: 'Servicios y cobertura – Medicamentos ambulatorios' },
+      { texto: 'Ciertos medicamentos de uso permanente para patologías crónicas tienen 70% de descuento en farmacias adheridas (Resolución 310/04), completando un formulario en Gestiones online o la app.', fuente: 'Servicios y cobertura – Medicamentos para patologías crónicas' },
+    ],
+    fuentes: [osdeFuente('Medicamentos ambulatorios', 'medicamentos-ambulatorios'), osdeFuente('Medicamentos para patologías crónicas', 'medicamentos-para-patologias-cronicas')],
+    planCta: '210',
+  },
+]
+
+export const coberturasMarca: CoberturaMarca[] = [...swiss, ...avalian, ...premedic, ...osde]
 
 export function getCoberturaMarca(tema: string, prepagaSlug: string): CoberturaMarca | undefined {
   return coberturasMarca.find((c) => c.tema === tema && c.prepagaSlug === prepagaSlug)

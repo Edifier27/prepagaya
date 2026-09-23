@@ -111,7 +111,7 @@ export const coberturas: CoberturaData[] = [
     queEstableceLaLey: 'El PMO cubre urgencias odontológicas (dolor agudo, infección, trauma), extracciones y algunas obturaciones. La cobertura dental amplia (ortodoncia, prótesis, implantes, blanqueamiento) NO está en el PMO y depende de cada plan y prepaga.',
     prepagasRecomendadas: [
       { slug: 'swiss-medical', razon: 'Swiss Medical incluye odontología general en todos sus planes estándar (de S1/S2 a SMG70). Ortodoncia desde el SMG20 (hasta 15 años), hasta 18 años en SMG30 y SMG40 y sin límite de edad desde el SMG50; implantes desde el SMG50 (por reintegro en S1/S2), según su comparativo oficial de julio 2026.', planSlug: 'smg20' },
-      { slug: 'osde', razon: 'OSDE tiene convenio con la red de odontólogos más amplia del país. El Plan 310 incluye cobertura dental básica-media con copago. El Plan 410 amplía significativamente la cobertura con acceso a más especialidades.', planSlug: '310' },
+      { slug: 'osde', razon: 'Según OSDE, sus planes binarios cubren al 100% con prestadores contratados consultas, endodoncia, cirugía bucal, radiología, odontopediatría y periodoncia. Desde el 410 suma ortodoncia de por vida e implantes con tope anual.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud Plan 3000 incluye cobertura dental con buena relación precio-calidad. Red amplia en el interior del país, donde otras prepagas tienen menos odontólogos adheridos.', planSlug: 'plan-3000' },
       { slug: 'premedic', razon: 'Todos los planes de Premedic incluyen su red odontológica propia (Smile Group), y los planes 400 y 500 suman descuentos en implantes, ortodoncia y estética dental, según sus fichas oficiales.', planSlug: 'plan-400' },
     ],
@@ -313,7 +313,7 @@ export const coberturas: CoberturaData[] = [
     queEstableceLaLey: 'El PMO no incluye óptica de forma obligatoria. Sin embargo, muchas prepagas la incluyen como beneficio adicional. Sí es obligatorio el control oftalmológico como parte del PMO. Para discapacidad visual, la Ley 24.901 obliga a cubrir lentes u órtesis visuales.',
     prepagasRecomendadas: [
       { slug: 'swiss-medical', razon: 'Swiss Medical cubre un par de anteojos o lentes de contacto standard por año y por persona en todos sus planes estándar excepto el SMG02, y también cirugía refractiva, según su comparativo oficial de julio 2026.', planSlug: 'smg20' },
-      { slug: 'osde', razon: 'OSDE tiene convenio con la red de ópticas más grande del país (Óptica Carol, entre otras). El Plan 310 incluye cobertura con tope anual. El 410 amplía el beneficio con mayor cobertura en lentes progresivos.', planSlug: '310' },
+      { slug: 'osde', razon: 'Según OSDE, desde el plan 410 cubre un par de anteojos completos con armazón estándar o un par de lentes de contacto cada dos años (excluye bifocales y multifocales). En los planes 210 y 310 rige lo del PMO: un par por año para menores de 15.', planSlug: '410' },
       { slug: 'sancor-salud', razon: 'Sancor Salud Plan 3000 incluye beneficio óptico con cobertura parcial. Buena relación precio-calidad para quienes necesitan renovar anteojos cada 2 años.', planSlug: 'plan-3000' },
     ],
     prepagasRestrictivas: [
