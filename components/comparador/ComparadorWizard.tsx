@@ -1779,12 +1779,15 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             </div>
           )}
 
-          <div className="space-y-4 mb-8">
+          <div className="space-y-3 mb-8">
             {(verTodos || sortBy !== 'relevancia' ? resultadosFiltrados : resultadosFiltrados.slice(0, RECOMENDADOS_VISIBLES)).map((res, i) => {
               const planKey = `${res.prepaga.slug}-${res.plan.slug}`
               const isBest = planKey === bestKey
               const isCheapest = planKey === cheapestKey && planKey !== bestKey
               const isAccedido = planAccedido === planKey
+              // La de Swiss (primera por relevancia) queda grande y destacada;
+              // el resto, compactas (Darío, 23-sep-2026).
+              const grande = isBest && res.prepaga.slug === 'swiss-medical'
 
               return (
                 <div key={`${planKey}::${filtroVersion}`}
@@ -1794,171 +1797,127 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   }`}>
 
                   {isBest && (
-                    <div className="bg-[#E8002D] text-white text-xs font-bold px-4 py-2 flex items-center gap-2">
+                    <div className="bg-[#E8002D] text-white text-xs font-bold px-4 py-1.5 flex items-center gap-2">
                       <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                       Mejor opción para tu perfil
                     </div>
                   )}
                   {!isBest && destacados.get(planKey) && (
-                    <div className="bg-amber-50 text-amber-800 border-b border-amber-100 text-xs font-bold px-4 py-2 flex items-center gap-2">
+                    <div className="bg-amber-50 text-amber-800 border-b border-amber-100 text-xs font-bold px-4 py-1.5 flex items-center gap-2">
                       <span className="text-amber-500">★</span>
                       {destacados.get(planKey)}
                     </div>
                   )}
                   {isCheapest && !destacados.get(planKey) && (
-                    <div className="bg-[#00875A] text-white text-xs font-bold px-4 py-2 flex items-center gap-2">
+                    <div className="bg-[#00875A] text-white text-xs font-bold px-4 py-1.5 flex items-center gap-2">
                       <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
                       Plan más económico
                     </div>
                   )}
 
-                  <div className="p-5">
-                    {/* Header: name + quality circle */}
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div className="flex-1 min-w-0">
-                        <div className="font-bold text-gray-900 text-lg leading-tight">{res.prepaga.nombre}</div>
-                        <div className="text-gray-500 text-sm">{res.plan.nombre}</div>
-                        <div className="text-xs text-gray-400 mt-0.5">{res.plan.descripcion}</div>
-                      </div>
-                      <div className="text-center flex-shrink-0">
-                        {/* Antes: puntaje "Calidad cartilla X/5" calculado (sin fuente)
-                            que dejaba a partners en 1/5 — reemplazado por los dos
-                            datos concretos que lo formaban (23-sep-2026). */}
-                        <div className="flex flex-col items-center gap-1">
-                          <span className={`text-[10px] px-2 py-0.5 rounded-full border font-semibold whitespace-nowrap ${res.plan.redAbierta ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-gray-50 text-gray-600 border-gray-200'}`}>
-                            Red {res.plan.redAbierta ? 'abierta' : 'cerrada'}
-                          </span>
-                          <span className={`text-[10px] px-2 py-0.5 rounded-full border font-semibold whitespace-nowrap ${res.plan.copago ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-green-50 text-green-700 border-green-200'}`}>
-                            {res.plan.copago ? 'Con copago' : 'Sin copago'}
-                          </span>
+                  {/* Card compacta (23-sep-2026): antes ~600px en celular, casi
+                      una pantalla por plan y el botón al fondo. Ahora: plan,
+                      4 chips que diferencian, precio y botón en la misma fila. */}
+                  <div className={grande ? 'p-5' : 'p-4'}>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="flex items-baseline gap-x-2 flex-wrap">
+                          <span className={`font-bold text-gray-900 leading-tight ${grande ? 'text-xl' : 'text-base'}`}>{res.prepaga.nombre}</span>
+                          <span className={`text-gray-600 ${grande ? 'text-base font-semibold' : 'text-sm'}`}>{res.plan.nombre}</span>
                         </div>
-                        <label className="flex items-center justify-center gap-1 mt-2 cursor-pointer select-none">
-                          <input
-                            type="checkbox"
-                            checked={comparando.has(planKey)}
-                            onChange={() => toggleComparar(planKey)}
-                            disabled={!comparando.has(planKey) && comparando.size >= 3}
-                            className="w-3.5 h-3.5 accent-[#E8002D] cursor-pointer disabled:cursor-not-allowed"
-                          />
-                          <span className="text-[10px] font-semibold text-gray-400">Comparar</span>
-                        </label>
+                        <p className={grande ? 'text-sm text-gray-500 mt-1 leading-relaxed' : 'text-xs text-gray-400 mt-0.5 line-clamp-1'}>{res.plan.descripcion}</p>
                       </div>
+                      <label className="flex items-center gap-1 cursor-pointer select-none flex-shrink-0 pt-0.5">
+                        <input
+                          type="checkbox"
+                          checked={comparando.has(planKey)}
+                          onChange={() => toggleComparar(planKey)}
+                          disabled={!comparando.has(planKey) && comparando.size >= 3}
+                          className="w-3.5 h-3.5 accent-[#E8002D] cursor-pointer disabled:cursor-not-allowed"
+                        />
+                        <span className="text-[10px] font-semibold text-gray-400">Comparar</span>
+                      </label>
                     </div>
 
-                    {/* Cobertura dots */}
-                    <div className="space-y-1.5 mb-3">
-                      {([
-                        { label: 'Odontología', id: 'odontologia' as CobId },
-                        { label: 'Psicología',  id: 'psicologia'  as CobId },
-                        { label: 'Maternidad',  id: 'maternidad'  as CobId },
-                      ]).map(({ label, id }) => {
-                        const included = checkCob(id, res.plan, res.prepaga)
-                        return (
-                          <div key={id} className="flex items-center gap-2 text-xs text-gray-600">
-                            <span className="font-medium w-24 flex-shrink-0">{label}</span>
-                            <div className="flex gap-1">
-                              {[1,2,3].map((d) => (
-                                <div key={d} className={`w-2.5 h-2.5 rounded-full ${
-                                  included
-                                    ? d === 1 ? 'bg-[#E8002D]' : d === 2 ? 'bg-red-300' : 'bg-red-100'
-                                    : 'bg-gray-200'
-                                }`} />
-                              ))}
-                            </div>
-                            <span className={`text-[10px] font-medium ${included ? 'text-[#E8002D]' : 'text-gray-300'}`}>
-                              {included ? 'Incluida' : 'No incluida'}
-                            </span>
-                          </div>
-                        )
-                      })}
+                    {/* Solo lo que diferencia un plan de otro (psicología y
+                        maternidad son PMO: las tienen todos) */}
+                    <div className="flex flex-wrap gap-1.5 mt-2.5">
+                      <span className={`text-[11px] px-2 py-0.5 rounded-full border font-semibold ${res.plan.copago ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-green-50 text-green-700 border-green-200'}`}>
+                        {res.plan.copago ? 'Con copago' : 'Sin copago'}
+                      </span>
+                      <span className={`text-[11px] px-2 py-0.5 rounded-full border font-semibold ${res.plan.redAbierta ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-gray-50 text-gray-600 border-gray-200'}`}>
+                        Red {res.plan.redAbierta ? 'abierta' : 'cerrada'}
+                      </span>
+                      {res.prepaga.sanatoriosPropios > 0 && <span className="text-[11px] px-2 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full font-semibold">Sanatorio propio</span>}
+                      {checkCob('ortodoncia', res.plan, res.prepaga)
+                        ? <span className="text-[11px] px-2 py-0.5 bg-purple-50 text-purple-700 border border-purple-200 rounded-full font-semibold">Ortodoncia</span>
+                        : checkCob('odontologia', res.plan, res.prepaga) && <span className="text-[11px] px-2 py-0.5 bg-purple-50 text-purple-700 border border-purple-200 rounded-full font-semibold">Odontología</span>}
+                      {grande && res.prepaga.caracteristicas.coberturaNacional && <span className="text-[11px] px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-full font-semibold">Cobertura nacional</span>}
+                      {grande && checkCob('urgencias', res.plan, res.prepaga) && <span className="text-[11px] px-2 py-0.5 bg-orange-50 text-orange-700 border border-orange-200 rounded-full font-semibold">Urgencias 24hs</span>}
+                      {grande && checkCob('medicamentos', res.plan, res.prepaga) && <span className="text-[11px] px-2 py-0.5 bg-purple-50 text-purple-700 border border-purple-200 rounded-full font-semibold">Medicamentos</span>}
                     </div>
 
                     {/* Detalle de las coberturas filtradas: cada card ya pasó
                         todos los filtros activos, así que solo se describe qué
                         incluye este plan para cada cobertura pedida */}
                     {activeCobs.size > 0 && (
-                      <div className="bg-red-50/60 border border-red-100 rounded-xl px-3.5 py-2.5 mb-3 space-y-1.5">
-                        <p className="text-[10px] font-bold text-[#E8002D] uppercase tracking-widest">Lo que buscás, en este plan</p>
+                      <div className="bg-red-50/60 border border-red-100 rounded-xl px-3 py-2 mt-2.5 space-y-1">
                         {[...activeCobs].map((id) => (
                           <div key={id} className="flex items-start gap-1.5 text-xs text-gray-700">
                             <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-[#00875A] flex-shrink-0 mt-px">
                               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
                             </svg>
-                            <span><span className="font-semibold text-gray-900">{COB_MAP[id].label}:</span> {detalleCob(id, res.plan)}</span>
+                            <span className="line-clamp-2"><span className="font-semibold text-gray-900">{COB_MAP[id].label}:</span> {detalleCob(id, res.plan)}</span>
                           </div>
                         ))}
                       </div>
                     )}
 
-                    {/* Benefit pills */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {!res.plan.copago && <span className="text-[11px] px-2.5 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded-full font-semibold">Sin copago</span>}
-                      {res.plan.redAbierta && <span className="text-[11px] px-2.5 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-full font-semibold">Red abierta</span>}
-                      {res.prepaga.sanatoriosPropios > 0 && <span className="text-[11px] px-2.5 py-0.5 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full font-semibold">Sanatorio propio</span>}
-                      {res.prepaga.caracteristicas.coberturaNacional && <span className="text-[11px] px-2.5 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-full font-semibold">Cobertura nacional</span>}
-                      {checkCob('urgencias', res.plan, res.prepaga) && <span className="text-[11px] px-2.5 py-0.5 bg-orange-50 text-orange-700 border border-orange-200 rounded-full font-semibold">Urgencias 24hs</span>}
-                      {checkCob('medicamentos', res.plan, res.prepaga) && <span className="text-[11px] px-2.5 py-0.5 bg-purple-50 text-purple-700 border border-purple-200 rounded-full font-semibold">Medicamentos</span>}
-                      {checkCob('optica', res.plan, res.prepaga) && <span className="text-[11px] px-2.5 py-0.5 bg-cyan-50 text-cyan-700 border border-cyan-200 rounded-full font-semibold">Óptica</span>}
-                    </div>
-
-                    {/* Precio estimado + CTA */}
-                    <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pt-3 border-t border-gray-100">
-                      <div className="space-y-1.5 min-w-0">
-                        <div className="flex items-baseline gap-2 flex-wrap">
+                    {/* Precio + botón en la misma fila */}
+                    <div className={`flex items-center justify-between gap-3 border-t border-gray-100 ${grande ? 'mt-4 pt-4' : 'mt-3 pt-3'}`}>
+                      <div className="min-w-0">
+                        <div className="flex items-baseline gap-1.5 flex-wrap">
                           {res.precioGrupal > precioFinal(res.precioDesc) && (
-                            <span className="text-sm text-gray-400 line-through blur-[3px] select-none" aria-hidden>{formatPrecio(res.precioGrupal)}</span>
+                            <span className="text-xs text-gray-400 line-through blur-[3px] select-none" aria-hidden>{formatPrecio(res.precioGrupal)}</span>
                           )}
                           <PrecioBloqueado texto={<>{formatPrecio(precioFinal(res.precioDesc))}<span className="text-xs font-medium text-gray-400">/mes*</span></>} />
                         </div>
-                        <div className="text-xs text-gray-500">Para {personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoRate * 100)}% de descuento aplicado</div>
-                        <p className="text-[10px] text-gray-400 leading-snug max-w-[220px]">*Estimado sobre precios de lista. El valor final se confirma con un asesor.</p>
-                        {isCheapest && (
-                          <div className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold px-2 py-0.5 rounded-full border border-emerald-200">
-                            Plan más accesible en tu categoría
-                          </div>
-                        )}
-                        <div className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 text-[11px] font-bold px-2.5 py-1 rounded-full border border-amber-200">
-                          💬 En el asesoramiento podés acceder a más descuento
-                        </div>
+                        <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoRate * 100)}% OFF</div>
                       </div>
-                      <div className="flex flex-col gap-2 items-stretch sm:items-end flex-shrink-0">
-                        <div className="flex items-center gap-3 justify-between sm:justify-end">
-                          <button onClick={() => setCartillaAbierta(res)}
-                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E8002D] bg-red-50 hover:bg-red-100 border border-red-100 rounded-full px-3 py-1.5 transition-colors whitespace-nowrap">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 flex-shrink-0">
-                              <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>
-                            </svg>
-                            Ver cartilla
-                          </button>
-                          <button onClick={() => setPlanAbierto(res)}
-                            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#E8002D] bg-red-50 hover:bg-red-100 border border-red-100 rounded-full px-3 py-1.5 transition-colors whitespace-nowrap">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 flex-shrink-0">
-                              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 7h6m-6 4h6"/>
-                            </svg>
-                            Ver plan
-                          </button>
+                      {isAccedido && planAccedidoStatus === 'success' ? (
+                        <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center max-w-[160px]">
+                          ¡Listo! En breve te enviamos la cotización
                         </div>
-                        {isAccedido && planAccedidoStatus === 'success' ? (
-                          <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center">
-                            ¡Excelente! En breve te enviamos la cotización
-                          </div>
-                        ) : (
-                          <button onClick={() => handleAccederPlan(res)}
-                            disabled={isAccedido && planAccedidoStatus === 'loading'}
-                            className="w-full sm:w-auto px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white text-sm font-bold rounded-xl transition-all shadow-sm hover:shadow-md disabled:opacity-60 flex items-center justify-center gap-2 whitespace-nowrap">
-                            {isAccedido && planAccedidoStatus === 'loading' ? (
-                              <svg className="animate-spin w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
-                            ) : null}
-                            Ver precio →
-                          </button>
-                        )}
-                      </div>
+                      ) : (
+                        <button onClick={() => handleAccederPlan(res)}
+                          disabled={isAccedido && planAccedidoStatus === 'loading'}
+                          className={`flex-shrink-0 ${grande ? 'px-6 py-3 text-base' : 'px-4 py-2.5 text-sm'} bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-sm hover:shadow-md disabled:opacity-60 flex items-center justify-center gap-2 whitespace-nowrap`}>
+                          {isAccedido && planAccedidoStatus === 'loading' ? (
+                            <svg className="animate-spin w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+                          ) : null}
+                          Ver precio →
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-4 mt-2">
+                      <button onClick={() => setPlanAbierto(res)} className="text-xs font-semibold text-[#E8002D] hover:underline">
+                        Ver plan
+                      </button>
+                      <button onClick={() => setCartillaAbierta(res)} className="text-xs font-semibold text-[#E8002D] hover:underline">
+                        Ver cartilla
+                      </button>
                     </div>
                   </div>
                 </div>
               )
             })}
           </div>
+          {resultadosFiltrados.length > 0 && (
+            <p className="text-[11px] text-gray-400 leading-snug -mt-5 mb-6">
+              *Estimado sobre precios de lista, con el {Math.round(descuentoRate * 100)}% de descuento aplicado. El valor final lo confirma un asesor, que en el asesoramiento puede conseguirte más descuento.
+            </p>
+          )}
           {!verTodos && sortBy === 'relevancia' && resultadosFiltrados.length > RECOMENDADOS_VISIBLES && (
             <div className="text-center -mt-4 mb-8">
               <button
