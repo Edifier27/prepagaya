@@ -22,6 +22,8 @@ export interface PlanCobertura {
   incluido: boolean
   /** detalle de la fuente para ese plan, ej. "Hasta 18 años" */
   detalle?: string
+  /** la fuente no lo menciona para este plan: NO se afirma que no lo cubre */
+  sinDato?: boolean
 }
 
 export interface CoberturaMarca {
@@ -449,7 +451,168 @@ const avalian: CoberturaMarca[] = [
   },
 ]
 
-export const coberturasMarca: CoberturaMarca[] = [...swiss, ...avalian]
+// ─── Premedic ───────────────────────────────────────────────────────────────
+// Fuente: las fichas oficiales de cada plan en web.grupopremedic.com.ar/planes
+// (C-100, 200, 300, 400, 500, por aportes, Joven y Simple), consultadas el
+// 22-sep-2026. Son fichas comerciales: si un beneficio no aparece en la ficha
+// de un plan se marca "sin dato" (sinDato), nunca "no incluido".
+const PREMEDIC_FICHAS: FuenteCobertura = { nombre: 'Fichas oficiales de los planes de Premedic (web.grupopremedic.com.ar/planes)', fecha: 'septiembre 2026', url: 'https://web.grupopremedic.com.ar/planes/300' }
+
+const PM = (plan: string, planSlugs: string[], incluido: boolean, detalle?: string, sinDato = false): PlanCobertura => ({ plan, planSlugs, incluido, detalle, sinDato })
+const PM_SIN = (plan: string, planSlugs: string[] = []): PlanCobertura => PM(plan, planSlugs, false, undefined, true)
+
+const premedic: CoberturaMarca[] = [
+  {
+    tema: 'ortodoncia',
+    temaNombre: 'Ortodoncia',
+    prepagaSlug: 'premedic',
+    prepagaNombre: 'Premedic',
+    pregunta: '¿Premedic cubre ortodoncia?',
+    title: '¿Premedic cubre ortodoncia o brackets? Qué ofrece cada plan (2026)',
+    description: 'Ortodoncia en Premedic: arancel preferencial en el Plan C-100 y descuentos en ortodoncia en los planes 400 y 500, en su red odontológica propia. Datos de sus fichas oficiales 2026.',
+    keywords: ['premedic cubre ortodoncia', 'premedic cubre brackets', 'premedic ortodoncia', 'premedic odontologia que cubre'],
+    respuesta: 'Según sus fichas oficiales, no como cobertura total: el Plan C-100 ofrece ortodoncia con arancel preferencial y los planes 400 y 500, descuentos en ortodoncia. Todos los planes tienen la red odontológica propia de Premedic.',
+    planes: [
+      PM('C-100', [], true, 'Arancel preferencial'),
+      PM_SIN('200', ['plan-200']),
+      PM_SIN('300', ['plan-300']),
+      PM('400', ['plan-400'], true, 'Descuentos'),
+      PM('500', [], true, 'Descuentos'),
+      PM_SIN('Por aportes'),
+    ],
+    detalles: [
+      { texto: 'Todos los planes incluyen la red odontológica propia de Premedic.', fuente: 'Fichas oficiales de los planes' },
+      { texto: 'Los planes 400 y 500 informan "descuentos en implantes, ortodoncia y estética dental".', fuente: 'Fichas oficiales de los planes 400 y 500' },
+    ],
+    fuentes: [PREMEDIC_FICHAS],
+    planCta: 'plan-400',
+  },
+  {
+    tema: 'implantes-dentales',
+    temaNombre: 'Implantes dentales',
+    prepagaSlug: 'premedic',
+    prepagaNombre: 'Premedic',
+    pregunta: '¿Premedic cubre implantes dentales?',
+    title: '¿Premedic cubre implantes dentales? Qué ofrece cada plan (2026)',
+    description: 'Implantes dentales en Premedic: el Plan C-100 los menciona entre sus beneficios y los planes 400 y 500 ofrecen descuentos en implantes. Datos de sus fichas oficiales 2026.',
+    keywords: ['premedic cubre implantes dentales', 'premedic implantes', 'premedic protesis dental'],
+    respuesta: 'Según sus fichas oficiales, el Plan C-100 menciona "prótesis e implantes odontológicos" entre sus beneficios, y los planes 400 y 500 ofrecen descuentos en implantes. En los planes 200, 300 y por aportes la ficha no lo informa.',
+    planes: [
+      PM('C-100', [], true, 'Prótesis e implantes odontológicos'),
+      PM_SIN('200', ['plan-200']),
+      PM_SIN('300', ['plan-300']),
+      PM('400', ['plan-400'], true, 'Descuentos'),
+      PM('500', [], true, 'Descuentos'),
+      PM_SIN('Por aportes'),
+    ],
+    detalles: [
+      { texto: 'La ficha no detalla porcentajes ni topes: confirmalos con Premedic.', fuente: 'Fichas oficiales de los planes' },
+    ],
+    fuentes: [PREMEDIC_FICHAS],
+    planCta: 'plan-400',
+  },
+  {
+    tema: 'optica',
+    temaNombre: 'Anteojos y lentes',
+    prepagaSlug: 'premedic',
+    prepagaNombre: 'Premedic',
+    pregunta: '¿Premedic cubre anteojos?',
+    title: '¿Premedic cubre anteojos? Descuentos en ópticas por plan (2026)',
+    description: 'Óptica en Premedic: red de ópticas con descuento del 20% al 40% en los planes C-100 y Simple. Datos de sus fichas oficiales 2026.',
+    keywords: ['premedic cubre anteojos', 'premedic anteojos', 'premedic descuentos en opticas', 'premedic lentes gratis', 'premedic opticas'],
+    respuesta: 'Según sus fichas oficiales, Premedic ofrece una red de ópticas con descuentos del 20% al 40% en los planes C-100 y Simple. Las fichas no informan anteojos sin cargo.',
+    planes: [
+      PM('C-100', [], true, 'Descuento del 20% al 40% en ópticas de la red'),
+      PM_SIN('200', ['plan-200']),
+      PM_SIN('300', ['plan-300']),
+      PM_SIN('400', ['plan-400']),
+      PM_SIN('500'),
+      PM('Simple', [], true, 'Descuento del 20% al 40% en ópticas de la red'),
+    ],
+    detalles: [],
+    fuentes: [PREMEDIC_FICHAS],
+  },
+  {
+    tema: 'exterior',
+    temaNombre: 'Cobertura en el exterior',
+    prepagaSlug: 'premedic',
+    prepagaNombre: 'Premedic',
+    pregunta: '¿Premedic tiene cobertura en el exterior?',
+    title: '¿Premedic cubre en Brasil y el exterior? Asistencia al viajero (2026)',
+    description: 'Premedic incluye asistencia al viajero en Argentina y países limítrofes (Brasil, Chile, Uruguay, Paraguay y Bolivia) con Cardinal Assistance, en casi todos sus planes. Datos oficiales 2026.',
+    keywords: ['premedic cobertura internacional', 'premedic tiene cobertura en brasil', 'premedic asistencia al viajero', 'premedic exterior'],
+    respuesta: 'Sí, en países limítrofes: los planes 200, 300, 400, 500, por aportes, Joven y Simple incluyen asistencia al viajero con cobertura nacional y en países limítrofes, con Cardinal Assistance. Las fichas no informan cobertura en otros países.',
+    planes: [
+      PM_SIN('C-100'),
+      PM('200', ['plan-200'], true, 'Nacional y países limítrofes'),
+      PM('300', ['plan-300'], true, 'Nacional y países limítrofes'),
+      PM('400', ['plan-400'], true, 'Nacional y países limítrofes'),
+      PM('500', [], true, 'Nacional y países limítrofes'),
+      PM('Por aportes', [], true, 'Nacional y países limítrofes'),
+      PM('Joven', [], true, 'Nacional y países limítrofes'),
+      PM('Simple', [], true, 'Nacional y países limítrofes'),
+    ],
+    detalles: [
+      { texto: 'La asistencia al viajero es con Cardinal Assistance.', fuente: 'Fichas oficiales de los planes' },
+    ],
+    fuentes: [PREMEDIC_FICHAS],
+    planCta: 'plan-200',
+  },
+  {
+    tema: 'internacion',
+    temaNombre: 'Internación',
+    prepagaSlug: 'premedic',
+    prepagaNombre: 'Premedic',
+    pregunta: '¿Premedic cubre internación?',
+    title: '¿Premedic cubre internación? Habitación por plan (2026)',
+    description: 'Internación en Premedic: habitación compartida en C-100, 200, 300 y Joven; habitación individual en 400 y 500. El Plan Simple es 100% ambulatorio y no incluye internación. Datos oficiales 2026.',
+    keywords: ['premedic cubre internacion', 'premedic internacion', 'premedic habitacion individual', 'premedic plan simple internacion'],
+    respuesta: 'Sí, salvo el Plan Simple, que es 100% ambulatorio. Los planes C-100, 200, 300 y Joven internan en habitación compartida, y los planes 400 y 500 en habitación individual.',
+    planes: [
+      PM('C-100', [], true, 'Habitación compartida'),
+      PM('200', ['plan-200'], true, 'Habitación compartida'),
+      PM('300', ['plan-300'], true, 'Habitación compartida'),
+      PM('400', ['plan-400'], true, 'Habitación individual'),
+      PM('500', [], true, 'Habitación individual'),
+      PM('Joven', [], true, 'Habitación compartida'),
+      PM('Simple', [], false, 'Plan 100% ambulatorio'),
+    ],
+    detalles: [
+      { texto: 'El Plan 400 informa "cobertura en internación y cirugía (según PMO)".', fuente: 'Ficha oficial del Plan 400' },
+      { texto: 'El Plan Simple incluye urgencias y emergencias, pero no internación.', fuente: 'Ficha oficial del Plan Simple' },
+    ],
+    fuentes: [PREMEDIC_FICHAS],
+    planCta: 'plan-400',
+  },
+  {
+    tema: 'anticonceptivos',
+    temaNombre: 'Anticonceptivos',
+    prepagaSlug: 'premedic',
+    prepagaNombre: 'Premedic',
+    pregunta: '¿Premedic cubre anticonceptivos?',
+    title: 'Premedic anticonceptivos: servicio a domicilio por plan (2026)',
+    description: 'Premedic ofrece servicio de anticonceptivos a domicilio en los planes 200, 300, 400, 500, por aportes, Joven y Simple. Datos de sus fichas oficiales 2026.',
+    keywords: ['premedic anticonceptivos', 'premedic pastillas anticonceptivas', 'premedic nume'],
+    respuesta: 'Los planes 200, 300, 400, 500, por aportes, Joven y Simple incluyen servicio de anticonceptivos a domicilio, según sus fichas oficiales.',
+    planes: [
+      PM_SIN('C-100'),
+      PM('200', ['plan-200'], true, 'A domicilio'),
+      PM('300', ['plan-300'], true, 'A domicilio'),
+      PM('400', ['plan-400'], true, 'A domicilio'),
+      PM('500', [], true, 'A domicilio'),
+      PM('Por aportes', [], true, 'A domicilio'),
+      PM('Joven', [], true, 'A domicilio'),
+      PM('Simple', [], true, 'A domicilio'),
+    ],
+    detalles: [
+      { texto: 'La ficha no detalla porcentajes de cobertura del medicamento: confirmalo con Premedic.', fuente: 'Fichas oficiales de los planes' },
+    ],
+    fuentes: [PREMEDIC_FICHAS],
+    planCta: 'plan-200',
+  },
+]
+
+export const coberturasMarca: CoberturaMarca[] = [...swiss, ...avalian, ...premedic]
 
 export function getCoberturaMarca(tema: string, prepagaSlug: string): CoberturaMarca | undefined {
   return coberturasMarca.find((c) => c.tema === tema && c.prepagaSlug === prepagaSlug)

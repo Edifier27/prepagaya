@@ -46,7 +46,7 @@ export default async function CoberturaMarcaPage({ params }: Props) {
   const hub = coberturas.find((x) => x.slug === hubSlug)
   const hermanas = coberturasMarca.filter((x) => x.prepagaSlug === c.prepagaSlug && x.tema !== c.tema)
   const otrasMarcas = coberturasMarca.filter((x) => x.tema === c.tema && x.prepagaSlug !== c.prepagaSlug)
-  const incluidos = c.planes.filter((p) => p.incluido)
+  const incluidos = c.planes.filter((p) => p.incluido && !p.sinDato)
   const faqs = [
     { q: c.pregunta, a: c.respuesta },
     ...(incluidos.length && incluidos.length < c.planes.length
@@ -156,7 +156,12 @@ export default async function CoberturaMarcaPage({ params }: Props) {
                         )}
                       </td>
                       <td className="px-4 py-2.5">
-                        {p.incluido ? (
+                        {p.sinDato ? (
+                          <span className="inline-flex items-center gap-1.5 text-gray-400">
+                            <span aria-hidden>—</span>
+                            <span>Sin dato en la ficha oficial</span>
+                          </span>
+                        ) : p.incluido ? (
                           <span className="inline-flex items-center gap-1.5 text-emerald-700">
                             <span aria-hidden>✓</span>
                             <span>{p.detalle ?? 'Incluido'}</span>

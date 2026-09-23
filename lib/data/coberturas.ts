@@ -113,7 +113,7 @@ export const coberturas: CoberturaData[] = [
       { slug: 'swiss-medical', razon: 'Swiss Medical incluye odontología general en todos sus planes estándar (de S1/S2 a SMG70). Ortodoncia desde el SMG20 (hasta 15 años), hasta 18 años en SMG30 y SMG40 y sin límite de edad desde el SMG50; implantes desde el SMG50 (por reintegro en S1/S2), según su comparativo oficial de julio 2026.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene convenio con la red de odontólogos más amplia del país. El Plan 310 incluye cobertura dental básica-media con copago. El Plan 410 amplía significativamente la cobertura con acceso a más especialidades.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud Plan 3000 incluye cobertura dental con buena relación precio-calidad. Red amplia en el interior del país, donde otras prepagas tienen menos odontólogos adheridos.', planSlug: 'plan-3000' },
-      { slug: 'premedic', razon: 'Premedic tiene Smile Group, su propia red de 7 centros odontológicos en CABA, GBA e interior, con hasta 50% de descuento en implantes y ortodoncia — un diferencial fuerte en una prepaga de entrada.', planSlug: 'plan-400' },
+      { slug: 'premedic', razon: 'Todos los planes de Premedic incluyen su red odontológica propia (Smile Group), y los planes 400 y 500 suman descuentos en implantes, ortodoncia y estética dental, según sus fichas oficiales.', planSlug: 'plan-400' },
     ],
     prepagasRestrictivas: [
       { slug: 'prevencion-salud', detalle: 'Cobertura dental básica en los planes de entrada; recién en el Plan Platino suma implantes dentales.' },
@@ -276,7 +276,7 @@ export const coberturas: CoberturaData[] = [
       { slug: 'avalian', razon: 'Todos los planes que Avalian vende online (Integral, Superior y Selecta) incluyen servicio de urgencias y emergencias las 24 hs, los 7 días, y telemedicina (E-doc), según sus fichas oficiales.' },
     ],
     prepagasRestrictivas: [
-      { slug: 'premedic', detalle: 'Cobertura de urgencias concentrada en CABA, GBA, Córdoba y Tucumán. Fuera de esas zonas la cobertura de emergencias es más limitada.' },
+      { slug: 'premedic', detalle: 'Su cartilla se concentra en CABA, provincia de Buenos Aires, Córdoba, Tucumán, Misiones y Mendoza (fichas oficiales); fuera de esas zonas conviene confirmar la cobertura de urgencias.' },
     ],
     quePreguntar: [
       '¿Tienen ambulancias propias o con qué empresa trabajan?',
@@ -317,7 +317,7 @@ export const coberturas: CoberturaData[] = [
       { slug: 'sancor-salud', razon: 'Sancor Salud Plan 3000 incluye beneficio óptico con cobertura parcial. Buena relación precio-calidad para quienes necesitan renovar anteojos cada 2 años.', planSlug: 'plan-3000' },
     ],
     prepagasRestrictivas: [
-      { slug: 'premedic', detalle: 'Sin cobertura óptica incluida en sus planes.' },
+      { slug: 'premedic', detalle: 'Sus fichas oficiales no informan anteojos sin cargo; en los planes C-100 y Simple ofrece descuentos del 20% al 40% en su red de ópticas.' },
     ],
     quePreguntar: [
       '¿Cuál es el tope anual de cobertura óptica?',
@@ -423,7 +423,7 @@ export const coberturas: CoberturaData[] = [
       { slug: 'swiss-medical', razon: 'El Plan SMG30 de Swiss Medical cubre ortodoncia hasta los 18 años en un escalón más accesible que el tope de línea, sin necesidad de ir directo al plan más caro para tener esta cobertura.', planSlug: 'smg30' },
     ],
     prepagasRestrictivas: [
-      { slug: 'premedic', detalle: 'Ninguno de sus 3 planes menciona cobertura de ortodoncia — no es una prestación que ofrezcan hoy.' },
+      { slug: 'premedic', detalle: 'No la cubre al 100%: según sus fichas oficiales, el Plan C-100 ofrece ortodoncia con arancel preferencial y los planes 400 y 500, descuentos.' },
       { slug: 'prevencion-salud', detalle: 'Incluso en el Plan Platino (el más alto), la ortodoncia tiene tope en los 18 años.' },
     ],
     quePreguntar: [
@@ -465,7 +465,7 @@ export const coberturas: CoberturaData[] = [
     ],
     prepagasRestrictivas: [
       { slug: 'sancor-salud', detalle: 'Ningún plan del listado menciona cirugía estética como cobertura explícita.' },
-      { slug: 'premedic', detalle: 'No forma parte de la oferta en ninguno de sus 3 planes — coherente con ser la opción más económica del mercado.' },
+      { slug: 'premedic', detalle: 'Sus fichas oficiales no incluyen cirugía estética en ningún plan.' },
     ],
     quePreguntar: [
       '¿Desde qué antigüedad como afiliado puedo acceder a la cirugía estética?',
