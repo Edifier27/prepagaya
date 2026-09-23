@@ -1,0 +1,952 @@
+[
+{
+"rnemp": 315090,
+"nombre_comercial": "A.M.T.T.A.C",
+"descripcion": "ASOCIACION MUTUAL DE TRABAJADORES DEL TRANSPORTE AUTOMOTOR DE CARGAS"
+},
+{
+"rnemp": 110626,
+"nombre_comercial": "ALTA SALUD",
+"descripcion": "SANTA SALUD S.A."
+},
+{
+"rnemp": 412272,
+"nombre_comercial": "AMAB",
+"descripcion": "ASOCIACION MEDICA DE ALMIERANTE BROWN"
+},
+{
+"rnemp": 311814,
+"nombre_comercial": "AMAT SALUD",
+"descripcion": "ASOCIACION MUTUAL ARGENTINA DEL TURISMO"
+},
+{
+"rnemp": 113397,
+"nombre_comercial": "AMCE",
+"descripcion": "AMCE S.A."
+},
+{
+"rnemp": 313872,
+"nombre_comercial": "AMCI",
+"descripcion": "ASOCIACION MUTUAL DEL CONTROL INTEGRAL"
+},
+{
+"rnemp": 315830,
+"nombre_comercial": "AMEBS",
+"descripcion": "ASOCIACION MUTUAL DE TRABAJADORES CULTURALES Y SOCIALES"
+},
+{
+"rnemp": 320287,
+"nombre_comercial": "AMFFA SALUD",
+"descripcion": "ASOCIACION MUTUAL DE FARMACEUTICOS FLORENTINO AMEGHINO"
+},
+{
+"rnemp": 314134,
+"nombre_comercial": "AMICOS",
+"descripcion": "ASOC. MUTUAL INTERCOOOP. SOLID.PROV. DE CBA. (AMICOS)"
+},
+{
+"rnemp": 312039,
+"nombre_comercial": "AMMB",
+"descripcion": "ASOCIACION MUTUAL MERCANTIL BAHIENSE"
+},
+{
+"rnemp": 610720,
+"nombre_comercial": "AMPAR",
+"descripcion": "OBRA SOCIAL ASOCIACION MUTUAL DEL PERSONAL DE PHILIPS ARGENTINA (AMPAR)"
+},
+{
+"rnemp": 317096,
+"nombre_comercial": "AMPES SALUD",
+"descripcion": "Asociacion Mutual de Participantes de Economias Solidarias AMPES"
+},
+{
+"rnemp": 312398,
+"nombre_comercial": "AMPF SALUD",
+"descripcion": "ASOCIACION MUTUAL DE PROTECCION FAMILIAR"
+},
+{
+"rnemp": 314950,
+"nombre_comercial": "AMPHI",
+"descripcion": "ASOCIACION MUTUAL DE PROFESIONALES DEL HOSPITAL ITALIANO DE CORDOBA"
+},
+{
+"rnemp": 120023,
+"nombre_comercial": "AMR SALUD",
+"descripcion": "A.M.R. SALUD S.A.S."
+},
+{
+"rnemp": 320232,
+"nombre_comercial": "AMRGESTION",
+"descripcion": "MUTUAL DEL PERSONAL DE AGUA Y ENERGIA ELECTRICA DE SANTA FE"
+},
+{
+"rnemp": 117658,
+"nombre_comercial": "AMSTERDAM SALUD",
+"descripcion": "AMSTERDAM SALUD SA"
+},
+{
+"rnemp": 311036,
+"nombre_comercial": "AMUR",
+"descripcion": "ASOCIACION MUTUAL RURALISTA"
+},
+{
+"rnemp": 612528,
+"nombre_comercial": "ANDAR TE HACE BIEN",
+"descripcion": "OBRA SOCIAL DE VIAJANTES VENDEDORES DE LA REPUBLICA ARGENTINA."
+},
+{
+"rnemp": 111612,
+"nombre_comercial": "APRES COBERTURA MEDICA",
+"descripcion": "APRES S.A."
+},
+{
+"rnemp": 510334,
+"nombre_comercial": "APSOT",
+"descripcion": "FUNDACION SERVICIOS SOCIALES TECHINT"
+},
+{
+"rnemp": 110916,
+"nombre_comercial": "ASI SALUD",
+"descripcion": "ASISTENCIA SANITARIA INTEGRAL S.A."
+},
+{
+"rnemp": 314929,
+"nombre_comercial": "ASIO",
+"descripcion": "ASOCIACION MUTUAL DE SERVICIOS PARA INTERNACIONES Y OPERACIONES"
+},
+{
+"rnemp": 114819,
+"nombre_comercial": "ASISTIR SERVICIOS MEDICOS",
+"descripcion": "ASISTIR SA"
+},
+{
+"rnemp": 411255,
+"nombre_comercial": "ASMEDICA",
+"descripcion": "ASOCIACION MEDICA DPTO CASTELLANOS"
+},
+{
+"rnemp": 311159,
+"nombre_comercial": "ASOCIACION MUTUAL CONFIANZA Y SERVICIO",
+"descripcion": "ASOCIACION MUTUAL CON-SER CONFIANZA Y SERVICIO"
+},
+{
+"rnemp": 310163,
+"nombre_comercial": "ASOCIACION MUTUAL DE EMPLEADOS PROVINCIALES DE LA PROVINCIA DE BUENOS AIRES.",
+"descripcion": "ASOCIACION MUTUAL DE EMPLEADOS PROVINCIALES DE LA PROVINCIA DE BUENOS AIRES."
+},
+{
+"rnemp": 310231,
+"nombre_comercial": "ASOCIACION MUTUAL DE SALUD DE CIUDADELA",
+"descripcion": "ASOCIACION MUTUAL DE SALUD DE CIUDADELA"
+},
+{
+"rnemp": 312831,
+"nombre_comercial": "ASOCIACION MUTUAL DE TRABAJADORES PORTUARIOS DE LA REPUBLICA ARGENTINA",
+"descripcion": "ASOCIACION MUTUAL DE TRABAJADORES PORTUARIOS DE LA REPUBLICA ARGENTINA"
+},
+{
+"rnemp": 318457,
+"nombre_comercial": "ASOCIACION MUTUAL FRANCO ANDINA REGIONAL MENDOZA",
+"descripcion": "ASOCIACION MUTUAL FRANCO ANDINA REGIONALMENDOZA"
+},
+{
+"rnemp": 317515,
+"nombre_comercial": "ASOCIACION MUTUAL MECANICA",
+"descripcion": "ASOCIACION MUTUAL MECANICA ENTRE OBREROS, EMPLEADOS, TECNICOS Y PROFESIONALES AFILIADOS AL SINDICATO DE MECANICOS Y AFINES DEL TRANSPORTE AUTOMOTOR (SMATA)"
+},
+{
+"rnemp": 310712,
+"nombre_comercial": "ASOCIACION MUTUAL PARA AFILIADOS AL SINDICATO DE OBREROS CAMIONEROS",
+"descripcion": "ASOCIACION MUTUAL PARA AFILIADOS AL SINDICATO DE OBREROS CAMIONEROS"
+},
+{
+"rnemp": 311777,
+"nombre_comercial": "ASOCIACION MUTUAL Y PROTECCION RECIPROCA UNISOL SALUD",
+"descripcion": "ASOCIACION MUTUAL Y PROTECCION RECIPROCA UNISOL SALUD"
+},
+{
+"rnemp": 313650,
+"nombre_comercial": "ASOCIACIÓN MUTUAL MÉDICA DEL OESTE",
+"descripcion": "ASOCIACION MUTUAL MEDICA DEL OESTE"
+},
+{
+"rnemp": 620653,
+"nombre_comercial": "ASSPE",
+"descripcion": "OBRA SOCIAL ASOCIACION DE SERVICIOS SOCIALES PARA EMPRESARIOS Y PERSONAL DE DIRECCION DE EMPRESAS DEL COMERCIO, SERVICIOS, PRODUCCION, INDUSTRIA Y CIVIL (ASSPE )"
+},
+{
+"rnemp": 211947,
+"nombre_comercial": "AVALIAN",
+"descripcion": "AVALIAN SALUD Y BIENESTAR COOPERATIVA LIMITADA EX ACA SALUD COOPERATIVA DE PRESTACION DE SERVICIOS MEDICO ASISTENCIALES LTDA"
+},
+{
+"rnemp": 111162,
+"nombre_comercial": "AYUDA MEDICA",
+"descripcion": "CENTROMEDICA"
+},
+{
+"rnemp": 111650,
+"nombre_comercial": "BOREAL",
+"descripcion": "COBERTURA DE SALUD S.A."
+},
+{
+"rnemp": 112325,
+"nombre_comercial": "BRAMED MEDICINA PRIVADA",
+"descripcion": "BRAMED S.R.L."
+},
+{
+"rnemp": 110640,
+"nombre_comercial": "BRITANICA SALUD",
+"descripcion": "SALUD ROSARIO S.A."
+},
+{
+"rnemp": 411866,
+"nombre_comercial": "C.M.E.E",
+"descripcion": "CIRCULO MEDICO DE ESTEBAN ECHEVERRIA"
+},
+{
+"rnemp": 112066,
+"nombre_comercial": "CEM CENTRO DE EMERGENCIAS MEDICAS",
+"descripcion": "CEM S.R.L."
+},
+{
+"rnemp": 412593,
+"nombre_comercial": "CEMIC",
+"descripcion": "CENTRO DE EDUCACION MEDICA E INVESTIGACIONES CLINICAS"
+},
+{
+"rnemp": 110299,
+"nombre_comercial": "CENSALUD",
+"descripcion": "CENSALUD S.R.L."
+},
+{
+"rnemp": 113151,
+"nombre_comercial": "CENTRO MEDICO",
+"descripcion": "CENTRO MEDICO MONDE GRAN SA"
+},
+{
+"rnemp": 110565,
+"nombre_comercial": "CENTRO MEDICO PUEYRREDON",
+"descripcion": "CENTRO MEDICO PUEYRREDON"
+},
+{
+"rnemp": 311739,
+"nombre_comercial": "CENTRO UNION DEPENDIENTES ASOCIACION DE PROTECCION MUTUA",
+"descripcion": "CENTRO UNION DEPENDIENTES ASOCIACION DE PROTECCION MUTUA"
+},
+{
+"rnemp": 110060,
+"nombre_comercial": "CIMA INTEGRAL",
+"descripcion": "COBERTURA INTEGRAL DE MEDICINA ASISTENCIAL S.A."
+},
+{
+"rnemp": 411446,
+"nombre_comercial": "CMLZ CIRCULO MEDICO",
+"descripcion": "CIRCULO MEDICO DE LOMAS DE ZAMORA"
+},
+{
+"rnemp": 111537,
+"nombre_comercial": "COBER",
+"descripcion": "COBENSIL"
+},
+{
+"rnemp": 410573,
+"nombre_comercial": "COLEGIO MEDICO DE LA PAMPA",
+"descripcion": "COLEGIO MEDICO DE LA PAMPA"
+},
+{
+"rnemp": 420536,
+"nombre_comercial": "COLEGIO MEDICO DE SAN JUAN",
+"descripcion": "COLEGIO MEDICO DE SAN JUAN"
+},
+{
+"rnemp": 111551,
+"nombre_comercial": "CONSALUD UNA ELECCION DE VIDA",
+"descripcion": "PRESTADORES SANATORIALES SA"
+},
+{
+"rnemp": 120016,
+"nombre_comercial": "CONURBANO SALUD",
+"descripcion": "CONURBANO SALUD"
+},
+{
+"rnemp": 111520,
+"nombre_comercial": "CORPORACION MEDICA",
+"descripcion": "CORPORACION ASISTENCIAL S.A."
+},
+{
+"rnemp": 113960,
+"nombre_comercial": "CORSAL SA",
+"descripcion": "CORSAL SA"
+},
+{
+"rnemp": 112950,
+"nombre_comercial": "CRSALUD",
+"descripcion": "C.R.S. PRESTADORES DE SALUD S.A."
+},
+{
+"rnemp": 110282,
+"nombre_comercial": "CRUZ AZUL SALUD",
+"descripcion": "CRUZ AZUL SALUD"
+},
+{
+"rnemp": 310897,
+"nombre_comercial": "CRUZ PLUS COBERTURA MEDICA",
+"descripcion": "ASOCIACION MUTUAL PREMIUM"
+},
+{
+"rnemp": 114895,
+"nombre_comercial": "CYNTHIOS SALUD SA",
+"descripcion": "CYNTHIOS SALUD SA"
+},
+{
+"rnemp": 113236,
+"nombre_comercial": "D.I.M.SA. S.A.",
+"descripcion": "D.I.M.SA. S.A."
+},
+{
+"rnemp": 413343,
+"nombre_comercial": "DEMI SALUD",
+"descripcion": "DEPARTAMENTO EMPRESARIO DE MEDICINA INTEGRAL"
+},
+{
+"rnemp": 115935,
+"nombre_comercial": "ELAREYNA",
+"descripcion": "ELAREYNA"
+},
+{
+"rnemp": 111872,
+"nombre_comercial": "EMECA SALUD BERZATEGUI (AYUDA)",
+"descripcion": "EMECA"
+},
+{
+"rnemp": 113359,
+"nombre_comercial": "EMERGENCIAS SALUD",
+"descripcion": "EMERGENCIA MEDICA INTEGRAL S.A."
+},
+{
+"rnemp": 112431,
+"nombre_comercial": "EMERGENCIAS SALUD",
+"descripcion": "INTERNATIONAL HEALTH SERVICES ARGENTINA S.A"
+},
+{
+"rnemp": 117115,
+"nombre_comercial": "ENSALUD",
+"descripcion": "ENSALUD"
+},
+{
+"rnemp": 113946,
+"nombre_comercial": "FAMILY EMERGENCIAS",
+"descripcion": "FAMILY EMERGENCIAS MEDICAS SRL"
+},
+{
+"rnemp": 110053,
+"nombre_comercial": "FAMYL",
+"descripcion": "FAMYL S.A. SALUD PARA LA FAMILIA"
+},
+{
+"rnemp": 311586,
+"nombre_comercial": "FEDERADA COBERTURA MEDICA",
+"descripcion": "MUTUAL FEDERADA 25 DE JUNIO SOCIEDAD DE PROTECCION RECIPROCA."
+},
+{
+"rnemp": 520588,
+"nombre_comercial": "FUNDACION CIRCULO MEDICO ZONA SUR",
+"descripcion": "FUNDACION CIRCULO MEDICO ZONA SUR"
+},
+{
+"rnemp": 112851,
+"nombre_comercial": "GALENO",
+"descripcion": "GALENO ARGENTINA S.A."
+},
+{
+"rnemp": 111858,
+"nombre_comercial": "GAM",
+"descripcion": "GAM SALUD"
+},
+{
+"rnemp": 111476,
+"nombre_comercial": "GEA COBERTURA DE SALUD",
+"descripcion": "GEA"
+},
+{
+"rnemp": 111896,
+"nombre_comercial": "GRUPO AYUDA MEDICA GAM",
+"descripcion": "UNIDAD CORONARIA MOVIL QUILMES"
+},
+{
+"rnemp": 313261,
+"nombre_comercial": "GRUPO EMERGER",
+"descripcion": "PROTECCION INTEGRAL PARA LA FAMILIA ASOCIACION MUTUAL"
+},
+{
+"rnemp": 110022,
+"nombre_comercial": "GRUPO LPF",
+"descripcion": "GERMED S.A."
+},
+{
+"rnemp": 116693,
+"nombre_comercial": "GRUPO ROISA",
+"descripcion": "ROI SA"
+},
+{
+"rnemp": 318037,
+"nombre_comercial": "GSN MUTUAL",
+"descripcion": "ASOCIACION MUTUAL DEL PERSONAL, ASESORES Y DIRECTIVOS DE GRUPO SAN NICOLAS SRL"
+},
+{
+"rnemp": 312695,
+"nombre_comercial": "HE HOSPITAL ESPAÑOL",
+"descripcion": "SOCIEDAD ESPANOLA DE BENEFICENCIA Y MUTUALIDAD"
+},
+{
+"rnemp": 111438,
+"nombre_comercial": "HOMINIS",
+"descripcion": "MEDICINA PREPAGA HOMINIS S.A."
+},
+{
+"rnemp": 410863,
+"nombre_comercial": "HOSPITAL ALEMAN",
+"descripcion": "HOSPITAL ALEMAN ASOCIACION CIVIL"
+},
+{
+"rnemp": 412555,
+"nombre_comercial": "HOSPITAL BRITANICO",
+"descripcion": "ASOCIACION HOSPITAL BRITANICO DE BUENOS AIRES"
+},
+{
+"rnemp": 311982,
+"nombre_comercial": "HOSPITAL ESPAÑOL DE MENDOZA",
+"descripcion": "HOSPITAL ESPANOL DEL SUR MENDOCINO SOCIEDAD DE BENEFICIENCIA Y MUTUALIDAD"
+},
+{
+"rnemp": 413145,
+"nombre_comercial": "HOSPITAL ITALIANO",
+"descripcion": "SOCIEDAD ITALIANA DE BENEFICENCIA EN BUENOS AIRES"
+},
+{
+"rnemp": 412630,
+"nombre_comercial": "HOSPITAL ITALIANO CORDOBA",
+"descripcion": "SOCIEDAD DE BENEFICENCIA HOSPITAL ITALIANO -CORDOBA-"
+},
+{
+"rnemp": 410955,
+"nombre_comercial": "HOSPITAL UNIVERSITARIO AUSTRAL",
+"descripcion": "ASOCIACION CIVIL DE ESTUDIOS SUPERIORES"
+},
+{
+"rnemp": 111797,
+"nombre_comercial": "INSTITUTO DE INVESTIGACIONES DEL CORAZON INICOR",
+"descripcion": "INSTITUTO DE INVESTIGACIONES DEL CORAZON INICOR"
+},
+{
+"rnemp": 110442,
+"nombre_comercial": "INTEGRAL SALUD",
+"descripcion": "GILSA"
+},
+{
+"rnemp": 310149,
+"nombre_comercial": "JERARQUICOS SALUD",
+"descripcion": "ASOCIACION MUTUAL DEL PERSONAL JERARQUICO DE BANCOS OFICIALES NACIONALES"
+},
+{
+"rnemp": 315885,
+"nombre_comercial": "LA MUTUAL DE AMR",
+"descripcion": "ASOCIACION MUTUAL GRAN ROSARIO"
+},
+{
+"rnemp": 313018,
+"nombre_comercial": "LA RECIPROCA",
+"descripcion": "LA RECIPROCA A.A.M.E.B.P.B.A."
+},
+{
+"rnemp": 114383,
+"nombre_comercial": "LEAL MEDICA",
+"descripcion": "GRUPO MEDICO INCAS S.A."
+},
+{
+"rnemp": 115485,
+"nombre_comercial": "LPSM S.A.",
+"descripcion": "LPSM S.A."
+},
+{
+"rnemp": 320355,
+"nombre_comercial": "LUGONES SALUD",
+"descripcion": "ASOCIACION POETA LUGONES MUTUAL C Y D"
+},
+{
+"rnemp": 610133,
+"nombre_comercial": "LUIS PASTEUR",
+"descripcion": "OBRA SOCIAL DEL PRESONAL DE DIRECCION DE SANIDAD LUIS PASTEUR"
+},
+{
+"rnemp": 311579,
+"nombre_comercial": "M+ (AMTAE)",
+"descripcion": "ASOCIACION MUTUAL DE TRABAJADORES ARGENTINOS ESTATALES (AMTAE)"
+},
+{
+"rnemp": 310491,
+"nombre_comercial": "MARADONA SALUD",
+"descripcion": "ASOCIACION MUTUAL DR. ESTEBAN LAUREANO MARADONA SALUD"
+},
+{
+"rnemp": 312589,
+"nombre_comercial": "MAS MUTUAL ACINDAR SALUD",
+"descripcion": "MUTUAL DEL PERSONAL DEL CENTRO INDUSTRIAL ACINDAR"
+},
+{
+"rnemp": 310767,
+"nombre_comercial": "MCS",
+"descripcion": "MUTUAL COSECHA SALUD"
+},
+{
+"rnemp": 110824,
+"nombre_comercial": "MEDICARDIO",
+"descripcion": "MEDI-CARDIO S.R.L."
+},
+{
+"rnemp": 110077,
+"nombre_comercial": "MEDICINA ESENCIAL",
+"descripcion": "MEDICINA ESENCIAL S.A."
+},
+{
+"rnemp": 111834,
+"nombre_comercial": "MEDICUS",
+"descripcion": "MEDICUS SOCIEDAD ANONIMA DE ASISTENCIA MEDICA Y CIENTIFICA"
+},
+{
+"rnemp": 412258,
+"nombre_comercial": "MEDIFE",
+"descripcion": "MEDIFE ASOCIACION CIVIL"
+},
+{
+"rnemp": 111728,
+"nombre_comercial": "MEDIN",
+"descripcion": "MEDIN S.A.S.M.A"
+},
+{
+"rnemp": 118484,
+"nombre_comercial": "MEDYCIN",
+"descripcion": "MEDYCIN ARGENTINO S.A."
+},
+{
+"rnemp": 115416,
+"nombre_comercial": "MEMED",
+"descripcion": "MEMED S.A."
+},
+{
+"rnemp": 113212,
+"nombre_comercial": "MET MEDICINA PREPAGA",
+"descripcion": "MET CORDOBA S.A"
+},
+{
+"rnemp": 310743,
+"nombre_comercial": "MUTUAL ARGUS",
+"descripcion": "ASOCIACION MUTUAL ARGUS SALUD"
+},
+{
+"rnemp": 313582,
+"nombre_comercial": "MUTUAL BIENESTAR Y PROGRESO",
+"descripcion": "MUTUAL BIENESTAR Y PROGRESO"
+},
+{
+"rnemp": 315281,
+"nombre_comercial": "MUTUAL DE EMPLEADOS DE SISTEMAS MEDICOS DE EMERGENCIAS DE LA REPUBLICA ARGENTINA",
+"descripcion": "MUTUAL DE EMPLEADOS DE SISTEMAS MEDICOS DE EMERGENCIAS DE LA REPUBLICA ARGENTINA"
+},
+{
+"rnemp": 320263,
+"nombre_comercial": "MUTUAL DE TAXI CARLOS PAZ",
+"descripcion": "ASOCIACION MUTUAL DE CHOFERES DE TAXI DE LA CIUDAD DE VILLA CARLOS PAZ Y VALLE DE PUNILLA"
+},
+{
+"rnemp": 316130,
+"nombre_comercial": "MUTUAL DEL TRABAJADOR VIAL SANTA FE",
+"descripcion": "MUTUAL DEL TRABAJADOR VIAL SANTA FE"
+},
+{
+"rnemp": 311241,
+"nombre_comercial": "MUTUAL MEDICA",
+"descripcion": "MUTUAL MEDICA RIO CUARTO"
+},
+{
+"rnemp": 311142,
+"nombre_comercial": "MUTUAL OAM",
+"descripcion": "OBRA ASISTENCIAL MUTUAL PARA AGENTES MUNICIPALES OAM"
+},
+{
+"rnemp": 313414,
+"nombre_comercial": "MUTUAL PODER JUDICIAL",
+"descripcion": "MUTUAL DE INTEGRANTES DEL PODER JUDICIAL"
+},
+{
+"rnemp": 120177,
+"nombre_comercial": "NOBIS MEDICAL",
+"descripcion": "NOBIS SA"
+},
+{
+"rnemp": 615527,
+"nombre_comercial": "OBRA SOCIAL DE AGENTES DE PROPAGANDA MEDICA DE ROSARIO",
+"descripcion": "OBRA SOCIAL DE AGENTES DE PROPAGANDA MEDICA DE ROSARIO"
+},
+{
+"rnemp": 610553,
+"nombre_comercial": "OBRA SOCIAL DEL PERSONAL JERARQUICO DE LA REPUBLICA ARGENTINA PARA EL PERSONAL JERARQUICO DE LA INDUSTRIA GRAFICA Y EL PERSONAL JERARQUICO DEL AGUA Y LA ENERGIA",
+"descripcion": "OBRA SOCIAL DEL PERSONAL JERARQUICO DE LA REPUBLICA ARGENTINA PARA EL PERSONAL JERARQUICO DE LA INDUSTRIA GRAFICA Y EL PERSONAL JERARQUICO DEL AGUA Y LA ENERGIA"
+},
+{
+"rnemp": 113366,
+"nombre_comercial": "OMINT",
+"descripcion": "OMINT S.A. DE SERVICIOS"
+},
+{
+"rnemp": 611174,
+"nombre_comercial": "OPDEA",
+"descripcion": "OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LAS EMPRESAS DE LA ALIMENTACION Y DEMAS ACTIVIDADES EPRESARIAS"
+},
+{
+"rnemp": 614173,
+"nombre_comercial": "OS APM",
+"descripcion": "OBRA SOCIAL DE AGENTES DE PROPAGANDA MEDICA DE LA REPUBLICA ARGENTINA"
+},
+{
+"rnemp": 610034,
+"nombre_comercial": "OSAP",
+"descripcion": "OBRA SOCIAL ACEROS PARANA S.A. Y EMPRESAS ANTECESORAS"
+},
+{
+"rnemp": 610737,
+"nombre_comercial": "OSAPM (OBRA SOCIAL AGENTES DE PROPAGANDA MEDICA",
+"descripcion": "OBRA SOCIAL DE AGENTES DE PROPAGANDA MEDICA DE CORDOBA"
+},
+{
+"rnemp": 613132,
+"nombre_comercial": "OSCOMM",
+"descripcion": "OBRA SOCIAL DE CAPITANES DE ULTRAMAR Y OFICIALES DE LA MARINA MERCANTE"
+},
+{
+"rnemp": 615510,
+"nombre_comercial": "OSDAAP",
+"descripcion": "OBRA SOCIAL DE DIRECCION DE LA ACTIVIDAD AEROCOMERCIAL PRIVADA"
+},
+{
+"rnemp": 614081,
+"nombre_comercial": "OSDE",
+"descripcion": "OBRA SOCIAL DE EJECUTIVOS Y DEL PERSONAL DE DIRECCION DE EMPRESAS"
+},
+{
+"rnemp": 614869,
+"nombre_comercial": "OSDEPYM",
+"descripcion": "OBRA SOCIAL DE EMPRESARIOS PROFESIONALES Y MONOTRIBUTISTAS"
+},
+{
+"rnemp": 613064,
+"nombre_comercial": "OSDIPP",
+"descripcion": "OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA PRIVADA DEL PETROLEO"
+},
+{
+"rnemp": 612771,
+"nombre_comercial": "OSEDEIV",
+"descripcion": "OBRA SOCIAL PARA EL PERSONAL DE DIRECCION DE LA INDUSTRIA VITIVINICOLA Y AFINES"
+},
+{
+"rnemp": 616162,
+"nombre_comercial": "OSFATUN",
+"descripcion": "OBRA SOCIAL DE LA FEDERACION ARGENTINA DEL TRABAJADOR DE LAS UNIVERSIDADES NACIONALES"
+},
+{
+"rnemp": 612870,
+"nombre_comercial": "OSLERA",
+"descripcion": "OBRA SOCIAL DE LOS  LEGISLADORES DE LA REPUBLICA ARGENTINA"
+},
+{
+"rnemp": 612511,
+"nombre_comercial": "OSMITA PROMOVIENDO SALUD",
+"descripcion": "OBRA SOCIAL MUTUALIDAD INDUSTRIAL TEXTIL ARGENTINA"
+},
+{
+"rnemp": 615473,
+"nombre_comercial": "OSPADEP",
+"descripcion": "OBRA SOCIAL DEL PERSONAL DE AERONAVEGACION DE ENTES PRIVADOS"
+},
+{
+"rnemp": 612849,
+"nombre_comercial": "OSPAT",
+"descripcion": "OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD DEL TURF"
+},
+{
+"rnemp": 317058,
+"nombre_comercial": "OSPAÑA",
+"descripcion": "MUTUAL DE LOS INMIGRANTES ESPANOLES Y SUS DESCENDIENTES EN LA ARGENTINA"
+},
+{
+"rnemp": 620646,
+"nombre_comercial": "OSPE",
+"descripcion": "OBRA SOCIAL DE PETROLEROS"
+},
+{
+"rnemp": 613743,
+"nombre_comercial": "OSPEA",
+"descripcion": "OBRA SOCIAL DEL PERSONAL SUPERIOR Y PROFESIONAL DE EMPRESAS AEROCOMERCIALES"
+},
+{
+"rnemp": 610270,
+"nombre_comercial": "OSPETELCO",
+"descripcion": "OBRA SOCIAL DEL PERSONAL DE LAS TELECOMUNICACIONES DE LA REPUBLICA ARGENTINA"
+},
+{
+"rnemp": 613842,
+"nombre_comercial": "OSPOCE",
+"descripcion": "OBRA SOCIAL DEL PERSONAL DEL ORGANISMO DE CONTROL EXTERNO"
+},
+{
+"rnemp": 615114,
+"nombre_comercial": "OSSEG",
+"descripcion": "OBRA SOCIAL DE LA ACTIVIDAD DE SEGUROS, REASEGUROS, CAPITALIZACION Y AHORRO Y PRESTAMO PARA LA VIVIENDA"
+},
+{
+"rnemp": 310934,
+"nombre_comercial": "PM PROGRAMAS MEDICOS",
+"descripcion": "PROGRAMAS MEDICOS SOCIEDAD ARGENTINA DE CONSULTORIA MUTUAL"
+},
+{
+"rnemp": 311357,
+"nombre_comercial": "PRE-NA-PA",
+"descripcion": "PRENAPA ASOC.MUTUAL COMPENSADORA SANITARIA"
+},
+{
+"rnemp": 112172,
+"nombre_comercial": "PREMEDIC",
+"descripcion": "GRUPO DDM SA"
+},
+{
+"rnemp": 116792,
+"nombre_comercial": "PREVENCION SALUD",
+"descripcion": "PrevenciOn Salud S.A."
+},
+{
+"rnemp": 314769,
+"nombre_comercial": "PREVINCA SALUD",
+"descripcion": "ASOC. MUTUAL AYUDA EMPL. PREVINCA SERV. SOCIALES"
+},
+{
+"rnemp": 113465,
+"nombre_comercial": "PREVINCA SALUD",
+"descripcion": "PREVINCA SALUD S.A."
+},
+{
+"rnemp": 110657,
+"nombre_comercial": "PRIMEDIC SALUD",
+"descripcion": "PRIMED SA"
+},
+{
+"rnemp": 110312,
+"nombre_comercial": "RED DE SEGURO MEDICO SRL",
+"descripcion": "RED DE SEGURO MEDICO SRL"
+},
+{
+"rnemp": 112684,
+"nombre_comercial": "REYLES S.A.",
+"descripcion": "REYLES S.A."
+},
+{
+"rnemp": 117757,
+"nombre_comercial": "S/D",
+"descripcion": "EMERGENCIAS DEL SUR S.R.L."
+},
+{
+"rnemp": 316338,
+"nombre_comercial": "S/D",
+"descripcion": "ASOCIACION MUTUAL PREVINOR"
+},
+{
+"rnemp": 112660,
+"nombre_comercial": "SABER+",
+"descripcion": "SABER S.A."
+},
+{
+"rnemp": 110381,
+"nombre_comercial": "SALUD PLUS",
+"descripcion": "SALUD PLUS S.A."
+},
+{
+"rnemp": 410597,
+"nombre_comercial": "SAMI",
+"descripcion": "CIRCULO MEDICO DE TRENQUE LAUQUEN"
+},
+{
+"rnemp": 414063,
+"nombre_comercial": "SAMI OSMECON MATANZA",
+"descripcion": "CIRCULO MEDICO DE MATANZA"
+},
+{
+"rnemp": 117665,
+"nombre_comercial": "SANATORIO MAPACI",
+"descripcion": "SANATORIO MAPACI S.A."
+},
+{
+"rnemp": 311371,
+"nombre_comercial": "SANCOR SALUD",
+"descripcion": "ASOCIACION MUTUAL SANCOR"
+},
+{
+"rnemp": 318082,
+"nombre_comercial": "SANCOR SALUD GRUPO DE MEDICINA PRIVADA",
+"descripcion": "Mutual de Salud del Personal de Entidades del Grupo Sancor Seguros"
+},
+{
+"rnemp": 117719,
+"nombre_comercial": "SANTE MEDICAL",
+"descripcion": "SANTE MEDICAL SRL"
+},
+{
+"rnemp": 111094,
+"nombre_comercial": "SCIS MEDICINA PRIVADA",
+"descripcion": "SCIS"
+},
+{
+"rnemp": 614234,
+"nombre_comercial": "SERVESALUD",
+"descripcion": "OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA CERVECERA Y MALTERA"
+},
+{
+"rnemp": 120160,
+"nombre_comercial": "SERVIRED",
+"descripcion": "ADMINISTRACION RECURSOS PARA SALUD.S.A"
+},
+{
+"rnemp": 120030,
+"nombre_comercial": "SIPSSA MEDICINA PRIVADA",
+"descripcion": "SISTEMA INTEGRADO DE PRESTADORES DE SALUD SA"
+},
+{
+"rnemp": 113120,
+"nombre_comercial": "SISTEMA PRIVADO DE SALUD",
+"descripcion": "SISTEMAS PRIVADOS DE SALUD S. A."
+},
+{
+"rnemp": 116716,
+"nombre_comercial": "SNR SALUD NUEVO ROSARIO",
+"descripcion": "SALUD DEL NUEVO ROSARIO SA"
+},
+{
+"rnemp": 311319,
+"nombre_comercial": "SOCIEDAD ESPAÑOLA DE SOCORROS MUTUOS DE TRES ARROYOS",
+"descripcion": "SOCIEDAD ESPANOLA DE SOCORROS MUTUOS DE TRES ARROYOS"
+},
+{
+"rnemp": 312091,
+"nombre_comercial": "SOCIEDAD ITALIANA DE SOCORROS MUTUOS CAMPANA",
+"descripcion": "SOCIEDAD ITALIANA DE SOCORROS MUTUOS CAMPANA"
+},
+{
+"rnemp": 112349,
+"nombre_comercial": "SOCORRO MEDICO PRIVADO CORDOBA S.A.",
+"descripcion": "SOCORRO MEDICO PRIVADO CORDOBA S.A."
+},
+{
+"rnemp": 112370,
+"nombre_comercial": "SOCORRO MEDICO SAN MARTIN S.A.",
+"descripcion": "SOCORRO MEDICO SAN MARTIN S.A."
+},
+{
+"rnemp": 113892,
+"nombre_comercial": "SOREMER S.A.",
+"descripcion": "SOREMER S.A."
+},
+{
+"rnemp": 312015,
+"nombre_comercial": "SOS SALUD",
+"descripcion": "ASOCIACION MUTUAL MEDICA VILLA MARIA"
+},
+{
+"rnemp": 114697,
+"nombre_comercial": "SUM SA",
+"descripcion": "SUM S.A."
+},
+{
+"rnemp": 114567,
+"nombre_comercial": "SUME SALUD",
+"descripcion": "CALIDAD MEDICA S.A."
+},
+{
+"rnemp": 113328,
+"nombre_comercial": "SWISS MEDICAL",
+"descripcion": "SWISS MEDICAL S.A."
+},
+{
+"rnemp": 110343,
+"nombre_comercial": "THEMA RED MEDICA",
+"descripcion": "CLINICAS MARPLATENSES UNIDAS S.A."
+},
+{
+"rnemp": 620615,
+"nombre_comercial": "TV SALUD",
+"descripcion": "OBRA SOCIAL DEL PERSONAL DE TELEVISION"
+},
+{
+"rnemp": 113557,
+"nombre_comercial": "UNIDEM S.A.",
+"descripcion": "UNIDEM S.A."
+},
+{
+"rnemp": 113922,
+"nombre_comercial": "UNIMED",
+"descripcion": "UNIMED SA"
+},
+{
+"rnemp": 311333,
+"nombre_comercial": "UNIMEDICA CONCORDIA",
+"descripcion": "MUTUAL MEDICA CONCORDIA"
+},
+{
+"rnemp": 610195,
+"nombre_comercial": "UNION PERSONAL",
+"descripcion": "OBRA SOCIAL UNION PERSONAL DE LA UNION PERSONAL CIVIL DE LA NACION"
+},
+{
+"rnemp": 111025,
+"nombre_comercial": "UNO SALUD",
+"descripcion": "UNO SALUD"
+},
+{
+"rnemp": 112974,
+"nombre_comercial": "URG URGENCIAS",
+"descripcion": "SISTEMA DE URGENCIAS DEL ROSAFE S.A.U"
+},
+{
+"rnemp": 112110,
+"nombre_comercial": "VITAS",
+"descripcion": "VITA`S S.A."
+},
+{
+"rnemp": 113052,
+"nombre_comercial": "VITTAL",
+"descripcion": "SOCORRO MEDICO PRIVADO S.A."
+},
+{
+"rnemp": 112981,
+"nombre_comercial": "VITTAL",
+"descripcion": "MPE S.A."
+},
+{
+"rnemp": 110183,
+"nombre_comercial": "VS GROUP S.A.",
+"descripcion": "VS GROUP S.A."
+},
+{
+"rnemp": 611488,
+"nombre_comercial": "WILLIAM HOPE",
+"descripcion": "OBRA SOCIAL DEL PERSONAL DE DIRECCION DE PERFUMERIA E.W. HOPE"
+},
+{
+"rnemp": 620745,
+"nombre_comercial": null,
+"descripcion": "OBRA SOCIAL DE COMISARIOS  NAVALES                                                                                                                                                                                                                        "
+},
+{
+"rnemp": 620738,
+"nombre_comercial": null,
+"descripcion": "OBRA SOCIAL DE DIRECCION OSDO                                                                                                                                                                                                                             "
+}
+]
