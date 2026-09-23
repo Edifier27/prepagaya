@@ -121,7 +121,7 @@ export default function PrepagasEconomicasPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            Precios de lista para una persona, {PRECIO_ACTUALIZADO}. Con 25% de descuento por contratación online el valor baja más — cotizá tu precio exacto según tu edad y zona.
+            Precios de lista para una persona, {PRECIO_ACTUALIZADO}. Con el descuento por contratación online (15%, o 25% si sos monotributista) el valor baja más — cotizá tu precio exacto según tu edad y zona.
           </p>
         </section>
 

@@ -7,7 +7,7 @@ import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButt
 export const metadata: Metadata = {
   title: { absolute: `How Much Does Health Insurance Cost in Argentina? (${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
   description:
-    'Real 2026 prepaga prices in Argentina by coverage tier: entry-level, mid-range and premium — plus what actually moves the price (age, copay, plan) and the 25% online discount.',
+    'Real 2026 prepaga prices in Argentina by coverage tier: entry-level, mid-range and premium — plus what actually moves the price (age, copay, plan) and the 15% online discount.',
   alternates: {
     canonical: `${SITE_URL}/en/health-insurance-cost-argentina`,
     languages: {
@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     q: 'Is there a discount for paying online or by direct debit?',
-    a: 'Yes, most companies offer around 25% off the list price for contracting online with automatic monthly debit — this is already reflected in the quotes you get through PrepagaYa.',
+    a: 'Yes, most companies offer around 15% off the list price for contracting online (25% for monotributistas, the simplified self-employed regime) — this is already reflected in the quotes you get through PrepagaYa.',
   },
   {
     q: 'How much more does a family plan cost?',
@@ -126,7 +126,7 @@ export default function HealthInsuranceCostArgentinaPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            List prices, {PRECIO_ACTUALIZADO_EN.toLowerCase()}. Most companies apply about 25% off for online
+            List prices, {PRECIO_ACTUALIZADO_EN.toLowerCase()}. Most companies apply about 15% off for online
             contracting with automatic debit — already reflected in quotes through the comparator.
           </p>
         </div>

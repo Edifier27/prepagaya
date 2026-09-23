@@ -16,13 +16,14 @@ import { leerZonaGeoDeCookie } from '@/lib/geo-zonas'
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
-// la alícuota de IVA en salud es del 10,5%, no el 21% general. Monotributo y
-// Responsable Inscripto acceden al 25% por facturar con IVA discriminado.
+// la alícuota de IVA en salud es del 10,5%, no el 21% general. El 25% es solo
+// para monotributistas; el resto, 15% en la mayoría de las prepagas (Darío,
+// 23-sep-2026).
 const DESCUENTO_POR_SITUACION: Record<SituacionLaboral, number> = {
   particular: 0.15,
   'relacion-dependencia': 1 - (1 - 0.15) * (1 - 0.105),
   monotributo: 0.25,
-  'responsable-inscripto': 0.25,
+  'responsable-inscripto': 0.15,
 }
 
 // Aporte del trabajador en relación de dependencia: 7,5% del sueldo bruto,
@@ -99,6 +100,12 @@ for (const prov of provinciasSEO) {
 // el interior bonaerense (lib/data/cartilla-zonas): Premedic tiene zonas solo
 // en CABA y GBA. Las que no tienen cartilla scrapeada no se sacan sin dato.
 const SIN_COBERTURA_INTERIOR_BA = ['premedic']
+const ZONAS_AMBA = ['caba', 'buenos-aires']
+const INTERIOR_PARTNERS = ['avalian', 'sancor-salud']
+// Con el orden por relevancia se muestran primero estos planes recomendados;
+// el resto queda detrás de "Ver más planes" (demasiadas opciones frenan la
+// decisión).
+const RECOMENDADOS_VISIBLES = 4
 ZONA_PREPAGAS['buenos-aires-interior'] = ZONA_PREPAGAS['buenos-aires'].filter((s) => !SIN_COBERTURA_INTERIOR_BA.includes(s))
 
 export interface Provincia { slug: string; nombre: string; zonaKey: string }
@@ -203,6 +210,15 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
         const barato = cand.reduce((m, r) => (r.precioGrupal < m.precioGrupal ? r : m))
         take((r) => r === barato)
       }
+    } else if ((slug === 'avalian' || slug === 'sancor-salud') && out[0]) {
+      // Plan comparable al primero (el de Swiss): el de precio más cercano,
+      // para no mostrar un AS400 de $780.000 al lado de un SMG20 (23-sep-2026).
+      const ref = out[0].precioGrupal
+      const cand = pool.filter((r) => r.prepaga.slug === slug)
+      if (cand.length) {
+        const cercano = cand.reduce((m, r) => (Math.abs(r.precioGrupal - ref) < Math.abs(m.precioGrupal - ref) ? r : m))
+        take((r) => r === cercano)
+      }
     } else take((r) => r.prepaga.slug === slug)
   }
   while (pool.length) {
@@ -305,7 +321,7 @@ const SITUACIONES: SituacionDef[] = [
   { id: 'particular',             label: 'Particular',              desc: 'Pagás la cuota completa de tu bolsillo', badge: '15% OFF' },
   { id: 'relacion-dependencia',   label: 'Relación de dependencia', desc: 'Tenés recibo de sueldo — te descontamos el aporte', badge: 'Hasta 24% OFF + aporte' },
   { id: 'monotributo',            label: 'Monotributista',          desc: 'Facturás como monotributista', badge: '25% OFF' },
-  { id: 'responsable-inscripto',  label: 'Responsable Inscripto',   desc: 'Facturás con IVA discriminado', badge: '25% OFF' },
+  { id: 'responsable-inscripto',  label: 'Responsable Inscripto',   desc: 'Facturás con IVA discriminado', badge: '15% OFF' },
 ]
 
 // ─── Progress bar (3 steps) ───────────────────────────────────────────────────
@@ -650,6 +666,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [activeNivelPrecio, setActiveNivelPrecio] = useState<Set<NivelPrecio>>(new Set())
   const [activeCaracteristicas, setActiveCaracteristicas] = useState<Set<CaracteristicaId>>(new Set())
   const [sortBy, setSortBy] = useState<'relevancia' | 'precio-asc' | 'precio-desc'>('relevancia')
+  const [verTodos, setVerTodos] = useState(false)
   const [filtrosMenuOpen, setFiltrosMenuOpen] = useState(false)
   const [asesoramientoUrgenteOpen, setAsesoramientoUrgenteOpen] = useState(false)
 
@@ -1197,6 +1214,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     for (const r of resultadosFiltrados) {
       const texto = DESTACADO_PARTNER[r.prepaga.slug]
       const key = `${r.prepaga.slug}-${r.plan.slug}`
+      // "Mejor cobertura en el interior del país" no se muestra en CABA ni GBA.
+      if (ZONAS_AMBA.includes(zonaKey) && INTERIOR_PARTNERS.includes(r.prepaga.slug)) continue
       if (texto && r.prepaga.slug !== 'swiss-medical' && ![...destacados.keys()].some((k) => k.startsWith(`${r.prepaga.slug}-`))) destacados.set(key, texto)
     }
   }
@@ -1696,7 +1715,9 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           {/* Count */}
           <div className="flex items-center justify-between mb-3">
             <p className="text-sm font-semibold text-gray-700">
-              {totalResultadosFiltrados} resultado{totalResultadosFiltrados !== 1 ? 's' : ''}
+              {!verTodos && sortBy === 'relevancia' && totalResultadosFiltrados > RECOMENDADOS_VISIBLES
+                ? `${RECOMENDADOS_VISIBLES} planes recomendados para vos`
+                : `${totalResultadosFiltrados} resultado${totalResultadosFiltrados !== 1 ? 's' : ''}`}
               {hayFiltrosActivos ? ' con filtros' : ''}
             </p>
           </div>
@@ -1759,7 +1780,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
           )}
 
           <div className="space-y-4 mb-8">
-            {resultadosFiltrados.map((res, i) => {
+            {(verTodos || sortBy !== 'relevancia' ? resultadosFiltrados : resultadosFiltrados.slice(0, RECOMENDADOS_VISIBLES)).map((res, i) => {
               const planKey = `${res.prepaga.slug}-${res.plan.slug}`
               const isBest = planKey === bestKey
               const isCheapest = planKey === cheapestKey && planKey !== bestKey
@@ -1938,6 +1959,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               )
             })}
           </div>
+          {!verTodos && sortBy === 'relevancia' && resultadosFiltrados.length > RECOMENDADOS_VISIBLES && (
+            <div className="text-center -mt-4 mb-8">
+              <button
+                onClick={() => setVerTodos(true)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 hover:border-[#E8002D] text-gray-800 font-semibold rounded-xl text-sm transition-colors"
+              >
+                Ver más planes ({resultadosFiltrados.length - RECOMENDADOS_VISIBLES})
+              </button>
+            </div>
+          )}
 
           <div className="text-center">
             <button onClick={resetWizard} className="text-sm text-gray-400 hover:text-gray-600 transition-colors">

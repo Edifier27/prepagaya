@@ -134,7 +134,7 @@ export default function HomePage(): React.ReactElement {
               <span className="text-[#E8002D]">en menos de 2 minutos</span>
             </h1>
             <p className="text-gray-600 text-base max-w-lg mx-auto leading-relaxed">
-              Respondé 4 preguntas y te mostramos los mejores planes con precio real y <strong className="text-gray-800">25% de descuento online</strong>.
+              Respondé 4 preguntas y te mostramos los mejores planes con <strong className="text-gray-800">15% de descuento online</strong> (25% si sos monotributista).
             </p>
 
             {/* Trust bullets */}

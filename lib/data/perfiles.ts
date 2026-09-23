@@ -133,7 +133,7 @@ export const perfiles: PerfilData[] = [
       },
       {
         q: '¿Cuánto cuesta una prepaga para un monotributista en 2026?',
-        a: 'Los precios van de nivel económico a nivel premium según el plan y la prepaga que elijas. Para un monotributista, la recomendación es apuntar a un plan de nivel de precio medio, donde encontrás buena cobertura con opciones como Sancor, Medife o Premedic. Además accedés al 25% de descuento por facturar con IVA discriminado. Cotizá gratis para ver el monto exacto.',
+        a: 'Los precios van de nivel económico a nivel premium según el plan y la prepaga que elijas. Para un monotributista, la recomendación es apuntar a un plan de nivel de precio medio, donde encontrás buena cobertura con opciones como Sancor, Medife o Premedic. Además, como monotributista accedés al 25% de descuento por contratar online. Cotizá gratis para ver el monto exacto.',
       },
       {
         q: '¿Es lo mismo para un freelancer o trabajador remoto que no vive en CABA?',

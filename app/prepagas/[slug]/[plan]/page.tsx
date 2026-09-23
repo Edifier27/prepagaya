@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
-import { SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -169,12 +169,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // "Qué cubre" en vez de "Cartilla" (22-sep-2026): la cartilla del plan vive
     // en /cartillas/[prepaga]/plan-x; acá se enlaza (ver cartillaPlanLink).
     // Swiss: "Swiss Medical SMG20" (sin "Plan", es como se busca) + precio por edad
-    title: prep.slug === 'swiss-medical'
-      ? `Swiss Medical ${plan.nombre.replace(/^Plan\s+/, '')}: precio por edad y qué cubre (${PRECIO_ACTUALIZADO})`
-      : `${prep.nombre} ${plan.nombre}: Precio ${formatPrecio(plan.precio)} — Qué cubre ${PRECIO_ACTUALIZADO}`,
+    // "Cuánto sale" (23-sep-2026): misma intención que las fichas de prepaga.
+    // absolute: sin "| PrepagaYa", para que Google lo muestre completo.
+    title: {
+      absolute: prep.slug === 'swiss-medical'
+        ? `Swiss Medical ${plan.nombre.replace(/^Plan\s+/, '')}: cuánto sale por edad y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`
+        : `${prep.nombre} ${plan.nombre}: cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()} y qué cubre`,
+    },
     description: prep.slug === 'swiss-medical'
       ? `Swiss Medical ${plan.nombre.replace(/^Plan\s+/, '')} en ${PRECIO_ACTUALIZADO}: desde ${formatPrecio(plan.precio)}/mes hasta los 35 años (lista oficial SSSalud, AMBA). ${plan.copago ? 'Con copago' : 'Sin copago'}, cartilla ${plan.redAbierta ? 'abierta con reintegros' : 'cerrada'}. Precio por edad, qué cubre y sanatorios de tu zona.`
-      : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
+      : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}${plan.fuentePrecio === 'sssalud' ? ', lista oficial SSSalud' : ''}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
@@ -381,9 +385,11 @@ export default async function PlanPage({ params, searchParams }: Props) {
               <div className="text-[10px] text-gray-400">30 años · 1 persona</div>
             </div>
             <div className="bg-gray-50 rounded-xl border border-gray-100 p-3 text-center">
-              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Calidad cartilla</div>
-              <div className="text-lg font-black text-gray-900">{calidadPlan(prep, plan)}/5</div>
-              <div className="text-[10px] text-gray-400">red de prestadores</div>
+              {/* Antes "Calidad cartilla x/5": era un puntaje propio sin fuente
+                  (23-sep-2026). Ahora, datos del plan. */}
+              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Copago</div>
+              <div className="text-lg font-black text-gray-900">{plan.copago ? 'Con copago' : 'Sin copago'}</div>
+              <div className="text-[10px] text-gray-400">Red {plan.redAbierta ? 'abierta' : 'cerrada'}</div>
             </div>
             <div className="bg-gray-50 rounded-xl border border-gray-100 p-3 text-center">
               <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Satisfacción</div>
@@ -570,7 +576,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
                     <div className="text-xs text-gray-400 mb-1">Plan anterior</div>
                     <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">{planInferior.nombre}</div>
                     <div className="text-xs text-gray-500 mt-0.5">
-                      {planInferior.copago ? 'Con copago' : 'Sin copago'} · Red {planInferior.redAbierta ? 'abierta' : 'cerrada'} · Cartilla {calidadPlan(prep, planInferior)}/5
+                      {planInferior.copago ? 'Con copago' : 'Sin copago'} · Red {planInferior.redAbierta ? 'abierta' : 'cerrada'}
                     </div>
                   </div>
                   <div className="text-right flex-shrink-0 pl-3">
@@ -588,7 +594,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
                     <div className="text-xs text-[#E8002D] mb-1 font-medium">Plan superior</div>
                     <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">{planSuperior.nombre}</div>
                     <div className="text-xs text-gray-500 mt-0.5">
-                      {planSuperior.copago ? 'Con copago' : 'Sin copago'} · Red {planSuperior.redAbierta ? 'abierta' : 'cerrada'} · Cartilla {calidadPlan(prep, planSuperior)}/5
+                      {planSuperior.copago ? 'Con copago' : 'Sin copago'} · Red {planSuperior.redAbierta ? 'abierta' : 'cerrada'}
                     </div>
                   </div>
                   <div className="text-right flex-shrink-0 pl-3">
@@ -626,7 +632,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
                     )}
                   </div>
                   <div className="text-xs text-gray-400 mt-0.5">
-                    {pl.copago ? 'Con copago' : 'Sin copago'} · Red {pl.redAbierta ? 'abierta' : 'cerrada'} · Cartilla {calidadPlan(prep, pl)}/5
+                    {pl.copago ? 'Con copago' : 'Sin copago'} · Red {pl.redAbierta ? 'abierta' : 'cerrada'}
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0 flex items-center gap-3">

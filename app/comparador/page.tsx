@@ -85,8 +85,8 @@ export default async function ComparadorPage({ searchParams }: Props) {
               Comparador de prepagas: <span className="text-[#E8002D]">cotizá y elegí tu plan</span>
             </h1>
             <p className="text-gray-500 text-base max-w-lg mx-auto leading-relaxed">
-              Ingresá tu zona y las edades, y te mostramos los mejores planes con precio real y{' '}
-              <strong className="text-gray-700">25% de descuento</strong> por contratar online.
+              Ingresá tu zona y las edades, y te mostramos los mejores planes con{' '}
+              <strong className="text-gray-700">15% de descuento</strong> por contratar online (25% si sos monotributista).
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6 mt-7 text-xs text-gray-500">
               <span className="flex items-center gap-2">

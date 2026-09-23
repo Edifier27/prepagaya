@@ -7,7 +7,7 @@ import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButt
 export const metadata: Metadata = {
   title: { absolute: `阿根廷医疗保险费用是多少?(${PRECIO_ACTUALIZADO_EN}真实价格) — ${SITE_NAME}` },
   description:
-    '2026年阿根廷prepaga真实价格,按保障级别划分:基础级、中端和高端 — 以及真正影响价格的因素(年龄、自付、计划类型)和在线签约25%折扣。',
+    '2026年阿根廷prepaga真实价格,按保障级别划分:基础级、中端和高端 — 以及真正影响价格的因素(年龄、自付、计划类型)和在线签约15%折扣。',
   alternates: {
     canonical: `${SITE_URL}/zh/yiliao-baoxian-feiyong-agenting`,
     languages: {
@@ -39,7 +39,7 @@ const faqs = [
   },
   {
     q: '在线签约或自动扣款是否有折扣?',
-    a: '有,大多数公司对在线签约并自动按月扣款的客户提供约25%的折扣——这一折扣已经体现在您通过PrepagaYa获得的报价中。',
+    a: '有,大多数公司对在线签约并自动按月扣款的客户提供约15%的折扣——这一折扣已经体现在您通过PrepagaYa获得的报价中。',
   },
   {
     q: '家庭计划贵多少?',
@@ -125,7 +125,7 @@ export default function YiliaoBaoxianFeiyongAgentingPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            标价,{PRECIO_ACTUALIZADO_EN}。大多数公司对在线签约并自动扣款的客户提供约25%折扣——该折扣已体现在通过比较工具获得的报价中。
+            标价,{PRECIO_ACTUALIZADO_EN}。大多数公司对在线签约并自动扣款的客户提供约15%折扣——该折扣已体现在通过比较工具获得的报价中。
           </p>
         </div>
       </section>
