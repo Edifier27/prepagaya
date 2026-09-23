@@ -840,7 +840,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
       {app && (
         <section className="py-10 bg-white border-t border-gray-100">
           <div className="container max-w-5xl mx-auto">
-            <h2 className="text-xl font-bold text-gray-900 mb-2">App de {prep.nombre}: credencial digital y gestiones</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-2">App de {prep.nombre}: {app.credencialDigital ? 'credencial digital y gestiones' : 'cartilla y urgencias'}</h2>
             <p className="text-sm text-gray-600 mb-5 max-w-3xl">
               {prep.nombre} tiene app oficial: <strong>{app.nombreApp}</strong>.{' '}
               {app.credencialDigital ? 'Desde ahí usás la credencial digital y hacés gestiones sin ir a una sucursal.' : 'Está centrada en la cartilla y las urgencias; su ficha no menciona credencial digital.'}
