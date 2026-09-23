@@ -91,16 +91,25 @@ export function CartillaPlanTuZona({ prepagaSlug, prepagaNombre, planNombre, pla
   const totalInternacion = delPlan.filter((c) => c.internacion.includes(planCartillaId)).length
   const totalGuardia = delPlan.filter((c) => c.guardia.includes(planCartillaId)).length
   const zonaNombre = indice.find((z) => z.slug === zonaSlug)?.nombre ?? datos?.nombre ?? ''
+  // "Tandil (Interior de Buenos Aires)" → "Tandil"
+  const ciudadDetectada = detectada?.replace(/\s*\(.*\)\s*$/, '') ?? null
+  // Sin sanatorios de la lista en la zona: un pantallazo con los primeros
+  // prestadores de la cartilla del plan (internación primero).
+  const pantallazo = [...delPlan].sort((a, b) => Number(b.internacion.includes(planCartillaId)) - Number(a.internacion.includes(planCartillaId))).slice(0, 3)
 
   return (
     <div className="rounded-2xl border-2 border-amber-300 bg-gradient-to-b from-amber-50 to-white p-5 md:p-6 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
         <div>
-          <div className="text-[11px] font-bold text-amber-700 uppercase tracking-wide mb-1">★ Sanatorios de renombre</div>
+          <div className="text-[11px] font-bold text-amber-700 uppercase tracking-wide mb-1">{datos && destacados.length === 0 ? '★ Prestadores en tu zona' : '★ Sanatorios de renombre'}</div>
           <h2 className="text-lg font-bold text-gray-900">
             {zonaNombre ? `Con el ${planNombre} en ${zonaNombre}` : `Con el ${planNombre} en tu zona`}
           </h2>
-          {detectada && <p className="text-xs text-gray-500 mt-0.5">📍 Detectamos que estás en {detectada}</p>}
+          {ciudadDetectada && (
+            <span className="inline-flex items-center gap-1.5 mt-2 text-xs font-bold text-[#E8002D] bg-white border border-red-100 rounded-full px-3 py-1 shadow-sm">
+              📍 Estás en {ciudadDetectada}
+            </span>
+          )}
         </div>
         <label className="text-xs text-gray-500 flex items-center gap-2">
           {zonaSlug ? 'Cambiar zona' : 'Elegí tu zona'}
@@ -124,7 +133,28 @@ export function CartillaPlanTuZona({ prepagaSlug, prepagaNombre, planNombre, pla
       {zonaSlug && !cargando && datos && (
         <>
           {destacados.length === 0 ? (
-            <p className="text-sm text-gray-600">En {zonaNombre} el {planNombre} no incluye sanatorios de nuestra lista de referencia. Mirá la cartilla completa de la zona abajo.</p>
+            pantallazo.length === 0 ? (
+              <p className="text-sm text-gray-600">No encontramos prestadores del {planNombre} en {zonaNombre}. Mirá la cartilla completa o pedinos que te asesoremos.</p>
+            ) : (
+              <>
+                <p className="text-sm text-gray-600 mb-3">Algunos prestadores del {planNombre} en {zonaNombre}:</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {pantallazo.map((c) => (
+                    <div key={c.nombre} className="bg-white rounded-xl border border-amber-200 p-4">
+                      <div className="font-bold text-gray-900 text-sm">{c.nombre}</div>
+                      {ubicacion(c) && <div className="text-xs text-gray-500 mt-0.5">{ubicacion(c)}</div>}
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        {c.internacion.includes(planCartillaId) && <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">Internación</span>}
+                        {c.guardia.includes(planCartillaId) && <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">{labelGuardia}</span>}
+                      </div>
+                    </div>
+                  ))}
+                  <Link href={`/cartillas/${prepagaSlug}/${zonaSlug}`} className="rounded-xl border border-dashed border-amber-300 text-sm font-semibold text-amber-800 hover:bg-amber-50 p-4 flex items-center justify-center text-center">
+                    Ver más prestadores en {zonaNombre} →
+                  </Link>
+                </div>
+              </>
+            )
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {(verTodos ? destacados : destacados.slice(0, 9)).map((c) => (

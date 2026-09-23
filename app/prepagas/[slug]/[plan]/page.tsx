@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
 import { SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
@@ -244,12 +243,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
     ? prep.planes.find((p) => p.slug === (comparativaPlan.plan1Slug === planSlug ? comparativaPlan.plan2Slug : comparativaPlan.plan1Slug))
     : undefined
 
-  const testisPlan = testimonios
-    .filter(t => t.prepagaSlug === prep.slug && t.planNombre?.toLowerCase().includes(plan.nombre.toLowerCase().slice(0, 6)))
-    .slice(0, 2)
-  const testisFallback = testisPlan.length === 0
-    ? testimonios.filter(t => t.prepagaSlug === prep.slug).slice(0, 2)
-    : testisPlan
 
   const jsonLd = [
     {
@@ -269,12 +262,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
         availability: 'https://schema.org/InStock',
         url: `${SITE_URL}/prepagas/${slug}/${planSlug}`,
         priceValidUntil: PRECIO_VALIDO_HASTA,
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: prep.rating,
-        reviewCount: prep.cantidadOpiniones,
-        bestRating: 5,
       },
     },
     {
@@ -610,41 +597,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
                   </div>
                 </Link>
               )}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Testimonios */}
-      {testisFallback.length > 0 && (
-        <section className="py-10 bg-gray-50 border-t border-gray-100">
-          <div className="container max-w-4xl mx-auto">
-            <h2 className="text-xl font-bold text-gray-900 mb-5">Opiniones de afiliados de {prep.nombre}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {testisFallback.map(t => (
-                <div key={t.id} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
-                  <div className="flex items-center gap-0.5 mb-3">
-                    {[1, 2, 3, 4, 5].map(i => (
-                      <svg key={i} viewBox="0 0 20 20" fill="currentColor"
-                        className={`w-3.5 h-3.5 ${i <= t.rating ? 'text-amber-400' : 'text-gray-200'}`}>
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-sm text-gray-700 leading-relaxed mb-3">"{t.texto}"</p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-xs font-semibold text-gray-900">{t.nombre}</div>
-                      <div className="text-xs text-gray-400">{t.ciudad} · {t.fecha}</div>
-                    </div>
-                    {t.planNombre && (
-                      <span className="text-[10px] bg-gray-50 border border-gray-200 text-gray-500 px-2 py-0.5 rounded-full">
-                        {t.planNombre}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </section>

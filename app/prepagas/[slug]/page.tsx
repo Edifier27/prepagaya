@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL, nivelPrecio } from '@/lib/data/prepagas'
-import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getCambiosPorOrigen, getCambiosPorDestino } from '@/lib/data/cambios'
 import { getComparativasByPrepaga } from '@/lib/data/comparativas'
@@ -189,7 +188,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
   // Los planes que comparten cartilla real van pegados en vez de ordenados
   // solo por precio (hoy solo hay data cargada para Swiss Medical).
   const otrosPlanes = ordenarPorCartilla(prep.slug, planesOrdenados).filter(pl => pl.slug !== planEstrella.slug)
-  const testisPrepaga = testimonios.filter(t => t.prepagaSlug === prep.slug).slice(0, 2)
   const perfiles = getPerfilesIdeales(prep, precioMin)
   const app = getAppPrepaga(prep.slug)
   const faqs = [
@@ -216,12 +214,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
       description: prep.descripcion,
       url: `${SITE_URL}/prepagas/${slug}`,
       provider: { '@type': 'Organization', name: prep.nombre },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: prep.rating,
-        reviewCount: prep.cantidadOpiniones,
-        bestRating: 5,
-      },
       // AggregateOffer con el rango real de precios de los planes — sin esto
       // Google no tiene forma de mostrar "desde $X" en el resultado de
       // búsqueda para consultas tipo "{prepaga} planes" (pedido de Darío,
@@ -602,41 +594,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
           </Link>
         </div>
       </div>
-
-      {/* Testimonios */}
-      {testisPrepaga.length > 0 && (
-        <section className="py-10 bg-white border-t border-gray-100">
-          <div className="container max-w-5xl mx-auto">
-            <h2 className="text-xl font-bold text-gray-900 mb-5">Opiniones de afiliados</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {testisPrepaga.map(t => (
-                <div key={t.id} className="bg-gray-50 rounded-xl p-5 border border-gray-100">
-                  <div className="flex items-center gap-0.5 mb-3">
-                    {[1, 2, 3, 4, 5].map(i => (
-                      <svg key={i} viewBox="0 0 20 20" fill="currentColor"
-                        className={`w-3.5 h-3.5 ${i <= t.rating ? 'text-amber-400' : 'text-gray-200'}`}>
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-sm text-gray-700 leading-relaxed mb-3">"{t.texto}"</p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-xs font-semibold text-gray-900">{t.nombre}</div>
-                      <div className="text-xs text-gray-400">{t.ciudad} · {t.fecha}</div>
-                    </div>
-                    {t.planNombre && (
-                      <span className="text-[10px] bg-white border border-gray-200 text-gray-500 px-2 py-0.5 rounded-full">
-                        {t.planNombre}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Pros y Contras */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">

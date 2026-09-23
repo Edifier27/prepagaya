@@ -50,35 +50,6 @@ const jsonLd = [
   },
 ]
 
-// Avatar con iniciales para los testimonios (mismo patrón que el fallback de
-// PrepagaLogo): evita usar fotos de stock genéricas mientras le da más
-// cuerpo visual a la sección que el nombre solo.
-const TESTIMONIO_COLORS = ['#E8002D', '#0057A8', '#B45309']
-function iniciales(nombre: string): string {
-  return nombre.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()
-}
-
-const testimonios = [
-  {
-    texto: 'Cambié de OSDE 210 a Swiss Medical SMG20 y la cuota bajó bastante. En 5 minutos entendí qué plan me convenía y el trámite fue rápido.',
-    nombre: 'Martín R.',
-    detalle: '34 años · Buenos Aires',
-    stars: 5,
-  },
-  {
-    texto: 'Como monotributista no sabía que pagaba IVA extra. Me explicaron todo y ahora estoy en Sancor Plan 1000, mucho más claro.',
-    nombre: 'Diego P.',
-    detalle: '28 años · Rosario',
-    stars: 5,
-  },
-  {
-    texto: 'Para mi familia de 4 personas buscábamos el mejor precio sin perder cobertura. Con Premedic conseguimos PMO completo y bajamos bastante la cuota mensual.',
-    nombre: 'Lucía M.',
-    detalle: '41 años · Córdoba',
-    stars: 5,
-  },
-]
-
 const faqItems = [
   {
     q: '¿Cuánto cuesta una prepaga en Argentina en 2026?',
@@ -347,52 +318,6 @@ export default function HomePage(): React.ReactElement {
             ))}
           </div>
           <p className="text-center text-xs text-gray-400 mt-6">¿Tu provincia no está? Estamos sumando todas las provincias — mientras tanto <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">cotizá acá</Link> y te mostramos las prepagas de tu zona.</p>
-        </div>
-      </section>
-
-      {/* ── Testimonios ─────────────────────────────────────────────────── */}
-      <section className="py-14 bg-white border-b border-gray-100">
-        <div className="container max-w-5xl mx-auto">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-100 text-amber-700 text-xs font-semibold px-4 py-2 rounded-full mb-4">
-              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-              4.7 · Más de 800 valoraciones
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900">Lo que dicen quienes ya compararon</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {testimonios.map((t, i) => (
-              <div key={i} className="bg-gray-50 rounded-2xl p-6 border border-gray-100 relative">
-                {/* Stars */}
-                <div className="flex gap-0.5 mb-3">
-                  {Array.from({ length: t.stars }).map((_, j) => (
-                    <svg key={j} viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-amber-400">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </svg>
-                  ))}
-                </div>
-
-                <p className="text-gray-700 text-sm leading-relaxed mb-4">&ldquo;{t.texto}&rdquo;</p>
-
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center text-white font-black text-xs flex-shrink-0"
-                    style={{ backgroundColor: TESTIMONIO_COLORS[i % TESTIMONIO_COLORS.length] }}
-                    aria-hidden="true"
-                  >
-                    {iniciales(t.nombre)}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900 text-sm">{t.nombre}</div>
-                    <div className="text-xs text-gray-400">{t.detalle}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

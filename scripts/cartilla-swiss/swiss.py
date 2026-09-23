@@ -21,8 +21,9 @@ API = 'https://mobile.swissmedical.com.ar/api-smg/v1/busquedaPrestadoresSinCalif
 # CL1 (SMG10 Advance) se saca: el plan ya no existe (Darío, 23-sep-2026; tampoco
 # figura en el cuadro tarifario de Swiss ante la SSSalud), aunque el buscador
 # oficial todavía lo liste.
-CARTILLAS = {'NU2': 'SMG01', 'NU3': 'SMG02', 'CLE': 'SMG20', 'CLS': 'SMG30'}
-ORDEN_PLANES = ['SMG01', 'SMG02', 'SMG20', 'SMG30']
+# NU2 (SMG01 Nubial Clásica) también se saca: ya no existe (Darío, 23-sep-2026).
+CARTILLAS = {'NU3': 'SMG02', 'CLE': 'SMG20', 'CLS': 'SMG30'}
+ORDEN_PLANES = ['SMG02', 'SMG20', 'SMG30']
 # (tipo de búsqueda del buscador, especialidad, sección, etiqueta de servicio)
 BUSQUEDAS = [
     ('3', 'Internación', 'internacion', 'Internación'),

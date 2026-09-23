@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { cambiosRecomendados, getCambioBySlug, getCambiosPorDestino } from '@/lib/data/cambios'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { testimonios } from '@/lib/data/testimonios'
 import { SITE_NAME, SITE_URL, formatPrecio, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -48,7 +47,6 @@ export default async function CambioPage({ params }: Props) {
   const ahorra = c.deltaMensual > 0
   const otrosAlDestino = getCambiosPorDestino(c.destinoSlug).filter((x) => x.slug !== c.slug)
   const otrosCambios = (otrosAlDestino.length > 0 ? otrosAlDestino : cambiosRecomendados.filter((x) => x.slug !== c.slug)).slice(0, 3)
-  const testimonioDestino = testimonios.find((t) => t.prepagaSlug === c.destinoSlug && t.rating >= 4) ?? testimonios.find((t) => t.prepagaSlug === c.destinoSlug)
 
   // Copago y red se leen del plan real de cada lado (no se asumen "sin
   // copago" para ambos): origen se matchea por nombre porque el dato
@@ -255,21 +253,6 @@ export default async function CambioPage({ params }: Props) {
             <h2 className="text-lg font-bold text-gray-900 mb-2">¿Cuándo NO conviene este cambio?</h2>
             <p className="text-sm text-gray-600 leading-relaxed">{c.paraQuienNo}</p>
           </div>
-
-          {/* Testimonio real */}
-          {testimonioDestino && (
-            <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-10">
-              <div className="flex items-center gap-1 mb-2">
-                {[1, 2, 3, 4, 5].map((s) => (
-                  <svg key={s} viewBox="0 0 20 20" fill={s <= testimonioDestino.rating ? '#F59E0B' : '#E5E7EB'} className="w-4 h-4">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                ))}
-              </div>
-              <p className="text-sm text-gray-700 leading-relaxed italic mb-3">&ldquo;{testimonioDestino.texto}&rdquo;</p>
-              <p className="text-xs text-gray-400 font-medium">{testimonioDestino.nombre} · {testimonioDestino.ciudad} · afiliado a {destino.nombre}</p>
-            </div>
-          )}
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-7 text-white text-center mb-10">

@@ -4,7 +4,6 @@
   "22/09/2026"
  ],
  "planes": [
-  "SMG01",
   "SMG02",
   "SMG20",
   "SMG30"
@@ -94,7 +93,6 @@
     {
      "nombre": "Clínica del Parque Centenario",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -124,7 +122,6 @@
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -151,13 +148,11 @@
     {
      "nombre": "Clínica Médica Adventista Belgrano",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -482,13 +477,11 @@
     {
      "nombre": "ICBA Instituto Cardiovascular de Buenos AIRES",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -538,7 +531,6 @@
     {
      "nombre": "Instituto Oto-Rino-Laringológico Arauz",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -610,31 +602,8 @@
      ]
     },
     {
-     "nombre": "Sanatorio Colegiales",
-     "internacion": [
-      "SMG01"
-     ],
-     "guardia": [],
-     "marca": null,
-     "notas": [],
-     "servicios": [
-      "Internación"
-     ],
-     "sedes": [
-      {
-       "direccion": "Conde 851",
-       "localidad": "Colegiales",
-       "tel": "4556-4848/4888 / (15)4406-7787",
-       "servicios": [
-        "internacion"
-       ]
-      }
-     ]
-    },
-    {
      "nombre": "Sanatorio de la Providencia",
      "internacion": [
-      "SMG01",
       "SMG20",
       "SMG30"
      ],
@@ -696,13 +665,11 @@
     {
      "nombre": "Sanatorio Güemes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -834,13 +801,11 @@
     {
      "nombre": "Sanatorio Trinidad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -905,7 +870,6 @@
      "nombre": "Centro Médico Barrio Norte",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -940,13 +904,11 @@
     {
      "nombre": "Clínica General de Obstetricia y Cirugía Nuestra Señora de Fátima",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -975,13 +937,11 @@
     {
      "nombre": "Clinica Olivos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1046,13 +1006,11 @@
     {
      "nombre": "Sanatorio las LOMAS",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1088,13 +1046,11 @@
     {
      "nombre": "Sanatorio Nordelta",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1201,7 +1157,6 @@
      "nombre": "Centro de Ojos San Isidro",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1234,7 +1189,6 @@
     {
      "nombre": "ALTHEA Clínica Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1259,7 +1213,6 @@
     {
      "nombre": "Breast Clinic",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1284,7 +1237,6 @@
     {
      "nombre": "Clínica Privada de Excelencia Médica",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1309,13 +1261,11 @@
     {
      "nombre": "Hospital Italiano de La Plata",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1343,7 +1293,6 @@
     {
      "nombre": "I.p.e.n.s.a.",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1368,7 +1317,6 @@
     {
      "nombre": "Instituto Central de Medicina",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1393,7 +1341,6 @@
     {
      "nombre": "Instituto de Diagnóstico de La Plata",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1419,7 +1366,6 @@
     {
      "nombre": "Instituto Médico Platense",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1445,7 +1391,6 @@
     {
      "nombre": "Nueva Clínica del Niño de La Plata",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1471,7 +1416,6 @@
     {
      "nombre": "Policlínica Privada Angiocor",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1496,7 +1440,6 @@
     {
      "nombre": "Sanatorio Argentino del Plata",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1521,7 +1464,6 @@
     {
      "nombre": "Sanatorio Médico Los Tilos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1547,7 +1489,6 @@
      "nombre": "Clínica Privada de Ojos Santa Lucía",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1580,7 +1521,6 @@
     {
      "nombre": "Amecom - Asociación Mutual Empleados de Comercio de Monte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1614,13 +1554,11 @@
     {
      "nombre": "Asociación Hospital Italiano Regional del Sur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1648,13 +1586,11 @@
     {
      "nombre": "Centro de Salud \"Dr. Raúl Matera\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1682,7 +1618,6 @@
     {
      "nombre": "Clínica del Sol de Bahía Blanca",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1707,13 +1642,11 @@
     {
      "nombre": "Hospital de la Asociación Médica Dr. Felipe Glasman",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1739,7 +1672,6 @@
     {
      "nombre": "Hospital Militar Bahía Blanca",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1764,13 +1696,11 @@
     {
      "nombre": "Hospital Privado del Sur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1798,13 +1728,11 @@
     {
      "nombre": "Hospital Regional Español",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1841,13 +1769,11 @@
     {
      "nombre": "Clínica 25 de Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1875,13 +1801,11 @@
     {
      "nombre": "Clínica del Niño y La Madre",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1910,13 +1834,11 @@
     {
      "nombre": "Clínica Privada Pueyrredón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1944,13 +1866,11 @@
     {
      "nombre": "Clínica y Maternidad Colón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -1978,13 +1898,11 @@
     {
      "nombre": "Fundación Médica Mar del Plata - Hospital Privado de Comunidad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2015,13 +1933,11 @@
     {
      "nombre": "Sanatorio Belgrano",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2049,7 +1965,6 @@
      "nombre": "Clínica de Fracturas y Ortopedia",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2074,7 +1989,6 @@
      "nombre": "Hospital Interz. Especializado Materno Infantil \"Don Victorio Tetamanti\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2110,7 +2024,6 @@
     {
      "nombre": "Clínica Centro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2135,13 +2048,11 @@
     {
      "nombre": "Clínica Pergamino",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2176,7 +2087,6 @@
     {
      "nombre": "Clínica Centro Médico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2210,13 +2120,11 @@
     {
      "nombre": "Clínica Centro Médico Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2242,13 +2150,11 @@
     {
      "nombre": "Clínica La Pequeña Familia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2274,13 +2180,11 @@
     {
      "nombre": "Sanatorio Junín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2306,7 +2210,6 @@
     {
      "nombre": "UCCA - Unidad Clínica y Cirugía Ambulatoria",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2340,7 +2243,6 @@
     {
      "nombre": "Clínica Chacabuco de Tandil",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2365,13 +2267,11 @@
     {
      "nombre": "Hospital Ramon Santamarina",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2400,7 +2300,6 @@
     {
      "nombre": "Sanatorio Tandil",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2435,7 +2334,6 @@
     {
      "nombre": "Clínica Coronel Suárez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2469,13 +2367,11 @@
     {
      "nombre": "Clínica Cruz Azul",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2502,7 +2398,6 @@
      "nombre": "Hospital Municipal \"Dr. Emilio Ferreyra\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2528,7 +2423,6 @@
      "nombre": "Itran - Instituto de Traumatología Necochea",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2561,13 +2455,11 @@
     {
      "nombre": "Clínica del Bosque de Pinamar",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2631,7 +2523,6 @@
     {
      "nombre": "Clínica del Niño de Quilmes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2656,13 +2547,11 @@
     {
      "nombre": "Clínica Ima",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2690,7 +2579,6 @@
     {
      "nombre": "Clínica Privada General Belgrano",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2771,7 +2659,6 @@
     {
      "nombre": "Instituto Médico Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2797,7 +2684,6 @@
     {
      "nombre": "Nuevo Sanatorio Berazategui",
      "internacion": [
-      "SMG01",
       "SMG02"
      ],
      "guardia": [],
@@ -2935,7 +2821,6 @@
      "nombre": "Centro de Ojos Esteban Echeverría",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -2968,13 +2853,11 @@
     {
      "nombre": "Clínica del Oeste",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3009,13 +2892,11 @@
     {
      "nombre": "Clínica Delta",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3044,13 +2925,11 @@
     {
      "nombre": "Hospital Municipal de Campana",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3088,13 +2967,11 @@
     {
      "nombre": "Clínica Güemes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3130,7 +3007,6 @@
     {
      "nombre": "Clínica Juan Pablo II",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3164,7 +3040,6 @@
     {
      "nombre": "Clínica Lincoln",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3189,7 +3064,6 @@
     {
      "nombre": "Clínica Oeste",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3258,13 +3132,11 @@
     {
      "nombre": "Clínica Modelo de Morón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3294,35 +3166,8 @@
      ]
     },
     {
-     "nombre": "Clínica Privada Alcorta",
-     "internacion": [
-      "SMG01"
-     ],
-     "guardia": [
-      "SMG01"
-     ],
-     "marca": null,
-     "notas": [],
-     "servicios": [
-      "Internación",
-      "Guardia clínica"
-     ],
-     "sedes": [
-      {
-       "direccion": "Aristobulo del Valle 2629",
-       "localidad": "Moreno",
-       "tel": "(0237) 463-2277/2278/2720/2721 / 466-0653/5331",
-       "servicios": [
-        "internacion",
-        "guardia"
-       ]
-      }
-     ]
-    },
-    {
      "nombre": "Clínica Privada Centro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3347,13 +3192,11 @@
     {
      "nombre": "Clínica Privada del Buen Pastor",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3408,7 +3251,6 @@
     {
      "nombre": "Policlínica Cristo Caminante",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3433,7 +3275,6 @@
     {
      "nombre": "Sanatorio Clínica Modelo Laferrere",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3525,7 +3366,6 @@
      "nombre": "Centro de Ojos Ituzaingó",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3558,7 +3398,6 @@
     {
      "nombre": "Clínica Privada de Diagnóstico y Tratamiento",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3592,13 +3431,11 @@
     {
      "nombre": "Clínica Privada del Carmen",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3627,13 +3464,11 @@
     {
      "nombre": "Fundación Instituto Quirúrgico del Callao",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3664,13 +3499,11 @@
     {
      "nombre": "Hospital Zonal General de Agudos Virgen del Cármen",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3709,7 +3542,6 @@
     {
      "nombre": "Clínica Privada Dr. Pedro García Salinas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3743,7 +3575,6 @@
     {
      "nombre": "Clínica Privada Enrique Mosconi",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3768,7 +3599,6 @@
     {
      "nombre": "Instituto Médico Argentino",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3802,7 +3632,6 @@
     {
      "nombre": "Clínica Privada Fátima",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3836,7 +3665,6 @@
     {
      "nombre": "Clínica Privada Hispano Argentina",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3871,13 +3699,11 @@
     {
      "nombre": "Clínica Privada Oeste",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3913,7 +3739,6 @@
     {
      "nombre": "Clínica Privada Pigüe",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3947,7 +3772,6 @@
     {
      "nombre": "Clínica Privada Suipacha",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -3981,7 +3805,6 @@
     {
      "nombre": "Clínica Ricardo Gutiérrez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4015,7 +3838,6 @@
     {
      "nombre": "Clínica Salto",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4049,13 +3871,11 @@
     {
      "nombre": "Clínica San Bernardo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4090,7 +3910,6 @@
     {
      "nombre": "Clínica San Martín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4115,7 +3934,6 @@
     {
      "nombre": "Sanatorio Azul",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4149,7 +3967,6 @@
     {
      "nombre": "Clínica San Nicolás",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4175,7 +3992,6 @@
     {
      "nombre": "Fundación Nuestra Señora del Rosario",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4200,7 +4016,6 @@
     {
      "nombre": "Instituto Médico De Los Arroyos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4226,7 +4041,6 @@
      "nombre": "Grupo Oroño - ACE Agrupación de Colaboración Empresaria - Zona Sur",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4260,7 +4074,6 @@
     {
      "nombre": "Clínica y Maternidad \"San Jose Obrero\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4294,7 +4107,6 @@
     {
      "nombre": "Clínica y Maternidad Privada González Chaves",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4328,7 +4140,6 @@
     {
      "nombre": "Clínica y Maternidad Privada María Auxiliadora",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4353,7 +4164,6 @@
     {
      "nombre": "Hospital Municipal Dr. Hector Miguel Cura",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4378,7 +4188,6 @@
     {
      "nombre": "Instituto Médico Olavarría",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4403,7 +4212,6 @@
     {
      "nombre": "Sanatorio Cemeda",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4469,13 +4277,11 @@
     {
      "nombre": "Corporación Médica de General San Martín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4508,7 +4314,6 @@
      "nombre": "Clínica Santa María",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4534,7 +4339,6 @@
      "nombre": "I.m.o. Instituto Médico de Ojos",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4567,7 +4371,6 @@
     {
      "nombre": "Hospital Darregueira",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4601,7 +4404,6 @@
     {
      "nombre": "Hospital Gaspar M. Campos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4635,7 +4437,6 @@
     {
      "nombre": "Hospital Municipal de Carlos Casares \"Dr. Julio F. Ramos\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4669,13 +4470,11 @@
     {
      "nombre": "Hospital Municipal de Guamini Dr. Joaquin Llambias",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4713,7 +4512,6 @@
     {
      "nombre": "Hospital Municipal de Salliquelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4747,7 +4545,6 @@
     {
      "nombre": "Hospital Privado Sadiv",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4772,7 +4569,6 @@
     {
      "nombre": "Sanatorio Coopser",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4798,7 +4594,6 @@
      "nombre": "Hospital Subzonal de San Pedro",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4834,7 +4629,6 @@
     {
      "nombre": "Instituto Médico Madariaguense",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4861,7 +4655,6 @@
      "nombre": "Hospital Municipal \"Ana Rosa S. de Martínez Guerrero\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4895,13 +4688,11 @@
     {
      "nombre": "Instituto Médico Privado Mitre",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4930,7 +4721,6 @@
      "nombre": "Hospital Municipal \"Dr. Marino Cassano\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4964,7 +4754,6 @@
     {
      "nombre": "Instituto Privado de Clínica y Cirugía City Bell",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -4998,7 +4787,6 @@
     {
      "nombre": "Instituto Privado de Clínica y Cirugía Lobos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5032,7 +4820,6 @@
     {
      "nombre": "Instituto Privado de Diagnóstico Las Flores",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5066,7 +4853,6 @@
     {
      "nombre": "Policlínica Privada 1° de Agosto",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5100,7 +4886,6 @@
     {
      "nombre": "Policlínica Privada Urday",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5125,7 +4910,6 @@
     {
      "nombre": "Sanatorio San José de Villa Elisa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5159,7 +4943,6 @@
     {
      "nombre": "Sanatorio Chivilcoy",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5193,13 +4976,11 @@
     {
      "nombre": "Sanatorio Dolores",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5226,13 +5007,11 @@
     {
      "nombre": "Sanatorio Regional",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5260,7 +5039,6 @@
      "nombre": "Hospital Municipal \"San Roque\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5293,7 +5071,6 @@
     {
      "nombre": "Sanatorio O.s.p.r.e.m.",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5327,7 +5104,6 @@
     {
      "nombre": "Sanatorio Policlínico Coronel Dorrego",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5361,7 +5137,6 @@
     {
      "nombre": "Sanatorio Pringles",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5395,7 +5170,6 @@
     {
      "nombre": "Clínica Privada Andalgala",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5420,7 +5194,6 @@
     {
      "nombre": "Sanatorio del Sol",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5454,7 +5227,6 @@
     {
      "nombre": "Clínica San Javier",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5479,13 +5251,11 @@
     {
      "nombre": "I.G.O.M. Instituto de Ginecología y Obstetricia Maternidad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5521,13 +5291,11 @@
     {
      "nombre": "Instituto de Cardiología Intervencionista ICI",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5554,13 +5322,11 @@
     {
      "nombre": "Instituto Médico Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5586,13 +5352,11 @@
     {
      "nombre": "Sanatorio Junin",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5618,7 +5382,6 @@
     {
      "nombre": "Sanatorio Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5643,13 +5406,11 @@
     {
      "nombre": "Sanatorio Pasteur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5684,7 +5445,6 @@
     {
      "nombre": "Clínica Santa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5709,7 +5469,6 @@
     {
      "nombre": "Sanatorio Santa Rita",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5744,7 +5503,6 @@
     {
      "nombre": "Clínica Virgen del Valle",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5769,7 +5527,6 @@
     {
      "nombre": "Sanatorio San Roque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5803,7 +5560,6 @@
     {
      "nombre": "Instituto Médico Saint Michell",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5837,7 +5593,6 @@
     {
      "nombre": "La Nueva Clinica Recreo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5871,7 +5626,6 @@
     {
      "nombre": "Sanatorio Privado Calchaqui",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5905,7 +5659,6 @@
     {
      "nombre": "Clínica Avenida",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5930,7 +5683,6 @@
     {
      "nombre": "Clínica Saenz Peña",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5955,13 +5707,11 @@
     {
      "nombre": "Instituto Privado Santa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -5989,13 +5739,11 @@
     {
      "nombre": "Sanatorio Loma Linda",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6022,7 +5770,6 @@
     {
      "nombre": "Sanatorio Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6048,7 +5795,6 @@
      "nombre": "Fundación UNCAUS Centro Clínico de Alta Complejidad",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6081,7 +5827,6 @@
     {
      "nombre": "Clínica Castelli",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6106,7 +5851,6 @@
     {
      "nombre": "Clínica Dr. Vázquez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6131,7 +5875,6 @@
     {
      "nombre": "Sanatorio del Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6165,7 +5908,6 @@
     {
      "nombre": "Clínica Charata",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6190,13 +5932,11 @@
     {
      "nombre": "Clínica Giuliani",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6231,7 +5971,6 @@
     {
      "nombre": "Clínica Corzuela",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6265,7 +6004,6 @@
     {
      "nombre": "Clínica Cuccioleta",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6299,7 +6037,6 @@
     {
      "nombre": "Clínica Dr. Giménez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6333,7 +6070,6 @@
     {
      "nombre": "Clínica Integral",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6367,7 +6103,6 @@
     {
      "nombre": "Clínica Integral - Servicios de Salud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6401,7 +6136,6 @@
     {
      "nombre": "Clínica Integral de Servicios de Salud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6426,13 +6160,11 @@
     {
      "nombre": "Sanatorio Central de Salud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6458,7 +6190,6 @@
     {
      "nombre": "Sanatorio del Sur Chaqueño",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6483,13 +6214,11 @@
     {
      "nombre": "Sanatorio Parque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6516,7 +6245,6 @@
      "nombre": "Sanatorio Sur",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6549,7 +6277,6 @@
     {
      "nombre": "Clínica Klinic",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6583,7 +6310,6 @@
     {
      "nombre": "Clínica Las Breñas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6608,7 +6334,6 @@
     {
      "nombre": "Clínica Regional",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6642,7 +6367,6 @@
     {
      "nombre": "Clínica S.a.l.l.u.d",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6667,7 +6391,6 @@
     {
      "nombre": "Clínica Santa Rosa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6701,7 +6424,6 @@
     {
      "nombre": "Clínica Santa Rita",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6735,7 +6457,6 @@
     {
      "nombre": "Cliniq",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6760,13 +6481,11 @@
     {
      "nombre": "Cordis Instituto del Corazón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6792,7 +6511,6 @@
     {
      "nombre": "Instituto Cardiovascular del Chaco",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6817,13 +6535,11 @@
     {
      "nombre": "Sanatorio Antártida",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6853,13 +6569,11 @@
     {
      "nombre": "Sanatorio Chaco",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6886,7 +6600,6 @@
     {
      "nombre": "Sanatorio Chaco Oeste",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6911,13 +6624,11 @@
     {
      "nombre": "Sanatorio Femechaco de la Comunidad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6945,7 +6656,6 @@
     {
      "nombre": "Sanatorio Frangioli",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6970,7 +6680,6 @@
     {
      "nombre": "Sanatorio Galeno",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -6995,13 +6704,11 @@
     {
      "nombre": "Sanatorio Materno Infantil",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7030,7 +6737,6 @@
     {
      "nombre": "Sanatorio Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7055,7 +6761,6 @@
     {
      "nombre": "Sanatorio Palacio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7080,7 +6785,6 @@
     {
      "nombre": "Sanatorio Sagrada Familia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7106,7 +6810,6 @@
     {
      "nombre": "Sanatorio Sarmiento",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7132,7 +6835,6 @@
      "nombre": "Centro Cardiológico del Nordeste",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7165,7 +6867,6 @@
     {
      "nombre": "Nueva Clínica Villa Berthet",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7199,7 +6900,6 @@
     {
      "nombre": "Sanatorio General Pinedo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7233,13 +6933,11 @@
     {
      "nombre": "Asociación Española de Socorros Mutuos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7267,7 +6965,6 @@
     {
      "nombre": "Caps Restinga Ali",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7292,13 +6989,11 @@
     {
      "nombre": "Clínica del Valle",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7333,13 +7028,11 @@
     {
      "nombre": "Clínica Pueyrredón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7365,13 +7058,11 @@
     {
      "nombre": "Hospital Regional Comodoro Rivadavia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7406,7 +7097,6 @@
     {
      "nombre": "Clínica Esquel",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7431,7 +7121,6 @@
     {
      "nombre": "Clínica Los Alerces",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7456,7 +7145,6 @@
     {
      "nombre": "Clínica Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7481,7 +7169,6 @@
     {
      "nombre": "Hospital Zonal Esquel",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7507,7 +7194,6 @@
      "nombre": "Sani - Pediatría",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7540,7 +7226,6 @@
     {
      "nombre": "Clínica Sarmiento",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7565,7 +7250,6 @@
     {
      "nombre": "Hospital Sarmiento",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7599,7 +7283,6 @@
     {
      "nombre": "Hospital Río Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7633,7 +7316,6 @@
     {
      "nombre": "Hospital Santa Teresita",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7667,13 +7349,11 @@
     {
      "nombre": "Hospital Sub Zonal de Puerto Madryn Dr. Andrés Isola",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7700,13 +7380,11 @@
     {
      "nombre": "Sanatorio de la Ciudad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7732,13 +7410,11 @@
     {
      "nombre": "Sanatorio y Maternidad Santa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7766,7 +7442,6 @@
      "nombre": "Sep - Servicio de Emergencias Privado",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7800,13 +7475,11 @@
     {
      "nombre": "Hospital Zonal Trelew",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7833,13 +7506,11 @@
     {
      "nombre": "Sanatorio Trelew",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7874,7 +7545,6 @@
     {
      "nombre": "Centro de Atención Jesús María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7899,7 +7569,6 @@
     {
      "nombre": "Clínica Privada Jesús María Dr. Aníbal Luis Viale",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7924,7 +7593,6 @@
     {
      "nombre": "Clínica Privada San Isidro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7958,13 +7626,11 @@
     {
      "nombre": "Clínica de Especialidades Enrique Carra",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -7992,13 +7658,11 @@
     {
      "nombre": "Clínica Regional del Este",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8024,13 +7688,11 @@
     {
      "nombre": "Sanatorio Argentino",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8064,13 +7726,11 @@
     {
      "nombre": "Sanatorio y Clínica San Justo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8105,7 +7765,6 @@
     {
      "nombre": "Clínica Fusavim Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8130,13 +7789,11 @@
     {
      "nombre": "Clínica Privada de Especialidades Villa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8164,13 +7821,11 @@
     {
      "nombre": "Clínica Privada Dr. Gregorio Marañón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8197,13 +7852,11 @@
     {
      "nombre": "Clínica San Martín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8229,7 +7882,6 @@
     {
      "nombre": "Mater Dei Infanto Juvenil",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8254,13 +7906,11 @@
     {
      "nombre": "Sanatorio Cruz Azul",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8286,7 +7936,6 @@
     {
      "nombre": "Sanatorio de la Cañada Villa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8321,13 +7970,11 @@
     {
      "nombre": "Clínica Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8353,13 +8000,11 @@
     {
      "nombre": "Clínica Privada Villa Dolores",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8398,7 +8043,6 @@
     {
      "nombre": "Clinica Privada Ballesteros",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8432,7 +8076,6 @@
     {
      "nombre": "Clínica Privada Caraffa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8457,7 +8100,6 @@
     {
      "nombre": "Clínica Privada del Sol",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8483,7 +8125,6 @@
     {
      "nombre": "Clínica Privada Gallia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8508,7 +8149,6 @@
     {
      "nombre": "Clínica Romagosa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8533,13 +8173,11 @@
     {
      "nombre": "Clínica Universitaria Reina Fabiola",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8565,13 +8203,11 @@
     {
      "nombre": "Clínica Velez Sarsfield",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8606,13 +8242,11 @@
     {
      "nombre": "Hospital Privado de Córdoba",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8638,13 +8272,11 @@
     {
      "nombre": "Instituto Modelo de Cardiología Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8670,7 +8302,6 @@
     {
      "nombre": "Sanatorio Allende",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8703,7 +8334,6 @@
     {
      "nombre": "Sanatorio de la Cañada Villa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8729,7 +8359,6 @@
     {
      "nombre": "Sanatorio del Salvador Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8755,7 +8384,6 @@
     {
      "nombre": "Sanatorio Mayo Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8780,7 +8408,6 @@
     {
      "nombre": "Sanatorio Parque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8805,13 +8432,11 @@
     {
      "nombre": "Sanatorio Privado Aconcagua",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8861,7 +8486,6 @@
     {
      "nombre": "Clínica Privada Central La Merced",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8895,13 +8519,11 @@
     {
      "nombre": "Clínica Privada Cruz Verde",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8927,13 +8549,11 @@
     {
      "nombre": "Servicios de Salud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -8968,7 +8588,6 @@
     {
      "nombre": "Clínica Privada de la Ciudad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9002,7 +8621,6 @@
     {
      "nombre": "Clínica Privada de la Familia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9027,7 +8645,6 @@
     {
      "nombre": "Sanatorio Rubio Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9061,7 +8678,6 @@
     {
      "nombre": "Clínica Privada Dean Funes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9095,13 +8711,11 @@
     {
      "nombre": "Clínica Privada del Sol",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9136,7 +8750,6 @@
     {
      "nombre": "Clínica Privada Demaría",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9170,13 +8783,11 @@
     {
      "nombre": "Clínica Privada General Deheza",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9202,13 +8813,11 @@
     {
      "nombre": "Clínica Urquia Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9243,13 +8852,11 @@
     {
      "nombre": "Clínica Privada La Cumbre",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9285,13 +8892,11 @@
     {
      "nombre": "Clínica Privada Laboulaye",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9317,13 +8922,11 @@
     {
      "nombre": "Clínica Privada San Lucas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9358,7 +8961,6 @@
     {
      "nombre": "Clínica Privada los Condores",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9392,7 +8994,6 @@
     {
      "nombre": "Clínica Privada Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9417,13 +9018,11 @@
     {
      "nombre": "Clínica Privada Mayo Bell Ville",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9449,7 +9048,6 @@
     {
      "nombre": "Clinica Regional Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9474,13 +9072,11 @@
     {
      "nombre": "Clínica Unión Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9515,7 +9111,6 @@
     {
      "nombre": "Clínica Privada Modelo de Río Tercero",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9540,7 +9135,6 @@
     {
      "nombre": "Clínica Savio Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9565,7 +9159,6 @@
     {
      "nombre": "Sanatorio de la Cañada Villa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9600,13 +9193,11 @@
     {
      "nombre": "Clínica Privada Pasteur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9641,7 +9232,6 @@
     {
      "nombre": "Clínica Privada Regional",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9675,13 +9265,11 @@
     {
      "nombre": "Clínica Privada San Antonio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9716,7 +9304,6 @@
     {
      "nombre": "Clínica Privada San José",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9751,7 +9338,6 @@
     {
      "nombre": "Clínica Privada San Justo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9785,7 +9371,6 @@
     {
      "nombre": "Clínica Privada San Martín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9820,7 +9405,6 @@
     {
      "nombre": "Clínica Privada Santa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9854,7 +9438,6 @@
     {
      "nombre": "Clínica Privada Santo Domingo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9888,13 +9471,11 @@
     {
      "nombre": "Clínica Privada Zonal Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9929,13 +9510,11 @@
     {
      "nombre": "Clínica Regional del Sud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -9965,13 +9544,11 @@
     {
      "nombre": "Instituto Médico Río Cuarto",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10001,13 +9578,11 @@
     {
      "nombre": "Instituto Privado de Neonatología y Pediatría",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10037,13 +9612,11 @@
     {
      "nombre": "Instituto Privado de Urología y Nefrología",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10070,13 +9643,11 @@
     {
      "nombre": "Sanatorio Privado Río Cuarto",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10115,7 +9686,6 @@
     {
      "nombre": "Hospital Arias",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10149,13 +9719,11 @@
     {
      "nombre": "Hospital Italiano Monte Buey",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10190,7 +9758,6 @@
     {
      "nombre": "Hospital Municipal Dr. Raúl Figueroa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10224,7 +9791,6 @@
     {
      "nombre": "Médicos Asociados",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10259,7 +9825,6 @@
     {
      "nombre": "Sanatorio Alta Gracia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10293,7 +9858,6 @@
     {
      "nombre": "Sanatorio de la Trinidad Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10327,13 +9891,11 @@
     {
      "nombre": "Sanatorio Joaquina O. de Garcés",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10363,7 +9925,6 @@
     {
      "nombre": "Sanatorio Policlínico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10397,13 +9958,11 @@
     {
      "nombre": "Sanatorio María Isabel",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10438,7 +9997,6 @@
     {
      "nombre": "Sanatorio Privado Caroya",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10472,7 +10030,6 @@
     {
      "nombre": "Sanatorio Privado del Interior",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10506,13 +10063,11 @@
     {
      "nombre": "Sanatorio Privado San Patricio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10538,13 +10093,11 @@
     {
      "nombre": "Sanatorio San Roque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10571,7 +10124,6 @@
      "nombre": "Centro Medico Nacqua Salud",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10604,7 +10156,6 @@
     {
      "nombre": "Sanatorio San José Clínica Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10638,7 +10189,6 @@
     {
      "nombre": "Serem Privado Arroyito",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10673,7 +10223,6 @@
     {
      "nombre": "Centro Médico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10698,7 +10247,6 @@
     {
      "nombre": "Centro Médico del Parque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10723,13 +10271,11 @@
     {
      "nombre": "Clínica del Niño",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10755,13 +10301,11 @@
     {
      "nombre": "Clínica del Pilar",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10788,7 +10332,6 @@
     {
      "nombre": "Clínica del Sol",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10813,13 +10356,11 @@
     {
      "nombre": "Clínica Maternal del Iberá",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10845,7 +10386,6 @@
     {
      "nombre": "Clínica Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10870,7 +10410,6 @@
     {
      "nombre": "Clínica Santa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10895,7 +10434,6 @@
     {
      "nombre": "Hospital Pediátrico Juan Pablo II",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10920,7 +10458,6 @@
     {
      "nombre": "Instituto de Cardiología de Corrientes - Juana Francisca Cabral",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10945,7 +10482,6 @@
     {
      "nombre": "Mediccis - Excelencia en Salud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -10970,13 +10506,11 @@
     {
      "nombre": "Sanatorio del Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11011,7 +10545,6 @@
     {
      "nombre": "Centro Médico Saladas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11036,7 +10569,6 @@
     {
      "nombre": "Sanatorio Argentino",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11070,7 +10602,6 @@
     {
      "nombre": "Clínica Bella Vista",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11095,7 +10626,6 @@
     {
      "nombre": "Sanatorio y Maternidad Plaza",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11129,13 +10659,11 @@
     {
      "nombre": "Clínica de la Mujer y el Niño",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11161,7 +10689,6 @@
     {
      "nombre": "Clínica Santi Spiritus",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11186,7 +10713,6 @@
     {
      "nombre": "Sanatorio San Martín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11212,13 +10738,11 @@
     {
      "nombre": "Sanatorio San Roque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11253,7 +10777,6 @@
     {
      "nombre": "Clínica Madariaga",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11278,7 +10801,6 @@
     {
      "nombre": "Clínica Paso de los Libres",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11303,7 +10825,6 @@
     {
      "nombre": "Clínica San Joaquín de Uruguay",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11328,7 +10849,6 @@
     {
      "nombre": "Medi-Con",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11362,7 +10882,6 @@
     {
      "nombre": "Clínica San Juan",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11396,7 +10915,6 @@
     {
      "nombre": "Clínica Santa Rita",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11421,7 +10939,6 @@
     {
      "nombre": "Sanatorio Dr. Martin",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11455,7 +10972,6 @@
     {
      "nombre": "Sanatorio Corrientes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11480,7 +10996,6 @@
     {
      "nombre": "Sanatorio Monte Caseros",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11514,13 +11029,11 @@
     {
      "nombre": "Sanatorio Curuzu Cuatia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11546,7 +11059,6 @@
     {
      "nombre": "Sanatorio San Roque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11580,7 +11092,6 @@
     {
      "nombre": "Sanatorio San Juan",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11614,7 +11125,6 @@
     {
      "nombre": "Sanatorio y Maternidad Mercedes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11648,7 +11158,6 @@
     {
      "nombre": "Santo Tome Salud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11682,7 +11191,6 @@
     {
      "nombre": "Centro de Especialidades Médicas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11707,13 +11215,11 @@
     {
      "nombre": "Clínica Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11742,7 +11248,6 @@
     {
      "nombre": "Hospital de la Baxada \"Dra. Teresa Ratto\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11767,13 +11272,11 @@
     {
      "nombre": "Hospital Materno Infantil San Roque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11799,13 +11302,11 @@
     {
      "nombre": "Hospital San Martín - C.u.c.a.i.e.r.",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11833,13 +11334,11 @@
     {
      "nombre": "I.t.e.o - Instituto de Traumatología y Enfermedades Oseas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11865,7 +11364,6 @@
     {
      "nombre": "Instituto Privado de Cirugía Plástica",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11890,7 +11388,6 @@
     {
      "nombre": "Instituto Privado de Pediatría",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11915,13 +11412,11 @@
     {
      "nombre": "Instituto Rawson de Diagnóstico y Tratamiento",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11947,13 +11442,11 @@
     {
      "nombre": "Sanatorio del Niño",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -11979,13 +11472,11 @@
     {
      "nombre": "Sanatorio La Entrerriana",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12013,7 +11504,6 @@
     {
      "nombre": "Sanatorio Río",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12047,7 +11537,6 @@
     {
      "nombre": "Centro Médico Crespo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12072,13 +11561,11 @@
     {
      "nombre": "Clínica Parque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12113,13 +11600,11 @@
     {
      "nombre": "Centro Médico San Lucas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12145,13 +11630,11 @@
     {
      "nombre": "Cooperativa de Medicina Asistencial Integrada Luis Jeannot Sueyro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12185,13 +11668,11 @@
     {
      "nombre": "Sanatorio Pronto",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12231,7 +11712,6 @@
     {
      "nombre": "Clínica Biomédica",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12265,13 +11745,11 @@
     {
      "nombre": "Clínica Bovril",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12297,13 +11775,11 @@
     {
      "nombre": "Clínica del Sol",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12338,7 +11814,6 @@
     {
      "nombre": "Clínica Central",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12363,7 +11838,6 @@
     {
      "nombre": "Hospital San Roque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12397,13 +11871,11 @@
     {
      "nombre": "Clínica de la Unión",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12438,13 +11910,11 @@
     {
      "nombre": "Clínica del Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12470,13 +11940,11 @@
     {
      "nombre": "Clínica Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12511,13 +11979,11 @@
     {
      "nombre": "Clínica Hernandarias",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12552,13 +12018,11 @@
     {
      "nombre": "Clínica Ramírez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12584,13 +12048,11 @@
     {
      "nombre": "Sanatorio Evangelico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12625,13 +12087,11 @@
     {
      "nombre": "Clínica San Miguel",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12666,13 +12126,11 @@
     {
      "nombre": "Clínica Uruguay",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12698,13 +12156,11 @@
     {
      "nombre": "Cooperativa Médica de Provisión Concepción del Uruguay - Instituto del Diagnóstico y Cirugia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12731,7 +12187,6 @@
     {
      "nombre": "Maternidad Concepción",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12765,7 +12220,6 @@
     {
      "nombre": "Hospital \"San Antonio\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12790,13 +12244,11 @@
     {
      "nombre": "Prestaciones Asistenciales CEM",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12831,7 +12283,6 @@
     {
      "nombre": "Hospital de Autogestión \"Dr. Fermín Salaberry\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12856,13 +12307,11 @@
     {
      "nombre": "Policlínico de Victoria",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12897,7 +12346,6 @@
     {
      "nombre": "Hospital San Blas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12922,13 +12370,11 @@
     {
      "nombre": "Sanatorio Urquiza",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12963,7 +12409,6 @@
     {
      "nombre": "Hospital San Miguel",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -12997,13 +12442,11 @@
     {
      "nombre": "Instituto de Pediatría",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13029,7 +12472,6 @@
     {
      "nombre": "Instituto Médico Quirúrgico Garat",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13054,13 +12496,11 @@
     {
      "nombre": "Maternidad Sogyn",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13086,13 +12526,11 @@
     {
      "nombre": "Sanatorio Concordia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13119,7 +12557,6 @@
      "nombre": "Clínica de Ojos Razzari",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13152,13 +12589,11 @@
     {
      "nombre": "Instituto Médico Colón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13184,13 +12619,11 @@
     {
      "nombre": "Sanatorio Médico Quirúrgico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13225,7 +12658,6 @@
     {
      "nombre": "Instituto Médico Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13259,13 +12691,11 @@
     {
      "nombre": "Sanatorio Adventista del Plata",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13305,13 +12735,11 @@
     {
      "nombre": "Sanatorio Americano",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13351,13 +12779,11 @@
     {
      "nombre": "Sanatorio Dr. F. Castaldo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13383,13 +12809,11 @@
     {
      "nombre": "Sanatorio María Grande",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13424,13 +12848,11 @@
     {
      "nombre": "Sanatorio Hasenkamp",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13465,7 +12887,6 @@
     {
      "nombre": "Sanatorio Santa Elena",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13499,7 +12920,6 @@
     {
      "nombre": "Clínica Argentina",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13524,7 +12944,6 @@
     {
      "nombre": "Clínica María Auxiliadora",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13549,7 +12968,6 @@
     {
      "nombre": "Clínica San Martín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13583,7 +13001,6 @@
     {
      "nombre": "Clínica de la Merced",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13617,7 +13034,6 @@
     {
      "nombre": "Clínica Dr. Claudio Villamea",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13651,13 +13067,11 @@
     {
      "nombre": "Clínica Dr. Jorge Vrsalovic",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13683,7 +13097,6 @@
     {
      "nombre": "Clínica Pirane",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13708,7 +13121,6 @@
     {
      "nombre": "Clínica Santa Lucía",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13733,13 +13145,11 @@
     {
      "nombre": "Emi",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13765,13 +13175,11 @@
     {
      "nombre": "Instituto Abruzzo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13797,7 +13205,6 @@
     {
      "nombre": "Instituto Médico Quirúrgico \"3 de Diciembre\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13822,7 +13229,6 @@
     {
      "nombre": "Proyectar Salud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13847,13 +13253,11 @@
     {
      "nombre": "Sanatorio Formosa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13879,13 +13283,11 @@
     {
      "nombre": "Sanatorio González Lelong",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13911,13 +13313,11 @@
     {
      "nombre": "Sociedad de Beneficencia de Formosa Maternidad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13944,7 +13344,6 @@
      "nombre": "Clínica de Angelo",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -13977,7 +13376,6 @@
     {
      "nombre": "Clínica El Espinillo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14011,7 +13409,6 @@
     {
      "nombre": "Clínica Integral San Antonio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14036,7 +13433,6 @@
     {
      "nombre": "Clínica Santa Rosa de Lima",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14070,7 +13466,6 @@
     {
      "nombre": "Clínica Santa Rita",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14104,7 +13499,6 @@
     {
      "nombre": "Centro Integral de Diagnóstico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14129,13 +13523,11 @@
     {
      "nombre": "Clínica de Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14161,13 +13553,11 @@
     {
      "nombre": "Clínica del Niño y el Recién Nacido",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14193,7 +13583,6 @@
     {
      "nombre": "Clínica San Francisco",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14218,7 +13607,6 @@
     {
      "nombre": "Clínica San Sebastián",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14243,13 +13631,11 @@
     {
      "nombre": "Instituto Médico del Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14276,13 +13662,11 @@
     {
      "nombre": "Sanatorio Los Lapachos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14309,13 +13693,11 @@
     {
      "nombre": "Sanatorio Nuestra Señora del Rosario",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14344,13 +13726,11 @@
     {
      "nombre": "Sanatorio y Clínica Lavalle",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14386,13 +13766,11 @@
     {
      "nombre": "Clínica Avenida",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14418,13 +13796,11 @@
     {
      "nombre": "Sanatorio Santa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14459,7 +13835,6 @@
     {
      "nombre": "Clínica del Milagro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14493,13 +13868,11 @@
     {
      "nombre": "Clínica Galo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14535,13 +13908,11 @@
     {
      "nombre": "Clínica La Quiaca",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14576,13 +13947,11 @@
     {
      "nombre": "Clínica Ledesma",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14609,13 +13978,11 @@
     {
      "nombre": "Clínica San Lorenzo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14651,13 +14018,11 @@
     {
      "nombre": "Clínica Nuestra Señora de Fátima",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14696,7 +14061,6 @@
     {
      "nombre": "Clínica Perico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14721,7 +14085,6 @@
     {
      "nombre": "Sanatorio San Jose Salud y Rehabilitación Integral",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14756,13 +14119,11 @@
     {
      "nombre": "Clínica Argentina",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14788,13 +14149,11 @@
     {
      "nombre": "Clínica Regional",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14820,7 +14179,6 @@
     {
      "nombre": "Instituto Cardiovascular General Pico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14854,7 +14212,6 @@
     {
      "nombre": "Clínica Castex",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14888,7 +14245,6 @@
     {
      "nombre": "Clínica Integral",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14913,7 +14269,6 @@
     {
      "nombre": "Clínica Privada Macachín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14947,7 +14302,6 @@
     {
      "nombre": "Clínica Integral Realicó",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -14972,7 +14326,6 @@
     {
      "nombre": "Clínica Santa Teresita",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15006,7 +14359,6 @@
     {
      "nombre": "Clínica Mater Dei Sagrada Familia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15040,7 +14392,6 @@
     {
      "nombre": "Clínica Maternal",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15074,7 +14425,6 @@
     {
      "nombre": "Clínica Médico Quirúrgica",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15108,13 +14458,11 @@
     {
      "nombre": "Clínica Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15140,13 +14488,11 @@
     {
      "nombre": "FAERAC - Fundación Ayuda a Enfermos Renales y Alta Complejidad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15172,7 +14518,6 @@
     {
      "nombre": "Instituto Polymedic",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15197,7 +14542,6 @@
     {
      "nombre": "Sanatorio Santa Rosa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15232,7 +14576,6 @@
     {
      "nombre": "Clínica Winifreda",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15266,7 +14609,6 @@
     {
      "nombre": "Amilar",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15291,7 +14633,6 @@
     {
      "nombre": "Clínica San Nicolás",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15326,7 +14667,6 @@
     {
      "nombre": "Clínica Nuestra Señora del Valle",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15361,13 +14701,11 @@
     {
      "nombre": "INCOR - Instituto del Corazón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15393,7 +14731,6 @@
     {
      "nombre": "Instituto Médico Quirúrgico e Imágenes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15418,7 +14755,6 @@
     {
      "nombre": "Instituto Médico Quirúrgico Mercado Luna",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15443,7 +14779,6 @@
     {
      "nombre": "Maternidad Privada de Obstetricia y Ginecología",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15478,7 +14813,6 @@
     {
      "nombre": "Clínica Arizu",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15503,7 +14837,6 @@
     {
      "nombre": "Clínica San Doná",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15528,13 +14861,11 @@
     {
      "nombre": "Hospital Español de Mendoza",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15573,7 +14904,6 @@
     {
      "nombre": "Clínica Ateneo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15598,7 +14928,6 @@
     {
      "nombre": "Sanatorio Argentino Guardia Adul",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15662,7 +14991,6 @@
     {
      "nombre": "Clínica de Naríz, Garganta y Oído",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15687,7 +15015,6 @@
     {
      "nombre": "Clínica Godoy Cruz",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15713,7 +15040,6 @@
      "nombre": "Clínica del Pilar",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15738,7 +15064,6 @@
      "nombre": "Desde los Cerros Salud",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15763,7 +15088,6 @@
      "nombre": "Medikids",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15796,7 +15120,6 @@
     {
      "nombre": "Clínica Francesa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15830,7 +15153,6 @@
     {
      "nombre": "Clínica Luján",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15855,7 +15177,6 @@
     {
      "nombre": "Sanatorio Regional",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15889,7 +15210,6 @@
     {
      "nombre": "Clínica Sur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15923,13 +15243,11 @@
     {
      "nombre": "Hospital Español del Sur Mendocino",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15957,13 +15275,11 @@
     {
      "nombre": "Policlínica Privada San Rafael",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -15999,13 +15315,11 @@
     {
      "nombre": "Hospital Italiano de Mendoza",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16032,13 +15346,11 @@
     {
      "nombre": "Mutual Clínica Santa Rosa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16076,7 +15388,6 @@
     {
      "nombre": "Hospital Santa Isabel de Hungría",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16110,13 +15421,11 @@
     {
      "nombre": "Policlínico Atuel",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16143,7 +15452,6 @@
      "nombre": "Sanatorio GASA",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16176,7 +15484,6 @@
     {
      "nombre": "Sanatorio Los Alamos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16210,7 +15517,6 @@
     {
      "nombre": "Amir Policlínica Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16235,7 +15541,6 @@
     {
      "nombre": "Clínica Elena",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16269,7 +15574,6 @@
     {
      "nombre": "CEMEBA Centro Médico Buenos Aires",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16294,7 +15598,6 @@
     {
      "nombre": "Hospital Itaembe Guazu",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16319,7 +15622,6 @@
     {
      "nombre": "Neuma Respiratoria",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16344,13 +15646,11 @@
     {
      "nombre": "Sanatorio Boratti",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16381,13 +15681,11 @@
     {
      "nombre": "Sanatorio Integral IOT",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16414,13 +15712,11 @@
     {
      "nombre": "Sanatorio Nosiglia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16449,7 +15745,6 @@
     {
      "nombre": "Sanatorio Posadas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16474,7 +15769,6 @@
     {
      "nombre": "Sanatorio Simes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16500,7 +15794,6 @@
      "nombre": "Hospital Público Provincial de Pediatría de Autogestión Dr. Fernando Barreiro",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16533,7 +15826,6 @@
     {
      "nombre": "Clínica 9 de Julio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16558,7 +15850,6 @@
     {
      "nombre": "Clínica Vecchia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16583,7 +15874,6 @@
     {
      "nombre": "Imsa - Instituto Médico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16617,7 +15907,6 @@
     {
      "nombre": "Clínica Cibils",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16651,7 +15940,6 @@
     {
      "nombre": "Clínica Clides Semeg",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16676,7 +15964,6 @@
     {
      "nombre": "Sanatorio Altos del Paraná",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16701,7 +15988,6 @@
     {
      "nombre": "Sanatorio San Marcos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16735,7 +16021,6 @@
     {
      "nombre": "Clínica Esperanza",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16769,7 +16054,6 @@
     {
      "nombre": "Clínica Integral Cerro Azul",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16803,7 +16087,6 @@
     {
      "nombre": "Clínica Integral Oberá",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16828,7 +16111,6 @@
     {
      "nombre": "EPSOM",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16853,7 +16135,6 @@
     {
      "nombre": "Policlínico Epsom",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16878,7 +16159,6 @@
     {
      "nombre": "Sanatorio Derna",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16903,7 +16183,6 @@
     {
      "nombre": "UNCIN - Interneo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16937,7 +16216,6 @@
     {
      "nombre": "Clínica Médica Integral",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16962,7 +16240,6 @@
     {
      "nombre": "Sanatorio Weber",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -16996,7 +16273,6 @@
     {
      "nombre": "Clínica Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17030,7 +16306,6 @@
     {
      "nombre": "Clínica Pigerl",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17064,7 +16339,6 @@
     {
      "nombre": "Clínica Wanda",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17089,7 +16363,6 @@
     {
      "nombre": "Sanatorio Rolón Vargas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17123,7 +16396,6 @@
     {
      "nombre": "Clínica Día",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17148,7 +16420,6 @@
     {
      "nombre": "Hospital de Apostoles",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17173,7 +16444,6 @@
     {
      "nombre": "Sanatorio Gauto",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17198,7 +16468,6 @@
     {
      "nombre": "Servicios Médicos Apóstoles",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17232,7 +16501,6 @@
     {
      "nombre": "Hospital de Area San Ignacio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17258,7 +16526,6 @@
      "nombre": "Health",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17293,7 +16560,6 @@
     {
      "nombre": "Hospital Nivel I Modular Turistico Iguazú",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17318,7 +16584,6 @@
     {
      "nombre": "Hospital Público SAMIC Iguazú de Autogestión",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17343,13 +16608,11 @@
     {
      "nombre": "S.A.M. Medicina Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17385,7 +16648,6 @@
     {
      "nombre": "Hospital Público Samic - Alem de Autogestion",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17410,7 +16672,6 @@
     {
      "nombre": "Instituto Médico Asistencial",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17435,7 +16696,6 @@
     {
      "nombre": "Servicio Integral de Salud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17469,7 +16729,6 @@
     {
      "nombre": "Instituto Materno Infantil - I.M.I.",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17494,13 +16753,11 @@
     {
      "nombre": "Sanatorio Buddenberg",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17527,7 +16784,6 @@
     {
      "nombre": "Terapia Intensiva del Alto Parana S.R.L.",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17561,7 +16817,6 @@
     {
      "nombre": "Sanatorio Candia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17595,7 +16850,6 @@
     {
      "nombre": "Sanatorio Montecarlo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17629,7 +16883,6 @@
     {
      "nombre": "Sanatorio Regional",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17663,7 +16916,6 @@
     {
      "nombre": "Centro de Clínica y Cirugía de Corta Estancia - FUNSAL",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17688,13 +16940,11 @@
     {
      "nombre": "Centro de Medicina Integral del Comahue",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17721,13 +16971,11 @@
     {
      "nombre": "Clínica de Imágenes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17753,13 +17001,11 @@
     {
      "nombre": "Clínica Médica San Agustin",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17785,13 +17031,11 @@
     {
      "nombre": "Clínica Pasteur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17817,7 +17061,6 @@
     {
      "nombre": "Clinica Pediatrica San LUCAS",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17842,13 +17085,11 @@
     {
      "nombre": "Maternidad San LUCAS",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17876,13 +17117,11 @@
     {
      "nombre": "Policlínico Neuquén Instituto de Diagnóstico y Tratamiento",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17918,7 +17157,6 @@
     {
      "nombre": "Subsecretaría de Salud - Dirección General de Recupero Financiero",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17944,7 +17182,6 @@
      "nombre": "La Natividad Neuquén",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -17986,7 +17223,6 @@
     {
      "nombre": "Cruz Andina",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18020,7 +17256,6 @@
     {
      "nombre": "Sindicato de Petróleo y Gas Privado de Río Negro, Neuquen y La Pampa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18054,7 +17289,6 @@
     {
      "nombre": "Clínica Central",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18080,7 +17314,6 @@
      "nombre": "Hospital Area Programa Villa Regina - Dr. Elías Smirnoff-",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18113,7 +17346,6 @@
     {
      "nombre": "Clínica la Merced",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18139,7 +17371,6 @@
      "nombre": "Hospital de Area Programada El Bolsón",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18172,7 +17403,6 @@
     {
      "nombre": "Clínica Radiológica del Sur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18197,7 +17427,6 @@
     {
      "nombre": "Fundación Médica de Río Negro y Neuquén",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18222,7 +17451,6 @@
     {
      "nombre": "Policlínico Modelo de Cipolletti",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18247,13 +17475,11 @@
     {
      "nombre": "Sanatorio Río Negro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18281,7 +17507,6 @@
      "nombre": "Hospital Dr. Pedro Moguillanski",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18314,13 +17539,11 @@
     {
      "nombre": "Clínica Roca",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18348,12 +17571,10 @@
     {
      "nombre": "Sanatorio Juan XXIII",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18382,7 +17603,6 @@
      "nombre": "Hospital General Roca Dr. Francisco Lopez Lima",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18415,13 +17635,11 @@
     {
      "nombre": "Clínica Viedma",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18450,13 +17668,11 @@
     {
      "nombre": "Sanatorio Austral",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18483,7 +17699,6 @@
      "nombre": "Hospital Viedma \"Artemides Zatti\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18516,7 +17731,6 @@
     {
      "nombre": "Clínica y Maternidad Juan Domingo Perón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18542,7 +17756,6 @@
      "nombre": "Hospital Rural de Catriel",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18575,7 +17788,6 @@
     {
      "nombre": "Hospital Dr. Osvaldo P. Bianchi",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18609,13 +17821,11 @@
     {
      "nombre": "Hospital Privado Regional del Sur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18651,7 +17861,6 @@
     {
      "nombre": "Instituto del Corazón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18676,13 +17885,11 @@
     {
      "nombre": "Sanatorio San Carlos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18710,7 +17917,6 @@
      "nombre": "Hospital Zonal San Carlos de Bariloche",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18743,13 +17949,11 @@
     {
      "nombre": "Instituto Médico Patagónico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18778,7 +17982,6 @@
      "nombre": "Hospital Area Programa Choele Choel",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18811,13 +18014,11 @@
     {
      "nombre": "Policlínico Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18845,7 +18046,6 @@
      "nombre": "Hospital Area Programa San Antonio",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18878,7 +18078,6 @@
     {
      "nombre": "Sanatorio Allen",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18904,7 +18103,6 @@
      "nombre": "Hospital \"Dr. Ernesto Accame\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18937,7 +18135,6 @@
     {
      "nombre": "Sanatorio Río Negro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18963,7 +18160,6 @@
      "nombre": "Hospital Area Programa Cinco Saltos",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -18996,7 +18192,6 @@
     {
      "nombre": "Sanatorio y Maternidad Cruz del Sur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19022,7 +18217,6 @@
      "nombre": "Hospital Area Programa Río Colorado",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19055,13 +18249,11 @@
     {
      "nombre": "Hospital Privado Salta",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19088,7 +18280,6 @@
     {
      "nombre": "Instituto Cenesa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19113,13 +18304,11 @@
     {
      "nombre": "Sanatorio ALTOS de SALTA",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19153,13 +18342,11 @@
     {
      "nombre": "Sanatorio El Carmen",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19195,13 +18382,11 @@
     {
      "nombre": "Clínica 9 de Julio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19228,13 +18413,11 @@
     {
      "nombre": "Clínica San José de Metán",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19269,13 +18452,11 @@
     {
      "nombre": "Clínica Alem",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19310,13 +18491,11 @@
     {
      "nombre": "Clínica Lourdes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19342,13 +18521,11 @@
     {
      "nombre": "Clínica Virgen de Huachana",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19383,13 +18560,11 @@
     {
      "nombre": "Clínica Privada Sagrado Corazón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19415,13 +18590,11 @@
     {
      "nombre": "Sanatorio Güemes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19462,13 +18635,11 @@
     {
      "nombre": "Clínica San Antonio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19495,7 +18666,6 @@
     {
      "nombre": "SETINP Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19529,13 +18699,11 @@
     {
      "nombre": "Hospital Nuestra Señora del Rosario",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19570,7 +18738,6 @@
     {
      "nombre": "Servicio de Urgencias Médicas \"San Lucas\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19604,13 +18771,11 @@
     {
      "nombre": "CIMYN - Centro de la Mujer y el Niño",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19646,7 +18811,6 @@
     {
      "nombre": "Clínica de la Ciudad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19671,13 +18835,11 @@
     {
      "nombre": "Clínica El Castaño",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19703,7 +18865,6 @@
     {
      "nombre": "Clínica Guadalupe",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19728,7 +18889,6 @@
     {
      "nombre": "Hospital Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19753,7 +18913,6 @@
     {
      "nombre": "I.M.O. - Instituto Modelo de Otorrinolaringología",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19778,13 +18937,11 @@
     {
      "nombre": "Sanatorio Argentino",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19815,7 +18972,6 @@
     {
      "nombre": "Sanatorio Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19840,13 +18996,11 @@
     {
      "nombre": "Sanatorio San Juan",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19873,7 +19027,6 @@
      "nombre": "Instituto Privado de Ojos Santa Lucía",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19906,7 +19059,6 @@
     {
      "nombre": "Clinica San Jose",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19940,13 +19092,11 @@
     {
      "nombre": "Clínica Cerhu",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -19974,13 +19124,11 @@
     {
      "nombre": "Clínica Privada Italia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20010,7 +19158,6 @@
     {
      "nombre": "Instituto Cardiovascular San Luis",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20035,13 +19182,11 @@
     {
      "nombre": "Sanatorio y Clínica Rivadavia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20077,13 +19222,11 @@
     {
      "nombre": "Hospital Privado de la Villa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20113,13 +19256,11 @@
     {
      "nombre": "Sanatorio de La Merced",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20156,13 +19297,11 @@
     {
      "nombre": "Clínica Cruz del Sur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20189,13 +19328,11 @@
     {
      "nombre": "Hospital Zonal Caleta Olivia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20230,7 +19367,6 @@
     {
      "nombre": "Clínica San Lucas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20255,13 +19391,11 @@
     {
      "nombre": "Hospital Distrital Pico Truncado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20297,7 +19431,6 @@
     {
      "nombre": "Hospital Cuenca Carbonífera",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20331,7 +19464,6 @@
     {
      "nombre": "Hospital de Alta Complejidad El Calafate",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20365,7 +19497,6 @@
     {
      "nombre": "Hospital Distrital \"O. H. Natale\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20399,7 +19530,6 @@
     {
      "nombre": "Hospital Distrital \"Ramón E. Santa Paul\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20433,13 +19563,11 @@
     {
      "nombre": "Hospital Distrital de Puerto Deseado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20475,7 +19603,6 @@
     {
      "nombre": "Hospital Distrital Las Heras",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20509,13 +19636,11 @@
     {
      "nombre": "Hospital Distrital Puerto San Julian Dr. Miguel Lombardich",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20551,7 +19676,6 @@
     {
      "nombre": "Hospital Distrital San Lucas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20585,13 +19709,11 @@
     {
      "nombre": "Hospital Regional Río Gallegos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20618,13 +19740,11 @@
     {
      "nombre": "Policlínico del Atlántico Sur",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20661,7 +19781,6 @@
     {
      "nombre": "Hospital Seccional \"Dr. Eduardo Canosa\"",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20695,13 +19814,11 @@
     {
      "nombre": "Hospital Seccional Comandante Luis Piedra Buena",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20736,7 +19853,6 @@
     {
      "nombre": "Hospital Seccional Los Antiguos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20770,7 +19886,6 @@
     {
      "nombre": "AMIR - Asistencia Médica Integral Roldán",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20804,7 +19919,6 @@
     {
      "nombre": "CEFEM",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20829,7 +19943,6 @@
     {
      "nombre": "Hospital Dr. Alejandro Gutierrez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20854,13 +19967,11 @@
     {
      "nombre": "Hospital Italiano de Rosario",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20888,13 +19999,11 @@
     {
      "nombre": "Sanatorio San Martín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20934,13 +20043,11 @@
     {
      "nombre": "Centro de Salud Regional Berabevu",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -20977,7 +20084,6 @@
     {
      "nombre": "Centro Médico Ipam",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21002,7 +20108,6 @@
     {
      "nombre": "Hospital Español",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21027,13 +20132,11 @@
     {
      "nombre": "Hospital Italiano de Rosario",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21061,13 +20164,11 @@
     {
      "nombre": "Instituto Cardiovascular de Rosario",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21093,13 +20194,11 @@
     {
      "nombre": "Instituto de Medicina y Cirugía Infantil - Sanatorio de Niños",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21126,7 +20225,6 @@
     {
      "nombre": "Instituto de Prácticas Ambulatorias Fisherton",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21152,7 +20250,6 @@
     {
      "nombre": "Sanatorio Aliare",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21178,13 +20275,11 @@
     {
      "nombre": "Sanatorio Británico",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21213,13 +20308,11 @@
     {
      "nombre": "Sanatorio Centro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21245,13 +20338,11 @@
     {
      "nombre": "Sanatorio de la Mujer",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21280,7 +20371,6 @@
     {
      "nombre": "Sanatorio Delta",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21305,7 +20395,6 @@
     {
      "nombre": "Sanatorio Laprida",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21330,13 +20419,11 @@
     {
      "nombre": "Sanatorio Mapaci",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21362,13 +20449,11 @@
     {
      "nombre": "Sanatorio Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21394,13 +20479,11 @@
     {
      "nombre": "Sanatorio Parque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21429,7 +20512,6 @@
      "nombre": "Centro de la Visión",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21454,7 +20536,6 @@
      "nombre": "Clinica de Ojos",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21479,7 +20560,6 @@
      "nombre": "Instituto Médico Funes",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21513,7 +20593,6 @@
     {
      "nombre": "Ceres Salud",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21538,7 +20617,6 @@
     {
      "nombre": "Clínica Mater Dei",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21563,7 +20641,6 @@
     {
      "nombre": "Clínica Parque Ceres",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21588,7 +20665,6 @@
     {
      "nombre": "Samco Ceres",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21622,7 +20698,6 @@
     {
      "nombre": "Cetyr - Centro de Trauma y Rehabilitacion",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21647,7 +20722,6 @@
     {
      "nombre": "Climpa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21681,7 +20755,6 @@
     {
      "nombre": "Clínica 25 de Septiembre",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21706,7 +20779,6 @@
     {
      "nombre": "Clínica del Pilar",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21731,13 +20803,11 @@
     {
      "nombre": "Sanatorio Firmat",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21774,7 +20844,6 @@
     {
      "nombre": "Clínica 9 de Julio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21799,7 +20868,6 @@
     {
      "nombre": "Sanatorio Regional Totoras",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21833,7 +20901,6 @@
     {
      "nombre": "Clínica Acebal",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21867,7 +20934,6 @@
     {
      "nombre": "Clinica Centro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21892,7 +20958,6 @@
     {
      "nombre": "Samco San Jorge",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21926,7 +20991,6 @@
     {
      "nombre": "Clínica de Ginecología y Maternidad Central",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21951,7 +21015,6 @@
     {
      "nombre": "Clínica de Nefrología, Urología y Enfermedades Cardiovasculares",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -21976,13 +21039,11 @@
     {
      "nombre": "Instituto Privado Cardiovascular Sagrada Familia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22008,7 +21069,6 @@
     {
      "nombre": "Sanatorio Americano",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22033,13 +21093,11 @@
     {
      "nombre": "Sanatorio Garay",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22071,7 +21129,6 @@
     {
      "nombre": "Sanatorio Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22096,13 +21153,11 @@
     {
      "nombre": "Sanatorio Médico de Diagnóstico y Tratamiento",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22133,7 +21188,6 @@
     {
      "nombre": "Sanatorio Privado San Gerónimo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22158,13 +21212,11 @@
     {
      "nombre": "Sanatorio Sagrado Corazón",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22192,7 +21244,6 @@
     {
      "nombre": "Sanatorio Santa Fe",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22226,7 +21277,6 @@
     {
      "nombre": "Clínica de Maciel",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22260,7 +21310,6 @@
     {
      "nombre": "Clinica del Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22294,7 +21343,6 @@
     {
      "nombre": "Clínica Empalme",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22328,7 +21376,6 @@
     {
      "nombre": "Clínica Lanter",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22362,13 +21409,11 @@
     {
      "nombre": "Clínica Las Colonias",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22408,7 +21453,6 @@
     {
      "nombre": "Clínica Martins",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22434,7 +21478,6 @@
      "nombre": "Sanatorio Dr. Maiorano",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22468,7 +21511,6 @@
     {
      "nombre": "Clínica Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22493,7 +21535,6 @@
     {
      "nombre": "SAMCO Moises Ville",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22527,7 +21568,6 @@
     {
      "nombre": "Clínica Ocampo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22552,7 +21592,6 @@
     {
      "nombre": "Samco Villa Ocampo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22586,7 +21625,6 @@
     {
      "nombre": "Clínica Olivier",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22620,13 +21658,11 @@
     {
      "nombre": "Clínica Parra",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22657,7 +21693,6 @@
     {
      "nombre": "Nacer",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22682,7 +21717,6 @@
     {
      "nombre": "SAMCO Ramona",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22707,13 +21741,11 @@
     {
      "nombre": "Sanatorio Moreno",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22739,13 +21771,11 @@
     {
      "nombre": "Sanatorio Nosti",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22786,7 +21816,6 @@
     {
      "nombre": "Clínica Pérez Solares",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22811,7 +21840,6 @@
     {
      "nombre": "Samco Las Parejas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22845,7 +21873,6 @@
     {
      "nombre": "Clínica Privada Alcorta",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22879,7 +21906,6 @@
     {
      "nombre": "Clínica Privada Barrancas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22904,7 +21930,6 @@
     {
      "nombre": "Samco Barrancas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22938,7 +21963,6 @@
     {
      "nombre": "Clínica Privada Paz",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22973,7 +21997,6 @@
     {
      "nombre": "Clínica San Jerónimo de Coronda",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -22998,7 +22021,6 @@
     {
      "nombre": "Grupo de la Costa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23032,7 +22054,6 @@
     {
      "nombre": "Clínica San Martín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23057,7 +22078,6 @@
     {
      "nombre": "Samco Cañada Rosquin",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23091,7 +22111,6 @@
     {
      "nombre": "Clínica San Rafael",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23116,7 +22135,6 @@
     {
      "nombre": "Samco El Trebol",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23150,7 +22168,6 @@
     {
      "nombre": "Clínica Santa Fe",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23175,7 +22192,6 @@
     {
      "nombre": "Samco Rufino",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23200,7 +22216,6 @@
     {
      "nombre": "Sanatorio Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23234,7 +22249,6 @@
     {
      "nombre": "Clínica Santa Fe",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23259,7 +22273,6 @@
     {
      "nombre": "Samco Las Toscas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23293,7 +22306,6 @@
     {
      "nombre": "Clínica Servicios Médicos SM",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23318,7 +22330,6 @@
     {
      "nombre": "Sanatorio Santo Tomé",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23352,7 +22363,6 @@
     {
      "nombre": "Clínica Sunchales",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23386,7 +22396,6 @@
     {
      "nombre": "Convivir S.A Clínica Privada",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23420,7 +22429,6 @@
     {
      "nombre": "Hospital de Autogestión San Vicente",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23454,7 +22462,6 @@
     {
      "nombre": "Imag. Diagnosticas Esperanza",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23479,7 +22486,6 @@
     {
      "nombre": "SAMCO Esperanza",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23504,13 +22510,11 @@
     {
      "nombre": "Sanatorio Avenida",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23536,13 +22540,11 @@
     {
      "nombre": "Sanatorio Esperanza",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23582,7 +22584,6 @@
     {
      "nombre": "Instituto Médico Regional",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23608,7 +22609,6 @@
      "nombre": "Centro Medico 21 de Diciembre",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23642,7 +22642,6 @@
     {
      "nombre": "Nueva Clínica Nuestra Señora del Luján",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23676,7 +22675,6 @@
     {
      "nombre": "Plusmedic",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23710,7 +22708,6 @@
     {
      "nombre": "Premed",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23735,7 +22732,6 @@
     {
      "nombre": "Sanatorio Franck",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23769,7 +22765,6 @@
     {
      "nombre": "S.A.M.C.O Arrufo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23803,7 +22798,6 @@
     {
      "nombre": "S.A.M.C.O Villa Trinidad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23837,7 +22831,6 @@
     {
      "nombre": "S.A.M.C.O. Suardi",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23862,7 +22855,6 @@
     {
      "nombre": "Sanatorio del Valle",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23896,7 +22888,6 @@
     {
      "nombre": "Samco Alejandra",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23930,7 +22921,6 @@
     {
      "nombre": "Samco Ambrosetti",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23964,7 +22954,6 @@
     {
      "nombre": "Samco Armstrong",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -23998,7 +22987,6 @@
     {
      "nombre": "Samco Arteaga",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24032,7 +23020,6 @@
     {
      "nombre": "Samco Bernardo De Irigoyen",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24066,7 +23053,6 @@
     {
      "nombre": "Samco Bigand",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24100,7 +23086,6 @@
     {
      "nombre": "Samco Bombal",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24134,7 +23119,6 @@
     {
      "nombre": "Samco Carlos Pellegrini",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24168,7 +23152,6 @@
     {
      "nombre": "Samco Casas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24202,7 +23185,6 @@
     {
      "nombre": "Samco Chabas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24236,7 +23218,6 @@
     {
      "nombre": "Samco Chañar Ladeado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24270,7 +23251,6 @@
     {
      "nombre": "Samco Coronel Arnold",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24304,7 +23284,6 @@
     {
      "nombre": "Samco de San José de la Esquina",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24338,7 +23317,6 @@
     {
      "nombre": "Samco Diaz",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24372,7 +23350,6 @@
     {
      "nombre": "SAMCO Felicia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24406,7 +23383,6 @@
     {
      "nombre": "Samco Florencia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24440,7 +23416,6 @@
     {
      "nombre": "Samco Fuentes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24474,7 +23449,6 @@
     {
      "nombre": "Samco Galvez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24499,7 +23473,6 @@
     {
      "nombre": "Sanatorio Regional Galvez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24524,7 +23497,6 @@
     {
      "nombre": "Sanatorios Integrados - Agrupación de Colaboración",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24558,7 +23530,6 @@
     {
      "nombre": "Samco Godeken",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24592,7 +23563,6 @@
     {
      "nombre": "Samco Hersilia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24626,7 +23596,6 @@
     {
      "nombre": "SAMCO Humberto Primero",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24660,7 +23629,6 @@
     {
      "nombre": "Samco Irigoyen",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24694,7 +23662,6 @@
     {
      "nombre": "Samco Landeta",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24728,7 +23695,6 @@
     {
      "nombre": "Samco Las Rosas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24762,7 +23728,6 @@
     {
      "nombre": "Samco Lopez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24796,7 +23761,6 @@
     {
      "nombre": "Samco Los Quirquinchos",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24830,7 +23794,6 @@
     {
      "nombre": "Samco Malabrigo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24864,7 +23827,6 @@
     {
      "nombre": "SAMCO Maria Luisa",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24898,7 +23860,6 @@
     {
      "nombre": "Samco María Susana",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24932,7 +23893,6 @@
     {
      "nombre": "Samco Máximo Paz",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -24966,7 +23926,6 @@
     {
      "nombre": "Samco Montes de Oca",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25000,7 +23959,6 @@
     {
      "nombre": "Samco Piamonte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25034,7 +23992,6 @@
     {
      "nombre": "Samco Pozo Borrado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25068,7 +24025,6 @@
     {
      "nombre": "SAMCO Progreso",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25102,7 +24058,6 @@
     {
      "nombre": "SAMCO Providencia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25136,7 +24091,6 @@
     {
      "nombre": "Samco Pujato",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25170,7 +24124,6 @@
     {
      "nombre": "Samco Reconquista",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25195,13 +24148,11 @@
     {
      "nombre": "Sanatorio Reconquista",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25232,13 +24183,11 @@
     {
      "nombre": "Sanatorio San Camilo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25275,7 +24224,6 @@
     {
      "nombre": "Samco Romang",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25309,7 +24257,6 @@
     {
      "nombre": "SAMCO Sa Pereira",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25343,7 +24290,6 @@
     {
      "nombre": "Samco San Cristobal",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25377,7 +24323,6 @@
     {
      "nombre": "Samco San Martín de Las Escobas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25411,7 +24356,6 @@
     {
      "nombre": "Samco Sancti Spiritu",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25445,7 +24389,6 @@
     {
      "nombre": "Samco Sanford",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25479,7 +24422,6 @@
     {
      "nombre": "SAMCO Santa Clara De Buena Vista",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25513,7 +24455,6 @@
     {
      "nombre": "SAMCO Santo Domingo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25547,7 +24488,6 @@
     {
      "nombre": "SAMCO Sarmiento",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25581,7 +24521,6 @@
     {
      "nombre": "Samco Sastre",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25615,7 +24554,6 @@
     {
      "nombre": "Samco Tortugas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25649,7 +24587,6 @@
     {
      "nombre": "Samco Villa Constitución",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25674,7 +24611,6 @@
     {
      "nombre": "Sanatorio Rivadavia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25708,7 +24644,6 @@
     {
      "nombre": "Samco Villa Guillermina",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25742,7 +24677,6 @@
     {
      "nombre": "Samco Villa Mugueta",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25776,7 +24710,6 @@
     {
      "nombre": "Sanatorio Avellaneda",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25801,7 +24734,6 @@
     {
      "nombre": "Sanatorio Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25835,13 +24767,11 @@
     {
      "nombre": "Sanatorio Integrado de la Ciudad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25867,7 +24797,6 @@
     {
      "nombre": "Sanatorio Regional Cañada de Gómez",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25909,7 +24838,6 @@
     {
      "nombre": "Sanatorio Julián Moreno",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25934,7 +24862,6 @@
     {
      "nombre": "Sanatorio Primordial",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -25968,13 +24895,11 @@
     {
      "nombre": "Sanatorio San Jerónimo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26014,7 +24939,6 @@
     {
      "nombre": "Sanatorio Santa Isabel",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26048,7 +24972,6 @@
     {
      "nombre": "Centro Médico Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26082,13 +25005,11 @@
     {
      "nombre": "Centro Médico San Luis",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26114,7 +25035,6 @@
     {
      "nombre": "Clínica Mitre",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26139,13 +25059,11 @@
     {
      "nombre": "Sanatorio Integral Médico Frias",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26180,7 +25098,6 @@
     {
      "nombre": "Clínica Centenario",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26214,7 +25131,6 @@
     {
      "nombre": "Clínica del Pilar",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26239,13 +25155,11 @@
     {
      "nombre": "Clínica del Sol",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26272,7 +25186,6 @@
     {
      "nombre": "Clínica Galeno",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26297,7 +25210,6 @@
     {
      "nombre": "Clínica Psiquiatrica Arcadia",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26322,7 +25234,6 @@
     {
      "nombre": "Clínica Psiquiatrica del Jardín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26347,13 +25258,11 @@
     {
      "nombre": "Clínica Yunes",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26380,13 +25289,11 @@
     {
      "nombre": "Instituto de Cardiología",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26412,13 +25319,11 @@
     {
      "nombre": "Nuevo Sanatorio Alvear",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26444,7 +25349,6 @@
     {
      "nombre": "Nuevo Sanatorio Santiago",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26469,13 +25373,11 @@
     {
      "nombre": "Sanatorio 9 de Julio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26501,13 +25403,11 @@
     {
      "nombre": "Sanatorio Alberdi",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26533,7 +25433,6 @@
     {
      "nombre": "Sanatorio del Niño",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26558,13 +25457,11 @@
     {
      "nombre": "Sanatorio Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26590,7 +25487,6 @@
     {
      "nombre": "Sanatorio San Martín",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26615,7 +25511,6 @@
     {
      "nombre": "Tinac - Terapia Int. Neonatologia Alta Complejidad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26641,7 +25536,6 @@
      "nombre": "Sanatorio San Francisco",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26666,7 +25560,6 @@
      "nombre": "Servicio de Cardiología San Pau",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26699,7 +25592,6 @@
     {
      "nombre": "Clínica Forres",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26741,7 +25633,6 @@
     {
      "nombre": "Clínica Francisco Vittar",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26775,7 +25666,6 @@
     {
      "nombre": "Clínica Loreto",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26809,7 +25699,6 @@
     {
      "nombre": "Clínica María Purísima",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26834,7 +25723,6 @@
     {
      "nombre": "Clínica Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26859,7 +25747,6 @@
     {
      "nombre": "Clínica San Francisco",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26884,7 +25771,6 @@
     {
      "nombre": "Policlínico Privado",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26918,7 +25804,6 @@
     {
      "nombre": "Clínica Natividad",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26952,13 +25837,11 @@
     {
      "nombre": "Clínica Sagrado Corazón de Jesús",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -26993,13 +25876,11 @@
     {
      "nombre": "Clínica Santa María",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27026,7 +25907,6 @@
     {
      "nombre": "Sanatorio Banda",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27051,7 +25931,6 @@
     {
      "nombre": "Sanatorio Central Banda",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27076,7 +25955,6 @@
     {
      "nombre": "Sanatorio Jozami",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27101,13 +25979,11 @@
     {
      "nombre": "Sanatorio San Roque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27142,7 +26018,6 @@
     {
      "nombre": "Clínica Señor del Milagro",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27167,7 +26042,6 @@
     {
      "nombre": "Nueva Clínica Clodomira",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27201,7 +26075,6 @@
     {
      "nombre": "Clínica Sor Angela de la Cruz",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27226,7 +26099,6 @@
     {
      "nombre": "Nueva Clínica San Roque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27260,13 +26132,11 @@
     {
      "nombre": "Clínica de Especialidades Médicas Privadas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27294,13 +26164,11 @@
     {
      "nombre": "Sanatorio Fueguino de Diagnóstico y Tratamiento",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27336,7 +26204,6 @@
     {
      "nombre": "Sanatorio San Jorge",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27370,7 +26237,6 @@
     {
      "nombre": "Cemitt",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27395,13 +26261,11 @@
     {
      "nombre": "Centro Privado de Cardiología",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27427,13 +26291,11 @@
     {
      "nombre": "Clínica del Pilar",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27459,13 +26321,11 @@
     {
      "nombre": "Clínica Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27500,13 +26360,11 @@
     {
      "nombre": "Instituto de Cardiología",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27532,13 +26390,11 @@
     {
      "nombre": "Sanatorio 9 de Julio",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27566,13 +26422,11 @@
     {
      "nombre": "Sanatorio del Norte",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27598,7 +26452,6 @@
     {
      "nombre": "Sanatorio Infantil San Lucas",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27623,7 +26476,6 @@
     {
      "nombre": "Sanatorio Integral Luz Médica",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27648,13 +26500,11 @@
     {
      "nombre": "Sanatorio Modelo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27680,7 +26530,6 @@
     {
      "nombre": "Sanatorio Parque",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27705,7 +26554,6 @@
     {
      "nombre": "Sanatorio Regional",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27731,7 +26579,6 @@
      "nombre": "Centro de la Visión Noroeste",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27764,7 +26611,6 @@
     {
      "nombre": "Clínica Nuestra Señora de la Dulce Espera",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27789,7 +26635,6 @@
     {
      "nombre": "Sanatorio Mayo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27816,7 +26661,6 @@
      "nombre": "Servicio de Pediatría \"Dr. Daniel G. Pizzo\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27849,7 +26693,6 @@
     {
      "nombre": "Clínica Sama",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27883,13 +26726,11 @@
     {
      "nombre": "Sanatorio Racedo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27924,13 +26765,11 @@
     {
      "nombre": "Servicios Sanitarios San Pablo",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -27967,7 +26806,6 @@
     {
      "nombre": "Clínica Nueva Cruz Azul",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28002,7 +26840,6 @@
     {
      "nombre": "Clínica San Isidro Labrador",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28036,7 +26873,6 @@
     {
      "nombre": "Hospital de Autogestión Dr. Fermin De La Colina",
      "internacion": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28071,7 +26907,6 @@
      "nombre": "Area Programa Dr. Maximo Laure",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28105,7 +26940,6 @@
      "nombre": "Centro Médico Aires de Chapelco",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28140,7 +26974,6 @@
      "nombre": "Centro Medico Clemic",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28174,7 +27007,6 @@
      "nombre": "Clínica Privada Mina Clavero",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28208,7 +27040,6 @@
      "nombre": "Clínica Santa Catalina",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28242,7 +27073,6 @@
      "nombre": "Hospital Area Programa Campo Grande",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28267,7 +27097,6 @@
      "nombre": "Hospital Area Programa Villa Manzano",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28301,7 +27130,6 @@
      "nombre": "Hospital Area Programa de Ingeniero Huergo",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28335,7 +27163,6 @@
      "nombre": "Hospital Area Programa Las Grutas",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28369,7 +27196,6 @@
      "nombre": "Hospital Area Programa Los Menucos",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28403,7 +27229,6 @@
      "nombre": "Hospital Area Programa Maquinchao",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28437,7 +27262,6 @@
      "nombre": "Hospital de Area Lamarque",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28471,7 +27295,6 @@
      "nombre": "Hospital Fernandez Oro",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28505,7 +27328,6 @@
      "nombre": "Hospital Gral. Conesa \"Dr. Hector A. Monteoliva\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28539,7 +27361,6 @@
      "nombre": "Hospital Ingeniero Jacobacci \"Dr. Rogelio Cortizo\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28573,7 +27394,6 @@
      "nombre": "Hospital José Irurzun",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28607,7 +27427,6 @@
      "nombre": "Hospital Local General de Agudos de San Clemente del Tuyú",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28641,7 +27460,6 @@
      "nombre": "Hospital Local General de Agudos Dr. Arturo H. Illia",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28676,7 +27494,6 @@
      "nombre": "Hospital Luis Beltran Dr. Fernando Rocha",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28710,7 +27527,6 @@
      "nombre": "Hospital Municipal de Mar de Ajó",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28746,7 +27562,6 @@
      "nombre": "Hospital Municipal de Santa Teresita",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28781,7 +27596,6 @@
      "nombre": "Hospital Municipal San Vicente de Paul",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28817,7 +27631,6 @@
      "nombre": "Hospital Sierra Colorada \"Dr. A. N. Feintuch\"",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28851,7 +27664,6 @@
      "nombre": "Salud Integral Merlo",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28885,7 +27697,6 @@
      "nombre": "Sanatorio Privado Sur",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28919,7 +27730,6 @@
      "nombre": "Clínica Mayo",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28953,7 +27763,6 @@
      "nombre": "Hospital Subzonal Balcarce Dr. Felipe A. Fossati",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
@@ -28988,7 +27797,6 @@
      "nombre": "Rizoma Consultorios Interdisciplinarios",
      "internacion": [],
      "guardia": [
-      "SMG01",
       "SMG02",
       "SMG20",
       "SMG30"
