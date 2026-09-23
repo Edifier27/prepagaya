@@ -11,6 +11,7 @@ import { condiciones } from '@/lib/data/condiciones'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { CARTILLAS, combinacionesPlanZona, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
+import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { PRECIOS_UPDATE, CONTENT_UPDATE } from '@/lib/utils'
@@ -196,6 +197,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ])
 
+  const coberturaMarcaRoutes: MetadataRoute.Sitemap = coberturasMarca.map((c) => ({
+    url: `${BASE}/coberturas/${c.tema}/${c.prepagaSlug}`,
+    lastModified: CONTENT_UPDATE,
+    changeFrequency: 'monthly' as const,
+    priority: 0.72,
+  }))
+
   const obraSocialRoutes: MetadataRoute.Sitemap = obrasSociales.map((os) => ({
     url: `${BASE}/obras-sociales/${os.slug}`,
     lastModified: CONTENT_UPDATE,
@@ -220,5 +228,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...obraSocialRoutes,
     ...cartillaRoutes,
     ...cartillaZonaRoutes,
+    ...coberturaMarcaRoutes,
   ]
 }

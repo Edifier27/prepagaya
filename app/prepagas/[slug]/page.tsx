@@ -9,6 +9,7 @@ import { getComparativasByPrepaga } from '@/lib/data/comparativas'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
 import { getCartillaInfo } from '@/lib/data/cartillas'
+import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -675,6 +676,25 @@ export default async function PrepagaSlugPage({ params }: Props) {
         </div>
       </section>
 
+            {/* Qué cubre esta prepaga (silo /coberturas/[tema]/[prepaga], datos oficiales) */}
+      {coberturasMarca.some((x) => x.prepagaSlug === prep.slug) && (
+        <section className="py-10 bg-gray-50 border-t border-gray-100">
+          <div className="container max-w-5xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Qué cubre {prep.nombre}, plan por plan</h2>
+            <p className="text-sm text-gray-500 mb-5">Ortodoncia, anteojos, psicología, exterior y más, según los documentos oficiales de {prep.nombre}.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {coberturasMarca.filter((x) => x.prepagaSlug === prep.slug).map((x) => (
+                <Link key={x.tema} href={`/coberturas/${x.tema}/${x.prepagaSlug}`}
+                  className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
+                  <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">{x.temaNombre}</div>
+                  <div className="text-xs text-gray-400 mt-1">{x.pregunta.replace(/^¿|\?$/g, '')} →</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Cobertura por provincia (silo SEO local — link vertical) */}
       {(() => {
         const zonasConPagina = provinciasSEO.filter((prov) =>
@@ -691,7 +711,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   <Link key={prov.slug} href={`/prepagas/${prov.slug}/${prep.slug}`}
                     className="p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
                     <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">{prep.nombre} en {prov.nombre}</div>
-                    <div className="text-xs text-gray-400 mt-1">Cartilla y precios locales →</div>
+                    <div className="text-xs text-gray-400 mt-1">Planes y precios locales →</div>
                   </Link>
                 ))}
               </div>

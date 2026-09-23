@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { coberturas } from '@/lib/data/coberturas'
+import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { guias } from '@/lib/data/guias'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE } from '@/lib/utils'
@@ -57,6 +58,9 @@ export default async function CoberturaPage({ params }: Props) {
   const relacionadas = cob.relacionadas
     .map((s) => coberturas.find((c) => c.slug === s))
     .filter((c): c is NonNullable<typeof c> => Boolean(c))
+
+    // implantes-dentales cuelga del hub de odontología
+  const porPrepaga = coberturasMarca.filter((x) => x.tema === slug || (slug === 'odontologia' && x.tema === 'implantes-dentales'))
 
   const guiasRel = (cob.guiasRelacionadas ?? [])
     .map((s) => guias.find((g) => g.slug === s))
@@ -144,6 +148,23 @@ export default async function CoberturaPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+            {/* Silo: detalle oficial por prepaga (/coberturas/[tema]/[prepaga]) */}
+      {porPrepaga.length > 0 && (
+        <section className="py-8 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-lg font-bold text-gray-900 mb-1">{cob.nombre} por prepaga, plan por plan</h2>
+            <p className="text-sm text-gray-500 mb-4">Con los datos oficiales de cada prepaga.</p>
+            <div className="flex flex-wrap gap-2">
+              {porPrepaga.map((x) => (
+                <Link key={`${x.tema}-${x.prepagaSlug}`} href={`/coberturas/${x.tema}/${x.prepagaSlug}`} className="text-sm px-4 py-2 bg-white text-gray-800 border border-gray-200 rounded-xl hover:border-red-200 hover:text-[#E8002D] transition-colors font-semibold">
+                  {x.pregunta}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Prepagas recomendadas */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">

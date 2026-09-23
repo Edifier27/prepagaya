@@ -25,7 +25,7 @@ export const coberturas: CoberturaData[] = [
     intro: 'La salud mental es una de las coberturas más buscadas en prepagas. La buena noticia: la Ley 26.657 obliga a todas las prepagas a cubrir tratamientos de salud mental en igualdad de condiciones que cualquier otra enfermedad. Pero hay grandes diferencias en calidad de red, cantidad de sesiones sin necesidad de auditoría y acceso a psiquiatras.',
     queEstableceLaLey: 'La Ley 26.657 (Ley Nacional de Salud Mental) y el PMO establecen que las prepagas deben cubrir tratamientos psicológicos y psiquiátricos sin límite de sesiones cuando existe indicación médica. No pueden requerir autorizaciones previas para las primeras sesiones de urgencia.',
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'La red de profesionales de salud mental de Swiss Medical es la más amplia del país. Tienen psicólogos, psiquiatras y centros especializados en todas las zonas. El Plan SMG20 cubre sesiones sin auditoría hasta cierta cantidad mensual.', planSlug: 'smg20' },
+      { slug: 'swiss-medical', razon: 'La red de profesionales de salud mental de Swiss Medical es la más amplia del país. Tienen psicólogos, psiquiatras y centros especializados en todas las zonas. Del SMG20 al SMG60 cubre 30 sesiones de psicología sin cargo por año y el SMG70, 36 (comparativo oficial de Swiss Medical, julio 2026).', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene +90.000 profesionales adheridos, incluyendo una amplia red de psicólogos en todo el país. El Plan 310 cubre psicología y psiquiatría con copago razonable. Ideal si querés tener muchas opciones de profesionales.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud tiene muy buena relación precio-calidad en salud mental. El Plan 3000 incluye cobertura de psicología con copago estándar y buena disponibilidad de profesionales en el interior del país.', planSlug: 'plan-3000' },
       { slug: 'avalian', razon: 'El Plan Full de Avalian (el más elegido de la marca) incluye 30 sesiones de salud mental por año sin copago, más telemedicina 24hs para consultas urgentes fuera de horario. Buena opción si salís de un plan más caro y no querés resignar cobertura psicológica.', planSlug: 'full' },
@@ -110,7 +110,7 @@ export const coberturas: CoberturaData[] = [
     intro: 'La cobertura odontológica es una de las más confusas entre los afiliados. El PMO cubre urgencias odontológicas y algunos tratamientos básicos, pero la mayoría de los tratamientos de mediana y alta complejidad (ortodoncia, implantes, estética) requieren planes con cobertura dental ampliada o son a cargo del afiliado.',
     queEstableceLaLey: 'El PMO cubre urgencias odontológicas (dolor agudo, infección, trauma), extracciones y algunas obturaciones. La cobertura dental amplia (ortodoncia, prótesis, implantes, blanqueamiento) NO está en el PMO y depende de cada plan y prepaga.',
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'Swiss Medical incluye cobertura dental en sus planes SMG20 en adelante. Tienen Swiss Dental en sus propios centros médicos. Cubre consultas, radiografías, obturaciones y con los planes superiores acceso a endodoncia y periodoncia.', planSlug: 'smg20' },
+      { slug: 'swiss-medical', razon: 'Swiss Medical incluye odontología general en todos sus planes estándar (de S1/S2 a SMG70). Ortodoncia desde el SMG20 (hasta 15 años), hasta 18 años en SMG30 y SMG40 y sin límite de edad desde el SMG50; implantes desde el SMG50 (por reintegro en S1/S2), según su comparativo oficial de julio 2026.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene convenio con la red de odontólogos más amplia del país. El Plan 310 incluye cobertura dental básica-media con copago. El Plan 410 amplía significativamente la cobertura con acceso a más especialidades.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud Plan 3000 incluye cobertura dental con buena relación precio-calidad. Red amplia en el interior del país, donde otras prepagas tienen menos odontólogos adheridos.', planSlug: 'plan-3000' },
       { slug: 'premedic', razon: 'Premedic tiene Smile Group, su propia red de 7 centros odontológicos en CABA, GBA e interior, con hasta 50% de descuento en implantes y ortodoncia — un diferencial fuerte en una prepaga de entrada.', planSlug: 'plan-400' },
@@ -132,7 +132,7 @@ export const coberturas: CoberturaData[] = [
       },
       {
         q: '¿Las prepagas cubren implantes dentales?',
-        a: 'Los implantes no están en el PMO. Algunas prepagas premium (Swiss Medical SMG40, OSDE 510) tienen cobertura parcial de implantes bajo indicación médica (pérdida dentaria por accidente o enfermedad). En general es una cobertura limitada con topes estrictos.',
+        a: 'Los implantes no están en el PMO. Algunas prepagas premium (Swiss Medical desde el SMG50, según su comparativo oficial; OSDE 510) tienen cobertura parcial de implantes bajo indicación médica (pérdida dentaria por accidente o enfermedad). En general es una cobertura limitada con topes estrictos.',
       },
       {
         q: '¿Qué es la cobertura dental PMO?',
@@ -231,7 +231,7 @@ export const coberturas: CoberturaData[] = [
     intro: 'La cobertura de medicamentos puede representar un ahorro de $10.000 a $50.000 por mes para quienes toman medicación crónica. Todas las prepagas tienen cobertura farmacéutica, pero los porcentajes de descuento, los medicamentos incluidos y los límites varían significativamente.',
     queEstableceLaLey: 'El PMO establece cobertura al 40% en medicamentos genéricos del vademécum básico. Para enfermedades crónicas (hipertensión, diabetes, hipotiroidismo), el descuento mínimo es del 70%. Los medicamentos de alto costo para enfermedades poco frecuentes deben ser cubiertos al 100% bajo la Ley 26.689.',
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'Swiss Medical tiene uno de los mejores sistemas de descuentos en farmacia. Sus afiliados acceden a la red de Swiss Farma con descuentos del 40-80% según el medicamento. La cobertura de medicación crónica es especialmente buena.', planSlug: 'smg20' },
+      { slug: 'swiss-medical', razon: 'Swiss Medical cubre el 40% en medicamentos en farmacia en todos sus planes estándar (de S1/S2 a SMG70), según su comparativo oficial de julio 2026.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene convenio con la mayor red de farmacias del país. Sus descuentos en medicación crónica (diabetes, hipertensión, colesterol) son del 70% en el vademécum OSDE. También tienen programa de entrega a domicilio.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud ofrece muy buenos descuentos en farmacia para el interior del país, donde tiene más farmacias adheridas que la competencia. El Plan 3000 incluye cobertura al 40-70% según diagnóstico.', planSlug: 'plan-3000' },
     ],
@@ -246,7 +246,7 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Cuánto descuento me hace la prepaga en farmacia?',
-        a: 'El PMO garantiza 40% en genéricos y 70% en crónicos. En la práctica: Swiss Medical y OSDE aplican 40-80% según el medicamento. Premedic y Medife aplican el mínimo del PMO. Para medicación de alto costo oncológica o de enfermedades raras, la cobertura es del 100% por ley.',
+        a: 'El PMO garantiza 40% en genéricos y 70% en crónicos. En Swiss Medical, la cobertura en farmacia es del 40% en todos sus planes estándar (comparativo oficial, julio 2026). Premedic y Medife aplican el mínimo del PMO. Para medicación de alto costo oncológica o de enfermedades raras, la cobertura es del 100% por ley.',
       },
       {
         q: '¿La prepaga cubre insulina y medicamentos para diabetes?',
@@ -312,7 +312,7 @@ export const coberturas: CoberturaData[] = [
     intro: 'La cobertura óptica es un beneficio incluido en muchas prepagas, aunque con diferencias importantes en los topes anuales, los tipos de lentes cubiertos y si aplica para cirugía láser. No está en el PMO básico, por lo que depende del plan contratado.',
     queEstableceLaLey: 'El PMO no incluye óptica de forma obligatoria. Sin embargo, muchas prepagas la incluyen como beneficio adicional. Sí es obligatorio el control oftalmológico como parte del PMO. Para discapacidad visual, la Ley 24.901 obliga a cubrir lentes u órtesis visuales.',
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'Swiss Medical incluye cobertura óptica en los planes SMG20 en adelante. Tienen ópticas propias en sus centros médicos con descuentos del 30-50% en armazones y lentes. Topes anuales razonables para lentes recetados.', planSlug: 'smg20' },
+      { slug: 'swiss-medical', razon: 'Swiss Medical cubre un par de anteojos o lentes de contacto standard por año y por persona en todos sus planes estándar excepto el SMG02, y también cirugía refractiva, según su comparativo oficial de julio 2026.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene convenio con la red de ópticas más grande del país (Óptica Carol, entre otras). El Plan 310 incluye cobertura con tope anual. El 410 amplía el beneficio con mayor cobertura en lentes progresivos.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud Plan 3000 incluye beneficio óptico con cobertura parcial. Buena relación precio-calidad para quienes necesitan renovar anteojos cada 2 años.', planSlug: 'plan-3000' },
     ],
