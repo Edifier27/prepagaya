@@ -551,7 +551,17 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const [modoPrueba, setModoPrueba] = useState(false)
   useEffect(() => {
     if (typeof window === 'undefined') return
-    setModoPrueba(new URLSearchParams(window.location.search).get('testing') === 'dario')
+    const params = new URLSearchParams(window.location.search)
+    const prueba = params.get('testing') === 'dario'
+    setModoPrueba(prueba)
+    // Modo prueba con edades por URL (?testing=dario&zona=caba&provincia=CABA&edades=35,33):
+    // va directo a resultados, sin popup y sin mandar lead (Darío, 23-sep-2026).
+    const edades = (params.get('edades') ?? '').split(',').map((e) => parseInt(e)).filter((n) => n > 0 && n < 110)
+    if (prueba && edades.length && initialZona) {
+      setPersonas(edades.map((edad, i) => ({ id: i + 1, edad: String(edad) })))
+      setStep('preview')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const [step, setStep] = useState<Step>(initialZona ? 'edades' : 'zona')
