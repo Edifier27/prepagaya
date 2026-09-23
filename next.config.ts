@@ -283,6 +283,12 @@ const nextConfig: NextConfig = {
         destination: "/prepagas-economicas",
         permanent: true,
       },
+      // UPCN Salud → Unión Personal, el nombre con el que se busca (23-sep-2026)
+      {
+        source: "/obras-sociales/upcn",
+        destination: "/obras-sociales/union-personal",
+        permanent: true,
+      },
       // Canibalización (23-sep-2026): la guía "¿cuánto sale una prepaga?"
       // competía con /precios por la misma búsqueda; su contenido pasó ahí.
       {
