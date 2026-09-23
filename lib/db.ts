@@ -361,6 +361,13 @@ export interface ResenaRow {
   moderado_en: string | null
 }
 
+// El driver de Neon devuelve TIMESTAMPTZ como Date: se normaliza a ISO string
+// para que la ficha (server) y el panel (JSON) usen siempre el mismo tipo.
+function normalizarResena(r: Record<string, unknown>): ResenaRow {
+  const iso = (v: unknown) => (v == null ? null : new Date(v as string | Date).toISOString())
+  return { ...(r as unknown as ResenaRow), creado_en: iso(r.creado_en)!, moderado_en: iso(r.moderado_en) }
+}
+
 export async function guardarResena(r: { prepagaSlug: string; planNombre: string; nombre: string; ciudad: string; rating: number; texto: string; ipHash: string }): Promise<void> {
   if (!sql) return
   await asegurarTablas()
@@ -384,7 +391,7 @@ export async function listarResenas(estado?: EstadoResena): Promise<ResenaRow[]>
   const rows = estado
     ? await sql`SELECT id, creado_en, prepaga_slug, plan_nombre, nombre, ciudad, rating, texto, estado, moderado_en FROM resenas WHERE estado = ${estado} ORDER BY creado_en DESC LIMIT 300`
     : await sql`SELECT id, creado_en, prepaga_slug, plan_nombre, nombre, ciudad, rating, texto, estado, moderado_en FROM resenas ORDER BY creado_en DESC LIMIT 300`
-  return rows as unknown as ResenaRow[]
+  return (rows as Record<string, unknown>[]).map(normalizarResena)
 }
 
 /** Aprobadas de una prepaga + resumen (promedio y cantidad) para la ficha y el rich snippet. */
@@ -397,7 +404,7 @@ export async function resenasAprobadas(prepagaSlug: string): Promise<{ resenas: 
       sql`SELECT count(*)::int AS cantidad, coalesce(avg(rating), 0)::float AS promedio FROM resenas WHERE prepaga_slug = ${prepagaSlug} AND estado = 'aprobada'`,
     ])
     const r = resumen[0] as { cantidad: number; promedio: number }
-    return { resenas: rows as unknown as ResenaRow[], promedio: Math.round(r.promedio * 10) / 10, cantidad: r.cantidad }
+    return { resenas: (rows as Record<string, unknown>[]).map(normalizarResena), promedio: Math.round(r.promedio * 10) / 10, cantidad: r.cantidad }
   } catch (err) {
     console.error('[DB] error leyendo reseñas:', err)
     return { resenas: [], promedio: 0, cantidad: 0 }
