@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import { buscarSanatorio, buscarSanatorioReferencia } from '@/lib/data/sanatorios'
 import { nivelPrecio } from '@/lib/data/prepagas'
@@ -8,6 +8,7 @@ import { getProvinciaSEO } from '@/lib/data/zonas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { formatPrecio } from '@/lib/utils'
 import type { Sanatorio, SanatorioReferenciaResult } from '@/lib/data/sanatorios'
+import { ResultadosCartillasPorNombre } from '@/components/cartillas/ResultadosCartillasPorNombre'
 
 interface Props {
   /** Cuando se pasa, filtra los resultados a solo esa prepaga (para embeber en /cartillas/[slug]) — pedido de Darío, 22-sep-2026, para reforzar "cartilla osde" y similares. */
@@ -20,6 +21,9 @@ export function BuscadorSanatorio({ soloPrepagaSlug, soloPrepagaNombre }: Props 
   const [resultados, setResultados] = useState<Sanatorio[]>([])
   const [referencia, setReferencia] = useState<SanatorioReferenciaResult[]>([])
   const [buscado, setBuscado] = useState(false)
+  // resultados del índice de cartillas oficiales por zona (ResultadosCartillasPorNombre)
+  const [enCartillas, setEnCartillas] = useState(0)
+  const onResultadosCartillas = useCallback((n: number) => setEnCartillas(n), [])
 
   const handleSearch = (val: string) => {
     setQuery(val)
@@ -82,8 +86,17 @@ export function BuscadorSanatorio({ soloPrepagaSlug, soloPrepagaNombre }: Props 
         </div>
       )}
 
+      {/* Cartillas oficiales por zona: "¿está en esta prepaga? si no, en cuál sí" */}
+      <ResultadosCartillasPorNombre
+        query={query}
+        soloPrepagaSlug={soloPrepagaSlug}
+        soloPrepagaNombre={soloPrepagaNombre}
+        ocultarPresentes={resultadosFiltrados.length > 0}
+        onResultados={onResultadosCartillas}
+      />
+
       {/* Sin resultados */}
-      {buscado && resultadosFiltrados.length === 0 && referencia.length === 0 && (
+      {buscado && resultadosFiltrados.length === 0 && referencia.length === 0 && enCartillas === 0 && (
         <div className="mt-8 text-center py-10 bg-gray-50 rounded-2xl border border-gray-100">
           <div className="text-gray-400 text-sm mb-1">
             {soloPrepagaNombre
