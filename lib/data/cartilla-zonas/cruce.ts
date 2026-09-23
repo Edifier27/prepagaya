@@ -33,7 +33,7 @@ function claveDireccion(dir: string | null): string | null {
   return num && calle ? `${calle}#${num[1]}` : null
 }
 
-function esMismo(a: CentroCartilla, b: CentroCartilla): boolean {
+export function esMismo(a: CentroCartilla, b: CentroCartilla): boolean {
   const na = nucleoNombre(a.nombre)
   const nb = nucleoNombre(b.nombre)
   if (na.length && nb.length && (na.every((w) => nb.includes(w)) || nb.every((w) => na.includes(w)))) return true
@@ -46,14 +46,22 @@ function esMismo(a: CentroCartilla, b: CentroCartilla): boolean {
 
 // Zonas equivalentes entre prepagas: mismo slug, o la "capital" de una con la
 // ciudad de otra ("cordoba-capital" ≈ "cordoba").
-function claveZona(slug: string): string {
+export function claveZona(slug: string): string {
   return slug.replace(/-capital$/, '').replace(/^ciudad-de-/, '')
 }
 // Premedic arma sus zonas del interior por PROVINCIA entera: solo sirve para
 // el cruce en AMBA (en el interior no se sabe si queda en la misma ciudad).
-function zonaUsableParaCruce(prepagaSlug: string, z: ZonaCartilla): boolean {
+export function zonaUsableParaCruce(prepagaSlug: string, z: ZonaCartilla): boolean {
   if (prepagaSlug === 'premedic') return z.slug === 'caba' || z.slug.startsWith('gba-')
   return true
+}
+
+/** Plan a sugerir para un centro: el más bajo que lo incluye para internación, priorizando los que están en el comparador */
+export function planSugerido(prepagaSlug: string, c: CentroCartilla): PlanCartilla | undefined {
+  const cart = CARTILLAS[prepagaSlug]
+  const id = cart.escalera.find((p) => c.internacion.includes(p) && cart.planesConPagina.includes(p))
+    ?? cart.escalera.find((p) => c.internacion.includes(p)) ?? c.internacion[0]
+  return cart.planes.find((p) => p.id === id)
 }
 
 export interface CentroEnOtras {
@@ -85,10 +93,7 @@ export function centrosEnOtrasCartillas(prepagaSlug: string, zonaSlug: string): 
     for (const c of z.centros) {
       if (!c.internacion.length) continue
       if (mios.some((m) => esMismo(m, c))) continue
-      // Plan sugerido: el más bajo que lo incluye, priorizando los que están en el comparador
-      const primero = otra.escalera.find((p) => c.internacion.includes(p) && otra.planesConPagina.includes(p))
-        ?? otra.escalera.find((p) => c.internacion.includes(p)) ?? c.internacion[0]
-      const desde = otra.planes.find((p) => p.id === primero)
+      const desde = planSugerido(otra.prepagaSlug, c)
       if (!desde) continue
       const previo = out.find((o) => esMismo({ ...c, nombre: o.nombre, sedes: [{ direccion: o.direccion, localidad: null, tel: null, servicios: [] }] }, c))
       const entrada = { prepagaSlug: otra.prepagaSlug, prepagaNombre: otra.prepagaNombre, zonaSlug: z.slug, desde }
