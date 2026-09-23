@@ -1,0 +1,87 @@
+# Actualización automática de precios y aumentos desde los cuadros tarifarios
+# oficiales de la SSSalud (pedido de Darío, 23-sep-2026: "leerlo cada 15 días").
+#
+# Los días 1 y 15 de cada mes: baja los dos últimos períodos publicados,
+# regenera precios (lib/data/precios-oficiales.json, tarifas-oficiales.json) y
+# aumentos (aumentos-oficiales.json), controla que ningún plan salte más de
+# 15% o desaparezca, compila el sitio y, si todo está bien, commitea a main
+# (Vercel publica solo). Si algo falla, no publica y avisa por Telegram.
+#
+# Secrets necesarios en GitHub (Settings → Secrets and variables → Actions):
+#   TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_IDS — los mismos valores que en Vercel.
+name: Cuadros SSSalud
+
+on:
+  schedule:
+    - cron: '0 12 1,15 * *' # 9:00 hora argentina
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cuadros-sssalud
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Bajar cuadros tarifarios (últimos dos períodos)
+        run: python scripts/cuadros-sssalud/scrape.py
+
+      - name: Regenerar precios y aumentos
+        run: |
+          python scripts/cuadros-sssalud/generar.py
+          python scripts/cuadros-sssalud/aumentos.py
+
+      - name: Controlar cambios de precio
+        run: python scripts/cuadros-sssalud/validar.py
+
+      - name: Compilar el sitio
+        run: |
+          npm ci
+          npx tsc --noEmit -p .
+          npm run build
+
+      - name: Publicar (commit a main)
+        run: |
+          git config user.name "prepagaya-bot"
+          git config user.email "bot@prepagaya.com.ar"
+          git add data/sssalud lib/data/precios-oficiales.json lib/data/tarifas-oficiales.json lib/data/aumentos-oficiales.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios en los cuadros."
+          else
+            git commit -m "Cuadros SSSalud: actualización automática $(date +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Avisar por Telegram
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_IDS }}
+          ESTADO: ${{ job.status }}
+        run: |
+          if [ -z "$TELEGRAM_BOT_TOKEN" ] || [ -z "$TELEGRAM_CHAT_IDS" ]; then echo "Sin secrets de Telegram"; exit 0; fi
+          RESUMEN=$(cat data/sssalud/ultimo-control.txt 2>/dev/null || echo "Sin resumen (falló antes del control).")
+          if [ "$ESTADO" = "success" ]; then TITULO="✅ Precios actualizados"; else TITULO="⚠️ Actualización de precios frenada — revisar"; fi
+          TEXTO="$TITULO
+          $RESUMEN
+          Detalle: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          for ID in $(echo "$TELEGRAM_CHAT_IDS" | tr ',' ' '); do
+            curl -s -X POST "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
+              --data-urlencode "chat_id=$ID" --data-urlencode "text=$TEXTO" > /dev/null
+          done
