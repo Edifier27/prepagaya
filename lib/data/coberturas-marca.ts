@@ -271,7 +271,185 @@ const swiss: CoberturaMarca[] = [
   },
 ]
 
-export const coberturasMarca: CoberturaMarca[] = [...swiss]
+// ─── Avalian ────────────────────────────────────────────────────────────────
+// Fuentes (públicas, del cotizador oficial compraonline.avalian.com,
+// consultado el 22-sep-2026):
+//  - Ficha de cada plan que vende online (API /api/plans: ítems de cobertura).
+//  - "Diagrama de cobertura" PDF que ese cotizador enlaza para cada plan
+//    (Integral AS200/AS204, Superior AS300, Selecta AS400/AS500).
+// Cerca (AS100) y Plan Hoy (AS200H) quedan afuera: no tienen diagrama
+// publicado (el de Plan Hoy da 404). Óptica no figura en los diagramas.
+// Los planes de Avalian en lib/data/prepagas.ts no coinciden con los reales
+// (pendiente de precios de Darío), por eso planSlugs va vacío.
+const AVALIAN_FICHAS: FuenteCobertura = { nombre: 'Planes publicados en el cotizador online de Avalian', fecha: 'septiembre 2026', url: 'https://compraonline.avalian.com/cotizacion' }
+const AVALIAN_DIAGRAMA: FuenteCobertura = { nombre: 'Diagrama de cobertura de los planes Integral, Superior y Selecta (publicado en el cotizador online de Avalian)', fecha: 'septiembre 2026', url: 'https://compraonline.avalian.com/cotizacion' }
+
+const AV = (plan: string, incluido: boolean, detalle?: string): PlanCobertura => ({ plan, planSlugs: [], incluido, detalle })
+
+const avalian: CoberturaMarca[] = [
+  {
+    tema: 'ortodoncia',
+    temaNombre: 'Ortodoncia',
+    prepagaSlug: 'avalian',
+    prepagaNombre: 'Avalian',
+    pregunta: '¿Avalian cubre ortodoncia?',
+    title: '¿Avalian cubre ortodoncia? Edad máxima por plan (2026)',
+    description: 'Ortodoncia en Avalian: por única vez y con autorización previa, de 5 a 30 años en Integral, de 5 a 35 en Superior y de 5 a 50 en Selecta. Datos oficiales 2026.',
+    keywords: ['avalian cubre ortodoncia', 'avalian cobertura ortodoncia', 'avalian ortodoncia', 'avalian brackets'],
+    respuesta: 'Sí, por única vez y con autorización previa, a valor Avalian. La edad cambia según el plan: de 5 a 30 años en Integral (AS200/AS204), de 5 a 35 en Superior (AS300) y de 5 a 50 en Selecta (AS400/AS500).',
+    planes: [
+      AV('Integral AS200 / AS204', true, 'De 5 a 30 años, por única vez'),
+      AV('Superior AS300', true, 'De 5 a 35 años, por única vez'),
+      AV('Selecta AS400 / AS500', true, 'De 5 a 50 años, por única vez'),
+    ],
+    detalles: [
+      { texto: 'Por única vez, con autorización previa. Cobertura a "valor Avalian".', fuente: 'Diagrama de cobertura de cada plan' },
+    ],
+    fuentes: [AVALIAN_DIAGRAMA],
+  },
+  {
+    tema: 'implantes-dentales',
+    temaNombre: 'Implantes dentales',
+    prepagaSlug: 'avalian',
+    prepagaNombre: 'Avalian',
+    pregunta: '¿Avalian cubre implantes dentales?',
+    title: '¿Avalian cubre implantes dentales? Qué planes los incluyen (2026)',
+    description: 'Implantes dentales en Avalian: solo el plan Selecta (AS400/AS500) los cubre, a valor Avalian según plan. Integral y Superior: sin cobertura. Datos oficiales 2026.',
+    keywords: ['avalian cubre implantes dentales', 'avalian implantes', 'avalian protesis dentales'],
+    respuesta: 'Solo el plan Selecta (AS400 y AS500), a valor Avalian según el plan. En Integral (AS200/AS204) y Superior (AS300) las prótesis odontológicas e implantes dentales figuran sin cobertura.',
+    planes: [
+      AV('Integral AS200 / AS204', false),
+      AV('Superior AS300', false),
+      AV('Selecta AS400 / AS500', true, 'Valor Avalian según plan'),
+    ],
+    detalles: [
+      { texto: 'Aplica a "prótesis odontológicas e implantes dentales".', fuente: 'Diagrama de cobertura de cada plan' },
+    ],
+    fuentes: [AVALIAN_DIAGRAMA],
+  },
+  {
+    tema: 'odontologia',
+    temaNombre: 'Odontología',
+    prepagaSlug: 'avalian',
+    prepagaNombre: 'Avalian',
+    pregunta: '¿Qué cubre Avalian en odontología?',
+    title: 'Avalian odontología: qué cubre cada plan y con qué copago (2026)',
+    description: 'Odontología en Avalian: 100% con copago en Integral, sin copago en Superior y Selecta. Ortodoncia en todos (con límite de edad) e implantes solo en Selecta. Datos oficiales 2026.',
+    keywords: ['avalian odontologia', 'avalian cobertura odontologica', 'avalian dentista', 'avalian cartilla odontología'],
+    respuesta: 'Consultas y tratamientos odontológicos al 100%: con copago en Integral (AS200/AS204) y sin copago en Superior (AS300) y Selecta (AS400/AS500). La ortodoncia está en todos los planes con límite de edad y los implantes, solo en Selecta.',
+    planes: [
+      AV('Integral AS200 / AS204', true, '100% con copago'),
+      AV('Superior AS300', true, 'Consulta y tratamiento sin copago'),
+      AV('Selecta AS400 / AS500', true, '100% sin copago'),
+    ],
+    detalles: [
+      { texto: 'Ortodoncia: por única vez, de 5 a 30 años (Integral), 5 a 35 (Superior) y 5 a 50 (Selecta).', fuente: 'Diagrama de cobertura de cada plan' },
+      { texto: 'Implantes y prótesis odontológicas: solo Selecta, a valor Avalian según plan.', fuente: 'Diagrama de cobertura de cada plan' },
+    ],
+    fuentes: [AVALIAN_FICHAS, AVALIAN_DIAGRAMA],
+  },
+  {
+    tema: 'psicologia',
+    temaNombre: 'Psicología',
+    prepagaSlug: 'avalian',
+    prepagaNombre: 'Avalian',
+    pregunta: '¿Avalian cubre psicología?',
+    title: '¿Avalian cubre psicología? Sesiones por plan (2026)',
+    description: 'Psicoterapia en Avalian: 30 sesiones por año en Integral y Superior (4 por mes, con copago; virtual por E-doc sin copago) y 48 por año sin copago en Selecta. Datos oficiales 2026.',
+    keywords: ['avalian cubre psicologia', 'avalian psicologos', 'avalian cartilla de psicologos', 'avalian reintegro psicologia'],
+    respuesta: 'Sí. Integral (AS200/AS204) y Superior (AS300) cubren 30 sesiones de psicoterapia por año, hasta 4 por mes, con copago al prestador (las virtuales por E-doc, sin copago). Selecta (AS400/AS500) cubre 48 sesiones por año sin copago.',
+    planes: [
+      AV('Integral AS200 / AS204', true, '30 sesiones por año, con copago'),
+      AV('Superior AS300', true, '30 sesiones por año, con copago'),
+      AV('Selecta AS400 / AS500', true, '48 sesiones por año, sin copago'),
+    ],
+    detalles: [
+      { texto: 'Hasta 4 sesiones por mes.', fuente: 'Diagrama de cobertura de cada plan' },
+      { texto: 'En Integral y Superior, las sesiones virtuales por E-doc son sin copago.', fuente: 'Diagrama de cobertura de cada plan' },
+    ],
+    fuentes: [AVALIAN_DIAGRAMA],
+  },
+  {
+    tema: 'cirugia-estetica',
+    temaNombre: 'Cirugía estética',
+    prepagaSlug: 'avalian',
+    prepagaNombre: 'Avalian',
+    pregunta: '¿Avalian cubre cirugía estética?',
+    title: '¿Avalian cubre cirugía estética? Qué plan la incluye (2026)',
+    description: 'Cirugía estética en Avalian: incluida solo en el plan Selecta (AS400 y AS500). Integral y Superior no la incluyen. Datos oficiales 2026.',
+    keywords: ['avalian cubre cirugia estetica', 'avalian cirugia estetica', 'avalian cirugia plastica'],
+    respuesta: 'Solo en el plan Selecta (AS400 y AS500), que incluye cirugías estéticas. Integral y Superior no las incluyen.',
+    planes: [
+      AV('Integral AS200 / AS204', false),
+      AV('Superior AS300', false),
+      AV('Selecta AS400 / AS500', true, 'Incluye cirugías estéticas'),
+    ],
+    detalles: [],
+    fuentes: [AVALIAN_FICHAS],
+  },
+  {
+    tema: 'exterior',
+    temaNombre: 'Cobertura en el exterior',
+    prepagaSlug: 'avalian',
+    prepagaNombre: 'Avalian',
+    pregunta: '¿Avalian tiene cobertura en el exterior?',
+    title: '¿Avalian cubre en el exterior? Asistencia al viajero por plan (2026)',
+    description: 'Asistencia al viajero de Avalian (Universal Assistance): Argentina y países limítrofes en Integral; internacional en Superior y Selecta. Datos oficiales 2026.',
+    keywords: ['avalian cobertura internacional', 'avalian cubre en brasil', 'avalian asistencia al viajero', 'avalian paises limitrofes', 'avalian internacional'],
+    respuesta: 'Sí, con asistencia al viajero a través de Universal Assistance. En Integral (AS200/AS204) cubre Argentina y países limítrofes; en Superior (AS300) y Selecta (AS400/AS500), es internacional.',
+    planes: [
+      AV('Integral AS200 / AS204', true, 'Argentina y países limítrofes'),
+      AV('Superior AS300', true, 'Internacional'),
+      AV('Selecta AS400 / AS500', true, 'Internacional'),
+    ],
+    detalles: [
+      { texto: 'La asistencia al viajero se brinda a través de Universal Assistance.', fuente: 'Diagrama de cobertura de cada plan' },
+      { texto: '20% de descuento en la ampliación de cobertura de la asistencia internacional al viajero.', fuente: 'Diagrama de cobertura de cada plan' },
+    ],
+    fuentes: [AVALIAN_FICHAS, AVALIAN_DIAGRAMA],
+  },
+  {
+    tema: 'reintegros',
+    temaNombre: 'Reintegros',
+    prepagaSlug: 'avalian',
+    prepagaNombre: 'Avalian',
+    pregunta: '¿Avalian hace reintegros?',
+    title: '¿Avalian hace reintegros? Qué plan tiene reintegro (2026)',
+    description: 'Reintegros en Avalian: solo en el plan Selecta (AS400/AS500), de acuerdo a normas y valores Avalian. Integral y Superior no tienen reintegros. Datos oficiales 2026.',
+    keywords: ['avalian hace reintegros', 'avalian reintegros', 'avalian reintegro', 'avalian cuenta de reintegro'],
+    respuesta: 'Solo en el plan Selecta (AS400 y AS500), de acuerdo a las normas y valores de Avalian. Integral (AS200/AS204) y Superior (AS300) no tienen reintegros.',
+    planes: [
+      AV('Integral AS200 / AS204', false),
+      AV('Superior AS300', false),
+      AV('Selecta AS400 / AS500', true, 'Según normas y valores Avalian'),
+    ],
+    detalles: [],
+    fuentes: [AVALIAN_FICHAS, AVALIAN_DIAGRAMA],
+  },
+  {
+    tema: 'medicamentos',
+    temaNombre: 'Medicamentos',
+    prepagaSlug: 'avalian',
+    prepagaNombre: 'Avalian',
+    pregunta: '¿Cuánto cubre Avalian en medicamentos?',
+    title: 'Avalian: descuento en medicamentos por plan (2026)',
+    description: 'Avalian cubre 40% en medicamentos en farmacia en Integral y Superior, 50% en Selecta AS400 y 75% en Selecta AS500. Datos oficiales 2026.',
+    keywords: ['avalian medicamentos', 'avalian descuento farmacia', 'avalian cobertura medicamentos'],
+    respuesta: 'Depende del plan: 40% en farmacia en Integral (AS200/AS204) y Superior (AS300), 50% en Selecta AS400 y 75% en Selecta AS500.',
+    planes: [
+      AV('Integral AS200 / AS204', true, '40%'),
+      AV('Superior AS300', true, '40%'),
+      AV('Selecta AS400', true, '50%'),
+      AV('Selecta AS500', true, '75%'),
+    ],
+    detalles: [
+      { texto: 'Porcentaje sobre el precio de venta al público.', fuente: 'Diagrama de cobertura de cada plan' },
+    ],
+    fuentes: [AVALIAN_FICHAS, AVALIAN_DIAGRAMA],
+  },
+]
+
+export const coberturasMarca: CoberturaMarca[] = [...swiss, ...avalian]
 
 export function getCoberturaMarca(tema: string, prepagaSlug: string): CoberturaMarca | undefined {
   return coberturasMarca.find((c) => c.tema === tema && c.prepagaSlug === prepagaSlug)

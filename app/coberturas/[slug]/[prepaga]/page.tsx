@@ -113,12 +113,12 @@ export default async function CoberturaMarcaPage({ params }: Props) {
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-4">{c.pregunta}</h1>
           <p className="text-lg text-gray-700 leading-relaxed max-w-3xl mb-6">{c.respuesta}</p>
-          {planCta && (
+          {(
             <ContratarPlanButton
               prepagaNombre={c.prepagaNombre}
-              planNombre={planCta.nombre}
+              planNombre={planCta?.nombre}
               fuente={`cobertura-${c.tema}`}
-              label={`Cotizar ${c.prepagaNombre} ${planCta.nombre}`}
+              label={planCta ? `Cotizar ${c.prepagaNombre} ${planCta.nombre}` : `Cotizar ${c.prepagaNombre}`}
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
             />
           )}
@@ -190,10 +190,10 @@ export default async function CoberturaMarcaPage({ params }: Props) {
 
           <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-red-50 border border-red-100 rounded-2xl p-4">
             <p className="text-sm text-gray-700">¿Querés saber cuánto te sale un plan de {c.prepagaNombre} que incluya {c.temaNombre.toLowerCase()}? Te cotizamos gratis.</p>
-            {planCta && (
+            {(
               <ContratarPlanButton
                 prepagaNombre={c.prepagaNombre}
-                planNombre={planCta.nombre}
+                planNombre={planCta?.nombre}
                 fuente={`cobertura-${c.tema}`}
                 label="Cotizar gratis"
                 className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-sm text-sm"
