@@ -211,6 +211,27 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
+      {/* ── Acceso destacado a las cartillas (pedido de Darío, 23-sep-2026) ── */}
+      <section className="py-8 bg-white border-b border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <Link
+            href="/cartillas"
+            className="group flex flex-col sm:flex-row sm:items-center gap-4 p-5 md:p-6 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white hover:border-[#E8002D] hover:shadow-md transition-all"
+          >
+            <div className="w-12 h-12 rounded-xl bg-[#E8002D] flex items-center justify-center flex-shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M12 8v4M10 10h4" /></svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="text-lg font-bold text-gray-900">¿Tu sanatorio está en la cartilla?</div>
+              <div className="text-sm text-gray-600">Buscá por zona o por nombre en las cartillas de {PARTNERS_OFICIALES_TEXTO}, y mirá qué plan lo incluye.</div>
+            </div>
+            <span className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm whitespace-nowrap transition-colors">
+              Buscar en cartillas →
+            </span>
+          </Link>
+        </div>
+      </section>
+
       {/* ── Cotizar por prepaga — debajo del cotizador ─────────────────────── */}
       <CotizarPorPrepaga fuente="home-por-prepaga" />
 

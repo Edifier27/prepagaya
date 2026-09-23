@@ -336,6 +336,16 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 >
                   {isPartner ? 'Cotizar y contratar online →' : 'Cotizar mi precio exacto →'}
                 </Link>
+                {/* Botón a la cartilla por zona/nombre — pedido de Darío, 23-sep-2026, para darle visibilidad */}
+                {getCartillaInfo(prep.slug) && (
+                  <Link
+                    href={`/cartillas/${prep.slug}`}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-[#E8002D] text-[#E8002D] hover:bg-red-50 font-bold rounded-xl transition-all text-sm"
+                  >
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4" aria-hidden><path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.45 4.39l3.08 3.08a.75.75 0 11-1.06 1.06l-3.08-3.08A7 7 0 012 9z" clipRule="evenodd" /></svg>
+                    Buscar en la cartilla de {prep.nombre}
+                  </Link>
+                )}
                 <a
                   href={`https://${prep.web}`}
                   target="_blank"
