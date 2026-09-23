@@ -7,7 +7,7 @@ import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS } from '@/lib/utils'
+import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -205,7 +205,16 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
     const i = pool.findIndex(pred)
     if (i >= 0) out.push(...pool.splice(i, 1))
   }
-  for (const slug of PRIORIDAD_PARTNERS) take((r) => r.prepaga.slug === slug)
+  for (const slug of PRIORIDAD_PARTNERS) {
+    if (slug === 'premedic') {
+      // "Mejor plan económico": el plan de Premedic más barato para el grupo
+      const cand = pool.filter((r) => r.prepaga.slug === slug)
+      if (cand.length) {
+        const barato = cand.reduce((m, r) => (r.precioGrupal < m.precioGrupal ? r : m))
+        take((r) => r === barato)
+      }
+    } else take((r) => r.prepaga.slug === slug)
+  }
   while (pool.length) {
     const prev = out[out.length - 1]?.prepaga.slug
     const i = pool.findIndex((r) => r.prepaga.slug !== prev)
@@ -1066,6 +1075,11 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       Mejor opción
                     </div>
                   )}
+                  {i > 0 && DESTACADO_PARTNER[r.prepaga.slug] && previewItems.findIndex((x) => x.prepaga.slug === r.prepaga.slug) === i && (
+                    <div className="inline-flex items-center gap-1 bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5">
+                      <span className="text-amber-500">★</span> {DESTACADO_PARTNER[r.prepaga.slug]}
+                    </div>
+                  )}
                   <div className="font-bold text-gray-900">{r.prepaga.nombre}</div>
                   <div className="text-xs text-gray-500">{r.plan.nombre}</div>
                   <div className="flex gap-1 mt-1.5">
@@ -1176,6 +1190,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   const cheapestResult = [...resultadosFiltrados].sort((a, b) => a.precioGrupal - b.precioGrupal)[0]
   const cheapestKey = cheapestResult ? `${cheapestResult.prepaga.slug}-${cheapestResult.plan.slug}` : null
   const bestKey = resultadosFiltrados[0] ? `${resultadosFiltrados[0].prepaga.slug}-${resultadosFiltrados[0].plan.slug}` : null
+  // Estrellita de cada partner (Darío, 23-sep-2026) en su primera tarjeta,
+  // solo con el orden por relevancia (el que arma la prioridad de partners).
+  const destacados = new Map<string, string>()
+  if (sortBy === 'relevancia') {
+    for (const r of resultadosFiltrados) {
+      const texto = DESTACADO_PARTNER[r.prepaga.slug]
+      const key = `${r.prepaga.slug}-${r.plan.slug}`
+      if (texto && r.prepaga.slug !== 'swiss-medical' && ![...destacados.keys()].some((k) => k.startsWith(`${r.prepaga.slug}-`))) destacados.set(key, texto)
+    }
+  }
 
   return (
     <div>
@@ -1755,7 +1779,13 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       Mejor opción para tu perfil
                     </div>
                   )}
-                  {isCheapest && (
+                  {!isBest && destacados.get(planKey) && (
+                    <div className="bg-amber-50 text-amber-800 border-b border-amber-100 text-xs font-bold px-4 py-2 flex items-center gap-2">
+                      <span className="text-amber-500">★</span>
+                      {destacados.get(planKey)}
+                    </div>
+                  )}
+                  {isCheapest && !destacados.get(planKey) && (
                     <div className="bg-[#00875A] text-white text-xs font-bold px-4 py-2 flex items-center gap-2">
                       <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
                       Plan más económico

@@ -55,9 +55,18 @@ export const SITE_URL = 'https://www.prepagaya.com.ar'
 // contradecirnos entre páginas.
 export const PARTNERS_OFICIALES = ['Swiss Medical', 'Sancor Salud', 'OSDE', 'Avalian', 'Premedic'] as const
 // Orden de prioridad comercial de los partners en comparador, rankings y
-// listados (pedido de Darío, 22-sep-2026): Swiss Medical, Avalian, Premedic y
-// Sancor Salud; después el resto. OSDE es partner oficial pero sin prioridad.
-export const PRIORIDAD_PARTNERS = ['swiss-medical', 'avalian', 'premedic', 'sancor-salud']
+// listados (Darío, 23-sep-2026): Swiss Medical (mejor prepaga), Premedic
+// (mejor económica), Avalian y Sancor Salud (mejor cobertura en el interior);
+// después el resto. OSDE es partner oficial pero sin prioridad.
+export const PRIORIDAD_PARTNERS = ['swiss-medical', 'premedic', 'avalian', 'sancor-salud']
+
+// Etiqueta destacada de cada partner (menú, comparador).
+export const DESTACADO_PARTNER: Record<string, string> = {
+  'swiss-medical': 'Mejor prepaga',
+  premedic: 'Mejor plan económico',
+  avalian: 'Mejor cobertura en el interior del país',
+  'sancor-salud': 'Mejor cobertura en el interior del país',
+}
 export const PARTNERS_OFICIALES_SLUGS = [...PRIORIDAD_PARTNERS, 'osde']
 
 // Tiempo de respuesta al lead: el lead entra a Kommo automáticamente a los

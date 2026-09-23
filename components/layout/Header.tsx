@@ -7,8 +7,11 @@ import { provinciasSEO } from '@/lib/data/zonas'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { MiniBuilding, MiniLeaf, MiniElder, MiniCross } from '@/components/ui/CategoryIcon'
 
-const prepagaLinks = [
-  { slug: 'swiss-medical', nombre: 'Swiss Medical', colorPrimario: '#E30613' },
+// Orden del menú (Darío, 23-sep-2026): Swiss Medical "mejor prepaga",
+// Premedic "mejor prepaga económica" y después el resto.
+const prepagaLinks: { slug: string; nombre: string; colorPrimario: string; badge?: string }[] = [
+  { slug: 'swiss-medical', nombre: 'Swiss Medical', colorPrimario: '#E30613', badge: 'Mejor prepaga' },
+  { slug: 'premedic',      nombre: 'Premedic',      colorPrimario: '#0066CC', badge: 'Mejor prepaga económica' },
   { slug: 'osde',          nombre: 'OSDE',          colorPrimario: '#003087' },
   { slug: 'medife',        nombre: 'Medifé',        colorPrimario: '#009639' },
   { slug: 'sancor-salud',  nombre: 'Sancor Salud',  colorPrimario: '#E30613' },
@@ -17,7 +20,6 @@ const prepagaLinks = [
   { slug: 'avalian',       nombre: 'Avalian',       colorPrimario: '#0099D4' },
   { slug: 'cemic',         nombre: 'CEMIC',         colorPrimario: '#1B4F9B' },
   { slug: 'hospital-italiano', nombre: 'Hospital Italiano', colorPrimario: '#003087' },
-  { slug: 'premedic',      nombre: 'Premedic',      colorPrimario: '#0066CC' },
   { slug: 'prevencion-salud', nombre: 'Prevención Salud', colorPrimario: '#0066A1' },
   { slug: 'federada-salud',nombre: 'Federada Salud',colorPrimario: '#C0392B' },
   { slug: 'hominis',       nombre: 'Hominis',       colorPrimario: '#1B5E20' },
@@ -108,9 +110,10 @@ export function Header() {
                     <Link
                       key={p.slug}
                       href={`/prepagas/${p.slug}`}
-                      className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-red-50 hover:text-[#E8002D] transition-colors"
+                      className={`flex items-center justify-between gap-2 px-3 py-1.5 text-sm hover:bg-red-50 hover:text-[#E8002D] transition-colors ${p.badge ? 'font-semibold text-gray-900' : 'text-gray-700'}`}
                     >
                       {p.nombre}
+                      {p.badge && <BadgeDestacado texto={p.badge} />}
                     </Link>
                   ))}
                   <div className="border-t border-gray-100 mt-1 pt-1">
@@ -235,8 +238,9 @@ export function Header() {
             <div className="flex flex-col gap-1">
               <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Prepagas</p>
               {prepagaLinks.map((p) => (
-                <Link key={p.slug} href={`/prepagas/${p.slug}`} className="px-2 py-2 text-sm text-gray-700 hover:text-[#E8002D] rounded-lg hover:bg-red-50 transition-colors" onClick={() => setMenuOpen(false)}>
+                <Link key={p.slug} href={`/prepagas/${p.slug}`} className={`px-2 py-2 text-sm hover:text-[#E8002D] rounded-lg hover:bg-red-50 transition-colors flex items-center justify-between gap-2 ${p.badge ? 'font-semibold text-gray-900' : 'text-gray-700'}`} onClick={() => setMenuOpen(false)}>
                   {p.nombre}
+                  {p.badge && <BadgeDestacado texto={p.badge} />}
                 </Link>
               ))}
               <div className="border-t border-gray-100 mt-2 pt-2">
@@ -282,5 +286,14 @@ export function Header() {
         )}
       </div>
     </header>
+  )
+}
+
+function BadgeDestacado({ texto }: { texto: string }) {
+  return (
+    <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border whitespace-nowrap"
+      style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
+      ★ {texto}
+    </span>
   )
 }
