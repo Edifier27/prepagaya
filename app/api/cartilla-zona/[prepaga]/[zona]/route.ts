@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { CARTILLAS, getZona } from '@/lib/data/cartilla-zonas'
+import { centrosEnOtrasCartillas } from '@/lib/data/cartilla-zonas/cruce'
 
 // Centros de una zona de la cartilla (OSDE / Premedic / Avalian) para el
 // buscador cliente (components/cartillas/BuscadorCartillaZona.tsx).
@@ -16,5 +17,6 @@ export async function GET(_req: Request, { params }: { params: Promise<{ prepaga
   const { prepaga, zona } = await params
   const z = getZona(prepaga, zona)
   if (!z) return NextResponse.json({ error: 'Zona no encontrada' }, { status: 404 })
-  return NextResponse.json(z)
+  // enOtras: sanatorios de la zona que están en otras cartillas y no en esta
+  return NextResponse.json({ ...z, enOtras: centrosEnOtrasCartillas(prepaga, zona) })
 }

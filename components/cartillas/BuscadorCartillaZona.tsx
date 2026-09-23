@@ -14,6 +14,8 @@ import {
 import type { ZonaCartilla } from '@/lib/data/cartilla-zonas'
 import { CentrosLista, UpsellPlanes, centrosConPlanSuperior } from '@/components/cartillas/CentrosLista'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { EnOtrasCartillas } from '@/components/cartillas/EnOtrasCartillas'
+import type { CentroEnOtras } from '@/lib/data/cartilla-zonas/cruce'
 
 interface Props {
   prepagaSlug: string
@@ -52,7 +54,7 @@ export function BuscadorCartillaZona({
   const [plan, setPlan] = useState(planInicial ?? '')
   const [detectadaLabel, setDetectadaLabel] = useState<string | null>(null)
   const [seccion, setSeccion] = useState<SeccionCartilla>('internacion')
-  const [datos, setDatos] = useState<ZonaCartilla | null>(null)
+  const [datos, setDatos] = useState<(ZonaCartilla & { enOtras?: CentroEnOtras[] }) | null>(null)
   const [cargando, setCargando] = useState(false)
   const [error, setError] = useState(false)
 
@@ -75,7 +77,7 @@ export function BuscadorCartillaZona({
     setError(false)
     fetch(`/api/cartilla-zona/${prepagaSlug}/${zonaSlug}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((z: ZonaCartilla) => {
+      .then((z: ZonaCartilla & { enOtras?: CentroEnOtras[] }) => {
         if (cancelado) return
         setDatos(z)
         if (!z.centros.some((c) => c.internacion.length > 0)) setSeccion('guardia')
@@ -225,8 +227,13 @@ export function BuscadorCartillaZona({
                     : undefined
                 }
               />
-              {planObj && (
+                            {planObj && (
                 <UpsellPlanes items={upsell} prepagaNombre={prepagaNombre} planLabel={planObj.label} zonaCorta={zonaCorta} />
+              )}
+              {datos.enOtras && datos.enOtras.length > 0 && (
+                <div className="mt-6">
+                  <EnOtrasCartillas items={datos.enOtras} prepagaNombre={prepagaNombre} zonaCorta={zonaCorta} max={6} />
+                </div>
               )}
               <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gray-50 border border-gray-100 rounded-2xl p-4">
                 <p className="text-xs text-gray-500 leading-relaxed">

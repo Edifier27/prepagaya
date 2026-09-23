@@ -2,6 +2,7 @@ import osdeData from './osde.json'
 import premedicData from './premedic.json'
 import avalianData from './avalian.json'
 import swissData from './swiss-medical.json'
+import sancorData from './sancor-salud.json'
 import { detectarZona, type ZonaDetectada } from '@/lib/geo-zonas'
 import {
   nombreCortoZona,
@@ -13,7 +14,7 @@ import {
   type ZonaCartillaIndice,
 } from '@/lib/cartilla-zonas-geo'
 
-// Cartilla por zona de OSDE, Premedic y Avalian — SOLO instituciones
+// Cartilla por zona de OSDE, Premedic, Avalian, Swiss Medical y Sancor Salud — SOLO instituciones
 // (sanatorios para internación y guardias/urgencias). Nada cargado a mano:
 // cada JSON sale de la fuente oficial de la prepaga con los scripts de
 // scripts/cartilla-{osde,premedic,avalian}/ (ver cada README/docstring).
@@ -226,6 +227,32 @@ export const CARTILLAS: Record<string, CartillaPrepaga> = {
       labelGuardia: 'Guardias',
     },
     swissData as CartillaJson,
+  ),
+  'sancor-salud': armar(
+    {
+      prepagaSlug: 'sancor-salud',
+      prepagaNombre: 'Sancor Salud',
+      fuenteUrl: 'https://sancorsalud.com.ar/cartilla-nosoyasociado',
+      tipoFecha: 'consulta',
+      // Nombres tal cual el índice de planes del buscador oficial (código
+      // interno S3000 = "Sancor 3500", G3000 = "Sancor 3000").
+      planes: [
+        { id: 'F700', label: 'Plan F700', comparadorSlug: 'f700' },
+        { id: 'F800', label: 'Plan F800', comparadorSlug: 'f800' },
+        { id: '1000', label: 'Plan 1000', comparadorSlug: 'plan-1000' },
+        { id: '1500', label: 'Plan 1500', comparadorSlug: 'plan-1500' },
+        { id: '3000', label: 'Plan 3000', comparadorSlug: 'plan-3000' },
+        { id: '3500', label: 'Plan 3500' },
+        { id: '4000', label: 'Plan 4000' },
+        { id: '4500', label: 'Plan 4500', comparadorSlug: 'plan-4500' },
+        { id: '5000', label: 'Plan 5000' },
+        { id: '6000', label: 'Plan 6000' },
+      ],
+      planesConPagina: ['F700', 'F800', '1000', '1500', '3000', '4500'],
+      escalera: ['F700', 'F800', '1000', '1500', '3000', '3500', '4000', '4500', '5000', '6000'],
+      labelGuardia: 'Guardias',
+    },
+    sancorData as CartillaJson,
   ),
 }
 

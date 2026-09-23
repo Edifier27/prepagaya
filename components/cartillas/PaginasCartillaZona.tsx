@@ -16,6 +16,8 @@ import type { PlanCartilla } from '@/lib/cartilla-zonas-geo'
 import { CentrosLista, UpsellPlanes, centrosConPlanSuperior } from '@/components/cartillas/CentrosLista'
 import { BuscadorCartillaZona } from '@/components/cartillas/BuscadorCartillaZona'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { EnOtrasCartillas } from '@/components/cartillas/EnOtrasCartillas'
+import { centrosEnOtrasCartillas } from '@/lib/data/cartilla-zonas/cruce'
 
 // Páginas del silo de cartilla por zona (estructura silo: /cartillas →
 // /cartillas/[prepaga] → /cartillas/[prepaga]/[zona | plan-x] →
@@ -282,8 +284,9 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
   const vecinas = idx.filter((o) => o.slug !== z.slug && !o.parte && o.provinciaNombre === yo?.provinciaNombre)
   const partes = idx.filter((o) => o.parte === z.slug)
   const faqs = faqsZona(c, z)
-  const int = z.centros.filter((ce) => ce.internacion.length > 0)
+    const int = z.centros.filter((ce) => ce.internacion.length > 0)
   const planes = planesDeZona(c, z)
+  const enOtras = centrosEnOtrasCartillas(c.prepagaSlug, z.slug)
 
   return (
     <>
@@ -356,6 +359,14 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
             <h2 className="text-xl font-bold text-gray-900 mb-1">{c.labelGuardia} de {c.prepagaNombre} en {corto}</h2>
             <p className="text-sm text-gray-500 mb-5">Centros con {c.labelGuardia.toLowerCase()} que figuran en la cartilla, y con qué planes.</p>
             <CentrosLista centros={z.centros} seccion="guardia" planes={planes} prepagaSlug={c.prepagaSlug} />
+          </div>
+        </section>
+      )}
+
+            {enOtras.length > 0 && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <EnOtrasCartillas items={enOtras} prepagaNombre={c.prepagaNombre} zonaCorta={corto} />
           </div>
         </section>
       )}
@@ -601,7 +612,8 @@ export function PaginaPlanZona({ c, p, z }: { c: CartillaPrepaga; p: PlanCartill
     .filter((x) => x.plan === slugPlan(p.id) && x.zona !== z.slug)
     .map((x) => idx.find((i) => i.slug === x.zona)!)
     .filter((i) => i && i.provinciaNombre === yo?.provinciaNombre)
-  const planes = planesDeZona(c, z)
+    const planes = planesDeZona(c, z)
+  const enOtras = centrosEnOtrasCartillas(c.prepagaSlug, z.slug)
 
   return (
     <>
@@ -663,8 +675,16 @@ export function PaginaPlanZona({ c, p, z }: { c: CartillaPrepaga; p: PlanCartill
       {n.guardia > 0 && (
         <section className="py-10 bg-gray-50 border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">
-            <h2 className="text-xl font-bold text-gray-900 mb-5">{c.labelGuardia} del {c.prepagaNombre} {pc} en {corto}</h2>
+                        <h2 className="text-xl font-bold text-gray-900 mb-5">{c.labelGuardia} del {c.prepagaNombre} {pc} en {corto}</h2>
             <CentrosLista centros={lista} seccion="guardia" planes={planes} prepagaSlug={c.prepagaSlug} />
+          </div>
+        </section>
+      )}
+
+      {enOtras.length > 0 && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <EnOtrasCartillas items={enOtras} prepagaNombre={c.prepagaNombre} zonaCorta={corto} max={8} />
           </div>
         </section>
       )}
