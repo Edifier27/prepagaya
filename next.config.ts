@@ -283,6 +283,54 @@ const nextConfig: NextConfig = {
         destination: "/prepagas-economicas",
         permanent: true,
       },
+      // Planes inventados de Avalian → planes reales (23-sep-2026)
+      {
+        source: "/prepagas/avalian/basico",
+        destination: "/prepagas/avalian/as100",
+        permanent: true,
+      },
+      {
+        source: "/prepagas/avalian/plus",
+        destination: "/prepagas/avalian/as204",
+        permanent: true,
+      },
+      {
+        source: "/prepagas/avalian/full",
+        destination: "/prepagas/avalian/as300",
+        permanent: true,
+      },
+      {
+        source: "/prepagas/avalian/premium",
+        destination: "/prepagas/avalian/as400",
+        permanent: true,
+      },
+      // Con precios oficiales, el cambio Medifé Oro → Avalian ya no ahorra (23-sep-2026)
+      {
+        source: "/cambios/medife-a-avalian",
+        destination: "/prepagas/avalian",
+        permanent: true,
+      },
+      // Planes inventados de Prevención → planes reales (23-sep-2026)
+      {
+        source: "/prepagas/prevencion-salud/bronce",
+        destination: "/prepagas/prevencion-salud/a1",
+        permanent: true,
+      },
+      {
+        source: "/prepagas/prevencion-salud/plata",
+        destination: "/prepagas/prevencion-salud/a2",
+        permanent: true,
+      },
+      {
+        source: "/prepagas/prevencion-salud/oro",
+        destination: "/prepagas/prevencion-salud/a4",
+        permanent: true,
+      },
+      {
+        source: "/prepagas/prevencion-salud/platino",
+        destination: "/prepagas/prevencion-salud/a5",
+        permanent: true,
+      },
     ];
   },
 };

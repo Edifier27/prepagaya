@@ -4,6 +4,9 @@ export interface Plan {
   precio: number // precio base (30 años, individual)
   /** 'sssalud' cuando el precio sale del cuadro tarifario oficial (lib/data/precios-oficiales.json) */
   fuentePrecio?: 'sssalud'
+  /** Planes con edad de ingreso acotada (ej. Sancor GEN 18-45, Avalian Plan Hoy 18-35): el comparador no los ofrece fuera de rango */
+  edadMinima?: number
+  edadMaxima?: number
   descripcion: string
   cobertura: string[]
   copago: boolean

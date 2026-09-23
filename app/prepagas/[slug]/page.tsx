@@ -135,7 +135,7 @@ export async function generateStaticParams() {
 // mercado), específicas por marca. Se suman a las genéricas de cada ficha.
 const KEYWORDS_EXTRA: Record<string, string[]> = {
   'sancor-salud': ['sancor salud precios', 'sancor salud cordoba', 'sancor plan 1000', 'sancor salud interior del país'],
-  'avalian': ['avalian ex aca salud', 'aca salud ahora avalian', 'avalian planes precios', 'avalian plan full'],
+  'avalian': ['avalian ex aca salud', 'aca salud ahora avalian', 'avalian planes precios', 'avalian as200', 'avalian as300'],
   'premedic': ['premedic precios', 'premedic opiniones', 'premedic plan 200', 'premedic monotributistas', 'prepaga mas barata argentina'],
 }
 

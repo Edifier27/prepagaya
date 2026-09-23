@@ -248,7 +248,7 @@ export const perfiles: PerfilData[] = [
     planesRecomendados: [
       { prepagaSlug: 'swiss-medical', planSlug: 'smg20', razon: 'El plan corporativo más elegido por empresas tech y servicios' },
       { prepagaSlug: 'osde', planSlug: '310', razon: 'Estándar corporativo para empresas que priorizan la marca' },
-      { prepagaSlug: 'avalian', planSlug: 'full', razon: 'Sin copago, red abierta y telemedicina 24hs para equipos con presencia en varias provincias' },
+      { prepagaSlug: 'avalian', planSlug: 'as300', razon: 'Sin copago en consultas, cobertura nacional y telemedicina (e-doc) para equipos con presencia en varias provincias' },
     ],
     faq: [
       {
@@ -288,7 +288,7 @@ export const perfiles: PerfilData[] = [
       { prepagaSlug: 'swiss-medical', planSlug: 'smg20', razon: 'El estándar de los expatriados en CABA: sin copagos y sanatorios propios' },
       { prepagaSlug: 'osde', planSlug: '310', razon: 'Red amplia en todo el país, ideal si vas a moverte entre provincias' },
       { prepagaSlug: 'medife', planSlug: 'bronce', razon: 'Entrada económica con cobertura completa para estadías largas' },
-      { prepagaSlug: 'avalian', planSlug: 'full', razon: 'Telemedicina 24hs desde el primer día, sin esperar a tener un médico de referencia' },
+      { prepagaSlug: 'avalian', planSlug: 'as300', razon: 'Telemedicina (e-doc) y consultas sin copago desde el primer día' },
     ],
     faq: [
       {

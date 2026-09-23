@@ -281,12 +281,18 @@ const swiss: CoberturaMarca[] = [
 //    (Integral AS200/AS204, Superior AS300, Selecta AS400/AS500).
 // Cerca (AS100) y Plan Hoy (AS200H) quedan afuera: no tienen diagrama
 // publicado (el de Plan Hoy da 404). Óptica no figura en los diagramas.
-// Los planes de Avalian en lib/data/prepagas.ts no coinciden con los reales
-// (pendiente de precios de Darío), por eso planSlugs va vacío.
 const AVALIAN_FICHAS: FuenteCobertura = { nombre: 'Planes publicados en el cotizador online de Avalian', fecha: 'septiembre 2026', url: 'https://compraonline.avalian.com/cotizacion' }
 const AVALIAN_DIAGRAMA: FuenteCobertura = { nombre: 'Diagrama de cobertura de los planes Integral, Superior y Selecta (publicado en el cotizador online de Avalian)', fecha: 'septiembre 2026', url: 'https://compraonline.avalian.com/cotizacion' }
 
-const AV = (plan: string, incluido: boolean, detalle?: string): PlanCobertura => ({ plan, planSlugs: [], incluido, detalle })
+// Plan de la tabla → slugs de los planes reales de lib/data/prepagas.ts (23-sep-2026).
+const AV_SLUGS: Record<string, string[]> = {
+  'Integral AS200 / AS204': ['as200', 'as204'],
+  'Superior AS300': ['as300'],
+  'Selecta AS400 / AS500': ['as400', 'as500'],
+  'Selecta AS400': ['as400'],
+  'Selecta AS500': ['as500'],
+}
+const AV = (plan: string, incluido: boolean, detalle?: string): PlanCobertura => ({ plan, planSlugs: AV_SLUGS[plan] ?? [], incluido, detalle })
 
 const avalian: CoberturaMarca[] = [
   {

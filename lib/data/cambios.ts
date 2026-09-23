@@ -1,3 +1,5 @@
+import { prepagas } from './prepagas'
+
 // "¿A cuál cambiarte?" — recomendaciones de switch entre prepagas, basadas en
 // precios reales de lib/data/prepagas.ts (no estimaciones). Cada entrada compara
 // el plan sin-copago/red-abierta más representativo de la prepaga de origen
@@ -9,6 +11,11 @@ export interface CambioRecomendado {
   origenSlug: string
   origenNombre: string
   origenPlanNombre: string
+  /** slug del plan de origen en lib/data/prepagas.ts — de ahí sale el precio */
+  origenPlanSlug: string
+  // origenPrecio, destinoPrecio y deltaMensual se recalculan al final del
+  // archivo desde lib/data/prepagas.ts (precio oficial SSSalud cuando existe):
+  // los números escritos acá son solo el valor inicial.
   origenPrecio: number
   destinoSlug: string
   destinoNombre: string
@@ -32,6 +39,7 @@ export const cambiosRecomendados: CambioRecomendado[] = [
     origenSlug: 'osde',
     origenNombre: 'OSDE',
     origenPlanNombre: 'Plan 310',
+    origenPlanSlug: '310',
     origenPrecio: 345310,
     destinoSlug: 'swiss-medical',
     destinoNombre: 'Swiss Medical',
@@ -40,8 +48,8 @@ export const cambiosRecomendados: CambioRecomendado[] = [
     destinoPrecio: 346404,
     deltaMensual: 345310 - 346404,
     gancho: 'Mismo nivel de cobertura, con sanatorios propios',
-    razon: 'El OSDE 310 y el Swiss Medical SMG20 están en la misma categoría: sin copago, red abierta, plan más elegido de cada empresa, a un precio prácticamente igual. La diferencia es que Swiss Medical suma 9 sanatorios propios (OSDE no tiene sanatorios propios, trabaja 100% con convenios). Si tu prioridad es no perder cartilla y sumar sanatorios propios sin pagar de más, es el cambio más directo del mercado.',
-    paraQuienNo: 'Si usás específicamente el Hospital Alemán o necesitás la red nacional de 140.000 profesionales de OSDE fuera de las zonas donde Swiss Medical tiene centros propios, quedate en OSDE.',
+    razon: 'El OSDE 310 y el Swiss Medical SMG20 están en la misma categoría: sin copago, red abierta, plan más elegido de cada empresa, y a los 30 años el SMG20 sale menos según los cuadros tarifarios oficiales de la Superintendencia de Servicios de Salud. La diferencia es que Swiss Medical suma 9 sanatorios propios (OSDE no tiene sanatorios propios, trabaja 100% con convenios). Si tu prioridad es no perder cartilla y sumar sanatorios propios sin pagar de más, es el cambio más directo del mercado.',
+    paraQuienNo: 'Si tenés 56 años o más: OSDE deja de aumentar por edad a partir de los 36 (el 310 tiene solo tres escalones: hasta 27, de 28 a 35 y de 36 en adelante), mientras que Swiss Medical sigue subiendo cada 5 años. Según los cuadros tarifarios oficiales, desde los 56 el OSDE 310 sale más barato que el SMG20. También quedate en OSDE si usás específicamente el Hospital Alemán.',
     ganas: ['9 sanatorios propios (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas)', 'Guardia Ágil: reservás turno de guardia desde el celular', '30 sesiones de psicología por año sin cargo', '40% de descuento en farmacias adheridas'],
     perdes: ['Red de 140.000 profesionales de OSDE (Swiss declara 81.500)', 'Hospital Alemán en cartilla desde el plan 310', 'Plan Flux para menores de 35 con psicología ilimitada'],
     faqExtra: [
@@ -55,6 +63,7 @@ export const cambiosRecomendados: CambioRecomendado[] = [
     origenSlug: 'sancor-salud',
     origenNombre: 'Sancor Salud',
     origenPlanNombre: 'Plan 1000',
+    origenPlanSlug: 'plan-1000',
     origenPrecio: 369200,
     destinoSlug: 'swiss-medical',
     destinoNombre: 'Swiss Medical',
@@ -78,6 +87,7 @@ export const cambiosRecomendados: CambioRecomendado[] = [
     origenSlug: 'osde',
     origenNombre: 'OSDE',
     origenPlanNombre: 'Plan 210',
+    origenPlanSlug: '210',
     origenPrecio: 267250,
     destinoSlug: 'premedic',
     destinoNombre: 'Premedic',
@@ -96,47 +106,53 @@ export const cambiosRecomendados: CambioRecomendado[] = [
     ],
   },
   {
+    // Reescrito 23-sep-2026 con los planes reales de Avalian (el "Plan Full"
+    // no existía). Cobertura: cotizador oficial de Avalian; precios: SSSalud.
     slug: 'avalian-a-swiss-medical',
     origenSlug: 'avalian',
     origenNombre: 'Avalian',
-    origenPlanNombre: 'Plan Full',
-    origenPrecio: 378200,
+    origenPlanNombre: 'Plan Superior AS300',
+    origenPlanSlug: 'as300',
+    origenPrecio: 559614,
     destinoSlug: 'swiss-medical',
     destinoNombre: 'Swiss Medical',
     destinoPlanSlug: 'smg20',
     destinoPlanNombre: 'Plan SMG20',
     destinoPrecio: 346404,
-    deltaMensual: 378200 - 346404,
-    gancho: 'Menor cuota, sanatorios propios contra red de terceros',
-    razon: 'El Plan Full de Avalian y el SMG20 de Swiss Medical cubren lo mismo — sin copago, red abierta — pero Swiss tiene un nivel de precio más accesible, con 9 sanatorios propios contra ninguno de Avalian (que trabaja con red de convenio de terceros).',
-    paraQuienNo: 'Si estás fuera de AMBA/GBA, Avalian declara cobertura en más de 24 provincias: verificá primero que Swiss Medical tenga cartilla real en tu ciudad antes de cambiarte.',
-    ganas: ['9 sanatorios propios contra 0 de Avalian', 'Calidad de cartilla 5/5 contra 3/5', 'El mayor ahorro estimado de esta comparación'],
-    perdes: ['Cobertura declarada en más de 24 provincias (mayor despliegue territorial fuera de AMBA)', 'App con receta digital y credencial 100% digital'],
+    deltaMensual: 559614 - 346404,
+    gancho: 'Dos planes sin copago, con una cuota bastante menor',
+    razon: 'El Plan Superior AS300 de Avalian y el SMG20 de Swiss Medical son planes sin copago en consultas con internación en habitación individual. Según los cuadros tarifarios oficiales de la Superintendencia de Servicios de Salud, el SMG20 tiene una cuota de lista bastante menor a los 30 años. Antes de cambiarte, compará la cartilla de cada uno en tu zona.',
+    paraQuienNo: 'Si usás la asistencia al viajero internacional o la odontología sin copago del Superior AS300, verificá que el SMG20 te cubra lo mismo antes de cambiarte. Y si vivís en una zona donde Swiss Medical no tiene cartilla, Avalian declara cobertura nacional.',
+    ganas: ['Una cuota de lista menor por un plan sin copago en consultas', 'Sanatorios propios de Swiss Medical en AMBA'],
+    perdes: ['Asistencia al viajero internacional del Superior AS300', 'Odontología sin copago del Superior AS300'],
     faqExtra: [
-      { q: '¿Avalian y Swiss Medical tienen los mismos sanatorios propios?', a: 'No. Avalian no tiene sanatorios propios: trabaja con una red de convenio de instituciones de terceros (Hospital Alemán, CEMIC, Fleni, entre otras). Swiss Medical sí tiene 9 sanatorios propios en AMBA, incluyendo Suizo Argentina, Los Arcos, Agote y el Sanatorio Las Lomas, del que Swiss Medical es dueño al 100% desde 2024.' },
-      { q: '¿Por qué Avalian es más cara si es una prepaga de origen cooperativo?', a: 'El Plan Full de Avalian es su plan sin copago de mayor cobertura, lo que eleva el precio frente al SMG20 de Swiss, que es el plan más elegido pero de un escalón similar. Los planes de entrada de Avalian (Básico, Plus) sí son más económicos que Swiss, pero tienen copago.' },
+      { q: '¿Qué plan de Avalian se compara con el SMG20?', a: 'El Superior AS300: es el plan de Avalian con consultas sin copago e internación en habitación individual. El Integral (AS200 y AS204) tiene copago en consultas.' },
+      { q: '¿De dónde salen los precios?', a: 'De los cuadros tarifarios que cada prepaga declara ante la Superintendencia de Servicios de Salud: precio de lista para una persona de 30 años, contratación directa, con IVA. El precio final depende de tu edad, zona y promociones vigentes.' },
     ],
   },
   {
+    // Reescrito 23-sep-2026 con los planes reales de Prevención (el "Plan Oro"
+    // no existía). Precios y escala etaria: cuadros tarifarios SSSalud.
     slug: 'prevencion-salud-a-swiss-medical',
     origenSlug: 'prevencion-salud',
     origenNombre: 'Prevención Salud',
-    origenPlanNombre: 'Plan Oro',
-    origenPrecio: 340500,
+    origenPlanNombre: 'Plan A2',
+    origenPlanSlug: 'a2',
+    origenPrecio: 901261,
     destinoSlug: 'swiss-medical',
     destinoNombre: 'Swiss Medical',
     destinoPlanSlug: 'smg20',
     destinoPlanNombre: 'Plan SMG20',
     destinoPrecio: 346404,
-    deltaMensual: 340500 - 346404,
-    gancho: 'Por casi la misma cuota, una cartilla mucho más sólida',
-    razon: 'El Plan Oro de Prevención Salud no tiene sanatorios propios. El SMG20 de Swiss Medical cuesta prácticamente lo mismo y suma 8 centros propios, con mejor calificación de cartilla (5/5 contra 3/5) y más satisfacción declarada de afiliados.',
-    paraQuienNo: 'Si valorás la atención personalizada y ya tenés un vínculo armado con prestadores de Prevención en tu zona, la diferencia de cuota es chica — evaluá si vale la pena mover todo el grupo familiar por esa diferencia.',
-    ganas: ['9 sanatorios propios (Prevención no tiene ninguno)', 'Calidad de cartilla 5/5 contra 3/5', 'Satisfacción declarada 76% contra 71%'],
-    perdes: ['Cobertura nacional en 23 provincias (más amplia que Swiss fuera de sus zonas fuertes)', 'Planes específicos para monotributistas', 'Atención personalizada de una empresa más chica'],
+    deltaMensual: 901261 - 346404,
+    gancho: 'Si tenés menos de 55 años, la cuota puede bajar mucho',
+    razon: 'Prevención Salud cobra el mismo precio desde el nacimiento hasta los 55 años: en su cuadro tarifario oficial hay un único rango de 0 a 55. Por eso, para una persona joven, el Plan A2 queda bastante más caro que el SMG20 de Swiss Medical, que ajusta el precio por edad. Los dos son planes sin copago en consultas.',
+    paraQuienNo: 'Cuanto más cerca estés de los 55 años, menos conviene el cambio: el precio plano de Prevención juega a favor de las personas mayores, mientras que Swiss Medical sube cada 5 años. Pedinos la cotización para tu edad exacta antes de decidir.',
+    ganas: ['Una cuota menor si sos joven (Swiss ajusta el precio por edad)', 'Sanatorios propios de Swiss Medical en AMBA'],
+    perdes: ['El precio plano hasta los 55 años de Prevención', 'Cobertura nacional e internacional del A2 (verificá la del SMG20)'],
     faqExtra: [
-      { q: '¿Vale la pena cambiarse por una diferencia de precio tan chica?', a: 'Depende de cuánto usás el sistema. Si tu grupo familiar consulta seguido o podría necesitar internación, el salto de calidad de cartilla (3/5 a 5/5) y sumar 9 sanatorios propios suele justificar una diferencia chica de precio. Si usás poco el sistema, el ahorro no compensa el trámite de cambio.' },
-      { q: '¿Prevención Salud cubre el interior del país mejor que Swiss Medical?', a: 'Sí, Prevención Salud declara cobertura en 23 provincias, más amplia que la de Swiss Medical fuera de sus zonas de mayor presencia. Si vivís fuera de AMBA, Córdoba, Rosario o Mendoza, verificá la cartilla local antes de cambiarte.' },
+      { q: '¿Por qué Prevención cuesta lo mismo a los 25 que a los 50?', a: 'Porque así lo declara en su cuadro tarifario ante la Superintendencia de Servicios de Salud: un único rango de edad de 0 a 55 años, con precios distintos recién desde los 56. Es una estrategia comercial: cada prepaga define sus propios rangos de edad.' },
+      { q: '¿De dónde salen los precios?', a: 'De los cuadros tarifarios que cada prepaga declara ante la Superintendencia de Servicios de Salud: precio de lista para una persona de 30 años, contratación directa, con IVA. El precio final depende de tu edad, zona y promociones vigentes.' },
     ],
   },
   {
@@ -144,6 +160,7 @@ export const cambiosRecomendados: CambioRecomendado[] = [
     origenSlug: 'medife',
     origenNombre: 'Medifé',
     origenPlanNombre: 'Plan Plata',
+    origenPlanSlug: 'plata',
     origenPrecio: 309892,
     destinoSlug: 'swiss-medical',
     destinoNombre: 'Swiss Medical',
@@ -167,6 +184,7 @@ export const cambiosRecomendados: CambioRecomendado[] = [
     origenSlug: 'omint',
     origenNombre: 'Omint',
     origenPlanNombre: 'Plan Global',
+    origenPlanSlug: 'global',
     origenPrecio: 437027,
     destinoSlug: 'sancor-salud',
     destinoNombre: 'Sancor Salud',
@@ -185,32 +203,11 @@ export const cambiosRecomendados: CambioRecomendado[] = [
     ],
   },
   {
-    slug: 'medife-a-avalian',
-    origenSlug: 'medife',
-    origenNombre: 'Medifé',
-    origenPlanNombre: 'Plan Oro',
-    origenPrecio: 393744,
-    destinoSlug: 'avalian',
-    destinoNombre: 'Avalian',
-    destinoPlanSlug: 'full',
-    destinoPlanNombre: 'Plan Full',
-    destinoPrecio: 378200,
-    deltaMensual: 393744 - 378200,
-    gancho: 'Cuota más baja y mejor satisfacción declarada',
-    razon: 'El Plan Oro de Medifé y el Plan Full de Avalian están en la misma categoría: sin copago, red abierta, ambos el plan más completo dentro de su franja de precio. Avalian sale un poco menos y tiene mejor satisfacción declarada de afiliados (73% contra 70%), además de telemedicina 24hs incluida en todos sus planes. Ninguna de las dos tiene sanatorios propios — las dos trabajan con red de convenio.',
-    paraQuienNo: 'Si elegiste Medifé específicamente por el Cam Doctor (video consulta en menos de 10 minutos) o por el acceso al Sanatorio Finochietto para cirugía robótica, Avalian no replica esos dos puntos exactos — quedate en Medifé.',
-    ganas: ['Telemedicina 24hs incluida en todos los planes, no solo en el más caro', 'Mejor satisfacción declarada (73% contra 70%)', 'Cuota más baja por el mismo nivel de plan'],
-    perdes: ['Cam Doctor de Medifé: video consulta médica en menos de 10 minutos', 'Acceso al Sanatorio Finochietto (cirugía robótica)', 'Cobertura oficial de la AFA que tiene Medifé'],
-    faqExtra: [
-      { q: '¿Avalian tiene telemedicina como el Cam Doctor de Medifé?', a: 'Sí, Avalian incluye telemedicina 24hs en todos sus planes, pero es un servicio propio distinto al Cam Doctor de Medifé (que promete conexión en menos de 10 minutos). Si ese tiempo de respuesta puntual es tu prioridad, verificalo antes de cambiarte.' },
-      { q: '¿Alguna de las dos tiene sanatorios propios?', a: 'No, ni Avalian ni Medifé tienen sanatorios propios: las dos trabajan con red de convenio de instituciones de terceros (Medifé, por ejemplo, tiene acceso puntual al Sanatorio Finochietto sin ser dueña).' },
-    ],
-  },
-  {
     slug: 'sancor-salud-a-premedic',
     origenSlug: 'sancor-salud',
     origenNombre: 'Sancor Salud',
     origenPlanNombre: 'Plan F700',
+    origenPlanSlug: 'f700',
     origenPrecio: 262000,
     destinoSlug: 'premedic',
     destinoNombre: 'Premedic',
@@ -229,28 +226,42 @@ export const cambiosRecomendados: CambioRecomendado[] = [
     ],
   },
   {
+    // Reescrito 23-sep-2026 con los planes reales (el "Plan Básico" de Avalian
+    // no existía). Precios: SSSalud; cobertura: fichas oficiales.
     slug: 'avalian-a-premedic',
     origenSlug: 'avalian',
     origenNombre: 'Avalian',
-    origenPlanNombre: 'Plan Básico',
-    origenPrecio: 218500,
+    origenPlanNombre: 'Plan Cerca AS100',
+    origenPlanSlug: 'as100',
+    origenPrecio: 288674,
     destinoSlug: 'premedic',
     destinoNombre: 'Premedic',
     destinoPlanSlug: 'plan-400',
     destinoPlanNombre: 'Plan 400',
-    destinoPrecio: 170000,
-    deltaMensual: 218500 - 170000,
-    gancho: 'Pagás menos y de paso ganás red abierta',
-    razon: 'El Plan Básico de Avalian y el Plan 400 de Premedic tienen copago los dos, pero el de Avalian encima es de red cerrada. El 400 de Premedic —su plan más completo— cuesta menos y es de red abierta: pagás menos por un plan con un ítem más de cobertura.',
-    paraQuienNo: 'Si estás fuera de CABA, GBA, Córdoba capital o Tucumán, Avalian declara cobertura en más de 24 provincias — Premedic no te va a servir.',
-    ganas: ['Cuota más baja por un plan de red abierta (el básico de Avalian es cerrada)', 'Smile Group: red odontológica propia con hasta 50% off en implantes y ortodoncia'],
-    perdes: ['Telemedicina 24hs incluida en todos los planes de Avalian', 'Cobertura declarada en más de 24 provincias'],
+    destinoPrecio: 208611,
+    deltaMensual: 288674 - 208611,
+    gancho: 'El plan más completo de Premedic cuesta menos que el de entrada de Avalian',
+    razon: 'Según los cuadros tarifarios oficiales de la Superintendencia de Servicios de Salud, el Plan 400 de Premedic tiene una cuota de lista menor que el Plan Cerca AS100, el plan de entrada de Avalian. El 400 incluye internación en habitación individual y descuentos en implantes, ortodoncia y estética dental, según su ficha oficial.',
+    paraQuienNo: 'Premedic solo declara cobertura en CABA, GBA, Córdoba, Mendoza, Misiones y Tucumán. Si vivís en otra zona, quedate en Avalian, que declara cobertura nacional.',
+    ganas: ['Una cuota de lista menor', 'Internación en habitación individual (Plan 400)', 'Descuentos en implantes, ortodoncia y estética dental'],
+    perdes: ['Cobertura nacional de Avalian', 'Telemedicina (e-doc) y app de Avalian'],
     faqExtra: [
-      { q: '¿El plan de Premedic es de red abierta y el de Avalian no?', a: 'En esta comparación puntual sí: el Plan Básico de Avalian es de red cerrada, mientras que el Plan 400 de Premedic —pese a costar menos— es de red abierta. Los planes superiores de Avalian (Plus, Full) sí son de red abierta, pero cuestan más que el 400 de Premedic.' },
-      { q: '¿Premedic tiene algo parecido a la telemedicina 24hs de Avalian?', a: 'No, es un servicio propio de Avalian que Premedic no ofrece. Si usás mucho la consulta por videollamada, es un punto real a favor de quedarte en Avalian.' },
+      { q: '¿Dónde tiene cobertura Premedic?', a: 'Según los cuadros que declara ante la Superintendencia de Servicios de Salud, Premedic tiene precios para CABA, provincia de Buenos Aires (GBA), Córdoba, Mendoza, Misiones y Tucumán. Fuera de esas zonas no te conviene.' },
+      { q: '¿De dónde salen los precios?', a: 'De los cuadros tarifarios que cada prepaga declara ante la Superintendencia de Servicios de Salud: precio de lista para una persona de 30 años, contratación directa, con IVA. El precio final depende de tu edad, zona y promociones vigentes.' },
     ],
   },
 ]
+
+// Precios y delta siempre desde lib/data/prepagas.ts (que ya trae el precio
+// oficial SSSalud de cada plan que lo tiene): así estas páginas nunca quedan
+// con números viejos cuando se actualizan los cuadros (23-sep-2026).
+for (const c of cambiosRecomendados) {
+  const origen = prepagas.find((p) => p.slug === c.origenSlug)?.planes.find((pl) => pl.slug === c.origenPlanSlug)
+  const destino = prepagas.find((p) => p.slug === c.destinoSlug)?.planes.find((pl) => pl.slug === c.destinoPlanSlug)
+  if (origen) c.origenPrecio = origen.precio
+  if (destino) c.destinoPrecio = destino.precio
+  c.deltaMensual = c.origenPrecio - c.destinoPrecio
+}
 
 export function getCambioBySlug(slug: string): CambioRecomendado | undefined {
   return cambiosRecomendados.find((c) => c.slug === slug)

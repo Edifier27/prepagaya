@@ -227,8 +227,8 @@ export const condiciones: CondicionData[] = [
       },
       {
         slug: 'avalian',
-        planSlug: 'full',
-        razon: 'El Plan Full de Avalian cubre 30 sesiones de salud mental por año sin copago y suma telemedicina 24hs para consultas de urgencia fuera de horario. Buena relación precio-cobertura para tratamientos ambulatorios frecuentes.',
+        planSlug: 'as300',
+        razon: 'Según el diagrama de cobertura oficial de Avalian, los planes Integral y Superior cubren 30 sesiones de psicoterapia por año y el Selecta, 48 sin copago. Todos suman telemedicina (e-doc).',
       },
     ],
     preguntasAntesDeFirmar: [

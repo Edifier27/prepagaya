@@ -62,6 +62,32 @@ function regionesDe(prepaga: string, zona: string): string[] {
     }
     case 'galeno':
       return ['Pais']
+    case 'sancor-salud': {
+      const propias: Record<string, string> = { 'entre-rios': 'ENTRE RIOS', salta: 'SALTA', tucuman: 'TUCUMAN', neuquen: 'NEUQUEN', 'rio-negro': 'RIO NEGRO' }
+      if (propias[zona]) return [propias[zona]]
+      if (zona === 'buenos-aires-interior' || zona === 'santa-fe') return [] // varias listas según la ciudad
+      if (zona === 'caba' || zona === 'buenos-aires' || INTERIOR.includes(zona)) return ['GENERAL']
+      return []
+    }
+    case 'prevencion-salud': {
+      // Regiones declaradas por provincia (Córdoba y Santa Fe se parten por
+      // departamento → sin dato; la provincia de Buenos Aires no figura).
+      const R: Record<string, string> = {
+        caba: 'CABA, SAN JUAN, SAN LUIS, SANTA FE (ROSARIO Y DPTOS SAN LORENZO, CASEROS, CASTELLANOS, GRAL LOPEZ Y CONSTITUCION) Y CORDOBA (SOLO DPTOS RIO CUARTO, MARCOS JUAREZ, GRAL ROCA Y LABOULAYE)',
+        corrientes: 'CORRIENTES, LA RIOJA, CATAMARCA, SGO DEL ESTERO Y CORDOBA (EXCLUYE DPTOS RIO CUARTO, MARCOS JUAREZ, GRAL ROCA Y LABOULAYE)',
+        mendoza: 'LA PAMPA, ENTRE RIOS, MENDOZA Y STA FE (EXCLUYE ROSARIO Y DPTOS SAN LORENZO, CASEROS, CASTELLANOS, GRAL LOPEZ Y CONSTITUCION)',
+        'entre-rios': 'LA PAMPA, ENTRE RIOS, MENDOZA Y STA FE (EXCLUYE ROSARIO Y DPTOS SAN LORENZO, CASEROS, CASTELLANOS, GRAL LOPEZ Y CONSTITUCION)',
+        neuquen: 'RIO NEGRO, NEUQUEN, CHUBUT, SANTA CRUZ, TIERRA DEL FUEGO',
+        'rio-negro': 'RIO NEGRO, NEUQUEN, CHUBUT, SANTA CRUZ, TIERRA DEL FUEGO',
+        salta: 'SALTA, JUJUY, TUCUMAN, MISIONES, CHACO, FORMOSA', jujuy: 'SALTA, JUJUY, TUCUMAN, MISIONES, CHACO, FORMOSA',
+        tucuman: 'SALTA, JUJUY, TUCUMAN, MISIONES, CHACO, FORMOSA', misiones: 'SALTA, JUJUY, TUCUMAN, MISIONES, CHACO, FORMOSA',
+        chaco: 'SALTA, JUJUY, TUCUMAN, MISIONES, CHACO, FORMOSA',
+      }
+      return R[zona] ? [R[zona]] : []
+    }
+    case 'avalian':
+      // No declara regiones geográficas sino listas; se usa la base.
+      return ['Avalian']
     default:
       return []
   }

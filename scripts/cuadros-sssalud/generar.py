@@ -41,14 +41,27 @@ MAPEO = {
         'plan-200': '200', 'plan-300': '300', 'plan-400': '400'}},
     'medife': {'rnemp': 412258, 'region': 'PROVINCIA DE BUENOS AIRES', 'planes': {
         'medife-plus': 'MEDIFE MAS', 'bronce': 'BRONCE', 'plata': 'PLATA', 'oro': 'ORO', 'platinum': 'PLATINUM'}},
+    'sancor-salud': {'rnemp': 311371, 'region': 'GENERAL', 'planes': {
+        'f700': 'F700', 'f800': 'F800 CC', 'f800-digital-flex': 'F80DF', 'plan-1000-digital-flex': 'PLAN 1000 DIGITAL FLEX',
+        'plan-1000': 'S1000 SC', 'plan-1000-cc': 'S1000 CC', 'plan-1500': 'S1500 SC', 'plan-1500-cc': 'S1500 Con Copagos',
+        'plan-3000': 'S3000', 'plan-3500': 'S3500', 'plan-4000': 'S4000', 'plan-4500': 'S4500', 'plan-5000': 'S5000', 'plan-6000': 'S6000',
+        'plan-1000-gen': 'S1000 GEN SC', 'plan-1500-gen': 'S1500 GEN SC', 'plan-3000-gen': 'S3000 GEN', 'plan-3500-gen': 'S3500 Gen',
+        'plan-4000-gen': 'S4000 GEN', 'plan-4500-gen': 'S4500 GEN'}},
+    # Prevención: la región de referencia es la que incluye CABA.
+    'prevencion-salud': {'rnemp': 116792, 'region': 'CABA, SAN JUAN, SAN LUIS, SANTA FE (ROSARIO Y DPTOS SAN LORENZO, CASEROS, CASTELLANOS, GRAL LOPEZ Y CONSTITUCION) Y CORDOBA (SOLO DPTOS RIO CUARTO, MARCOS JUAREZ, GRAL ROCA Y LABOULAYE)', 'planes': {
+        'on-demand': 'On Demand', 'a1': 'A1', 'a2': 'A2', 'a4': 'A4', 'a5': 'A5'}},
+    # Avalian declara tres listas en vez de regiones: "Avalian" (base),
+    # "AvalianMax" y "Promocionada". La web usa la base (pendiente: confirmar
+    # con Darío cuándo aplica cada una).
+    'avalian': {'rnemp': 211947, 'region': 'Avalian', 'planes': {
+        'as100': 'AS100', 'as204': 'AS204', 'as200': 'AS200', 'as200h': 'AS200H',
+        'as300': 'AS300', 'as400': 'AS400', 'as500': 'AS500'}},
     'galeno': {'rnemp': 112851, 'region': 'Pais', 'planes': {
         'azul-200': 'Azul 200', 'azul-220': 'Azul 220', 'plata-300': 'Plata 300', 'plata-330': 'Plata 330',
         'oro-400': 'Oro 400', 'oro-440': 'Oro 440', 'oro-550': 'Oro 550'}},
 }
 # Pendientes de confirmar a qué plan oficial corresponde cada plan del sitio
-# (23-sep-2026): Sancor (líneas "GEN" y no GEN), Avalian (el sitio tiene
-# planes que no existen; los reales son AS100/AS200/AS204/AS300/AS400/AS500),
-# Omint, Prevención, Hospital Italiano, Federada y CEMIC (nombres distintos),
+# (23-sep-2026): Omint, Prevención, Hospital Italiano, Federada y CEMIC (nombres distintos),
 # y Luis Pasteur (cruza por nombre pero da +100% contra el sitio: revisar).
 # Medicus y Hominis no declaran cuadros en la SSSalud.
 

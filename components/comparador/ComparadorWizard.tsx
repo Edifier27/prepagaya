@@ -222,8 +222,13 @@ function calcResultados(personas: Persona[], zonaKey: string, descuento: number,
   const slugsZona = ZONA_PREPAGAS[zonaKey] ?? ZONA_PREPAGAS['otras']
   const prepagasFiltradas = prepagas.filter((p) => slugsZona.includes(p.slug))
   const out: Resultado[] = []
+  // Planes con edad acotada (Sancor GEN 18-45, Avalian Plan Hoy 18-35): se
+  // toma la persona de mayor edad del grupo como referencia del titular.
+  const edadMayor = Math.max(0, ...personas.map((p) => parseInt(p.edad) || 0))
   for (const prep of prepagasFiltradas) {
     for (const plan of prep.planes) {
+      if (plan.edadMaxima && edadMayor > plan.edadMaxima) continue
+      if (plan.edadMinima && edadMayor < plan.edadMinima) continue
       let score = (prep.satisfaccion / 100) * 8
       if (plan.redAbierta) score += 3
       if (!plan.copago) score += 2
