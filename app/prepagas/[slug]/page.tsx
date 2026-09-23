@@ -18,6 +18,7 @@ import type { Prepaga } from '@/types'
 import { getAppPrepaga, APPS_FECHA, APPS_FUENTE } from '@/lib/data/apps-prepagas'
 import { resenasAprobadas } from '@/lib/db'
 import { ResenaForm } from '@/components/prepagas/ResenaForm'
+import { contactos, CONTACTOS_VERIFICADOS } from '@/lib/data/contactos'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -159,14 +160,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // "Cartilla" salió del título (22-sep-2026): esa intención ahora la toma
     // /cartillas/[prepaga] con datos oficiales por zona; esta ficha apunta a
     // planes y precios y enlaza a la cartilla.
-    title: `Planes de ${prep.nombre} y precios ${PRECIO_ACTUALIZADO}: desde ${formatPrecio(precioMinTitulo)}/mes`,
-    description: `${prep.nombre} ${PRECIO_ACTUALIZADO}: planes desde ${formatPrecio(precioMinTitulo)}/mes. Cartilla completa, coberturas y ${prep.satisfaccion}% de satisfacción. Cotizá tu precio exacto gratis y sin compromiso.`,
+    // "Cuánto sale" (23-sep-2026): "cuánto sale osde" busca ~7 veces más que
+    // "prepagas precios" (Google Trends); es la misma intención de esta ficha.
+    // absolute: sin el sufijo "| PrepagaYa", para que entre completo en Google (~65 caracteres).
+    title: { absolute: `${prep.nombre}: planes y cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()}, desde ${formatPrecio(precioMinTitulo)}` },
+    description: `¿Cuánto sale ${prep.nombre}? Planes desde ${formatPrecio(precioMinTitulo)}/mes en ${PRECIO_ACTUALIZADO.toLowerCase()}${prep.planes.some((pl) => pl.fuentePrecio === 'sssalud') ? ', según el cuadro tarifario oficial de la SSSalud' : ''}. Precio por edad, cartilla${contactos[prep.slug] ? ', teléfonos' : ''} y opiniones. Cotizá gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} planes`,
       `${prep.nombre.toLowerCase()} opiniones`,
       `${prep.nombre.toLowerCase()} cobertura`,
       `prepaga ${prep.nombre.toLowerCase()}`,
+      `cuanto sale ${prep.nombre.toLowerCase()}`,
+      ...(contactos[slug] ? [`telefono ${prep.nombre.toLowerCase()}`] : []),
       ...(KEYWORDS_EXTRA[slug] ?? []),
     ],
   }
@@ -197,8 +203,15 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const otrosPlanes = ordenarPorCartilla(prep.slug, planesOrdenados).filter(pl => pl.slug !== planEstrella.slug)
   const perfiles = getPerfilesIdeales(prep, precioMin)
   const app = getAppPrepaga(prep.slug)
+  const contacto = contactos[prep.slug]
+  const telSocios = contacto?.canales.find((c) => c.tipo === 'socios')
+  const telEmergencias = contacto?.canales.find((c) => c.tipo === 'emergencias')
   const faqs = [
     ...buildFAQs(prep, precioMin, precioMax, planEstrella),
+    ...(contacto && telSocios ? [{
+      q: `¿Cuál es el teléfono de ${prep.nombre}?`,
+      a: `${telSocios.etiqueta}: ${telSocios.valor}${telSocios.detalle ? ` (${telSocios.detalle.toLowerCase()})` : ''}.${telEmergencias ? ` ${telEmergencias.etiqueta}: ${telEmergencias.valor}.` : ''} Datos publicados por ${prep.nombre} en su web oficial. Si querés contratar un plan, te cotizamos en ${TIEMPO_RESPUESTA}.`,
+    }] : []),
     // "¿X tiene app?": única búsqueda de apps con intención previa a contratar
     // (análisis de keywords, 22-sep-2026). Solo con datos de la ficha oficial.
     ...(app ? [{
@@ -940,6 +953,49 @@ export default async function PrepagaSlugPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Teléfonos (23-sep-2026): "teléfono osde" / "swiss medical teléfono"
+          tienen mucho volumen. Va como H2 dentro de la ficha (no página
+          aparte) para no canibalizar. Solo datos de lib/data/contactos.ts. */}
+      {contacto && (
+        <section id="telefonos" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-5xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Teléfonos de {prep.nombre} y canales de atención</h2>
+            <p className="text-sm text-gray-500 mb-5">
+              Publicados por {prep.nombre} en su{' '}
+              <a href={contacto.fuente} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-700">web oficial</a>
+              {' '}(verificados el {CONTACTOS_VERIFICADOS}).
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {contacto.canales.map((c) => {
+                const numero = /\d{6}/.test(c.valor.replace(/\D/g, '')) ? c.valor.split('/')[0].replace(/[^\d+]/g, '') : null
+                return (
+                  <div key={c.etiqueta} className={`rounded-xl border p-4 ${c.tipo === 'emergencias' ? 'border-red-100 bg-red-50/60' : 'border-gray-100 bg-gray-50'}`}>
+                    <div className="text-xs font-semibold text-gray-500">{c.etiqueta}</div>
+                    {numero ? (
+                      <a href={c.tipo === 'whatsapp' ? `https://wa.me/${numero.replace('+', '')}` : `tel:${numero}`} className="block mt-1 font-bold text-gray-900 tabular-nums hover:text-[#E8002D]">
+                        {c.valor}
+                      </a>
+                    ) : (
+                      <div className="mt-1 font-semibold text-gray-900 text-sm">{c.valor}</div>
+                    )}
+                    {c.detalle && <div className="text-xs text-gray-500 mt-1">{c.detalle}</div>}
+                  </div>
+                )
+              })}
+            </div>
+            <div className="mt-5 rounded-2xl border-2 border-[#E8002D]/20 bg-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <p className="text-sm text-gray-700">
+                <strong>¿Querés contratar {prep.nombre}?</strong>{' '}
+                {isPartner ? `Somos partner oficial: te cotizamos en ${TIEMPO_RESPUESTA}, sin esperas en el conmutador.` : `Te cotizamos en ${TIEMPO_RESPUESTA} y lo comparamos con otras prepagas.`}
+              </p>
+              <Link href="/comparador" className="flex-shrink-0 text-center px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
+                Cotizar {prep.nombre} →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-5xl mx-auto">
@@ -981,14 +1037,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
           >
             Cotizar gratis →
           </Link>
-          {prep.telefono && (
-            <div className="mt-5 text-red-200 text-xs">
-              O llamá directo:{' '}
-              <a href={`tel:${prep.telefono.replace(/\D/g, '')}`} className="text-white font-semibold underline">
-                {prep.telefono}
-              </a>
-            </div>
-          )}
         </div>
       </section>
     </>

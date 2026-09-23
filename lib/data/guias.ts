@@ -1,9 +1,16 @@
-import { prepagas, PRECIO_ACTUALIZADO } from './prepagas'
-import { formatPrecio } from '@/lib/utils'
+
+export interface GuiaEnlace {
+  texto: string
+  url: string
+}
 
 export interface GuiaSeccion {
   titulo: string
   cuerpo: string
+  // Botones a trámites oficiales (se abren en pestaña nueva).
+  enlaces?: GuiaEnlace[]
+  // Bloque de conversión que se muestra al final de la sección.
+  cta?: { texto: string; boton: string; href: string }
 }
 
 export interface GuiaData {
@@ -22,26 +29,8 @@ export interface GuiaData {
   keywords: string[]
   relacionadas: string[] // slugs de otras guías
   prepagasRelacionadas?: string[] // slugs de prepagas
+  fuentes?: GuiaEnlace[] // fuentes oficiales (se listan al pie y van a isBasedOn)
 }
-
-// ─── Datos calculados para la guía de precios mensuales ──────────────────
-// Se recalculan solos a partir de lib/data/prepagas.ts en cada build: no hay
-// que tocar esta guía a mano cada mes, alcanza con mantener los precios y
-// PRECIO_ACTUALIZADO al día (que ya se actualizan mensualmente para el resto del sitio).
-const todosLosPlanes = prepagas.flatMap((p) =>
-  p.planes.map((pl) => ({ ...pl, prepagaNombre: p.nombre, prepagaSlug: p.slug }))
-)
-const planMasBarato = todosLosPlanes.reduce((min, pl) => (pl.precio < min.precio ? pl : min))
-const planMasCaro = todosLosPlanes.reduce((max, pl) => (pl.precio > max.precio ? pl : max))
-
-const PARTNER_SLUGS = ['premedic', 'sancor-salud', 'swiss-medical'] as const
-const partnersData = PARTNER_SLUGS.map((slug) => {
-  const p = prepagas.find((pp) => pp.slug === slug)!
-  const planes = [...p.planes].sort((a, b) => a.precio - b.precio)
-  const planEstrella = p.planes.find((pl) => pl.destacado) ?? planes[0]
-  return { prepaga: p, planMasBarato: planes[0], planEstrella }
-})
-const [premedicData, sancorData, swissData] = partnersData
 
 export const guias: GuiaData[] = [
   {
@@ -111,7 +100,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'La tercera vía: derivar aportes a una prepaga',
-          cuerpo: 'Si trabajás en relación de dependencia, podés derivar tus aportes de obra social a una prepaga: tus contribuciones se descuentan del precio del plan y además el precio "deriva aporte" no paga el IVA del 21% que paga la contratación directa. En la práctica, el mismo plan puede costarte entre 30% y 40% menos derivando aportes. Por ejemplo, un plan intermedio de Galeno baja de nivel de precio medio-alto a un nivel bastante más accesible con aportes (julio 2026).',
+          cuerpo: 'Si trabajás en relación de dependencia, podés derivar tus aportes de obra social a una prepaga: tus contribuciones se descuentan del precio del plan y además el precio "deriva aporte" no paga el IVA (10,5%) que paga la contratación directa. En la práctica, el mismo plan puede costarte entre 30% y 40% menos derivando aportes. Por ejemplo, un plan intermedio de Galeno baja de nivel de precio medio-alto a un nivel bastante más accesible con aportes (julio 2026).',
         },
         {
           titulo: 'Cuándo conviene quedarse en la obra social',
@@ -143,7 +132,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['obra social vs prepaga', 'diferencia obra social prepaga', 'derivar aportes prepaga', 'que conviene obra social o prepaga', 'prepaga vs obra social argentina', 'diferencia prepaga obra social', 'obra social o prepaga cual conviene', 'tener prepaga y obra social al mismo tiempo'],
-    relacionadas: ['derivar-obra-social-a-prepaga', 'prepagas-para-monotributistas', 'que-cubre-la-prepaga'],
+    relacionadas: ['que-obra-social-tengo-codem', 'derivar-obra-social-a-prepaga', 'prepagas-para-monotributistas', 'que-cubre-la-prepaga'],
     prepagasRelacionadas: ['osde', 'galeno', 'sancor-salud'],
   },
   {
@@ -428,6 +417,80 @@ export const guias: GuiaData[] = [
     relacionadas: ['como-afiliarse-prepaga-requisitos', 'como-cambiar-de-prepaga', 'preexistencias-que-son-como-funcionan'],
   },
   {
+    // 23-sep-2026: "codem" y "qué obra social tengo" son de las búsquedas de
+    // mayor volumen del rubro. No se puede consultar el padrón desde nuestra
+    // web (tiene captcha y son datos de salud de terceros): la guía explica el
+    // trámite oficial, linkea a ANSES/SSSalud y convierte al que va a cambiar.
+    slug: 'que-obra-social-tengo-codem',
+    titulo: '¿Qué obra social tengo? Consultala por DNI o CUIL y sacá el CODEM (2026)',
+    metaDescripcion: 'Cómo saber cuál es tu obra social en 1 minuto: consultá gratis el CODEM de ANSES con tu DNI o CUIL, o el padrón de la Superintendencia de Servicios de Salud. Paso a paso y qué hacer si no figurás.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-09-23',
+    contenido: {
+      intro: 'Para saber qué obra social tenés, consultá el CODEM (Comprobante de Empadronamiento) en la web de ANSES: es gratis, se hace online y solo necesitás tu DNI y tu CUIL. El sistema te muestra tu obra social y los familiares que tenés a cargo, y te deja descargar e imprimir la constancia. Otra vía oficial es la consulta del padrón de beneficiarios de la Superintendencia de Servicios de Salud (SSSalud).',
+      secciones: [
+        {
+          titulo: 'Cómo sacar el CODEM en ANSES, paso a paso',
+          cuerpo: 'Entrá a la consulta "Obra social (CODEM)" de ANSES, ingresá tu número de DNI y/o CUIL y seleccioná Continuar. El sistema te informa cuál es tu obra social y los familiares a cargo, si los tenés. Desde ahí podés descargar e imprimir el comprobante. El trámite es gratuito y lo podés hacer desde el celular o la computadora.',
+          enlaces: [{ texto: 'Consultar el CODEM en ANSES', url: 'https://www.anses.gob.ar/consultas/obra-social-codem' }],
+        },
+        {
+          titulo: 'Quiénes pueden consultarlo',
+          cuerpo: 'Según ANSES, el CODEM está disponible si sos trabajador en actividad, si cobrás la prestación por desempleo o si sos jubilado o pensionado. También figuran tus familiares a cargo: cónyuge o conviviente, hijos menores de 21 años, hijos estudiantes hasta los 25 años e hijos con discapacidad.',
+        },
+        {
+          titulo: 'La otra vía: el padrón de la Superintendencia de Servicios de Salud',
+          cuerpo: 'La SSSalud tiene una consulta del padrón de beneficiarios, con los datos de los titulares y familiares a cargo que están en la base de afiliados de las obras sociales. Pide tu CUIL, tu número de documento y un código de verificación. Es útil para confirmar el dato o si en ANSES no encontrás lo que buscás.',
+          enlaces: [{ texto: 'Consultar el padrón de la SSSalud', url: 'https://www.sssalud.gob.ar/?page=bus650' }],
+        },
+        {
+          titulo: 'Para qué te sirve saber tu obra social',
+          cuerpo: 'Es el primer paso para cambiar de cobertura. Si trabajás en relación de dependencia, tus aportes pueden ir a la prepaga que elijas en lugar de a tu obra social actual: esa derivación descuenta tus aportes de la cuota. Para hacer el cambio es habitual que te pidan el comprobante de tu obra social actual, así que tener el CODEM a mano te ahorra tiempo.',
+          cta: {
+            texto: '¿Ya sabés cuál es tu obra social? Te decimos a qué prepaga podés derivar tus aportes y cuánto pagarías. Respondemos en 3 minutos.',
+            boton: 'Cotizar con mis aportes',
+            href: '/comparador',
+          },
+        },
+        {
+          titulo: 'Si no figurás o los datos están mal',
+          cuerpo: 'Si la consulta no te muestra obra social o los datos no coinciden (por ejemplo, un familiar que no aparece a cargo), la vía es contactar a ANSES para revisar tu situación. Si te quedaste sin trabajo, tenés un período de cobertura de la obra social después del despido: te lo explicamos en la guía sobre obra social sin trabajo.',
+        },
+      ],
+      conclusion: 'El CODEM de ANSES es la forma más rápida de saber qué obra social tenés: DNI, CUIL y en un minuto tenés la constancia. Con ese dato podés comparar si te conviene derivar tus aportes a una prepaga, que en muchos casos es la forma de tener mejor cobertura pagando menos de bolsillo.',
+    },
+    faq: [
+      {
+        q: '¿Cómo sé qué obra social tengo?',
+        a: 'Consultá el CODEM en la web de ANSES con tu DNI y/o CUIL: te muestra tu obra social y tus familiares a cargo. También podés usar la consulta del padrón de beneficiarios de la Superintendencia de Servicios de Salud.',
+      },
+      {
+        q: '¿Qué es el CODEM?',
+        a: 'Es el Comprobante de Empadronamiento de ANSES: la constancia que indica a qué obra social pertenecés y qué familiares tenés a cargo. Se descarga e imprime gratis desde la web de ANSES.',
+      },
+      {
+        q: '¿El CODEM tiene costo?',
+        a: 'No. Es un trámite gratuito y online.',
+      },
+      {
+        q: '¿Qué necesito para consultar mi obra social?',
+        a: 'En ANSES, tu número de DNI y tu número de CUIL. En la consulta del padrón de la SSSalud, tu CUIL, tu documento y un código de verificación.',
+      },
+      {
+        q: '¿Puedo consultar la obra social desde PrepagaYa?',
+        a: 'No: la consulta es personal y se hace en los sitios oficiales de ANSES o de la SSSalud. Una vez que sabés tu obra social, en PrepagaYa te ayudamos a comparar a qué prepaga podés derivar tus aportes.',
+      },
+    ],
+    keywords: ['que obra social tengo', 'codem', 'codem anses', 'cual es mi obra social', 'consultar obra social por dni', 'consultar obra social por cuil', 'constancia de obra social', 'padron sssalud'],
+    relacionadas: ['derivar-obra-social-a-prepaga', 'sin-trabajo-obra-social', 'obra-social-vs-prepaga', 'como-cambiar-de-prepaga'],
+    fuentes: [
+      { texto: 'ANSES — Obra social (CODEM)', url: 'https://www.anses.gob.ar/consultas/obra-social-codem' },
+      { texto: 'Argentina.gob.ar — Consultar tu obra social (CODEM)', url: 'https://www.argentina.gob.ar/servicio/consultar-tu-obra-social-codem-comprobante-de-empadronamiento' },
+      { texto: 'SSSalud — Consulta del padrón de beneficiarios', url: 'https://www.sssalud.gob.ar/?page=bus650' },
+    ],
+  },
+  {
     slug: 'derivar-obra-social-a-prepaga',
     titulo: 'Cómo derivar tu obra social a una prepaga: guía 2026',
     metaDescripcion: 'Aprendé cómo funciona la derivación de aportes de tu obra social a una prepaga en Argentina. Qué prepagas lo aceptan, requisitos y diferencia de costos.',
@@ -443,7 +506,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'El doble ahorro: aportes + IVA',
-          cuerpo: 'La derivación tiene dos descuentos acumulados. Primero, tus aportes se restan del precio. Segundo, el precio base es otro: la lista "deriva aporte" no incluye el IVA del 21% que sí paga la contratación particular. Ejemplo real con Galeno (julio 2026): el plan Plata 300 baja alrededor de un 36% pasando de particular a aportes, antes incluso de considerar sueldos altos con aportes que cubren más.',
+          cuerpo: 'La derivación tiene dos descuentos acumulados. Primero, tus aportes se restan del precio. Segundo, el precio base es otro: la lista "deriva aporte" no incluye el IVA (10,5%) que sí paga la contratación directa. Ejemplo real con Galeno (julio 2026): el plan Plata 300 baja alrededor de un 36% pasando de particular a aportes, antes incluso de considerar sueldos altos con aportes que cubren más.',
         },
         {
           titulo: 'El trámite paso a paso',
@@ -479,7 +542,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['derivar aportes a prepaga', 'derivacion obra social prepaga', 'prepaga con aportes precio', 'plan deriva aporte', 'codigo obra social alta temprana', 'derivar aporte trabajo nuevo', 'como derivar obra social argentina', 'derivacion obra social paso a paso', 'cambiar obra social 2026', 'derivacion obra social online'],
-    relacionadas: ['obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'como-cambiar-de-prepaga', 'prepaga-corporativa-vs-particular'],
+    relacionadas: ['que-obra-social-tengo-codem', 'obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'como-cambiar-de-prepaga', 'prepaga-corporativa-vs-particular'],
     prepagasRelacionadas: ['galeno', 'swiss-medical', 'medife'],
   },
   {
@@ -960,59 +1023,8 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['me quede sin trabajo obra social', 'cuanto dura la obra social despues del despido', 'obra social despues de renunciar', 'cobertura medica sin trabajo', 'prepaga desempleado'],
-    relacionadas: ['obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'derivar-obra-social-a-prepaga', 'prepaga-corporativa-vs-particular'],
+    relacionadas: ['que-obra-social-tengo-codem', 'obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'derivar-obra-social-a-prepaga', 'prepaga-corporativa-vs-particular'],
     prepagasRelacionadas: ['sancor-salud', 'medife', 'prevencion-salud'],
-  },
-  {
-    slug: 'precios-prepagas-actualizados',
-    titulo: `¿Cuánto sale una prepaga en ${PRECIO_ACTUALIZADO}? Opción económica, intermedia y premium`,
-    metaDescripcion: `Cuánto cuestan los planes de prepaga en Argentina en ${PRECIO_ACTUALIZADO}: desde el más económico hasta el premium, con precios reales verificados. Actualizado todos los meses.`,
-    tiempoLectura: 5,
-    categoria: 'Precios',
-    fechaActualizacion: new Date().toISOString().slice(0, 10),
-    contenido: {
-      intro: `Esta es la foto de precios de ${PRECIO_ACTUALIZADO}: la actualizamos todos los meses con los valores de lista vigentes, así siempre tenés el número real a mano antes de cotizar. Los precios son de referencia para una persona de 30 años contratando de forma individual — tu precio final depende de tu edad, zona y modalidad de contratación.`,
-      secciones: [
-        {
-          titulo: `El rango de precios en ${PRECIO_ACTUALIZADO}`,
-          cuerpo: `El plan más económico del mercado es ${planMasBarato.nombre} de ${planMasBarato.prepagaNombre}, desde ${formatPrecio(planMasBarato.precio)}/mes. En el otro extremo, ${planMasCaro.nombre} de ${planMasCaro.prepagaNombre} llega a ${formatPrecio(planMasCaro.precio)}/mes. Entre esos dos extremos hay más de 50 planes con distintas combinaciones de copago, red y cobertura — por eso conviene comparar por perfil y no solo por precio de lista.`,
-        },
-        {
-          titulo: 'Opción económica: Premedic',
-          cuerpo: `El plan de entrada de Premedic (${premedicData.planMasBarato.nombre}) arranca en ${formatPrecio(premedicData.planMasBarato.precio)}/mes. Es consistentemente una de las opciones más accesibles del mercado, con cobertura PMO completa en CABA, GBA, Córdoba y Tucumán.`,
-        },
-        {
-          titulo: 'Opción intermedia: Sancor Salud',
-          cuerpo: `El plan más elegido de Sancor Salud, ${sancorData.planEstrella.nombre}, cuesta ${formatPrecio(sancorData.planEstrella.precio)}/mes: sin copago en especialistas y con fuerte presencia en el interior del país (Córdoba, Santa Fe, Entre Ríos).`,
-        },
-        {
-          titulo: 'Opción premium: Swiss Medical',
-          cuerpo: `El plan más elegido de Swiss Medical, ${swissData.planEstrella.nombre}, cuesta ${formatPrecio(swissData.planEstrella.precio)}/mes: sin copago, con 9 sanatorios propios y red abierta.`,
-        },
-        {
-          titulo: 'Por qué el precio de lista no es lo único que importa',
-          cuerpo: 'Dos planes "sin copago" de dos empresas distintas pueden tener cartillas muy diferentes: cantidad de sanatorios propios, cobertura en tu ciudad puntual, y calidad de la red de especialistas. Antes de decidir por precio, verificá que la cartilla cubra los prestadores que realmente usás.',
-        },
-      ],
-      conclusion: `Los precios de lista cambian todos los meses, así que esta página se actualiza junto con el resto del sitio. Para tu precio exacto según tu edad y zona (con descuentos incluidos), usá el comparador gratuito.`,
-    },
-    faq: [
-      {
-        q: '¿Cada cuánto se actualizan estos precios?',
-        a: 'Todos los meses, al mismo tiempo que actualizamos el resto de los precios del sitio contra los valores de lista vigentes.',
-      },
-      {
-        q: '¿Por qué el precio que veo acá puede ser distinto al que me cotizan?',
-        a: 'Estos son precios de referencia para una persona de 30 años contratando de forma individual. El precio final varía según tu edad, tu zona y si derivás aportes de obra social. Cotizá gratis para ver tu precio exacto.',
-      },
-      {
-        q: '¿Cuál conviene según mi presupuesto?',
-        a: 'Como referencia general: Premedic para priorizar el precio más bajo, Sancor Salud como punto medio con buena cartilla en el interior, y Swiss Medical si buscás la cartilla más completa con sanatorios propios.',
-      },
-    ],
-    keywords: ['cuanto sale una prepaga', 'cuanto cuesta una prepaga', `cuanto sale una prepaga ${PRECIO_ACTUALIZADO.toLowerCase()}`, 'prepaga economica intermedia premium'],
-    relacionadas: ['prepagas-economicas', 'cuota-prepaga-por-edad', 'como-cambiar-de-prepaga'],
-    prepagasRelacionadas: ['premedic', 'sancor-salud', 'swiss-medical'],
   },
   {
     slug: 'discapacidad-obra-social-cobertura-100',

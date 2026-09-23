@@ -70,6 +70,7 @@ export default async function GuiaPage({ params }: Props) {
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/guias/${slug}` },
       inLanguage: 'es-AR',
+      ...(guia.fuentes ? { isBasedOn: guia.fuentes.map((f) => f.url) } : {}),
     },
     {
       '@context': 'https://schema.org',
@@ -171,6 +172,35 @@ export default async function GuiaPage({ params }: Props) {
                 {seccion.titulo}
               </h2>
               <p className="text-gray-600 leading-relaxed">{seccion.cuerpo}</p>
+              {seccion.enlaces && (
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {seccion.enlaces.map((e) => (
+                    <a
+                      key={e.url}
+                      href={e.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-[#E8002D] text-gray-900 font-semibold rounded-xl text-sm transition-colors"
+                    >
+                      {e.texto}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-3.5 h-3.5 text-gray-400">
+                        <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+              )}
+              {seccion.cta && (
+                <div className="mt-5 bg-red-50 border border-red-100 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p className="text-sm text-gray-800 leading-relaxed">{seccion.cta.texto}</p>
+                  <Link
+                    href={seccion.cta.href}
+                    className="flex-shrink-0 text-center px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors whitespace-nowrap"
+                  >
+                    {seccion.cta.boton} →
+                  </Link>
+                </div>
+              )}
             </section>
           ))}
 
@@ -179,6 +209,18 @@ export default async function GuiaPage({ params }: Props) {
             <h2 className="text-lg font-bold text-gray-900 mb-2">En resumen</h2>
             <p className="text-gray-600 leading-relaxed">{guia.contenido.conclusion}</p>
           </div>
+
+          {guia.fuentes && (
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Fuentes oficiales:{' '}
+              {guia.fuentes.map((f, i) => (
+                <span key={f.url}>
+                  {i > 0 && ' · '}
+                  <a href={f.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">{f.texto}</a>
+                </span>
+              ))}
+            </p>
+          )}
 
           {/* Guía dedicada al PMO: se referencia desde acá y desde todas las
               fichas de condiciones y coberturas — es el desglose legal completo. */}

@@ -42,7 +42,7 @@ const GRUPOS: TramiteGrupo[] = [
   {
     titulo: 'Derivar los aportes de tu obra social',
     descripcion: 'El trámite de libre elección para redirigir tus aportes a una prepaga en lugar de tu obra social, sin perder el descuento de ley.',
-    slugs: ['derivar-obra-social-a-prepaga', 'obra-social-vs-prepaga'],
+    slugs: ['que-obra-social-tengo-codem', 'derivar-obra-social-a-prepaga', 'obra-social-vs-prepaga'],
   },
   {
     titulo: 'Dar de baja',

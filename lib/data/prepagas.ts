@@ -39,7 +39,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'cordoba', 'rosario', 'mendoza', 'tucuman', 'la-plata', 'mar-del-plata', 'salta'],
-    telefono: '0800-333-7949',
+    telefono: '0800-555-7000',
     web: 'swissmedical.com.ar',
     planes: [
       {
@@ -363,7 +363,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'cordoba', 'rosario', 'mendoza', 'tucuman', 'la-plata', 'salta'],
-    telefono: '0800-999-7262',
+    telefono: '0810-444-72583',
     web: 'sancorsalud.com.ar',
     // Grilla completa de Sancor (23-sep-2026, Darío: "vendemos todos los
     // planes"): líneas FAM, Digital Flex, Clásica, Exclusive y GEN tal cual
@@ -602,7 +602,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'cordoba', 'tucuman'],
-    telefono: '4300-0010',
+    telefono: '0810-222-5522',
     web: 'premedic.com.ar',
     // Planes de web.grupopremedic.com.ar (23-sep-2026, pedido de Darío: faltaban
     // C-100 y 500). Descripciones de la ficha oficial de cada plan; precio del
@@ -942,7 +942,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'cordoba', 'rosario', 'mendoza', 'tucuman', 'la-plata', 'mar-del-plata', 'salta'],
-    telefono: '0800-888-2852',
+    telefono: '0810-222-72583',
     web: 'avalian.com',
     // Planes reales de Avalian (23-sep-2026), reemplazan a Básico/Plus/Full/
     // Premium, que no existían. Familias de avalian.com/planes (Cerca,

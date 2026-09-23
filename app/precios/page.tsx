@@ -4,24 +4,73 @@ import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL } from '@/lib/data/pre
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { Badge } from '@/components/ui/Badge'
+import { ultimoMesOficial } from '@/lib/data/aumentos'
+import preciosOficiales from '@/lib/data/precios-oficiales.json'
 
 // El mes se toma de PRECIO_ACTUALIZADO (lib/data/prepagas.ts) — única fuente
 // de verdad para evitar que esta página quede desincronizada del resto del sitio.
 const MES_ACTUAL = PRECIO_ACTUALIZADO
-// ── Actualizar estos dos datos cada mes junto con PRECIO_ACTUALIZADO ─────────
-const FECHA_ACTUALIZACION = '1 de septiembre de 2026'
-const VARIACION_PROMEDIO = '+2.2%'
-// ─────────────────────────────────────────────────────────────────────────────
+// Fecha y aumento salen solos de los cuadros tarifarios de la SSSalud (los
+// regenera la tarea programada cada 15 días): nada para tocar a mano.
+const FECHA_ISO = preciosOficiales.generado
+const FECHA_ACTUALIZACION = new Date(FECHA_ISO + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
+const MES_OFICIAL = ultimoMesOficial()
+const VARIACION_PROMEDIO = MES_OFICIAL ? `+${MES_OFICIAL.promedio.toLocaleString('es-AR')}%` : null
+
+const todosLosPlanes = prepagas.flatMap((p) => p.planes.map((pl) => ({ ...pl, prepaga: p })))
+const precioMin = Math.min(...todosLosPlanes.map((pl) => pl.precio))
+const precioMax = Math.max(...todosLosPlanes.map((pl) => pl.precio))
+const planMasBarato = todosLosPlanes.find((pl) => pl.precio === precioMin)!
+
+// "¿Cuánto sale una prepaga?" (23-sep-2026): esta sección reemplaza a la guía
+// /guias/precios-prepagas-actualizados, que competía con esta página por la
+// misma búsqueda (redirigida acá en next.config.ts).
+function referencia(slug: string, criterio: 'barato' | 'destacado' | 'caro') {
+  const p = prepagas.find((x) => x.slug === slug)!
+  const ordenados = [...p.planes].sort((a, b) => a.precio - b.precio)
+  const plan = criterio === 'barato' ? ordenados[0] : criterio === 'caro' ? ordenados[ordenados.length - 1] : (p.planes.find((pl) => pl.destacado) ?? ordenados[0])
+  return { prepaga: p, plan }
+}
+const NIVELES = [
+  { titulo: 'Económica', texto: 'El plan de entrada más accesible entre nuestros partners.', ...referencia('premedic', 'barato') },
+  { titulo: 'Intermedia', texto: 'El plan más elegido de Swiss Medical, la que destacamos como mejor prepaga.', ...referencia('swiss-medical', 'destacado') },
+  { titulo: 'Premium', texto: 'El plan más completo de Swiss Medical.', ...referencia('swiss-medical', 'caro') },
+]
+
+const faqs = [
+  {
+    q: `¿Cuánto sale una prepaga en ${MES_ACTUAL.toLowerCase()}?`,
+    a: `Para una persona de 30 años con contratación directa, los planes van desde ${formatPrecio(precioMin)}/mes hasta ${formatPrecio(precioMax)}/mes. Como referencia: ${NIVELES.map((n) => `${n.prepaga.nombre} ${n.plan.nombre} ${formatPrecio(n.plan.precio)}`).join(', ')}. El precio final depende de tu edad, tu zona y si derivás aportes.`,
+  },
+  ...(MES_OFICIAL ? [{
+    q: `¿Cuánto aumentaron las prepagas en ${MES_OFICIAL.label.toLowerCase()}?`,
+    a: `Según los cuadros tarifarios que las prepagas declaran ante la Superintendencia de Servicios de Salud, el aumento promedio de ${MES_OFICIAL.label.toLowerCase()} fue de ${MES_OFICIAL.promedio.toLocaleString('es-AR')}%. En la página de aumentos está el detalle por prepaga.`,
+  }] : []),
+  {
+    q: '¿Cuál es la prepaga más barata?',
+    a: `El plan más económico de esta tabla es ${planMasBarato.prepaga.nombre} ${planMasBarato.nombre}, desde ${formatPrecio(precioMin)}/mes para una persona de 30 años.`,
+  },
+  {
+    q: '¿Los precios varían según la edad?',
+    a: 'Sí. Los precios de esta tabla son para una persona de 30 años, y cada prepaga tiene su propia escala por edad: algunas suben cada cinco años y otras mantienen el precio a partir de cierta edad. Con la calculadora ves el precio para tu edad.',
+  },
+  {
+    q: '¿El precio incluye IVA?',
+    a: 'Sí. El precio de contratación directa incluye el IVA del 10,5%. Si trabajás en relación de dependencia y derivás tus aportes, esa lista no lleva IVA y además se descuentan tus aportes de la cuota.',
+  },
+]
 
 export const metadata: Metadata = {
-  title: `Precios de Prepagas Argentina — ${MES_ACTUAL}: Tabla Completa`,
-  description: `Tabla completa de precios de prepagas en Argentina actualizada al ${MES_ACTUAL}. Todos los planes de Swiss Medical, OSDE, Sancor, Medifé, Avalian y más. Sin formularios, precios visibles.`,
+  title: `Precios de prepagas ${MES_ACTUAL.toLowerCase()}: cuánto sale cada plan (tabla oficial)`,
+  description: `¿Cuánto sale una prepaga en ${MES_ACTUAL.toLowerCase()}? Tabla con todos los planes de Swiss Medical, OSDE, Sancor, Premedic, Avalian y más, según los cuadros tarifarios oficiales de la SSSalud. Desde ${formatPrecio(precioMin)}/mes.`,
   alternates: { canonical: `${SITE_URL}/precios` },
   keywords: [
     `precios prepagas ${MES_ACTUAL.toLowerCase()}`,
     'precios prepagas argentina 2026',
     'tabla precios prepagas',
     'cuanto cuesta una prepaga argentina',
+    'cuanto sale una prepaga',
+    'cuanto cuesta una prepaga',
     'precios medicina prepaga argentina',
   ],
 }
@@ -35,7 +84,8 @@ const jsonLd = [
     url: `${SITE_URL}/precios`,
     image: `${SITE_URL}/opengraph-image`,
     datePublished: '2026-01-01',
-    dateModified: '2026-07-10',
+    dateModified: FECHA_ISO,
+    isBasedOn: PRECIOS_FUENTE_URL,
     author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
     publisher: {
       '@type': 'Organization',
@@ -49,23 +99,7 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: `¿Cuánto cuesta una prepaga en Argentina en ${MES_ACTUAL}?`,
-        acceptedAnswer: { '@type': 'Answer', text: `En ${MES_ACTUAL} los planes de prepaga en Argentina van desde $109.292/mes (planes económicos) hasta más de $1.139.396/mes (planes premium). El precio varía según la empresa, el plan elegido y la edad del afiliado.` },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Cuánto aumentaron las prepagas en 2026?',
-        acceptedAnswer: { '@type': 'Answer', text: 'En el primer semestre de 2026, las prepagas aumentaron en promedio un 26-30% acumulado, con incrementos bimestrales de entre 3% y 7%. Es un ritmo significativamente menor al de 2024, cuando los aumentos superaron el 180% anual.' },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Cuál es la prepaga más barata de Argentina?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Premedic Plan 200 es la prepaga más económica de Argentina con planes desde $107.044/mes (personas de 30 años). Tiene cobertura en AMBA, Córdoba y Tucumán.' },
-      },
-    ],
+    mainEntity: faqs.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
   },
 ]
 
@@ -78,8 +112,6 @@ export default function PreciosPage(): React.ReactElement {
   })
 
   const totalPlanes = prepagas.reduce((acc, p) => acc + p.planes.length, 0)
-  const precioMin = Math.min(...prepagas.flatMap(p => p.planes.map(pl => pl.precio)))
-  const precioMax = Math.max(...prepagas.flatMap(p => p.planes.map(pl => pl.precio)))
 
   return (
     <>
@@ -99,9 +131,11 @@ export default function PreciosPage(): React.ReactElement {
               <span className="w-1.5 h-1.5 bg-[#E8002D] rounded-full animate-pulse" />
               Actualizado el {FECHA_ACTUALIZACION}
             </span>
-            <span className="text-xs text-gray-500 bg-amber-50 border border-amber-100 px-3 py-1.5 rounded-full font-medium">
-              Aumento promedio {MES_ACTUAL}: {VARIACION_PROMEDIO}
-            </span>
+            {MES_OFICIAL && VARIACION_PROMEDIO && (
+              <Link href="/aumentos" className="text-xs text-gray-500 bg-amber-50 border border-amber-100 px-3 py-1.5 rounded-full font-medium hover:border-amber-200">
+                Aumento de {MES_OFICIAL.label.toLowerCase()}: {VARIACION_PROMEDIO} promedio (SSSalud)
+              </Link>
+            )}
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
@@ -130,6 +164,34 @@ export default function PreciosPage(): React.ReactElement {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ¿Cuánto sale una prepaga? — absorbe la ex guía de precios */}
+      <section id="cuanto-sale" className="py-10 bg-white border-b border-gray-100 scroll-mt-24">
+        <div className="container max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">¿Cuánto sale una prepaga en {MES_ACTUAL.toLowerCase()}? Económica, intermedia y premium</h2>
+          <p className="text-sm text-gray-600 max-w-3xl mb-5">
+            Entre el plan más barato ({formatPrecio(precioMin)}) y el más caro ({formatPrecio(precioMax)}) hay {totalPlanes} planes con distinto copago, red y cobertura.
+            Estas son tres referencias para una persona de 30 años con contratación directa:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {NIVELES.map((n) => (
+              <Link
+                key={n.titulo}
+                href={`/prepagas/${n.prepaga.slug}/${n.plan.slug}`}
+                className="group rounded-2xl border border-gray-200 hover:border-[#E8002D]/40 p-5 transition-colors"
+              >
+                <div className="text-xs font-bold uppercase tracking-wide text-[#E8002D]">{n.titulo}</div>
+                <div className="mt-1 font-bold text-gray-900 group-hover:text-[#E8002D]">{n.prepaga.nombre} {n.plan.nombre}</div>
+                <div className="text-2xl font-black text-gray-900 tabular-nums mt-1">{formatPrecio(n.plan.precio)}<span className="text-sm font-medium text-gray-400">/mes</span></div>
+                <p className="text-xs text-gray-500 mt-2">{n.texto}</p>
+              </Link>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500 mt-4 max-w-3xl">
+            El precio de lista no es lo único que importa: dos planes sin copago pueden tener cartillas muy distintas. Antes de decidir, fijate que la cartilla tenga los prestadores que usás.
+          </p>
         </div>
       </section>
 
@@ -354,24 +416,7 @@ export default function PreciosPage(): React.ReactElement {
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Preguntas frecuentes sobre precios de prepagas</h2>
           <div className="space-y-4">
-            {[
-              {
-                q: `¿Cuánto cuesta una prepaga en Argentina en ${MES_ACTUAL}?`,
-                a: `En ${MES_ACTUAL} los planes van desde ${formatPrecio(precioMin)}/mes (planes económicos para personas de 30 años) hasta más de ${formatPrecio(precioMax)}/mes en planes premium. El precio promedio de un plan intermedio es de $320.000-$380.000 para una persona de 30 años.`,
-              },
-              {
-                q: '¿Cuánto aumentaron las prepagas en el primer semestre 2026?',
-                a: 'Las prepagas acumularon aumentos de entre 26% y 30% en el primer semestre de 2026, con incrementos bimestrales de 3-7%. Es significativamente menor al primer semestre de 2024, cuando los aumentos superaron el 100% acumulado.',
-              },
-              {
-                q: '¿Los precios varían según la edad?',
-                a: 'Sí. Los precios publicados son para una persona de 30 años. A los 40 años el precio sube entre un 30% y 50%. A los 50 años puede duplicarse. Usá nuestra calculadora para ver el precio exacto para tu edad.',
-              },
-              {
-                q: '¿El precio incluye IVA?',
-                a: 'Sí, los precios publicados incluyen IVA (21%). Si estás en relación de dependencia y derivás tu obra social a una prepaga, el precio base es sin IVA — un ahorro del 17% sobre el precio de lista.',
-              },
-            ].map((item, i) => (
+            {faqs.map((item, i) => (
               <div key={i} className="bg-white rounded-xl border border-gray-200 p-5">
                 <h3 className="font-semibold text-gray-900 mb-2">{item.q}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">{item.a}</p>

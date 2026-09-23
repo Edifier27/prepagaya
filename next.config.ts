@@ -283,6 +283,13 @@ const nextConfig: NextConfig = {
         destination: "/prepagas-economicas",
         permanent: true,
       },
+      // Canibalización (23-sep-2026): la guía "¿cuánto sale una prepaga?"
+      // competía con /precios por la misma búsqueda; su contenido pasó ahí.
+      {
+        source: "/guias/precios-prepagas-actualizados",
+        destination: "/precios#cuanto-sale",
+        permanent: true,
+      },
       // Planes inventados de Avalian → planes reales (23-sep-2026)
       {
         source: "/prepagas/avalian/basico",
