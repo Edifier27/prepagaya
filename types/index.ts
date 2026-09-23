@@ -27,6 +27,8 @@ export interface Prepaga {
   profesionales: number
   sanatoriosPropios: number
   planes: Plan[]
+  /** Planes que la prepaga vende pero que no tienen precio declarado ante la SSSalud (ej. Premedic Joven): se muestran sin precio, con pedido de cotización */
+  otrosPlanes?: { nombre: string; descripcion: string; url: string }[]
   pros: string[]
   contras: string[]
   telefono?: string

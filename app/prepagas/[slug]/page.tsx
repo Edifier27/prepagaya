@@ -717,6 +717,28 @@ export default async function PrepagaSlugPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Otros planes sin precio declarado ante la SSSalud: se cotizan a pedido */}
+      {prep.otrosPlanes && prep.otrosPlanes.length > 0 && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-5xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Otros planes de {prep.nombre}</h2>
+            <p className="text-sm text-gray-500 mb-5">No tienen precio de lista publicado: te los cotizamos según tu situación.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {prep.otrosPlanes.map((o) => (
+                <div key={o.nombre} className="rounded-2xl border border-gray-200 p-5 flex flex-col gap-3">
+                  <div className="font-bold text-gray-900">{o.nombre}</div>
+                  <p className="text-sm text-gray-600 flex-1">{o.descripcion}</p>
+                  <div className="flex items-center justify-between gap-2">
+                    <Link href="/comparador" className="text-sm font-semibold text-[#E8002D] hover:underline">Pedir cotización →</Link>
+                    <a href={o.url} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-gray-600 underline">Ficha oficial</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
             {/* Qué cubre esta prepaga (silo /coberturas/[tema]/[prepaga], datos oficiales) */}
       {coberturasMarca.some((x) => x.prepagaSlug === prep.slug) && (
         <section className="py-10 bg-gray-50 border-t border-gray-100">

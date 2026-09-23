@@ -166,11 +166,11 @@ export const CARTILLAS: Record<string, CartillaPrepaga> = {
       fuenteUrl: 'https://web.grupopremedic.com.ar/cartilla-medica',
       tipoFecha: 'consulta',
       planes: [
-        { id: 'C-100', label: 'Plan C-100' },
+        { id: 'C-100', label: 'Plan C-100', comparadorSlug: 'plan-c100' },
         { id: '200', label: 'Plan 200', comparadorSlug: 'plan-200' },
         { id: '300', label: 'Plan 300', comparadorSlug: 'plan-300' },
         { id: '400', label: 'Plan 400', comparadorSlug: 'plan-400' },
-        { id: '500', label: 'Plan 500' },
+        { id: '500', label: 'Plan 500', comparadorSlug: 'plan-500' },
         { id: 'Por aportes', label: 'Plan por aportes' },
         { id: '0-50', label: 'Plan 0-50' },
         { id: 'AMBA', label: 'Plan AMBA' },

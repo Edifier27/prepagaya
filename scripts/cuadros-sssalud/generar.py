@@ -38,7 +38,7 @@ MAPEO = {
     'osde': {'rnemp': 614081, 'region': 'CABA, Provincia de Bs As y Ciudad de Viedma', 'planes': {
         '210': '2 210 INDIVIDUAL', '310': '2 310 INDIVIDUAL', '410': '2 410 INDIVIDUAL', '510': '2 510 INDIVIDUAL'}},
     'premedic': {'rnemp': 112172, 'region': 'CAPITAL FEDERAL', 'planes': {
-        'plan-200': '200', 'plan-300': '300', 'plan-400': '400'}},
+        'plan-c100': 'C100', 'plan-200': '200', 'plan-300': '300', 'plan-400': '400', 'plan-500': '500'}},
     'medife': {'rnemp': 412258, 'region': 'PROVINCIA DE BUENOS AIRES', 'planes': {
         'medife-plus': 'MEDIFE MAS', 'bronce': 'BRONCE', 'plata': 'PLATA', 'oro': 'ORO', 'platinum': 'PLATINUM'}},
     'sancor-salud': {'rnemp': 311371, 'region': 'GENERAL', 'planes': {

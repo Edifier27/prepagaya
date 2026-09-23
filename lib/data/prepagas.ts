@@ -592,7 +592,7 @@ export const prepagas: Prepaga[] = [
       'Planes sin cobertura internacional',
     ],
     caracteristicas: {
-      appMovil: false,
+      appMovil: true, // Premedic Móvil, linkeada desde su web oficial (verificado 22-sep-2026),
       atencion24hs: true,
       coberturaNacional: false,
       odontologia: true,
@@ -604,13 +604,26 @@ export const prepagas: Prepaga[] = [
     ciudades: ['buenos-aires', 'cordoba', 'tucuman'],
     telefono: '4300-0010',
     web: 'premedic.com.ar',
+    // Planes de web.grupopremedic.com.ar (23-sep-2026, pedido de Darío: faltaban
+    // C-100 y 500). Descripciones de la ficha oficial de cada plan; precio del
+    // cuadro tarifario SSSalud (todos declaran copago). Joven, Simple y Por
+    // aportes no tienen precio declarado → otrosPlanes, sin precio.
     planes: [
+      {
+        slug: 'plan-c100',
+        nombre: 'Plan C-100',
+        precio: 90938,
+        descripcion: 'Cobertura esencial al mejor precio: consultas, estudios de rutina, habitación compartida, red odontológica propia, psicología y kinesiología, médico por videollamada y ópticas con 20% a 40% de descuento.',
+        cobertura: ['Habitación compartida', 'Red odontológica propia', 'Psicología y kinesiología', 'Médico por videollamada', 'Ortodoncia con arancel preferencial', 'Ópticas con descuento'],
+        copago: true,
+        redAbierta: false,
+      },
       {
         slug: 'plan-200',
         nombre: 'Plan 200',
-        precio: 109000,
-        descripcion: 'La opción más económica del mercado. Cubre el PMO con red acotada.',
-        cobertura: ['Internación básica', 'Urgencias', 'Consultas generales', 'Maternidad PMO'],
+        precio: 113485,
+        descripcion: 'Más especialidades, centros médicos y estudios que el C-100 a un precio accesible: centros médicos propios, médico a domicilio sin cargo, coseguros excepto en guardias y consultas pediátricas, clínicas y de ginecología.',
+        cobertura: ['Habitación compartida', 'Centros médicos propios', 'Médico a domicilio sin cargo', 'Médico por videollamada', 'Asistencia al viajero limítrofes', 'Anticonceptivos a domicilio'],
         copago: true,
         redAbierta: false,
         destacado: true,
@@ -618,21 +631,35 @@ export const prepagas: Prepaga[] = [
       {
         slug: 'plan-300',
         nombre: 'Plan 300',
-        precio: 136400,
-        descripcion: 'Mayor acceso a especialistas manteniendo el precio competitivo.',
-        cobertura: ['Internación', 'Especialistas', 'Maternidad', 'Salud mental'],
+        precio: 178441,
+        descripcion: 'Equilibrio entre cobertura y precio: más prácticas cubiertas, atención en centros de primer nivel, centros médicos propios y médico a domicilio sin cargo.',
+        cobertura: ['Habitación compartida', 'Centros médicos propios', 'Red odontológica propia', 'Médico a domicilio sin cargo', 'Asistencia al viajero limítrofes', 'Anticonceptivos a domicilio'],
         copago: true,
         redAbierta: false,
       },
       {
         slug: 'plan-400',
         nombre: 'Plan 400',
-        precio: 170000,
-        descripcion: 'La opción más completa de Premedic con mayor red de prestadores.',
-        cobertura: ['Internación completa', 'Especialistas', 'Maternidad', 'Salud mental', 'Óptica básica'],
+        precio: 208611,
+        descripcion: 'Alta cobertura: internación en clínicas de alta calidad con habitación individual, más estudios y tratamientos, más de 5000 sanatorios, centros y profesionales de acceso directo y descuentos en implantes, ortodoncia y estética dental.',
+        cobertura: ['Habitación individual', 'Más de 5000 prestadores de acceso directo', 'Centros médicos propios', 'Descuentos en implantes y ortodoncia', 'Médico a domicilio sin cargo', 'Asistencia al viajero limítrofes'],
+        copago: true,
+        redAbierta: false,
+      },
+      {
+        slug: 'plan-500',
+        nombre: 'Plan 500',
+        precio: 296221,
+        descripcion: 'El plan más completo de Premedic: acceso preferencial a los sanatorios más prestigiosos, habitación individual, la cobertura más alta en prestaciones y reintegros, blanqueamientos y tratamiento para dejar de fumar.',
+        cobertura: ['Habitación individual', 'Sanatorios de mayor prestigio', 'Reintegros', 'Descuentos en implantes y ortodoncia', 'Blanqueamiento dental', 'Asistencia al viajero limítrofes'],
         copago: true,
         redAbierta: true,
       },
+    ],
+    otrosPlanes: [
+      { nombre: 'Plan Joven', descripcion: 'Para monotributistas de hasta 35 años: cobertura completa con médico online 24 hs, habitación compartida, centros médicos propios y asistencia al viajero.', url: 'https://web.grupopremedic.com.ar/planes/plan-joven' },
+      { nombre: 'Plan por aportes', descripcion: 'Si tenés recibo de sueldo: cobertura con cuota cero, solo con tus aportes. Más de 200 clínicas y sanatorios y sin coseguros en consultas pediátricas, clínicas y ginecológicas.', url: 'https://web.grupopremedic.com.ar/planes/aportes' },
+      { nombre: 'Plan Simple', descripcion: 'Plan 100% ambulatorio (no incluye internación): una consulta sin cargo por mes, urgencias y emergencias, estudios con arancel preferencial y centros médicos propios.', url: 'https://web.grupopremedic.com.ar/planes/simple' },
     ],
   },
   {
