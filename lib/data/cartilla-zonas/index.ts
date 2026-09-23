@@ -215,15 +215,15 @@ export const CARTILLAS: Record<string, CartillaPrepaga> = {
       // Cada id es una cartilla del buscador oficial; qué planes usan cada
       // una sale de la lista de planes del propio buscador (NU2/NU3/CL1/CLE/CLS).
       // Los planes Sport no figuran en esa lista: no se asignan a ninguna.
+      // SMG10 (Advance) se sacó: el plan ya no existe (23-sep-2026).
       planes: [
         { id: 'SMG01', label: 'SMG01 (Nubial Clásica)' },
         { id: 'SMG02', label: 'SMG02 y S1 (Nubial Quality)', comparadorSlug: 'smg02', otrosComparadorSlugs: ['s1'] },
-        { id: 'SMG10', label: 'SMG10 (Advance)' },
         { id: 'SMG20', label: 'SMG20 y S2 (Global)', comparadorSlug: 'smg20', otrosComparadorSlugs: ['s2'] },
         { id: 'SMG30', label: 'SMG30 a SMG70 (Premium)', comparadorSlug: 'smg30', otrosComparadorSlugs: ['smg40', 'smg50', 'smg60', 'smg70'] },
       ],
       planesConPagina: ['SMG02', 'SMG20', 'SMG30'],
-      escalera: ['SMG01', 'SMG02', 'SMG10', 'SMG20', 'SMG30'],
+      escalera: ['SMG01', 'SMG02', 'SMG20', 'SMG30'],
       labelGuardia: 'Guardias',
     },
     swissData as CartillaJson,

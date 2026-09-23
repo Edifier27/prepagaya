@@ -6,7 +6,6 @@
  "planes": [
   "SMG01",
   "SMG02",
-  "SMG10",
   "SMG20",
   "SMG30"
  ],
@@ -22,12 +21,10 @@
     {
      "nombre": "Alexander Fleming - Instituto Médico Especializado",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -99,7 +96,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -124,14 +120,12 @@
      "nombre": "Clínica La Sagrada Familia",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -159,14 +153,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -192,13 +184,11 @@
      "nombre": "Clínica San Camilo",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -226,13 +216,11 @@
      "nombre": "Clínica Santa Isabel",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -261,12 +249,10 @@
     {
      "nombre": "Clinica y Maternidad SUIZO Argentina",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -294,12 +280,10 @@
     {
      "nombre": "Clinica Zabala",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -403,7 +387,6 @@
      "nombre": "Hospital Británico",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -436,7 +419,6 @@
     {
      "nombre": "Hospital Italiano",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -502,14 +484,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -535,7 +515,6 @@
      "nombre": "Instituto Dupuytren de Traumatología y Ortopedia",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -561,7 +540,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -609,7 +587,6 @@
     {
      "nombre": "Sanatorio AGOTE",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -635,8 +612,7 @@
     {
      "nombre": "Sanatorio Colegiales",
      "internacion": [
-      "SMG01",
-      "SMG10"
+      "SMG01"
      ],
      "guardia": [],
      "marca": null,
@@ -659,12 +635,10 @@
      "nombre": "Sanatorio de la Providencia",
      "internacion": [
       "SMG01",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -724,14 +698,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -760,12 +732,10 @@
     {
      "nombre": "Sanatorio los ARCOS",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -866,14 +836,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -914,7 +882,6 @@
      "nombre": "Centro de Ojos Devoto",
      "internacion": [],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -940,7 +907,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -976,14 +942,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1013,14 +977,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1052,7 +1014,6 @@
     {
      "nombre": "Hospital Universitario Austral",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1087,14 +1048,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1131,14 +1090,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1203,7 +1160,6 @@
     {
      "nombre": "Sanatorio Trinidad",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1247,7 +1203,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1281,7 +1236,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1307,7 +1261,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1333,7 +1286,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1359,14 +1311,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1395,7 +1345,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1421,7 +1370,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1447,7 +1395,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1474,7 +1421,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1501,7 +1447,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1528,7 +1473,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1554,7 +1498,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1580,7 +1523,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1607,7 +1549,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1641,7 +1582,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1676,14 +1616,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1712,14 +1650,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1748,7 +1684,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1774,14 +1709,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1808,7 +1741,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1834,14 +1766,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1870,14 +1800,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1915,14 +1843,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1951,14 +1877,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -1988,14 +1912,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2024,14 +1946,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2060,14 +1980,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2099,14 +2017,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2135,7 +2051,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2161,7 +2076,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2198,7 +2112,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2224,14 +2137,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2267,7 +2178,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2302,14 +2212,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2336,14 +2244,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2370,14 +2276,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2404,7 +2308,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2439,7 +2342,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2465,14 +2367,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2502,7 +2402,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2538,7 +2437,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2573,14 +2471,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2608,7 +2504,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2635,7 +2530,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2669,14 +2563,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2711,12 +2603,10 @@
     {
      "nombre": "Clínica Calchaquí \"19 de Enero\"",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2743,7 +2633,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2769,14 +2658,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2805,7 +2692,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2829,7 +2715,6 @@
     {
      "nombre": "Clínica Privada Luján",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2854,13 +2739,11 @@
      "nombre": "Clínica Privada Monte Grande",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2890,7 +2773,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2916,8 +2798,7 @@
      "nombre": "Nuevo Sanatorio Berazategui",
      "internacion": [
       "SMG01",
-      "SMG02",
-      "SMG10"
+      "SMG02"
      ],
      "guardia": [],
      "marca": null,
@@ -2940,7 +2821,6 @@
     {
      "nombre": "Sanatorio de la Trinidad Quilmes",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -2966,13 +2846,11 @@
      "nombre": "Sanatorio Juncal",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3000,13 +2878,11 @@
      "nombre": "Sanatorio Modelo Quilmes",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3036,7 +2912,6 @@
      "nombre": "Centro de Ojos del Sur Bonaerense",
      "internacion": [],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3062,7 +2937,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3096,14 +2970,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3139,14 +3011,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3176,14 +3046,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3222,14 +3090,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3266,7 +3132,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3301,7 +3166,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3327,7 +3191,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3361,13 +3224,11 @@
      "nombre": "Casa Hospital San Juan de Dios",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3399,14 +3260,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3465,7 +3324,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3491,14 +3349,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3523,7 +3379,6 @@
     {
      "nombre": "Hospital Italiano",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3555,7 +3410,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3581,7 +3435,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3606,13 +3459,11 @@
      "nombre": "Sanatorio del Oeste Ituzaingo",
      "internacion": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3676,7 +3527,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3710,7 +3560,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3745,14 +3594,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3782,14 +3629,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3821,14 +3666,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3868,7 +3711,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3903,7 +3745,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3929,7 +3770,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3964,7 +3804,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -3999,7 +3838,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4035,14 +3873,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4079,7 +3915,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4114,7 +3949,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4149,7 +3983,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4184,7 +4017,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4219,14 +4051,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4262,7 +4092,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4288,7 +4117,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4323,7 +4151,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4350,7 +4177,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4376,7 +4202,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4403,7 +4228,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4438,7 +4262,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4473,7 +4296,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4508,7 +4330,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4534,7 +4355,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4560,7 +4380,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4586,7 +4405,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4619,12 +4437,10 @@
     {
      "nombre": "Clínica Bessone",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4655,14 +4471,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4696,7 +4510,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4723,7 +4536,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4757,7 +4569,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4792,7 +4603,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4827,7 +4637,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4862,14 +4671,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4908,7 +4715,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4943,7 +4749,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4969,7 +4774,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -4996,7 +4800,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5033,7 +4836,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5061,7 +4863,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5096,14 +4897,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5133,7 +4932,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5168,7 +4966,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5203,7 +5000,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5238,7 +5034,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5273,7 +5068,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5308,7 +5102,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5334,7 +5127,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5369,7 +5161,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5404,14 +5195,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5439,14 +5228,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5475,7 +5262,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5509,7 +5295,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5544,7 +5329,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5579,7 +5363,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5614,7 +5397,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5640,7 +5422,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5675,7 +5456,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5701,14 +5481,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5745,14 +5523,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5780,14 +5556,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5814,14 +5588,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5848,7 +5620,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5874,14 +5645,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5917,7 +5686,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5943,7 +5711,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -5979,7 +5746,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6005,7 +5771,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6040,7 +5805,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6075,7 +5839,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6110,7 +5873,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6145,7 +5907,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6171,7 +5932,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6197,14 +5957,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6233,14 +5991,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6268,7 +6024,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6295,7 +6050,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6329,7 +6083,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6355,7 +6108,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6381,7 +6133,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6416,7 +6167,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6442,14 +6192,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6485,7 +6233,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6520,7 +6267,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6555,7 +6301,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6590,7 +6335,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6625,7 +6369,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6660,7 +6403,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6686,14 +6428,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6720,7 +6460,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6746,14 +6485,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6781,7 +6518,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6815,7 +6551,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6850,7 +6585,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6876,7 +6610,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6911,7 +6644,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6937,7 +6669,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -6972,7 +6703,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7007,7 +6737,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7033,14 +6762,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7067,7 +6794,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7093,14 +6819,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7131,14 +6855,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7166,7 +6888,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7192,14 +6913,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7228,7 +6947,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7254,7 +6972,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7280,14 +6997,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7317,7 +7032,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7343,7 +7057,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7369,7 +7082,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7396,7 +7108,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7423,7 +7134,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7457,7 +7167,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7492,7 +7201,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7527,14 +7235,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7563,7 +7269,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7589,14 +7294,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7632,14 +7335,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7666,14 +7367,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7709,7 +7408,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7735,7 +7433,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7761,7 +7458,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7787,7 +7483,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7814,7 +7509,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7848,7 +7542,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7874,7 +7567,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7909,7 +7601,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7944,7 +7635,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -7979,14 +7669,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8014,14 +7702,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8048,14 +7734,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8084,7 +7768,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8119,14 +7802,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8154,14 +7835,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8197,7 +7876,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8223,7 +7901,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8249,7 +7926,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8284,14 +7960,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8320,14 +7994,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8354,14 +8026,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8396,14 +8066,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8439,7 +8107,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8465,14 +8132,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8501,14 +8166,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8536,14 +8199,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8570,7 +8231,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8596,14 +8256,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8630,7 +8288,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8666,14 +8323,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8700,14 +8355,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8747,7 +8400,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8782,7 +8434,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8808,7 +8459,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8835,7 +8485,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8861,7 +8510,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8887,14 +8535,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8921,14 +8567,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8964,14 +8608,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -8998,14 +8640,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9032,7 +8672,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9066,7 +8705,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9093,7 +8731,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9120,7 +8757,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9146,7 +8782,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9172,14 +8807,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9230,7 +8863,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9265,14 +8897,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9299,14 +8929,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9342,7 +8970,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9377,7 +9004,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9403,7 +9029,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9438,7 +9063,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9473,14 +9097,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9516,7 +9138,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9551,14 +9172,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9585,14 +9204,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9628,14 +9245,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9672,14 +9287,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9706,14 +9319,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9749,7 +9360,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9784,7 +9394,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9810,14 +9419,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9844,7 +9451,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9870,14 +9476,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9913,7 +9517,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9939,7 +9542,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -9965,7 +9567,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10001,14 +9602,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10044,7 +9643,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10079,14 +9677,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10122,7 +9718,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10158,7 +9753,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10193,7 +9787,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10229,7 +9822,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10264,7 +9856,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10299,14 +9890,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10342,14 +9931,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10380,14 +9967,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10418,14 +10003,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10456,14 +10039,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10491,14 +10072,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10538,7 +10117,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10573,14 +10151,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10616,7 +10192,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10651,7 +10226,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10687,7 +10261,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10722,7 +10295,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10757,14 +10329,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10795,7 +10365,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10830,14 +10399,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10873,7 +10440,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10908,7 +10474,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10943,14 +10508,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -10977,14 +10540,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11012,7 +10573,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11046,7 +10606,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11081,7 +10640,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11117,7 +10675,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11143,7 +10700,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11169,14 +10725,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11203,14 +10757,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11238,7 +10790,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11264,14 +10815,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11298,7 +10847,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11324,7 +10872,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11350,7 +10897,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11376,7 +10922,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11402,7 +10947,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11428,14 +10972,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11471,7 +11013,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11497,7 +11038,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11532,7 +11072,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11558,7 +11097,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11593,14 +11131,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11627,7 +11163,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11653,7 +11188,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11680,14 +11214,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11723,7 +11255,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11749,7 +11280,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11775,7 +11305,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11801,7 +11330,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11836,7 +11364,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11871,7 +11398,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11897,7 +11423,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11932,7 +11457,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11958,7 +11482,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -11993,14 +11516,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12027,7 +11548,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12062,7 +11582,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12097,7 +11616,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12132,7 +11650,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12167,7 +11684,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12193,14 +11709,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12230,7 +11744,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12256,14 +11769,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12290,14 +11801,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12326,14 +11835,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12360,7 +11867,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12386,7 +11892,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12412,14 +11917,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12446,14 +11949,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12480,14 +11981,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12516,7 +12015,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12551,7 +12049,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12577,14 +12074,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12620,14 +12115,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12654,14 +12147,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12696,14 +12187,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12744,7 +12233,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12779,14 +12267,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12813,14 +12299,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12856,7 +12340,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12882,7 +12365,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12917,14 +12399,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12960,14 +12440,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -12994,14 +12472,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13037,14 +12513,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13080,14 +12554,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13114,14 +12586,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13157,14 +12627,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13200,14 +12668,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13234,14 +12700,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13269,7 +12733,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13304,7 +12767,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13330,14 +12792,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13373,7 +12833,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13399,14 +12858,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13442,7 +12899,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13468,14 +12924,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13511,7 +12965,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13546,14 +12999,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13580,7 +13031,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13606,14 +13056,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13640,14 +13088,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13675,7 +13121,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13709,14 +13154,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13743,14 +13186,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13786,7 +13227,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13821,14 +13261,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13869,14 +13307,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13917,14 +13353,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13951,14 +13385,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -13994,14 +13426,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14037,7 +13467,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14072,7 +13501,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14098,7 +13526,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14124,7 +13551,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14159,7 +13585,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14194,7 +13619,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14229,14 +13653,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14263,7 +13685,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14289,7 +13710,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14315,14 +13735,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14349,14 +13767,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14383,7 +13799,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14409,7 +13824,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14435,14 +13849,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14469,14 +13881,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14503,14 +13913,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14538,7 +13946,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14572,7 +13979,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14607,7 +14013,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14633,7 +14038,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14668,7 +14072,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14703,7 +14106,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14729,14 +14131,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14763,14 +14163,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14797,7 +14195,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14823,7 +14220,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14849,14 +14245,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14884,14 +14278,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14919,14 +14311,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -14956,14 +14346,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15000,14 +14388,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15034,14 +14420,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15077,7 +14461,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15112,14 +14495,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15156,14 +14537,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15199,14 +14578,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15234,14 +14611,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15278,14 +14653,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15325,7 +14698,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15351,7 +14723,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15387,14 +14758,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15421,14 +14790,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15455,7 +14822,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15490,7 +14856,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15525,7 +14890,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15551,7 +14915,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15586,7 +14949,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15612,7 +14974,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15647,7 +15008,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15682,7 +15042,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15717,7 +15076,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15752,14 +15110,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15786,14 +15142,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15820,7 +15174,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15846,7 +15199,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15882,7 +15234,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15917,7 +15268,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15943,7 +15293,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -15979,7 +15328,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16015,14 +15363,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16049,7 +15395,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16075,7 +15420,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16101,7 +15445,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16137,7 +15480,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16163,7 +15505,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16189,14 +15530,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16236,7 +15575,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16262,7 +15600,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16295,12 +15632,10 @@
     {
      "nombre": "Clínica de Cuyo",
      "internacion": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16329,7 +15664,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16355,7 +15689,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16382,7 +15715,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16408,7 +15740,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16434,7 +15765,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16468,7 +15798,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16503,7 +15832,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16529,7 +15857,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16564,7 +15891,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16599,14 +15925,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16635,14 +15959,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16679,14 +16001,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16714,14 +16034,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16760,7 +16078,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16795,14 +16112,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16830,7 +16145,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16864,7 +16178,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16899,7 +16212,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16925,7 +16237,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16960,7 +16271,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -16986,7 +16296,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17012,7 +16321,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17038,14 +16346,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17077,14 +16383,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17112,14 +16416,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17149,7 +16451,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17175,7 +16476,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17202,7 +16502,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17236,7 +16535,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17262,7 +16560,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17288,7 +16585,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17323,7 +16619,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17358,7 +16653,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17384,7 +16678,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17410,7 +16703,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17445,7 +16737,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17480,7 +16771,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17515,7 +16805,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17541,7 +16830,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17567,7 +16855,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17593,7 +16880,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17619,7 +16905,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17654,7 +16939,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17680,7 +16964,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17715,7 +16998,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17750,7 +17032,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17785,7 +17066,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17811,7 +17091,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17846,7 +17125,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17872,7 +17150,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17898,7 +17175,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17924,7 +17200,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17959,7 +17234,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -17986,7 +17260,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18022,7 +17295,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18048,7 +17320,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18074,14 +17345,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18118,7 +17387,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18144,7 +17412,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18170,7 +17437,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18205,7 +17471,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18231,14 +17496,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18266,7 +17529,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18301,7 +17563,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18336,7 +17597,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18371,7 +17631,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18406,7 +17665,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18432,14 +17690,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18467,14 +17723,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18501,14 +17755,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18535,14 +17787,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18569,7 +17819,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18595,14 +17844,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18631,14 +17878,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18675,7 +17920,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18702,7 +17946,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18745,7 +17988,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18780,7 +18022,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18815,7 +18056,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18842,7 +18082,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18876,7 +18115,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18903,7 +18141,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18937,7 +18174,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18963,7 +18199,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -18989,7 +18224,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19015,14 +18249,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19051,7 +18283,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19085,14 +18316,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19121,13 +18350,11 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19157,7 +18384,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19191,14 +18417,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19228,14 +18452,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19263,7 +18485,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19297,7 +18518,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19324,7 +18544,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19358,7 +18577,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19393,14 +18611,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19437,7 +18653,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19463,14 +18678,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19499,7 +18712,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19533,14 +18745,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19570,7 +18780,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19604,14 +18813,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19640,7 +18847,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19674,7 +18880,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19701,7 +18906,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19735,7 +18939,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19762,7 +18965,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19796,7 +18998,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19823,7 +19024,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19857,14 +19057,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19892,7 +19090,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19918,14 +19115,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -19960,14 +19155,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20004,14 +19197,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20039,14 +19230,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20082,14 +19271,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20125,14 +19312,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20159,14 +19344,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20202,14 +19385,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20236,14 +19417,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20285,14 +19464,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20320,7 +19497,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20355,14 +19531,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20398,7 +19572,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20433,14 +19606,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20477,7 +19648,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20503,14 +19673,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20537,7 +19705,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20563,7 +19730,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20589,7 +19755,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20615,14 +19780,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20654,7 +19817,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20680,14 +19842,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20715,7 +19875,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20749,7 +19908,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20784,14 +19942,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20820,14 +19976,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20858,7 +20012,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20884,14 +20037,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20928,14 +20079,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -20966,14 +20115,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21011,14 +20158,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21046,14 +20191,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21089,7 +20232,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21115,14 +20257,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21159,7 +20299,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21194,7 +20333,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21229,7 +20367,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21264,7 +20401,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21299,14 +20435,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21343,7 +20477,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21378,14 +20511,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21422,7 +20553,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21457,14 +20587,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21492,14 +20620,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21537,7 +20663,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21572,14 +20697,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21615,7 +20738,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21650,7 +20772,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21685,7 +20806,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21711,7 +20831,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21737,14 +20856,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21773,14 +20890,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21821,14 +20936,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21866,7 +20979,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21892,7 +21004,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21918,14 +21029,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21954,14 +21063,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -21988,14 +21095,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22023,7 +21128,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22050,7 +21154,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22077,14 +21180,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22114,14 +21215,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22148,14 +21247,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22185,7 +21282,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22211,7 +21307,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22237,14 +21332,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22271,14 +21364,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22305,14 +21396,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22342,7 +21431,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22368,7 +21456,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22394,7 +21481,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22429,7 +21515,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22455,7 +21540,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22481,7 +21565,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22507,7 +21590,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22542,7 +21624,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22568,7 +21649,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22603,7 +21683,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22629,7 +21708,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22655,14 +21733,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22700,7 +21776,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22726,7 +21801,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22761,7 +21835,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22796,7 +21869,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22822,7 +21894,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22857,7 +21928,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22883,7 +21953,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22909,14 +21978,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22943,7 +22010,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -22969,14 +22035,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23009,7 +22073,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23035,14 +22098,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23074,7 +22135,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23100,14 +22160,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23136,7 +22194,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23171,7 +22228,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23206,7 +22262,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23241,7 +22296,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23276,7 +22330,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23311,14 +22364,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23359,7 +22410,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23386,7 +22436,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23421,7 +22470,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23447,7 +22495,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23482,7 +22529,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23508,7 +22554,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23543,7 +22588,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23578,14 +22622,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23617,7 +22659,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23643,7 +22684,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23669,14 +22709,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23703,14 +22741,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23752,7 +22788,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23778,7 +22813,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23813,7 +22847,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23848,7 +22881,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23874,7 +22906,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23909,7 +22940,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23945,7 +22975,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -23971,7 +23000,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24006,7 +23034,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24032,7 +23059,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24067,7 +23093,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24093,7 +23118,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24128,7 +23152,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24154,7 +23177,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24180,7 +23202,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24215,7 +23236,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24241,7 +23261,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24276,7 +23295,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24302,7 +23320,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24337,7 +23354,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24372,7 +23388,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24407,7 +23422,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24442,7 +23456,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24468,7 +23481,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24494,14 +23506,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24528,14 +23538,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24576,7 +23584,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24603,7 +23610,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24638,7 +23644,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24673,7 +23678,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24708,7 +23712,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24734,7 +23737,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24769,7 +23771,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24804,7 +23805,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24839,7 +23839,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24865,7 +23864,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24900,7 +23898,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24935,7 +23932,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -24970,7 +23966,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25005,7 +24000,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25040,7 +24034,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25075,7 +24068,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25110,7 +24102,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25145,7 +24136,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25180,7 +24170,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25215,7 +24204,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25250,7 +24238,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25285,7 +24272,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25320,7 +24306,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25355,7 +24340,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25390,7 +24374,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25425,7 +24408,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25460,7 +24442,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25495,7 +24476,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25521,7 +24501,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25547,7 +24526,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25582,7 +24560,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25617,7 +24594,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25652,7 +24628,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25687,7 +24662,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25722,7 +24696,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25757,7 +24730,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25792,7 +24764,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25827,7 +24798,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25862,7 +24832,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25897,7 +24866,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25932,7 +24900,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -25967,7 +24934,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26002,7 +24968,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26037,7 +25002,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26072,7 +25036,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26107,7 +25070,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26142,7 +25104,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26177,7 +25138,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26212,7 +25172,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26238,14 +25197,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26277,14 +25234,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26322,7 +25277,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26357,7 +25311,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26392,7 +25345,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26427,7 +25379,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26462,7 +25413,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26497,7 +25447,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26532,7 +25481,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26567,7 +25515,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26602,7 +25549,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26637,7 +25583,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26672,7 +25617,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26707,7 +25651,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26733,7 +25676,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26768,7 +25710,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26803,7 +25744,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26838,7 +25778,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26864,7 +25803,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26899,14 +25837,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26933,7 +25869,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -26976,7 +25911,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27002,7 +25936,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27037,14 +25970,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27085,7 +26016,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27120,7 +26050,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27155,14 +26084,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27189,7 +26116,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27215,14 +26141,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27258,7 +26182,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27293,7 +26216,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27319,14 +26241,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27354,7 +26274,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27380,7 +26299,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27406,7 +26324,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27432,14 +26349,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27467,14 +26382,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27501,14 +26414,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27535,7 +26446,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27561,14 +26471,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27595,14 +26503,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27629,7 +26535,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27655,14 +26560,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27689,7 +26592,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27715,7 +26617,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27742,7 +26643,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27768,7 +26668,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27802,7 +26701,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27845,7 +26743,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27880,7 +26777,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27915,7 +26811,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27941,7 +26836,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27967,7 +26861,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -27993,7 +26886,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28028,7 +26920,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28063,14 +26954,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28106,14 +26995,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28141,7 +27028,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28167,7 +27053,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28193,7 +27078,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28219,14 +27103,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28262,7 +27144,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28288,7 +27169,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28323,7 +27203,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28349,7 +27228,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28384,14 +27262,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28420,14 +27296,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28464,7 +27338,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28499,7 +27372,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28525,14 +27397,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28559,14 +27429,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28593,14 +27461,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28636,14 +27502,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28670,14 +27534,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28706,14 +27568,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28740,7 +27600,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28766,7 +27625,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28792,14 +27650,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28826,7 +27682,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28852,7 +27707,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28879,7 +27733,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28913,7 +27766,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28939,7 +27791,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -28967,7 +27818,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29001,7 +27851,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29036,14 +27885,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29079,14 +27926,12 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29124,7 +27969,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29160,7 +28004,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29195,7 +28038,6 @@
      "internacion": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29231,7 +28073,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29266,7 +28107,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29302,7 +28142,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29337,7 +28176,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29372,7 +28210,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29407,7 +28244,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29433,7 +28269,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29468,7 +28303,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29503,7 +28337,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29538,7 +28371,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29573,7 +28405,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29608,7 +28439,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29643,7 +28473,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29678,7 +28507,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29713,7 +28541,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29748,7 +28575,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29783,7 +28609,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29818,7 +28643,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29854,7 +28678,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29889,7 +28712,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29926,7 +28748,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29962,7 +28783,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -29999,7 +28819,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -30034,7 +28853,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -30069,7 +28887,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -30104,7 +28921,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -30139,7 +28955,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],
@@ -30175,7 +28990,6 @@
      "guardia": [
       "SMG01",
       "SMG02",
-      "SMG10",
       "SMG20",
       "SMG30"
      ],

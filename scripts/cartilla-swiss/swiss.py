@@ -18,8 +18,11 @@ import json, os, re, sys, time, unicodedata, urllib.parse, urllib.request
 from datetime import date
 
 API = 'https://mobile.swissmedical.com.ar/api-smg/v1/busquedaPrestadoresSinCalif'
-CARTILLAS = {'NU2': 'SMG01', 'NU3': 'SMG02', 'CL1': 'SMG10', 'CLE': 'SMG20', 'CLS': 'SMG30'}
-ORDEN_PLANES = ['SMG01', 'SMG02', 'SMG10', 'SMG20', 'SMG30']
+# CL1 (SMG10 Advance) se saca: el plan ya no existe (Darío, 23-sep-2026; tampoco
+# figura en el cuadro tarifario de Swiss ante la SSSalud), aunque el buscador
+# oficial todavía lo liste.
+CARTILLAS = {'NU2': 'SMG01', 'NU3': 'SMG02', 'CLE': 'SMG20', 'CLS': 'SMG30'}
+ORDEN_PLANES = ['SMG01', 'SMG02', 'SMG20', 'SMG30']
 # (tipo de búsqueda del buscador, especialidad, sección, etiqueta de servicio)
 BUSQUEDAS = [
     ('3', 'Internación', 'internacion', 'Internación'),
