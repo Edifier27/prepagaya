@@ -7,7 +7,7 @@ import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, calidadPlan, esCelularArgentinoValido, NIVEL_PRECIO_LABEL } from '@/lib/utils'
+import { formatPrecio, calidadPlan, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -179,13 +179,11 @@ function detalleCob(id: CobId, plan: Plan): string {
   return matches.length ? matches.join(' · ') : cob.generico
 }
 
-// Orden "mechado" del ranking por relevancia: el 1º es el mejor plan de Swiss
-// Medical (partner premium) y el 2º el mejor de Sancor Salud o Premedic
-// (partners intermedio/económico); del 3º en adelante se intercalan marcas
-// (nunca dos cards seguidas de la misma prepaga mientras haya alternativa).
-// Los ordenamientos por precio no se alteran.
-const MARCA_PRIMERA = 'swiss-medical'
-const MARCAS_SEGUNDAS = ['sancor-salud', 'premedic']
+// Orden "mechado" del ranking por relevancia: arriba va el mejor plan de cada
+// partner prioritario en orden (Swiss Medical, Avalian, Premedic, Sancor Salud
+// — pedido de Darío, 22-sep-2026; si alguno no está en la zona se saltea); del
+// resto en adelante se intercalan marcas (nunca dos cards seguidas de la misma
+// prepaga mientras haya alternativa). Los ordenamientos por precio no se alteran.
 
 // Orden del filtro de prepaga (sidebar/bottom sheet): Swiss Medical y OSDE
 // siempre arriba (pedido de Darío, 17-sep-2026), el resto alfabético debajo.
@@ -198,8 +196,7 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
     const i = pool.findIndex(pred)
     if (i >= 0) out.push(...pool.splice(i, 1))
   }
-  take((r) => r.prepaga.slug === MARCA_PRIMERA)
-  take((r) => MARCAS_SEGUNDAS.includes(r.prepaga.slug))
+  for (const slug of PRIORIDAD_PARTNERS) take((r) => r.prepaga.slug === slug)
   while (pool.length) {
     const prev = out[out.length - 1]?.prepaga.slug
     const i = pool.findIndex((r) => r.prepaga.slug !== prev)

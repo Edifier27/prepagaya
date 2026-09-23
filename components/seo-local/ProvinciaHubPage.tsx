@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL, formatPrecio } from '@/lib/utils'
+import { SITE_URL, formatPrecio, PRIORIDAD_PARTNERS } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq } from './shared'
@@ -26,7 +26,7 @@ export function provinciaHubMetadata(prov: ProvinciaSEO): Metadata {
   }
 }
 
-const PARTNER_ORDER = ['swiss-medical', 'sancor-salud', 'premedic']
+const PARTNER_ORDER = PRIORIDAD_PARTNERS
 
 // Prepagas con sanatorio/centro médico propio verificado, por provincia (no un cálculo
 // automático sobre el texto: cada lista está chequeada a mano contra la ficha de cada

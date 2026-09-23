@@ -2,13 +2,13 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL, formatPrecio } from '@/lib/utils'
+import { SITE_URL, formatPrecio, PRIORIDAD_PARTNERS } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb } from './shared'
 
 // Partners comerciales de PrepagaYa: siempre se destacan visualmente en el ranking,
 // aunque el orden del ranking en sí se mantiene honesto según cartilla real de la zona.
-const PARTNER_ORDER = ['swiss-medical', 'sancor-salud', 'premedic']
+const PARTNER_ORDER = PRIORIDAD_PARTNERS
 
 export function rankingZonaMetadata(prov: ProvinciaSEO): Metadata {
   const year = new Date().getFullYear()
@@ -94,7 +94,7 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
             <div className="flex items-start gap-2.5 bg-amber-50 border border-amber-100 rounded-xl px-4 py-3 mt-4">
               <span className="text-amber-500 flex-shrink-0">★</span>
               <p className="text-xs text-amber-800 leading-relaxed">
-                Este ranking pondera cartilla local real, así que en {prov.nombre} puede quedar arriba una regional que no vendemos nosotros. Dicho eso: en PrepagaYa trabajamos directo con Swiss Medical y Sancor Salud, así que si alguna de las dos te sirve, podés cotizar y contratar con nosotros con asesoramiento incluido.
+                Este ranking pondera cartilla local real, así que en {prov.nombre} puede quedar arriba una regional que no vendemos nosotros. Dicho eso: en PrepagaYa trabajamos directo con Swiss Medical, Avalian, Premedic y Sancor Salud, así que si alguna te sirve, podés cotizar y contratar con nosotros con asesoramiento incluido.
               </p>
             </div>
           )}

@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
-import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS } from '@/lib/utils'
 import { StarRating } from '@/components/ui/StarRating'
 import { Badge } from '@/components/ui/Badge'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -100,7 +100,7 @@ const jsonLd = {
   })),
 }
 
-const PARTNER_ORDER = ['swiss-medical', 'sancor-salud', 'premedic']
+const PARTNER_ORDER = PRIORIDAD_PARTNERS
 
 export default function PrepagasPage() {
   const partners = PARTNER_ORDER
@@ -138,8 +138,8 @@ export default function PrepagasPage() {
       <section className="py-12">
         <div className="container">
           <h2 className="text-xl font-bold text-gray-900 mb-1">Las más elegidas</h2>
-          <p className="text-sm text-gray-500 mb-6">Nuestras 3 prepagas partner, una para cada presupuesto</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-4">
+          <p className="text-sm text-gray-500 mb-6">Nuestras prepagas partner: cotizás y contratás con nosotros, con asesoramiento incluido</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
             {partners.map((p) => (
               <PrepagaCard key={p.slug} p={p} destacado />
             ))}

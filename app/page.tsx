@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
@@ -107,14 +107,18 @@ const faqItems = [
 ]
 
 const RANKING_ORDER = [
-  'swiss-medical', 'sancor-salud', 'premedic', 'cemic', 'osde',
-  'omint', 'medicus', 'medife', 'avalian', 'prevencion-salud',
+  // Partners en orden de prioridad (Darío, 22-sep-2026), después el resto.
+  ...PRIORIDAD_PARTNERS, 'osde', 'cemic',
+  'omint', 'medicus', 'medife', 'prevencion-salud',
   'hospital-italiano', 'hominis', 'federada-salud',
 ]
 
-// Las 3 prepagas partner: una etiqueta de tier por presupuesto en vez del genérico "MÁS ELEGIDO"
+// Etiqueta de las prepagas partner del top: tier por presupuesto donde está
+// definido; Avalian va como "PARTNER" hasta tener sus precios oficiales
+// cargados (sin precio verificado no la ubicamos en un tier).
 const TIER_PARTNER: Record<string, string> = {
   'swiss-medical': 'PREMIUM',
+  'avalian': 'PARTNER',
   'sancor-salud': 'INTERMEDIA',
   'premedic': 'ECONÓMICA',
 }
@@ -221,7 +225,7 @@ export default function HomePage(): React.ReactElement {
               Ranking actualizado {PRECIO_ACTUALIZADO}
             </div>
             <h2 className="text-2xl font-bold text-gray-900">Las mejores prepagas de Argentina</h2>
-            <p className="text-gray-500 text-sm mt-2">Tres de nuestras prepagas partner, una para cada presupuesto: económica, intermedia y premium</p>
+            <p className="text-gray-500 text-sm mt-2">Nuestras prepagas partner destacadas: cotizás y contratás con nosotros</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

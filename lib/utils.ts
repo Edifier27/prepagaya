@@ -54,6 +54,12 @@ export const SITE_URL = 'https://www.prepagaya.com.ar'
 // metodología, home y schema Organization: una sola fuente para no
 // contradecirnos entre páginas.
 export const PARTNERS_OFICIALES = ['Swiss Medical', 'Sancor Salud', 'OSDE', 'Avalian', 'Premedic'] as const
+// Orden de prioridad comercial de los partners en comparador, rankings y
+// listados (pedido de Darío, 22-sep-2026): Swiss Medical, Avalian, Premedic y
+// Sancor Salud; después el resto. OSDE es partner oficial pero sin prioridad.
+export const PRIORIDAD_PARTNERS = ['swiss-medical', 'avalian', 'premedic', 'sancor-salud']
+export const PARTNERS_OFICIALES_SLUGS = [...PRIORIDAD_PARTNERS, 'osde']
+
 export const PARTNERS_OFICIALES_TEXTO = `${PARTNERS_OFICIALES.slice(0, -1).join(', ')} y ${PARTNERS_OFICIALES[PARTNERS_OFICIALES.length - 1]}`
 
 export const SITE_DESCRIPTION =

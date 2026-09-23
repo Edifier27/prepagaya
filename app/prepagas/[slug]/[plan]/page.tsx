@@ -5,7 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
-import { SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -169,7 +169,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const zonaKeyCartilla = provDelLink?.zonaKey
   const provinciaNombreCartilla = provDelLink?.nombre
 
-  const isPartner = ['swiss-medical', 'sancor-salud', 'premedic'].includes(slug)
+  const isPartner = PARTNERS_OFICIALES_SLUGS.includes(slug)
 
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
   const planIdx = planesOrdenados.findIndex(p => p.slug === planSlug)

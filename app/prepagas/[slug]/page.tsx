@@ -10,7 +10,7 @@ import { obrasSociales } from '@/lib/data/obras-sociales'
 import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
-import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -178,7 +178,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
     'sancor-salud': 'Intermedia',
     'premedic': 'Económica',
   }
-  const isPartner = slug in PARTNERS_TIER
+  const isPartner = PARTNERS_OFICIALES_SLUGS.includes(slug)
   const osMatch = obraSocialHermana(prep.slug)
 
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
@@ -302,7 +302,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     </span>
                     {isPartner && (
                       <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
-                        ✓ Opción {PARTNERS_TIER[slug]} de PrepagaYa
+                        ✓ {PARTNERS_TIER[slug] ? `Opción ${PARTNERS_TIER[slug]} de PrepagaYa` : 'Partner oficial de PrepagaYa'}
                       </span>
                     )}
                   </div>
