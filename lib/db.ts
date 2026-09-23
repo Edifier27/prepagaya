@@ -46,6 +46,9 @@ function asegurarTablas(): Promise<unknown> {
       sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS veces INTEGER NOT NULL DEFAULT 1`,
       sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS actualizado_en TIMESTAMPTZ`,
       sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS pais TEXT`,
+      // Borrado desde el panel (23-sep-2026): soft delete — la fila queda en la
+      // base con fecha de borrado, así un error se puede recuperar a mano.
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS eliminado_en TIMESTAMPTZ`,
       sql`
         CREATE TABLE IF NOT EXISTS push_subscriptions (
           id SERIAL PRIMARY KEY,
@@ -127,14 +130,14 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
     const existente = d.celular
       ? await sql`
           SELECT id, prepaga FROM leads
-          WHERE celular <> '' AND celular = ${d.celular}
+          WHERE celular <> '' AND celular = ${d.celular} AND eliminado_en IS NULL
             AND creado_en > now() - interval '24 hours'
           ORDER BY creado_en DESC LIMIT 1
         `
       : d.email
         ? await sql`
             SELECT id, prepaga FROM leads
-            WHERE email <> '' AND email = ${d.email}
+            WHERE email <> '' AND email = ${d.email} AND eliminado_en IS NULL
               AND creado_en > now() - interval '24 hours'
             ORDER BY creado_en DESC LIMIT 1
           `
@@ -183,6 +186,7 @@ export async function leadsPendientesDeKommo(minutosEspera = 3): Promise<LeadRow
   const rows = await sql`
     SELECT * FROM leads
     WHERE kommo_estado = ${KOMMO_PENDIENTE}
+      AND eliminado_en IS NULL
       AND COALESCE(actualizado_en, creado_en) <= now() - (${minutosEspera}::text || ' minutes')::interval
     ORDER BY creado_en ASC
     LIMIT 50
@@ -199,7 +203,7 @@ export async function marcarResultadoKommo(id: number, estado: string, link: str
 export async function listarLeads(limite = 300): Promise<LeadRow[]> {
   if (!sql) return []
   await asegurarTablas()
-  const rows = await sql`SELECT * FROM leads ORDER BY creado_en DESC LIMIT ${limite}`
+  const rows = await sql`SELECT * FROM leads WHERE eliminado_en IS NULL ORDER BY creado_en DESC LIMIT ${limite}`
   return rows as unknown as LeadRow[]
 }
 
@@ -207,8 +211,15 @@ export async function listarLeads(limite = 300): Promise<LeadRow[]> {
 export async function leadsDesde(ultimoId: number): Promise<LeadRow[]> {
   if (!sql) return []
   await asegurarTablas()
-  const rows = await sql`SELECT * FROM leads WHERE id > ${ultimoId} ORDER BY creado_en DESC`
+  const rows = await sql`SELECT * FROM leads WHERE id > ${ultimoId} AND eliminado_en IS NULL ORDER BY creado_en DESC`
   return rows as unknown as LeadRow[]
+}
+
+/** Borrado desde el panel: soft delete (ver eliminado_en en asegurarTablas). */
+export async function eliminarLead(id: number): Promise<void> {
+  if (!sql) return
+  await asegurarTablas()
+  await sql`UPDATE leads SET eliminado_en = now() WHERE id = ${id}`
 }
 
 export async function marcarLeido(id: number, leido: boolean): Promise<void> {

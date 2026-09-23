@@ -272,9 +272,10 @@ export default async function PlanPage({ params, searchParams }: Props) {
             />
             <div>
               <Link href={`/prepagas/${slug}`} className="text-sm text-gray-500 hover:text-[#E8002D] transition-colors font-medium">
-                {prep.nombre}
+                Planes de {prep.nombre}
               </Link>
-              <h1 className="text-3xl font-bold text-gray-900 mt-0.5">{plan.nombre}</h1>
+              {/* H1 con marca + plan: "osde 210" se busca más que "planes osde" (Trends, 23-sep-2026) */}
+              <h1 className="text-3xl font-bold text-gray-900 mt-0.5">{prep.nombre} {plan.nombre}</h1>
               {plan.destacado && (
                 <span className="inline-block mt-2 bg-[#E8002D] text-white text-xs font-black px-3 py-1 rounded-full">
                   MÁS ELEGIDO

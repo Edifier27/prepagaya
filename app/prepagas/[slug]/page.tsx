@@ -154,7 +154,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // "Cartilla" salió del título (22-sep-2026): esa intención ahora la toma
     // /cartillas/[prepaga] con datos oficiales por zona; esta ficha apunta a
     // planes y precios y enlaza a la cartilla.
-    title: `${prep.nombre}: desde ${formatPrecio(precioMinTitulo)}/mes — Planes y Precios`,
+    title: `Planes de ${prep.nombre} y precios ${PRECIO_ACTUALIZADO}: desde ${formatPrecio(precioMinTitulo)}/mes`,
     description: `${prep.nombre} ${PRECIO_ACTUALIZADO}: planes desde ${formatPrecio(precioMinTitulo)}/mes. Cartilla completa, coberturas y ${prep.satisfaccion}% de satisfacción. Cotizá tu precio exacto gratis, sin registro.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [

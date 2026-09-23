@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { logout } from './actions'
 import type { LeadRow } from '@/lib/db'
+import { whatsappLinkParaLead } from '@/lib/utils'
 
 const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? ''
 const POLL_MS = 20000
@@ -29,14 +30,46 @@ function mesLabel(key: string): string {
   return texto.charAt(0).toUpperCase() + texto.slice(1)
 }
 
+const esHoy = (iso: string) => new Date(iso).toDateString() === new Date().toDateString()
+
+function normalizar(t: string): string {
+  return t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+}
+
+// WhatsApp del lead (pedido de Darío, 23-sep-2026): mismo mensaje de apertura
+// que se manda a Kommo para los argentinos; los internacionales (pais seteado)
+// ya traen el código de país, así que van tal cual, sin mensaje.
+function linkWhatsapp(lead: LeadRow): string | null {
+  if (!lead.celular) return null
+  if (lead.pais) return `https://wa.me/${lead.celular.replace(/\D/g, '')}`
+  return whatsappLinkParaLead(lead.nombre, lead.celular)
+}
+
+// Filtros combinables (pedido de Darío, 23-sep-2026): antes solo se podía
+// filtrar por mes; ahora también por zona, fuente, hoy, sin leer y búsqueda.
+interface Filtros {
+  mes: string | null
+  zona: string | null
+  fuente: string | null
+  soloHoy: boolean
+  soloSinLeer: boolean
+  busqueda: string
+}
+const FILTROS_VACIOS: Filtros = { mes: null, zona: null, fuente: null, soloHoy: false, soloSinLeer: false, busqueda: '' }
+type FiltroChip = 'mes' | 'zona' | 'fuente'
+
 type EstadoAlertas = 'desconocido' | 'inactivas' | 'activando' | 'activas' | 'no-soportado' | 'rechazadas'
 
 export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow[] }) {
   const [leads, setLeads] = useState(leadsIniciales)
   const [estadoAlertas, setEstadoAlertas] = useState<EstadoAlertas>('desconocido')
   const [refrescando, setRefrescando] = useState(false)
-  const [filtroMes, setFiltroMes] = useState<string | null>(null)
+  const [filtros, setFiltros] = useState<Filtros>(FILTROS_VACIOS)
   const ultimoId = useRef(leadsIniciales[0]?.id ?? 0)
+
+  const alternar = useCallback((clave: FiltroChip, valor: string) => {
+    setFiltros((f) => ({ ...f, [clave]: f[clave] === valor ? null : valor }))
+  }, [])
 
   // Trae los leads más nuevos que el último visto — la usan tanto el
   // polling automático como el botón "Refrescar" (pedido de Darío,
@@ -134,14 +167,25 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
     }).catch(() => {})
   }, [])
 
+  // Borrado desde la card (pedido de Darío, 23-sep-2026). En la base es un
+  // soft delete — ver eliminarLead en lib/db.ts.
+  const eliminar = useCallback(async (id: number) => {
+    const res = await fetch('/api/panel/eliminar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    }).catch(() => null)
+    if (res?.ok) setLeads((prev) => prev.filter((l) => l.id !== id))
+    else alert('No se pudo eliminar el lead. Probá de nuevo.')
+  }, [])
+
   const sinLeer = leads.filter((l) => !l.leido).length
 
   // Estadísticas del "mini CRM" (pedido de Darío, 20-sep-2026): cuántos
   // datos entran y de dónde — se calculan solas de los leads ya cargados
   // en el panel, sin pedir nada nuevo al servidor.
   const stats = useMemo(() => {
-    const hoyStr = new Date().toDateString()
-    const hoy = leads.filter((l) => new Date(l.creado_en).toDateString() === hoyStr).length
+    const hoy = leads.filter((l) => esHoy(l.creado_en)).length
     const contar = (valores: (string | null)[]) => {
       const mapa = new Map<string, number>()
       for (const v of valores) {
@@ -169,9 +213,26 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
     }
   }, [leads])
 
-  const leadsFiltrados = useMemo(
-    () => (filtroMes ? leads.filter((l) => mesKey(l.creado_en) === filtroMes) : leads),
-    [leads, filtroMes]
+  const leadsFiltrados = useMemo(() => {
+    const q = normalizar(filtros.busqueda.trim())
+    const qDigitos = filtros.busqueda.replace(/\D/g, '')
+    return leads.filter((l) => {
+      if (filtros.mes && mesKey(l.creado_en) !== filtros.mes) return false
+      if (filtros.zona && (l.provincia?.trim() || 'Sin especificar') !== filtros.zona) return false
+      if (filtros.fuente && (l.fuente?.trim() || 'Sin especificar') !== filtros.fuente) return false
+      if (filtros.soloHoy && !esHoy(l.creado_en)) return false
+      if (filtros.soloSinLeer && l.leido) return false
+      if (q) {
+        const texto = normalizar([l.nombre, l.email, l.prepaga, l.provincia].filter(Boolean).join(' '))
+        const coincideTel = qDigitos.length >= 3 && (l.celular ?? '').replace(/\D/g, '').includes(qDigitos)
+        if (!texto.includes(q) && !coincideTel) return false
+      }
+      return true
+    })
+  }, [leads, filtros])
+
+  const hayFiltros = Boolean(
+    filtros.mes || filtros.zona || filtros.fuente || filtros.soloHoy || filtros.soloSinLeer || filtros.busqueda.trim()
   )
 
   return (
@@ -205,25 +266,62 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
       </div>
 
       <div className="max-w-3xl mx-auto p-4">
-        <StatsPanel stats={stats} filtroMes={filtroMes} onFiltrarMes={(mes) => setFiltroMes((prev) => (prev === mes ? null : mes))} />
+        <StatsPanel
+          stats={stats}
+          filtros={filtros}
+          onAlternar={alternar}
+          onHoy={() => setFiltros((f) => ({ ...f, soloHoy: !f.soloHoy }))}
+        />
 
-        {filtroMes && (
-          <div className="flex items-center gap-2 mb-3 text-xs">
-            <span className="text-gray-500">Mostrando <strong className="text-gray-900">{leadsFiltrados.length}</strong> de {mesLabel(filtroMes)}</span>
-            <button onClick={() => setFiltroMes(null)} className="text-[#E8002D] font-semibold hover:underline">
-              Ver todos →
+        {/* Barra de filtros: búsqueda + sin leer + resumen de lo aplicado */}
+        <div className="bg-white rounded-2xl border border-gray-100 p-3 mb-3 space-y-2.5">
+          <div className="flex items-center gap-2">
+            <div className="relative flex-1">
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-gray-300 absolute left-3 top-1/2 -translate-y-1/2" aria-hidden>
+                <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.45 4.39l3.08 3.08a.75.75 0 11-1.06 1.06l-3.08-3.08A7 7 0 012 9z" clipRule="evenodd" />
+              </svg>
+              <input
+                type="search"
+                value={filtros.busqueda}
+                onChange={(e) => setFiltros((f) => ({ ...f, busqueda: e.target.value }))}
+                placeholder="Buscar por nombre, teléfono, email o prepaga"
+                className="w-full text-sm bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 focus:outline-none focus:border-[#E8002D] focus:bg-white"
+              />
+            </div>
+            <button
+              onClick={() => setFiltros((f) => ({ ...f, soloSinLeer: !f.soloSinLeer }))}
+              className={`text-xs font-semibold rounded-xl px-3 py-2 whitespace-nowrap transition-colors ${
+                filtros.soloSinLeer ? 'bg-[#E8002D] text-white' : 'bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-[#E8002D]'
+              }`}
+            >
+              Sin leer · {sinLeer}
             </button>
           </div>
-        )}
+          {hayFiltros && (
+            <div className="flex flex-wrap items-center gap-1.5 text-xs">
+              <span className="text-gray-500 mr-1">
+                Mostrando <strong className="text-gray-900">{leadsFiltrados.length}</strong> de {leads.length}
+              </span>
+              {filtros.soloHoy && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, soloHoy: false }))}>Hoy</ChipActivo>}
+              {filtros.mes && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, mes: null }))}>{mesLabel(filtros.mes)}</ChipActivo>}
+              {filtros.zona && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, zona: null }))}>{filtros.zona}</ChipActivo>}
+              {filtros.fuente && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, fuente: null }))}>{filtros.fuente}</ChipActivo>}
+              {filtros.soloSinLeer && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, soloSinLeer: false }))}>Sin leer</ChipActivo>}
+              <button onClick={() => setFiltros(FILTROS_VACIOS)} className="text-[#E8002D] font-semibold hover:underline ml-auto">
+                Limpiar filtros
+              </button>
+            </div>
+          )}
+        </div>
 
         <div className="space-y-1.5">
           {leadsFiltrados.length === 0 && (
             <p className="text-center text-sm text-gray-400 py-16">
-              {filtroMes ? 'No hay leads en ese mes.' : 'Todavía no entró ningún lead.'}
+              {hayFiltros ? 'Ningún lead coincide con los filtros.' : 'Todavía no entró ningún lead.'}
             </p>
           )}
           {leadsFiltrados.map((lead) => (
-            <LeadRow key={lead.id} lead={lead} onToggleLeido={toggleLeido} />
+            <LeadRow key={lead.id} lead={lead} onToggleLeido={toggleLeido} onEliminar={eliminar} />
           ))}
         </div>
       </div>
@@ -233,65 +331,96 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
 
 interface Stats { total: number; hoy: number; porZona: [string, number][]; porFuente: [string, number][]; porMes: [string, number][] }
 
-function StatsPanel({ stats, filtroMes, onFiltrarMes }: { stats: Stats; filtroMes: string | null; onFiltrarMes: (mes: string) => void }) {
+function ChipActivo({ children, onQuitar }: { children: React.ReactNode; onQuitar: () => void }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-4">
+    <button onClick={onQuitar} className="inline-flex items-center gap-1 bg-red-50 text-[#E8002D] font-semibold rounded-full px-2 py-0.5 hover:bg-red-100">
+      {children} <span aria-hidden>×</span>
+    </button>
+  )
+}
+
+function StatsPanel({ stats, filtros, onAlternar, onHoy }: {
+  stats: Stats
+  filtros: Filtros
+  onAlternar: (clave: FiltroChip, valor: string) => void
+  onHoy: () => void
+}) {
+  return (
+    <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-3">
       <div className="grid grid-cols-2 gap-3 mb-4">
         <div className="bg-gray-50 rounded-xl p-3">
           <div className="text-2xl font-black text-gray-900 leading-none">{stats.total}</div>
           <div className="text-[11px] text-gray-500 mt-1">Leads totales</div>
         </div>
-        <div className="bg-red-50 rounded-xl p-3">
-          <div className="text-2xl font-black text-[#E8002D] leading-none">{stats.hoy}</div>
-          <div className="text-[11px] text-gray-500 mt-1">Hoy</div>
-        </div>
+        <button
+          onClick={onHoy}
+          className={`text-left rounded-xl p-3 transition-colors ${filtros.soloHoy ? 'bg-[#E8002D]' : 'bg-red-50 hover:bg-red-100'}`}
+          title="Tocá para ver solo los de hoy"
+        >
+          <div className={`text-2xl font-black leading-none ${filtros.soloHoy ? 'text-white' : 'text-[#E8002D]'}`}>{stats.hoy}</div>
+          <div className={`text-[11px] mt-1 ${filtros.soloHoy ? 'text-red-100' : 'text-gray-500'}`}>Hoy · tocá para filtrar</div>
+        </button>
       </div>
 
       {stats.porMes.length > 0 && (
         <div className="mb-4">
           <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">Por mes</div>
           <div className="flex flex-wrap gap-1.5">
-            {stats.porMes.map(([mes, n]) => {
-              const activo = filtroMes === mes
-              return (
-                <button
-                  key={mes}
-                  onClick={() => onFiltrarMes(mes)}
-                  className={`text-[11px] font-semibold rounded-full px-2 py-1 transition-colors ${
-                    activo ? 'bg-[#E8002D] text-white' : 'bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-[#E8002D]'
-                  }`}
-                >
-                  {mesLabel(mes)} <span className={activo ? 'text-red-100' : 'text-gray-400'}>· {n}</span>
-                </button>
-              )
-            })}
+            {stats.porMes.map(([mes, n]) => (
+              <ChipFiltro key={mes} activo={filtros.mes === mes} onClick={() => onAlternar('mes', mes)}>
+                {mesLabel(mes)} <span className={filtros.mes === mes ? 'text-red-100' : 'text-gray-400'}>· {n}</span>
+              </ChipFiltro>
+            ))}
           </div>
         </div>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <StatBreakdown titulo="Por zona" items={stats.porZona} />
-        <StatBreakdown titulo="Por fuente" items={stats.porFuente} />
+        <StatBreakdown titulo="Por zona" items={stats.porZona} activo={filtros.zona} onSelect={(v) => onAlternar('zona', v)} />
+        <StatBreakdown titulo="Por fuente" items={stats.porFuente} activo={filtros.fuente} onSelect={(v) => onAlternar('fuente', v)} />
       </div>
     </div>
   )
 }
 
-function StatBreakdown({ titulo, items }: { titulo: string; items: [string, number][] }) {
+function ChipFiltro({ activo, onClick, children }: { activo: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`text-[11px] font-semibold rounded-full px-2 py-1 transition-colors ${
+        activo ? 'bg-[#E8002D] text-white' : 'bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-[#E8002D]'
+      }`}
+    >
+      {children}
+    </button>
+  )
+}
+
+// Chips de zona y fuente clickeables para filtrar (antes eran solo
+// informativos); "+N más" despliega el resto en vez de solo contarlo.
+function StatBreakdown({ titulo, items, activo, onSelect }: {
+  titulo: string
+  items: [string, number][]
+  activo: string | null
+  onSelect: (valor: string) => void
+}) {
+  const [verTodos, setVerTodos] = useState(false)
   if (items.length === 0) return null
-  const top = items.slice(0, 6)
-  const resto = items.slice(6).reduce((acc, [, n]) => acc + n, 0)
+  const visibles = verTodos ? items : items.slice(0, 6)
+  const resto = items.length - visibles.length
   return (
     <div>
       <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">{titulo}</div>
       <div className="flex flex-wrap gap-1.5">
-        {top.map(([nombre, n]) => (
-          <span key={nombre} className="text-[11px] font-semibold text-gray-600 bg-gray-100 rounded-full px-2 py-1">
-            {nombre} <span className="text-gray-400">· {n}</span>
-          </span>
+        {visibles.map(([nombre, n]) => (
+          <ChipFiltro key={nombre} activo={activo === nombre} onClick={() => onSelect(nombre)}>
+            {nombre} <span className={activo === nombre ? 'text-red-100' : 'text-gray-400'}>· {n}</span>
+          </ChipFiltro>
         ))}
         {resto > 0 && (
-          <span className="text-[11px] font-semibold text-gray-400 bg-gray-50 rounded-full px-2 py-1">+{resto} más</span>
+          <button onClick={() => setVerTodos(true)} className="text-[11px] font-semibold text-gray-500 bg-gray-50 hover:bg-gray-100 rounded-full px-2 py-1">
+            +{resto} más
+          </button>
         )}
       </div>
     </div>
@@ -328,9 +457,16 @@ function extraerCuentaKommo(estado: string | null): string | null {
 // ocupaba demasiado alto siempre expandida). El resumen de una línea trae
 // lo que hace falta para escanear la lista rápido; el resto se abre al
 // tocarla — mismo patrón <details>/<summary> que ya usan las FAQ del sitio.
-function LeadRow({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: number, leidoActual: boolean) => void }) {
+function LeadRow({ lead, onToggleLeido, onEliminar }: {
+  lead: LeadRow
+  onToggleLeido: (id: number, leidoActual: boolean) => void
+  onEliminar: (id: number) => Promise<void>
+}) {
   const cuenta = extraerCuentaKommo(lead.kommo_estado)
   const kommoOk = lead.kommo_estado?.startsWith('OK') ?? false
+  const wa = linkWhatsapp(lead)
+  const [confirmando, setConfirmando] = useState(false)
+  const [eliminando, setEliminando] = useState(false)
 
   return (
     <details className={`group bg-white rounded-xl border transition-colors overflow-hidden ${lead.leido ? 'border-gray-100' : 'border-red-200'}`}>
@@ -355,6 +491,19 @@ function LeadRow({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: n
           {kommoOk ? '✓' : '⚠'}
         </span>
         <span className="text-[11px] text-gray-400 flex-shrink-0 whitespace-nowrap">{formatFecha(lead.creado_en)}</span>
+        {wa && (
+          // Botón (no <a>) con preventDefault: un click dentro de <summary>,
+          // además de abrir WhatsApp, plegaría o desplegaría la card.
+          <button
+            type="button"
+            onClick={(e) => { e.preventDefault(); window.open(wa, '_blank', 'noopener') }}
+            className="w-7 h-7 rounded-full bg-[#25D366] hover:bg-[#1ebe5a] text-white flex items-center justify-center flex-shrink-0 transition-colors"
+            title={`Escribirle a ${lead.nombre} por WhatsApp`}
+            aria-label={`WhatsApp a ${lead.nombre}`}
+          >
+            <IconoWhatsapp />
+          </button>
+        )}
         <svg className="w-3.5 h-3.5 text-gray-300 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
@@ -371,7 +520,12 @@ function LeadRow({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: n
           {lead.veces > 1 && lead.actualizado_en && <Campo label="Última actividad">{formatFecha(lead.actualizado_en)}</Campo>}
         </div>
 
-        <div className="flex items-center gap-3 mt-3 pt-3 border-t border-gray-50">
+        <div className="flex flex-wrap items-center gap-3 mt-3 pt-3 border-t border-gray-50">
+          {wa && (
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="text-[11px] font-semibold text-[#128C4A] hover:underline inline-flex items-center gap-1">
+              <IconoWhatsapp className="w-3.5 h-3.5" /> WhatsApp
+            </a>
+          )}
           {lead.kommo_link && (
             <a href={lead.kommo_link} target="_blank" rel="noopener noreferrer" className="text-[11px] font-semibold text-[#E8002D] hover:underline">
               Ver en Kommo →
@@ -383,6 +537,30 @@ function LeadRow({ lead, onToggleLeido }: { lead: LeadRow; onToggleLeido: (id: n
           >
             {lead.leido ? 'Marcar no leído' : 'Marcar leído'}
           </button>
+          {confirmando ? (
+            <span className="flex items-center gap-2 text-[11px]">
+              <span className="text-gray-500">¿Eliminar?</span>
+              <button
+                disabled={eliminando}
+                onClick={async () => { setEliminando(true); await onEliminar(lead.id); setEliminando(false); setConfirmando(false) }}
+                className="font-bold text-white bg-[#E8002D] hover:bg-[#B8001F] disabled:opacity-60 rounded-md px-2 py-1"
+              >
+                {eliminando ? 'Eliminando…' : 'Sí, eliminar'}
+              </button>
+              <button onClick={() => setConfirmando(false)} className="font-semibold text-gray-400 hover:text-gray-600">No</button>
+            </span>
+          ) : (
+            <button
+              onClick={() => setConfirmando(true)}
+              className="text-gray-300 hover:text-[#E8002D] transition-colors p-1"
+              title="Eliminar lead"
+              aria-label={`Eliminar lead de ${lead.nombre}`}
+            >
+              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4" aria-hidden>
+                <path fillRule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.44c-.8.08-1.58.17-2.37.29a.75.75 0 10.23 1.48l.15-.02.84 10.52A2.75 2.75 0 007.59 19h4.82a2.75 2.75 0 002.74-2.54l.84-10.52.15.02a.75.75 0 00.23-1.48c-.79-.12-1.58-.21-2.37-.29v-.44A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.67.03 2.5.08v-.33c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.33C8.33 4.03 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z" clipRule="evenodd" />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     </details>
@@ -395,5 +573,14 @@ function Campo({ label, children }: { label: string; children: React.ReactNode }
       <div className="text-gray-400 text-[10px] uppercase tracking-wide">{label}</div>
       <div className="text-gray-700 font-medium truncate">{children}</div>
     </div>
+  )
+}
+
+function IconoWhatsapp({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z" />
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 004.73 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.15h-.01a8.23 8.23 0 01-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z" />
+    </svg>
   )
 }
