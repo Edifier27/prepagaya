@@ -262,6 +262,10 @@ export default function EmpresasPage() {
               <span className="text-sm font-semibold text-white group-hover:text-[#C7A046]">Avalian para empresas →</span>
               <span className="text-xs text-gray-500">Plan corporativo Superior Plus</span>
             </Link>
+            <Link href="/empresas/empleados-fuera-de-convenio" className="flex flex-col gap-1 p-4 bg-white/[0.03] rounded-xl border border-white/[0.08] hover:border-[#C7A046]/40 transition-all group">
+              <span className="text-sm font-semibold text-white group-hover:text-[#C7A046]">Empleados fuera de convenio →</span>
+              <span className="text-xs text-gray-500">Qué obra social les corresponde y cómo elegir</span>
+            </Link>
             <Link href="/empresas/como-cotizar" className="flex flex-col gap-1 p-4 bg-white/[0.03] rounded-xl border border-white/[0.08] hover:border-[#C7A046]/40 transition-all group">
               <span className="text-sm font-semibold text-white group-hover:text-[#C7A046]">Cómo cotizar un plan corporativo →</span>
               <span className="text-xs text-gray-500">Mínimos, documentación y paso a paso</span>

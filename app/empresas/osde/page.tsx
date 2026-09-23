@@ -7,7 +7,7 @@ import { PedirPropuestaCard } from '@/components/empresas/PedirPropuestaCard'
 
 export const metadata: Metadata = {
   title: 'OSDE para Empresas: Plan Corporativo y Convenio para PyMEs',
-  description: 'Plan corporativo de OSDE para tu empresa: la red de profesionales más grande de Argentina, planes 210/310/410/510 y facturación corporativa. Cotizá gratis.',
+  description: 'OSDE para tu empresa: más de 125.000 prestadores, gestión online de la empresa, atención médica online y más de 1.000 descuentos en la app. Planes corporativos a medida. Cotizá gratis.',
   alternates: { canonical: `${SITE_URL}/empresas/osde` },
   keywords: ['osde empresas', 'osde plan corporativo', 'osde pymes', 'cotizar osde empresa', 'convenio corporativo osde'],
 }
@@ -17,7 +17,7 @@ const osde = prepagas.find((p) => p.slug === 'osde')!
 const faqs = [
   {
     q: '¿Qué planes de OSDE se pueden contratar de forma corporativa?',
-    a: 'Los mismos planes de la línea estándar (210, 310, 410, 510) se pueden contratar bajo convenio corporativo, con condiciones negociadas según el tamaño y composición de tu equipo.',
+    a: 'OSDE arma la propuesta corporativa según el tamaño y la composición de tu equipo. Como referencia están sus planes para contratación individual (210, 310, 410, 510 y Flux); en la propuesta te confirmamos cuáles aplican a tu empresa.',
   },
   {
     q: '¿Cómo se factura el plan corporativo de OSDE?',
@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: '¿Por qué elegir OSDE para mi empresa?',
-    a: 'Por la red: más de 140.000 profesionales y 380+ centros de atención en todo el país, la más grande del mercado. Es la opción más fuerte si tu equipo está distribuido en varias provincias y necesitás cobertura pareja en todo el país.',
+    a: 'Según OSDE: la cobertura más amplia del país, con más de 125.000 prestadores, gestión online de la empresa, atención médica online y facturación sencilla. Además, en el ranking Merco Empresas 2025 de reputación corporativa quedó en el puesto 48, como la mejor organización de salud del listado. Es una opción fuerte si tu equipo está distribuido en varias provincias y necesitás cobertura pareja en todo el país.',
   },
 ];
 
@@ -84,7 +84,7 @@ export default function EmpresasOsdePage() {
             OSDE para tu empresa
           </h1>
           <p className="text-gray-600 max-w-2xl text-base leading-relaxed">
-            La red de profesionales más grande de Argentina: más de 140.000 especialistas y 380+ centros de atención en todo el país. La opción más fuerte si tu equipo está repartido en varias provincias.
+            Según OSDE, la cobertura más amplia del país: más de 125.000 prestadores, gestión online para la empresa y más de 1.000 descuentos en su app para los empleados. Una opción fuerte si tu equipo está repartido en varias provincias.
           </p>
         </div>
       </section>
@@ -94,10 +94,11 @@ export default function EmpresasOsdePage() {
         <div className="container max-w-4xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { v: '140.000+', l: 'Profesionales' },
-              { v: '380+', l: 'Centros de atención' },
-              { v: '2M+', l: 'Afiliados' },
-              { v: '50+', l: 'Años de trayectoria' },
+              // Datos de experiencia.osde.com.ar/empresas (23-sep-2026)
+              { v: '125.000+', l: 'Prestadores' },
+              { v: '1.000+', l: 'Descuentos en la app' },
+              { v: 'Online', l: 'Atención médica y gestiones' },
+              { v: 'Nº 48', l: 'Ranking Merco Empresas 2025' },
             ].map((s) => (
               <div key={s.l} className="bg-gray-50 rounded-xl border border-gray-100 p-4 text-center">
                 <div className="text-xl font-bold text-[#003087]">{s.v}</div>
@@ -111,8 +112,8 @@ export default function EmpresasOsdePage() {
       {/* Planes disponibles corporativos */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-gray-900 mb-1">Los planes que se pueden contratar corporativamente</h2>
-          <p className="text-sm text-gray-500 mb-6">Misma línea de planes que la contratación individual, con condiciones negociadas por convenio.</p>
+          <h2 className="text-xl font-bold text-gray-900 mb-1">Los planes de OSDE</h2>
+          <p className="text-sm text-gray-500 mb-6">Como referencia, los planes para contratación individual. En la propuesta para tu empresa te confirmamos cuáles aplican.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {osde.planes.map((p) => (
               <Link key={p.slug} href={`/prepagas/osde/${p.slug}`} className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-200 transition-all group">
