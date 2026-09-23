@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { logout } from './actions'
+import PanelResenas from './PanelResenas'
 import type { LeadRow, EstadoLead } from '@/lib/db'
 import { whatsappLinkParaLead } from '@/lib/utils'
 
@@ -118,6 +119,15 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   const [estadoAlertas, setEstadoAlertas] = useState<EstadoAlertas>('desconocido')
   const [refrescando, setRefrescando] = useState(false)
   const [filtros, setFiltros] = useState<Filtros>(FILTROS_VACIOS)
+  // Pestañas del panel: leads o moderación de reseñas (23-sep-2026)
+  const [vista, setVista] = useState<'leads' | 'resenas'>('leads')
+  const [resenasPendientes, setResenasPendientes] = useState<number | null>(null)
+  useEffect(() => {
+    fetch('/api/panel/resenas?estado=pendiente')
+      .then((r) => (r.ok ? r.json() : { resenas: [] }))
+      .then((d) => setResenasPendientes(d.resenas.length))
+      .catch(() => {})
+  }, [])
   const ultimoId = useRef(leadsIniciales[0]?.id ?? 0)
 
   const alternar = useCallback((clave: FiltroChip, valor: string) => {
@@ -357,6 +367,17 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
       </div>
 
       <div className="max-w-3xl mx-auto p-4">
+        <div className="flex gap-1.5 mb-3">
+          {([['leads', 'Leads'], ['resenas', 'Reseñas']] as const).map(([id, label]) => (
+            <button key={id} onClick={() => setVista(id)}
+              className={`text-sm font-semibold rounded-xl px-4 py-2 transition-colors ${vista === id ? 'bg-gray-900 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:text-gray-900'}`}>
+              {label}
+              {id === 'resenas' && resenasPendientes ? <span className="ml-1.5 text-[10px] font-bold bg-[#E8002D] text-white rounded-full px-1.5 py-0.5">{resenasPendientes}</span> : null}
+            </button>
+          ))}
+        </div>
+
+        {vista === 'resenas' ? <PanelResenas onPendientes={setResenasPendientes} /> : (<>
         <StatsPanel
           stats={stats}
           filtros={filtros}
@@ -430,6 +451,7 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
             <LeadRow key={lead.id} lead={lead} onToggleLeido={toggleLeido} onEliminar={eliminar} onActualizar={actualizar} />
           ))}
         </div>
+        </>)}
       </div>
     </div>
   )

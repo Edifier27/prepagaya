@@ -58,6 +58,25 @@ function asegurarTablas(): Promise<unknown> {
       // Zona detectada por IP al momento del lead, ej. "Banfield (GBA Sur)" —
       // aproximada (23-sep-2026), para filtrar el panel por localidad/subzona.
       sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS zona_detectada TEXT`,
+      // Reseñas de usuarios sobre las prepagas (23-sep-2026): se cargan desde la
+      // ficha de cada prepaga y se publican recién cuando Darío las aprueba en
+      // el panel. Alimentan el rich snippet de estrellas (reseñas propias del
+      // sitio, como exige Google).
+      sql`
+        CREATE TABLE IF NOT EXISTS resenas (
+          id SERIAL PRIMARY KEY,
+          creado_en TIMESTAMPTZ NOT NULL DEFAULT now(),
+          prepaga_slug TEXT NOT NULL,
+          plan_nombre TEXT,
+          nombre TEXT NOT NULL,
+          ciudad TEXT,
+          rating INTEGER NOT NULL,
+          texto TEXT NOT NULL,
+          estado TEXT NOT NULL DEFAULT 'pendiente',
+          moderado_en TIMESTAMPTZ,
+          ip_hash TEXT
+        )
+      `,
       sql`
         CREATE TABLE IF NOT EXISTS push_subscriptions (
           id SERIAL PRIMARY KEY,
@@ -322,4 +341,72 @@ export async function listarSubscripcionesPush(): Promise<SubscripcionPush[]> {
     endpoint: r.endpoint,
     keys: { p256dh: r.p256dh, auth: r.auth },
   }))
+}
+
+
+// ─── Reseñas ────────────────────────────────────────────────────────────────
+
+export type EstadoResena = 'pendiente' | 'aprobada' | 'rechazada'
+
+export interface ResenaRow {
+  id: number
+  creado_en: string
+  prepaga_slug: string
+  plan_nombre: string | null
+  nombre: string
+  ciudad: string | null
+  rating: number
+  texto: string
+  estado: EstadoResena
+  moderado_en: string | null
+}
+
+export async function guardarResena(r: { prepagaSlug: string; planNombre: string; nombre: string; ciudad: string; rating: number; texto: string; ipHash: string }): Promise<void> {
+  if (!sql) return
+  await asegurarTablas()
+  await sql`
+    INSERT INTO resenas (prepaga_slug, plan_nombre, nombre, ciudad, rating, texto, ip_hash)
+    VALUES (${r.prepagaSlug}, ${r.planNombre || null}, ${r.nombre}, ${r.ciudad || null}, ${r.rating}, ${r.texto}, ${r.ipHash})
+  `
+}
+
+/** Reseñas enviadas desde esa IP en las últimas 24 hs (freno anti-spam). */
+export async function resenasRecientesDeIp(ipHash: string): Promise<number> {
+  if (!sql) return 0
+  await asegurarTablas()
+  const rows = await sql`SELECT count(*)::int AS n FROM resenas WHERE ip_hash = ${ipHash} AND creado_en > now() - interval '24 hours'`
+  return (rows[0] as { n: number }).n
+}
+
+export async function listarResenas(estado?: EstadoResena): Promise<ResenaRow[]> {
+  if (!sql) return []
+  await asegurarTablas()
+  const rows = estado
+    ? await sql`SELECT id, creado_en, prepaga_slug, plan_nombre, nombre, ciudad, rating, texto, estado, moderado_en FROM resenas WHERE estado = ${estado} ORDER BY creado_en DESC LIMIT 300`
+    : await sql`SELECT id, creado_en, prepaga_slug, plan_nombre, nombre, ciudad, rating, texto, estado, moderado_en FROM resenas ORDER BY creado_en DESC LIMIT 300`
+  return rows as unknown as ResenaRow[]
+}
+
+/** Aprobadas de una prepaga + resumen (promedio y cantidad) para la ficha y el rich snippet. */
+export async function resenasAprobadas(prepagaSlug: string): Promise<{ resenas: ResenaRow[]; promedio: number; cantidad: number }> {
+  if (!sql) return { resenas: [], promedio: 0, cantidad: 0 }
+  try {
+    await asegurarTablas()
+    const [rows, resumen] = await Promise.all([
+      sql`SELECT id, creado_en, prepaga_slug, plan_nombre, nombre, ciudad, rating, texto, estado, moderado_en FROM resenas WHERE prepaga_slug = ${prepagaSlug} AND estado = 'aprobada' ORDER BY creado_en DESC LIMIT 20`,
+      sql`SELECT count(*)::int AS cantidad, coalesce(avg(rating), 0)::float AS promedio FROM resenas WHERE prepaga_slug = ${prepagaSlug} AND estado = 'aprobada'`,
+    ])
+    const r = resumen[0] as { cantidad: number; promedio: number }
+    return { resenas: rows as unknown as ResenaRow[], promedio: Math.round(r.promedio * 10) / 10, cantidad: r.cantidad }
+  } catch (err) {
+    console.error('[DB] error leyendo reseñas:', err)
+    return { resenas: [], promedio: 0, cantidad: 0 }
+  }
+}
+
+export async function moderarResena(id: number, estado: EstadoResena): Promise<string | null> {
+  if (!sql) return null
+  await asegurarTablas()
+  const rows = await sql`UPDATE resenas SET estado = ${estado}, moderado_en = now() WHERE id = ${id} RETURNING prepaga_slug`
+  return (rows[0] as { prepaga_slug: string } | undefined)?.prepaga_slug ?? null
 }

@@ -16,6 +16,8 @@ import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { ProvinciaHubPage, provinciaHubMetadata } from '@/components/seo-local/ProvinciaHubPage'
 import type { Prepaga } from '@/types'
 import { getAppPrepaga, APPS_FECHA, APPS_FUENTE } from '@/lib/data/apps-prepagas'
+import { resenasAprobadas } from '@/lib/db'
+import { ResenaForm } from '@/components/prepagas/ResenaForm'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -123,6 +125,10 @@ function getPerfilesIdeales(prep: Prepaga, precioMin: number): { titulo: string;
 
 // El segmento [slug] despacha dos tipos: prepaga (/prepagas/osde) y hub
 // provincial del silo SEO local (/prepagas/cordoba). Sin colisiones de slug.
+// Reseñas de usuarios: la ficha se regenera cada hora y al aprobar una reseña
+// en el panel (revalidatePath en /api/panel/resenas).
+export const revalidate = 3600
+
 export async function generateStaticParams() {
   return [
     ...prepagas.map((p) => ({ slug: p.slug })),
@@ -172,6 +178,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   if (prov) return <ProvinciaHubPage prov={prov} />
   const prep = prepagas.find((p) => p.slug === slug)
   if (!prep) notFound()
+  const opiniones = await resenasAprobadas(prep.slug)
 
   const PARTNERS_TIER: Record<string, string> = {
     'swiss-medical': 'Premium',
@@ -201,7 +208,27 @@ export default async function PrepagaSlugPage({ params }: Props) {
   ]
   const starsLlenas = Math.round(prep.rating)
 
-  const jsonLd = [
+  const jsonLd: Record<string, unknown>[] = [
+    ...(opiniones.cantidad > 0 ? [{
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: prep.nombre,
+      url: `${SITE_URL}/prepagas/${slug}`,
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: opiniones.promedio,
+        reviewCount: opiniones.cantidad,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      review: opiniones.resenas.slice(0, 5).map((o) => ({
+        '@type': 'Review',
+        author: { '@type': 'Person', name: o.nombre },
+        datePublished: o.creado_en.slice(0, 10),
+        reviewBody: o.texto,
+        reviewRating: { '@type': 'Rating', ratingValue: o.rating, bestRating: 5, worstRating: 1 },
+      })),
+    }] : []),
     {
       '@context': 'https://schema.org',
       // Service, no Product: un plan de salud no es un bien físico y
@@ -881,6 +908,37 @@ export default async function PrepagaSlugPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {/* Opiniones de usuarios (reseñas propias del sitio, moderadas en el panel) */}
+      <section id="opiniones" className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-5xl mx-auto">
+          <div className="flex flex-wrap items-end justify-between gap-3 mb-5">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">Opiniones sobre {prep.nombre}</h2>
+              <p className="text-sm text-gray-500 mt-1">
+                {opiniones.cantidad > 0
+                  ? <><span className="text-amber-500">★</span> <strong className="text-gray-800">{opiniones.promedio.toLocaleString('es-AR')}</strong> de 5 · {opiniones.cantidad} {opiniones.cantidad === 1 ? 'opinión' : 'opiniones'} de usuarios de PrepagaYa</>
+                  : `Todavía no hay opiniones publicadas. ¿Tenés ${prep.nombre}? Contanos tu experiencia.`}
+              </p>
+            </div>
+          </div>
+          {opiniones.resenas.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              {opiniones.resenas.slice(0, 10).map((o) => (
+                <div key={o.id} className="rounded-2xl border border-gray-100 bg-gray-50 p-5">
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-amber-400 text-sm" aria-label={`${o.rating} de 5 estrellas`}>{'★'.repeat(o.rating)}<span className="text-gray-200">{'★'.repeat(5 - o.rating)}</span></span>
+                    <span className="text-xs text-gray-400">{new Date(o.creado_en).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' })}</span>
+                  </div>
+                  <p className="text-sm text-gray-700 leading-relaxed">{o.texto}</p>
+                  <p className="text-xs text-gray-500 mt-3 font-medium">{o.nombre}{o.ciudad ? ` · ${o.ciudad}` : ''}{o.plan_nombre ? ` · ${o.plan_nombre}` : ''}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          <ResenaForm prepagaSlug={prep.slug} prepagaNombre={prep.nombre} planes={prep.planes.map((pl) => pl.nombre)} />
+        </div>
+      </section>
 
       {/* FAQ */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">
