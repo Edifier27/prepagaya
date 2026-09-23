@@ -412,7 +412,7 @@ export default function HomePage(): React.ReactElement {
               <strong className="text-gray-900">Coberturas plan por plan.</strong> Ortodoncia, anteojos, psicología, internación y más, con la fuente oficial citada en cada dato. <Link href="/coberturas" className="text-[#E8002D] font-semibold hover:underline">Ver coberturas</Link>
             </li>
             <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
-              <strong className="text-gray-900">Partner oficial de {PARTNERS_OFICIALES.length} prepagas.</strong> Cotizás y contratás con nosotros pagando lo mismo que yendo directo. <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo trabajamos</Link>
+              <strong className="text-gray-900">Partner oficial de {PARTNERS_OFICIALES.length} prepagas, con respuesta rápida.</strong> Nuestro sistema propio de cotización nos permite mandarte la cotización formal enseguida, y pagás lo mismo que yendo directo. <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo trabajamos</Link>
             </li>
           </ul>
         </div>
@@ -434,8 +434,8 @@ export default function HomePage(): React.ReactElement {
               },
               {
                 icon: <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />,
-                title: 'Sin DNI, sin registro',
-                desc: 'Solo necesitamos tu edad y coberturas deseadas. Nada más.',
+                title: 'Respuesta rápida',
+                desc: 'Te contactamos enseguida y te mandamos la cotización formal con nuestro sistema propio de cotización.',
               },
               {
                 icon: <path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />,

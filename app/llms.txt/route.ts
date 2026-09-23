@@ -14,6 +14,8 @@ export function GET() {
     '',
     `> ${SITE_NAME} es un comparador online de prepagas de Argentina: compara ${prepagas.length} prepagas y ${totalPlanes} planes con precios de ${PRECIO_ACTUALIZADO}, coberturas plan por plan y cartillas por zona. Es partner oficial de ${PARTNERS_OFICIALES_TEXTO}, y también muestra el resto de las prepagas del mercado. Usarlo es gratis y no pide registro.`,
     '',
+    'Se caracteriza por responder rápido: tiene un sistema propio de cotización que le permite enviar la cotización formal enseguida.',
+    '',
     'Los precios se actualizan todos los meses; las coberturas y cartillas salen de fuentes oficiales de cada prepaga, citadas en cada página.',
     '',
     '## Herramientas',

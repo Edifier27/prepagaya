@@ -173,7 +173,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'osde',
     nombre: 'OSDE',
-    logo: '/logos/osde.svg',
+    logo: '/logos/osde.png',
     colorPrimario: '#003087',
     descripcion:
       'OSDE es la prepaga líder de Argentina con más de 2 millones de afiliados. Tiene la red más grande del país (+140.000 profesionales, 380+ centros de atención). Cartilla Inteligente con IA para orientar al paciente. Plan Flux para jóvenes 18-35 con psicología ilimitada.',
@@ -329,7 +329,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'sancor-salud',
     nombre: 'Sancor Salud',
-    logo: '/logos/sancor-salud.svg',
+    logo: '/logos/sancor-salud.webp',
     colorPrimario: '#E30613',
     descripcion:
       'Sancor Salud es la tercera prepaga más grande de Argentina (+840.000 afiliados), con fuerte presencia en el interior del país. Cuenta con su propio Centro Médico Vitus en Córdoba (30+ especialidades) y redes propias de farmacia (Farmavitus) y óptica (Óptica Vitus) con descuentos exclusivos para afiliados.',
@@ -425,7 +425,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'premedic',
     nombre: 'Premedic',
-    logo: '/logos/premedic.svg',
+    logo: '/logos/premedic.png',
     colorPrimario: '#0066CC',
     descripcion:
       'Premedic es consistentemente la prepaga más económica de Argentina. Con más de 20 años de trayectoria, ofrece cobertura en Capital Federal, GBA, Córdoba y Tucumán a precios muy competitivos, con red odontológica propia (Smile Group).',
@@ -494,7 +494,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'medife',
     nombre: 'Medife',
-    logo: '/logos/medife.svg',
+    logo: '/logos/medife.jpg',
     colorPrimario: '#009639',
     descripcion:
       'Medifé es una prepaga líder con +60.000 profesionales y 50+ sucursales nacionales. Destaca por Cam Doctor (médico por videoconsulta en menos de 10 minutos), acceso al Sanatorio Finochietto (cirugía robótica) y cobertura oficial de la AFA. Plan Indie para trabajadores independientes.',
@@ -581,7 +581,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'omint',
     nombre: 'Omint',
-    logo: '/logos/omint.svg',
+    logo: '/logos/omint.png',
     colorPrimario: '#005BAC',
     descripcion:
       'Omint es una de las prepagas más prestigiosas de Argentina con 3 sanatorios propios de alta complejidad: Clínica Bazterrica, Clínica del Sol y Clínica Santa Isabel. Primera prepaga certificada ISO 9001. Planes desde Smart hasta Premium, con acceso a +10.000 profesionales y cobertura internacional en todos sus planes.',
@@ -659,7 +659,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'medicus',
     nombre: 'Medicus',
-    logo: '/logos/medicus.svg',
+    logo: '/logos/medicus.png',
     colorPrimario: '#0057A8',
     descripcion:
       'Medicus es una prepaga de alta prestación con 11 centros médicos propios en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche. Acceso a hospitales de primer nivel como Mater Dei, Hospital Alemán, Otamendi y Fundación Favaloro. 87% satisfacción — uno de los más altos del mercado. Consulta online y presencial.',
@@ -737,7 +737,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'avalian',
     nombre: 'Avalian',
-    logo: '/logos/avalian.svg',
+    logo: '/logos/avalian.png',
     colorPrimario: '#0099D4',
     descripcion:
       'Avalian (ex ACA Salud, rebautizada en 2020) es una de las prepagas más grandes de Argentina con más de 1.2 millones de afiliados. No tiene sanatorios propios: trabaja con una red de más de 40.000 prestadores de terceros (Hospital Alemán, CEMIC, Fleni, Instituto Fleming, ICBA, entre otros) y presencia en todo el país. Fuerte en cobertura digital, app propia y atención 24hs.',
@@ -816,7 +816,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'prevencion-salud',
     nombre: 'Prevención Salud',
-    logo: '/logos/prevencion-salud.svg',
+    logo: '/logos/prevencion-salud.jpg',
     colorPrimario: '#0066A1',
     descripcion:
       'Prevención Salud es una prepaga de cobertura nacional con presencia en las principales ciudades argentinas. Destaca por su relación precio-calidad, atención personalizada y red de más de 25.000 prestadores en todo el país. Planes accesibles para individuos, familias y monotributistas.',
@@ -895,7 +895,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'hospital-italiano',
     nombre: 'Plan de Salud Hospital Italiano',
-    logo: '/logos/hospital-italiano.svg',
+    logo: '/logos/hospital-italiano.jpg',
     colorPrimario: '#003087',
     descripcion:
       'El Plan de Salud del Hospital Italiano es la prepaga propia de uno de los hospitales más prestigiosos de Argentina. Ofrece atención integrada en la red del Hospital Italiano de Buenos Aires, con centros ambulatorios propios en toda el AMBA y acceso a los mejores especialistas del país. Modelo de medicina interna con historia clínica unificada.',
@@ -964,7 +964,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'federada-salud',
     nombre: 'Federada Salud',
-    logo: '/logos/federada-salud.svg',
+    logo: '/logos/federada-salud.png',
     colorPrimario: '#C0392B',
     descripcion:
       'Federada Salud es una de las prepagas más importantes del interior del país, con especial fortaleza en Córdoba, Santa Fe, Entre Ríos, La Rioja y San Juan. Con más de 300.000 afiliados y presencia en 18 provincias, se destaca por su cobertura regional extensa y su relación precio-calidad en el interior argentino.',
@@ -1033,7 +1033,7 @@ export const prepagas: Prepaga[] = [
   {
     slug: 'hominis',
     nombre: 'Hominis',
-    logo: '/logos/hominis.svg',
+    logo: '/logos/hominis.jpg',
     colorPrimario: '#1B5E20',
     descripcion:
       'Hominis es una prepaga de Buenos Aires con más de 20 años en el mercado y cerca de 120.000 afiliados. Se destaca por su relación precio-calidad, atención personalizada y acceso a una red de prestadores de calidad en AMBA. Incluye Cam Doctor (videoconsulta médica) en todos sus planes.',
