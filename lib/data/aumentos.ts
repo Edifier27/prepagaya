@@ -1,3 +1,5 @@
+import aumentosOficialesJson from './aumentos-oficiales.json'
+
 // Serie mensual de aumentos promedio de prepagas.
 // Actualizar al inicio de cada mes junto con PRECIO_ACTUALIZADO en prepagas.ts.
 // Fuente: relevamiento de comunicaciones de aumento de las principales empresas
@@ -9,6 +11,8 @@ export interface AumentoMensual {
   porcentaje: number // aumento promedio del mercado, en %
   esProyeccion?: boolean
   nota?: string
+  /** true = sale del cuadro tarifario oficial (SSSalud), no del relevamiento */
+  oficial?: boolean
 }
 
 export const aumentos2026: AumentoMensual[] = [
@@ -39,6 +43,48 @@ export const aumentos2026: AumentoMensual[] = [
   },
 ]
 
+// ─── Dato oficial (SSSalud) ────────────────────────────────────────────────
+// Aumento real de cada prepaga mes a mes, comparando los cuadros tarifarios
+// oficiales de períodos consecutivos (scripts/cuadros-sssalud/aumentos.py).
+// Los meses que tienen dato oficial reemplazan al relevamiento de arriba.
+export interface AumentoOficialPrepaga {
+  nombre: string
+  mediana: number
+  minimo: number
+  maximo: number
+  declaradas: number[]
+  filas: number
+}
+export interface AumentoOficialMes {
+  label: string
+  promedio: number
+  prepagas: Record<string, AumentoOficialPrepaga>
+}
+export const AUMENTOS_OFICIALES = aumentosOficialesJson as unknown as {
+  fuente: string
+  fuenteUrl: string
+  metodo: string
+  generado: string
+  meses: Record<string, AumentoOficialMes>
+}
+
+for (const [periodo, m] of Object.entries(AUMENTOS_OFICIALES.meses)) {
+  const mes = `${periodo.slice(0, 4)}-${periodo.slice(4)}`
+  const ranking = Object.values(m.prepagas)
+  const nota = `Dato oficial: promedio de ${ranking.length} prepagas según sus cuadros tarifarios ante la Superintendencia de Servicios de Salud. Rango: ${ranking[0].mediana.toLocaleString('es-AR')}% (${ranking[0].nombre}) a ${ranking[ranking.length - 1].mediana.toLocaleString('es-AR')}% (${ranking[ranking.length - 1].nombre}).`
+  const existente = aumentos2026.find((x) => x.mes === mes)
+  if (existente) Object.assign(existente, { porcentaje: m.promedio, esProyeccion: false, nota, oficial: true })
+  else aumentos2026.push({ mes, label: m.label, porcentaje: m.promedio, nota, oficial: true })
+}
+aumentos2026.sort((a, b) => a.mes.localeCompare(b.mes))
+
+/** Último mes con dato oficial por prepaga (el más reciente publicado). */
+export function ultimoMesOficial(): (AumentoOficialMes & { periodo: string }) | null {
+  const periodos = Object.keys(AUMENTOS_OFICIALES.meses).sort()
+  const ultimo = periodos[periodos.length - 1]
+  return ultimo ? { periodo: ultimo, ...AUMENTOS_OFICIALES.meses[ultimo] } : null
+}
+
 /** Inflación acumulada del año para comparar contra los aumentos (INDEC, ene-jul 2026). */
 export const INFLACION_ACUMULADA_2026 = 19
 
@@ -50,25 +96,3 @@ export function aumentoAcumulado(): number {
   return Math.round((factor - 1) * 1000) / 10
 }
 
-// Comparativo por empresa: posicionamiento relativo estimado en base a las
-// comunicaciones públicas de aumento y el promedio de mercado (no es el
-// porcentaje exacto auditado mes a mes de cada plan — para eso está /precios
-// con la cotización real). Sirve para responder "quién aumenta menos" con una
-// referencia razonable, no para citar cifras exactas por empresa.
-export interface AumentoEmpresa {
-  slug: string
-  nombre: string
-  ultimoAumento: number // % del último mes confirmado (hoy: agosto 2026)
-  acumulado2026: number // % estimado, enero-agosto
-}
-
-export const AUMENTO_POR_EMPRESA: AumentoEmpresa[] = [
-  { slug: 'sancor-salud', nombre: 'Sancor Salud', ultimoAumento: 1.9, acumulado2026: 21.3 },
-  { slug: 'premedic', nombre: 'Premedic', ultimoAumento: 2.0, acumulado2026: 22.0 },
-  { slug: 'medife', nombre: 'Medifé', ultimoAumento: 2.1, acumulado2026: 22.8 },
-  { slug: 'avalian', nombre: 'Avalian (ex ACA Salud)', ultimoAumento: 2.2, acumulado2026: 23.4 },
-  { slug: 'omint', nombre: 'Omint', ultimoAumento: 2.3, acumulado2026: 23.8 },
-  { slug: 'osde', nombre: 'OSDE', ultimoAumento: 2.4, acumulado2026: 24.3 },
-  { slug: 'swiss-medical', nombre: 'Swiss Medical', ultimoAumento: 2.5, acumulado2026: 24.9 },
-  { slug: 'medicus', nombre: 'Medicus', ultimoAumento: 2.7, acumulado2026: 25.8 },
-]

@@ -332,19 +332,18 @@ export function Footer() {
 
         </div>
 
-        {/* Fuente de precios (23-sep-2026): cuadros tarifarios oficiales de la SSSalud */}
-        <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-3 text-xs text-gray-500">
-          {/* Logo como cita de la fuente de datos, no como aval */}
-          <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex bg-white rounded-lg px-3 py-2 w-fit flex-shrink-0" aria-label="Superintendencia de Servicios de Salud — cuadros tarifarios">
+        {/* Fuente de precios (23-sep-2026): cuadros tarifarios oficiales de la SSSalud.
+            Logo como cita de la fuente de datos, no como aval. */}
+        <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-gray-400">
+          <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex bg-white rounded-xl px-4 py-2.5 w-fit flex-shrink-0" aria-label="Superintendencia de Servicios de Salud">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logos/sssalud.svg" alt="Superintendencia de Servicios de Salud" width={112} height={42} className="h-8 w-auto" />
+            <img src="/logos/sssalud.png" alt="Superintendencia de Servicios de Salud" width={945} height={354} className="h-14 w-auto" />
           </a>
           <span>
-            Precios de lista: fuente{' '}
-            <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-300">
+            Fuente:{' '}
+            <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-200">
               Superintendencia de Servicios de Salud
-            </a>{' '}
-            (cuadros tarifarios oficiales, {preciosOficiales.periodoTexto}).
+            </a>
           </span>
         </div>
 

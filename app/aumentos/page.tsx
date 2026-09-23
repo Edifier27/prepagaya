@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { aumentos2026, aumentoAcumulado, INFLACION_ACUMULADA_2026, AUMENTO_POR_EMPRESA } from '@/lib/data/aumentos'
+import { aumentos2026, aumentoAcumulado, INFLACION_ACUMULADA_2026, AUMENTOS_OFICIALES, ultimoMesOficial } from '@/lib/data/aumentos'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
@@ -8,16 +8,25 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 const acumulado = aumentoAcumulado()
 const ultimoConfirmado = [...aumentos2026].reverse().find((a) => !a.esProyeccion)!
 const proyeccion = aumentos2026.find((a) => a.esProyeccion)
-const masEstable = [...AUMENTO_POR_EMPRESA].sort((a, b) => a.acumulado2026 - b.acumulado2026)[0]
+// Dato oficial del último mes publicado (cuadros tarifarios SSSalud)
+const oficial = ultimoMesOficial()
+const rankingOficial = oficial ? Object.entries(oficial.prepagas).map(([slug, v]) => ({ slug, ...v })) : []
+const masEstable = rankingOficial[0]
+// Partners que todavía no declararon el mes (para aclararlo en la tabla)
+const sinDeclarar = oficial ? ['swiss-medical', 'premedic', 'avalian', 'sancor-salud', 'osde'].filter((s) => !oficial.prepagas[s]) : []
 
 export const metadata: Metadata = {
-  title: `Aumentos de Prepagas ${PRECIO_ACTUALIZADO}: cuánto sube cada mes`,
+  title: oficial
+    ? `Aumento de prepagas en ${oficial.label}: cuánto sube cada una (dato oficial)`
+    : `Aumentos de Prepagas ${PRECIO_ACTUALIZADO}: cuánto sube cada mes`,
   description: `Aumento de prepagas en ${ultimoConfirmado.label}: ${ultimoConfirmado.porcentaje.toLocaleString('es-AR')}% promedio. Serie mensual 2026, acumulado del ${acumulado.toLocaleString('es-AR')}% y proyección del próximo mes. Actualizado todos los meses.`,
   alternates: { canonical: `${SITE_URL}/aumentos` },
   keywords: [
     'aumento prepagas 2026',
     'aumento prepagas agosto 2026',
     'aumento prepagas septiembre 2026',
+    'aumento prepagas octubre 2026',
+    'cuanto aumentan las prepagas en octubre',
     'cuanto aumenta la prepaga este mes',
     'que prepaga aumenta menos',
     'ranking prepagas mas estables',
@@ -44,7 +53,7 @@ const faqs = [
   },
   {
     q: '¿Qué prepaga aumenta menos?',
-    a: `Según el acumulado de aumentos de 2026, ${masEstable.nombre} es la que muestra el porcentaje más bajo (${masEstable.acumulado2026.toLocaleString('es-AR')}% acumulado). Es una posición relativa estimada, no el número exacto y auditado de cada plan: para el valor real de tu cobertura, la referencia es la cotización actualizada.`,
+    a: `Según los cuadros tarifarios oficiales de ${oficial?.label ?? ''}, ${masEstable?.nombre} es la que menos aumenta (${masEstable?.mediana.toLocaleString('es-AR')}%). Es una posición relativa estimada, no el número exacto y auditado de cada plan: para el valor real de tu cobertura, la referencia es la cotización actualizada.`,
   },
 ]
 
@@ -52,7 +61,7 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `Aumentos de prepagas 2026: serie mensual y acumulado`,
+    headline: oficial ? `Aumento de prepagas en ${oficial.label}: cuánto sube cada una` : `Aumentos de prepagas 2026: serie mensual y acumulado`,
     description: `Registro mensual de los aumentos de medicina prepaga en Argentina durante 2026, con el acumulado del año y la proyección del próximo mes.`,
     url: `${SITE_URL}/aumentos`,
     image: `${SITE_URL}/opengraph-image`,
@@ -108,7 +117,6 @@ export default function AumentosPage() {
   // Acumulado progresivo para la tabla
   let factorAcumulado = 1
 
-  const rankingEstabilidad = [...AUMENTO_POR_EMPRESA].sort((a, b) => a.acumulado2026 - b.acumulado2026)
   const medallas = ['🥇', '🥈', '🥉']
 
   return (
@@ -133,7 +141,9 @@ export default function AumentosPage() {
             Actualizado todos los meses
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-            Aumentos de prepagas <span className="text-[#E8002D]">2026</span>: cuánto sube cada mes
+            {oficial
+              ? <>Aumento de prepagas en <span className="text-[#E8002D]">{oficial.label}</span>: cuánto sube cada una</>
+              : <>Aumentos de prepagas <span className="text-[#E8002D]">2026</span>: cuánto sube cada mes</>}
           </h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl mb-8">
             Seguimos mes a mes los aumentos de las principales prepagas de Argentina: cuánto subieron, cuánto acumulan
@@ -161,6 +171,56 @@ export default function AumentosPage() {
           </div>
         </div>
       </section>
+
+      {/* Aumento oficial del último mes, prepaga por prepaga (cuadros tarifarios SSSalud) */}
+      {oficial && (
+        <section id="ranking-estabilidad" className="py-10 bg-white border-b border-gray-100 scroll-mt-20">
+          <div className="container max-w-4xl mx-auto">
+            <span className="inline-block text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full mb-3">Dato oficial</span>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Aumento de {oficial.label} por prepaga</h2>
+            <p className="text-gray-600 text-sm leading-relaxed max-w-3xl mb-6">
+              Comparamos los cuadros tarifarios que cada prepaga declara ante la{' '}
+              <a href={AUMENTOS_OFICIALES.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline">Superintendencia de Servicios de Salud</a>{' '}
+              con los del mes anterior, plan por plan. Promedio: <strong className="text-gray-900">{oficial.promedio.toLocaleString('es-AR')}%</strong>. De la que menos sube a la que más:
+            </p>
+            <div className="space-y-2">
+              {rankingOficial.map((e, i) => {
+                const prep = prepagas.find((p) => p.slug === e.slug)
+                return (
+                  <div key={e.slug} className={`flex items-center justify-between gap-4 p-4 bg-white rounded-2xl border ${i === 0 ? 'border-2 border-emerald-200' : 'border-gray-200'}`}>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="text-lg w-7 text-center flex-shrink-0">{medallas[i] ?? `${i + 1}º`}</span>
+                      {prep && <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="sm" />}
+                      {prep ? <Link href={`/prepagas/${prep.slug}`} className="font-bold text-gray-900 hover:text-[#E8002D] truncate">{e.nombre}</Link> : <span className="font-bold text-gray-900 truncate">{e.nombre}</span>}
+                    </div>
+                    <div className="flex items-center gap-6 flex-shrink-0 text-right">
+                      <div>
+                        <div className="text-[10px] text-gray-400 uppercase tracking-wide">Aumento</div>
+                        <div className={`font-black tabular-nums ${i === 0 ? 'text-emerald-600' : 'text-gray-900'}`}>{e.mediana.toLocaleString('es-AR')}%</div>
+                      </div>
+                      <div className="hidden sm:block w-28">
+                        <div className="text-[10px] text-gray-400 uppercase tracking-wide">Según el plan</div>
+                        <div className="text-xs text-gray-600 tabular-nums">{e.minimo === e.maximo ? 'Igual en todos' : `${e.minimo.toLocaleString('es-AR')}% a ${e.maximo.toLocaleString('es-AR')}%`}</div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+            <p className="text-xs text-gray-400 mt-4 leading-relaxed">
+              {sinDeclarar.length > 0 && <>Todavía no declararon {oficial.label}: {sinDeclarar.map((s) => prepagas.find((p) => p.slug === s)?.nombre ?? s).join(', ')}. Se suman cuando publiquen su cuadro. </>}
+              Metodología: {AUMENTOS_OFICIALES.metodo}
+            </p>
+            <div className="mt-6 bg-gray-50 rounded-2xl border border-gray-200 p-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div>
+                <div className="font-bold text-gray-900 text-sm">¿Tu cuota sube más que el promedio?</div>
+                <div className="text-xs text-gray-500">Puede convenirte cambiar de plan o de prepaga. Te lo cotizamos sin cargo.</div>
+              </div>
+              <Link href="/comparador" className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] text-white font-bold rounded-xl text-sm hover:bg-[#B8001F] transition-colors">Cotizar ahora →</Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Tabla mensual */}
       <section className="py-10 bg-white">
@@ -210,78 +270,6 @@ export default function AumentosPage() {
         </div>
       </section>
 
-      {/* Ranking de estabilidad por empresa */}
-      <section id="ranking-estabilidad" className="py-10 bg-gray-50 border-t border-gray-100 scroll-mt-20">
-        <div className="container max-w-4xl mx-auto">
-          <span className="inline-block text-xs font-semibold text-[#E8002D] bg-red-100 px-3 py-1 rounded-full mb-4">
-            Exclusivo PrepagaYa
-          </span>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
-            🏆 Ranking: las prepagas que menos aumentan
-          </h2>
-          <p className="text-gray-600 leading-relaxed max-w-2xl mb-7">
-            Todas las prepagas suben la cuota todos los meses — eso no lo elegís. Lo que sí varía es{' '}
-            <strong className="text-gray-900">cuánto</strong> sube cada una. Con el acumulado de aumentos de 2026,
-            así queda el orden de las empresas más estables a las más agresivas con el precio.
-          </p>
-
-          <div className="space-y-2.5">
-            {rankingEstabilidad.map((e, i) => {
-              const prep = prepagas.find((p) => p.slug === e.slug)
-              const contenido = (
-                <>
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span className="text-xl w-7 text-center flex-shrink-0">{medallas[i] ?? `${i + 1}º`}</span>
-                    {prep && <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="sm" />}
-                    <span className="font-bold text-gray-900 truncate">{e.nombre}</span>
-                  </div>
-                  <div className="flex items-center gap-6 flex-shrink-0">
-                    <div className="text-right">
-                      <div className="text-[10px] text-gray-400 uppercase tracking-wide">Último mes</div>
-                      <div className="font-bold text-gray-700 tabular-nums text-sm">+{e.ultimoAumento.toLocaleString('es-AR')}%</div>
-                    </div>
-                    <div className="text-right w-20">
-                      <div className="text-[10px] text-gray-400 uppercase tracking-wide">Acumulado 2026</div>
-                      <div className={`font-black tabular-nums ${i === 0 ? 'text-emerald-600' : i < 3 ? 'text-gray-700' : 'text-gray-400'}`}>
-                        {e.acumulado2026.toLocaleString('es-AR')}%
-                      </div>
-                    </div>
-                  </div>
-                </>
-              )
-              return prep ? (
-                <Link key={e.slug} href={`/prepagas/${prep.slug}`}
-                  className={`flex items-center justify-between gap-4 p-4 bg-white rounded-2xl border transition-all hover:shadow-sm hover:border-red-200 ${
-                    i === 0 ? 'border-2 border-emerald-200' : 'border-gray-200'
-                  }`}>
-                  {contenido}
-                </Link>
-              ) : (
-                <div key={e.slug} className={`flex items-center justify-between gap-4 p-4 bg-white rounded-2xl border ${
-                  i === 0 ? 'border-2 border-emerald-200' : 'border-gray-200'
-                }`}>
-                  {contenido}
-                </div>
-              )
-            })}
-          </div>
-
-          <p className="text-xs text-gray-400 mt-4 leading-relaxed">
-            Posicionamiento relativo estimado en base a las comunicaciones públicas de aumento y el promedio del mercado —
-            no es el porcentaje exacto y auditado de cada plan individual, que varía según la cartera. Para el número
-            real de tu plan, la referencia es siempre la cotización actualizada.
-          </p>
-          <div className="mt-6 bg-white rounded-2xl border border-gray-200 p-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div>
-              <div className="font-bold text-gray-900 text-sm">¿Tu cuota subió más que el promedio de su empresa?</div>
-              <div className="text-xs text-gray-500">Puede convenirte cambiar de plan o de prepaga. Cotizalo gratis.</div>
-            </div>
-            <Link href="/comparador" className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] text-white font-bold rounded-xl text-sm hover:bg-[#B8001F] transition-colors">
-              Cotizar ahora →
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Impacto en cuotas reales */}
       {proyeccion && (
