@@ -177,7 +177,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
               {planesOrdenados.map((plan) => (
                 <div key={plan.slug}
                   className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all">
-                  <Link href={`/prepagas/${pz.slug}/${plan.slug}?cartilla=1&provincia=${prov.slug}`} className="min-w-0 flex-1 group">
+                  <Link href={`/prepagas/${pz.slug}/${plan.slug}?provincia=${prov.slug}`} className="min-w-0 flex-1 group">
                     <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors">{plan.nombre}</div>
                     <div className="text-xs text-gray-500 mt-0.5 line-clamp-1">{plan.descripcion}</div>
                   </Link>

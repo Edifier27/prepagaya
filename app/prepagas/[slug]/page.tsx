@@ -474,7 +474,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   </div>
                 </div>
                 <div className="flex gap-2 flex-wrap sm:justify-end">
-                  <Link href={`/prepagas/${slug}/${planEstrella.slug}?cartilla=1`}
+                  <Link href={`/prepagas/${slug}/${planEstrella.slug}`}
                     className="inline-flex items-center gap-1.5 px-4 py-2 border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] rounded-xl text-xs font-bold transition-colors whitespace-nowrap">
                     Ver más →
                   </Link>
@@ -530,7 +530,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     </div>
                   </Link>
                   <div className="mt-3 pt-3 border-t border-gray-100 flex gap-2">
-                    <Link href={`/prepagas/${slug}/${plan.slug}?cartilla=1`}
+                    <Link href={`/prepagas/${slug}/${plan.slug}`}
                       className="flex-1 justify-center inline-flex items-center gap-1.5 text-xs font-bold text-gray-600 hover:text-[#E8002D] border-2 border-gray-200 hover:border-red-200 rounded-lg px-3 py-2 transition-colors">
                       Ver más →
                     </Link>

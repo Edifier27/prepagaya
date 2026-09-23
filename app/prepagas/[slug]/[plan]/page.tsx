@@ -10,8 +10,12 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
+import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
+import { escalaPorEdad } from '@/lib/precios/motor'
+import { coberturasMarca } from '@/lib/data/coberturas-marca'
+import { sanatorios } from '@/lib/data/sanatorios'
 import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
-import { linkCartillaPlan } from '@/lib/data/cartilla-zonas'
+import { linkCartillaPlan, CARTILLAS } from '@/lib/data/cartilla-zonas'
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
 import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
 import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
@@ -55,6 +59,50 @@ function getPerfilDelPlan(plan: Plan): { titulo: string; desc: string }[] {
     desc: 'Psicología incluida. Sin derivación médica previa para empezar a atenderte.',
   })
   return items.slice(0, 3)
+}
+
+// Contenido SEO de los planes de Swiss Medical (Darío, 23-sep-2026): todo sale
+// de datos con fuente — escala de precio por edad del cuadro tarifario SSSalud
+// y la cobertura plan por plan de las fichas oficiales (coberturas-marca.ts).
+function contenidoSwiss(prep: Prepaga, plan: Plan) {
+  if (prep.slug !== 'swiss-medical') return null
+  const codigo = plan.nombre.replace(/^Plan\s+/, '')
+  const escala = escalaPorEdad(prep.slug, plan.slug, 'caba')
+  const coberturas = coberturasMarca
+    .filter((c) => c.prepagaSlug === prep.slug)
+    .flatMap((c) => c.planes.filter((f) => f.planSlugs.includes(plan.slug)).map((f) => ({ tema: c.tema, nombre: c.temaNombre, fila: f })))
+  const reintegros = coberturas.find((c) => c.tema === 'reintegros')?.fila
+  const precioEdad = (edad: number) => escala?.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio
+  // Plan siguiente en la escalera de Swiss (orden por precio a los 30)
+  const orden = [...prep.planes].filter((x) => !x.slug.startsWith('sport')).sort((a, b) => a.precio - b.precio)
+  const siguiente = orden[orden.findIndex((x) => x.slug === plan.slug) + 1]
+  const faqs: { q: string; a: string }[] = []
+  if (escala) {
+    const edades = [40, 50, 60].filter((e) => precioEdad(e))
+    faqs.push({
+      q: `¿Cuánto cuesta el Swiss Medical ${codigo} según la edad?`,
+      a: `Según el cuadro tarifario que Swiss Medical declara ante la Superintendencia de Servicios de Salud (${PRECIO_ACTUALIZADO}, AMBA, contratación directa, IVA incluido): ${edades.map((e) => `${formatPrecio(precioEdad(e)!)} a los ${e} años`).join(', ')}. Swiss ajusta el precio por rangos de edad; hasta los ${escala.rangos[0].hasta} años se paga ${formatPrecio(escala.rangos[0].precio)}.`,
+    })
+  }
+  if (reintegros) {
+    faqs.push({
+      q: `¿El Swiss Medical ${codigo} tiene reintegros?`,
+      a: reintegros.incluido
+        ? `Sí. Según la ficha oficial, el ${codigo} incluye reintegros${reintegros.detalle ? ` (${reintegros.detalle.toLowerCase()})` : ''}: podés atenderte fuera de cartilla y pedir el reintegro, con topes por práctica.`
+        : `No. Según la ficha oficial, el ${codigo} es de cartilla cerrada: te atendés con los prestadores de la cartilla, sin reintegros. Los reintegros empiezan en el SMG30.`,
+    })
+  }
+  if (siguiente && escala) {
+    const esc2 = escalaPorEdad(prep.slug, siguiente.slug, 'caba')
+    const cod2 = siguiente.nombre.replace(/^Plan\s+/, '')
+    if (esc2) {
+      faqs.push({
+        q: `¿Qué diferencia hay entre el ${codigo} y el ${cod2} de Swiss Medical?`,
+        a: `El ${cod2} es el escalón siguiente: a los 30 años cuesta ${formatPrecio(esc2.rangos[0].precio)} contra ${formatPrecio(escala.rangos[0].precio)} del ${codigo} (lista oficial, AMBA). ${siguiente.descripcion}`,
+      })
+    }
+  }
+  return { codigo, escala, coberturas, faqs }
 }
 
 function buildPlanFAQs(plan: Plan, prep: Prepaga) {
@@ -121,8 +169,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     // "Qué cubre" en vez de "Cartilla" (22-sep-2026): la cartilla del plan vive
     // en /cartillas/[prepaga]/plan-x; acá se enlaza (ver cartillaPlanLink).
-    title: `${prep.nombre} ${plan.nombre}: Precio ${formatPrecio(plan.precio)} — Qué cubre ${PRECIO_ACTUALIZADO}`,
-    description: `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
+    // Swiss: "Swiss Medical SMG20" (sin "Plan", es como se busca) + precio por edad
+    title: prep.slug === 'swiss-medical'
+      ? `Swiss Medical ${plan.nombre.replace(/^Plan\s+/, '')}: precio por edad y qué cubre (${PRECIO_ACTUALIZADO})`
+      : `${prep.nombre} ${plan.nombre}: Precio ${formatPrecio(plan.precio)} — Qué cubre ${PRECIO_ACTUALIZADO}`,
+    description: prep.slug === 'swiss-medical'
+      ? `Swiss Medical ${plan.nombre.replace(/^Plan\s+/, '')} en ${PRECIO_ACTUALIZADO}: desde ${formatPrecio(plan.precio)}/mes hasta los 35 años (lista oficial SSSalud, AMBA). ${plan.copago ? 'Con copago' : 'Sin copago'}, cartilla ${plan.redAbierta ? 'abierta con reintegros' : 'cerrada'}. Precio por edad, qué cubre y sanatorios de tu zona.`
+      : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
@@ -169,6 +222,10 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const zonaKeyCartilla = provDelLink?.zonaKey
   const provinciaNombreCartilla = provDelLink?.nombre
 
+  // Plan de la cartilla oficial que corresponde a este plan (ej. SMG20 → "SMG20", S1 → "SMG02")
+  const cartillaDef = CARTILLAS[prep.slug]
+  const planCartilla = cartillaDef?.planes.find((x) => x.comparadorSlug === plan.slug || x.otrosComparadorSlugs?.includes(plan.slug))
+
   const isPartner = PARTNERS_OFICIALES_SLUGS.includes(slug)
 
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
@@ -180,7 +237,8 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const planMenosCopago = planMenosCopagoSlug ? prep.planes.find((p) => p.slug === planMenosCopagoSlug) : undefined
 
   const perfilDelPlan = getPerfilDelPlan(plan)
-  const faqs = buildPlanFAQs(plan, prep)
+  const swiss = contenidoSwiss(prep, plan)
+  const faqs = [...(swiss?.faqs ?? []), ...buildPlanFAQs(plan, prep)]
   const comparativaPlan = getComparativaParaPlan(slug, planSlug)
   const otroPlanComparativa = comparativaPlan
     ? prep.planes.find((p) => p.slug === (comparativaPlan.plan1Slug === planSlug ? comparativaPlan.plan2Slug : comparativaPlan.plan1Slug))
@@ -403,6 +461,68 @@ export default async function PlanPage({ params, searchParams }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Swiss: precio por edad (cuadro tarifario SSSalud) y cobertura punto por punto (fichas oficiales) */}
+      {swiss && (swiss.escala || swiss.coberturas.length > 0) && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {swiss.escala && (
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-1">Precio del Swiss Medical {swiss.codigo} por edad</h2>
+                <p className="text-xs text-gray-500 mb-4">
+                  Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: AMBA, contratación directa, IVA incluido, por persona.
+                </p>
+                <table className="w-full text-sm border border-gray-100 rounded-xl overflow-hidden">
+                  <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+                    <tr><th className="text-left px-4 py-2">Edad</th><th className="text-right px-4 py-2">Precio mensual</th></tr>
+                  </thead>
+                  <tbody>
+                    {swiss.escala.rangos.map((x) => (
+                      <tr key={x.desde} className="border-t border-gray-100">
+                        <td className="px-4 py-2 text-gray-700">{x.hasta >= 99 ? `${x.desde} años o más` : `${x.desde} a ${x.hasta} años`}</td>
+                        <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(x.precio)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="text-xs text-gray-400 mt-2">El precio final depende de tu zona, tu grupo familiar y las promociones vigentes: te lo cotizamos sin cargo.</p>
+              </div>
+            )}
+            {swiss.coberturas.length > 0 && (
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-1">Qué cubre el Swiss Medical {swiss.codigo}, punto por punto</h2>
+                <p className="text-xs text-gray-500 mb-4">Según las fichas oficiales de Swiss Medical.</p>
+                <ul className="divide-y divide-gray-100 border border-gray-100 rounded-xl">
+                  {swiss.coberturas.map((c) => (
+                    <li key={c.tema} className="flex items-start justify-between gap-3 px-4 py-2.5 text-sm">
+                      <Link href={`/coberturas/${c.tema}/${prep.slug}`} className="text-gray-700 hover:text-[#E8002D] hover:underline">{c.nombre}</Link>
+                      <span className={`text-right ${c.fila.sinDato ? 'text-gray-400' : c.fila.incluido ? 'text-emerald-700 font-semibold' : 'text-gray-500'}`}>
+                        {c.fila.sinDato ? 'Sin dato en la ficha' : c.fila.incluido ? `✓ ${c.fila.detalle ?? 'Incluido'}` : `✕ ${c.fila.detalle ?? 'No incluido'}`}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Qué tenés con este plan en tu zona (cartilla oficial por zona, Darío 23-sep-2026) */}
+      {planCartilla && cartillaDef && (
+        <section className="py-8 bg-white">
+          <div className="container max-w-5xl mx-auto">
+            <CartillaPlanTuZona
+              prepagaSlug={prep.slug}
+              prepagaNombre={prep.nombre}
+              planNombre={plan.nombre}
+              planCartillaId={planCartilla.id}
+              labelGuardia={cartillaDef.labelGuardia}
+              renombre={sanatorios.map((x) => ({ nombre: x.nombre, aliases: x.aliases }))}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Comparativa directa contra otro plan puntual (ej. Flux vs 210) */}
       {comparativaPlan && otroPlanComparativa && (

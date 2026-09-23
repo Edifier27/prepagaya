@@ -144,3 +144,23 @@ export function preciosParaGrupo(edades: number[], zona: string, modalidad: Moda
 }
 
 export const FUENTE_PRECIOS = DATOS.fuente
+
+/**
+ * Escala de precio por edad de un plan (modalidad directa, con IVA) en la
+ * región equivalente a la zona dada — para las tablas "precio por edad" de
+ * las páginas de plan. null si el plan no tiene cuadro oficial.
+ */
+export function escalaPorEdad(prepaga: string, plan: string, zona = 'caba'): { region: string; periodo: number; rangos: { desde: number; hasta: number; precio: number }[] } | null {
+  const tabla = DATOS.tarifas[prepaga]?.[plan]
+  if (!tabla) return null
+  for (const region of regionesDe(prepaga, zona)) {
+    const bandas = tabla[region]?.d
+    if (!bandas?.length) continue
+    return {
+      region,
+      periodo: DATOS.periodoPorPrepaga[prepaga],
+      rangos: bandas.map(([desde, hasta, valor]) => ({ desde, hasta, precio: Math.round(valor * DATOS.iva) })),
+    }
+  }
+  return null
+}

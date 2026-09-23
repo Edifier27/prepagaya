@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: '¿Por qué tantas recomendaciones apuntan a Swiss Medical?',
-    a: 'Porque en la franja de planes "sin copago, red abierta" que la mayoría contrata, el SMG20 de Swiss Medical resulta consistentemente competitivo en precio con 9 sanatorios propios — un combo que pocas empresas igualan. No es la única recomendación: para quien viene de Omint, por ejemplo, OSDE es la mejor opción por su red mucho más amplia.',
+    a: 'Porque en la franja de planes sin copago que la mayoría contrata, el SMG20 de Swiss Medical resulta competitivo en precio según los cuadros tarifarios oficiales, con sanatorios propios — un combo que pocas empresas igualan. No es la única recomendación: para quien viene de Omint, por ejemplo, OSDE es la mejor opción por su red mucho más amplia.',
   },
   {
     q: '¿Pierdo cobertura o carencias al cambiarme de prepaga?',

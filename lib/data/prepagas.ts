@@ -90,7 +90,7 @@ export const prepagas: Prepaga[] = [
         descripcion: 'El plan más elegido de Swiss Medical. Sin copago en consultas, estudios, kinesio y fonoaudiología. 30 sesiones de psicología por año sin cargo. Ortodoncia hasta 15 años. 40% descuento farmacias.',
         cobertura: ['Internación completa', 'Consultas sin copago', 'Especialistas', 'Maternidad', 'Psicología 30 sesiones sin cargo', 'Óptica', 'Dental', 'Kinesioterapia sin copago', 'Ortodoncia hasta 15 años', '40% descuento farmacias'],
         copago: false,
-        redAbierta: true,
+        redAbierta: false, // sistema cerrado según el Alcance de la cobertura SMG20 (Swiss Medical)
         destacado: true,
       },
       {
