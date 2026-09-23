@@ -214,7 +214,11 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
   return out
 }
 
-function calcResultados(personas: Persona[], zonaKey: string, descuento: number): Resultado[] {
+// `oficiales`: precio de lista del grupo por plan según el cuadro tarifario
+// SSSalud ({"prepaga/plan": total}, de /api/precios — escala etaria propia de
+// cada prepaga). Los planes sin cuadro oficial siguen con la estimación por
+// multiplicadores de calcGrupal (23-sep-2026).
+function calcResultados(personas: Persona[], zonaKey: string, descuento: number, oficiales: Record<string, number>): Resultado[] {
   const slugsZona = ZONA_PREPAGAS[zonaKey] ?? ZONA_PREPAGAS['otras']
   const prepagasFiltradas = prepagas.filter((p) => slugsZona.includes(p.slug))
   const out: Resultado[] = []
@@ -224,7 +228,7 @@ function calcResultados(personas: Persona[], zonaKey: string, descuento: number)
       if (plan.redAbierta) score += 3
       if (!plan.copago) score += 2
       if (plan.destacado) score += 3
-      const precioGrupal = calcGrupal(plan.precio, personas)
+      const precioGrupal = oficiales[`${prep.slug}/${plan.slug}`] ?? calcGrupal(plan.precio, personas)
       out.push({ prepaga: prep, plan, score, precioGrupal, precioDesc: Math.round(precioGrupal * (1 - descuento)) })
     }
   }
@@ -559,6 +563,24 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   }, [])
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
 
+  // Precios oficiales del grupo (motor de precios, /api/precios): se piden al
+  // llegar a preview/resultados y cada vez que cambian edades o zona.
+  const [preciosOficiales, setPreciosOficiales] = useState<Record<string, number>>({})
+  const edadesClave = personas.map((p) => parseInt(p.edad)).filter((n) => Number.isFinite(n)).join(',')
+  useEffect(() => {
+    if (!zonaKey || !edadesClave) return
+    let cancelado = false
+    fetch('/api/precios', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ zona: zonaKey, edades: edadesClave.split(',').map(Number) }),
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => { if (!cancelado && data?.precios) setPreciosOficiales(data.precios) })
+      .catch(() => {})
+    return () => { cancelado = true }
+  }, [zonaKey, edadesClave])
+
   // Grupo familiar: se puede editar durante el paso "edades" y también desde
   // el panel de resultados (agregar/sacar integrantes recalcula el precio
   // grupal en el momento, sin volver atrás en el wizard).
@@ -638,8 +660,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   }
 
   const allResultados = useMemo(() =>
-    (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey, descuentoRate) : [],
-    [step, personas, zonaKey, descuentoRate]
+    (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey, descuentoRate, preciosOficiales) : [],
+    [step, personas, zonaKey, descuentoRate, preciosOficiales]
   )
 
   // Prepagas presentes en los resultados de esta zona — la lista del filtro

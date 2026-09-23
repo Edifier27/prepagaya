@@ -22,6 +22,10 @@ import glob, json, os, re, sys, time
 RAIZ = os.path.join(os.path.dirname(__file__), '..', '..')
 DATOS = os.path.join(RAIZ, 'data', 'sssalud')
 SALIDA = os.path.join(RAIZ, 'lib', 'data', 'precios-oficiales.json')
+# Tabla completa (todas las regiones y rangos etarios) para el motor de
+# precios del servidor (lib/precios/motor.ts). Valores SIN IVA, tal cual
+# los declara la prepaga: el IVA lo aplica el motor según la modalidad.
+SALIDA_TARIFAS = os.path.join(RAIZ, 'lib', 'data', 'tarifas-oficiales.json')
 EDAD_REFERENCIA = 30
 IVA = 1.105
 
@@ -80,6 +84,33 @@ def main():
             # si hay rangos superpuestos, el más acotado
             f = min(cand, key=lambda f: f['rango_etario_hasta'] - f['rango_etario_desde'])
             precios[slug][plan_slug] = round(f['valor_capital'] * IVA)
+
+    # Tabla completa por plan: {prepaga: {plan: {region: {"d": [[desde, hasta, valor]], "r": [...]}}}}
+    # d = modalidad Directo (particular), r = Desregulado (derivando aportes).
+    tarifas = {}
+    for slug, m in MAPEO.items():
+        periodo = periodo_por_prepaga.get(slug)
+        if not periodo:
+            continue
+        tarifas[slug] = {}
+        for plan_slug, nombre in m['planes'].items():
+            por_region = {}
+            for f in cache[periodo]:
+                if f['rnemp'] != m['rnemp'] or f['nombre_plan'] != nombre:
+                    continue
+                clave = 'd' if f['modalidad_adhesion'] else 'r'
+                por_region.setdefault(f['region'], {}).setdefault(clave, []).append(
+                    [f['rango_etario_desde'], f['rango_etario_hasta'], round(f['valor_capital'], 2)])
+            for reg in por_region.values():
+                for lista in reg.values():
+                    lista.sort()
+            if por_region:
+                tarifas[slug][plan_slug] = por_region
+    with open(SALIDA_TARIFAS, 'w', encoding='utf-8') as fh:
+        json.dump({'fuente': 'Superintendencia de Servicios de Salud — cuadros tarifarios (Res. 645/2025)',
+                   'iva': IVA, 'periodoPorPrepaga': periodo_por_prepaga, 'tarifas': tarifas},
+                  fh, ensure_ascii=False, separators=(',', ':'))
+    print(f'OK → {SALIDA_TARIFAS}')
 
     ultimo = max(periodo_por_prepaga.values())
     salida = {

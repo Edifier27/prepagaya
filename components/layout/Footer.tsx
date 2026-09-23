@@ -333,7 +333,12 @@ export function Footer() {
         </div>
 
         {/* Fuente de precios (23-sep-2026): cuadros tarifarios oficiales de la SSSalud */}
-        <div className="mt-10 flex items-center gap-3 text-xs text-gray-500">
+        <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-3 text-xs text-gray-500">
+          {/* Logo como cita de la fuente de datos, no como aval */}
+          <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex bg-white rounded-lg px-3 py-2 w-fit flex-shrink-0" aria-label="Superintendencia de Servicios de Salud — cuadros tarifarios">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logos/sssalud.svg" alt="Superintendencia de Servicios de Salud" width={112} height={42} className="h-8 w-auto" />
+          </a>
           <span>
             Precios de lista: fuente{' '}
             <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-300">
