@@ -434,7 +434,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Compará {prep.nombre} con otras prepagas</h2>
           <p className="text-red-200 text-sm mb-6">
-            Precios reales de {PRECIO_ACTUALIZADO}, cartillas y coberturas. Gratis, sin registro y sin DNI.
+            Precios reales de {PRECIO_ACTUALIZADO}, cartillas y coberturas. Gratis, sin DNI y sin compromiso.
           </p>
           <Link
             href="/comparador"

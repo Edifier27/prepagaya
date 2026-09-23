@@ -75,7 +75,7 @@ export default async function Image() {
 
         {/* Pills */}
         <div style={{ display: 'flex', gap: '16px' }}>
-          {['Gratis', 'Sin registro', 'Precios actualizados'].map((label) => (
+          {['Gratis', 'Sin DNI', 'Precios actualizados'].map((label) => (
             <div
               key={label}
               style={{

@@ -247,7 +247,7 @@ export default async function GuiaPage({ params }: Props) {
         {/* CTA */}
         <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-7 text-white text-center mb-10">
           <h2 className="text-xl font-bold mb-2">¿Querés comparar prepagas con precios reales?</h2>
-          <p className="text-red-100 text-sm mb-5">Precios actualizados todos los meses, sin registro y sin DNI.</p>
+          <p className="text-red-100 text-sm mb-5">Precios actualizados todos los meses. Sin DNI y sin compromiso.</p>
           <Link
             href="/comparador"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors"

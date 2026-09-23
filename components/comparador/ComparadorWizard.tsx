@@ -7,7 +7,7 @@ import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { testimonios } from '@/lib/data/testimonios'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, calidadPlan, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS } from '@/lib/utils'
+import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS } from '@/lib/utils'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -94,10 +94,19 @@ for (const prov of provinciasSEO) {
   ZONA_PREPAGAS[prov.zonaKey] = prov.prepagas.filter((pz) => pz.enSitio).map((pz) => pz.slug)
 }
 
+// Interior de Buenos Aires (23-sep-2026): antes compartía lista con el GBA y
+// el comparador le ofrecía a alguien de Tandil prepagas que no llegan ahí.
+// Solo se sacan las que su cartilla oficial scrapeada confirma que no cubren
+// el interior bonaerense (lib/data/cartilla-zonas): Premedic tiene zonas solo
+// en CABA y GBA. Las que no tienen cartilla scrapeada no se sacan sin dato.
+const SIN_COBERTURA_INTERIOR_BA = ['premedic']
+ZONA_PREPAGAS['buenos-aires-interior'] = ZONA_PREPAGAS['buenos-aires'].filter((s) => !SIN_COBERTURA_INTERIOR_BA.includes(s))
+
 export interface Provincia { slug: string; nombre: string; zonaKey: string }
 export const PROVINCIAS: Provincia[] = [
   { slug: 'caba',         nombre: 'CABA',                    zonaKey: 'caba' },
-  { slug: 'buenos-aires', nombre: 'Buenos Aires (GBA/Pcia)', zonaKey: 'buenos-aires' },
+  { slug: 'buenos-aires', nombre: 'Gran Buenos Aires (GBA)', zonaKey: 'buenos-aires' },
+  { slug: 'buenos-aires-interior', nombre: 'Interior de Buenos Aires', zonaKey: 'buenos-aires-interior' },
   { slug: 'cordoba',      nombre: 'Córdoba',                 zonaKey: 'cordoba' },
   { slug: 'santa-fe',     nombre: 'Santa Fe',                zonaKey: 'santa-fe' },
   { slug: 'mendoza',      nombre: 'Mendoza',                 zonaKey: 'mendoza' },
@@ -541,7 +550,10 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
     if (initialZona) return
     const geo = leerZonaGeoDeCookie()
     if (!geo) return
-    const prov = PROVINCIAS.find((p) => p.slug === geo.wizardSlug)
+    // El geo distingue interior bonaerense solo en el label (wizardSlug es
+    // 'buenos-aires' para toda la provincia): se mapea acá a la opción propia.
+    const slug = geo.wizardSlug === 'buenos-aires' && geo.label.includes('Interior de Buenos Aires') ? 'buenos-aires-interior' : geo.wizardSlug
+    const prov = PROVINCIAS.find((p) => p.slug === slug)
     if (prov) setZonaSugerida({ provincia: prov, label: geo.label })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -1009,7 +1021,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
               </svg>
-              Completando cotización en {countdown}s…
+              Encontramos {allResultados.length} planes en {provinciaNombre}…
             </div>
           )}
         </div>
@@ -1017,7 +1029,6 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         {/* Preview cards — se muestran 3s, después se difuminan hasta dejar los datos */}
         <div className={`space-y-3 mb-4 transition-all duration-500 ${showPopup ? 'blur-md pointer-events-none select-none' : ''}`}>
           {previewItems.map((r, i) => {
-            const calidad = calidadPlan(r.prepaga, r.plan)
             return (
               <div key={`${r.prepaga.slug}-${r.plan.slug}`}
                 className={`bg-white rounded-2xl border-2 p-4 flex items-center justify-between ${i === 0 ? 'border-[#E8002D]' : 'border-gray-100'}`}>
@@ -1036,7 +1047,6 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   </div>
                 </div>
                 <div className="text-right flex-shrink-0 ml-4 flex flex-col items-end gap-1.5">
-                  <div className="text-[10px] text-[#E8002D] font-bold uppercase tracking-wide">Calidad {calidad}/5</div>
                   <NivelPrecioBadge nivel={nivelPrecio(r.plan.precio)} />
                 </div>
               </div>
@@ -1703,7 +1713,6 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
               const isBest = planKey === bestKey
               const isCheapest = planKey === cheapestKey && planKey !== bestKey
               const isAccedido = planAccedido === planKey
-              const calidad = calidadPlan(res.prepaga, res.plan)
               const testimonio = testimonioDePlan(res.prepaga.slug, res.plan.nombre)
 
               return (
@@ -1735,16 +1744,16 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                         <div className="text-xs text-gray-400 mt-0.5">{res.plan.descripcion}</div>
                       </div>
                       <div className="text-center flex-shrink-0">
-                        <div className="text-[9px] font-bold text-gray-400 uppercase tracking-wider mb-1">Calidad Cartilla</div>
-                        <div className="relative w-12 h-12">
-                          <svg viewBox="0 0 36 36" className="w-12 h-12 -rotate-90">
-                            <circle cx="18" cy="18" r="15" fill="none" stroke="#F3F4F6" strokeWidth="3"/>
-                            <circle cx="18" cy="18" r="15" fill="none" stroke="#E8002D" strokeWidth="3"
-                              strokeDasharray={`${(calidad / 5) * 94} 94`} strokeLinecap="round"/>
-                          </svg>
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-xs font-black text-gray-900">{calidad}/5</span>
-                          </div>
+                        {/* Antes: puntaje "Calidad cartilla X/5" calculado (sin fuente)
+                            que dejaba a partners en 1/5 — reemplazado por los dos
+                            datos concretos que lo formaban (23-sep-2026). */}
+                        <div className="flex flex-col items-center gap-1">
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full border font-semibold whitespace-nowrap ${res.plan.redAbierta ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-gray-50 text-gray-600 border-gray-200'}`}>
+                            Red {res.plan.redAbierta ? 'abierta' : 'cerrada'}
+                          </span>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full border font-semibold whitespace-nowrap ${res.plan.copago ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-green-50 text-green-700 border-green-200'}`}>
+                            {res.plan.copago ? 'Con copago' : 'Sin copago'}
+                          </span>
                         </div>
                         <label className="flex items-center justify-center gap-1 mt-2 cursor-pointer select-none">
                           <input
@@ -2008,9 +2017,11 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                       ))}
                     </tr>
                     <tr className="border-t border-gray-100">
-                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Calidad de cartilla</td>
+                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Red y copago</td>
                       {seleccionados.map((r) => (
-                        <td key={`${r.prepaga.slug}-${r.plan.slug}-calidad`} className={`py-3 px-3 ${celda(r)}`}>{calidadPlan(r.prepaga, r.plan)}/5</td>
+                        <td key={`${r.prepaga.slug}-${r.plan.slug}-calidad`} className={`py-3 px-3 text-xs ${celda(r)}`}>
+                          Red {r.plan.redAbierta ? 'abierta' : 'cerrada'} · {r.plan.copago ? 'con copago' : 'sin copago'}
+                        </td>
                       ))}
                     </tr>
                     <tr className="border-t border-gray-100">

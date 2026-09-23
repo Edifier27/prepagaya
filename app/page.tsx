@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
@@ -156,7 +156,7 @@ export default function HomePage(): React.ReactElement {
             </div>
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-red-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] animate-pulse" />
-              Comparador personalizado · Gratis · Sin registro
+              Comparador personalizado · Gratis · Sin DNI
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
               Encontrá tu prepaga ideal<br />
@@ -412,7 +412,7 @@ export default function HomePage(): React.ReactElement {
               <strong className="text-gray-900">Coberturas plan por plan.</strong> Ortodoncia, anteojos, psicología, internación y más, con la fuente oficial citada en cada dato. <Link href="/coberturas" className="text-[#E8002D] font-semibold hover:underline">Ver coberturas</Link>
             </li>
             <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
-              <strong className="text-gray-900">Partner oficial de {PARTNERS_OFICIALES.length} prepagas, con respuesta rápida.</strong> Nuestro sistema propio de cotización nos permite mandarte la cotización formal enseguida, y pagás lo mismo que yendo directo. <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo trabajamos</Link>
+              <strong className="text-gray-900">Partner oficial de {PARTNERS_OFICIALES.length} prepagas, con respuesta en {TIEMPO_RESPUESTA}.</strong> Nuestro sistema propio de cotización nos permite mandarte la cotización formal enseguida, y pagás lo mismo que yendo directo. <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo trabajamos</Link>
             </li>
           </ul>
         </div>
@@ -434,8 +434,8 @@ export default function HomePage(): React.ReactElement {
               },
               {
                 icon: <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />,
-                title: 'Respuesta rápida',
-                desc: 'Te contactamos enseguida y te mandamos la cotización formal con nuestro sistema propio de cotización.',
+                title: `Respuesta en ${TIEMPO_RESPUESTA}`,
+                desc: `Te respondemos en ${TIEMPO_RESPUESTA} y te mandamos la cotización formal con nuestro sistema propio de cotización.`,
               },
               {
                 icon: <path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />,
@@ -606,7 +606,7 @@ export default function HomePage(): React.ReactElement {
             ¿Listo para encontrar tu prepaga ideal?
           </h2>
           <p className="text-red-100 mb-8 text-sm">
-            Comparamos Swiss Medical, OSDE, Sancor Salud, CEMIC, Medifé, Omint y más. Precios reales, sin registro, sin DNI.
+            Comparamos Swiss Medical, OSDE, Sancor Salud, CEMIC, Medifé, Omint y más. Precios reales, sin DNI, sin compromiso.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button href="#cotizador" variant="white" size="lg">

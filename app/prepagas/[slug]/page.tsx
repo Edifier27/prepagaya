@@ -10,7 +10,7 @@ import { obrasSociales } from '@/lib/data/obras-sociales'
 import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
-import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -155,7 +155,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // /cartillas/[prepaga] con datos oficiales por zona; esta ficha apunta a
     // planes y precios y enlaza a la cartilla.
     title: `Planes de ${prep.nombre} y precios ${PRECIO_ACTUALIZADO}: desde ${formatPrecio(precioMinTitulo)}/mes`,
-    description: `${prep.nombre} ${PRECIO_ACTUALIZADO}: planes desde ${formatPrecio(precioMinTitulo)}/mes. Cartilla completa, coberturas y ${prep.satisfaccion}% de satisfacción. Cotizá tu precio exacto gratis, sin registro.`,
+    description: `${prep.nombre} ${PRECIO_ACTUALIZADO}: planes desde ${formatPrecio(precioMinTitulo)}/mes. Cartilla completa, coberturas y ${prep.satisfaccion}% de satisfacción. Cotizá tu precio exacto gratis y sin compromiso.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} planes`,
@@ -346,19 +346,25 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     Buscar en la cartilla de {prep.nombre}
                   </Link>
                 )}
-                <a
-                  href={`https://${prep.web}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-600 font-semibold rounded-xl transition-all text-sm"
-                >
-                  Web oficial ↗
-                </a>
+                {/* Web oficial como botón solo para las que no vendemos: en las
+                    partner mandaba al visitante más calificado a contratar
+                    directo (pedido de Darío, 23-sep-2026). En las partner
+                    queda como link de texto al pie de las preguntas frecuentes. */}
+                {!isPartner && (
+                  <a
+                    href={`https://${prep.web}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-600 font-semibold rounded-xl transition-all text-sm"
+                  >
+                    Web oficial ↗
+                  </a>
+                )}
               </div>
               {isPartner && (
                 <p className="mt-3 text-xs text-gray-500 flex items-center gap-1.5">
                   <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" aria-hidden><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .2.08.39.22.53l3 3a.75.75 0 101.06-1.06l-2.78-2.78V5z" clipRule="evenodd" /></svg>
-                  Respuesta rápida: te mandamos la cotización formal de {prep.nombre} con nuestro sistema propio de cotización.
+                  Te respondemos en {TIEMPO_RESPUESTA} con la cotización de {prep.nombre}, hecha con nuestro sistema propio de cotización.
                 </p>
               )}
               {(prep.slug === 'swiss-medical' || prep.slug === 'osde') && (
@@ -539,7 +545,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
           <div className="mt-6 bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-center sm:text-left">
               <div className="text-white font-bold text-lg">¿Cuánto te sale {prep.nombre} a vos?</div>
-              <div className="text-red-200 text-sm mt-0.5">El precio final depende de tu edad y tu zona. Cotizalo gratis, sin registro y sin DNI.</div>
+              <div className="text-red-200 text-sm mt-0.5">El precio final depende de tu edad y tu zona. Cotizalo gratis, sin DNI y sin compromiso.</div>
             </div>
             <ContratarPlanButton
               prepagaNombre={prep.nombre}
@@ -907,6 +913,12 @@ export default async function PrepagaSlugPage({ params }: Props) {
               </details>
             ))}
           </div>
+          {isPartner && (
+            <p className="text-xs text-gray-400 mt-5">
+              Sitio oficial de {prep.nombre}:{' '}
+              <a href={`https://${prep.web}`} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">{prep.web}</a>
+            </p>
+          )}
         </div>
       </section>
 

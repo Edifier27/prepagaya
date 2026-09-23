@@ -60,6 +60,10 @@ export const PARTNERS_OFICIALES = ['Swiss Medical', 'Sancor Salud', 'OSDE', 'Ava
 export const PRIORIDAD_PARTNERS = ['swiss-medical', 'avalian', 'premedic', 'sancor-salud']
 export const PARTNERS_OFICIALES_SLUGS = [...PRIORIDAD_PARTNERS, 'osde']
 
+// Tiempo de respuesta al lead: el lead entra a Kommo automáticamente a los
+// 3 minutos (dato de Darío, 23-sep-2026). Una sola constante para todo el copy.
+export const TIEMPO_RESPUESTA = '3 minutos'
+
 export const PARTNERS_OFICIALES_TEXTO = `${PARTNERS_OFICIALES.slice(0, -1).join(', ')} y ${PARTNERS_OFICIALES[PARTNERS_OFICIALES.length - 1]}`
 
 export const SITE_DESCRIPTION =

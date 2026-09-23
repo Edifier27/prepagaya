@@ -66,7 +66,7 @@ export default function BlogPage(): React.ReactElement {
         <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
           <div>
             <div className="text-white font-bold">¿Ya sabés qué buscás? Cotizá directo</div>
-            <div className="text-red-200 text-xs">Precio exacto según tu edad y zona. Gratis, sin registro y sin DNI.</div>
+            <div className="text-red-200 text-xs">Precio exacto según tu edad y zona. Gratis, sin DNI y sin compromiso.</div>
           </div>
           <Link
             href="/comparador"

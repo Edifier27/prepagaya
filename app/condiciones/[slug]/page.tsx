@@ -296,7 +296,7 @@ export default async function CondicionPage({ params }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Encontrá tu prepaga ideal con {cond.nombre.toLowerCase()}</h2>
           <p className="text-red-200 text-sm mb-6">
-            Comparación gratuita de cobertura específica para tu condición, sin registro y sin DNI.
+            Comparación gratuita de cobertura específica para tu condición. Sin DNI y sin compromiso.
           </p>
           <Link
             href="/comparador"

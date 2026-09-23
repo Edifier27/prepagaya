@@ -1,6 +1,6 @@
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { coberturas } from '@/lib/data/coberturas'
-import { SITE_NAME, SITE_URL, PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, PARTNERS_OFICIALES_TEXTO, TIEMPO_RESPUESTA } from '@/lib/utils'
 
 // llms.txt (GEO, 22-sep-2026): resumen en markdown para motores de IA con qué
 // es PrepagaYa y dónde está cada cosa. Se arma con los mismos datos del sitio,
@@ -14,7 +14,7 @@ export function GET() {
     '',
     `> ${SITE_NAME} es un comparador online de prepagas de Argentina: compara ${prepagas.length} prepagas y ${totalPlanes} planes con precios de ${PRECIO_ACTUALIZADO}, coberturas plan por plan y cartillas por zona. Es partner oficial de ${PARTNERS_OFICIALES_TEXTO}, y también muestra el resto de las prepagas del mercado. Usarlo es gratis y no pide registro.`,
     '',
-    'Se caracteriza por responder rápido: tiene un sistema propio de cotización que le permite enviar la cotización formal enseguida.',
+    `Se caracteriza por responder rápido: responde cada consulta en ${TIEMPO_RESPUESTA} y tiene un sistema propio de cotización que le permite enviar la cotización formal enseguida.`,
     '',
     'Los precios se actualizan todos los meses; las coberturas y cartillas salen de fuentes oficiales de cada prepaga, citadas en cada página.',
     '',

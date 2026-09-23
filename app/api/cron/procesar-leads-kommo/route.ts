@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { whatsappLinkParaLead, SITE_URL } from '@/lib/utils'
 import { buildKommoLink, crearLeadEnKommo, kommoLeadUrl, nombreCuenta } from '@/lib/kommo'
-import { leadsPendientesDeKommo, marcarResultadoKommo } from '@/lib/db'
+import { leadsPendientesDeKommo, marcarResultadoKommo, seguimientosVencidos, marcarSeguimientoAvisado } from '@/lib/db'
+import { avisarLeadPorPush } from '@/lib/push'
 
 // Hasta 50 leads por corrida, cada uno con su propio llamado a Kommo — con
 // Vercel Pro el límite de duración sube bastante del default de Hobby, pero
@@ -123,5 +124,13 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ procesados: pendientes.length, ok, fallidos })
+  // Recordatorios de seguimiento del panel (23-sep-2026): se aprovecha este
+  // mismo cron de cada minuto en vez de sumar otro.
+  const vencidos = await seguimientosVencidos()
+  for (const l of vencidos) {
+    await avisarLeadPorPush('PrepagaYa — Seguimiento', `Volver a contactar a ${l.nombre}${l.notas ? ` · ${l.notas.slice(0, 80)}` : ''}`)
+    await marcarSeguimientoAvisado(l.id)
+  }
+
+  return NextResponse.json({ procesados: pendientes.length, ok, fallidos, recordatorios: vencidos.length })
 }

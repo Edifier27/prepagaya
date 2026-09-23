@@ -49,6 +49,15 @@ function asegurarTablas(): Promise<unknown> {
       // Borrado desde el panel (23-sep-2026): soft delete — la fila queda en la
       // base con fecha de borrado, así un error se puede recuperar a mano.
       sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS eliminado_en TIMESTAMPTZ`,
+      // Mini CRM del panel (23-sep-2026): estado comercial, notas y fecha de
+      // seguimiento con aviso push (lo manda el cron de Kommo, cada minuto).
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS estado TEXT NOT NULL DEFAULT 'nuevo'`,
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notas TEXT`,
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS seguimiento_en TIMESTAMPTZ`,
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS seguimiento_avisado BOOLEAN NOT NULL DEFAULT false`,
+      // Zona detectada por IP al momento del lead, ej. "Banfield (GBA Sur)" —
+      // aproximada (23-sep-2026), para filtrar el panel por localidad/subzona.
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS zona_detectada TEXT`,
       sql`
         CREATE TABLE IF NOT EXISTS push_subscriptions (
           id SERIAL PRIMARY KEY,
@@ -79,7 +88,15 @@ export interface LeadRow {
   veces: number
   actualizado_en: string | null
   pais: string | null
+  estado: EstadoLead
+  notas: string | null
+  seguimiento_en: string | null
+  seguimiento_avisado: boolean
+  zona_detectada: string | null
 }
+
+export const ESTADOS_LEAD = ['nuevo', 'contactado', 'cotizado', 'vendido', 'perdido'] as const
+export type EstadoLead = (typeof ESTADOS_LEAD)[number]
 
 export interface NuevoLead {
   nombre: string
@@ -91,6 +108,8 @@ export interface NuevoLead {
   fuente: string
   /** 'us'/'ru'/'zh' para leads de los silos internacionales — ver lib/kommo.ts. */
   pais?: string
+  /** Label de detectarZona() por IP, ej. "Banfield (GBA Sur)" — aproximado. */
+  zonaDetectada?: string
 }
 
 /** Sentinela de kommo_estado para leads que todavía no se mandaron a Kommo — ver KOMMO_DELAY_MIN en app/api/leads/route.ts. */
@@ -157,6 +176,7 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
           prepaga = ${intereses.join(', ')},
           provincia = COALESCE(NULLIF(${d.provincia}, ''), provincia),
           edades = COALESCE(NULLIF(${d.edades}, ''), edades),
+          zona_detectada = COALESCE(zona_detectada, ${d.zonaDetectada ?? null}),
           fuente = ${d.fuente},
           veces = veces + 1,
           actualizado_en = now(),
@@ -167,8 +187,8 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
     }
 
     await sql`
-      INSERT INTO leads (nombre, celular, email, prepaga, provincia, edades, fuente, kommo_estado, kommo_link, pais)
-      VALUES (${d.nombre}, ${d.celular}, ${d.email}, ${d.prepaga}, ${d.provincia}, ${d.edades}, ${d.fuente}, ${KOMMO_PENDIENTE}, '', ${d.pais ?? null})
+      INSERT INTO leads (nombre, celular, email, prepaga, provincia, edades, fuente, kommo_estado, kommo_link, pais, zona_detectada)
+      VALUES (${d.nombre}, ${d.celular}, ${d.email}, ${d.prepaga}, ${d.provincia}, ${d.edades}, ${d.fuente}, ${KOMMO_PENDIENTE}, '', ${d.pais ?? null}, ${d.zonaDetectada ?? null})
     `
   } catch (err) {
     console.error('[DB] error guardando lead:', err)
@@ -213,6 +233,49 @@ export async function leadsDesde(ultimoId: number): Promise<LeadRow[]> {
   await asegurarTablas()
   const rows = await sql`SELECT * FROM leads WHERE id > ${ultimoId} AND eliminado_en IS NULL ORDER BY creado_en DESC`
   return rows as unknown as LeadRow[]
+}
+
+/**
+ * Cambios desde el panel: estado, notas y/o fecha de seguimiento. Cada campo
+ * es opcional; `seguimiento_en: null` borra el recordatorio. Cambiar la fecha
+ * vuelve a armar el aviso (seguimiento_avisado = false).
+ */
+export async function actualizarLead(
+  id: number,
+  cambios: { estado?: EstadoLead; notas?: string; seguimiento_en?: string | null }
+): Promise<void> {
+  if (!sql) return
+  await asegurarTablas()
+  if (cambios.estado !== undefined) {
+    await sql`UPDATE leads SET estado = ${cambios.estado} WHERE id = ${id}`
+  }
+  if (cambios.notas !== undefined) {
+    await sql`UPDATE leads SET notas = ${cambios.notas} WHERE id = ${id}`
+  }
+  if (cambios.seguimiento_en !== undefined) {
+    await sql`UPDATE leads SET seguimiento_en = ${cambios.seguimiento_en}, seguimiento_avisado = false WHERE id = ${id}`
+  }
+}
+
+/** Seguimientos cuya fecha ya llegó y todavía no se avisaron — los procesa el cron cada minuto. */
+export async function seguimientosVencidos(): Promise<LeadRow[]> {
+  if (!sql) return []
+  await asegurarTablas()
+  const rows = await sql`
+    SELECT * FROM leads
+    WHERE seguimiento_en IS NOT NULL
+      AND seguimiento_en <= now()
+      AND seguimiento_avisado = false
+      AND eliminado_en IS NULL
+    LIMIT 50
+  `
+  return rows as unknown as LeadRow[]
+}
+
+export async function marcarSeguimientoAvisado(id: number): Promise<void> {
+  if (!sql) return
+  await asegurarTablas()
+  await sql`UPDATE leads SET seguimiento_avisado = true WHERE id = ${id}`
 }
 
 /** Borrado desde el panel: soft delete (ver eliminado_en en asegurarTablas). */

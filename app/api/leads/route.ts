@@ -3,6 +3,7 @@ import { avisarLeadPorTelegram, textoAlertaLead } from '@/lib/telegram'
 import { guardarLeadEnPlanilla } from '@/lib/sheets'
 import { guardarLead } from '@/lib/db'
 import { avisarLeadPorPush } from '@/lib/push'
+import { detectarZona } from '@/lib/geo-zonas'
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -32,6 +33,10 @@ export async function POST(req: NextRequest) {
   // cuando viene seteado, el celular ya trae su propio código de país y no
   // se normaliza a formato argentino en ningún punto del pipeline.
   const pais      = String(body.pais ?? '').trim()
+  // Localidad aproximada por IP (mismos headers de Vercel que usa el banner
+  // "Vemos que estás en…"), para filtrar el panel por localidad o subzona
+  // del GBA — pedido de Darío, 23-sep-2026. No se le pide nada al usuario.
+  const zonaDetectada = detectarZona(req.headers.get('x-vercel-ip-country-region'), req.headers.get('x-vercel-ip-city'))?.label
 
   if (!nombre || !email) {
     return NextResponse.json({ error: 'Nombre y email son requeridos' }, { status: 400 })
@@ -50,7 +55,7 @@ export async function POST(req: NextRequest) {
   // todos los intereses (ver el apilado en lib/db.ts). Antes de eso, avisos
   // instantáneos igual — Telegram, push y la planilla no dependen de Kommo.
   await Promise.allSettled([
-    guardarLead({ nombre, celular, email, prepaga, provincia, edades: personas, fuente, pais: pais || undefined }),
+    guardarLead({ nombre, celular, email, prepaga, provincia, edades: personas, fuente, pais: pais || undefined, zonaDetectada }),
     avisarLeadPorTelegram(textoAlertaLead({
       nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommoLink: '',
     })),

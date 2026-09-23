@@ -331,7 +331,7 @@ export default async function CoberturaPage({ params }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Compará la cobertura de {cob.nombre.toLowerCase()} entre prepagas</h2>
           <p className="text-red-200 text-sm mb-6">
-            Precios reales de {PRECIO_ACTUALIZADO}, sin registro y sin DNI. Encontrá el plan que mejor te cubre.
+            Precios reales de {PRECIO_ACTUALIZADO}. Sin DNI y sin compromiso. Encontrá el plan que mejor te cubre.
           </p>
           <Link
             href="/comparador"

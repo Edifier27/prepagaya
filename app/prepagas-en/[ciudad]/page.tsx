@@ -232,7 +232,7 @@ export default async function CiudadPage({ params }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Encontrá tu prepaga ideal en {city.nombre}</h2>
           <p className="text-red-200 text-sm mb-6">
-            Compará precios reales de {PRECIO_ACTUALIZADO} para tu zona. Gratis, sin registro y sin DNI.
+            Compará precios reales de {PRECIO_ACTUALIZADO} para tu zona. Gratis, sin DNI y sin compromiso.
           </p>
           <Link
             href="/comparador"

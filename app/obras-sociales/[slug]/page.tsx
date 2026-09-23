@@ -270,7 +270,7 @@ export default async function ObraSocialPage({ params }: Props) {
         <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
           <div>
             <div className="text-white font-bold text-sm">¿Te conviene {os.nombre} o una prepaga?</div>
-            <div className="text-red-200 text-xs">Compará precios y coberturas reales antes de decidir. Gratis y sin registro.</div>
+            <div className="text-red-200 text-xs">Compará precios y coberturas reales antes de decidir. Gratis y sin compromiso.</div>
           </div>
           <Link
             href="/comparador"
@@ -369,7 +369,7 @@ export default async function ObraSocialPage({ params }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Compará {os.nombre} con las prepagas del mercado</h2>
           <p className="text-red-200 text-sm mb-6">
-            Precios reales actualizados, sin registro y sin DNI. Decidí con toda la información.
+            Precios reales actualizados. Sin DNI y sin compromiso. Decidí con toda la información.
           </p>
           <Link
             href="/comparador"

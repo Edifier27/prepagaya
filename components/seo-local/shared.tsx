@@ -82,7 +82,7 @@ export function CtaCotizador({ zonaKey, provinciaNombre, titulo, subtitulo }: {
   return (
     <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-7 text-white text-center">
       <h2 className="text-xl font-bold mb-2">{titulo ?? `Cotizá tu prepaga en ${provinciaNombre}`}</h2>
-      <p className="text-red-100 text-sm mb-5">{subtitulo ?? 'Precios reales por edad y grupo familiar. Solo las prepagas con cobertura en tu zona. Sin registro y sin DNI.'}</p>
+      <p className="text-red-100 text-sm mb-5">{subtitulo ?? 'Precios reales por edad y grupo familiar. Solo las prepagas con cobertura en tu zona. Sin DNI y sin compromiso.'}</p>
       <Link
         href={`/comparador?zona=${zonaKey}&provincia=${encodeURIComponent(provinciaNombre)}`}
         className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors"

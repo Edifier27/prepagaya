@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { logout } from './actions'
-import type { LeadRow } from '@/lib/db'
+import type { LeadRow, EstadoLead } from '@/lib/db'
 import { whatsappLinkParaLead } from '@/lib/utils'
 
 const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? ''
@@ -30,6 +30,13 @@ function mesLabel(key: string): string {
   return texto.charAt(0).toUpperCase() + texto.slice(1)
 }
 
+// "Banfield (GBA Sur)" → { localidad: 'Banfield', region: 'GBA Sur' }; "CABA" → region CABA.
+function partesZona(label: string | null): { localidad: string | null; region: string } | null {
+  if (!label) return null
+  const m = label.match(/^(.*?)\s*\(([^)]+)\)$/)
+  return m ? { localidad: m[1], region: m[2] } : { localidad: null, region: label }
+}
+
 const esHoy = (iso: string) => new Date(iso).toDateString() === new Date().toDateString()
 
 function normalizar(t: string): string {
@@ -45,6 +52,49 @@ function linkWhatsapp(lead: LeadRow): string | null {
   return whatsappLinkParaLead(lead.nombre, lead.celular)
 }
 
+// Estados comerciales del lead (mini CRM, 23-sep-2026). Se define acá y no se
+// importa de lib/db para no arrastrar el cliente de la base al bundle.
+const ESTADOS: { id: EstadoLead; label: string; clase: string }[] = [
+  { id: 'nuevo', label: 'Nuevo', clase: 'bg-gray-100 text-gray-600' },
+  { id: 'contactado', label: 'Contactado', clase: 'bg-blue-50 text-blue-700' },
+  { id: 'cotizado', label: 'Cotizado', clase: 'bg-amber-50 text-amber-700' },
+  { id: 'vendido', label: 'Vendido', clase: 'bg-emerald-50 text-emerald-700' },
+  { id: 'perdido', label: 'Perdido', clase: 'bg-red-50 text-red-600' },
+]
+const estadoInfo = (id: EstadoLead | null | undefined) => ESTADOS.find((e) => e.id === (id ?? 'nuevo')) ?? ESTADOS[0]
+
+// Seguimiento pendiente = fecha ya vencida y lead todavía abierto.
+const seguimientoVencido = (l: LeadRow) =>
+  Boolean(l.seguimiento_en) && new Date(l.seguimiento_en!).getTime() <= Date.now() && l.estado !== 'vendido' && l.estado !== 'perdido'
+
+// Exporta lo que se está viendo (con los filtros aplicados) a CSV para Excel:
+// separador ";" y BOM para que Excel en español lo abra con acentos bien.
+function exportarCSV(leads: LeadRow[]) {
+  const cols: [string, (l: LeadRow) => string][] = [
+    ['Fecha', (l) => new Date(l.creado_en).toLocaleString('es-AR')],
+    ['Nombre', (l) => l.nombre],
+    ['Celular', (l) => l.celular ?? ''],
+    ['Email', (l) => l.email ?? ''],
+    ['Interés', (l) => l.prepaga ?? ''],
+    ['Zona', (l) => l.provincia ?? ''],
+    ['Integrantes', (l) => l.edades ?? ''],
+    ['Fuente', (l) => l.fuente ?? ''],
+    ['Estado', (l) => estadoInfo(l.estado).label],
+    ['Notas', (l) => l.notas ?? ''],
+    ['Seguimiento', (l) => (l.seguimiento_en ? new Date(l.seguimiento_en).toLocaleString('es-AR') : '')],
+    ['Kommo', (l) => l.kommo_link ?? ''],
+  ]
+  const esc = (v: string) => `"${v.replace(/"/g, '""')}"`
+  const filas = [cols.map(([c]) => esc(c)).join(';'), ...leads.map((l) => cols.map(([, f]) => esc(f(l))).join(';'))]
+  const blob = new Blob(['\uFEFF' + filas.join('\r\n')], { type: 'text/csv;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `leads-prepagaya-${new Date().toISOString().slice(0, 10)}.csv`
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
 // Filtros combinables (pedido de Darío, 23-sep-2026): antes solo se podía
 // filtrar por mes; ahora también por zona, fuente, hoy, sin leer y búsqueda.
 interface Filtros {
@@ -54,9 +104,12 @@ interface Filtros {
   soloHoy: boolean
   soloSinLeer: boolean
   busqueda: string
+  estado: EstadoLead | null
+  soloSeguimiento: boolean
+  region: string | null
 }
-const FILTROS_VACIOS: Filtros = { mes: null, zona: null, fuente: null, soloHoy: false, soloSinLeer: false, busqueda: '' }
-type FiltroChip = 'mes' | 'zona' | 'fuente'
+const FILTROS_VACIOS: Filtros = { mes: null, zona: null, fuente: null, soloHoy: false, soloSinLeer: false, busqueda: '', estado: null, soloSeguimiento: false, region: null }
+type FiltroChip = 'mes' | 'zona' | 'fuente' | 'region'
 
 type EstadoAlertas = 'desconocido' | 'inactivas' | 'activando' | 'activas' | 'no-soportado' | 'rechazadas'
 
@@ -179,7 +232,18 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
     else alert('No se pudo eliminar el lead. Probá de nuevo.')
   }, [])
 
+  // Estado / notas / seguimiento: actualización optimista + POST.
+  const actualizar = useCallback(async (id: number, cambios: Partial<Pick<LeadRow, 'estado' | 'notas' | 'seguimiento_en'>>) => {
+    setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, ...cambios, ...(cambios.seguimiento_en !== undefined ? { seguimiento_avisado: false } : {}) } : l)))
+    await fetch('/api/panel/actualizar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, ...cambios }),
+    }).catch(() => {})
+  }, [])
+
   const sinLeer = leads.filter((l) => !l.leido).length
+  const seguimientos = leads.filter(seguimientoVencido).length
 
   // Estadísticas del "mini CRM" (pedido de Darío, 20-sep-2026): cuántos
   // datos entran y de dónde — se calculan solas de los leads ya cargados
@@ -204,12 +268,29 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
     }
     const porMes = [...porMesMapa.entries()].sort((a, b) => (a[0] < b[0] ? 1 : -1))
 
+    const porEstado = ESTADOS.map((e) => [e.id, leads.filter((l) => (l.estado ?? 'nuevo') === e.id).length] as [EstadoLead, number])
+    // Ventas por fuente: qué páginas del sitio traen leads que se venden.
+    const fuentes = new Map<string, { total: number; vendidos: number }>()
+    for (const l of leads) {
+      const key = l.fuente?.trim() || 'Sin especificar'
+      const f = fuentes.get(key) ?? { total: 0, vendidos: 0 }
+      f.total++
+      if (l.estado === 'vendido') f.vendidos++
+      fuentes.set(key, f)
+    }
+    const ventasPorFuente = [...fuentes.entries()]
+      .filter(([, f]) => f.vendidos > 0)
+      .sort((a, b) => b[1].vendidos - a[1].vendidos)
+
     return {
       total: leads.length,
       hoy,
       porZona: contar(leads.map((l) => l.provincia)),
+      porRegion: contar(leads.map((l) => partesZona(l.zona_detectada)?.region ?? null)),
       porFuente: contar(leads.map((l) => l.fuente)),
       porMes,
+      porEstado,
+      ventasPorFuente,
     }
   }, [leads])
 
@@ -222,8 +303,11 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
       if (filtros.fuente && (l.fuente?.trim() || 'Sin especificar') !== filtros.fuente) return false
       if (filtros.soloHoy && !esHoy(l.creado_en)) return false
       if (filtros.soloSinLeer && l.leido) return false
+      if (filtros.estado && (l.estado ?? 'nuevo') !== filtros.estado) return false
+      if (filtros.region && (partesZona(l.zona_detectada)?.region ?? 'Sin especificar') !== filtros.region) return false
+      if (filtros.soloSeguimiento && !seguimientoVencido(l)) return false
       if (q) {
-        const texto = normalizar([l.nombre, l.email, l.prepaga, l.provincia].filter(Boolean).join(' '))
+        const texto = normalizar([l.nombre, l.email, l.prepaga, l.provincia, l.zona_detectada].filter(Boolean).join(' '))
         const coincideTel = qDigitos.length >= 3 && (l.celular ?? '').replace(/\D/g, '').includes(qDigitos)
         if (!texto.includes(q) && !coincideTel) return false
       }
@@ -232,7 +316,7 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   }, [leads, filtros])
 
   const hayFiltros = Boolean(
-    filtros.mes || filtros.zona || filtros.fuente || filtros.soloHoy || filtros.soloSinLeer || filtros.busqueda.trim()
+    filtros.mes || filtros.zona || filtros.fuente || filtros.soloHoy || filtros.soloSinLeer || filtros.busqueda.trim() || filtros.estado || filtros.soloSeguimiento || filtros.region
   )
 
   return (
@@ -255,6 +339,13 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
               <span className={refrescando ? 'animate-spin' : ''}>↻</span>
               {refrescando ? 'Actualizando…' : 'Refrescar'}
             </button>
+            <button
+              onClick={() => exportarCSV(leadsFiltrados)}
+              className="text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full px-3 py-1.5 transition-colors"
+              title="Descargar los leads que estás viendo (con filtros) en CSV para Excel"
+            >
+              ⬇ Exportar
+            </button>
             <BotonAlertas estado={estadoAlertas} onActivar={activarAlertas} />
             <form action={logout}>
               <button type="submit" className="text-xs font-semibold text-gray-400 hover:text-gray-600 transition-colors px-2 py-1.5">
@@ -271,6 +362,7 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
           filtros={filtros}
           onAlternar={alternar}
           onHoy={() => setFiltros((f) => ({ ...f, soloHoy: !f.soloHoy }))}
+          onEstado={(e) => setFiltros((f) => ({ ...f, estado: f.estado === e ? null : e }))}
         />
 
         {/* Barra de filtros: búsqueda + sin leer + resumen de lo aplicado */}
@@ -296,6 +388,17 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
             >
               Sin leer · {sinLeer}
             </button>
+            {seguimientos > 0 && (
+              <button
+                onClick={() => setFiltros((f) => ({ ...f, soloSeguimiento: !f.soloSeguimiento }))}
+                className={`text-xs font-semibold rounded-xl px-3 py-2 whitespace-nowrap transition-colors ${
+                  filtros.soloSeguimiento ? 'bg-amber-500 text-white' : 'bg-amber-50 text-amber-700 hover:bg-amber-100'
+                }`}
+                title="Leads con seguimiento vencido"
+              >
+                ⏰ {seguimientos}
+              </button>
+            )}
           </div>
           {hayFiltros && (
             <div className="flex flex-wrap items-center gap-1.5 text-xs">
@@ -305,8 +408,11 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
               {filtros.soloHoy && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, soloHoy: false }))}>Hoy</ChipActivo>}
               {filtros.mes && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, mes: null }))}>{mesLabel(filtros.mes)}</ChipActivo>}
               {filtros.zona && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, zona: null }))}>{filtros.zona}</ChipActivo>}
+              {filtros.region && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, region: null }))}>📍 {filtros.region}</ChipActivo>}
               {filtros.fuente && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, fuente: null }))}>{filtros.fuente}</ChipActivo>}
               {filtros.soloSinLeer && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, soloSinLeer: false }))}>Sin leer</ChipActivo>}
+              {filtros.estado && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, estado: null }))}>{estadoInfo(filtros.estado).label}</ChipActivo>}
+              {filtros.soloSeguimiento && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, soloSeguimiento: false }))}>Seguimientos vencidos</ChipActivo>}
               <button onClick={() => setFiltros(FILTROS_VACIOS)} className="text-[#E8002D] font-semibold hover:underline ml-auto">
                 Limpiar filtros
               </button>
@@ -321,7 +427,7 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
             </p>
           )}
           {leadsFiltrados.map((lead) => (
-            <LeadRow key={lead.id} lead={lead} onToggleLeido={toggleLeido} onEliminar={eliminar} />
+            <LeadRow key={lead.id} lead={lead} onToggleLeido={toggleLeido} onEliminar={eliminar} onActualizar={actualizar} />
           ))}
         </div>
       </div>
@@ -329,7 +435,16 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   )
 }
 
-interface Stats { total: number; hoy: number; porZona: [string, number][]; porFuente: [string, number][]; porMes: [string, number][] }
+interface Stats {
+  total: number
+  hoy: number
+  porZona: [string, number][]
+  porFuente: [string, number][]
+  porMes: [string, number][]
+  porEstado: [EstadoLead, number][]
+  porRegion: [string, number][]
+  ventasPorFuente: [string, { total: number; vendidos: number }][]
+}
 
 function ChipActivo({ children, onQuitar }: { children: React.ReactNode; onQuitar: () => void }) {
   return (
@@ -339,11 +454,12 @@ function ChipActivo({ children, onQuitar }: { children: React.ReactNode; onQuita
   )
 }
 
-function StatsPanel({ stats, filtros, onAlternar, onHoy }: {
+function StatsPanel({ stats, filtros, onAlternar, onHoy, onEstado }: {
   stats: Stats
   filtros: Filtros
   onAlternar: (clave: FiltroChip, valor: string) => void
   onHoy: () => void
+  onEstado: (e: EstadoLead) => void
 }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-3">
@@ -362,6 +478,40 @@ function StatsPanel({ stats, filtros, onAlternar, onHoy }: {
         </button>
       </div>
 
+      {/* Embudo comercial: tocá un estado para filtrar */}
+      <div className="mb-4">
+        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">Estado</div>
+        <div className="flex flex-wrap gap-1.5">
+          {stats.porEstado.map(([id, n]) => {
+            const e = estadoInfo(id)
+            const sel = filtros.estado === id
+            return (
+              <button
+                key={id}
+                onClick={() => onEstado(id)}
+                className={`text-[11px] font-semibold rounded-full px-2 py-1 transition-colors ${sel ? 'bg-[#E8002D] text-white' : `${e.clase} hover:opacity-80`}`}
+              >
+                {e.label} <span className={sel ? 'text-red-100' : 'opacity-60'}>· {n}</span>
+              </button>
+            )
+          })}
+        </div>
+        {stats.ventasPorFuente.length > 0 && (
+          <div className="mt-3">
+            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1.5">Ventas por fuente</div>
+            <div className="space-y-1">
+              {stats.ventasPorFuente.slice(0, 6).map(([fuente, f]) => (
+                <div key={fuente} className="flex items-center gap-2 text-[11px]">
+                  <span className="text-gray-700 font-semibold truncate flex-1">{fuente}</span>
+                  <span className="text-gray-500">{f.vendidos} de {f.total}</span>
+                  <span className="font-bold text-emerald-700 w-10 text-right">{Math.round((f.vendidos / f.total) * 100)}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
       {stats.porMes.length > 0 && (
         <div className="mb-4">
           <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">Por mes</div>
@@ -376,7 +526,8 @@ function StatsPanel({ stats, filtros, onAlternar, onHoy }: {
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <StatBreakdown titulo="Por zona" items={stats.porZona} activo={filtros.zona} onSelect={(v) => onAlternar('zona', v)} />
+        <StatBreakdown titulo="Por zona elegida" items={stats.porZona} activo={filtros.zona} onSelect={(v) => onAlternar('zona', v)} />
+        <StatBreakdown titulo="Por zona detectada (aprox.)" items={stats.porRegion} activo={filtros.region} onSelect={(v) => onAlternar('region', v)} />
         <StatBreakdown titulo="Por fuente" items={stats.porFuente} activo={filtros.fuente} onSelect={(v) => onAlternar('fuente', v)} />
       </div>
     </div>
@@ -457,16 +608,28 @@ function extraerCuentaKommo(estado: string | null): string | null {
 // ocupaba demasiado alto siempre expandida). El resumen de una línea trae
 // lo que hace falta para escanear la lista rápido; el resto se abre al
 // tocarla — mismo patrón <details>/<summary> que ya usan las FAQ del sitio.
-function LeadRow({ lead, onToggleLeido, onEliminar }: {
+function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
   lead: LeadRow
   onToggleLeido: (id: number, leidoActual: boolean) => void
   onEliminar: (id: number) => Promise<void>
+  onActualizar: (id: number, cambios: Partial<Pick<LeadRow, 'estado' | 'notas' | 'seguimiento_en'>>) => Promise<void>
 }) {
   const cuenta = extraerCuentaKommo(lead.kommo_estado)
   const kommoOk = lead.kommo_estado?.startsWith('OK') ?? false
   const wa = linkWhatsapp(lead)
   const [confirmando, setConfirmando] = useState(false)
   const [eliminando, setEliminando] = useState(false)
+  const [notas, setNotas] = useState(lead.notas ?? '')
+  const estado = estadoInfo(lead.estado)
+  const vencido = seguimientoVencido(lead)
+
+  // Atajos de seguimiento: mañana 10 hs, en 2 días y en una semana (10 hs).
+  const programar = (dias: number) => {
+    const d = new Date()
+    d.setDate(d.getDate() + dias)
+    d.setHours(10, 0, 0, 0)
+    onActualizar(lead.id, { seguimiento_en: d.toISOString() })
+  }
 
   return (
     <details className={`group bg-white rounded-xl border transition-colors overflow-hidden ${lead.leido ? 'border-gray-100' : 'border-red-200'}`}>
@@ -485,6 +648,10 @@ function LeadRow({ lead, onToggleLeido, onEliminar }: {
             {cuenta}
           </span>
         )}
+        {lead.estado && lead.estado !== 'nuevo' && (
+          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 ${estado.clase}`}>{estado.label}</span>
+        )}
+        {vencido && <span className="text-[11px] flex-shrink-0" title="Seguimiento vencido">⏰</span>}
         {lead.provincia && <span className="text-[11px] text-gray-400 truncate hidden sm:inline">{lead.provincia}</span>}
         <span className="flex-1" />
         <span className={`text-[11px] flex-shrink-0 ${kommoOk ? 'text-emerald-500' : 'text-amber-500'}`} title={kommoOk ? 'Kommo OK' : 'Kommo falló'}>
@@ -515,9 +682,68 @@ function LeadRow({ lead, onToggleLeido, onEliminar }: {
           {lead.email && <Campo label="Email"><a href={`mailto:${lead.email}`} className="text-gray-700 hover:underline break-all">{lead.email}</a></Campo>}
           {lead.prepaga && <Campo label="Interés">{lead.prepaga}</Campo>}
           {lead.provincia && <Campo label="Zona">{lead.provincia}</Campo>}
+          {lead.zona_detectada && <Campo label="Detectada (aprox.)">{lead.zona_detectada}</Campo>}
           {lead.edades && <Campo label="Integrantes">{lead.edades}</Campo>}
           {lead.fuente && <Campo label="Fuente">{lead.fuente}</Campo>}
           {lead.veces > 1 && lead.actualizado_en && <Campo label="Última actividad">{formatFecha(lead.actualizado_en)}</Campo>}
+        </div>
+
+        {/* Estado comercial */}
+        <div className="mt-3 pt-3 border-t border-gray-50">
+          <div className="text-gray-400 text-[10px] uppercase tracking-wide mb-1.5">Estado</div>
+          <div className="flex flex-wrap gap-1.5">
+            {ESTADOS.map((e) => (
+              <button
+                key={e.id}
+                onClick={() => onActualizar(lead.id, { estado: e.id })}
+                className={`text-[11px] font-semibold rounded-full px-2.5 py-1 border transition-colors ${
+                  (lead.estado ?? 'nuevo') === e.id ? `${e.clase} border-current` : 'border-gray-200 text-gray-400 hover:text-gray-600'
+                }`}
+              >
+                {e.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Notas: se guardan al salir del campo */}
+        <div className="mt-3">
+          <div className="text-gray-400 text-[10px] uppercase tracking-wide mb-1.5">Notas</div>
+          <textarea
+            value={notas}
+            onChange={(e) => setNotas(e.target.value)}
+            onBlur={() => { if (notas !== (lead.notas ?? '')) onActualizar(lead.id, { notas }) }}
+            rows={2}
+            placeholder="Ej: quiere Swiss SMG20, vuelve a llamar el viernes"
+            className="w-full text-xs bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-2 focus:outline-none focus:border-[#E8002D] focus:bg-white resize-y"
+          />
+        </div>
+
+        {/* Seguimiento con aviso push (lo manda el cron cuando llega la fecha) */}
+        <div className="mt-2">
+          <div className="text-gray-400 text-[10px] uppercase tracking-wide mb-1.5">Seguimiento</div>
+          {lead.seguimiento_en ? (
+            <div className="flex flex-wrap items-center gap-2 text-[11px]">
+              <span className={`font-semibold ${vencido ? 'text-amber-700' : 'text-gray-700'}`}>
+                {vencido ? '⏰ Vencido: ' : '⏰ '}{formatFecha(lead.seguimiento_en)}
+              </span>
+              <button onClick={() => onActualizar(lead.id, { seguimiento_en: null })} className="text-gray-400 hover:text-gray-600 font-semibold">
+                Quitar
+              </button>
+            </div>
+          ) : (
+            <div className="flex flex-wrap gap-1.5">
+              {[['Mañana', 1], ['En 2 días', 2], ['En 1 semana', 7]].map(([label, dias]) => (
+                <button
+                  key={label}
+                  onClick={() => programar(dias as number)}
+                  className="text-[11px] font-semibold rounded-full px-2.5 py-1 border border-gray-200 text-gray-500 hover:border-[#E8002D] hover:text-[#E8002D]"
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex flex-wrap items-center gap-3 mt-3 pt-3 border-t border-gray-50">
