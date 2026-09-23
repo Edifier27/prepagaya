@@ -1,6 +1,9 @@
 ﻿import Link from 'next/link'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
+// Solo el JSON chico de precios oficiales (no lib/data/prepagas.ts): el footer
+// se renderiza dentro de SiteChrome, que es client component.
+import preciosOficiales from '@/lib/data/precios-oficiales.json'
 
 const prepagaLinks = [
   { slug: 'swiss-medical', nombre: 'Swiss Medical' },
@@ -329,8 +332,19 @@ export function Footer() {
 
         </div>
 
+        {/* Fuente de precios (23-sep-2026): cuadros tarifarios oficiales de la SSSalud */}
+        <div className="mt-10 flex items-center gap-3 text-xs text-gray-500">
+          <span>
+            Precios de lista: fuente{' '}
+            <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-300">
+              Superintendencia de Servicios de Salud
+            </a>{' '}
+            (cuadros tarifarios oficiales, {preciosOficiales.periodoTexto}).
+          </span>
+        </div>
+
         {/* Divider */}
-        <div className="border-t border-white/[0.06] mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-white/[0.06] mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-600">
             © 2026 PrepagaYa · Comparador de prepagas y obras sociales de Argentina. Partner oficial de {PARTNERS_OFICIALES_TEXTO};
             también mostramos el resto de las prepagas del mercado para que compares todo. Las empresas comparadas

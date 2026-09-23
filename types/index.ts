@@ -2,6 +2,8 @@ export interface Plan {
   slug: string
   nombre: string
   precio: number // precio base (30 años, individual)
+  /** 'sssalud' cuando el precio sale del cuadro tarifario oficial (lib/data/precios-oficiales.json) */
+  fuentePrecio?: 'sssalud'
   descripcion: string
   cobertura: string[]
   copago: boolean

@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { Badge } from '@/components/ui/Badge'
@@ -110,7 +110,10 @@ export default function PreciosPage(): React.ReactElement {
           </h1>
           <p className="text-gray-600 max-w-2xl text-base mb-6">
             Tabla completa con todos los planes y precios de las {prepagas.length} principales prepagas.
-            Precios visibles sin formularios. Referencia: persona de 30 años, contratación individual.
+            Precios visibles sin formularios. Referencia: persona de 30 años, contratación individual.{' '}
+            Fuente: cuadros tarifarios oficiales de la{' '}
+            <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-800">Superintendencia de Servicios de Salud</a>
+            {' '}para las prepagas que los declaran; el resto, precio de referencia.
           </p>
 
           {/* Stats rápidos */}

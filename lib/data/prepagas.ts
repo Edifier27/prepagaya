@@ -1,3 +1,4 @@
+import preciosOficiales from './precios-oficiales.json'
 import type { Prepaga } from '@/types'
 
 export const prepagas: Prepaga[] = [
@@ -1304,12 +1305,28 @@ export function getPlanBySlug(prepagaSlug: string, planSlug: string) {
   return prepaga?.planes.find((p) => p.slug === planSlug)
 }
 
-// Nota 2-ago-2026: los planes de Swiss Medical, Sancor Salud y Premedic llevan
-// un ajuste estimado de +1,8% (aumento promedio de agosto informado por el
-// mercado) sobre la última lista de julio verificada — no se encontró lista
-// oficial de agosto todavía. El resto de las prepagas sigue en precio de julio.
-// Reemplazar por precio real de agosto en cuanto se publique.
-export const PRECIO_ACTUALIZADO = 'Septiembre 2026'
+// Precios oficiales (23-sep-2026): los planes que cruzan sin ambigüedad con
+// el cuadro tarifario que cada prepaga declara ante la SSSalud toman el precio
+// de lib/data/precios-oficiales.json (lo genera scripts/cuadros-sssalud/
+// generar.py: modalidad directa, CABA/AMBA, 30 años, IVA 10,5%). Pisa el
+// valor manual del array de arriba; los planes sin cruce siguen con el manual.
+for (const p of prepagas) {
+  const oficiales = (preciosOficiales.precios as Record<string, Record<string, number>>)[p.slug]
+  if (!oficiales) continue
+  for (const pl of p.planes) {
+    if (oficiales[pl.slug]) {
+      pl.precio = oficiales[pl.slug]
+      pl.fuentePrecio = 'sssalud'
+    }
+  }
+}
+
+export const PRECIOS_FUENTE = preciosOficiales.fuente
+export const PRECIOS_FUENTE_URL = preciosOficiales.fuenteUrl
+
+// Mes de los precios: el del último cuadro oficial aplicado — así se
+// actualiza solo cuando se regeneran los precios cada 15 días.
+export const PRECIO_ACTUALIZADO = preciosOficiales.periodoTexto
 export const PRECIO_REFERENCIA = '30 años, contratación individual'
 
 // Versión en inglés de PRECIO_ACTUALIZADO para el silo /en/* — se deriva del

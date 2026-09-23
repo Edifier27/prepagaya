@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL, nivelPrecio } from '@/lib/data/prepagas'
 import { testimonios } from '@/lib/data/testimonios'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getCambiosPorOrigen, getCambiosPorDestino } from '@/lib/data/cambios'
@@ -423,6 +423,15 @@ export default async function PrepagaSlugPage({ params }: Props) {
             <h2 className="text-xl font-bold text-gray-900">Planes de {prep.nombre} — {PRECIO_ACTUALIZADO}</h2>
             <span className="text-xs text-gray-400 hidden sm:block">Nivel de precio relativo</span>
           </div>
+          <p className="text-xs text-gray-400 -mt-3 mb-5">
+            {prep.planes.every((pl) => pl.fuentePrecio === 'sssalud') ? (
+              <>Precios de lista oficiales declarados ante la{' '}
+                <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">Superintendencia de Servicios de Salud</a>
+                {' '}({PRECIO_ACTUALIZADO}): 30 años, contratación directa, CABA/AMBA, IVA incluido.</>
+            ) : (
+              <>Precios de referencia para 30 años, contratación individual. El valor final depende de tu edad y zona.</>
+            )}
+          </p>
 
           {/* Plan destacado — más grande */}
           <div className="relative bg-gradient-to-r from-[#fff5f5] to-white border-2 border-[#E8002D] rounded-2xl p-6 mb-4">

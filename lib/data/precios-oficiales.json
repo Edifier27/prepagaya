@@ -1,0 +1,58 @@
+{
+  "fuente": "Superintendencia de Servicios de Salud — cuadros tarifarios (Res. 645/2025)",
+  "fuenteUrl": "https://cuadrostarifarios.sssalud.gob.ar/",
+  "referencia": "30 años, contratación individual directa, CABA/AMBA, IVA 10,5% incluido",
+  "periodo": 202609,
+  "periodoTexto": "Septiembre 2026",
+  "periodoPorPrepaga": {
+    "swiss-medical": 202609,
+    "osde": 202609,
+    "premedic": 202609,
+    "medife": 202609,
+    "galeno": 202609
+  },
+  "generado": "2026-09-23",
+  "precios": {
+    "swiss-medical": {
+      "smg02": 277558,
+      "s1": 197336,
+      "s2": 247743,
+      "sport-s": 307804,
+      "smg20": 346404,
+      "smg30": 397934,
+      "sport": 405293,
+      "smg40": 415914,
+      "sport-plus": 474142,
+      "smg50": 519697,
+      "smg60": 731787,
+      "smg70": 890538
+    },
+    "osde": {
+      "210": 314922,
+      "310": 406907,
+      "410": 541172,
+      "510": 1342648
+    },
+    "premedic": {
+      "plan-200": 113485,
+      "plan-300": 178441,
+      "plan-400": 208611
+    },
+    "medife": {
+      "medife-plus": 193270,
+      "bronce": 267520,
+      "plata": 331282,
+      "oro": 465121,
+      "platinum": 604659
+    },
+    "galeno": {
+      "azul-200": 283694,
+      "azul-220": 311927,
+      "plata-300": 358738,
+      "plata-330": 401782,
+      "oro-400": 460434,
+      "oro-440": 534005,
+      "oro-550": 806640
+    }
+  }
+}
