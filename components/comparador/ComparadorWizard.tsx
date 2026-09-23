@@ -153,6 +153,10 @@ function calcGrupal(base: number, personas: Persona[]): number {
 function checkCob(id: CobId, plan: Plan, p: Prepaga): boolean {
   const t = plan.cobertura.join(' ').toLowerCase()
   const porKeyword = COB_MAP[id].keywords.some((k) => t.includes(k))
+  // Obligatorias por PMO en todos los planes (salud mental, Plan Materno
+  // Infantil, internación): si la ficha del plan no las nombra, igual están
+  // incluidas. Antes salían "No incluida" y el filtro descartaba el plan.
+  if (id === 'psicologia' || id === 'maternidad' || id === 'internacion') return true
   if (id === 'medicamentos') return porKeyword || p.caracteristicas.farmacia
   if (id === 'urgencias')    return porKeyword || p.caracteristicas.atencion24hs
   if (id === 'estudios')     return porKeyword || !plan.copago
