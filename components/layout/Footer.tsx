@@ -1,5 +1,6 @@
 ﻿import Link from 'next/link'
 import { provinciasSEO } from '@/lib/data/zonas'
+import { PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
 
 const prepagaLinks = [
   { slug: 'swiss-medical', nombre: 'Swiss Medical' },
@@ -36,11 +37,11 @@ const obrasSocialesLinks = [
   { slug: 'galeno', label: 'Galeno' },
 ]
 
-const guiaLinks = [
+const guiaLinks: { slug: string; label: string; href?: string }[] = [
   { slug: 'como-cambiar-de-prepaga', label: 'Cómo cambiar de prepaga' },
   { slug: 'obra-social-vs-prepaga', label: 'Obra social vs prepaga' },
   { slug: 'discapacidad-obra-social-cobertura-100', label: 'Discapacidad y CUD' },
-  { slug: 'prepagas-economicas', label: 'Prepagas económicas' },
+  { slug: 'prepagas-economicas', label: 'Prepagas económicas', href: '/prepagas-economicas' },
   { slug: 'que-cubre-la-prepaga', label: 'Qué cubre la prepaga' },
   { slug: 'cuota-prepaga-por-edad', label: 'Cuota por edad' },
 ]
@@ -294,7 +295,7 @@ export function Footer() {
               </li>
               {guiaLinks.map((g) => (
                 <li key={g.slug}>
-                  <Link href={`/guias/${g.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
+                  <Link href={g.href ?? `/guias/${g.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
                     {g.label}
                   </Link>
                 </li>
@@ -331,7 +332,8 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t border-white/[0.06] mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-600">
-            © 2026 PrepagaYa · Sitio independiente, no afiliado a ninguna prepaga ni obra social. Las empresas comparadas
+            © 2026 PrepagaYa · Comparador de prepagas y obras sociales de Argentina. Partner oficial de {PARTNERS_OFICIALES_TEXTO};
+            también mostramos el resto de las prepagas del mercado para que compares todo. Las empresas comparadas
             están reguladas por la Superintendencia de Servicios de Salud (SSSalud).
           </p>
           <div className="flex gap-5 text-xs text-gray-600">

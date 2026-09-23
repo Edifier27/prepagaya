@@ -80,7 +80,8 @@ export default async function CoberturaMarcaPage({ params }: Props) {
       name: c.title,
       url,
       inLanguage: 'es-AR',
-      isBasedOn: c.fuentes.map((f) => ({ '@type': 'CreativeWork', name: f.nombre, datePublished: f.fecha })),
+      isBasedOn: c.fuentes.map((f) => ({ '@type': 'CreativeWork', name: f.nombre, ...(f.url ? { url: f.url } : {}) })),
+      publisher: { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: SITE_NAME, url: SITE_URL },
     },
   ]
 

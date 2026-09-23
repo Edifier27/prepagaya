@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Términos y Condiciones',
@@ -24,7 +24,7 @@ const secciones = [
   },
   {
     titulo: '4. Modelo de negocio y comisiones',
-    cuerpo: `${SITE_NAME} trabaja con un grupo curado de prepagas partner. Cuando una contratación se concreta a través nuestro, la prepaga nos paga una comisión de intermediación. Esta comisión no representa ningún costo adicional para vos: pagás exactamente lo mismo que pagarías contratando directamente con la prepaga. El resto de las prepagas del mercado también se muestran en el sitio con fines informativos, aunque no gestionemos su contratación de forma directa.`,
+    cuerpo: `${SITE_NAME} trabaja con un grupo curado de prepagas partner (${PARTNERS_OFICIALES_TEXTO}). Cuando una contratación se concreta a través nuestro, la prepaga nos paga una comisión de intermediación. Esta comisión no representa ningún costo adicional para vos: pagás exactamente lo mismo que pagarías contratando directamente con la prepaga. El resto de las prepagas del mercado también se muestran en el sitio con fines informativos, aunque no gestionemos su contratación de forma directa.`,
   },
   {
     titulo: '5. Límites de responsabilidad',
@@ -74,7 +74,7 @@ export default function TerminosPage() {
 
       <div className="mt-12 pt-8 border-t border-gray-200">
         <p className="text-xs text-gray-400 mb-4">
-          {SITE_NAME} es un sitio independiente, no afiliado a ninguna prepaga ni obra social. Las empresas comparadas están reguladas por la Superintendencia de Servicios de Salud (SSSalud).
+          {SITE_NAME} es un comparador de prepagas y obras sociales, partner oficial de {PARTNERS_OFICIALES_TEXTO}. No somos una prepaga ni una obra social. Las empresas comparadas están reguladas por la Superintendencia de Servicios de Salud (SSSalud).
         </p>
         <Link
           href="/"

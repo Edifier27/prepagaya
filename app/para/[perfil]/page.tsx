@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const perf = perfiles.find((p) => p.slug === perfil)
   if (!perf) return {}
   return {
-    title: `${perf.titulo} — ${PRECIO_ACTUALIZADO}`,
+    title: `${perf.titulo} (${PRECIO_ACTUALIZADO})`,
     description: perf.metaDescripcion,
     alternates: {
       canonical: `${SITE_URL}/para/${perfil}`,

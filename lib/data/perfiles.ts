@@ -19,7 +19,7 @@ export const perfiles: PerfilData[] = [
     slug: 'familias',
     nombre: 'Familias',
     emoji: '👨‍👩‍👧‍👦',
-    titulo: 'Mejor prepaga para familia',
+    titulo: 'Mejor prepaga para familias',
     metaDescripcion: 'Encontrá la mejor prepaga para tu familia en Argentina. Comparamos precios, coberturas pediátricas y maternidad de Swiss Medical, OSDE, Sancor y más. Precios junio 2026.',
     descripcion: 'Elegir una prepaga para toda la familia requiere equilibrar cobertura pediátrica, maternidad, precio total y amplitud de red. Te ayudamos a encontrar la opción que mejor se adapta a tu grupo familiar.',
     necesidades: [
@@ -101,7 +101,7 @@ export const perfiles: PerfilData[] = [
     slug: 'monotributistas',
     nombre: 'Monotributistas',
     emoji: '💼',
-    titulo: 'Prepagas para monotributistas: opciones y precios 2026',
+    titulo: 'Prepagas para monotributistas: opciones y precios',
     metaDescripcion: 'Las mejores prepagas para monotributistas en Argentina 2026. Podés deducir el gasto, contratar sin empleador y elegir entre todas las opciones del mercado. Precios actualizados.',
     descripcion: 'Como monotributista podés contratar cualquier prepaga del mercado de forma directa, sin necesidad de obra social. Y lo mejor: podés deducir el gasto de tu declaración de ingresos.',
     necesidades: [
@@ -146,7 +146,7 @@ export const perfiles: PerfilData[] = [
     slug: 'adultos-mayores',
     nombre: 'Adultos mayores',
     emoji: '👴',
-    titulo: 'Mejor prepaga para adultos mayores en Argentina 2026',
+    titulo: 'Mejor prepaga para adultos mayores y jubilados',
     metaDescripcion: 'Encontrá la mejor prepaga para mayores de 60 años en Argentina. Coberturas geriátricas, precios por edad y qué tener en cuenta. Comparativa actualizada junio 2026.',
     descripcion: 'Las personas mayores de 60 años tienen necesidades específicas: mayor acceso a especialistas, cobertura geriátrica, medicamentos, y a menudo enfrentan precios más altos por edad. Te ayudamos a elegir bien.',
     necesidades: [
@@ -190,7 +190,7 @@ export const perfiles: PerfilData[] = [
     slug: 'jovenes',
     nombre: 'Jóvenes',
     emoji: '🧑',
-    titulo: 'Prepaga económica para jóvenes en 2026',
+    titulo: 'Mejor prepaga para jóvenes: opciones económicas',
     metaDescripcion: 'Las mejores prepagas económicas para jóvenes en Argentina. Planes de nivel de precio accesible con buena cobertura. Compará Swiss Medical S1, Premedic 200, Medife y más.',
     descripcion: 'Si sos joven y sano, probablemente no necesitás el plan más completo del mercado. Te mostramos las opciones más económicas con cobertura real para el día a día.',
     necesidades: [
@@ -228,7 +228,7 @@ export const perfiles: PerfilData[] = [
     slug: 'empresas',
     nombre: 'Empresas y PyMEs',
     emoji: '🏢',
-    titulo: 'Prepagas para empresas y PyMEs en Argentina 2026',
+    titulo: 'Prepagas para empresas y PyMEs',
     metaDescripcion: 'Compará prepagas corporativas para empresas y PyMEs en Argentina. Swiss Medical, OSDE y Sancor ofrecen planes grupales con precios especiales. Descubrí cuál conviene más.',
     descripcion: 'Ofrecer una prepaga a tus empleados es uno de los beneficios más valorados en Argentina. Las prepagas corporativas tienen precios especiales y condiciones diferentes a los planes individuales.',
     necesidades: [

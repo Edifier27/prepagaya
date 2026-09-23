@@ -147,6 +147,21 @@ function jsonLd(data: object[]) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
 }
 
+// WebPage con fuente y fecha (GEO): los motores de IA priorizan datos con
+// origen y fecha explícitos. dateModified = fecha de la cartilla oficial.
+function ldPagina(c: CartillaPrepaga, nombre: string) {
+  const [d, m, a] = c.vigencia.split('/')
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: nombre,
+    inLanguage: 'es-AR',
+    ...(a ? { dateModified: `${a}-${m}-${d}` } : {}),
+    isBasedOn: { '@type': 'CreativeWork', name: c.fuente, url: c.fuenteUrl },
+    publisher: { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: SITE_NAME, url: SITE_URL },
+  }
+}
+
 function ldBreadcrumb(items: { url?: string; name: string }[]) {
   return {
     '@context': 'https://schema.org',
@@ -299,6 +314,7 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
         ]),
         ldHospitales(`Sanatorios de ${c.prepagaNombre} en ${z.nombre}`, int, z.provincias[0]),
         ldFaq(faqs),
+        ldPagina(c, `Cartilla ${c.prepagaNombre} en ${z.nombre}`),
       ])}
       <Breadcrumb items={[{ href: '/', label: SITE_NAME }, { href: '/cartillas', label: 'Cartillas' }, { href: base, label: c.prepagaNombre }, { label: corto }]} />
 
@@ -458,6 +474,7 @@ export function PaginaPlan({ c, p }: { c: CartillaPrepaga; p: PlanCartilla }) {
           { name: p.label },
         ]),
         ldFaq(faqs),
+        ldPagina(c, `Cartilla del ${c.prepagaNombre} ${p.label}`),
       ])}
       <Breadcrumb items={[{ href: '/', label: SITE_NAME }, { href: '/cartillas', label: 'Cartillas' }, { href: base, label: c.prepagaNombre }, { label: p.label }]} />
 
@@ -627,6 +644,7 @@ export function PaginaPlanZona({ c, p, z }: { c: CartillaPrepaga; p: PlanCartill
         ]),
         ldHospitales(`Sanatorios de ${c.prepagaNombre} ${pc} en ${z.nombre}`, lista.filter((ce) => ce.internacion.length > 0), z.provincias[0]),
         ldFaq(faqs),
+        ldPagina(c, `Cartilla del ${c.prepagaNombre} ${pc} en ${z.nombre}`),
       ])}
       <Breadcrumb
         items={[

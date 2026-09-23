@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
@@ -16,13 +16,21 @@ export const metadata: Metadata = {
   alternates: { canonical: SITE_URL },
 }
 
+// Definición de la entidad (GEO): una sola frase autocontenida que buscadores y
+// motores de IA puedan citar tal cual. Los números salen de los datos del sitio.
+const TOTAL_PLANES = prepagas.reduce((n, p) => n + p.planes.length, 0)
+const ENTIDAD_DESCRIPCION = `${SITE_NAME} es un comparador online de prepagas de Argentina: compara ${prepagas.length} prepagas y ${TOTAL_PLANES} planes con precios actualizados cada mes, coberturas plan por plan y cartillas por zona. Es partner oficial de ${PARTNERS_OFICIALES_TEXTO}.`
+
 const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: SITE_URL,
     description: SITE_DESCRIPTION,
+    inLanguage: 'es-AR',
+    publisher: { '@id': `${SITE_URL}/#organization` },
     potentialAction: {
       '@type': 'SearchAction',
       target: `${SITE_URL}/prepagas?q={search_term_string}`,
@@ -31,14 +39,14 @@ const jsonLd = [
   },
   {
     '@context': 'https://schema.org',
-    '@type': 'FinancialService',
+    '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
-    description: 'Comparador independiente de prepagas y obras sociales de Argentina. Precios reales verificados mensualmente.',
+    logo: `${SITE_URL}/panel-icon-512`,
+    description: ENTIDAD_DESCRIPCION,
     areaServed: { '@type': 'Country', name: 'Argentina' },
-    knowsAbout: ['medicina prepaga argentina', 'planes de salud privados', 'comparar prepagas', 'OSDE', 'Swiss Medical', 'Sancor Salud'],
-    sameAs: [],
-    logo: `${SITE_URL}/logo.png`,
+    knowsAbout: ['medicina prepaga en Argentina', 'comparar prepagas', 'precios de prepagas', 'cartillas médicas', 'obras sociales', ...prepagas.map((p) => p.nombre)],
   },
 ]
 
@@ -213,7 +221,7 @@ export default function HomePage(): React.ReactElement {
               Ranking actualizado {PRECIO_ACTUALIZADO}
             </div>
             <h2 className="text-2xl font-bold text-gray-900">Las mejores prepagas de Argentina</h2>
-            <p className="text-gray-500 text-sm mt-2">Nuestras 3 prepagas partner, una para cada presupuesto: económica, intermedia y premium</p>
+            <p className="text-gray-500 text-sm mt-2">Tres de nuestras prepagas partner, una para cada presupuesto: económica, intermedia y premium</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -363,6 +371,28 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
+      {/* ── Qué es PrepagaYa (GEO): bloque de respuesta directa y citable ── */}
+      <section className="py-14 bg-white border-b border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">El comparador de todas las prepagas de Argentina</h2>
+          <p className="text-gray-700 leading-relaxed mb-6 text-center">{ENTIDAD_DESCRIPCION}</p>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700">
+            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+              <strong className="text-gray-900">Todas las prepagas, no solo nuestros partners.</strong> El comparador incluye {prepagas.length} prepagas con el precio de {PRECIO_ACTUALIZADO}, para que veas el mercado completo. <Link href="/precios" className="text-[#E8002D] font-semibold hover:underline">Ver precios</Link>
+            </li>
+            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+              <strong className="text-gray-900">Cartillas por zona.</strong> Buscás tu sanatorio o tu barrio y ves qué plan de {PARTNERS_OFICIALES_TEXTO} lo incluye. <Link href="/cartillas" className="text-[#E8002D] font-semibold hover:underline">Buscar en cartillas</Link>
+            </li>
+            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+              <strong className="text-gray-900">Coberturas plan por plan.</strong> Ortodoncia, anteojos, psicología, internación y más, con la fuente oficial citada en cada dato. <Link href="/coberturas" className="text-[#E8002D] font-semibold hover:underline">Ver coberturas</Link>
+            </li>
+            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+              <strong className="text-gray-900">Partner oficial de {PARTNERS_OFICIALES.length} prepagas.</strong> Cotizás y contratás con nosotros pagando lo mismo que yendo directo. <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo trabajamos</Link>
+            </li>
+          </ul>
+        </div>
+      </section>
+
       {/* ── Por qué PrepagaYa ───────────────────────────────────────────── */}
       <section className="py-14 bg-gray-50 border-b border-gray-100">
         <div className="container">
@@ -384,8 +414,8 @@ export default function HomePage(): React.ReactElement {
               },
               {
                 icon: <path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />,
-                title: 'Partners curados, sin costo extra',
-                desc: 'Trabajamos con Swiss Medical, Sancor Salud y Premedic. Ganamos comisión si contratás con nosotros, nunca de tu bolsillo.',
+                title: 'Partner oficial, sin costo extra',
+                desc: `Somos partner oficial de ${PARTNERS_OFICIALES_TEXTO}. Ganamos comisión si contratás con nosotros, nunca de tu bolsillo.`,
               },
               {
                 icon: <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />,

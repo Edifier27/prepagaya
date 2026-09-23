@@ -59,7 +59,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['maternidad', 'medicamentos', 'urgencias'],
-    keywords: ['prepagas que cubren psicología', 'cobertura salud mental prepaga', 'prepaga psicólogo sin copago', 'cuántas sesiones cubre la prepaga', 'ley 26657 prepagas'],
+    keywords: ['prepagas que cubren psicología', 'cobertura salud mental prepaga', 'prepaga psicólogo sin copago', 'cuántas sesiones cubre la prepaga', 'ley 26657 prepagas', 'prepaga cubre psicologia argentina', 'prepaga salud mental sesiones', 'cobertura psicologia prepaga 2026'],
   },
   {
     slug: 'maternidad',
@@ -140,7 +140,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['optica', 'medicamentos', 'rehabilitacion'],
-    keywords: ['prepagas que cubren odontología', 'cobertura dental prepaga argentina', 'prepaga ortodoncia', 'prepaga implantes dentales', 'qué cubre la prepaga en el dentista'],
+    keywords: ['prepagas que cubren odontología', 'cobertura dental prepaga argentina', 'prepaga ortodoncia', 'prepaga implantes dentales', 'qué cubre la prepaga en el dentista', 'prepaga cubre dentista argentina', 'cobertura odontologia prepaga', 'prepaga odontologia incluida', 'adicional dental prepaga argentina', 'prepaga implantes dentales argentina'],
   },
   {
     slug: 'fertilidad',
@@ -178,7 +178,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['maternidad', 'psicologia', 'medicamentos'],
-    keywords: ['prepagas que cubren fertilización in vitro', 'ley 26862 prepagas fertilidad', 'FIV cobertura prepaga argentina', 'mejor prepaga para tratamiento de fertilidad', 'prepaga ovodonación'],
+    keywords: ['prepagas que cubren fertilización in vitro', 'ley 26862 prepagas fertilidad', 'FIV cobertura prepaga argentina', 'mejor prepaga para tratamiento de fertilidad', 'prepaga ovodonación', 'prepaga cubre fertilidad argentina', 'prepaga tratamiento fertilidad', 'ley 26862 prepaga', 'fiv cobertura prepaga'],
   },
   {
     slug: 'oncologia',
@@ -337,7 +337,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['odontologia', 'rehabilitacion', 'medicamentos'],
-    keywords: ['prepaga que cubre anteojos', 'cobertura óptica prepaga argentina', 'prepaga lentes de contacto', 'prepaga cirugía láser ojos', 'beneficio óptico prepaga'],
+    keywords: ['prepaga que cubre anteojos', 'cobertura óptica prepaga argentina', 'prepaga lentes de contacto', 'prepaga cirugía láser ojos', 'beneficio óptico prepaga', 'prepaga cubre anteojos argentina', 'cobertura optica prepaga', 'reintegro optica prepaga'],
   },
   {
     slug: 'rehabilitacion',

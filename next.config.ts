@@ -176,6 +176,113 @@ const nextConfig: NextConfig = {
         destination: "/para/empresas",
         permanent: true,
       },
+      // Consolidación anti-canibalización (sep-2026): posts del blog que competían
+      // por la misma búsqueda con una guía, cobertura o comparativa más completa.
+      {
+        source: "/blog/osde-vs-cemic",
+        destination: "/comparativas/osde-vs-cemic",
+        permanent: true,
+      },
+      {
+        source: "/blog/sancor-vs-medife",
+        destination: "/comparativas/sancor-salud-vs-medife",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepagas-vs-obra-social-diferencias",
+        destination: "/guias/obra-social-vs-prepaga",
+        permanent: true,
+      },
+      {
+        source: "/blog/como-derivar-obra-social",
+        destination: "/guias/derivar-obra-social-a-prepaga",
+        permanent: true,
+      },
+      {
+        source: "/blog/como-reclamar-a-una-prepaga",
+        destination: "/guias/como-reclamar-a-una-prepaga",
+        permanent: true,
+      },
+      {
+        source: "/blog/como-pedir-reintegro-prepaga",
+        destination: "/guias/reintegros-en-prepagas",
+        permanent: true,
+      },
+      {
+        source: "/blog/copago-coseguro-prepaga-diferencia",
+        destination: "/guias/copago-en-prepagas-que-es",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepagas-que-cubren-tratamientos-fertilidad",
+        destination: "/coberturas/fertilidad",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepaga-que-cubre-psicologia",
+        destination: "/coberturas/psicologia",
+        permanent: true,
+      },
+      {
+        source: "/blog/mejor-prepaga-salud-mental-psicologia-2026",
+        destination: "/condiciones/salud-mental",
+        permanent: true,
+      },
+      {
+        source: "/blog/cobertura-odontologia-prepaga",
+        destination: "/coberturas/odontologia",
+        permanent: true,
+      },
+      {
+        source: "/blog/mejor-prepaga-odontologia-dental-2026",
+        destination: "/coberturas/odontologia",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepaga-cubre-anteojos-optica",
+        destination: "/coberturas/optica",
+        permanent: true,
+      },
+      {
+        source: "/blog/que-es-el-pmo",
+        destination: "/pmo",
+        permanent: true,
+      },
+      {
+        source: "/blog/ranking-prepagas-argentina-2026",
+        destination: "/ranking",
+        permanent: true,
+      },
+      {
+        source: "/blog/mejor-prepaga-jovenes-argentina-2026",
+        destination: "/para/jovenes",
+        permanent: true,
+      },
+      {
+        source: "/blog/aumento-prepaga-2026",
+        destination: "/aumentos",
+        permanent: true,
+      },
+      {
+        source: "/blog/mayor-aumento-prepagas-2026-que-paso",
+        destination: "/aumentos",
+        permanent: true,
+      },
+      {
+        source: "/blog/periodos-de-carencia-prepaga",
+        destination: "/guias/prepaga-sin-periodo-carencia",
+        permanent: true,
+      },
+      {
+        source: "/blog/prepagas-que-mas-aumentaron",
+        destination: "/guias/cuota-prepaga-aumento-inflacion",
+        permanent: true,
+      },
+      {
+        source: "/guias/prepagas-economicas",
+        destination: "/prepagas-economicas",
+        permanent: true,
+      },
     ];
   },
 };

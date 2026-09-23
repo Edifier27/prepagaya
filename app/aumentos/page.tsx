@@ -439,7 +439,7 @@ export default function AumentosPage() {
               <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">Historial de precios</div>
               <div className="text-xs text-gray-400 mt-1">Evolución por empresa y plan →</div>
             </Link>
-            <Link href="/guias/prepagas-economicas" className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
+            <Link href="/prepagas-economicas" className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
               <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">Las prepagas más económicas</div>
               <div className="text-xs text-gray-400 mt-1">Desde $105.000/mes →</div>
             </Link>

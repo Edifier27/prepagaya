@@ -49,8 +49,15 @@ export function slugify(text: string): string {
 
 export const SITE_NAME = 'PrepagaYa'
 export const SITE_URL = 'https://www.prepagaya.com.ar'
+// Prepagas con las que PrepagaYa tiene convenio como partner oficial
+// (confirmado por Darío, 22-sep-2026). Se usa en el footer, términos,
+// metodología, home y schema Organization: una sola fuente para no
+// contradecirnos entre páginas.
+export const PARTNERS_OFICIALES = ['Swiss Medical', 'Sancor Salud', 'OSDE', 'Avalian', 'Premedic'] as const
+export const PARTNERS_OFICIALES_TEXTO = `${PARTNERS_OFICIALES.slice(0, -1).join(', ')} y ${PARTNERS_OFICIALES[PARTNERS_OFICIALES.length - 1]}`
+
 export const SITE_DESCRIPTION =
-  'Compará prepagas en Argentina. Precios actualizados, opiniones reales y el comparador más completo para elegir la mejor prepaga para vos.'
+  'Compará todas las prepagas de Argentina en un solo lugar: precios del mes, planes, coberturas y cartillas. Partner oficial de Swiss Medical, Sancor Salud, OSDE, Avalian y Premedic.'
 
 // dateModified compartido entre sitemap.ts y el JSON-LD (schema Article) de
 // cada plantilla de página (GEO, 17-sep-2026): la evidencia 2026 dice que

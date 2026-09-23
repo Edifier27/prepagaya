@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE, PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Metodología — Cómo elaboramos nuestros rankings',
@@ -114,7 +114,7 @@ export default function MetodologiaPage() {
             {SITE_NAME} <strong>no te cobra nada</strong> por usar el comparador ni por contratar a través nuestro: pagás exactamente lo mismo que yendo directo a la prepaga. Nuestro ingreso viene de las comisiones que nos paga la prepaga cuando una contratación se concreta.
           </p>
           <p className="text-gray-700 text-sm leading-relaxed mb-3">
-            Para poder ofrecerte un proceso de contratación rápido y acompañado, trabajamos activamente con un <strong>grupo curado de prepagas partner</strong>, elegidas por calidad de cobertura, relación precio-cartilla y agilidad del proceso de alta. Son las que vas a ver con opción de cotización directa y mayor protagonismo en el comparador y el ranking.
+            Para poder ofrecerte un proceso de contratación rápido y acompañado, trabajamos activamente con un <strong>grupo curado de prepagas partner</strong> —somos partner oficial de {PARTNERS_OFICIALES_TEXTO}—, elegidas por calidad de cobertura, relación precio-cartilla y agilidad del proceso de alta. Son las que vas a ver con opción de cotización directa y mayor protagonismo en el comparador y el ranking.
           </p>
           <p className="text-gray-700 text-sm leading-relaxed">
             El resto de las prepagas del mercado también aparecen en el sitio con información de precios, cartillas y coberturas verificada de la misma forma — para que puedas comparar el panorama completo — aunque no gestionemos la contratación de esas de forma directa.
