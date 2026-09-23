@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { linkCartillaZona } from '@/lib/data/cartilla-zonas'
+import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { PrepagaZona, ProvinciaSEO } from '@/lib/data/zonas'
@@ -16,11 +18,11 @@ export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metada
   const precioMin = prepData ? Math.min(...prepData.planes.map((pl) => pl.precio)) : null
   return {
     title: precioMin
-      ? `${pz.nombre} en ${prov.nombre}: desde ${formatPrecio(precioMin)}/mes — Cartilla`
-      : `${pz.nombre} en ${prov.nombre}: cartilla y planes ${new Date().getFullYear()}`,
-    description: `¿Qué cubre ${pz.nombre} en ${prov.nombre}?${precioMin ? ` Planes desde ${formatPrecio(precioMin)}/mes.` : ''} Cartilla local, sucursales y planes actualizados ${PRECIO_ACTUALIZADO.toLowerCase()}. Compará con las demás prepagas de ${prov.nombre} y cotizá online.`,
+      ? `${pz.nombre} en ${prov.nombre}: desde ${formatPrecio(precioMin)}/mes — Planes y precios`
+      : `${pz.nombre} en ${prov.nombre}: planes y precios ${new Date().getFullYear()}`,
+    description: `¿Qué cubre ${pz.nombre} en ${prov.nombre}?${precioMin ? ` Planes desde ${formatPrecio(precioMin)}/mes.` : ''} Cobertura en la provincia y planes actualizados ${PRECIO_ACTUALIZADO.toLowerCase()}. Compará con las demás prepagas de ${prov.nombre} y cotizá online.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${pz.slug}` },
-    keywords: [`${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} en ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${prov.capitalNombre.toLowerCase()}`, `cartilla ${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()}`],
+    keywords: [`${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} en ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${prov.capitalNombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()} precios`],
   }
 }
 
@@ -29,6 +31,7 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
   const planesOrdenados = prepData ? [...prepData.planes].sort((a, b) => a.precio - b.precio) : []
   const hermanas = prov.prepagas.filter((h) => h.slug !== pz.slug && h.enSitio).slice(0, 3)
   const fuerza = FUERZA_LABEL[pz.fuerza]
+  const cartillaLink = linkCartillaZona(pz.slug, prov.slug, prov.nombre)
   const crumbs = [
     { nombre: 'Prepagas', href: '/prepagas' },
     { nombre: prov.nombre, href: `/prepagas/${prov.slug}` },
@@ -71,7 +74,7 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
         jsonLdBreadcrumb(crumbs),
         jsonLdFaq(faq),
-        jsonLdArticle(`${pz.nombre} en ${prov.nombre}`, `Cartilla y cobertura de ${pz.nombre} en ${prov.nombre}.`, `/prepagas/${prov.slug}/${pz.slug}`),
+        jsonLdArticle(`${pz.nombre} en ${prov.nombre}`, `Planes, precios y cobertura de ${pz.nombre} en ${prov.nombre}.`, `/prepagas/${prov.slug}/${pz.slug}`),
       ]) }} />
       <BreadcrumbBar crumbs={crumbs} />
 
@@ -86,7 +89,18 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
           </p>
         </header>
 
-        {/* Cartilla local */}
+        {/* Link al silo de cartillas (datos oficiales por zona), si la prepaga lo tiene */}
+        {cartillaLink && (
+          <div className="mb-8">
+            <CartillaOficialLink
+              href={cartillaLink.href}
+              titulo={cartillaLink.zonaNombre ? `Cartilla oficial de ${pz.nombre} en ${cartillaLink.zonaNombre}` : `Cartilla oficial de ${pz.nombre} por zona`}
+              texto="Sanatorios para internación y guardias, con dirección, teléfono y qué plan incluye cada uno."
+            />
+          </div>
+        )}
+
+        {/* Cobertura provincial */}
         <section className="mb-10">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Cobertura de {pz.nombre} en {prov.nombre}</h2>
           <div className="bg-white rounded-2xl border border-gray-200 p-5">
@@ -177,7 +191,7 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
                 <Link key={h.slug} href={`/prepagas/${prov.slug}/${h.slug}`}
                   className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
                   <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">{h.nombre} en {prov.nombre}</div>
-                  <div className="text-xs text-gray-400 mt-1">Ver cartilla y precios →</div>
+                  <div className="text-xs text-gray-400 mt-1">Ver planes y precios →</div>
                 </Link>
               ))}
             </div>

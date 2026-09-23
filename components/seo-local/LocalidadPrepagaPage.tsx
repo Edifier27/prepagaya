@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { linkCartillaZona } from '@/lib/data/cartilla-zonas'
+import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { PrepagaZona, ProvinciaSEO, LocalidadZona } from '@/lib/data/zonas'
@@ -21,12 +23,16 @@ export function localidadPrepagaMetadata(prov: ProvinciaSEO, loc: LocalidadZona,
   const corto = nombreCorto(loc.nombre)
   const year = new Date().getFullYear()
   return {
-    title: `${pz.nombre} en ${corto}, ${prov.nombre}: cartilla ${year}`,
-    description: `¿${pz.nombre} tiene cartilla en ${loc.nombre}, ${prov.nombre}? Prestadores de referencia, planes actualizados ${PRECIO_ACTUALIZADO.toLowerCase()} y cotización online gratis, sin DNI.`,
+    // Intención "planes y precios" en la localidad. La intención "cartilla" la
+    // toma el silo /cartillas/[prepaga]/[zona] (datos oficiales por zona);
+    // antes este título decía "cartilla" y competía con esas páginas.
+    title: `${pz.nombre} en ${corto}, ${prov.nombre}: planes y precios ${year}`,
+    description: `Planes y precios de ${pz.nombre} en ${loc.nombre}, ${prov.nombre} (${PRECIO_ACTUALIZADO.toLowerCase()}), cobertura en la zona y cotización online gratis, sin DNI.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${loc.slug}/${pz.slug}` },
     keywords: [
       `${pz.nombre.toLowerCase()} en ${corto.toLowerCase()}`,
-      `cartilla ${pz.nombre.toLowerCase()} ${corto.toLowerCase()}`,
+      `${pz.nombre.toLowerCase()} ${corto.toLowerCase()} precios`,
+      `planes ${pz.nombre.toLowerCase()} ${corto.toLowerCase()}`,
       `${pz.nombre.toLowerCase()} ${corto.toLowerCase()} ${prov.nombre.toLowerCase()}`,
     ],
   }
@@ -41,6 +47,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
   const precioMax = precios.length ? Math.max(...precios) : null
   const fuerza = FUERZA_LABEL[pz.fuerza]
   const cartillaFina = loc.prestadores.length < UMBRAL_CARTILLA_FINA
+  const cartillaLink = linkCartillaZona(pz.slug, prov.slug, prov.nombre, loc.nombre)
 
   // Otras prepagas con ficha propia (enSitio) disponibles en la misma localidad
   const hermanas = prov.prepagas.filter((h) => h.slug !== pz.slug && h.enSitio).slice(0, 3)
@@ -54,7 +61,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
 
   const faq = [
     {
-      q: `¿${pz.nombre} tiene cartilla en ${corto}?`,
+      q: `¿${pz.nombre} tiene cobertura en ${corto}?`,
       a: cartillaFina
         ? `Todavía no relevamos muchos prestadores puntuales de ${pz.nombre} en ${corto}, pero la prepaga tiene ${fuerza.label.toLowerCase()} en toda la provincia de ${prov.nombre}${prepData ? ` (+${prepData.profesionales.toLocaleString('es-AR')} profesionales en cartilla)` : ''}. Cotizá gratis y te confirmamos la cartilla exacta para tu domicilio en ${corto}.`
         : `Sí. Los prestadores de referencia verificados en ${corto} son: ${loc.prestadores.join(', ')}. Qué prestador puntual cubre cada plan depende del plan contratado — confirmalo al cotizar.`,
@@ -78,7 +85,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
         jsonLdBreadcrumb(crumbs),
         jsonLdFaq(faq),
-        jsonLdArticle(`${pz.nombre} en ${corto}, ${prov.nombre}`, `Cartilla y cobertura de ${pz.nombre} en ${loc.nombre}, ${prov.nombre}.`, `/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`),
+        jsonLdArticle(`${pz.nombre} en ${corto}, ${prov.nombre}`, `Planes, precios y cobertura de ${pz.nombre} en ${loc.nombre}, ${prov.nombre}.`, `/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`),
       ]) }} />
       <BreadcrumbBar crumbs={crumbs} />
 
@@ -92,6 +99,17 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
             {pz.verificado ? '' : ' · Detalle de cartilla local sujeto a confirmación al cotizar'}
           </p>
         </header>
+
+        {/* Link al silo de cartillas (datos oficiales por zona), si la prepaga lo tiene */}
+        {cartillaLink && (
+          <div className="mb-8">
+            <CartillaOficialLink
+              href={cartillaLink.href}
+              titulo={cartillaLink.zonaNombre ? `Cartilla oficial de ${pz.nombre} en ${cartillaLink.zonaNombre}` : `Cartilla oficial de ${pz.nombre} por zona`}
+              texto="Sanatorios para internación y guardias, con dirección, teléfono y qué plan incluye cada uno."
+            />
+          </div>
+        )}
 
         {/* Prestadores puntuales de la localidad, si hay */}
         {loc.prestadores.length > 0 && (
@@ -113,7 +131,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
 
         {/* Cartilla provincial de la prepaga (siempre se muestra, verificada) */}
         <section className="mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Cartilla de {pz.nombre} en la provincia de {prov.nombre}</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Red de {pz.nombre} en la provincia de {prov.nombre}</h2>
           <div className="bg-white rounded-2xl border border-gray-200 p-5">
             <ul className="space-y-2.5">
               {pz.cartillaLocal.map((c) => (
@@ -195,7 +213,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
                 <Link key={h.slug} href={`/prepagas/${prov.slug}/${loc.slug}/${h.slug}`}
                   className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
                   <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">{h.nombre} en {corto}</div>
-                  <div className="text-xs text-gray-400 mt-1">Ver cartilla y precios →</div>
+                  <div className="text-xs text-gray-400 mt-1">Ver planes y precios →</div>
                 </Link>
               ))}
             </div>

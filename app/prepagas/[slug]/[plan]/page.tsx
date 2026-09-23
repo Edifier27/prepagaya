@@ -10,6 +10,8 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
+import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
+import { linkCartillaPlan } from '@/lib/data/cartilla-zonas'
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
 import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
 import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
@@ -117,7 +119,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) return {}
   return {
-    title: `${prep.nombre} ${plan.nombre}: Precio ${formatPrecio(plan.precio)} — Cobertura y Cartilla ${PRECIO_ACTUALIZADO}`,
+    // "Qué cubre" en vez de "Cartilla" (22-sep-2026): la cartilla del plan vive
+    // en /cartillas/[prepaga]/plan-x; acá se enlaza (ver cartillaPlanLink).
+    title: `${prep.nombre} ${plan.nombre}: Precio ${formatPrecio(plan.precio)} — Qué cubre ${PRECIO_ACTUALIZADO}`,
     description: `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
     keywords: [
@@ -157,6 +161,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
   const { cartilla, provincia } = await searchParams
   const abrirCartilla = cartilla === '1'
+  const cartillaPlanLink = linkCartillaPlan(prep.slug, plan.slug)
   // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba") ya
   // sabemos la provincia. Si no, CartillaModalTrigger pregunta una vez (o usa
   // la última guardada) en vez de asumir Buenos Aires por default.
@@ -343,6 +348,15 @@ export default async function PlanPage({ params, searchParams }: Props) {
           <Link href="/calculadora" className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-[#E8002D] font-medium mt-2 transition-colors">
             ¿Cuánto te sale a tu edad? Calculalo acá →
           </Link>
+          {cartillaPlanLink && (
+            <div className="mt-4">
+              <CartillaOficialLink
+                href={cartillaPlanLink.href}
+                titulo={`Cartilla del ${prep.nombre} ${plan.nombre} por zona`}
+                texto={`Sanatorios para internación y guardias que incluye ${cartillaPlanLink.label === plan.nombre ? 'este plan' : `la cartilla ${cartillaPlanLink.label}`}, zona por zona.`}
+              />
+            </div>
+          )}
         </div>
       </section>
 

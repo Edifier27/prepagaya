@@ -14,6 +14,8 @@ export interface PlanCartilla {
   label: string
   /** slug del plan en lib/data/prepagas.ts, si está en el comparador */
   comparadorSlug?: string
+  /** Otros planes del comparador que usan esta misma cartilla (ej. S2 → Global) */
+  otrosComparadorSlugs?: string[]
 }
 
 export interface ZonaCartillaIndice {

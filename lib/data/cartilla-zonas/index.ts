@@ -2,10 +2,12 @@ import osdeData from './osde.json'
 import premedicData from './premedic.json'
 import avalianData from './avalian.json'
 import swissData from './swiss-medical.json'
+import { detectarZona, type ZonaDetectada } from '@/lib/geo-zonas'
 import {
   nombreCortoZona,
   normalizarTexto,
   slugPlan,
+  zonaParaUbicacion,
   type PlanCartilla,
   type SeccionCartilla,
   type ZonaCartillaIndice,
@@ -214,10 +216,10 @@ export const CARTILLAS: Record<string, CartillaPrepaga> = {
       // Los planes Sport no figuran en esa lista: no se asignan a ninguna.
       planes: [
         { id: 'SMG01', label: 'SMG01 (Nubial Clásica)' },
-        { id: 'SMG02', label: 'SMG02 y S1 (Nubial Quality)', comparadorSlug: 'smg02' },
+        { id: 'SMG02', label: 'SMG02 y S1 (Nubial Quality)', comparadorSlug: 'smg02', otrosComparadorSlugs: ['s1'] },
         { id: 'SMG10', label: 'SMG10 (Advance)' },
-        { id: 'SMG20', label: 'SMG20 y S2 (Global)', comparadorSlug: 'smg20' },
-        { id: 'SMG30', label: 'SMG30 a SMG70 (Premium)', comparadorSlug: 'smg30' },
+        { id: 'SMG20', label: 'SMG20 y S2 (Global)', comparadorSlug: 'smg20', otrosComparadorSlugs: ['s2'] },
+        { id: 'SMG30', label: 'SMG30 a SMG70 (Premium)', comparadorSlug: 'smg30', otrosComparadorSlugs: ['smg40', 'smg50', 'smg60', 'smg70'] },
       ],
       planesConPagina: ['SMG02', 'SMG20', 'SMG30'],
       escalera: ['SMG01', 'SMG02', 'SMG10', 'SMG20', 'SMG30'],
@@ -338,6 +340,45 @@ export function tieneCombinacion(prepagaSlug: string, planSlug: string, zonaSlug
 
 export function textoFecha(c: CartillaPrepaga): string {
   return c.tipoFecha === 'vigencia' ? `cartilla oficial vigente al ${c.vigencia}` : `buscador oficial consultado el ${c.vigencia}`
+}
+
+/**
+ * Página del silo de cartillas que corresponde a una prepaga en una provincia
+ * (y opcionalmente una localidad), para enlazar desde el silo SEO local
+ * (/prepagas/[provincia]/[localidad]/[prepaga]). Usa el mismo cruce
+ * geográfico que el buscador (zonaParaUbicacion). Sin match → la cabeza del
+ * silo de esa prepaga; sin cartilla por zona → null.
+ */
+export function linkCartillaZona(
+  prepagaSlug: string,
+  provinciaSlug: string,
+  provinciaNombre: string,
+  localidad?: string,
+): { href: string; zonaNombre: string | null } | null {
+  if (!CARTILLAS[prepagaSlug]) return null
+  const idx = indiceZonas(prepagaSlug)
+  let zd: ZonaDetectada | null
+  if (localidad && (provinciaSlug === 'caba' || provinciaSlug === 'buenos-aires')) {
+    zd = detectarZona(provinciaSlug === 'caba' ? 'C' : 'B', localidad)
+  } else if (localidad) {
+    zd = { label: `${localidad} (${provinciaNombre})`, wizardSlug: provinciaSlug }
+  } else {
+    zd = { label: provinciaNombre, wizardSlug: provinciaSlug }
+  }
+  const slug = zonaParaUbicacion(idx, zd)
+  const z = slug ? idx.find((x) => x.slug === slug) : undefined
+  return z
+    ? { href: `/cartillas/${prepagaSlug}/${z.slug}`, zonaNombre: nombreCortoZona(z.nombre) }
+    : { href: `/cartillas/${prepagaSlug}`, zonaNombre: null }
+}
+
+/** Página del silo de cartillas para un plan del comparador (ej. osde/210 → /cartillas/osde/plan-210). */
+export function linkCartillaPlan(prepagaSlug: string, planComparadorSlug: string): { href: string; label: string } | null {
+  const c = CARTILLAS[prepagaSlug]
+  if (!c) return null
+  const p = c.planes.find((x) => x.comparadorSlug === planComparadorSlug || x.otrosComparadorSlugs?.includes(planComparadorSlug))
+  if (!p || !c.planesConPagina.includes(p.id)) return null
+  return { href: `/cartillas/${prepagaSlug}/${slugPlan(p.id)}`, label: p.label }
 }
 
 export { nombreCortoZona, slugPlan }
