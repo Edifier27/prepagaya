@@ -16,6 +16,7 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { ProvinciaHubPage, provinciaHubMetadata } from '@/components/seo-local/ProvinciaHubPage'
 import type { Prepaga } from '@/types'
+import { getAppPrepaga, APPS_FECHA, APPS_FUENTE } from '@/lib/data/apps-prepagas'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -190,7 +191,16 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const otrosPlanes = ordenarPorCartilla(prep.slug, planesOrdenados).filter(pl => pl.slug !== planEstrella.slug)
   const testisPrepaga = testimonios.filter(t => t.prepagaSlug === prep.slug).slice(0, 2)
   const perfiles = getPerfilesIdeales(prep, precioMin)
-  const faqs = buildFAQs(prep, precioMin, precioMax, planEstrella)
+  const app = getAppPrepaga(prep.slug)
+  const faqs = [
+    ...buildFAQs(prep, precioMin, precioMax, planEstrella),
+    // "¿X tiene app?": única búsqueda de apps con intención previa a contratar
+    // (análisis de keywords, 22-sep-2026). Solo con datos de la ficha oficial.
+    ...(app ? [{
+      q: `¿${prep.nombre} tiene app?`,
+      a: `Sí. La app oficial se llama "${app.nombreApp}" y está en Google Play. ${app.credencialDigital ? 'Incluye credencial digital. ' : ''}Según su ficha oficial permite: ${app.funciones.slice(0, 4).map((f) => f.toLowerCase()).join('; ')}.`,
+    }] : []),
+  ]
   const starsLlenas = Math.round(prep.rating)
 
   const jsonLd = [
@@ -825,6 +835,42 @@ export default async function PrepagaSlugPage({ params }: Props) {
           </section>
         )
       })()}
+
+      {/* App oficial — datos de la ficha de Google Play (lib/data/apps-prepagas.ts) */}
+      {app && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-5xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">App de {prep.nombre}: credencial digital y gestiones</h2>
+            <p className="text-sm text-gray-600 mb-5 max-w-3xl">
+              {prep.nombre} tiene app oficial: <strong>{app.nombreApp}</strong>.{' '}
+              {app.credencialDigital ? 'Desde ahí usás la credencial digital y hacés gestiones sin ir a una sucursal.' : 'Está centrada en la cartilla y las urgencias; su ficha no menciona credencial digital.'}
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="md:col-span-2 bg-gray-50 rounded-2xl border border-gray-100 p-5">
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Qué podés hacer con la app</div>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-gray-700">
+                  {app.funciones.map((f) => (
+                    <li key={f} className="flex gap-2"><span className="text-emerald-500 flex-shrink-0">✓</span>{f}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-white rounded-2xl border border-gray-200 p-5 flex flex-col gap-3">
+                <div>
+                  <div className="text-2xl font-black text-gray-900">{app.calificacion.toLocaleString('es-AR')} <span className="text-base text-amber-500">★</span></div>
+                  <div className="text-xs text-gray-500">{app.opiniones.toLocaleString('es-AR')} opiniones en Google Play</div>
+                </div>
+                <a href={app.playUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-[#E8002D] hover:underline">Ver la app en Google Play →</a>
+                {app.otras?.map((o) => (
+                  <a key={o.playUrl} href={o.playUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-600 hover:text-[#E8002D]">
+                    <strong>{o.nombre}</strong>: {o.descripcion} →
+                  </a>
+                ))}
+              </div>
+            </div>
+            <p className="text-xs text-gray-400 mt-4">Fuente: {APPS_FUENTE}, consultadas el {APPS_FECHA}. La calificación cambia con el tiempo. <Link href="/blog/prepagas-con-mejor-app" className="underline hover:text-gray-600">Comparar las apps de todas las prepagas</Link>.</p>
+          </div>
+        </section>
+      )}
 
       {/* FAQ */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">

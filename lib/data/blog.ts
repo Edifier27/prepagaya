@@ -1,3 +1,8 @@
+import { appsPrepagas, APPS_FECHA } from './apps-prepagas'
+import { prepagas } from './prepagas'
+
+const prepagaNombre = (slug: string) => prepagas.find((p) => p.slug === slug)?.nombre ?? slug
+
 export interface BlogPost {
   slug: string
   titulo: string
@@ -389,25 +394,28 @@ export const blogPosts: BlogPost[] = [
     keywords: ['medife prepaga conviene', 'medife interior argentina', 'medife vs sancor interior', 'medife prepaga analisis 2026'],
   },
   {
+    // Reescrito 23-sep-2026 con datos de las fichas oficiales en Google Play
+    // (lib/data/apps-prepagas.ts); la versión anterior no tenía fuente.
     slug: 'prepagas-con-mejor-app',
-    titulo: 'Las prepagas con mejor aplicación móvil en Argentina 2026',
-    bajada: 'Pedir turno, ver la cartilla, solicitar autorizaciones: la app de la prepaga puede ser un infierno o una maravilla. Rankeamos las mejores.',
-    metaDescripcion: 'Ranking de prepagas con mejor app móvil en Argentina 2026. Qué funcionalidades tiene cada una y cuál tiene la experiencia digital más completa.',
+    titulo: 'Apps de las prepagas: qué permite cada una y cómo las califican (2026)',
+    bajada: 'Credencial digital, token, turnos, reintegros: comparamos las apps oficiales de Swiss Medical, OSDE, Avalian, Sancor Salud y Premedic con los datos de sus fichas en Google Play.',
+    metaDescripcion: 'Qué prepaga tiene la app más completa: funciones de las apps de Swiss Medical, OSDE, Avalian, Sancor Salud y Premedic y su calificación en Google Play, con fuente oficial.',
     categoria: 'Ranking',
-    fechaPublicacion: '2026-04-15',
-    tiempoLectura: 5,
+    fechaPublicacion: '2026-09-23',
+    tiempoLectura: 4,
     contenido: {
-      intro: 'En 2026, la app de tu prepaga es casi tan importante como los médicos de su red. Una buena app te permite pedir turno, ver la cartilla actualizada, solicitar autorizaciones, pedir reintegros y acceder a telemedicina.',
+      intro: `Todas las prepagas grandes tienen app oficial, pero no hacen lo mismo. Revisamos la ficha de cada una en Google Play (${APPS_FECHA}): qué funciones declara la propia prepaga y qué calificación le dan sus afiliados.`,
       secciones: [
-        { titulo: '1. Swiss Medical: la más completa', cuerpo: 'La app de Swiss Medical es consistentemente la mejor calificada por los usuarios. Permite pedir turno con cualquier médico de la red, ver resultados de estudios, solicitar medicamentos, acceder a telemedicina y hablar con un médico online.' },
-        { titulo: '2. OSDE: la más usada', cuerpo: 'OSDE tiene la app más usada por volumen de afiliados. Permite gestión completa del plan, cartilla en línea, solicitud de autorizaciones y pago de cuota. Ha mejorado mucho en los últimos años.' },
-        { titulo: '3. Sancor Salud Digital: buena para el interior', cuerpo: 'La app de Sancor Salud es especialmente valorada por sus afiliados del interior. La cartilla es fácil de usar para encontrar prestadores en ciudades medianas y la telemedicina está bien integrada.' },
-        { titulo: 'Premedic: la más básica', cuerpo: 'Premedic tiene la app más simple del mercado. Cumple las funciones básicas pero sin las prestaciones avanzadas de las empresas más grandes. Acorde al perfil económico de la empresa.' },
+        ...[...appsPrepagas].sort((a, b) => b.funciones.length - a.funciones.length).map((a) => ({
+          titulo: `App de ${prepagaNombre(a.prepagaSlug)}: ${a.nombreApp}`,
+          cuerpo: `${a.credencialDigital ? 'Tiene credencial digital. ' : 'Su ficha no menciona credencial digital. '}Según la ficha oficial permite: ${a.funciones.map((f) => f.toLowerCase()).join('; ')}.${a.otras ? ` Además tiene ${a.otras.map((o) => `${o.nombre} (${o.descripcion.toLowerCase()})`).join(', ')}.` : ''} Calificación en Google Play: ${a.calificacion.toLocaleString('es-AR')} sobre 5, con ${a.opiniones.toLocaleString('es-AR')} opiniones.`,
+        })),
+        { titulo: 'Cómo leer las calificaciones', cuerpo: 'La nota de Google Play la ponen los afiliados que usan la app, y cuenta mucho la experiencia con la prepaga en general, no solo con la app. Una app con muchas funciones puede tener nota más baja que una simple, porque la usan más personas para más trámites. Por eso conviene mirar las dos cosas: qué te deja hacer y qué opinan quienes la usan.' },
       ],
-      conclusion: 'Si la experiencia digital es importante para vos, Swiss Medical y OSDE son las mejores opciones. Para el interior, Sancor Salud tiene una app muy bien adaptada. Antes de contratar, descargá la app de prueba para evaluar la experiencia.',
+      conclusion: 'Si querés hacer todo desde el celular (turnos, resultados, reintegros, pagar la factura), las apps con más funciones declaradas son las de Swiss Medical y Sancor Salud. Si lo que más te importa es la credencial digital, la tienen Swiss Medical, OSDE, Avalian y Sancor Salud. En cualquier caso, la app es un complemento: lo que define la prepaga son la cartilla en tu zona y el precio para tu edad.',
     },
-    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
-    keywords: ['prepaga mejor app argentina', 'app prepaga argentina ranking', 'swiss medical app vs osde app', 'prepaga digital argentina 2026'],
+    prepagasRelacionadas: ['swiss-medical', 'avalian', 'premedic', 'sancor-salud', 'osde'],
+    keywords: ['prepaga con mejor app', 'prepaga tiene app', 'app prepaga credencial digital', 'swiss medical app vs osde app', 'avalian tiene app', 'sancor salud tiene app'],
   },
   {
     slug: 'prepagas-red-abierta-vs-cerrada',
