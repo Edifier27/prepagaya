@@ -66,6 +66,7 @@ export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'clinica-colon-mar-del-plata', nombre: 'Clínica y Maternidad Colón (Mar del Plata)', claves: ['colon'], ciudad: 'mar del plata', ciudadNombre: 'Mar del Plata' },
   { slug: 'hospital-regional-espanol-bahia-blanca', nombre: 'Hospital Regional Español (Bahía Blanca)', claves: ['regional', 'espanol'], ciudad: 'bahia blanca', ciudadNombre: 'Bahía Blanca' },
   { slug: 'hospital-privado-del-sur', nombre: 'Hospital Privado del Sur (Bahía Blanca)', claves: ['privado', 'sur'], excluir: ['italiano'], ciudad: 'bahia blanca', ciudadNombre: 'Bahía Blanca' },
+  { slug: 'sanatorio-altos-de-salta', nombre: 'Sanatorio Altos de Salta', claves: ['altos', 'salta'], ciudad: 'salta', ciudadNombre: 'Salta' },
   { slug: 'sanatorio-tandil', nombre: 'Sanatorio Tandil', claves: ['tandil'], excluir: ['chacabuco'], ciudad: 'tandil', ciudadNombre: 'Tandil' },
 ]
 

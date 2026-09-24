@@ -10,7 +10,7 @@ export const prepagas: Prepaga[] = [
     descripcion:
       // Sanatorios, SMG Center, ICBA y Diagnóstico Maipú: confirmado por Darío
       // (partner oficial, 24-sep-2026). Antes: afiliados y centros sin fuente.
-      'Swiss Medical tiene 9 sanatorios propios, más de 30 SMG Center en AMBA, SMG Center en Neuquén y Los Arcos en la provincia de Salta, y es dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú. Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
+      'Swiss Medical tiene 9 sanatorios propios, más de 30 SMG Center en AMBA y SMG Center en Neuquén, y es dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú. Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
     satisfaccion: 91,
     calidadCartilla: 5,
     rating: 4.2,
@@ -21,7 +21,10 @@ export const prepagas: Prepaga[] = [
       'Sport Plan: el único plan del mercado con reintegros por gimnasio, nutrición y kinesiología para quienes entrenan en serio',
       'Guardia Ágil: reservá turno en guardia desde el celular',
       'Red nacional de profesionales y centros de diagnóstico',
-      'Más de 30 SMG Center en AMBA, SMG Center en Neuquén y Los Arcos en la provincia de Salta',
+      'Más de 30 SMG Center en AMBA y SMG Center en Neuquén',
+      // Salta (24-sep-2026): sucursal verificada en swissmedical.com.ar/prepagaclientes/sucursales;
+      // Altos de Salta figura en la cartilla oficial con internación y guardia desde SMG02.
+      'En Salta: sucursal en España 943 y el Sanatorio Altos de Salta (Laprida 145) en cartilla desde el SMG02',
       'Dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú',
       'Planes sin copago desde SMG20',
     ],
