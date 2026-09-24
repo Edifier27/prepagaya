@@ -17,6 +17,9 @@ export function generateStaticParams() {
   return sanatoriosPublicables().map((s) => ({ slug: s.slug }))
 }
 
+/** Artículo según el nombre: "la Clínica de Cuyo", "el Hospital Alemán". */
+const art = (nombre: string) => (/^cl[ií]nica/i.test(nombre) ? 'la' : 'el')
+
 const ORDEN = [...PRIORIDAD_PARTNERS, 'osde']
 function ordenar(lista: PrepagaEnSanatorio[]) {
   return [...lista].sort((a, b) => (ORDEN.indexOf(a.prepagaSlug) + 99) % 99 - (ORDEN.indexOf(b.prepagaSlug) + 99) % 99)
@@ -36,11 +39,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!s || lista.length < 2) return {}
   const nombres = ordenar(lista).map((p) => p.prepagaNombre)
   return {
-    title: `Prepagas que atienden en el ${s.nombre}: desde qué plan`,
-    description: `Prepagas con el ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
+    title: `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`,
+    description: `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
     alternates: { canonical: `${SITE_URL}/sanatorios/${slug}` },
     keywords: [
       `prepagas ${s.nombre.toLowerCase()}`,
+      ...(s.ciudadNombre ? [`prepagas ${s.ciudadNombre.toLowerCase()}`, `que prepagas atienden en ${s.ciudadNombre.toLowerCase()}`] : []),
       `que prepagas atienden en el ${s.nombre.toLowerCase()}`,
       `obra social ${s.nombre.toLowerCase()}`,
       `${s.nombre.toLowerCase()} prepaga`,
@@ -62,11 +66,11 @@ export default async function SanatorioPage({ params }: Props) {
 
   const faqs = [
     {
-      q: `¿Qué prepagas atienden en el ${s.nombre}?`,
-      a: `Según sus cartillas oficiales, el ${s.nombre} figura en ${lista.map((p) => p.prepagaNombre).join(', ')}.${resumen ? ` Para internación: ${resumen}.` : ''}`,
+      q: `¿Qué prepagas atienden en ${art(s.nombre)} ${s.nombre}?`,
+      a: `Según sus cartillas oficiales, ${art(s.nombre)} ${s.nombre} figura en ${lista.map((p) => p.prepagaNombre).join(', ')}.${resumen ? ` Para internación: ${resumen}.` : ''}`,
     },
     {
-      q: `¿Cuál es el plan más barato que incluye el ${s.nombre}?`,
+      q: `¿Cuál es el plan más barato que incluye ${art(s.nombre)} ${s.nombre}?`,
       a: (() => {
         const conPrecio = conInternacion
           .map((p) => ({ p, plan: planComparador(p.prepagaSlug, p.desde!.comparadorSlug) }))
@@ -89,7 +93,7 @@ export default async function SanatorioPage({ params }: Props) {
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: `¿Qué prepagas atienden en el ${s.nombre}?`,
+      name: `¿Qué prepagas atienden en ${art(s.nombre)} ${s.nombre}?`,
       url: `${SITE_URL}/sanatorios/${slug}`,
       inLanguage: 'es-AR',
       dateModified: SANATORIOS_ACTUALIZADO,
@@ -132,14 +136,14 @@ export default async function SanatorioPage({ params }: Props) {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-10">
         <div className="container max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight text-balance">
-            ¿Qué prepagas atienden en el {s.nombre}?
+            ¿Qué prepagas atienden en {art(s.nombre)} {s.nombre}?
           </h1>
           <p className="text-gray-700 text-base leading-relaxed max-w-3xl">
-            Según sus cartillas oficiales, el <strong>{s.nombre}</strong> figura en <strong>{lista.map((p) => p.prepagaNombre).join(', ')}</strong>.
+            Según sus cartillas oficiales, {art(s.nombre)} <strong>{s.nombre}</strong> figura en <strong>{lista.map((p) => p.prepagaNombre).join(', ')}</strong>.
             {resumen && <> Para internación: {resumen}.</>}
           </p>
           <a href="#cotizar" className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
-            Cotizar un plan con el {s.nombre} →
+            Cotizar un plan con {art(s.nombre)} {s.nombre} →
           </a>
         </div>
       </section>
@@ -148,7 +152,7 @@ export default async function SanatorioPage({ params }: Props) {
           citan tal cual; el detalle por prepaga va abajo. */}
       <section className="pt-10 bg-white">
         <div className="container max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Resumen: prepagas con el {s.nombre}</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Resumen: prepagas con {art(s.nombre)} {s.nombre}</h2>
           <div className="overflow-x-auto rounded-xl border border-gray-200">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wide">
@@ -174,7 +178,7 @@ export default async function SanatorioPage({ params }: Props) {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-gray-400 mt-2">Cartillas oficiales consultadas en septiembre de 2026. Precios de lista {PRECIO_ACTUALIZADO.toLowerCase()} según los cuadros tarifarios de la SSSalud.</p>
+          <p className="text-xs text-gray-400 mt-2">Cartillas oficiales consultadas en septiembre de 2026. Precios de lista {PRECIO_ACTUALIZADO.toLowerCase()} según los cuadros tarifarios de la SSSalud{s.ciudadNombre ? ` (lista de referencia: en ${s.ciudadNombre} el precio puede ser distinto, te lo cotizamos con la lista de tu zona)` : ''}.</p>
         </div>
       </section>
 
@@ -227,14 +231,14 @@ export default async function SanatorioPage({ params }: Props) {
             })}
           </div>
           <p className="text-xs text-gray-500 mt-5 max-w-3xl">
-            Relevamos las cartillas oficiales de Swiss Medical, OSDE, Premedic, Avalian y Sancor Salud en CABA y GBA. Si una prepaga no aparece acá, puede que lo tenga con otro nombre o en otra zona: consultanos y te lo confirmamos.
+            Relevamos las cartillas oficiales de Swiss Medical, OSDE, Premedic, Avalian y Sancor Salud en {s.ciudadNombre ?? 'CABA y GBA'}. Si una prepaga no aparece acá, puede que lo tenga con otro nombre o en otra zona: consultanos y te lo confirmamos.
           </p>
         </div>
       </section>
 
       <section id="cotizar" className="py-12 bg-[#E8002D] text-white scroll-mt-20">
         <div className="container max-w-xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-2">Cotizá un plan que incluya el {s.nombre}</h2>
+          <h2 className="text-2xl font-bold mb-2">Cotizá un plan que incluya {art(s.nombre)} {s.nombre}</h2>
           <p className="text-red-100 text-sm mb-6">Te respondemos en {TIEMPO_RESPUESTA}, con el precio para tu edad y tu zona.</p>
           <Link href="/comparador" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm">
             Cotizar gratis →

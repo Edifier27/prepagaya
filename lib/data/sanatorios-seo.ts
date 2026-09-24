@@ -18,6 +18,11 @@ export interface SanatorioSEO {
   claves: string[]
   /** Si el nombre tiene alguna de estas palabras, no es este sanatorio */
   excluir?: string[]
+  /** Interior (23-sep-2026): se buscan zonas cuyo nombre contenga este texto
+   *  normalizado (ej. 'rosario'). Sin ciudad = CABA y GBA. */
+  ciudad?: string
+  /** Cómo se muestra la ciudad: "Rosario", "Córdoba"... */
+  ciudadNombre?: string
 }
 
 export const SANATORIOS_SEO: SanatorioSEO[] = [
@@ -39,6 +44,29 @@ export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'sanatorio-agote', nombre: 'Sanatorio Agote', claves: ['agote'] },
   { slug: 'instituto-alexander-fleming', nombre: 'Instituto Alexander Fleming', claves: ['fleming'], excluir: ['trinidad'] },
   { slug: 'hospital-cemic', nombre: 'Hospital Universitario CEMIC', claves: ['cemic'] },
+  // Interior: los que figuran en 3 o más cartillas oficiales de su ciudad
+  { slug: 'sanatorio-allende', nombre: 'Sanatorio Allende', claves: ['allende'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
+  { slug: 'clinica-reina-fabiola', nombre: 'Clínica Universitaria Reina Fabiola', claves: ['reina', 'fabiola'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
+  { slug: 'sanatorio-del-salvador', nombre: 'Sanatorio del Salvador', claves: ['salvador'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
+  { slug: 'instituto-modelo-de-cardiologia', nombre: 'Instituto Modelo de Cardiología', claves: ['modelo', 'cardiologia'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
+  { slug: 'sanatorio-britanico-rosario', nombre: 'Sanatorio Británico de Rosario', claves: ['britanico'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'sanatorio-parque-rosario', nombre: 'Sanatorio Parque de Rosario', claves: ['parque'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'sanatorio-de-la-mujer-rosario', nombre: 'Sanatorio de la Mujer (Rosario)', claves: ['mujer'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'hospital-espanol-rosario', nombre: 'Hospital Español de Rosario', claves: ['espanol'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'sanatorio-americano-rosario', nombre: 'Sanatorio Americano (Rosario)', claves: ['americano'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'centro-medico-ipam', nombre: 'Centro Médico IPAM (Rosario)', claves: ['ipam'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'instituto-cardiovascular-de-rosario', nombre: 'Instituto Cardiovascular de Rosario', claves: ['cardiovascular'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'hospital-italiano-garibaldi-rosario', nombre: 'Hospital Italiano Garibaldi (Rosario)', claves: ['italiano'], excluir: ['sanatorio'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'sanatorio-de-ninos-rosario', nombre: 'Sanatorio de Niños (Rosario)', claves: ['ninos'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'clinica-de-cuyo', nombre: 'Clínica de Cuyo', claves: ['cuyo'], ciudad: 'mendoza', ciudadNombre: 'Mendoza' },
+  { slug: 'clinica-mayo-tucuman', nombre: 'Clínica Mayo (Tucumán)', claves: ['mayo'], excluir: ['sanatorio'], ciudad: 'tucuman', ciudadNombre: 'Tucumán' },
+  { slug: 'sanatorio-del-norte-tucuman', nombre: 'Sanatorio del Norte (Tucumán)', claves: ['norte'], ciudad: 'tucuman', ciudadNombre: 'Tucumán' },
+  { slug: 'hospital-italiano-la-plata', nombre: 'Hospital Italiano de La Plata', claves: ['italiano', 'plata'], ciudad: 'plata', ciudadNombre: 'La Plata' },
+  { slug: 'instituto-medico-platense', nombre: 'Instituto Médico Platense', claves: ['platense'], ciudad: 'plata', ciudadNombre: 'La Plata' },
+  { slug: 'clinica-colon-mar-del-plata', nombre: 'Clínica y Maternidad Colón (Mar del Plata)', claves: ['colon'], ciudad: 'mar del plata', ciudadNombre: 'Mar del Plata' },
+  { slug: 'hospital-regional-espanol-bahia-blanca', nombre: 'Hospital Regional Español (Bahía Blanca)', claves: ['regional', 'espanol'], ciudad: 'bahia blanca', ciudadNombre: 'Bahía Blanca' },
+  { slug: 'hospital-privado-del-sur', nombre: 'Hospital Privado del Sur (Bahía Blanca)', claves: ['privado', 'sur'], excluir: ['italiano'], ciudad: 'bahia blanca', ciudadNombre: 'Bahía Blanca' },
+  { slug: 'sanatorio-tandil', nombre: 'Sanatorio Tandil', claves: ['tandil'], excluir: ['chacabuco'], ciudad: 'tandil', ciudadNombre: 'Tandil' },
 ]
 
 export interface PrepagaEnSanatorio {
@@ -75,7 +103,7 @@ export function prepagasEnSanatorio(slug: string): PrepagaEnSanatorio[] {
     const guardia = new Set<string>()
     const sedes: PrepagaEnSanatorio['sedes'] = []
     for (const z of cart.zonas) {
-      if (!esAmba(z.slug)) continue
+      if (s.ciudad ? !normalizarTexto(z.nombre).includes(s.ciudad) : !esAmba(z.slug)) continue
       for (const c of z.centros) {
         if (!coincide(s, c)) continue
         c.internacion.forEach((p) => internacion.add(p))
