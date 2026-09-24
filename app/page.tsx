@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Buscador } from '@/components/layout/Buscador'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
@@ -207,24 +208,36 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      {/* ── Acceso destacado a las cartillas (pedido de Darío, 23-sep-2026) ── */}
-      <section className="py-8 bg-white border-b border-gray-100">
-        <div className="container max-w-4xl mx-auto">
-          <Link
-            href="/cartillas"
-            className="group flex flex-col sm:flex-row sm:items-center gap-4 p-5 md:p-6 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white hover:border-[#E8002D] hover:shadow-md transition-all"
-          >
-            <div className="w-12 h-12 rounded-xl bg-[#E8002D] flex items-center justify-center flex-shrink-0">
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M12 8v4M10 10h4" /></svg>
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-lg font-bold text-gray-900">¿Tu sanatorio está en la cartilla?</div>
-              <div className="text-sm text-gray-600">Buscá por zona o por nombre en las cartillas de {PARTNERS_OFICIALES_TEXTO}, y mirá qué plan lo incluye.</div>
-            </div>
-            <span className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm whitespace-nowrap transition-colors">
-              Buscar en cartillas →
-            </span>
-          </Link>
+      {/* ── Tres puertas (24-sep-2026, docs/producto/propuesta-buscador-
+          interactivo.md): otras formas de empezar además del cotizador. La de
+          sanatorios reemplaza al acceso a cartillas del 23-sep (lo incluye). ── */}
+      <section className="py-10 bg-white border-b border-gray-100">
+        <div className="container max-w-5xl mx-auto">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">¿Cómo querés empezar?</h2>
+          <p className="text-sm text-gray-600 mb-5">Además del cotizador, tres atajos con datos oficiales.</p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { href: '/buscar-por-sanatorio', titulo: 'Tengo mis sanatorios', texto: 'Elegí dónde te atendés y mirá qué plan los cubre a todos, con las cartillas oficiales.', cta: 'Buscar por sanatorio', icono: 'M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M12 8v4M10 10h4' },
+              { href: '/chequeo-prepaga', titulo: 'Ya tengo prepaga', texto: 'Chequeá cuánto pagás, cuánto aumenta el mes que viene y cuánto podés ahorrar.', cta: 'Chequear mi cuota', icono: 'M9 12l2 2 4-4M7.8 4.7a3.4 3.4 0 001.9-.8 3.4 3.4 0 014.6 0 3.4 3.4 0 001.9.8 3.4 3.4 0 013.1 3.1c.1.7.4 1.4.8 1.9a3.4 3.4 0 010 4.6 3.4 3.4 0 00-.8 1.9 3.4 3.4 0 01-3.1 3.1 3.4 3.4 0 00-1.9.8 3.4 3.4 0 01-4.6 0 3.4 3.4 0 00-1.9-.8 3.4 3.4 0 01-3.1-3.1 3.4 3.4 0 00-.8-1.9 3.4 3.4 0 010-4.6 3.4 3.4 0 00.8-1.9 3.4 3.4 0 013.1-3.1z' },
+              { href: '/match-prepaga', titulo: 'No sé cuál me conviene', texto: 'Seis preguntas y te mostramos el plan que más coincide con lo que buscás.', cta: 'Hacer el test', icono: 'M8.2 9a4 4 0 017.6 1c0 2-3 3-3 3M12 17h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+            ].map((p) => (
+              <Link key={p.href} href={p.href}
+                className="group flex gap-4 sm:flex-col sm:gap-0 rounded-2xl border-2 border-gray-100 bg-gradient-to-b from-red-50/50 to-white p-4 sm:p-5 hover:border-[#E8002D] hover:shadow-md transition-all">
+                <span className="w-11 h-11 shrink-0 rounded-xl bg-[#E8002D] flex items-center justify-center sm:mb-3">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden><path d={p.icono} /></svg>
+                </span>
+                <span className="flex flex-col flex-1 min-w-0">
+                  <span className="text-base sm:text-lg font-bold text-gray-900">{p.titulo}</span>
+                  <span className="text-sm text-gray-600 mt-1 flex-1">{p.texto}</span>
+                  <span className="mt-2 sm:mt-3 text-sm font-bold text-[#E8002D] group-hover:underline">{p.cta} →</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+            <Buscador variante="barra" />
+            <Link href="/cartillas" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D] hover:underline sm:px-2">Cartillas de {PARTNERS_OFICIALES_TEXTO} por zona →</Link>
+          </div>
         </div>
       </section>
 

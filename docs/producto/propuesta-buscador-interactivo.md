@@ -1,6 +1,6 @@
 # Propuesta: un buscador de prepagas que empieza por tu vida
 
-Fecha: 2026-09-24 · Estado: propuesta para aprobar (sin cambios en el sitio)
+Fecha: 2026-09-24 · Estado: **aprobada y en marcha** (ver "Qué quedó hecho" al final)
 
 ## La idea en tres líneas
 
@@ -172,3 +172,25 @@ Los informes personales no se indexan.
 3. **Orden de las fases**: recomiendo empezar por "Mis sanatorios".
 4. **Scraping**: ¿lo sumamos a la GitHub Action existente, o habilitás los dominios en este entorno (sssalud.gob.ar, datos.gob.ar, mediflow.com.ar, nominatim.openstreetmap.org)?
 5. **Nombre de la experiencia** (para la marca y para prensa). Algunas opciones: "PrepagaYa a medida", "Tu prepaga al revés", "Radar PrepagaYa".
+
+---
+
+## Qué quedó hecho (24-sep-2026)
+
+Darío aprobó las cuatro herramientas con una condición: **el precio exacto para la edad se sigue mostrando recién después de dejar los datos** (con poco tráfico, el precio abierto hace que la gente no responda al asesor). Todas lo respetan: la cobertura, el aumento o el match se ven gratis; el precio de las opciones, con el lead.
+
+| Herramienta | URL | Qué se ve sin datos | Qué se ve con datos | El lead lleva |
+|---|---|---|---|---|
+| Mis sanatorios | `/buscar-por-sanatorio` | Por prepaga, el plan más bajo que incluye todos los sanatorios elegidos (internación y guardia) | Precio de ese plan para el grupo | `fuente: buscar-por-sanatorio`, sanatorios elegidos |
+| Chequeo de prepaga | `/chequeo-prepaga` | Precio oficial del plan propio, aumento del mes que viene contra el promedio, cuántos planes parecidos salen menos y hasta cuánto se ahorra | Qué planes son y cuánto sale cada uno | `fuente: chequeo-prepaga`, prepaga y plan actual |
+| Match | `/match-prepaga` | El plan que más coincide y dos alternativas, con cada punto a favor y en contra | Precio mensual y anual | `fuente: match-prepaga`, copago, coberturas y perfil |
+| Buscador del sitio | En el encabezado de todas las páginas y en el home | Prepagas, planes, 1.400 sanatorios, obras sociales, códigos, coberturas, comparativas, zonas y guías; siempre lleva a una página nuestra | — | Lo que se busca queda en Vercel Analytics (eventos "Buscador" y "Buscador sin resultados") |
+
+Además: las tres puertas en el home (debajo del cotizador, que sigue siendo la entrada principal), links desde cada ficha de prepaga (chequeo con la prepaga ya elegida), desde `/aumentos` y desde cada página de sanatorio (el buscador abre con ese sanatorio cargado).
+
+### Lo que falta y necesita una decisión
+
+1. **Asistente conversacional** (fase 4): necesita una clave de la API de Claude cargada en Vercel y un tope de gasto mensual. Propuesta: que responda solo con los datos del sitio (el mismo índice del buscador, las cartillas y los cuadros) y cite la fuente, y que pase a WhatsApp cuando la persona quiere avanzar.
+2. **Alertas de aumento**: el chequeo todavía no suscribe a alertas. Por email y notificación del navegador es gratis (la base y las notificaciones ya existen); por WhatsApp tiene costo por mensaje.
+3. **Test A/B del home** con las tres puertas arriba del cotizador (hoy están debajo, para no tocar la conversión actual).
+4. **Mapa de sanatorios**: falta geocodificar las direcciones (script en la GitHub Action).

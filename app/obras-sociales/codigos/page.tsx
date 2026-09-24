@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import {
-  entidadesRegistro, entidadRegistro, codigoSeisDigitos, grupoDe, textoBusqueda, registroDeObraSocial,
+  entidadesRegistro, entidadRegistro, codigoSeisDigitos, grupoDe, registroDeObraSocial,
   GRUPOS_REGISTRO, PREPAGA_A_REGISTRO, REGISTRO_VERIFICADO, type EntidadRegistro,
 } from '@/lib/data/registro-sssalud'
 import { FiltroCodigos } from '@/components/obras-sociales/FiltroCodigos'
@@ -164,19 +164,22 @@ export default function CodigosObrasSocialesPage() {
                       e.nombre.toUpperCase().includes(e.razonSocial.toUpperCase()) ? '' : e.razonSocial,
                       e.jurisdiccion !== 'Nacional' ? e.jurisdiccion : '',
                     ].filter(Boolean).join(' · ')
+                    // El filtro busca en el texto de la fila; data-a suma solo lo
+                    // que no se ve (alias y sigla), para no duplicar la página.
+                    const extra = [e.sigla, ...(e.alias ?? [])].filter(Boolean).join(' ')
                     return (
-                      <li key={e.slug} data-q={textoBusqueda(e)} className="flex items-start justify-between gap-3 py-3">
+                      <li key={e.slug} id={e.slug} data-q="" {...(extra ? { 'data-a': extra } : {})} className="cod-fila">
                         <div className="min-w-0">
-                          <div className="font-semibold text-gray-900 text-sm sm:text-base break-words">{e.nombre}</div>
-                          {detalle && <div className="text-xs text-gray-500 mt-0.5 break-words">{detalle}</div>}
-                          {ficha && <Link href={ficha.href} className="inline-block text-xs font-semibold text-[#E8002D] hover:underline mt-1">{ficha.texto} →</Link>}
+                          <div className="cod-nombre">{e.nombre}</div>
+                          {detalle && <div className="cod-detalle">{detalle}</div>}
+                          {ficha && <Link href={ficha.href} className="cod-link">{ficha.texto} →</Link>}
                         </div>
                         <div className="text-right shrink-0">
                           {e.codigo ? (
                             <>
-                              <div className="text-lg font-black text-gray-900 tabular-nums tracking-wide">{seis}</div>
-                              <div className="text-[11px] text-gray-500 tabular-nums">RNAS {e.codigo}</div>
-                              <button type="button" data-copiar={seis} className="mt-1 text-xs font-semibold text-gray-600 border border-gray-200 rounded-md px-2 py-0.5 hover:border-gray-400">Copiar</button>
+                              <div className="cod-num">{seis}</div>
+                              <div className="cod-rnas">RNAS {e.codigo}</div>
+                              <button type="button" data-copiar={seis} className="cod-copiar">Copiar</button>
                             </>
                           ) : (
                             <div className="text-xs text-gray-500 max-w-[9rem]">{e.fuente === 'rnemp' ? `Prepaga sin código de obra social (RNEMP ${e.rnemp})` : 'Sin código nacional: régimen propio'}</div>

@@ -6,6 +6,8 @@ import { normalizarBusqueda } from '@/lib/busqueda'
 // Buscador de /obras-sociales/codigos. La lista la arma el servidor (así
 // Google lee los ~400 códigos y no viajan dos veces en el HTML): acá solo se
 // esconden las filas que no coinciden y se copia el código al tocar "Copiar".
+// Busca en el texto visible de cada fila (nombre, razón social, código con y
+// sin guiones, provincia) más los alias de data-a.
 
 interface Props {
   grupos: { id: string; titulo: string; cantidad: number }[]
@@ -30,7 +32,10 @@ export function FiltroCodigos({ grupos, total }: Props) {
       let enSeccion = 0
       const mismoGrupo = nuevoGrupo === 'todos' || sec.dataset.grupoSeccion === nuevoGrupo
       sec.querySelectorAll<HTMLElement>('[data-q]').forEach((fila) => {
-        const texto = (fila.dataset.q ?? '').replace(/-/g, '')
+        // Texto de búsqueda: lo visible de la fila + alias/sigla (data-a), sin
+        // tildes ni guiones. Se calcula una vez y queda en data-q.
+        if (!fila.dataset.q) fila.dataset.q = normalizarBusqueda(`${fila.textContent ?? ''} ${fila.dataset.a ?? ''}`).replace(/-/g, '')
+        const texto = fila.dataset.q
         const ok = mismoGrupo && terminos.every((t) => texto.includes(t))
         fila.hidden = !ok
         if (ok) enSeccion++

@@ -1,5 +1,4 @@
 import datos from './registro-sssalud.json'
-import { normalizarBusqueda } from '@/lib/busqueda'
 
 // Registro de obras sociales y prepagas con su código (24-sep-2026). Sale del
 // listado que pasó Darío, armado con el Registro Nacional de Agentes del Seguro
@@ -98,9 +97,4 @@ const OBRA_SOCIAL_A_REGISTRO: Record<string, string | null> = {
 export function registroDeObraSocial(osSlug: string): EntidadRegistro | undefined {
   const slug = osSlug in OBRA_SOCIAL_A_REGISTRO ? OBRA_SOCIAL_A_REGISTRO[osSlug] : osSlug
   return slug ? entidadRegistro(slug) : undefined
-}
-
-/** Texto de búsqueda: minúsculas, sin tildes, con el código con y sin guiones. */
-export function textoBusqueda(e: EntidadRegistro): string {
-  return normalizarBusqueda([e.nombre, e.razonSocial, e.sigla, ...(e.alias ?? []), e.codigo, e.codigo && codigoSeisDigitos(e.codigo), e.jurisdiccion].filter(Boolean).join(' '))
 }
