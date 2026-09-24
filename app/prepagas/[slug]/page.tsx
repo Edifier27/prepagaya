@@ -20,6 +20,7 @@ import { resenasAprobadas } from '@/lib/db'
 import { ResenaForm } from '@/components/prepagas/ResenaForm'
 import { contactos, CONTACTOS_VERIFICADOS } from '@/lib/data/contactos'
 import { getConvenios } from '@/lib/data/convenios'
+import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -175,6 +176,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${prep.nombre.toLowerCase()} cobertura`,
       `prepaga ${prep.nombre.toLowerCase()}`,
       `cuanto sale ${prep.nombre.toLowerCase()}`,
+      `aumento ${prep.nombre.toLowerCase()}`,
       ...(contactos[slug] ? [`telefono ${prep.nombre.toLowerCase()}`] : []),
       ...(KEYWORDS_EXTRA[slug] ?? []),
     ],
@@ -210,8 +212,23 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const conv = getConvenios(prep.slug)
   const telSocios = contacto?.canales.find((c) => c.tipo === 'socios') ?? contacto?.canales.find((c) => c.tipo === 'whatsapp')
   const telEmergencias = contacto?.canales.find((c) => c.tipo === 'emergencias')
+  // Aumento oficial del mes de esta prepaga (auditoría SEO 24-sep-2026):
+  // "aumento [prepaga] [mes]" es de las búsquedas más grandes por marca y la
+  // ficha no lo decía. Mismo dato que /aumentos (cuadros de la SSSalud).
+  const aumentosPrep = Object.keys(AUMENTOS_OFICIALES.meses).sort()
+    .map((per) => ({ mes: AUMENTOS_OFICIALES.meses[per], dato: AUMENTOS_OFICIALES.meses[per].prepagas[prep.slug] }))
+    .filter((x) => x.dato)
+  const aumento = aumentosPrep[aumentosPrep.length - 1]
+  const aumentoAnterior = aumentosPrep[aumentosPrep.length - 2]
+  const pct = (n: number) => `${n.toLocaleString('es-AR')}%`
+  const aumentoRango = aumento && aumento.dato.minimo !== aumento.dato.maximo
+    ? ` (de ${pct(aumento.dato.minimo)} a ${pct(aumento.dato.maximo)} según el plan y la región)` : ''
   const faqs = [
     ...buildFAQs(prep, precioMin, precioMax, planEstrella),
+    ...(aumento ? [{
+      q: `¿Cuánto aumenta ${prep.nombre} en ${aumento.mes.label.toLowerCase()}?`,
+      a: `Según el cuadro tarifario que ${prep.nombre} declaró ante la Superintendencia de Servicios de Salud, aumenta ${pct(aumento.dato.mediana)} en ${aumento.mes.label.toLowerCase()}${aumentoRango}. El promedio del mercado ese mes es ${pct(aumento.mes.promedio)}.${aumentoAnterior ? ` En ${aumentoAnterior.mes.label.toLowerCase()} había aumentado ${pct(aumentoAnterior.dato.mediana)}.` : ''}`,
+    }] : []),
     ...(conv?.codigoAfip?.codigos.length ? [{
       q: `¿Cuál es el código de obra social de ${prep.nombre} para AFIP/ARCA?`,
       a: `${conv.codigoAfip.codigos.map((c) => `${c.codigo}${c.nota ? ` (${c.nota})` : ''}`).join('; ')}. ${conv.codigoAfip.explicacion}`,
@@ -239,7 +256,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
       a: `Sí. La app oficial se llama "${app.nombreApp}" y está en Google Play. ${app.credencialDigital ? 'Incluye credencial digital. ' : ''}Según su ficha oficial permite: ${app.funciones.slice(0, 4).map((f) => f.toLowerCase()).join('; ')}.`,
     }] : []),
   ]
-  const starsLlenas = Math.round(prep.rating)
 
   const jsonLd: Record<string, unknown>[] = [
     ...(opiniones.cantidad > 0 ? [{
@@ -375,12 +391,20 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 </div>
               </div>
 
-              {/* Rating */}
-              <div className="flex items-center gap-2 mb-4">
-                <StarRow rating={prep.rating} />
-                <span className="text-sm font-semibold text-gray-700">{prep.rating}</span>
-                <span className="text-sm text-gray-400">({prep.cantidadOpiniones.toLocaleString('es-AR')} opiniones)</span>
-              </div>
+              {/* Rating: solo el de las reseñas reales del sitio (las mismas del
+                  rich snippet). Antes mostraba "4,2 (1.243 opiniones)" fijo,
+                  sin fuente (Darío, 24-sep-2026). */}
+              <a href="#opiniones" className="inline-flex items-center gap-2 mb-4 group">
+                {opiniones.cantidad > 0 ? (
+                  <>
+                    <StarRow rating={opiniones.promedio} />
+                    <span className="text-sm font-semibold text-gray-700">{opiniones.promedio.toLocaleString('es-AR')}</span>
+                    <span className="text-sm text-gray-400 group-hover:text-[#E8002D]">({opiniones.cantidad} {opiniones.cantidad === 1 ? 'opinión' : 'opiniones'} de usuarios)</span>
+                  </>
+                ) : (
+                  <span className="text-sm text-gray-500 group-hover:text-[#E8002D]">★ Dejá tu opinión sobre {prep.nombre}</span>
+                )}
+              </a>
 
               <p className="text-gray-600 text-sm leading-relaxed mb-5 max-w-xl">{prep.descripcion}</p>
 
@@ -451,7 +475,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
               ...(prep.profesionales ? [{ label: 'Prestadores', value: `${(prep.profesionales / 1000).toFixed(0)}k+` }] : []),
               { label: 'Centros propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red convenio' },
               { label: 'Satisfacción', value: `${prep.satisfaccion}%` },
-              { label: 'Opiniones', value: prep.cantidadOpiniones.toLocaleString('es-AR') },
+              ...(opiniones.cantidad > 0 ? [{ label: 'Opiniones de usuarios', value: String(opiniones.cantidad) }] : []),
             ].map((s) => (
               <div key={s.label} className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm">
                 <div className="text-lg font-bold text-[#E8002D]">{s.value}</div>
@@ -470,6 +494,28 @@ export default async function PrepagaSlugPage({ params }: Props) {
           )}
         </div>
       </section>
+
+      {/* Aumento oficial del mes (ver aumentosPrep arriba) */}
+      {aumento && (
+        <section id="aumento" className="pt-8 bg-white">
+          <div className="container max-w-5xl mx-auto">
+            <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex-1 min-w-0">
+                <h2 className="text-lg font-bold text-gray-900">
+                  Aumento de {prep.nombre} en {aumento.mes.label.toLowerCase()}: {pct(aumento.dato.mediana)}
+                </h2>
+                <p className="text-sm text-gray-600 leading-relaxed mt-1">
+                  Dato oficial del cuadro tarifario declarado ante la Superintendencia de Servicios de Salud{aumentoRango}. Promedio del mercado: {pct(aumento.mes.promedio)}.
+                  {aumentoAnterior && <> En {aumentoAnterior.mes.label.toLowerCase()} había aumentado {pct(aumentoAnterior.dato.mediana)}.</>}
+                </p>
+              </div>
+              <Link href="/aumentos" className="flex-shrink-0 text-sm font-bold text-[#E8002D] hover:underline">
+                Aumentos de todas las prepagas →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Planes */}
       <section className="py-10 bg-white">

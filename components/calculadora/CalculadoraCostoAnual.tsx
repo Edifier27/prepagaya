@@ -194,7 +194,7 @@ export function CalculadoraCostoAnual(): React.ReactElement {
                 />
                 <div>
                   <div className="text-sm font-medium text-gray-800">Relación de dependencia</div>
-                  <div className="text-xs text-gray-500">Precio sin IVA (21% menos) + aporte OS</div>
+                  <div className="text-xs text-gray-500">Precio sin el IVA del 10,5% + aporte OS</div>
                 </div>
               </label>
             </div>

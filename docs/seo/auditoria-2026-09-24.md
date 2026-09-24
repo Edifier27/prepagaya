@@ -57,8 +57,8 @@ La diferencia con MiObraSocial no es contenido: es **autoridad** (links de medio
 
 ## Pendientes que necesitan una decisión tuya
 
-1. **IVA de la lista directa: ¿21% o 10,5%?** `lib/utils.ts` usa 21% (`IVA_PREPAGA`) para calcular el precio de relación de dependencia en el cotizador, y `/precios` dice 10,5%. Si es 10,5%, el cotizador está mostrando precios de relación de dependencia más bajos de lo real. No lo toqué porque cambia precios.
-2. **Satisfacción, rating y cantidad de opiniones sin fuente.** `satisfaccion`, `rating` y `cantidadOpiniones` de `lib/data/prepagas.ts` no tienen fuente documentada (ej. Swiss "91%" y "4,2 (1.243 opiniones)"). En un sitio de salud, Google mira mucho la confiabilidad (E-E-A-T). Recomiendo lo mismo que se hizo con prestadores: mostrarlos solo con fuente, o reemplazarlos por las reseñas reales de la base (que ya alimentan el schema `AggregateRating`).
+1. ~~IVA 21% vs 10,5%~~ **Resuelto**: es 10,5% siempre en salud (Darío). `IVA_PREPAGA` pasó a 0,105 y se corrigieron los textos de `/precios`, `/historial-precios`, la tabla por modalidad y la calculadora.
+2. ~~Rating y cantidad de opiniones sin fuente~~ **Resuelto**: se sacaron `rating` y `cantidadOpiniones` de los datos y de todas las páginas (ficha, planes, ranking, listado, comparativas). La ficha muestra solo las reseñas reales de la base. **Queda la satisfacción (%)**: confirmar si tiene fuente.
 3. **"+8.400 cotizaciones realizadas"** en el home (desktop): confirmar que sale del CRM.
 4. **`lang` de las páginas `/en`, `/ru` y `/zh`**: salen con `lang="es-AR"` porque el layout raíz es uno solo. Se arregla con layouts raíz por idioma (grupos de rutas). Impacto bajo en Google, mayor en accesibilidad.
 5. **`middleware.ts` → `proxy.ts`**: Next 16 lo marca como deprecado en el build. No afecta SEO hoy.

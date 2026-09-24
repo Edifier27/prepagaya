@@ -21,9 +21,7 @@ export interface Prepaga {
   colorPrimario: string
   descripcion: string
   satisfaccion: number // porcentaje 0-100
-  rating: number // 0-5
   calidadCartilla: number // 1-5, calidad de la red de prestadores (cartilla)
-  cantidadOpiniones: number
   // Cantidad de prestadores SOLO si la informa la prepaga en su web oficial
   // (auditoría 24-sep-2026: los valores anteriores no tenían fuente).
   profesionales?: number

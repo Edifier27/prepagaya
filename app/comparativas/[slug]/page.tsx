@@ -58,7 +58,6 @@ export default async function ComparativaPage({ params }: Props) {
     { label: 'Prestadores (dato oficial)', valor: (p) => (p.profesionales ? `${p.profesionales.toLocaleString('es-AR')}+` : 'Sin dato oficial') },
     { label: 'Sanatorios propios', valor: (p) => (p.sanatoriosPropios > 0 ? String(p.sanatoriosPropios) : 'Red por convenio') },
     { label: 'Satisfacción de afiliados', valor: (p) => `${p.satisfaccion}%`, ganador: comp.ganadorSatisfaccion },
-    { label: 'Rating', valor: (p) => `${p.rating}/5 (${p.cantidadOpiniones.toLocaleString('es-AR')} opiniones)` },
     { label: 'Cobertura nacional', valor: (p) => (p.caracteristicas.coberturaNacional ? 'Sí' : 'Limitada') },
     { label: 'Cantidad de planes', valor: (p) => String(p.planes.length) },
   ]

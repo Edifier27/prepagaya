@@ -415,7 +415,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
             <div className="bg-gray-50 rounded-xl border border-gray-100 p-3 text-center">
               <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Satisfacción</div>
               <div className="text-lg font-black text-gray-900">{prep.satisfaccion}%</div>
-              <div className="text-[10px] text-gray-400">{prep.cantidadOpiniones} opiniones</div>
+              <Link href={`/prepagas/${prep.slug}#opiniones`} className="text-[10px] text-gray-400 hover:text-[#E8002D]">Ver opiniones →</Link>
             </div>
           </div>
           <Link href="/calculadora" className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-[#E8002D] font-medium mt-2 transition-colors">

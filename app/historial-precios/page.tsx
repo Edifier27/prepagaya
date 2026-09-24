@@ -253,7 +253,7 @@ export default function HistorialPreciosPage(): React.ReactElement {
             <div className="bg-white rounded-xl border border-gray-200 p-5">
               <h3 className="font-semibold text-gray-900 mb-2 text-sm">Opciones si el precio es un problema</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Si trabajás en relación de dependencia, podés derivar tu aporte de obra social a la prepaga y ahorrar el 21% de IVA. También existen planes más económicos como Premedic Plan 300 ($135.000/mes) que mantienen cobertura PMO completa.
+                Si trabajás en relación de dependencia, podés derivar tu aporte de obra social a la prepaga: esa lista no lleva el IVA del 10,5% y además se descuentan tus aportes. También existen planes más económicos como Premedic Plan 300 ($135.000/mes) que mantienen cobertura PMO completa.
               </p>
             </div>
           </div>

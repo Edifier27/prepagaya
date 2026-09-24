@@ -110,12 +110,14 @@ export const CONTENT_UPDATE = new Date('2026-07-14').toISOString()
 export const PRECIO_VALIDO_HASTA = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).toISOString().slice(0, 10)
 
 // Sistema de precios: Argentina tiene 2 listas de precios desregulados
-// - Directo con IVA (21%): para monotributistas y particulares
+// - Directo con IVA (10,5%): para monotributistas y particulares
 // - Deriva Aporte (sin IVA): para empleados en relación de dependencia
 //   que derivan sus contribuciones de obra social a la prepaga
-export const IVA_PREPAGA = 0.21
+// La alícuota de IVA en salud es siempre 10,5%, no el 21% general
+// (confirmado por Darío, 24-sep-2026; antes estaba en 0.21).
+export const IVA_PREPAGA = 0.105
 
-/** Precio para empleados en relación de dependencia (sin IVA 21%) */
+/** Precio para empleados en relación de dependencia (sin el IVA del 10,5%) */
 export function precioDeriva(precioDirecto: number): number {
   return Math.round(precioDirecto / (1 + IVA_PREPAGA))
 }

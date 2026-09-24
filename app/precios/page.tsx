@@ -399,7 +399,7 @@ export default function PreciosPage(): React.ReactElement {
               },
               {
                 titulo: 'IVA incluido',
-                texto: 'Los precios incluyen IVA (21%). Si trabajás en relación de dependencia y derivás tu obra social, pagás sin IVA — un ahorro del 21%.',
+                texto: 'Los precios incluyen el IVA del 10,5% (la alícuota de salud). Si trabajás en relación de dependencia y derivás tu obra social, pagás la lista sin IVA y además se descuentan tus aportes.',
               },
             ].map((item) => (
               <div key={item.titulo} className="bg-gray-50 rounded-xl p-5 border border-gray-100">
