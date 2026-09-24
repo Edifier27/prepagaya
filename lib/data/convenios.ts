@@ -23,6 +23,13 @@ export interface AfinidadBanco {
   fuente?: { texto: string; url?: string }
 }
 
+export interface PlanConvenio {
+  codigo: string
+  linea: string
+  sistema: string
+  destacados: string[]
+}
+
 export interface ConveniosPrepaga {
   /** "Código de obra social para AFIP/ARCA": texto explicativo + código(s) */
   codigoAfip?: {
@@ -37,6 +44,8 @@ export interface ConveniosPrepaga {
     fuente?: { texto: string; url?: string }
   }
   convenios?: Convenio[]
+  /** Planes a los que acceden los convenios (si son los mismos para todos) */
+  planesConvenio?: { planes: PlanConvenio[]; fuente: string }
   bancos?: AfinidadBanco[]
 }
 
@@ -51,11 +60,59 @@ export const convenios: Record<string, ConveniosPrepaga> = {
     //   respuesta: '',
     //   detalle: '',
     // },
-    // convenios: [
-    //   { entidad: 'ANSES', paraQuien: '', beneficio: '' },
-    //   { entidad: 'PAMI', paraQuien: '', beneficio: '' },
-    //   { entidad: 'AFIP / ARCA', paraQuien: '', beneficio: '' },
-    // ],
+    // Convenios corporativos (Darío, 23-sep-2026): los tres son para
+    // empleados del organismo y dan acceso a los mismos planes.
+    convenios: [
+      { entidad: 'ANSES', paraQuien: 'Empleados de ANSES', beneficio: 'Acceso a los planes corporativos SB02, SB61 y PO64 de Swiss Medical.' },
+      { entidad: 'ARCA (ex AFIP)', paraQuien: 'Empleados de ARCA (ex AFIP)', beneficio: 'Acceso a los planes corporativos SB02, SB61 y PO64 de Swiss Medical.' },
+      { entidad: 'PAMI', paraQuien: 'Empleados que trabajan en PAMI', beneficio: 'Acceso a los planes corporativos SB02, SB61 y PO64 de Swiss Medical.' },
+    ],
+    // Resumen de las cartillas de cobertura de Swiss Medical (Adm. de
+    // Producto, vigencia 09/2026) que pasó Darío. Sin topes en pesos: cambian.
+    planesConvenio: {
+      fuente: 'Cartillas de cobertura de Swiss Medical, vigencia septiembre 2026',
+      planes: [
+        {
+          codigo: 'SB02',
+          linea: 'Línea Advance',
+          sistema: 'Sistema cerrado (cartilla)',
+          destacados: [
+            'Consultas en consultorio, estudios e internación sin cargo',
+            'Habitación individual',
+            'Maternidad sin cargo',
+            'Kinesiología y fonoaudiología: 25 sesiones sin cargo',
+            'Ortodoncia 50% hasta los 15 años',
+            '40% de descuento en farmacias',
+          ],
+        },
+        {
+          codigo: 'SB61',
+          linea: 'Línea Premium',
+          sistema: 'Sistema combinado (cartilla + reintegros)',
+          destacados: [
+            'Consultas, estudios e internación sin cargo',
+            'Habitación individual',
+            'Psicología: 20 sesiones por año sin cargo',
+            'Ortodoncia 100% hasta los 15 años (en cartilla)',
+            'Un par de anteojos o lentes de contacto por año',
+            'Swiss Medical Internacional para el grupo familiar',
+          ],
+        },
+        {
+          codigo: 'PO64',
+          linea: 'Línea Premium',
+          sistema: 'Sistema combinado (cartilla + reintegros)',
+          destacados: [
+            'Consultas, estudios e internación sin cargo',
+            'Habitación individual',
+            'Psicología: 20 sesiones por año sin cargo',
+            'Ortodoncia 100% hasta los 15 años (en cartilla)',
+            'Swiss Medical Internacional para el grupo familiar',
+            'Cirugía estética: 1 por año para el titular o cónyuge (sin prótesis)',
+          ],
+        },
+      ],
+    },
     // bancos: [
     //   { banco: '', beneficio: '' },
     // ],

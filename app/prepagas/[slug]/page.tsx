@@ -141,6 +141,7 @@ export async function generateStaticParams() {
 // Keywords de cola larga con volumen de búsqueda real confirmado (research de
 // mercado), específicas por marca. Se suman a las genéricas de cada ficha.
 const KEYWORDS_EXTRA: Record<string, string[]> = {
+  'swiss-medical': ['swiss medical anses', 'swiss medical afip', 'swiss medical pami', 'swiss medical convenio empleados'],
   'sancor-salud': ['sancor salud precios', 'sancor salud cordoba', 'sancor plan 1000', 'sancor salud interior del país'],
   'avalian': ['avalian ex aca salud', 'aca salud ahora avalian', 'avalian planes precios', 'avalian as200', 'avalian as300'],
   'premedic': ['premedic precios', 'premedic opiniones', 'premedic plan 200', 'premedic monotributistas', 'prepaga mas barata argentina'],
@@ -1009,6 +1010,28 @@ export default async function PrepagaSlugPage({ params }: Props) {
                       {c.fuente && <p className="text-[11px] text-gray-400 mt-2">Fuente: {c.fuente.url ? <a href={c.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{c.fuente.texto}</a> : c.fuente.texto}</p>}
                     </div>
                   ))}
+                  {conv.planesConvenio && conv.planesConvenio.planes.length > 0 && (
+                    <div className="sm:col-span-2">
+                      <h3 className="font-bold text-gray-900 mt-2 mb-3">Planes de los convenios</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        {conv.planesConvenio.planes.map((pl) => (
+                          <div key={pl.codigo} className="rounded-xl border border-gray-200 bg-white p-4">
+                            <div className="flex items-baseline justify-between gap-2">
+                              <span className="text-lg font-black text-gray-900">{pl.codigo}</span>
+                              <span className="text-xs font-semibold text-[#E8002D]">{pl.linea}</span>
+                            </div>
+                            <div className="text-xs text-gray-500 mt-0.5">{pl.sistema}</div>
+                            <ul className="mt-3 space-y-1.5">
+                              {pl.destacados.map((d) => (
+                                <li key={d} className="flex gap-2 text-xs text-gray-700"><span className="text-emerald-500">✓</span>{d}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="text-[11px] text-gray-400 mt-2">Fuente: {conv.planesConvenio.fuente}.</p>
+                    </div>
+                  )}
                   {conv.bancos?.map((b) => (
                     <div key={b.banco} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
                       <h3 className="font-bold text-gray-900 text-sm">Afinidad con {b.banco}</h3>
