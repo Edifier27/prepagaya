@@ -1,60 +1,80 @@
-"""Exploración de los buscadores oficiales de sucursales de cada prepaga.
+"""Exploración de los buscadores oficiales de sucursales (segunda pasada).
 
-Corre en la GitHub Action (la red de los entornos de desarrollo no llega a
-los sitios de las prepagas). Imprime, para cada URL candidata, el estado, el
-tipo de contenido y un extracto, más los endpoints de datos que aparezcan en
-el HTML o en los scripts, para escribir después el parser de cada una.
+Corre en la GitHub Action. Para cada prepaga muestra los datos que hacen
+falta para escribir el parser: el JSON completo de Swiss Medical, los
+endpoints que usan los buscadores de OSDE y Swiss (dentro de su JS), el
+__NEXT_DATA__ de Galeno y el texto visible de las páginas de Premedic,
+Medifé y Sancor.
 
 Uso: python scripts/sucursales/explorar.py
 """
-import re, sys, urllib.request, urllib.error, ssl, json
+import html, json, re, ssl, sys, urllib.error, urllib.request
 
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'
-CANDIDATAS = [
-    ('swiss-medical', 'https://www.swissmedical.com.ar/smgnewsite/commons/backend/sucursales/lista_sucursales_atencion.php'),
-    ('swiss-medical', 'https://www.swissmedical.com.ar/prepagaclientes/sucursales'),
-    ('osde', 'https://www.osde.com.ar/buscadorsucursales'),
-    ('osde', 'https://www.osde.com.ar/contacto/buscadorsucursales'),
-    ('sancor-salud', 'https://www.sancorsalud.com.ar/sucursales'),
-    ('sancor-salud', 'https://sancorsalud.com.ar/sucursales'),
-    ('avalian', 'https://avalian.com/sucursales'),
-    ('premedic', 'https://web.grupopremedic.com.ar/sucursales'),
-    ('galeno', 'https://www.galeno.com.ar/sucursales'),
-    ('medife', 'https://www.medife.com.ar/sucursales'),
-]
-PATRON_ENDPOINT = re.compile(r'''["'](https?://[^"']+?(?:api|sucursal|branch|oficina|centro|json|\.php)[^"']*|/[^"'\s]*(?:api|sucursal|branch|oficina|json)[^"'\s]*)["']''', re.I)
-PATRON_SCRIPT = re.compile(r'<script[^>]+src=["\']([^"\']+)["\']', re.I)
 
 
-def bajar(url, limite=3_000_000):
-    req = urllib.request.Request(url, headers={'User-Agent': UA, 'Accept': '*/*', 'Accept-Language': 'es-AR,es;q=0.9'})
-    ctx = ssl.create_default_context()
+def bajar(url, limite=6_000_000, extra=None):
+    h = {'User-Agent': UA, 'Accept': '*/*', 'Accept-Language': 'es-AR,es;q=0.9'}
+    h.update(extra or {})
     try:
-        with urllib.request.urlopen(req, timeout=40, context=ctx) as r:
-            return r.status, r.headers.get('content-type', ''), r.geturl(), r.read(limite).decode('utf-8', 'replace')
+        with urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=40, context=ssl.create_default_context()) as r:
+            return r.status, r.read(limite).decode('utf-8', 'replace')
     except urllib.error.HTTPError as e:
-        return e.code, e.headers.get('content-type', ''), url, e.read(20000).decode('utf-8', 'replace')
+        return e.code, e.read(5000).decode('utf-8', 'replace')
     except Exception as e:  # noqa: BLE001
-        return 'ERR', '', url, repr(e)
+        return 'ERR', repr(e)
+
+
+def visible(cuerpo):
+    cuerpo = re.sub(r'<(script|style|svg|noscript)[^>]*>.*?</\1>', ' ', cuerpo, flags=re.S | re.I)
+    return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' | ', cuerpo)))
+
+
+def urls_en(js):
+    return sorted(set(re.findall(r'''["'`](https?://[^"'`\s]{6,200}|/[a-zA-Z0-9_\-/]*(?:api|sucursal|branch|backend|\.php)[^"'`\s]{0,150})["'`]''', js)))[:80]
+
+
+def seccion(t):
+    print(f'\n##### {t}')
 
 
 def main():
-    for prepaga, url in CANDIDATAS:
-        st, ct, final, cuerpo = bajar(url)
-        print(f'\n===== {prepaga} {url}\nestado={st} tipo={ct} final={final} largo={len(cuerpo)}')
-        texto = re.sub(r'\s+', ' ', cuerpo)
-        print('--- extracto:', texto[:2500])
-        endpoints = sorted(set(m.group(1) for m in PATRON_ENDPOINT.finditer(cuerpo)))[:60]
-        if endpoints:
-            print('--- endpoints:', json.dumps(endpoints, ensure_ascii=False))
-        scripts = PATRON_SCRIPT.findall(cuerpo)[:25]
-        if scripts:
-            print('--- scripts:', json.dumps(scripts, ensure_ascii=False))
-        # Direcciones con número y teléfonos: pista de si los datos vienen en el HTML
-        dirs = re.findall(r'[A-ZÁÉÍÓÚ][\wÁÉÍÓÚáéíóúñÑ\. ]{3,40}\s\d{2,5}\b', texto)[:15]
-        tels = re.findall(r'\(?0\d{2,4}\)?[\s-]?\d{3,4}[\s-]?\d{3,4}|0810[\s-]?\d{3}[\s-]?\d{4}', texto)[:10]
-        print('--- direcciones?', dirs)
-        print('--- teléfonos?', tels)
+    seccion('SWISS lista_sucursales_atencion.php (completo)')
+    st, c = bajar('https://www.swissmedical.com.ar/smgnewsite/commons/backend/sucursales/lista_sucursales_atencion.php')
+    print(st, c[:30000])
+
+    seccion('SWISS chunk JS del buscador de sucursales')
+    st, c = bajar('https://www.swissmedical.com.ar/prepagaclientes/assets/sucursales.cadd91c7.chunk.js')
+    print(st, len(c)); print(json.dumps(urls_en(c), ensure_ascii=False))
+    for m in re.finditer(r'.{0,160}(?:sucursal|backend|api)[^"\']{0,40}.{0,160}', c[:400000], re.I):
+        print('  …', m.group(0)[:360]); break
+
+    seccion('OSDE JS del buscador')
+    st, c = bajar('https://www.osde.com.ar/buscadorsucursales/assets/index-DMwyoByI.js')
+    print(st, len(c)); print(json.dumps(urls_en(c), ensure_ascii=False))
+
+    seccion('GALENO __NEXT_DATA__')
+    st, c = bajar('https://www.galeno.com.ar/sucursales/')
+    m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', c, re.S)
+    if m:
+        print(m.group(1)[:12000])
+    else:
+        print('sin __NEXT_DATA__; texto:', visible(c)[:6000])
+
+    for nombre, url in [('PREMEDIC', 'https://web.grupopremedic.com.ar/sucursales'), ('MEDIFE', 'https://www.medife.com.ar/sucursales'), ('SANCOR', 'https://sancorsalud.com.ar/sucursales')]:
+        seccion(f'{nombre} texto visible')
+        st, c = bajar(url)
+        t = visible(c)
+        i = max(0, t.lower().find('sucursal'))
+        print(st, len(c)); print(t[i:i + 9000])
+        estado = re.search(r'<script id="(?:ng-state|serverApp-state)"[^>]*>(.*?)</script>', c, re.S)
+        if estado:
+            print('--- estado Angular:', estado.group(1)[:6000])
+
+    seccion('AVALIAN con otros encabezados')
+    for url in ['https://www.avalian.com/sucursales', 'https://avalian.com/contacto', 'https://avalian.com/']:
+        st, c = bajar(url, extra={'Accept': 'text/html,application/xhtml+xml', 'Referer': 'https://www.google.com/'})
+        print(url, st, len(c), visible(c)[:300])
     return 0
 
 
