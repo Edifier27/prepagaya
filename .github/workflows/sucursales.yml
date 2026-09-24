@@ -3,11 +3,14 @@
 # impresiones con 0,3% de CTR: se busca la sucursal. La red de los entornos
 # de desarrollo no llega a los sitios de las prepagas; esta Action sí.
 #
-# Etapa 1 (ahora): explorar los buscadores oficiales y dejar el resultado en
-# el log, para escribir el parser de cada prepaga.
+# bajar.py: Galeno, Premedic y Medifé → lib/data/sucursales.json (si una
+# prepaga falla o trae pocas, se conservan las anteriores).
+# explorar.py: pistas para sumar Swiss Medical, OSDE y Sancor.
 name: Sucursales de prepagas
 
 on:
+  schedule:
+    - cron: '0 13 3 * *' # día 3 de cada mes, 10:00 hora argentina
   workflow_dispatch: {}
   push:
     branches: ['claude/**']
@@ -16,16 +19,34 @@ on:
       - '.github/workflows/sucursales.yml'
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: sucursales-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  explorar:
+  sucursales:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Explorar buscadores oficiales de sucursales
+      - name: Bajar sucursales oficiales
+        run: python scripts/sucursales/bajar.py
+      - name: Explorar Swiss Medical, OSDE y Sancor
+        continue-on-error: true
         run: python scripts/sucursales/explorar.py
+      - name: Guardar (commit en la misma rama)
+        run: |
+          git config user.name "prepagaya-bot"
+          git config user.email "bot@prepagaya.com.ar"
+          git add lib/data/sucursales.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios en las sucursales."
+          else
+            git commit -m "Sucursales oficiales: actualización automática $(date +%Y-%m-%d)"
+            git push
+          fi

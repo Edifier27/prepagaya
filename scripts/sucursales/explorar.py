@@ -39,42 +39,34 @@ def seccion(t):
 
 
 def main():
-    seccion('SWISS lista_sucursales_atencion.php (completo)')
-    st, c = bajar('https://www.swissmedical.com.ar/smgnewsite/commons/backend/sucursales/lista_sucursales_atencion.php')
-    print(st, c[:30000])
-
-    seccion('SWISS chunk JS del buscador de sucursales')
+    seccion('SWISS chunk completo')
     st, c = bajar('https://www.swissmedical.com.ar/prepagaclientes/assets/sucursales.cadd91c7.chunk.js')
-    print(st, len(c)); print(json.dumps(urls_en(c), ensure_ascii=False))
-    for m in re.finditer(r'.{0,160}(?:sucursal|backend|api)[^"\']{0,40}.{0,160}', c[:400000], re.I):
-        print('  …', m.group(0)[:360]); break
+    print(st, c[:26000])
+    seccion('SWISS scripts de la página y endpoints con sucursal')
+    st, c = bajar('https://www.swissmedical.com.ar/prepagaclientes/sucursales')
+    for src in re.findall(r'<script[^>]+src=["\']([^"\']+)["\']', c):
+        if not src.startswith('http'):
+            src = 'https://www.swissmedical.com.ar' + src
+        st2, js = bajar(src)
+        hits = sorted(set(re.findall(r'["\'`]([^"\'`\s]{0,120}(?:sucursal|Sucursal)[^"\'`\s]{0,120})["\'`]', js)))[:40]
+        print(src, st2, len(js), json.dumps(hits, ensure_ascii=False))
 
-    seccion('OSDE JS del buscador')
-    st, c = bajar('https://www.osde.com.ar/buscadorsucursales/assets/index-DMwyoByI.js')
-    print(st, len(c)); print(json.dumps(urls_en(c), ensure_ascii=False))
+    seccion('OSDE env.json y API')
+    st, env = bajar('https://www.osde.com.ar/buscadorsucursales/env.json')
+    print(st, env[:3000])
+    bases = re.findall(r'https?://[^"\s]+', env)
+    for base in ['https://www.osde.com.ar', 'https://api.osde.com.ar'] + bases[:6]:
+        st, c = bajar(base.rstrip('/') + '/os-sucursales/v1/sucursales', extra={'Accept': 'application/json', 'Origin': 'https://www.osde.com.ar', 'Referer': 'https://www.osde.com.ar/buscadorsucursales/'})
+        print(base, st, len(c), c[:2500])
 
-    seccion('GALENO __NEXT_DATA__')
-    st, c = bajar('https://www.galeno.com.ar/sucursales/')
-    m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', c, re.S)
-    if m:
-        print(m.group(1)[:12000])
-    else:
-        print('sin __NEXT_DATA__; texto:', visible(c)[:6000])
-
-    for nombre, url in [('PREMEDIC', 'https://web.grupopremedic.com.ar/sucursales'), ('MEDIFE', 'https://www.medife.com.ar/sucursales'), ('SANCOR', 'https://sancorsalud.com.ar/sucursales')]:
-        seccion(f'{nombre} texto visible')
-        st, c = bajar(url)
-        t = visible(c)
-        i = max(0, t.lower().find('sucursal'))
-        print(st, len(c)); print(t[i:i + 9000])
-        estado = re.search(r'<script id="(?:ng-state|serverApp-state)"[^>]*>(.*?)</script>', c, re.S)
-        if estado:
-            print('--- estado Angular:', estado.group(1)[:6000])
-
-    seccion('AVALIAN con otros encabezados')
-    for url in ['https://www.avalian.com/sucursales', 'https://avalian.com/contacto', 'https://avalian.com/']:
-        st, c = bajar(url, extra={'Accept': 'text/html,application/xhtml+xml', 'Referer': 'https://www.google.com/'})
-        print(url, st, len(c), visible(c)[:300])
+    seccion('SANCOR bundles')
+    st, c = bajar('https://sancorsalud.com.ar/sucursales')
+    for src in re.findall(r'<script[^>]+src=["\']([^"\']+)["\']', c)[:12]:
+        if not src.startswith('http'):
+            src = 'https://sancorsalud.com.ar/' + src.lstrip('/')
+        st2, js = bajar(src)
+        hits = sorted(set(re.findall(r'["\'`]([^"\'`\s]{0,150}(?:sucursal|api/|/api|backend)[^"\'`\s]{0,150})["\'`]', js, re.I)))[:40]
+        print(src, st2, len(js), json.dumps(hits, ensure_ascii=False))
     return 0
 
 
