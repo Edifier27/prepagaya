@@ -60,48 +60,68 @@ function getPerfilDelPlan(plan: Plan): { titulo: string; desc: string }[] {
   return items.slice(0, 3)
 }
 
-// Contenido SEO de los planes de Swiss Medical (Darío, 23-sep-2026): todo sale
-// de datos con fuente — escala de precio por edad del cuadro tarifario SSSalud
-// y la cobertura plan por plan de las fichas oficiales (coberturas-marca.ts).
-function contenidoSwiss(prep: Prepaga, plan: Plan) {
-  if (prep.slug !== 'swiss-medical') return null
-  const codigo = plan.nombre.replace(/^Plan\s+/, '')
+// Contenido SEO de plan (Darío, 23-sep-2026; primero Swiss, después
+// OSDE, Premedic, Avalian y Sancor): todo sale de datos con fuente — escala de
+// precio por edad del cuadro tarifario SSSalud y la cobertura plan por plan de
+// las fichas oficiales (coberturas-marca.ts), cuando la hay.
+const PREPAGAS_PLAN_SEO = ['swiss-medical', 'osde', 'premedic', 'avalian', 'sancor-salud']
+
+/** Nombre corto del plan como se busca: "Swiss Medical SMG20", "OSDE 210". */
+function codigoPlan(plan: Plan) {
+  return plan.nombre.replace(/^Plan\s+/, '')
+}
+
+function regionTexto(r: string) {
+  if (/^(general|avalian)$/i.test(r)) return 'lista general'
+  if (r === r.toUpperCase() && r.length > 4) return r.toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase())
+  return r
+}
+
+function contenidoPlan(prep: Prepaga, plan: Plan) {
+  if (!PREPAGAS_PLAN_SEO.includes(prep.slug)) return null
+  const codigo = codigoPlan(plan)
+  const nombreLargo = `${prep.nombre} ${codigo}`
   const escala = escalaPorEdad(prep.slug, plan.slug, 'caba')
+  const region = escala ? regionTexto(escala.region) : ''
   const coberturas = coberturasMarca
     .filter((c) => c.prepagaSlug === prep.slug)
     .flatMap((c) => c.planes.filter((f) => f.planSlugs.includes(plan.slug)).map((f) => ({ tema: c.tema, nombre: c.temaNombre, fila: f })))
   const reintegros = coberturas.find((c) => c.tema === 'reintegros')?.fila
   const precioEdad = (edad: number) => escala?.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio
-  // Plan siguiente en la escalera de Swiss (orden por precio a los 30)
-  const orden = [...prep.planes].filter((x) => !x.slug.startsWith('sport')).sort((a, b) => a.precio - b.precio)
-  const siguiente = orden[orden.findIndex((x) => x.slug === plan.slug) + 1]
+  // Plan siguiente en la escalera (orden por precio a los 30), sin variantes
+  // (Sport de Swiss, GEN y con coseguro de Sancor, planes con edad acotada)
+  const orden = [...prep.planes]
+    .filter((x) => !x.slug.startsWith('sport') && !x.slug.endsWith('-cc') && !x.edadMaxima)
+    .sort((a, b) => a.precio - b.precio)
+  const idx = orden.findIndex((x) => x.slug === plan.slug)
+  const siguiente = idx >= 0 ? orden[idx + 1] : undefined
   const faqs: { q: string; a: string }[] = []
   if (escala) {
     const edades = [40, 50, 60].filter((e) => precioEdad(e))
     faqs.push({
-      q: `¿Cuánto cuesta el Swiss Medical ${codigo} según la edad?`,
-      a: `Según el cuadro tarifario que Swiss Medical declara ante la Superintendencia de Servicios de Salud (${PRECIO_ACTUALIZADO}, AMBA, contratación directa, IVA incluido): ${edades.map((e) => `${formatPrecio(precioEdad(e)!)} a los ${e} años`).join(', ')}. Swiss ajusta el precio por rangos de edad; hasta los ${escala.rangos[0].hasta} años se paga ${formatPrecio(escala.rangos[0].precio)}.`,
+      q: `¿Cuánto cuesta el ${nombreLargo} según la edad?`,
+      a: `Según el cuadro tarifario que ${prep.nombre} declara ante la Superintendencia de Servicios de Salud (${PRECIO_ACTUALIZADO}, ${region}, contratación directa, IVA incluido): ${edades.map((e) => `${formatPrecio(precioEdad(e)!)} a los ${e} años`).join(', ')}. ${prep.nombre} ajusta el precio por rangos de edad; hasta los ${escala.rangos[0].hasta} años se paga ${formatPrecio(escala.rangos[0].precio)}.`,
     })
   }
-  if (reintegros) {
+  if (reintegros && !reintegros.sinDato) {
     faqs.push({
-      q: `¿El Swiss Medical ${codigo} tiene reintegros?`,
+      q: `¿El ${nombreLargo} tiene reintegros?`,
       a: reintegros.incluido
         ? `Sí. Según la ficha oficial, el ${codigo} incluye reintegros${reintegros.detalle ? ` (${reintegros.detalle.toLowerCase()})` : ''}: podés atenderte fuera de cartilla y pedir el reintegro, con topes por práctica.`
-        : `No. Según la ficha oficial, el ${codigo} es de cartilla cerrada: te atendés con los prestadores de la cartilla, sin reintegros. Los reintegros empiezan en el SMG30.`,
+        : `No. Según la ficha oficial, el ${codigo} no tiene reintegros: te atendés con los prestadores de la cartilla.`,
     })
   }
   if (siguiente && escala) {
     const esc2 = escalaPorEdad(prep.slug, siguiente.slug, 'caba')
-    const cod2 = siguiente.nombre.replace(/^Plan\s+/, '')
+    const cod2 = codigoPlan(siguiente)
     if (esc2) {
       faqs.push({
-        q: `¿Qué diferencia hay entre el ${codigo} y el ${cod2} de Swiss Medical?`,
-        a: `El ${cod2} es el escalón siguiente: a los 30 años cuesta ${formatPrecio(esc2.rangos[0].precio)} contra ${formatPrecio(escala.rangos[0].precio)} del ${codigo} (lista oficial, AMBA). ${siguiente.descripcion}`,
+        q: `¿Qué diferencia hay entre el ${codigo} y el ${cod2} de ${prep.nombre}?`,
+        a: `El ${cod2} es el escalón siguiente: en el primer rango de edad cuesta ${formatPrecio(esc2.rangos[0].precio)} contra ${formatPrecio(escala.rangos[0].precio)} del ${codigo} (lista oficial). ${siguiente.descripcion}`,
       })
     }
   }
-  return { codigo, escala, coberturas, faqs }
+  return { codigo, nombreLargo, escala, region, coberturas, faqs }
 }
 
 function buildPlanFAQs(plan: Plan, prep: Prepaga) {
@@ -165,6 +185,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const prep = prepagas.find((p) => p.slug === slug)
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) return {}
+  const escalaMeta = PREPAGAS_PLAN_SEO.includes(prep.slug) ? escalaPorEdad(prep.slug, plan.slug, 'caba') : null
   return {
     // "Qué cubre" en vez de "Cartilla" (22-sep-2026): la cartilla del plan vive
     // en /cartillas/[prepaga]/plan-x; acá se enlaza (ver cartillaPlanLink).
@@ -172,12 +193,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // "Cuánto sale" (23-sep-2026): misma intención que las fichas de prepaga.
     // absolute: sin "| PrepagaYa", para que Google lo muestre completo.
     title: {
-      absolute: prep.slug === 'swiss-medical'
-        ? `Swiss Medical ${plan.nombre.replace(/^Plan\s+/, '')}: cuánto sale por edad y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`
+      absolute: escalaMeta
+        ? `${prep.nombre} ${codigoPlan(plan)}: cuánto sale por edad y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`
         : `${prep.nombre} ${plan.nombre}: cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()} y qué cubre`,
     },
-    description: prep.slug === 'swiss-medical'
-      ? `Swiss Medical ${plan.nombre.replace(/^Plan\s+/, '')} en ${PRECIO_ACTUALIZADO}: desde ${formatPrecio(plan.precio)}/mes hasta los 35 años (lista oficial SSSalud, AMBA). ${plan.copago ? 'Con copago' : 'Sin copago'}, cartilla ${plan.redAbierta ? 'abierta con reintegros' : 'cerrada'}. Precio por edad, qué cubre y sanatorios de tu zona.`
+    description: escalaMeta
+      ? `${prep.nombre} ${codigoPlan(plan)} en ${PRECIO_ACTUALIZADO.toLowerCase()}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes hasta los ${escalaMeta.rangos[0].hasta} años (lista oficial SSSalud, ${regionTexto(escalaMeta.region)}). ${plan.copago ? 'Con copago' : 'Sin copago'}, red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Precio por edad, qué cubre y sanatorios de tu zona.`
       : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}${plan.fuentePrecio === 'sssalud' ? ', lista oficial SSSalud' : ''}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
     keywords: [
@@ -240,8 +261,8 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const planMenosCopago = planMenosCopagoSlug ? prep.planes.find((p) => p.slug === planMenosCopagoSlug) : undefined
 
   const perfilDelPlan = getPerfilDelPlan(plan)
-  const swiss = contenidoSwiss(prep, plan)
-  const faqs = [...(swiss?.faqs ?? []), ...buildPlanFAQs(plan, prep)]
+  const seo = contenidoPlan(prep, plan)
+  const faqs = [...(seo?.faqs ?? []), ...buildPlanFAQs(plan, prep)]
   const comparativaPlan = getComparativaParaPlan(slug, planSlug)
   const otroPlanComparativa = comparativaPlan
     ? prep.planes.find((p) => p.slug === (comparativaPlan.plan1Slug === planSlug ? comparativaPlan.plan2Slug : comparativaPlan.plan1Slug))
@@ -455,22 +476,22 @@ export default async function PlanPage({ params, searchParams }: Props) {
         </div>
       </section>
 
-      {/* Swiss: precio por edad (cuadro tarifario SSSalud) y cobertura punto por punto (fichas oficiales) */}
-      {swiss && (swiss.escala || swiss.coberturas.length > 0) && (
+      {/* Precio por edad (cuadro tarifario SSSalud) y cobertura punto por punto (fichas oficiales) */}
+      {seo && (seo.escala || seo.coberturas.length > 0) && (
         <section className="py-10 bg-white border-t border-gray-100">
           <div className="container max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {swiss.escala && (
+            {seo.escala && (
               <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-1">Precio del Swiss Medical {swiss.codigo} por edad</h2>
+                <h2 className="text-xl font-bold text-gray-900 mb-1">Precio del {seo.nombreLargo} por edad</h2>
                 <p className="text-xs text-gray-500 mb-4">
-                  Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: AMBA, contratación directa, IVA incluido, por persona.
+                  Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona.
                 </p>
                 <table className="w-full text-sm border border-gray-100 rounded-xl overflow-hidden">
                   <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
                     <tr><th className="text-left px-4 py-2">Edad</th><th className="text-right px-4 py-2">Precio mensual</th></tr>
                   </thead>
                   <tbody>
-                    {swiss.escala.rangos.map((x) => (
+                    {seo.escala.rangos.map((x) => (
                       <tr key={x.desde} className="border-t border-gray-100">
                         <td className="px-4 py-2 text-gray-700">{x.hasta >= 99 ? `${x.desde} años o más` : `${x.desde} a ${x.hasta} años`}</td>
                         <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(x.precio)}</td>
@@ -481,12 +502,12 @@ export default async function PlanPage({ params, searchParams }: Props) {
                 <p className="text-xs text-gray-400 mt-2">El precio final depende de tu zona, tu grupo familiar y las promociones vigentes: te lo cotizamos sin cargo.</p>
               </div>
             )}
-            {swiss.coberturas.length > 0 && (
+            {seo.coberturas.length > 0 && (
               <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-1">Qué cubre el Swiss Medical {swiss.codigo}, punto por punto</h2>
-                <p className="text-xs text-gray-500 mb-4">Según las fichas oficiales de Swiss Medical.</p>
+                <h2 className="text-xl font-bold text-gray-900 mb-1">Qué cubre el {seo.nombreLargo}, punto por punto</h2>
+                <p className="text-xs text-gray-500 mb-4">Según las fichas oficiales de {prep.nombre}.</p>
                 <ul className="divide-y divide-gray-100 border border-gray-100 rounded-xl">
-                  {swiss.coberturas.map((c) => (
+                  {seo.coberturas.map((c) => (
                     <li key={c.tema} className="flex items-start justify-between gap-3 px-4 py-2.5 text-sm">
                       <Link href={`/coberturas/${c.tema}/${prep.slug}`} className="text-gray-700 hover:text-[#E8002D] hover:underline">{c.nombre}</Link>
                       <span className={`text-right ${c.fila.sinDato ? 'text-gray-400' : c.fila.incluido ? 'text-emerald-700 font-semibold' : 'text-gray-500'}`}>
