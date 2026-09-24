@@ -1,1 +1,1279 @@
-{"generado": null, "fuentes": {}, "sucursales": []}
+{
+ "generado": "2026-09-24",
+ "fuentes": {
+  "galeno": "https://www.galeno.com.ar/sucursales/",
+  "premedic": "https://web.grupopremedic.com.ar/sucursales",
+  "medife": "https://www.medife.com.ar/sucursales"
+ },
+ "sucursales": [
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Belgrano",
+   "direccion": "Vuelta de Obligado 2286, CABA",
+   "localidad": "Ciudad Autonoma Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5597382,
+   "lon": -58.45718599999998
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Caballito",
+   "direccion": "Av. Donato Alvarez 20, CABA",
+   "localidad": "Ciudad Autónoma de Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6254129,
+   "lon": -58.45416310000002
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Catalinas",
+   "direccion": "Av. Leandro N. Alem 641, CABA",
+   "localidad": "Ciudad Autónoma de Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.60010961376091,
+   "lon": -58.37040379543455
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Centro",
+   "direccion": "Av. Córdoba 1712, CABA",
+   "localidad": "Ciudad Autónoma de Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5995909,
+   "lon": -58.3917247
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Palermo",
+   "direccion": "Av. Coronel Díaz 1877, CABA",
+   "localidad": "Ciudad Autónoma Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5893597,
+   "lon": -58.4103159
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Puerto Madero",
+   "direccion": "Av. Elvira Rawson de Dellepiane 150, CABA",
+   "localidad": "San Telmo",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.623774,
+   "lon": -58.363312
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Dupuytren",
+   "direccion": "Av. Belgrano 3402, CABA",
+   "localidad": "Almagro",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6155593,
+   "lon": -58.4143995
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad Mitre",
+   "direccion": "Larrea 140, CABA",
+   "localidad": "Balvanera",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6081652,
+   "lon": -58.4019682
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad Palermo",
+   "direccion": "Av. Cerviño 4720, CABA",
+   "localidad": "Palermo",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5760566,
+   "lon": -58.42409709999998
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Centro Medico Trinidad Quilmes",
+   "direccion": "Lavalle 408, Quilmes",
+   "localidad": "Quilmes",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.7191696,
+   "lon": -58.25949230000003
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Escobar",
+   "direccion": "Sarmiento 670, Escobar",
+   "localidad": "Escobar",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.3495574,
+   "lon": -58.79835109999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno La Plata",
+   "direccion": "Av. 13 Nro. 658, La Plata",
+   "localidad": "La plata",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.917306,
+   "lon": -57.960078
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Lomas de Zamora",
+   "direccion": "Bartolomé Mitre 110, Lomas de Zamora",
+   "localidad": "Lomas de Zamora",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.765568606746285,
+   "lon": -58.39873870196299
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Luján",
+   "direccion": "España 825, Luján",
+   "localidad": "Luján",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -34.57202946158183,
+   "lon": -59.11279419296233
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Morón",
+   "direccion": "Av. Rivadavia 17959, Morón",
+   "localidad": "Morón",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6492906,
+   "lon": -58.61687059999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Pilar",
+   "direccion": "Edif. Paralelo 50 (Sur) Panamericana Km 49,5 - Colectora Oeste, Ramal Pilar",
+   "localidad": "Pilar",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.443404,
+   "lon": -58.860453
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Ramos Mejia",
+   "direccion": "Necochea 143, Ramos Mejia",
+   "localidad": "Ramos Mejia",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6425068,
+   "lon": -58.567051900000024
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad Quilmes",
+   "direccion": "Carlos Pellegrini 499, Quilmes",
+   "localidad": "Quilmes",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.726171,
+   "lon": -58.266055600000016
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad Ramos Mejía",
+   "direccion": "Av. Rivadavia 13246, Ramos Mejia",
+   "localidad": "Ramos Mejia",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.63996,
+   "lon": -58.55366
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad San Isidro",
+   "direccion": "Fondo de la Legua 851, San Isidro",
+   "localidad": "San Isidro",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.4995171,
+   "lon": -58.542483000000004
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Isidro",
+   "direccion": "Av. del Libertador 16025, San Isidro",
+   "localidad": "Ramos Mejia",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.4694145,
+   "lon": -58.50845549999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Martín",
+   "direccion": "Felix Ballester N 2118/26/28/32, San Martin",
+   "localidad": "San Martín",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.57891734523363,
+   "lon": -58.5412108954035
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Miguel",
+   "direccion": "Av. J. D. Perón 1788, San Miguel",
+   "localidad": "San Miguel",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5403518,
+   "lon": -58.71467289999998
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Vicente Lopez",
+   "direccion": "Av. Maipu 1619, Vicente Lopez",
+   "localidad": "Vicente Lopez",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5229002,
+   "lon": -58.48426440000003
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Zarate",
+   "direccion": "Belgrano 892, Zarate",
+   "localidad": "Zarate",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 8 a 17 hs.",
+   "lat": -34.0968711,
+   "lon": -59.02520079999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Bahia Blanca",
+   "direccion": "Dorrego 3, Bahia Blanca",
+   "localidad": "Bahia Blanca",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -38.7149758,
+   "lon": -62.26057539999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Chivilcoy",
+   "direccion": "Hipólito Yrigoyen 17, Chivilcoy",
+   "localidad": "Chivilcoy",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -34.8964432,
+   "lon": -60.02030289999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Junín",
+   "direccion": "12 de Octubre 44, Junín",
+   "localidad": "Junín",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5946611,
+   "lon": -60.9441946
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Mar del Plata",
+   "direccion": "Colón 2663/69, Mar del Plata",
+   "localidad": "Mar de Plata",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -38.0031329,
+   "lon": -57.550708499999985
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Olavarría",
+   "direccion": "San Martín 2604, Olavarría",
+   "localidad": "Olavarría",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -36.892461,
+   "lon": -60.323991
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Pergamino",
+   "direccion": "San Nicolás 130, Pergamino",
+   "localidad": "Pergamino",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -33.8905818,
+   "lon": -60.5712762
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Pinamar",
+   "direccion": "Av. Enrique Shaw 328 Loc. 4, Pinamar",
+   "localidad": "Pinamar",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 10 a 14 hs.",
+   "lat": -37.109088,
+   "lon": -56.866063
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Nicolas",
+   "direccion": "Bartolome Mitre 483, San Nicolas de los Arroyos",
+   "localidad": "San Nicolas de los Arroyos",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -33.3360728,
+   "lon": -60.224340100000006
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Tandil",
+   "direccion": "Chacabuco 739, Tandil",
+   "localidad": "Tandil",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -37.3256627,
+   "lon": -59.14028940000003
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Tres Arroyos",
+   "direccion": "Colon 219, Tres Arroyos",
+   "localidad": "Tres Arroyos",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8 a 17 hs.",
+   "lat": -38.379269595837364,
+   "lon": -60.27460054633255
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno 9 de Julio",
+   "direccion": "Bartolomé Mitre 1318, 9 de Julio",
+   "localidad": "9 de Julio",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -35.445038,
+   "lon": -60.885321
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Resistencia",
+   "direccion": "Av. Sarmiento 335, Resistencia",
+   "localidad": "Resistencia",
+   "region": "Chaco",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -27.448335,
+   "lon": -58.983499
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Comodoro Rivadavia",
+   "direccion": "Rivadavia 875, Comodoro Rivadavia",
+   "localidad": "Comodoro Rivadavia",
+   "region": "Chubut",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -45.8621229,
+   "lon": -67.48725289999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Puerto Madryn",
+   "direccion": "Av. Julio A. Roca 611, Puerto Madryn",
+   "localidad": "Puerto Madryn",
+   "region": "Chubut",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -42.7697467,
+   "lon": -65.0310437
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Cerro Las Rosas",
+   "direccion": "Rafael Nuñez 5029, Cerro Las Rosas",
+   "localidad": "Cerro Las Rosas",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -31.358094,
+   "lon": -64.240506
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Córdoba",
+   "direccion": "Independencia 417, Córdoba",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -31.421281,
+   "lon": -64.1862
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Río Cuarto",
+   "direccion": "España 182, Río Cuarto",
+   "localidad": "Río Cuarto",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -33.117148,
+   "lon": -64.347124
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Río Tercero",
+   "direccion": "Lavalle 129, Río Tercero",
+   "localidad": "Río Tercero",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -32.1696777656347,
+   "lon": -64.11621377942573
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Corrientes",
+   "direccion": "Salta 860, Corrientes",
+   "localidad": "Corrientes",
+   "region": "Corrientes",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -27.466869,
+   "lon": -58.83923
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Concordia",
+   "direccion": "Catamarca 196 local 4, Concordia",
+   "localidad": "Concordia",
+   "region": "Entre Ríos",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -31.395587,
+   "lon": -58.014359
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Paraná",
+   "direccion": "Buenos Aires 246, Paraná",
+   "localidad": "Paraná",
+   "region": "Entre Ríos",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -31.729051,
+   "lon": -60.53056729999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Salvador de Jujuy",
+   "direccion": "Gral. Güemes 1300, San Salvador de Jujuy",
+   "localidad": "San Salvador de Jujuy",
+   "region": "Jujuy",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -24.18339658660517,
+   "lon": -65.31106440972836
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Santa Rosa",
+   "direccion": "San Martín 299 , Santa Rosa",
+   "localidad": "Santa Rosa",
+   "region": "La Pampa",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -36.6210857,
+   "lon": -64.28730530000001
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Mendoza",
+   "direccion": "Av. Belgrano 735, Mendoza",
+   "localidad": "Mendoza",
+   "region": "Mendoza",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -32.892566,
+   "lon": -68.850623
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Rafael",
+   "direccion": "Av. Hipólito Yrigoyen 902, San Rafael",
+   "localidad": "San Rafael",
+   "region": "Mendoza",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.612245,
+   "lon": -68.341147
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Gral. San Martin",
+   "direccion": "Las Heras 283, San Martin",
+   "localidad": "Gral. San Martin",
+   "region": "Mendoza",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -33.086992,
+   "lon": -68.473139
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Malargüe",
+   "direccion": "Av. San Martín 978, Malargüe",
+   "localidad": "Malargüe",
+   "region": "Mendoza",
+   "horario": "Lunes a Viernes de 10 a 16 hs.",
+   "lat": -35.476535,
+   "lon": -69.585392
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Posadas",
+   "direccion": "Rivadavia 1545, Posadas",
+   "localidad": "Posadas",
+   "region": "Misiones",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -27.36472304438138,
+   "lon": -55.891055861765444
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Neuquén",
+   "direccion": "Diag. España 67, Neuquén",
+   "localidad": "Neuquén",
+   "region": "Neuquén",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -38.9501949,
+   "lon": -68.05792759999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Martin de los Andes",
+   "direccion": "Belgrano 978 local 2, San Martin de los Andes",
+   "localidad": "San Martin de los Andes",
+   "region": "Neuquén",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -40.158043,
+   "lon": -71.348766
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Bariloche",
+   "direccion": "Vice Alte.E.O'Connor 541, Bariloche",
+   "localidad": "Bariloche",
+   "region": "Río Negro",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -41.133246,
+   "lon": -71.302032
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno General Roca",
+   "direccion": "Sarmiento 1405, General Roca",
+   "localidad": "General Roca",
+   "region": "Río Negro",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -39.02895,
+   "lon": -67.574505
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Viedma",
+   "direccion": "Belgrano 202, Viedma",
+   "localidad": "Viedma",
+   "region": "Río Negro",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -40.807499,
+   "lon": -62.99088619999998
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Salta",
+   "direccion": "España 414, Salta",
+   "localidad": "Salta",
+   "region": "Salta",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -24.788529264337566,
+   "lon": -65.40848691803342
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Juan",
+   "direccion": "Sarmiento 175 (S), San Juan",
+   "localidad": "San Juan",
+   "region": "San Juan",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -31.535846,
+   "lon": -68.528718
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Luis",
+   "direccion": "Pringles 817, San Luis",
+   "localidad": "San Luis",
+   "region": "San Luis",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -33.302401,
+   "lon": -66.33497
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Villa Mercedes",
+   "direccion": "General Paz 491, Villa Mercedes",
+   "localidad": "Villa Mercedes",
+   "region": "San Luis",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -33.684367,
+   "lon": -65.463666
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Caleta Olivia",
+   "direccion": "Ceferino Namuncurá 15, Caleta Olivia",
+   "localidad": "Caleta Olivia",
+   "region": "Santa Cruz",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -46.4443619,
+   "lon": -67.52053890000002
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Reconquista",
+   "direccion": "Habegger 1485, Reconquista",
+   "localidad": "Reconquista",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -29.14545,
+   "lon": -59.654797
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Rosario",
+   "direccion": "Bv. Oroño 873, Rosario",
+   "localidad": "Rosario",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -32.9445051,
+   "lon": -60.65361429999996
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Lorenzo",
+   "direccion": "Av. San Martin 1017, San Lorenzo",
+   "localidad": "San Lorenzo",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -32.7512895,
+   "lon": -60.73431619999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Santa Fe",
+   "direccion": "Av. Gral. López 3068 PB, Santa Fe",
+   "localidad": "Santa Fé",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -31.6559795,
+   "lon": -60.71601140000001
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Venado Tuerto",
+   "direccion": "Alvear 570, Venado Tuerto",
+   "localidad": "Venado Tuerto",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -33.747064360742485,
+   "lon": -61.962399418025946
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Santiago del Estero",
+   "direccion": "Calle 24 de setiembre 412, Santiago del Estero",
+   "localidad": "Santiago del Estero",
+   "region": "Santiago del Estero",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -27.79138,
+   "lon": -64.257088
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Río Grande",
+   "direccion": "C. Augusto Lasserre 247, Río Grande",
+   "localidad": "Río Grande",
+   "region": "Tierra del Fuego",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -53.78662484792109,
+   "lon": -67.69418980268551
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Tucumán",
+   "direccion": "Mendoza 348, Tucumán",
+   "localidad": "Tucumán",
+   "region": "Tucumán",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -26.828885,
+   "lon": -65.20170410000003
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Yerba Buena",
+   "direccion": "Av. Aconquija 1199, Yerba Buena",
+   "localidad": "Yerba Buena",
+   "region": "Tucumán",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -26.814454,
+   "lon": -65.286111
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Liniers",
+   "direccion": "Coronel Ramón Lorenzo Falcón 6976",
+   "localidad": "Liniers",
+   "telefono": "6086-9047"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Caballito",
+   "direccion": "Av. Gaona 1301",
+   "localidad": "Caballito",
+   "telefono": "4584-5876"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Recoleta (Casa Central)",
+   "direccion": "Junin 1588",
+   "localidad": "Recoleta",
+   "telefono": "0810-222-5522"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Quilmes",
+   "direccion": "Moreno 524",
+   "localidad": "Quilmes",
+   "telefono": "4253-2087"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Francisco Solano",
+   "direccion": "Calle 843 Nº 2509",
+   "localidad": "San Francisco Solano",
+   "telefono": "7542-6746"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Lomas de Zamora",
+   "direccion": "José Pereyra lucena 580",
+   "localidad": "Lomas de Zamora",
+   "telefono": "4244-0584"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Moreno",
+   "direccion": "Gral. Manuel Belgrano 143",
+   "localidad": "Moreno",
+   "telefono": "0237-4603291"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Merlo",
+   "direccion": "Juncal 662",
+   "localidad": "Merlo",
+   "telefono": "0220-486-4562"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Morón",
+   "direccion": "General Machado 1012",
+   "localidad": "Morón",
+   "telefono": "4483-4361"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Justo",
+   "direccion": "Mons José Francisco Marcón 3298",
+   "localidad": "San Justo",
+   "telefono": "4602-9519"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Ramos Mejia",
+   "direccion": "Espora 72",
+   "localidad": "Ramos Mejia",
+   "telefono": "4469-2669"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Vicente Lopez",
+   "direccion": "Av. Maipú 266",
+   "localidad": "Vicente Lopez",
+   "telefono": "4797-3603"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Villa Ballester",
+   "direccion": "Independencia 4872",
+   "localidad": "Villa Ballester",
+   "telefono": "4768-9650"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Miguel",
+   "direccion": "Ricardo Balbin 987",
+   "localidad": "San Miguel",
+   "telefono": "4664-1257 / 4667-6364"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Isidro",
+   "direccion": "25 de Mayo 523",
+   "localidad": "San Isidro",
+   "telefono": "4742-9402"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Fernando",
+   "direccion": "3 De Febrero 1282",
+   "localidad": "San Fernando",
+   "telefono": "4745-7600"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Nordelta",
+   "direccion": "Av del Caminante 80. Edificio Vientos del Delta II",
+   "localidad": "Nordelta",
+   "telefono": "4835-6273"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Pilar",
+   "direccion": "B. Rivadavia 378",
+   "localidad": "Pilar",
+   "telefono": "02304-434848"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Miguel de Tucumán",
+   "direccion": "Av Sarmiento 318",
+   "localidad": "San Miguel de Tucumán",
+   "telefono": "0381-2308857"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Arroyito",
+   "direccion": "Av. Carlos Pontín 620",
+   "localidad": "Arroyito",
+   "telefono": "03576-454883"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Ciudad de Córdoba",
+   "direccion": "Av Figueroa Alcorta 195",
+   "localidad": "Ciudad de Córdoba",
+   "telefono": "0351-4235380"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Ciudad de Mendoza",
+   "direccion": "Av. Colón 102, Local 2",
+   "localidad": "Ciudad de Mendoza",
+   "telefono": "(0261) 5200592"
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Bahía Blanca",
+   "direccion": "Donado 498",
+   "localidad": "Bahía Blanca",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Campana",
+   "direccion": "Becerra 835",
+   "localidad": "Campana",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Mar del Plata - Independencia",
+   "direccion": "Av. Independencia 2094",
+   "localidad": "Mar del Plata",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Mercedes",
+   "direccion": "Calle 22 685",
+   "localidad": "Mercedes",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Pinamar",
+   "direccion": "Av. del Valle Fértil 73",
+   "localidad": "Pinamar",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Tandil",
+   "direccion": "San Martín 467",
+   "localidad": "Tandil",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Trenque Lauquen",
+   "direccion": "Bv. Villegas 875",
+   "localidad": "Trenque Lauquen",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Comodoro Rivadavia",
+   "direccion": "Av. Rivadavia 597",
+   "localidad": "Comodoro Rivadavia",
+   "region": "Chubut",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Puerto Madryn",
+   "direccion": "Av. Julio A. Roca 835",
+   "localidad": "Puerto Madryn",
+   "region": "Chubut",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Adrogue",
+   "direccion": "Samuel Miguel Spiro 1096",
+   "localidad": "Adrogue",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Barrio Norte",
+   "direccion": "Av. Pueyrredón 1770",
+   "localidad": "Barrio Norte",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Caballito",
+   "direccion": "Av. La Plata 8 CABA",
+   "localidad": "Caballito",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 18 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé General Rodriguez",
+   "direccion": "Av. San Martín 116",
+   "localidad": "General Rodriguez",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé La Plata",
+   "direccion": "Av 44 Nro. 868",
+   "localidad": "La Plata",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Lomas de Zamora",
+   "direccion": "Gral Bartolomé Mitre 188",
+   "localidad": "Lomas de Zamora",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Olivos",
+   "direccion": "Av. Maipú 1594",
+   "localidad": "Olivos",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Pilar",
+   "direccion": "Colectora Panamericana, Ramal Pilar km. 49.5",
+   "localidad": "Pilar",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Quilmes",
+   "direccion": "Alsina 102",
+   "localidad": "Quilmes",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Isidro",
+   "direccion": "Acassuso 255",
+   "localidad": "San Isidro",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Miguel",
+   "direccion": "Paunero 1646",
+   "localidad": "San Miguel",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Cerro de las Rosas",
+   "direccion": "Av. Rafael Nuñez 4972",
+   "localidad": "Cerro de las Rosas",
+   "region": "Córdoba",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Córdoba",
+   "direccion": "Av. Rogelio Nores Martínez 2725",
+   "localidad": "Córdoba",
+   "region": "Córdoba",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Corrientes",
+   "direccion": "San Lorenzo 856",
+   "localidad": "Corrientes",
+   "region": "Corrientes",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Jujuy",
+   "direccion": "General Guemes 1031",
+   "localidad": "Jujuy",
+   "region": "Jujuy",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé La Rioja",
+   "direccion": "Vélez Sarsfield 571",
+   "localidad": "La Rioja",
+   "region": "La Rioja",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Mendoza",
+   "direccion": "Av. ArÍstides Villanueva 201",
+   "localidad": "Mendoza",
+   "region": "Mendoza",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Rafael",
+   "direccion": "Av. Presidente Hipólito Yrigoyen 1270",
+   "localidad": "San Rafael",
+   "region": "Mendoza",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Posadas",
+   "direccion": "JunÍn 1605",
+   "localidad": "Posadas",
+   "region": "Misiones",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Añelo",
+   "direccion": "Ruta Provincial 7 Colectora Norte S/N",
+   "localidad": "Añelo",
+   "region": "Neuquén",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Cutral Co",
+   "direccion": "Av. del Trabajo 761",
+   "localidad": "Cutral Co",
+   "region": "Neuquén",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Neuquén",
+   "direccion": "Avenida Argentina 296",
+   "localidad": "Neuquén",
+   "region": "Neuquén",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Bariloche",
+   "direccion": "Mitre 798",
+   "localidad": "Bariloche",
+   "region": "Río Negro",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Salta",
+   "direccion": "Roldán 11",
+   "localidad": "Salta",
+   "region": "Salta",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Juan",
+   "direccion": "Rivadavia 204",
+   "localidad": "San Juan",
+   "region": "San Juan",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Luis",
+   "direccion": "Av. Illia 525",
+   "localidad": "San Luis",
+   "region": "San Luis",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Villa Mercedes",
+   "direccion": "Gral. Pedernera 777",
+   "localidad": "Villa Mercedes",
+   "region": "San Luis",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Caleta Olivia",
+   "direccion": "Senador Raúl Almendra 566",
+   "localidad": "Caleta Olivia",
+   "region": "Santa Cruz",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Rio Gallegos",
+   "direccion": "Chile 48",
+   "localidad": "Rio Gallegos",
+   "region": "Santa Cruz",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Reconquista",
+   "direccion": "Habegger 1396",
+   "localidad": "Reconquista",
+   "region": "Santa Fe",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Rosario",
+   "direccion": "Entre Ríos 476",
+   "localidad": "Rosario",
+   "region": "Santa Fe",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Lorenzo",
+   "direccion": "Rivadavia 631",
+   "localidad": "San Lorenzo",
+   "region": "Santa Fe",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 15hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Santa Fe",
+   "direccion": "Gral. San Martín 3072",
+   "localidad": "Santa Fe",
+   "region": "Santa Fe",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Rio Grande",
+   "direccion": "25 de Mayo 792",
+   "localidad": "Rio Grande",
+   "region": "Tierra del Fuego",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Tucumán",
+   "direccion": "Mendoza 307",
+   "localidad": "Tucumán",
+   "region": "Tucumán",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  }
+ ]
+}
