@@ -10,6 +10,7 @@ import { whatsappLinkParaLead } from '@/lib/utils'
 const ETIQUETAS_PREFERENCIAS: Record<string, string> = {
   copago: 'Copago', coberturas: 'Coberturas', zona: 'Zona (quiz)', saludMental: 'Salud mental',
   medicoDeConfianza: 'Médico de confianza', grupo: 'Grupo',
+  sanatorios: 'Sanatorios', planActual: 'Plan actual', perfil: 'Perfil (match)',
 }
 function textoPreferencias(json: string | null): string {
   if (!json) return ''

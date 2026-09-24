@@ -61,6 +61,7 @@ const herramientasMenu = [
   { href: '/prepaga-por-presupuesto', label: 'Encontrá tu prepaga por presupuesto' },
   { href: '/historial-precios', label: 'Historial de precios' },
   { href: '/calculadora', label: 'Calculadora' },
+  { href: '/buscar-por-sanatorio', label: 'Buscar prepaga por sanatorio' },
   { href: '/cartillas', label: 'Cartillas médicas' },
   { href: '/glosario', label: 'Glosario de prepagas' },
   { href: '/blog', label: 'Blog' },

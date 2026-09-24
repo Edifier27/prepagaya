@@ -25,7 +25,8 @@ export const OPCIONES_PREPAGA_ACTUAL = [
 // Opciones de la pregunta 1 del quiz (components/quiz/QuizPrepaga.tsx).
 export const PRESUPUESTOS_QUIZ = ['Menos de $200.000', '$200.000–$350.000', '$350.000–$600.000', 'Más de $600.000'] as const
 
-const PREFERENCIAS_CLAVES = ['copago', 'coberturas', 'zona', 'saludMental', 'medicoDeConfianza', 'grupo'] as const
+// sanatorios: /buscar-por-sanatorio · planActual: /chequeo-prepaga · perfil: /match-prepaga
+const PREFERENCIAS_CLAVES = ['copago', 'coberturas', 'zona', 'saludMental', 'medicoDeConfianza', 'grupo', 'sanatorios', 'planActual', 'perfil'] as const
 export type Preferencias = Partial<Record<(typeof PREFERENCIAS_CLAVES)[number], string>>
 
 function deLista<T extends readonly string[]>(lista: T, valor: unknown): string {
@@ -37,7 +38,7 @@ export const limpiarSituacionLaboral = (v: unknown) => deLista(SITUACIONES_LABOR
 export const limpiarPrepagaActual = (v: unknown) => deLista(OPCIONES_PREPAGA_ACTUAL, v)
 export const limpiarPresupuesto = (v: unknown) => deLista(PRESUPUESTOS_QUIZ, v)
 
-/** Solo claves conocidas, valores cortos, JSON de hasta 600 caracteres. */
+/** Solo claves conocidas, valores de hasta 200 caracteres, JSON de hasta 600. */
 export function limpiarPreferencias(v: unknown): string {
   let obj: Record<string, unknown>
   try {

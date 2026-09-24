@@ -116,7 +116,7 @@ export default function CodigosObrasSocialesPage() {
       </div>
 
       <section className="py-10 bg-white">
-        <div className="container max-w-4xl mx-auto">
+        <div className="container max-w-4xl! mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight text-balance">Códigos de obras sociales y prepagas para AFIP/ARCA</h1>
           <p className="text-gray-700 leading-relaxed mt-4 max-w-3xl">
             El código de las {conCodigo.length} obras sociales y prepagas del Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud. Es el que carga tu empleador en tu alta y el que usás para elegir obra social o prepaga al derivar tus aportes.
@@ -143,7 +143,7 @@ export default function CodigosObrasSocialesPage() {
       </section>
 
       <section className="pb-10 bg-white">
-        <div className="container max-w-4xl mx-auto">
+        <div className="container max-w-4xl! mx-auto">
           <FiltroCodigos
             total={entidadesRegistro.length}
             grupos={grupos.map((g) => ({ id: g.id, titulo: g.titulo, cantidad: g.entidades.length }))}
@@ -193,7 +193,7 @@ export default function CodigosObrasSocialesPage() {
       </section>
 
       <section className="py-10 bg-gray-50 border-t border-gray-100">
-        <div className="container max-w-4xl mx-auto">
+        <div className="container max-w-4xl! mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Preguntas frecuentes sobre los códigos de obra social</h2>
           <div className="space-y-4">
             {faqs.map((f) => (
