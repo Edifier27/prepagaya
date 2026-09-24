@@ -43,6 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/prepaga-por-presupuesto`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.80 },
     { url: `${BASE}/buscar-por-sanatorio`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/chequeo-prepaga`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/match-prepaga`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/cartillas`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/historial-precios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${BASE}/glosario`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
