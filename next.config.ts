@@ -344,6 +344,24 @@ const nextConfig: NextConfig = {
         destination: "/prepagas/prevencion-salud/a5",
         permanent: true,
       },
+      // /quiz era la misma página que /prepaga-por-presupuesto (mismo quiz y
+      // casi el mismo texto): dos URLs indexables compitiendo (24-sep-2026)
+      {
+        source: "/quiz",
+        destination: "/prepaga-por-presupuesto",
+        permanent: true,
+      },
+      // Slug con tilde (24-sep-2026): /coberturas/bariátrica daba 404
+      {
+        source: "/coberturas/bari%C3%A1trica",
+        destination: "/coberturas/cirugia-bariatrica",
+        permanent: true,
+      },
+      {
+        source: "/coberturas/bariatrica",
+        destination: "/coberturas/cirugia-bariatrica",
+        permanent: true,
+      },
       // Silo de empresas (23-sep-2026): /para/empresas canibalizaba al hub /empresas
       {
         source: "/para/empresas",

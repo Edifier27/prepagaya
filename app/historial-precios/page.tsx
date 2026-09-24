@@ -4,7 +4,7 @@ import { SITE_URL, SITE_NAME } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 
 export const metadata: Metadata = {
-  title: 'Historial de Precios de Prepagas Argentina 2024–2026 — PrepagaYa',
+  title: 'Historial de precios de prepagas Argentina 2024–2026',
   description:
     'Seguí la evolución mensual de los precios de prepagas en Argentina. OSDE, Swiss Medical, Sancor, Medifé y más. Actualizado junio 2026.',
   alternates: { canonical: `${SITE_URL}/historial-precios` },

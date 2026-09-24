@@ -166,7 +166,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // "prepagas precios" (Google Trends); es la misma intención de esta ficha.
     // absolute: sin el sufijo "| PrepagaYa", para que entre completo en Google (~65 caracteres).
     title: { absolute: `${prep.nombre}: planes y cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()}, desde ${formatPrecio(precioMinTitulo)}` },
-    description: `¿Cuánto sale ${prep.nombre}? Planes desde ${formatPrecio(precioMinTitulo)}/mes en ${PRECIO_ACTUALIZADO.toLowerCase()}${prep.planes.some((pl) => pl.fuentePrecio === 'sssalud') ? ', según el cuadro tarifario oficial de la SSSalud' : ''}. Precio por edad, cartilla${contactos[prep.slug] ? ', teléfonos' : ''} y opiniones. Cotizá gratis.`,
+    // Descripción ≤ ~160 caracteres (antes ~185 y Google cortaba el "Cotizá gratis")
+    description: `¿Cuánto sale ${prep.nombre}? Planes desde ${formatPrecio(precioMinTitulo)}/mes en ${PRECIO_ACTUALIZADO.toLowerCase()}${prep.planes.some((pl) => pl.fuentePrecio === 'sssalud') ? ' (precio oficial SSSalud)' : ''}. Precio por edad, cartilla${contactos[prep.slug] ? ', teléfonos' : ''} y opiniones. Cotizá gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} planes`,
@@ -367,7 +368,10 @@ export default async function PrepagaSlugPage({ params }: Props) {
                       </span>
                     )}
                   </div>
-                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Planes de {prep.nombre}</h1>
+                  {/* "Precios" en el H1 (auditoría SEO 24-sep-2026): el título
+                      ya dice "cuánto sale"; así la ficha cubre también
+                      "[prepaga] precios", la otra forma de la búsqueda. */}
+                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{prep.nombre}: planes y precios</h1>
                 </div>
               </div>
 
@@ -375,7 +379,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
               <div className="flex items-center gap-2 mb-4">
                 <StarRow rating={prep.rating} />
                 <span className="text-sm font-semibold text-gray-700">{prep.rating}</span>
-                <span className="text-sm text-gray-400">({prep.cantidadOpiniones.toLocaleString()} opiniones)</span>
+                <span className="text-sm text-gray-400">({prep.cantidadOpiniones.toLocaleString('es-AR')} opiniones)</span>
               </div>
 
               <p className="text-gray-600 text-sm leading-relaxed mb-5 max-w-xl">{prep.descripcion}</p>
@@ -447,7 +451,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
               ...(prep.profesionales ? [{ label: 'Prestadores', value: `${(prep.profesionales / 1000).toFixed(0)}k+` }] : []),
               { label: 'Centros propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red convenio' },
               { label: 'Satisfacción', value: `${prep.satisfaccion}%` },
-              { label: 'Opiniones', value: prep.cantidadOpiniones.toLocaleString() },
+              { label: 'Opiniones', value: prep.cantidadOpiniones.toLocaleString('es-AR') },
             ].map((s) => (
               <div key={s.label} className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm">
                 <div className="text-lg font-bold text-[#E8002D]">{s.value}</div>

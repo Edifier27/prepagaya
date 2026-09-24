@@ -75,6 +75,17 @@ export const TIEMPO_RESPUESTA = '3 minutos'
 
 export const PARTNERS_OFICIALES_TEXTO = `${PARTNERS_OFICIALES.slice(0, -1).join(', ')} y ${PARTNERS_OFICIALES[PARTNERS_OFICIALES.length - 1]}`
 
+// Imagen para compartir (la de app/opengraph-image.tsx). Las páginas que
+// definen su propio openGraph pisan el del layout entero (merge superficial) y
+// se quedaban sin imagen al compartirlas en WhatsApp o redes: 133 páginas
+// (auditoría SEO 24-sep-2026). Sumarla en cada openGraph propio.
+export const OG_IMAGE = {
+  url: `${SITE_URL}/opengraph-image`,
+  width: 1200,
+  height: 630,
+  alt: 'PrepagaYa — Comparador de Prepagas Argentina',
+}
+
 export const SITE_DESCRIPTION =
   'Compará todas las prepagas de Argentina en un solo lugar: precios del mes, planes, coberturas y cartillas. Partner oficial de Swiss Medical, Sancor Salud, OSDE, Avalian y Premedic.'
 

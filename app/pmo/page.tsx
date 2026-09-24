@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { condiciones } from '@/lib/data/condiciones'
 import { coberturas } from '@/lib/data/coberturas'
 import { StickySectionNav } from '@/components/ui/StickySectionNav'
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     title: 'PMO 2026: Qué Cubre el Programa Médico Obligatorio por Ley',
     description: 'Guía completa del PMO: cada categoría de cobertura, porcentajes de medicamentos y leyes especiales, con fuente oficial de la SSSalud.',
     type: 'article',
+    images: [OG_IMAGE],
     modifiedTime: CONTENT_UPDATE,
   },
 }

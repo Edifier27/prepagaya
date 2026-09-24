@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO_ZH, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
-  title: { absolute: `阿根廷医疗保险指南:外国人须知(${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
+  title: { absolute: `阿根廷医疗保险指南:外国人须知(${PRECIO_ACTUALIZADO_ZH}) — ${SITE_NAME}` },
   description:
     '阿根廷外国人医疗保险指南:强制入境保险要求(366/25号法令)、如何在没有DNI的情况下加入当地医保(prepaga),以及2026年真实价格。',
   alternates: {
@@ -42,7 +42,7 @@ const faqs = [
   },
   {
     q: '阿根廷的私人医疗保险费用是多少?',
-    a: <>价格取决于年龄和保险计划,而非国籍。截至{PRECIO_ACTUALIZADO_EN},基础计划约为每月AR$170,000起(以30岁为例),中端计划(门诊无需自付)约为AR$300,000–500,000,高端计划则超过AR$1,000,000。 <Link href="/zh/yiliao-baoxian-feiyong-agenting" className="text-[#E8002D] hover:underline font-medium">完整价格明细 →</Link></>,
+    a: <>价格取决于年龄和保险计划,而非国籍。截至{PRECIO_ACTUALIZADO_ZH},基础计划约为每月AR$170,000起(以30岁为例),中端计划(门诊无需自付)约为AR$300,000–500,000,高端计划则超过AR$1,000,000。 <Link href="/zh/yiliao-baoxian-feiyong-agenting" className="text-[#E8002D] hover:underline font-medium">完整价格明细 →</Link></>,
   },
   {
     q: '旅行保险还是当地prepaga——该如何选择?',
@@ -87,7 +87,7 @@ export default function YiliaoBaoxianAgentingPage() {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-3xl mx-auto">
           <span className="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">
-            中文指南 · 更新于 {PRECIO_ACTUALIZADO_EN}
+            中文指南 · 更新于 {PRECIO_ACTUALIZADO_ZH}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             阿根廷医疗保险指南:外国人须知
@@ -138,7 +138,7 @@ export default function YiliaoBaoxianAgentingPage() {
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-2">外国人常选保险公司</h2>
-          <p className="text-sm text-gray-500 mb-6">价格水平相对市场而言 — {PRECIO_ACTUALIZADO_EN}。可免费获取您的精确报价。</p>
+          <p className="text-sm text-gray-500 mb-6">价格水平相对市场而言 — {PRECIO_ACTUALIZADO_ZH}。可免费获取您的精确报价。</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {destacadas.map((p) => {
               const desde = Math.min(...p.planes.map((pl) => pl.precio))

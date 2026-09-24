@@ -62,7 +62,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: `Precios de prepagas ${MES_ACTUAL.toLowerCase()}: cuánto sale cada plan (tabla oficial)`,
-  description: `¿Cuánto sale una prepaga en ${MES_ACTUAL.toLowerCase()}? Tabla con todos los planes de Swiss Medical, OSDE, Sancor, Premedic, Avalian y más, según los cuadros tarifarios oficiales de la SSSalud. Desde ${formatPrecio(precioMin)}/mes.`,
+  description: `Precios de prepagas de ${MES_ACTUAL.toLowerCase()}: todos los planes de Swiss Medical, OSDE, Sancor, Premedic, Avalian y más, desde ${formatPrecio(precioMin)}/mes. Dato oficial SSSalud.`,
   alternates: { canonical: `${SITE_URL}/precios` },
   keywords: [
     `precios prepagas ${MES_ACTUAL.toLowerCase()}`,

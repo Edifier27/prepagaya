@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { comparativas } from '@/lib/data/comparativas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: comp.titulo,
       description: comp.descripcion,
       type: 'article',
+      images: [OG_IMAGE],
     },
   }
 }

@@ -1,12 +1,12 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SITE_URL, SITE_NAME } from '@/lib/utils'
+import { SITE_URL } from '@/lib/utils'
 import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
 export const metadata: Metadata = {
-  title: 'Cartillas Médicas por Prepaga Argentina 2026 — PrepagaYa',
+  title: 'Cartillas médicas de prepagas 2026: buscá tu sanatorio',
   description:
     'Buscá en qué planes y prepagas está cubierto tu sanatorio u hospital. Acceso directo a las cartillas de Swiss Medical, OSDE, Omint, Medicus, Sancor, Medifé, CEMIC y Premedic.',
   alternates: { canonical: `${SITE_URL}/cartillas` },

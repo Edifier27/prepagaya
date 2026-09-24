@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { prepagas } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
-import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
@@ -47,6 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: os.titulo,
       description: os.metaDescripcion,
       type: 'article',
+      images: [OG_IMAGE],
     },
   }
 }

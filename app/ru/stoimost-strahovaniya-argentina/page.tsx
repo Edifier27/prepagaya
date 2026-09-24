@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
+import { PRECIO_ACTUALIZADO_RU } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
-  title: { absolute: `Сколько стоит медицинская страховка в Аргентине? (${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
+  title: { absolute: `Сколько стоит медицинская страховка в Аргентине? (${PRECIO_ACTUALIZADO_RU}) — ${SITE_NAME}` },
   description:
     'Реальные цены на prepaga в Аргентине по уровню покрытия: базовый, средний и премиум — плюс что на самом деле влияет на цену (возраст, доплаты, план) и скидка 15% при онлайн-оформлении.',
   alternates: {
@@ -59,7 +59,7 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `Сколько стоит медицинская страховка в Аргентине? ${PRECIO_ACTUALIZADO_EN}`,
+    headline: `Сколько стоит медицинская страховка в Аргентине? ${PRECIO_ACTUALIZADO_RU}`,
     description: 'Реальные цены на prepaga по уровню покрытия, и что на самом деле влияет на цену.',
     url: `${SITE_URL}/ru/stoimost-strahovaniya-argentina`,
     image: `${SITE_URL}/opengraph-image`,
@@ -88,14 +88,14 @@ export default function StoimostStrahovaniyaArgentinaPage() {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-3xl mx-auto">
           <span className="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">
-            Гид на русском · Обновлено {PRECIO_ACTUALIZADO_EN}
+            Гид на русском · Обновлено {PRECIO_ACTUALIZADO_RU}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             Сколько стоит медицинская страховка в Аргентине?
           </h1>
           <p className="text-gray-600 leading-relaxed mb-6">
             Базовые цены для человека 30 лет — от около AR$170 000/мес за начальный уровень покрытия до более
-            AR$1 000 000/мес за премиум-планы, по состоянию на {PRECIO_ACTUALIZADO_EN.toLowerCase()}. Ваша точная
+            AR$1 000 000/мес за премиум-планы, по состоянию на {PRECIO_ACTUALIZADO_RU.toLowerCase()}. Ваша точная
             цена зависит в основном от возраста, уровня плана и наличия доплат за приём врача.
           </p>
           <ContratarPlanButtonIntl
@@ -126,7 +126,7 @@ export default function StoimostStrahovaniyaArgentinaPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            Базовые цены, {PRECIO_ACTUALIZADO_EN.toLowerCase()}. Большинство компаний дают около 15% скидки за
+            Базовые цены, {PRECIO_ACTUALIZADO_RU.toLowerCase()}. Большинство компаний дают около 15% скидки за
             онлайн-оформление с автоматическим списанием — эта скидка уже учтена в ценах через сравнение.
           </p>
         </div>

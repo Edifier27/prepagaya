@@ -5,7 +5,7 @@ import { blogPosts } from '@/lib/data/blog'
 import { prepagas } from '@/lib/data/prepagas'
 import { coberturas } from '@/lib/data/coberturas'
 import { condiciones } from '@/lib/data/condiciones'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { formatPrecio, SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
 import { BlogAuthorBox } from '@/components/ui/BlogAuthorBox'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
@@ -43,6 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.titulo,
       description: post.metaDescripcion,
       type: 'article',
+      images: [OG_IMAGE],
       publishedTime: post.fechaPublicacion,
     },
   }

@@ -1559,6 +1559,15 @@ export const PRECIO_ACTUALIZADO_EN = PRECIO_ACTUALIZADO.replace(
   (mes) => MESES_EN[mes.toLowerCase()] ?? mes,
 )
 
+// Ídem para /ru/* y /zh/* (auditoría SEO 24-sep-2026): usaban la versión en
+// inglés y los títulos en ruso/chino decían "(September 2026)".
+const MESES_ORDEN = Object.keys(MESES_EN)
+const MESES_RU = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+const [mesActualizado, anioActualizado] = PRECIO_ACTUALIZADO.toLowerCase().split(/\s+/)
+const MES_INDICE = MESES_ORDEN.indexOf(mesActualizado)
+export const PRECIO_ACTUALIZADO_RU = MES_INDICE >= 0 ? `${MESES_RU[MES_INDICE]} ${anioActualizado}` : PRECIO_ACTUALIZADO_EN
+export const PRECIO_ACTUALIZADO_ZH = MES_INDICE >= 0 ? `${anioActualizado}年${MES_INDICE + 1}月` : PRECIO_ACTUALIZADO_EN
+
 // Nivel de precio: posición relativa de un plan dentro de la distribución de
 // precios de todo el sitio, sin exponer el monto. Reemplaza a formatPrecio()
 // en toda superficie pública que asocie precio a una marca puntual (las

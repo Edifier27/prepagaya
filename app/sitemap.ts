@@ -45,9 +45,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/glosario`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/privacidad`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE}/terminos-y-condiciones`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${BASE}/en/health-insurance-argentina`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/cambios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    // Faltaban en el sitemap (auditoría SEO 24-sep-2026): /prepagas-economicas
+    // es la página de la búsqueda transaccional "prepagas económicas/baratas".
+    { url: `${BASE}/prepagas-economicas`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.9 },
   ]
+
+  // Silos internacionales (expats): antes solo figuraba 1 de las 10 páginas.
+  const intlRoutes: MetadataRoute.Sitemap = [
+    '/en/health-insurance-argentina',
+    '/en/best-health-insurance-argentina',
+    '/en/health-insurance-cost-argentina',
+    '/en/mandatory-insurance-decree-366',
+    '/ru/strahovanie-argentina',
+    '/ru/luchshaya-strahovka-argentina',
+    '/ru/stoimost-strahovaniya-argentina',
+    '/ru/strahovka-dlya-beremennyh',
+    '/zh/yiliao-baoxian-agenting',
+    '/zh/yiliao-baoxian-feiyong-agenting',
+  ].map((path) => ({ url: `${BASE}${path}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.7 }))
 
   const cambioRoutes: MetadataRoute.Sitemap = cambiosRecomendados.map((c) => ({
     url: `${BASE}/cambios/${c.slug}`,
@@ -229,6 +245,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
+    ...intlRoutes,
     ...cambioRoutes,
     ...prepagaRoutes,
     ...zonaRoutes,

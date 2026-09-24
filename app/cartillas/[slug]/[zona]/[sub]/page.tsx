@@ -7,7 +7,7 @@ import {
   getCartilla,
   getPlanPorSlug,
   getZona,
-  nombreCortoZona,
+  nombreZonaTitulo,
   tieneCombinacion,
 } from '@/lib/data/cartilla-zonas'
 import { PaginaPlanZona, anio, mesAnio, planCorto } from '@/components/cartillas/PaginasCartillaZona'
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const r = resolver(slug, zona, sub)
   if (!r) return {}
   const { c, p, z } = r
-  const corto = nombreCortoZona(z.nombre)
+  const corto = nombreZonaTitulo(slug, z)
   const pc = planCorto(p)
   const n = z.centros.filter((ce) => ce.internacion.includes(p.id)).length
   const g = z.centros.filter((ce) => ce.guardia.includes(p.id)).length

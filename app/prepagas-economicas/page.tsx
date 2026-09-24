@@ -1,16 +1,20 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
+import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { Button } from '@/components/ui/Button'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 
+// El template del layout ya agrega "| PrepagaYa": antes el título terminaba
+// en "— PrepagaYa | PrepagaYa". "Baratas" es la otra forma en que se busca.
+// El precio "desde" sale de los datos (antes estaba fijo en $109.000).
+const PRECIO_MINIMO = Math.min(...prepagas.flatMap((p) => p.planes.map((pl) => pl.precio)))
 export const metadata: Metadata = {
-  title: `Prepagas Económicas Argentina: Ranking ${PRECIO_ACTUALIZADO} — ${SITE_NAME}`,
-  description: `Ranking de las prepagas más baratas de Argentina, ordenadas por precio real. Desde ${formatPrecio(109000)}/mes con cobertura PMO completa. Actualizado ${PRECIO_ACTUALIZADO}.`,
+  title: `Prepagas económicas y baratas: ranking ${PRECIO_ACTUALIZADO.toLowerCase()}`,
+  description: `Las prepagas más baratas de Argentina ordenadas por precio oficial: desde ${formatPrecio(PRECIO_MINIMO)}/mes, con cobertura PMO completa. Actualizado ${PRECIO_ACTUALIZADO.toLowerCase()}.`,
   alternates: { canonical: `${SITE_URL}/prepagas-economicas` },
-  keywords: ['prepagas economicas', 'ranking de prepagas economicas', 'prepaga mas barata argentina', 'prepagas baratas 2026', 'prepaga economica buena'],
+  keywords: ['prepagas economicas', 'prepagas baratas', 'ranking de prepagas economicas', 'prepaga mas barata argentina', 'prepagas baratas 2026', 'prepaga economica buena'],
 }
 
 // Ranking real por precio del plan más económico de cada prepaga — mismos

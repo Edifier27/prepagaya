@@ -374,7 +374,9 @@ export const coberturas: CoberturaData[] = [
     keywords: ['prepaga que cubre kinesiología', 'cobertura rehabilitación prepaga', 'kinesiología sesiones prepaga', 'fonoaudiología prepaga argentina', 'fisioterapia cobertura prepaga'],
   },
   {
-    slug: 'bariátrica',
+    // Slug sin tilde (24-sep-2026): con 'bariátrica' la URL daba 404 y
+    // figuraba igual en el sitemap. La vieja redirige acá (next.config.ts).
+    slug: 'cirugia-bariatrica',
     nombre: 'Cirugía bariátrica y obesidad',
     emoji: '⚕️',
     titulo: '¿Las prepagas cubren la cirugía bariátrica en Argentina?',

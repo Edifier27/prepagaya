@@ -50,6 +50,9 @@ const obrasSocialesMenu = [
 
 const herramientasMenu = [
   { href: '/precios', label: `Precios ${PRECIO_ACTUALIZADO.toLowerCase()}` },
+  // Money pages que no tenían link desde el menú (auditoría SEO 24-sep-2026)
+  { href: '/ranking', label: 'Ranking de mejores prepagas' },
+  { href: '/prepagas-economicas', label: 'Prepagas económicas' },
   { href: '/cambios', label: '¿A qué prepaga cambiarte?' },
   { href: '/tramites', label: 'Trámites de prepaga' },
   { href: '/pmo', label: 'Qué cubre el PMO' },

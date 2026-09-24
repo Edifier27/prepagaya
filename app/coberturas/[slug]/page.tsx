@@ -5,7 +5,7 @@ import { coberturas } from '@/lib/data/coberturas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { guias } from '@/lib/data/guias'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 
@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: cob.titulo,
       description: cob.metaDescripcion,
       type: 'article',
+      images: [OG_IMAGE],
     },
   }
 }

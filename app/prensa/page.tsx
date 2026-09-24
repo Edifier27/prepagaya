@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { InsertarWidget } from '@/components/prensa/InsertarWidget'
 
 // Sala de prensa (23-sep-2026): el informe mensual de aumentos con el dato
 // oficial de la SSSalud, listo para citar. Objetivo: que los medios nos citen
@@ -147,6 +148,13 @@ export default function PrensaPage() {
               <li>Consultas de prensa: <a href="mailto:hola@prepagaya.com.ar" className="text-[#E8002D] font-semibold hover:underline">hola@prepagaya.com.ar</a></li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Insertar el gráfico en tu sitio</h2>
+          <InsertarWidget filas={ranking.length} />
         </div>
       </section>
 
