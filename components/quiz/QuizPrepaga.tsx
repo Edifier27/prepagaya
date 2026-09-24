@@ -244,10 +244,14 @@ export function QuizPrepaga(): React.ReactElement {
                     <span className="text-xs text-gray-500 font-medium">
                       {prepaga.satisfaccion}% satisfacción
                     </span>
-                    <span className="text-gray-300">·</span>
-                    <span className="text-xs text-gray-500 font-medium">
-                      {prepaga.profesionales.toLocaleString('es-AR')} profesionales
-                    </span>
+                    {prepaga.profesionales && (
+                      <>
+                        <span className="text-gray-300">·</span>
+                        <span className="text-xs text-gray-500 font-medium">
+                          +{prepaga.profesionales.toLocaleString('es-AR')} prestadores
+                        </span>
+                      </>
+                    )}
                   </div>
 
                   <div className="flex gap-3 mt-4">

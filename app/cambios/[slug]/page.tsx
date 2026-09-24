@@ -60,7 +60,8 @@ export default async function CambioPage({ params }: Props) {
     { label: 'Calidad de cartilla', origen: `${origen.calidadCartilla}/5`, destino: `${destino.calidadCartilla}/5` },
     { label: 'Satisfacción declarada', origen: `${origen.satisfaccion}%`, destino: `${destino.satisfaccion}%` },
     { label: 'Sanatorios propios', origen: String(origen.sanatoriosPropios), destino: String(destino.sanatoriosPropios) },
-    { label: 'Profesionales en cartilla', origen: `${origen.profesionales.toLocaleString('es-AR')}+`, destino: `${destino.profesionales.toLocaleString('es-AR')}+` },
+    // Prestadores: solo si las dos informan la cifra oficial (auditoría 24-sep-2026)
+    ...(origen.profesionales && destino.profesionales ? [{ label: 'Prestadores (dato oficial)', origen: `${origen.profesionales.toLocaleString('es-AR')}+`, destino: `${destino.profesionales.toLocaleString('es-AR')}+` }] : []),
   ]
 
   const faqs = [

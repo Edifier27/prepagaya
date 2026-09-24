@@ -36,7 +36,7 @@ export const comparativasPlanes: ComparativaPlanes[] = [
       },
       {
         q: '¿El Plan Flux cubre lo mismo que el 210 en internación y urgencias?',
-        a: 'Sí, ambos acceden a la misma red de +140.000 profesionales y a la cobertura base de internación y urgencias de OSDE. La diferencia está en los adicionales (psicología ilimitada, anticonceptivos 100%, asistencia al viajero en el Flux) y en que el 210 tiene copago en consultas y el Flux no.',
+        a: 'Sí, ambos acceden a la misma red de OSDE (más de 125.000 prestadores, según OSDE) y a la cobertura base de internación y urgencias de OSDE. La diferencia está en los adicionales (psicología ilimitada, anticonceptivos 100%, asistencia al viajero en el Flux) y en que el 210 tiene copago en consultas y el Flux no.',
       },
     ],
   },

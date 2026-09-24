@@ -160,7 +160,7 @@ export default function RankingEmpresasPage() {
             </div>
             <ul className="space-y-2 mb-4">
               {[
-                'La red más grande del país: +140.000 profesionales y 380+ centros de atención',
+                'Más de 125.000 prestadores en todo el país (según OSDE)',
                 'La opción más fuerte si tu equipo está repartido en muchas provincias',
                 'No tiene sanatorios propios: terceriza el 100% de la atención con convenios',
                 'Facturación estándar a la empresa — RRHH gestiona el reparto por recibo de sueldo si corresponde',

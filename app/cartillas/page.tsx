@@ -28,7 +28,7 @@ const cartillas = [
     slug: 'osde',
     nombre: 'OSDE',
     url: 'https://www.osde.com.ar/cartilla',
-    profesionales: '140.000+ a nivel nacional',
+    profesionales: '125.000+ prestadores a nivel nacional (según OSDE)',
     tip: 'Usá la Cartilla Inteligente con IA — escribí el síntoma y te recomienda el especialista.',
     planes: 'Plan 210, 310, 410, 510, Flux',
     inicial: 'O',
@@ -259,7 +259,7 @@ export default function CartillasPage(): React.ReactElement {
             <div className="bg-white rounded-xl border border-gray-200 p-5">
               <p className="text-sm font-semibold text-gray-900 mb-2">Red abierta</p>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Podés atenderte con cualquier profesional del país que esté en convenio, sin importar dónde esté su consultorio. OSDE es el ejemplo más conocido: con más de 140.000 profesionales, prácticamente cualquier médico tiene convenio OSDE. Los planes de red abierta suelen ser más caros.
+                Podés atenderte con cualquier profesional del país que esté en convenio, sin importar dónde esté su consultorio. OSDE es el ejemplo más conocido: informa más de 125.000 prestadores en todo el país. Los planes de red abierta suelen ser más caros.
               </p>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-5">

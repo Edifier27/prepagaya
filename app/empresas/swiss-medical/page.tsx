@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     q: '¿Por qué Swiss Medical para mi empresa y no otra prepaga?',
-    a: 'Swiss Medical tiene 9 sanatorios propios y más de 81.500 profesionales, con la cartilla premium más amplia del mercado según satisfacción de afiliados (76%). Para una empresa, eso significa menos derivaciones y mejor experiencia para el equipo — y es la prepaga con la que tenemos mayor poder de negociación para armar convenios a medida.',
+    a: 'Swiss Medical tiene sanatorios y centros propios y una cartilla premium. Para una empresa, eso significa menos derivaciones y mejor experiencia para el equipo — y es la prepaga con la que tenemos mayor poder de negociación para armar convenios a medida.',
   },
   {
     q: '¿Qué documentación pide Swiss Medical para dar de alta el convenio corporativo?',
@@ -107,10 +107,11 @@ export default function EmpresasSwissMedicalPage() {
         <div className="container max-w-4xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { v: '9', l: 'Sanatorios propios' },
-              { v: '81.500+', l: 'Profesionales' },
-              { v: '76%', l: 'Satisfacción de afiliados' },
-              { v: '13', l: 'Centros ambulatorios propios' },
+              // Datos confirmados por Darío (23-sep-2026); antes: cantidades sin fuente
+              { v: '3', l: 'Convenios con organismos (ANSES, ARCA y PAMI)' },
+              { v: '5', l: 'Bancos con convenio de afinidad' },
+              { v: '3 min', l: 'Tiempo de respuesta de PrepagaYa' },
+              { v: 'Oficial', l: 'Somos partner de Swiss Medical' },
             ].map((s) => (
               <div key={s.l} className="bg-gray-50 rounded-xl border border-gray-100 p-4 text-center">
                 <div className="text-xl font-bold text-[#E8002D]">{s.v}</div>

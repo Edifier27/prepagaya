@@ -29,7 +29,6 @@ export function EmpresasComparador() {
 
   const filas = [
     { label: 'Sanatorios propios', swiss: '8', osde: 'Trabaja con red de convenios' },
-    { label: 'Profesionales en cartilla', swiss: '81.500+', osde: '140.000+' },
     { label: 'Facturación directa al empleado (afinidad)', swiss: true, osde: false },
     { label: 'Cobertura pareja en todo el país', swiss: false, osde: true },
     { label: 'Línea corporativa premium con nombre propio', swiss: 'Plan Black', osde: '—' },

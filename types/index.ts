@@ -24,7 +24,10 @@ export interface Prepaga {
   rating: number // 0-5
   calidadCartilla: number // 1-5, calidad de la red de prestadores (cartilla)
   cantidadOpiniones: number
-  profesionales: number
+  // Cantidad de prestadores SOLO si la informa la prepaga en su web oficial
+  // (auditoría 24-sep-2026: los valores anteriores no tenían fuente).
+  profesionales?: number
+  profesionalesFuente?: string
   sanatoriosPropios: number
   planes: Plan[]
   /** Planes que la prepaga vende pero que no tienen precio declarado ante la SSSalud (ej. Premedic Joven): se muestran sin precio, con pedido de cotización */

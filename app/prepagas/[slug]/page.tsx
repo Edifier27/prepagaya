@@ -110,9 +110,9 @@ function getPerfilesIdeales(prep: Prepaga, precioMin: number): { titulo: string;
     titulo: 'Personas en el interior del país',
     desc: 'Red de prestadores en todo el territorio. Una de las mejores opciones fuera de AMBA.',
   })
-  if (prep.profesionales >= 100000) items.push({
+  if (prep.profesionales && prep.profesionales >= 100000) items.push({
     titulo: 'Usuarios de muchos especialistas',
-    desc: `Más de ${Math.round(prep.profesionales / 1000)}k profesionales en cartilla. Turno para cualquier especialidad en horas.`,
+    desc: `Más de ${Math.round(prep.profesionales / 1000)}k prestadores en cartilla, según ${prep.nombre}.`,
   })
   if (prep.caracteristicas.saludMental && items.length < 3) items.push({
     titulo: 'Quienes priorizan salud mental',
@@ -444,7 +444,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
           {/* Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
             {[
-              { label: 'Profesionales', value: prep.profesionales >= 1000 ? `${(prep.profesionales / 1000).toFixed(0)}k+` : `${prep.profesionales}+` },
+              ...(prep.profesionales ? [{ label: 'Prestadores', value: `${(prep.profesionales / 1000).toFixed(0)}k+` }] : []),
               { label: 'Centros propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red convenio' },
               { label: 'Satisfacción', value: `${prep.satisfaccion}%` },
               { label: 'Opiniones', value: prep.cantidadOpiniones.toLocaleString() },

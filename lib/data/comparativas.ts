@@ -10,7 +10,7 @@ export const comparativas: Comparativa[] = [
     ganadorPrecio: 'swiss-medical',
     ganadorRed: 'osde',
     ganadorSatisfaccion: 'swiss-medical',
-    veredicto: 'Swiss Medical gana en nivel de precio (el SMG20 queda por debajo del Plan 310 de OSDE) y en sanatorios propios de primer nivel. OSDE gana en amplitud de red (140.000 vs 81.500 profesionales) y cobertura nacional. Para AMBA con presupuesto ajustado, Swiss Medical. Para cobertura nacional o el Hospital Alemán en red, OSDE.',
+    veredicto: 'Swiss Medical gana en nivel de precio (el SMG20 queda por debajo del Plan 310 de OSDE) y en sanatorios propios de primer nivel. OSDE gana en cobertura nacional. Para AMBA con presupuesto ajustado, Swiss Medical. Para cobertura nacional o el Hospital Alemán en red, OSDE.',
   },
   {
     slug: 'swiss-medical-vs-sancor-salud',
@@ -32,7 +32,7 @@ export const comparativas: Comparativa[] = [
     ganadorPrecio: 'sancor-salud',
     ganadorRed: 'osde',
     ganadorSatisfaccion: 'osde',
-    veredicto: 'OSDE 310 es de nivel de precio superior al Plan 2000 de Sancor Salud. OSDE tiene la red más grande (140.000 profesionales) pero Sancor cuesta significativamente menos. Para cobertura en todo el país y buena relación precio-calidad, Sancor Salud. Para quienes valoran la mayor red y el Hospital Alemán en cartilla, OSDE.',
+    veredicto: 'OSDE 310 es de nivel de precio superior a los planes intermedios de Sancor Salud, y Sancor informa una red de más de 200.000 prestadores contra más de 125.000 de OSDE. Para cobertura en todo el país y buena relación precio-calidad, Sancor Salud. Para quienes quieren el Hospital Alemán desde el plan 310, OSDE.',
   },
   {
     slug: 'swiss-medical-vs-cemic',
@@ -236,7 +236,7 @@ export const comparativas: Comparativa[] = [
     ganadorPrecio: 'avalian',
     ganadorRed: 'osde',
     ganadorSatisfaccion: 'osde',
-    veredicto: 'OSDE tiene la red más grande del país por lejos (140.000 profesionales contra 40.000 de Avalian) y una satisfacción declarada apenas superior (74% contra 73%). Pero el rango de precios de Avalian es más moderado en todos sus niveles: de entrada, el Plan Básico de Avalian sale menos que el Plan 210 de OSDE (el Flux de OSDE es más barato, pero es exclusivo para menores de 35). Si priorizás la red más grande del país, OSDE. Si buscás una cuota más previsible en todos los niveles y telemedicina 24hs incluida en todos los planes, Avalian.',
+    veredicto: 'OSDE informa más de 125.000 prestadores y Avalian más de 100.000; OSDE tiene una satisfacción declarada apenas superior (74% contra 73%). Pero el rango de precios de Avalian es más moderado en todos sus niveles: de entrada, el Cerca AS100 de Avalian sale menos que el Plan 210 de OSDE (el Flux de OSDE es más barato, pero es exclusivo para menores de 35). Si priorizás la red y los sanatorios de OSDE, OSDE. Si buscás una cuota más previsible en todos los niveles y telemedicina 24hs incluida en todos los planes, Avalian.',
   },
   {
     slug: 'avalian-vs-swiss-medical',
@@ -247,7 +247,7 @@ export const comparativas: Comparativa[] = [
     ganadorPrecio: 'swiss-medical',
     ganadorRed: 'swiss-medical',
     ganadorSatisfaccion: 'swiss-medical',
-    veredicto: 'Swiss Medical gana en los tres frentes: cuota más accesible en el conjunto de sus planes, el doble de profesionales en cartilla (81.500 contra 40.000) y mayor satisfacción declarada (76% contra 73%). La diferencia real de Avalian es la telemedicina 24hs incluida en todos los planes, incluso el más básico. Para la mayoría, Swiss Medical rinde más por el mismo presupuesto; Avalian tiene sentido si la consulta médica por video sin moverte de casa es una prioridad.',
+    veredicto: 'Swiss Medical gana en dos frentes: cuota más accesible en el conjunto de sus planes y mayor satisfacción declarada (76% contra 73%). La diferencia real de Avalian es la telemedicina 24hs incluida en todos los planes, incluso el más básico. Para la mayoría, Swiss Medical rinde más por el mismo presupuesto; Avalian tiene sentido si la consulta médica por video sin moverte de casa es una prioridad.',
   },
   {
     slug: 'avalian-vs-sancor-salud',

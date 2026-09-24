@@ -76,12 +76,7 @@ export function TablaPreciosModalidad({ prepagas }: Props) {
           const planBase = p.planes.find((pl) => pl.destacado) ?? p.planes[0]
           const initials = p.nombre.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()
           const colors = logoColors[p.slug] ?? { bg: '#F3F4F6', text: '#374151' }
-          const profAbbr =
-            p.profesionales >= 100000
-              ? `${(p.profesionales / 1000).toFixed(0)}k`
-              : p.profesionales >= 10000
-              ? `${(p.profesionales / 1000).toFixed(1)}k`
-              : `${p.profesionales.toLocaleString('es-AR')}`
+          const profAbbr = p.profesionales ? `${(p.profesionales / 1000).toFixed(0)}k` : null
 
           return (
             <div key={p.slug} className="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 transition-colors">
@@ -130,7 +125,7 @@ export function TablaPreciosModalidad({ prepagas }: Props) {
 
               {/* Profesionales */}
               <div className="w-20 flex-shrink-0 hidden lg:block text-right">
-                <div className="text-xs text-gray-500">{profAbbr} prof.</div>
+                {profAbbr && <div className="text-xs text-gray-500">{profAbbr}+ prest.</div>}
               </div>
 
               {/* CTA */}

@@ -81,7 +81,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       },
       {
         slug: 'federada-salud', nombre: 'Federada Salud', enSitio: true, fuerza: 'fuerte', verificado: true,
-        resumen: 'Santafesina con más de 250 agencias en el país y 60.000 profesionales en red, históricamente fuerte en Córdoba y todo el centro. Es una de las opciones más sólidas si vivís en el interior provincial.',
+        resumen: 'Santafesina, con más de 200 puntos de atención y más de 200.000 prestadores según Sancor Salud, históricamente fuerte en Córdoba y todo el centro. Es una de las opciones más sólidas si vivís en el interior provincial.',
         cartillaLocal: ['Agencias de atención en la provincia', 'Red de 60.000+ profesionales a nivel país', 'Cobertura consolidada en el corredor Córdoba–Santa Fe'],
       },
       {

@@ -68,11 +68,11 @@ export const blogPosts: BlogPost[] = [
       secciones: [
         {
           titulo: 'Ranking por cantidad de afiliados',
-          cuerpo: 'Si bien OSDE nació como obra social sindical, hoy compite directamente con las prepagas privadas. Entre las prepagas puras, Avalian (ex ACA Salud) declara la base más grande con más de 1.2 millones de afiliados, seguida por Swiss Medical con más de 900.000 afiliados directos, Sancor Salud con aproximadamente 700.000 y Galeno con 600.000. Si incluimos los afiliados por derivación de obra social, los números cambian significativamente.',
+          cuerpo: 'Si bien OSDE nació como obra social sindical, hoy compite directamente con las prepagas privadas. Las prepagas no publican de forma pareja su cantidad de afiliados, así que más que el tamaño conviene comparar la cartilla en tu zona y el precio para tu edad.',
         },
         {
           titulo: 'Por red de prestadores: OSDE lidera',
-          cuerpo: 'Con más de 140.000 profesionales adheridos y presencia en todos los rincones del país, OSDE tiene la red más extensa de Argentina. Ninguna prepaga privada se acerca a esa cobertura geográfica y de especialidades.',
+          cuerpo: 'OSDE informa más de 125.000 prestadores y presencia en todo el país. Ninguna prepaga privada se acerca a esa cobertura geográfica y de especialidades.',
         },
         {
           titulo: 'Por sanatorios propios: Medicus y Swiss Medical',
@@ -219,7 +219,7 @@ export const blogPosts: BlogPost[] = [
     contenido: {
       intro: 'Con más de 300 obras sociales registradas en Argentina, elegir la mejor puede ser abrumador. Te presentamos el ranking de las más valoradas en 2026, con análisis honesto de qué tiene cada una.',
       secciones: [
-        { titulo: '#1 OSDE: la red más grande', cuerpo: 'OSDE tiene 140.000+ profesionales en todo el país. Sus planes 310 y 410 son los más elegidos por trabajadores de empresas medianas y grandes. La desventaja: es de las más caras como destino de derivación.' },
+        { titulo: '#1 OSDE: la red más grande', cuerpo: 'OSDE informa más de 125.000 prestadores en todo el país. Sus planes 310 y 410 son los más elegidos por trabajadores de empresas medianas y grandes. La desventaja: es de las más caras como destino de derivación.' },
         { titulo: '#2 Swiss Medical: los mejores sanatorios', cuerpo: 'Swiss Medical Salud destaca por sus 9 sanatorios propios de última generación incluyendo Suizo Argentina, Los Arcos y Agote. Si vivís en CABA o GBA y valorás la infraestructura médica, es difícil de superar.' },
         { titulo: '#3 Sancor Salud: la mejor cobertura nacional', cuerpo: 'Para quienes viven o viajan al interior del país, Sancor Salud tiene la red más amplia con 30.000+ profesionales en todas las provincias. Es también una de las más elegidas por familias por su balance precio-cobertura.' },
         { titulo: '¿Y las obras sociales sindicales?', cuerpo: 'Las OS sindicales tienen la obligación de dar cobertura del PMO, pero la calidad varía enormemente. Las más grandes y bien gestionadas ofrecen cobertura comparable a las prepagas premium; otras tienen prestadores limitados.' },
@@ -492,7 +492,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: 'Red de prestadores: OSDE es más grande',
-          cuerpo: 'El Plan 310 te da acceso a más de 140.000 profesionales en todo el país, incluyendo el Hospital Alemán sin costo adicional. El SMG20 tiene red más pequeña (81.500-100.000 profesionales) pero acceso a los 9 sanatorios propios de Swiss Medical (Suizo Argentina, Los Arcos, Agote, Zabala y más) que tienen nivel de hotelería y equipamiento superior.',
+          cuerpo: 'El Plan 310 te da acceso a la red de OSDE, que informa más de 125.000 prestadores en todo el país, incluyendo el Hospital Alemán sin costo adicional. El SMG20 tiene una red más acotada pero acceso a sanatorios propios de Swiss Medical (Suizo Argentina, Los Arcos, Agote, Zabala y más) que tienen nivel de hotelería y equipamiento superior.',
         },
         {
           titulo: 'Coberturas diferenciales: cada plan tiene sus ventajas',

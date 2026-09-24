@@ -63,7 +63,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
     {
       q: `¿${pz.nombre} tiene cobertura en ${corto}?`,
       a: cartillaFina
-        ? `Todavía no relevamos muchos prestadores puntuales de ${pz.nombre} en ${corto}, pero la prepaga tiene ${fuerza.label.toLowerCase()} en toda la provincia de ${prov.nombre}${prepData ? ` (+${prepData.profesionales.toLocaleString('es-AR')} profesionales en cartilla)` : ''}. Cotizá gratis y te confirmamos la cartilla exacta para tu domicilio en ${corto}.`
+        ? `Todavía no relevamos muchos prestadores puntuales de ${pz.nombre} en ${corto}, pero la prepaga tiene ${fuerza.label.toLowerCase()} en toda la provincia de ${prov.nombre}${prepData?.profesionales ? ` (más de ${prepData.profesionales.toLocaleString('es-AR')} prestadores, según la prepaga)` : ''}. Cotizá gratis y te confirmamos la cartilla exacta para tu domicilio en ${corto}.`
         : `Sí. Los prestadores de referencia verificados en ${corto} son: ${loc.prestadores.join(', ')}. Qué prestador puntual cubre cada plan depende del plan contratado — confirmalo al cotizar.`,
     },
     ...(precioMin !== null && precioMax !== null
@@ -157,8 +157,8 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
                 <div>
                   <div className="text-sm font-bold text-amber-800 mb-1">Todavía no relevamos muchos prestadores puntuales en {corto}</div>
                   <p className="text-sm text-amber-900 leading-relaxed">
-                    Eso no significa que {pz.nombre} tenga poca cobertura ahí: la prepaga tiene {fuerza.label.toLowerCase()} en toda la provincia de {prov.nombre}, con{' '}
-                    <strong>+{prepData.profesionales.toLocaleString('es-AR')} profesionales</strong> en cartilla
+                    Eso no significa que {pz.nombre} tenga poca cobertura ahí: la prepaga tiene {fuerza.label.toLowerCase()} en toda la provincia de {prov.nombre}
+                    {prepData.profesionales ? <>, con <strong>más de {prepData.profesionales.toLocaleString('es-AR')} prestadores</strong> según la prepaga</> : ''}
                     {prepData.sanatoriosPropios > 0 ? ` y ${prepData.sanatoriosPropios} sanatorio${prepData.sanatoriosPropios === 1 ? '' : 's'} propio${prepData.sanatoriosPropios === 1 ? '' : 's'}` : ''}
                     {' '}y {prepData.satisfaccion}% de satisfacción entre afiliados. Cotizá gratis y te confirmamos la cartilla exacta para tu domicilio en {corto} antes de que decidas.
                   </p>

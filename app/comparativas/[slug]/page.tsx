@@ -53,8 +53,8 @@ export default async function ComparativaPage({ params }: Props) {
   }[] = [
     { label: 'Plan sin copago disponible', valor: (p) => (p.planes.some((pl) => !pl.copago) ? 'Sí' : 'No') },
     { label: 'Red abierta disponible', valor: (p) => (p.planes.some((pl) => pl.redAbierta) ? 'Sí' : 'No') },
-    { label: 'Calidad de cartilla', valor: (p) => `${p.calidadCartilla}/5` },
-    { label: 'Profesionales en cartilla', valor: (p) => p.profesionales.toLocaleString('es-AR'), ganador: comp.ganadorRed },
+    // Sin ganador por red: las cifras anteriores no tenían fuente (auditoría 24-sep-2026)
+    { label: 'Prestadores (dato oficial)', valor: (p) => (p.profesionales ? `${p.profesionales.toLocaleString('es-AR')}+` : 'Sin dato oficial') },
     { label: 'Sanatorios propios', valor: (p) => (p.sanatoriosPropios > 0 ? String(p.sanatoriosPropios) : 'Red por convenio') },
     { label: 'Satisfacción de afiliados', valor: (p) => `${p.satisfaccion}%`, ganador: comp.ganadorSatisfaccion },
     { label: 'Rating', valor: (p) => `${p.rating}/5 (${p.cantidadOpiniones.toLocaleString('es-AR')} opiniones)` },
@@ -71,9 +71,9 @@ export default async function ComparativaPage({ params }: Props) {
     },
     {
       q: `¿Cuál tiene más red de prestadores?`,
-      a: `${p1.nombre} tiene ${p1.profesionales.toLocaleString('es-AR')} profesionales y ${p2.nombre} tiene ${p2.profesionales.toLocaleString('es-AR')}. ${
-        comp.ganadorRed === p1.slug ? p1.nombre : p2.nombre
-      } tiene la red más amplia.`,
+      a: p1.profesionales && p2.profesionales
+        ? `Según lo que informa cada una, ${p1.nombre} tiene más de ${p1.profesionales.toLocaleString('es-AR')} prestadores y ${p2.nombre} más de ${p2.profesionales.toLocaleString('es-AR')}. Más que el total, importa que estén los sanatorios que usás en tu zona: miralo en la cartilla por zona.`
+        : `Más que el total de la red, importa que estén los sanatorios que usás en tu zona. Miralo en la cartilla de cada una por zona y por plan, y si querés te lo confirmamos al cotizar.`,
     },
     {
       q: `¿Cuál conviene: ${p1.nombre} o ${p2.nombre}?`,

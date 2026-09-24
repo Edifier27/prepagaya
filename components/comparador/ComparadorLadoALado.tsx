@@ -141,7 +141,7 @@ export function ComparadorLadoALado(): React.ReactElement {
   const ganadorCopago: GanadorCol = canCompare ? cmpBool(!planA!.copago, !planB!.copago) : 0
   const ganadorRed: GanadorCol = canCompare ? cmpBool(planA!.redAbierta, planB!.redAbierta) : 0
   const ganadorSatisfaccion: GanadorCol = canCompare ? cmpNum(prepagaA!.satisfaccion, prepagaB!.satisfaccion) : 0
-  const ganadorProfesionales: GanadorCol = canCompare ? cmpNum(prepagaA!.profesionales, prepagaB!.profesionales) : 0
+  const ganadorProfesionales: GanadorCol = canCompare && prepagaA!.profesionales && prepagaB!.profesionales ? cmpNum(prepagaA!.profesionales, prepagaB!.profesionales) : 0
 
   const allCoberturas = canCompare
     ? Array.from(new Set([...planA!.cobertura, ...planB!.cobertura]))
@@ -290,12 +290,12 @@ export function ComparadorLadoALado(): React.ReactElement {
 
               {/* Profesionales */}
               <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                <td className="py-4 px-4 text-sm text-gray-600 font-medium">Profesionales en la red</td>
+                <td className="py-4 px-4 text-sm text-gray-600 font-medium">Prestadores (dato oficial)</td>
                 <CeldaValor ganador={ganadorProfesionales === 1}>
-                  {prepagaA!.profesionales.toLocaleString('es-AR')}
+                  {prepagaA!.profesionales ? `${prepagaA!.profesionales.toLocaleString('es-AR')}+` : '—'}
                 </CeldaValor>
                 <CeldaValor ganador={ganadorProfesionales === 2}>
-                  {prepagaB!.profesionales.toLocaleString('es-AR')}
+                  {prepagaB!.profesionales ? `${prepagaB!.profesionales.toLocaleString('es-AR')}+` : '—'}
                 </CeldaValor>
               </tr>
 

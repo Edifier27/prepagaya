@@ -94,10 +94,9 @@ function ResultadoComparacion({ p1, p2 }: { p1: Prepaga; p2: Prepaga }) {
   const min1 = Math.min(...p1.planes.map((p) => p.precio))
   const min2 = Math.min(...p2.planes.map((p) => p.precio))
   const ganaPrecio = min1 <= min2 ? p1 : p2
-  const ganaRed = p1.profesionales >= p2.profesionales ? p1 : p2
+  const ganaRed = p1.profesionales && p2.profesionales ? (p1.profesionales >= p2.profesionales ? p1 : p2) : null
   const ganaSat = p1.satisfaccion >= p2.satisfaccion ? p1 : p2
   const ganaPlanes = p1.planes.length >= p2.planes.length ? p1 : p2
-  const ganaCartilla = p1.calidadCartilla >= p2.calidadCartilla ? p1 : p2
   const sinCopago1 = p1.planes.some((pl) => !pl.copago)
   const sinCopago2 = p2.planes.some((pl) => !pl.copago)
 
@@ -137,19 +136,10 @@ function ResultadoComparacion({ p1, p2 }: { p1: Prepaga; p2: Prepaga }) {
       ),
     },
     {
-      label: 'Calidad de cartilla',
-      val1: `${p1.calidadCartilla}/5`,
-      val2: `${p2.calidadCartilla}/5`,
-      winner: ganaCartilla.slug,
-      icon: (
-        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-      ),
-    },
-    {
-      label: 'Red de profesionales',
-      val1: p1.profesionales.toLocaleString('es-AR'),
-      val2: p2.profesionales.toLocaleString('es-AR'),
-      winner: ganaRed.slug,
+      label: 'Prestadores (dato oficial)',
+      val1: p1.profesionales ? `${p1.profesionales.toLocaleString('es-AR')}+` : '—',
+      val2: p2.profesionales ? `${p2.profesionales.toLocaleString('es-AR')}+` : '—',
+      winner: ganaRed?.slug ?? '',
       icon: (
         <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
       ),
