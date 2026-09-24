@@ -1,0 +1,31 @@
+# Sucursales oficiales de cada prepaga (24-sep-2026). Search Console mostró
+# que "[prepaga] + [ciudad]" (ej. "osde rosario") es un cuarto de las
+# impresiones con 0,3% de CTR: se busca la sucursal. La red de los entornos
+# de desarrollo no llega a los sitios de las prepagas; esta Action sí.
+#
+# Etapa 1 (ahora): explorar los buscadores oficiales y dejar el resultado en
+# el log, para escribir el parser de cada prepaga.
+name: Sucursales de prepagas
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ['claude/**']
+    paths:
+      - 'scripts/sucursales/**'
+      - '.github/workflows/sucursales.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  explorar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Explorar buscadores oficiales de sucursales
+        run: python scripts/sucursales/explorar.py
