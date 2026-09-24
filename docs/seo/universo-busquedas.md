@@ -1,6 +1,45 @@
 # Todo lo que la gente busca sobre obras sociales y prepagas, y cómo nuclearlo en PrepagaYa
 
-Fecha: 2026-09-24 · Estado: **análisis y propuesta para aprobar** (sin cambios en el sitio)
+Fecha: 2026-09-24 · Estado: **análisis y propuesta para aprobar** · Actualizado con Search Console (8 al 22 de septiembre) en la sección 0
+
+## 0. Lo que dice Search Console (8 al 22 de septiembre de 2026)
+
+Export que pasó Darío el 24-sep (copia en `docs/seo/datos/gsc-2026-09-08-al-22/`, sirve de línea de base).
+
+**El sitio crece rápido**: de ~4.000 a ~10.000 impresiones por día en dos semanas. 839 clics y 76.000 impresiones en 14 días, posición media 7,5. El 98% es Argentina; 6 de cada 10 clics son desde el celular.
+
+**El problema es el CTR, no la posición**: 1,1% de CTR en posición 7,5 es bajo (en esa posición se espera 2% a 3%). Aparecemos, pero no nos eligen.
+
+**Qué busca la gente que ya nos ve** (las 1.000 consultas visibles):
+
+| Familia | % de impresiones | CTR | Posición | Lectura |
+|---|---|---|---|---|
+| Cartilla / prestadores ("osde cartilla", "cartilla swiss medical") | 36% | 0,5% | 7,6 | La más grande. Mucha es de marca: quieren la cartilla oficial |
+| **Marca + ciudad** ("osde rosario", "sancor salud tucumán") | **25%** | **0,3%** | 8,6 | **El hueco más grande**: casi seguro buscan la sucursal (dirección, teléfono) y nuestra página habla de planes y precios |
+| Marca (plan, teléfono, otras) | 14% | 0,8% | 7,6 | Navegacional |
+| Precios ("osde flux precio", "osde 210 precio 2026") | 8% | 0,8% | 10,2 | Casi todo OSDE, en el borde de la primera página |
+| Obras sociales, monotributo, trámites | 5% | 1,5% | 8,8 | Poco porque casi no tenemos páginas; donde hay, "mejores obras sociales en [provincia]" rankea 4 a 8 |
+| Mejores / ranking | 4,5% | 0,9% | 8,7 | |
+| Coberturas (PMO, odontología, celiaquía) | 2% | 1,4% | 7,5 | Gana el dato oficial ("pmo actualizado 2026 pdf" en posición 1) |
+
+**Por tipo de página**: prepaga por localidad 14.500 impresiones con 0,6% de CTR; fichas de prepaga 12.100 con 0,5%; cartillas por zona y plan 8.500 con 0,7%; prepaga por provincia 8.400 con 2%; guías 6.200 con 1,7%; obras sociales 1.100 con 0,8%.
+
+**Ojo al medir**: los títulos de fichas, planes y cartillas se cambiaron el 23 y 24 de septiembre, después de este export. Antes de tocarlos de nuevo hay que comparar 14 días antes y después (a partir del 8 de octubre).
+
+### Qué cambia en las prioridades
+
+1. **Sube al primer lugar: sucursales por ciudad.** "Marca + ciudad" es un cuarto de todo lo que vemos y convierte 0,3%. Propuesta: sumar a cada página de prepaga por localidad la sucursal oficial (dirección, teléfono, horario), bajada de los buscadores de sucursales de cada prepaga con la GitHub Action, empezando por Swiss Medical. Título: "OSDE en Rosario: sucursal, teléfono, cartilla y precios".
+2. **Sube: obras sociales por provincia.** Ya rankeamos entre 4 y 8 para "mejor obra social en Córdoba/Tucumán/Mendoza" sin tener la página. Pasa de la fase 2 a la 1.
+3. **Precios de OSDE a la primera mitad de la página 1**: ~900 impresiones en 2 semanas en posición ~10 (Flux, 210, 410, 510). Hace falta el precio oficial de Flux (no está en los cuadros de la SSSalud) y más enlaces internos a las páginas de plan de OSDE.
+4. **Sigue igual**: calculadora de aportes, fichas de obra social y guías de trámites (sección 5).
+
+### Arreglado el 24-sep con estos datos
+
+- 15 URLs con impresiones que daban 404 (páginas viejas y variantes mal escritas): ahora redirigen. Las otras 45 URLs viejas ya redirigían bien.
+- **Celiaquía**: la página decía que el subsidio existía "en algunos casos" y que la prepaga podía aplicar un período de espera. Es obligatorio para todas: $58.560,97 por mes desde el 26-abr-2026 (Ministerio de Salud), próxima actualización el 26-oct-2026. Corregido, con el monto en el título ("subsidio celiaquía 2026" tenía ~50 impresiones sin clics).
+- Títulos de dos páginas con CTR muy bajo que no se habían tocado: odontología (1.100 impresiones, 0,2%) y obra social vs prepaga (se busca "¿obra social y prepaga es lo mismo?").
+
+---
 
 ## En cinco líneas
 
@@ -123,11 +162,13 @@ Demanda: ●●● alta · ●● media · ● baja (estimada). "Tenemos": ✅ c
 
 ## 6. Lo que necesito de Darío
 
-1. **Acceso de lectura a Search Console** (lo más importante para priorizar y medir).
-2. **¿Usamos teléfono y domicilio del registro?** El listado que pasaste los trae (salen del registro de la SSSalud). En esta tanda los dejé afuera; para las fichas de obra social son el dato más buscado.
-3. **Derivación de aportes**: confirmar con qué prepagas y planes podemos cotizar "con aportes" para cada tipo de trabajador (relación de dependencia, monotributo, empleo doméstico). La calculadora depende de esto.
-4. **Listados oficiales a bajar** en la GitHub Action (la red de este entorno no llega a la SSSalud): obras sociales habilitadas para monotributo, afiliados por obra social y provincia, reclamos por entidad.
-5. **Aprobar las fases** (o cambiar el orden).
+1. ~~Acceso a Search Console~~ **Recibido el export del 24-sep** (sección 0). Para seguir midiendo sin pedirlo cada vez: la Action semanal con cuenta de servicio. Y si tienen **Ahrefs** (hay un export de Ahrefs del 21-sep citado en el código), conectarlo en claude.ai suma los volúmenes de búsqueda.
+2. **Precio oficial del OSDE Flux** (del cotizador de OSDE), para ponerlo en el título: "osde flux precio" suma ~400 impresiones en 2 semanas.
+3. **Sucursales**: ¿avanzo con bajar las sucursales oficiales de cada prepaga para las páginas por ciudad?
+4. **¿Usamos teléfono y domicilio del registro?** El listado que pasaste los trae (salen del registro de la SSSalud). En esta tanda los dejé afuera; para las fichas de obra social son el dato más buscado.
+5. **Derivación de aportes**: confirmar con qué prepagas y planes podemos cotizar "con aportes" para cada tipo de trabajador (relación de dependencia, monotributo, empleo doméstico). La calculadora depende de esto.
+6. **Listados oficiales a bajar** en la GitHub Action (la red de este entorno no llega a la SSSalud): obras sociales habilitadas para monotributo, afiliados por obra social y provincia, reclamos por entidad.
+7. **Aprobar las fases** con el orden nuevo de la sección 0 (o cambiarlo).
 
 ## 7. Cómo vamos a saber si funciona
 

@@ -1,3 +1,5 @@
+import { formatPrecio } from '@/lib/utils'
+
 export interface CondicionData {
   slug: string
   nombre: string
@@ -12,6 +14,17 @@ export interface CondicionData {
   coberturasRelacionadas: string[] // slugs de coberturas
   guiasRelacionadas?: string[] // slugs de guías (lib/data/guias.ts), solo donde hay relación real
   keywords: string[]
+}
+
+// Cobertura mensual obligatoria para personas celíacas (Ley 27.196, Decreto
+// 218/2023): 27,5% de la Canasta Básica Alimentaria de un adulto. La publica
+// el Ministerio de Salud cada seis meses: ACTUALIZAR el 26-oct-2026.
+// Fuente: https://www.argentina.gob.ar/salud/nueva-actualizacion-del-monto-cubrir-por-obras-sociales-y-prepagas
+export const MONTO_CELIAQUIA = {
+  monto: 58560.97,
+  montoTexto: '$58.560,97',
+  desdeTexto: '26 de abril de 2026',
+  proximaTexto: '26 de octubre de 2026',
 }
 
 export const condiciones: CondicionData[] = [
@@ -68,45 +81,51 @@ export const condiciones: CondicionData[] = [
     slug: 'celiacos',
     nombre: 'Celiaquía',
     emoji: '🌾',
-    titulo: 'Mejor prepaga para celíacos en Argentina 2026',
-    metaDescripcion: 'Cuál es la mejor prepaga si sos celíaco en Argentina. Cobertura de alimentos sin TACC, medicación, seguimiento. Qué dice la ley y cuáles prepagas son mejores.',
-    intro: 'La celiaquía tiene una cobertura especial en Argentina gracias a la Ley 26.588. Si sos celíaco, la prepaga debe cubrirte el seguimiento médico, análisis específicos y en algunos casos subsidios para alimentos sin TACC. Las diferencias entre prepagas están en la facilidad del trámite y la calidad del seguimiento.',
-    queCubreElPMO: 'La Ley 26.588 (Ley de Celiaquía) obliga a cubrir: diagnóstico (serología e histología), seguimiento con gastroenterólogo, densitometría ósea, consulta con nutricionista y en algunos casos subsidio para alimentos sin TACC. La obra social/prepaga también debe cubrir los análisis de control periódicos.',
+    // Search Console (sept 2026): "subsidio celiaquía 2026" y variantes. El
+    // monto sale del Ministerio de Salud (MONTO_CELIAQUIA, arriba).
+    titulo: `Celiaquía y prepaga 2026: ${formatPrecio(Math.round(MONTO_CELIAQUIA.monto))} por mes para alimentos sin TACC`,
+    metaDescripcion: `Desde el ${MONTO_CELIAQUIA.desdeTexto} las prepagas y obras sociales pagan ${MONTO_CELIAQUIA.montoTexto} por mes a cada persona celíaca (Ley 27.196). Qué más cubren y qué prepaga conviene.`,
+    intro: `Si tenés celiaquía, tu prepaga u obra social tiene que darte todos los meses una cobertura en dinero para comprar harinas, premezclas y alimentos sin TACC: desde el ${MONTO_CELIAQUIA.desdeTexto} son ${MONTO_CELIAQUIA.montoTexto} por mes, según el Ministerio de Salud. Además cubre el diagnóstico y el seguimiento. Entre prepagas cambian la cartilla de gastroenterólogos y nutricionistas y lo simple que es el trámite.`,
+    queCubreElPMO: `La Ley 26.588, modificada por la Ley 27.196, obliga a todas las obras sociales y prepagas a cubrir la detección, el diagnóstico y el tratamiento de la celiaquía, y a pagar una cobertura mensual en dinero para alimentos libres de gluten: el 27,5% de la Canasta Básica Alimentaria del INDEC para un adulto (Decreto 218/2023). Desde el ${MONTO_CELIAQUIA.desdeTexto} son ${MONTO_CELIAQUIA.montoTexto} por mes; la próxima actualización es el ${MONTO_CELIAQUIA.proximaTexto}.`,
     prepagasRecomendadas: [
       {
         slug: 'osde',
         planSlug: '310',
-        razon: 'OSDE tiene un programa especial para celíacos con seguimiento por gastroenterólogo y nutricionista. Su red de especialistas en gastroenterología es la más amplia. Acceso a análisis de control (anticuerpos, densitometría) sin restricciones.',
+        razon: 'Cartilla nacional de gastroenterólogos y nutricionistas y, en el Plan 310, controles sin copago.',
       },
       {
         slug: 'swiss-medical',
         planSlug: 'smg20',
-        razon: 'Swiss Medical cubre todos los aspectos de la celiaquía con su equipo multidisciplinario. Tienen nutricionistas especializados en dietas sin TACC y gastroenterólogos con experiencia en enfermedad celíaca.',
+        razon: 'En el SMG20, consultas y estudios de seguimiento sin copago, con gastroenterólogos y nutricionistas en su cartilla.',
       },
       {
         slug: 'sancor-salud',
         planSlug: 'plan-3000',
-        razon: 'Buena opción precio-calidad para celíacos. Cubre el seguimiento médico obligatorio por ley con acceso a gastroenterólogos y nutricionistas en el interior del país.',
+        razon: 'Buena relación precio-cobertura en el interior del país, con gastroenterólogos y nutricionistas en su cartilla.',
       },
     ],
     preguntasAntesDeFirmar: [
-      '¿Tienen gastroenterólogos especializados en celiaquía?',
-      '¿La densitometría ósea anual está cubierta?',
-      '¿Tienen nutricionistas con experiencia en dieta sin TACC?',
+      '¿Cómo se cobra la cobertura mensual para alimentos sin TACC: depósito o reintegro?',
+      '¿Tienen gastroenterólogos y nutricionistas en mi zona?',
+      '¿La densitometría ósea está cubierta?',
       '¿Los análisis de control (anticuerpos, hemograma) son sin copago?',
     ],
     faq: [
       {
-        q: '¿La prepaga subsidia los alimentos sin TACC?',
-        a: 'La Ley 26.588 establece un subsidio para alimentos sin TACC, pero su implementación varía. Las obras sociales sindicales suelen tenerlo más desarrollado que las prepagas. Consultá con cada prepaga si tienen un programa de subsidio alimentario para celíacos.',
+        q: '¿Cuánto paga la prepaga por celiaquía en 2026?',
+        a: `${MONTO_CELIAQUIA.montoTexto} por mes desde el ${MONTO_CELIAQUIA.desdeTexto}: es el 27,5% de la Canasta Básica Alimentaria de un adulto, según la Ley 27.196 y el Decreto 218/2023. Es obligatorio para todas las prepagas y obras sociales, no un beneficio opcional. Se actualiza cada seis meses; la próxima vez, el ${MONTO_CELIAQUIA.proximaTexto}. Fuente: Ministerio de Salud de la Nación.`,
+      },
+      {
+        q: '¿Cómo se pide la cobertura para alimentos sin TACC?',
+        a: 'Se tramita en tu prepaga u obra social con el certificado médico del diagnóstico de celiaquía. Cada una indica cómo la paga (depósito mensual o reintegro): preguntalo antes de asociarte.',
       },
       {
         q: '¿La celiaquía se considera una preexistencia en la prepaga?',
-        a: 'Puede serlo. Si ya tenés diagnóstico de celiaquía al contratar, la prepaga puede declararla preexistencia. Sin embargo, por ley debe cubrir el seguimiento y los análisis de control desde el inicio. La medicación y el subsidio alimentario pueden tener un período de espera.',
+        a: 'Si ya tenés el diagnóstico al asociarte, se declara en la declaración jurada de salud. La Ley 26.682 no permite rechazarte por una preexistencia (la Superintendencia puede autorizar una cuota diferencial), y la cobertura de celiaquía, incluido el monto mensual, es obligatoria por ley.',
       },
     ],
     coberturasRelacionadas: ['medicamentos', 'psicologia', 'urgencias'],
-    keywords: ['mejor prepaga para celíacos', 'prepaga celiaquía argentina', 'cobertura celiaquía prepaga', 'ley 26588 prepagas', 'prepaga dieta sin TACC'],
+    keywords: ['subsidio celiaquia 2026', 'monto celiaquia prepaga', 'mejor prepaga para celíacos', 'prepaga celiaquía argentina', 'cobertura celiaquía prepaga', 'ley 27196 celiaquia', 'prepaga dieta sin TACC'],
   },
   {
     slug: 'hipertension',

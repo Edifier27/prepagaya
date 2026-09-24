@@ -86,7 +86,9 @@ export const guias: GuiaData[] = [
   },
   {
     slug: 'obra-social-vs-prepaga',
-    titulo: 'Obra social vs prepaga: diferencias y cuál conviene en 2026',
+    // Search Console (sept 2026): "prepaga y obra social es lo mismo" y
+    // "obra social y prepaga es lo mismo" son las búsquedas que más la traen.
+    titulo: '¿Obra social y prepaga es lo mismo? Diferencias y cuál conviene (2026)',
     metaDescripcion: 'Comparamos obra social y prepaga en Argentina: diferencias, costos, cobertura y cuándo conviene cada una. Tomá la mejor decisión para tu salud.',
     tiempoLectura: 10,
     categoria: 'Comparativas',

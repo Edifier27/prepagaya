@@ -3,6 +3,19 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // URLs con impresiones en Search Console que daban 404 (export del
+      // 24-sep-2026): páginas viejas y variantes mal escritas.
+      { source: "/cambios/omint-a-osde", destination: "/comparativas/omint-vs-osde", permanent: true },
+      { source: "/guias/prepagas-precios-actualizados", destination: "/precios", permanent: true },
+      { source: "/guias/prepagas-monotributistas", destination: "/para/monotributistas", permanent: true },
+      { source: "/guias/prepagaya-devolucion-aportes", destination: "/guias/derivar-obra-social-a-prepaga", permanent: true },
+      { source: "/prepagas/swiss-medical/plan-sport-s", destination: "/prepagas/swiss-medical/sport-s", permanent: true },
+      { source: "/comparativas/avalian-sancor-salud", destination: "/comparativas/avalian-vs-sancor-salud", permanent: true },
+      { source: "/prepagas/cordoba/villa-carlospaz", destination: "/prepagas/cordoba/villa-carlos-paz", permanent: true },
+      { source: "/prepagas/cordoba/rio-cuarto/prevencion-sud", destination: "/prepagas/cordoba/rio-cuarto/prevencion-salud", permanent: true },
+      { source: "/prepagas/:prov/(mejores-prepaga|mejor-prepaga|mejores-prpagas)", destination: "/prepagas/:prov/mejores-prepagas", permanent: true },
+      { source: "/prepagas/corrientes/prepagas", destination: "/prepagas/corrientes", permanent: true },
+      { source: "/provincia-de-neuqueni", destination: "/prepagas/neuquen", permanent: true },
       // /calculadora-costo duplicaba la intención de /calculadora — consolidado (SEO)
       {
         source: "/calculadora-costo",
