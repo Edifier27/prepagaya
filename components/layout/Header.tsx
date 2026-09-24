@@ -65,6 +65,7 @@ const herramientasMenu = [
   { href: '/buscar-por-sanatorio', label: 'Buscar prepaga por sanatorio' },
   { href: '/chequeo-prepaga', label: '¿Pagás de más? Chequeá tu prepaga' },
   { href: '/match-prepaga', label: '¿Qué prepaga me conviene? Test' },
+  { href: '/calculadora-aportes', label: 'De tu obra social a una prepaga' },
   { href: '/cartillas', label: 'Cartillas médicas' },
   { href: '/glosario', label: 'Glosario de prepagas' },
   { href: '/blog', label: 'Blog' },

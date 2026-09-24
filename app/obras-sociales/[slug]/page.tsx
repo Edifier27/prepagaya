@@ -173,6 +173,25 @@ export default async function ObraSocialPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Oferta para el tráfico de obras sociales (24-sep-2026): con los mismos
+          aportes, una prepaga pagando la diferencia. Solo donde los aportes se
+          pueden pasar: agentes del seguro nacionales (con código), no las
+          provinciales ni PAMI. */}
+      {codigo && os.slug !== 'pami' && (
+        <section className="py-6 bg-white">
+          <div className="container max-w-4xl mx-auto">
+            <Link href={`/calculadora-aportes?os=${os.slug}`}
+              className="group flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white p-5 hover:border-[#E8002D] transition-colors">
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-gray-900">¿Tenés {os.nombre}? Con tus mismos aportes podés tener una prepaga</div>
+                <div className="text-sm text-gray-600 mt-0.5">Poné tu sueldo y mirá cuánto pagarías de diferencia en cada plan, con los precios oficiales.</div>
+              </div>
+              <span className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm">Calcular mi diferencia →</span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* Teléfonos (23-sep-2026): "osecac teléfono", "pami 138"... tienen mucho
           volumen. Solo números copiados de la web oficial. */}
       {os.telefonos && os.telefonos.length > 0 && (

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChequeoPrepagaConUrl, type AumentoChequeo, type PrepagaChequeo } from '@/components/herramientas/ChequeoPrepaga'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { prepagasCotizables } from '@/lib/data/planes-cotizables'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
-import { planesConTarifa } from '@/lib/precios/motor'
 import { SITE_NAME, SITE_URL, OG_IMAGE, TIEMPO_RESPUESTA } from '@/lib/utils'
 
 // Puerta 2 de la propuesta (docs/producto/propuesta-buscador-interactivo.md):
@@ -28,15 +28,7 @@ export const metadata: Metadata = {
 }
 
 function datos(): { lista: PrepagaChequeo[]; aumentos: Record<string, AumentoChequeo[]> } {
-  const tarifas = planesConTarifa()
-  const lista = Object.entries(tarifas).map(([slug, t]) => {
-    const p = prepagas.find((x) => x.slug === slug)
-    if (!p) return null
-    const planes = p.planes
-      .filter((pl) => t.planes.includes(pl.slug))
-      .map((pl) => ({ slug: pl.slug, nombre: pl.nombre, ...(pl.edadMinima ? { edadMinima: pl.edadMinima } : {}), ...(pl.edadMaxima ? { edadMaxima: pl.edadMaxima } : {}) }))
-    return planes.length ? { slug, nombre: p.nombre, planes } : null
-  }).filter((x): x is PrepagaChequeo => x !== null).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+  const lista = prepagasCotizables()
   const aumentos: Record<string, AumentoChequeo[]> = {}
   for (const per of meses) {
     const m = AUMENTOS_OFICIALES.meses[per]

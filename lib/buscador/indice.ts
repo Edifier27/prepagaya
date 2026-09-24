@@ -40,6 +40,7 @@ export function indiceBuscador(): EntradaBuscador[] {
   add('¿Qué prepaga me conviene?', '/match-prepaga', G('Herramientas'), 'Test de 6 preguntas', 'test quiz cual elegir mejor')
   add('Precios de prepagas', '/precios', G('Herramientas'), 'Lista oficial de todos los planes', 'precio cuanto sale cuota valores')
   add('Aumentos de prepagas', '/aumentos', G('Herramientas'), 'Dato oficial mes a mes', 'aumento suba octubre septiembre')
+  add('De tu obra social a una prepaga', '/calculadora-aportes', G('Herramientas'), 'Cuánto pagás de diferencia con tus aportes', 'aportes derivar sueldo descuento obra social diferencia calculadora')
   add('Códigos de obras sociales', '/obras-sociales/codigos', G('Herramientas'), 'Código RNOS para AFIP/ARCA', 'codigo rnos rnas afip arca alta temprana')
   add('Ranking de prepagas', '/ranking', G('Herramientas'), 'Las mejores prepagas', 'mejores ranking')
   add('Prepagas económicas', '/prepagas-economicas', G('Herramientas'), 'Los planes más baratos', 'barata economica')

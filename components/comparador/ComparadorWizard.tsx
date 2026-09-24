@@ -6,7 +6,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER } from '@/lib/utils'
+import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE } from '@/lib/utils'
 import { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
@@ -29,8 +29,8 @@ const DESCUENTO_POR_SITUACION: Record<SituacionLaboral, number> = {
 }
 
 // Aporte del trabajador en relación de dependencia: 7,5% del sueldo bruto,
-// se descuenta directo de la cuota mostrada.
-const APORTE_PORCENTAJE = 0.075
+// se descuenta directo de la cuota mostrada (APORTE_DERIVABLE, lib/utils).
+const APORTE_PORCENTAJE = APORTE_DERIVABLE
 
 // Precio "bloqueado": el número real sigue ahí (blureado, no reemplazado por
 // texto falso), con un candado al lado — pedido de Darío, 21-sep-2026, para

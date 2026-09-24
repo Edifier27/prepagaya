@@ -117,6 +117,12 @@ export const PRECIO_VALIDO_HASTA = new Date(new Date().getFullYear(), new Date()
 // (confirmado por Darío, 24-sep-2026; antes estaba en 0.21).
 export const IVA_PREPAGA = 0.105
 
+// Parte del sueldo bruto que llega a la prepaga al derivar aportes (relación
+// de dependencia). Se aporta 9% (3% trabajador + 6% empleador) y entre 10% y
+// 15% de eso va al Fondo Solidario de Redistribución: 7,5% es un valor
+// conservador. Lo usan el cotizador y la calculadora de aportes.
+export const APORTE_DERIVABLE = 0.075
+
 /** Precio para empleados en relación de dependencia (sin el IVA del 10,5%) */
 export function precioDeriva(precioDirecto: number): number {
   return Math.round(precioDirecto / (1 + IVA_PREPAGA))
