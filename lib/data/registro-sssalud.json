@@ -1,0 +1,5881 @@
+{
+"verificado":"2026-09-20",
+"entidades":[
+{
+"slug":"accord-salud",
+"nombre":"Accord Salud",
+"razonSocial":"OBRA SOCIAL UNION PERSONAL DE LA UNION DEL PERSONAL CIVIL DE LA NACION",
+"tipo":"Prepaga",
+"codigo":"1-2570-7",
+"jurisdiccion":"Nacional",
+"web":"https://www.accordsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=125707",
+"alias":[
+"Accord",
+"Plan Dorado",
+"Plan 310",
+"Plan 210"
+]
+},
+{
+"slug":"apos-la-rioja",
+"nombre":"Administración Provincial de Obra Social de La Rioja (APOS)",
+"razonSocial":"ADMINISTRACION PROVINCIAL DE OBRA SOCIAL DE LA RIOJA",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"La Rioja",
+"provincias":[
+"La Rioja"
+],
+"web":"https://aposlr.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://aposlr.gob.ar",
+"alias":[
+"APOS",
+"Apos La Rioja",
+"A.P.O.S."
+]
+},
+{
+"slug":"apross",
+"nombre":"Administración Provincial del Seguro de Salud (Apross Córdoba)",
+"razonSocial":"ADMINISTRACION PROVINCIAL DEL SEGURO DE SALUD DE CORDOBA",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://www.apross.gov.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://www.apross.gov.ar",
+"alias":[
+"APROSS",
+"Apross Córdoba",
+"A.P.R.O.S.S."
+]
+},
+{
+"slug":"osarp",
+"nombre":"ADMINISTRACIÓN RECURSOS PARA SALUD S.A.",
+"razonSocial":"ADMINISTRACIÓN RECURSOS PARA SALUD S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0500-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905008"
+},
+{
+"slug":"administrar-salud-s-a",
+"nombre":"ADMINISTRAR SALUD S.A.",
+"razonSocial":"ADMINISTRAR SALUD S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0760-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907608"
+},
+{
+"slug":"ados-rosario",
+"nombre":"ADOS ROSARIO - ASOCIACION DE OBRAS SOCIALES DE ROSARIO",
+"razonSocial":"ASOCIACION DE OBRAS SOCIALES DE ROSARIO",
+"tipo":"Obra Social Sindical",
+"codigo":"6-0230-5",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=602305",
+"alias":[
+"ADOS ROSARIO"
+]
+},
+{
+"slug":"osas",
+"nombre":"AGRUPACION SANATORIAL SUR S.A",
+"razonSocial":"AGRUPACION SANATORIAL SUR S.A",
+"tipo":"Prepaga",
+"codigo":"9-0550-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905503"
+},
+{
+"slug":"amci",
+"nombre":"AMCI - ASOCIACIÓN MUTUAL DEL CONTROL INTEGRAL",
+"razonSocial":"ASOCIACIÓN MUTUAL DEL CONTROL INTEGRAL",
+"tipo":"Prepaga",
+"codigo":"9-0470-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904708",
+"alias":[
+"AMCI"
+]
+},
+{
+"slug":"amffa",
+"nombre":"AMFFA - ASOCIACION MUTUAL DE FARMACEUTICOS FLORENTINO AMEGHINO",
+"razonSocial":"ASOCIACION MUTUAL DE FARMACEUTICOS FLORENTINO AMEGHINO",
+"tipo":"Prepaga",
+"codigo":"9-0540-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.amffa.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905404",
+"alias":[
+"AMFFA"
+]
+},
+{
+"slug":"ampar",
+"nombre":"AMPAR - OBRA SOCIAL ASOCIACION MUTUAL DEL PERSONAL DE PHILIPS ARGENTINA (AMPAR)",
+"razonSocial":"OBRA SOCIAL ASOCIACION MUTUAL DEL PERSONAL DE PHILIPS ARGENTINA (AMPAR)",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0180-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.ampar.org",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401803",
+"alias":[
+"AMPAR"
+]
+},
+{
+"slug":"ampes",
+"nombre":"AMPES - ASOCIACION MUTUAL DE PARTICIPANTES DE ECONOMIA SOLIDARIAS",
+"razonSocial":"ASOCIACION MUTUAL DE PARTICIPANTES DE ECONOMIA SOLIDARIAS",
+"tipo":"Prepaga",
+"codigo":"9-0180-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901808",
+"alias":[
+"AMPES"
+]
+},
+{
+"slug":"osass",
+"nombre":"AMSTERDAM SALUD S.A.",
+"razonSocial":"AMSTERDAM SALUD S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0510-7",
+"jurisdiccion":"Nacional",
+"web":"https://www.amsterdamsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905107"
+},
+{
+"slug":"amukra",
+"nombre":"AMUKRA - ASOCIACIÓN MUTUAL UKRA DE LA UNIÓN KIOSQUEROS DE LA REPÚBLICA ARGENTINA",
+"razonSocial":"ASOCIACIÓN MUTUAL UKRA DE LA UNIÓN KIOSQUEROS DE LA REPÚBLICA ARGENTINA",
+"tipo":"Prepaga",
+"codigo":"9-0640-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906407",
+"alias":[
+"AMUKRA"
+]
+},
+{
+"slug":"amur",
+"nombre":"AMUR - ASOCIACION MUTUAL RURALISTA",
+"razonSocial":"ASOCIACION MUTUAL RURALISTA",
+"tipo":"Prepaga",
+"codigo":"9-0030-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.amur.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900300",
+"alias":[
+"AMUR"
+]
+},
+{
+"slug":"andesalud-s-a",
+"nombre":"ANDESALUD S.A.",
+"razonSocial":"ANDESALUD S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0580-0",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905800"
+},
+{
+"slug":"apdis",
+"nombre":"APDIS - OBRA SOCIAL ASOCIACION DEL PERSONAL DE DIRECCION DE LA INDUSTRIA SIDERURGICA",
+"razonSocial":"OBRA SOCIAL ASOCIACION DEL PERSONAL DE DIRECCION DE LA INDUSTRIA SIDERURGICA",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0210-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.apdis.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402103",
+"alias":[
+"APDIS"
+]
+},
+{
+"slug":"apdjic",
+"nombre":"APDJIC - OBRA SOCIAL DE LA ASOCIACION DEL PERSONAL DE DIRECCION Y JERARQUICO DE LA INDUSTRIA DEL CIGARRILLO",
+"razonSocial":"OBRA SOCIAL DE LA ASOCIACION DEL PERSONAL DE DIRECCION Y JERARQUICO DE LA INDUSTRIA DEL CIGARRILLO",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0050-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400503",
+"alias":[
+"APDJIC"
+]
+},
+{
+"slug":"apres-sa",
+"nombre":"APRES SA",
+"razonSocial":"APRES SA",
+"tipo":"Prepaga",
+"codigo":"9-0280-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902801"
+},
+{
+"slug":"apsot",
+"nombre":"APSOT - OBRA SOCIAL ASOCIACION DEL PERSONAL SUPERIOR DE LA ORGANIZACION TECHINT",
+"razonSocial":"OBRA SOCIAL ASOCIACION DEL PERSONAL SUPERIOR DE LA ORGANIZACION TECHINT",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0230-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.apsot.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402301",
+"alias":[
+"APSOT"
+]
+},
+{
+"slug":"ase",
+"nombre":"ASE - OBRA SOCIAL DEL PERSONAL DE DIRECCION ACCION SOCIAL DE EMPRESARIOS (A:S:E.)",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION ACCION SOCIAL DE EMPRESARIOS (A:S:E.)",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0090-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.ase.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400909",
+"alias":[
+"ASE",
+"OBRA SOCIAL DEL PERSONAL DE DIRECCION  ACCION SOCIAL DE EMPRESARIOS (A:S:E.)"
+]
+},
+{
+"slug":"osasi",
+"nombre":"ASI Salud (Asistencia Sanitaria Integral)",
+"razonSocial":"ASISTENCIA SANITARIA INTEGRAL S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0160-0",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901600",
+"alias":[
+"ASI Salud",
+"Asistencia Sanitaria Integral"
+],
+"rnemp":110916,
+"web":"https://www.asisalud.com.ar"
+},
+{
+"slug":"osams",
+"nombre":"ASOCIACION MUTUAL DE SALUD CIUDADELA",
+"razonSocial":"ASOCIACION MUTUAL DE SALUD CIUDADELA",
+"tipo":"Prepaga",
+"codigo":"9-0090-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900904"
+},
+{
+"slug":"osamp",
+"nombre":"ASOCIACION MUTUAL DEL PERSONAL, ASESORES Y DIRECTIVOS DE GRUPO SAN NICOLAS S.R.L",
+"razonSocial":"ASOCIACION MUTUAL DEL PERSONAL, ASESORES Y DIRECTIVOS DE GRUPO SAN NICOLAS S.R.L",
+"tipo":"Prepaga",
+"codigo":"9-0230-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902306"
+},
+{
+"slug":"osamm",
+"nombre":"ASOCIACION MUTUAL MEDICA DE VILLA MARIA",
+"razonSocial":"ASOCIACION MUTUAL MEDICA DE VILLA MARIA",
+"tipo":"Prepaga",
+"codigo":"9-0440-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904401"
+},
+{
+"slug":"osamf",
+"nombre":"ASOCIACIÓN MUTUAL FRANCO ANDINA",
+"razonSocial":"ASOCIACIÓN MUTUAL FRANCO ANDINA",
+"tipo":"Prepaga",
+"codigo":"9-0460-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904609"
+},
+{
+"slug":"osapl",
+"nombre":"ASOCIACIÓN POETA LUGONES MUTUAL CULTURAL Y DEPORTIVA",
+"razonSocial":"ASOCIACIÓN POETA LUGONES MUTUAL CULTURAL Y DEPORTIVA",
+"tipo":"Prepaga",
+"codigo":"9-0790-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907905"
+},
+{
+"slug":"assistencial-salud-s-a",
+"nombre":"ASSISTENCIAL SALUD S.A.",
+"razonSocial":"ASSISTENCIAL SALUD S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0730-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.assistencialsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907301"
+},
+{
+"slug":"asspe",
+"nombre":"ASSPE - OBRA SOCIAL ASOCIACION DE SERVICIOS SOCIALES PARA EMPRESARIOS Y PERSONAL DE DIRECCION DE EMPRESAS DEL COMERCIO, SERVICIOS, PRODUCCION, INDUSTRIA Y CIVIL (ASSPE )",
+"razonSocial":"OBRA SOCIAL ASOCIACION DE SERVICIOS SOCIALES PARA EMPRESARIOS Y PERSONAL DE DIRECCION DE EMPRESAS DEL COMERCIO, SERVICIOS, PRODUCCION, INDUSTRIA Y CIVIL (ASSPE )",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0260-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.asspe.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402608",
+"alias":[
+"ASSPE"
+]
+},
+{
+"slug":"avalian",
+"nombre":"Avalian Cobertura Médica Integral (ex ACA Salud)",
+"razonSocial":"AVALIAN SALUD Y BIENESTAR COOPERATIVA LIMITADA",
+"tipo":"Prepaga",
+"codigo":"9-0310-1",
+"rnemp":211947,
+"jurisdiccion":"Nacional",
+"web":"https://www.avalian.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903101",
+"alias":[
+"Avalian",
+"ACA Salud",
+"AcaSalud",
+"Cooperativa ACA Salud"
+]
+},
+{
+"slug":"bienestar-salud-s-a",
+"nombre":"BIENESTAR SALUD S.A",
+"razonSocial":"BIENESTAR SALUD S.A",
+"tipo":"Prepaga",
+"codigo":"9-0780-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907806"
+},
+{
+"slug":"osbs",
+"nombre":"BONMED S.A.",
+"razonSocial":"BONMED S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0590-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905909"
+},
+{
+"slug":"boreal",
+"nombre":"Boreal Cobertura de Salud",
+"razonSocial":"COBERTURA DE SALUD S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0430-2",
+"rnemp":111650,
+"jurisdiccion":"Nacional",
+"web":"https://www.borealsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904302",
+"alias":[
+"Boreal",
+"Boreal Salud"
+]
+},
+{
+"slug":"css-santa-cruz",
+"nombre":"Caja de Servicios Sociales de Santa Cruz (CSS)",
+"razonSocial":"CAJA DE SERVICIOS SOCIALES DE LA PROVINCIA DE SANTA CRUZ",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Santa Cruz",
+"provincias":[
+"Santa Cruz"
+],
+"web":"https://css.gov.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://css.gov.ar",
+"alias":[
+"CSS Santa Cruz",
+"Caja de Servicios Sociales"
+]
+},
+{
+"slug":"campsic",
+"nombre":"CAMPSIC - OBRA SOCIAL COOPERATIVA LTDA. DE ASISTENCIA MEDICA Y FARMACEUTICA, SERVICIOS ASISTENCIALES Y TURISMO DEL PERSONAL SUPERIOR DE LA INDUSTRIA DEL CAUCHO Y OTRAS ACTIVIDADES INDUSTRIALES",
+"razonSocial":"OBRA SOCIAL COOPERATIVA LTDA. DE ASISTENCIA MEDICA Y FARMACEUTICA, SERVICIOS ASISTENCIALES Y TURISMO DEL PERSONAL SUPERIOR DE LA INDUSTRIA DEL CAUCHO Y OTRAS ACTIVIDADES INDUSTRIALES",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0030-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.campsic.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400305",
+"alias":[
+"CAMPSIC",
+"OBRA SOCIAL COOPERATIVA LTDA.  DE ASISTENCIA MEDICA Y FARMACEUTICA, SERVICIOS ASISTENCIALES Y TURISMO DEL PERSONAL SUPERIOR DE LA INDUSTRIA DEL CAUCHO Y OTRAS ACTIVIDADES INDUSTRIALES"
+]
+},
+{
+"slug":"care-salud-s-a",
+"nombre":"CARE SALUD S.A",
+"razonSocial":"CARE SALUD S.A",
+"tipo":"Prepaga",
+"codigo":"9-0670-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906704"
+},
+{
+"slug":"cemic",
+"nombre":"CEMIC - CENTRO DE EDUCACION MEDICA E INVESTIGACIONES CLINICAS NORBERTO QUIRNO - CEMIC",
+"razonSocial":"CENTRO DE EDUCACION MEDICA E INVESTIGACIONES CLINICAS NORBERTO QUIRNO - CEMIC",
+"tipo":"Prepaga",
+"codigo":"9-0260-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902603",
+"alias":[
+"CEMIC"
+]
+},
+{
+"slug":"oscml",
+"nombre":"CIRCULO MEDICO DE LOMAS DE ZAMORA",
+"razonSocial":"CIRCULO MEDICO DE LOMAS DE ZAMORA",
+"tipo":"Prepaga",
+"codigo":"9-0520-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905206"
+},
+{
+"slug":"oscmj",
+"nombre":"COLEGIO MÉDICO DE SAN JUAN ASOCIACIÓN CIVIL",
+"razonSocial":"COLEGIO MÉDICO DE SAN JUAN ASOCIACIÓN CIVIL",
+"tipo":"Prepaga",
+"codigo":"9-0680-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906803"
+},
+{
+"slug":"oscs",
+"nombre":"CORSAL S.A.",
+"razonSocial":"CORSAL S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0660-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906605"
+},
+{
+"slug":"oscss",
+"nombre":"CYNTHIOS SALUD S.A.",
+"razonSocial":"CYNTHIOS SALUD S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0050-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900508"
+},
+{
+"slug":"c-m-e-e",
+"nombre":"CÍRCULO MÉDICO DE ESTEBAN ECHEVERRÍA",
+"razonSocial":"CÍRCULO MÉDICO DE ESTEBAN ECHEVERRÍA",
+"tipo":"Prepaga",
+"codigo":"9-0690-2",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906902"
+},
+{
+"slug":"daspu",
+"nombre":"Dirección de Asistencia Social del Personal de la Universidad Nacional de Córdoba (DASPU)",
+"razonSocial":"DIRECCION DE ASISTENCIA SOCIAL DEL PERSONAL DE LA UNIVERSIDAD NACIONAL DE CORDOBA",
+"tipo":"Obra Social Universitaria",
+"codigo":null,
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://www.daspu.com.ar",
+"fuente":"propio",
+"fuenteUrl":"https://www.daspu.com.ar",
+"alias":[
+"DASPU",
+"UNC",
+"Obra Social UNC"
+]
+},
+{
+"slug":"das-congreso",
+"nombre":"Dirección de Ayuda Social para el Personal del Congreso de la Nación (DAS)",
+"razonSocial":"DIRECCION DE AYUDA SOCIAL PARA EL PERSONAL DEL CONGRESO DE LA NACION",
+"tipo":"Obra Social Especial",
+"codigo":null,
+"jurisdiccion":"Nacional",
+"web":"https://www.das.gob.ar",
+"fuente":"propio",
+"fuenteUrl":"https://www.das.gob.ar",
+"alias":[
+"DAS",
+"DAS Congreso",
+"Dirección de Ayuda Social Congreso"
+]
+},
+{
+"slug":"dos-san-juan",
+"nombre":"Dirección de Obra Social de la Provincia de San Juan (DOS)",
+"razonSocial":"DIRECCION DE OBRA SOCIAL DE LA PROVINCIA DE SAN JUAN",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"San Juan",
+"provincias":[
+"San Juan"
+],
+"web":"https://obrasocial.sanjuan.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://obrasocial.sanjuan.gob.ar",
+"alias":[
+"DOS San Juan",
+"Obra Social San Juan",
+"D.O.S."
+]
+},
+{
+"slug":"dosuba",
+"nombre":"Dirección de Obra Social de la Universidad de Buenos Aires (DOSUBA)",
+"razonSocial":"DIRECCION DE OBRA SOCIAL DE LA UNIVERSIDAD DE BUENOS AIRES",
+"tipo":"Obra Social Universitaria",
+"codigo":null,
+"jurisdiccion":"Nacional",
+"web":"https://dosuba.uba.ar",
+"fuente":"propio",
+"fuenteUrl":"https://dosuba.uba.ar",
+"alias":[
+"DOSUBA",
+"UBA",
+"Obra Social UBA"
+]
+},
+{
+"slug":"dosep-san-luis",
+"nombre":"Dirección de Obra Social del Estado Provincial de San Luis (DOSEP)",
+"razonSocial":"DIRECCION DE OBRA SOCIAL DEL ESTADO PROVINCIAL DE SAN LUIS",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"San Luis",
+"provincias":[
+"San Luis"
+],
+"web":"https://dosep.sanluis.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://dosep.sanluis.gob.ar",
+"alias":[
+"DOSEP",
+"Dosep San Luis",
+"D.O.S.E.P."
+]
+},
+{
+"slug":"ditem",
+"nombre":"DITEM - OBRA SOCIAL PARA DIRECTIVOS, TECNICOS Y EMPLEADOS DE JOHN DEERE ARGENTINA",
+"razonSocial":"OBRA SOCIAL PARA DIRECTIVOS, TECNICOS Y EMPLEADOS DE JOHN DEERE ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"3-0210-6",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=302106",
+"alias":[
+"DITEM"
+]
+},
+{
+"slug":"emergencias",
+"nombre":"Emergencias Salud (International Health Services Argentina)",
+"razonSocial":"INTERNATIONAL HEALTH SERVICES ARGENTINA S.A.",
+"tipo":"Prepaga",
+"codigo":null,
+"rnemp":112431,
+"jurisdiccion":"Nacional",
+"web":"https://www.emergencias.com.ar",
+"fuente":"rnemp",
+"fuenteUrl":"https://cuadrostarifarios.sssalud.gob.ar",
+"alias":[
+"Emergencias",
+"International Health Services",
+"IHSA"
+]
+},
+{
+"slug":"osems",
+"nombre":"EMINENTE MEDICINAL S.A.",
+"razonSocial":"EMINENTE MEDICINAL S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0600-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906001"
+},
+{
+"slug":"oses",
+"nombre":"ENSALUD S.A.",
+"razonSocial":"ENSALUD S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0360-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903606"
+},
+{
+"slug":"faa",
+"nombre":"FAA - OBRA SOCIAL DE FUTBOLISTAS",
+"razonSocial":"OBRA SOCIAL DE FUTBOLISTAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0860-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.agremiados.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108605",
+"alias":[
+"FAA"
+]
+},
+{
+"slug":"fedecamaras",
+"nombre":"FEDECAMARAS - OBRA SOCIAL DE FEDECAMARAS",
+"razonSocial":"OBRA SOCIAL DE FEDECAMARAS",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0190-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.osfedecamaras.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1904",
+"alias":[
+"FEDECAMARAS"
+]
+},
+{
+"slug":"federada-salud",
+"nombre":"Federada Salud (Mutual Federada 25 de Junio)",
+"razonSocial":"MUTUAL FEDERADA \"25 DE JUNIO\" SOCIEDAD DE PROTECCIÓN RECÍPROCA",
+"tipo":"Prepaga",
+"codigo":"9-0320-0",
+"rnemp":311586,
+"jurisdiccion":"Nacional",
+"web":"https://www.federada.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903200",
+"alias":[
+"Federada Salud",
+"Federada",
+"Mutual Federada"
+]
+},
+{
+"slug":"frutos",
+"nombre":"FRUTOS - OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LAS EMPRESAS QUE ACTUAN EN FRUTOS DEL PAIS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LAS EMPRESAS QUE ACTUAN EN FRUTOS DEL PAIS",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0100-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401001",
+"alias":[
+"FRUTOS"
+]
+},
+{
+"slug":"galeno",
+"nombre":"Galeno Argentina",
+"razonSocial":"GALENO ARGENTINA S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0110-5",
+"rnemp":112851,
+"jurisdiccion":"Nacional",
+"web":"https://www.e-galeno.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901105",
+"alias":[
+"Galeno",
+"Galeno Life",
+"Plan Azul",
+"Plan Plata",
+"Plan Oro"
+]
+},
+{
+"slug":"gea-sa",
+"nombre":"GEA SA",
+"razonSocial":"GEA SA",
+"tipo":"Prepaga",
+"codigo":"9-0400-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904005"
+},
+{
+"slug":"germed-s-a",
+"nombre":"GERMED S.A.",
+"razonSocial":"GERMED S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0380-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903804"
+},
+{
+"slug":"gilsa-s-r-l",
+"nombre":"GILSA S.R.L.",
+"razonSocial":"GILSA S.R.L.",
+"tipo":"Prepaga",
+"codigo":"9-0530-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905305"
+},
+{
+"slug":"osgs",
+"nombre":"GRUPO DDM S.A.",
+"razonSocial":"GRUPO DDM S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0330-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903309"
+},
+{
+"slug":"osgmi",
+"nombre":"GRUPO MÉDICO INCAS S.A.",
+"razonSocial":"GRUPO MÉDICO INCAS S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0570-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905701"
+},
+{
+"slug":"oshaa",
+"nombre":"Hospital Alemán",
+"razonSocial":"HOSPITAL ALEMAN ASOCIACION CIVIL",
+"tipo":"Prepaga",
+"codigo":"9-0120-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.hospitalaleman.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901204",
+"alias":[
+"Plan Médico Hospital Alemán"
+],
+"rnemp":410863
+},
+{
+"slug":"hospital-austral",
+"nombre":"HOSPITAL AUSTRAL - ASOCIACIÓN CIVIL DE ESTUDIOS SUPERIORES (HOSPITAL AUSTRAL)",
+"razonSocial":"ASOCIACIÓN CIVIL DE ESTUDIOS SUPERIORES (HOSPITAL AUSTRAL)",
+"tipo":"Prepaga",
+"codigo":"9-0300-2",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903002",
+"alias":[
+"HOSPITAL AUSTRAL"
+]
+},
+{
+"slug":"oshbb",
+"nombre":"Hospital Británico",
+"razonSocial":"HOSPITAL BRITANICO DE BUENOS AIRES ASOCIACION CIVIL",
+"tipo":"Prepaga",
+"codigo":"9-0250-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902504",
+"alias":[
+"Plan de Salud Hospital Británico"
+]
+},
+{
+"slug":"iapos",
+"nombre":"Instituto Autárquico Provincial de Obra Social (IAPOS Santa Fe)",
+"razonSocial":"INSTITUTO AUTARQUICO PROVINCIAL DE OBRA SOCIAL DE SANTA FE",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"web":"https://www.iapossantafe.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://www.iapossantafe.gob.ar",
+"alias":[
+"IAPOS",
+"I.A.P.O.S.",
+"Obra Social Provincia de Santa Fe"
+]
+},
+{
+"slug":"iasep-formosa",
+"nombre":"Instituto de Asistencia Social para Empleados Públicos de Formosa (IASEP)",
+"razonSocial":"INSTITUTO DE ASISTENCIA SOCIAL PARA EMPLEADOS PUBLICOS DE FORMOSA",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Formosa",
+"provincias":[
+"Formosa"
+],
+"web":"https://www.formosa.gob.ar/iasep",
+"fuente":"provincial",
+"fuenteUrl":"https://www.formosa.gob.ar/iasep",
+"alias":[
+"IASEP",
+"Iasep Formosa",
+"I.A.S.E.P."
+]
+},
+{
+"slug":"ioma",
+"nombre":"Instituto de Obra Médico Asistencial (IOMA)",
+"razonSocial":"INSTITUTO DE OBRA MEDICO ASISTENCIAL DE LA PROVINCIA DE BUENOS AIRES",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.ioma.gba.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://www.ioma.gba.gob.ar",
+"alias":[
+"IOMA",
+"Obra Social Provincia de Buenos Aires",
+"I.O.M.A."
+]
+},
+{
+"slug":"ips-corrientes",
+"nombre":"Instituto de Obra Social de Corrientes (IOSCOR)",
+"razonSocial":"INSTITUTO DE OBRA SOCIAL DE LA PROVINCIA DE CORRIENTES",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Corrientes",
+"provincias":[
+"Corrientes"
+],
+"web":"https://www.ioscor.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://www.ioscor.gob.ar",
+"alias":[
+"IOSCOR",
+"IPS Corrientes",
+"I.O.S.C.O.R."
+]
+},
+{
+"slug":"iosper-entre-rios",
+"nombre":"Instituto de Obra Social de la Provincia de Entre Ríos (IOSPER)",
+"razonSocial":"INSTITUTO DE OBRA SOCIAL DE LA PROVINCIA DE ENTRE RIOS",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Entre Ríos",
+"provincias":[
+"Entre Ríos"
+],
+"web":"https://www.iosper.gov.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://www.iosper.gov.ar",
+"alias":[
+"IOSPER",
+"Iosper Entre Ríos",
+"I.O.S.P.E.R."
+]
+},
+{
+"slug":"iosfa",
+"nombre":"Instituto de Obra Social de las Fuerzas Armadas y de Seguridad (IOSFA)",
+"razonSocial":"INSTITUTO DE OBRA SOCIAL DE LAS FUERZAS ARMADAS Y DE SEGURIDAD",
+"tipo":"Obra Social Especial",
+"codigo":null,
+"jurisdiccion":"Nacional",
+"web":"https://iosfa.gob.ar",
+"fuente":"propio",
+"fuenteUrl":"https://iosfa.gob.ar",
+"alias":[
+"IOSFA",
+"Fuerzas Armadas",
+"IOSE",
+"DIBA",
+"DIBPFA"
+]
+},
+{
+"slug":"iosep-santiago",
+"nombre":"Instituto de Obra Social del Empleado Provincial de Santiago del Estero (IOSEP)",
+"razonSocial":"INSTITUTO DE OBRA SOCIAL DEL EMPLEADO PROVINCIAL DE SANTIAGO DEL ESTERO",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Santiago del Estero",
+"provincias":[
+"Santiago del Estero"
+],
+"web":"https://iosep.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://iosep.gob.ar",
+"alias":[
+"IOSEP",
+"Iosep Santiago",
+"I.O.S.E.P."
+]
+},
+{
+"slug":"ips-misiones",
+"nombre":"Instituto de Previsión Social de Misiones (IPS)",
+"razonSocial":"INSTITUTO DE PREVISION SOCIAL DE LA PROVINCIA DE MISIONES",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Misiones",
+"provincias":[
+"Misiones"
+],
+"web":"https://ipsmisiones.com.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://ipsmisiones.com.ar",
+"alias":[
+"IPS Misiones",
+"I.P.S. Misiones"
+]
+},
+{
+"slug":"ipsst-tucuman",
+"nombre":"Instituto de Previsión y Seguridad Social de Tucumán (Subsidio de Salud)",
+"razonSocial":"INSTITUTO DE PREVISION Y SEGURIDAD SOCIAL DE TUCUMAN",
+"tipo":"Obra Social Provincial",
+"sigla":"IPSST",
+"codigo":null,
+"jurisdiccion":"Tucumán",
+"provincias":[
+"Tucumán"
+],
+"web":"https://ipsst.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://ipsst.gob.ar",
+"alias":[
+"IPSST",
+"Subsidio de Salud Tucumán",
+"I.P.S.S.T."
+]
+},
+{
+"slug":"issn-neuquen",
+"nombre":"Instituto de Seguridad Social del Neuquén (ISSN)",
+"razonSocial":"INSTITUTO DE SEGURIDAD SOCIAL DEL NEUQUEN",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Neuquén",
+"provincias":[
+"Neuquén"
+],
+"web":"https://www.issn.gov.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://www.issn.gov.ar",
+"alias":[
+"ISSN",
+"Issn Neuquén",
+"I.S.S.N."
+]
+},
+{
+"slug":"seros-chubut",
+"nombre":"Instituto de Seguridad Social y Seguros de Chubut (SEROS / ISSyS)",
+"razonSocial":"INSTITUTO DE SEGURIDAD SOCIAL Y SEGUROS DE LA PROVINCIA DE CHUBUT",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Chubut",
+"provincias":[
+"Chubut"
+],
+"web":"https://www.issys.gov.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://www.issys.gov.ar",
+"alias":[
+"SEROS",
+"ISSyS",
+"Seros Chubut"
+]
+},
+{
+"slug":"insssep-chaco",
+"nombre":"Instituto de Seguridad Social, Seguros y Préstamos del Chaco (INSSSEP)",
+"razonSocial":"INSTITUTO DE SEGURIDAD SOCIAL, SEGUROS Y PRESTAMOS DEL CHACO",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Chaco",
+"provincias":[
+"Chaco"
+],
+"web":"https://insssep.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://insssep.gob.ar",
+"alias":[
+"INSSSEP",
+"Insssep Chaco",
+"I.N.S.S.S.E.P."
+]
+},
+{
+"slug":"isj-jujuy",
+"nombre":"Instituto de Seguros de Jujuy (ISJ)",
+"razonSocial":"INSTITUTO DE SEGUROS DE JUJUY",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Jujuy",
+"provincias":[
+"Jujuy"
+],
+"web":"https://isj.gov.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://isj.gov.ar",
+"alias":[
+"ISJ",
+"ISJ Jujuy",
+"I.S.J."
+]
+},
+{
+"slug":"pami",
+"nombre":"Instituto Nacional de Servicios Sociales para Jubilados y Pensionados (PAMI)",
+"razonSocial":"INSTITUTO NACIONAL DE SERVICIOS SOCIALES PARA JUBILADOS Y PENSIONADOS",
+"tipo":"Obra Social Nacional",
+"sigla":"PAMI / INSSJP",
+"codigo":"5-0080-7",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.pami.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=500807",
+"alias":[
+"PAMI",
+"INSSJP",
+"Jubilados",
+"Instituto Nacional de Jubilados y Pensionados"
+]
+},
+{
+"slug":"ips-salta",
+"nombre":"Instituto Provincial de Salud de Salta (IPS)",
+"razonSocial":"INSTITUTO PROVINCIAL DE SALUD DE SALTA",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Salta",
+"provincias":[
+"Salta"
+],
+"web":"https://ipssalta.gov.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://ipssalta.gov.ar",
+"alias":[
+"IPS Salta",
+"I.P.S. Salta"
+]
+},
+{
+"slug":"ipross-rio-negro",
+"nombre":"Instituto Provincial del Seguro de Salud de Río Negro (IPROSS)",
+"razonSocial":"INSTITUTO PROVINCIAL DEL SEGURO DE SALUD DE RIO NEGRO",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Río Negro",
+"provincias":[
+"Río Negro"
+],
+"web":"https://ipross.rionegro.gov.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://ipross.rionegro.gov.ar",
+"alias":[
+"IPROSS",
+"Ipross Río Negro",
+"I.P.R.O.S.S."
+]
+},
+{
+"slug":"jerarquicos-salud",
+"nombre":"JERARQUICOS SALUD - ASOCIACION MUTUAL DEL PERSONAL JERARQUICO DE BANCOS OFICIALES NACIONALES",
+"razonSocial":"ASOCIACION MUTUAL DEL PERSONAL JERARQUICO DE BANCOS OFICIALES NACIONALES",
+"tipo":"Prepaga",
+"codigo":"9-0720-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.jerarquicos.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907202",
+"alias":[
+"JERARQUICOS SALUD"
+]
+},
+{
+"slug":"johnson",
+"nombre":"JOHNSON - OBRA SOCIAL CERAS JOHNSON",
+"razonSocial":"OBRA SOCIAL CERAS JOHNSON",
+"tipo":"Obra Social Sindical",
+"codigo":"3-0070-4",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.oscj.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=300704",
+"alias":[
+"JOHNSON"
+]
+},
+{
+"slug":"oscmm",
+"nombre":"LA CASA DEL MEDICO MUTUAL",
+"razonSocial":"LA CASA DEL MEDICO MUTUAL",
+"tipo":"Prepaga",
+"codigo":"9-0040-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.italmedicasalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900409"
+},
+{
+"slug":"mc-salud-s-a",
+"nombre":"MC SALUD S.A",
+"razonSocial":"MC SALUD S.A",
+"tipo":"Prepaga",
+"codigo":"9-0800-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=908007"
+},
+{
+"slug":"osmss",
+"nombre":"MEDICAL SERVICIOS DE SALUD S.R.L.",
+"razonSocial":"MEDICAL SERVICIOS DE SALUD S.R.L.",
+"tipo":"Prepaga",
+"codigo":"9-0630-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906308"
+},
+{
+"slug":"esencial",
+"nombre":"Medicina Esencial",
+"razonSocial":"MEDICINA ESENCIAL S.A.",
+"tipo":"Prepaga",
+"codigo":null,
+"rnemp":110077,
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"web":"https://www.esencial.com.ar",
+"fuente":"rnemp",
+"fuenteUrl":"https://cuadrostarifarios.sssalud.gob.ar",
+"alias":[
+"Esencial"
+]
+},
+{
+"slug":"hominis",
+"nombre":"Medicina Prepaga Hominis (Sanatorio Güemes)",
+"razonSocial":"HOMINIS S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0150-1",
+"rnemp":111438,
+"jurisdiccion":"Nacional",
+"web":"https://www.mphominis.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901501",
+"alias":[
+"Hominis",
+"Sanatorio Güemes",
+"Hominis Salud"
+]
+},
+{
+"slug":"osmps",
+"nombre":"MEDICINA PRIVADA S.R.L",
+"razonSocial":"MEDICINA PRIVADA S.R.L",
+"tipo":"Prepaga",
+"codigo":"9-0750-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907509"
+},
+{
+"slug":"medicus",
+"nombre":"Medicus Medicina Prepaga",
+"razonSocial":"MEDICUS SOCIEDAD ANONIMA DE ASISTENCIA MEDICA Y CIENTIFICA",
+"tipo":"Prepaga",
+"codigo":"9-0100-6",
+"rnemp":111834,
+"jurisdiccion":"Nacional",
+"web":"https://www.medicus.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901006",
+"alias":[
+"Medicus",
+"Medicus Salud",
+"Plan Celeste",
+"Plan Azul"
+]
+},
+{
+"slug":"medife",
+"nombre":"Medifé Asociación Civil",
+"razonSocial":"MEDIFE ASOCIACION CIVIL",
+"tipo":"Prepaga",
+"sigla":"MEDIFE",
+"codigo":"9-0140-2",
+"rnemp":412258,
+"jurisdiccion":"Nacional",
+"web":"https://www.medife.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901402",
+"alias":[
+"Medifé",
+"Medife",
+"Plan Bronce",
+"Plan Plata",
+"Plan Oro"
+]
+},
+{
+"slug":"osmas",
+"nombre":"MEDYCIN ARGENTINO S.A.",
+"razonSocial":"MEDYCIN ARGENTINO S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0450-0",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904500"
+},
+{
+"slug":"osms",
+"nombre":"MEMED S.A.",
+"razonSocial":"MEMED S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0710-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907103"
+},
+{
+"slug":"osm",
+"nombre":"MET-CORDOBA SA",
+"razonSocial":"MET-CORDOBA SA",
+"tipo":"Prepaga",
+"codigo":"9-0390-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903903"
+},
+{
+"slug":"osmpc",
+"nombre":"MUTUAL DEL PERSONAL DEL CENTRO INDUSTRIAL ACINDAR",
+"razonSocial":"MUTUAL DEL PERSONAL DEL CENTRO INDUSTRIAL ACINDAR",
+"tipo":"Prepaga",
+"codigo":"9-0560-2",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905602"
+},
+{
+"slug":"osmmc",
+"nombre":"MUTUAL MEDICA CONCORDIA",
+"razonSocial":"MUTUAL MEDICA CONCORDIA",
+"tipo":"Prepaga",
+"codigo":"9-0170-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901709"
+},
+{
+"slug":"osns",
+"nombre":"NOBIS S.A.",
+"razonSocial":"NOBIS S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0490-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904906"
+},
+{
+"slug":"o-s-a-m-o-c",
+"nombre":"O.S.A.M.O.C - OBRA SOCIAL ASOCIACION MUTUAL DE LOS OBREROS CATOLICOS PADRE FEDERICO GROTE",
+"razonSocial":"OBRA SOCIAL ASOCIACION MUTUAL DE LOS OBREROS CATOLICOS PADRE FEDERICO GROTE",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0340-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3405",
+"alias":[
+"O.S.A.M.O.C",
+"OBRA SOCIAL ASOCIACION  MUTUAL DE LOS OBREROS CATOLICOS PADRE FEDERICO GROTE"
+]
+},
+{
+"slug":"o-s-a-p-s-e",
+"nombre":"O.S.A.P.S.E - OBRA SOCIAL DE LA ASOCIACION DEL PERSONAL SUPERIOR DE LA EMPRESA PROVINCIAL DE ENERGIA DE CORDOBA",
+"razonSocial":"OBRA SOCIAL DE LA ASOCIACION DEL PERSONAL SUPERIOR DE LA EMPRESA PROVINCIAL DE ENERGIA DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2900-6",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=129006",
+"alias":[
+"O.S.A.P.S.E"
+]
+},
+{
+"slug":"o-s-pe-cor",
+"nombre":"O.S.PE.COR - OBRA SOCIAL DE PETROLEROS DE CORDOBA",
+"razonSocial":"OBRA SOCIAL DE PETROLEROS DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1550-8",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://www.ospecor.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115508",
+"alias":[
+"O.S.PE.COR"
+]
+},
+{
+"slug":"o-s-pe-tax-r",
+"nombre":"O.S.PE.TAX.R - OBRA SOCIAL PEONES DE TAXIS DE ROSARIO",
+"razonSocial":"OBRA SOCIAL PEONES DE TAXIS DE ROSARIO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2830-0",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"web":"https://w.w.w.sptrosario.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128300",
+"alias":[
+"O.S.PE.TAX.R"
+]
+},
+{
+"slug":"o-s-pers-a-a-m-s",
+"nombre":"O.S.PERS.A.A.M.S. - OBRA SOCIAL DEL PERSONAL ASOCIADO A ASOCIACION MUTUAL SANCOR",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL ASOCIADO A ASOCIACION MUTUAL SANCOR",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0300-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3009",
+"alias":[
+"O.S.PERS.A.A.M.S."
+]
+},
+{
+"slug":"o-s-s-u-r-r-b-a-c",
+"nombre":"O.S.S.U.R.R.B.A.C - OBRA SOCIAL DEL SINDICATO UNICO DE RECOLECTORES DE RESIDUOS Y BARRIDO DE CORDOBA",
+"razonSocial":"OBRA SOCIAL DEL SINDICATO UNICO DE RECOLECTORES DE RESIDUOS Y BARRIDO DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2820-1",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128201",
+"alias":[
+"O.S.S.U.R.R.B.A.C"
+]
+},
+{
+"slug":"o-s-t-a-c-c",
+"nombre":"O.S.T.A.C.C, - OBRA SOCIAL DE LOS TRABAJADORES ARGENTINOS DE CENTROS DE CONTACTOS",
+"razonSocial":"OBRA SOCIAL DE LOS TRABAJADORES ARGENTINOS DE CENTROS DE CONTACTOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2890-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128904",
+"alias":[
+"O.S.T.A.C.C,"
+]
+},
+{
+"slug":"o-s-t-c-a-r-a",
+"nombre":"O.S.T.C.A.R.A. - OBRA SOCIAL DE LOS TRABAJADORES DE LA CARNE Y AFINES DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LOS TRABAJADORES DE LA CARNE Y AFINES DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0260-0",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2600",
+"alias":[
+"O.S.T.C.A.R.A."
+]
+},
+{
+"slug":"o-s-tax-b-a",
+"nombre":"O.S.TAX.B.A - OBRA SOCIAL DE CONDUCTORES TITULARES DE TAXIS DE LA CIUDAD AUTONOMA DE BUENOS AIRES",
+"razonSocial":"OBRA SOCIAL DE CONDUCTORES TITULARES DE TAXIS DE LA CIUDAD AUTONOMA DE BUENOS AIRES",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0350-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3504",
+"alias":[
+"O.S.TAX.B.A"
+]
+},
+{
+"slug":"osa-actores",
+"nombre":"Obra Social de Actores",
+"razonSocial":"OBRA SOCIAL DEL SINDICATO UNIDO DE TRABAJADORES DE LA INDUSTRIA DE AGUAS GASEOSAS DE LA PROVINCIA DE SANTA FE",
+"tipo":"Obra Social Sindical",
+"sigla":"OSA",
+"codigo":"0-0160-7",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"web":"https://www.osa.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1607",
+"alias":[
+"OSA",
+"Actores",
+"Asociación Argentina de Actores"
+]
+},
+{
+"slug":"osapm",
+"nombre":"Obra Social de Agentes de Propaganda Médica (Visitadores Médicos)",
+"razonSocial":"OBRA SOCIAL DE AGENTES DE PROPAGANDA MEDICA DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"sigla":"OSAPM",
+"codigo":"1-1820-0",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osapm.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118200",
+"alias":[
+"OSAPM",
+"Visitadores Médicos",
+"Propaganda Médica"
+]
+},
+{
+"slug":"osdop",
+"nombre":"Obra Social de Docentes Particulares",
+"razonSocial":"OBRA SOCIAL DE DOCENTES PARTICULARES",
+"tipo":"Obra Social Sindical",
+"sigla":"OSDOP",
+"codigo":"1-0630-2",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osdop.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106302",
+"alias":[
+"OSDOP",
+"SADOP",
+"Docentes Privados"
+]
+},
+{
+"slug":"osep-catamarca",
+"nombre":"Obra Social de Empleados Públicos de Catamarca (OSEP)",
+"razonSocial":"OBRA SOCIAL DE EMPLEADOS PUBLICOS DE CATAMARCA",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Catamarca",
+"provincias":[
+"Catamarca"
+],
+"web":"https://osep.catamarca.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://osep.catamarca.gob.ar",
+"alias":[
+"OSEP Catamarca",
+"O.S.E.P. Catamarca"
+]
+},
+{
+"slug":"osep-mendoza",
+"nombre":"Obra Social de Empleados Públicos de Mendoza (OSEP)",
+"razonSocial":"OBRA SOCIAL DE EMPLEADOS PUBLICOS DE LA PROVINCIA DE MENDOZA",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Mendoza",
+"provincias":[
+"Mendoza"
+],
+"web":"https://osepmendoza.com.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://osepmendoza.com.ar",
+"alias":[
+"OSEP Mendoza",
+"O.S.E.P. Mendoza"
+]
+},
+{
+"slug":"osdepym",
+"nombre":"Obra Social de Empresarios, Profesionales y Monotributistas",
+"razonSocial":"OBRA SOCIAL DE EMPRESARIOS, PROFESIONALES Y MONOTRIBUTISTAS",
+"tipo":"Obra Social de Dirección",
+"sigla":"OSDEPYM",
+"codigo":"4-0170-4",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osdepym.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401704",
+"alias":[
+"OSDEPYM",
+"Osdepym",
+"Empresarios y Monotributistas"
+]
+},
+{
+"slug":"osuthgra",
+"nombre":"Obra Social de Gastronómicos y Hoteleros de la República Argentina",
+"razonSocial":"OBRA SOCIAL DE LA UNION DE TRABAJADORES DEL TURISMO, HOTELEROS Y GASTRONOMICOS DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"sigla":"OSUTHGRA",
+"codigo":"1-0880-3",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osuthgra.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108803",
+"alias":[
+"OSUTHGRA",
+"Gastronómicos",
+"Hoteleros",
+"UTHGRA"
+]
+},
+{
+"slug":"osam-minera",
+"nombre":"Obra Social de la Actividad Minera",
+"razonSocial":"OBRA SOCIAL DE LA ACTIVIDAD MINERA",
+"tipo":"Obra Social Sindical",
+"sigla":"OSAM",
+"codigo":"1-1240-0",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osam.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112400",
+"alias":[
+"OSAM",
+"Minería",
+"Actividad Minera"
+]
+},
+{
+"slug":"obsba",
+"nombre":"Obra Social de la Ciudad de Buenos Aires (ObSBA)",
+"razonSocial":"OBRA SOCIAL DE LA CIUDAD DE BUENOS AIRES",
+"tipo":"Obra Social Municipal / CABA",
+"codigo":null,
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.obsba.org.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://www.obsba.org.ar",
+"alias":[
+"ObSBA",
+"Obra Social de la Ciudad",
+"O.b.S.B.A."
+]
+},
+{
+"slug":"osfatlyf",
+"nombre":"Obra Social de la Federación Argentina de Trabajadores de Luz y Fuerza",
+"razonSocial":"OBRA SOCIAL DE LA FEDERACION ARGENTINA DE TRABAJADORES DE LUZ Y FUERZA",
+"tipo":"Obra Social Sindical",
+"sigla":"OSFATLYF",
+"codigo":"1-1070-1",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osfatlyf.org",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110701",
+"alias":[
+"OSFATLYF",
+"Luz y Fuerza"
+]
+},
+{
+"slug":"union-personal",
+"nombre":"Obra Social de la Unión del Personal Civil de la Nación (UPCN)",
+"razonSocial":"OBRA SOCIAL UNION PERSONAL DE LA UNION DEL PERSONAL CIVIL DE LA NACION",
+"tipo":"Obra Social Sindical",
+"sigla":"UNION PERSONAL",
+"codigo":"1-2570-7",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.unionpersonal.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=125707",
+"alias":[
+"Unión Personal",
+"Union Personal",
+"UPCN",
+"Accord Salud"
+]
+},
+{
+"slug":"osecac",
+"nombre":"Obra Social de los Empleados de Comercio y Actividades Civiles",
+"razonSocial":"OBRA SOCIAL DE LOS EMPLEADOS DE COMERCIO Y ACTIVIDADES CIVILES",
+"tipo":"Obra Social Sindical",
+"sigla":"OSECAC",
+"codigo":"1-2620-5",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osecac.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126205",
+"alias":[
+"OSECAC",
+"Comercio",
+"Empleados de Comercio",
+"FAECYS",
+"1-0620-3"
+]
+},
+{
+"slug":"ospe",
+"nombre":"Obra Social de Petroleros (OSPE)",
+"razonSocial":"OBRA SOCIAL DEL PETROLEO Y GAS PRIVADOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1540-9",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.ospesalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115409",
+"alias":[
+"OSPE",
+"Petroleros",
+"OSPEGAP"
+]
+},
+{
+"slug":"ospepri",
+"nombre":"Obra Social de Petroleros Privados de Río Negro, Neuquén y La Pampa (Meopp)",
+"razonSocial":"OBRA SOCIAL DE TRABAJADORES DEL PETROLEO Y GAS PRIVADO DEL CHUBUT",
+"tipo":"Obra Social Sindical",
+"sigla":"OSPEPRI / MEOPP",
+"codigo":"1-2860-7",
+"jurisdiccion":"Chubut",
+"provincias":[
+"Chubut"
+],
+"web":"https://meopp.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128607",
+"alias":[
+"OSPEPRI",
+"MEOPP",
+"Petroleros Privados"
+]
+},
+{
+"slug":"osseg",
+"nombre":"Obra Social de Seguros y Reaseguros",
+"razonSocial":"OBRA SOCIAL DE LA ACTIVIDAD DE SEGUROS, REASEGUROS, CAPITALIZACION Y AHORRO Y PRESTAMO PARA LA VIVIENDA",
+"tipo":"Obra Social Sindical",
+"sigla":"OSSEG",
+"codigo":"0-0090-1",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osseg.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901",
+"alias":[
+"OSSEG",
+"Seguros",
+"Actividad de Seguros"
+]
+},
+{
+"slug":"osef-tierra-del-fuego",
+"nombre":"Obra Social del Estado Fueguino (OSEF)",
+"razonSocial":"OBRA SOCIAL DEL ESTADO FUEGUINO",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"Tierra del Fuego",
+"provincias":[
+"Tierra del Fuego"
+],
+"web":"https://osef.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://osef.gob.ar",
+"alias":[
+"OSEF",
+"Osef Tierra del Fuego",
+"O.S.E.F."
+]
+},
+{
+"slug":"luis-pasteur",
+"nombre":"Obra Social del Personal de Dirección de Sanidad Luis Pasteur",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE SANIDAD LUIS PASTEUR",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0200-4",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osluispasteur.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402004",
+"alias":[
+"Luis Pasteur",
+"Pasteur",
+"Sanidad Dirección"
+]
+},
+{
+"slug":"osfymt",
+"nombre":"Obra Social del Personal de Farmacias",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE FARMACIA",
+"tipo":"Obra Social Sindical",
+"sigla":"OSFYMT",
+"codigo":"1-0740-4",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osfymt.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107404",
+"alias":[
+"OSFYMT",
+"Farmacias",
+"OSPF"
+]
+},
+{
+"slug":"ospida",
+"nombre":"Obra Social del Personal de Imprentas, Diarios y Afines",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE IMPRENTAS, DIARIOS Y AFINES",
+"tipo":"Obra Social Sindical",
+"sigla":"OSPIDA",
+"codigo":"1-0970-7",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.ospida.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109707",
+"alias":[
+"OSPIDA",
+"Imprentas",
+"Gráficos"
+]
+},
+{
+"slug":"uocra-construir-salud",
+"nombre":"Obra Social del Personal de la Construcción (Construir Salud)",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA CONSTRUCCION",
+"tipo":"Obra Social Sindical",
+"sigla":"UOCRA / CONSTRUIR SALUD",
+"codigo":"1-0540-8",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.construirsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105408",
+"alias":[
+"UOCRA",
+"Construir Salud",
+"OSPECON",
+"Construcción",
+"1-0570-1"
+]
+},
+{
+"slug":"ospic",
+"nombre":"Obra Social del Personal de la Industria del Caucho",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL CAUCHO",
+"tipo":"Obra Social Sindical",
+"sigla":"OSPIC",
+"codigo":"1-0370-9",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.ospic.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103709",
+"alias":[
+"OSPIC",
+"Caucho"
+]
+},
+{
+"slug":"ospil",
+"nombre":"Obra Social del Personal de la Industria Lechera (ATILRA)",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA LECHERA",
+"tipo":"Obra Social Sindical",
+"sigla":"OSPIL",
+"codigo":"1-1050-3",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.ospil.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110503",
+"alias":[
+"OSPIL",
+"ATILRA",
+"Lecheros",
+"Industria Lechera"
+]
+},
+{
+"slug":"ospsa-sanidad",
+"nombre":"Obra Social del Personal de la Sanidad Argentina",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA SANIDAD ARGENTINA",
+"tipo":"Obra Social Sindical",
+"sigla":"OSPSA / SANIDAD",
+"codigo":"1-1950-0",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.sanidad.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119500",
+"alias":[
+"OSPSA",
+"Sanidad",
+"ATSA",
+"FATSA",
+"1-1800-4"
+]
+},
+{
+"slug":"ospat",
+"nombre":"Obra Social del Personal del Turf de la República Argentina",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD DEL TURF",
+"tipo":"Obra Social Sindical",
+"sigla":"OSPAT",
+"codigo":"1-2170-5",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.ospat.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121705",
+"alias":[
+"OSPAT",
+"Turf"
+]
+},
+{
+"slug":"ospjn",
+"nombre":"Obra Social del Poder Judicial de la Nación (OSPJN)",
+"razonSocial":"OBRA SOCIAL DEL PODER JUDICIAL DE LA NACION",
+"tipo":"Obra Social Especial",
+"codigo":null,
+"jurisdiccion":"Nacional",
+"web":"https://www.ospjn.gob.ar",
+"fuente":"propio",
+"fuenteUrl":"https://www.ospjn.gob.ar",
+"alias":[
+"OSPJN",
+"Poder Judicial",
+"Justicia Nacional"
+]
+},
+{
+"slug":"osmata",
+"nombre":"Obra Social del Sindicato de Mecánicos y Afines del Transporte Automotor",
+"razonSocial":"OBRA SOCIAL DEL SINDICATO DE MECANICOS Y AFINES DEL TRANSPORTE AUTOMOTOR",
+"tipo":"Obra Social Sindical",
+"sigla":"OSMATA",
+"codigo":"1-1190-2",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osmata.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111902",
+"alias":[
+"OSMATA",
+"Mecánicos",
+"Automotor"
+]
+},
+{
+"slug":"osfe",
+"nombre":"Obra Social Ferroviaria",
+"razonSocial":"OBRA SOCIAL FERROVIARIA",
+"tipo":"Obra Social Sindical",
+"sigla":"OSFE",
+"codigo":"0-0130-0",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osfe.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1300",
+"alias":[
+"OSFE",
+"Ferroviaria",
+"Ferroviarios"
+]
+},
+{
+"slug":"osplad",
+"nombre":"Obra Social para la Actividad Docente",
+"razonSocial":"OBRA SOCIAL PARA LA ACTIVIDAD DOCENTE",
+"tipo":"Obra Social Sindical",
+"sigla":"OSPLAD",
+"codigo":"0-0110-2",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osplad.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1102",
+"alias":[
+"OSPLAD",
+"Docentes",
+"Actividad Docente"
+]
+},
+{
+"slug":"bancaria-osba",
+"nombre":"Obra Social Servicios Sociales Bancarios (La Bancaria)",
+"razonSocial":"OBRA SOCIAL SERVICIOS SOCIALES BANCARIOS",
+"tipo":"Obra Social Sindical",
+"sigla":"OSBA",
+"codigo":"1-2630-4",
+"jurisdiccion":"CABA",
+"provincias":[
+"CABA"
+],
+"web":"https://www.osba.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126304",
+"alias":[
+"La Bancaria",
+"Bancarios",
+"OSBA",
+"Asociación Bancaria"
+]
+},
+{
+"slug":"omint",
+"nombre":"Omint de Servicios de Salud",
+"razonSocial":"OMINT SOCIEDAD ANÓNlMA DE SERVICIOS",
+"tipo":"Prepaga",
+"codigo":"9-0290-0",
+"rnemp":113366,
+"jurisdiccion":"Nacional",
+"web":"https://www.omint.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902900",
+"alias":[
+"OMINT",
+"Omint",
+"Plan Premium",
+"Plan Génesis"
+]
+},
+{
+"slug":"opdea",
+"nombre":"OPDEA - OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LAS EMPRESAS DE LA ALIMENTACION Y DEMAS ACTIVIDADES EMPRESARIAS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LAS EMPRESAS DE LA ALIMENTACION Y DEMAS ACTIVIDADES EMPRESARIAS",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0010-7",
+"jurisdiccion":"Nacional",
+"web":"https://www.opdea.org",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400107",
+"alias":[
+"OPDEA"
+]
+},
+{
+"slug":"opzc",
+"nombre":"OPZC - OBRA SOCIAL DEL PERSONAL DE INDUSTRIAS QUIMICAS Y PETROQUIMICAS DE ZARATE CAMPANA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE INDUSTRIAS QUIMICAS Y PETROQUIMICAS DE ZARATE CAMPANA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2660-1",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.obrasocialquimicos.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126601",
+"alias":[
+"OPZC",
+"OBRA SOCIAL DEL PERSONAL DE INDUSTRIAS  QUIMICAS Y PETROQUIMICAS DE ZARATE CAMPANA"
+]
+},
+{
+"slug":"os-pe-pri",
+"nombre":"OS.PE.PRI - OBRA SOCIAL DE PETROLEROS PRIVADOS",
+"razonSocial":"OBRA SOCIAL DE PETROLEROS PRIVADOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2790-1",
+"jurisdiccion":"Neuquén",
+"provincias":[
+"Neuquén"
+],
+"web":"https://www.ospepri.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127901",
+"alias":[
+"OS.PE.PRI"
+]
+},
+{
+"slug":"osa",
+"nombre":"OSA - OBRA SOCIAL DE ACTORES",
+"razonSocial":"OBRA SOCIAL DE ACTORES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0020-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.osa.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100205",
+"alias":[
+"OSA"
+]
+},
+{
+"slug":"os-de-aeronavegantes",
+"nombre":"OSA - OBRA SOCIAL DE AERONAVEGANTES",
+"razonSocial":"OBRA SOCIAL DE AERONAVEGANTES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0080-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.osa-aeronavegantes.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100809",
+"alias":[
+"OSA"
+]
+},
+{
+"slug":"osadef",
+"nombre":"OSADEF - OBRA SOCIAL DE LAS ASOCIACIONES DE EMPLEADOS DE FARMACIA",
+"razonSocial":"OBRA SOCIAL DE LAS ASOCIACIONES DE EMPLEADOS DE FARMACIA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2750-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127505",
+"alias":[
+"OSADEF",
+"OBRA SOCIAL DE  LAS ASOCIACIONES DE EMPLEADOS DE FARMACIA"
+]
+},
+{
+"slug":"osadra",
+"nombre":"OSADRA - OBRA SOCIAL DE ARBITROS DEPORTIVOS DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE ARBITROS DEPORTIVOS DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2590-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.osadra.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=125905",
+"alias":[
+"OSADRA"
+]
+},
+{
+"slug":"osaf",
+"nombre":"OSAF - OBRA SOCIAL DEL PERSONAL DE DIRECCION ALFREDO FORTABAT",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION ALFREDO FORTABAT",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0110-0",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401100",
+"alias":[
+"OSAF"
+]
+},
+{
+"slug":"osago",
+"nombre":"OSAGO - ASOCIACION GUALEGUAYCHU DE OBRAS SOCIALES",
+"razonSocial":"ASOCIACION GUALEGUAYCHU DE OBRAS SOCIALES",
+"tipo":"Obra Social Sindical",
+"codigo":"6-0110-4",
+"jurisdiccion":"Entre Ríos",
+"provincias":[
+"Entre Ríos"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=601104",
+"alias":[
+"OSAGO"
+]
+},
+{
+"slug":"osalara",
+"nombre":"OSALARA - OBRA SOCIAL DE AGENTES DE LOTERIAS Y AFINES DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE AGENTES DE LOTERIAS Y AFINES DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0060-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.aleara.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=604",
+"alias":[
+"OSALARA",
+"OBRA SOCIAL DE AGENTES DE LOTERIAS Y AFINES DE LA REPUBLICA  ARGENTINA"
+]
+},
+{
+"slug":"osammvc",
+"nombre":"OSAMMVC - OBRA SOCIAL ASOCIACION MUTUAL METALURGICA VILLA CONSTITUCION",
+"razonSocial":"OBRA SOCIAL ASOCIACION MUTUAL METALURGICA VILLA CONSTITUCION",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0290-7",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2907",
+"alias":[
+"OSAMMVC"
+]
+},
+{
+"slug":"osaos",
+"nombre":"OSAOS - ASOCIACION DE OBRAS SOCIALES DE COMODORO RIVADAVIA",
+"razonSocial":"ASOCIACION DE OBRAS SOCIALES DE COMODORO RIVADAVIA",
+"tipo":"Obra Social Sindical",
+"codigo":"6-0040-8",
+"jurisdiccion":"Chubut",
+"provincias":[
+"Chubut"
+],
+"web":"https://www.adoscomodoro.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=600408",
+"alias":[
+"OSAOS"
+]
+},
+{
+"slug":"asociacion-de-obras-sociales-de-gualeguay",
+"nombre":"OSAOS - ASOCIACION DE OBRAS SOCIALES DE GUALEGUAY",
+"razonSocial":"ASOCIACION DE OBRAS SOCIALES DE GUALEGUAY",
+"tipo":"Obra Social Sindical",
+"codigo":"6-0120-3",
+"jurisdiccion":"Entre Ríos",
+"provincias":[
+"Entre Ríos"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=601203",
+"alias":[
+"OSAOS"
+]
+},
+{
+"slug":"asociacion-de-obras-sociales-de-trelew",
+"nombre":"OSAOS - ASOCIACION DE OBRAS SOCIALES DE TRELEW",
+"razonSocial":"ASOCIACION DE OBRAS SOCIALES DE TRELEW",
+"tipo":"Obra Social Sindical",
+"codigo":"6-0310-0",
+"jurisdiccion":"Chubut",
+"provincias":[
+"Chubut"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=603100",
+"alias":[
+"OSAOS"
+]
+},
+{
+"slug":"os-aceros-parana",
+"nombre":"OSAP - OBRA SOCIAL ACEROS PARANA",
+"razonSocial":"OBRA SOCIAL ACEROS PARANA",
+"tipo":"Obra Social Sindical",
+"codigo":"8-0050-1",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.osap.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=800501",
+"alias":[
+"OSAP"
+]
+},
+{
+"slug":"osapmcba",
+"nombre":"OSAPMCBA - OBRA SOCIAL AGENTES DE PROPAGANDA MEDICA DE CORDOBA",
+"razonSocial":"OBRA SOCIAL AGENTES DE PROPAGANDA MEDICA DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1830-9",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://www.osapmcba.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118309",
+"alias":[
+"OSAPMCBA"
+]
+},
+{
+"slug":"osbara",
+"nombre":"OSBARA - OBRA SOCIAL DE BOXEADORES AGREMIADOS DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE BOXEADORES AGREMIADOS DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2400-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=124001",
+"alias":[
+"OSBARA"
+]
+},
+{
+"slug":"osca",
+"nombre":"OSCA - OBRA SOCIAL CABOT ARGENTINA",
+"razonSocial":"OBRA SOCIAL CABOT ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"3-0330-7",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=303307",
+"alias":[
+"OSCA"
+]
+},
+{
+"slug":"oscamglyp",
+"nombre":"OSCAMGLYP - OBRA SOCIAL DE COLOCADORES DE AZULEJOS, MOSAICOS, GRANITEROS, LUSTRADORES Y PORCELANEROS",
+"razonSocial":"OBRA SOCIAL DE COLOCADORES DE AZULEJOS, MOSAICOS, GRANITEROS, LUSTRADORES Y PORCELANEROS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0480-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.oscamglyp.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104801",
+"alias":[
+"OSCAMGLYP"
+]
+},
+{
+"slug":"oscapbaqflu",
+"nombre":"OSCAPBAQFLU - OBRA SOCIAL ASOCIACION PROFESIONAL DE CAPITANES Y BAQUEANOS FLUVIALES Y PERSONAL CON CONOCIMIENTO DE ZONA DE LA MARINA MERCANTE",
+"razonSocial":"OBRA SOCIAL ASOCIACION PROFESIONAL DE CAPITANES Y BAQUEANOS FLUVIALES Y PERSONAL CON CONOCIMIENTO DE ZONA DE LA MARINA MERCANTE",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1150-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111506",
+"alias":[
+"OSCAPBAQFLU",
+"OBRA SOCIAL ASOCIACION PROFESIONAL DE CAPITANES Y BAQUEANOS FLUVIALES Y PERSONAL CON  CONOCIMIENTO DE ZONA DE LA MARINA MERCANTE"
+]
+},
+{
+"slug":"osccp",
+"nombre":"OSCCP - OBRA SOCIAL DE CONDUCTORES CAMIONEROS Y PERSONAL DEL TRANSPORTE AUTOMOTOR DE CARGAS",
+"razonSocial":"OBRA SOCIAL DE CONDUCTORES CAMIONEROS Y PERSONAL DEL TRANSPORTE AUTOMOTOR DE CARGAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0320-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103204",
+"alias":[
+"OSCCP"
+]
+},
+{
+"slug":"osce",
+"nombre":"OSCE - OBRA SOCIAL DE CERAMISTAS",
+"razonSocial":"OBRA SOCIAL DE CERAMISTAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0410-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104108",
+"alias":[
+"OSCE"
+]
+},
+{
+"slug":"oscea",
+"nombre":"OSCEA - OBRA SOCIAL DE LA CAMARA DE EMPRESARIOS DE AGENCIAS DE REMISES DE ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LA CAMARA DE EMPRESARIOS DE AGENCIAS DE REMISES DE ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0280-8",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2808",
+"alias":[
+"OSCEA"
+]
+},
+{
+"slug":"oscep",
+"nombre":"OSCEP - OBRA SOCIAL DE CAPATACES ESTIBADORES PORTUARIOS",
+"razonSocial":"OBRA SOCIAL DE CAPATACES ESTIBADORES PORTUARIOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1610-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=116105",
+"alias":[
+"OSCEP",
+"OBRA SOCIAL DE CAPATACES  ESTIBADORES PORTUARIOS"
+]
+},
+{
+"slug":"oschoca",
+"nombre":"OSCHOCA - OBRA SOCIAL DE CHOFERES DE CAMIONES",
+"razonSocial":"OBRA SOCIAL DE CHOFERES DE CAMIONES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0580-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.camioneros-ba.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105804",
+"alias":[
+"OSCHOCA"
+]
+},
+{
+"slug":"oscoema",
+"nombre":"OSCOEMA - OBRA SOCIAL DE LA CONFEDERACION DE OBREROS Y EMPLEADOS MUNICIPALES ARGENTINA ( OSCOEMA )",
+"razonSocial":"OBRA SOCIAL DE LA CONFEDERACION DE OBREROS Y EMPLEADOS MUNICIPALES ARGENTINA ( OSCOEMA )",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2650-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.oscoema.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126502",
+"alias":[
+"OSCOEMA",
+"OBRA SOCIAL DE LA CONFEDERACION DE OBREROS Y EMPLEADOS MUNICIPALES  ARGENTINA ( OSCOEMA )"
+]
+},
+{
+"slug":"oscomm",
+"nombre":"OSCOMM - OBRA SOCIAL DE CAPITANES DE ULTRAMAR Y OFICIALES DE LA MARINA MERCANTE",
+"razonSocial":"OBRA SOCIAL DE CAPITANES DE ULTRAMAR Y OFICIALES DE LA MARINA MERCANTE",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1140-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111407",
+"alias":[
+"OSCOMM"
+]
+},
+{
+"slug":"osconara",
+"nombre":"OSCONARA - OBRA SOCIAL DE CONDUCTORES NAVALES",
+"razonSocial":"OBRA SOCIAL DE CONDUCTORES NAVALES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0500-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.siconara.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105002",
+"alias":[
+"OSCONARA"
+]
+},
+{
+"slug":"oscraia",
+"nombre":"OSCRAIA - OBRA SOCIAL DE CONDUCTORES DE REMISES Y AUTOS AL INSTANTE Y AFINES",
+"razonSocial":"OBRA SOCIAL DE CONDUCTORES DE REMISES Y AUTOS AL INSTANTE Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2680-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126809",
+"alias":[
+"OSCRAIA"
+]
+},
+{
+"slug":"osctc",
+"nombre":"OSCTC - OBRA SOCIAL CONDUCTORES DE TRANSPORTE COLECTIVO DE PASAJEROS",
+"razonSocial":"OBRA SOCIAL CONDUCTORES DE TRANSPORTE COLECTIVO DE PASAJEROS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2160-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121606",
+"alias":[
+"OSCTC"
+]
+},
+{
+"slug":"osdaa",
+"nombre":"OSDAA - OBRA SOCIAL DE DIRECCION DE LA ACTIVIDAD AEROCOMERCIAL PRIVADA",
+"razonSocial":"OBRA SOCIAL DE DIRECCION DE LA ACTIVIDAD AEROCOMERCIAL PRIVADA",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0280-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.osdaap.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402806",
+"alias":[
+"OSDAA",
+"OBRA SOCIAL DE DIRECCION DE LA ACTIVIDAD AEROCOMERCIAL  PRIVADA"
+]
+},
+{
+"slug":"osde",
+"nombre":"OSDE Binario",
+"razonSocial":"OSDE- ORGANIZACION DE SERVICIOS DIRECTOS EMPRESARIOS",
+"tipo":"Prepaga",
+"codigo":"4-0080-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.osde.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400800",
+"alias":[
+"OSDE",
+"Organización de Servicios Directos Empresarios",
+"Plan 210",
+"Plan 310",
+"Plan 410",
+"Plan 450",
+"Plan 510"
+]
+},
+{
+"slug":"osdel",
+"nombre":"OSDEL - OBRA SOCIAL DE LOCUTORES",
+"razonSocial":"OBRA SOCIAL DE LOCUTORES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1060-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.sal.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110602",
+"alias":[
+"OSDEL"
+]
+},
+{
+"slug":"osdem",
+"nombre":"OSDEM - OBRA SOCIAL DE MUSICOS",
+"razonSocial":"OBRA SOCIAL DE MUSICOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1280-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.osdem.arg.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112806",
+"alias":[
+"OSDEM"
+]
+},
+{
+"slug":"osdic",
+"nombre":"OSDIC - OBRA SOCIAL DEL PERSONAL DIRECTIVO DE LA INDUSTRIA DE LA CONSTRUCCION",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DIRECTIVO DE LA INDUSTRIA DE LA CONSTRUCCION",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0060-2",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400602",
+"alias":[
+"OSDIC"
+]
+},
+{
+"slug":"osdipp",
+"nombre":"OSDIPP - OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA PRIVADA DEL PETROLEO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA PRIVADA DEL PETROLEO",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0160-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.osdipp.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401605",
+"alias":[
+"OSDIPP"
+]
+},
+{
+"slug":"osdo",
+"nombre":"OSDO - OBRA SOCIAL DE DIRECCION OSDO",
+"razonSocial":"OBRA SOCIAL DE DIRECCION OSDO",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0270-7",
+"jurisdiccion":"Nacional",
+"web":"https://www.osdo.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402707",
+"alias":[
+"OSDO"
+]
+},
+{
+"slug":"oseadi",
+"nombre":"OSEADI - OBRA SOCIAL EMPLEADOS DE AGENCIAS DE INFORMES",
+"razonSocial":"OBRA SOCIAL EMPLEADOS DE AGENCIAS DE INFORMES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0090-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.oseadi.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100908",
+"alias":[
+"OSEADI",
+"OBRA SOCIAL  EMPLEADOS DE AGENCIAS DE INFORMES"
+]
+},
+{
+"slug":"oseam",
+"nombre":"OSEAM - OBRA SOCIAL DE ENCARGADOS APUNTADORES MARITIMOS",
+"razonSocial":"OBRA SOCIAL DE ENCARGADOS APUNTADORES MARITIMOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1170-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111704",
+"alias":[
+"OSEAM"
+]
+},
+{
+"slug":"oseda",
+"nombre":"OSEDA - OBRA SOCIAL DE EMPLEADOS DE DESPACHANTES DE ADUANA",
+"razonSocial":"OBRA SOCIAL DE EMPLEADOS DE DESPACHANTES DE ADUANA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0610-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106104",
+"alias":[
+"OSEDA"
+]
+},
+{
+"slug":"osedeiv",
+"nombre":"OSEDEIV - OBRA SOCIAL PARA EL PERSONAL DE DIRECCION DE LA INDUSTRIA VITIVINICOLA Y AFINES",
+"razonSocial":"OBRA SOCIAL PARA EL PERSONAL DE DIRECCION DE LA INDUSTRIA VITIVINICOLA Y AFINES",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0240-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.osedeiv.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402400",
+"alias":[
+"OSEDEIV"
+]
+},
+{
+"slug":"oseiv",
+"nombre":"OSEIV - OBRA SOCIAL DE EMPLEADOS DE LA INDUSTRIA DEL VIDRIO",
+"razonSocial":"OBRA SOCIAL DE EMPLEADOS DE LA INDUSTRIA DEL VIDRIO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2240-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122401",
+"alias":[
+"OSEIV",
+"OBRA SOCIAL DE  EMPLEADOS DE LA INDUSTRIA DEL VIDRIO"
+]
+},
+{
+"slug":"osemm",
+"nombre":"OSEMM - OBRA SOCIAL DE EMPLEADOS DE LA MARINA MERCANTE",
+"razonSocial":"OBRA SOCIAL DE EMPLEADOS DE LA MARINA MERCANTE",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1160-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111605",
+"alias":[
+"OSEMM"
+]
+},
+{
+"slug":"osen",
+"nombre":"OSEN - OBRA SOCIAL ELECTRICISTAS NAVALES",
+"razonSocial":"OBRA SOCIAL ELECTRICISTAS NAVALES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0660-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.osensalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106609",
+"alias":[
+"OSEN"
+]
+},
+{
+"slug":"osepc",
+"nombre":"OSEPC - OBRA SOCIAL DE EMPLEADOS DE PRENSA DE CORDOBA",
+"razonSocial":"OBRA SOCIAL DE EMPLEADOS DE PRENSA DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1800-2",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://www.prensalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118002",
+"alias":[
+"OSEPC"
+]
+},
+{
+"slug":"osepj",
+"nombre":"OSEPJ - OBRA SOCIAL DE EMPLEADOS Y PERSONAL JERARQUICO DE LA ACTIVIDAD DEL NEUMATICO ARGENTINO DE NEUMATICOS GOOD YEAR SRL",
+"razonSocial":"OBRA SOCIAL DE EMPLEADOS Y PERSONAL JERARQUICO DE LA ACTIVIDAD DEL NEUMATICO ARGENTINO DE NEUMATICOS GOOD YEAR SRL",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0220-4",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.osejana.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2204",
+"alias":[
+"OSEPJ",
+"OBRA SOCIAL DE EMPLEADOS Y PERSONAL JERARQUICO  DE LA ACTIVIDAD DEL  NEUMATICO ARGENTINO DE NEUMATICOS GOOD YEAR SRL"
+]
+},
+{
+"slug":"osetra",
+"nombre":"OSETRA - OBRA SOCIAL DE EMPLEADOS DEL TABACO DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE EMPLEADOS DEL TABACO DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2060-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.suetra-tabacos.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120603",
+"alias":[
+"OSETRA"
+]
+},
+{
+"slug":"osetya",
+"nombre":"OSETYA - OBRA SOCIAL DE EMPLEADOS TEXTILES Y AFINES",
+"razonSocial":"OBRA SOCIAL DE EMPLEADOS TEXTILES Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2110-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.osetya.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121101",
+"alias":[
+"OSETYA"
+]
+},
+{
+"slug":"osfas",
+"nombre":"OSFAS - OBRA SOCIAL DE FORD AGENTINA S.C.A",
+"razonSocial":"OBRA SOCIAL DE FORD AGENTINA S.C.A",
+"tipo":"Obra Social Sindical",
+"codigo":"3-0390-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=303901",
+"alias":[
+"OSFAS"
+]
+},
+{
+"slug":"osfatun",
+"nombre":"OSFATUN - OBRA SOCIAL DE LA FEDERACION ARGENTINA DEL TRABAJADOR DE LAS UNIVERSIDADES NACIONALES",
+"razonSocial":"OBRA SOCIAL DE LA FEDERACION ARGENTINA DEL TRABAJADOR DE LAS UNIVERSIDADES NACIONALES",
+"tipo":"Obra Social Universitaria",
+"codigo":"1-2550-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.osfatun.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=125509",
+"alias":[
+"OSFATUN",
+"OBRA SOCIAL DE LA FEDERACION ARGENTINA DEL TRABAJADOR  DE LAS UNIVERSIDADES NACIONALES"
+]
+},
+{
+"slug":"osffentos",
+"nombre":"OSFFENTOS - OBRA SOCIAL FEDERAL DE LA FEDERACION NACIONAL DE TRABAJADORES DE OBRAS SANITARIAS",
+"razonSocial":"OBRA SOCIAL FEDERAL DE LA FEDERACION NACIONAL DE TRABAJADORES DE OBRAS SANITARIAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2530-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.fentos.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=125301",
+"alias":[
+"OSFFENTOS"
+]
+},
+{
+"slug":"osfgp",
+"nombre":"OSFGP - OBRA SOCIAL DE LA FEDERACION GREMIAL DEL PERSONAL DE LA INDUSTRIA DE LA CARNE Y SUS DERIVADOS",
+"razonSocial":"OBRA SOCIAL DE LA FEDERACION GREMIAL DEL PERSONAL DE LA INDUSTRIA DE LA CARNE Y SUS DERIVADOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2600-7",
+"jurisdiccion":"Nacional",
+"web":"https://www.obrasocialdelacarne.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126007",
+"alias":[
+"OSFGP",
+"OBRA SOCIAL DE LA FEDERACION GREMIAL DEL PERSONAL DE  LA INDUSTRIA DE LA CARNE Y SUS DERIVADOS"
+]
+},
+{
+"slug":"osfot",
+"nombre":"OSFOT - OBRA SOCIAL DE FOTOGRAFOS",
+"razonSocial":"OBRA SOCIAL DE FOTOGRAFOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0820-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108209",
+"alias":[
+"OSFOT"
+]
+},
+{
+"slug":"osfyb",
+"nombre":"OSFYB - OBRA SOCIAL DE FARMACEUTICOS Y BIOQUIMICOS",
+"razonSocial":"OBRA SOCIAL DE FARMACEUTICOS Y BIOQUIMICOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2850-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.safyb.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128508",
+"alias":[
+"OSFYB"
+]
+},
+{
+"slug":"osfyhc",
+"nombre":"OSFYHC - OBRA SOCIAL DEL PERSONAL DE MANIPULEO, EMPAQUE Y EXPEDICION DE FRUTA FRESCA Y HORTALIZAS DE CUYO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE MANIPULEO, EMPAQUE Y EXPEDICION DE FRUTA FRESCA Y HORTALIZAS DE CUYO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0850-6",
+"jurisdiccion":"Mendoza",
+"provincias":[
+"Mendoza"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108506",
+"alias":[
+"OSFYHC"
+]
+},
+{
+"slug":"osgmg",
+"nombre":"OSGMG - OBRA SOCIAL DE GUINCHEROS Y MAQUINISTAS DE GRUAS MOVILES",
+"razonSocial":"OBRA SOCIAL DE GUINCHEROS Y MAQUINISTAS DE GRUAS MOVILES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0920-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.osocialguincheros.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109202",
+"alias":[
+"OSGMG"
+]
+},
+{
+"slug":"osiad",
+"nombre":"OSIAD - OBRA SOCIAL PARA EL PERSONAL DE LA INDUSTRIA ACEITERA, DESMOTADORA Y AFINES",
+"razonSocial":"OBRA SOCIAL PARA EL PERSONAL DE LA INDUSTRIA ACEITERA, DESMOTADORA Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0010-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100106",
+"alias":[
+"OSIAD"
+]
+},
+{
+"slug":"osim",
+"nombre":"OSIM - OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA METALURGICA Y DEMAS ACTIVIDADES EMPRESARIAS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA METALURGICA Y DEMAS ACTIVIDADES EMPRESARIAS",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0120-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.osim.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401209",
+"alias":[
+"OSIM",
+"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA METALURGICA  Y DEMAS ACTIVIDADES EMPRESARIAS"
+]
+},
+{
+"slug":"osipa",
+"nombre":"OSIPA - OBRA SOCIAL DE LA INDUSTRIA DE PASTAS ALIMENTICIAS",
+"razonSocial":"OBRA SOCIAL DE LA INDUSTRIA DE PASTAS ALIMENTICIAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1420-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114208",
+"alias":[
+"OSIPA"
+]
+},
+{
+"slug":"ositac",
+"nombre":"OSITAC - OBRA SOCIAL DE LA INDUSTRIA DEL TRANSPORTE AUTOMOTOR DE CORDOBA",
+"razonSocial":"OBRA SOCIAL DE LA INDUSTRIA DEL TRANSPORTE AUTOMOTOR DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2150-7",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121507",
+"alias":[
+"OSITAC",
+"OBRA SOCIAL DE LA INDUSTRIA DEL TRANSPORTE  AUTOMOTOR DE CORDOBA"
+]
+},
+{
+"slug":"osjera",
+"nombre":"OSJERA - OBRA SOCIAL DEL PERSONAL JERARQUICO DE LA REPUBLICA ARGENTINA PARA EL PERSONAL JERARQUICO DE LA INDUSTRIA GRAFICA Y EL PERSONAL JERARQUICO DEL AGUA Y LA ENERGIA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL JERARQUICO DE LA REPUBLICA ARGENTINA PARA EL PERSONAL JERARQUICO DE LA INDUSTRIA GRAFICA Y EL PERSONAL JERARQUICO DEL AGUA Y LA ENERGIA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0170-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.osjera.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1706",
+"alias":[
+"OSJERA"
+]
+},
+{
+"slug":"osjomn",
+"nombre":"OSJOMN - OBRA SOCIAL DE JEFES Y OFICIALES MAQUINISTAS NAVALES",
+"razonSocial":"OBRA SOCIAL DE JEFES Y OFICIALES MAQUINISTAS NAVALES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1330-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.maquinaval.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113304",
+"alias":[
+"OSJOMN"
+]
+},
+{
+"slug":"osjonr",
+"nombre":"OSJONR - OBRA SOCIAL DE JEFES Y OFICIALES NAVALES DE RADIOCOMUNICACIONES",
+"razonSocial":"OBRA SOCIAL DE JEFES Y OFICIALES NAVALES DE RADIOCOMUNICACIONES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1320-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113205",
+"alias":[
+"OSJONR"
+]
+},
+{
+"slug":"osjpvyf",
+"nombre":"OSJPVYF - OBRA SOCIAL DE JARDINEROS, PARQUISTAS, VIVERISTAS Y FLORICULTORES DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE JARDINEROS, PARQUISTAS, VIVERISTAS Y FLORICULTORES DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1010-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110107",
+"alias":[
+"OSJPVYF"
+]
+},
+{
+"slug":"oslera",
+"nombre":"OSLERA - OBRA SOCIAL DE LOS LEGISLADORES DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LOS LEGISLADORES DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0180-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.clnoslera.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1805",
+"alias":[
+"OSLERA",
+"OBRA SOCIAL DE LOS  LEGISLADORES DE LA REPUBLICA ARGENTINA"
+]
+},
+{
+"slug":"oslyf",
+"nombre":"OSLYF - OBRA SOCIAL DEL PERSONAL DE LUZ Y FUERZA DE CORDOBA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LUZ Y FUERZA DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1090-9",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://luzfuerzacbasalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110909",
+"alias":[
+"OSLYF"
+]
+},
+{
+"slug":"oslyf-patagonia",
+"nombre":"OSLYF PATAGONIA - OBRA SOCIAL DE LUZ Y FUERZA DE LA PATAGONIA",
+"razonSocial":"OBRA SOCIAL DE LUZ Y FUERZA DE LA PATAGONIA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2780-2",
+"jurisdiccion":"Chubut",
+"provincias":[
+"Chubut"
+],
+"web":"https://www.generarsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127802",
+"alias":[
+"OSLYF PATAGONIA"
+]
+},
+{
+"slug":"osma",
+"nombre":"OSMA - OBRA SOCIAL MODELOS ARGENTINOS",
+"razonSocial":"OBRA SOCIAL MODELOS ARGENTINOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1250-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112509",
+"alias":[
+"OSMA"
+]
+},
+{
+"slug":"osmad",
+"nombre":"OSMAD - OBRA SOCIAL PARA EL PERSONAL DE DIRECCION DE LA INDUSTRIA MADERERA",
+"razonSocial":"OBRA SOCIAL PARA EL PERSONAL DE DIRECCION DE LA INDUSTRIA MADERERA",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0130-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.osmad.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401308",
+"alias":[
+"OSMAD"
+]
+},
+{
+"slug":"osme",
+"nombre":"OSME - OBRA SOCIAL PARA EL PERSONAL DEL MINISTERIO DE ECONOMIA Y DE OBRAS Y SERVICIOS PUBLICOS",
+"razonSocial":"OBRA SOCIAL PARA EL PERSONAL DEL MINISTERIO DE ECONOMIA Y DE OBRAS Y SERVICIOS PUBLICOS",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0120-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.osme.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1201",
+"alias":[
+"OSME"
+]
+},
+{
+"slug":"osmedica",
+"nombre":"OSMEDICA - OBRA SOCIAL DE LOS MEDICOS DE LA CIUDAD DE BUENOS AIRES",
+"razonSocial":"OBRA SOCIAL DE LOS MEDICOS DE LA CIUDAD DE BUENOS AIRES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2690-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.osmedica.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126908",
+"alias":[
+"OSMEDICA"
+]
+},
+{
+"slug":"osmiss",
+"nombre":"OSMISS - OBRA SOCIAL DE MINISTROS, SECRETARIOS Y SUBSECRETARIOS",
+"razonSocial":"OBRA SOCIAL DE MINISTROS, SECRETARIOS Y SUBSECRETARIOS",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0250-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.osmiss.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2501",
+"alias":[
+"OSMISS"
+]
+},
+{
+"slug":"osmita",
+"nombre":"OSMITA - OBRA SOCIAL MUTUALIDAD INDUSTRIAL TEXTIL ARGENTINA",
+"razonSocial":"OBRA SOCIAL MUTUALIDAD INDUSTRIAL TEXTIL ARGENTINA",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0220-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.osmita.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402202",
+"alias":[
+"OSMITA"
+]
+},
+{
+"slug":"osmmedt",
+"nombre":"OSMMEDT - OBRA SOCIAL DE MANDOS MEDIOS DE TELECOMUNICACIONES EN LA REPUBLICA ARGENTINA Y MERCOSUR",
+"razonSocial":"OBRA SOCIAL DE MANDOS MEDIOS DE TELECOMUNICACIONES EN LA REPUBLICA ARGENTINA Y MERCOSUR",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2720-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.osmmedt.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127208",
+"alias":[
+"OSMMEDT"
+]
+},
+{
+"slug":"osmpa",
+"nombre":"OSMPA - MUTUAL DEL PERSONAL DEL AGUA Y LA ENERGIA DE MENDOZA",
+"razonSocial":"MUTUAL DEL PERSONAL DEL AGUA Y LA ENERGIA DE MENDOZA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0070-3",
+"jurisdiccion":"Mendoza",
+"provincias":[
+"Mendoza"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=703",
+"alias":[
+"OSMPA",
+"MUTUAL DEL PERSONAL DEL AGUA Y LA ENERGIA  DE MENDOZA"
+]
+},
+{
+"slug":"osmtt",
+"nombre":"OSMTT - OBRA SOCIAL DE MAQUINISTAS DE TEATRO Y TELEVISION",
+"razonSocial":"OBRA SOCIAL DE MAQUINISTAS DE TEATRO Y TELEVISION",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1130-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111308",
+"alias":[
+"OSMTT"
+]
+},
+{
+"slug":"osoc",
+"nombre":"OSOC - OBRA SOCIAL DE OPERADORES CINEMATOGRAFICOS",
+"razonSocial":"OBRA SOCIAL DE OPERADORES CINEMATOGRAFICOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0460-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104603",
+"alias":[
+"OSOC"
+]
+},
+{
+"slug":"osocna",
+"nombre":"OSOCNA - OBRA SOCIAL DE COMISARIOS NAVALES",
+"razonSocial":"OBRA SOCIAL DE COMISARIOS NAVALES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1380-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113809",
+"alias":[
+"OSOCNA"
+]
+},
+{
+"slug":"osoef",
+"nombre":"OSOEF - OBRA SOCIAL DE OBREROS EMPACADORES DE FRUTA DE RIO NEGRO Y NEUQUEN",
+"razonSocial":"OBRA SOCIAL DE OBREROS EMPACADORES DE FRUTA DE RIO NEGRO Y NEUQUEN",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0670-8",
+"jurisdiccion":"Río Negro",
+"provincias":[
+"Río Negro"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106708",
+"alias":[
+"OSOEF",
+"OBRA SOCIAL DE OBREROS EMPACADORES DE FRUTA  DE RIO NEGRO Y NEUQUEN"
+]
+},
+{
+"slug":"osoetsylara",
+"nombre":"OSOETSYLARA - OBRA SOCIAL DE OBREROS Y EMPLEADOS TINTOREROS SOMBREREROS Y LAVADEROS DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE OBREROS Y EMPLEADOS TINTOREROS SOMBREREROS Y LAVADEROS DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2740-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.uoesylra.org",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127406",
+"alias":[
+"OSOETSYLARA"
+]
+},
+{
+"slug":"osopp",
+"nombre":"OSOPP - OBRA SOCIAL DE OFICIALES PELUQUEROS Y PEINADORES DE LA 2DA CIRCUNSCRIPCION JUDICIAL DE LA PROVINCIA DE SANTA FE",
+"razonSocial":"OBRA SOCIAL DE OFICIALES PELUQUEROS Y PEINADORES DE LA 2DA CIRCUNSCRIPCION JUDICIAL DE LA PROVINCIA DE SANTA FE",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1490-1",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"web":"https://www.sindicatopeluq-ros.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114901",
+"alias":[
+"OSOPP",
+"OBRA SOCIAL DE OFICIALES PELUQUEROS Y PEINADORES  DE LA 2DA CIRCUNSCRIPCION JUDICIAL DE LA PROVINCIA DE SANTA FE"
+]
+},
+{
+"slug":"ososs",
+"nombre":"OSOSS - OBRA SOCIAL DEL PERSONAL DE OBRAS Y SERVICIOS SANITARIOS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE OBRAS Y SERVICIOS SANITARIOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2760-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.ososs.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127604",
+"alias":[
+"OSOSS"
+]
+},
+{
+"slug":"os-de-portuarios-argentinos",
+"nombre":"OSPA - OBRA SOCIAL DE PORTUARIOS ARGENTINOS",
+"razonSocial":"OBRA SOCIAL DE PORTUARIOS ARGENTINOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1620-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospaport.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=116204",
+"alias":[
+"OSPA"
+]
+},
+{
+"slug":"os-del-personal-aeronautico",
+"nombre":"OSPA - OBRA SOCIAL DEL PERSONAL AERONAUTICO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL AERONAUTICO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0050-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospa.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100502",
+"alias":[
+"OSPA"
+]
+},
+{
+"slug":"os-del-personal-del-azucar-del-ingenio-la-esp",
+"nombre":"OSPA - OBRA SOCIAL DEL PERSONAL DEL AZUCAR DEL INGENIO LA ESPERANZA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DEL AZUCAR DEL INGENIO LA ESPERANZA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0180-2",
+"jurisdiccion":"Jujuy",
+"provincias":[
+"Jujuy"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=101802",
+"alias":[
+"OSPA"
+]
+},
+{
+"slug":"os-del-personal-del-azucar-del-ingenio-san-ma",
+"nombre":"OSPA - OBRA SOCIAL DEL PERSONAL DEL AZUCAR DEL INGENIO SAN MARTIN",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DEL AZUCAR DEL INGENIO SAN MARTIN",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0230-0",
+"jurisdiccion":"Salta",
+"provincias":[
+"Salta"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=102300",
+"alias":[
+"OSPA"
+]
+},
+{
+"slug":"ospa",
+"nombre":"OSPA - OBRA SOCIAL PORTUARIOS ARGENTINOS DE MAR DEL PLATA",
+"razonSocial":"OBRA SOCIAL PORTUARIOS ARGENTINOS DE MAR DEL PLATA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0030-7",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=307",
+"alias":[
+"OSPA"
+]
+},
+{
+"slug":"ospa-vial",
+"nombre":"OSPA-VIAL - OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD VIAL",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD VIAL",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2230-2",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122302",
+"alias":[
+"OSPA-VIAL"
+]
+},
+{
+"slug":"ospaa",
+"nombre":"OSPAA - OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD AZUCARERA TUCUMANA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD AZUCARERA TUCUMANA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2670-0",
+"jurisdiccion":"Tucumán",
+"provincias":[
+"Tucumán"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126700",
+"alias":[
+"OSPAA"
+]
+},
+{
+"slug":"os-del-personal-de-la-actividad-cervecera-y-a",
+"nombre":"OSPACA - OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD CERVECERA Y AFINES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD CERVECERA Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0430-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.oscervecera.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104306",
+"alias":[
+"OSPACA"
+]
+},
+{
+"slug":"ospaca",
+"nombre":"OSPACA - OBRA SOCIAL DEL PERSONAL DEL AUTOMOVIL CLUB ARGENTINO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DEL AUTOMOVIL CLUB ARGENTINO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0160-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospaca.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=101604",
+"alias":[
+"OSPACA",
+"OBRA SOCIAL DEL PERSONAL DEL AUTOMOVIL  CLUB ARGENTINO"
+]
+},
+{
+"slug":"ospacp",
+"nombre":"OSPACP - OBRA SOCIAL DEL PERSONAL AUXILIAR DE CASAS PARTICULARES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL AUXILIAR DE CASAS PARTICULARES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0360-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospacp.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103600",
+"alias":[
+"OSPACP"
+]
+},
+{
+"slug":"ospadep",
+"nombre":"OSPADEP - OBRA SOCIAL DEL PERSONAL DE AERONAVEGACION DE ENTES PRIVADOS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE AERONAVEGACION DE ENTES PRIVADOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0060-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospadep.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100601",
+"alias":[
+"OSPADEP"
+]
+},
+{
+"slug":"ospaf",
+"nombre":"OSPAF - OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD FRUTICOLA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD FRUTICOLA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0840-7",
+"jurisdiccion":"Entre Ríos",
+"provincias":[
+"Entre Ríos"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108407",
+"alias":[
+"OSPAF"
+]
+},
+{
+"slug":"ospaga",
+"nombre":"OSPAGA - OBRA SOCIAL DEL PERSONAL DE AGUAS GASEOSAS Y AFINES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE AGUAS GASEOSAS Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0100-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospaga.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=101000",
+"alias":[
+"OSPAGA"
+]
+},
+{
+"slug":"ospail",
+"nombre":"OSPAIL - OBRA SOCIAL DEL PERSONAL DEL AZUCAR DEL INGENIO LEDESMA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DEL AZUCAR DEL INGENIO LEDESMA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0190-1",
+"jurisdiccion":"Jujuy",
+"provincias":[
+"Jujuy"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=101901",
+"alias":[
+"OSPAIL"
+]
+},
+{
+"slug":"ospap",
+"nombre":"OSPAP - OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD PERFUMISTA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD PERFUMISTA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1500-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospap.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115003",
+"alias":[
+"OSPAP"
+]
+},
+{
+"slug":"ospatca",
+"nombre":"OSPATCA - OBRA SOCIAL DEL PERSONAL ADMINISTRATIVO Y TECNICO DE LA CONSTRUCCION Y AFINES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL ADMINISTRATIVO Y TECNICO DE LA CONSTRUCCION Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0530-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospatca.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105309",
+"alias":[
+"OSPATCA"
+]
+},
+{
+"slug":"ospav",
+"nombre":"OSPAV - OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD VITIVINICOLA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD VITIVINICOLA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2260-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospav.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122609",
+"alias":[
+"OSPAV"
+]
+},
+{
+"slug":"ospana",
+"nombre":"OSPAÑA - OBRA SOCIAL DE LOS INMIGRANTES ESPAÑOLES Y SUS DESCENDIENTES RESIDENTES EN LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LOS INMIGRANTES ESPAÑOLES Y SUS DESCENDIENTES RESIDENTES EN LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0310-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospana.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3108",
+"alias":[
+"OSPAÑA"
+]
+},
+{
+"slug":"ospbl",
+"nombre":"OSPBL - OBRA SOCIAL DEL PERSONAL DE BARRACAS DE LANAS, CUEROS Y ANEXOS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE BARRACAS DE LANAS, CUEROS Y ANEXOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0290-4",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=102904",
+"alias":[
+"OSPBL"
+]
+},
+{
+"slug":"ospcr",
+"nombre":"OSPCR - OBRA SOCIAL DE PATRONES DE CABOTAJE DE RIOS Y PUERTOS",
+"razonSocial":"OBRA SOCIAL DE PATRONES DE CABOTAJE DE RIOS Y PUERTOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1450-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospatrones.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114505",
+"alias":[
+"OSPCR"
+]
+},
+{
+"slug":"ospcra",
+"nombre":"OSPCRA - OBRA SOCIAL DEL PERSONAL DE CEMENTERIOS DE LA REPUBLICA ARGENTINA.",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE CEMENTERIOS DE LA REPUBLICA ARGENTINA.",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0400-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospcra.org",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104009",
+"alias":[
+"OSPCRA"
+]
+},
+{
+"slug":"ospcspmya",
+"nombre":"OSPCSPMYA - OBRA SOCIAL DEL PERSONAL DE LA CERAMICA, SANITARIOS, PORCELANA DE MESA Y AFINES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA CERAMICA, SANITARIOS, PORCELANA DE MESA Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0420-7",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.ospecesa.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104207",
+"alias":[
+"OSPCSPMYA"
+]
+},
+{
+"slug":"ospcyd",
+"nombre":"OSPCYD - OBRA SOCIAL DEL PERSONAL DE CARGA Y DESCARGA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE CARGA Y DESCARGA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0340-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.unioncargaydescarga.org.",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103402",
+"alias":[
+"OSPCYD"
+]
+},
+{
+"slug":"ospdesba",
+"nombre":"OSPDESBA - OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA EMPRESA SUBTERRANEOS DE BUENOS AIRES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA EMPRESA SUBTERRANEOS DE BUENOS AIRES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2040-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120405",
+"alias":[
+"OSPDESBA"
+]
+},
+{
+"slug":"ospdi",
+"nombre":"OSPDI - OBRA SOCIAL PERSONAL DE DIRECCION DE LA INDUSTRIA CURTIDORA ARGENTINA",
+"razonSocial":"OBRA SOCIAL PERSONAL DE DIRECCION DE LA INDUSTRIA CURTIDORA ARGENTINA",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0070-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400701",
+"alias":[
+"OSPDI"
+]
+},
+{
+"slug":"os-de-petroleros",
+"nombre":"OSPE - OBRA SOCIAL DE PETROLEROS",
+"razonSocial":"OBRA SOCIAL DE PETROLEROS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1530-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospesalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115300",
+"alias":[
+"OSPE"
+]
+},
+{
+"slug":"os-del-personal-de-escribanos",
+"nombre":"OSPE - OBRA SOCIAL DEL PERSONAL DE ESCRIBANOS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE ESCRIBANOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0700-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospe.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107008",
+"alias":[
+"OSPE"
+]
+},
+{
+"slug":"ospea",
+"nombre":"OSPEA - OBRA SOCIAL DEL PERSONAL SUPERIOR Y PROFESIONAL DE EMPRESAS AEROCOMERCIALES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL SUPERIOR Y PROFESIONAL DE EMPRESAS AEROCOMERCIALES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0040-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.upsa-ospea.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100403",
+"alias":[
+"OSPEA"
+]
+},
+{
+"slug":"ospec",
+"nombre":"OSPEC - OBRA SOCIAL DEL PERSONAL DE LA EMPRESA NACIONAL DE CORREOS Y TELEGRAFOS S.A. Y DE LAS COMUNICACIONES DE LA REPULICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA EMPRESA NACIONAL DE CORREOS Y TELEGRAFOS S.A. Y DE LAS COMUNICACIONES DE LA REPULICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"2-0040-0",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=200400",
+"alias":[
+"OSPEC",
+"OBRA SOCIAL DEL PERSONAL DE LA EMPRESA NACIONAL DE CORREOS Y TELEGRAFOS S.A. Y DE LAS  COMUNICACIONES DE LA REPULICA ARGENTINA"
+]
+},
+{
+"slug":"ospeca",
+"nombre":"OSPECA - OBRA SOCIAL DEL PERSONAL DEL CAUCHO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DEL CAUCHO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0380-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospeca.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103808",
+"alias":[
+"OSPECA"
+]
+},
+{
+"slug":"ospedici",
+"nombre":"OSPEDICI - OBRA SOCIAL DEL PERSONAL DE DISTRIBUIDORAS CINEMATOGRAFICAS DE LA R.A.",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DISTRIBUIDORAS CINEMATOGRAFICAS DE LA R.A.",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0620-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospedici.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106203",
+"alias":[
+"OSPEDICI"
+]
+},
+{
+"slug":"ospedyb",
+"nombre":"OSPEDYB - OBRA SOCIAL DEL PERSONAL DE DRAGADO Y BALIZAMIENTO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DRAGADO Y BALIZAMIENTO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2870-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128706",
+"alias":[
+"OSPEDYB"
+]
+},
+{
+"slug":"ospedyc",
+"nombre":"OSPEDYC - OBRA SOCIAL DEL PERSONAL DE ENTIDADES DEPORTIVAS Y CIVILES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE ENTIDADES DEPORTIVAS Y CIVILES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0600-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospedyc.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106005",
+"alias":[
+"OSPEDYC"
+]
+},
+{
+"slug":"ospef-y-epca",
+"nombre":"OSPEF Y EPCA - OBRA SOCIAL DEL PERSONAL DE EMPRESAS FIAT Y EMPRESAS PEUGEOT CITROEN ARGENTINA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE EMPRESAS FIAT Y EMPRESAS PEUGEOT CITROEN ARGENTINA",
+"tipo":"Prepaga",
+"codigo":"9-0010-2",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900102",
+"alias":[
+"OSPEF Y EPCA"
+]
+},
+{
+"slug":"ospej",
+"nombre":"OSPEJ - OBRA SOCIAL DEL PERSONAL DE JABONEROS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE JABONEROS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1000-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110008",
+"alias":[
+"OSPEJ"
+]
+},
+{
+"slug":"ospel",
+"nombre":"OSPEL - OBRA SOCIAL PARA EL PERSONAL DE EMPRESAS DE LIMPIEZA, SERVICIOS Y MAESTRANZA DE MENDOZA",
+"razonSocial":"OBRA SOCIAL PARA EL PERSONAL DE EMPRESAS DE LIMPIEZA, SERVICIOS Y MAESTRANZA DE MENDOZA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0230-3",
+"jurisdiccion":"Mendoza",
+"provincias":[
+"Mendoza"
+],
+"web":"https://www.ospelsym.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2303",
+"alias":[
+"OSPEL",
+"OBRA SOCIAL PARA EL  PERSONAL DE EMPRESAS DE  LIMPIEZA, SERVICIOS Y MAESTRANZA DE MENDOZA"
+]
+},
+{
+"slug":"ospemer",
+"nombre":"OSPEMER - OBRA SOCIAL DEL PERSONAL DE CONSIGNATARIOS DEL MERCADO NACIONAL DE HACIENDA DE LINIERS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE CONSIGNATARIOS DEL MERCADO NACIONAL DE HACIENDA DE LINIERS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0930-1",
+"jurisdiccion":"Nacional",
+"web":"https://encrisisdesdeel14/08/14-Resol.1291/14-SSS",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109301",
+"alias":[
+"OSPEMER"
+]
+},
+{
+"slug":"ospemom",
+"nombre":"OSPEMOM - OBRA SOCIAL DEL PERSONAL DE MICROS Y OMNIBUS DE MENDOZA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE MICROS Y OMNIBUS DE MENDOZA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1230-1",
+"jurisdiccion":"Mendoza",
+"provincias":[
+"Mendoza"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112301",
+"alias":[
+"OSPEMOM",
+"OBRA SOCIAL DEL PERSONAL DE  MICROS Y OMNIBUS DE MENDOZA"
+]
+},
+{
+"slug":"ospena",
+"nombre":"OSPENA - OBRA SOCIAL DEL PERSONAL NAVAL",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL NAVAL",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1340-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113403",
+"alias":[
+"OSPENA"
+]
+},
+{
+"slug":"os-del-personal-de-la-ensenanza-privada",
+"nombre":"OSPEP - OBRA SOCIAL DEL PERSONAL DE LA ENSEÑANZA PRIVADA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA ENSEÑANZA PRIVADA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0680-7",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospepweb.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106807",
+"alias":[
+"OSPEP"
+]
+},
+{
+"slug":"os-del-personal-de-panaderias",
+"nombre":"OSPEP - OBRA SOCIAL DEL PERSONAL DE PANADERIAS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE PANADERIAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1390-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113908",
+"alias":[
+"OSPEP"
+]
+},
+{
+"slug":"os-del-personal-del-espectaculo-publico",
+"nombre":"OSPEP - OBRA SOCIAL DEL PERSONAL DEL ESPECTACULO PUBLICO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DEL ESPECTACULO PUBLICO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0710-7",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospepsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107107",
+"alias":[
+"OSPEP"
+]
+},
+{
+"slug":"ospep",
+"nombre":"OSPEP - OBRA SOCIAL PARA EMPLEADOS Y PRODUCTORES DE ENTIDADES DE LA ACTIVIDAD AGROPECUARIA Y AGROALIMENTARIA DE LA ECONOMIA SOCIAL",
+"razonSocial":"OBRA SOCIAL PARA EMPLEADOS Y PRODUCTORES DE ENTIDADES DE LA ACTIVIDAD AGROPECUARIA Y AGROALIMENTARIA DE LA ECONOMIA SOCIAL",
+"tipo":"Obra Social de Dirección",
+"codigo":"0-0400-2",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=4002",
+"alias":[
+"OSPEP"
+]
+},
+{
+"slug":"ospepba",
+"nombre":"OSPEPBA - OBRA SOCIAL DEL PERSONAL DE ESCRIBANIAS DE LA PROVINCIA DE BUENOS AIRES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE ESCRIBANIAS DE LA PROVINCIA DE BUENOS AIRES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0690-6",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.empleadosescribania.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106906",
+"alias":[
+"OSPEPBA"
+]
+},
+{
+"slug":"ospercin",
+"nombre":"OSPERCIN - OBRA SOCIAL DEL PERSONAL CINEMATOGRAFICO DE MAR DEL PLATA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL CINEMATOGRAFICO DE MAR DEL PLATA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0440-5",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://ospercin@ospercinweb.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104405",
+"alias":[
+"OSPERCIN"
+]
+},
+{
+"slug":"osperyh",
+"nombre":"OSPERYH - OBRA SOCIAL DEL PERSONAL DE EDIFICIOS DE RENTA Y HORIZONTAL DE LA CIUDAD AUTONOMA DE BUENOS AIRES Y GRAN BUENOS AIRES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE EDIFICIOS DE RENTA Y HORIZONTAL DE LA CIUDAD AUTONOMA DE BUENOS AIRES Y GRAN BUENOS AIRES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0650-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.fateryh.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106500",
+"alias":[
+"OSPERYH",
+"OBRA SOCIAL DEL PERSONAL DE EDIFICIOS DE RENTA Y HORIZONTAL DE LA CIUDAD AUTONOMA DE BUENOS AIRES  Y GRAN BUENOS AIRES"
+]
+},
+{
+"slug":"osperyhra",
+"nombre":"OSPERYHRA - OBRA SOCIAL DEL PERSONAL DE EDIFICIOS DE RENTA Y HORIZONTAL DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE EDIFICIOS DE RENTA Y HORIZONTAL DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0640-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.fateryh.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106401",
+"alias":[
+"OSPERYHRA"
+]
+},
+{
+"slug":"ospes",
+"nombre":"OSPES - OBRA SOCIAL PARA EL PERSONAL DE ESTACIONES DE SERVICIO, GARAGES, PLAYAS DE ESTACIONAMIENTO, LAVADEROS AUTOMATICOS Y GOMERIAS DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL PARA EL PERSONAL DE ESTACIONES DE SERVICIO, GARAGES, PLAYAS DE ESTACIONAMIENTO, LAVADEROS AUTOMATICOS Y GOMERIAS DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2300-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospes.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123008",
+"alias":[
+"OSPES"
+]
+},
+{
+"slug":"ospesa",
+"nombre":"OSPESA - OBRA SOCIAL DEL PERSONAL DE SOCIEDADES DE AUTORES Y AFINES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE SOCIEDADES DE AUTORES Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2330-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123305",
+"alias":[
+"OSPESA"
+]
+},
+{
+"slug":"ospesca",
+"nombre":"OSPESCA - OBRA SOCIAL DE CAPITANES, PILOTOS Y PATRONES DE PESCA",
+"razonSocial":"OBRA SOCIAL DE CAPITANES, PILOTOS Y PATRONES DE PESCA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0050-5",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.capitanesdepesca.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=505",
+"alias":[
+"OSPESCA"
+]
+},
+{
+"slug":"ospescha",
+"nombre":"OSPESCHA - OBRA SOCIAL PERSONAL ESTACIONES DE SERVICIO,GARAGES,PLAYAS Y LAVADEROS DE LA PROVINCIA DEL CHACO",
+"razonSocial":"OBRA SOCIAL PERSONAL ESTACIONES DE SERVICIO,GARAGES,PLAYAS Y LAVADEROS DE LA PROVINCIA DEL CHACO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2770-3",
+"jurisdiccion":"Chaco",
+"provincias":[
+"Chaco"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127703",
+"alias":[
+"OSPESCHA"
+]
+},
+{
+"slug":"ospesga",
+"nombre":"OSPESGA - OBRA SOCIAL DEL PERSONAL DE ESTACIONES DE SERVICIO, GARAGES, PLAYAS Y LAVADEROS AUTOMATICOS DE LA PROVINCIA DE SANTA FE",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE ESTACIONES DE SERVICIO, GARAGES, PLAYAS Y LAVADEROS AUTOMATICOS DE LA PROVINCIA DE SANTA FE",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2290-6",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"web":"https://www.ospesga.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122906",
+"alias":[
+"OSPESGA"
+]
+},
+{
+"slug":"ospesgype",
+"nombre":"OSPESGYPE - OBRA SOCIAL DEL PERSONAL DE ESTACIONES DE SERVICIO Y G.N.C, GARAGES, PLAYAS DE ESTACIONAMIENTO Y LAVADEROS AUTOMATICOS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE ESTACIONES DE SERVICIO Y G.N.C, GARAGES, PLAYAS DE ESTACIONAMIENTO Y LAVADEROS AUTOMATICOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0720-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.soesgype.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107206",
+"alias":[
+"OSPESGYPE"
+]
+},
+{
+"slug":"ospetax",
+"nombre":"OSPETAX - OBRA SOCIAL DE PEONES DE TAXIS DE LA CAPITAL FEDERAL",
+"razonSocial":"OBRA SOCIAL DE PEONES DE TAXIS DE LA CAPITAL FEDERAL",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2370-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospetax.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123701",
+"alias":[
+"OSPETAX"
+]
+},
+{
+"slug":"ospetelco",
+"nombre":"OSPETELCO - OBRA SOCIAL DEL PERSONAL DE TELECOMUNICACIONES SINDICATO BUENOS AIRES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE TELECOMUNICACIONES SINDICATO BUENOS AIRES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2710-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospetelco.org",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127109",
+"alias":[
+"OSPETELCO"
+]
+},
+{
+"slug":"ospevic",
+"nombre":"OSPEVIC - OBRA SOCIAL DEL PERSONAL DE VIGILANCIA Y SEGURIDAD COMERCIAL, INDUSTRIAL E INVESTIGACIONES PRIVADAS DE CORDOBA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE VIGILANCIA Y SEGURIDAD COMERCIAL, INDUSTRIAL E INVESTIGACIONES PRIVADAS DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2280-7",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://www.ospevic.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122807",
+"alias":[
+"OSPEVIC"
+]
+},
+{
+"slug":"ospfs",
+"nombre":"OSPFS - OBRA SOCIAL DEL PERSONAL DE LA FEDERACION DE SINDICATOS DE LA INDUSTRIA QUIMICA Y PETROQUIMICA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA FEDERACION DE SINDICATOS DE LA INDUSTRIA QUIMICA Y PETROQUIMICA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2800-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.festiqypra.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128003",
+"alias":[
+"OSPFS"
+]
+},
+{
+"slug":"ospg",
+"nombre":"OSPG - OBRA SOCIAL DEL PERSONAL GRAFICO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL GRAFICO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0900-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109004",
+"alias":[
+"OSPG"
+]
+},
+{
+"slug":"osphgbaysi",
+"nombre":"OSPHGBAYSI - OBRA SOCIAL DEL PERSONAL DE LOS HIPODROMOS DE BUENOS AIRES Y SAN ISIDRO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LOS HIPODROMOS DE BUENOS AIRES Y SAN ISIDRO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0950-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109509",
+"alias":[
+"OSPHGBAYSI"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-azucarera",
+"nombre":"OSPIA - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA AZUCARERA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA AZUCARERA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0270-6",
+"jurisdiccion":"Tucumán",
+"provincias":[
+"Tucumán"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=102706",
+"alias":[
+"OSPIA"
+]
+},
+{
+"slug":"ospia",
+"nombre":"OSPIA - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DE LA ALIMENTACION",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DE LA ALIMENTACION",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0120-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospia.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=101208",
+"alias":[
+"OSPIA"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-cinematografi",
+"nombre":"OSPIC - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA CINEMATOGRAFICA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA CINEMATOGRAFICA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0450-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.sicacine.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104504",
+"alias":[
+"OSPIC"
+]
+},
+{
+"slug":"ospic-santa-fe",
+"nombre":"OSPIC SANTA FE - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL CAUCHO DE SANTA FE",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL CAUCHO DE SANTA FE",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0390-7",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103907",
+"alias":[
+"OSPIC SANTA FE"
+]
+},
+{
+"slug":"ospica",
+"nombre":"OSPICA - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL CUERO Y AFINES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL CUERO Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0560-6",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.ospica.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105606",
+"alias":[
+"OSPICA"
+]
+},
+{
+"slug":"ospical",
+"nombre":"OSPICAL - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL CALZADO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL CALZADO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0310-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103105",
+"alias":[
+"OSPICAL"
+]
+},
+{
+"slug":"ospicha",
+"nombre":"OSPICHA - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL CHACINADO Y AFINES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL CHACINADO Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0570-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105705",
+"alias":[
+"OSPICHA"
+]
+},
+{
+"slug":"ospif",
+"nombre":"OSPIF - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL FIBROCEMENTO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL FIBROCEMENTO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0780-0",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107800",
+"alias":[
+"OSPIF"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-fideera",
+"nombre":"OSPIF - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA FIDEERA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA FIDEERA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0790-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107909",
+"alias":[
+"OSPIF"
+]
+},
+{
+"slug":"ospifse",
+"nombre":"OSPIFSE - OBRA SOCIAL PARA EL PERSONAL DE LA INDUSTRIA FORESTAL DE SANTIAGO DEL ESTERO",
+"razonSocial":"OBRA SOCIAL PARA EL PERSONAL DE LA INDUSTRIA FORESTAL DE SANTIAGO DEL ESTERO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0800-1",
+"jurisdiccion":"Santiago del Estero",
+"provincias":[
+"Santiago del Estero"
+],
+"web":"https://www.ospifse.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108001",
+"alias":[
+"OSPIFSE",
+"OBRA SOCIAL  PARA EL PERSONAL DE LA INDUSTRIA FORESTAL DE SANTIAGO DEL ESTERO"
+]
+},
+{
+"slug":"ospig",
+"nombre":"OSPIG - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA GRAFICA DE LA PROVINCIA DE CORDOBA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA GRAFICA DE LA PROVINCIA DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0020-8",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://ww.uogc.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=208",
+"alias":[
+"OSPIG",
+"OBRA SOCIAL DEL  PERSONAL DE LA INDUSTRIA GRAFICA DE LA PROVINCIA DE CORDOBA"
+]
+},
+{
+"slug":"ospihmp",
+"nombre":"OSPIHMP - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL HIELO Y MERCADOS PARTICULARES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL HIELO Y MERCADOS PARTICULARES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0940-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.stihmpra.hypermart.net",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109400",
+"alias":[
+"OSPIHMP"
+]
+},
+{
+"slug":"ospilm",
+"nombre":"OSPILM - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA LADRILLERA A MAQUINA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA LADRILLERA A MAQUINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1040-4",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.ospilm.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110404",
+"alias":[
+"OSPILM"
+]
+},
+{
+"slug":"ospim",
+"nombre":"OSPIM - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA MADERERA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA MADERERA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1100-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111001",
+"alias":[
+"OSPIM"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-molinera",
+"nombre":"OSPIM - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA MOLINERA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA MOLINERA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1260-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospim.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112608",
+"alias":[
+"OSPIM"
+]
+},
+{
+"slug":"ospin",
+"nombre":"OSPIN - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL NEUMATICO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL NEUMATICO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1360-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospin.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113601",
+"alias":[
+"OSPIN"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-naval",
+"nombre":"OSPIN - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA NAVAL",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA NAVAL",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1370-0",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://ospin-navales.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113700",
+"alias":[
+"OSPIN"
+]
+},
+{
+"slug":"ospip",
+"nombre":"OSPIP - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL PESCADO DE MAR DEL PLATA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL PESCADO DE MAR DEL PLATA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1520-1",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115201",
+"alias":[
+"OSPIP"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-del-plastico",
+"nombre":"OSPIP - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL PLASTICO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL PLASTICO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1600-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospip.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=116006",
+"alias":[
+"OSPIP"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-petroquimica",
+"nombre":"OSPIP - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA PETROQUIMICA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA PETROQUIMICA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1560-7",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115607",
+"alias":[
+"OSPIP"
+]
+},
+{
+"slug":"ospiqyp",
+"nombre":"OSPIQYP - OBRA SOCIAL DEL PERSONAL DE INDUSTRIAS QUIMICAS Y PETROQUIMICAS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE INDUSTRIAS QUIMICAS Y PETROQUIMICAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1870-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospiqyp.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118705",
+"alias":[
+"OSPIQYP"
+]
+},
+{
+"slug":"ospis",
+"nombre":"OSPIS - OBRA SOCIAL DEL PERSONAL DE INSTALACIONES SANITARIAS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE INSTALACIONES SANITARIAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1960-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospis.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119609",
+"alias":[
+"OSPIS"
+]
+},
+{
+"slug":"ospit",
+"nombre":"OSPIT - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL TABACO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL TABACO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2050-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120504",
+"alias":[
+"OSPIT",
+"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA  DEL TABACO"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-del-tractor",
+"nombre":"OSPIT - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL TRACTOR",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL TRACTOR",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2130-9",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121309",
+"alias":[
+"OSPIT"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-textil",
+"nombre":"OSPIT - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA TEXTIL",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA TEXTIL",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2100-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospit.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121002",
+"alias":[
+"OSPIT"
+]
+},
+{
+"slug":"ospiv",
+"nombre":"OSPIV - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL VESTIDO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL VESTIDO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2200-5",
+"jurisdiccion":"Nacional",
+"web":"https://www.osvestido.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122005",
+"alias":[
+"OSPIV"
+]
+},
+{
+"slug":"os-del-personal-de-la-industria-del-vidrio",
+"nombre":"OSPIV - OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL VIDRIO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL VIDRIO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2250-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.soivavidrio.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122500",
+"alias":[
+"OSPIV"
+]
+},
+{
+"slug":"ospjc",
+"nombre":"OSPJC - OBRA SOCIAL DEL PERSONAL DEL JOCKEY CLUB DE ROSARIO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DEL JOCKEY CLUB DE ROSARIO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1020-6",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110206",
+"alias":[
+"OSPJC"
+]
+},
+{
+"slug":"ospjt",
+"nombre":"OSPJT - OBRA SOCIAL DEL PERSONAL JERARQUICO DEL TRANSPORTE AUTOMOTOR DE PASAJEROS DE CORDOBA Y AFINES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL JERARQUICO DEL TRANSPORTE AUTOMOTOR DE PASAJEROS DE CORDOBA Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0240-2",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://www.ospjtap.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2402",
+"alias":[
+"OSPJT"
+]
+},
+{
+"slug":"ospl",
+"nombre":"OSPL - OBRA SOCIAL DEL PERSONAL LADRILLERO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL LADRILLERO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1030-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110305",
+"alias":[
+"OSPL"
+]
+},
+{
+"slug":"ospla",
+"nombre":"OSPLA - OBRA SOCIAL PARA PILOTOS DE LINEAS AEREAS COMERCIALES Y REGULARES",
+"razonSocial":"OBRA SOCIAL PARA PILOTOS DE LINEAS AEREAS COMERCIALES Y REGULARES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1570-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospla.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115706",
+"alias":[
+"OSPLA"
+]
+},
+{
+"slug":"ospm",
+"nombre":"OSPM - OBRA SOCIAL DEL PERSONAL DE MAESTRANZA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE MAESTRANZA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1120-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.somlimpieza.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111209",
+"alias":[
+"OSPM"
+]
+},
+{
+"slug":"os-del-personal-maritimo",
+"nombre":"OSPM - OBRA SOCIAL DEL PERSONAL MARITIMO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL MARITIMO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1180-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111803",
+"alias":[
+"OSPM"
+]
+},
+{
+"slug":"os-del-personal-mosaista",
+"nombre":"OSPM - OBRA SOCIAL DEL PERSONAL MOSAISTA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL MOSAISTA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1270-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112707",
+"alias":[
+"OSPM"
+]
+},
+{
+"slug":"ospma",
+"nombre":"OSPMA - OBRA SOCIAL DEL PERSONAL MUNICIPAL DE AVELLANEDA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL MUNICIPAL DE AVELLANEDA",
+"tipo":"Obra Social Sindical",
+"codigo":"7-0010-8",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.ospma.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=700108",
+"alias":[
+"OSPMA"
+]
+},
+{
+"slug":"ospmj",
+"nombre":"OSPMJ - OBRA SOCIAL DEL PERSONAL MENSUALIZADO DEL JOCKEY CLUB DE BUENOS AIRES Y LOS HIPODROMOS DE PALERMO Y SAN ISIDRO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL MENSUALIZADO DEL JOCKEY CLUB DE BUENOS AIRES Y LOS HIPODROMOS DE PALERMO Y SAN ISIDRO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0960-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109608",
+"alias":[
+"OSPMJ"
+]
+},
+{
+"slug":"ospmm",
+"nombre":"OSPMM - OBRA SOCIAL DEL PERSONAL MUNICIPAL DE LA MATANZA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL MUNICIPAL DE LA MATANZA",
+"tipo":"Obra Social Sindical",
+"codigo":"7-0080-1",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=700801",
+"alias":[
+"OSPMM"
+]
+},
+{
+"slug":"ospms",
+"nombre":"OSPMS - OBRA SOCIAL PROGRAMAS MEDICOS SOCIEDAD ARGENTINA DE CONSULTORIA MUTUAL",
+"razonSocial":"OBRA SOCIAL PROGRAMAS MEDICOS SOCIEDAD ARGENTINA DE CONSULTORIA MUTUAL",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0360-3",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.osprogmed.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3603",
+"alias":[
+"OSPMS"
+]
+},
+{
+"slug":"ospmt",
+"nombre":"OSPMT - OBRA SOCIAL PARA EL PERSONAL MUNICIPAL DE TRES DE FEBRERO",
+"razonSocial":"OBRA SOCIAL PARA EL PERSONAL MUNICIPAL DE TRES DE FEBRERO",
+"tipo":"Obra Social Sindical",
+"codigo":"7-0100-2",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.osppm3f.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=701002",
+"alias":[
+"OSPMT",
+"OBRA SOCIAL PARA EL  PERSONAL MUNICIPAL DE TRES DE FEBRERO"
+]
+},
+{
+"slug":"ospoce",
+"nombre":"OSPOCE - OBRA SOCIAL DEL PERSONAL DEL ORGANISMO DE CONTROL EXTERNO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DEL ORGANISMO DE CONTROL EXTERNO",
+"tipo":"Obra Social de Dirección",
+"codigo":"0-0040-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospoce.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=406",
+"alias":[
+"OSPOCE"
+]
+},
+{
+"slug":"ospp",
+"nombre":"OSPP - OBRA SOCIAL DEL PERSONAL DE LA PUBLICIDAD",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LA PUBLICIDAD",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1860-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118606",
+"alias":[
+"OSPP"
+]
+},
+{
+"slug":"os-del-personal-de-pbbpolisur-srl-de-bahia-bl",
+"nombre":"OSPPB - OBRA SOCIAL DEL PERSONAL DE PBBPOLISUR SRL DE BAHIA BLANCA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE PBBPOLISUR SRL DE BAHIA BLANCA",
+"tipo":"Obra Social Sindical",
+"codigo":"3-0370-3",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=303703",
+"alias":[
+"OSPPB",
+"OBRA SOCIAL DEL PERSONAL DE PBBPOLISUR  SRL DE  BAHIA BLANCA"
+]
+},
+{
+"slug":"osppb",
+"nombre":"OSPPB - OBRA SOCIAL DEL PERSONAL DE PRENSA DE BAHIA BLANCA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE PRENSA DE BAHIA BLANCA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1740-5",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=117405",
+"alias":[
+"OSPPB"
+]
+},
+{
+"slug":"osppcyq",
+"nombre":"OSPPCYQ - OBRA SOCIAL DEL PERSONAL DEL PAPEL, CARTON Y QUIMICOS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DEL PAPEL, CARTON Y QUIMICOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1410-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospapel.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114109",
+"alias":[
+"OSPPCYQ"
+]
+},
+{
+"slug":"osppea",
+"nombre":"OSPPEA - OBRA SOCIAL DEL PERSONAL DE PELUQUERIAS, ESTETICAS Y AFINES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE PELUQUERIAS, ESTETICAS Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1470-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.peluquerosargentinos.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114703",
+"alias":[
+"OSPPEA"
+]
+},
+{
+"slug":"os-del-personal-de-prensa-de-mendoza",
+"nombre":"OSPPM - OBRA SOCIAL DEL PERSONAL DE PRENSA DE MENDOZA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE PRENSA DE MENDOZA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1780-1",
+"jurisdiccion":"Mendoza",
+"provincias":[
+"Mendoza"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=117801",
+"alias":[
+"OSPPM"
+]
+},
+{
+"slug":"osppm",
+"nombre":"OSPPM - OBRA SOCIAL PORTUARIOS PUERTO SAN MARTIN Y BELLA VISTA",
+"razonSocial":"OBRA SOCIAL PORTUARIOS PUERTO SAN MARTIN Y BELLA VISTA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1670-9",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=116709",
+"alias":[
+"OSPPM",
+"OBRA SOCIAL PORTUARIOS  PUERTO SAN MARTIN Y BELLA VISTA"
+]
+},
+{
+"slug":"osppra",
+"nombre":"OSPPRA - OBRA SOCIAL DEL PERSONAL DE PRENSA DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE PRENSA DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1720-7",
+"jurisdiccion":"Nacional",
+"web":"https://www.osppra.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=117207",
+"alias":[
+"OSPPRA"
+]
+},
+{
+"slug":"osprb",
+"nombre":"OSPRB - OBRA SOCIAL DEL PERSONAL DE RECOLECCION Y BARRIDO DE ROSARIO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE RECOLECCION Y BARRIDO DE ROSARIO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1890-3",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118903",
+"alias":[
+"OSPRB"
+]
+},
+{
+"slug":"ospreme",
+"nombre":"OSPREME - OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA AUTOMOTRIZ ARGENTINA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA AUTOMOTRIZ ARGENTINA",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0020-6",
+"jurisdiccion":"Nacional",
+"web":"https://verobspte.jorgeluisseverino",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400206",
+"alias":[
+"OSPREME"
+]
+},
+{
+"slug":"ospren",
+"nombre":"OSPREN - OBRA SOCIAL DEL PERSONAL DE PRENSA DE MAR DEL PLATA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE PRENSA DE MAR DEL PLATA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1770-2",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.prensamardelplata.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=117702",
+"alias":[
+"OSPREN"
+]
+},
+{
+"slug":"osprentuc",
+"nombre":"OSPRENTUC - OBRA SOCIAL DEL PERSONAL DE PRENSA DE TUCUMAN",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE PRENSA DE TUCUMAN",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2350-3",
+"jurisdiccion":"Tucumán",
+"provincias":[
+"Tucumán"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123503",
+"alias":[
+"OSPRENTUC"
+]
+},
+{
+"slug":"osprera",
+"nombre":"OSPRERA - OBRA SOCIAL DEL PERSONAL RURAL Y ESTIBADORES DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL RURAL Y ESTIBADORES DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1930-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.osprera.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119302",
+"alias":[
+"OSPRERA"
+]
+},
+{
+"slug":"osprm",
+"nombre":"OSPRM - OBRA SOCIAL DEL PERSONAL DE REFINERIAS DE MAIZ",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE REFINERIAS DE MAIZ",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1900-5",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119005",
+"alias":[
+"OSPRM"
+]
+},
+{
+"slug":"ospro",
+"nombre":"OSPRO - OBRA SOCIAL DEL PERSONAL DE PRENSA DE ROSARIO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE PRENSA DE ROSARIO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2340-4",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123404",
+"alias":[
+"OSPRO"
+]
+},
+{
+"slug":"osprotura",
+"nombre":"OSPROTURA - OBRA SOCIAL PROFESIONALES DEL TURF DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL PROFESIONALES DEL TURF DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0210-5",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2105",
+"alias":[
+"OSPROTURA"
+]
+},
+{
+"slug":"osps",
+"nombre":"OSPS - OBRA SOCIAL DE LA PREVENCION Y LA SALUD",
+"razonSocial":"OBRA SOCIAL DE LA PREVENCION Y LA SALUD",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0380-1",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3801",
+"alias":[
+"OSPS",
+"OBRA SOCIAL  DE LA PREVENCION Y LA SALUD"
+]
+},
+{
+"slug":"osps-mercedes",
+"nombre":"OSPS MERCEDES - OBRA SOCIAL DEL PERSONAL SUPERIOR MERCEDES BENZ ARGENTINA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL SUPERIOR MERCEDES BENZ ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1200-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospsmba.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112004",
+"alias":[
+"OSPS MERCEDES"
+]
+},
+{
+"slug":"ospsesba",
+"nombre":"OSPSESBA - OBRA SOCIAL DEL PERSONAL DE SUPERVISION DE LA EMPRESA SUBTERRANEOS DE BUENOS AIRES",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE SUPERVISION DE LA EMPRESA SUBTERRANEOS DE BUENOS AIRES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2030-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120306",
+"alias":[
+"OSPSESBA"
+]
+},
+{
+"slug":"ospsip",
+"nombre":"OSPSIP - OBRA SOCIAL DEL PERSONAL DE SEGURIDAD COMERCIAL, INDUSTRIAL E INVESTIGACIONES PRIVADAS",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE SEGURIDAD COMERCIAL, INDUSTRIAL E INVESTIGACIONES PRIVADAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1970-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.ospsip.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119708",
+"alias":[
+"OSPSIP"
+]
+},
+{
+"slug":"ospta",
+"nombre":"OSPTA - OBRA SOCIAL DEL PERSONAL TECNICO AERONAUTICO",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL TECNICO AERONAUTICO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0070-0",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://www.aviones.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100700",
+"alias":[
+"OSPTA"
+]
+},
+{
+"slug":"osptv",
+"nombre":"OSPTV - OBRA SOCIAL DEL PERSONAL DE TELEVISION",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE TELEVISION",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2090-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.tvsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120900",
+"alias":[
+"OSPTV"
+]
+},
+{
+"slug":"ospuaye",
+"nombre":"OSPUAYE - OBRA SOCIAL DE LOS PROFESIONALES UNIVERSITARIOS DEL AGUA Y LA ENERGIA ELECTRICA",
+"razonSocial":"OBRA SOCIAL DE LOS PROFESIONALES UNIVERSITARIOS DEL AGUA Y LA ENERGIA ELECTRICA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2510-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=125103",
+"alias":[
+"OSPUAYE"
+]
+},
+{
+"slug":"osrga",
+"nombre":"OSRGA - OBRA SOCIAL DE RECIBIDORES DE GRANOS Y ANEXOS",
+"razonSocial":"OBRA SOCIAL DE RECIBIDORES DE GRANOS Y ANEXOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1880-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118804",
+"alias":[
+"OSRGA"
+]
+},
+{
+"slug":"osrja",
+"nombre":"OSRJA - OBRA SOCIAL DE RELOJEROS Y JOYEROS",
+"razonSocial":"OBRA SOCIAL DE RELOJEROS Y JOYEROS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1920-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.osrja..org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119203",
+"alias":[
+"OSRJA"
+]
+},
+{
+"slug":"osrm",
+"nombre":"OSRM - OBRA SOCIAL REFINERIAS DE MAIZ S.A.I.C.F.",
+"razonSocial":"OBRA SOCIAL REFINERIAS DE MAIZ S.A.I.C.F.",
+"tipo":"Obra Social Sindical",
+"codigo":"3-0280-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=302809",
+"alias":[
+"OSRM"
+]
+},
+{
+"slug":"oss",
+"nombre":"OSS - OBRA SOCIAL SUPERCO",
+"razonSocial":"OBRA SOCIAL SUPERCO",
+"tipo":"Obra Social Sindical",
+"codigo":"3-0310-9",
+"jurisdiccion":"Nacional",
+"web":"https://superco.info",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=303109",
+"alias":[
+"OSS"
+]
+},
+{
+"slug":"ossa",
+"nombre":"OSSA - OBRA SOCIAL DE SHELL ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE SHELL ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"3-0340-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.osshell.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=303406",
+"alias":[
+"OSSA"
+]
+},
+{
+"slug":"ossacra",
+"nombre":"OSSACRA - OBRA SOCIAL DE LA ASOCIACION CIVIL PROSINDICATO DE AMAS DE CASA DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LA ASOCIACION CIVIL PROSINDICATO DE AMAS DE CASA DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0150-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1508",
+"alias":[
+"OSSACRA"
+]
+},
+{
+"slug":"ossb",
+"nombre":"OSSB - OBRA SOCIAL DE SERENOS DE BUQUES",
+"razonSocial":"OBRA SOCIAL DE SERENOS DE BUQUES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1990-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.fideisalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119906",
+"alias":[
+"OSSB"
+]
+},
+{
+"slug":"ossimra",
+"nombre":"OSSIMRA - OBRA SOCIAL DE LOS SUPERVISORES DE LA INDUSTRIA METALMECANICA DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LOS SUPERVISORES DE LA INDUSTRIA METALMECANICA DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1220-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.ossimra.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112202",
+"alias":[
+"OSSIMRA",
+"OBRA SOCIAL DE LOS  SUPERVISORES DE LA INDUSTRIA METALMECANICA DE LA REPUBLICA ARGENTINA"
+]
+},
+{
+"slug":"ossoelsac",
+"nombre":"OSSOELSAC - OBRA SOCIAL DEL SINDICATO OBREROS Y EMPLEADOS DE EMPRESAS DE LIMPIEZA,SERVICIOS Y AFINES DE CORDOBA",
+"razonSocial":"OBRA SOCIAL DEL SINDICATO OBREROS Y EMPLEADOS DE EMPRESAS DE LIMPIEZA,SERVICIOS Y AFINES DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2840-9",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128409",
+"alias":[
+"OSSOELSAC"
+]
+},
+{
+"slug":"osspyfer",
+"nombre":"OSSPYFER - OBRA SOCIAL DE PANADEROS, PASTELEROS Y FACTUREROS DE ENTRE RIOS",
+"razonSocial":"OBRA SOCIAL DE PANADEROS, PASTELEROS Y FACTUREROS DE ENTRE RIOS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1400-0",
+"jurisdiccion":"Entre Ríos",
+"provincias":[
+"Entre Ríos"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114000",
+"alias":[
+"OSSPYFER"
+]
+},
+{
+"slug":"ostad",
+"nombre":"OSTAD - OBRA SOCIAL TALLERISTAS A DOMICILIO",
+"razonSocial":"OBRA SOCIAL TALLERISTAS A DOMICILIO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2310-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123107",
+"alias":[
+"OSTAD"
+]
+},
+{
+"slug":"ostamma",
+"nombre":"OSTAMMA - OBRA SOCIAL DE LOS TRABAJADORES ASOCIADOS A LA ASOCIACION MUTUAL MERCANTIL ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LOS TRABAJADORES ASOCIADOS A LA ASOCIACION MUTUAL MERCANTIL ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0270-9",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"web":"https://www.ostamma.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2709",
+"alias":[
+"OSTAMMA"
+]
+},
+{
+"slug":"ostc",
+"nombre":"OSTC - OBRA SOCIAL CONDUCTORES DE TAXIS DE CORDOBA",
+"razonSocial":"OBRA SOCIAL CONDUCTORES DE TAXIS DE CORDOBA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2180-4",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121804",
+"alias":[
+"OSTC"
+]
+},
+{
+"slug":"ostecf",
+"nombre":"OSTECF - OBRA SOCIAL DE TECNICOS DE FUTBOL",
+"razonSocial":"OBRA SOCIAL DE TECNICOS DE FUTBOL",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0870-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.ostecf.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108704",
+"alias":[
+"OSTECF"
+]
+},
+{
+"slug":"ostee",
+"nombre":"OSTEE - OBRA SOCIAL DE LOS TRABAJADORES DE LAS EMPRESAS DE ELECTRICIDAD",
+"razonSocial":"OBRA SOCIAL DE LOS TRABAJADORES DE LAS EMPRESAS DE ELECTRICIDAD",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1080-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.osteeluzmedica.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110800",
+"alias":[
+"OSTEE"
+]
+},
+{
+"slug":"ostel",
+"nombre":"OSTEL - OBRA SOCIAL DEL PERSONAL DE LAS TELECOMUNICACIONES DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE LAS TELECOMUNICACIONES DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2070-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.ostel.org",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120702",
+"alias":[
+"OSTEL"
+]
+},
+{
+"slug":"ostep",
+"nombre":"OSTEP - OBRA SOCIAL PARA LOS TRABAJADORES DE LA EDUCACION PRIVADA",
+"razonSocial":"OBRA SOCIAL PARA LOS TRABAJADORES DE LA EDUCACION PRIVADA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2610-6",
+"jurisdiccion":"Nacional",
+"web":"https://www.ostepdigital.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126106",
+"alias":[
+"OSTEP"
+]
+},
+{
+"slug":"ostes",
+"nombre":"OSTES - OBRA SOCIAL DE TRABAJADORES DE ESTACIONES DE SERVICIO",
+"razonSocial":"OBRA SOCIAL DE TRABAJADORES DE ESTACIONES DE SERVICIO",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2700-0",
+"jurisdiccion":"Mendoza",
+"provincias":[
+"Mendoza"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127000",
+"alias":[
+"OSTES"
+]
+},
+{
+"slug":"ostig",
+"nombre":"OSTIG - OBRA SOCIAL DE TRABAJADORES DE LA INDUSTRIA DEL GAS",
+"razonSocial":"OBRA SOCIAL DE TRABAJADORES DE LA INDUSTRIA DEL GAS",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2450-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=124506",
+"alias":[
+"OSTIG"
+]
+},
+{
+"slug":"ostp",
+"nombre":"OSTP - OBRA SOCIAL DE TRABAJADORES DE PERKINS ARGENTINA S.A.I.C",
+"razonSocial":"OBRA SOCIAL DE TRABAJADORES DE PERKINS ARGENTINA S.A.I.C",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2360-2",
+"jurisdiccion":"Córdoba",
+"provincias":[
+"Córdoba"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123602",
+"alias":[
+"OSTP"
+]
+},
+{
+"slug":"ostpba",
+"nombre":"OSTPBA - OBRA SOCIAL DE TRABAJADORES DE PRENSA DE BUENOS AIRES",
+"razonSocial":"OBRA SOCIAL DE TRABAJADORES DE PRENSA DE BUENOS AIRES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1510-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.ostpba.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115102",
+"alias":[
+"OSTPBA"
+]
+},
+{
+"slug":"ostpchpyara",
+"nombre":"OSTPCHPYARA - OBRA SOCIAL TRABAJADORES PASTELEROS, CONFITEROS, PIZZEROS , HELADEROS Y ALFAJOREROS DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL TRABAJADORES PASTELEROS, CONFITEROS, PIZZEROS , HELADEROS Y ALFAJOREROS DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1430-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114307",
+"alias":[
+"OSTPCHPYARA",
+"OBRA SOCIAL TRABAJADORES  PASTELEROS, CONFITEROS, PIZZEROS , HELADEROS Y ALFAJOREROS DE LA REPUBLICA ARGENTINA"
+]
+},
+{
+"slug":"ostrac",
+"nombre":"OSTRAC - OBRA SOCIAL DE TRABAJADORES DE LAS COMUNICACIONES",
+"razonSocial":"OBRA SOCIAL DE TRABAJADORES DE LAS COMUNICACIONES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2080-1",
+"jurisdiccion":"Nacional",
+"web":"https://www.aatrac.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120801",
+"alias":[
+"OSTRAC"
+]
+},
+{
+"slug":"ostsa",
+"nombre":"OSTSA - OBRA SOCIAL DE TRABAJADORES SOCIOS DE LA ASOCIACION MUTUAL DEL PERSONAL JERARQUICO DE BANCOS OFICIALES NACIONALES-JERARQUICOS SALUD-",
+"razonSocial":"OBRA SOCIAL DE TRABAJADORES SOCIOS DE LA ASOCIACION MUTUAL DEL PERSONAL JERARQUICO DE BANCOS OFICIALES NACIONALES-JERARQUICOS SALUD-",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0320-7",
+"jurisdiccion":"Santa Fe",
+"provincias":[
+"Santa Fe"
+],
+"web":"https://www.jerarquicos.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3207",
+"alias":[
+"OSTSA"
+]
+},
+{
+"slug":"ostva",
+"nombre":"OSTVA - OBRA SOCIAL DE LOS TRABAJADORES VIALES Y AFINES DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LOS TRABAJADORES VIALES Y AFINES DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2730-7",
+"jurisdiccion":"Nacional",
+"web":"https://www.ostv.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127307",
+"alias":[
+"OSTVA"
+]
+},
+{
+"slug":"ostvendra",
+"nombre":"OSTVENDRA - OBRA SOCIAL DE TRABAJADORES VENDEDORES DE DIARIOS REVISTAS Y AFINES",
+"razonSocial":"OBRA SOCIAL DE TRABAJADORES VENDEDORES DE DIARIOS REVISTAS Y AFINES",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0330-6",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3306",
+"alias":[
+"OSTVENDRA"
+]
+},
+{
+"slug":"ostvla",
+"nombre":"OSTVLA - OBRA SOCIAL DE TECNICOS DE VUELO DE LINEAS AEREAS",
+"razonSocial":"OBRA SOCIAL DE TECNICOS DE VUELO DE LINEAS AEREAS",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0390-0",
+"jurisdiccion":"Nacional",
+"web":"https://www.tecnicosdevuelo.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3900",
+"alias":[
+"OSTVLA"
+]
+},
+{
+"slug":"osuci",
+"nombre":"OSUCI - OBRA SOCIAL DE LOS CORTADORES DE LA INDUMENTARIA",
+"razonSocial":"OBRA SOCIAL DE LOS CORTADORES DE LA INDUMENTARIA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-0550-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105507",
+"alias":[
+"OSUCI"
+]
+},
+{
+"slug":"osuomra",
+"nombre":"OSUOMRA - OBRA SOCIAL DE LA UNION OBRERA METALURGICA DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LA UNION OBRERA METALURGICA DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1210-3",
+"jurisdiccion":"Nacional",
+"web":"https://www.osuomra.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112103",
+"alias":[
+"OSUOMRA"
+]
+},
+{
+"slug":"osuti",
+"nombre":"OSUTI - OBRA SOCIAL DE LA UNION DE TRABAJADORES DEL INSTITUTO NACIONAL DE SERVICIOS SOCIALES PARA JUBILADOS Y PENSIONADOS DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE LA UNION DE TRABAJADORES DEL INSTITUTO NACIONAL DE SERVICIOS SOCIALES PARA JUBILADOS Y PENSIONADOS DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2810-2",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128102",
+"alias":[
+"OSUTI"
+]
+},
+{
+"slug":"osv",
+"nombre":"OSV - OBRA SOCIAL DE VAREADORES",
+"razonSocial":"OBRA SOCIAL DE VAREADORES",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2190-3",
+"jurisdiccion":"Buenos Aires",
+"provincias":[
+"Buenos Aires"
+],
+"web":"https://osvareadores.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121903",
+"alias":[
+"OSV"
+]
+},
+{
+"slug":"osvara",
+"nombre":"OSVARA - OBRA SOCIAL DE VENDEDORES AMBULANTES DE LA REPUBLICA ARGENTINA",
+"razonSocial":"OBRA SOCIAL DE VENDEDORES AMBULANTES DE LA REPUBLICA ARGENTINA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2390-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123909",
+"alias":[
+"OSVARA"
+]
+},
+{
+"slug":"osvas",
+"nombre":"OSVAS - OBRA SOCIAL DE VOLKSWAGEN ARGENTINA S.A.",
+"razonSocial":"OBRA SOCIAL DE VOLKSWAGEN ARGENTINA S.A.",
+"tipo":"Obra Social Sindical",
+"codigo":"3-0400-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=304003",
+"alias":[
+"OSVAS"
+]
+},
+{
+"slug":"osvvra",
+"nombre":"OSVVRA - OBRA SOCIAL DE VIAJANTES VENDEDORES DE LA REPUBLICA ARGENTINA. (ANDAR)",
+"razonSocial":"OBRA SOCIAL DE VIAJANTES VENDEDORES DE LA REPUBLICA ARGENTINA. (ANDAR)",
+"tipo":"Obra Social Sindical",
+"codigo":"1-2210-4",
+"jurisdiccion":"Nacional",
+"web":"https://www.andar.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122104",
+"alias":[
+"OSVVRA"
+]
+},
+{
+"slug":"osyc",
+"nombre":"OSYC - OBRA SOCIAL YACIMIENTOS CARBONIFEROS",
+"razonSocial":"OBRA SOCIAL YACIMIENTOS CARBONIFEROS",
+"tipo":"Obra Social Sindical",
+"codigo":"0-0370-2",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3702",
+"alias":[
+"OSYC",
+"OBRA SOCIAL  YACIMIENTOS CARBONIFEROS"
+]
+},
+{
+"slug":"osypf",
+"nombre":"OSYPF - OBRA SOCIAL YPF",
+"razonSocial":"OBRA SOCIAL YPF",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0250-9",
+"jurisdiccion":"Nacional",
+"web":"https://www.osypf.com",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402509",
+"alias":[
+"OSYPF"
+]
+},
+{
+"slug":"parque-salud-sa",
+"nombre":"PARQUE SALUD SA",
+"razonSocial":"PARQUE SALUD SA",
+"tipo":"Prepaga",
+"codigo":"9-0200-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902009"
+},
+{
+"slug":"ossib",
+"nombre":"Plan de Salud Hospital Italiano",
+"razonSocial":"SOCIEDAD ITALIANA DE BENEFICENCIA EN BUENOS AIRES",
+"tipo":"Prepaga",
+"codigo":"9-0270-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.hospitalitaliano.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902702",
+"alias":[
+"Hospital Italiano",
+"Sociedad Italiana de Beneficencia"
+]
+},
+{
+"slug":"osp",
+"nombre":"PLENIMEDICAL SA",
+"razonSocial":"PLENIMEDICAL SA",
+"tipo":"Prepaga",
+"codigo":"9-0240-5",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902405"
+},
+{
+"slug":"premedica-s-a",
+"nombre":"PREMEDICA S.A.",
+"razonSocial":"PREMEDICA S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0420-3",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904203"
+},
+{
+"slug":"prestadores-sanatoriales-sa",
+"nombre":"PRESTADORES SANATORIALES SA",
+"razonSocial":"PRESTADORES SANATORIALES SA",
+"tipo":"Prepaga",
+"codigo":"9-0070-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900706"
+},
+{
+"slug":"prevencion-salud",
+"nombre":"Prevención Salud (Grupo Sancor Seguros)",
+"razonSocial":"PREVENCIÓN SALUD S.A.",
+"tipo":"Prepaga",
+"sigla":"PREVENCION",
+"codigo":"9-0350-7",
+"rnemp":116792,
+"jurisdiccion":"Nacional",
+"web":"https://www.prevencionsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903507",
+"alias":[
+"Prevención Salud",
+"Prevencion Salud",
+"Grupo Sancor Seguros"
+]
+},
+{
+"slug":"primed-s-a",
+"nombre":"PRIMED S.A.",
+"razonSocial":"PRIMED S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0610-0",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906100"
+},
+{
+"slug":"privamed-s-a",
+"nombre":"PRIVAMED S.A.",
+"razonSocial":"PRIVAMED S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0410-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904104"
+},
+{
+"slug":"roi-sa",
+"nombre":"ROI SA",
+"razonSocial":"ROI SA",
+"tipo":"Prepaga",
+"codigo":"9-0340-8",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903408"
+},
+{
+"slug":"osss",
+"nombre":"SABER S.A.",
+"razonSocial":"SABER S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0060-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900607"
+},
+{
+"slug":"saju-s-r-l",
+"nombre":"SAJU S.R.L.",
+"razonSocial":"SAJU S.R.L.",
+"tipo":"Prepaga",
+"codigo":"9-0650-6",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906506"
+},
+{
+"slug":"salud-profesional-y-tecnologica-s-a",
+"nombre":"SALUD PROFESIONAL Y TECNOLOGICA S.A.",
+"razonSocial":"SALUD PROFESIONAL Y TECNOLOGICA S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0700-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907004"
+},
+{
+"slug":"sancor-salud",
+"nombre":"SanCor Salud Grupo de Medicina Privada",
+"razonSocial":"ASOCIACIÓN MUTUAL SANCOR SALUD",
+"tipo":"Prepaga",
+"codigo":"9-0210-8",
+"jurisdiccion":"Nacional",
+"web":"https://www.sancorsalud.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902108",
+"alias":[
+"SanCor Salud",
+"Sancor",
+"Grupo SanCor Salud",
+"Asociación Mutual SanCor"
+]
+},
+{
+"slug":"sanos",
+"nombre":"SANOS - NATIVUS SRL",
+"razonSocial":"NATIVUS SRL",
+"tipo":"Prepaga",
+"codigo":"9-0220-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902207",
+"alias":[
+"SANOS"
+]
+},
+{
+"slug":"ossc",
+"nombre":"SANTA CLARA S.A",
+"razonSocial":"SANTA CLARA S.A",
+"tipo":"Prepaga",
+"codigo":"9-0740-0",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907400"
+},
+{
+"slug":"scis-s-a",
+"nombre":"SCIS S.A.",
+"razonSocial":"SCIS S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0480-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904807"
+},
+{
+"slug":"servesalud",
+"nombre":"SERVESALUD - OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA CERVECERA Y MALTERA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA CERVECERA Y MALTERA",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0040-4",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400404",
+"alias":[
+"SERVESALUD"
+]
+},
+{
+"slug":"sempre-la-pampa",
+"nombre":"Servicio Médico Previsional de La Pampa (SEMPRE / ISS)",
+"razonSocial":"SERVICIO MEDICO PREVISIONAL DE LA PROVINCIA DE LA PAMPA",
+"tipo":"Obra Social Provincial",
+"codigo":null,
+"jurisdiccion":"La Pampa",
+"provincias":[
+"La Pampa"
+],
+"web":"https://www.isslapampa.gob.ar",
+"fuente":"provincial",
+"fuenteUrl":"https://www.isslapampa.gob.ar",
+"alias":[
+"SEMPRE",
+"Sempre La Pampa",
+"ISS La Pampa"
+]
+},
+{
+"slug":"sipssa",
+"nombre":"SIPSSA Medicina Prepaga",
+"razonSocial":"SISTEMA INTEGRADO DE PRESTADORES DE SALUD S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0370-5",
+"rnemp":120030,
+"jurisdiccion":"Nacional",
+"web":"https://www.sipssa.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903705",
+"alias":[
+"SIPSSA",
+"Sipssa Medicina Privada"
+]
+},
+{
+"slug":"soremer-sa",
+"nombre":"SOREMER SA",
+"razonSocial":"SOREMER SA",
+"tipo":"Prepaga",
+"codigo":"9-0190-7",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901907"
+},
+{
+"slug":"swiss-medical",
+"nombre":"Swiss Medical Medicina Privada",
+"razonSocial":"SWISS MEDICAL S.A.",
+"tipo":"Prepaga",
+"sigla":"SMG",
+"codigo":"9-0080-5",
+"rnemp":113328,
+"jurisdiccion":"Nacional",
+"web":"https://www.swissmedical.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900805",
+"alias":[
+"Swiss Medical",
+"SMG",
+"Swiss Medical Group",
+"Qualitas"
+]
+},
+{
+"slug":"upfpara",
+"nombre":"UPFPARA - OBRA SOCIAL DEL PERSONAL DE FABRICAS DE PINTURA",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE FABRICAS DE PINTURA",
+"tipo":"Obra Social Sindical",
+"codigo":"1-1580-5",
+"jurisdiccion":"Nacional",
+"web":"http://www.ospfp.org.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115805",
+"alias":[
+"UPFPARA"
+]
+},
+{
+"slug":"osvs",
+"nombre":"VITAS S.A.",
+"razonSocial":"VITAS S.A.",
+"tipo":"Prepaga",
+"codigo":"9-0620-9",
+"jurisdiccion":"Nacional",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906209"
+},
+{
+"slug":"whope",
+"nombre":"WHOPE - OBRA SOCIAL DEL PERSONAL DE DIRECCION DE PERFUMERIA E.W. HOPE",
+"razonSocial":"OBRA SOCIAL DEL PERSONAL DE DIRECCION DE PERFUMERIA E.W. HOPE",
+"tipo":"Obra Social de Dirección",
+"codigo":"4-0190-2",
+"jurisdiccion":"Nacional",
+"web":"https://www.whope.com.ar",
+"fuente":"rnas",
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401902",
+"alias":[
+"WHOPE"
+]
+}
+]
+}

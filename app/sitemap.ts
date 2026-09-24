@@ -37,6 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/comparar`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/blog`, lastModified: CONTENT_UPDATE, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE}/obras-sociales`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/obras-sociales/codigos`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/sobre-nosotros`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/metodologia`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/prepaga-por-presupuesto`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.80 },

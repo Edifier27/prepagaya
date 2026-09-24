@@ -6,6 +6,7 @@ import { prepagas } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
+import { registroDeObraSocial, codigoSeisDigitos } from '@/lib/data/registro-sssalud'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -60,6 +61,17 @@ export default async function ObraSocialPage({ params }: Props) {
   const otras = obrasSociales.filter((o) => o.slug !== slug).slice(0, 8)
   const prepagaMatch = prepagaHermana(os.slug)
   const provinciaMatch = provinciasSEO.find((p) => p.obraSocialProvincial?.slug === os.slug)
+  // Código del registro de la SSSalud (24-sep-2026): "código [obra social]"
+  // tiene búsquedas propias. Las provinciales no tienen: se dice por qué.
+  const registro = registroDeObraSocial(os.slug)
+  const codigo = registro?.codigo ? codigoSeisDigitos(registro.codigo) : null
+  const faqCodigo = registro ? {
+    q: `¿Cuál es el código de obra social de ${os.nombre}?`,
+    a: codigo
+      ? `${codigo} (RNAS ${registro.codigo}). Es el número con el que figura en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: el que carga tu empleador en tu alta en ARCA (ex AFIP) y el que se usa en la opción de cambio.`
+      : `${os.nombre} no tiene código en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: es una obra social con régimen propio, así que no se puede elegir con la opción de cambio de obra social.`,
+  } : null
+  const faq = faqCodigo ? [...os.faq, faqCodigo] : os.faq
 
   const jsonLd = [
     {
@@ -88,7 +100,7 @@ export default async function ObraSocialPage({ params }: Props) {
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: os.faq.map(({ q, a }) => ({
+      mainEntity: faq.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
         acceptedAnswer: { '@type': 'Answer', text: a },
@@ -146,7 +158,14 @@ export default async function ObraSocialPage({ params }: Props) {
               <div className="text-lg font-bold text-[#E8002D]">{os.derivacion ? 'Sí' : 'No'}</div>
               <div className="text-xs text-gray-500 mt-0.5">Derivación</div>
             </div>
-            <div className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm col-span-2 sm:col-span-1">
+            {codigo && (
+              <Link href="/obras-sociales/codigos" className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:border-gray-400 transition-colors" title={`RNAS ${registro?.codigo}`}>
+                <div className="text-lg font-bold text-[#E8002D] tabular-nums">{codigo}</div>
+                <div className="text-xs text-gray-500 mt-0.5">Código de obra social</div>
+              </Link>
+            )}
+            {/* En mobile (2 columnas) "Tipo" ocupa la fila entera solo si quedaría sola. */}
+            <div className={`bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm ${(typeof os.beneficiarios === 'number' ? 1 : 0) + (codigo ? 1 : 0) === 1 ? 'col-span-2 sm:col-span-1' : ''}`}>
               <div className="text-lg font-bold text-[#E8002D]">{tiposLabels[os.tipo]?.split(' ')[0] ?? os.tipo}</div>
               <div className="text-xs text-gray-500 mt-0.5">Tipo</div>
             </div>
@@ -362,7 +381,7 @@ export default async function ObraSocialPage({ params }: Props) {
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes sobre {os.nombre}</h2>
           <div className="space-y-2">
-            {os.faq.map(({ q, a }) => (
+            {faq.map(({ q, a }) => (
               <details key={q} className="group bg-white rounded-xl border border-gray-200 overflow-hidden">
                 <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold text-sm text-gray-900 select-none list-none">
                   <h3 className="font-semibold text-sm text-gray-900 m-0">{q}</h3>

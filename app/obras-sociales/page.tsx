@@ -81,6 +81,9 @@ export default function ObrasSocialesHubPage() {
             <Link href="/guias/obra-social-vs-prepaga" className="text-sm font-medium bg-white border border-gray-200 px-4 py-2 rounded-xl hover:border-blue-300 hover:bg-red-50 transition-all">
               Obra social vs prepaga
             </Link>
+            <Link href="/obras-sociales/codigos" className="text-sm font-medium bg-white border border-gray-200 px-4 py-2 rounded-xl hover:border-blue-300 hover:bg-red-50 transition-all">
+              Códigos de obras sociales
+            </Link>
             <Link href="/comparador" className="text-sm font-medium bg-[#E8002D] text-white px-4 py-2 rounded-xl hover:bg-[#B8001F] transition-all">
               Comparador personalizado
             </Link>

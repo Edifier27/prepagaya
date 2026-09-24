@@ -1040,7 +1040,10 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   ))}
                 </div>
                 {conv.codigoAfip.fuente && <p className="text-xs text-gray-400 mt-3">Fuente: {conv.codigoAfip.fuente.url ? <a href={conv.codigoAfip.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{conv.codigoAfip.fuente.texto}</a> : conv.codigoAfip.fuente.texto}</p>}
-                <Link href="/guias/derivar-obra-social-a-prepaga" className="inline-block mt-3 text-sm font-semibold text-[#E8002D] hover:underline">Cómo derivar tus aportes a {prep.nombre} →</Link>
+                <div className="flex flex-wrap gap-x-5 gap-y-1 mt-3">
+                  <Link href="/guias/derivar-obra-social-a-prepaga" className="text-sm font-semibold text-[#E8002D] hover:underline">Cómo derivar tus aportes a {prep.nombre} →</Link>
+                  <Link href="/obras-sociales/codigos" className="text-sm font-semibold text-[#E8002D] hover:underline">Códigos de todas las obras sociales →</Link>
+                </div>
               </div>
             )}
 
