@@ -10,6 +10,7 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 import { BuscadorCartillaZona } from '@/components/cartillas/BuscadorCartillaZona'
+import { contactos } from '@/lib/data/contactos'
 import { getCartilla, nombreCortoZona, slugPlan, textoFecha, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
 
 interface Props {
@@ -25,14 +26,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const info = cartillasInfo.find((c) => c.slug === slug)
   const prep = prepagas.find((p) => p.slug === slug)
   if (!info || !prep) return {}
-  // Título con número real de profesionales en vez de "cómo consultarla":
-  // Search Console (sept 2026) mostraba "cartilla osde" (535 impr), "cartilla
-  // swiss medical" (80 impr) y variantes en 0% CTR — el título viejo sonaba a
-  // guía genérica, no prometía la lista real. Mismo criterio que /prepagas/[slug].
-  const profesionalesFmt = prep.profesionales.toLocaleString('es-AR')
+  // Search Console (sept 2026): "cartilla osde" (535 impr), "cartilla swiss
+  // medical" (80 impr) con 0% CTR. El título promete la lista real. Desde el
+  // 23-sep-2026 sin cantidad de profesionales (no tenía fuente: OSDE, por
+  // ejemplo, informa 125.000+ prestadores y acá decía +140.000); cuando hay
+  // cartilla oficial cargada, se dice que es la oficial por zona y por plan.
+  const oficial = getCartilla(slug)
   return {
-    title: `Cartilla ${prep.nombre} 2026: +${profesionalesFmt} profesionales y sanatorios`,
-    description: `${prep.nombre}: cartilla con +${profesionalesFmt} profesionales${prep.sanatoriosPropios > 0 ? ` y ${prep.sanatoriosPropios} sanatorio${prep.sanatoriosPropios === 1 ? '' : 's'} propio${prep.sanatoriosPropios === 1 ? '' : 's'}` : ''}. Mirá qué plan necesitás para cada centro y cómo consultarla online. Actualizado ${PRECIO_ACTUALIZADO}.`,
+    title: oficial
+      ? `Cartilla ${prep.nombre} 2026: sanatorios y guardias por zona y por plan (oficial)`
+      : `Cartilla ${prep.nombre} 2026: sanatorios, guardias y cómo consultarla`,
+    description: oficial
+      ? `Cartilla de ${prep.nombre} con datos oficiales: qué sanatorios y guardias hay en tu zona y desde qué plan está cada centro. Buscá tu sanatorio, mirá la cartilla de tu plan y cotizá gratis.`
+      : `Cartilla de ${prep.nombre}: cómo consultarla online, qué plan necesitás para cada sanatorio y cómo comparar la red antes de contratar. Actualizado ${PRECIO_ACTUALIZADO}.`,
     alternates: { canonical: `${SITE_URL}/cartillas/${slug}` },
     keywords: [
       `cartilla ${prep.nombre.toLowerCase()}`,
@@ -100,10 +106,15 @@ export default async function CartillaPrepagaPage({ params }: Props) {
       q: `¿Cómo consulto la cartilla de ${prep.nombre}?`,
       a: `${info.comoConsultar.join(' ')} También podés verificar la cartilla oficial en ${info.urlCartilla.replace('https://', '')}.`,
     },
-    {
-      q: `¿Cuántos profesionales tiene la cartilla de ${prep.nombre}?`,
-      a: `${prep.nombre} cuenta con más de ${prep.profesionales.toLocaleString('es-AR')} profesionales${prep.sanatoriosPropios > 0 ? ` y ${prep.sanatoriosPropios} centros propios` : ''}. La red disponible depende del plan: los planes superiores acceden a más prestadores y sanatorios.`,
-    },
+    ...(contactos[prep.slug] ? [{
+      q: `¿Cuál es el teléfono de ${prep.nombre}?`,
+      a: (() => {
+        const c = contactos[prep.slug]
+        const socios = c.canales.find((x) => x.tipo === 'socios')
+        const urg = c.canales.find((x) => x.tipo === 'emergencias')
+        return `${socios ? `${socios.etiqueta}: ${socios.valor}.` : ''}${urg ? ` ${urg.etiqueta}: ${urg.valor}.` : ''} Todos los canales, en la ficha de ${prep.nombre}.`.trim()
+      })(),
+    }] : []),
     {
       q: `¿La cartilla de ${prep.nombre} es igual en todos los planes?`,
       a: `No. Cada plan habilita una porción de la red: los planes de entrada tienen cartilla más acotada y los superiores suman sanatorios de mayor complejidad y reintegros por fuera de cartilla. Antes de contratar, verificá que tu médico o sanatorio esté cubierto por el plan específico que vas a contratar, no por la prepaga en general.`,
@@ -181,9 +192,12 @@ export default async function CartillaPrepagaPage({ params }: Props) {
             </div>
           </div>
           <p className="text-gray-600 leading-relaxed max-w-3xl mb-6">
-            {prep.nombre} tiene una red de más de {prep.profesionales.toLocaleString('es-AR')} profesionales
-            {prep.sanatoriosPropios > 0 ? ` y ${prep.sanatoriosPropios} centros propios` : ' con sanatorios por convenio'}.
-            Acá te contamos qué incluye su cartilla, cómo consultarla online y qué plan necesitás para acceder a cada sanatorio.
+            {getCartilla(slug)
+              ? `Esta es la cartilla de ${prep.nombre} armada con sus datos oficiales: qué sanatorios y guardias hay en cada zona y desde qué plan está cada centro.`
+              : `Acá te contamos qué incluye la cartilla de ${prep.nombre}, cómo consultarla online y qué plan necesitás para acceder a cada sanatorio.`}
+            {contactos[prep.slug] && (
+              <> ¿Necesitás llamar? <Link href={`/prepagas/${prep.slug}#telefonos`} className="text-[#E8002D] font-semibold hover:underline">Teléfonos de {prep.nombre}</Link>.</>
+            )}
           </p>
           <div className="flex flex-wrap items-center gap-3 mb-3">
             <ContratarPlanButton

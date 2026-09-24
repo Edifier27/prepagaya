@@ -294,7 +294,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'la-plata'],
-    telefono: '4809-0400',
+    telefono: '5299-1300',
     web: 'cemic.edu.ar',
     planes: [
       {
@@ -698,7 +698,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'cordoba', 'rosario', 'la-plata', 'mendoza', 'tucuman', 'salta'],
-    telefono: '0810-122-0400',
+    telefono: '0800-333-2700',
     web: 'medife.com.ar',
     planes: [
       {
@@ -785,7 +785,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires'],
-    telefono: '0810-888-6646',
+    telefono: '(011) 4808-2090',
     web: 'omint.com.ar',
     planes: [
       {
@@ -1057,8 +1057,8 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'cordoba', 'rosario', 'mendoza', 'tucuman', 'la-plata', 'salta'],
-    telefono: '0800-777-3556',
-    web: 'prevencion-salud.com.ar',
+    telefono: '0810-888-0010',
+    web: 'prevencionsalud.com.ar',
     // Planes reales de Prevención Salud (23-sep-2026), reemplazan a Bronce/
     // Plata/Oro/Platino, que no existían. Descripciones de
     // prevencionsalud.com.ar/planes; precio: cuadro tarifario SSSalud (región
@@ -1287,7 +1287,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'la-plata'],
-    telefono: '0810-444-6646',
+    telefono: '0810-999-1950',
     web: 'hominis.com.ar',
     planes: [
       {
@@ -1357,7 +1357,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'cordoba', 'rosario', 'mendoza', 'tucuman', 'la-plata', 'mar-del-plata', 'salta', 'neuquen'],
-    telefono: '0800-777-5433',
+    telefono: '0810-999-7828',
     web: 'galeno.com.ar',
     planes: [
       {
@@ -1463,7 +1463,7 @@ export const prepagas: Prepaga[] = [
       farmacia: true,
     },
     ciudades: ['buenos-aires', 'cordoba', 'rosario', 'mendoza', 'tucuman', 'mar-del-plata'],
-    telefono: '0800-222-1331',
+    telefono: '(011) 4370-1000',
     web: 'oslpasteur.com.ar',
     planes: [
       {

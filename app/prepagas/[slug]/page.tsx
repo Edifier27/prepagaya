@@ -207,7 +207,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const app = getAppPrepaga(prep.slug)
   const contacto = contactos[prep.slug]
   const conv = getConvenios(prep.slug)
-  const telSocios = contacto?.canales.find((c) => c.tipo === 'socios')
+  const telSocios = contacto?.canales.find((c) => c.tipo === 'socios') ?? contacto?.canales.find((c) => c.tipo === 'whatsapp')
   const telEmergencias = contacto?.canales.find((c) => c.tipo === 'emergencias')
   const faqs = [
     ...buildFAQs(prep, precioMin, precioMax, planEstrella),
@@ -1075,7 +1075,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   <div key={c.etiqueta} className={`rounded-xl border p-4 ${c.tipo === 'emergencias' ? 'border-red-100 bg-red-50/60' : 'border-gray-100 bg-gray-50'}`}>
                     <div className="text-xs font-semibold text-gray-500">{c.etiqueta}</div>
                     {numero ? (
-                      <a href={c.tipo === 'whatsapp' ? `https://wa.me/${numero.replace('+', '')}` : `tel:${numero}`} className="block mt-1 font-bold text-gray-900 tabular-nums hover:text-[#E8002D]">
+                      <a href={c.tipo === 'whatsapp' ? `https://wa.me/${numero.startsWith('+54') ? numero.slice(1) : `549${numero}`}` : `tel:${numero}`} className="block mt-1 font-bold text-gray-900 tabular-nums hover:text-[#E8002D]">
                         {c.valor}
                       </a>
                     ) : (
