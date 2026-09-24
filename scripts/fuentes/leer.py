@@ -14,21 +14,21 @@ from html.parser import HTMLParser
 from urllib.parse import urljoin, urldefrag, urlparse
 
 SEMILLAS = [
-    'https://www.argentina.gob.ar/sssalud',
+    # Segunda pasada: jubilados (ANSES, PAMI) y el manual del usuario de la SSSalud
+    'https://www.anses.gob.ar/jubilaciones-y-pensiones',
+    'https://www.anses.gob.ar/consultas/obra-social-codem',
+    'https://www.anses.gob.ar/tramite/opcion-de-obra-social-para-jubilados-y-pensionados',
+    'https://www.pami.org.ar/afiliacion',
+    'https://www.argentina.gob.ar/servicio/elegir-o-cambiar-la-obra-social-siendo-jubilado-o-pensionado',
+    'https://www.argentina.gob.ar/sssalud/usuarios/manual-del-usuario',
+    'https://www.argentina.gob.ar/sssalud/usuarios/manual-del-usuario/cambio-de-agente-del-seguro',
+    'https://www.argentina.gob.ar/sssalud/usuarios/manual-del-usuario/tipos-de-usuarios',
+    'https://www.argentina.gob.ar/sssalud/usuarios/manual-del-usuario/afiliacion',
     'https://www.argentina.gob.ar/sssalud/usuarios',
-    'https://www.argentina.gob.ar/servicio/cambiar-de-obra-social',
-    'https://www.argentina.gob.ar/servicio/unificar-aportes-de-obra-social',
-    'https://www.argentina.gob.ar/servicio/consultar-tu-obra-social',
-    'https://www.argentina.gob.ar/servicio/hacer-un-reclamo-ante-la-superintendencia-de-servicios-de-salud',
-    'https://www.argentina.gob.ar/salud/obras-sociales-y-prepagas',
-    'https://www.sssalud.gob.ar/index.php?cat=beneficiarios&page=opcion',
-    'https://www.sssalud.gob.ar/index.php?page=bus_opcion',
-    'https://www.anses.gob.ar/consultas/cambiar-de-obra-social',
-    'https://www.anses.gob.ar/jubilaciones-y-pensiones/obra-social',
 ]
-CLAVES = re.compile(r'obra[-_ ]?social|opcion|opci%C3%B3n|aporte|unific|reclam|jubil|monotribut|padron|padr%C3%B3n|cobertura|prepaga|sssalud|desempleo|traspaso|cambi', re.I)
-DOMINIOS = ('www.argentina.gob.ar', 'argentina.gob.ar', 'www.sssalud.gob.ar', 'sssalud.gob.ar', 'www.anses.gob.ar')
-MAX_PAGINAS = 45
+CLAVES = re.compile(r'manual|usuario|afiliac|jubilad|pensionad|obra[-_ ]?social|opcion|opci%C3%B3n|aporte|unific|reclam|jubil|monotribut|padron|padr%C3%B3n|cobertura|prepaga|sssalud|desempleo|traspaso|cambi', re.I)
+DOMINIOS = ('www.argentina.gob.ar', 'argentina.gob.ar', 'www.sssalud.gob.ar', 'sssalud.gob.ar', 'www.anses.gob.ar', 'www.pami.org.ar')
+MAX_PAGINAS = 60
 MAX_CHARS = 6000
 
 
@@ -72,11 +72,15 @@ def bajar(url):
         return r.geturl(), crudo.decode(cs, errors='replace')
 
 
+# Ya leídas en la primera pasada (24-sep-2026)
+LEIDAS = re.compile(r'/sssalud/(transparencia|institucional|noticias|recepci|base-datos|prestadores|valores-de-planes|medicina-prepaga-0|centro-de-atencion)|/noticias/|hospitales-publicos|transparencia/subsidios|procedimiento-de-mediacion|reclamos-interrupcion')
+
+
 def main():
     cola, vistos, n = list(SEMILLAS), set(), 0
     while cola and n < MAX_PAGINAS:
         url = urldefrag(cola.pop(0))[0]
-        if url in vistos:
+        if url in vistos or LEIDAS.search(url):
             continue
         vistos.add(url)
         try:
