@@ -19,6 +19,7 @@ import { getAppPrepaga, APPS_FECHA, APPS_FUENTE } from '@/lib/data/apps-prepagas
 import { resenasAprobadas } from '@/lib/db'
 import { ResenaForm } from '@/components/prepagas/ResenaForm'
 import { contactos, CONTACTOS_VERIFICADOS } from '@/lib/data/contactos'
+import { getConvenios } from '@/lib/data/convenios'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -204,10 +205,23 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const perfiles = getPerfilesIdeales(prep, precioMin)
   const app = getAppPrepaga(prep.slug)
   const contacto = contactos[prep.slug]
+  const conv = getConvenios(prep.slug)
   const telSocios = contacto?.canales.find((c) => c.tipo === 'socios')
   const telEmergencias = contacto?.canales.find((c) => c.tipo === 'emergencias')
   const faqs = [
     ...buildFAQs(prep, precioMin, precioMax, planEstrella),
+    ...(conv?.codigoAfip?.codigos.length ? [{
+      q: `¿Cuál es el código de obra social de ${prep.nombre} para AFIP/ARCA?`,
+      a: `${conv.codigoAfip.codigos.map((c) => `${c.codigo}${c.nota ? ` (${c.nota})` : ''}`).join('; ')}. ${conv.codigoAfip.explicacion}`,
+    }] : []),
+    ...(conv?.pami?.respuesta ? [{
+      q: `¿${prep.nombre} atiende PAMI?`,
+      a: `${conv.pami.respuesta} ${conv.pami.detalle}`,
+    }] : []),
+    ...(conv?.convenios?.length ? [{
+      q: `¿Qué convenios tiene ${prep.nombre}?`,
+      a: conv.convenios.map((c) => `${c.entidad}: ${c.beneficio} (${c.paraQuien.toLowerCase()})`).join('. ') + '.',
+    }] : []),
     ...(contacto && telSocios ? [{
       q: `¿Cuál es el teléfono de ${prep.nombre}?`,
       a: `${telSocios.etiqueta}: ${telSocios.valor}${telSocios.detalle ? ` (${telSocios.detalle.toLowerCase()})` : ''}.${telEmergencias ? ` ${telEmergencias.etiqueta}: ${telEmergencias.valor}.` : ''} Datos publicados por ${prep.nombre} en su web oficial. Si querés contratar un plan, te cotizamos en ${TIEMPO_RESPUESTA}.`,
@@ -952,6 +966,68 @@ export default async function PrepagaSlugPage({ params }: Props) {
           <ResenaForm prepagaSlug={prep.slug} prepagaNombre={prep.nombre} planes={prep.planes.map((pl) => pl.nombre)} />
         </div>
       </section>
+
+      {/* Convenios, código AFIP y PAMI (23-sep-2026): solo se muestra lo que
+          esté cargado en lib/data/convenios.ts. */}
+      {conv && (
+        <section id="convenios" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-5xl mx-auto space-y-8">
+            {conv.codigoAfip && conv.codigoAfip.codigos.length > 0 && (
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">Código de obra social de {prep.nombre} para AFIP/ARCA</h2>
+                <p className="text-sm text-gray-600 max-w-3xl mb-4">{conv.codigoAfip.explicacion}</p>
+                <div className="flex flex-wrap gap-3">
+                  {conv.codigoAfip.codigos.map((c) => (
+                    <div key={c.codigo} className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+                      <div className="text-lg font-black text-gray-900 tabular-nums">{c.codigo}</div>
+                      {c.nota && <div className="text-xs text-gray-500 mt-0.5">{c.nota}</div>}
+                    </div>
+                  ))}
+                </div>
+                {conv.codigoAfip.fuente && <p className="text-xs text-gray-400 mt-3">Fuente: {conv.codigoAfip.fuente.url ? <a href={conv.codigoAfip.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{conv.codigoAfip.fuente.texto}</a> : conv.codigoAfip.fuente.texto}</p>}
+                <Link href="/guias/derivar-obra-social-a-prepaga" className="inline-block mt-3 text-sm font-semibold text-[#E8002D] hover:underline">Cómo derivar tus aportes a {prep.nombre} →</Link>
+              </div>
+            )}
+
+            {conv.pami?.respuesta && (
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">¿{prep.nombre} atiende PAMI?</h2>
+                <p className="text-sm text-gray-800 max-w-3xl"><strong>{conv.pami.respuesta}</strong> {conv.pami.detalle}</p>
+                {conv.pami.fuente && <p className="text-xs text-gray-400 mt-2">Fuente: {conv.pami.fuente.url ? <a href={conv.pami.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{conv.pami.fuente.texto}</a> : conv.pami.fuente.texto}</p>}
+              </div>
+            )}
+
+            {((conv.convenios?.length ?? 0) > 0 || (conv.bancos?.length ?? 0) > 0) && (
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-4">Convenios y afinidades de {prep.nombre}</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {conv.convenios?.map((c) => (
+                    <div key={c.entidad} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                      <h3 className="font-bold text-gray-900 text-sm">Convenio con {c.entidad}</h3>
+                      <p className="text-xs text-gray-500 mt-0.5">{c.paraQuien}</p>
+                      <p className="text-sm text-gray-700 mt-2">{c.beneficio}</p>
+                      {c.fuente && <p className="text-[11px] text-gray-400 mt-2">Fuente: {c.fuente.url ? <a href={c.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{c.fuente.texto}</a> : c.fuente.texto}</p>}
+                    </div>
+                  ))}
+                  {conv.bancos?.map((b) => (
+                    <div key={b.banco} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                      <h3 className="font-bold text-gray-900 text-sm">Afinidad con {b.banco}</h3>
+                      <p className="text-sm text-gray-700 mt-2">{b.beneficio}</p>
+                      {b.fuente && <p className="text-[11px] text-gray-400 mt-2">Fuente: {b.fuente.url ? <a href={b.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{b.fuente.texto}</a> : b.fuente.texto}</p>}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 rounded-2xl border-2 border-[#E8002D]/20 bg-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <p className="text-sm text-gray-700"><strong>¿Te corresponde algún convenio?</strong> Te decimos cuál aplica a tu caso y te cotizamos en {TIEMPO_RESPUESTA}.</p>
+                  <Link href="/comparador" className="flex-shrink-0 text-center px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
+                    Consultar mi convenio →
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Teléfonos (23-sep-2026): "teléfono osde" / "swiss medical teléfono"
           tienen mucho volumen. Va como H2 dentro de la ficha (no página
