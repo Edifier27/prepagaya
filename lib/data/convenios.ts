@@ -56,10 +56,12 @@ export const convenios: Record<string, ConveniosPrepaga> = {
     //   codigos: [{ codigo: '', nota: '' }],
     //   fuente: { texto: '', url: '' },
     // },
-    // pami: {
-    //   respuesta: '',
-    //   detalle: '',
-    // },
+    // Confirmado por Darío (23-sep-2026): Swiss Medical no atiende PAMI.
+    pami: {
+      respuesta: 'No.',
+      detalle: 'Swiss Medical no atiende a afiliados de PAMI: para atenderte en Swiss Medical necesitás un plan de Swiss Medical. Si trabajás en PAMI, sí podés acceder a los planes corporativos del convenio de Swiss Medical con PAMI para empleados.',
+      fuente: { texto: 'PrepagaYa, partner oficial de Swiss Medical' },
+    },
     // Convenios corporativos (Darío, 23-sep-2026): los tres son para
     // empleados del organismo y dan acceso a los mismos planes.
     convenios: [
