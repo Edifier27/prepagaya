@@ -177,7 +177,420 @@
     "$702.103,24"
    ]
   ],
-  "textoVigencia": "vigente desde 01/08/2024"
+  "vigencias": [
+   " Montos y categorías vigentes - Categorías - Monotributo | ARCA window",
+   "table-not-responsive-monotributo { overflow: auto; } } @media (max-width: 1300px) { #contVigentes { padding: 0 !important; } } @media (max-width: 1199px) { table tr th, table tr td { font-size: 11px; } ",
+   "las herramientas de navegación y pasar al contenido Monotributo Menu Inicio Ayuda Inicio Categorías Montos y categorías vigentes Montos y categorías vigentes Parámetros y valores a abonar Ver montos y categorías anteriores Valores de aplicación desde el 1/08/2026 VER VALORES VIGENTES "
+  ],
+  "notas": [
+   "(*) Actividad --> Sup. Afectada",
+   "(**) Energía eléctrica consumida anualmente Alquileres devengados anualmente Precio unitario máximo para venta de cosas muebles Impuesto integrado Aportes al SIPA",
+   "(***) Aportes obra social",
+   "(****) Total Locaciones y prestaciones de servicios Venta de cosas muebles Locaciones y prestaciones de servicios Venta de cosas muebles A $12.009.410,45 No excluida --> Hasta 30 m2 Hasta 3330 Kw $2.792.886,15 $716.840,77 $5.585,77 $5.585,77 $18.246,86 $25.694,55 $49.527,18 $49.527,18 B $17.595.182,74 No excluida --> Hasta 45 m2 Hasta 5000 Kw $2.792.886,15 $716.840,77 $10.612,98 $10.612,98 $20.071,55 $25.694,55 $56.379,08 $56.379,08 C $24.670.494,31 No excluida --> Hasta 60 m2 Hasta 6700 Kw $3.816.944,41 $716.840,77 $18.246,86 $16.757,32 $22.078,71 $25.694,55 $66.020,12 $64.530,58 D $30.628.651,43 No excluida --> Hasta 85 m2 Hasta 10000 Kw $3.816.944,41 $716.840,77 $29.790,79 $27.742,67 $24.286,58",
+   "(*) No ingresarán el impuesto integrado: Los trabajadores independientes promovidos. Los asociados a cooperativas cuando sus ingresos brutos no superen la suma máxima establecida para la categoría A. Los sujetos que adhieran, exclusivamente en su condición de locadores de bienes inmuebles -cualquiera sea su destino-, siempre que la cantidad de inmuebles que mantengan en locación -incluyendo los que integren condominios por los que se haya adherido en forma individual- no exceda de 2. Los inscriptos en el Registro Nacional de Efectores cuando sus ingresos brutos no superen la suma máxima establecida para la categoría A. Quienes desarrollen exclusivamente actividades primarias siendo su actividad",
+   "(**) Este parámetro no deberá considerarse en ciudades de menos de 40.000 habitantes",
+   "(***) Quedan exceptuados de ingresar cotizaciones al régimen de la seguridad social y a obras sociales, los siguientes sujetos: Quienes se encuentran obligados por otros regímenes previsionales. Los menores de 18 años. Los contribuyentes que adhirieron al monotributo por locación de bienes muebles y/o inmuebles Las sucesiones indivisas continuadoras de los sujetos adheridos al régimen que opten por la permanencia en el mismo. Quienes se jubilaron por leyes anteriores al 07/1994",
+   "(****) Afiliación individual a obra social, sin adherentes. Por cada adherente, además, deberá ingresarse ese mismo importe. footer a { text-decoration: none !important; } #logoAFIPFooter { height: 72px; margin-top: -15px; } #logoAFIPFooter a { padding: 0 !important; float: none !important; margin: 0 !important; } #logosFooter { overflow: hidden; margin-bottom: 25px !important; } #logosFooter a { display: block; float: left; background-position: center center; width: 28px; height: 28px; background-size: contain; background-repeat: no-repeat; margin-right: 3px; } #logosFooter a.footer-logo-facebook { background-image: url"
+  ]
  },
- "generado": "2026-09-24"
+ "generado": "2026-09-24",
+ "obrasSociales": [
+  {
+   "codigo": "0-0150-8",
+   "nombre": "OBRA SOCIAL DE LA ASOCIACION CIVIL PROSINDICATO DE AMAS DE CASA DE LA REPUBLICA ARGENTINA",
+   "domicilio": "BARTOLOME MITRE Nª 844",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "0-0210-5",
+   "nombre": "OBRA SOCIAL PROFESIONALE S DEL TURF DE LA REPUBLICA ARGENTINA",
+   "domicilio": "PANAMA 950",
+   "localidad": "MARTINEZ",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "0-0260-0",
+   "nombre": "OBRA SOCIAL DE LOS TRABAJADORES DE LA CARNE Y AFINES DE LA REPUBLICA ARGENTINA",
+   "domicilio": "PARANA 749 2º A",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "0-0340-5",
+   "nombre": "OBRA SOCIAL ASOCIACION MUTUAL DE LOS OBREROS CATOLICOS PADRE FEDERICO GROTE",
+   "domicilio": "BILLINGHUR ST 1669",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "0-0350-4",
+   "nombre": "OBRA SOCIAL DE CONDUCTORES TITULARES DE TAXIS DE LA CIUDAD AUTONOMA DE BUENOS AIRES",
+   "domicilio": "FRAGATA PRESIDENTE SARMIENTO 661",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "0-0360-3",
+   "nombre": "OBRA SOCIAL PROGRAMAS MEDICOS SOCIEDAD ARGENTINA DE CONSULTORIA MUTUAL",
+   "domicilio": "ESPAÑA 160 PISO 2",
+   "localidad": "LOMAS DE ZAMORA",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "0-0380-1",
+   "nombre": "OBRA SOCIAL DE LA PREVENCION Y LA SALUD",
+   "domicilio": "AVDA CORDOBA 1547 PISO 4",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-0290-4",
+   "nombre": "OBRA SOCIAL DEL PERSONAL DE BARRACAS DE LANAS, CUEROS Y ANEXOS",
+   "domicilio": "FLORENTINO AMEGHINO 1060",
+   "localidad": "AVELLANEDA",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-0460-3",
+   "nombre": "OBRA SOCIAL DE OPERADORES CINEMATOGRAF ICOS",
+   "domicilio": "VIAMONTE 2045",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": false
+  },
+  {
+   "codigo": "1-0480-1",
+   "nombre": "OBRA SOCIAL DE COLOCADORES DE AZULEJOS, MOSAICOS, GRANITEROS, LUSTRADORES Y PORCELANEROS",
+   "domicilio": "JOSE EUSEBIO COLOMBRES 1419",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-0620-3",
+   "nombre": "OBRA SOCIAL DEL PERSONAL DE DISTRIBUIDOR AS CINEMATOGRAF ICAS DE LA R.A.",
+   "domicilio": "AYACUCHO 512/514 1º Y 2º PISO",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-0800-1",
+   "nombre": "OBRA SOCIAL PARA EL PERSONAL DE LA INDUSTRIA FORESTAL DE SANTIAGO DEL ESTERO",
+   "domicilio": "MISIONES 332",
+   "localidad": "SANTIAGO DEL ESTERO",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-0970-7",
+   "nombre": "OBRA SOCIAL DEL PERSONAL DE IMPRENTAS, DIARIOS Y AFINES",
+   "domicilio": "SAN JOSE 157",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-1280-6",
+   "nombre": "OBRA SOCIAL DE MUSICOS",
+   "domicilio": "AVDA. BELGRANO 3655",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-1380-9",
+   "nombre": "OBRA SOCIAL DE COMISARIOS NAVALES",
+   "domicilio": "BERNARDO DE IRIGOYEN 840",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-1510-2",
+   "nombre": "OBRA SOCIAL DE TRABAJADORES DE PRENSA DE BUENOS AIRES",
+   "domicilio": "PERU 590 PISO 5",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-1770-2",
+   "nombre": "OBRA SOCIAL DEL PERSONAL DE PRENSA DE MAR DEL PLATA",
+   "domicilio": "DORREGO 1734",
+   "localidad": "MAR DEL PLATA",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-1800-2",
+   "nombre": "OBRA SOCIAL DE EMPLEADOS DE PRENSA DE CORDOBA",
+   "domicilio": "OBISPO TREJO 365",
+   "localidad": "CORDOBA",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-1820-0",
+   "nombre": "OBRA SOCIAL DE AGENTES DE PROPAGANDA MEDICA DE LA REPUBLICA ARGENTINA",
+   "domicilio": "AVELLANEDA 2144",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-1990-6",
+   "nombre": "OBRA SOCIAL DE SERENOS DE BUQUES",
+   "domicilio": "BERNARDO DE IRIGOYEN 972/4 PISO 9 OF. 45",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2170-5",
+   "nombre": "OBRA SOCIAL DEL PERSONAL DE LA ACTIVIDAD DEL TURF",
+   "domicilio": "CARLOS PELLEGRINI 887 8 PISO",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2210-4",
+   "nombre": "OBRA SOCIAL DE VIAJANTES VENDEDORES DE LA REPUBLICA ARGENTINA. (ANDAR)",
+   "domicilio": "MORENO 2045",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2250-0",
+   "nombre": "OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA DEL VIDRIO",
+   "domicilio": "BALBASTRO 453",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2360-2",
+   "nombre": "OBRA SOCIAL DE TRABAJADORES DE PERKINS ARGENTINA S.A.I.C",
+   "domicilio": "ROQUE SAENZ PEÑA 1377",
+   "localidad": "CORDOBA",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2370-1",
+   "nombre": "OBRA SOCIAL DE PEONES DE TAXIS DE LA CAPITAL FEDERAL",
+   "domicilio": "AVDA LA PLATA 1554/60/62 /64",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2390-9",
+   "nombre": "OBRA SOCIAL DE VENDEDORES AMBULANTES DE LA REPUBLICA ARGENTINA",
+   "domicilio": "GALLO 443",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2680-9",
+   "nombre": "OBRA SOCIAL DE CONDUCTORES DE REMISES Y AUTOS AL INSTANTE Y AFINES",
+   "domicilio": "CERRITO 228 - 1º \"B\"",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2720-8",
+   "nombre": "OBRA SOCIAL DE MANDOS MEDIOS DE TELECOMUNICA CIONES EN LA REPUBLICA ARGENTINA Y MERCOSUR",
+   "domicilio": "URIARTE 1317",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2740-6",
+   "nombre": "OBRA SOCIAL DE OBREROS Y EMPLEADOS TINTOREROS SOMBREREROS Y LAVADEROS DE LA REPUBLICA ARGENTINA",
+   "domicilio": "CULPINA 25/29",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-2850-8",
+   "nombre": "OBRA SOCIAL DE FARMACEUTICO S Y BIOQUIMICOS",
+   "domicilio": "AGUERO 1595 PISO 13",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "4-0040-4",
+   "nombre": "OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA CERVECERA Y MALTERA",
+   "domicilio": "RODRIGUEZ PEÑA 1474",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "4-0120-9",
+   "nombre": "OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA METALURGICA Y DEMAS ACTIVIDADES EMPRESARIAS",
+   "domicilio": "MONTEVIDEO 373 PISO 4º",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "4-0170-4",
+   "nombre": "OBRA SOCIAL DE EMPRESARIOS, PROFESIONALE S Y MONOTRIBUTIS TAS",
+   "domicilio": "RECONQUIST A 458 PISO 2",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "4-0220-2",
+   "nombre": "OBRA SOCIAL MUTUALIDAD INDUSTRIAL TEXTIL ARGENTINA",
+   "domicilio": "PARAGUAY 610 PISO 6",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "4-0260-8",
+   "nombre": "OBRA SOCIAL ASOCIACION DE SERVICIOS SOCIALES PARA EMPRESARIOS Y PERSONAL DE DIRECCION DE EMPRESAS DEL COMERCIO, SERVICIOS, PRODUCCION, INDUSTRIA Y CIVIL (ASSPE )",
+   "domicilio": "BARTOLOME MITRE 1399",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "4-0270-7",
+   "nombre": "OBRA SOCIAL DE DIRECCION OSDO",
+   "domicilio": "AVDA. LUIS MARUA CAMPOS 46 PISO 8",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "4-0280-6",
+   "nombre": "OBRA SOCIAL DE DIRECCION DE LA ACTIVIDAD AEROCOMERCIA L PRIVADA",
+   "domicilio": "VENEZUELA 900",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "9-0170-9",
+   "nombre": "MUTUAL MEDICA CONCORDIA",
+   "domicilio": "9 DE JULIO Nº 15",
+   "localidad": "CONCORDIA",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "9-0180-8",
+   "nombre": "ASOCIACION MUTUAL DE PARTICIPANTE S DE ECONOMIA SOLIDARIAS",
+   "domicilio": "DON BOSCO 218",
+   "localidad": "MENDOZA",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "9-0390-3",
+   "nombre": "MET-CORDOBA SA",
+   "domicilio": "OBISPO ORO 50",
+   "localidad": "CORDOBA",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "9-0410-4",
+   "nombre": "PRIVAMED S.A.",
+   "domicilio": "URUGUAY 469 PISO 3",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "9-0470-8",
+   "nombre": "ASOCIACIÓN MUTUAL DEL CONTROL INTEGRAL",
+   "domicilio": "PASAJE LA PIEDAD Nº 17",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "9-0500-8",
+   "nombre": "ADMINISTRACI ÓN RECURSOS PARA SALUD S.A.",
+   "domicilio": "FIGUEROA ALCORTA 110",
+   "localidad": "CORDOBA",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "9-0510-7",
+   "nombre": "AMSTERDAM SALUD S.A.",
+   "domicilio": "LAPRIDA 176",
+   "localidad": "SAN MIGUEL DE TUCUMAN",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  }
+ ],
+ "fuenteObrasSociales": "https://www.sssalud.gob.ar/?page=listRnosc&tipo=3"
 }
