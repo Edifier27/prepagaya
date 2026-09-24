@@ -153,6 +153,33 @@ export default async function ObraSocialPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Teléfonos (23-sep-2026): "osecac teléfono", "pami 138"... tienen mucho
+          volumen. Solo números copiados de la web oficial. */}
+      {os.telefonos && os.telefonos.length > 0 && (
+        <section id="telefonos" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Teléfonos de {os.nombre}</h2>
+            <p className="text-sm text-gray-500 mb-5">Publicados por {os.nombre} en su web oficial{os.verificado ? ` (verificados el ${new Date(os.verificado + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })})` : ''}.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {os.telefonos.map((tl) => {
+                const numero = tl.valor.replace(/\(0800[^)]*\)/, '').replace(/[^\d+]/g, '')
+                return (
+                  <div key={tl.etiqueta} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                    <div className="text-xs font-semibold text-gray-500">{tl.etiqueta}</div>
+                    {numero.length >= 3 ? (
+                      <a href={`tel:${numero}`} className="block mt-1 font-bold text-gray-900 tabular-nums hover:text-[#E8002D]">{tl.valor}</a>
+                    ) : (
+                      <div className="mt-1 font-semibold text-gray-900 text-sm">{tl.valor}</div>
+                    )}
+                    {tl.detalle && <div className="text-xs text-gray-500 mt-1">{tl.detalle}</div>}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Quiénes pueden afiliarse */}
       <section className="py-10 bg-white">
         <div className="container max-w-4xl mx-auto">
@@ -171,6 +198,7 @@ export default async function ObraSocialPage({ params }: Props) {
       </section>
 
       {/* Aportes */}
+      {os.aportes && (
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-6">Cuánto se aporta</h2>
@@ -192,6 +220,7 @@ export default async function ObraSocialPage({ params }: Props) {
           </div>
         </div>
       </section>
+      )}
 
       {/* Cobertura y diferenciadores */}
       <section className="py-10 bg-white border-t border-gray-100">

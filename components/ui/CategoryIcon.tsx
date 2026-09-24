@@ -63,6 +63,7 @@ const obraSocialMap: Record<string, LetterCfg> = {
   'accord-salud':    { letters: 'AC', bg: 'bg-cyan-100',    text: 'text-cyan-800',    bgHover: 'group-hover:bg-cyan-200' },
   ospat:             { letters: 'OP', bg: 'bg-amber-100',   text: 'text-amber-800',   bgHover: 'group-hover:bg-amber-200' },
   'union-personal':  { letters: 'UP', bg: 'bg-slate-100',   text: 'text-slate-700',   bgHover: 'group-hover:bg-slate-200' },
+  osprera:           { letters: 'OR', bg: 'bg-lime-100',    text: 'text-lime-800',    bgHover: 'group-hover:bg-lime-200' },
   iosfa:             { letters: 'IF', bg: 'bg-blue-100',    text: 'text-blue-800',    bgHover: 'group-hover:bg-blue-200' },
   osdepym:           { letters: 'OM', bg: 'bg-orange-100',  text: 'text-orange-800',  bgHover: 'group-hover:bg-orange-200' },
   amsalud:           { letters: 'AS', bg: 'bg-rose-100',    text: 'text-rose-800',    bgHover: 'group-hover:bg-rose-200' },
