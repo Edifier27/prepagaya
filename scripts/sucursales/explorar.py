@@ -39,34 +39,20 @@ def seccion(t):
 
 
 def main():
-    seccion('SWISS chunk completo')
-    st, c = bajar('https://www.swissmedical.com.ar/prepagaclientes/assets/sucursales.cadd91c7.chunk.js')
-    print(st, c[:26000])
-    seccion('SWISS scripts de la página y endpoints con sucursal')
-    st, c = bajar('https://www.swissmedical.com.ar/prepagaclientes/sucursales')
-    for src in re.findall(r'<script[^>]+src=["\']([^"\']+)["\']', c):
-        if not src.startswith('http'):
-            src = 'https://www.swissmedical.com.ar' + src
-        st2, js = bajar(src)
-        hits = sorted(set(re.findall(r'["\'`]([^"\'`\s]{0,120}(?:sucursal|Sucursal)[^"\'`\s]{0,120})["\'`]', js)))[:40]
-        print(src, st2, len(js), json.dumps(hits, ensure_ascii=False))
-
-    seccion('OSDE env.json y API')
-    st, env = bajar('https://www.osde.com.ar/buscadorsucursales/env.json')
-    print(st, env[:3000])
-    bases = re.findall(r'https?://[^"\s]+', env)
-    for base in ['https://www.osde.com.ar', 'https://api.osde.com.ar'] + bases[:6]:
-        st, c = bajar(base.rstrip('/') + '/os-sucursales/v1/sucursales', extra={'Accept': 'application/json', 'Origin': 'https://www.osde.com.ar', 'Referer': 'https://www.osde.com.ar/buscadorsucursales/'})
-        print(base, st, len(c), c[:2500])
-
-    seccion('SANCOR bundles')
-    st, c = bajar('https://sancorsalud.com.ar/sucursales')
-    for src in re.findall(r'<script[^>]+src=["\']([^"\']+)["\']', c)[:12]:
-        if not src.startswith('http'):
-            src = 'https://sancorsalud.com.ar/' + src.lstrip('/')
-        st2, js = bajar(src)
-        hits = sorted(set(re.findall(r'["\'`]([^"\'`\s]{0,150}(?:sucursal|api/|/api|backend)[^"\'`\s]{0,150})["\'`]', js, re.I)))[:40]
-        print(src, st2, len(js), json.dumps(hits, ensure_ascii=False))
+    seccion('SWISS client.js: helper que arma las URL de la API')
+    st, js = bajar('https://www.swissmedical.com.ar/prepagaclientes/assets/client.0f2777d1.js')
+    for pat in [r'.{0,300}v0/.{0,300}', r'.{0,200}(?:baseURL|apiUrl|API_URL|urlBase|BASE_URL)\s*[:=].{0,200}', r'.{0,150}(?:https://[a-z0-9.-]*swissmedical[a-z0-9./-]*api[^"\']*).{0,150}']:
+        for m in list(re.finditer(pat, js))[:6]:
+            print('  …', m.group(0)[:600])
+    seccion('SANCOR chunks perezosos')
+    st, main_js = bajar('https://sancorsalud.com.ar/main-ZF2Y3S74.js')
+    chunks = sorted(set(re.findall(r'chunk-[A-Z0-9]+\.js', main_js)))
+    print(len(chunks), chunks[:80])
+    for ch in chunks[:80]:
+        st2, js = bajar('https://sancorsalud.com.ar/' + ch)
+        hits = sorted(set(re.findall(r'["\'`]([^"\'`\s]{0,150}(?:sucursal|Sucursal|/api/|api\.|backend)[^"\'`\s]{0,150})["\'`]', js)))[:25]
+        if hits:
+            print(ch, st2, len(js), json.dumps(hits, ensure_ascii=False))
     return 0
 
 

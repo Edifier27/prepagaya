@@ -6,6 +6,10 @@ trae menos sucursales que el mínimo esperado, se conservan las que ya había
 de esa prepaga (nunca se publica una lista rota).
 
 Fuentes (páginas oficiales de cada prepaga):
+  OSDE     https://www.osde.com.ar/buscadorsucursales (API del buscador:
+           gateway.api-osde.com.ar/os-sucursales/v1/sucursales)
+  Swiss    https://www.swissmedical.com.ar/prepagaclientes/sucursales (API
+           /v0/getSucursales del buscador; se prueban las rutas posibles)
   Galeno   https://www.galeno.com.ar/sucursales/ (__NEXT_DATA__ del sitio)
   Premedic https://web.grupopremedic.com.ar/sucursales
   Medifé   https://www.medife.com.ar/sucursales
@@ -17,16 +21,20 @@ from datetime import date
 
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'
 SALIDA = os.path.join(os.path.dirname(__file__), '..', '..', 'lib', 'data', 'sucursales.json')
-MINIMOS = {'galeno': 15, 'premedic': 12, 'medife': 15}
+MINIMOS = {'osde': 40, 'swiss-medical': 30, 'galeno': 15, 'premedic': 12, 'medife': 15}
 FUENTES = {
+    'osde': 'https://www.osde.com.ar/buscadorsucursales',
+    'swiss-medical': 'https://www.swissmedical.com.ar/prepagaclientes/sucursales',
     'galeno': 'https://www.galeno.com.ar/sucursales/',
     'premedic': 'https://web.grupopremedic.com.ar/sucursales',
     'medife': 'https://www.medife.com.ar/sucursales',
 }
 
 
-def bajar(url):
-    req = urllib.request.Request(url, headers={'User-Agent': UA, 'Accept-Language': 'es-AR,es;q=0.9'})
+def bajar(url, extra=None):
+    h = {'User-Agent': UA, 'Accept-Language': 'es-AR,es;q=0.9'}
+    h.update(extra or {})
+    req = urllib.request.Request(url, headers=h)
     with urllib.request.urlopen(req, timeout=40, context=ssl.create_default_context()) as r:
         return r.read().decode('utf-8', 'replace')
 
@@ -42,6 +50,58 @@ def tokens_visibles(cuerpo):
 
 def es_telefono(s):
     return bool(re.fullmatch(r'[\d\s()/\-]{7,}', s)) and len(re.sub(r'\D', '', s)) >= 7
+
+
+def osde():
+    datos = json.loads(bajar('https://gateway.api-osde.com.ar/os-sucursales/v1/sucursales', {
+        'Accept': 'application/json', 'Origin': 'https://www.osde.com.ar', 'Referer': 'https://www.osde.com.ar/buscadorsucursales/'}))
+    out = []
+    for s in datos:
+        tipo = limpio(str(s.get('tipo') or ''))
+        out.append({
+            'nombre': f"OSDE {limpio(s.get('nombre')).title()}" + (' (filial)' if tipo == 'FILIAL' else ''),
+            'direccion': limpio(s.get('direccion')),
+            'localidad': limpio(s.get('Localidad')),
+            'region': limpio(s.get('Provincia')),
+            'horario': re.sub(r'^Horario de atención:\s*', '', limpio(s.get('horario'))) or None,
+            'lat': s.get('latitud'),
+            'lon': s.get('longitud'),
+        })
+    return out
+
+
+def swiss():
+    rutas = ['https://www.swissmedical.com.ar/prepagaclientes/api/v0/getSucursales',
+             'https://www.swissmedical.com.ar/prepagaclientes/v0/getSucursales',
+             'https://www.swissmedical.com.ar/v0/getSucursales',
+             'https://mobile.swissmedical.com.ar/api-smg/v0/getSucursales']
+    ultimo = None
+    for url in rutas:
+        try:
+            crudo = bajar(url, {'Accept': 'application/json', 'Referer': FUENTES['swiss-medical']})
+            datos = json.loads(crudo)
+            if isinstance(datos, str):
+                datos = json.loads(datos)
+            docs = datos['response']['docs']
+        except Exception as e:  # noqa: BLE001
+            ultimo = f'{url}: {e!r}'
+            continue
+        print('Swiss: datos en', url, '— campos:', sorted(docs[0].keys()) if docs else [])
+        out = []
+        for d in docs:
+            campo = lambda *ks: next((limpio(str(d[k])) for k in ks if d.get(k) not in (None, '')), None)  # noqa: E731
+            out.append({
+                'nombre': f"Swiss Medical {campo('Nombre') or ''}".strip(),
+                'direccion': campo('Direccion') or '',
+                'localidad': campo('Localidad', 'localidad', 'Ciudad'),
+                'region': campo('Provincia', 'provincia'),
+                'telefono': campo('Telefono'),
+                'horario': campo('Atencion'),
+                'lat': float(d['coordenada_1_coordinate']) if d.get('coordenada_1_coordinate') else None,
+                'lon': float(d['coordenada_0_coordinate']) if d.get('coordenada_0_coordinate') else None,
+            })
+        return out
+    raise RuntimeError(f'Swiss: ninguna ruta devolvió datos ({ultimo})')
 
 
 def galeno():
@@ -96,7 +156,7 @@ def main():
         anterior = json.load(open(SALIDA, encoding='utf-8'))
     por_prepaga = {p: [s for s in anterior.get('sucursales', []) if s['prepaga'] == p] for p in FUENTES}
     resumen = []
-    for prepaga, fn in [('galeno', galeno), ('premedic', premedic), ('medife', medife)]:
+    for prepaga, fn in [('osde', osde), ('swiss-medical', swiss), ('galeno', galeno), ('premedic', premedic), ('medife', medife)]:
         try:
             lista = fn()
         except Exception as e:  # noqa: BLE001
