@@ -10,9 +10,11 @@ interface Props {
   /** Texto del botón. Por defecto "Contratar {planNombre}" o "Cotización personalizada" si no hay plan. */
   label?: string
   className?: string
+  /** Datos extra que ya respondió la persona (ej. respuestas del quiz), ver lib/data/sondeo.ts */
+  datosExtra?: Record<string, string>
 }
 
-export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className }: Props) {
+export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra }: Props) {
   const [open, setOpen] = useState(false)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
@@ -40,6 +42,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
           email: email.trim(),
           fuente,
           prepaga_interes: interes,
+          ...datosExtra,
         }),
       })
       // Ya no redirige al WhatsApp del asesor — el lead solo llega por mail

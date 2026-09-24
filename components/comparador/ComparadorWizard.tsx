@@ -13,6 +13,7 @@ import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { AsesoramientoPopup } from '@/components/ui/AsesoramientoPopup'
 import { leerZonaGeoDeCookie } from '@/lib/geo-zonas'
+import { OPCIONES_PREPAGA_ACTUAL } from '@/lib/data/sondeo'
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
@@ -662,6 +663,35 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   // Results filters
   const [activeCobs, setActiveCobs] = useState<Set<CobId>>(new Set())
   const [copago, setCopago] = useState<Copago>(null)
+
+  // Datos que la persona completa DESPUÉS de dejar el lead (24-sep-2026):
+  // situación laboral (solo si la cambió: "Particular" es el default y no
+  // dice nada), qué cobertura tiene hoy y qué coberturas filtra. Se suman a
+  // su mismo lead (/api/leads/complemento) para el panel y el sondeo anónimo.
+  // No hay ninguna pregunta nueva antes del formulario.
+  const [situacionTocada, setSituacionTocada] = useState(false)
+  const [prepagaActual, setPrepagaActual] = useState('')
+  const elegirSituacion = (s: SituacionLaboral) => { setSituacion(s); setSituacionTocada(true) }
+  useEffect(() => {
+    if (leadStatus !== 'success') return
+    const coberturasTxt = [...activeCobs].map((c) => COB_MAP[c]?.label).filter(Boolean).join(', ')
+    const copagoTxt = copago === 'sin-copago' ? 'Sin copago' : copago === 'con-copago' ? 'Con copago' : ''
+    if (!situacionTocada && !prepagaActual && !coberturasTxt && !copagoTxt) return
+    const t = setTimeout(() => {
+      fetch('/api/leads/complemento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email.trim(),
+          celular: celular.trim(),
+          situacion_laboral: situacionTocada ? SITUACIONES.find((s) => s.id === situacion)?.label : '',
+          prepaga_actual: prepagaActual,
+          preferencias: JSON.stringify({ coberturas: coberturasTxt, copago: copagoTxt }),
+        }),
+      }).catch(() => {})
+    }, 1500)
+    return () => clearTimeout(t)
+  }, [leadStatus, situacion, situacionTocada, prepagaActual, activeCobs, copago, email, celular])
   const [activePrepagas, setActivePrepagas] = useState<Set<string>>(new Set())
   const [activeNivelPrecio, setActiveNivelPrecio] = useState<Set<NivelPrecio>>(new Set())
   const [activeCaracteristicas, setActiveCaracteristicas] = useState<Set<CaracteristicaId>>(new Set())
@@ -949,7 +979,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
 
   function resetWizard() {
     setStep('zona'); setZonaKey(''); setProvinciaNombre('')
-    setSituacion('particular'); setSueldoBruto('')
+    setSituacion('particular'); setSueldoBruto(''); setSituacionTocada(false); setPrepagaActual('')
     setPersonas([{ id: 1, edad: '' }]); setNombre(''); setCelular('')
     setLeadStatus('idle'); limpiarFiltros()
     setSortBy('relevancia'); setPlanAccedido(null); setPlanAccedidoStatus('idle')
@@ -1307,6 +1337,32 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         )}
       </div>
 
+      {/* "¿Qué cobertura tenés hoy?" — opcional y DESPUÉS del lead, así no
+          suma fricción al formulario. Le sirve al asesor para comparar con lo
+          que paga hoy y al sondeo anónimo de /prensa/sondeo (24-sep-2026). */}
+      <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-6">
+        {prepagaActual ? (
+          <p className="text-sm text-gray-600">
+            ¡Gracias! Tu asesor va a comparar estos planes con tu cobertura actual ({prepagaActual}).{' '}
+            <button onClick={() => setPrepagaActual('')} className="text-[#E8002D] font-semibold hover:underline">Cambiar</button>
+          </p>
+        ) : (
+          <>
+            <p className="text-sm font-semibold text-gray-900 mb-2">
+              ¿Qué cobertura tenés hoy? <span className="font-normal text-gray-500">(opcional, para comparar con lo que pagás)</span>
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {OPCIONES_PREPAGA_ACTUAL.map((op) => (
+                <button key={op} onClick={() => setPrepagaActual(op)}
+                  className="text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D] transition-colors">
+                  {op}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
       {/* Layout: sidebar + cards */}
       <div className="flex gap-6">
 
@@ -1342,7 +1398,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             {/* ¿Cómo pagás? */}
             <div className="bg-white rounded-2xl border border-gray-100 p-4">
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">¿Cómo pagás?</p>
-              <SituacionFiltro situacion={situacion} setSituacion={setSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
+              <SituacionFiltro situacion={situacion} setSituacion={elegirSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
             </div>
 
             {/* Tipo de consulta */}
@@ -1557,7 +1613,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   {/* ¿Cómo pagás? */}
                   <div>
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">¿Cómo pagás?</p>
-                    <SituacionFiltro situacion={situacion} setSituacion={setSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
+                    <SituacionFiltro situacion={situacion} setSituacion={elegirSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
                   </div>
 
                   {/* Tipo de consulta */}

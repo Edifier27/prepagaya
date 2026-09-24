@@ -183,6 +183,17 @@ export function QuizPrepaga(): React.ReactElement {
 
   if (mostrarResultados) {
     const top3 = calcularResultados(respuestas)
+    // Las respuestas viajan con el lead si pide cotizar (24-sep-2026): el
+    // asesor ve presupuesto y preferencias, y alimentan el sondeo anónimo.
+    // Las claves y valores válidos están en lib/data/sondeo.ts.
+    const resp = (i: number) => {
+      const r = respuestas[i]
+      return r == null ? '' : PREGUNTAS[i].opciones[r].texto
+    }
+    const datosQuiz = {
+      presupuesto_quiz: resp(0),
+      preferencias: JSON.stringify({ zona: resp(1), saludMental: resp(2), medicoDeConfianza: resp(3), copago: resp(4), grupo: resp(5) }),
+    }
 
     return (
       <div className="animate-in fade-in duration-500">
@@ -259,6 +270,7 @@ export function QuizPrepaga(): React.ReactElement {
                       prepagaNombre={prepaga.nombre}
                       fuente="quiz-resultado"
                       label="Cotizar"
+                      datosExtra={datosQuiz}
                       className="flex-1 text-center py-3 rounded-xl font-bold text-sm bg-[#00875A] hover:bg-[#006644] text-white transition-all shadow-sm hover:shadow-md"
                     />
                     <Link

@@ -46,6 +46,10 @@ export default async function ComparativaPage({ params }: Props) {
   const p1 = prepagas.find((p) => p.slug === comp.prepaga1Slug)
   const p2 = prepagas.find((p) => p.slug === comp.prepaga2Slug)
   if (!p1 || !p2) notFound()
+  // Quién gana en precio sale del precio de lista "desde" que muestra la
+  // tabla (24-sep-2026). Antes era un campo fijo y en 10 de 27 comparativas
+  // el tilde quedaba al lado del precio más caro de la misma fila.
+  const ganadorPrecio = precioMin(p1) <= precioMin(p2) ? p1.slug : p2.slug
 
   const filas: {
     label: string
@@ -66,7 +70,7 @@ export default async function ComparativaPage({ params }: Props) {
     {
       q: `¿Cuál es más barata: ${p1.nombre} o ${p2.nombre}?`,
       a: `En ${PRECIO_ACTUALIZADO}, ${p1.nombre} es de nivel de precio ${NIVEL_PRECIO_LABEL[nivelPrecio(precioMin(p1))].label.toLowerCase()} y ${p2.nombre} de nivel ${NIVEL_PRECIO_LABEL[nivelPrecio(precioMin(p2))].label.toLowerCase()} en su plan de entrada. ${
-        comp.ganadorPrecio === p1.slug ? p1.nombre : p2.nombre
+        ganadorPrecio === p1.slug ? p1.nombre : p2.nombre
       } gana en precio. Cotizá gratis para ver el monto exacto a tu edad.`,
     },
     {
@@ -200,12 +204,12 @@ export default async function ComparativaPage({ params }: Props) {
                   <td className="p-4 whitespace-nowrap">
                     <span className="font-bold text-gray-900 mr-2">{formatPrecio(precioMin(p1))}</span>
                     <NivelPrecioBadge nivel={nivelPrecio(precioMin(p1))} />
-                    {comp.ganadorPrecio === p1.slug && <CheckBadge />}
+                    {ganadorPrecio === p1.slug && <CheckBadge />}
                   </td>
                   <td className="p-4 whitespace-nowrap">
                     <span className="font-bold text-gray-900 mr-2">{formatPrecio(precioMin(p2))}</span>
                     <NivelPrecioBadge nivel={nivelPrecio(precioMin(p2))} />
-                    {comp.ganadorPrecio === p2.slug && <CheckBadge />}
+                    {ganadorPrecio === p2.slug && <CheckBadge />}
                   </td>
                 </tr>
                 {filas.map((fila, i) => (

@@ -126,6 +126,26 @@ export const convenios: Record<string, ConveniosPrepaga> = {
       { banco: 'Banco Ciudad', beneficio: 'Swiss Medical tiene un convenio de afinidad con Banco Ciudad. Consultanos qué planes y condiciones aplican a tu caso.' },
     ],
   },
+  // Códigos del Registro Nacional de Agentes del Seguro (RNAS) de la SSSalud
+  // (24-sep-2026). OSDE: RNOS 4-0080-0 (OSDE indica "código 400800" en su web
+  // para la opción). Sancor: la Asociación Mutual Sancor Salud está inscripta
+  // como agente del seguro con el 9-0210-8 (también figura así en la serie
+  // SANO de argentina.gob.ar, con archivo de AFIP). Avalian y Premedic: sin
+  // fuente verificable todavía, no se cargan.
+  osde: {
+    codigoAfip: {
+      explicacion: 'Es el código con el que figura OSDE en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud. Es el que se usa para elegir OSDE al derivar tus aportes (la opción se hace en la web de la SSSalud) y el que tu empleador carga en tu alta. Confirmalo con tu asesor antes de indicarlo.',
+      codigos: [{ codigo: '400800', nota: 'OSDE, RNOS 4-0080-0' }],
+      fuente: { texto: 'Superintendencia de Servicios de Salud — Registro Nacional de Agentes del Seguro', url: 'https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400800' },
+    },
+  },
+  'sancor-salud': {
+    codigoAfip: {
+      explicacion: 'Es el código de la Asociación Mutual Sancor Salud como agente del seguro de salud: con él elegís Sancor Salud al derivar tus aportes, sin pasar por otra obra social, y es el que tu empleador carga en tu alta. Confirmalo con tu asesor antes de indicarlo.',
+      codigos: [{ codigo: '902108', nota: 'Asociación Mutual Sancor Salud, RNAS 9-0210-8' }],
+      fuente: { texto: 'Superintendencia de Servicios de Salud — Registro Nacional de Agentes del Seguro', url: 'https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902108' },
+    },
+  },
 }
 
 export function getConvenios(prepagaSlug: string): ConveniosPrepaga | null {

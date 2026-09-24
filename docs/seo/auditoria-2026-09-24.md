@@ -63,10 +63,21 @@ La diferencia con MiObraSocial no es contenido: es **autoridad** (links de medio
 4. **`lang` de las páginas `/en`, `/ru` y `/zh`**: salen con `lang="es-AR"` porque el layout raíz es uno solo. Se arregla con layouts raíz por idioma (grupos de rutas). Impacto bajo en Google, mayor en accesibilidad.
 5. **`middleware.ts` → `proxy.ts`**: Next 16 lo marca como deprecado en el build. No afecta SEO hoy.
 6. **Descripciones largas en las plantillas de cola larga** (cartillas por zona, localidades, sanatorios): ~1.080 páginas pasan los 160 caracteres. Google las corta; no es un problema de ranking.
+7. **Códigos AFIP/ARCA de Avalian y Premedic**: cargados OSDE (400800) y Sancor (902108) con la fuente oficial de la SSSalud. Avalian y Premedic no aparecen en ninguna fuente accesible desde el entorno (mediflow.com.ar y sssalud.gob.ar están bloqueados por la red).
+8. **Monotributo por prepaga**: para sumar "¿Puedo pagar [prepaga] con el monotributo?" a cada ficha hace falta confirmar, por prepaga, si acepta derivar el aporte de obra social del monotributo y cómo se calcula la diferencia.
+9. **Datos de referencia de Omint, Medicus y CEMIC**: sus precios no salen del cuadro oficial (figuran como referencia) y sus descripciones tienen cifras sin fuente citada (ej. Medicus "87% satisfacción", "11 centros propios"). Conviene mapear sus cuadros de la SSSalud como con el resto.
+10. **Beneficiarios en las fichas de obras sociales** (ej. OSDE 2.800.000, Medicus 450.000): confirmar la fuente o sacarlos, como se hizo con prestadores.
+
+### Resuelto en la tanda del 24-sep (tarde)
+
+- **Precios de monotributo inventados** en `/obras-sociales` (OSDE "$45.000", Galeno "$95.000", Medifé "$85.000"): ahora salen del cuadro oficial del mes. Los de obras sociales sin prepaga asociada pasan a "Cuota según plan y edad".
+- **Contradicciones** en `/obras-sociales/osde` (90.000 profesionales vs los 125.000 que informa OSDE) y `/obras-sociales/swiss-medical-os` (11 sanatorios vs los 9 confirmados).
+- **Comparativas**: en 10 de 27 el tilde de "más barata" quedaba al lado del precio más caro de la fila; ahora se calcula con el precio que muestra la tabla. Se reescribieron 10 veredictos que afirmaban cosas de precio contrarias al cuadro oficial y se sacaron porcentajes de satisfacción escritos a mano. Nuevas: Galeno vs OSDE, Omint vs OSDE, Medicus vs OSDE, Omint vs Swiss Medical y Premedic vs Avalian.
+- **Leads**: se guardan situación laboral, presupuesto del quiz, cobertura actual (pregunta opcional después de enviar) y preferencias. Se ven en el panel y alimentan `/prensa/sondeo`.
 
 ## Siguientes pasos de contenido (por impacto)
 
-1. **Sondeo trimestral propio** con datos anónimos de las cotizaciones: es lo que le da los links a MiObraSocial (detalle en `plan-backlinks.md`).
+1. **Sondeo propio**: la página `/prensa/sondeo` ya está armada y se calcula sola desde la base (solo agregados). Está en `noindex` hasta revisar los números: pasar `SONDEO_PUBLICADO` a `true` en `app/prensa/sondeo/page.tsx`.
 2. **"[Prepaga] opiniones"**: la competencia rankea con "opiniones reales". Las reseñas de la base ya se muestran en la ficha: sumar una sección visible "Opiniones de afiliados" con H2 propio.
 3. **Obras sociales para monotributistas**: es una de las búsquedas más grandes del rubro y MiObraSocial es fuerte ahí. Revisar que `/para/monotributistas` cubra "obra social monotributo" (listado de obras sociales que aceptan monotributistas y cómo elegir).
 4. **Video**: ElegiMejor tiene canal de YouTube. Un video corto mensual con el aumento del mes, embebido en `/aumentos`, suma presencia en Google Videos y en YouTube.

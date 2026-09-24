@@ -53,7 +53,6 @@ export interface Comparativa {
   prepaga2Slug: string
   titulo: string
   descripcion: string
-  ganadorPrecio: string
   ganadorRed: string
   ganadorSatisfaccion: string
   veredicto: string

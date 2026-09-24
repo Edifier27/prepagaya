@@ -4,6 +4,7 @@ import { guardarLeadEnPlanilla } from '@/lib/sheets'
 import { guardarLead } from '@/lib/db'
 import { avisarLeadPorPush } from '@/lib/push'
 import { detectarZona } from '@/lib/geo-zonas'
+import { limpiarSituacionLaboral, limpiarPresupuesto, limpiarPrepagaActual, limpiarPreferencias } from '@/lib/data/sondeo'
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -36,6 +37,12 @@ export async function POST(req: NextRequest) {
   // Localidad aproximada por IP (mismos headers de Vercel que usa el banner
   // "Vemos que estás en…"), para filtrar el panel por localidad o subzona
   // del GBA — pedido de Darío, 23-sep-2026. No se le pide nada al usuario.
+  // Respuestas que la persona ya dio en el cotizador o el quiz (24-sep-2026).
+  // Solo valores de las listas de lib/data/sondeo.ts; lo demás se descarta.
+  const situacionLaboral = limpiarSituacionLaboral(body.situacion_laboral)
+  const presupuesto = limpiarPresupuesto(body.presupuesto_quiz)
+  const prepagaActual = limpiarPrepagaActual(body.prepaga_actual)
+  const preferencias = limpiarPreferencias(body.preferencias)
   const zonaDetectada = detectarZona(req.headers.get('x-vercel-ip-country-region'), req.headers.get('x-vercel-ip-city'))?.label
 
   if (!nombre || !email) {
@@ -55,7 +62,7 @@ export async function POST(req: NextRequest) {
   // todos los intereses (ver el apilado en lib/db.ts). Antes de eso, avisos
   // instantáneos igual — Telegram, push y la planilla no dependen de Kommo.
   await Promise.allSettled([
-    guardarLead({ nombre, celular, email, prepaga, provincia, edades: personas, fuente, pais: pais || undefined, zonaDetectada }),
+    guardarLead({ nombre, celular, email, prepaga, provincia, edades: personas, fuente, pais: pais || undefined, zonaDetectada, situacionLaboral, presupuesto, prepagaActual, preferencias }),
     avisarLeadPorTelegram(textoAlertaLead({
       nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommoLink: '',
     })),
