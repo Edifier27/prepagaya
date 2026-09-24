@@ -1,4 +1,5 @@
-import { entidadRegistro, type EntidadRegistro } from './registro-sssalud'
+import { entidadRegistro, registroDeObraSocial, type EntidadRegistro } from './registro-sssalud'
+import { obrasSociales } from './obras-sociales'
 
 // Fichas de obras sociales sindicales grandes que no tenían página
 // (24-sep-2026, docs/seo/universo-busquedas.md, familia B): se arman con el
@@ -47,4 +48,12 @@ export function fichaRegistro(slug: string): { ficha: FichaRegistro; entidad: En
   const ficha = FICHAS_REGISTRO.find((f) => f.slug === slug)
   const entidad = ficha ? entidadRegistro(slug) : undefined
   return ficha && entidad?.codigo ? { ficha, entidad } : null
+}
+
+/** Página del sitio para una entidad del registro: su ficha si tiene, o su fila en /obras-sociales/codigos. */
+export function urlFichaEntidad(e: EntidadRegistro): string {
+  const os = obrasSociales.find((o) => registroDeObraSocial(o.slug)?.slug === e.slug)
+  if (os) return `/obras-sociales/${os.slug}`
+  if (FICHAS_REGISTRO.some((f) => f.slug === e.slug)) return `/obras-sociales/${e.slug}`
+  return `/obras-sociales/codigos#${e.slug}`
 }

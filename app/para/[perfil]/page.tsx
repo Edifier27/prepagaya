@@ -162,6 +162,21 @@ export default async function PerfilPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Monotributistas: la lista oficial de obras sociales y el aporte por categoría (24-sep-2026) */}
+      {perf.slug === 'monotributistas' && (
+        <section className="pb-10 bg-white">
+          <div className="container max-w-4xl mx-auto">
+            <Link href="/obras-sociales/monotributo" className="group flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white p-5 hover:border-[#E8002D] transition-colors">
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-gray-900">¿Cuánto pagás de obra social en tu categoría?</div>
+                <div className="text-sm text-gray-600 mt-0.5">El aporte de cada categoría según ARCA, cuánto suma cada familiar y las obras sociales que aceptan monotributistas.</div>
+              </div>
+              <span className="shrink-0 text-sm font-bold text-[#E8002D]">Ver montos y lista oficial →</span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* Planes recomendados con precio */}
       {planes.length > 0 && (
         <section className="py-10 bg-gray-50 border-t border-gray-100">

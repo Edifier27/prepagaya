@@ -190,6 +190,15 @@ export default function ObrasSocialesHubPage() {
           </div>
         </section>
 
+        {/* Monotributo (24-sep-2026) */}
+        <Link href="/obras-sociales/monotributo" className="group flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white p-5 hover:border-[#E8002D] transition-colors">
+          <div className="flex-1 min-w-0">
+            <div className="font-bold text-gray-900">¿Sos monotributista? Las obras sociales que te aceptan y cuánto pagás</div>
+            <div className="text-sm text-gray-600 mt-0.5">La lista oficial de la Superintendencia y el aporte de cada categoría, con tu familia.</div>
+          </div>
+          <span className="shrink-0 text-sm font-bold text-[#E8002D]">Ver la lista →</span>
+        </Link>
+
         {/* Por provincia (24-sep-2026) */}
         <section>
           <div className="flex items-center gap-2 mb-2">
