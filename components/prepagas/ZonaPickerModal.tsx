@@ -1,6 +1,6 @@
 'use client'
 
-import { PROVINCIAS, type Provincia } from '@/components/comparador/ComparadorWizard'
+import { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 
 interface Props {
   onSelect: (p: Provincia) => void

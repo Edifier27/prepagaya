@@ -62,6 +62,7 @@ const herramientasMenu = [
   { href: '/historial-precios', label: 'Historial de precios' },
   { href: '/calculadora', label: 'Calculadora' },
   { href: '/buscar-por-sanatorio', label: 'Buscar prepaga por sanatorio' },
+  { href: '/chequeo-prepaga', label: '¿Pagás de más? Chequeá tu prepaga' },
   { href: '/cartillas', label: 'Cartillas médicas' },
   { href: '/glosario', label: 'Glosario de prepagas' },
   { href: '/blog', label: 'Blog' },

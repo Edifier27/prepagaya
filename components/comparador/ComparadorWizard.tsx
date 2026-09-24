@@ -7,6 +7,7 @@ import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER } from '@/lib/utils'
+import { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
@@ -109,34 +110,9 @@ const INTERIOR_PARTNERS = ['avalian', 'sancor-salud']
 const RECOMENDADOS_VISIBLES = 4
 ZONA_PREPAGAS['buenos-aires-interior'] = ZONA_PREPAGAS['buenos-aires'].filter((s) => !SIN_COBERTURA_INTERIOR_BA.includes(s))
 
-export interface Provincia { slug: string; nombre: string; zonaKey: string }
-export const PROVINCIAS: Provincia[] = [
-  { slug: 'caba',         nombre: 'CABA',                    zonaKey: 'caba' },
-  { slug: 'buenos-aires', nombre: 'Gran Buenos Aires (GBA)', zonaKey: 'buenos-aires' },
-  { slug: 'buenos-aires-interior', nombre: 'Interior de Buenos Aires', zonaKey: 'buenos-aires-interior' },
-  { slug: 'cordoba',      nombre: 'Córdoba',                 zonaKey: 'cordoba' },
-  { slug: 'santa-fe',     nombre: 'Santa Fe',                zonaKey: 'santa-fe' },
-  { slug: 'mendoza',      nombre: 'Mendoza',                 zonaKey: 'mendoza' },
-  { slug: 'tucuman',      nombre: 'Tucumán',                 zonaKey: 'tucuman' },
-  { slug: 'entre-rios',   nombre: 'Entre Ríos',              zonaKey: 'entre-rios' },
-  { slug: 'salta',        nombre: 'Salta',                   zonaKey: 'salta' },
-  { slug: 'neuquen',      nombre: 'Neuquén',                 zonaKey: 'neuquen' },
-  { slug: 'misiones',     nombre: 'Misiones',                zonaKey: 'misiones' },
-  { slug: 'chaco',        nombre: 'Chaco',                   zonaKey: 'chaco' },
-  { slug: 'corrientes',   nombre: 'Corrientes',              zonaKey: 'corrientes' },
-  { slug: 'rio-negro',    nombre: 'Río Negro',               zonaKey: 'rio-negro' },
-  { slug: 'jujuy',        nombre: 'Jujuy',                   zonaKey: 'jujuy' },
-  { slug: 'santiago',     nombre: 'Santiago del Estero',     zonaKey: 'otras' },
-  { slug: 'san-juan',     nombre: 'San Juan',                zonaKey: 'otras' },
-  { slug: 'san-luis',     nombre: 'San Luis',                zonaKey: 'otras' },
-  { slug: 'la-pampa',     nombre: 'La Pampa',                zonaKey: 'otras' },
-  { slug: 'catamarca',    nombre: 'Catamarca',               zonaKey: 'otras' },
-  { slug: 'la-rioja',     nombre: 'La Rioja',                zonaKey: 'otras' },
-  { slug: 'chubut',       nombre: 'Chubut',                  zonaKey: 'otras' },
-  { slug: 'formosa',      nombre: 'Formosa',                 zonaKey: 'otras' },
-  { slug: 'santa-cruz',   nombre: 'Santa Cruz',              zonaKey: 'otras' },
-  { slug: 'tierra-fuego', nombre: 'Tierra del Fuego',        zonaKey: 'otras' },
-]
+// Lista de provincias del cotizador: vive en lib/data/provincias-cotizador.ts
+// (la usan también las herramientas sin cargar este componente entero).
+export { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
 

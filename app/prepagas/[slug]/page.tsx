@@ -20,6 +20,7 @@ import { resenasAprobadas } from '@/lib/db'
 import { ResenaForm } from '@/components/prepagas/ResenaForm'
 import { contactos, CONTACTOS_VERIFICADOS } from '@/lib/data/contactos'
 import { getConvenios } from '@/lib/data/convenios'
+import { planesConTarifa } from '@/lib/precios/motor'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
 
 interface Props {
@@ -30,6 +31,9 @@ type Plan = Prepaga['planes'][number]
 
 // Mapea el slug de prepaga al slug de obra social cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
+// Prepagas con cuadro oficial: su ficha linkea al chequeo de cuota.
+const TIENE_CHEQUEO = new Set(Object.keys(planesConTarifa()))
+
 const PREPAGA_A_OS_SLUG: Record<string, string> = {
   'swiss-medical': 'swiss-medical-os',
   'sancor-salud': 'sancor-os',
@@ -509,9 +513,16 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   {aumentoAnterior && <> En {aumentoAnterior.mes.label.toLowerCase()} había aumentado {pct(aumentoAnterior.dato.mediana)}.</>}
                 </p>
               </div>
-              <Link href="/aumentos" className="flex-shrink-0 text-sm font-bold text-[#E8002D] hover:underline">
-                Aumentos de todas las prepagas →
-              </Link>
+              <div className="flex-shrink-0 flex flex-col gap-1.5 sm:items-end">
+                {TIENE_CHEQUEO.has(prep.slug) && (
+                  <Link href={`/chequeo-prepaga?prepaga=${prep.slug}`} className="text-sm font-bold text-[#E8002D] hover:underline">
+                    ¿Cuánto vas a pagar vos? Chequeá tu plan →
+                  </Link>
+                )}
+                <Link href="/aumentos" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D] hover:underline">
+                  Aumentos de todas las prepagas →
+                </Link>
+              </div>
             </div>
           </div>
         </section>

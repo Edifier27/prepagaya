@@ -42,14 +42,14 @@ export async function enviarLead(l: LeadHerramienta): Promise<void> {
   if (!res.ok) throw new Error(`/api/leads respondió ${res.status}`)
 }
 
-/** Precios oficiales del grupo (motor de precios): { "prepaga/plan": total con IVA }. */
-export async function preciosDelGrupo(zona: string, edades: number[]): Promise<Record<string, number>> {
+/** Precios oficiales del grupo (motor de precios): { "prepaga/plan": total }. Particular: con IVA; con aportes: sin IVA. */
+export async function preciosDelGrupo(zona: string, edades: number[], modalidad: 'directo' | 'desregulado' = 'directo'): Promise<Record<string, number>> {
   const res = await fetch('/api/precios', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ zona, edades }),
-  })
-  if (!res.ok) return {}
+    body: JSON.stringify({ zona, edades, modalidad }),
+  }).catch(() => null)
+  if (!res?.ok) return {}
   const data = await res.json().catch(() => null)
   return data?.precios ?? {}
 }
