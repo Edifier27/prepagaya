@@ -71,8 +71,9 @@ export default async function ObraSocialPage({ params }: Props) {
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/obras-sociales/${slug}` },
-      dateModified: CONTENT_UPDATE,
+      dateModified: os.verificado ?? CONTENT_UPDATE,
       inLanguage: 'es-AR',
+      ...(os.fuenteOficial ? { isBasedOn: os.fuenteOficial } : {}),
     },
     {
       '@context': 'https://schema.org',

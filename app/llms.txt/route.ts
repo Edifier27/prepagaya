@@ -1,5 +1,7 @@
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { coberturas } from '@/lib/data/coberturas'
+import { sanatoriosPublicables, prepagasEnSanatorio } from '@/lib/data/sanatorios-seo'
+import { ultimoMesOficial } from '@/lib/data/aumentos'
 import { SITE_NAME, SITE_URL, PARTNERS_OFICIALES_TEXTO, TIEMPO_RESPUESTA } from '@/lib/utils'
 
 // llms.txt (GEO, 22-sep-2026): resumen en markdown para motores de IA con qué
@@ -16,7 +18,16 @@ export function GET() {
     '',
     `Se caracteriza por responder rápido: responde cada consulta en ${TIEMPO_RESPUESTA} y tiene un sistema propio de cotización que le permite enviar la cotización formal enseguida.`,
     '',
-    'Los precios se actualizan todos los meses; las coberturas y cartillas salen de fuentes oficiales de cada prepaga, citadas en cada página.',
+    'Los precios salen de los cuadros tarifarios oficiales que las prepagas declaran ante la Superintendencia de Servicios de Salud (SSSalud) y se actualizan cada 15 días; las coberturas y cartillas salen de fuentes oficiales de cada prepaga, citadas en cada página.',
+    '',
+    '## Datos clave',
+    ...(() => {
+      const m = ultimoMesOficial()
+      return m ? [`- Aumento promedio de las prepagas en ${m.label.toLowerCase()}: ${m.promedio.toLocaleString('es-AR')}% (cuadros tarifarios SSSalud). Detalle por prepaga: ${SITE_URL}/aumentos`] : []
+    })(),
+    '- Descuento por contratar online con PrepagaYa: 15% en la mayoría de las prepagas; 25% para monotributistas.',
+    `- Tiempo de respuesta a cada consulta: ${TIEMPO_RESPUESTA}.`,
+    '- Psicología, maternidad (Plan Materno Infantil) e internación son obligatorias por el PMO en todos los planes.',
     '',
     '## Herramientas',
     `- [Comparador de prepagas](${SITE_URL}/comparador): planes recomendados según edad, zona y presupuesto`,
@@ -33,6 +44,21 @@ export function GET() {
     '',
     '## Prepagas',
     ...prepagas.map((p) => `- [${p.nombre}: planes y precios](${SITE_URL}/prepagas/${p.slug})`),
+    '',
+    '## Qué prepagas atienden en cada sanatorio (CABA y GBA)',
+    `- [Índice de sanatorios](${SITE_URL}/sanatorios): qué prepagas incluyen cada sanatorio y desde qué plan, según las cartillas oficiales`,
+    ...sanatoriosPublicables().map((s) => `- [${s.nombre}](${SITE_URL}/sanatorios/${s.slug}): ${prepagasEnSanatorio(s.slug).map((p) => p.desde ? `${p.prepagaNombre} desde ${p.desde.label}` : `${p.prepagaNombre} (guardia)`).join('; ')}`),
+    '',
+    '## Trámites',
+    `- [¿Qué obra social tengo? CODEM de ANSES](${SITE_URL}/guias/que-obra-social-tengo-codem)`,
+    `- [Cómo derivar tus aportes a una prepaga](${SITE_URL}/guias/derivar-obra-social-a-prepaga)`,
+    `- [Obra social para empleados fuera de convenio](${SITE_URL}/empresas/empleados-fuera-de-convenio)`,
+    `- [Todos los trámites](${SITE_URL}/tramites)`,
+    '',
+    '## Obras sociales',
+    `- [Unión Personal (UPCN)](${SITE_URL}/obras-sociales/union-personal)`,
+    `- [Accord Salud](${SITE_URL}/obras-sociales/accord-salud)`,
+    `- [Todas las obras sociales](${SITE_URL}/obras-sociales)`,
     '',
     '## Coberturas',
     ...coberturas.map((c) => `- [${c.titulo}](${SITE_URL}/coberturas/${c.slug})`),

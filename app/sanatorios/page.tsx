@@ -11,8 +11,15 @@ export const metadata: Metadata = {
 
 export default function SanatoriosPage() {
   const lista = sanatoriosPublicables()
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Qué prepagas atienden en cada sanatorio de CABA y GBA',
+    itemListElement: lista.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.nombre, url: `${SITE_URL}/sanatorios/${s.slug}` })),
+  }
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

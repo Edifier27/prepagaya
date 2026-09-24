@@ -141,7 +141,7 @@ export async function generateStaticParams() {
 // Keywords de cola larga con volumen de búsqueda real confirmado (research de
 // mercado), específicas por marca. Se suman a las genéricas de cada ficha.
 const KEYWORDS_EXTRA: Record<string, string[]> = {
-  'swiss-medical': ['swiss medical anses', 'swiss medical afip', 'swiss medical pami', 'swiss medical convenio empleados'],
+  'swiss-medical': ['swiss medical anses', 'swiss medical afip', 'swiss medical pami', 'swiss medical convenio empleados', 'swiss medical banco nacion', 'swiss medical banco provincia', 'swiss medical banco macro', 'swiss medical supervielle', 'swiss medical banco ciudad'],
   'sancor-salud': ['sancor salud precios', 'sancor salud cordoba', 'sancor plan 1000', 'sancor salud interior del país'],
   'avalian': ['avalian ex aca salud', 'aca salud ahora avalian', 'avalian planes precios', 'avalian as200', 'avalian as300'],
   'premedic': ['premedic precios', 'premedic opiniones', 'premedic plan 200', 'premedic monotributistas', 'prepaga mas barata argentina'],
@@ -222,6 +222,10 @@ export default async function PrepagaSlugPage({ params }: Props) {
     ...(conv?.convenios?.length ? [{
       q: `¿Qué convenios tiene ${prep.nombre}?`,
       a: conv.convenios.map((c) => `${c.entidad}: ${c.beneficio} (${c.paraQuien.toLowerCase()})`).join('. ') + '.',
+    }] : []),
+    ...(conv?.bancos?.length ? [{
+      q: `¿Con qué bancos tiene afinidad ${prep.nombre}?`,
+      a: `${prep.nombre} tiene convenios de afinidad con ${conv.bancos.map((b) => b.banco).join(', ').replace(/, ([^,]*)$/, ' y $1')}. Consultanos qué planes y condiciones aplican a tu caso: te respondemos en ${TIEMPO_RESPUESTA}.`,
     }] : []),
     ...(contacto && telSocios ? [{
       q: `¿Cuál es el teléfono de ${prep.nombre}?`,

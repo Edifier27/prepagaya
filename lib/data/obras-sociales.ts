@@ -17,6 +17,10 @@ export interface ObraSocialData {
   contras: string[]
   derivacion: boolean
   web?: string
+  /** Si la ficha se verificó contra la web oficial: va a isBasedOn (GEO) */
+  fuenteOficial?: string
+  /** Fecha (ISO) de la última verificación contra la fuente oficial */
+  verificado?: string
   faq: { q: string; a: string }[]
   keywords: string[]
 }
@@ -362,6 +366,8 @@ export const obrasSociales: ObraSocialData[] = [
     ],
     derivacion: true,
     web: 'accordsalud.com.ar',
+    fuenteOficial: 'https://www.accordsalud.com.ar/nosotros',
+    verificado: '2026-09-23',
     faq: [
       { q: '¿Accord Salud es una obra social o una prepaga?', a: 'Según su sitio oficial, Accord Salud son los planes superadores de la obra social Unión Personal, que pertenece a UPCN. Se incorporaron en 1998.' },
       { q: '¿Qué planes tiene Accord Salud?', a: 'Cuatro: Accord 1.5 (cobertura esencial), 2.2 (intermedio), 3.2 (avanzado) y 4.2 (premium).' },
@@ -632,6 +638,8 @@ export const obrasSociales: ObraSocialData[] = [
     ],
     derivacion: true,
     web: 'unionpersonal.com.ar',
+    fuenteOficial: 'https://www.unionpersonal.com.ar/',
+    verificado: '2026-09-23',
     faq: [
       { q: '¿Unión Personal es la obra social de UPCN?', a: 'Sí. Es la Obra Social de la Unión del Personal Civil de la Nación (UPCN).' },
       { q: '¿Qué es Accord Salud respecto de Unión Personal?', a: 'Son los planes superadores de Unión Personal: se incorporaron en 1998 para mejorar la cobertura de la obra social.' },

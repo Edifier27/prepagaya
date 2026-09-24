@@ -8,6 +8,9 @@ import { nucleoNombre } from './cartilla-zonas/cruce'
 // plan, para internación y guardia. Si una prepaga no aparece, no afirmamos
 // que no lo tenga (puede figurar con otro nombre): simplemente no se lista.
 
+/** Fecha en que se cruzaron las cartillas oficiales (actualizar al re-bajarlas) */
+export const SANATORIOS_ACTUALIZADO = '2026-09-23'
+
 export interface SanatorioSEO {
   slug: string
   nombre: string

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SANATORIOS_SEO, prepagasEnSanatorio, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
+import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, prepagasEnSanatorio, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 
 // "¿Qué prepagas atienden en el Hospital X?" (23-sep-2026): búsqueda que la
@@ -84,7 +84,19 @@ export default async function SanatorioPage({ params }: Props) {
     },
   ]
 
+  const fuentes = [...new Set(lista.map((p) => p.fuenteUrl))]
   const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: `¿Qué prepagas atienden en el ${s.nombre}?`,
+      url: `${SITE_URL}/sanatorios/${slug}`,
+      inLanguage: 'es-AR',
+      dateModified: SANATORIOS_ACTUALIZADO,
+      about: { '@type': 'Hospital', name: s.nombre, address: { '@type': 'PostalAddress', addressCountry: 'AR' } },
+      isBasedOn: fuentes,
+      publisher: { '@id': `${SITE_URL}/#organization` },
+    },
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -129,6 +141,40 @@ export default async function SanatorioPage({ params }: Props) {
           <a href="#cotizar" className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
             Cotizar un plan con el {s.nombre} →
           </a>
+        </div>
+      </section>
+
+      {/* Tabla resumen (GEO): la respuesta en un formato que los motores de IA
+          citan tal cual; el detalle por prepaga va abajo. */}
+      <section className="pt-10 bg-white">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Resumen: prepagas con el {s.nombre}</h2>
+          <div className="overflow-x-auto rounded-xl border border-gray-200">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wide">
+                <tr>
+                  <th className="px-4 py-3 font-semibold">Prepaga</th>
+                  <th className="px-4 py-3 font-semibold">Internación desde</th>
+                  <th className="px-4 py-3 font-semibold">Guardia</th>
+                  <th className="px-4 py-3 font-semibold">Precio del plan (30 años)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {lista.map((p) => {
+                  const plan = p.desde ? planComparador(p.prepagaSlug, p.desde.comparadorSlug) : null
+                  return (
+                    <tr key={p.prepagaSlug}>
+                      <td className="px-4 py-3 font-semibold text-gray-900">{p.prepagaNombre}</td>
+                      <td className="px-4 py-3 text-gray-700">{p.desde ? p.desde.label : 'No figura'}</td>
+                      <td className="px-4 py-3 text-gray-700">{p.guardia.length ? `Sí, desde ${p.guardia[0].label}` : 'No figura'}</td>
+                      <td className="px-4 py-3 text-gray-700 tabular-nums">{plan ? `${formatPrecio(plan.precio)}/mes` : '—'}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-gray-400 mt-2">Cartillas oficiales consultadas en septiembre de 2026. Precios de lista {PRECIO_ACTUALIZADO.toLowerCase()} según los cuadros tarifarios de la SSSalud.</p>
         </div>
       </section>
 

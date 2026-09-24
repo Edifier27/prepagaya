@@ -113,9 +113,15 @@ export const convenios: Record<string, ConveniosPrepaga> = {
         },
       ],
     },
-    // bancos: [
-    //   { banco: '', beneficio: '' },
-    // ],
+    // Afinidades con bancos (Darío, 23-sep-2026). Sin detalle de condiciones
+    // todavía: el texto no promete un beneficio puntual.
+    bancos: [
+      { banco: 'Banco Supervielle', beneficio: 'Swiss Medical tiene un convenio de afinidad con Banco Supervielle. Consultanos qué planes y condiciones aplican a tu caso.' },
+      { banco: 'Banco Macro', beneficio: 'Swiss Medical tiene un convenio de afinidad con Banco Macro. Consultanos qué planes y condiciones aplican a tu caso.' },
+      { banco: 'Banco Provincia', beneficio: 'Swiss Medical tiene un convenio de afinidad con Banco Provincia. Consultanos qué planes y condiciones aplican a tu caso.' },
+      { banco: 'Banco Nación', beneficio: 'Swiss Medical tiene un convenio de afinidad con Banco Nación. Consultanos qué planes y condiciones aplican a tu caso.' },
+      { banco: 'Banco Ciudad', beneficio: 'Swiss Medical tiene un convenio de afinidad con Banco Ciudad. Consultanos qué planes y condiciones aplican a tu caso.' },
+    ],
   },
 }
 
