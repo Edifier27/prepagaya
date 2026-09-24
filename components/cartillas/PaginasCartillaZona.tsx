@@ -6,6 +6,7 @@ import {
   nombreCortoZona,
   slugPlan,
   textoFecha,
+  textoFechaConArticulo,
   zonasAmba,
   zonasPorProvincia,
   type CartillaPrepaga,
@@ -265,7 +266,7 @@ export function faqsZona(c: CartillaPrepaga, z: ZonaCartilla) {
   if (int.length > 0) {
     faqs.push({
       q: `¿Qué sanatorios cubre ${c.prepagaNombre} en ${corto}?`,
-      a: `Según la ${textoFecha(c)}, en ${z.nombre} ${c.prepagaNombre} tiene ${int.length} sanatorio${int.length === 1 ? '' : 's'} para internación: ${listaNombres(int)}. Qué sanatorio te toca depende del plan.`,
+      a: `Según ${textoFechaConArticulo(c)}, en ${z.nombre} ${c.prepagaNombre} tiene ${int.length} sanatorio${int.length === 1 ? '' : 's'} para internación: ${listaNombres(int)}. Qué sanatorio te toca depende del plan.`,
     })
   }
   if (gua.length > 0) {
@@ -437,7 +438,7 @@ export function faqsPlan(c: CartillaPrepaga, p: PlanCartilla) {
   if (intCaba.length > 0) {
     faqs.push({
       q: `¿Qué sanatorios cubre el ${c.prepagaNombre} ${planCorto(p)} en CABA?`,
-      a: `Según la ${textoFecha(c)}, en la Ciudad de Buenos Aires el ${p.label} incluye ${intCaba.length} sanatorio${intCaba.length === 1 ? '' : 's'} para internación: ${listaNombres(intCaba, 10)}.`,
+      a: `Según ${textoFechaConArticulo(c)}, en la Ciudad de Buenos Aires el ${p.label} incluye ${intCaba.length} sanatorio${intCaba.length === 1 ? '' : 's'} para internación: ${listaNombres(intCaba, 10)}.`,
     })
   }
   if (siguiente && sumaSiguiente.length > 0) {
@@ -595,7 +596,7 @@ export function faqsPlanZona(c: CartillaPrepaga, p: PlanCartilla, z: ZonaCartill
   if (int.length > 0) {
     faqs.push({
       q: `¿Qué sanatorios cubre ${c.prepagaNombre} ${planCorto(p)} en ${corto}?`,
-      a: `Según la ${textoFecha(c)}, el ${p.label} incluye en ${z.nombre} ${int.length} sanatorio${int.length === 1 ? '' : 's'} para internación: ${listaNombres(int, 10)}.`,
+      a: `Según ${textoFechaConArticulo(c)}, el ${p.label} incluye en ${z.nombre} ${int.length} sanatorio${int.length === 1 ? '' : 's'} para internación: ${listaNombres(int, 10)}.`,
     })
   }
   if (gua.length > 0) {

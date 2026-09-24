@@ -110,7 +110,7 @@ export const obrasSociales: ObraSocialData[] = [
       { q: '¿Cuánto cuesta OSDE para un monotributista?', a: respuestaMonotributo('osde', 'OSDE') },
       { q: '¿Puedo tener OSDE y una prepaga al mismo tiempo?', a: 'Sí, muchas personas derivan sus aportes obligatorios a OSDE y contratan una prepaga complementaria para mejorar la cobertura. OSDE puede actuar como financiador y la prepaga como complemento.' },
       { q: '¿OSDE cubre medicamentos?', a: 'Sí, OSDE cubre medicamentos con descuentos que van del 40% al 100% según el tipo de medicamento y el plan. Los planes superiores tienen mayor cobertura de medicamentos crónicos.' },
-      { q: '¿Cómo cambio de obra social a OSDE?', a: 'Podés pedir el cambio de obra social a OSDE en cualquier momento del año. El trámite demora 30-60 días hábiles. Durante ese período, tu obra social actual debe mantener la cobertura.' },
+      { q: '¿Cómo cambio de obra social a OSDE?', a: 'Con la opción de cambio: la hacés vos, online, en la web de la Superintendencia de Servicios de Salud con tu clave fiscal nivel 3, y confirmás el mail que te llega dentro de las 48 horas. El cambio se activa el primer día del mes siguiente; hasta entonces seguís con tu obra social actual. Se puede hacer una vez cada 365 días.' },
       { q: '¿OSDE es obra social o prepaga?', a: 'OSDE es técnicamente una obra social sindical (de los empleados de empresas), pero funciona como prepaga privada y compite en el mismo segmento. Requiere aportes patronales para empleados en relación de dependencia.' },
     ],
     keywords: ['osde obra social', 'derivar aportes a osde', 'pasar mi obra social a osde', 'osde afiliarse', 'osde 310 monotributista'],

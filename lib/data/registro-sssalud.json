@@ -16,7 +16,11 @@
 "Plan Dorado",
 "Plan 310",
 "Plan 210"
-]
+],
+"domicilio":"Tucuman 949",
+"localidadSede":"Capital Federal",
+"telefono":"0810-888-2226",
+"opcion":true
 },
 {
 "slug":"apos-la-rioja",
@@ -64,7 +68,10 @@
 "codigo":"9-0500-8",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905008"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905008",
+"domicilio":"Figueroa Alcorta 110",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"administrar-salud-s-a",
@@ -74,7 +81,10 @@
 "codigo":"9-0760-8",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907608"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907608",
+"domicilio":"Avda Santa Fe 846 Piso",
+"localidadSede":"Capital Federal",
+"opcion":false
 },
 {
 "slug":"ados-rosario",
@@ -90,7 +100,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=602305",
 "alias":[
 "ADOS ROSARIO"
-]
+],
+"domicilio":"Mitre 1174",
+"localidadSede":"Rosario",
+"telefono":"0341-4117783",
+"opcion":true
 },
 {
 "slug":"osas",
@@ -100,7 +114,10 @@
 "codigo":"9-0550-3",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905503"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905503",
+"domicilio":"Lavalle 1616 Piso 7 B",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"amci",
@@ -113,7 +130,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904708",
 "alias":[
 "AMCI"
-]
+],
+"domicilio":"Pasaje la Piedad Nº 17",
+"localidadSede":"Capital Federal",
+"telefono":"55105254",
+"opcion":true
 },
 {
 "slug":"amffa",
@@ -127,7 +148,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905404",
 "alias":[
 "AMFFA"
-]
+],
+"domicilio":"Diagonal 75 350",
+"localidadSede":"La Plata",
+"opcion":true
 },
 {
 "slug":"ampar",
@@ -141,7 +165,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401803",
 "alias":[
 "AMPAR"
-]
+],
+"domicilio":"Vedia 3892",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4546-7781",
+"opcion":true
 },
 {
 "slug":"ampes",
@@ -154,7 +182,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901808",
 "alias":[
 "AMPES"
-]
+],
+"domicilio":"Don Bosco 218",
+"localidadSede":"Mendoza",
+"opcion":true
 },
 {
 "slug":"osass",
@@ -165,7 +196,10 @@
 "jurisdiccion":"Nacional",
 "web":"https://www.amsterdamsalud.com.ar",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905107"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905107",
+"domicilio":"Laprida 176",
+"localidadSede":"San Miguel de Tucuman",
+"opcion":true
 },
 {
 "slug":"amukra",
@@ -178,7 +212,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906407",
 "alias":[
 "AMUKRA"
-]
+],
+"domicilio":"Av. Roque Saenz Peña 616 Piso 4º Oficina 406",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"amur",
@@ -192,7 +229,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900300",
 "alias":[
 "AMUR"
-]
+],
+"domicilio":"Tucuman 2540",
+"localidadSede":"Santa Fe",
+"telefono":"3424578800",
+"opcion":true
 },
 {
 "slug":"andesalud-s-a",
@@ -202,7 +243,10 @@
 "codigo":"9-0580-0",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905800"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905800",
+"domicilio":"San Martin 799",
+"localidadSede":"Mendoza",
+"opcion":true
 },
 {
 "slug":"apdis",
@@ -216,7 +260,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402103",
 "alias":[
 "APDIS"
-]
+],
+"domicilio":"Gorriti 6046 - 5° Piso - Of 506/507/508",
+"localidadSede":"Capital Federal",
+"telefono":"011 4890 7004",
+"opcion":true
 },
 {
 "slug":"apdjic",
@@ -229,7 +277,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400503",
 "alias":[
 "APDJIC"
-]
+],
+"domicilio":"Lavalle N§ 445 Piso 4§",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4393-4393",
+"opcion":true
 },
 {
 "slug":"apres-sa",
@@ -239,7 +291,10 @@
 "codigo":"9-0280-1",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902801"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902801",
+"domicilio":"Av. Andrés Baranda 210",
+"localidadSede":"Quilmes",
+"opcion":true
 },
 {
 "slug":"apsot",
@@ -253,7 +308,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402301",
 "alias":[
 "APSOT"
-]
+],
+"domicilio":"Cordoba 320 Piso 2",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4018-2500",
+"opcion":true
 },
 {
 "slug":"ase",
@@ -268,7 +327,11 @@
 "alias":[
 "ASE",
 "OBRA SOCIAL DEL PERSONAL DE DIRECCION  ACCION SOCIAL DE EMPRESARIOS (A:S:E.)"
-]
+],
+"domicilio":"Lima 87 Piso 8",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4124-2800",
+"opcion":true
 },
 {
 "slug":"osasi",
@@ -284,7 +347,10 @@
 "Asistencia Sanitaria Integral"
 ],
 "rnemp":110916,
-"web":"https://www.asisalud.com.ar"
+"web":"https://www.asisalud.com.ar",
+"domicilio":"Wenceslao de Tata 4726",
+"localidadSede":"Caseros",
+"opcion":true
 },
 {
 "slug":"osams",
@@ -294,7 +360,10 @@
 "codigo":"9-0090-4",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900904"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900904",
+"domicilio":"Av. Gaona 3918",
+"localidadSede":"Ciudadela",
+"opcion":true
 },
 {
 "slug":"osamp",
@@ -304,7 +373,11 @@
 "codigo":"9-0230-6",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902306"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902306",
+"domicilio":"9 de Julio 1663",
+"localidadSede":"Rosario",
+"telefono":"3413860173",
+"opcion":true
 },
 {
 "slug":"osamm",
@@ -314,7 +387,10 @@
 "codigo":"9-0440-1",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904401"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904401",
+"domicilio":"Jose Rucci 466",
+"localidadSede":"Villa Maria",
+"opcion":true
 },
 {
 "slug":"osamf",
@@ -324,7 +400,10 @@
 "codigo":"9-0460-9",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904609"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904609",
+"domicilio":"Av Colon Nº 457",
+"localidadSede":"Mendoza",
+"opcion":true
 },
 {
 "slug":"osapl",
@@ -334,7 +413,10 @@
 "codigo":"9-0790-5",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907905"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907905",
+"domicilio":"Santa Rosa 31 Entre Piso, Of 9",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"assistencial-salud-s-a",
@@ -345,7 +427,11 @@
 "jurisdiccion":"Nacional",
 "web":"https://www.assistencialsalud.com.ar",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907301"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907301",
+"domicilio":"Reconquista 954, Piso 4º",
+"localidadSede":"Capital Federal",
+"telefono":"1168425990",
+"opcion":true
 },
 {
 "slug":"asspe",
@@ -359,7 +445,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402608",
 "alias":[
 "ASSPE"
-]
+],
+"domicilio":"Bartolome Mitre 1399",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5239-7850",
+"opcion":true
 },
 {
 "slug":"avalian",
@@ -377,7 +467,10 @@
 "ACA Salud",
 "AcaSalud",
 "Cooperativa ACA Salud"
-]
+],
+"domicilio":"Combate de Los Pozos 220",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"bienestar-salud-s-a",
@@ -387,7 +480,10 @@
 "codigo":"9-0780-6",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907806"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907806",
+"domicilio":"Avda Olmos 345 Piso 1",
+"localidadSede":"No Identificada",
+"opcion":true
 },
 {
 "slug":"osbs",
@@ -397,7 +493,10 @@
 "codigo":"9-0590-9",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905909"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905909",
+"domicilio":"Florida 556 Pb",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"boreal",
@@ -413,7 +512,11 @@
 "alias":[
 "Boreal",
 "Boreal Salud"
-]
+],
+"domicilio":"Santiago del Estero 140, Piso 7",
+"localidadSede":"San Miguel de Tucuman",
+"telefono":"3815037941",
+"opcion":true
 },
 {
 "slug":"css-santa-cruz",
@@ -446,7 +549,11 @@
 "alias":[
 "CAMPSIC",
 "OBRA SOCIAL COOPERATIVA LTDA.  DE ASISTENCIA MEDICA Y FARMACEUTICA, SERVICIOS ASISTENCIALES Y TURISMO DEL PERSONAL SUPERIOR DE LA INDUSTRIA DEL CAUCHO Y OTRAS ACTIVIDADES INDUSTRIALES"
-]
+],
+"domicilio":"Dr. Emilio Ravignani 2540",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4773-5835",
+"opcion":true
 },
 {
 "slug":"care-salud-s-a",
@@ -456,7 +563,10 @@
 "codigo":"9-0670-4",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906704"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906704",
+"domicilio":"Maipu 340 Piso 6",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"cemic",
@@ -469,7 +579,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902603",
 "alias":[
 "CEMIC"
-]
+],
+"domicilio":"Av. Las Heras 2939",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"oscml",
@@ -479,7 +592,10 @@
 "codigo":"9-0520-6",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905206"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905206",
+"domicilio":"Colombres - 420",
+"localidadSede":"Lomas de Zamora",
+"opcion":true
 },
 {
 "slug":"oscmj",
@@ -489,7 +605,11 @@
 "codigo":"9-0680-3",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906803"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906803",
+"domicilio":"Catamarca 108 (Sur)",
+"localidadSede":"San Juan",
+"telefono":"0264-4220654",
+"opcion":true
 },
 {
 "slug":"oscs",
@@ -499,7 +619,10 @@
 "codigo":"9-0660-5",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906605"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906605",
+"domicilio":"San Juan 656",
+"localidadSede":"Corrientes",
+"opcion":false
 },
 {
 "slug":"oscss",
@@ -509,7 +632,11 @@
 "codigo":"9-0050-8",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900508"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900508",
+"domicilio":"Tinogasta 5432, Pb",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4844-7717/7707",
+"opcion":true
 },
 {
 "slug":"c-m-e-e",
@@ -519,7 +646,11 @@
 "codigo":"9-0690-2",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906902"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906902",
+"domicilio":"Las Heras 607",
+"localidadSede":"Monte Hermoso",
+"telefono":"(011)42908100",
+"opcion":false
 },
 {
 "slug":"daspu",
@@ -624,7 +755,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=302106",
 "alias":[
 "DITEM"
-]
+],
+"domicilio":"Juan Orsetti 481",
+"localidadSede":"Granadero Baigorria",
+"telefono":"0341-4-101825",
+"opcion":true
 },
 {
 "slug":"emergencias",
@@ -651,7 +786,11 @@
 "codigo":"9-0600-1",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906001"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906001",
+"domicilio":"Alvear 81 Piso 3",
+"localidadSede":"Cordoba",
+"telefono":"(11)3005-8517",
+"opcion":true
 },
 {
 "slug":"oses",
@@ -661,7 +800,10 @@
 "codigo":"9-0360-6",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903606"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903606",
+"domicilio":"San Martin 480",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"faa",
@@ -675,7 +817,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108605",
 "alias":[
 "FAA"
-]
+],
+"domicilio":"Salta 1144",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4305-3426",
+"opcion":true
 },
 {
 "slug":"fedecamaras",
@@ -689,7 +835,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1904",
 "alias":[
 "FEDECAMARAS"
-]
+],
+"domicilio":"Rivadavia 5456 1 Piso Galeria Astro",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4432-6333",
+"opcion":false
 },
 {
 "slug":"federada-salud",
@@ -706,7 +856,10 @@
 "Federada Salud",
 "Federada",
 "Mutual Federada"
-]
+],
+"domicilio":"Moreno 1222",
+"localidadSede":"Rosario",
+"opcion":true
 },
 {
 "slug":"frutos",
@@ -719,7 +872,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401001",
 "alias":[
 "FRUTOS"
-]
+],
+"domicilio":"Balcarce 880 Piso 1§",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4362-5025",
+"opcion":true
 },
 {
 "slug":"galeno",
@@ -738,7 +895,11 @@
 "Plan Azul",
 "Plan Plata",
 "Plan Oro"
-]
+],
+"domicilio":"Elvira Rawson de Dellepiane 150",
+"localidadSede":"Capital Federal",
+"telefono":"011-4348-6000",
+"opcion":true
 },
 {
 "slug":"gea-sa",
@@ -748,7 +909,10 @@
 "codigo":"9-0400-5",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904005"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904005",
+"domicilio":"Hipolito Yrigoyen 433",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"germed-s-a",
@@ -758,7 +922,10 @@
 "codigo":"9-0380-4",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903804"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903804",
+"domicilio":"Gandini 128",
+"localidadSede":"Junin",
+"opcion":true
 },
 {
 "slug":"gilsa-s-r-l",
@@ -768,7 +935,10 @@
 "codigo":"9-0530-5",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905305"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905305",
+"domicilio":"Rivadavia 715",
+"localidadSede":"San Andres de Giles",
+"opcion":true
 },
 {
 "slug":"osgs",
@@ -778,7 +948,10 @@
 "codigo":"9-0330-9",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903309"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903309",
+"domicilio":"Junin 1596",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"osgmi",
@@ -788,7 +961,10 @@
 "codigo":"9-0570-1",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905701"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905701",
+"domicilio":"Azopardo 1405, Piso 7",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"oshaa",
@@ -803,7 +979,11 @@
 "alias":[
 "Plan Médico Hospital Alemán"
 ],
-"rnemp":410863
+"rnemp":410863,
+"domicilio":"Av Pueyrredon 1640",
+"localidadSede":"Capital Federal",
+"telefono":"48277000",
+"opcion":true
 },
 {
 "slug":"hospital-austral",
@@ -816,7 +996,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903002",
 "alias":[
 "HOSPITAL AUSTRAL"
-]
+],
+"domicilio":"Cerrito 1250",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"oshbb",
@@ -829,7 +1012,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902504",
 "alias":[
 "Plan de Salud Hospital Británico"
-]
+],
+"domicilio":"Perdriel Nº 74",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"iapos",
@@ -1096,7 +1282,11 @@
 "INSSJP",
 "Jubilados",
 "Instituto Nacional de Jubilados y Pensionados"
-]
+],
+"domicilio":"Peru 169 Piso 10 ( Ver Observaciones )",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4344-8500",
+"opcion":true
 },
 {
 "slug":"ips-salta",
@@ -1147,7 +1337,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907202",
 "alias":[
 "JERARQUICOS SALUD"
-]
+],
+"domicilio":"Av. Facundo Zuviria 4584",
+"localidadSede":"Santa Fe",
+"telefono":"0342-4504800",
+"opcion":true
 },
 {
 "slug":"johnson",
@@ -1164,7 +1358,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=300704",
 "alias":[
 "JOHNSON"
-]
+],
+"domicilio":"Uruguay 7286",
+"localidadSede":"Boulogne",
+"telefono":"4549-5600",
+"opcion":true
 },
 {
 "slug":"oscmm",
@@ -1175,7 +1373,11 @@
 "jurisdiccion":"Nacional",
 "web":"https://www.italmedicasalud.com.ar",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900409"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900409",
+"domicilio":"Virasoro 1249",
+"localidadSede":"Rosario",
+"telefono":"0800-888-0005",
+"opcion":true
 },
 {
 "slug":"mc-salud-s-a",
@@ -1185,7 +1387,10 @@
 "codigo":"9-0800-7",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=908007"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=908007",
+"domicilio":"Cordoba 1228 Piso 1 Depto 1",
+"localidadSede":"Corrientes",
+"opcion":true
 },
 {
 "slug":"osmss",
@@ -1195,7 +1400,11 @@
 "codigo":"9-0630-8",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906308"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906308",
+"domicilio":"Quesada 2696 Piso 4º A",
+"localidadSede":"Capital Federal",
+"telefono":"1131736305",
+"opcion":true
 },
 {
 "slug":"esencial",
@@ -1230,7 +1439,11 @@
 "Hominis",
 "Sanatorio Güemes",
 "Hominis Salud"
-]
+],
+"domicilio":"Francisco Acuña de Figueroa 1239",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4860-1900",
+"opcion":true
 },
 {
 "slug":"osmps",
@@ -1240,7 +1453,10 @@
 "codigo":"9-0750-9",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907509"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907509",
+"domicilio":"Chacabuco 187 Piso 5 Dpto B",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"medicus",
@@ -1258,7 +1474,11 @@
 "Medicus Salud",
 "Plan Celeste",
 "Plan Azul"
-]
+],
+"domicilio":"Larrea 877",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4129-5000",
+"opcion":true
 },
 {
 "slug":"medife",
@@ -1278,7 +1498,11 @@
 "Plan Bronce",
 "Plan Plata",
 "Plan Oro"
-]
+],
+"domicilio":"Lima 87",
+"localidadSede":"Capital Federal",
+"telefono":"(011)4630-2700",
+"opcion":true
 },
 {
 "slug":"osmas",
@@ -1288,7 +1512,11 @@
 "codigo":"9-0450-0",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904500"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904500",
+"domicilio":"Malabia 444, Piso 4º J",
+"localidadSede":"Capital Federal",
+"telefono":"1128989550",
+"opcion":true
 },
 {
 "slug":"osms",
@@ -1298,7 +1526,11 @@
 "codigo":"9-0710-3",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907103"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907103",
+"domicilio":"Junín 1289, Piso 2",
+"localidadSede":"Capital Federal",
+"telefono":"02204850720",
+"opcion":true
 },
 {
 "slug":"osm",
@@ -1308,7 +1540,10 @@
 "codigo":"9-0390-3",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903903"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903903",
+"domicilio":"Obispo Oro 50",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"osmpc",
@@ -1318,7 +1553,10 @@
 "codigo":"9-0560-2",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905602"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=905602",
+"domicilio":"Belgrano 1626",
+"localidadSede":"Villa Constitucion",
+"opcion":true
 },
 {
 "slug":"osmmc",
@@ -1328,7 +1566,10 @@
 "codigo":"9-0170-9",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901709"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901709",
+"domicilio":"9 de Julio Nº 15",
+"localidadSede":"Concordia",
+"opcion":true
 },
 {
 "slug":"osns",
@@ -1338,7 +1579,10 @@
 "codigo":"9-0490-6",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904906"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904906",
+"domicilio":"Av. Maipú 101",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"o-s-a-m-o-c",
@@ -1352,7 +1596,10 @@
 "alias":[
 "O.S.A.M.O.C",
 "OBRA SOCIAL ASOCIACION  MUTUAL DE LOS OBREROS CATOLICOS PADRE FEDERICO GROTE"
-]
+],
+"domicilio":"Billinghurst 1669",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"o-s-a-p-s-e",
@@ -1368,7 +1615,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=129006",
 "alias":[
 "O.S.A.P.S.E"
-]
+],
+"domicilio":"Rivadeo Nº 1231",
+"localidadSede":"Barrio Villa San Carlos",
+"telefono":"351-4715859/4722278",
+"opcion":true
 },
 {
 "slug":"o-s-pe-cor",
@@ -1385,7 +1636,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115508",
 "alias":[
 "O.S.PE.COR"
-]
+],
+"domicilio":"Ayacucho 575 -Barrio. Gral. Guemes",
+"localidadSede":"Cordoba",
+"telefono":"0351-4-204444",
+"opcion":true
 },
 {
 "slug":"o-s-pe-tax-r",
@@ -1402,7 +1657,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128300",
 "alias":[
 "O.S.PE.TAX.R"
-]
+],
+"domicilio":"Salta 2882",
+"localidadSede":"Rosario",
+"telefono":"(0341)-435-0445",
+"opcion":false
 },
 {
 "slug":"o-s-pers-a-a-m-s",
@@ -1415,7 +1674,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3009",
 "alias":[
 "O.S.PERS.A.A.M.S."
-]
+],
+"domicilio":"Sarmiento 811 Piso 4 Oficina 1",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"o-s-s-u-r-r-b-a-c",
@@ -1431,7 +1693,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128201",
 "alias":[
 "O.S.S.U.R.R.B.A.C"
-]
+],
+"domicilio":"Lima 342",
+"localidadSede":"Cordoba",
+"telefono":"(0351)152072236",
+"opcion":true
 },
 {
 "slug":"o-s-t-a-c-c",
@@ -1444,7 +1710,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128904",
 "alias":[
 "O.S.T.A.C.C,"
-]
+],
+"domicilio":"Rosario de Santa Fe 414",
+"localidadSede":"No Identificada",
+"telefono":"0351-5535200",
+"opcion":true
 },
 {
 "slug":"o-s-t-c-a-r-a",
@@ -1457,7 +1727,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2600",
 "alias":[
 "O.S.T.C.A.R.A."
-]
+],
+"domicilio":"Parana 749 2º A",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4371-6390",
+"opcion":true
 },
 {
 "slug":"o-s-tax-b-a",
@@ -1470,27 +1744,31 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3504",
 "alias":[
 "O.S.TAX.B.A"
-]
+],
+"domicilio":"Fragata Presidente Sarmiento 661",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4331-5503",
+"opcion":true
 },
 {
-"slug":"osa-actores",
-"nombre":"Obra Social de Actores",
+"slug":"aguas-gaseosas-santa-fe",
+"nombre":"Obra Social del Sindicato de Aguas Gaseosas de Santa Fe",
 "razonSocial":"OBRA SOCIAL DEL SINDICATO UNIDO DE TRABAJADORES DE LA INDUSTRIA DE AGUAS GASEOSAS DE LA PROVINCIA DE SANTA FE",
 "tipo":"Obra Social Sindical",
-"sigla":"OSA",
 "codigo":"0-0160-7",
 "jurisdiccion":"Santa Fe",
 "provincias":[
 "Santa Fe"
 ],
-"web":"https://www.osa.org.ar",
 "fuente":"rnas",
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1607",
 "alias":[
-"OSA",
-"Actores",
-"Asociación Argentina de Actores"
-]
+"Aguas Gaseosas Santa Fe"
+],
+"domicilio":"Sarmiento 2225",
+"localidadSede":"Rosario",
+"telefono":"0341-482-5430",
+"opcion":true
 },
 {
 "slug":"osapm",
@@ -1510,7 +1788,11 @@
 "OSAPM",
 "Visitadores Médicos",
 "Propaganda Médica"
-]
+],
+"domicilio":"Avellaneda 2144",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4633-7878",
+"opcion":true
 },
 {
 "slug":"osdop",
@@ -1530,7 +1812,11 @@
 "OSDOP",
 "SADOP",
 "Docentes Privados"
-]
+],
+"domicilio":"Bartolome Mitre 2233",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5288-4900",
+"opcion":true
 },
 {
 "slug":"osep-catamarca",
@@ -1586,7 +1872,11 @@
 "OSDEPYM",
 "Osdepym",
 "Empresarios y Monotributistas"
-]
+],
+"domicilio":"Reconquista 458 Piso 2",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5288-5600",
+"opcion":true
 },
 {
 "slug":"osuthgra",
@@ -1607,7 +1897,11 @@
 "Gastronómicos",
 "Hoteleros",
 "UTHGRA"
-]
+],
+"domicilio":"Avda. de Mayo 930",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4341-8020",
+"opcion":true
 },
 {
 "slug":"osam-minera",
@@ -1627,7 +1921,11 @@
 "OSAM",
 "Minería",
 "Actividad Minera"
-]
+],
+"domicilio":"Rosario 434/36",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4901-3277",
+"opcion":true
 },
 {
 "slug":"obsba",
@@ -1665,7 +1963,11 @@
 "alias":[
 "OSFATLYF",
 "Luz y Fuerza"
-]
+],
+"domicilio":"Lima 163 4° Piso",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4383-4541",
+"opcion":true
 },
 {
 "slug":"union-personal",
@@ -1686,7 +1988,11 @@
 "Union Personal",
 "UPCN",
 "Accord Salud"
-]
+],
+"domicilio":"Tucuman 949",
+"localidadSede":"Capital Federal",
+"telefono":"0810-888-2226",
+"opcion":true
 },
 {
 "slug":"osecac",
@@ -1708,7 +2014,11 @@
 "Empleados de Comercio",
 "FAECYS",
 "1-0620-3"
-]
+],
+"domicilio":"Moreno 648/50",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4331-1919",
+"opcion":true
 },
 {
 "slug":"ospe",
@@ -1727,27 +2037,32 @@
 "OSPE",
 "Petroleros",
 "OSPEGAP"
-]
+],
+"domicilio":"Av. Caseros 715",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4300-5010/0523",
+"opcion":true
 },
 {
-"slug":"ospepri",
-"nombre":"Obra Social de Petroleros Privados de Río Negro, Neuquén y La Pampa (Meopp)",
+"slug":"petroleo-gas-privado-chubut",
+"nombre":"Obra Social de Trabajadores del Petróleo y Gas Privado del Chubut",
 "razonSocial":"OBRA SOCIAL DE TRABAJADORES DEL PETROLEO Y GAS PRIVADO DEL CHUBUT",
 "tipo":"Obra Social Sindical",
-"sigla":"OSPEPRI / MEOPP",
 "codigo":"1-2860-7",
 "jurisdiccion":"Chubut",
 "provincias":[
 "Chubut"
 ],
-"web":"https://meopp.org.ar",
 "fuente":"rnas",
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128607",
 "alias":[
-"OSPEPRI",
-"MEOPP",
-"Petroleros Privados"
-]
+"Petroleros Chubut",
+"Petróleo y Gas Privado Chubut"
+],
+"domicilio":"Avda Alsina 728 Piso 3",
+"localidadSede":"Comodoro Rivadavia",
+"telefono":"0297-4470897",
+"opcion":true
 },
 {
 "slug":"osseg",
@@ -1767,7 +2082,11 @@
 "OSSEG",
 "Seguros",
 "Actividad de Seguros"
-]
+],
+"domicilio":"Pellegrini 575",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4131-2100",
+"opcion":true
 },
 {
 "slug":"osef-tierra-del-fuego",
@@ -1805,7 +2124,11 @@
 "Luis Pasteur",
 "Pasteur",
 "Sanidad Dirección"
-]
+],
+"domicilio":"Callao 764/66",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4370-1000",
+"opcion":true
 },
 {
 "slug":"osfymt",
@@ -1825,7 +2148,11 @@
 "OSFYMT",
 "Farmacias",
 "OSPF"
-]
+],
+"domicilio":"Constitucion 2066",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4941-1342",
+"opcion":true
 },
 {
 "slug":"ospida",
@@ -1845,7 +2172,11 @@
 "OSPIDA",
 "Imprentas",
 "Gráficos"
-]
+],
+"domicilio":"San Jose 157",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4382-2051",
+"opcion":true
 },
 {
 "slug":"uocra-construir-salud",
@@ -1867,7 +2198,11 @@
 "OSPECON",
 "Construcción",
 "1-0570-1"
-]
+],
+"domicilio":"Avda. Belgrano 1862/70",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4384-7140/50",
+"opcion":true
 },
 {
 "slug":"ospic",
@@ -1886,7 +2221,11 @@
 "alias":[
 "OSPIC",
 "Caucho"
-]
+],
+"domicilio":"Congreso 2033",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4701-5646",
+"opcion":true
 },
 {
 "slug":"ospil",
@@ -1907,7 +2246,11 @@
 "ATILRA",
 "Lecheros",
 "Industria Lechera"
-]
+],
+"domicilio":"Avda. Hipolito Yrigoyen 4054",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4883-9200",
+"opcion":true
 },
 {
 "slug":"ospsa-sanidad",
@@ -1929,7 +2272,10 @@
 "ATSA",
 "FATSA",
 "1-1800-4"
-]
+],
+"domicilio":"Dean Funes 1242",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"ospat",
@@ -1948,7 +2294,11 @@
 "alias":[
 "OSPAT",
 "Turf"
-]
+],
+"domicilio":"Carlos Pellegrini 887 8 Piso",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5070-2000",
+"opcion":true
 },
 {
 "slug":"ospjn",
@@ -1984,7 +2334,11 @@
 "OSMATA",
 "Mecánicos",
 "Automotor"
-]
+],
+"domicilio":"Avda. Belgrano 665 Piso 8",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4334-6825",
+"opcion":true
 },
 {
 "slug":"osfe",
@@ -2004,7 +2358,11 @@
 "OSFE",
 "Ferroviaria",
 "Ferroviarios"
-]
+],
+"domicilio":"Estados Unidos 2859",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4127-7731",
+"opcion":true
 },
 {
 "slug":"osplad",
@@ -2024,7 +2382,10 @@
 "OSPLAD",
 "Docentes",
 "Actividad Docente"
-]
+],
+"domicilio":"Tacuari 345",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"bancaria-osba",
@@ -2045,7 +2406,11 @@
 "Bancarios",
 "OSBA",
 "Asociación Bancaria"
-]
+],
+"domicilio":"25 de Mayo 182",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4340-7300",
+"opcion":true
 },
 {
 "slug":"omint",
@@ -2063,7 +2428,10 @@
 "Omint",
 "Plan Premium",
 "Plan Génesis"
-]
+],
+"domicilio":"Carlos Pellegrini 1363 Piso 9",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"opdea",
@@ -2077,7 +2445,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400107",
 "alias":[
 "OPDEA"
-]
+],
+"domicilio":"Bernando de Irigoyen 540 Piso 2#",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4338-2400",
+"opcion":true
 },
 {
 "slug":"opzc",
@@ -2095,11 +2467,15 @@
 "alias":[
 "OPZC",
 "OBRA SOCIAL DEL PERSONAL DE INDUSTRIAS  QUIMICAS Y PETROQUIMICAS DE ZARATE CAMPANA"
-]
+],
+"domicilio":"Dr Felix Pagola 1712",
+"localidadSede":"Zarate",
+"telefono":"03487-433565",
+"opcion":true
 },
 {
 "slug":"os-pe-pri",
-"nombre":"OS.PE.PRI - OBRA SOCIAL DE PETROLEROS PRIVADOS",
+"nombre":"Obra Social de Petroleros Privados (OSPEPRI / Meopp)",
 "razonSocial":"OBRA SOCIAL DE PETROLEROS PRIVADOS",
 "tipo":"Obra Social Sindical",
 "codigo":"1-2790-1",
@@ -2111,12 +2487,21 @@
 "fuente":"rnas",
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127901",
 "alias":[
-"OS.PE.PRI"
-]
+"OS.PE.PRI",
+"OSPEPRI",
+"MEOPP",
+"Meopp",
+"Petroleros Privados"
+],
+"domicilio":"Santa Cruz 275",
+"localidadSede":"Neuquen",
+"telefono":"0800-333-8448",
+"opcion":true,
+"sigla":"OSPEPRI / MEOPP"
 },
 {
 "slug":"osa",
-"nombre":"OSA - OBRA SOCIAL DE ACTORES",
+"nombre":"Obra Social de Actores (OSA)",
 "razonSocial":"OBRA SOCIAL DE ACTORES",
 "tipo":"Obra Social Sindical",
 "codigo":"1-0020-5",
@@ -2125,8 +2510,15 @@
 "fuente":"rnas",
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100205",
 "alias":[
-"OSA"
-]
+"OSA",
+"Actores",
+"Asociación Argentina de Actores"
+],
+"domicilio":"Ayacucho 537",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4371-4664/8449",
+"opcion":true,
+"sigla":"OSA"
 },
 {
 "slug":"os-de-aeronavegantes",
@@ -2140,7 +2532,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100809",
 "alias":[
 "OSA"
-]
+],
+"domicilio":"Bartolome Mitre 1902 - Pb",
+"localidadSede":"Capital Federal",
+"telefono":"011 4953-7277",
+"opcion":true
 },
 {
 "slug":"osadef",
@@ -2154,7 +2550,11 @@
 "alias":[
 "OSADEF",
 "OBRA SOCIAL DE  LAS ASOCIACIONES DE EMPLEADOS DE FARMACIA"
-]
+],
+"domicilio":"Rincon 1035",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4941-6330",
+"opcion":true
 },
 {
 "slug":"osadra",
@@ -2168,7 +2568,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=125905",
 "alias":[
 "OSADRA"
-]
+],
+"domicilio":"Viamonte 1835",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4021-9300",
+"opcion":true
 },
 {
 "slug":"osaf",
@@ -2181,7 +2585,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401100",
 "alias":[
 "OSAF"
-]
+],
+"domicilio":"Cecilia Grierson 355 3 y 4 Piso",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4319-3000",
+"opcion":true
 },
 {
 "slug":"osago",
@@ -2197,7 +2605,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=601104",
 "alias":[
 "OSAGO"
-]
+],
+"domicilio":"Olegario V. Andrade 1057",
+"localidadSede":"Gualeguaychu",
+"telefono":"03446-4-27310",
+"opcion":false
 },
 {
 "slug":"osalara",
@@ -2212,7 +2624,11 @@
 "alias":[
 "OSALARA",
 "OBRA SOCIAL DE AGENTES DE LOTERIAS Y AFINES DE LA REPUBLICA  ARGENTINA"
-]
+],
+"domicilio":"Adolfo Alsina 946",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5235-9810",
+"opcion":true
 },
 {
 "slug":"osammvc",
@@ -2228,7 +2644,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2907",
 "alias":[
 "OSAMMVC"
-]
+],
+"domicilio":"Juan Manuel de Rosas 710 - Planta Alta",
+"localidadSede":"Villa Constitucion",
+"telefono":"03400-479532",
+"opcion":false
 },
 {
 "slug":"osaos",
@@ -2245,7 +2665,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=600408",
 "alias":[
 "OSAOS"
-]
+],
+"domicilio":"Hipolito Yrigoyen 387",
+"localidadSede":"Comodoro Rivadavia",
+"telefono":"0297-4471802",
+"opcion":true
 },
 {
 "slug":"asociacion-de-obras-sociales-de-gualeguay",
@@ -2261,7 +2685,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=601203",
 "alias":[
 "OSAOS"
-]
+],
+"domicilio":"25 de Mayo 530/38",
+"localidadSede":"Gualeguay",
+"telefono":"03444-425070",
+"opcion":true
 },
 {
 "slug":"asociacion-de-obras-sociales-de-trelew",
@@ -2277,7 +2705,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=603100",
 "alias":[
 "OSAOS"
-]
+],
+"domicilio":"28 de Julio 722",
+"localidadSede":"Trelew",
+"telefono":"02804-4-24583",
+"opcion":true
 },
 {
 "slug":"os-aceros-parana",
@@ -2294,7 +2726,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=800501",
 "alias":[
 "OSAP"
-]
+],
+"domicilio":"Avda. Moreno 187",
+"localidadSede":"San Nicolas",
+"telefono":"03461-425632",
+"opcion":true
 },
 {
 "slug":"osapmcba",
@@ -2311,7 +2747,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118309",
 "alias":[
 "OSAPMCBA"
-]
+],
+"domicilio":"Avda Olmos 485 Piso 2 (Esquina Stago del Estero)",
+"localidadSede":"Cordoba",
+"telefono":"0351-4484412/13/17",
+"opcion":true
 },
 {
 "slug":"osbara",
@@ -2324,7 +2764,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=124001",
 "alias":[
 "OSBARA"
-]
+],
+"domicilio":"Talcahuano 109 Piso 6 D",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4371-5044",
+"opcion":true
 },
 {
 "slug":"osca",
@@ -2340,7 +2784,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=303307",
 "alias":[
 "OSCA"
-]
+],
+"domicilio":"Avda. Roca 189",
+"localidadSede":"Campana",
+"telefono":"03489-4-24224",
+"opcion":true
 },
 {
 "slug":"oscamglyp",
@@ -2354,7 +2802,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104801",
 "alias":[
 "OSCAMGLYP"
-]
+],
+"domicilio":"Jose Eusebio Colombres 1419",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4922-2631",
+"opcion":true
 },
 {
 "slug":"oscapbaqflu",
@@ -2368,7 +2820,11 @@
 "alias":[
 "OSCAPBAQFLU",
 "OBRA SOCIAL ASOCIACION PROFESIONAL DE CAPITANES Y BAQUEANOS FLUVIALES Y PERSONAL CON  CONOCIMIENTO DE ZONA DE LA MARINA MERCANTE"
-]
+],
+"domicilio":"Aristobulo del Valle 319",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4362-8084",
+"opcion":true
 },
 {
 "slug":"osccp",
@@ -2381,7 +2837,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103204",
 "alias":[
 "OSCCP"
-]
+],
+"domicilio":"Av. Caseros 921/23",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4300-2191",
+"opcion":true
 },
 {
 "slug":"osce",
@@ -2394,7 +2854,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104108",
 "alias":[
 "OSCE"
-]
+],
+"domicilio":"Doblas 629",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4922-6752",
+"opcion":true
 },
 {
 "slug":"oscea",
@@ -2410,7 +2874,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2808",
 "alias":[
 "OSCEA"
-]
+],
+"domicilio":"Calle Rivadavia y 1Ero. de Mayo",
+"localidadSede":"Alberti",
+"telefono":"0800-220 3333",
+"opcion":true
 },
 {
 "slug":"oscep",
@@ -2424,7 +2892,11 @@
 "alias":[
 "OSCEP",
 "OBRA SOCIAL DE CAPATACES  ESTIBADORES PORTUARIOS"
-]
+],
+"domicilio":"Pinzon 1012/1016",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4302-4640",
+"opcion":true
 },
 {
 "slug":"oschoca",
@@ -2438,7 +2910,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105804",
 "alias":[
 "OSCHOCA"
-]
+],
+"domicilio":"San Jose 1775/81",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4378-1000",
+"opcion":true
 },
 {
 "slug":"oscoema",
@@ -2453,7 +2929,11 @@
 "alias":[
 "OSCOEMA",
 "OBRA SOCIAL DE LA CONFEDERACION DE OBREROS Y EMPLEADOS MUNICIPALES  ARGENTINA ( OSCOEMA )"
-]
+],
+"domicilio":"Moreno 970 Piso 2 Of. 15",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4342-6908",
+"opcion":true
 },
 {
 "slug":"oscomm",
@@ -2466,7 +2946,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111407",
 "alias":[
 "OSCOMM"
-]
+],
+"domicilio":"Avenida Indepedencia 611",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4300-9700/03",
+"opcion":true
 },
 {
 "slug":"osconara",
@@ -2480,7 +2964,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105002",
 "alias":[
 "OSCONARA"
-]
+],
+"domicilio":"Pinzon 281",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4362-0080/0880",
+"opcion":true
 },
 {
 "slug":"oscraia",
@@ -2493,7 +2981,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126809",
 "alias":[
 "OSCRAIA"
-]
+],
+"domicilio":"Cerrito 228 - 1º \"B\"",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4381-2507",
+"opcion":true
 },
 {
 "slug":"osctc",
@@ -2506,7 +2998,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121606",
 "alias":[
 "OSCTC"
-]
+],
+"domicilio":"Moreno 2969",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4931-5452",
+"opcion":true
 },
 {
 "slug":"osdaa",
@@ -2521,7 +3017,11 @@
 "alias":[
 "OSDAA",
 "OBRA SOCIAL DE DIRECCION DE LA ACTIVIDAD AEROCOMERCIAL  PRIVADA"
-]
+],
+"domicilio":"Venezuela 900",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4331-6556",
+"opcion":true
 },
 {
 "slug":"osde",
@@ -2541,7 +3041,11 @@
 "Plan 410",
 "Plan 450",
 "Plan 510"
-]
+],
+"domicilio":"Avda. Leandro N. Alem 1067 Piso 9",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4310-5000",
+"opcion":true
 },
 {
 "slug":"osdel",
@@ -2555,7 +3059,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110602",
 "alias":[
 "OSDEL"
-]
+],
+"domicilio":"Vidt 2011",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4827-4611",
+"opcion":true
 },
 {
 "slug":"osdem",
@@ -2569,7 +3077,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112806",
 "alias":[
 "OSDEM"
-]
+],
+"domicilio":"Avda. Belgrano 3655",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4957-3522",
+"opcion":true
 },
 {
 "slug":"osdic",
@@ -2582,7 +3094,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400602",
 "alias":[
 "OSDIC"
-]
+],
+"domicilio":"Billinghurst 1662 Piso 2",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4829-9180",
+"opcion":false
 },
 {
 "slug":"osdipp",
@@ -2596,7 +3112,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401605",
 "alias":[
 "OSDIPP"
-]
+],
+"domicilio":"Rivadavia 969 Piso 3 A",
+"localidadSede":"Capital Federal",
+"telefono":"48499050",
+"opcion":true
 },
 {
 "slug":"osdo",
@@ -2610,7 +3130,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402707",
 "alias":[
 "OSDO"
-]
+],
+"domicilio":"Avda. Luis Marua Campos 46 Piso 8",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4774-3130",
+"opcion":true
 },
 {
 "slug":"oseadi",
@@ -2625,7 +3149,11 @@
 "alias":[
 "OSEADI",
 "OBRA SOCIAL  EMPLEADOS DE AGENCIAS DE INFORMES"
-]
+],
+"domicilio":"Lavalle 1783 Piso 1 - Of. A",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4372-9598",
+"opcion":true
 },
 {
 "slug":"oseam",
@@ -2638,7 +3166,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111704",
 "alias":[
 "OSEAM"
-]
+],
+"domicilio":"Mexico 2183 Dto A",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4941-8327",
+"opcion":true
 },
 {
 "slug":"oseda",
@@ -2651,7 +3183,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106104",
 "alias":[
 "OSEDA"
-]
+],
+"domicilio":"Callao 220 Piso 6",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4372-6667/8",
+"opcion":true
 },
 {
 "slug":"osedeiv",
@@ -2665,7 +3201,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402400",
 "alias":[
 "OSEDEIV"
-]
+],
+"domicilio":"Av. Caseros 3563 1º Piso",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"oseiv",
@@ -2679,7 +3218,11 @@
 "alias":[
 "OSEIV",
 "OBRA SOCIAL DE  EMPLEADOS DE LA INDUSTRIA DEL VIDRIO"
-]
+],
+"domicilio":"Carabobo 217",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4631-1042",
+"opcion":true
 },
 {
 "slug":"osemm",
@@ -2692,7 +3235,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111605",
 "alias":[
 "OSEMM"
-]
+],
+"domicilio":"Bartolome Mitre 3776",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4981-8181",
+"opcion":true
 },
 {
 "slug":"osen",
@@ -2706,7 +3253,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106609",
 "alias":[
 "OSEN"
-]
+],
+"domicilio":"Avda Juan de Garay 1900",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4371-4896",
+"opcion":true
 },
 {
 "slug":"osepc",
@@ -2723,7 +3274,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118002",
 "alias":[
 "OSEPC"
-]
+],
+"domicilio":"Obispo Trejo 365",
+"localidadSede":"Cordoba",
+"telefono":"351-5920575",
+"opcion":true
 },
 {
 "slug":"osepj",
@@ -2741,7 +3296,11 @@
 "alias":[
 "OSEPJ",
 "OBRA SOCIAL DE EMPLEADOS Y PERSONAL JERARQUICO  DE LA ACTIVIDAD DEL  NEUMATICO ARGENTINO DE NEUMATICOS GOOD YEAR SRL"
-]
+],
+"domicilio":"Manuel Ocampo 1201",
+"localidadSede":"Hurlingham",
+"telefono":"4665-7958",
+"opcion":true
 },
 {
 "slug":"osetra",
@@ -2755,7 +3314,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120603",
 "alias":[
 "OSETRA"
-]
+],
+"domicilio":"Bolivia 384",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4637-3232",
+"opcion":true
 },
 {
 "slug":"osetya",
@@ -2769,7 +3332,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121101",
 "alias":[
 "OSETYA"
-]
+],
+"domicilio":"Benito Quinquela Martin 1738",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4301-4175/79",
+"opcion":true
 },
 {
 "slug":"osfas",
@@ -2782,7 +3349,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=303901",
 "alias":[
 "OSFAS"
-]
+],
+"domicilio":"French 3155 Piso 1º",
+"localidadSede":"Capital Federal",
+"telefono":"03327-42-9238",
+"opcion":true
 },
 {
 "slug":"osfatun",
@@ -2797,7 +3368,11 @@
 "alias":[
 "OSFATUN",
 "OBRA SOCIAL DE LA FEDERACION ARGENTINA DEL TRABAJADOR  DE LAS UNIVERSIDADES NACIONALES"
-]
+],
+"domicilio":"Av Belgrano 3768 4To. Piso",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4956-8030",
+"opcion":true
 },
 {
 "slug":"osffentos",
@@ -2811,7 +3386,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=125301",
 "alias":[
 "OSFFENTOS"
-]
+],
+"domicilio":"Pasco 580 - Pb",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5901-1005/7",
+"opcion":true
 },
 {
 "slug":"osfgp",
@@ -2826,7 +3405,11 @@
 "alias":[
 "OSFGP",
 "OBRA SOCIAL DE LA FEDERACION GREMIAL DEL PERSONAL DE  LA INDUSTRIA DE LA CARNE Y SUS DERIVADOS"
-]
+],
+"domicilio":"Hipolito Yrigoyen 746",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4378-9000",
+"opcion":true
 },
 {
 "slug":"osfot",
@@ -2839,7 +3422,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108209",
 "alias":[
 "OSFOT"
-]
+],
+"domicilio":"Pringles 1090/92",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4867-3990",
+"opcion":true
 },
 {
 "slug":"osfyb",
@@ -2853,7 +3440,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128508",
 "alias":[
 "OSFYB"
-]
+],
+"domicilio":"Aguero 1595 Piso 13",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4865-9837",
+"opcion":true
 },
 {
 "slug":"osfyhc",
@@ -2869,7 +3460,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108506",
 "alias":[
 "OSFYHC"
-]
+],
+"domicilio":"Montecaseros 1147",
+"localidadSede":"Mendoza",
+"telefono":"0261-4-299591",
+"opcion":true
 },
 {
 "slug":"osgmg",
@@ -2883,7 +3478,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109202",
 "alias":[
 "OSGMG"
-]
+],
+"domicilio":"Coronel Salvadores 1638",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4301-0048",
+"opcion":true
 },
 {
 "slug":"osiad",
@@ -2896,7 +3495,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100106",
 "alias":[
 "OSIAD"
-]
+],
+"domicilio":"Avda. Belgrano 1370 Piso 2",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4381-5041",
+"opcion":true
 },
 {
 "slug":"osim",
@@ -2911,7 +3514,11 @@
 "alias":[
 "OSIM",
 "OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA METALURGICA  Y DEMAS ACTIVIDADES EMPRESARIAS"
-]
+],
+"domicilio":"Montevideo 373 Piso 4º",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4010-6746",
+"opcion":true
 },
 {
 "slug":"osipa",
@@ -2924,7 +3531,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114208",
 "alias":[
 "OSIPA"
-]
+],
+"domicilio":"Avda.. Belgrano 4280",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4981-4776",
+"opcion":true
 },
 {
 "slug":"ositac",
@@ -2941,7 +3552,11 @@
 "alias":[
 "OSITAC",
 "OBRA SOCIAL DE LA INDUSTRIA DEL TRANSPORTE  AUTOMOTOR DE CORDOBA"
-]
+],
+"domicilio":"Parana 327",
+"localidadSede":"Cordoba",
+"telefono":"0351-4-238798",
+"opcion":true
 },
 {
 "slug":"osjera",
@@ -2955,7 +3570,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1706",
 "alias":[
 "OSJERA"
-]
+],
+"domicilio":"Moreno 1142 Planta Baja",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4380-3700",
+"opcion":true
 },
 {
 "slug":"osjomn",
@@ -2969,7 +3588,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113304",
 "alias":[
 "OSJOMN"
-]
+],
+"domicilio":"Libertad 1668",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4815-8133",
+"opcion":true
 },
 {
 "slug":"osjonr",
@@ -2982,7 +3605,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113205",
 "alias":[
 "OSJONR"
-]
+],
+"domicilio":"24 de Noviembre 643/5",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4931-5178",
+"opcion":true
 },
 {
 "slug":"osjpvyf",
@@ -2995,7 +3622,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110107",
 "alias":[
 "OSJPVYF"
-]
+],
+"domicilio":"Luis Saenz Peña 480",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4383-6825",
+"opcion":true
 },
 {
 "slug":"oslera",
@@ -3010,7 +3641,11 @@
 "alias":[
 "OSLERA",
 "OBRA SOCIAL DE LOS  LEGISLADORES DE LA REPUBLICA ARGENTINA"
-]
+],
+"domicilio":"Mexico 565",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4331-1245",
+"opcion":true
 },
 {
 "slug":"oslyf",
@@ -3027,7 +3662,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110909",
 "alias":[
 "OSLYF"
-]
+],
+"domicilio":"Avda. Gral Paz 282 Piso 1",
+"localidadSede":"Cordoba",
+"telefono":"0351-4-238027",
+"opcion":true
 },
 {
 "slug":"oslyf-patagonia",
@@ -3044,7 +3683,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127802",
 "alias":[
 "OSLYF PATAGONIA"
-]
+],
+"domicilio":"Baldomero Carrasco Nº 60",
+"localidadSede":"Trelew",
+"telefono":"0280-4420547",
+"opcion":true
 },
 {
 "slug":"osma",
@@ -3057,7 +3700,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112509",
 "alias":[
 "OSMA"
-]
+],
+"domicilio":"Gorostiaga 2440",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4371-8474/5303",
+"opcion":false
 },
 {
 "slug":"osmad",
@@ -3071,7 +3718,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401308",
 "alias":[
 "OSMAD"
-]
+],
+"domicilio":"Avda Belgrano 748 Piso 10 Of. 103",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4331-9578",
+"opcion":true
 },
 {
 "slug":"osme",
@@ -3085,7 +3736,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1201",
 "alias":[
 "OSME"
-]
+],
+"domicilio":"Venezuela 155",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5275-5493",
+"opcion":true
 },
 {
 "slug":"osmedica",
@@ -3099,7 +3754,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126908",
 "alias":[
 "OSMEDICA"
-]
+],
+"domicilio":"Marcelo T. de Alvear 867/871",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 3753-0000",
+"opcion":true
 },
 {
 "slug":"osmiss",
@@ -3113,7 +3772,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2501",
 "alias":[
 "OSMISS"
-]
+],
+"domicilio":"Paraguay 661 Piso 2",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4334-6644",
+"opcion":true
 },
 {
 "slug":"osmita",
@@ -3127,7 +3790,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402202",
 "alias":[
 "OSMITA"
-]
+],
+"domicilio":"Paraguay 610 Piso 6",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4313-3111",
+"opcion":true
 },
 {
 "slug":"osmmedt",
@@ -3141,7 +3808,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127208",
 "alias":[
 "OSMMEDT"
-]
+],
+"domicilio":"Uriarte 1317",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4776-6847 / 6795",
+"opcion":true
 },
 {
 "slug":"osmpa",
@@ -3158,7 +3829,11 @@
 "alias":[
 "OSMPA",
 "MUTUAL DEL PERSONAL DEL AGUA Y LA ENERGIA  DE MENDOZA"
-]
+],
+"domicilio":"Avda. Jose Vicente Zapata Nº 144",
+"localidadSede":"Mendoza",
+"telefono":"0261-4292012",
+"opcion":true
 },
 {
 "slug":"osmtt",
@@ -3171,7 +3846,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111308",
 "alias":[
 "OSMTT"
-]
+],
+"domicilio":"Avda Corrientes 1642 Piso 1 Oficina 21",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4371-7717",
+"opcion":true
 },
 {
 "slug":"osoc",
@@ -3184,7 +3863,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104603",
 "alias":[
 "OSOC"
-]
+],
+"domicilio":"Viamonte 2045",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4372-0509",
+"opcion":false
 },
 {
 "slug":"osocna",
@@ -3197,7 +3880,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113809",
 "alias":[
 "OSOCNA"
-]
+],
+"domicilio":"Bernardo de Irigoyen 840",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4300-7033",
+"opcion":true
 },
 {
 "slug":"osoef",
@@ -3214,7 +3901,11 @@
 "alias":[
 "OSOEF",
 "OBRA SOCIAL DE OBREROS EMPACADORES DE FRUTA  DE RIO NEGRO Y NEUQUEN"
-]
+],
+"domicilio":"Menguelle 130",
+"localidadSede":"Cipolletti",
+"telefono":"0299-478-2686",
+"opcion":false
 },
 {
 "slug":"osoetsylara",
@@ -3228,7 +3919,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127406",
 "alias":[
 "OSOETSYLARA"
-]
+],
+"domicilio":"Culpina 25/29",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4612-2000",
+"opcion":true
 },
 {
 "slug":"osopp",
@@ -3246,7 +3941,11 @@
 "alias":[
 "OSOPP",
 "OBRA SOCIAL DE OFICIALES PELUQUEROS Y PEINADORES  DE LA 2DA CIRCUNSCRIPCION JUDICIAL DE LA PROVINCIA DE SANTA FE"
-]
+],
+"domicilio":"Montevideo 1488",
+"localidadSede":"Rosario",
+"telefono":"0341-4-488998",
+"opcion":true
 },
 {
 "slug":"ososs",
@@ -3260,7 +3959,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127604",
 "alias":[
 "OSOSS"
-]
+],
+"domicilio":"Avellaneda 212 Piso 3",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4958-2002/04/6",
+"opcion":true
 },
 {
 "slug":"os-de-portuarios-argentinos",
@@ -3274,7 +3977,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=116204",
 "alias":[
 "OSPA"
-]
+],
+"domicilio":"Bolivar 839",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4369-4132",
+"opcion":true
 },
 {
 "slug":"os-del-personal-aeronautico",
@@ -3288,7 +3995,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100502",
 "alias":[
 "OSPA"
-]
+],
+"domicilio":"Anchorena 1266",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4823-7121",
+"opcion":true
 },
 {
 "slug":"os-del-personal-del-azucar-del-ingenio-la-esp",
@@ -3304,7 +4015,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=101802",
 "alias":[
 "OSPA"
-]
+],
+"domicilio":"Serapio Soria 337",
+"localidadSede":"San Pedro",
+"telefono":"03888 421222",
+"opcion":true
 },
 {
 "slug":"os-del-personal-del-azucar-del-ingenio-san-ma",
@@ -3320,7 +4035,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=102300",
 "alias":[
 "OSPA"
-]
+],
+"domicilio":"Islas Malvinas S/N - Barrio Patron Costas",
+"localidadSede":"El Tabacal",
+"telefono":"03878-491019",
+"opcion":false
 },
 {
 "slug":"ospa",
@@ -3336,7 +4055,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=307",
 "alias":[
 "OSPA"
-]
+],
+"domicilio":"Rondeau 63",
+"localidadSede":"Mar del Plata",
+"telefono":"0223 480-0421",
+"opcion":true
 },
 {
 "slug":"ospa-vial",
@@ -3349,7 +4072,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122302",
 "alias":[
 "OSPA-VIAL"
-]
+],
+"domicilio":"Avda. de Mayo 1439",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4382-3863",
+"opcion":true
 },
 {
 "slug":"ospaa",
@@ -3365,7 +4092,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126700",
 "alias":[
 "OSPAA"
-]
+],
+"domicilio":"Congreso de Tucuman 341",
+"localidadSede":"San Miguel de Tucuman",
+"telefono":"0381-4225810",
+"opcion":false
 },
 {
 "slug":"os-del-personal-de-la-actividad-cervecera-y-a",
@@ -3379,7 +4110,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104306",
 "alias":[
 "OSPACA"
-]
+],
+"domicilio":"Humahuaca 4072",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4863-2159",
+"opcion":true
 },
 {
 "slug":"ospaca",
@@ -3394,7 +4129,11 @@
 "alias":[
 "OSPACA",
 "OBRA SOCIAL DEL PERSONAL DEL AUTOMOVIL  CLUB ARGENTINO"
-]
+],
+"domicilio":"Anchorena 639 - Piso 1",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4106-4500",
+"opcion":false
 },
 {
 "slug":"ospacp",
@@ -3408,7 +4147,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103600",
 "alias":[
 "OSPACP"
-]
+],
+"domicilio":"Charcas 2745",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4829-1212",
+"opcion":true
 },
 {
 "slug":"ospadep",
@@ -3422,7 +4165,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100601",
 "alias":[
 "OSPADEP"
-]
+],
+"domicilio":"Venezuela 900",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4331-1411",
+"opcion":true
 },
 {
 "slug":"ospaf",
@@ -3438,7 +4185,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108407",
 "alias":[
 "OSPAF"
-]
+],
+"domicilio":"Saavedra 121",
+"localidadSede":"Concordia",
+"telefono":"0345-4229579",
+"opcion":false
 },
 {
 "slug":"ospaga",
@@ -3452,7 +4203,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=101000",
 "alias":[
 "OSPAGA"
-]
+],
+"domicilio":"Bacacay 2735/37",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4610-9200",
+"opcion":true
 },
 {
 "slug":"ospail",
@@ -3468,7 +4223,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=101901",
 "alias":[
 "OSPAIL"
-]
+],
+"domicilio":"Jujuy 755 Cc5",
+"localidadSede":"Libertador General San Martin",
+"telefono":"03886-423558",
+"opcion":false
 },
 {
 "slug":"ospap",
@@ -3482,7 +4241,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115003",
 "alias":[
 "OSPAP"
-]
+],
+"domicilio":"Treinta y Tres Orientales 148",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4981-1477",
+"opcion":true
 },
 {
 "slug":"ospatca",
@@ -3496,7 +4259,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105309",
 "alias":[
 "OSPATCA"
-]
+],
+"domicilio":"Pte. Luis Saenz Peña 1142/44",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 6091-7900",
+"opcion":true
 },
 {
 "slug":"ospav",
@@ -3510,7 +4277,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122609",
 "alias":[
 "OSPAV"
-]
+],
+"domicilio":"Warnes 1894",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4583-7894",
+"opcion":true
 },
 {
 "slug":"ospana",
@@ -3524,7 +4295,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3108",
 "alias":[
 "OSPAÑA"
-]
+],
+"domicilio":"Venezuela 1162 Pb",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4382-0400/8698",
+"opcion":true
 },
 {
 "slug":"ospbl",
@@ -3540,7 +4315,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=102904",
 "alias":[
 "OSPBL"
-]
+],
+"domicilio":"Florentino Ameghino 1060",
+"localidadSede":"Avellaneda",
+"telefono":"4222-4086",
+"opcion":true
 },
 {
 "slug":"ospcr",
@@ -3554,7 +4333,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114505",
 "alias":[
 "OSPCR"
-]
+],
+"domicilio":"Av Montes de Oca 1731",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5252-3482",
+"opcion":true
 },
 {
 "slug":"ospcra",
@@ -3568,7 +4351,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104009",
 "alias":[
 "OSPCRA"
-]
+],
+"domicilio":"Federico Lacroze 3908",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4553-3947",
+"opcion":true
 },
 {
 "slug":"ospcspmya",
@@ -3585,7 +4372,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104207",
 "alias":[
 "OSPCSPMYA"
-]
+],
+"domicilio":"Av. Hiipolito Irigoyen 1255",
+"localidadSede":"Avellaneda",
+"telefono":"4208-2079",
+"opcion":true
 },
 {
 "slug":"ospcyd",
@@ -3599,7 +4390,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103402",
 "alias":[
 "OSPCYD"
-]
+],
+"domicilio":"Cochabamba 1635",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4304-5484",
+"opcion":true
 },
 {
 "slug":"ospdesba",
@@ -3612,7 +4407,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120405",
 "alias":[
 "OSPDESBA"
-]
+],
+"domicilio":"Avda Callao 322 Piso 8 Dto A",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4372-4372/5279",
+"opcion":false
 },
 {
 "slug":"ospdi",
@@ -3625,7 +4424,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400701",
 "alias":[
 "OSPDI"
-]
+],
+"domicilio":"Avda. Belgrano 3978",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4981-1816",
+"opcion":true
 },
 {
 "slug":"os-de-petroleros",
@@ -3639,7 +4442,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115300",
 "alias":[
 "OSPE"
-]
+],
+"domicilio":"Avda. L. Alem 692 1º Piso",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5254-5100",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-escribanos",
@@ -3653,7 +4460,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107008",
 "alias":[
 "OSPE"
-]
+],
+"domicilio":"Rodriguez Peña 536/38",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4371-8957",
+"opcion":true
 },
 {
 "slug":"ospea",
@@ -3667,7 +4478,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100403",
 "alias":[
 "OSPEA"
-]
+],
+"domicilio":"Independencia 1111 - Piso 2",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4383-3185",
+"opcion":true
 },
 {
 "slug":"ospec",
@@ -3681,7 +4496,11 @@
 "alias":[
 "OSPEC",
 "OBRA SOCIAL DEL PERSONAL DE LA EMPRESA NACIONAL DE CORREOS Y TELEGRAFOS S.A. Y DE LAS  COMUNICACIONES DE LA REPULICA ARGENTINA"
-]
+],
+"domicilio":"Maipu 39",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4343-0621/26",
+"opcion":true
 },
 {
 "slug":"ospeca",
@@ -3695,7 +4514,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103808",
 "alias":[
 "OSPECA"
-]
+],
+"domicilio":"Valle 1281",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4433-3317",
+"opcion":true
 },
 {
 "slug":"ospedici",
@@ -3709,7 +4532,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106203",
 "alias":[
 "OSPEDICI"
-]
+],
+"domicilio":"Ayacucho 512/514 1º y 2º Piso",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4373-8723",
+"opcion":true
 },
 {
 "slug":"ospedyb",
@@ -3722,7 +4549,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128706",
 "alias":[
 "OSPEDYB"
-]
+],
+"domicilio":"Calle Piedras 1642",
+"localidadSede":"Capital Federal",
+"telefono":"011-5351-4649",
+"opcion":true
 },
 {
 "slug":"ospedyc",
@@ -3736,7 +4567,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106005",
 "alias":[
 "OSPEDYC"
-]
+],
+"domicilio":"Alberti 646",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5353-3500",
+"opcion":true
 },
 {
 "slug":"ospef-y-epca",
@@ -3749,7 +4584,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900102",
 "alias":[
 "OSPEF Y EPCA"
-]
+],
+"domicilio":"Av. Leandro N. Alen 530 Piso 11",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4312-8261",
+"opcion":true
 },
 {
 "slug":"ospej",
@@ -3762,7 +4601,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110008",
 "alias":[
 "OSPEJ"
-]
+],
+"domicilio":"Chacabuco 271 8Vo Uf 17",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4383-2983/2985",
+"opcion":true
 },
 {
 "slug":"ospel",
@@ -3780,7 +4623,11 @@
 "alias":[
 "OSPEL",
 "OBRA SOCIAL PARA EL  PERSONAL DE EMPRESAS DE  LIMPIEZA, SERVICIOS Y MAESTRANZA DE MENDOZA"
-]
+],
+"domicilio":"Montevideo 270",
+"localidadSede":"Mendoza",
+"telefono":"0261-420-1638",
+"opcion":true
 },
 {
 "slug":"ospemer",
@@ -3794,7 +4641,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109301",
 "alias":[
 "OSPEMER"
-]
+],
+"domicilio":"Lisandro de la Torre 2337/9",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4687-8683",
+"opcion":true
 },
 {
 "slug":"ospemom",
@@ -3811,7 +4662,11 @@
 "alias":[
 "OSPEMOM",
 "OBRA SOCIAL DEL PERSONAL DE  MICROS Y OMNIBUS DE MENDOZA"
-]
+],
+"domicilio":"Catamarca 382",
+"localidadSede":"Mendoza",
+"telefono":"0261-4-203283",
+"opcion":true
 },
 {
 "slug":"ospena",
@@ -3824,7 +4679,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113403",
 "alias":[
 "OSPENA"
-]
+],
+"domicilio":"Juan de Dios Filiberto 914",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4301-7697",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-la-ensenanza-privada",
@@ -3838,7 +4697,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106807",
 "alias":[
 "OSPEP"
-]
+],
+"domicilio":"Av. Jujuy 226",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4956-0408/09",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-panaderias",
@@ -3851,7 +4714,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113908",
 "alias":[
 "OSPEP"
-]
+],
+"domicilio":"Boedo 168",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4957-1800",
+"opcion":true
 },
 {
 "slug":"os-del-personal-del-espectaculo-publico",
@@ -3865,7 +4732,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107107",
 "alias":[
 "OSPEP"
-]
+],
+"domicilio":"Pasco 148/54",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4951-2538",
+"opcion":true
 },
 {
 "slug":"ospep",
@@ -3878,7 +4749,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=4002",
 "alias":[
 "OSPEP"
-]
+],
+"domicilio":"Corrientes 878 - 4º Piso",
+"localidadSede":"Capital Federal",
+"telefono":"0341-5282736",
+"opcion":true
 },
 {
 "slug":"ospepba",
@@ -3895,7 +4770,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106906",
 "alias":[
 "OSPEPBA"
-]
+],
+"domicilio":"Calle 45 Nº 509",
+"localidadSede":"La Plata",
+"telefono":"0221-4251629",
+"opcion":true
 },
 {
 "slug":"ospercin",
@@ -3912,7 +4791,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104405",
 "alias":[
 "OSPERCIN"
-]
+],
+"domicilio":"Neuquen 2655",
+"localidadSede":"Mar del Plata",
+"telefono":"0223-4738544",
+"opcion":false
 },
 {
 "slug":"osperyh",
@@ -3927,7 +4810,11 @@
 "alias":[
 "OSPERYH",
 "OBRA SOCIAL DEL PERSONAL DE EDIFICIOS DE RENTA Y HORIZONTAL DE LA CIUDAD AUTONOMA DE BUENOS AIRES  Y GRAN BUENOS AIRES"
-]
+],
+"domicilio":"Sarmiento 2026",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5354-6600",
+"opcion":true
 },
 {
 "slug":"osperyhra",
@@ -3941,7 +4828,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=106401",
 "alias":[
 "OSPERYHRA"
-]
+],
+"domicilio":"Sarmiento 2026",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5354-6600",
+"opcion":true
 },
 {
 "slug":"ospes",
@@ -3955,7 +4846,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123008",
 "alias":[
 "OSPES"
-]
+],
+"domicilio":"Moreno 2681",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4956-0954",
+"opcion":true
 },
 {
 "slug":"ospesa",
@@ -3968,7 +4863,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123305",
 "alias":[
 "OSPESA"
-]
+],
+"domicilio":"Montevideo 453 (Domicilio Provisorio)",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4374-4452",
+"opcion":true
 },
 {
 "slug":"ospesca",
@@ -3985,7 +4884,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=505",
 "alias":[
 "OSPESCA"
-]
+],
+"domicilio":"Avda Juan B. Justo 518",
+"localidadSede":"Mar del Plata",
+"telefono":"0223-4809739",
+"opcion":true
 },
 {
 "slug":"ospescha",
@@ -4001,7 +4904,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127703",
 "alias":[
 "OSPESCHA"
-]
+],
+"domicilio":"Julio A. Roca 755",
+"localidadSede":"Resistencia",
+"telefono":"0362-4-444011",
+"opcion":true
 },
 {
 "slug":"ospesga",
@@ -4018,7 +4925,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122906",
 "alias":[
 "OSPESGA"
-]
+],
+"domicilio":"Riobamba 1069",
+"localidadSede":"Rosario",
+"telefono":"0341-4-826705",
+"opcion":true
 },
 {
 "slug":"ospesgype",
@@ -4032,7 +4943,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107206",
 "alias":[
 "OSPESGYPE"
-]
+],
+"domicilio":"Piedras 962",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4866-1631",
+"opcion":true
 },
 {
 "slug":"ospetax",
@@ -4046,7 +4961,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123701",
 "alias":[
 "OSPETAX"
-]
+],
+"domicilio":"Avda la Plata 1554/60/62/64",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4920-7000",
+"opcion":true
 },
 {
 "slug":"ospetelco",
@@ -4060,7 +4979,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127109",
 "alias":[
 "OSPETELCO"
-]
+],
+"domicilio":"24 de Noviembre 40",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4860-5060",
+"opcion":true
 },
 {
 "slug":"ospevic",
@@ -4077,7 +5000,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122807",
 "alias":[
 "OSPEVIC"
-]
+],
+"domicilio":"Faustino Allende 189 - Barrio Independencia",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"ospfs",
@@ -4091,7 +5017,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128003",
 "alias":[
 "OSPFS"
-]
+],
+"domicilio":"Pavon 3708",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4921-3725",
+"opcion":true
 },
 {
 "slug":"ospg",
@@ -4104,7 +5034,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109004",
 "alias":[
 "OSPG"
-]
+],
+"domicilio":"Avda. Belgrano 2530",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4308-2678",
+"opcion":true
 },
 {
 "slug":"osphgbaysi",
@@ -4117,7 +5051,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109509",
 "alias":[
 "OSPHGBAYSI"
-]
+],
+"domicilio":"Pico 1671/75 Piso 5 Dto A",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5278-3640",
+"opcion":false
 },
 {
 "slug":"os-del-personal-de-la-industria-azucarera",
@@ -4133,7 +5071,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=102706",
 "alias":[
 "OSPIA"
-]
+],
+"domicilio":"Congreso 342/8",
+"localidadSede":"San Miguel de Tucuman",
+"telefono":"0381-422-1478",
+"opcion":true
 },
 {
 "slug":"ospia",
@@ -4147,7 +5089,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=101208",
 "alias":[
 "OSPIA"
-]
+],
+"domicilio":"Venezuela 1326",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4383-9026/29",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-la-industria-cinematografi",
@@ -4161,7 +5107,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=104504",
 "alias":[
 "OSPIC"
-]
+],
+"domicilio":"Juncal 2029",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4808-0106",
+"opcion":true
 },
 {
 "slug":"ospic-santa-fe",
@@ -4177,7 +5127,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103907",
 "alias":[
 "OSPIC SANTA FE"
-]
+],
+"domicilio":"Iturraspe 2458",
+"localidadSede":"Depto La Capital",
+"telefono":"0342-453-8863",
+"opcion":true
 },
 {
 "slug":"ospica",
@@ -4194,7 +5148,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105606",
 "alias":[
 "OSPICA"
-]
+],
+"domicilio":"Calle Giribone 789",
+"localidadSede":"Avellaneda",
+"telefono":"4229-0750",
+"opcion":true
 },
 {
 "slug":"ospical",
@@ -4207,7 +5165,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=103105",
 "alias":[
 "OSPICAL"
-]
+],
+"domicilio":"Yatay 129 Piso 4",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4981-1164",
+"opcion":true
 },
 {
 "slug":"ospicha",
@@ -4220,7 +5182,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105705",
 "alias":[
 "OSPICHA"
-]
+],
+"domicilio":"Avda San Juan 4229",
+"localidadSede":"Capital Federal",
+"telefono":"1152326197",
+"opcion":true
 },
 {
 "slug":"ospif",
@@ -4236,7 +5202,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107800",
 "alias":[
 "OSPIF"
-]
+],
+"domicilio":"Constitucion 3674",
+"localidadSede":"San Justo",
+"telefono":"4651-7411",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-la-industria-fideera",
@@ -4249,7 +5219,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=107909",
 "alias":[
 "OSPIF"
-]
+],
+"domicilio":"Rio de Janeiro 55",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4901-0575",
+"opcion":true
 },
 {
 "slug":"ospifse",
@@ -4267,7 +5241,11 @@
 "alias":[
 "OSPIFSE",
 "OBRA SOCIAL  PARA EL PERSONAL DE LA INDUSTRIA FORESTAL DE SANTIAGO DEL ESTERO"
-]
+],
+"domicilio":"Misiones 332",
+"localidadSede":"Santiago del Estero",
+"telefono":"0385-4-211877",
+"opcion":true
 },
 {
 "slug":"ospig",
@@ -4285,7 +5263,11 @@
 "alias":[
 "OSPIG",
 "OBRA SOCIAL DEL  PERSONAL DE LA INDUSTRIA GRAFICA DE LA PROVINCIA DE CORDOBA"
-]
+],
+"domicilio":"Avellaneda 54",
+"localidadSede":"Cordoba",
+"telefono":"03514238079",
+"opcion":true
 },
 {
 "slug":"ospihmp",
@@ -4299,7 +5281,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109400",
 "alias":[
 "OSPIHMP"
-]
+],
+"domicilio":"Colombres 1573 (Sindicato)",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4926-0173",
+"opcion":true
 },
 {
 "slug":"ospilm",
@@ -4316,7 +5302,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110404",
 "alias":[
 "OSPILM"
-]
+],
+"domicilio":"25 de Mayo 1724 E/ Lincoln y Juarez (79 1724 E 46/",
+"localidadSede":"San Martin ,Ptdo. General San",
+"telefono":"4752-9621",
+"opcion":true
 },
 {
 "slug":"ospim",
@@ -4329,7 +5319,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111001",
 "alias":[
 "OSPIM"
-]
+],
+"domicilio":"Rojas 254",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4431-4791",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-la-industria-molinera",
@@ -4343,7 +5337,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112608",
 "alias":[
 "OSPIM"
-]
+],
+"domicilio":"Av. San Juan 2670/72",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5238-3900",
+"opcion":true
 },
 {
 "slug":"ospin",
@@ -4357,7 +5355,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113601",
 "alias":[
 "OSPIN"
-]
+],
+"domicilio":"Jujuy 995",
+"localidadSede":"Capital Federal",
+"telefono":"011-4943-1189",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-la-industria-naval",
@@ -4374,7 +5376,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=113700",
 "alias":[
 "OSPIN"
-]
+],
+"domicilio":"Chacabuco 528",
+"localidadSede":"Tigre",
+"telefono":"2103-5658",
+"opcion":true
 },
 {
 "slug":"ospip",
@@ -4390,7 +5396,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115201",
 "alias":[
 "OSPIP"
-]
+],
+"domicilio":"12 de Octubre 4445",
+"localidadSede":"Mar del Plata",
+"telefono":"0223-4-800554",
+"opcion":false
 },
 {
 "slug":"os-del-personal-de-la-industria-del-plastico",
@@ -4404,7 +5414,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=116006",
 "alias":[
 "OSPIP"
-]
+],
+"domicilio":"Pavon 4175",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5168-3200",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-la-industria-petroquimica",
@@ -4420,7 +5434,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115607",
 "alias":[
 "OSPIP"
-]
+],
+"domicilio":"Avda. San Martin 698 Pa",
+"localidadSede":"San Lorenzo",
+"telefono":"03476-4-31933",
+"opcion":true
 },
 {
 "slug":"ospiqyp",
@@ -4434,7 +5452,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118705",
 "alias":[
 "OSPIQYP"
-]
+],
+"domicilio":"Mexico 1474",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4384-5700",
+"opcion":false
 },
 {
 "slug":"ospis",
@@ -4448,7 +5470,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119609",
 "alias":[
 "OSPIS"
-]
+],
+"domicilio":"Pasco Nº 1040",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4941-7456",
+"opcion":true
 },
 {
 "slug":"ospit",
@@ -4462,7 +5488,11 @@
 "alias":[
 "OSPIT",
 "OBRA SOCIAL DEL PERSONAL DE LA INDUSTRIA  DEL TABACO"
-]
+],
+"domicilio":"Esteban Bonorino 281",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4613-9183",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-la-industria-del-tractor",
@@ -4478,7 +5508,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121309",
 "alias":[
 "OSPIT"
-]
+],
+"domicilio":"San Lorenzo 2181",
+"localidadSede":"Rosario",
+"telefono":"0341-4486938",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-la-industria-textil",
@@ -4492,7 +5526,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121002",
 "alias":[
 "OSPIT"
-]
+],
+"domicilio":"Avda. la Plata 754",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4923-4061/63",
+"opcion":true
 },
 {
 "slug":"ospiv",
@@ -4506,7 +5544,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122005",
 "alias":[
 "OSPIV"
-]
+],
+"domicilio":"Avda. Rivadavia 1378 Pb",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4393-7114",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-la-industria-del-vidrio",
@@ -4520,7 +5562,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122500",
 "alias":[
 "OSPIV"
-]
+],
+"domicilio":"Balbastro 453",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4924-4626",
+"opcion":true
 },
 {
 "slug":"ospjc",
@@ -4536,7 +5582,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110206",
 "alias":[
 "OSPJC"
-]
+],
+"domicilio":"Ovidio Lagos 1571",
+"localidadSede":"Rosario",
+"telefono":"0341-4-219301",
+"opcion":true
 },
 {
 "slug":"ospjt",
@@ -4553,7 +5603,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2402",
 "alias":[
 "OSPJT"
-]
+],
+"domicilio":"Caseros Nº 261 Piso 3 Of. A",
+"localidadSede":"Barrio Centro America",
+"telefono":"0351-4213848",
+"opcion":true
 },
 {
 "slug":"ospl",
@@ -4566,7 +5620,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110305",
 "alias":[
 "OSPL"
-]
+],
+"domicilio":"San Jose 83 Piso 5",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5199-1579",
+"opcion":false
 },
 {
 "slug":"ospla",
@@ -4580,7 +5638,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115706",
 "alias":[
 "OSPLA"
-]
+],
+"domicilio":"Lezica 4047",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4958-2959",
+"opcion":true
 },
 {
 "slug":"ospm",
@@ -4594,7 +5656,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111209",
 "alias":[
 "OSPM"
-]
+],
+"domicilio":"Alzaga 2271",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4924-6045/47",
+"opcion":true
 },
 {
 "slug":"os-del-personal-maritimo",
@@ -4607,7 +5673,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=111803",
 "alias":[
 "OSPM"
-]
+],
+"domicilio":"Venezuela 1427",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4381-2486",
+"opcion":true
 },
 {
 "slug":"os-del-personal-mosaista",
@@ -4620,7 +5690,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112707",
 "alias":[
 "OSPM"
-]
+],
+"domicilio":"Quirno 144",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4619-0208",
+"opcion":true
 },
 {
 "slug":"ospma",
@@ -4637,7 +5711,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=700108",
 "alias":[
 "OSPMA"
-]
+],
+"domicilio":"Laprida 70",
+"localidadSede":"Avellaneda",
+"telefono":"42011271",
+"opcion":false
 },
 {
 "slug":"ospmj",
@@ -4650,7 +5728,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=109608",
 "alias":[
 "OSPMJ"
-]
+],
+"domicilio":"Avda. Cabildo 4193",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4702-7948",
+"opcion":true
 },
 {
 "slug":"ospmm",
@@ -4666,7 +5748,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=700801",
 "alias":[
 "OSPMM"
-]
+],
+"domicilio":"Almafuerte 3160",
+"localidadSede":"San Justo",
+"telefono":"4651-4441",
+"opcion":true
 },
 {
 "slug":"ospms",
@@ -4683,7 +5769,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3603",
 "alias":[
 "OSPMS"
-]
+],
+"domicilio":"España 160 Piso 2",
+"localidadSede":"Lomas de Zamora",
+"opcion":true
 },
 {
 "slug":"ospmt",
@@ -4701,7 +5790,11 @@
 "alias":[
 "OSPMT",
 "OBRA SOCIAL PARA EL  PERSONAL MUNICIPAL DE TRES DE FEBRERO"
-]
+],
+"domicilio":"Amadeo Sabattini 4661/65",
+"localidadSede":"Caseros ,Partido 3 de Febrero",
+"telefono":"4750-1368",
+"opcion":true
 },
 {
 "slug":"ospoce",
@@ -4715,7 +5808,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=406",
 "alias":[
 "OSPOCE"
-]
+],
+"domicilio":"Bartolome Mitre 1523",
+"localidadSede":"Capital Federal",
+"telefono":"0800-321-6776",
+"opcion":true
 },
 {
 "slug":"ospp",
@@ -4728,7 +5825,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118606",
 "alias":[
 "OSPP"
-]
+],
+"domicilio":"Avda Cordoba 1576",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4811-7416",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-pbbpolisur-srl-de-bahia-bl",
@@ -4745,7 +5846,11 @@
 "alias":[
 "OSPPB",
 "OBRA SOCIAL DEL PERSONAL DE PBBPOLISUR  SRL DE  BAHIA BLANCA"
-]
+],
+"domicilio":"Las Heras 95",
+"localidadSede":"Bahia Blanca",
+"telefono":"0291-4550636",
+"opcion":true
 },
 {
 "slug":"osppb",
@@ -4761,7 +5866,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=117405",
 "alias":[
 "OSPPB"
-]
+],
+"domicilio":"Lamadrid 266",
+"localidadSede":"Bahia Blanca",
+"telefono":"0291-4-562760",
+"opcion":true
 },
 {
 "slug":"osppcyq",
@@ -4775,7 +5884,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114109",
 "alias":[
 "OSPPCYQ"
-]
+],
+"domicilio":"Osvaldo Cruz 2075",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4126-0900",
+"opcion":true
 },
 {
 "slug":"osppea",
@@ -4789,7 +5902,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114703",
 "alias":[
 "OSPPEA"
-]
+],
+"domicilio":"Ayacucho 838",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4965-2100",
+"opcion":true
 },
 {
 "slug":"os-del-personal-de-prensa-de-mendoza",
@@ -4805,7 +5922,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=117801",
 "alias":[
 "OSPPM"
-]
+],
+"domicilio":"Chile 1661",
+"localidadSede":"Mendoza",
+"telefono":"0261-4-251179",
+"opcion":true
 },
 {
 "slug":"osppm",
@@ -4822,7 +5943,11 @@
 "alias":[
 "OSPPM",
 "OBRA SOCIAL PORTUARIOS  PUERTO SAN MARTIN Y BELLA VISTA"
-]
+],
+"domicilio":"Calle San Martin 56",
+"localidadSede":"Puerto Gral. San Martin",
+"telefono":"03476-436020",
+"opcion":true
 },
 {
 "slug":"osppra",
@@ -4836,7 +5961,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=117207",
 "alias":[
 "OSPPRA"
-]
+],
+"domicilio":"Solis 1158 Piso 3§",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4305-6768",
+"opcion":true
 },
 {
 "slug":"osprb",
@@ -4852,7 +5981,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118903",
 "alias":[
 "OSPRB"
-]
+],
+"domicilio":"Buenos Aires 1635",
+"localidadSede":"Rosario",
+"telefono":"0341-4-248702",
+"opcion":true
 },
 {
 "slug":"ospreme",
@@ -4866,7 +5999,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400206",
 "alias":[
 "OSPREME"
-]
+],
+"domicilio":"Arribeños 3619 Piso 9",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4702-0837",
+"opcion":true
 },
 {
 "slug":"ospren",
@@ -4883,7 +6020,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=117702",
 "alias":[
 "OSPREN"
-]
+],
+"domicilio":"Dorrego 1734",
+"localidadSede":"Mar del Plata",
+"telefono":"0223-4-734394",
+"opcion":true
 },
 {
 "slug":"osprentuc",
@@ -4899,7 +6040,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123503",
 "alias":[
 "OSPRENTUC"
-]
+],
+"domicilio":"Junin 775",
+"localidadSede":"Tucuman",
+"telefono":"0381-431-0941",
+"opcion":true
 },
 {
 "slug":"osprera",
@@ -4913,7 +6058,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119302",
 "alias":[
 "OSPRERA"
-]
+],
+"domicilio":"Reconquista 630",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4312-2500",
+"opcion":true
 },
 {
 "slug":"osprm",
@@ -4929,7 +6078,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119005",
 "alias":[
 "OSPRM"
-]
+],
+"domicilio":"Anchorena 1429",
+"localidadSede":"Baradero",
+"telefono":"03329-4-83874",
+"opcion":true
 },
 {
 "slug":"ospro",
@@ -4945,7 +6098,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123404",
 "alias":[
 "OSPRO"
-]
+],
+"domicilio":"Juan Manuel de Rosas 958",
+"localidadSede":"Rosario",
+"telefono":"0341-4-445918",
+"opcion":true
 },
 {
 "slug":"osprotura",
@@ -4961,7 +6118,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2105",
 "alias":[
 "OSPROTURA"
-]
+],
+"domicilio":"Panama 950",
+"localidadSede":"Martinez",
+"telefono":"5197-7699",
+"opcion":true
 },
 {
 "slug":"osps",
@@ -4975,7 +6136,11 @@
 "alias":[
 "OSPS",
 "OBRA SOCIAL  DE LA PREVENCION Y LA SALUD"
-]
+],
+"domicilio":"Avda Cordoba 1547 Piso 4",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 2152-7940/44",
+"opcion":true
 },
 {
 "slug":"osps-mercedes",
@@ -4989,7 +6154,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112004",
 "alias":[
 "OSPS MERCEDES"
-]
+],
+"domicilio":"Oliden 46",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5365-8444",
+"opcion":true
 },
 {
 "slug":"ospsesba",
@@ -5002,7 +6171,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120306",
 "alias":[
 "OSPSESBA"
-]
+],
+"domicilio":"Emilio Mitre 582",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4433-0833",
+"opcion":true
 },
 {
 "slug":"ospsip",
@@ -5016,7 +6189,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119708",
 "alias":[
 "OSPSIP"
-]
+],
+"domicilio":"Parana 717/19",
+"localidadSede":"Capital Federal",
+"opcion":false
 },
 {
 "slug":"ospta",
@@ -5033,7 +6209,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=100700",
 "alias":[
 "OSPTA"
-]
+],
+"domicilio":"D Onofrio 158",
+"localidadSede":"Ciudadela",
+"telefono":"4653-3016",
+"opcion":true
 },
 {
 "slug":"osptv",
@@ -5047,7 +6227,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120900",
 "alias":[
 "OSPTV"
-]
+],
+"domicilio":"Quintino Bocayuva 38/50",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5555-3100",
+"opcion":true
 },
 {
 "slug":"ospuaye",
@@ -5060,7 +6244,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=125103",
 "alias":[
 "OSPUAYE"
-]
+],
+"domicilio":"Reconquista 1048 Piso 2",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4312-0409/06",
+"opcion":true
 },
 {
 "slug":"osrga",
@@ -5073,7 +6261,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=118804",
 "alias":[
 "OSRGA"
-]
+],
+"domicilio":"Avda Belgrano 510 Piso 5",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4137-5646/7/8/9",
+"opcion":true
 },
 {
 "slug":"osrja",
@@ -5087,7 +6279,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119203",
 "alias":[
 "OSRJA"
-]
+],
+"domicilio":"Valentin Gomez 3828",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4867-5420",
+"opcion":true
 },
 {
 "slug":"osrm",
@@ -5100,7 +6296,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=302809",
 "alias":[
 "OSRM"
-]
+],
+"domicilio":"Cordoba 1345 Piso 15 Depto \"B\"",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"oss",
@@ -5114,7 +6313,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=303109",
 "alias":[
 "OSS"
-]
+],
+"domicilio":"Avda Amancio Alcorta 3570",
+"localidadSede":"Capital Federal",
+"telefono":"(11) 3599-4747",
+"opcion":true
 },
 {
 "slug":"ossa",
@@ -5128,7 +6331,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=303406",
 "alias":[
 "OSSA"
-]
+],
+"domicilio":"Av Paseo Colon 728 Piso 8 Ofic C",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5272-9922/9925",
+"opcion":true
 },
 {
 "slug":"ossacra",
@@ -5141,7 +6348,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=1508",
 "alias":[
 "OSSACRA"
-]
+],
+"domicilio":"Bartolome Mitre Nª 844",
+"localidadSede":"Capital Federal",
+"telefono":"011-77003532",
+"opcion":true
 },
 {
 "slug":"ossb",
@@ -5155,7 +6366,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=119906",
 "alias":[
 "OSSB"
-]
+],
+"domicilio":"Bernardo de Irigoyen 972/4 Piso 9 Of. 45",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5276-4700",
+"opcion":true
 },
 {
 "slug":"ossimra",
@@ -5170,7 +6385,11 @@
 "alias":[
 "OSSIMRA",
 "OBRA SOCIAL DE LOS  SUPERVISORES DE LA INDUSTRIA METALMECANICA DE LA REPUBLICA ARGENTINA"
-]
+],
+"domicilio":"Azcuenaga 1234",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4823-3071/75",
+"opcion":true
 },
 {
 "slug":"ossoelsac",
@@ -5186,7 +6405,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128409",
 "alias":[
 "OSSOELSAC"
-]
+],
+"domicilio":"Entre Rios 372",
+"localidadSede":"Cordoba",
+"telefono":"(0351) 4215431",
+"opcion":true
 },
 {
 "slug":"osspyfer",
@@ -5202,7 +6425,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=114000",
 "alias":[
 "OSSPYFER"
-]
+],
+"domicilio":"Velez Sarsfield 447/49",
+"localidadSede":"Concordia",
+"telefono":"0345-4-214266",
+"opcion":true
 },
 {
 "slug":"ostad",
@@ -5215,7 +6442,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123107",
 "alias":[
 "OSTAD"
-]
+],
+"domicilio":"Acevedo 553",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4854-4708",
+"opcion":true
 },
 {
 "slug":"ostamma",
@@ -5232,7 +6463,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=2709",
 "alias":[
 "OSTAMMA"
-]
+],
+"domicilio":"Av. Sabattini 93",
+"localidadSede":"Villa Maria",
+"telefono":"0353-4536925",
+"opcion":true
 },
 {
 "slug":"ostc",
@@ -5248,7 +6483,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121804",
 "alias":[
 "OSTC"
-]
+],
+"domicilio":"San Luis 373 - B. Guemes",
+"localidadSede":"Cordoba",
+"telefono":"0351-4247799",
+"opcion":false
 },
 {
 "slug":"ostecf",
@@ -5262,7 +6501,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=108704",
 "alias":[
 "OSTECF"
-]
+],
+"domicilio":"Viamonte 1328 Pb Piso 1",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4371-3969",
+"opcion":true
 },
 {
 "slug":"ostee",
@@ -5276,7 +6519,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=110800",
 "alias":[
 "OSTEE"
-]
+],
+"domicilio":"Humberto 1º 434",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5168-2600",
+"opcion":true
 },
 {
 "slug":"ostel",
@@ -5290,7 +6537,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120702",
 "alias":[
 "OSTEL"
-]
+],
+"domicilio":"Avda Juan de Garay 2569",
+"localidadSede":"Capital Federal",
+"opcion":false
 },
 {
 "slug":"ostep",
@@ -5304,7 +6554,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=126106",
 "alias":[
 "OSTEP"
-]
+],
+"domicilio":"Salta 534",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4384-0017/18",
+"opcion":true
 },
 {
 "slug":"ostes",
@@ -5320,7 +6574,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127000",
 "alias":[
 "OSTES"
-]
+],
+"domicilio":"Bandera de Los Andes 239",
+"localidadSede":"Villa Nueva de Guaymallen",
+"telefono":"0261-431-7309",
+"opcion":true
 },
 {
 "slug":"ostig",
@@ -5333,7 +6591,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=124506",
 "alias":[
 "OSTIG"
-]
+],
+"domicilio":"Boedo 90",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4982-7069",
+"opcion":true
 },
 {
 "slug":"ostp",
@@ -5349,7 +6611,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123602",
 "alias":[
 "OSTP"
-]
+],
+"domicilio":"Roque Saenz Peña 1377",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"ostpba",
@@ -5363,7 +6628,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115102",
 "alias":[
 "OSTPBA"
-]
+],
+"domicilio":"Peru 590 Piso 5",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5218-2832/39",
+"opcion":true
 },
 {
 "slug":"ostpchpyara",
@@ -5377,7 +6646,11 @@
 "alias":[
 "OSTPCHPYARA",
 "OBRA SOCIAL TRABAJADORES  PASTELEROS, CONFITEROS, PIZZEROS , HELADEROS Y ALFAJOREROS DE LA REPUBLICA ARGENTINA"
-]
+],
+"domicilio":"Bogado 4541",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4864-1799",
+"opcion":true
 },
 {
 "slug":"ostrac",
@@ -5391,7 +6664,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=120801",
 "alias":[
 "OSTRAC"
-]
+],
+"domicilio":"Chacabuco 140",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"ostsa",
@@ -5408,7 +6684,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3207",
 "alias":[
 "OSTSA"
-]
+],
+"domicilio":"Av Facundo Zuviria 4584",
+"localidadSede":"Santa Fe",
+"telefono":"0342-4504800",
+"opcion":true
 },
 {
 "slug":"ostva",
@@ -5422,7 +6702,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=127307",
 "alias":[
 "OSTVA"
-]
+],
+"domicilio":"Mexico 1399 P.B Esquina San Jose",
+"localidadSede":"Capital Federal",
+"telefono":"0810-220-0159",
+"opcion":true
 },
 {
 "slug":"ostvendra",
@@ -5438,7 +6722,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3306",
 "alias":[
 "OSTVENDRA"
-]
+],
+"domicilio":"Maestro Angel Delia Nº 1210 Uf 6",
+"localidadSede":"San Miguel",
+"telefono":"2206-2309",
+"opcion":true
 },
 {
 "slug":"ostvla",
@@ -5452,7 +6740,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=3900",
 "alias":[
 "OSTVLA"
-]
+],
+"domicilio":"Victor Hugo 369",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 2100-0660",
+"opcion":true
 },
 {
 "slug":"osuci",
@@ -5465,7 +6757,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=105507",
 "alias":[
 "OSUCI"
-]
+],
+"domicilio":"Santiago del Estero 576",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4383-8801",
+"opcion":true
 },
 {
 "slug":"osuomra",
@@ -5479,7 +6775,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=112103",
 "alias":[
 "OSUOMRA"
-]
+],
+"domicilio":"Alsina 477/485",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 6345-5000",
+"opcion":true
 },
 {
 "slug":"osuti",
@@ -5492,7 +6792,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=128102",
 "alias":[
 "OSUTI"
-]
+],
+"domicilio":"Esmeralda 25",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4121-2150",
+"opcion":true
 },
 {
 "slug":"osv",
@@ -5509,7 +6813,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=121903",
 "alias":[
 "OSV"
-]
+],
+"domicilio":"Entre Rios 1395",
+"localidadSede":"Martinez",
+"opcion":true
 },
 {
 "slug":"osvara",
@@ -5522,7 +6829,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=123909",
 "alias":[
 "OSVARA"
-]
+],
+"domicilio":"Gallo 443",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4866-5482",
+"opcion":true
 },
 {
 "slug":"osvas",
@@ -5535,7 +6846,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=304003",
 "alias":[
 "OSVAS"
-]
+],
+"domicilio":"Maipu 267 Piso 11",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4317-9000",
+"opcion":false
 },
 {
 "slug":"osvvra",
@@ -5549,7 +6864,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=122104",
 "alias":[
 "OSVVRA"
-]
+],
+"domicilio":"Moreno 2045",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5237-1900",
+"opcion":true
 },
 {
 "slug":"osyc",
@@ -5563,7 +6882,11 @@
 "alias":[
 "OSYC",
 "OBRA SOCIAL  YACIMIENTOS CARBONIFEROS"
-]
+],
+"domicilio":"24 de Noviembre 1126",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4957-0882",
+"opcion":false
 },
 {
 "slug":"osypf",
@@ -5577,7 +6900,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=402509",
 "alias":[
 "OSYPF"
-]
+],
+"domicilio":"Macacha Guemes 515 1º P",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 5071-3490",
+"opcion":true
 },
 {
 "slug":"parque-salud-sa",
@@ -5587,7 +6914,10 @@
 "codigo":"9-0200-9",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902009"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902009",
+"domicilio":"Bu. Illia N.º 257",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"ossib",
@@ -5602,7 +6932,10 @@
 "alias":[
 "Hospital Italiano",
 "Sociedad Italiana de Beneficencia"
-]
+],
+"domicilio":"Peron Nº 4190",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"osp",
@@ -5612,7 +6945,10 @@
 "codigo":"9-0240-5",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902405"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902405",
+"domicilio":"Sucre 225",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"premedica-s-a",
@@ -5622,7 +6958,11 @@
 "codigo":"9-0420-3",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904203"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904203",
+"domicilio":"Junin 401",
+"localidadSede":"San Fernando del Valle de Catamarca",
+"telefono":"3834680332",
+"opcion":true
 },
 {
 "slug":"prestadores-sanatoriales-sa",
@@ -5632,7 +6972,10 @@
 "codigo":"9-0070-6",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900706"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900706",
+"domicilio":"Tucuman 2143",
+"localidadSede":"Posadas",
+"opcion":true
 },
 {
 "slug":"prevencion-salud",
@@ -5650,7 +6993,10 @@
 "Prevención Salud",
 "Prevencion Salud",
 "Grupo Sancor Seguros"
-]
+],
+"domicilio":"Av. Independencia 333",
+"localidadSede":"Sunchales",
+"opcion":true
 },
 {
 "slug":"primed-s-a",
@@ -5660,7 +7006,11 @@
 "codigo":"9-0610-0",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906100"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906100",
+"domicilio":"Calle 70 Nº 780",
+"localidadSede":"La Plata",
+"telefono":"0221-423-4495",
+"opcion":true
 },
 {
 "slug":"privamed-s-a",
@@ -5670,7 +7020,10 @@
 "codigo":"9-0410-4",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904104"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904104",
+"domicilio":"Uruguay 469 Piso 3",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"roi-sa",
@@ -5680,7 +7033,10 @@
 "codigo":"9-0340-8",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903408"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=903408",
+"domicilio":"Reconquista 1016, Piso 9",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"osss",
@@ -5690,7 +7046,10 @@
 "codigo":"9-0060-7",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900607"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900607",
+"domicilio":"San Martin 554",
+"localidadSede":"Bernal",
+"opcion":true
 },
 {
 "slug":"saju-s-r-l",
@@ -5700,7 +7059,10 @@
 "codigo":"9-0650-6",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906506"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906506",
+"domicilio":"Otero 381, Piso 1º",
+"localidadSede":"San Salvador de Jujuy",
+"opcion":true
 },
 {
 "slug":"salud-profesional-y-tecnologica-s-a",
@@ -5710,7 +7072,11 @@
 "codigo":"9-0700-4",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907004"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907004",
+"domicilio":"Av. Córdoba 883, Piso 10º",
+"localidadSede":"Capital Federal",
+"telefono":"1152395265",
+"opcion":true
 },
 {
 "slug":"sancor-salud",
@@ -5727,7 +7093,10 @@
 "Sancor",
 "Grupo SanCor Salud",
 "Asociación Mutual SanCor"
-]
+],
+"domicilio":"25 de Mayo Nº 201",
+"localidadSede":"Sunchales",
+"opcion":true
 },
 {
 "slug":"sanos",
@@ -5740,7 +7109,10 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902207",
 "alias":[
 "SANOS"
-]
+],
+"domicilio":"Del Tolkeyen 1390",
+"localidadSede":"Ushuaia",
+"opcion":true
 },
 {
 "slug":"ossc",
@@ -5750,7 +7122,10 @@
 "codigo":"9-0740-0",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907400"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=907400",
+"domicilio":"Garay 3772",
+"localidadSede":"Mar del Plata",
+"opcion":true
 },
 {
 "slug":"scis-s-a",
@@ -5760,7 +7135,10 @@
 "codigo":"9-0480-7",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904807"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=904807",
+"domicilio":"Av Pueyrredón 1777 Piso 1",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"servesalud",
@@ -5773,7 +7151,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400404",
 "alias":[
 "SERVESALUD"
-]
+],
+"domicilio":"Rodriguez Peña 1474",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4322-5200",
+"opcion":true
 },
 {
 "slug":"sempre-la-pampa",
@@ -5808,7 +7190,10 @@
 "alias":[
 "SIPSSA",
 "Sipssa Medicina Privada"
-]
+],
+"domicilio":"25 de Mayo 266 Pb",
+"localidadSede":"Cordoba",
+"opcion":true
 },
 {
 "slug":"soremer-sa",
@@ -5818,7 +7203,10 @@
 "codigo":"9-0190-7",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901907"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=901907",
+"domicilio":"Bernardo de Monteagudo 815",
+"localidadSede":"San Miguel de Tucuman",
+"opcion":true
 },
 {
 "slug":"swiss-medical",
@@ -5837,7 +7225,10 @@
 "SMG",
 "Swiss Medical Group",
 "Qualitas"
-]
+],
+"domicilio":"San Martin 323 Piso 12",
+"localidadSede":"Capital Federal",
+"opcion":true
 },
 {
 "slug":"upfpara",
@@ -5851,7 +7242,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=115805",
 "alias":[
 "UPFPARA"
-]
+],
+"domicilio":"Nazca 845",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4613-7428",
+"opcion":true
 },
 {
 "slug":"osvs",
@@ -5861,7 +7256,10 @@
 "codigo":"9-0620-9",
 "jurisdiccion":"Nacional",
 "fuente":"rnas",
-"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906209"
+"fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=906209",
+"domicilio":"25 de Mayo 369",
+"localidadSede":"Moron",
+"opcion":true
 },
 {
 "slug":"whope",
@@ -5875,7 +7273,11 @@
 "fuenteUrl":"https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=401902",
 "alias":[
 "WHOPE"
-]
+],
+"domicilio":"Avda. Cordoba 1345 Piso 5",
+"localidadSede":"Capital Federal",
+"telefono":"(011) 4815-0747",
+"opcion":true
 }
 ]
 }

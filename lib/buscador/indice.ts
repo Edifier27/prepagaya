@@ -1,6 +1,6 @@
 import { prepagas } from '@/lib/data/prepagas'
 import { obrasSociales } from '@/lib/data/obras-sociales'
-import { entidadesRegistro, codigoSeisDigitos, registroDeObraSocial, PREPAGA_A_REGISTRO } from '@/lib/data/registro-sssalud'
+import { entidadesRegistro, codigoSeisDigitos, nombreLegible, registroDeObraSocial, PREPAGA_A_REGISTRO } from '@/lib/data/registro-sssalud'
 import { SANATORIOS_SEO, sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
 import { indiceCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
 import { CARTILLAS } from '@/lib/data/cartilla-zonas'
@@ -10,6 +10,7 @@ import { comparativas } from '@/lib/data/comparativas'
 import { guias } from '@/lib/data/guias'
 import { blogPosts } from '@/lib/data/blog'
 import { provinciasSEO } from '@/lib/data/zonas'
+import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { normalizarTexto } from '@/lib/cartilla-zonas-geo'
 
 // Índice del buscador del sitio (24-sep-2026, idea de Darío: "que busque la
@@ -76,9 +77,17 @@ export function indiceBuscador(): EntradaBuscador[] {
     if (e) conFicha.add(e.slug)
     add(os.nombre, `/obras-sociales/${os.slug}`, G('Obras sociales'), e?.codigo ? `Código ${codigoSeisDigitos(e.codigo)}` : 'Obra social', [e?.razonSocial, ...(e?.alias ?? [])].filter(Boolean).join(' '))
   }
+  // Fichas armadas con el registro (teléfono y código)
+  for (const f of FICHAS_REGISTRO) {
+    const e = entidadesRegistro.find((x) => x.slug === f.slug)
+    if (!e?.codigo) continue
+    conFicha.add(e.slug)
+    add(f.nombreCorto, `/obras-sociales/${f.slug}`, G('Obras sociales'), `Código ${codigoSeisDigitos(e.codigo)}${e.telefono ? ` · Tel. ${e.telefono}` : ''}`,
+      [e.nombre, e.razonSocial, e.sigla, ...(e.alias ?? []), ...f.keywords, e.codigo, codigoSeisDigitos(e.codigo)].filter(Boolean).join(' '))
+  }
   for (const e of entidadesRegistro) {
     if (conFicha.has(e.slug) || Object.values(PREPAGA_A_REGISTRO).includes(e.slug)) continue
-    add(e.nombre, `/obras-sociales/codigos#${e.slug}`, G('Códigos'), e.codigo ? `Código ${codigoSeisDigitos(e.codigo)} · RNAS ${e.codigo}` : 'Sin código nacional (régimen propio)', [e.razonSocial, e.sigla, ...(e.alias ?? []), e.codigo, e.codigo && codigoSeisDigitos(e.codigo)].filter(Boolean).join(' '))
+    add(nombreLegible(e.nombre), `/obras-sociales/codigos#${e.slug}`, G('Códigos'), e.codigo ? `Código ${codigoSeisDigitos(e.codigo)} · RNAS ${e.codigo}` : 'Sin código nacional (régimen propio)', [e.razonSocial, e.sigla, ...(e.alias ?? []), e.codigo, e.codigo && codigoSeisDigitos(e.codigo)].filter(Boolean).join(' '))
   }
 
   // Coberturas

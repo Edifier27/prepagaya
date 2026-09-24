@@ -9,6 +9,8 @@ import { blogPosts } from '@/lib/data/blog'
 import { coberturas } from '@/lib/data/coberturas'
 import { condiciones } from '@/lib/data/condiciones'
 import { obrasSociales } from '@/lib/data/obras-sociales'
+import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
+import { REGISTRO_VERIFICADO } from '@/lib/data/registro-sssalud'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { CARTILLAS, combinacionesPlanZona, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
@@ -241,12 +243,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.72,
   }))
 
-  const obraSocialRoutes: MetadataRoute.Sitemap = obrasSociales.map((os) => ({
-    url: `${BASE}/obras-sociales/${os.slug}`,
-    lastModified: CONTENT_UPDATE,
-    changeFrequency: 'monthly' as const,
-    priority: 0.80,
-  }))
+  const obraSocialRoutes: MetadataRoute.Sitemap = [
+    ...obrasSociales.map((os) => ({
+      url: `${BASE}/obras-sociales/${os.slug}`,
+      lastModified: CONTENT_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.80,
+    })),
+    // Fichas armadas con el registro de la SSSalud y obras sociales por provincia
+    ...FICHAS_REGISTRO.map((f) => ({
+      url: `${BASE}/obras-sociales/${f.slug}`,
+      lastModified: REGISTRO_VERIFICADO,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+    ...provinciasSEO.map((p) => ({
+      url: `${BASE}/obras-sociales/provincia/${p.slug}`,
+      lastModified: CONTENT_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
 
   return [
     ...staticRoutes,

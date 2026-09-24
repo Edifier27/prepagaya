@@ -6,7 +6,9 @@ import { prepagas } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
-import { registroDeObraSocial, codigoSeisDigitos } from '@/lib/data/registro-sssalud'
+import { registroDeObraSocial, codigoSeisDigitos, nombreLegible } from '@/lib/data/registro-sssalud'
+import { FICHAS_REGISTRO, fichaRegistro } from '@/lib/data/fichas-registro'
+import { FichaRegistroPage } from '@/components/obras-sociales/FichaRegistro'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -32,13 +34,27 @@ const tiposLabels: Record<string, string> = {
 }
 
 export async function generateStaticParams() {
-  return obrasSociales.map((os) => ({ slug: os.slug }))
+  return [...obrasSociales.map((os) => ({ slug: os.slug })), ...FICHAS_REGISTRO.map((f) => ({ slug: f.slug }))]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const os = obrasSociales.find((o) => o.slug === slug)
-  if (!os) return {}
+  if (!os) {
+    // Fichas armadas con el registro de la SSSalud (lib/data/fichas-registro.ts)
+    const r = fichaRegistro(slug)
+    if (!r) return {}
+    const { ficha: f, entidad: e } = r
+    const title = `${f.nombreCorto}: teléfono y código de obra social (2026)`
+    const description = `Código de obra social ${codigoSeisDigitos(e.codigo!)}${e.telefono ? `, teléfono ${e.telefono}` : ''} y sede de ${nombreLegible(e.nombre).replace(/^\S+ - /, '')}, según la Superintendencia. Calculá cuánto pagarías con tus aportes en una prepaga.`
+    return {
+      title,
+      description,
+      alternates: { canonical: `${SITE_URL}/obras-sociales/${slug}` },
+      keywords: f.keywords,
+      openGraph: { title, description, type: 'article', images: [OG_IMAGE] },
+    }
+  }
   return {
     title: os.titulo,
     description: os.metaDescripcion,
@@ -56,7 +72,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ObraSocialPage({ params }: Props) {
   const { slug } = await params
   const os = obrasSociales.find((o) => o.slug === slug)
-  if (!os) notFound()
+  if (!os) {
+    const r = fichaRegistro(slug)
+    if (!r) notFound()
+    return <FichaRegistroPage ficha={r.ficha} entidad={r.entidad} />
+  }
 
   const otras = obrasSociales.filter((o) => o.slug !== slug).slice(0, 8)
   const prepagaMatch = prepagaHermana(os.slug)
@@ -300,6 +320,9 @@ export default async function ObraSocialPage({ params }: Props) {
                 <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
                   {os.nombre} no es de contratación voluntaria ni se puede derivar: es un aporte fijo si trabajás para el Estado provincial. Muchos afiliados la mantienen como base y suman una prepaga privada para acceder sin restricciones a la cartilla de {provinciaMatch.capitalNombre} y el interior.
                 </p>
+                <Link href={`/obras-sociales/provincia/${provinciaMatch.slug}`} className="inline-block mt-2 text-sm font-semibold text-gray-500 hover:text-[#E8002D] hover:underline">
+                  Otras obras sociales en {provinciaMatch.nombre} →
+                </Link>
               </div>
               <Link
                 href={`/prepagas/${provinciaMatch.slug}`}
@@ -322,6 +345,15 @@ export default async function ObraSocialPage({ params }: Props) {
                 <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
                   Con tu aporte derivado a {os.nombre} tenés <Link href="/pmo" className="font-semibold text-gray-800 hover:text-[#E8002D] hover:underline">cobertura del PMO</Link>. Si además querés contratar {prepagaMatch.nombre} de forma directa —sin depender de un aporte en blanco— podés ver sus planes, precios y cartilla en la ficha de prepaga.
                 </p>
+                {/* Enlaces a cada plan (24-sep-2026): "osde 210 precio" y
+                    similares están en el borde de la página 1 (Search Console). */}
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {prepagaMatch.planes.map((pl) => (
+                    <Link key={pl.slug} href={`/prepagas/${prepagaMatch.slug}/${pl.slug}`} className="text-xs px-3 py-1.5 bg-white text-gray-700 border border-gray-200 rounded-full hover:border-red-200 hover:text-[#E8002D] font-medium">
+                      {pl.nombre.startsWith(prepagaMatch.nombre) ? pl.nombre : `${prepagaMatch.nombre} ${pl.nombre.replace(/^Plan /, '')}`}
+                    </Link>
+                  ))}
+                </div>
               </div>
               <Link
                 href={`/prepagas/${prepagaMatch.slug}`}

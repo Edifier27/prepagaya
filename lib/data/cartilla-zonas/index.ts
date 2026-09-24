@@ -424,3 +424,8 @@ export function nombreZonaTitulo(prepagaSlug: string, z: ZonaCartilla): string {
   const repetido = c?.zonas.some((o) => o.slug !== z.slug && nombreCortoZona(o.nombre) === corto)
   return repetido && corto !== lugar ? `${corto} (${lugar})` : corto
 }
+
+/** textoFecha con su artículo: "la cartilla oficial..." / "el buscador oficial..." */
+export function textoFechaConArticulo(c: CartillaPrepaga): string {
+  return `${c.tipoFecha === 'vigencia' ? 'la' : 'el'} ${textoFecha(c)}`
+}

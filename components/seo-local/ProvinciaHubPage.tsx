@@ -203,6 +203,9 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
                     Ver ficha completa de {prov.obraSocialProvincial.sigla} →
                   </Link>
                 )}
+                <Link href={`/obras-sociales/provincia/${prov.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">
+                  Obras sociales en {prov.nombre} →
+                </Link>
                 <Link href={`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`} className="text-sm font-semibold text-gray-500 hover:text-[#E8002D] hover:underline">
                   Comparar prepagas para complementar →
                 </Link>

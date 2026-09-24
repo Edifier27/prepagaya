@@ -30,6 +30,12 @@ export interface EntidadRegistro {
   jurisdiccion: string
   provincias?: string[]
   web?: string
+  /** Sede, según el registro de la SSSalud (solo entidades del RNAS) */
+  domicilio?: string
+  localidadSede?: string
+  telefono?: string
+  /** Se puede elegir con la opción de cambio (según el listado) */
+  opcion?: boolean
   fuente: FuenteRegistro
   fuenteUrl: string
   alias?: string[]
@@ -97,4 +103,52 @@ const OBRA_SOCIAL_A_REGISTRO: Record<string, string | null> = {
 export function registroDeObraSocial(osSlug: string): EntidadRegistro | undefined {
   const slug = osSlug in OBRA_SOCIAL_A_REGISTRO ? OBRA_SOCIAL_A_REGISTRO[osSlug] : osSlug
   return slug ? entidadRegistro(slug) : undefined
+}
+
+// Nombre para mostrar (24-sep-2026). El registro trae muchos nombres en
+// mayúsculas y sin tildes ("OSUOMRA - OBRA SOCIAL DE LA UNION OBRERA
+// METALURGICA..."): se pasan a mayúscula inicial y se ponen las tildes de una
+// lista cerrada de palabras. Las siglas quedan como están.
+const TILDES: Record<string, string> = {
+  accion: 'acción', administracion: 'administración', aereas: 'aéreas', aeronautico: 'aeronáutico', aeronavegacion: 'aeronavegación',
+  agrupacion: 'agrupación', alimentacion: 'alimentación', arbitros: 'árbitros', asociacion: 'asociación', automaticos: 'automáticos',
+  autonoma: 'autónoma', automovil: 'automóvil', azucar: 'azúcar', bahia: 'Bahía', bioquimicos: 'bioquímicos', camara: 'cámara',
+  carboniferos: 'carboníferos', carton: 'cartón', catolicos: 'católicos', ceramica: 'cerámica', cinematografica: 'cinematográfica',
+  cinematograficas: 'cinematográficas', cinematografico: 'cinematográfico', cinematograficos: 'cinematográficos', circulo: 'círculo',
+  circunscripcion: 'circunscripción', clinicas: 'clínicas', confederacion: 'confederación', constitucion: 'constitución',
+  construccion: 'construcción', cordoba: 'Córdoba', demas: 'demás', direccion: 'dirección', economia: 'economía', educacion: 'educación',
+  electrica: 'eléctrica', energia: 'energía', escribanias: 'escribanías', espectaculo: 'espectáculo', esteticas: 'estéticas',
+  expedicion: 'expedición', fabricas: 'fábricas', farmaceutica: 'farmacéutica', farmaceuticos: 'farmacéuticos', federacion: 'federación',
+  fotografos: 'fotógrafos', fruticola: 'frutícola', futbol: 'fútbol', gomerias: 'gomerías', grafica: 'gráfica', grafico: 'gráfico',
+  gualeguaychu: 'Gualeguaychú', hipodromos: 'hipódromos', jerarquico: 'jerárquico', jerarquicos: 'jerárquicos', lineas: 'líneas',
+  loterias: 'loterías', maiz: 'maíz', maquina: 'máquina', maritimo: 'marítimo', maritimos: 'marítimos', medica: 'médica', medico: 'médico',
+  medicos: 'médicos', metalmecanica: 'metalmecánica', metalurgica: 'metalúrgica', musicos: 'músicos', moviles: 'móviles',
+  neumatico: 'neumático', neumaticos: 'neumáticos', neuquen: 'Neuquén', nicolas: 'Nicolás', omnibus: 'ómnibus', organizacion: 'organización',
+  pais: 'país', panaderias: 'panaderías', parana: 'Paraná', peluquerias: 'peluquerías', perfumeria: 'perfumería', petroleo: 'petróleo',
+  petroquimica: 'petroquímica', petroquimicas: 'petroquímicas', plastico: 'plástico', prevencion: 'prevención', produccion: 'producción',
+  publico: 'público', publicos: 'públicos', quimica: 'química', quimicas: 'químicas', quimicos: 'químicos', recoleccion: 'recolección',
+  refinerias: 'refinerías', republica: 'República', repulica: 'República', rio: 'Río', rios: 'ríos', siderurgica: 'siderúrgica',
+  subterraneos: 'subterráneos', supervision: 'supervisión', tecnico: 'técnico', tecnicos: 'técnicos', tecnologica: 'tecnológica',
+  telegrafos: 'telégrafos', television: 'televisión', tucuman: 'Tucumán', unico: 'único', union: 'Unión', vitivinicola: 'vitivinícola',
+  zarate: 'Zárate', maria: 'María', martin: 'Martín',
+}
+const MINUSCULAS = new Set(['de', 'del', 'la', 'las', 'los', 'el', 'y', 'e', 'en', 'para', 'a', 'al', 'con', 'que', 'por', 'sus'])
+
+function palabraLegible(w: string, primera: boolean): string {
+  if (!/[A-ZÁÉÍÓÚÑÜ]/.test(w)) return w
+  if (!primera && MINUSCULAS.has(w.toLowerCase())) return w.toLowerCase()
+  // Siglas: con puntos, sin vocales o del tipo OSxxx
+  if (/\./.test(w) || !/[AEIOUÁÉÍÓÚ]/.test(w) || (/^OS[A-ZÑ]{1,10}$/.test(w) && !(w.toLowerCase() in TILDES))) return w
+  const low = w.toLowerCase()
+  const base = low.normalize('NFD').replace(/[̀-ͯ]/g, '')
+  const conTilde = TILDES[base] ?? low
+  return conTilde.charAt(0).toUpperCase() + conTilde.slice(1)
+}
+
+export function nombreLegible(nombre: string): string {
+  if (nombre !== nombre.toUpperCase()) return nombre
+  const m = nombre.match(/^(\S{2,15}) - (.+)$/)
+  const [sigla, resto] = m ? [m[1], m[2].replace(/,(?=\S)/g, ', ')] : [null, nombre.replace(/,(?=\S)/g, ', ')]
+  const texto = resto.split(/(\s+|,|\(|\))/).map((w, i) => palabraLegible(w, i === 0)).join('')
+  return sigla ? `${sigla} - ${texto}` : texto
 }

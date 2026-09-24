@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { CalculadoraAportes } from '@/components/herramientas/CalculadoraAportes'
 import { prepagasCotizables } from '@/lib/data/planes-cotizables'
 import { obrasSociales } from '@/lib/data/obras-sociales'
+import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, OG_IMAGE, TIEMPO_RESPUESTA } from '@/lib/utils'
 
@@ -33,11 +34,11 @@ const faqs = [
   },
   {
     q: '¿Cómo paso mis aportes de la obra social a una prepaga?',
-    a: 'Elegís una prepaga que reciba aportes y hacés la opción de cambio (una vez por año). La prepaga te descuenta el aporte de la cuota y, además, el precio con aportes no lleva el IVA del 10,5% que paga quien contrata como particular.',
+    a: 'Elegís una prepaga inscripta como agente del seguro y hacés la opción de cambio online, en la web de la Superintendencia, con tu clave fiscal (una vez cada 365 días; rige desde el primer día del mes siguiente). La prepaga te descuenta el aporte de la cuota y, además, el precio con aportes no lleva el IVA del 10,5% que paga quien contrata como particular.',
   },
   {
     q: '¿Puedo sumar los aportes de mi pareja?',
-    a: 'Sí: si los dos trabajan en relación de dependencia, se pueden unificar los aportes en el mismo plan familiar. Marcá la opción de la calculadora y poné los dos sueldos.',
+    a: 'Sí: si los dos trabajan, se pueden unificar los aportes en el mismo plan familiar con el trámite de unificación de aportes de la Superintendencia. Marcá la opción de la calculadora y poné los dos sueldos.',
   },
   {
     q: '¿Y si soy monotributista?',
@@ -47,7 +48,10 @@ const faqs = [
 
 export default function CalculadoraAportesPage() {
   const prepagas = prepagasCotizables()
-  const os = obrasSociales.map((o) => ({ slug: o.slug, nombre: o.nombre })).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+  const os = [
+    ...obrasSociales.map((o) => ({ slug: o.slug, nombre: o.nombre })),
+    ...FICHAS_REGISTRO.map((f) => ({ slug: f.slug, nombre: f.nombreCorto })),
+  ].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -107,6 +111,8 @@ export default function CalculadoraAportesPage() {
           <p className="text-sm text-gray-600 mt-6">¿Monotributista? Mirá <Link href="/para/monotributistas" className="text-[#E8002D] font-semibold hover:underline">prepagas para monotributistas</Link>. ¿Dudas con el trámite? Un asesor te ayuda en {TIEMPO_RESPUESTA}.</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 mt-4">
             <Link href="/guias/derivar-obra-social-a-prepaga" className="text-sm font-semibold text-[#E8002D] hover:underline">Cómo derivar tus aportes →</Link>
+            <Link href="/guias/opcion-de-cambio-obra-social" className="text-sm font-semibold text-[#E8002D] hover:underline">Cómo hacer la opción de cambio →</Link>
+            <Link href="/guias/unificar-aportes-obra-social" className="text-sm font-semibold text-[#E8002D] hover:underline">Unificar aportes con tu pareja →</Link>
             <Link href="/obras-sociales/codigos" className="text-sm font-semibold text-[#E8002D] hover:underline">Códigos de obras sociales →</Link>
             <Link href="/obras-sociales" className="text-sm font-semibold text-[#E8002D] hover:underline">Obras sociales →</Link>
           </div>

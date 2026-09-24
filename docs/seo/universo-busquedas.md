@@ -1,6 +1,6 @@
 # Todo lo que la gente busca sobre obras sociales y prepagas, y cómo nuclearlo en PrepagaYa
 
-Fecha: 2026-09-24 · Estado: **análisis y propuesta para aprobar** · Actualizado con Search Console (8 al 22 de septiembre) en la sección 0
+Fecha: 2026-09-24 · Estado: **aprobado y en marcha** (ver "Hecho el 24-sep") · Actualizado con Search Console (8 al 22 de septiembre) en la sección 0
 
 ## 0. Lo que dice Search Console (8 al 22 de septiembre de 2026)
 
@@ -38,6 +38,18 @@ Export que pasó Darío el 24-sep (copia en `docs/seo/datos/gsc-2026-09-08-al-22
 - 15 URLs con impresiones que daban 404 (páginas viejas y variantes mal escritas): ahora redirigen. Las otras 45 URLs viejas ya redirigían bien.
 - **Celiaquía**: la página decía que el subsidio existía "en algunos casos" y que la prepaga podía aplicar un período de espera. Es obligatorio para todas: $58.560,97 por mes desde el 26-abr-2026 (Ministerio de Salud), próxima actualización el 26-oct-2026. Corregido, con el monto en el título ("subsidio celiaquía 2026" tenía ~50 impresiones sin clics).
 - Títulos de dos páginas con CTR muy bajo que no se habían tocado: odontología (1.100 impresiones, 0,2%) y obra social vs prepaga (se busca "¿obra social y prepaga es lo mismo?").
+
+### Hecho el 24-sep (después del "dale, avanzá")
+
+- **Sucursales por ciudad** (prioridad 1): 361 sucursales oficiales de OSDE, Swiss Medical, Galeno, Premedic y Medifé, bajadas por la Action "Sucursales de prepagas" (se actualiza sola el día 3). Salen en las páginas de prepaga por provincia y por localidad, con título "X en Ciudad: sucursal, teléfono…" solo donde hay sucursal. Faltan Sancor (no encontré la fuente) y Avalian (bloquea a GitHub).
+- **Calculadora de aportes** (`/calculadora-aportes`), enlazada desde cada ficha de obra social con `?os=`.
+- **Obras sociales por provincia** (prioridad 2): `/obras-sociales/provincia/[prov]` para las 12 provincias del sitio. No rankea obras sociales (no hay partner): explica cuál te toca según cómo trabajás, la provincial, las obras sociales con sede en la provincia (registro de la SSSalud, con código y teléfono), las que también son prepaga con cartilla ahí, la delegación de la Superintendencia y la calculadora.
+- **24 fichas nuevas de obras sociales sindicales** desde el registro (UOM, UOCRA, Camioneros, UTEDyC, Casas Particulares, Bancaria, SMATA, Sanidad, Gastronómicos, Luz y Fuerza, docentes, etc.): código, teléfono y sede de la SSSalud, cómo cambiarse, calculadora. Título "X: teléfono y código de obra social (2026)".
+- **Datos del registro corregidos**: el código 0-0160-7 figuraba como "Obra Social de Actores" y es la de Aguas Gaseosas de Santa Fe (la de Actores es 1-0020-5); el 1-2860-7 figuraba como Meopp y es la de Petróleo y Gas Privado del Chubut (Meopp es OSPEPRI, 1-2790-1). Teléfonos con texto basura limpiados y nombres en mayúsculas mostrados con tildes.
+- **Guías de trámites con la letra oficial** (la Action "Fuentes oficiales de trámites" lee argentina.gob.ar/sssalud y deja el texto en el log): *Cómo cambiar de obra social* (opción de cambio: solo online con clave fiscal nivel 3, confirmar el mail en 48 h, rige el 1° del mes siguiente, una vez cada 365 días) y *Unificación de aportes*. Actualizadas: derivar aportes a una prepaga y cómo reclamar (denuncia ante la SSSalud).
+- **Errores corregidos en el sitio**: decíamos que el cambio de obra social se podía hacer "en cualquier momento del año" y tardaba "30-60 días hábiles" (hub y ficha de OSDE), que la prepaga "gestiona" la opción y que tarda "hasta 90 días". Lo oficial es lo del punto anterior.
+- **Enlaces a planes**: cada ficha de obra social con prepaga de la misma marca enlaza a sus planes ("OSDE 210", "OSDE Flux"…).
+- Pendiente: *obra social al jubilarse* (ANSES no publica el trámite en una página que se pueda leer; solo "se hace en ANSES") y la lista oficial de obras sociales que aceptan monotributo (está en la SSSalud; hay que bajarla completa con la Action).
 
 ---
 
@@ -164,8 +176,8 @@ Demanda: ●●● alta · ●● media · ● baja (estimada). "Tenemos": ✅ c
 
 1. ~~Acceso a Search Console~~ **Recibido el export del 24-sep** (sección 0). Para seguir midiendo sin pedirlo cada vez: la Action semanal con cuenta de servicio. Y si tienen **Ahrefs** (hay un export de Ahrefs del 21-sep citado en el código), conectarlo en claude.ai suma los volúmenes de búsqueda.
 2. **Precio oficial del OSDE Flux** (del cotizador de OSDE), para ponerlo en el título: "osde flux precio" suma ~400 impresiones en 2 semanas.
-3. **Sucursales**: ¿avanzo con bajar las sucursales oficiales de cada prepaga para las páginas por ciudad?
-4. **¿Usamos teléfono y domicilio del registro?** El listado que pasaste los trae (salen del registro de la SSSalud). En esta tanda los dejé afuera; para las fichas de obra social son el dato más buscado.
+3. ~~Sucursales~~ **Hecho** (salvo Sancor y Avalian).
+4. ~~¿Usamos teléfono y domicilio del registro?~~ **Sí**, en las fichas nuevas y en las páginas por provincia.
 5. **Derivación de aportes**: confirmar con qué prepagas y planes podemos cotizar "con aportes" para cada tipo de trabajador (relación de dependencia, monotributo, empleo doméstico). La calculadora depende de esto.
 6. **Listados oficiales a bajar** en la GitHub Action (la red de este entorno no llega a la SSSalud): obras sociales habilitadas para monotributo, afiliados por obra social y provincia, reclamos por entidad.
 7. **Aprobar las fases** con el orden nuevo de la sección 0 (o cambiarlo).
