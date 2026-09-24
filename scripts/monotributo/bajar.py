@@ -25,7 +25,7 @@ FUENTES_ARCA = [
     'https://www.arca.gob.ar/monotributo/categorias.asp',
     'https://www.afip.gob.ar/monotributo/categorias.asp',
 ]
-MINIMO_OS = 50
+MINIMO_OS = 20
 
 
 class Tablas(HTMLParser):
@@ -100,8 +100,10 @@ def obras_sociales():
             'habilitadaOpciones': (f[4].strip().upper() == 'SI') if len(f) > 4 else None,
         })
     print(f'SSSalud: {len(out)} obras sociales que aceptan monotributistas')
-    for x in out[:3]:
+    for x in out[:3] + out[-3:]:
         print('  ', x)
+    texto = re.sub(r'<[^>]+>', ' ', cuerpo)
+    print('¿Paginado?', len(re.findall(r'[Ss]iguiente|[Pp]ágina \d|pagina=', cuerpo)), '| total en el texto:', re.findall(r'(?:[Tt]otal|[Cc]antidad)[^\n]{0,60}', texto)[:3])
     if not out:
         print('HTML (inicio):', cuerpo[:3000])
     return out
@@ -124,8 +126,14 @@ def categorias():
         if mejor and sum(1 for f in mejor if f and re.match(r'^[A-K]$', f[0])) >= 8:
             encabezado = [f for f in mejor if f and not re.match(r'^[A-K]$', f[0])]
             filas = [f for f in mejor if f and re.match(r'^[A-K]$', f[0])]
-            vigencia = re.search(r'[Vv]igen\w*[^<]{0,80}?(\d{1,2}/\d{1,2}/\d{4}|\d{4})', cuerpo)
-            return {'fuente': url, 'encabezado': encabezado, 'filas': filas, 'textoVigencia': vigencia.group(0) if vigencia else None}
+            texto = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', cuerpo)))
+            vigencias = [m.group(0) for m in re.finditer(r'[^.]{0,120}[Vv]igen[^.]{0,160}', texto)][:6]
+            notas = [m.group(0).strip() for m in re.finditer(r'\(\*{1,4}\)[^(]{5,700}', texto)][-8:]
+            for v in vigencias:
+                print('  vigencia:', v)
+            for n in notas:
+                print('  nota:', n)
+            return {'fuente': url, 'encabezado': encabezado, 'filas': filas, 'vigencias': vigencias, 'notas': notas}
         print('  sin tabla de categorías reconocible. Texto:', re.sub(r'<[^>]+>', ' ', cuerpo)[:2500])
     return None
 
