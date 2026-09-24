@@ -8,7 +8,9 @@ export const prepagas: Prepaga[] = [
     logo: '/logos/swiss-medical.svg',
     colorPrimario: '#E30613',
     descripcion:
-      'Swiss Medical es la 2da prepaga más grande de Argentina (~1.5 millones de afiliados). Destaca por sus 9 sanatorios propios (incluido el Sanatorio Las Lomas, adquirido en 2024), 13 centros ambulatorios propios y Centros Diagnóstico Maipu (30 centros). Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
+      // Sanatorios, SMG Center, ICBA y Diagnóstico Maipú: confirmado por Darío
+      // (partner oficial, 24-sep-2026). Antes: afiliados y centros sin fuente.
+      'Swiss Medical tiene 9 sanatorios propios, más de 30 SMG Center en AMBA y SMG Center en Neuquén, y es dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú. Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
     satisfaccion: 91,
     calidadCartilla: 5,
     rating: 4.2,
@@ -19,7 +21,8 @@ export const prepagas: Prepaga[] = [
       'Sport Plan: el único plan del mercado con reintegros por gimnasio, nutrición y kinesiología para quienes entrenan en serio',
       'Guardia Ágil: reservá turno en guardia desde el celular',
       'Red nacional de profesionales y centros de diagnóstico',
-      '75+ sucursales en todo el país',
+      'Más de 30 SMG Center en AMBA y SMG Center en Neuquén',
+      'Dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú',
       'Planes sin copago desde SMG20',
     ],
     contras: [

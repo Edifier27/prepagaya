@@ -172,7 +172,7 @@ export const REFERENCIA_GBA_SUBZONAS: { subzona: string; sanatorios: string[] }[
 // atención exclusivos para socios en todo el país, con turnos más rápidos
 // que la cartilla general. No listamos ubicaciones puntuales por ciudad
 // porque no tenemos ese detalle verificado — es un dato general de la marca.
-export const SMG_CENTER_NOTA = 'Swiss Medical suma más de 30 SMG Center: centros de atención propios y exclusivos para socios, con acceso a turnos más rápidos que en el resto de la cartilla.'
+export const SMG_CENTER_NOTA = 'Swiss Medical suma más de 30 SMG Center en AMBA, y también tiene en Neuquén: centros de atención propios y exclusivos para socios.'
 
 // ─── Laboratorios de referencia ────────────────────────────────────────────
 // Mismo nivel de certeza que REFERENCIA_POR_ZONA: son redes de diagnóstico
