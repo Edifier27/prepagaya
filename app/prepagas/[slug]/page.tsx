@@ -21,6 +21,8 @@ import { ResenaForm } from '@/components/prepagas/ResenaForm'
 import { contactos, CONTACTOS_VERIFICADOS } from '@/lib/data/contactos'
 import { getConvenios } from '@/lib/data/convenios'
 import { planesConTarifa } from '@/lib/precios/motor'
+import { sucursalesEnProvincia, totalSucursales, FUENTES_SUCURSALES } from '@/lib/data/sucursales'
+import { provinciasSEO as PROVINCIAS_SEO_SUC } from '@/lib/data/zonas'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
 
 interface Props {
@@ -1032,6 +1034,36 @@ export default async function PrepagaSlugPage({ params }: Props) {
           <ResenaForm prepagaSlug={prep.slug} prepagaNombre={prep.nombre} planes={prep.planes.map((pl) => pl.nombre)} />
         </div>
       </section>
+
+      {/* Sucursales oficiales por provincia (24-sep-2026): "osde rosario",
+          "swiss medical tucumán"... Cada provincia lleva a su página, donde
+          están las direcciones (lib/data/sucursales.ts). */}
+      {(() => {
+        const total = totalSucursales(prep.slug)
+        const porProv = PROVINCIAS_SEO_SUC
+          .filter((pv) => pv.prepagas.some((x) => x.slug === prep.slug && x.enSitio))
+          .map((pv) => ({ pv, n: sucursalesEnProvincia(prep.slug, pv, PROVINCIAS_SEO_SUC).length }))
+          .filter((x) => x.n > 0)
+        if (!total || !porProv.length) return null
+        return (
+          <section id="sucursales" className="py-10 bg-white border-t border-gray-100">
+            <div className="container max-w-5xl mx-auto">
+              <h2 className="text-xl font-bold text-gray-900 mb-1">Sucursales de {prep.nombre}</h2>
+              <p className="text-sm text-gray-600 mb-4">{total} sucursales y centros de atención en el país, según el buscador oficial de {prep.nombre}. Elegí tu provincia para ver direcciones y horarios:</p>
+              <ul className="flex flex-wrap gap-2">
+                {porProv.map(({ pv, n }) => (
+                  <li key={pv.slug}>
+                    <Link href={`/prepagas/${pv.slug}/${prep.slug}#sucursales`} className="inline-block rounded-full border border-gray-200 px-3 py-1.5 text-sm text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">
+                      {pv.nombre} <span className="text-gray-400">{n}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {FUENTES_SUCURSALES[prep.slug] && <a href={FUENTES_SUCURSALES[prep.slug]} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-xs text-gray-500 underline">Buscador oficial de sucursales de {prep.nombre}</a>}
+            </div>
+          </section>
+        )
+      })()}
 
       {/* Convenios, código AFIP y PAMI (23-sep-2026): solo se muestra lo que
           esté cargado en lib/data/convenios.ts. */}

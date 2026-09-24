@@ -9,7 +9,9 @@ Fuentes (páginas oficiales de cada prepaga):
   OSDE     https://www.osde.com.ar/buscadorsucursales (API del buscador:
            gateway.api-osde.com.ar/os-sucursales/v1/sucursales)
   Swiss    https://www.swissmedical.com.ar/prepagaclientes/sucursales (API
-           /v0/getSucursales del buscador; se prueban las rutas posibles)
+           del buscador: mobile.swissmedical.com.ar/api-smg/v0/getSucursales)
+Pendientes: Sancor (el buscador carga los datos por un camino que no se
+encontró) y Avalian (su sitio rechaza los pedidos desde GitHub).
   Galeno   https://www.galeno.com.ar/sucursales/ (__NEXT_DATA__ del sitio)
   Premedic https://web.grupopremedic.com.ar/sucursales
   Medifé   https://www.medife.com.ar/sucursales
@@ -71,10 +73,9 @@ def osde():
 
 
 def swiss():
-    rutas = ['https://www.swissmedical.com.ar/prepagaclientes/api/v0/getSucursales',
-             'https://www.swissmedical.com.ar/prepagaclientes/v0/getSucursales',
-             'https://www.swissmedical.com.ar/v0/getSucursales',
-             'https://mobile.swissmedical.com.ar/api-smg/v0/getSucursales']
+    # La que usa hoy el buscador; las otras quedan por si la mueven.
+    rutas = ['https://mobile.swissmedical.com.ar/api-smg/v0/getSucursales',
+             'https://www.swissmedical.com.ar/prepagaclientes/api/v0/getSucursales']
     ultimo = None
     for url in rutas:
         try:

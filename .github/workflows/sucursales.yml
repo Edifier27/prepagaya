@@ -3,9 +3,9 @@
 # impresiones con 0,3% de CTR: se busca la sucursal. La red de los entornos
 # de desarrollo no llega a los sitios de las prepagas; esta Action sí.
 #
-# bajar.py: Galeno, Premedic y Medifé → lib/data/sucursales.json (si una
-# prepaga falla o trae pocas, se conservan las anteriores).
-# explorar.py: pistas para sumar Swiss Medical, OSDE y Sancor.
+# bajar.py: OSDE, Swiss Medical, Galeno, Premedic y Medifé →
+# lib/data/sucursales.json (si una prepaga falla o trae pocas, se conservan
+# las anteriores). Corre el día 3 de cada mes y guarda en la misma rama.
 name: Sucursales de prepagas
 
 on:
@@ -36,9 +36,6 @@ jobs:
           python-version: '3.12'
       - name: Bajar sucursales oficiales
         run: python scripts/sucursales/bajar.py
-      - name: Explorar Swiss Medical, OSDE y Sancor
-        continue-on-error: true
-        run: python scripts/sucursales/explorar.py
       - name: Guardar (commit en la misma rama)
         run: |
           git config user.name "prepagaya-bot"

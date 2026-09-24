@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { linkCartillaZona } from '@/lib/data/cartilla-zonas'
 import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
+import { SucursalesBloque } from './SucursalesBloque'
+import { sucursalesEnLocalidad } from '@/lib/data/sucursales'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import type { PrepagaZona, ProvinciaSEO, LocalidadZona } from '@/lib/data/zonas'
+import { provinciasSEO, type PrepagaZona, type ProvinciaSEO, type LocalidadZona } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -22,12 +24,20 @@ const UMBRAL_CARTILLA_FINA = 3
 export function localidadPrepagaMetadata(prov: ProvinciaSEO, loc: LocalidadZona, pz: PrepagaZona): Metadata {
   const corto = nombreCorto(loc.nombre)
   const year = new Date().getFullYear()
+  // Search Console (24-sep-2026): "[prepaga] [ciudad]" se busca para
+  // encontrar la sucursal. Si hay sucursal oficial en la localidad, va en el
+  // título y en la descripción.
+  const suc = sucursalesEnLocalidad(pz.slug, prov, loc, provinciasSEO)
   return {
     // Intención "planes y precios" en la localidad. La intención "cartilla" la
     // toma el silo /cartillas/[prepaga]/[zona] (datos oficiales por zona);
     // antes este título decía "cartilla" y competía con esas páginas.
-    title: `${pz.nombre} en ${corto}, ${prov.nombre}: planes y precios ${year}`,
-    description: `Planes y precios de ${pz.nombre} en ${loc.nombre}, ${prov.nombre} (${PRECIO_ACTUALIZADO.toLowerCase()}), cobertura en la zona y cotización online gratis, sin DNI.`,
+    title: suc.length
+      ? `${pz.nombre} en ${corto}: ${suc.length === 1 ? 'sucursal' : 'sucursales'}, planes y precios ${year}`
+      : `${pz.nombre} en ${corto}, ${prov.nombre}: planes y precios ${year}`,
+    description: suc.length
+      ? `${suc.length === 1 ? 'Sucursal' : 'Sucursales'} de ${pz.nombre} en ${corto}: ${suc.slice(0, 2).map((x) => x.direccion.split(' - ')[0]).join(' y ')}. Planes y precios (${PRECIO_ACTUALIZADO.toLowerCase()}) y cotización online gratis.`
+      : `Planes y precios de ${pz.nombre} en ${loc.nombre}, ${prov.nombre} (${PRECIO_ACTUALIZADO.toLowerCase()}), cobertura en la zona y cotización online gratis, sin DNI.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${loc.slug}/${pz.slug}` },
     keywords: [
       `${pz.nombre.toLowerCase()} en ${corto.toLowerCase()}`,
@@ -99,6 +109,8 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
             {pz.verificado ? '' : ' · Detalle de cartilla local sujeto a confirmación al cotizar'}
           </p>
         </header>
+
+        <SucursalesBloque prepagaSlug={pz.slug} prepagaNombre={pz.nombre} lugar={corto} sucursales={sucursalesEnLocalidad(pz.slug, prov, loc, provinciasSEO)} />
 
         {/* Link al silo de cartillas (datos oficiales por zona), si la prepaga lo tiene */}
         {cartillaLink && (
