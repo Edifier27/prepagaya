@@ -51,11 +51,12 @@ export interface ConveniosPrepaga {
 
 export const convenios: Record<string, ConveniosPrepaga> = {
   'swiss-medical': {
-    // codigoAfip: {
-    //   explicacion: '',
-    //   codigos: [{ codigo: '', nota: '' }],
-    //   fuente: { texto: '', url: '' },
-    // },
+    // Código confirmado por Darío (23-sep-2026).
+    codigoAfip: {
+      explicacion: 'Es el código de obra social que se indica para elegir Swiss Medical al derivar tus aportes: podés pedirle a tu empleador que lo cargue en tu alta, así no tenés que hacer el cambio después. Confirmalo con tu asesor antes de indicarlo.',
+      codigos: [{ codigo: '900805', nota: 'Swiss Medical' }],
+      fuente: { texto: 'PrepagaYa, partner oficial de Swiss Medical' },
+    },
     // Confirmado por Darío (23-sep-2026): Swiss Medical no atiende PAMI.
     pami: {
       respuesta: 'No.',
