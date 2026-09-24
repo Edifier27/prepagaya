@@ -1,0 +1,46 @@
+# Obras sociales que aceptan monotributistas (SSSalud) y aporte de obra social
+# por categoría (ARCA) (24-sep-2026). "obra social monotributo" es de lo más
+# buscado sobre obras sociales. La red de los entornos de desarrollo no llega
+# a esos sitios; esta Action sí. Corre el día 5 de cada mes (ARCA actualiza
+# las categorías en febrero y agosto) y guarda en la misma rama.
+name: Monotributo (datos oficiales)
+
+on:
+  schedule:
+    - cron: '0 13 5 * *' # día 5 de cada mes, 10:00 hora argentina
+  workflow_dispatch: {}
+  push:
+    branches: ['claude/**']
+    paths:
+      - 'scripts/monotributo/**'
+      - '.github/workflows/monotributo.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monotributo-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  monotributo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bajar datos oficiales
+        run: python scripts/monotributo/bajar.py
+      - name: Guardar (commit en la misma rama)
+        run: |
+          git config user.name "prepagaya-bot"
+          git config user.email "bot@prepagaya.com.ar"
+          git add lib/data/monotributo.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Sin cambios."
+          else
+            git commit -m "Monotributo: datos oficiales $(date +%Y-%m-%d)"
+            git push
+          fi
