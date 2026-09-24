@@ -59,7 +59,7 @@ La diferencia con MiObraSocial no es contenido: es **autoridad** (links de medio
 
 1. ~~IVA 21% vs 10,5%~~ **Resuelto**: es 10,5% siempre en salud (Darío). `IVA_PREPAGA` pasó a 0,105 y se corrigieron los textos de `/precios`, `/historial-precios`, la tabla por modalidad y la calculadora.
 2. ~~Rating y cantidad de opiniones sin fuente~~ **Resuelto**: se sacaron `rating` y `cantidadOpiniones` de los datos y de todas las páginas (ficha, planes, ranking, listado, comparativas). La ficha muestra solo las reseñas reales de la base. **Queda la satisfacción (%)**: confirmar si tiene fuente.
-3. **"+8.400 cotizaciones realizadas"** en el home (desktop): confirmar que sale del CRM.
+3. ~~"+8.400 cotizaciones realizadas"~~ **Resuelto**: sale de la base (confirmado por Darío).
 4. **`lang` de las páginas `/en`, `/ru` y `/zh`**: salen con `lang="es-AR"` porque el layout raíz es uno solo. Se arregla con layouts raíz por idioma (grupos de rutas). Impacto bajo en Google, mayor en accesibilidad.
 5. **`middleware.ts` → `proxy.ts`**: Next 16 lo marca como deprecado en el build. No afecta SEO hoy.
 6. **Descripciones largas en las plantillas de cola larga** (cartillas por zona, localidades, sanatorios): ~1.080 páginas pasan los 160 caracteres. Google las corta; no es un problema de ranking.
