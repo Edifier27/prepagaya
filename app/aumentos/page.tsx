@@ -209,7 +209,8 @@ export default function AumentosPage() {
             </div>
             <p className="text-xs text-gray-400 mt-4 leading-relaxed">
               {sinDeclarar.length > 0 && <>Todavía no declararon {oficial.label}: {sinDeclarar.map((s) => prepagas.find((p) => p.slug === s)?.nombre ?? s).join(', ')}. Se suman cuando publiquen su cuadro. </>}
-              Metodología: {AUMENTOS_OFICIALES.metodo}
+              Metodología: {AUMENTOS_OFICIALES.metodo}{' '}
+              ¿Sos periodista? <Link href="/prensa" className="text-[#E8002D] font-semibold hover:underline">Informe para prensa y datos descargables</Link>.
             </p>
             <div className="mt-6 bg-gray-50 rounded-2xl border border-gray-200 p-5 flex flex-col sm:flex-row items-center justify-between gap-3">
               <div>
