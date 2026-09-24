@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS } from '@/lib/utils'
-import { StarRating } from '@/components/ui/StarRating'
 import { Badge } from '@/components/ui/Badge'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
@@ -31,11 +30,6 @@ function PrepagaCard({ p, destacado }: { p: Prepaga; destacado?: boolean }) {
               {p.nombre}
             </h2>
           </div>
-        </div>
-
-        <div className="flex items-center gap-2 mb-4">
-          <StarRating rating={p.rating} size="sm" />
-          <span className="text-xs text-gray-400">({p.cantidadOpiniones.toLocaleString('es-AR')} opiniones)</span>
         </div>
 
         <p className="text-sm text-gray-600 leading-relaxed line-clamp-3 mb-4">

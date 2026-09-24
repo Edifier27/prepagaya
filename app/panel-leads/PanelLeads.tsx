@@ -6,6 +6,22 @@ import PanelResenas from './PanelResenas'
 import type { LeadRow, EstadoLead } from '@/lib/db'
 import { whatsappLinkParaLead } from '@/lib/utils'
 
+// Preferencias (JSON de lib/data/sondeo.ts) en una línea legible para el panel.
+const ETIQUETAS_PREFERENCIAS: Record<string, string> = {
+  copago: 'Copago', coberturas: 'Coberturas', zona: 'Zona (quiz)', saludMental: 'Salud mental',
+  medicoDeConfianza: 'Médico de confianza', grupo: 'Grupo',
+  sanatorios: 'Sanatorios', planActual: 'Plan actual', perfil: 'Perfil (match)',
+}
+function textoPreferencias(json: string | null): string {
+  if (!json) return ''
+  try {
+    return Object.entries(JSON.parse(json) as Record<string, string>)
+      .map(([k, v]) => `${ETIQUETAS_PREFERENCIAS[k] ?? k}: ${v}`).join(' · ')
+  } catch {
+    return ''
+  }
+}
+
 const VAPID_PUBLIC_KEY = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? ''
 const POLL_MS = 20000
 
@@ -79,6 +95,10 @@ function exportarCSV(leads: LeadRow[]) {
     ['Interés', (l) => l.prepaga ?? ''],
     ['Zona', (l) => l.provincia ?? ''],
     ['Integrantes', (l) => l.edades ?? ''],
+    ['Situación laboral', (l) => l.situacion_laboral ?? ''],
+    ['Cobertura actual', (l) => l.prepaga_actual ?? ''],
+    ['Presupuesto (quiz)', (l) => l.presupuesto ?? ''],
+    ['Preferencias', (l) => textoPreferencias(l.preferencias)],
     ['Fuente', (l) => l.fuente ?? ''],
     ['Estado', (l) => estadoInfo(l.estado).label],
     ['Notas', (l) => l.notas ?? ''],
@@ -706,6 +726,10 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
           {lead.provincia && <Campo label="Zona">{lead.provincia}</Campo>}
           {lead.zona_detectada && <Campo label="Detectada (aprox.)">{lead.zona_detectada}</Campo>}
           {lead.edades && <Campo label="Integrantes">{lead.edades}</Campo>}
+          {lead.situacion_laboral && <Campo label="Situación laboral">{lead.situacion_laboral}</Campo>}
+          {lead.prepaga_actual && <Campo label="Cobertura actual">{lead.prepaga_actual}</Campo>}
+          {lead.presupuesto && <Campo label="Presupuesto (quiz)">{lead.presupuesto}</Campo>}
+          {textoPreferencias(lead.preferencias) && <Campo label="Preferencias">{textoPreferencias(lead.preferencias)}</Campo>}
           {lead.fuente && <Campo label="Fuente">{lead.fuente}</Campo>}
           {lead.veces > 1 && lead.actualizado_en && <Campo label="Última actividad">{formatFecha(lead.actualizado_en)}</Campo>}
         </div>

@@ -13,8 +13,6 @@ export const prepagas: Prepaga[] = [
       'Swiss Medical tiene 9 sanatorios propios, más de 30 SMG Center en AMBA y SMG Center en Neuquén, y es dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú. Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
     satisfaccion: 91,
     calidadCartilla: 5,
-    rating: 4.2,
-    cantidadOpiniones: 1243,
     sanatoriosPropios: 9,
     pros: [
       '9 sanatorios propios (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas, Las Lomas)',
@@ -185,8 +183,6 @@ export const prepagas: Prepaga[] = [
       'OSDE informa más de 125.000 prestadores en todo el país y más de 1.000 descuentos para sus socios. Cartilla Inteligente con IA para orientar al paciente. Plan Flux para jóvenes 18-35 con psicología ilimitada.',
     satisfaccion: 84,
     calidadCartilla: 5,
-    rating: 4.0,
-    cantidadOpiniones: 2156,
     profesionales: 125000,
     profesionalesFuente: 'https://www.osde.com.ar/empresas',
     sanatoriosPropios: 0,
@@ -274,8 +270,6 @@ export const prepagas: Prepaga[] = [
       'CEMIC es una asociación civil sin fines de lucro que ofrece atención médica de excelencia. Destaca por sus propias clínicas universitarias y un modelo de atención integral enfocado en la calidad médica.',
     satisfaccion: 71,
     calidadCartilla: 3,
-    rating: 3.9,
-    cantidadOpiniones: 567,
     sanatoriosPropios: 4,
     pros: [
       'Clínicas propias de alta complejidad',
@@ -341,8 +335,6 @@ export const prepagas: Prepaga[] = [
       'Sancor Salud informa más de 200.000 prestadores, más de 200 puntos de atención y 800.000 personas que la eligen, con fuerte presencia en el interior del país. Cuenta con su propio Centro Médico Vitus en Córdoba (30+ especialidades) y redes propias de farmacia (Farmavitus) y óptica (Óptica Vitus) con descuentos exclusivos para afiliados.',
     satisfaccion: 72,
     calidadCartilla: 3,
-    rating: 3.8,
-    cantidadOpiniones: 934,
     profesionales: 200000,
     profesionalesFuente: 'https://sancorsalud.com.ar/quienes-somos',
     sanatoriosPropios: 1,
@@ -581,8 +573,6 @@ export const prepagas: Prepaga[] = [
       'Premedic es consistentemente la prepaga más económica de Argentina. Con más de 20 años de trayectoria, ofrece cobertura en Capital Federal, GBA, Córdoba y Tucumán a precios muy competitivos, con red odontológica propia (Smile Group).',
     satisfaccion: 82,
     calidadCartilla: 3,
-    rating: 4.0,
-    cantidadOpiniones: 412,
     sanatoriosPropios: 0,
     pros: [
       'La prepaga más económica del mercado',
@@ -676,8 +666,6 @@ export const prepagas: Prepaga[] = [
       'Medifé tiene sucursales en todo el país. Destaca por Cam Doctor (médico por videoconsulta en menos de 10 minutos), acceso al Sanatorio Finochietto (cirugía robótica) y cobertura oficial de la AFA. Plan Indie para trabajadores independientes.',
     satisfaccion: 70,
     calidadCartilla: 3,
-    rating: 3.7,
-    cantidadOpiniones: 689,
     sanatoriosPropios: 0,
     pros: [
       'Cam Doctor: médico por videoconsulta en menos de 10 minutos',
@@ -762,8 +750,6 @@ export const prepagas: Prepaga[] = [
       'Omint es una de las prepagas más prestigiosas de Argentina con 3 sanatorios propios de alta complejidad: Clínica Bazterrica, Clínica del Sol y Clínica Santa Isabel. Primera prepaga certificada ISO 9001. Planes desde Smart hasta Premium, con cobertura internacional en todos sus planes.',
     satisfaccion: 79,
     calidadCartilla: 3,
-    rating: 4.1,
-    cantidadOpiniones: 386,
     sanatoriosPropios: 3,
     pros: [
       '3 sanatorios propios de alta complejidad (Bazterrica, Del Sol, Santa Isabel)',
@@ -839,8 +825,6 @@ export const prepagas: Prepaga[] = [
       'Medicus es una prepaga de alta prestación con 11 centros médicos propios en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche. Acceso a hospitales de primer nivel como Mater Dei, Hospital Alemán, Otamendi y Fundación Favaloro. 87% satisfacción — uno de los más altos del mercado. Consulta online y presencial.',
     satisfaccion: 87,
     calidadCartilla: 3,
-    rating: 4.4,
-    cantidadOpiniones: 521,
     sanatoriosPropios: 11,
     pros: [
       '11 centros médicos propios (CABA, GBA, MDQ, Mendoza, Neuquén, Rosario)',
@@ -916,8 +900,6 @@ export const prepagas: Prepaga[] = [
       'Avalian (ex ACA Salud, rebautizada en 2020) es parte del grupo cooperativo de La Segunda y ACA. No tiene sanatorios propios: informa una red de más de 100.000 prestadores (Hospital Alemán, CEMIC, Fleni, Instituto Fleming, ICBA, entre otros) y presencia en todo el país. Fuerte en cobertura digital, app propia y atención 24hs.',
     satisfaccion: 73,
     calidadCartilla: 3,
-    rating: 3.9,
-    cantidadOpiniones: 1087,
     profesionales: 100000,
     profesionalesFuente: 'https://avalian.com/empresas',
     sanatoriosPropios: 0,
@@ -1032,8 +1014,6 @@ export const prepagas: Prepaga[] = [
       'Prevención Salud es una prepaga de cobertura nacional con presencia en las principales ciudades argentinas. Destaca por su relación precio-calidad, atención personalizada y red de prestadores en todo el país. Planes accesibles para individuos, familias y monotributistas.',
     satisfaccion: 71,
     calidadCartilla: 3,
-    rating: 3.8,
-    cantidadOpiniones: 438,
     sanatoriosPropios: 0,
     pros: [
       'Buena relación precio-calidad en todas las categorías',
@@ -1124,8 +1104,6 @@ export const prepagas: Prepaga[] = [
       'El Plan de Salud del Hospital Italiano es la prepaga propia de uno de los hospitales más prestigiosos de Argentina. Ofrece atención integrada en la red del Hospital Italiano de Buenos Aires, con centros ambulatorios propios en toda el AMBA y acceso a los mejores especialistas del país. Modelo de medicina interna con historia clínica unificada.',
     satisfaccion: 81,
     calidadCartilla: 3,
-    rating: 4.2,
-    cantidadOpiniones: 674,
     sanatoriosPropios: 6,
     pros: [
       'Atención integrada en el Hospital Italiano de Buenos Aires (top 5 del país)',
@@ -1192,8 +1170,6 @@ export const prepagas: Prepaga[] = [
       'Federada Salud es una de las prepagas más importantes del interior del país, con especial fortaleza en Córdoba, Santa Fe, Entre Ríos, La Rioja y San Juan. Se destaca por su cobertura regional extensa y su relación precio-calidad en el interior argentino.',
     satisfaccion: 74,
     calidadCartilla: 3,
-    rating: 3.9,
-    cantidadOpiniones: 512,
     sanatoriosPropios: 0,
     pros: [
       'Liderazgo en Córdoba, Santa Fe y Entre Ríos',
@@ -1260,8 +1236,6 @@ export const prepagas: Prepaga[] = [
       'Hominis es una prepaga de Buenos Aires con más de 20 años en el mercado. Se destaca por su relación precio-calidad, atención personalizada y acceso a una red de prestadores de calidad en AMBA. Incluye Cam Doctor (videoconsulta médica) en todos sus planes.',
     satisfaccion: 76,
     calidadCartilla: 3,
-    rating: 3.9,
-    cantidadOpiniones: 289,
     sanatoriosPropios: 0,
     pros: [
       'Precio competitivo para AMBA — muy buena relación costo-beneficio',
@@ -1328,8 +1302,6 @@ export const prepagas: Prepaga[] = [
       'Galeno cuenta con los Sanatorios de la Trinidad, más de 80 sucursales de atención en todo el país y app para gestionar autorizaciones, reintegros y credencial. Ofrece el servicio de telemedicina "Llamando al Doctor" y "Guardia Inteligente".',
     satisfaccion: 74,
     calidadCartilla: 3,
-    rating: 3.5,
-    cantidadOpiniones: 2739,
     sanatoriosPropios: 5,
     pros: [
       'Red propia Sanatorios de la Trinidad (Palermo, Mitre, San Isidro, Quilmes, Ramos Mejía)',
@@ -1433,8 +1405,6 @@ export const prepagas: Prepaga[] = [
       'Luis Pasteur (OSLP) es una obra social fundada en 1975 que abrió sus puertas al público general. Con casi 50 años de trayectoria, ofrece 5 planes de salud con cobertura nacional, centros médicos propios en AMBA y 60% de descuento en farmacias. Se destaca por incluir consultas sin copago y dental completo desde el plan base.',
     satisfaccion: 78,
     calidadCartilla: 3,
-    rating: 4.1,
-    cantidadOpiniones: 156,
     sanatoriosPropios: 0,
     pros: [
       'Plan N incluye consultas SIN copago — poco común en planes base',
@@ -1558,6 +1528,15 @@ export const PRECIO_ACTUALIZADO_EN = PRECIO_ACTUALIZADO.replace(
   /^(\p{L}+)/u,
   (mes) => MESES_EN[mes.toLowerCase()] ?? mes,
 )
+
+// Ídem para /ru/* y /zh/* (auditoría SEO 24-sep-2026): usaban la versión en
+// inglés y los títulos en ruso/chino decían "(September 2026)".
+const MESES_ORDEN = Object.keys(MESES_EN)
+const MESES_RU = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+const [mesActualizado, anioActualizado] = PRECIO_ACTUALIZADO.toLowerCase().split(/\s+/)
+const MES_INDICE = MESES_ORDEN.indexOf(mesActualizado)
+export const PRECIO_ACTUALIZADO_RU = MES_INDICE >= 0 ? `${MESES_RU[MES_INDICE]} ${anioActualizado}` : PRECIO_ACTUALIZADO_EN
+export const PRECIO_ACTUALIZADO_ZH = MES_INDICE >= 0 ? `${anioActualizado}年${MES_INDICE + 1}月` : PRECIO_ACTUALIZADO_EN
 
 // Nivel de precio: posición relativa de un plan dentro de la distribución de
 // precios de todo el sitio, sin exponer el monto. Reemplaza a formatPrecio()

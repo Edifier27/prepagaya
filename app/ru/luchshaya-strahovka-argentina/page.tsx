@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO_RU, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
@@ -17,7 +17,7 @@ function klinikSlovo(n: number): string {
 }
 
 export const metadata: Metadata = {
-  title: { absolute: `Лучшая медицинская страховка в Аргентине для иностранцев (${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
+  title: { absolute: `Лучшая медицинская страховка в Аргентине для иностранцев (${PRECIO_ACTUALIZADO_RU}) — ${SITE_NAME}` },
   description:
     'Swiss Medical, OSDE, Sancor Salud или Premedic? Сравнение лучших prepaga для иностранцев в Аргентине — сеть клиник, рейтинг удовлетворённости и реальные цены.',
   alternates: {
@@ -69,7 +69,7 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `Лучшая медицинская страховка в Аргентине для иностранцев: ${PRECIO_ACTUALIZADO_EN}`,
+    headline: `Лучшая медицинская страховка в Аргентине для иностранцев: ${PRECIO_ACTUALIZADO_RU}`,
     description: 'Сравнение лучших prepaga для иностранцев в Аргентине.',
     url: `${SITE_URL}/ru/luchshaya-strahovka-argentina`,
     image: `${SITE_URL}/opengraph-image`,
@@ -102,7 +102,7 @@ export default function LuchshayaStrahovkaArgentinaPage() {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-3xl mx-auto">
           <span className="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">
-            Гид на русском · Обновлено {PRECIO_ACTUALIZADO_EN}
+            Гид на русском · Обновлено {PRECIO_ACTUALIZADO_RU}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             Лучшая медицинская страховка в Аргентине для иностранцев
@@ -110,7 +110,7 @@ export default function LuchshayaStrahovkaArgentinaPage() {
           <p className="text-gray-600 leading-relaxed mb-6">
             Единого &quot;лучшего&quot; варианта не существует — всё зависит от того, что важнее: размер сети,
             собственная клиника или цена. Вот как реально сравниваются четыре самых популярных варианта среди
-            иностранцев, с реальными ценами на {PRECIO_ACTUALIZADO_EN.toLowerCase()}.
+            иностранцев, с реальными ценами на {PRECIO_ACTUALIZADO_RU.toLowerCase()}.
           </p>
           <ContratarPlanButtonIntl
             locale="ru"

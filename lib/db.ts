@@ -8,6 +8,7 @@
 // Sin configurar (falta DATABASE_URL) esto no rompe nada — mismo patrón que
 // el resto de las integraciones opcionales del sitio (Kommo, Telegram,
 // Sheets): las funciones devuelven vacío/no hacen nada en vez de tirar.
+import type { FilaSondeo } from '@/lib/data/sondeo'
 import { neon } from '@neondatabase/serverless'
 
 const CONNECTION_STRING = process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? ''
@@ -58,6 +59,15 @@ function asegurarTablas(): Promise<unknown> {
       // Zona detectada por IP al momento del lead, ej. "Banfield (GBA Sur)" —
       // aproximada (23-sep-2026), para filtrar el panel por localidad/subzona.
       sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS zona_detectada TEXT`,
+      // Respuestas que la persona ya da en el cotizador y el quiz (24-sep-2026):
+      // situación laboral, presupuesto del quiz, prepaga actual (pregunta
+      // opcional después de enviar el lead) y preferencias (JSON: copago,
+      // coberturas, etc.). No se agrega ninguna pregunta antes del formulario.
+      // Alimentan el panel y el sondeo anónimo de /prensa/sondeo.
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS situacion_laboral TEXT`,
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS presupuesto TEXT`,
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS prepaga_actual TEXT`,
+      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS preferencias TEXT`,
       // Reseñas de usuarios sobre las prepagas (23-sep-2026): se cargan desde la
       // ficha de cada prepaga y se publican recién cuando Darío las aprueba en
       // el panel. Alimentan el rich snippet de estrellas (reseñas propias del
@@ -112,6 +122,11 @@ export interface LeadRow {
   seguimiento_en: string | null
   seguimiento_avisado: boolean
   zona_detectada: string | null
+  situacion_laboral: string | null
+  presupuesto: string | null
+  prepaga_actual: string | null
+  /** JSON con las preferencias que marcó (copago, coberturas, respuestas del quiz) */
+  preferencias: string | null
 }
 
 export const ESTADOS_LEAD = ['nuevo', 'contactado', 'cotizado', 'vendido', 'perdido'] as const
@@ -129,6 +144,10 @@ export interface NuevoLead {
   pais?: string
   /** Label de detectarZona() por IP, ej. "Banfield (GBA Sur)" — aproximado. */
   zonaDetectada?: string
+  situacionLaboral?: string
+  presupuesto?: string
+  prepagaActual?: string
+  preferencias?: string
 }
 
 /** Sentinela de kommo_estado para leads que todavía no se mandaron a Kommo — ver KOMMO_DELAY_MIN en app/api/leads/route.ts. */
@@ -196,6 +215,10 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
           provincia = COALESCE(NULLIF(${d.provincia}, ''), provincia),
           edades = COALESCE(NULLIF(${d.edades}, ''), edades),
           zona_detectada = COALESCE(zona_detectada, ${d.zonaDetectada ?? null}),
+          situacion_laboral = COALESCE(NULLIF(${d.situacionLaboral ?? ''}, ''), situacion_laboral),
+          presupuesto = COALESCE(NULLIF(${d.presupuesto ?? ''}, ''), presupuesto),
+          prepaga_actual = COALESCE(NULLIF(${d.prepagaActual ?? ''}, ''), prepaga_actual),
+          preferencias = COALESCE(NULLIF(${d.preferencias ?? ''}, ''), preferencias),
           fuente = ${d.fuente},
           veces = veces + 1,
           actualizado_en = now(),
@@ -206,11 +229,62 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
     }
 
     await sql`
-      INSERT INTO leads (nombre, celular, email, prepaga, provincia, edades, fuente, kommo_estado, kommo_link, pais, zona_detectada)
-      VALUES (${d.nombre}, ${d.celular}, ${d.email}, ${d.prepaga}, ${d.provincia}, ${d.edades}, ${d.fuente}, ${KOMMO_PENDIENTE}, '', ${d.pais ?? null}, ${d.zonaDetectada ?? null})
+      INSERT INTO leads (nombre, celular, email, prepaga, provincia, edades, fuente, kommo_estado, kommo_link, pais, zona_detectada, situacion_laboral, presupuesto, prepaga_actual, preferencias)
+      VALUES (${d.nombre}, ${d.celular}, ${d.email}, ${d.prepaga}, ${d.provincia}, ${d.edades}, ${d.fuente}, ${KOMMO_PENDIENTE}, '', ${d.pais ?? null}, ${d.zonaDetectada ?? null}, ${d.situacionLaboral || null}, ${d.presupuesto || null}, ${d.prepagaActual || null}, ${d.preferencias || null})
     `
   } catch (err) {
     console.error('[DB] error guardando lead:', err)
+  }
+}
+
+/**
+ * Datos que la persona completa DESPUÉS de enviar el lead (situación laboral
+ * en los filtros de resultados, "¿qué prepaga tenés hoy?", coberturas que
+ * filtra). Actualiza su lead más reciente de las últimas 24 hs: pide email Y
+ * celular juntos, así nadie puede tocar el lead de otro con solo un dato.
+ */
+export async function complementarLead(c: { email: string; celular: string; situacionLaboral?: string; prepagaActual?: string; preferencias?: string }): Promise<boolean> {
+  if (!sql || !c.email || !c.celular) return false
+  try {
+    await asegurarTablas()
+    const rows = await sql`
+      UPDATE leads SET
+        situacion_laboral = COALESCE(NULLIF(${c.situacionLaboral ?? ''}, ''), situacion_laboral),
+        prepaga_actual = COALESCE(NULLIF(${c.prepagaActual ?? ''}, ''), prepaga_actual),
+        preferencias = COALESCE(NULLIF(${c.preferencias ?? ''}, ''), preferencias)
+      WHERE id = (
+        SELECT id FROM leads
+        WHERE email = ${c.email} AND celular = ${c.celular} AND eliminado_en IS NULL
+          AND creado_en > now() - interval '24 hours'
+        ORDER BY creado_en DESC LIMIT 1
+      )
+      RETURNING id
+    `
+    return rows.length > 0
+  } catch (err) {
+    console.error('[DB] error complementando lead:', err)
+    return false
+  }
+}
+
+/**
+ * Filas para el sondeo anónimo de /prensa/sondeo: SOLO columnas sin datos
+ * personales (nada de nombre, celular ni email). Excluye borrados y leads de
+ * los silos internacionales. El agregado se hace en lib/data/sondeo.ts.
+ */
+export async function filasSondeo(desde: string): Promise<FilaSondeo[]> {
+  if (!sql) return []
+  try {
+    await asegurarTablas()
+    const rows = await sql`
+      SELECT creado_en, provincia, edades, prepaga, situacion_laboral, presupuesto, prepaga_actual, preferencias
+      FROM leads
+      WHERE eliminado_en IS NULL AND (pais IS NULL OR pais = '') AND creado_en >= ${desde}::timestamptz
+    `
+    return (rows as Record<string, unknown>[]).map((r) => ({ ...(r as unknown as FilaSondeo), creado_en: new Date(r.creado_en as string | Date).toISOString() }))
+  } catch (err) {
+    console.error('[DB] error leyendo filas del sondeo:', err)
+    return []
   }
 }
 

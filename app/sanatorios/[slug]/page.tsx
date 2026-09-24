@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, prepagasEnSanatorio, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { idCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
 
 // "¿Qué prepagas atienden en el Hospital X?" (23-sep-2026): búsqueda que la
 // competencia cubre con notas escritas a mano. Acá todo sale de las cartillas
@@ -60,6 +61,9 @@ export default async function SanatorioPage({ params }: Props) {
   if (lista.length < 2) notFound()
 
   const conInternacion = lista.filter((p) => p.desde)
+  // "Mis sanatorios" con este ya cargado, para sumar los otros de la persona.
+  const idBuscador = idCobertura(s.claves, s.excluir, s.ciudad)
+  const hrefBuscador = idBuscador ? `/buscar-por-sanatorio?s=${encodeURIComponent(idBuscador)}` : '/buscar-por-sanatorio'
   const resumen = conInternacion
     .map((p) => `${p.prepagaNombre} desde ${p.desde!.label}`)
     .join('; ')
@@ -142,9 +146,14 @@ export default async function SanatorioPage({ params }: Props) {
             Según sus cartillas oficiales, {art(s.nombre)} <strong>{s.nombre}</strong> figura en <strong>{lista.map((p) => p.prepagaNombre).join(', ')}</strong>.
             {resumen && <> Para internación: {resumen}.</>}
           </p>
-          <a href="#cotizar" className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
-            Cotizar un plan con {art(s.nombre)} {s.nombre} →
-          </a>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mt-6">
+            <a href="#cotizar" className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
+              Cotizar un plan con {art(s.nombre)} {s.nombre} →
+            </a>
+            <Link href={hrefBuscador} className="text-sm font-semibold text-[#E8002D] hover:underline">
+              ¿Te atendés en otro sanatorio también? Mirá qué plan los cubre a todos →
+            </Link>
+          </div>
         </div>
       </section>
 

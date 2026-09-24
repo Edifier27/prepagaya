@@ -1,0 +1,28 @@
+# Lee las páginas oficiales de trámites de obra social (SSSalud, Argentina.gob.ar,
+# ANSES) y deja el texto en el log (24-sep-2026). La red de los entornos de
+# desarrollo no llega a esos sitios; esta Action sí. No guarda nada en el repo:
+# sirve para escribir las guías de trámites con la letra oficial.
+name: Fuentes oficiales de trámites
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ['claude/**']
+    paths:
+      - 'scripts/fuentes/**'
+      - '.github/workflows/fuentes-oficiales.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  leer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Leer páginas oficiales
+        run: python scripts/fuentes/leer.py

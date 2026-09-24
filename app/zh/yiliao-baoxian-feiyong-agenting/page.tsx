@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
+import { PRECIO_ACTUALIZADO_ZH } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
-  title: { absolute: `阿根廷医疗保险费用是多少?(${PRECIO_ACTUALIZADO_EN}真实价格) — ${SITE_NAME}` },
+  title: { absolute: `阿根廷医疗保险费用是多少?(${PRECIO_ACTUALIZADO_ZH}真实价格) — ${SITE_NAME}` },
   description:
     '2026年阿根廷prepaga真实价格,按保障级别划分:基础级、中端和高端 — 以及真正影响价格的因素(年龄、自付、计划类型)和在线签约15%折扣。',
   alternates: {
@@ -59,7 +59,7 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `阿根廷医疗保险费用是多少?${PRECIO_ACTUALIZADO_EN}`,
+    headline: `阿根廷医疗保险费用是多少?${PRECIO_ACTUALIZADO_ZH}`,
     description: '按保障级别划分的prepaga真实价格,以及真正影响价格的因素。',
     url: `${SITE_URL}/zh/yiliao-baoxian-feiyong-agenting`,
     image: `${SITE_URL}/opengraph-image`,
@@ -88,14 +88,14 @@ export default function YiliaoBaoxianFeiyongAgentingPage() {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-3xl mx-auto">
           <span className="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">
-            中文指南 · 更新于 {PRECIO_ACTUALIZADO_EN}
+            中文指南 · 更新于 {PRECIO_ACTUALIZADO_ZH}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             阿根廷医疗保险费用是多少?
           </h1>
           <p className="text-gray-600 leading-relaxed mb-6">
             以30岁参保人为例,基础级保障的价格约为每月AR$170,000起,高端计划则超过每月AR$1,000,000
-            (截至{PRECIO_ACTUALIZADO_EN})。您的具体价格主要取决于年龄、保障级别,以及是否需要门诊免自付。
+            (截至{PRECIO_ACTUALIZADO_ZH})。您的具体价格主要取决于年龄、保障级别,以及是否需要门诊免自付。
           </p>
           <ContratarPlanButtonIntl
             locale="zh"
@@ -125,7 +125,7 @@ export default function YiliaoBaoxianFeiyongAgentingPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            标价,{PRECIO_ACTUALIZADO_EN}。大多数公司对在线签约并自动扣款的客户提供约15%折扣——该折扣已体现在通过比较工具获得的报价中。
+            标价,{PRECIO_ACTUALIZADO_ZH}。大多数公司对在线签约并自动扣款的客户提供约15%折扣——该折扣已体现在通过比较工具获得的报价中。
           </p>
         </div>
       </section>

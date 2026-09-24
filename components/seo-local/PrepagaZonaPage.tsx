@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import { linkCartillaZona } from '@/lib/data/cartilla-zonas'
 import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
+import { SucursalesBloque } from './SucursalesBloque'
+import { sucursalesEnProvincia } from '@/lib/data/sucursales'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import type { PrepagaZona, ProvinciaSEO } from '@/lib/data/zonas'
+import { provinciasSEO, type PrepagaZona, type ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -16,10 +18,14 @@ export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metada
   // ningún dato concreto.
   const prepData = prepagas.find((p) => p.slug === pz.slug)
   const precioMin = prepData ? Math.min(...prepData.planes.map((pl) => pl.precio)) : null
+  // Sucursales oficiales en la provincia (24-sep-2026): van en el título.
+  const nSuc = sucursalesEnProvincia(pz.slug, prov, provinciasSEO).length
   return {
-    title: precioMin
-      ? `${pz.nombre} en ${prov.nombre}: desde ${formatPrecio(precioMin)}/mes — Planes y precios`
-      : `${pz.nombre} en ${prov.nombre}: planes y precios ${new Date().getFullYear()}`,
+    title: nSuc && precioMin
+      ? `${pz.nombre} en ${prov.nombre}: ${nSuc === 1 ? 'sucursal' : 'sucursales'} y planes desde ${formatPrecio(precioMin)}/mes`
+      : precioMin
+        ? `${pz.nombre} en ${prov.nombre}: desde ${formatPrecio(precioMin)}/mes — Planes y precios`
+        : `${pz.nombre} en ${prov.nombre}: ${nSuc ? 'sucursales, ' : ''}planes y precios ${new Date().getFullYear()}`,
     description: `¿Qué cubre ${pz.nombre} en ${prov.nombre}?${precioMin ? ` Planes desde ${formatPrecio(precioMin)}/mes.` : ''} Cobertura en la provincia y planes actualizados ${PRECIO_ACTUALIZADO.toLowerCase()}. Compará con las demás prepagas de ${prov.nombre} y cotizá online.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${pz.slug}` },
     keywords: [`${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} en ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${prov.capitalNombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()} precios`],
@@ -88,6 +94,8 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
             {pz.verificado ? '' : ' · Detalle de cartilla local sujeto a confirmación al cotizar'}
           </p>
         </header>
+
+        <SucursalesBloque prepagaSlug={pz.slug} prepagaNombre={pz.nombre} lugar={prov.nombre} sucursales={sucursalesEnProvincia(pz.slug, prov, provinciasSEO)} />
 
         {/* Link al silo de cartillas (datos oficiales por zona), si la prepaga lo tiene */}
         {cartillaLink && (

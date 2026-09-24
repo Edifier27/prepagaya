@@ -6,11 +6,15 @@ import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
 
+// Mapa de keywords (auditoría SEO 24-sep-2026): el home ya pelea
+// "comparador de prepagas" y esta página competía con él por la misma
+// búsqueda con el mismo título. Acá va la intención de cotizar ("cotizar
+// prepaga online", "cotizador de prepagas" — /cotizador ya redirige acá).
 export const metadata: Metadata = {
-  title: `Comparador de Prepagas Argentina ${new Date().getFullYear()} — Encontrá tu plan ideal`,
-  description:
-    'Usá nuestro comparador de prepagas y encontrá el plan ideal en 2 minutos. Filtrá por presupuesto y coberturas: psicología, maternidad, odontología y más. Gratis y sin compromiso.',
+  title: 'Cotizar prepaga online: tu precio exacto en 2 minutos',
+  description: `Cotizá tu prepaga online con el precio oficial de ${PRECIO_ACTUALIZADO.toLowerCase()} para tu edad, tu grupo y tu zona. Todas las prepagas, gratis y sin DNI.`,
   alternates: { canonical: `${SITE_URL}/comparador` },
+  keywords: ['cotizar prepaga', 'cotizar prepaga online', 'cotizador de prepagas', 'cotizacion prepaga', 'comparador de prepagas'],
 }
 
 const TOTAL_PLANES = prepagas.reduce((n, p) => n + p.planes.length, 0)
@@ -19,7 +23,7 @@ const TOTAL_PLANES = prepagas.reduce((n, p) => n + p.planes.length, 0)
 // de cómo funciona el comparador y de los datos del sitio, nada inventado.
 const faqs = [
   {
-    q: '¿Cómo funciona el comparador de prepagas?',
+    q: '¿Cómo funciona el cotizador de prepagas?',
     a: `Elegís tu zona, cargás la edad de cada integrante del grupo y te mostramos los planes de las prepagas con cobertura en tu provincia, con el precio de ${PRECIO_ACTUALIZADO} calculado para tu grupo. Después podés filtrar por coberturas, copago y presupuesto.`,
   },
   {
@@ -29,6 +33,10 @@ const faqs = [
   {
     q: '¿Usar el comparador tiene costo?',
     a: 'No. Comparar es gratis y, si contratás con nosotros, pagás lo mismo que contratando directo con la prepaga: nuestro ingreso es la comisión que nos paga la prepaga.',
+  },
+  {
+    q: '¿Puedo cotizar una prepaga sin dar el DNI?',
+    a: 'Sí. Para ver los planes y precios solo necesitás tu zona y las edades del grupo. No pedimos DNI en ningún paso de la cotización.',
   },
   {
     q: '¿Por qué me piden nombre, celular y email?',
@@ -82,7 +90,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
               Comparador personalizado · Gratis · Sin DNI
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
-              Comparador de prepagas: <span className="text-[#E8002D]">cotizá y elegí tu plan</span>
+              Cotizá tu prepaga online: <span className="text-[#E8002D]">precio exacto para tu grupo</span>
             </h1>
             <p className="text-gray-500 text-base max-w-lg mx-auto leading-relaxed">
               Ingresá tu zona y las edades, y te mostramos los mejores planes con{' '}

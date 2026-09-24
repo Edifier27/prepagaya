@@ -9,6 +9,8 @@ import { blogPosts } from '@/lib/data/blog'
 import { coberturas } from '@/lib/data/coberturas'
 import { condiciones } from '@/lib/data/condiciones'
 import { obrasSociales } from '@/lib/data/obras-sociales'
+import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
+import { REGISTRO_VERIFICADO } from '@/lib/data/registro-sssalud'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { CARTILLAS, combinacionesPlanZona, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
@@ -37,17 +39,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/comparar`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/blog`, lastModified: CONTENT_UPDATE, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE}/obras-sociales`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/obras-sociales/codigos`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/sobre-nosotros`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/metodologia`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/prepaga-por-presupuesto`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.80 },
+    { url: `${BASE}/buscar-por-sanatorio`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/chequeo-prepaga`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/match-prepaga`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/calculadora-aportes`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/cartillas`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/historial-precios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${BASE}/glosario`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/privacidad`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${BASE}/terminos-y-condiciones`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${BASE}/en/health-insurance-argentina`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/cambios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    // Faltaban en el sitemap (auditoría SEO 24-sep-2026): /prepagas-economicas
+    // es la página de la búsqueda transaccional "prepagas económicas/baratas".
+    { url: `${BASE}/prepagas-economicas`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.9 },
   ]
+
+  // Silos internacionales (expats): antes solo figuraba 1 de las 10 páginas.
+  const intlRoutes: MetadataRoute.Sitemap = [
+    '/en/health-insurance-argentina',
+    '/en/best-health-insurance-argentina',
+    '/en/health-insurance-cost-argentina',
+    '/en/mandatory-insurance-decree-366',
+    '/ru/strahovanie-argentina',
+    '/ru/luchshaya-strahovka-argentina',
+    '/ru/stoimost-strahovaniya-argentina',
+    '/ru/strahovka-dlya-beremennyh',
+    '/zh/yiliao-baoxian-agenting',
+    '/zh/yiliao-baoxian-feiyong-agenting',
+  ].map((path) => ({ url: `${BASE}${path}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.7 }))
 
   const cambioRoutes: MetadataRoute.Sitemap = cambiosRecomendados.map((c) => ({
     url: `${BASE}/cambios/${c.slug}`,
@@ -220,15 +243,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.72,
   }))
 
-  const obraSocialRoutes: MetadataRoute.Sitemap = obrasSociales.map((os) => ({
-    url: `${BASE}/obras-sociales/${os.slug}`,
-    lastModified: CONTENT_UPDATE,
-    changeFrequency: 'monthly' as const,
-    priority: 0.80,
-  }))
+  const obraSocialRoutes: MetadataRoute.Sitemap = [
+    ...obrasSociales.map((os) => ({
+      url: `${BASE}/obras-sociales/${os.slug}`,
+      lastModified: CONTENT_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.80,
+    })),
+    // Fichas armadas con el registro de la SSSalud y obras sociales por provincia
+    ...FICHAS_REGISTRO.map((f) => ({
+      url: `${BASE}/obras-sociales/${f.slug}`,
+      lastModified: REGISTRO_VERIFICADO,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+    ...provinciasSEO.map((p) => ({
+      url: `${BASE}/obras-sociales/provincia/${p.slug}`,
+      lastModified: CONTENT_UPDATE,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
 
   return [
     ...staticRoutes,
+    ...intlRoutes,
     ...cambioRoutes,
     ...prepagaRoutes,
     ...zonaRoutes,

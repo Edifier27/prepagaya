@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO_RU, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
 export const metadata: Metadata = {
-  title: { absolute: `Медицинская страховка в Аргентине: гид для иностранцев (${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
+  title: { absolute: `Медицинская страховка в Аргентине: гид для иностранцев (${PRECIO_ACTUALIZADO_RU}) — ${SITE_NAME}` },
   description:
     'Как работает медицинская страховка в Аргентине для иностранцев: обязательное страхование при въезде (Декрет 366/25), как оформить местную prepaga без DNI, и реальные цены 2026 года.',
   alternates: {
@@ -38,7 +38,7 @@ const faqs = [
   },
   {
     q: 'Сколько стоит частная медицинская страховка в Аргентине?',
-    a: `Иностранцы платят столько же, сколько местные жители: цена зависит от возраста и плана, а не от гражданства. По состоянию на ${PRECIO_ACTUALIZADO_EN}, базовые планы начинаются примерно от AR$170.000/мес для человека 30 лет, планы среднего уровня без доплат — AR$300.000–500.000, премиум-планы — от AR$1.000.000.`,
+    a: `Иностранцы платят столько же, сколько местные жители: цена зависит от возраста и плана, а не от гражданства. По состоянию на ${PRECIO_ACTUALIZADO_RU}, базовые планы начинаются примерно от AR$170.000/мес для человека 30 лет, планы среднего уровня без доплат — AR$300.000–500.000, премиум-планы — от AR$1.000.000.`,
   },
   {
     q: 'Туристическая страховка или местная prepaga — что выбрать?',
@@ -87,7 +87,7 @@ export default function StrahovanieArgentinaPage() {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-3xl mx-auto">
           <span className="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">
-            Гид на русском · Обновлено {PRECIO_ACTUALIZADO_EN}
+            Гид на русском · Обновлено {PRECIO_ACTUALIZADO_RU}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             Медицинская страховка в Аргентине: гид для иностранцев
@@ -140,7 +140,7 @@ export default function StrahovanieArgentinaPage() {
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-2">Популярные варианты среди иностранцев</h2>
-          <p className="text-sm text-gray-500 mb-6">Уровень цены относительно рынка — {PRECIO_ACTUALIZADO_EN}. Точную цену можно узнать бесплатно.</p>
+          <p className="text-sm text-gray-500 mb-6">Уровень цены относительно рынка — {PRECIO_ACTUALIZADO_RU}. Точную цену можно узнать бесплатно.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {destacadas.map((p) => {
               const desde = Math.min(...p.planes.map((pl) => pl.precio))

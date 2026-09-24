@@ -75,6 +75,17 @@ export const TIEMPO_RESPUESTA = '3 minutos'
 
 export const PARTNERS_OFICIALES_TEXTO = `${PARTNERS_OFICIALES.slice(0, -1).join(', ')} y ${PARTNERS_OFICIALES[PARTNERS_OFICIALES.length - 1]}`
 
+// Imagen para compartir (la de app/opengraph-image.tsx). Las páginas que
+// definen su propio openGraph pisan el del layout entero (merge superficial) y
+// se quedaban sin imagen al compartirlas en WhatsApp o redes: 133 páginas
+// (auditoría SEO 24-sep-2026). Sumarla en cada openGraph propio.
+export const OG_IMAGE = {
+  url: `${SITE_URL}/opengraph-image`,
+  width: 1200,
+  height: 630,
+  alt: 'PrepagaYa — Comparador de Prepagas Argentina',
+}
+
 export const SITE_DESCRIPTION =
   'Compará todas las prepagas de Argentina en un solo lugar: precios del mes, planes, coberturas y cartillas. Partner oficial de Swiss Medical, Sancor Salud, OSDE, Avalian y Premedic.'
 
@@ -99,12 +110,20 @@ export const CONTENT_UPDATE = new Date('2026-07-14').toISOString()
 export const PRECIO_VALIDO_HASTA = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).toISOString().slice(0, 10)
 
 // Sistema de precios: Argentina tiene 2 listas de precios desregulados
-// - Directo con IVA (21%): para monotributistas y particulares
+// - Directo con IVA (10,5%): para monotributistas y particulares
 // - Deriva Aporte (sin IVA): para empleados en relación de dependencia
 //   que derivan sus contribuciones de obra social a la prepaga
-export const IVA_PREPAGA = 0.21
+// La alícuota de IVA en salud es siempre 10,5%, no el 21% general
+// (confirmado por Darío, 24-sep-2026; antes estaba en 0.21).
+export const IVA_PREPAGA = 0.105
 
-/** Precio para empleados en relación de dependencia (sin IVA 21%) */
+// Parte del sueldo bruto que llega a la prepaga al derivar aportes (relación
+// de dependencia). Se aporta 9% (3% trabajador + 6% empleador) y entre 10% y
+// 15% de eso va al Fondo Solidario de Redistribución: 7,5% es un valor
+// conservador. Lo usan el cotizador y la calculadora de aportes.
+export const APORTE_DERIVABLE = 0.075
+
+/** Precio para empleados en relación de dependencia (sin el IVA del 10,5%) */
 export function precioDeriva(precioDirecto: number): number {
   return Math.round(precioDirecto / (1 + IVA_PREPAGA))
 }

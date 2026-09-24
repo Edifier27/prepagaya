@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import Link from 'next/link'
+import { Buscador } from './Buscador'
 import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { provinciasSEO } from '@/lib/data/zonas'
@@ -50,6 +51,9 @@ const obrasSocialesMenu = [
 
 const herramientasMenu = [
   { href: '/precios', label: `Precios ${PRECIO_ACTUALIZADO.toLowerCase()}` },
+  // Money pages que no tenían link desde el menú (auditoría SEO 24-sep-2026)
+  { href: '/ranking', label: 'Ranking de mejores prepagas' },
+  { href: '/prepagas-economicas', label: 'Prepagas económicas' },
   { href: '/cambios', label: '¿A qué prepaga cambiarte?' },
   { href: '/tramites', label: 'Trámites de prepaga' },
   { href: '/pmo', label: 'Qué cubre el PMO' },
@@ -58,6 +62,10 @@ const herramientasMenu = [
   { href: '/prepaga-por-presupuesto', label: 'Encontrá tu prepaga por presupuesto' },
   { href: '/historial-precios', label: 'Historial de precios' },
   { href: '/calculadora', label: 'Calculadora' },
+  { href: '/buscar-por-sanatorio', label: 'Buscar prepaga por sanatorio' },
+  { href: '/chequeo-prepaga', label: '¿Pagás de más? Chequeá tu prepaga' },
+  { href: '/match-prepaga', label: '¿Qué prepaga me conviene? Test' },
+  { href: '/calculadora-aportes', label: 'De tu obra social a una prepaga' },
   { href: '/cartillas', label: 'Cartillas médicas' },
   { href: '/glosario', label: 'Glosario de prepagas' },
   { href: '/blog', label: 'Blog' },
@@ -190,7 +198,7 @@ export function Header() {
                 </svg>
               </button>
               {activeDropdown === 'herramientas' && (
-                <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                <div className="absolute top-full left-0 mt-1 w-72 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
                   {herramientasMenu.map((item) => (
                     <Link key={item.href} href={item.href} className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-[#E8002D] transition-colors">
                       {item.label}
@@ -204,6 +212,10 @@ export function Header() {
               Empresas
             </Link>
           </nav>
+
+          <div className="flex items-center gap-1 md:gap-3">
+          {/* Buscador del sitio (24-sep-2026) */}
+          <Buscador />
 
           {/* CTA */}
           <div className="hidden md:block">
@@ -230,6 +242,7 @@ export function Header() {
               )}
             </svg>
           </button>
+          </div>
         </div>
 
         {/* Mobile menu */}

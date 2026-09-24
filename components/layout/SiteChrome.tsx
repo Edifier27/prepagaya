@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { BottomNav } from './BottomNav'
@@ -7,7 +8,11 @@ import { ExitIntentPopup } from '@/components/ui/ExitIntentPopup'
 import { ChromeVisibilityProvider, useChromeVisibility } from './ChromeVisibility'
 
 function SiteChromeInner({ children }: { children: React.ReactNode }) {
-  const { hideChrome } = useChromeVisibility()
+  const { hideChrome: modoEnfocado } = useChromeVisibility()
+  // /widget/*: páginas para insertar en otros sitios con un iframe (sala de
+  // prensa) — van sin header, footer ni popups.
+  const esWidget = usePathname()?.startsWith('/widget/') ?? false
+  const hideChrome = modoEnfocado || esWidget
   return (
     <div className={`flex-1 flex flex-col ${hideChrome ? '' : 'pb-16 md:pb-0'}`}>
       {!hideChrome && <Header />}

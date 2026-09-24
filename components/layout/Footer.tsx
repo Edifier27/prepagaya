@@ -245,8 +245,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/quiz" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
-                  Quiz prepaga
+                <Link href="/prepaga-por-presupuesto" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                  Prepaga según tu presupuesto
                 </Link>
               </li>
               <li>
@@ -354,9 +354,11 @@ export function Footer() {
             también mostramos el resto de las prepagas del mercado para que compares todo. Las empresas comparadas
             están reguladas por la Superintendencia de Servicios de Salud (SSSalud).
           </p>
-          <div className="flex gap-5 text-xs text-gray-600">
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-gray-600">
             <Link href="/sobre-nosotros" className="hover:text-gray-400 transition-colors">Sobre nosotros</Link>
             <Link href="/metodologia" className="hover:text-gray-400 transition-colors">Metodología</Link>
+            {/* Sala de prensa: sin link en el sitio, los periodistas no la encontraban */}
+            <Link href="/prensa" className="hover:text-gray-400 transition-colors">Prensa</Link>
             <Link href="/privacidad" className="hover:text-gray-400 transition-colors">Privacidad</Link>
             <Link href="/terminos-y-condiciones" className="hover:text-gray-400 transition-colors">Términos y Condiciones</Link>
           </div>

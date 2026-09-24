@@ -105,7 +105,9 @@ export const coberturas: CoberturaData[] = [
     slug: 'odontologia',
     nombre: 'Odontología y dental',
     emoji: '🦷',
-    titulo: '¿Las prepagas cubren el dentista? Cobertura odontológica completa',
+    // Search Console (sept 2026): 1.100 impresiones con 0,2% de CTR; se busca
+    // "prepaga odontológica" / "prepaga dental", no "¿cubren el dentista?".
+    titulo: 'Prepaga con odontología: qué cubre cada una en 2026 (implantes y ortodoncia)',
     metaDescripcion: 'Qué prepagas incluyen odontología en Argentina. Diferencias entre cobertura básica PMO y planes con dental completo. Implantes, ortodoncia y más.',
     intro: 'La cobertura odontológica es una de las más confusas entre los afiliados. El PMO cubre urgencias odontológicas y algunos tratamientos básicos, pero la mayoría de los tratamientos de mediana y alta complejidad (ortodoncia, implantes, estética) requieren planes con cobertura dental ampliada o son a cargo del afiliado.',
     queEstableceLaLey: 'El PMO cubre urgencias odontológicas (dolor agudo, infección, trauma), extracciones y algunas obturaciones. La cobertura dental amplia (ortodoncia, prótesis, implantes, blanqueamiento) NO está en el PMO y depende de cada plan y prepaga.',
@@ -374,7 +376,9 @@ export const coberturas: CoberturaData[] = [
     keywords: ['prepaga que cubre kinesiología', 'cobertura rehabilitación prepaga', 'kinesiología sesiones prepaga', 'fonoaudiología prepaga argentina', 'fisioterapia cobertura prepaga'],
   },
   {
-    slug: 'bariátrica',
+    // Slug sin tilde (24-sep-2026): con 'bariátrica' la URL daba 404 y
+    // figuraba igual en el sitemap. La vieja redirige acá (next.config.ts).
+    slug: 'cirugia-bariatrica',
     nombre: 'Cirugía bariátrica y obesidad',
     emoji: '⚕️',
     titulo: '¿Las prepagas cubren la cirugía bariátrica en Argentina?',

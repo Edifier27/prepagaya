@@ -210,14 +210,14 @@ export default function AumentosPage() {
             <p className="text-xs text-gray-400 mt-4 leading-relaxed">
               {sinDeclarar.length > 0 && <>Todavía no declararon {oficial.label}: {sinDeclarar.map((s) => prepagas.find((p) => p.slug === s)?.nombre ?? s).join(', ')}. Se suman cuando publiquen su cuadro. </>}
               Metodología: {AUMENTOS_OFICIALES.metodo}{' '}
-              ¿Sos periodista? <Link href="/prensa" className="text-[#E8002D] font-semibold hover:underline">Informe para prensa y datos descargables</Link>.
+              ¿Sos periodista o tenés un blog? <Link href="/prensa" className="text-[#E8002D] font-semibold hover:underline">Informe para prensa, datos descargables y este gráfico para insertar en tu sitio</Link>.
             </p>
             <div className="mt-6 bg-gray-50 rounded-2xl border border-gray-200 p-5 flex flex-col sm:flex-row items-center justify-between gap-3">
               <div>
                 <div className="font-bold text-gray-900 text-sm">¿Tu cuota sube más que el promedio?</div>
-                <div className="text-xs text-gray-500">Puede convenirte cambiar de plan o de prepaga. Te lo cotizamos sin cargo.</div>
+                <div className="text-xs text-gray-500">Chequeá tu plan: tu precio oficial, el próximo aumento y cuánto podés ahorrar con planes parecidos.</div>
               </div>
-              <Link href="/comparador" className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] text-white font-bold rounded-xl text-sm hover:bg-[#B8001F] transition-colors">Cotizar ahora →</Link>
+              <Link href="/chequeo-prepaga" className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] text-white font-bold rounded-xl text-sm hover:bg-[#B8001F] transition-colors">Chequear mi prepaga →</Link>
             </div>
           </div>
         </section>

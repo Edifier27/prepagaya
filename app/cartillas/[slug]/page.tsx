@@ -11,7 +11,7 @@ import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 import { BuscadorCartillaZona } from '@/components/cartillas/BuscadorCartillaZona'
 import { contactos } from '@/lib/data/contactos'
-import { getCartilla, nombreCortoZona, slugPlan, textoFecha, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
+import { getCartilla, nombreCortoZona, slugPlan, textoFecha, textoFechaConArticulo, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -76,12 +76,12 @@ export default async function CartillaPrepagaPage({ params }: Props) {
     if (p1 && p2 && suma.length > 0) {
       faqsCartillaZonas.push({
         q: `¿En qué cambia la cartilla entre el ${p1.label} y el ${p2.label} de ${prep.nombre}?`,
-        a: `Según la ${textoFecha(cartillaZonas)}, en la Ciudad de Buenos Aires el ${p2.label} suma para internación ${suma.length} sanatorio${suma.length === 1 ? '' : 's'} que el ${p1.label} no incluye: ${suma.map((x) => x.nombre).join(', ')}. En cada zona la diferencia es distinta: elegí tu zona en el buscador de arriba para verla.`,
+        a: `Según ${textoFechaConArticulo(cartillaZonas)}, en la Ciudad de Buenos Aires el ${p2.label} suma para internación ${suma.length} sanatorio${suma.length === 1 ? '' : 's'} que el ${p1.label} no incluye: ${suma.map((x) => x.nombre).join(', ')}. En cada zona la diferencia es distinta: elegí tu zona en el buscador de arriba para verla.`,
       })
     }
     faqsCartillaZonas.push({
       q: `¿Cómo veo la cartilla de ${prep.nombre} de mi zona?`,
-      a: `Elegí tu zona y tu plan en el buscador de esta página: te mostramos los sanatorios para internación y ${cartillaZonas.labelGuardia.toLowerCase()} de ${prep.nombre} con dirección y teléfono. Los datos salen de la ${textoFecha(cartillaZonas)}.`,
+      a: `Elegí tu zona y tu plan en el buscador de esta página: te mostramos los sanatorios para internación y ${cartillaZonas.labelGuardia.toLowerCase()} de ${prep.nombre} con dirección y teléfono. Los datos salen de ${textoFechaConArticulo(cartillaZonas)}.`,
     })
   }
 

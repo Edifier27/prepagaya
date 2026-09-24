@@ -1,6 +1,8 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { obrasSociales } from '@/lib/data/obras-sociales'
+import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
+import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
 
@@ -80,6 +82,9 @@ export default function ObrasSocialesHubPage() {
             </Link>
             <Link href="/guias/obra-social-vs-prepaga" className="text-sm font-medium bg-white border border-gray-200 px-4 py-2 rounded-xl hover:border-blue-300 hover:bg-red-50 transition-all">
               Obra social vs prepaga
+            </Link>
+            <Link href="/obras-sociales/codigos" className="text-sm font-medium bg-white border border-gray-200 px-4 py-2 rounded-xl hover:border-blue-300 hover:bg-red-50 transition-all">
+              Códigos de obras sociales
             </Link>
             <Link href="/comparador" className="text-sm font-medium bg-[#E8002D] text-white px-4 py-2 rounded-xl hover:bg-[#B8001F] transition-all">
               Comparador personalizado
@@ -170,12 +175,42 @@ export default function ObrasSocialesHubPage() {
           </div>
         </section>
 
+        {/* Fichas armadas con el registro de la SSSalud (24-sep-2026) */}
+        <section>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-lg font-bold text-gray-900">Más obras sociales sindicales</span>
+          </div>
+          <p className="text-sm text-gray-500 mb-4">Teléfono de la sede, código y cómo pasar tus aportes a una prepaga, según el registro de la Superintendencia.</p>
+          <div className="flex flex-wrap gap-2">
+            {FICHAS_REGISTRO.map((f) => (
+              <Link key={f.slug} href={`/obras-sociales/${f.slug}`} className="text-xs px-3 py-1.5 bg-white text-gray-700 border border-gray-200 rounded-full hover:border-red-200 hover:text-[#E8002D] transition-colors font-medium">
+                {f.nombreCorto}
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Por provincia (24-sep-2026) */}
+        <section>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-lg font-bold text-gray-900">Obras sociales por provincia</span>
+          </div>
+          <p className="text-sm text-gray-500 mb-4">Cuál te toca según cómo trabajás, la obra social provincial y las que tienen sede en cada provincia.</p>
+          <div className="flex flex-wrap gap-2">
+            {provinciasSEO.map((p) => (
+              <Link key={p.slug} href={`/obras-sociales/provincia/${p.slug}`} className="text-xs px-3 py-1.5 bg-white text-gray-700 border border-gray-200 rounded-full hover:border-red-200 hover:text-[#E8002D] transition-colors font-medium">
+                {p.nombre}
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* FAQ general */}
         <section>
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes sobre obras sociales</h2>
           <div className="space-y-4">
             {[
-              { q: '¿Puedo cambiar de obra social cuando quiero?', a: 'Sí, podés pedir el cambio de obra social en cualquier momento del año. El proceso se realiza online a través del portal de la Superintendencia de Servicios de Salud. El cambio se hace efectivo en un plazo de 30-60 días hábiles.' },
+              { q: '¿Puedo cambiar de obra social cuando quiero?', a: 'Una vez por año. Si trabajás en relación de dependencia, podés hacer la opción de cambio una vez al año, online en la web de la Superintendencia de Servicios de Salud con tu clave o en la obra social que elegís. Mientras tanto seguís con la cobertura que tenías.' },
               { q: '¿Qué es la derivación de aportes?', a: 'La derivación es el proceso por el cual un trabajador en relación de dependencia redirige sus aportes obligatorios de salud (3% empleado + 6% empleador) a la obra social que prefiera, en lugar de ir a la obra social sindical de su actividad.' },
               { q: '¿Puedo tener obra social y prepaga al mismo tiempo?', a: 'Sí. Una opción muy común es tener la obra social obligatoria (por el trabajo) y contratar una prepaga complementaria para ampliar la red de prestadores o acceder a sanatorios premium. La prepaga puede descontar los aportes de obra social, reduciendo el costo.' },
               { q: '¿Cuánto se descuenta del sueldo para la obra social?', a: 'El empleado aporta el 3% del sueldo bruto y el empleador el 6%. Es decir, por cada $100 de sueldo, $3 van a la obra social del trabajador y $6 los pone la empresa. Ese dinero financia la cobertura de salud.' },

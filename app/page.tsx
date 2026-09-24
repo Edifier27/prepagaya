@@ -1,18 +1,23 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Buscador } from '@/components/layout/Buscador'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { ultimoMesOficial } from '@/lib/data/aumentos'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
 
+// Home = "comparador de prepagas" (la búsqueda principal del sitio). La
+// descripción entra en los ~155 caracteres que muestra Google (la general
+// del sitio tenía 180 y se cortaba).
 export const metadata: Metadata = {
   title: { absolute: `Comparador de Prepagas Argentina 2026 con Precios Reales — ${SITE_NAME}` },
-  description: SITE_DESCRIPTION,
+  description: `Compará todas las prepagas de Argentina con el precio oficial de ${PRECIO_ACTUALIZADO.toLowerCase()}: planes, coberturas y cartillas por zona. Cotizá gratis y sin DNI.`,
   alternates: { canonical: SITE_URL },
 }
 
@@ -50,18 +55,31 @@ const jsonLd = [
   },
 ]
 
+// FAQ con los números del mes, calculados de los mismos datos que /precios
+// (auditoría SEO 24-sep-2026): antes estaban fijos con precios de junio
+// ($107.044) que contradecían la tabla oficial, y Google los mostraba como
+// respuesta a "cuánto cuesta una prepaga".
+const TODOS_LOS_PLANES = prepagas.flatMap((p) => p.planes.map((pl) => ({ ...pl, prepaga: p })))
+const PLAN_MAS_BARATO = TODOS_LOS_PLANES.reduce((a, b) => (b.precio < a.precio ? b : a))
+const PLAN_MAS_CARO = TODOS_LOS_PLANES.reduce((a, b) => (b.precio > a.precio ? b : a))
+const AUMENTO_OFICIAL = ultimoMesOficial()
+
 const faqItems = [
   {
-    q: '¿Cuánto cuesta una prepaga en Argentina en 2026?',
-    a: 'Los precios varían mucho según la empresa, el plan y tu edad. En junio 2026, el plan más económico (Premedic Plan 200) cuesta desde $107.044/mes, mientras que el más caro (OSDE Plan 510) llega a $1.139.396/mes. Un plan estándar para una persona de 30 años cuesta entre $185.000 y $460.000/mes según la prepaga y cobertura elegida.',
+    q: `¿Cuánto cuesta una prepaga en Argentina en ${PRECIO_ACTUALIZADO.toLowerCase()}?`,
+    a: `Depende de la prepaga, el plan y tu edad. Para una persona de 30 años, según los cuadros tarifarios oficiales de la Superintendencia de Servicios de Salud, van desde ${formatPrecio(PLAN_MAS_BARATO.precio)}/mes (${PLAN_MAS_BARATO.prepaga.nombre} ${PLAN_MAS_BARATO.nombre}) hasta ${formatPrecio(PLAN_MAS_CARO.precio)}/mes (${PLAN_MAS_CARO.prepaga.nombre} ${PLAN_MAS_CARO.nombre}). En la tabla de precios está cada plan.`,
   },
+  ...(AUMENTO_OFICIAL ? [{
+    q: `¿Cuánto aumentan las prepagas en ${AUMENTO_OFICIAL.label.toLowerCase()}?`,
+    a: `Según los cuadros tarifarios que declaran ante la Superintendencia de Servicios de Salud, las prepagas aumentan en promedio ${AUMENTO_OFICIAL.promedio.toLocaleString('es-AR')}% en ${AUMENTO_OFICIAL.label.toLowerCase()}. El detalle por prepaga está en la página de aumentos.`,
+  }] : []),
   {
     q: '¿Cuál es la mejor prepaga de Argentina?',
-    a: 'Según satisfacción de afiliados, Swiss Medical lidera con 76% de satisfacción. Le siguen OSDE (74%) y Sancor Salud (72%). La "mejor" depende de tu presupuesto, zona geográfica y necesidades de cobertura. Usá el comparador para ver cuál encaja con tu perfil.',
+    a: 'Depende de tu presupuesto, tu zona y la cobertura que necesitás. En nuestro ranking, Swiss Medical es la mejor opción premium, Premedic la mejor económica, y Avalian y Sancor Salud las de mejor cobertura en el interior del país. Con el comparador ves cuál encaja con tu perfil y tu zona.',
   },
   {
     q: '¿Cuál es la prepaga más barata?',
-    a: 'Premedic es consistentemente la más económica, con planes desde $107.044 mensuales. Sancor Salud y Medife también ofrecen planes accesibles con buena cobertura.',
+    a: `Según los precios oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()}, el plan más económico es ${PLAN_MAS_BARATO.prepaga.nombre} ${PLAN_MAS_BARATO.nombre}, desde ${formatPrecio(PLAN_MAS_BARATO.precio)}/mes para una persona de 30 años. En el ranking de prepagas económicas están las demás.`,
   },
   {
     q: '¿Puedo cambiar de prepaga en cualquier momento?',
@@ -73,7 +91,7 @@ const faqItems = [
   },
   {
     q: '¿Qué es la Lista Deriva Aporte? ¿Pago menos si trabajo en relación de dependencia?',
-    a: 'Sí. Si trabajás en relación de dependencia, pagás por la "Lista Deriva Aporte" que no incluye IVA (21% menos que el precio directo). En el comparador seleccioná "Relación de dependencia" y automáticamente te mostramos los precios sin IVA.',
+    a: 'Sí. Si trabajás en relación de dependencia, pagás por la "Lista Deriva Aporte": no lleva IVA y además se descuentan tus aportes de la cuota. En el comparador seleccioná "Relación de dependencia" y te mostramos esos precios.',
   },
 ]
 
@@ -116,7 +134,7 @@ export default function HomePage(): React.ReactElement {
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-white via-white/70 to-transparent" />
 
         <div className="relative z-10">
-          <div className="container max-w-3xl mx-auto text-center pt-14 pb-8">
+          <div className="container max-w-3xl mx-auto text-center pt-6 sm:pt-14 pb-5 sm:pb-8">
             {/* Envuelta en su propia fila centrada: el banner de zona y el
                 badge de abajo son dos pastillas "inline-flex" del mismo
                 ancho de contenido — sin esto, cuando el banner de zona se
@@ -125,20 +143,26 @@ export default function HomePage(): React.ReactElement {
             <div className="flex justify-center">
               <ZonaBanner variant="home" />
             </div>
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-red-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-5 shadow-sm">
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-red-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-3 sm:mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] animate-pulse" />
-              Comparador personalizado · Gratis · Sin DNI
+              Precios oficiales {PRECIO_ACTUALIZADO.toLowerCase()} · Gratis · Sin DNI
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
-              Encontrá tu prepaga ideal<br />
-              <span className="text-[#E8002D]">en menos de 2 minutos</span>
+            {/* H1 con la búsqueda principal del home ("comparador de prepagas");
+                antes era "Encontrá tu prepaga ideal…", sin la keyword
+                (auditoría SEO 24-sep-2026). */}
+            <h1 className="text-[1.75rem] leading-tight sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 tracking-tight text-balance">
+              Comparador de prepagas<span className="sr-only">:</span>{' '}
+              <span className="block text-[#E8002D]">encontrá tu plan en 2 minutos</span>
             </h1>
-            <p className="text-gray-600 text-base max-w-lg mx-auto leading-relaxed">
-              Respondé 4 preguntas y te mostramos los mejores planes con <strong className="text-gray-800">15% de descuento online</strong> (25% si sos monotributista).
+            {/* El cotizador son 2 preguntas (zona y edades), no 4 */}
+            <p className="text-gray-600 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+              Elegí tu zona y las edades: te mostramos todos los planes con <strong className="text-gray-800">15% de descuento online</strong> (25% si sos monotributista).
             </p>
 
-            {/* Trust bullets */}
-            <div className="flex flex-wrap items-center justify-center gap-5 mt-5 text-xs text-gray-500">
+            {/* Trust bullets — ocultos en mobile para que el cotizador entre
+                en la primera pantalla (la pastilla de arriba ya dice precios
+                oficiales, gratis y sin DNI) */}
+            <div className="hidden sm:flex flex-wrap items-center justify-center gap-5 mt-5 text-xs text-gray-500">
               <span className="flex items-center gap-1.5">
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-red-500"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
                 <strong className="text-gray-700">+8.400</strong> cotizaciones realizadas
@@ -154,52 +178,66 @@ export default function HomePage(): React.ReactElement {
             </div>
           </div>
 
-          {/* Cómo funciona: baja la fricción de "¿qué pasa con mis datos?" antes de empezar */}
-          <div className="container max-w-2xl mx-auto pb-8">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {/* Cómo funciona: baja la fricción de "¿qué pasa con mis datos?" antes de empezar.
+              En mobile va compacto en una fila (antes eran 3 bloques apilados
+              que empujaban el cotizador fuera de la primera pantalla). */}
+          <div className="container max-w-2xl mx-auto pb-4 sm:pb-8">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4">
               {[
                 { n: '1', t: 'Cotizás gratis', d: 'Sin DNI, en menos de 2 minutos' },
                 { n: '2', t: 'Comparás precios reales', d: 'De todas las prepagas en tu zona' },
                 { n: '3', t: 'Vos decidís', d: 'Un asesor te contacta solo si pedís más info' },
               ].map((s) => (
-                <div key={s.n} className="flex flex-col items-center text-center gap-1.5">
-                  <div className="w-9 h-9 rounded-full bg-white border-2 border-red-100 flex items-center justify-center font-bold text-sm text-[#E8002D] shadow-sm">
+                <div key={s.n} className="flex flex-col items-center text-center gap-1 sm:gap-1.5">
+                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white border-2 border-red-100 flex items-center justify-center font-bold text-xs sm:text-sm text-[#E8002D] shadow-sm">
                     {s.n}
                   </div>
-                  <div className="text-sm font-bold text-gray-900">{s.t}</div>
-                  <div className="text-xs text-gray-500">{s.d}</div>
+                  <div className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">{s.t}</div>
+                  <div className="hidden sm:block text-xs text-gray-500">{s.d}</div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Wizard card */}
-          <div className="container max-w-3xl mx-auto pb-16">
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-white p-6 md:p-10">
+          <div className="container max-w-3xl mx-auto pb-10 sm:pb-16">
+            <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-white p-5 md:p-10">
               <ComparadorWizard />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Acceso destacado a las cartillas (pedido de Darío, 23-sep-2026) ── */}
-      <section className="py-8 bg-white border-b border-gray-100">
-        <div className="container max-w-4xl mx-auto">
-          <Link
-            href="/cartillas"
-            className="group flex flex-col sm:flex-row sm:items-center gap-4 p-5 md:p-6 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white hover:border-[#E8002D] hover:shadow-md transition-all"
-          >
-            <div className="w-12 h-12 rounded-xl bg-[#E8002D] flex items-center justify-center flex-shrink-0">
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M12 8v4M10 10h4" /></svg>
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-lg font-bold text-gray-900">¿Tu sanatorio está en la cartilla?</div>
-              <div className="text-sm text-gray-600">Buscá por zona o por nombre en las cartillas de {PARTNERS_OFICIALES_TEXTO}, y mirá qué plan lo incluye.</div>
-            </div>
-            <span className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm whitespace-nowrap transition-colors">
-              Buscar en cartillas →
-            </span>
-          </Link>
+      {/* ── Tres puertas (24-sep-2026, docs/producto/propuesta-buscador-
+          interactivo.md): otras formas de empezar además del cotizador. La de
+          sanatorios reemplaza al acceso a cartillas del 23-sep (lo incluye). ── */}
+      <section className="py-10 bg-white border-b border-gray-100">
+        <div className="container max-w-5xl mx-auto">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">¿Cómo querés empezar?</h2>
+          <p className="text-sm text-gray-600 mb-5">Además del cotizador, tres atajos con datos oficiales.</p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { href: '/buscar-por-sanatorio', titulo: 'Tengo mis sanatorios', texto: 'Elegí dónde te atendés y mirá qué plan los cubre a todos, con las cartillas oficiales.', cta: 'Buscar por sanatorio', icono: 'M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M12 8v4M10 10h4' },
+              { href: '/chequeo-prepaga', titulo: 'Ya tengo prepaga', texto: 'Chequeá cuánto pagás, cuánto aumenta el mes que viene y cuánto podés ahorrar.', cta: 'Chequear mi cuota', icono: 'M9 12l2 2 4-4M7.8 4.7a3.4 3.4 0 001.9-.8 3.4 3.4 0 014.6 0 3.4 3.4 0 001.9.8 3.4 3.4 0 013.1 3.1c.1.7.4 1.4.8 1.9a3.4 3.4 0 010 4.6 3.4 3.4 0 00-.8 1.9 3.4 3.4 0 01-3.1 3.1 3.4 3.4 0 00-1.9.8 3.4 3.4 0 01-4.6 0 3.4 3.4 0 00-1.9-.8 3.4 3.4 0 01-3.1-3.1 3.4 3.4 0 00-.8-1.9 3.4 3.4 0 010-4.6 3.4 3.4 0 00.8-1.9 3.4 3.4 0 013.1-3.1z' },
+              { href: '/match-prepaga', titulo: 'No sé cuál me conviene', texto: 'Seis preguntas y te mostramos el plan que más coincide con lo que buscás.', cta: 'Hacer el test', icono: 'M8.2 9a4 4 0 017.6 1c0 2-3 3-3 3M12 17h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+            ].map((p) => (
+              <Link key={p.href} href={p.href}
+                className="group flex gap-4 sm:flex-col sm:gap-0 rounded-2xl border-2 border-gray-100 bg-gradient-to-b from-red-50/50 to-white p-4 sm:p-5 hover:border-[#E8002D] hover:shadow-md transition-all">
+                <span className="w-11 h-11 shrink-0 rounded-xl bg-[#E8002D] flex items-center justify-center sm:mb-3">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden><path d={p.icono} /></svg>
+                </span>
+                <span className="flex flex-col flex-1 min-w-0">
+                  <span className="text-base sm:text-lg font-bold text-gray-900">{p.titulo}</span>
+                  <span className="text-sm text-gray-600 mt-1 flex-1">{p.texto}</span>
+                  <span className="mt-2 sm:mt-3 text-sm font-bold text-[#E8002D] group-hover:underline">{p.cta} →</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+            <Buscador variante="barra" />
+            <Link href="/cartillas" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D] hover:underline sm:px-2">Cartillas de {PARTNERS_OFICIALES_TEXTO} por zona →</Link>
+          </div>
         </div>
       </section>
 

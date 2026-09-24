@@ -62,7 +62,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: `Precios de prepagas ${MES_ACTUAL.toLowerCase()}: cuánto sale cada plan (tabla oficial)`,
-  description: `¿Cuánto sale una prepaga en ${MES_ACTUAL.toLowerCase()}? Tabla con todos los planes de Swiss Medical, OSDE, Sancor, Premedic, Avalian y más, según los cuadros tarifarios oficiales de la SSSalud. Desde ${formatPrecio(precioMin)}/mes.`,
+  description: `Precios de prepagas de ${MES_ACTUAL.toLowerCase()}: todos los planes de Swiss Medical, OSDE, Sancor, Premedic, Avalian y más, desde ${formatPrecio(precioMin)}/mes. Dato oficial SSSalud.`,
   alternates: { canonical: `${SITE_URL}/precios` },
   keywords: [
     `precios prepagas ${MES_ACTUAL.toLowerCase()}`,
@@ -399,7 +399,7 @@ export default function PreciosPage(): React.ReactElement {
               },
               {
                 titulo: 'IVA incluido',
-                texto: 'Los precios incluyen IVA (21%). Si trabajás en relación de dependencia y derivás tu obra social, pagás sin IVA — un ahorro del 21%.',
+                texto: 'Los precios incluyen el IVA del 10,5% (la alícuota de salud). Si trabajás en relación de dependencia y derivás tu obra social, pagás la lista sin IVA y además se descuentan tus aportes.',
               },
             ].map((item) => (
               <div key={item.titulo} className="bg-gray-50 rounded-xl p-5 border border-gray-100">

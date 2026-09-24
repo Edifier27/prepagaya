@@ -1,3 +1,27 @@
+import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { formatPrecio } from '@/lib/utils'
+
+// Precio de lista oficial más bajo de la prepaga hermana (cuadro de la SSSalud
+// del mes). Reemplaza precios de monotributo fijos que habían quedado viejos
+// o sin fuente (auditoría 24-sep-2026: OSDE "$45.000", Galeno "$95.000",
+// Medifé "$85.000", cuando el oficial arranca en más del doble).
+function planDesde(prepagaSlug: string) {
+  const p = prepagas.find((x) => x.slug === prepagaSlug)
+  if (!p) return null
+  // Plan del cuadro oficial y sin tope de edad (el Flux de OSDE, por ejemplo,
+  // es solo para menores de 35 y tiene precio de referencia).
+  const oficiales = p.planes.filter((pl) => pl.fuentePrecio === 'sssalud' && !pl.edadMaxima)
+  const plan = [...(oficiales.length ? oficiales : p.planes)].sort((a, b) => a.precio - b.precio)[0]
+  return { p, plan, oficial: plan.fuentePrecio === 'sssalud' }
+}
+function desdeOficial(prepagaSlug: string): string {
+  const d = planDesde(prepagaSlug)
+  if (!d) return ''
+  return `${formatPrecio(d.plan.precio)}/mes (${d.p.nombre} ${d.plan.nombre}, ${d.oficial ? 'precio de lista oficial' : 'precio de referencia'} para una persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()})`
+}
+const respuestaMonotributo = (prepagaSlug: string, nombre: string) =>
+  `El plan más accesible de ${nombre} arranca en ${desdeOficial(prepagaSlug)}${planDesde(prepagaSlug)?.oficial ? ', según el cuadro tarifario de la Superintendencia de Servicios de Salud' : ''}. El precio final depende de tu edad y del plan que elijas: cotizalo gratis para ver el tuyo.`
+
 export interface ObraSocialData {
   slug: string
   nombre: string
@@ -36,8 +60,8 @@ export const obrasSociales: ObraSocialData[] = [
     tipo: 'sindical',
     titulo: 'OSDE como obra social: cómo derivar tus aportes y quién puede afiliarse (2026)',
     metaDescripcion: 'OSDE como obra social en Argentina: quién puede afiliarse, cómo derivar tus aportes y qué cubre. Los planes y precios de OSDE como prepaga están en su ficha, plan por plan.',
-    descripcion: 'La obra social más conocida y grande de Argentina con más de 90.000 profesionales adheridos.',
-    intro: 'OSDE (Organización de Servicios Directos Empresarios) es la obra social con mayor red de prestadores de Argentina, con más de 90.000 profesionales adheridos y presencia en todo el país. Aunque muchos la conocen como prepaga, es técnicamente una obra social que compite en el segmento premium.',
+    descripcion: 'Una de las obras sociales más conocidas de Argentina: OSDE informa más de 125.000 prestadores en todo el país.',
+    intro: 'OSDE (Organización de Servicios Directos Empresarios) es la obra social con mayor red de prestadores de Argentina, que informa más de 125.000 prestadores y presencia en todo el país. Aunque muchos la conocen como prepaga, es técnicamente una obra social que compite en el segmento premium.',
     beneficiarios: 2800000,
     quienesPuedenAfiliarse: [
       'Trabajadores en relación de dependencia (a través del empleador)',
@@ -49,11 +73,11 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto',
       empleador: '6% del salario bruto',
-      monotributista: 'Desde $45.000 al mes (varía según plan elegido)',
+      monotributista: `Desde ${desdeOficial('osde')}`,
     },
     cobertura: [
       'PMO completo (Plan Médico Obligatorio)',
-      'Red de +90.000 profesionales en todo el país',
+      'Más de 125.000 prestadores en todo el país (según OSDE)',
       'Hospitalización en clínicas y sanatorios de primer nivel',
       'Maternidad, pediatría y neonatología',
       'Salud mental (psicología y psiquiatría)',
@@ -83,10 +107,10 @@ export const obrasSociales: ObraSocialData[] = [
     derivacion: true,
     web: 'osde.com.ar',
     faq: [
-      { q: '¿Cuánto cuesta OSDE para un monotributista?', a: 'El plan más accesible (OSDE 210) cuesta aproximadamente $45.000 al mes para monotributistas. El plan 310 ronda los $110.000 y el 410 cerca de $250.000. Los precios varían según el plan y se actualizan periódicamente.' },
+      { q: '¿Cuánto cuesta OSDE para un monotributista?', a: respuestaMonotributo('osde', 'OSDE') },
       { q: '¿Puedo tener OSDE y una prepaga al mismo tiempo?', a: 'Sí, muchas personas derivan sus aportes obligatorios a OSDE y contratan una prepaga complementaria para mejorar la cobertura. OSDE puede actuar como financiador y la prepaga como complemento.' },
       { q: '¿OSDE cubre medicamentos?', a: 'Sí, OSDE cubre medicamentos con descuentos que van del 40% al 100% según el tipo de medicamento y el plan. Los planes superiores tienen mayor cobertura de medicamentos crónicos.' },
-      { q: '¿Cómo cambio de obra social a OSDE?', a: 'Podés pedir el cambio de obra social a OSDE en cualquier momento del año. El trámite demora 30-60 días hábiles. Durante ese período, tu obra social actual debe mantener la cobertura.' },
+      { q: '¿Cómo cambio de obra social a OSDE?', a: 'Con la opción de cambio: la hacés vos, online, en la web de la Superintendencia de Servicios de Salud con tu clave fiscal nivel 3, y confirmás el mail que te llega dentro de las 48 horas. El cambio se activa el primer día del mes siguiente; hasta entonces seguís con tu obra social actual. Se puede hacer una vez cada 365 días.' },
       { q: '¿OSDE es obra social o prepaga?', a: 'OSDE es técnicamente una obra social sindical (de los empleados de empresas), pero funciona como prepaga privada y compite en el mismo segmento. Requiere aportes patronales para empleados en relación de dependencia.' },
     ],
     keywords: ['osde obra social', 'derivar aportes a osde', 'pasar mi obra social a osde', 'osde afiliarse', 'osde 310 monotributista'],
@@ -110,10 +134,10 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto',
       empleador: '6% del salario bruto',
-      monotributista: 'Plan S1 desde $185.773/mes',
+      monotributista: `Desde ${desdeOficial('swiss-medical')}`,
     },
     cobertura: [
-      'Acceso a 11 sanatorios propios Swiss Medical',
+      'Acceso a los 9 sanatorios propios de Swiss Medical',
       'Red de prestadores externos según plan',
       'Urgencias 24hs en Swiss Medical Centers',
       'Maternidad completa en centros propios',
@@ -168,7 +192,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto',
       empleador: '6% del salario bruto',
-      monotributista: 'Desde $120.000/mes aproximadamente',
+      monotributista: `Desde ${desdeOficial('medicus')}`,
     },
     cobertura: [
       'Red seleccionada de prestadores premium',
@@ -200,7 +224,7 @@ export const obrasSociales: ObraSocialData[] = [
     web: 'medicus.com.ar',
     faq: [
       { q: '¿Medicus es obra social o prepaga?', a: 'Medicus funciona como ambas: es una entidad que puede recibir derivaciones de obras sociales sindicales y también ofrece planes directos de prepaga para monotributistas y autónomos.' },
-      { q: '¿Cuánto cuesta Medicus para un monotributista?', a: 'Los planes de Medicus para monotributistas parten aproximadamente de $120.000 al mes. El precio exacto depende del plan elegido y de actualizaciones de precios.' },
+      { q: '¿Cuánto cuesta Medicus para un monotributista?', a: respuestaMonotributo('medicus', 'Medicus') },
       { q: '¿Medicus tiene cobertura fuera de Buenos Aires?', a: 'Medicus está principalmente concentrada en el AMBA. Si vivís en el interior del país, su cobertura puede ser más limitada y conviene verificar la cartilla de prestadores en tu zona.' },
     ],
     keywords: ['medicus obra social', 'medicus prepaga precio', 'medicus afiliarse', 'medicus cobertura'],
@@ -224,7 +248,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto',
       empleador: '6% del salario bruto',
-      monotributista: 'Desde $95.000/mes aproximadamente',
+      monotributista: `Desde ${desdeOficial('galeno')}`,
     },
     cobertura: [
       'Red de prestadores propios y externos',
@@ -255,7 +279,7 @@ export const obrasSociales: ObraSocialData[] = [
     derivacion: true,
     web: 'galeno.com.ar',
     faq: [
-      { q: '¿Cuánto cuesta Galeno para un monotributista?', a: 'Galeno tiene planes para monotributistas desde aproximadamente $95.000 al mes. Los precios varían según el plan y la zona geográfica.' },
+      { q: '¿Cuánto cuesta Galeno para un monotributista?', a: respuestaMonotributo('galeno', 'Galeno') },
       { q: '¿Galeno tiene buena cobertura en el interior?', a: 'Galeno está principalmente concentrada en Buenos Aires y el AMBA. En el interior del país, la cobertura existe pero puede ser más limitada. Conviene revisar la cartilla para tu zona antes de afiliarte.' },
       { q: '¿Puedo derivar mi obra social sindical a Galeno?', a: 'Sí, podés hacer una derivación de aportes a Galeno. El proceso demora entre 30 y 60 días hábiles y lo gestionás a través de la Superintendencia de Servicios de Salud.' },
     ],
@@ -391,7 +415,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto',
       empleador: '6% del salario bruto',
-      monotributista: 'Desde $85.000/mes aproximadamente',
+      monotributista: `Desde ${desdeOficial('medife')}`,
     },
     cobertura: [
       'PMO completo',
@@ -422,7 +446,7 @@ export const obrasSociales: ObraSocialData[] = [
     web: 'medife.com.ar',
     faq: [
       { q: '¿Medifé tiene cobertura en el interior del país?', a: 'Sí, Medifé es reconocida precisamente por su fuerte cobertura en el interior. Tiene prestadores en ciudades de las 23 provincias, incluyendo ciudades medianas donde otras obras sociales tienen menos presencia.' },
-      { q: '¿Cuánto cuesta Medifé para un monotributista?', a: 'Los planes de Medifé para monotributistas parten de aproximadamente $85.000 al mes, aunque el precio exacto varía según el plan y las actualizaciones periódicas.' },
+      { q: '¿Cuánto cuesta Medifé para un monotributista?', a: respuestaMonotributo('medife', 'Medifé') },
     ],
     keywords: ['medife obra social', 'medife prepaga precio', 'medife interior del pais', 'medife afiliarse'],
   },
@@ -498,7 +522,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto (más diferencia del plan)',
       empleador: '6% del salario bruto',
-      monotributista: 'Desde $142.000/mes (Plan 1500)',
+      monotributista: `Desde ${desdeOficial('sancor-salud')}`,
     },
     cobertura: [
       'PMO completo en todo el país',
@@ -551,7 +575,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto',
       empleador: '6% del salario bruto',
-      monotributista: 'Desde $65.000/mes aproximadamente',
+      monotributista: 'Cuota según plan y edad (sin precio oficial publicado)',
     },
     cobertura: [
       'PMO completo',
@@ -706,7 +730,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: 'N/A (son empleadores)',
       empleador: 'N/A',
-      monotributista: 'Desde $90.000/mes aproximadamente',
+      monotributista: 'Cuota según plan y edad (sin precio oficial publicado)',
     },
     cobertura: [
       'PMO completo',
@@ -756,7 +780,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto (+ diferencia del plan)',
       empleador: '6% del salario bruto',
-      monotributista: 'Desde $75.000/mes aproximadamente',
+      monotributista: 'Cuota según plan y edad (sin precio oficial publicado)',
     },
     cobertura: [
       'PMO completo',
@@ -805,7 +829,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto',
       empleador: '6% del salario bruto',
-      monotributista: 'Desde $60.000/mes aproximadamente',
+      monotributista: 'Cuota según plan y edad (sin precio oficial publicado)',
     },
     cobertura: [
       'PMO completo',

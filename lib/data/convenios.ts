@@ -7,6 +7,8 @@
 // mientras un campo esté vacío, esa sección no aparece en la web.
 // Datos pendientes de Darío: nada de acá se completa sin su confirmación.
 
+import { entidadRegistro, codigoSeisDigitos, FUENTE_RNAS, PREPAGA_A_REGISTRO } from './registro-sssalud'
+
 export interface Convenio {
   /** Organismo o empresa, ej. "ANSES" */
   entidad: string
@@ -52,10 +54,11 @@ export interface ConveniosPrepaga {
 export const convenios: Record<string, ConveniosPrepaga> = {
   'swiss-medical': {
     // Código confirmado por Darío (23-sep-2026).
+    // Coincide con el RNAS de la SSSalud (Swiss Medical S.A., 9-0080-5).
     codigoAfip: {
       explicacion: 'Es el código de obra social que se indica para elegir Swiss Medical al derivar tus aportes: podés pedirle a tu empleador que lo cargue en tu alta, así no tenés que hacer el cambio después. Confirmalo con tu asesor antes de indicarlo.',
-      codigos: [{ codigo: '900805', nota: 'Swiss Medical' }],
-      fuente: { texto: 'PrepagaYa, partner oficial de Swiss Medical' },
+      codigos: [{ codigo: '900805', nota: 'Swiss Medical S.A., RNAS 9-0080-5' }],
+      fuente: { texto: FUENTE_RNAS, url: 'https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=900805' },
     },
     // Confirmado por Darío (23-sep-2026): Swiss Medical no atiende PAMI.
     pami: {
@@ -126,6 +129,58 @@ export const convenios: Record<string, ConveniosPrepaga> = {
       { banco: 'Banco Ciudad', beneficio: 'Swiss Medical tiene un convenio de afinidad con Banco Ciudad. Consultanos qué planes y condiciones aplican a tu caso.' },
     ],
   },
+  // Códigos del Registro Nacional de Agentes del Seguro (RNAS) de la SSSalud
+  // (24-sep-2026). OSDE: RNOS 4-0080-0 (OSDE indica "código 400800" en su web
+  // para la opción). Sancor: la Asociación Mutual Sancor Salud está inscripta
+  // como agente del seguro con el 9-0210-8 (también figura así en la serie
+  // SANO de argentina.gob.ar, con archivo de AFIP). El resto sale del
+  // registro (ver CODIGOS_DEL_REGISTRO abajo). Premedic no figura en el
+  // listado: no se carga.
+  osde: {
+    codigoAfip: {
+      explicacion: 'Es el código con el que figura OSDE en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud. Es el que se usa para elegir OSDE al derivar tus aportes (la opción se hace en la web de la SSSalud) y el que tu empleador carga en tu alta. Confirmalo con tu asesor antes de indicarlo.',
+      codigos: [{ codigo: '400800', nota: 'OSDE, RNOS 4-0080-0' }],
+      fuente: { texto: FUENTE_RNAS, url: 'https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=400800' },
+    },
+  },
+  'sancor-salud': {
+    codigoAfip: {
+      explicacion: 'Es el código de la Asociación Mutual Sancor Salud como agente del seguro de salud: con él elegís Sancor Salud al derivar tus aportes, sin pasar por otra obra social, y es el que tu empleador carga en tu alta. Confirmalo con tu asesor antes de indicarlo.',
+      codigos: [{ codigo: '902108', nota: 'Asociación Mutual Sancor Salud, RNAS 9-0210-8' }],
+      fuente: { texto: FUENTE_RNAS, url: 'https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos&rnas=902108' },
+    },
+  },
+}
+
+// Prepagas cuyo código sale del registro de la SSSalud (lib/data/
+// registro-sssalud.ts, listado verificado el 20-sep-2026). El código se lee
+// del registro; acá va solo la marca y la razón social bien escrita.
+const CODIGOS_DEL_REGISTRO: Record<string, { marca: string; razonSocial: string }> = {
+  avalian: { marca: 'Avalian', razonSocial: 'Avalian Salud y Bienestar Cooperativa Limitada' },
+  galeno: { marca: 'Galeno', razonSocial: 'Galeno Argentina S.A.' },
+  medife: { marca: 'Medifé', razonSocial: 'Medifé Asociación Civil' },
+  omint: { marca: 'Omint', razonSocial: 'Omint S.A. de Servicios' },
+  medicus: { marca: 'Medicus', razonSocial: 'Medicus S.A. de Asistencia Médica y Científica' },
+  cemic: { marca: 'CEMIC', razonSocial: 'Centro de Educación Médica e Investigaciones Clínicas Norberto Quirno' },
+  'hospital-italiano': { marca: 'el Plan de Salud del Hospital Italiano', razonSocial: 'Sociedad Italiana de Beneficencia en Buenos Aires' },
+  'federada-salud': { marca: 'Federada Salud', razonSocial: 'Mutual Federada 25 de Junio' },
+  hominis: { marca: 'Hominis', razonSocial: 'Hominis S.A.' },
+  'luis-pasteur': { marca: 'Luis Pasteur', razonSocial: 'Obra Social del Personal de Dirección de Sanidad Luis Pasteur' },
+  'prevencion-salud': { marca: 'Prevención Salud', razonSocial: 'Prevención Salud S.A.' },
+}
+
+for (const [slug, m] of Object.entries(CODIGOS_DEL_REGISTRO)) {
+  const e = entidadRegistro(PREPAGA_A_REGISTRO[slug])
+  if (!e?.codigo || convenios[slug]?.codigoAfip) continue
+  const codigo = codigoSeisDigitos(e.codigo)
+  convenios[slug] = {
+    ...convenios[slug],
+    codigoAfip: {
+      explicacion: `Es el código con el que ${m.razonSocial} figura en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud. Con él elegís ${m.marca} al derivar tus aportes (la opción se hace en la web de la SSSalud) y es el que tu empleador carga en tu alta. Confirmalo con tu asesor antes de indicarlo.`,
+      codigos: [{ codigo, nota: `${m.razonSocial}, RNAS ${e.codigo}` }],
+      fuente: { texto: FUENTE_RNAS, url: e.fuenteUrl },
+    },
+  }
 }
 
 export function getConvenios(prepagaSlug: string): ConveniosPrepaga | null {

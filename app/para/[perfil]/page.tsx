@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { perfiles } from '@/lib/data/perfiles'
 import { PERFIL_IDIOMAS } from '@/lib/data/perfil-idiomas'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
@@ -38,6 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: perf.titulo,
       description: perf.metaDescripcion,
       type: 'article',
+      images: [OG_IMAGE],
     },
   }
 }

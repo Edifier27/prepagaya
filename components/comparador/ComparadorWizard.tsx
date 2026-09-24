@@ -6,13 +6,15 @@ import { useRouter, usePathname } from 'next/navigation'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER } from '@/lib/utils'
+import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE } from '@/lib/utils'
+import { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 import { CartillaModal } from './CartillaModal'
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { AsesoramientoPopup } from '@/components/ui/AsesoramientoPopup'
 import { leerZonaGeoDeCookie } from '@/lib/geo-zonas'
+import { OPCIONES_PREPAGA_ACTUAL } from '@/lib/data/sondeo'
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
@@ -27,8 +29,8 @@ const DESCUENTO_POR_SITUACION: Record<SituacionLaboral, number> = {
 }
 
 // Aporte del trabajador en relación de dependencia: 7,5% del sueldo bruto,
-// se descuenta directo de la cuota mostrada.
-const APORTE_PORCENTAJE = 0.075
+// se descuenta directo de la cuota mostrada (APORTE_DERIVABLE, lib/utils).
+const APORTE_PORCENTAJE = APORTE_DERIVABLE
 
 // Precio "bloqueado": el número real sigue ahí (blureado, no reemplazado por
 // texto falso), con un candado al lado — pedido de Darío, 21-sep-2026, para
@@ -108,34 +110,9 @@ const INTERIOR_PARTNERS = ['avalian', 'sancor-salud']
 const RECOMENDADOS_VISIBLES = 4
 ZONA_PREPAGAS['buenos-aires-interior'] = ZONA_PREPAGAS['buenos-aires'].filter((s) => !SIN_COBERTURA_INTERIOR_BA.includes(s))
 
-export interface Provincia { slug: string; nombre: string; zonaKey: string }
-export const PROVINCIAS: Provincia[] = [
-  { slug: 'caba',         nombre: 'CABA',                    zonaKey: 'caba' },
-  { slug: 'buenos-aires', nombre: 'Gran Buenos Aires (GBA)', zonaKey: 'buenos-aires' },
-  { slug: 'buenos-aires-interior', nombre: 'Interior de Buenos Aires', zonaKey: 'buenos-aires-interior' },
-  { slug: 'cordoba',      nombre: 'Córdoba',                 zonaKey: 'cordoba' },
-  { slug: 'santa-fe',     nombre: 'Santa Fe',                zonaKey: 'santa-fe' },
-  { slug: 'mendoza',      nombre: 'Mendoza',                 zonaKey: 'mendoza' },
-  { slug: 'tucuman',      nombre: 'Tucumán',                 zonaKey: 'tucuman' },
-  { slug: 'entre-rios',   nombre: 'Entre Ríos',              zonaKey: 'entre-rios' },
-  { slug: 'salta',        nombre: 'Salta',                   zonaKey: 'salta' },
-  { slug: 'neuquen',      nombre: 'Neuquén',                 zonaKey: 'neuquen' },
-  { slug: 'misiones',     nombre: 'Misiones',                zonaKey: 'misiones' },
-  { slug: 'chaco',        nombre: 'Chaco',                   zonaKey: 'chaco' },
-  { slug: 'corrientes',   nombre: 'Corrientes',              zonaKey: 'corrientes' },
-  { slug: 'rio-negro',    nombre: 'Río Negro',               zonaKey: 'rio-negro' },
-  { slug: 'jujuy',        nombre: 'Jujuy',                   zonaKey: 'jujuy' },
-  { slug: 'santiago',     nombre: 'Santiago del Estero',     zonaKey: 'otras' },
-  { slug: 'san-juan',     nombre: 'San Juan',                zonaKey: 'otras' },
-  { slug: 'san-luis',     nombre: 'San Luis',                zonaKey: 'otras' },
-  { slug: 'la-pampa',     nombre: 'La Pampa',                zonaKey: 'otras' },
-  { slug: 'catamarca',    nombre: 'Catamarca',               zonaKey: 'otras' },
-  { slug: 'la-rioja',     nombre: 'La Rioja',                zonaKey: 'otras' },
-  { slug: 'chubut',       nombre: 'Chubut',                  zonaKey: 'otras' },
-  { slug: 'formosa',      nombre: 'Formosa',                 zonaKey: 'otras' },
-  { slug: 'santa-cruz',   nombre: 'Santa Cruz',              zonaKey: 'otras' },
-  { slug: 'tierra-fuego', nombre: 'Tierra del Fuego',        zonaKey: 'otras' },
-]
+// Lista de provincias del cotizador: vive en lib/data/provincias-cotizador.ts
+// (la usan también las herramientas sin cargar este componente entero).
+export { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
 
@@ -662,6 +639,35 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   // Results filters
   const [activeCobs, setActiveCobs] = useState<Set<CobId>>(new Set())
   const [copago, setCopago] = useState<Copago>(null)
+
+  // Datos que la persona completa DESPUÉS de dejar el lead (24-sep-2026):
+  // situación laboral (solo si la cambió: "Particular" es el default y no
+  // dice nada), qué cobertura tiene hoy y qué coberturas filtra. Se suman a
+  // su mismo lead (/api/leads/complemento) para el panel y el sondeo anónimo.
+  // No hay ninguna pregunta nueva antes del formulario.
+  const [situacionTocada, setSituacionTocada] = useState(false)
+  const [prepagaActual, setPrepagaActual] = useState('')
+  const elegirSituacion = (s: SituacionLaboral) => { setSituacion(s); setSituacionTocada(true) }
+  useEffect(() => {
+    if (leadStatus !== 'success') return
+    const coberturasTxt = [...activeCobs].map((c) => COB_MAP[c]?.label).filter(Boolean).join(', ')
+    const copagoTxt = copago === 'sin-copago' ? 'Sin copago' : copago === 'con-copago' ? 'Con copago' : ''
+    if (!situacionTocada && !prepagaActual && !coberturasTxt && !copagoTxt) return
+    const t = setTimeout(() => {
+      fetch('/api/leads/complemento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email.trim(),
+          celular: celular.trim(),
+          situacion_laboral: situacionTocada ? SITUACIONES.find((s) => s.id === situacion)?.label : '',
+          prepaga_actual: prepagaActual,
+          preferencias: JSON.stringify({ coberturas: coberturasTxt, copago: copagoTxt }),
+        }),
+      }).catch(() => {})
+    }, 1500)
+    return () => clearTimeout(t)
+  }, [leadStatus, situacion, situacionTocada, prepagaActual, activeCobs, copago, email, celular])
   const [activePrepagas, setActivePrepagas] = useState<Set<string>>(new Set())
   const [activeNivelPrecio, setActiveNivelPrecio] = useState<Set<NivelPrecio>>(new Set())
   const [activeCaracteristicas, setActiveCaracteristicas] = useState<Set<CaracteristicaId>>(new Set())
@@ -949,7 +955,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
 
   function resetWizard() {
     setStep('zona'); setZonaKey(''); setProvinciaNombre('')
-    setSituacion('particular'); setSueldoBruto('')
+    setSituacion('particular'); setSueldoBruto(''); setSituacionTocada(false); setPrepagaActual('')
     setPersonas([{ id: 1, edad: '' }]); setNombre(''); setCelular('')
     setLeadStatus('idle'); limpiarFiltros()
     setSortBy('relevancia'); setPlanAccedido(null); setPlanAccedidoStatus('idle')
@@ -1307,6 +1313,32 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
         )}
       </div>
 
+      {/* "¿Qué cobertura tenés hoy?" — opcional y DESPUÉS del lead, así no
+          suma fricción al formulario. Le sirve al asesor para comparar con lo
+          que paga hoy y al sondeo anónimo de /prensa/sondeo (24-sep-2026). */}
+      <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-6">
+        {prepagaActual ? (
+          <p className="text-sm text-gray-600">
+            ¡Gracias! Tu asesor va a comparar estos planes con tu cobertura actual ({prepagaActual}).{' '}
+            <button onClick={() => setPrepagaActual('')} className="text-[#E8002D] font-semibold hover:underline">Cambiar</button>
+          </p>
+        ) : (
+          <>
+            <p className="text-sm font-semibold text-gray-900 mb-2">
+              ¿Qué cobertura tenés hoy? <span className="font-normal text-gray-500">(opcional, para comparar con lo que pagás)</span>
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {OPCIONES_PREPAGA_ACTUAL.map((op) => (
+                <button key={op} onClick={() => setPrepagaActual(op)}
+                  className="text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D] transition-colors">
+                  {op}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
       {/* Layout: sidebar + cards */}
       <div className="flex gap-6">
 
@@ -1342,7 +1374,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
             {/* ¿Cómo pagás? */}
             <div className="bg-white rounded-2xl border border-gray-100 p-4">
               <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">¿Cómo pagás?</p>
-              <SituacionFiltro situacion={situacion} setSituacion={setSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
+              <SituacionFiltro situacion={situacion} setSituacion={elegirSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
             </div>
 
             {/* Tipo de consulta */}
@@ -1557,7 +1589,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
                   {/* ¿Cómo pagás? */}
                   <div>
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">¿Cómo pagás?</p>
-                    <SituacionFiltro situacion={situacion} setSituacion={setSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
+                    <SituacionFiltro situacion={situacion} setSituacion={elegirSituacion} sueldoBruto={sueldoBruto} setSueldoBruto={setSueldoBruto} />
                   </div>
 
                   {/* Tipo de consulta */}

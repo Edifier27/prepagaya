@@ -4,8 +4,11 @@ import { notFound } from 'next/navigation'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { prepagas } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
-import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
+import { registroDeObraSocial, codigoSeisDigitos, nombreLegible } from '@/lib/data/registro-sssalud'
+import { FICHAS_REGISTRO, fichaRegistro } from '@/lib/data/fichas-registro'
+import { FichaRegistroPage } from '@/components/obras-sociales/FichaRegistro'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -31,13 +34,27 @@ const tiposLabels: Record<string, string> = {
 }
 
 export async function generateStaticParams() {
-  return obrasSociales.map((os) => ({ slug: os.slug }))
+  return [...obrasSociales.map((os) => ({ slug: os.slug })), ...FICHAS_REGISTRO.map((f) => ({ slug: f.slug }))]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const os = obrasSociales.find((o) => o.slug === slug)
-  if (!os) return {}
+  if (!os) {
+    // Fichas armadas con el registro de la SSSalud (lib/data/fichas-registro.ts)
+    const r = fichaRegistro(slug)
+    if (!r) return {}
+    const { ficha: f, entidad: e } = r
+    const title = `${f.nombreCorto}: teléfono y código de obra social (2026)`
+    const description = `Código de obra social ${codigoSeisDigitos(e.codigo!)}${e.telefono ? `, teléfono ${e.telefono}` : ''} y sede de ${nombreLegible(e.nombre).replace(/^\S+ - /, '')}, según la Superintendencia. Calculá cuánto pagarías con tus aportes en una prepaga.`
+    return {
+      title,
+      description,
+      alternates: { canonical: `${SITE_URL}/obras-sociales/${slug}` },
+      keywords: f.keywords,
+      openGraph: { title, description, type: 'article', images: [OG_IMAGE] },
+    }
+  }
   return {
     title: os.titulo,
     description: os.metaDescripcion,
@@ -47,6 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: os.titulo,
       description: os.metaDescripcion,
       type: 'article',
+      images: [OG_IMAGE],
     },
   }
 }
@@ -54,11 +72,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ObraSocialPage({ params }: Props) {
   const { slug } = await params
   const os = obrasSociales.find((o) => o.slug === slug)
-  if (!os) notFound()
+  if (!os) {
+    const r = fichaRegistro(slug)
+    if (!r) notFound()
+    return <FichaRegistroPage ficha={r.ficha} entidad={r.entidad} />
+  }
 
   const otras = obrasSociales.filter((o) => o.slug !== slug).slice(0, 8)
   const prepagaMatch = prepagaHermana(os.slug)
   const provinciaMatch = provinciasSEO.find((p) => p.obraSocialProvincial?.slug === os.slug)
+  // Código del registro de la SSSalud (24-sep-2026): "código [obra social]"
+  // tiene búsquedas propias. Las provinciales no tienen: se dice por qué.
+  const registro = registroDeObraSocial(os.slug)
+  const codigo = registro?.codigo ? codigoSeisDigitos(registro.codigo) : null
+  const faqCodigo = registro ? {
+    q: `¿Cuál es el código de obra social de ${os.nombre}?`,
+    a: codigo
+      ? `${codigo} (RNAS ${registro.codigo}). Es el número con el que figura en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: el que carga tu empleador en tu alta en ARCA (ex AFIP) y el que se usa en la opción de cambio.`
+      : `${os.nombre} no tiene código en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: es una obra social con régimen propio, así que no se puede elegir con la opción de cambio de obra social.`,
+  } : null
+  const faq = faqCodigo ? [...os.faq, faqCodigo] : os.faq
 
   const jsonLd = [
     {
@@ -87,7 +120,7 @@ export default async function ObraSocialPage({ params }: Props) {
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: os.faq.map(({ q, a }) => ({
+      mainEntity: faq.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
         acceptedAnswer: { '@type': 'Answer', text: a },
@@ -145,13 +178,39 @@ export default async function ObraSocialPage({ params }: Props) {
               <div className="text-lg font-bold text-[#E8002D]">{os.derivacion ? 'Sí' : 'No'}</div>
               <div className="text-xs text-gray-500 mt-0.5">Derivación</div>
             </div>
-            <div className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm col-span-2 sm:col-span-1">
+            {codigo && (
+              <Link href="/obras-sociales/codigos" className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:border-gray-400 transition-colors" title={`RNAS ${registro?.codigo}`}>
+                <div className="text-lg font-bold text-[#E8002D] tabular-nums">{codigo}</div>
+                <div className="text-xs text-gray-500 mt-0.5">Código de obra social</div>
+              </Link>
+            )}
+            {/* En mobile (2 columnas) "Tipo" ocupa la fila entera solo si quedaría sola. */}
+            <div className={`bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm ${(typeof os.beneficiarios === 'number' ? 1 : 0) + (codigo ? 1 : 0) === 1 ? 'col-span-2 sm:col-span-1' : ''}`}>
               <div className="text-lg font-bold text-[#E8002D]">{tiposLabels[os.tipo]?.split(' ')[0] ?? os.tipo}</div>
               <div className="text-xs text-gray-500 mt-0.5">Tipo</div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Oferta para el tráfico de obras sociales (24-sep-2026): con los mismos
+          aportes, una prepaga pagando la diferencia. Solo donde los aportes se
+          pueden pasar: agentes del seguro nacionales (con código), no las
+          provinciales ni PAMI. */}
+      {codigo && os.slug !== 'pami' && (
+        <section className="py-6 bg-white">
+          <div className="container max-w-4xl mx-auto">
+            <Link href={`/calculadora-aportes?os=${os.slug}`}
+              className="group flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white p-5 hover:border-[#E8002D] transition-colors">
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-gray-900">¿Tenés {os.nombre}? Con tus mismos aportes podés tener una prepaga</div>
+                <div className="text-sm text-gray-600 mt-0.5">Poné tu sueldo y mirá cuánto pagarías de diferencia en cada plan, con los precios oficiales.</div>
+              </div>
+              <span className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm">Calcular mi diferencia →</span>
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* Teléfonos (23-sep-2026): "osecac teléfono", "pami 138"... tienen mucho
           volumen. Solo números copiados de la web oficial. */}
@@ -261,6 +320,9 @@ export default async function ObraSocialPage({ params }: Props) {
                 <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
                   {os.nombre} no es de contratación voluntaria ni se puede derivar: es un aporte fijo si trabajás para el Estado provincial. Muchos afiliados la mantienen como base y suman una prepaga privada para acceder sin restricciones a la cartilla de {provinciaMatch.capitalNombre} y el interior.
                 </p>
+                <Link href={`/obras-sociales/provincia/${provinciaMatch.slug}`} className="inline-block mt-2 text-sm font-semibold text-gray-500 hover:text-[#E8002D] hover:underline">
+                  Otras obras sociales en {provinciaMatch.nombre} →
+                </Link>
               </div>
               <Link
                 href={`/prepagas/${provinciaMatch.slug}`}
@@ -283,6 +345,15 @@ export default async function ObraSocialPage({ params }: Props) {
                 <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
                   Con tu aporte derivado a {os.nombre} tenés <Link href="/pmo" className="font-semibold text-gray-800 hover:text-[#E8002D] hover:underline">cobertura del PMO</Link>. Si además querés contratar {prepagaMatch.nombre} de forma directa —sin depender de un aporte en blanco— podés ver sus planes, precios y cartilla en la ficha de prepaga.
                 </p>
+                {/* Enlaces a cada plan (24-sep-2026): "osde 210 precio" y
+                    similares están en el borde de la página 1 (Search Console). */}
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {prepagaMatch.planes.map((pl) => (
+                    <Link key={pl.slug} href={`/prepagas/${prepagaMatch.slug}/${pl.slug}`} className="text-xs px-3 py-1.5 bg-white text-gray-700 border border-gray-200 rounded-full hover:border-red-200 hover:text-[#E8002D] font-medium">
+                      {pl.nombre.startsWith(prepagaMatch.nombre) ? pl.nombre : `${prepagaMatch.nombre} ${pl.nombre.replace(/^Plan /, '')}`}
+                    </Link>
+                  ))}
+                </div>
               </div>
               <Link
                 href={`/prepagas/${prepagaMatch.slug}`}
@@ -361,7 +432,7 @@ export default async function ObraSocialPage({ params }: Props) {
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes sobre {os.nombre}</h2>
           <div className="space-y-2">
-            {os.faq.map(({ q, a }) => (
+            {faq.map(({ q, a }) => (
               <details key={q} className="group bg-white rounded-xl border border-gray-200 overflow-hidden">
                 <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold text-sm text-gray-900 select-none list-none">
                   <h3 className="font-semibold text-sm text-gray-900 m-0">{q}</h3>

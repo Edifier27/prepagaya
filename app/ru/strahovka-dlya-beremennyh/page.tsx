@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO_RU } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
@@ -94,7 +94,7 @@ export default function StrahovkaDlyaBeremennyhPage() {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">
         <div className="container max-w-3xl mx-auto">
           <span className="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-4">
-            Гид на русском · Обновлено {PRECIO_ACTUALIZADO_EN}
+            Гид на русском · Обновлено {PRECIO_ACTUALIZADO_RU}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             Страховка для беременных в Аргентине

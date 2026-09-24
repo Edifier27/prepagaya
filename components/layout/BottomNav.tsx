@@ -29,7 +29,7 @@ const items = [
     ),
   },
   {
-    href: '/quiz',
+    href: '/prepaga-por-presupuesto',
     label: 'Presupuesto',
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill={active ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" className="w-6 h-6">

@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
-import { StarRating } from '@/components/ui/StarRating'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
@@ -38,7 +37,6 @@ const jsonLd = {
 export default function RankingPage() {
   const porSatisfaccion = [...prepagas].sort((a, b) => b.satisfaccion - a.satisfaccion)
   const porPrecio = [...prepagas].sort((a, b) => a.planes[0].precio - b.planes[0].precio)
-  const porRating = [...prepagas].sort((a, b) => b.rating - a.rating)
 
   const positionStyles: Record<number, string> = {
     0: 'bg-amber-100 text-amber-700 border-amber-200',
@@ -134,11 +132,8 @@ export default function RankingPage() {
                     {i === 0 && <Badge variant="green">Mejor valorada</Badge>}
                     {nivelPrecio(p.planes[0].precio) === 'economico' && <Badge variant="gray">Más económica</Badge>}
                   </div>
-                  <div className="flex items-center gap-3">
-                    <StarRating rating={p.rating} size="sm" />
-                    <span className="text-xs text-gray-400">{p.cantidadOpiniones.toLocaleString('es-AR')} opiniones</span>
-                  </div>
-                  <p className="text-sm text-gray-500 mt-1 truncate hidden md:block">
+                  {/* Sin rating ni "N opiniones": eran cifras sin fuente (24-sep-2026) */}
+                  <p className="text-sm text-gray-500 mt-1 truncate">
                     {p.pros[0]}
                   </p>
                 </div>

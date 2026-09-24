@@ -34,6 +34,159 @@ export interface GuiaData {
 
 export const guias: GuiaData[] = [
   {
+    slug: 'opcion-de-cambio-obra-social',
+    titulo: 'Cómo cambiar de obra social: la opción de cambio online, paso a paso (2026)',
+    metaDescripcion: 'Cómo hacer la opción de cambio de obra social en la web de la Superintendencia: clave fiscal nivel 3, confirmación por mail en 48 horas y alta el 1° del mes siguiente. Quiénes pueden y cada cuánto.',
+    tiempoLectura: 6,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-09-24',
+    contenido: {
+      intro: 'Para cambiar de obra social tenés que hacer la "opción de cambio" en la web de la Superintendencia de Servicios de Salud (SSSalud). Es gratis, es online y la hacés vos con tu clave fiscal nivel 3 de ARCA: no hace falta ir a ningún lado ni pagarle a un gestor. Podés elegir cualquier obra social o prepaga inscripta en el Registro Nacional de Agentes del Seguro, una vez cada 365 días, y el cambio se activa el primer día del mes siguiente.',
+      secciones: [
+        {
+          titulo: 'Quiénes pueden hacer la opción de cambio',
+          cuerpo: 'Según la SSSalud, pueden hacerla los trabajadores en relación de dependencia bajo convenio, los que están fuera de convenio y son titulares de una obra social de personal de dirección, el personal de casas particulares y los monotributistas de todas las categorías. Los monotributistas solo pueden elegir entre las entidades inscriptas en el registro de las que aceptan monotributistas. Los jubilados y pensionados hacen la opción en ANSES, no en la Superintendencia.',
+        },
+        {
+          titulo: 'Quiénes no pueden',
+          cuerpo: 'No pueden hacer la opción de cambio: quienes se quedaron sin trabajo; los trabajadores con un sueldo mensual menor a dos bases mínimas jubilatorias; las trabajadoras en licencia por maternidad o en situación de excedencia; y el personal de las Fuerzas Armadas y de seguridad, del Servicio Penitenciario, del Poder Judicial y del Poder Legislativo, los afiliados a obras sociales provinciales (como IOMA o APROSS) y cualquier persona de una entidad que no esté inscripta en el registro.',
+        },
+        {
+          titulo: 'Qué necesitás',
+          cuerpo: 'Clave fiscal nivel 3 de ARCA (ex AFIP); tus datos personales (nombre, DNI, CUIL, domicilio y un correo electrónico al que tengas acceso); y saber a qué entidad te querés pasar. Revisá que esté inscripta: en nuestra lista de códigos de obras sociales están todas las del registro, con su código.',
+          enlaces: [{ texto: 'Hacer la opción de cambio (SSSalud)', url: 'https://www.argentina.gob.ar/servicio/realizar-opcion-de-cambio-libre-eleccion-de-agentes-del-seguro' }],
+        },
+        {
+          titulo: 'El paso a paso',
+          cuerpo: 'Uno: entrá al trámite con tu CUIT y tu clave fiscal nivel 3 (si es la primera vez, seguí el instructivo que está en la página del trámite). Dos: elegí "Opción de cambio", después "Nueva opción", y completá el formulario con tus datos. Tres: tocá "Elección de Obra Social / Prepaga" y elegí la entidad. Cuatro: aceptá, revisá los datos y confirmá; el número de trámite aparece arriba, en un recuadro verde. Cinco: te llega un mail; entrá al link "Confirmar trámite" dentro de las 48 horas, o la opción se desestima. En la pantalla y en el mail de ratificación figuran el número de trámite y la fecha desde la que rige tu nueva cobertura.',
+        },
+        {
+          titulo: 'Cuánto tarda el cambio de obra social',
+          cuerpo: 'Todas las opciones se activan el primer día del mes siguiente al que hiciste y confirmaste el trámite. Si confirmás el 10 de octubre, la nueva obra social rige desde el 1 de noviembre; hasta ese día seguís con la que tenías. Una vez confirmada la opción, contactá a la nueva entidad para afiliarte: sin ese paso no vas a poder usar la cobertura cuando empiece.',
+        },
+        {
+          titulo: 'Cada cuánto se puede cambiar',
+          cuerpo: 'Una vez cada 365 días. La opción es irretractable: en la entidad que elegiste tenés que quedarte al menos un año, y recién después podés hacer una nueva opción. Por eso conviene comparar bien antes de confirmar.',
+        },
+        {
+          titulo: 'Si te querés pasar a una prepaga',
+          cuerpo: 'La opción de cambio también sirve para pasar tus aportes a una prepaga inscripta como agente del seguro: tus aportes se descuentan de la cuota y pagás solo la diferencia. Antes de hacerla, calculá cuánto sería con tu sueldo y elegí el plan: después tenés que quedarte un año.',
+          cta: {
+            texto: 'Poné tu sueldo y mirá cuánto pagarías de diferencia en cada plan, con los precios oficiales.',
+            boton: 'Calcular mi diferencia',
+            href: '/calculadora-aportes',
+          },
+        },
+      ],
+      conclusion: 'Cambiar de obra social es un trámite online de diez minutos: clave fiscal nivel 3, elegir la entidad, confirmar el mail en 48 horas y esperar al primer día del mes siguiente. Lo importante es elegir bien, porque después tenés que quedarte un año. Si estás pensando en una prepaga, compará antes cuánto te queda de diferencia con tus aportes.',
+    },
+    faq: [
+      {
+        q: '¿Cómo cambio de obra social?',
+        a: 'Con la opción de cambio, online, en la web de la Superintendencia de Servicios de Salud: entrás con tu clave fiscal nivel 3, elegís la nueva obra social o prepaga y confirmás el mail que te llega dentro de las 48 horas.',
+      },
+      {
+        q: '¿Cuánto tarda el cambio de obra social?',
+        a: 'La opción se activa el primer día del mes siguiente al que hiciste y confirmaste el trámite. Hasta entonces seguís con tu obra social actual.',
+      },
+      {
+        q: '¿Cada cuánto puedo cambiar de obra social?',
+        a: 'Una vez cada 365 días. La opción es irretractable: tenés que quedarte al menos un año en la entidad que elegiste.',
+      },
+      {
+        q: '¿Puedo hacer la opción de cambio en la obra social o con un gestor?',
+        a: 'La Superintendencia indica que la opción de cambio se hace solo online, desde su web, sin intermediarios y sin ir en persona. Es gratuita. Tu clave fiscal es personal: no se la des a nadie.',
+      },
+      {
+        q: '¿Qué pasa si no confirmo el mail?',
+        a: 'La opción se desestima. Tenés 48 horas para entrar al link "Confirmar trámite" del mail.',
+      },
+      {
+        q: '¿Puedo cambiar de obra social si soy monotributista?',
+        a: 'Sí, pero solo a las entidades inscriptas en el registro de agentes del seguro que aceptan monotributistas.',
+      },
+    ],
+    keywords: ['cambiar de obra social', 'como cambiar de obra social', 'opcion de cambio obra social', 'cambio de obra social online', 'cuanto tarda el cambio de obra social', 'cada cuanto se puede cambiar de obra social', 'opcion de cambio sssalud', 'cambiar obra social clave fiscal'],
+    relacionadas: ['derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'unificar-aportes-obra-social', 'obra-social-vs-prepaga'],
+    fuentes: [
+      { texto: 'Argentina.gob.ar — Realizar opción de cambio: libre elección de agentes del seguro', url: 'https://www.argentina.gob.ar/servicio/realizar-opcion-de-cambio-libre-eleccion-de-agentes-del-seguro' },
+      { texto: 'Superintendencia de Servicios de Salud — Usuarios', url: 'https://www.argentina.gob.ar/sssalud/usuarios' },
+    ],
+  },
+  {
+    slug: 'unificar-aportes-obra-social',
+    titulo: 'Unificación de aportes: cómo sumar los aportes de tu pareja en una obra social o prepaga (2026)',
+    metaDescripcion: 'Cómo unificar los aportes de obra social con tu cónyuge o concubino: quiénes pueden, qué papeles piden y cómo presentarlos ante la Superintendencia por TAD, con turno o por correo. Gratis.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-09-24',
+    contenido: {
+      intro: 'La unificación de aportes es el trámite para que vos y tu cónyuge o concubino tengan la misma obra social o prepaga, con los aportes de los dos. La pueden pedir las parejas en relación de dependencia, monotributistas o del servicio doméstico, y también los jubilados. Es gratis y se hace ante la Superintendencia de Servicios de Salud: online por Trámites a Distancia (TAD), con turno o por correo.',
+      secciones: [
+        {
+          titulo: 'Para qué sirve',
+          cuerpo: 'Si los dos trabajan, cada uno aporta a su propia obra social. Al unificar, los aportes de ambos van a la misma entidad y el grupo familiar queda en un solo plan. Cuando esa entidad es una prepaga, los dos aportes se descuentan de la cuota: es una de las formas más efectivas de pagar menos diferencia.',
+          cta: {
+            texto: 'La calculadora de aportes te deja sumar el sueldo de tu pareja y te muestra la diferencia en cada plan.',
+            boton: 'Calcular con los dos sueldos',
+            href: '/calculadora-aportes',
+          },
+        },
+        {
+          titulo: 'Quiénes pueden unificar',
+          cuerpo: 'Cónyuges o concubinos beneficiarios de obras sociales nacionales, en relación de dependencia, monotributistas o del régimen de servicio doméstico. Para jubilados hay un trámite propio, con los mismos pasos más la certificación del vínculo que extiende ANSES.',
+        },
+        {
+          titulo: 'Qué papeles necesitás',
+          cuerpo: 'El formulario de unificación de aportes (se descarga de la página del trámite); fotocopia del DNI; certificado de matrimonio o de concubinato; certificación laboral de tu empleador actual (hay un modelo para descargar) y fotocopia del último recibo de sueldo, o los pagos del monotributo o del servicio doméstico. Si sos monotributista, sumá la fotocopia del F.184 / F.152 de ARCA (y, si sos monotributista social, el alta como efector de Desarrollo Social). Si es servicio doméstico, el F.102 de ARCA y, si hay adherentes, el F.575.',
+          enlaces: [
+            { texto: 'Solicitar unificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes' },
+            { texto: 'Unificación de aportes de jubilados', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes-de-jubilados' },
+          ],
+        },
+        {
+          titulo: 'Cómo presentarlo',
+          cuerpo: 'Elegí una sola vía. Online, por Trámites a Distancia (TAD), con tu usuario de ARCA o de Mi Argentina. Con turno, en la sede central de la Superintendencia (Bartolomé Mitre 434, CABA) o en la delegación de tu provincia: el turno se pide online o al 0800-222-72583. O por correo postal, a la sede central o a la delegación más cercana a tu domicilio.',
+        },
+        {
+          titulo: 'Si se separan o cambiás de trabajo',
+          cuerpo: 'Para volver cada uno a la obra social de su actividad está la desunificación de aportes: formulario de desunificación, DNI de los dos, certificación laboral o recibo de sueldo, la anulación del concubinato, la sentencia de divorcio o el telegrama de renuncia o despido, y el certificado del vínculo. Se presenta por las mismas vías.',
+          enlaces: [{ texto: 'Solicitar desunificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-desunificacion-de-aportes' }],
+        },
+      ],
+      conclusion: 'Unificar aportes es gratis y, si los dos trabajan, es la forma más directa de bajar lo que pagan por la cobertura familiar: los dos aportes van al mismo plan. Juntá el formulario, los DNI, el certificado de matrimonio o concubinato y las certificaciones laborales, y presentalo por TAD para no hacer filas.',
+    },
+    faq: [
+      {
+        q: '¿Qué es la unificación de aportes?',
+        a: 'Es el trámite ante la Superintendencia de Servicios de Salud para que dos cónyuges o concubinos tengan la misma obra social o prepaga, con los aportes de los dos.',
+      },
+      {
+        q: '¿Cómo unifico aportes con mi pareja?',
+        a: 'Completás el formulario de unificación y lo presentás con el DNI, el certificado de matrimonio o concubinato y las certificaciones laborales, por Trámites a Distancia (TAD), con turno en la Superintendencia o por correo.',
+      },
+      {
+        q: '¿La unificación de aportes tiene costo?',
+        a: 'No, es gratuita.',
+      },
+      {
+        q: '¿Puedo unificar aportes con mi concubino?',
+        a: 'Sí: en lugar del certificado de matrimonio presentás el certificado de concubinato.',
+      },
+      {
+        q: '¿Los jubilados pueden unificar aportes?',
+        a: 'Sí, con el trámite de unificación de aportes de jubilados: los mismos papeles más el recibo de haberes y la certificación del vínculo de ANSES.',
+      },
+    ],
+    keywords: ['unificacion de aportes', 'unificar aportes obra social', 'unificar aportes con mi pareja', 'unificacion de aportes conyuge', 'unificacion de aportes concubino', 'unificacion de aportes sssalud', 'unificar aportes prepaga', 'desunificacion de aportes'],
+    relacionadas: ['opcion-de-cambio-obra-social', 'derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'obra-social-vs-prepaga'],
+    fuentes: [
+      { texto: 'Argentina.gob.ar — Solicitar unificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes' },
+      { texto: 'Argentina.gob.ar — Solicitar unificación de aportes de jubilados', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes-de-jubilados' },
+      { texto: 'Argentina.gob.ar — Solicitar desunificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-desunificacion-de-aportes' },
+    ],
+  },
+  {
     slug: 'como-cambiar-de-prepaga',
     titulo: '¿Cómo cambiar de prepaga? Guía paso a paso 2026',
     metaDescripcion: 'Aprendé cómo cambiar de prepaga en Argentina de forma simple. Te explicamos los plazos, requisitos y todo lo que necesitás saber para hacer el cambio sin perder cobertura.',
@@ -86,7 +239,9 @@ export const guias: GuiaData[] = [
   },
   {
     slug: 'obra-social-vs-prepaga',
-    titulo: 'Obra social vs prepaga: diferencias y cuál conviene en 2026',
+    // Search Console (sept 2026): "prepaga y obra social es lo mismo" y
+    // "obra social y prepaga es lo mismo" son las búsquedas que más la traen.
+    titulo: '¿Obra social y prepaga es lo mismo? Diferencias y cuál conviene (2026)',
     metaDescripcion: 'Comparamos obra social y prepaga en Argentina: diferencias, costos, cobertura y cuándo conviene cada una. Tomá la mejor decisión para tu salud.',
     tiempoLectura: 10,
     categoria: 'Comparativas',
@@ -287,7 +442,7 @@ export const guias: GuiaData[] = [
     metaDescripcion: 'Conocé tus derechos como afiliado y cómo hacer una queja o reclamo efectivo a tu prepaga ante la Superintendencia de Servicios de Salud.',
     tiempoLectura: 8,
     categoria: 'Derechos',
-    fechaActualizacion: '2026-07-14',
+    fechaActualizacion: '2026-09-24',
     contenido: {
       intro: 'Negativa de cobertura, demoras en autorizaciones, aumentos mal aplicados, cartilla que no coincide con la prometida: los motivos de reclamo contra las prepagas son siempre los mismos, y la mayoría se resuelve a favor del afiliado cuando el reclamo se hace bien. La clave es escalar en el orden correcto y dejar todo por escrito.',
       secciones: [
@@ -297,7 +452,8 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Paso 2: denuncia ante la SSSalud',
-          cuerpo: 'La Superintendencia de Servicios de Salud es el organismo que controla a prepagas y obras sociales. La denuncia es gratuita, no necesitás abogado y se hace online en sssalud.gob.ar o al 0800-222-72583 (SALUD). Adjuntá tu reclamo previo, la respuesta de la empresa (o la constancia de que no respondió) y la documentación médica. La SSSalud intima a la empresa, y en la práctica la mayoría de las negativas de PMO se revierten en esta instancia.',
+          cuerpo: 'La Superintendencia de Servicios de Salud controla a prepagas y obras sociales, y recibe denuncias por negativa de afiliación, por problemas de cobertura, por aumentos indebidos de cuota por edad y por prestaciones de discapacidad. Es gratis y no necesitás abogado. Para una denuncia por cobertura, completá y firmá el formulario de denuncia y sumá: DNI del titular y del grupo familiar, la credencial, la prescripción médica actualizada, un resumen de historia clínica y la justificación del médico tratante, más tu último recibo de sueldo o la última factura de la prepaga (o el pago del monotributo, según tu caso). Se presenta online por Trámites a Distancia (TAD) con tu usuario de ARCA o de Mi Argentina, con turno en la sede central o en una delegación (se pide online o al 0800-222-72583), o por correo postal. Los plazos y las sanciones los fija la Resolución 951/2025 de la SSSalud.',
+          enlaces: [{ texto: 'Denuncia por problemas de cobertura (SSSalud)', url: 'https://www.argentina.gob.ar/servicio/denuncia-por-problematicas-de-cobertura-prestacional' }],
         },
         {
           titulo: 'Paso 3: Defensa del Consumidor y amparo judicial',
@@ -313,7 +469,7 @@ export const guias: GuiaData[] = [
     faq: [
       {
         q: '¿Cuánto tarda un reclamo ante la SSSalud?',
-        a: 'La intimación a la empresa suele salir en días y muchas empresas revierten la negativa en 2 a 4 semanas. Para urgencias médicas no esperes este circuito: el amparo judicial con medida cautelar es la vía correcta y resuelve en días.',
+        a: 'Los plazos del expediente los fija la Resolución 951/2025 de la Superintendencia. Podés seguir el estado de tu denuncia en "Mis Expedientes", en la web de la SSSalud. Para urgencias médicas no esperes este circuito: el amparo judicial con medida cautelar es la vía correcta y resuelve en días.',
       },
       {
         q: '¿Pueden darme de baja por reclamar?',
@@ -326,6 +482,10 @@ export const guias: GuiaData[] = [
     ],
     keywords: ['como reclamar a una prepaga', 'denuncia sssalud prepaga', 'prepaga me niega cobertura que hacer', 'amparo salud prepaga', 'como reclamar prepaga argentina', 'prepaga nego prestacion que hacer', 'superintendencia servicios salud reclamo', 'derechos afiliados prepaga'],
     relacionadas: ['que-cubre-la-prepaga', 'preexistencias-que-son-como-funcionan', 'baja-de-prepaga-proceso', 'como-pedir-autorizacion-prepaga'],
+    fuentes: [
+      { texto: 'Argentina.gob.ar — Denuncia por problemáticas de cobertura prestacional', url: 'https://www.argentina.gob.ar/servicio/denuncia-por-problematicas-de-cobertura-prestacional' },
+      { texto: 'Superintendencia de Servicios de Salud — Usuarios: denuncias', url: 'https://www.argentina.gob.ar/sssalud/usuarios' },
+    ],
   },
   {
     slug: 'como-pedir-autorizacion-prepaga',
@@ -496,7 +656,7 @@ export const guias: GuiaData[] = [
     metaDescripcion: 'Aprendé cómo funciona la derivación de aportes de tu obra social a una prepaga en Argentina. Qué prepagas lo aceptan, requisitos y diferencia de costos.',
     tiempoLectura: 8,
     categoria: 'Trámites',
-    fechaActualizacion: '2026-07-14',
+    fechaActualizacion: '2026-09-24',
     contenido: {
       intro: 'La derivación de aportes es el mecanismo más poderoso (y menos entendido) para pagar menos por tu prepaga: si trabajás en relación de dependencia, tus aportes de obra social pueden ir a la prepaga que elijas, descontándose de la cuota, y encima accedés a la lista de precios sin IVA. El mismo plan puede costarte 30-40% menos. Así funciona.',
       secciones: [
@@ -510,7 +670,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'El trámite paso a paso',
-          cuerpo: 'Uno: cotizá el plan en modalidad "con aportes" o "deriva aporte", con tu recibo de sueldo a mano. Dos: la prepaga te hace firmar el formulario de opción de cambio de obra social, que gestiona ella misma ante la SSSalud. Tres: el cambio impacta en hasta 90 días corridos, pero la cobertura de la prepaga arranca antes según el acuerdo comercial (la mayoría te cubre desde el primer mes facturado). Requisitos: un año de antigüedad en la obra social de origen para el primer cambio, y solo un cambio de obra social por año calendario.',
+          cuerpo: 'Uno: cotizá el plan en modalidad "con aportes" o "deriva aporte", con tu recibo de sueldo a mano, y fijate que la prepaga esté inscripta en el Registro Nacional de Agentes del Seguro (figura con código en el listado de la Superintendencia). Dos: hacé la opción de cambio vos mismo, online, en la web de la Superintendencia de Servicios de Salud con tu clave fiscal nivel 3 de ARCA: es gratis y sin intermediarios. Tres: confirmá el mail que te llega dentro de las 48 horas, o el trámite se cae. El cambio se activa el primer día del mes siguiente y ahí te afiliás a la prepaga. Se puede hacer una vez cada 365 días, y en la entidad elegida tenés que quedarte al menos un año.',
         },
         {
           titulo: 'Casos particulares: pareja, cambio de trabajo, despido',
@@ -521,7 +681,7 @@ export const guias: GuiaData[] = [
           cuerpo: 'Este paso lo conoce poca gente y ahorra hasta dos meses de espera. Cuando te dan de alta temprana en un trabajo nuevo, el formulario de alta ante AFIP/RRHH te pide indicar una obra social — y ahí mismo podés indicar directamente el código de la obra social con la que opera tu prepaga elegida, en vez de dejar que te asignen la obra social por default de tu convenio colectivo de trabajo (CCT) y tener que derivar después. Por ejemplo, si vas a Swiss Medical, tu empleador puede cargar directamente el código de obra social 900805 (confirmalo con tu asesor antes de indicarlo). Decirlo en el alta, en vez de derivar después, evita dos demoras que se suman: el trámite de derivación en sí (hasta 90 días corridos) y, un problema menos conocido, que la Superintendencia de Servicios de Salud tarde en reflejar en su sistema que ya estás en relación de dependencia — mientras eso no impacte, ninguna prepaga puede procesar tu derivación, y esa demora sola puede llevarse otros 2 meses. Pedir el código correcto desde el día uno evita las dos esperas.',
         },
       ],
-      conclusion: 'Si estás en relación de dependencia y pagás tu prepaga como particular, estás pagando de más: la derivación descuenta tus aportes y elimina el IVA del precio. El trámite lo gestiona la propia prepaga y el ahorro es inmediato. Cotizá siempre en las dos modalidades para ver la diferencia con tus números reales.',
+      conclusion: 'Si estás en relación de dependencia y pagás tu prepaga como particular, estás pagando de más: la derivación descuenta tus aportes y elimina el IVA del precio. El trámite es online y gratis, y el ahorro arranca el mes siguiente. Cotizá siempre en las dos modalidades para ver la diferencia con tus números reales.',
     },
     faq: [
       {

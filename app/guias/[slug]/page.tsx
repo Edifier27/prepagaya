@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { guias } from '@/lib/data/guias'
 import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { StickySectionNav } from '@/components/ui/StickySectionNav'
@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: guia.titulo,
       description: guia.metaDescripcion,
       type: 'article',
+      images: [OG_IMAGE],
       modifiedTime: guia.fechaActualizacion,
     },
   }

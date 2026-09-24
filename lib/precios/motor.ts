@@ -145,6 +145,11 @@ export function preciosParaGrupo(edades: number[], zona: string, modalidad: Moda
 
 export const FUENTE_PRECIOS = DATOS.fuente
 
+/** Planes con cuadro oficial, por prepaga, y el período del cuadro (AAAAMM). */
+export function planesConTarifa(): Record<string, { planes: string[]; periodo: number }> {
+  return Object.fromEntries(Object.entries(DATOS.tarifas).map(([prepaga, planes]) => [prepaga, { planes: Object.keys(planes), periodo: DATOS.periodoPorPrepaga[prepaga] }]))
+}
+
 /**
  * Escala de precio por edad de un plan (modalidad directa, con IVA) en la
  * región equivalente a la zona dada — para las tablas "precio por edad" de

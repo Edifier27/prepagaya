@@ -1,0 +1,49 @@
+# Sucursales oficiales de cada prepaga (24-sep-2026). Search Console mostró
+# que "[prepaga] + [ciudad]" (ej. "osde rosario") es un cuarto de las
+# impresiones con 0,3% de CTR: se busca la sucursal. La red de los entornos
+# de desarrollo no llega a los sitios de las prepagas; esta Action sí.
+#
+# bajar.py: OSDE, Swiss Medical, Galeno, Premedic y Medifé →
+# lib/data/sucursales.json (si una prepaga falla o trae pocas, se conservan
+# las anteriores). Corre el día 3 de cada mes y guarda en la misma rama.
+name: Sucursales de prepagas
+
+on:
+  schedule:
+    - cron: '0 13 3 * *' # día 3 de cada mes, 10:00 hora argentina
+  workflow_dispatch: {}
+  push:
+    branches: ['claude/**']
+    paths:
+      - 'scripts/sucursales/**'
+      - '.github/workflows/sucursales.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sucursales-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sucursales:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bajar sucursales oficiales
+        run: python scripts/sucursales/bajar.py
+      - name: Guardar (commit en la misma rama)
+        run: |
+          git config user.name "prepagaya-bot"
+          git config user.email "bot@prepagaya.com.ar"
+          git add lib/data/sucursales.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios en las sucursales."
+          else
+            git commit -m "Sucursales oficiales: actualización automática $(date +%Y-%m-%d)"
+            git push
+          fi

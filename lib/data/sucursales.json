@@ -1,0 +1,3553 @@
+{
+ "generado": "2026-09-24",
+ "fuentes": {
+  "osde": "https://www.osde.com.ar/buscadorsucursales",
+  "swiss-medical": "https://www.swissmedical.com.ar/prepagaclientes/sucursales",
+  "galeno": "https://www.galeno.com.ar/sucursales/",
+  "premedic": "https://web.grupopremedic.com.ar/sucursales",
+  "medife": "https://www.medife.com.ar/sucursales"
+ },
+ "sucursales": [
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Catamarca (filial)",
+   "direccion": "Av Enrique Ocampo 279 esquina Conesa",
+   "localidad": "Catamarca",
+   "region": "Catamarca",
+   "horario": "08:00 a 17:00 hs.",
+   "lat": -28.47018051147461,
+   "lon": -65.7910385131836
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Belén",
+   "direccion": "San Martín 368",
+   "localidad": "Belén",
+   "region": "Catamarca",
+   "horario": "8 a 13 y 16 a 19 hs.",
+   "lat": -27.64947509765625,
+   "lon": -67.02579498291016
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Andalgalá",
+   "direccion": "Nuñez del Prado y Vte. Lopez",
+   "localidad": "Andalgalá",
+   "region": "Catamarca",
+   "horario": "8 a 17 hs.",
+   "lat": -27.582977294921875,
+   "lon": -66.3134994506836
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Córdoba (filial)",
+   "direccion": "Av. Rafael Núñez 4252",
+   "localidad": "Córdoba Capital",
+   "region": "Córdoba",
+   "horario": "De 08:00 a 16:00 hs.",
+   "lat": -31.366619110107422,
+   "lon": -64.2345962524414
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Villa Carlos Paz",
+   "direccion": "Av. Libertad 188 Local Comercial Nro. 3",
+   "localidad": "Villa Carlos Paz",
+   "region": "Córdoba",
+   "horario": "De 08:30 a 12:30hs",
+   "lat": -31.422428131103516,
+   "lon": -64.49481201171875
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Nueva Cordoba",
+   "direccion": "Av. Leopoldo Lugones 344",
+   "localidad": "Córdoba Capital",
+   "region": "Córdoba",
+   "horario": "De 08:00hs a 16:00hs",
+   "lat": -31.426979064941406,
+   "lon": -64.18185424804688
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Corrientes (filial)",
+   "direccion": "Hipólito Yrigoyen 371",
+   "localidad": "Corrientes",
+   "region": "Corrientes",
+   "horario": "lunes a viernes 08 a 16 hs",
+   "lat": -27.46588134765625,
+   "lon": -58.83415222167969
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Goya",
+   "direccion": "San Martin 659",
+   "localidad": "Goya",
+   "region": "Corrientes",
+   "horario": "Lunes a Viernes de 8 a 13 hs.",
+   "lat": -29.139556884765625,
+   "lon": -59.265655517578125
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Mercedes",
+   "direccion": "Doctor Rivas 810",
+   "localidad": "Mercedes",
+   "region": "Corrientes",
+   "horario": "Martes a Jueves de 8 a 13hs.",
+   "lat": -29.181711196899414,
+   "lon": -58.07365417480469
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Pasos De Los Libres",
+   "direccion": "AVENIDA GRAL MADARIAGA 698",
+   "localidad": "Paso de los Libres",
+   "region": "Corrientes",
+   "horario": "lunes a viernes de 8 a 13hs.",
+   "lat": -29.71453857421875,
+   "lon": -57.085819244384766
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Virasoro",
+   "direccion": "Av. Lavalle 2693",
+   "localidad": "Gdor. Virasoro",
+   "region": "Corrientes",
+   "horario": "lunes a viernes de 8 a 13hs.",
+   "lat": -28.031999588012695,
+   "lon": -56.01148986816406
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Ituzaingó",
+   "direccion": "Corrientes 1555",
+   "localidad": "Ituzaingó",
+   "region": "Corrientes",
+   "horario": "lunes a viernes de 8 a 13hs.",
+   "lat": -27.584205627441406,
+   "lon": -56.68519973754883
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Chaco (filial)",
+   "direccion": "Pueyrredon 152",
+   "localidad": "Resistencia",
+   "region": "Chaco",
+   "horario": "Lunes a Viernes de 8:00 a 16 hs",
+   "lat": -27.44841766357422,
+   "lon": -58.98691177368164
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Sáenz Peña",
+   "direccion": "San Martín 884",
+   "localidad": "Sáenz Peña",
+   "region": "Chaco",
+   "horario": "8:00 a 13:00hs",
+   "lat": -26.78436279296875,
+   "lon": -60.439292907714844
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Trelew (filial)",
+   "direccion": "Pellegrini 262",
+   "localidad": "Trelew",
+   "region": "Chubut",
+   "horario": "Atención al público: 08:00 a 16:00hs Administración: 08:00 a 16.15hs Sistemas: 08:00 a 16.15hs",
+   "lat": -43.252967834472656,
+   "lon": -65.31240844726562
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Puerto Madryn",
+   "direccion": "Mitre 358",
+   "localidad": "Pto. Madryn",
+   "region": "Chubut",
+   "horario": "08:00 a 16:00 hs",
+   "lat": -42.76811981201172,
+   "lon": -65.03529357910156
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Antonio Oeste",
+   "direccion": "Av. Belgrano 960",
+   "localidad": "San Antonio Oeste",
+   "region": "Río Negro",
+   "horario": "Lunes a Viernes de 8hs a 13hs",
+   "lat": -40.731048583984375,
+   "lon": -64.94512176513672
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Esquel",
+   "direccion": "Av. Fontana 763",
+   "localidad": "Esquel",
+   "region": "Chubut",
+   "horario": "Lunes a Viernes 08:00 a 13:00",
+   "lat": -42.91138458251953,
+   "lon": -71.3201904296875
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Del Paraná (filial)",
+   "direccion": "25 de Mayo 375",
+   "localidad": "Paraná",
+   "region": "Entre Ríos",
+   "horario": "09:00 a 15:00 hs",
+   "lat": -31.7351150513,
+   "lon": -60.5252838135
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Formosa (filial)",
+   "direccion": "Saavedra 135",
+   "localidad": "Formosa",
+   "region": "Formosa",
+   "horario": "Horarios de Atención : de 8 hs a 16 hs.",
+   "lat": -26.186140060424805,
+   "lon": -58.16225051879883
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Clorinda",
+   "direccion": "Sarmiento 499",
+   "localidad": "Clorinda",
+   "region": "Formosa",
+   "horario": "De Lunes a Viernes de 8:00 a 13:00 hs.",
+   "lat": -25.288278579711914,
+   "lon": -57.711612701416016
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Jujuy (filial)",
+   "direccion": "Independencia 550",
+   "localidad": "San Salvador de Jujuy",
+   "region": "Jujuy",
+   "horario": "De Lunes a Viernes de 08:00 a 16:00 hs."
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Libertador Gral. San Martín",
+   "direccion": "Belgrano esquina Entre Rios. Local 1",
+   "localidad": "Libertador Gral. San Martín",
+   "region": "Jujuy",
+   "horario": "Lunes, Miércoles y Viernes de 8 a 14 hs y Martes y Jueves de 8 a 12 hs.. A partir del 30.10.2023",
+   "lat": -23.816280364990234,
+   "lon": -64.79135131835938
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Pedro",
+   "direccion": "Mitre 255",
+   "localidad": "San Pedro de Jujuy",
+   "region": "Jujuy",
+   "horario": "Martes y Jueves de 14 a 17 hs",
+   "lat": -24.23243522644043,
+   "lon": -64.8674087524414
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Perico",
+   "direccion": "Lavalle 96",
+   "localidad": "Perico",
+   "region": "Jujuy",
+   "horario": "De Lunes a Viernes de 08:00 a 14:00 hs. A partir del 30.10.2023",
+   "lat": -24.375322341918945,
+   "lon": -65.1177978515625
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE La Pampa (filial)",
+   "direccion": "Av. San Martín 535",
+   "localidad": "Santa Rosa",
+   "region": "La Pampa",
+   "horario": "8:00 a 16:00 hs",
+   "lat": -36.62174987792969,
+   "lon": -64.29203033447266
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Gral. Pico",
+   "direccion": "Calle 20 721",
+   "localidad": "Gral. Pico",
+   "region": "La Pampa",
+   "horario": "Lun a Vie - 8 a 16 hs",
+   "lat": -35.65994644165039,
+   "lon": -63.75314712524414
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Gral. Acha",
+   "direccion": "Victoriano Rodríguez 700",
+   "localidad": "Gral. Acha",
+   "region": "La Pampa",
+   "horario": "Lunes a Viernes de 8 a 13 hs",
+   "lat": -37.37771224975586,
+   "lon": -64.60089874267578
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Realicó",
+   "direccion": "Av. Mullaly 1369 y 2 de Marzo 1598",
+   "localidad": "Realicó",
+   "region": "La Pampa",
+   "horario": "8 a 13 hs",
+   "lat": -35.039588928222656,
+   "lon": -64.24517059326172
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE La Rioja (filial)",
+   "direccion": "Adolfo E. Dávila 30",
+   "localidad": "La Rioja",
+   "region": "La Rioja",
+   "horario": "08:00 a 14:00 hs.",
+   "lat": -29.413700103759766,
+   "lon": -66.85363006591797
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Chilecito",
+   "direccion": "Libertad 49",
+   "localidad": "Chilecito",
+   "region": "La Rioja",
+   "horario": "8:00 a 14:00 hs.",
+   "lat": -29.16596031188965,
+   "lon": -67.5
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Mendoza (filial)",
+   "direccion": "Belgrano 827",
+   "localidad": "Mendoza",
+   "region": "Mendoza",
+   "horario": "Lunes a Viernes de 8:00 hs a 16:00 hs.",
+   "lat": -32.891658782958984,
+   "lon": -68.85016632080078
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Rafael",
+   "direccion": "Av. Hipólito Yrigoyén 1780",
+   "localidad": "San Rafael",
+   "region": "Mendoza",
+   "horario": "Lu a Vi de 09:00 a 14:00 hs",
+   "lat": -34.60883331298828,
+   "lon": -68.3514404296875
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Malargue",
+   "direccion": "San Martín 98",
+   "localidad": "Malargue",
+   "region": "Mendoza",
+   "horario": "Lu a Vi de 09:00 a 14:00 hs",
+   "lat": -35.46656036376953,
+   "lon": -69.58584594726562
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Martín",
+   "direccion": "25 de Mayo 456",
+   "localidad": "San Martín",
+   "region": "Mendoza",
+   "horario": "Lu a Vi de 09:00 a 14:00 hs",
+   "lat": -33.088409423828125,
+   "lon": -68.47537231445312
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Tunuyán",
+   "direccion": "San Martín 1383 Local 2 PB",
+   "localidad": "Tunuyán",
+   "region": "Mendoza",
+   "horario": "Lu a Vi de 09:00 a 14:00 hs",
+   "lat": -33.58049011230469,
+   "lon": -69.01632690429688
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Palmares",
+   "direccion": "Ruta Panamericana 2650",
+   "localidad": "Palmares",
+   "region": "Mendoza",
+   "horario": "Lu a Vi de 08:00 hs a 16:00 hs y Sab: Cerrado",
+   "lat": -32.95576477050781,
+   "lon": -68.85823059082031
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Misiones (filial)",
+   "direccion": "Bolívar 2218",
+   "localidad": "Posadas",
+   "region": "Misiones",
+   "horario": "08:00 a 16:00 hs",
+   "lat": -27.36775016784668,
+   "lon": -55.897064208984375
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Eldorado",
+   "direccion": "JUJUY 1539",
+   "localidad": "Eldorado",
+   "region": "Misiones",
+   "horario": "08:00 a 13:00 hs",
+   "lat": -26.40955924987793,
+   "lon": -54.60950469970703
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Oberá",
+   "direccion": "Jujuy 288 Esq. Berutti",
+   "localidad": "Oberá",
+   "region": "Misiones",
+   "horario": "08:00 a 13:00 hs",
+   "lat": -27.485517501831055,
+   "lon": -55.12259292602539
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Pto. Iguazú",
+   "direccion": "Luis Bogado 35 esq. Corrientes",
+   "localidad": "Pto. Iguazú",
+   "region": "Misiones",
+   "horario": "08:00 a 13:00 hs",
+   "lat": -25.599538803100586,
+   "lon": -54.575775146484375
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Norpatagónica (filial)",
+   "direccion": "Alte. Brown 470 esq. Gdor. Elordi",
+   "localidad": "Neuquén",
+   "region": "Neuquén",
+   "horario": "8 a 16hs",
+   "lat": -38.94993209838867,
+   "lon": -68.06214904785156
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Cutral Co",
+   "direccion": "Olascoaga 433",
+   "localidad": "Cutral Co",
+   "region": "Neuquén",
+   "horario": "8 a 13hs",
+   "lat": -38.933040618896484,
+   "lon": -69.2223892211914
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Catriel",
+   "direccion": "Av. San Martín 307",
+   "localidad": "Catriel",
+   "region": "Río Negro",
+   "horario": "8 a 13hs",
+   "lat": -37.88396453857422,
+   "lon": -67.80143737792969
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Gral. Roca",
+   "direccion": "Bartolomé Mitre 944",
+   "localidad": "Gral. Roca",
+   "region": "Río Negro",
+   "horario": "8 a 16 hs.",
+   "lat": -39.025516510009766,
+   "lon": -67.57501220703125
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Cipolletti",
+   "direccion": "Av. Gral. Fernández Oro 344",
+   "localidad": "Cipolletti",
+   "region": "Río Negro",
+   "horario": "8 a 16hs."
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Plottier",
+   "direccion": "Chos Malal 298",
+   "localidad": "Plottier",
+   "region": "Neuquén",
+   "horario": "8 a 13hs",
+   "lat": -38.9532356262207,
+   "lon": -68.227783203125
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Centenario",
+   "direccion": "Intendente Pons 190",
+   "localidad": "Centenario",
+   "region": "Neuquén",
+   "horario": "8 a 13hs",
+   "lat": -38.829471588134766,
+   "lon": -68.12183380126953
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Añelo",
+   "direccion": "Ruta Provincial 7 Colectora Norte 0",
+   "localidad": "Añelo",
+   "region": "Neuquén",
+   "horario": "8 a 13hs y 14 a 17hs",
+   "lat": -38.35077081386291,
+   "lon": -68.78976694337953
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Lobos (filial)",
+   "direccion": "Pte. Juan D. Perón 68",
+   "localidad": "Lobos",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 08:00 a 16:00 hs.",
+   "lat": -35.1864013671875,
+   "lon": -59.09661865234375
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Chascomus",
+   "direccion": "Libres del Sur. 162",
+   "localidad": "Chascomús",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 a 14:00 hs",
+   "lat": -35.5743408203125,
+   "lon": -58.014068603515625
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Cañuelas",
+   "direccion": "Mozotegui 625",
+   "localidad": "Cañuelas",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 09:00 a 15",
+   "lat": -35.051273345947266,
+   "lon": -58.764041900634766
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Vicente",
+   "direccion": "9 de Julio 79",
+   "localidad": "San Vicente",
+   "region": "Buenos Aires",
+   "horario": "Lunes a viernes de 08:00 a 14:00 hs",
+   "lat": -35.024356842041016,
+   "lon": -58.42250442504883
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Salta (filial)",
+   "direccion": "Vicente Lopez 555",
+   "localidad": "Salta",
+   "region": "Salta",
+   "horario": "Lunes a Viernes de 8 a 16hs",
+   "lat": -24.78875160217285,
+   "lon": -65.4074935913086
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Oran",
+   "direccion": "Pellegrini 527",
+   "localidad": "Oran",
+   "region": "Salta",
+   "horario": "Lunes a Viernes 8:00 a 13:00 horas",
+   "lat": -23.132190704345703,
+   "lon": -64.3230209350586
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Tartagal",
+   "direccion": "Warnes (Esq.Güemes) 199",
+   "localidad": "Tartagal",
+   "region": "Salta",
+   "horario": "Lunes, miércoles y viernes de 8hs a 13hs",
+   "lat": -22.518474578857422,
+   "lon": -63.804931640625
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Juan (filial)",
+   "direccion": "Gral. Paz (oeste) 279",
+   "localidad": "San Juan",
+   "region": "San Juan",
+   "horario": "Lunes a Viernes de 8 a 16 hs",
+   "lat": -31.54181480407715,
+   "lon": -68.5295181274414
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Jachal",
+   "direccion": "Sarmiento 92",
+   "localidad": "Jáchal",
+   "region": "San Juan",
+   "horario": "Lunes a Viernes de 8 a 13 hs",
+   "lat": -30.240985,
+   "lon": -68.746307
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Luis (filial)",
+   "direccion": "Avda. Pte. Illia 86",
+   "localidad": "San Luis Capital",
+   "region": "San Luis",
+   "horario": "Lunes a Viernes de 8:00 a 16:00 hs.",
+   "lat": -33.3010978699,
+   "lon": -66.3392868042
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Villa Mercedes",
+   "direccion": "Pedernera 236",
+   "localidad": "Villa Mercedes",
+   "region": "San Luis",
+   "horario": "Lunes a Viernes de 8:00hs a 13:00 hs.",
+   "lat": -33.688453674316406,
+   "lon": -65.46743774414062
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Merlo",
+   "direccion": "A. del Sol 1317",
+   "localidad": "Merlo",
+   "region": "San Luis",
+   "horario": "de 8:00hs a 13:00hs",
+   "lat": -32.34537124633789,
+   "lon": -65.01214599609375
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Santa Cruz (filial)",
+   "direccion": "Av. Jose de San Martin 445",
+   "localidad": "Río Gallegos",
+   "region": "Santa Cruz",
+   "horario": "Lunes a Viernes de 8 a 16 hrs.",
+   "lat": -51.62014389038086,
+   "lon": -69.21334838867188
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Puerto San Julián",
+   "direccion": "Av. San Martín 1207",
+   "localidad": "Pto. San Julián",
+   "region": "Santa Cruz",
+   "horario": "Lunes a Viernes de 8 a 13 hs",
+   "lat": -49.306514739990234,
+   "lon": -67.73148345947266
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE El Calafate",
+   "direccion": "Av. del Libertador 1651 Local 1 y local 2.",
+   "localidad": "El Calafate",
+   "region": "Santa Cruz",
+   "horario": "Lunes a Viernes de 8 a 13 hs",
+   "lat": -50.338993072509766,
+   "lon": -72.2749252319336
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Santa Fe (filial)",
+   "direccion": "Av. Rivadavia 3238",
+   "localidad": "Santa Fe",
+   "region": "Santa Fe",
+   "horario": "Atención al público LUNES A VIERNES de 8 a 16 hs.",
+   "lat": -31.639001846313477,
+   "lon": -60.70218276977539
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Rafaela",
+   "direccion": "Colón 213",
+   "localidad": "Rafaela",
+   "region": "Santa Fe",
+   "horario": "Atención al público lunes a viernes de 8 a 16 hs",
+   "lat": -31.254417419433594,
+   "lon": -61.49339294433594
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Reconquista",
+   "direccion": "Habegger 945",
+   "localidad": "Reconquista",
+   "region": "Santa Fe",
+   "horario": "De Martes y Jueves de 8 a 13 hs.",
+   "lat": -29.146329879760742,
+   "lon": -59.64828872680664
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Sgo Del Estero (filial)",
+   "direccion": "Buenos Aires 251",
+   "localidad": "Santiago del Estero",
+   "region": "Santiago del Estero",
+   "horario": "Lunes a Viernes de 8:00 a 16:00 horas",
+   "lat": -27.788402557373047,
+   "lon": -64.25650024414062
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Tucumán (filial)",
+   "direccion": "Las Piedras 611",
+   "localidad": "San Miguel de Tucumán",
+   "region": "Tucumán",
+   "horario": "08:00 a 16:00 hs.",
+   "lat": -26.834651947021484,
+   "lon": -65.20729064941406
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Concepción",
+   "direccion": "Padre Carlos Juangorena 1314 esquina Ernesto Padilla",
+   "localidad": "Concepción",
+   "region": "Tucumán",
+   "horario": "Lunes a Viernes de 9:00 a 13:00 hs",
+   "lat": -27.347726821899414,
+   "lon": -65.59146118164062
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Santa Maria",
+   "direccion": "San Martín 264",
+   "localidad": "Santa Maria",
+   "region": "Catamarca",
+   "horario": "08:00 a 13:00 Hs",
+   "lat": -26.6988792419,
+   "lon": -66.0485610962
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Yerba Buena",
+   "direccion": "Av. Aconquija 1201",
+   "localidad": "Yerba Buena",
+   "region": "Tucumán",
+   "horario": "08:00 a 16:00 hs.",
+   "lat": -26.81462287902832,
+   "lon": -65.28628540039062
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Tierra Del Fuego (filial)",
+   "direccion": "Lasserre 544",
+   "localidad": "Río Grande",
+   "region": "Tierra del Fuego",
+   "horario": "8:00 hs a 16:00 hs",
+   "lat": -53.784732818603516,
+   "lon": -67.69844055175781
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Ushuaia",
+   "direccion": "San Martín 1055",
+   "localidad": "Ushuaia",
+   "region": "Tierra del Fuego",
+   "horario": "8:30 hs. a 16:00 hs",
+   "lat": -54.80830383300781,
+   "lon": -68.3126449584961
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Rosario (filial)",
+   "direccion": "Bv. Oroño 949",
+   "localidad": "Rosario",
+   "region": "Santa Fe",
+   "horario": "8:00 a 16:00",
+   "lat": -32.94551086425781,
+   "lon": -60.653907775878906
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Jorge",
+   "direccion": "Sarmiento 1162 Loc. 2",
+   "localidad": "San Jorge",
+   "region": "Santa Fe",
+   "horario": "Lunes a viernes de 8:30 a 13.00 hs",
+   "lat": -31.8953800201416,
+   "lon": -61.86385726928711
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Cañada De Gómez",
+   "direccion": "España 99",
+   "localidad": "Cañada de Gómez",
+   "region": "Santa Fe",
+   "horario": "8:00 A 13:00HS",
+   "lat": -32.8203125,
+   "lon": -61.395416259765625
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Lorenzo",
+   "direccion": "Av. San Martín 1140 Local 1",
+   "localidad": "San Lorenzo",
+   "region": "Santa Fe",
+   "horario": "Lunes a Viernes de 08:00 a 13:00",
+   "lat": -32.7501335144043,
+   "lon": -60.73406982421875
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Venado Tuerto",
+   "direccion": "Belgrano 1085",
+   "localidad": "Venado Tuerto",
+   "region": "Santa Fe",
+   "horario": "8:00 a 13:00 hs.",
+   "lat": -33.74724197387695,
+   "lon": -61.96603012084961
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Funes",
+   "direccion": "Av. Arturo Illia (ex Fuerza Aerea) 1806 esq. Candelaria",
+   "localidad": "Funes",
+   "region": "Santa Fe",
+   "horario": "Lunes a Viernes de 08:00 a 13:00 hs.",
+   "lat": -32.92897415161133,
+   "lon": -60.813987731933594
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Mar Del Plata (filial)",
+   "direccion": "Av. Colon 2909",
+   "localidad": "Mar del Plata",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 a 16:00hs",
+   "lat": -38.001888275146484,
+   "lon": -57.55317687988281
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Balcarce",
+   "direccion": "Av. Favaloro 712 Local 1",
+   "localidad": "Balcarce",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9:00 a 13:00",
+   "lat": -37.84839630126953,
+   "lon": -58.253440856933594
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Pinamar",
+   "direccion": "1° de Julio de 1978 - 1218 Local 2",
+   "localidad": "Pinamar",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9:00 a 15:00"
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Villa Gesell",
+   "direccion": "Avenida 3 861",
+   "localidad": "Villa Gesell",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9:00 a 15:00",
+   "lat": -37.2612419128418,
+   "lon": -56.97182846069336
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Mar De Ajo / San Bernardo",
+   "direccion": "Av. Libertador Gral. San Martín 880 Loc 7 y 8",
+   "localidad": "Mar de Ajó",
+   "region": "Buenos Aires",
+   "horario": "Lunes a viernes de 9:00 a 13:00.",
+   "lat": -36.72123718261719,
+   "lon": -56.67835998535156
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Puerto",
+   "direccion": "Av. de los Trabajadores 233",
+   "localidad": "Mar del Plata",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9:00 a 15:00",
+   "lat": -38.043121337890625,
+   "lon": -57.543704986572266
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Necochea",
+   "direccion": "Av. 58 3001 Esquina 61",
+   "localidad": "Necochea",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9:00 a 15:00",
+   "lat": -38.555667877197266,
+   "lon": -58.74048614501953
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Constitución",
+   "direccion": "Av. Constitución 4712",
+   "localidad": "Mar del Plata",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9:00 a 15:00",
+   "lat": -37.967342376708984,
+   "lon": -57.55093765258789
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE La Plata (filial)",
+   "direccion": "Calle 50 925",
+   "localidad": "La Plata",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes DE 8 a 16 Horas.",
+   "lat": -34.92098617553711,
+   "lon": -57.95661544799805
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE City Bell",
+   "direccion": "Diagonal 3 (Jorge Bell) 178",
+   "localidad": "City Bell",
+   "region": "Buenos Aires",
+   "horario": "lunes a viernes de 8 a 16 hs.",
+   "lat": -34.86669158935547,
+   "lon": -58.04261779785156
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Iraola",
+   "direccion": "Colectora Au. Bs. As.-La Plata km 35,6 0 Edif. Lombardo Building PB B",
+   "localidad": "Guillermo Hudson",
+   "region": "Buenos Aires",
+   "horario": "lunes a viernes de 8 a 16 hs",
+   "lat": -34.77986145019531,
+   "lon": -58.155982971191406
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Comodoro Rivadavia (filial)",
+   "direccion": "Sarmiento 968",
+   "localidad": "Comodoro Rivadavia",
+   "region": "Chubut",
+   "horario": "Lunes a Viernes de 08:00 a 16.00 hs",
+   "lat": -45.860008239746094,
+   "lon": -67.4886245727539
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Caleta Olivia",
+   "direccion": "Güemes 134",
+   "localidad": "Caleta Olivia",
+   "region": "Santa Cruz",
+   "horario": "Lunes a Viernes de 08:00 a 13:00 hs",
+   "lat": -46.438331604003906,
+   "lon": -67.5167007446289
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Las Heras",
+   "direccion": "SAN MARTIN 516",
+   "localidad": "Las Heras",
+   "region": "Santa Cruz",
+   "horario": "Lunes a Viernes de 08:00 a 13:00hs.",
+   "lat": -46.54058074951172,
+   "lon": -68.9345474243164
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Puerto Deseado",
+   "direccion": "San Martín 1494",
+   "localidad": "Pto. Deseado",
+   "region": "Santa Cruz",
+   "horario": "Lunes a Viernes de 08:00 a 13:00 hs",
+   "lat": -47.74916076660156,
+   "lon": -65.8880386352539
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Rada Tilly",
+   "direccion": "Av. Segui 1786",
+   "localidad": "Rada Tilly",
+   "region": "Chubut",
+   "horario": "Lunes a Viernes 08:00 a 13:00 hs."
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Bariloche (filial)",
+   "direccion": "España 261 (8400) 130",
+   "localidad": "Bariloche",
+   "region": "Río Negro",
+   "horario": "8:00 a 17:00 hs",
+   "lat": -41.13349914550781,
+   "lon": -71.31280517578125
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE El Bolsón",
+   "direccion": "Dorrego 459",
+   "localidad": "El Bolsón",
+   "region": "Río Negro",
+   "horario": "Lunes a Viernes 9:00 a 13:00 hs",
+   "lat": -41.9626693726,
+   "lon": -71.5373764038
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Martín De Los Andes",
+   "direccion": "Obeid 868 Oficina A",
+   "localidad": "San Martín de los Andes",
+   "region": "Neuquén",
+   "horario": "Lunes a Viernes de 9:00 a 13:00hs.",
+   "lat": -40.1588249206543,
+   "lon": -71.34899139404297
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Bahía Blanca (filial)",
+   "direccion": "Rodríguez 362",
+   "localidad": "Bahía Blanca",
+   "region": "Buenos Aires",
+   "horario": "Lunes a viernes de 9 a 17 hs",
+   "lat": -38.71297836303711,
+   "lon": -62.26388931274414
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Viedma",
+   "direccion": "Alvear 269",
+   "localidad": "Viedma",
+   "region": "Río Negro",
+   "horario": "Lunes a Viernes 09:00 a 14:00 hs."
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Tres Arroyos",
+   "direccion": "Maipu 255 Local 2",
+   "localidad": "Tres Arroyos",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes 09:00 a 14:00 hs."
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Buenos Aires Centro (filial)",
+   "direccion": "Av. Santamarina 451",
+   "localidad": "Tandil",
+   "region": "Buenos Aires",
+   "horario": "8.00 a 16.00 hs",
+   "lat": -37.3259391785,
+   "lon": -59.1295509338
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Azul",
+   "direccion": "Av. 25 de Mayo 741",
+   "localidad": "Azul",
+   "region": "Buenos Aires",
+   "horario": "9:00 a 15:00",
+   "lat": -36.78041076660156,
+   "lon": -59.86716079711914
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Olavarria",
+   "direccion": "Vicente López 2422",
+   "localidad": "Olavarría",
+   "region": "Buenos Aires",
+   "horario": "8:00 a 16:00",
+   "lat": -36.89556884765625,
+   "lon": -60.32646942138672
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Pergamino (filial)",
+   "direccion": "9 de Julio 702",
+   "localidad": "Pergamino",
+   "region": "Buenos Aires",
+   "horario": "Lunes a viernes de 8 a 16hs",
+   "lat": -33.8953742980957,
+   "lon": -60.57571792602539
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Nicolás",
+   "direccion": "Guardias Nacionales 93",
+   "localidad": "San Nicolás",
+   "region": "Buenos Aires",
+   "horario": "Lunes a viernes de 9 a 15 hs."
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Pedro",
+   "direccion": "Pellegrini 1200",
+   "localidad": "San Pedro",
+   "region": "Buenos Aires",
+   "horario": "Lunes a viernes de 8 a 13hs.",
+   "lat": -33.67841339111328,
+   "lon": -59.6666374206543
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Zarate",
+   "direccion": "Ituzaingó 665 -",
+   "localidad": "Zarate",
+   "region": "Buenos Aires",
+   "horario": "Horario de atención Lunes a Viernes 9 a 15 hs"
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Campana",
+   "direccion": "Av. Intendente Varela 525",
+   "localidad": "Campana",
+   "region": "Buenos Aires",
+   "horario": "Lunes a viernes de 9 a 15 hs.",
+   "lat": -34.1664924621582,
+   "lon": -58.95960235595703
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Chivilcoy (filial)",
+   "direccion": "Av. Soárez 38",
+   "localidad": "Chivilcoy",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 08:00 a 16:00 Hs",
+   "lat": -34.8954963684082,
+   "lon": -60.01766586303711
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Bragado",
+   "direccion": "Rivadavia 1430",
+   "localidad": "Bragado",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 a 13:00 Hs",
+   "lat": -35.11750411987305,
+   "lon": -60.4881477355957
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Mercedes",
+   "direccion": "Calle 29 756 esquina Calle 32",
+   "localidad": "Mercedes",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 a 13:00 Hs",
+   "lat": -34.64773178100586,
+   "lon": -59.43084716796875
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE 9 De Julio",
+   "direccion": "LIBERTAD 1010",
+   "localidad": "9 de Julio",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 a 13:00 Hs",
+   "lat": -35.44367980957031,
+   "lon": -60.886375427246094
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Lujan",
+   "direccion": "Av. Humberto Primo 1244",
+   "localidad": "Lujan",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9:00 a 15:00 Hs",
+   "lat": -34.56474685668945,
+   "lon": -59.118568420410156
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Antonio De Areco",
+   "direccion": "Alvear 352",
+   "localidad": "San Antonio de Areco",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 a 13:00 Hs",
+   "lat": -34.24466323852539,
+   "lon": -59.47397232055664
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Capilla Del Señor",
+   "direccion": "Bartolomé Mitre 482",
+   "localidad": "Capilla del Señor",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 a 13:00 Hs",
+   "lat": -34.294647216796875,
+   "lon": -59.095115661621094
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Trenque Lauquen (filial)",
+   "direccion": "9 de Julio 168",
+   "localidad": "Trenque Lauquen",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 08:00 a 16:00hs.",
+   "lat": -35.97256851196289,
+   "lon": -62.73508834838867
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Pehuajo",
+   "direccion": "José Hernandez 599 Local N° 2",
+   "localidad": "Pehuajo",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8 a 13 hs.-",
+   "lat": -35.83100891113281,
+   "lon": -61.906368255615234
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Cnel. Suárez",
+   "direccion": "Belgrano 1425 local N°6",
+   "localidad": "Cnel. Suárez",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 08:00 - 13:00 HS",
+   "lat": -37.459503173828125,
+   "lon": -61.93635940551758
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Bolívar",
+   "direccion": "San Martín 220",
+   "localidad": "Bolívar",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 08:00 a 13:00hs",
+   "lat": -36.23394012451172,
+   "lon": -61.10976028442383
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Junín (filial)",
+   "direccion": "Bartolomé Mitre 90",
+   "localidad": "Junín",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes 08:00 hs. a 16:00 hs.",
+   "lat": -34.594879150390625,
+   "lon": -60.945220947265625
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Chacabuco",
+   "direccion": "Sarmiento 79",
+   "localidad": "Chacabuco",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes 8:00 hs. a 13:00 hs.",
+   "lat": -34.64451599121094,
+   "lon": -60.469417572021484
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Salto",
+   "direccion": "San Pablo 567",
+   "localidad": "Salto",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 hs. a 13:00 hs .",
+   "lat": -34.29199981689453,
+   "lon": -60.250980377197266
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Lincoln",
+   "direccion": "Av. 9 de Julio 257 PB",
+   "localidad": "Lincoln",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 hs. a 13:00 hs.",
+   "lat": -34.869998931884766,
+   "lon": -61.5270881652832
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Gral. Villegas",
+   "direccion": "Alberti 510",
+   "localidad": "Gral. Villegas",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8:00 hs a 13:00 hs.",
+   "lat": -35.0341796875,
+   "lon": -63.019500732421875
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Villa María (filial)",
+   "direccion": "Santa Fe 1155",
+   "localidad": "Villa Maria",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 08:00 a 16:00 horas.",
+   "lat": -32.40983963012695,
+   "lon": -63.24407958984375
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Marcos Juárez",
+   "direccion": "Av. San Martín 788",
+   "localidad": "Marcos Juárez",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 8:00 a 13:00",
+   "lat": -32.697242736816406,
+   "lon": -62.10264587402344
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Francisco",
+   "direccion": "25 DE MAYO 2440",
+   "localidad": "San Francisco",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 8.00 a 13.00",
+   "lat": -31.428064346313477,
+   "lon": -62.093162536621094
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Río Cuarto (filial)",
+   "direccion": "Constitución 1043",
+   "localidad": "Río Cuarto",
+   "region": "Córdoba",
+   "horario": "8:00 a 16:00 hs"
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Río Uruguay (filial)",
+   "direccion": "Pellegrini 704",
+   "localidad": "Concordia",
+   "region": "Entre Ríos",
+   "horario": "08:00 a 16:00 hs.",
+   "lat": -31.396011352539062,
+   "lon": -58.0164794921875
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Gualeguaychú",
+   "direccion": "Chacabuco 27",
+   "localidad": "Gualeguaychú",
+   "region": "Entre Ríos",
+   "horario": "08:00 a 13:00 hs.",
+   "lat": -33.009281158447266,
+   "lon": -58.51860046386719
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Concepción Del Uruguay",
+   "direccion": "Urquiza 158",
+   "localidad": "Concepción del Uruguay",
+   "region": "Entre Ríos",
+   "horario": "Atención al público: 08:00 a 13:00 .hs",
+   "lat": -32.48246765136719,
+   "lon": -58.233314514160156
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Lomas De Zamora",
+   "direccion": "Av. Hipólito Yrigoyen 9210 esquina Loria",
+   "localidad": "Lomas de Zamora",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs."
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Pilar",
+   "direccion": "Colectora Panamericana 50",
+   "localidad": "Pilar",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.44390869140625,
+   "lon": -58.86787796020508
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Quilmes",
+   "direccion": "Lavalle 329",
+   "localidad": "Quilmes",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs."
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Ramos Mejía",
+   "direccion": "Av. de Mayo 739",
+   "localidad": "Ramos Mejía",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.647491455078125,
+   "lon": -58.56425476074219
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Isidro",
+   "direccion": "Chacabuco 229",
+   "localidad": "San Isidro",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.469974517822266,
+   "lon": -58.50955581665039
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Martín",
+   "direccion": "San Martín 1911",
+   "localidad": "San Martín",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.578643798828125,
+   "lon": -58.53662872314453
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE San Miguel",
+   "direccion": "Dr. R. Balbín 1026",
+   "localidad": "San Miguel",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 11 a 16 Hs.",
+   "lat": -34.54096984863281,
+   "lon": -58.71076202392578
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Vicente López",
+   "direccion": "Av. Maipú 1781",
+   "localidad": "Vicente López",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.521114349365234,
+   "lon": -58.485164642333984
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Caballito",
+   "direccion": "Av. Rivadavia 5423",
+   "localidad": "Caballito",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs."
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Belgrano",
+   "direccion": "Juramento 2075",
+   "localidad": "Belgrano",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.560237884521484,
+   "lon": -58.45361328125
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Escobar",
+   "direccion": "Mitre 538",
+   "localidad": "Escobar",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.349334716796875,
+   "lon": -58.79683303833008
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Lanús",
+   "direccion": "Hipolito Yrigoyen 4155",
+   "localidad": "Lanús",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.70778274536133,
+   "lon": -58.38838195800781
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Devoto",
+   "direccion": "Av. Francisco Beiró 3275",
+   "localidad": "Devoto",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.59803009033203,
+   "lon": -58.4992561340332
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Palermo",
+   "direccion": "Av. Santa Fe 3157",
+   "localidad": "Palermo",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.58944320678711,
+   "lon": -58.409542083740234
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Barracas",
+   "direccion": "Av. Montes de Oca 562",
+   "localidad": "Barracas",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.63507080078125,
+   "lon": -58.37520217895508
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Castelar",
+   "direccion": "Gob. Inocencio Arias 2433",
+   "localidad": "Castelar",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.650901794433594,
+   "lon": -58.64322280883789
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Barrio Norte",
+   "direccion": "Av. Callao 1315",
+   "localidad": "Barrio Norte",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.593658447265625,
+   "lon": -58.39300537109375
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Martínez",
+   "direccion": "Alvear 351",
+   "localidad": "Martínez",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.487606048583984,
+   "lon": -58.49657440185547
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Moreno",
+   "direccion": "Colectora Sur Acceso Oeste KM 41",
+   "localidad": "Moreno",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.645877838134766,
+   "lon": -58.79006576538086
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Monte Grande",
+   "direccion": "General Las Heras 374",
+   "localidad": "Monte Grande",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.8172721862793,
+   "lon": -58.465606689453125
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Microcentro",
+   "direccion": "Av. Corrientes 420",
+   "localidad": "Microcentro",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.603153228759766,
+   "lon": -58.37269592285156
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Villa Urquiza",
+   "direccion": "Av. Triunvirato 4301",
+   "localidad": "Villa Urquiza",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.577301025390625,
+   "lon": -58.48139190673828
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Flores",
+   "direccion": "Av. Rivadavia 6668",
+   "localidad": "Flores",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.627845764160156,
+   "lon": -58.45952606201172
+  },
+  {
+   "prepaga": "osde",
+   "nombre": "OSDE Nordelta",
+   "direccion": "Av. de los Lagos 6855 Loc 9",
+   "localidad": "Tigre",
+   "region": "Ciudad de Buenos Aires y GBA",
+   "horario": "De 10 a 16 Hs.",
+   "lat": -34.399784088134766,
+   "lon": -58.650665283203125
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Bahía Blanca",
+   "direccion": "Alem 112 - Bahía Blanca - Buenos Aires",
+   "localidad": "Bahía Blanca",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -38.71365613,
+   "lon": -62.26110667
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Barrio Norte",
+   "direccion": "Av. Pueyrredón 1486 - Capital Federal",
+   "localidad": "Capital Federal",
+   "region": "Capital Federal",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.59352867,
+   "lon": -58.40206236
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Belgrano",
+   "direccion": "Sucre 2233 - Capital Federal",
+   "localidad": "Capital Federal",
+   "region": "Capital Federal",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.56285174,
+   "lon": -58.453428
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Berazategui",
+   "direccion": "Av. Mitre 1301 - Berazategui - Buenos Aires",
+   "localidad": "Berazategui",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.75872134,
+   "lon": -58.20602506
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Caballito",
+   "direccion": "Av. Rivadavia 4781 - Capital Federal",
+   "localidad": "Capital Federal",
+   "region": "Capital Federal",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.61647099,
+   "lon": -58.43260802
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Chivilcoy",
+   "direccion": "Av. Federico de Soarez 121 - Chivilcoy - Buenos Aires",
+   "localidad": "Chivilcoy",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.89456075,
+   "lon": -60.01634583
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Comodoro Rivadavia",
+   "direccion": "Belgrano 952 - Comodoro Rivadavia - Chubut",
+   "localidad": "Comodoro Rivadavia",
+   "region": "Chubut",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -45.8604914,
+   "lon": -67.4846284
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Córdoba",
+   "direccion": "Hipólito Yrigoyen 486 - Córdoba Capital",
+   "localidad": "Córdoba",
+   "region": "Córdoba",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -31.42663073,
+   "lon": -64.18578744
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Corrientes",
+   "direccion": "Córdoba 698 - Corrientes",
+   "localidad": "Corrientes",
+   "region": "Corrientes",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -27.46540593,
+   "lon": -58.83412063
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Jujuy",
+   "direccion": "Senador Pérez 197 - Jujuy",
+   "localidad": "San Salvador de Jujuy",
+   "region": "Jujuy",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -24.18699913,
+   "lon": -65.30789226
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal La Plata",
+   "direccion": "Avenida 7 N° 379 entre Calles 39 y 40 - La Plata - Buenos Aires",
+   "localidad": "La Plata",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.90714689,
+   "lon": -57.96036154
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Lobos",
+   "direccion": "Ayacucho 87 - Lobos - Buenos Aires",
+   "localidad": "Lobos",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -35.185092,
+   "lon": -59.0951484
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Lomas de Zamora",
+   "direccion": "Av. Meeks 443 -Lomas de Zamora -Buenos Aires",
+   "localidad": "Lomas de Zamora",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.76650573,
+   "lon": -58.39852452
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Mendoza",
+   "direccion": "Colón 653 - Mendoza",
+   "localidad": "Mendoza",
+   "region": "Mendoza",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -32.8933132,
+   "lon": -68.8488395
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Microcentro",
+   "direccion": "Sarmiento 487 - Capital Federal",
+   "localidad": "Capital Federal",
+   "region": "Capital Federal",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.60439792,
+   "lon": -58.37359339
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Neuquén",
+   "direccion": "Jujuy 164 - Neuquén",
+   "localidad": "Neuquén",
+   "region": "Neuquén",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -38.953261,
+   "lon": -68.067976
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Olavarría",
+   "direccion": "San Martín 3229 esq. 25 de Mayo - Olavarría - Buenos Aires",
+   "localidad": "Olavarría",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Jueves de 9 a 17 hs. Viernes de 9 a 16 hs.",
+   "lat": -36.89629464,
+   "lon": -60.31906262
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Palermo",
+   "direccion": "Av. Santa Fe 3700 - Capital Federal",
+   "localidad": "Capital Federal",
+   "region": "Capital Federal",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.58518865,
+   "lon": -58.41604874
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Martínez",
+   "direccion": "Av. Alvear 399 - Martínez - Buenos Aires",
+   "localidad": "Martínez",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.4874102,
+   "lon": -58.4960274
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Pergamino",
+   "direccion": "Merced 719 - Pergamino - Buenos Aires",
+   "localidad": "Pergamino",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -33.89529797,
+   "lon": -60.57468653
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Posadas",
+   "direccion": "Sarmiento 1728 - Posadas - Misiones",
+   "localidad": "Posadas",
+   "region": "Misiones",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -27.36522875,
+   "lon": -55.89264393
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Puerto Madryn",
+   "direccion": "28 de Julio 401 - Puerto Madryn - Chubut",
+   "localidad": "Puerto Madryn",
+   "region": "Chubut",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -42.7674799,
+   "lon": -65.03900215
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Salta",
+   "direccion": "España 943 - Salta",
+   "localidad": "Salta",
+   "region": "Salta",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -24.78821751,
+   "lon": -65.41560978
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Paraná",
+   "direccion": "Buenos Aires 263 - Paraná - Entre Ríos",
+   "localidad": "Paraná",
+   "region": "Entre Ríos",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -31.72881847,
+   "lon": -60.53034559
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Río Gallegos",
+   "direccion": "Moyano 112 - Río Gallegos - Santa Cruz",
+   "localidad": "Río Gallegos",
+   "region": "Santa Cruz",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -51.61727211,
+   "lon": -69.21241343
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Rosario",
+   "direccion": "San Lorenzo 1141 - Rosario - Santa Fe",
+   "localidad": "Rosario",
+   "region": "Santa Fe",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -32.94411625,
+   "lon": -60.63831724
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal San Francisco",
+   "direccion": "Bv. 25 de Mayo 1466 - San Francisco - Córdoba",
+   "localidad": "San Francisco",
+   "region": "Córdoba",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -31.42995108,
+   "lon": -62.08235689
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Resistencia",
+   "direccion": "Gral. Obligado 216 - Resistencia - Chaco",
+   "localidad": "Resistencia",
+   "region": "Chaco",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -27.45515881,
+   "lon": -58.9871648
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Río Cuarto",
+   "direccion": "Belgrano 242 - Río Cuarto - Córdoba",
+   "localidad": "Río Cuarto",
+   "region": "Córdoba",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -33.12411923,
+   "lon": -64.34591532
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal San Nicolás de los Arroyos",
+   "direccion": "De la Nación 63 - San Nicolás - Buenos Aires",
+   "localidad": "San Nicolás",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -33.3285931,
+   "lon": -60.2153644
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal San Rafael",
+   "direccion": "Godoy Cruz 28 - San Rafael - Mendoza",
+   "localidad": "San Rafael",
+   "region": "Mendoza",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.6157406,
+   "lon": -68.3329393
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Santa Fe",
+   "direccion": "San Jerónimo 2602 - Santa Fe",
+   "localidad": "Santa Fe",
+   "region": "Santa Fe",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -31.64533277,
+   "lon": -60.70770264
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Santa Rosa",
+   "direccion": "Leandro N. Alem 592 - Santa Rosa - La Pampa",
+   "localidad": "Santa Rosa",
+   "region": "La Pampa",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -36.6231799,
+   "lon": -64.28358
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal San Isidro",
+   "direccion": "Belgrano 427 - San Isidro - Buenos Aires",
+   "localidad": "San Isidro",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.46932346,
+   "lon": -58.5097041
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal San Juan",
+   "direccion": "Av. Libertador Gral.San Martín 178 - San Juan",
+   "localidad": "San Juan",
+   "region": "San Juan",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -31.5359688,
+   "lon": -68.5283713
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal San Luis",
+   "direccion": "Pedernera 1233 - San Luis",
+   "localidad": "San Luis",
+   "region": "San Luis",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -33.30081504,
+   "lon": -66.34218022
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Tucumán",
+   "direccion": "24 de Septiembre 1062 - Tucumán",
+   "localidad": "San Miguel de Tucumán",
+   "region": "Tucumán",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -26.8295159,
+   "lon": -65.213314
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Venado Tuerto",
+   "direccion": "San Martín 166 - Venado Tuerto - Santa Fe",
+   "localidad": "Venado Tuerto",
+   "region": "Santa Fe",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -33.75044435,
+   "lon": -61.96196124
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Tandil",
+   "direccion": "San Martín 365 - Tandil - Buenos Aires",
+   "localidad": "Tandil",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -37.32762329,
+   "lon": -59.13978517
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Villa Mercedes",
+   "direccion": "Av. Mitre 751 - Villa Mercedes - San Luis",
+   "localidad": "Villa Mercedes",
+   "region": "San Luis",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -33.6794291,
+   "lon": -65.4631858
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Yerba Buena",
+   "direccion": "Av. Aconquija 1004 - Yerba Buena - Tucumán",
+   "localidad": "Yerba Buena",
+   "region": "Tucumán",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -26.81533323,
+   "lon": -65.28341912
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Zárate",
+   "direccion": "19 de Marzo 387 - Zárate -Buenos Aires",
+   "localidad": "Zárate",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.09815657,
+   "lon": -59.0218062
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Canning",
+   "direccion": "Av. Castex 3489 - Canning - Buenos Aires",
+   "localidad": "Canning",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.88836872,
+   "lon": -58.50585043
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal San Martin",
+   "direccion": "Lincoln 3789 - San Martín - Buenos Aires",
+   "localidad": "San Martín",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.57935765,
+   "lon": -58.53548884
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Luján",
+   "direccion": "Lavalle 484 - Luján -Buenos Aires",
+   "localidad": "Luján",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Jueves de 9 a 17 hs. Viernes de 9 a 16 hs.",
+   "lat": -34.56441335,
+   "lon": -59.11502838
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Concordia",
+   "direccion": "Calle San Luis 739 - Concordia - Entre Ríos",
+   "localidad": "Concordia",
+   "region": "Entre Ríos",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -31.3950582,
+   "lon": -58.0193253
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Campana",
+   "direccion": "Colón 257 - Campana - Buenos Aires",
+   "localidad": "Campana",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.16171829,
+   "lon": -58.95551875
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Ramos Mejía",
+   "direccion": "Bartolomé Mitre 137 - Ramos Mejía - Buenos Aires",
+   "localidad": "Ramos Mejía",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.6414895,
+   "lon": -58.5622819
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal San Miguel",
+   "direccion": "Maestro Ángel DElía 1024 - San Miguel",
+   "localidad": "San Miguel",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.5455414,
+   "lon": -58.7061454
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Bariloche",
+   "direccion": "España 286 - Bariloche - Río Negro",
+   "localidad": "Bariloche",
+   "region": "Río Negro",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -41.13338106,
+   "lon": -71.31385982
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Cerro de las Rosas",
+   "direccion": "Luis de Tejeda 4514 - Cerro de las Rosas - Córdoba",
+   "localidad": "Córdoba",
+   "region": "Córdoba",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -31.36658443,
+   "lon": -64.23689827
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Gral. Roca",
+   "direccion": "Don Bosco 1430 - General Roca - Río Negro",
+   "localidad": "General Roca",
+   "region": "Río Negro",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -39.0274058,
+   "lon": -67.5798435
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Mar del Plata",
+   "direccion": "Córdoba 2142- Mar del Plata - Buenos Aires",
+   "localidad": "Mar del Plata",
+   "region": "Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -38.002809,
+   "lon": -57.549646
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Olivos",
+   "direccion": "Av. Maipú 1139 - Olivos - Buenos Aires",
+   "localidad": "Olivos",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.527324,
+   "lon": -58.481714
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Pilar",
+   "direccion": "Ruta Panamericana KM 49.5 Complejo Paralelo 50 - Buenos Aires",
+   "localidad": "Pilar",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.44339314,
+   "lon": -58.86110365
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Recoleta",
+   "direccion": "Arenales 1818 - Capital Federal",
+   "localidad": "Capital Federal",
+   "region": "Capital Federal",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.59491417,
+   "lon": -58.39355841
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Río Grande",
+   "direccion": "Rosales 246 - Río Grande - Tierra del Fuego",
+   "localidad": "Río Grande",
+   "region": "Tierra del Fuego",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -53.78744921,
+   "lon": -67.69546531
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal San Lorenzo",
+   "direccion": "Bv. Urquiza 510 - San Lorenzo - Santa Fe",
+   "localidad": "San Lorenzo",
+   "region": "Santa Fe",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -32.7476277,
+   "lon": -60.7327486
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Santiago del Estero",
+   "direccion": "Av. Roca (Sur) Nro. 837 - Santiago del Estero",
+   "localidad": "Santiago del Estero",
+   "region": "Santiago del Estero",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes, Martes, Jueves y Viernes de 9 a 17 hs. Miércoles de 9 a 16 hs.",
+   "lat": -27.78691055,
+   "lon": -64.25457001
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Villa María",
+   "direccion": "9 de Julio 236 - Villa María - Córdoba",
+   "localidad": "Villa María",
+   "region": "Córdoba",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 14 hs.",
+   "lat": -32.4128357,
+   "lon": -63.2404973
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Concepción del Uruguay",
+   "direccion": "Artigas 106 - Concepción del Uruguay - Entre Ríos",
+   "localidad": "Concepción del Uruguay",
+   "region": "Entre Ríos",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -32.48582362,
+   "lon": -58.23017769
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Ushuaia",
+   "direccion": "Av. Maipú 1401 - Ushuaia - Tierra del Fuego",
+   "localidad": "Ushuaia",
+   "region": "Tierra del Fuego",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Jueves de 9 a 17 hs. Viernes de 9 a 16 hs.",
+   "lat": -54.8100433,
+   "lon": -68.3167071
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Ledesma",
+   "direccion": "Arrieta 186 - Ledesma - Jujuy",
+   "localidad": "Ledesma",
+   "region": "Jujuy",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 14.30 hs.",
+   "lat": -23.829986,
+   "lon": -64.793461
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Quilmes",
+   "direccion": "Moreno 830 - Quilmes",
+   "localidad": "Quilmes",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.725939,
+   "lon": -58.255472
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Avellaneda",
+   "direccion": "Av. Bartolomé Mitre 1151 - Avellaneda - Buenos Aires",
+   "localidad": "Avellaneda",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.664351,
+   "lon": -58.3610113
+  },
+  {
+   "prepaga": "swiss-medical",
+   "nombre": "Swiss Medical Sucursal Moreno",
+   "direccion": "Independencia 2752 - Moreno - Buenos Aires",
+   "localidad": "Moreno",
+   "region": "Gran Buenos Aires",
+   "telefono": "0810-444-7700",
+   "horario": "Lunes a Viernes de 9 a 17 hs.",
+   "lat": -34.6471172,
+   "lon": -58.7883829
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Belgrano",
+   "direccion": "Vuelta de Obligado 2286, CABA",
+   "localidad": "Ciudad Autonoma Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5597382,
+   "lon": -58.45718599999998
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Caballito",
+   "direccion": "Av. Donato Alvarez 20, CABA",
+   "localidad": "Ciudad Autónoma de Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6254129,
+   "lon": -58.45416310000002
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Catalinas",
+   "direccion": "Av. Leandro N. Alem 641, CABA",
+   "localidad": "Ciudad Autónoma de Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.60010961376091,
+   "lon": -58.37040379543455
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Centro",
+   "direccion": "Av. Córdoba 1712, CABA",
+   "localidad": "Ciudad Autónoma de Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5995909,
+   "lon": -58.3917247
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Palermo",
+   "direccion": "Av. Coronel Díaz 1877, CABA",
+   "localidad": "Ciudad Autónoma Buenos Aires",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5893597,
+   "lon": -58.4103159
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Puerto Madero",
+   "direccion": "Av. Elvira Rawson de Dellepiane 150, CABA",
+   "localidad": "San Telmo",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.623774,
+   "lon": -58.363312
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Dupuytren",
+   "direccion": "Av. Belgrano 3402, CABA",
+   "localidad": "Almagro",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6155593,
+   "lon": -58.4143995
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad Mitre",
+   "direccion": "Larrea 140, CABA",
+   "localidad": "Balvanera",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6081652,
+   "lon": -58.4019682
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad Palermo",
+   "direccion": "Av. Cerviño 4720, CABA",
+   "localidad": "Palermo",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5760566,
+   "lon": -58.42409709999998
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Centro Medico Trinidad Quilmes",
+   "direccion": "Lavalle 408, Quilmes",
+   "localidad": "Quilmes",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.7191696,
+   "lon": -58.25949230000003
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Escobar",
+   "direccion": "Sarmiento 670, Escobar",
+   "localidad": "Escobar",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.3495574,
+   "lon": -58.79835109999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno La Plata",
+   "direccion": "Av. 13 Nro. 658, La Plata",
+   "localidad": "La plata",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.917306,
+   "lon": -57.960078
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Lomas de Zamora",
+   "direccion": "Bartolomé Mitre 110, Lomas de Zamora",
+   "localidad": "Lomas de Zamora",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.765568606746285,
+   "lon": -58.39873870196299
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Luján",
+   "direccion": "España 825, Luján",
+   "localidad": "Luján",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -34.57202946158183,
+   "lon": -59.11279419296233
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Morón",
+   "direccion": "Av. Rivadavia 17959, Morón",
+   "localidad": "Morón",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6492906,
+   "lon": -58.61687059999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Pilar",
+   "direccion": "Edif. Paralelo 50 (Sur) Panamericana Km 49,5 - Colectora Oeste, Ramal Pilar",
+   "localidad": "Pilar",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.443404,
+   "lon": -58.860453
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Ramos Mejia",
+   "direccion": "Necochea 143, Ramos Mejia",
+   "localidad": "Ramos Mejia",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.6425068,
+   "lon": -58.567051900000024
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad Quilmes",
+   "direccion": "Carlos Pellegrini 499, Quilmes",
+   "localidad": "Quilmes",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.726171,
+   "lon": -58.266055600000016
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad Ramos Mejía",
+   "direccion": "Av. Rivadavia 13246, Ramos Mejia",
+   "localidad": "Ramos Mejia",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.63996,
+   "lon": -58.55366
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Sanatorio Trinidad San Isidro",
+   "direccion": "Fondo de la Legua 851, San Isidro",
+   "localidad": "San Isidro",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.4995171,
+   "lon": -58.542483000000004
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Isidro",
+   "direccion": "Av. del Libertador 16025, San Isidro",
+   "localidad": "Ramos Mejia",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.4694145,
+   "lon": -58.50845549999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Martín",
+   "direccion": "Felix Ballester N 2118/26/28/32, San Martin",
+   "localidad": "San Martín",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.57891734523363,
+   "lon": -58.5412108954035
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Miguel",
+   "direccion": "Av. J. D. Perón 1788, San Miguel",
+   "localidad": "San Miguel",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5403518,
+   "lon": -58.71467289999998
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Vicente Lopez",
+   "direccion": "Av. Maipu 1619, Vicente Lopez",
+   "localidad": "Vicente Lopez",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5229002,
+   "lon": -58.48426440000003
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Zarate",
+   "direccion": "Belgrano 892, Zarate",
+   "localidad": "Zarate",
+   "region": "Gran Buenos Aires",
+   "horario": "Lunes a Viernes de 8 a 17 hs.",
+   "lat": -34.0968711,
+   "lon": -59.02520079999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Bahia Blanca",
+   "direccion": "Dorrego 3, Bahia Blanca",
+   "localidad": "Bahia Blanca",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -38.7149758,
+   "lon": -62.26057539999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Chivilcoy",
+   "direccion": "Hipólito Yrigoyen 17, Chivilcoy",
+   "localidad": "Chivilcoy",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -34.8964432,
+   "lon": -60.02030289999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Junín",
+   "direccion": "12 de Octubre 44, Junín",
+   "localidad": "Junín",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.5946611,
+   "lon": -60.9441946
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Mar del Plata",
+   "direccion": "Colón 2663/69, Mar del Plata",
+   "localidad": "Mar de Plata",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -38.0031329,
+   "lon": -57.550708499999985
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Olavarría",
+   "direccion": "San Martín 2604, Olavarría",
+   "localidad": "Olavarría",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -36.892461,
+   "lon": -60.323991
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Pergamino",
+   "direccion": "San Nicolás 130, Pergamino",
+   "localidad": "Pergamino",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -33.8905818,
+   "lon": -60.5712762
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Pinamar",
+   "direccion": "Av. Enrique Shaw 328 Loc. 4, Pinamar",
+   "localidad": "Pinamar",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 10 a 14 hs.",
+   "lat": -37.109088,
+   "lon": -56.866063
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Nicolas",
+   "direccion": "Bartolome Mitre 483, San Nicolas de los Arroyos",
+   "localidad": "San Nicolas de los Arroyos",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -33.3360728,
+   "lon": -60.224340100000006
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Tandil",
+   "direccion": "Chacabuco 739, Tandil",
+   "localidad": "Tandil",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -37.3256627,
+   "lon": -59.14028940000003
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Tres Arroyos",
+   "direccion": "Colon 219, Tres Arroyos",
+   "localidad": "Tres Arroyos",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 8 a 17 hs.",
+   "lat": -38.379269595837364,
+   "lon": -60.27460054633255
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno 9 de Julio",
+   "direccion": "Bartolomé Mitre 1318, 9 de Julio",
+   "localidad": "9 de Julio",
+   "region": "Buenos Aires",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -35.445038,
+   "lon": -60.885321
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Resistencia",
+   "direccion": "Av. Sarmiento 335, Resistencia",
+   "localidad": "Resistencia",
+   "region": "Chaco",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -27.448335,
+   "lon": -58.983499
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Comodoro Rivadavia",
+   "direccion": "Rivadavia 875, Comodoro Rivadavia",
+   "localidad": "Comodoro Rivadavia",
+   "region": "Chubut",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -45.8621229,
+   "lon": -67.48725289999999
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Puerto Madryn",
+   "direccion": "Av. Julio A. Roca 611, Puerto Madryn",
+   "localidad": "Puerto Madryn",
+   "region": "Chubut",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -42.7697467,
+   "lon": -65.0310437
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Cerro Las Rosas",
+   "direccion": "Rafael Nuñez 5029, Cerro Las Rosas",
+   "localidad": "Cerro Las Rosas",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -31.358094,
+   "lon": -64.240506
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Córdoba",
+   "direccion": "Independencia 417, Córdoba",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -31.421281,
+   "lon": -64.1862
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Río Cuarto",
+   "direccion": "España 182, Río Cuarto",
+   "localidad": "Río Cuarto",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -33.117148,
+   "lon": -64.347124
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Río Tercero",
+   "direccion": "Lavalle 129, Río Tercero",
+   "localidad": "Río Tercero",
+   "region": "Córdoba",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -32.1696777656347,
+   "lon": -64.11621377942573
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Corrientes",
+   "direccion": "Salta 860, Corrientes",
+   "localidad": "Corrientes",
+   "region": "Corrientes",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -27.466869,
+   "lon": -58.83923
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Concordia",
+   "direccion": "Catamarca 196 local 4, Concordia",
+   "localidad": "Concordia",
+   "region": "Entre Ríos",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -31.395587,
+   "lon": -58.014359
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Paraná",
+   "direccion": "Buenos Aires 246, Paraná",
+   "localidad": "Paraná",
+   "region": "Entre Ríos",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -31.729051,
+   "lon": -60.53056729999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Salvador de Jujuy",
+   "direccion": "Gral. Güemes 1300, San Salvador de Jujuy",
+   "localidad": "San Salvador de Jujuy",
+   "region": "Jujuy",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -24.18339658660517,
+   "lon": -65.31106440972836
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Santa Rosa",
+   "direccion": "San Martín 299 , Santa Rosa",
+   "localidad": "Santa Rosa",
+   "region": "La Pampa",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -36.6210857,
+   "lon": -64.28730530000001
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Mendoza",
+   "direccion": "Av. Belgrano 735, Mendoza",
+   "localidad": "Mendoza",
+   "region": "Mendoza",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -32.892566,
+   "lon": -68.850623
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Rafael",
+   "direccion": "Av. Hipólito Yrigoyen 902, San Rafael",
+   "localidad": "San Rafael",
+   "region": "Mendoza",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -34.612245,
+   "lon": -68.341147
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Gral. San Martin",
+   "direccion": "Las Heras 283, San Martin",
+   "localidad": "Gral. San Martin",
+   "region": "Mendoza",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -33.086992,
+   "lon": -68.473139
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Malargüe",
+   "direccion": "Av. San Martín 978, Malargüe",
+   "localidad": "Malargüe",
+   "region": "Mendoza",
+   "horario": "Lunes a Viernes de 10 a 16 hs.",
+   "lat": -35.476535,
+   "lon": -69.585392
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Posadas",
+   "direccion": "Rivadavia 1545, Posadas",
+   "localidad": "Posadas",
+   "region": "Misiones",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -27.36472304438138,
+   "lon": -55.891055861765444
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Neuquén",
+   "direccion": "Diag. España 67, Neuquén",
+   "localidad": "Neuquén",
+   "region": "Neuquén",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -38.9501949,
+   "lon": -68.05792759999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Martin de los Andes",
+   "direccion": "Belgrano 978 local 2, San Martin de los Andes",
+   "localidad": "San Martin de los Andes",
+   "region": "Neuquén",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -40.158043,
+   "lon": -71.348766
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Bariloche",
+   "direccion": "Vice Alte.E.O'Connor 541, Bariloche",
+   "localidad": "Bariloche",
+   "region": "Río Negro",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -41.133246,
+   "lon": -71.302032
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno General Roca",
+   "direccion": "Sarmiento 1405, General Roca",
+   "localidad": "General Roca",
+   "region": "Río Negro",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -39.02895,
+   "lon": -67.574505
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Viedma",
+   "direccion": "Belgrano 202, Viedma",
+   "localidad": "Viedma",
+   "region": "Río Negro",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -40.807499,
+   "lon": -62.99088619999998
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Salta",
+   "direccion": "España 414, Salta",
+   "localidad": "Salta",
+   "region": "Salta",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -24.788529264337566,
+   "lon": -65.40848691803342
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Juan",
+   "direccion": "Sarmiento 175 (S), San Juan",
+   "localidad": "San Juan",
+   "region": "San Juan",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -31.535846,
+   "lon": -68.528718
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Luis",
+   "direccion": "Pringles 817, San Luis",
+   "localidad": "San Luis",
+   "region": "San Luis",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -33.302401,
+   "lon": -66.33497
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Villa Mercedes",
+   "direccion": "General Paz 491, Villa Mercedes",
+   "localidad": "Villa Mercedes",
+   "region": "San Luis",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -33.684367,
+   "lon": -65.463666
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Caleta Olivia",
+   "direccion": "Ceferino Namuncurá 15, Caleta Olivia",
+   "localidad": "Caleta Olivia",
+   "region": "Santa Cruz",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -46.4443619,
+   "lon": -67.52053890000002
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Reconquista",
+   "direccion": "Habegger 1485, Reconquista",
+   "localidad": "Reconquista",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -29.14545,
+   "lon": -59.654797
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Rosario",
+   "direccion": "Bv. Oroño 873, Rosario",
+   "localidad": "Rosario",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -32.9445051,
+   "lon": -60.65361429999996
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno San Lorenzo",
+   "direccion": "Av. San Martin 1017, San Lorenzo",
+   "localidad": "San Lorenzo",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -32.7512895,
+   "lon": -60.73431619999997
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Santa Fe",
+   "direccion": "Av. Gral. López 3068 PB, Santa Fe",
+   "localidad": "Santa Fé",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 15 hs.",
+   "lat": -31.6559795,
+   "lon": -60.71601140000001
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Venado Tuerto",
+   "direccion": "Alvear 570, Venado Tuerto",
+   "localidad": "Venado Tuerto",
+   "region": "Santa Fé",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -33.747064360742485,
+   "lon": -61.962399418025946
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Santiago del Estero",
+   "direccion": "Calle 24 de setiembre 412, Santiago del Estero",
+   "localidad": "Santiago del Estero",
+   "region": "Santiago del Estero",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -27.79138,
+   "lon": -64.257088
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Río Grande",
+   "direccion": "C. Augusto Lasserre 247, Río Grande",
+   "localidad": "Río Grande",
+   "region": "Tierra del Fuego",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -53.78662484792109,
+   "lon": -67.69418980268551
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Tucumán",
+   "direccion": "Mendoza 348, Tucumán",
+   "localidad": "Tucumán",
+   "region": "Tucumán",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -26.828885,
+   "lon": -65.20170410000003
+  },
+  {
+   "prepaga": "galeno",
+   "nombre": "Galeno Yerba Buena",
+   "direccion": "Av. Aconquija 1199, Yerba Buena",
+   "localidad": "Yerba Buena",
+   "region": "Tucumán",
+   "horario": "Lunes a Viernes de 9 a 18 hs.",
+   "lat": -26.814454,
+   "lon": -65.286111
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Liniers",
+   "direccion": "Coronel Ramón Lorenzo Falcón 6976",
+   "localidad": "Liniers",
+   "telefono": "6086-9047"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Caballito",
+   "direccion": "Av. Gaona 1301",
+   "localidad": "Caballito",
+   "telefono": "4584-5876"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Recoleta (Casa Central)",
+   "direccion": "Junin 1588",
+   "localidad": "Recoleta",
+   "telefono": "0810-222-5522"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Quilmes",
+   "direccion": "Moreno 524",
+   "localidad": "Quilmes",
+   "telefono": "4253-2087"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Francisco Solano",
+   "direccion": "Calle 843 Nº 2509",
+   "localidad": "San Francisco Solano",
+   "telefono": "7542-6746"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Lomas de Zamora",
+   "direccion": "José Pereyra lucena 580",
+   "localidad": "Lomas de Zamora",
+   "telefono": "4244-0584"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Moreno",
+   "direccion": "Gral. Manuel Belgrano 143",
+   "localidad": "Moreno",
+   "telefono": "0237-4603291"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Merlo",
+   "direccion": "Juncal 662",
+   "localidad": "Merlo",
+   "telefono": "0220-486-4562"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Morón",
+   "direccion": "General Machado 1012",
+   "localidad": "Morón",
+   "telefono": "4483-4361"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Justo",
+   "direccion": "Mons José Francisco Marcón 3298",
+   "localidad": "San Justo",
+   "telefono": "4602-9519"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Ramos Mejia",
+   "direccion": "Espora 72",
+   "localidad": "Ramos Mejia",
+   "telefono": "4469-2669"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Vicente Lopez",
+   "direccion": "Av. Maipú 266",
+   "localidad": "Vicente Lopez",
+   "telefono": "4797-3603"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Villa Ballester",
+   "direccion": "Independencia 4872",
+   "localidad": "Villa Ballester",
+   "telefono": "4768-9650"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Miguel",
+   "direccion": "Ricardo Balbin 987",
+   "localidad": "San Miguel",
+   "telefono": "4664-1257 / 4667-6364"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Isidro",
+   "direccion": "25 de Mayo 523",
+   "localidad": "San Isidro",
+   "telefono": "4742-9402"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Fernando",
+   "direccion": "3 De Febrero 1282",
+   "localidad": "San Fernando",
+   "telefono": "4745-7600"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Nordelta",
+   "direccion": "Av del Caminante 80. Edificio Vientos del Delta II",
+   "localidad": "Nordelta",
+   "telefono": "4835-6273"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Pilar",
+   "direccion": "B. Rivadavia 378",
+   "localidad": "Pilar",
+   "telefono": "02304-434848"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "San Miguel de Tucumán",
+   "direccion": "Av Sarmiento 318",
+   "localidad": "San Miguel de Tucumán",
+   "telefono": "0381-2308857"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Arroyito",
+   "direccion": "Av. Carlos Pontín 620",
+   "localidad": "Arroyito",
+   "telefono": "03576-454883"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Ciudad de Córdoba",
+   "direccion": "Av Figueroa Alcorta 195",
+   "localidad": "Ciudad de Córdoba",
+   "telefono": "0351-4235380"
+  },
+  {
+   "prepaga": "premedic",
+   "nombre": "Ciudad de Mendoza",
+   "direccion": "Av. Colón 102, Local 2",
+   "localidad": "Ciudad de Mendoza",
+   "telefono": "(0261) 5200592"
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Bahía Blanca",
+   "direccion": "Donado 498",
+   "localidad": "Bahía Blanca",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Campana",
+   "direccion": "Becerra 835",
+   "localidad": "Campana",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Mar del Plata - Independencia",
+   "direccion": "Av. Independencia 2094",
+   "localidad": "Mar del Plata",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Mercedes",
+   "direccion": "Calle 22 685",
+   "localidad": "Mercedes",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Pinamar",
+   "direccion": "Av. del Valle Fértil 73",
+   "localidad": "Pinamar",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Tandil",
+   "direccion": "San Martín 467",
+   "localidad": "Tandil",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Trenque Lauquen",
+   "direccion": "Bv. Villegas 875",
+   "localidad": "Trenque Lauquen",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Comodoro Rivadavia",
+   "direccion": "Av. Rivadavia 597",
+   "localidad": "Comodoro Rivadavia",
+   "region": "Chubut",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Puerto Madryn",
+   "direccion": "Av. Julio A. Roca 835",
+   "localidad": "Puerto Madryn",
+   "region": "Chubut",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Adrogue",
+   "direccion": "Samuel Miguel Spiro 1096",
+   "localidad": "Adrogue",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Barrio Norte",
+   "direccion": "Av. Pueyrredón 1770",
+   "localidad": "Barrio Norte",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Caballito",
+   "direccion": "Av. La Plata 8 CABA",
+   "localidad": "Caballito",
+   "region": "Ciudad Autónoma de Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 18 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé General Rodriguez",
+   "direccion": "Av. San Martín 116",
+   "localidad": "General Rodriguez",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé La Plata",
+   "direccion": "Av 44 Nro. 868",
+   "localidad": "La Plata",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Lomas de Zamora",
+   "direccion": "Gral Bartolomé Mitre 188",
+   "localidad": "Lomas de Zamora",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Olivos",
+   "direccion": "Av. Maipú 1594",
+   "localidad": "Olivos",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Pilar",
+   "direccion": "Colectora Panamericana, Ramal Pilar km. 49.5",
+   "localidad": "Pilar",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Quilmes",
+   "direccion": "Alsina 102",
+   "localidad": "Quilmes",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Isidro",
+   "direccion": "Acassuso 255",
+   "localidad": "San Isidro",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Miguel",
+   "direccion": "Paunero 1646",
+   "localidad": "San Miguel",
+   "region": "Buenos Aires",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Cerro de las Rosas",
+   "direccion": "Av. Rafael Nuñez 4972",
+   "localidad": "Cerro de las Rosas",
+   "region": "Córdoba",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Córdoba",
+   "direccion": "Av. Rogelio Nores Martínez 2725",
+   "localidad": "Córdoba",
+   "region": "Córdoba",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Corrientes",
+   "direccion": "San Lorenzo 856",
+   "localidad": "Corrientes",
+   "region": "Corrientes",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Jujuy",
+   "direccion": "General Guemes 1031",
+   "localidad": "Jujuy",
+   "region": "Jujuy",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé La Rioja",
+   "direccion": "Vélez Sarsfield 571",
+   "localidad": "La Rioja",
+   "region": "La Rioja",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Mendoza",
+   "direccion": "Av. ArÍstides Villanueva 201",
+   "localidad": "Mendoza",
+   "region": "Mendoza",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Rafael",
+   "direccion": "Av. Presidente Hipólito Yrigoyen 1270",
+   "localidad": "San Rafael",
+   "region": "Mendoza",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Posadas",
+   "direccion": "JunÍn 1605",
+   "localidad": "Posadas",
+   "region": "Misiones",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Añelo",
+   "direccion": "Ruta Provincial 7 Colectora Norte S/N",
+   "localidad": "Añelo",
+   "region": "Neuquén",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Cutral Co",
+   "direccion": "Av. del Trabajo 761",
+   "localidad": "Cutral Co",
+   "region": "Neuquén",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Neuquén",
+   "direccion": "Avenida Argentina 296",
+   "localidad": "Neuquén",
+   "region": "Neuquén",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Bariloche",
+   "direccion": "Mitre 798",
+   "localidad": "Bariloche",
+   "region": "Río Negro",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Salta",
+   "direccion": "Roldán 11",
+   "localidad": "Salta",
+   "region": "Salta",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Juan",
+   "direccion": "Rivadavia 204",
+   "localidad": "San Juan",
+   "region": "San Juan",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Luis",
+   "direccion": "Av. Illia 525",
+   "localidad": "San Luis",
+   "region": "San Luis",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Villa Mercedes",
+   "direccion": "Gral. Pedernera 777",
+   "localidad": "Villa Mercedes",
+   "region": "San Luis",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Caleta Olivia",
+   "direccion": "Senador Raúl Almendra 566",
+   "localidad": "Caleta Olivia",
+   "region": "Santa Cruz",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Rio Gallegos",
+   "direccion": "Chile 48",
+   "localidad": "Rio Gallegos",
+   "region": "Santa Cruz",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Reconquista",
+   "direccion": "Habegger 1396",
+   "localidad": "Reconquista",
+   "region": "Santa Fe",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Rosario",
+   "direccion": "Entre Ríos 476",
+   "localidad": "Rosario",
+   "region": "Santa Fe",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé San Lorenzo",
+   "direccion": "Rivadavia 631",
+   "localidad": "San Lorenzo",
+   "region": "Santa Fe",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 15hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Santa Fe",
+   "direccion": "Gral. San Martín 3072",
+   "localidad": "Santa Fe",
+   "region": "Santa Fe",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Rio Grande",
+   "direccion": "25 de Mayo 792",
+   "localidad": "Rio Grande",
+   "region": "Tierra del Fuego",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  },
+  {
+   "prepaga": "medife",
+   "nombre": "Medifé Tucumán",
+   "direccion": "Mendoza 307",
+   "localidad": "Tucumán",
+   "region": "Tucumán",
+   "telefono": "0800 333 2700",
+   "horario": "de 9 a 17 hs."
+  }
+ ]
+}

@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 const secciones = [
   {
     titulo: '1. Información que recopilamos',
-    cuerpo: `Recopilamos la información que nos proporcionás voluntariamente al usar el comparador de prepagas: nombre, correo electrónico, edad y composición del grupo familiar. No solicitamos datos sensibles como número de DNI, datos de salud detallados ni información financiera directa. También recopilamos datos técnicos anónimos de navegación (páginas visitadas, tiempo en el sitio) a través de herramientas de analítica.`,
+    cuerpo: `Recopilamos la información que nos proporcionás voluntariamente al usar el comparador y el quiz de prepagas: nombre, celular, correo electrónico, provincia, edad y composición del grupo familiar y, solo si decidís contárnoslo, tu situación laboral, la cobertura que tenés hoy y tus preferencias de plan (presupuesto, copago, coberturas). No solicitamos datos sensibles como número de DNI, datos de salud detallados ni información financiera directa. También recopilamos datos técnicos anónimos de navegación (páginas visitadas, tiempo en el sitio) a través de herramientas de analítica.`,
   },
   {
     titulo: '2. Cómo usamos tu información',
-    cuerpo: `Usamos tu información para: enviarte las cotizaciones de prepagas solicitadas, conectarte con las empresas de prepaga que elegiste conocer, mejorar nuestro comparador y la experiencia de usuario, y enviarte comunicaciones sobre novedades del mercado de prepagas (solo si nos diste tu consentimiento). Nunca vendemos tu información a terceros.`,
+    cuerpo: `Usamos tu información para: enviarte las cotizaciones de prepagas solicitadas, conectarte con las empresas de prepaga que elegiste conocer, mejorar nuestro comparador y la experiencia de usuario, y enviarte comunicaciones sobre novedades del mercado de prepagas (solo si nos diste tu consentimiento). También elaboramos estadísticas anónimas y agregadas sobre el mercado (por ejemplo, qué edades o provincias cotizan más), que podemos publicar: nunca incluyen tu nombre, tu celular, tu email ni ningún dato que permita identificarte. Nunca vendemos tu información a terceros.`,
   },
   {
     titulo: '3. Con quién compartimos tu información',
@@ -60,7 +60,7 @@ export default function PrivacidadPage() {
 
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Política de Privacidad</h1>
       <p className="text-sm text-gray-500 mb-10">
-        Última actualización: junio 2026 · {SITE_NAME} — prepagaya.com.ar
+        Última actualización: septiembre 2026 · {SITE_NAME} — prepagaya.com.ar
       </p>
 
       <div className="prose prose-gray max-w-none space-y-8">

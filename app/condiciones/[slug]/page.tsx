@@ -5,7 +5,7 @@ import { condiciones } from '@/lib/data/condiciones'
 import { coberturas } from '@/lib/data/coberturas'
 import { guias } from '@/lib/data/guias'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CondicionIcon, CoberturaIcon } from '@/components/ui/CategoryIcon'
 
@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: cond.titulo,
       description: cond.metaDescripcion,
       type: 'article',
+      images: [OG_IMAGE],
     },
   }
 }

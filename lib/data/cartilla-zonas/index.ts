@@ -408,3 +408,24 @@ export function linkCartillaPlan(prepagaSlug: string, planComparadorSlug: string
 }
 
 export { nombreCortoZona, slugPlan }
+
+/**
+ * Nombre de la zona para títulos: el corto, pero desambiguado cuando otra
+ * zona de la misma cartilla se llama igual (auditoría SEO 24-sep-2026: OSDE
+ * tiene "San Pedro" en Jujuy, Misiones y Pergamino, y zonas que se llaman
+ * solo "alrededores"; salían con el mismo title).
+ */
+export function nombreZonaTitulo(prepagaSlug: string, z: ZonaCartilla): string {
+  const corto = nombreCortoZona(z.nombre)
+  const lugar = z.filial ?? z.provincias[0]
+  if (!lugar) return corto
+  if (corto.toLowerCase() === 'alrededores') return `alrededores de ${lugar}`
+  const c = getCartilla(prepagaSlug)
+  const repetido = c?.zonas.some((o) => o.slug !== z.slug && nombreCortoZona(o.nombre) === corto)
+  return repetido && corto !== lugar ? `${corto} (${lugar})` : corto
+}
+
+/** textoFecha con su artículo: "la cartilla oficial..." / "el buscador oficial..." */
+export function textoFechaConArticulo(c: CartillaPrepaga): string {
+  return `${c.tipoFecha === 'vigencia' ? 'la' : 'el'} ${textoFecha(c)}`
+}
