@@ -113,6 +113,7 @@ export default function CalculadoraAportesPage() {
             <Link href="/guias/derivar-obra-social-a-prepaga" className="text-sm font-semibold text-[#E8002D] hover:underline">Cómo derivar tus aportes →</Link>
             <Link href="/guias/opcion-de-cambio-obra-social" className="text-sm font-semibold text-[#E8002D] hover:underline">Cómo hacer la opción de cambio →</Link>
             <Link href="/guias/unificar-aportes-obra-social" className="text-sm font-semibold text-[#E8002D] hover:underline">Unificar aportes con tu pareja →</Link>
+            <Link href="/prensa/sueldo-para-cubrir-la-prepaga" className="text-sm font-semibold text-[#E8002D] hover:underline">Cuánto hay que ganar para no pagar diferencia →</Link>
             <Link href="/obras-sociales/codigos" className="text-sm font-semibold text-[#E8002D] hover:underline">Códigos de obras sociales →</Link>
             <Link href="/obras-sociales" className="text-sm font-semibold text-[#E8002D] hover:underline">Obras sociales →</Link>
           </div>

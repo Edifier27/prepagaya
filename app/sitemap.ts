@@ -108,6 +108,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const sanatorioRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE}/sanatorios`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/prensa`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     ...sanatoriosPublicables().map((s) => ({
       url: `${BASE}/sanatorios/${s.slug}`,
       lastModified: CONTENT_UPDATE,
