@@ -148,14 +148,14 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2 }: { comp: Comp
                 </tr>
               </thead>
               <tbody>
-                <FilaComparacion label="Precio de lista" v1={<span className="font-bold">{formatPrecio(plan1.precio)}</span>} v2={<span className="font-bold">{formatPrecio(plan2.precio)}</span>} />
+                {/* Sin la fila "Precio de lista": ya está arriba (25-sep-2026, no repetir precios) */}
                 <FilaComparacion label="Copago en consultas" v1={<Check ok={!plan1.copago} />} v2={<Check ok={!plan2.copago} />} />
                 <FilaComparacion label="Red abierta" v1={<Check ok={plan1.redAbierta} />} v2={<Check ok={plan2.redAbierta} />} />
                 <FilaComparacion label="Plan más elegido" v1={plan1.destacado ? <Check ok /> : '—'} v2={plan2.destacado ? <Check ok /> : '—'} />
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-gray-400 mt-3">✓ en "Copago en consultas" significa que NO tiene copago (mejor). Precios de lista para persona de 30 años, {PRECIO_ACTUALIZADO.toLowerCase()}.</p>
+          <p className="text-xs text-gray-400 mt-3">✓ en “Copago en consultas” significa que NO tiene copago (mejor). Precios de lista para persona de 30 años, {PRECIO_ACTUALIZADO.toLowerCase()}.</p>
 
           {/* Cobertura destacada de cada uno */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
@@ -228,7 +228,7 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2 }: { comp: Comp
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">¿Querés saber cuál te conviene a vos?</h2>
-          <p className="text-red-200 text-sm mb-6">Cotizá gratis y te decimos qué plan de {prep.nombre} encaja con tu edad y presupuesto.</p>
+          <p className="text-red-200 text-sm mb-6">Cotizá online con 15% OFF (25% si sos monotributista) y te decimos qué plan de {prep.nombre} encaja con tu edad y presupuesto.</p>
           <Link
             href="/comparador"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"

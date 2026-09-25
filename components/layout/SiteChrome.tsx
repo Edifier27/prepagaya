@@ -17,7 +17,7 @@ function SiteChromeInner({ children }: { children: React.ReactNode }) {
   const sinChrome = ruta.startsWith('/widget/') || ruta.startsWith('/panel-leads')
   const hideChrome = modoEnfocado || sinChrome
   return (
-    <div className={`flex-1 flex flex-col ${hideChrome ? '' : 'pb-16 md:pb-0'}`}>
+    <div className={`flex-1 flex flex-col ${hideChrome ? '' : 'pb-16 lg:pb-0'}`}>
       {!hideChrome && <Header />}
       <main className="flex-1">{children}</main>
       {!hideChrome && <Footer />}
