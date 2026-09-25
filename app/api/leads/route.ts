@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { track } from '@vercel/analytics/server'
 import { avisarLeadPorTelegram, textoAlertaLead } from '@/lib/telegram'
 import { guardarLeadEnPlanilla } from '@/lib/sheets'
 import { guardarLead } from '@/lib/db'
@@ -61,7 +62,17 @@ export async function POST(req: NextRequest) {
   // click de "elegir plan" y en cambio mandar uno solo ya consolidado con
   // todos los intereses (ver el apilado en lib/db.ts). Antes de eso, avisos
   // instantáneos igual — Telegram, push y la planilla no dependen de Kommo.
+  // Medición (25-sep-2026): un evento por lead en Vercel Analytics con la
+  // herramienta (fuente), la página donde estaba y la provincia, para saber
+  // qué convierte. Sin datos personales. Se registra acá, en un solo lugar,
+  // para todos los formularios del sitio.
+  let pagina = ''
+  try {
+    pagina = new URL(req.headers.get('referer') ?? '').pathname.slice(0, 100)
+  } catch { /* sin referer */ }
+
   await Promise.allSettled([
+    track('Lead enviado', { fuente: fuente.slice(0, 60), pagina: pagina || '(desconocida)', provincia: provincia ? provincia.slice(0, 40) : 'Sin especificar' }, { headers: req.headers }),
     guardarLead({ nombre, celular, email, prepaga, provincia, edades: personas, fuente, pais: pais || undefined, zonaDetectada, situacionLaboral, presupuesto, prepagaActual, preferencias }),
     avisarLeadPorTelegram(textoAlertaLead({
       nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommoLink: '',
