@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CalculadoraAportes } from '@/components/herramientas/CalculadoraAportes'
+import { InsertarWidget } from '@/components/prensa/InsertarWidget'
 import { prepagasCotizables } from '@/lib/data/planes-cotizables'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
@@ -14,6 +15,9 @@ import { SITE_NAME, SITE_URL, OG_IMAGE, TIEMPO_RESPUESTA } from '@/lib/utils'
 // acá con ?os= para que la calculadora ya diga de dónde viene la persona.
 
 const URL = `${SITE_URL}/calculadora-aportes`
+// Alto fijo del iframe del widget si el sitio no deja correr el script que lo
+// ajusta: entra el resultado en un celular (medido: 504 px a 320-360 px de ancho)
+const ALTO_WIDGET = 510
 
 export const metadata: Metadata = {
   title: 'Calculadora de aportes: cuánto pagás de diferencia si pasás tu obra social a una prepaga',
@@ -117,6 +121,17 @@ export default function CalculadoraAportesPage() {
             <Link href="/obras-sociales/codigos" className="text-sm font-semibold text-[#E8002D] hover:underline">Códigos de obras sociales →</Link>
             <Link href="/obras-sociales" className="text-sm font-semibold text-[#E8002D] hover:underline">Obras sociales →</Link>
           </div>
+
+          {/* Para estudios contables, blogs de RRHH y medios (25-sep-2026) */}
+          <h2 className="text-xl font-bold text-gray-900 mt-10 mb-2">Insertá la calculadora en tu sitio</h2>
+          <InsertarWidget
+            alto={ALTO_WIDGET}
+            widget="/widget/calculadora-aportes"
+            pagina="/calculadora-aportes"
+            titulo="Calculadora de aportes a prepaga (precios oficiales SSSalud)"
+            autoAlto
+            intro="¿Tenés un estudio contable, un blog de recursos humanos o una web para empleados? Sumá la calculadora: tus lectores ponen su sueldo y ven cuánto les cubren los aportes, con los precios oficiales de cada mes. Es gratis y se actualiza sola."
+          />
         </div>
       </section>
     </>

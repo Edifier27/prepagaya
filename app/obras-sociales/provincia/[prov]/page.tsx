@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { informeProvincia } from '@/lib/prensa/sueldo-prepaga'
 import { provinciasSEO, type ProvinciaSEO } from '@/lib/data/zonas'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { entidadesRegistro, codigoSeisDigitos, grupoDe, nombreLegible, REGISTRO_VERIFICADO, type EntidadRegistro } from '@/lib/data/registro-sssalud'
@@ -171,6 +172,11 @@ export default async function ObrasSocialesProvinciaPage({ params }: Props) {
             </div>
             <span className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm">Calcular mi diferencia →</span>
           </Link>
+          {informeProvincia(prov.slug) && (
+            <Link href={`/prensa/sueldo-para-cubrir-la-prepaga/${prov.slug}`} className="inline-block mt-3 text-sm font-semibold text-[#E8002D] hover:underline">
+              Cuánto hay que ganar en {prov.nombre} para que los aportes paguen la prepaga →
+            </Link>
+          )}
 
           {osp && (
             <>
