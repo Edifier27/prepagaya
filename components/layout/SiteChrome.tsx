@@ -10,9 +10,12 @@ import { ChromeVisibilityProvider, useChromeVisibility } from './ChromeVisibilit
 function SiteChromeInner({ children }: { children: React.ReactNode }) {
   const { hideChrome: modoEnfocado } = useChromeVisibility()
   // /widget/*: páginas para insertar en otros sitios con un iframe (sala de
-  // prensa) — van sin header, footer ni popups.
-  const esWidget = usePathname()?.startsWith('/widget/') ?? false
-  const hideChrome = modoEnfocado || esWidget
+  // prensa) — van sin header, footer ni popups. /panel-leads: el panel
+  // interno tiene su propia barra; con el header del sitio arriba quedaba
+  // tapada en el celular, y la barra de abajo y el popup de salida sobran.
+  const ruta = usePathname() ?? ''
+  const sinChrome = ruta.startsWith('/widget/') || ruta.startsWith('/panel-leads')
+  const hideChrome = modoEnfocado || sinChrome
   return (
     <div className={`flex-1 flex flex-col ${hideChrome ? '' : 'pb-16 md:pb-0'}`}>
       {!hideChrome && <Header />}

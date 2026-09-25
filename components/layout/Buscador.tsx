@@ -106,9 +106,11 @@ export function Buscador({ variante = 'icono' }: { variante?: 'icono' | 'barra' 
         </button>
       ) : (
         <button type="button" onClick={abrir}
-          className="w-full flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-left text-gray-500 hover:border-gray-300">
+          className="w-full min-w-0 flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-4 py-3.5 text-left text-gray-500 hover:border-gray-300">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-5 h-5 shrink-0"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" /></svg>
-          <span className="truncate">Buscá una prepaga, plan, sanatorio u obra social</span>
+          {/* Texto corto en el celular: el largo se cortaba con "…" */}
+          <span className="truncate sm:hidden">Buscá prepaga, plan o sanatorio</span>
+          <span className="truncate hidden sm:inline">Buscá una prepaga, plan, sanatorio u obra social</span>
         </button>
       )}
 
