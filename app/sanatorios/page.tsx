@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagasEnSanatorio, sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SanatoriosPorZona } from '@/components/sanatorios/SanatoriosPorZona'
 
 export const metadata: Metadata = {
   title: 'Qué prepagas atienden en cada sanatorio: CABA, GBA y el interior',
@@ -35,24 +36,7 @@ export default function SanatoriosPage() {
           <p className="text-gray-600 max-w-2xl mb-8">
             Elegí el sanatorio o el hospital que querés tener y te mostramos qué prepagas lo incluyen y desde qué plan, según sus cartillas oficiales.
           </p>
-          <div className="space-y-8">
-            {[...new Set(lista.map((s) => s.ciudadNombre ?? 'CABA y GBA'))].map((ciudad) => (
-              <div key={ciudad}>
-                <h2 className="text-lg font-bold text-gray-900 mb-3">{ciudad}</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {lista.filter((s) => (s.ciudadNombre ?? 'CABA y GBA') === ciudad).map((s) => {
-                    const n = prepagasEnSanatorio(s.slug).length
-                    return (
-                      <Link key={s.slug} href={`/sanatorios/${s.slug}`} className="group rounded-xl border border-gray-200 hover:border-[#E8002D]/40 p-4 transition-colors">
-                        <div className="font-semibold text-gray-900 group-hover:text-[#E8002D]">{s.nombre}</div>
-                        <div className="text-xs text-gray-500 mt-0.5">En {n} cartillas oficiales relevadas</div>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
+          <SanatoriosPorZona items={lista.map((s) => ({ slug: s.slug, nombre: s.nombre, zona: s.ciudadNombre ?? 'CABA y GBA', cartillas: prepagasEnSanatorio(s.slug).length }))} />
         </div>
       </section>
     </>
