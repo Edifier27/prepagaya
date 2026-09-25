@@ -160,7 +160,7 @@ export default function PrensaPage() {
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-lg font-bold text-gray-900 mb-2">Insertar el gráfico en tu sitio</h2>
-          <InsertarWidget filas={ranking.length} />
+          <InsertarWidget alto={190 + ranking.length * 26} />
         </div>
       </section>
 
