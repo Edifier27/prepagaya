@@ -258,6 +258,7 @@ export default async function ObrasSocialesProvinciaPage({ params }: Props) {
                 ))}
               </div>
               <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="inline-block mt-3 text-sm font-semibold text-[#E8002D] hover:underline">Ranking de prepagas en {prov.nombre} →</Link>
+              <Link href={`/prepagas/${prov.slug}`} className="inline-block mt-3 ml-4 text-sm font-semibold text-[#E8002D] hover:underline">Prepagas en {prov.nombre}: planes y precios →</Link>
             </>
           )}
 

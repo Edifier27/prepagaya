@@ -310,6 +310,19 @@ export default async function ComparativaPage({ params }: Props) {
               )
             })}
           </div>
+          {/* Enlaces a cada plan (26-sep-2026): la comparativa no enlazaba a ningún plan */}
+          <div className="mt-5 space-y-2">
+            {[p1, p2].map((p) => (
+              <div key={p.slug} className="flex flex-wrap items-center gap-2">
+                <span className="text-sm font-semibold text-gray-700">Planes de {p.nombre}:</span>
+                {p.planes.map((pl) => (
+                  <Link key={pl.slug} href={`/prepagas/${p.slug}/${pl.slug}`} className="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">
+                    {pl.nombre.replace(/^Plan /, '')}
+                  </Link>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
