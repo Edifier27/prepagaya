@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { enlazarPrepagas, PlanesMencionados } from '@/components/ui/TextoConEnlaces'
 import { blogPosts } from '@/lib/data/blog'
 import { prepagas } from '@/lib/data/prepagas'
 import { coberturas } from '@/lib/data/coberturas'
@@ -116,6 +117,7 @@ export default async function BlogPostPage({ params }: Props) {
     },
   ]
 
+  const vistas = new Set<string>()
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -169,7 +171,7 @@ export default async function BlogPostPage({ params }: Props) {
                 lo primero que aparece en el HTML, así que la respuesta
                 directa tiene que ir antes que cualquier índice de navegación. */}
             <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
-              <p className="text-gray-800 leading-relaxed">{post.contenido.intro}</p>
+              <p className="text-gray-800 leading-relaxed">{enlazarPrepagas(post.contenido.intro, vistas)}</p>
             </div>
 
             {/* Resumen citable para posts de ranking/listicle (GEO,
@@ -210,7 +212,7 @@ export default async function BlogPostPage({ params }: Props) {
                     </span>
                     {seccion.titulo}
                   </h2>
-                  <p className="text-gray-600 leading-relaxed">{seccion.cuerpo}</p>
+                  <p className="text-gray-600 leading-relaxed">{enlazarPrepagas(seccion.cuerpo, vistas)}</p>
                 </section>
               ))}
 
@@ -220,8 +222,9 @@ export default async function BlogPostPage({ params }: Props) {
                   <span className="w-6 h-6 rounded-full bg-green-100 border border-green-200 flex items-center justify-center text-[11px] font-bold text-green-600">✓</span>
                   Conclusión
                 </h2>
-                <p className="text-gray-600 leading-relaxed">{post.contenido.conclusion}</p>
+                <p className="text-gray-600 leading-relaxed">{enlazarPrepagas(post.contenido.conclusion, vistas)}</p>
               </div>
+              <PlanesMencionados vistas={vistas} />
             </article>
 
             {/* Prepagas relacionadas */}

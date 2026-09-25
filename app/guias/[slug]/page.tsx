@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { enlazarPrepagas, PlanesMencionados } from '@/components/ui/TextoConEnlaces'
 import { notFound } from 'next/navigation'
 import { guias } from '@/lib/data/guias'
 import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
@@ -93,6 +94,7 @@ export default async function GuiaPage({ params }: Props) {
     },
   ]
 
+  const vistas = new Set<string>()
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -139,7 +141,7 @@ export default async function GuiaPage({ params }: Props) {
             relevancia principalmente por lo primero que encuentran. Un índice
             de navegación antes de la respuesta diluye esa señal. */}
         <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
-          <p className="text-gray-800 leading-relaxed">{guia.contenido.intro}</p>
+          <p className="text-gray-800 leading-relaxed">{enlazarPrepagas(guia.contenido.intro, vistas)}</p>
         </div>
 
         {/* Índice */}
@@ -172,7 +174,7 @@ export default async function GuiaPage({ params }: Props) {
                 </span>
                 {seccion.titulo}
               </h2>
-              <p className="text-gray-600 leading-relaxed">{seccion.cuerpo}</p>
+              <p className="text-gray-600 leading-relaxed">{enlazarPrepagas(seccion.cuerpo, vistas)}</p>
               {seccion.enlaces && (
                 <div className="flex flex-wrap gap-2 mt-4">
                   {seccion.enlaces.map((e) => (
@@ -208,8 +210,9 @@ export default async function GuiaPage({ params }: Props) {
           {/* Conclusión */}
           <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
             <h2 className="text-lg font-bold text-gray-900 mb-2">En resumen</h2>
-            <p className="text-gray-600 leading-relaxed">{guia.contenido.conclusion}</p>
+            <p className="text-gray-600 leading-relaxed">{enlazarPrepagas(guia.contenido.conclusion, vistas)}</p>
           </div>
+          <PlanesMencionados vistas={vistas} />
 
           {guia.fuentes && (
             <p className="text-xs text-gray-400 leading-relaxed">
