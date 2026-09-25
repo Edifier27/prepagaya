@@ -4,6 +4,7 @@ import { Suspense, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { PROVINCIAS } from '@/lib/data/provincias-cotizador'
+import { useZonaDetectada } from '@/lib/use-zona-detectada'
 import { enviarLead, preciosDelGrupo } from '@/lib/leads-cliente'
 import { APORTE_DERIVABLE, formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { FormularioLead, type DatosFormulario } from './FormularioLead'
@@ -42,7 +43,10 @@ function Calculadora({ prepagas, obrasSociales, inicialOs }: Props) {
   const [verTodos, setVerTodos] = useState(false)
   const resultado = useRef<HTMLDivElement>(null)
 
-  const prov = PROVINCIAS.find((p) => p.slug === provincia)
+  // Zona precargada por la ubicación aproximada; la persona la puede cambiar.
+  const detectada = useZonaDetectada()
+  const provinciaElegida = provincia || detectada?.provincia.slug || ''
+  const prov = PROVINCIAS.find((p) => p.slug === provinciaElegida)
   const edadesNum = edades.map((e) => parseInt(e, 10)).filter((n) => Number.isInteger(n) && n >= 0 && n <= 99)
   const aporte = Math.round((numero(sueldo) + (conPareja ? numero(sueldoPareja) : 0)) * APORTE_DERIVABLE)
   const completo = numero(sueldo) > 0 && Boolean(prov) && edadesNum.length === edades.length && edadesNum.length > 0
@@ -122,10 +126,11 @@ function Calculadora({ prepagas, obrasSociales, inicialOs }: Props) {
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="ca-provincia" className="block text-sm font-semibold text-gray-800 mb-1">Dónde vivís</label>
-            <select id="ca-provincia" value={provincia} onChange={(e) => cambiar(setProvincia)(e.target.value)} className={campo}>
+            <select id="ca-provincia" value={provinciaElegida} onChange={(e) => cambiar(setProvincia)(e.target.value)} className={campo}>
               <option value="">Elegí…</option>
               {PROVINCIAS.map((p) => <option key={p.slug} value={p.slug}>{p.nombre}</option>)}
             </select>
+            {!provincia && detectada && <p className="mt-1 text-xs text-gray-500">📍 Por tu ubicación aproximada: {detectada.label}. Si no es tu zona, cambiala.</p>}
           </div>
           <div>
             <label htmlFor="ca-os" className="block text-sm font-semibold text-gray-800 mb-1">Tu obra social hoy <span className="font-normal text-gray-500">(opcional)</span></label>

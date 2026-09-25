@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import type { IndiceCobertura, SanatorioIndice } from '@/lib/data/cartilla-zonas/indice-cobertura'
 import { normalizarBusqueda } from '@/lib/busqueda'
+import { useZonaDetectada } from '@/lib/use-zona-detectada'
 import { enviarLead, preciosDelGrupo, resumenEdades } from '@/lib/leads-cliente'
 import { formatPrecio, PRIORIDAD_PARTNERS, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { FormularioLead, type DatosFormulario } from './FormularioLead'
@@ -117,8 +118,16 @@ export function MisSanatorios() {
 
   const porId = useMemo(() => new Map((ix?.sanatorios ?? []).map((s) => [s.id, s])), [ix])
   const elegidos = ids.map((id) => porId.get(id)).filter((s): s is SanatorioIndice => Boolean(s))
-  const zona = elegidos[0]?.z ?? 'caba'
+  // Sin sanatorios elegidos todavía, la zona aproximada de la persona ordena
+  // las sugerencias (25-sep-2026); con uno elegido, manda la región de ese.
+  const detectada = useZonaDetectada()
+  const zonaDetectada = detectada?.provincia.zonaKey
+  const zona = elegidos[0]?.z ?? zonaDetectada ?? 'caba'
   const region = elegidos[0]?.rn
+  const enMiZona = (x: SanatorioIndice) =>
+    region ? x.rn === region
+      : zonaDetectada ? (zonaDetectada === 'caba' || zonaDetectada === 'buenos-aires' ? x.rn === 'AMBA' : x.z === zonaDetectada)
+        : false
 
   function agregar(s: SanatorioIndice) {
     if (ids.includes(s.id) || ids.length >= MAX) return
@@ -143,12 +152,13 @@ export function MisSanatorios() {
       .map((s) => ({ s, t: normalizarBusqueda(`${s.n} ${s.rn}`) }))
       .filter(({ t }) => terminos.every((w) => t.includes(w)))
       .sort((a, b) =>
-        Number(b.s.rn === region) - Number(a.s.rn === region)
+        Number(enMiZona(b.s)) - Number(enMiZona(a.s))
         || Number(b.t.startsWith(terminos[0])) - Number(a.t.startsWith(terminos[0]))
         || Object.keys(b.s.c).length - Object.keys(a.s.c).length)
       .slice(0, 8)
       .map(({ s }) => s)
-  }, [ix, q, ids, region])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- enMiZona depende solo de region y zonaDetectada
+  }, [ix, q, ids, region, zonaDetectada])
 
   const resultados = useMemo(() => (ix && elegidos.length ? calcular(ix, elegidos) : []), [ix, elegidos])
   const completos = resultados.filter((r) => r.cubre === elegidos.length)

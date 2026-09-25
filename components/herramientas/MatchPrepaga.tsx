@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import type { DatosMatch, PlanMatch, UsoMatch } from '@/lib/data/match'
 import { PROVINCIAS } from '@/lib/data/provincias-cotizador'
+import { useZonaDetectada } from '@/lib/use-zona-detectada'
 import { enviarLead, preciosDelGrupo } from '@/lib/leads-cliente'
 import { formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { FormularioLead, type DatosFormulario } from './FormularioLead'
@@ -97,6 +98,9 @@ export function MatchPrepaga({ datos, usos }: Props) {
   // precios se recalculan para la zona nueva sin pedirle los datos otra vez.
   const [edadesGrupo, setEdadesGrupo] = useState<number[] | null>(null)
 
+  // Zona aproximada por la ubicación: aparece primero, con un toque (25-sep-2026)
+  const detectada = useZonaDetectada()
+
   const TOTAL = 6
   const avanzar = (cambio: Partial<Respuestas>) => { setR((prev) => ({ ...prev, ...cambio })); setPaso((p) => p + 1) }
   const resultados = paso >= TOTAL ? ranking(datos, r, usos).slice(0, 3) : []
@@ -137,6 +141,16 @@ export function MatchPrepaga({ datos, usos }: Props) {
       titulo: '¿Dónde vivís?',
       contenido: (
         <div className="space-y-2">
+          {detectada && (
+            <>
+              <button type="button" onClick={() => avanzar({ provincia: detectada.provincia.slug })}
+                className="w-full text-left rounded-2xl border-2 border-[#E8002D] bg-red-50/60 px-5 py-4 hover:bg-red-50 focus:outline-none transition-colors">
+                <span className="block text-xs font-semibold text-[#E8002D]">📍 Por tu ubicación aproximada</span>
+                <span className="block text-base font-bold text-gray-900">{detectada.label}</span>
+              </button>
+              <p className="pt-2 text-xs font-semibold text-gray-500">¿Otra zona?</p>
+            </>
+          )}
           <div className="grid grid-cols-2 gap-2">
             {RAPIDAS.map((s) => {
               const p = PROVINCIAS.find((x) => x.slug === s)!
@@ -238,7 +252,7 @@ export function MatchPrepaga({ datos, usos }: Props) {
     <div aria-live="polite">
       {!primero ? (
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
-          No encontramos planes con precio oficial para tu zona. Un asesor te arma las opciones. <Link href="/comparador" className="font-semibold underline">Cotizar</Link>
+          No encontramos planes con precio oficial para tu zona. Un asesor te arma las opciones. <Link href={prov ? `/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}` : '/comparador'} className="font-semibold underline">Cotizar</Link>
         </div>
       ) : (
         <>
