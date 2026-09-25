@@ -66,7 +66,11 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
     },
     {
       q: `¿Cuánto cuesta ${prep.nombre} en ${PRECIO_ACTUALIZADO}?`,
-      a: `Los planes de ${prep.nombre} van de nivel de precio ${nivelMin} a ${nivelMax} según la cobertura elegida. El precio exacto varía según tu edad y zona — cotizalo gratis en el comparador de PrepagaYa.`,
+      // Con números (26-sep-2026): "osde planes precios 2026" y "valores
+      // planes 2026" rankean ~10; la respuesta tiene que dar el rango.
+      a: planMasBarato.slug === planMasCaro.slug
+        ? `El precio de lista de ${planMasBarato.nombre} es ${formatPrecio(precioMin)} por mes para una persona de 30 años (${PRECIO_ACTUALIZADO.toLowerCase()}). El valor exacto depende de tu edad y zona; cotizando online tenés 15% OFF.`
+        : `Precio de lista para una persona de 30 años en ${PRECIO_ACTUALIZADO.toLowerCase()}: desde ${formatPrecio(precioMin)} por mes (${planMasBarato.nombre}) hasta ${formatPrecio(precioMax)} (${planMasCaro.nombre})${nivelMin !== nivelMax ? `, de nivel de precio ${nivelMin} a ${nivelMax}` : ''}. El valor exacto depende de tu edad y zona; cotizando online tenés 15% OFF.`,
     },
     {
       q: `¿Qué plan de ${prep.nombre} conviene más?`,
@@ -397,6 +401,18 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 </div>
               </div>
 
+              {/* Respuesta directa a "[prepaga] planes precios 2026" (26-sep-2026) */}
+              <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                {prep.planes.length === 1 ? 'Plan' : `${prep.planes.length} planes`}:{' '}
+                {prep.planes.map((pl, i) => (
+                  <span key={pl.slug}>
+                    {i > 0 && ', '}
+                    <Link href={`/prepagas/${slug}/${pl.slug}`} className="font-medium text-gray-900 hover:text-[#E8002D] hover:underline">{pl.nombre.replace(/^Plan /, '')}</Link>
+                  </span>
+                ))}
+                . Precio de lista desde {formatPrecio(precioMin)} por mes (30 años, {PRECIO_ACTUALIZADO.toLowerCase()}).
+              </p>
+
               {/* Rating: solo el de las reseñas reales del sitio (las mismas del
                   rich snippet). Antes mostraba "4,2 (1.243 opiniones)" fijo,
                   sin fuente (Darío, 24-sep-2026). */}
@@ -534,7 +550,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
       <section className="py-10 bg-white">
         <div className="container max-w-5xl mx-auto">
           <div className="flex items-end justify-between mb-5">
-            <h2 className="text-xl font-bold text-gray-900">Planes de {prep.nombre} — {PRECIO_ACTUALIZADO}</h2>
+            <h2 className="text-xl font-bold text-gray-900">Planes y precios de {prep.nombre} — {PRECIO_ACTUALIZADO.toLowerCase()}</h2>
             <span className="text-xs text-gray-400 hidden sm:block">Nivel de precio relativo</span>
           </div>
           <p className="text-xs text-gray-400 -mt-3 mb-5">
