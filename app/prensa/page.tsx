@@ -147,6 +147,12 @@ export default function PrensaPage() {
               </li>
               <li>Consultas de prensa: <a href="mailto:hola@prepagaya.com.ar" className="text-[#E8002D] font-semibold hover:underline">hola@prepagaya.com.ar</a></li>
             </ul>
+            {/* Más informes con datos propios (25-sep-2026) */}
+            <h2 className="text-lg font-bold text-gray-900 mt-6 mb-2">Más informes</h2>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li><a href="/prensa/sueldo-para-cubrir-la-prepaga" className="text-[#E8002D] font-semibold hover:underline">¿Cuánto hay que ganar para que los aportes paguen la prepaga?</a> Sueldo necesario por prepaga, con los cuadros oficiales.</li>
+              <li><a href="/prensa/sondeo" className="text-[#E8002D] font-semibold hover:underline">Sondeo: quién busca prepaga en Argentina</a> Edad, grupo familiar y provincia de quienes cotizan.</li>
+            </ul>
           </div>
         </div>
       </section>
