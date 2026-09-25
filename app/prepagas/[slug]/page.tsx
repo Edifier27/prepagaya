@@ -37,7 +37,6 @@ type Plan = Prepaga['planes'][number]
 const TIENE_CHEQUEO = new Set(Object.keys(planesConTarifa()))
 
 const PREPAGA_A_OS_SLUG: Record<string, string> = {
-  'swiss-medical': 'swiss-medical-os',
   'sancor-salud': 'sancor-os',
 }
 function obraSocialHermana(prepagaSlug: string) {
@@ -886,7 +885,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
               <div>
                 <h2 className="text-lg font-bold text-gray-900 mb-1">{prep.nombre} también existe como obra social</h2>
                 <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
-                  Esta ficha es la contratación directa (prepaga). Si trabajás en relación de dependencia, también podés derivar tu aporte a {osMatch.nombre} y mantener la cobertura del PMO garantizada por ley, algo que la prepaga sola no reemplaza si dejás de pagarla.
+                  Esta ficha es la contratación directa (prepaga). Si trabajás en relación de dependencia, también podés derivar tu aporte a {osMatch.nombre}.
                 </p>
               </div>
               <Link

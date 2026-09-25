@@ -13,7 +13,6 @@ import { FichaRegistroPage } from '@/components/obras-sociales/FichaRegistro'
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
 const OS_A_PREPAGA_SLUG: Record<string, string> = {
-  'swiss-medical-os': 'swiss-medical',
   'sancor-os': 'sancor-salud',
 }
 function prepagaHermana(osSlug: string) {

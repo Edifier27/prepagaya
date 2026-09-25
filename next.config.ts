@@ -28,6 +28,13 @@ const nextConfig: NextConfig = {
         destination: "/comparador",
         permanent: true,
       },
+      // Swiss Medical no es obra social: solo planes de prepaga (Darío,
+      // 25-sep-2026). La ficha de obra social se eliminó.
+      {
+        source: "/obras-sociales/swiss-medical-os",
+        destination: "/prepagas/swiss-medical",
+        permanent: true,
+      },
       // Migración /prepagas-en/[ciudad] → hubs provinciales del silo.
       // Solo las ciudades cuya provincia ya tiene hub; el resto migra al
       // expandir provincias (no redirigir a un 404).

@@ -211,8 +211,8 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'mejores-obras-sociales-argentina',
     titulo: 'Las mejores obras sociales de Argentina 2026: ranking y comparativa',
-    bajada: 'OSDE, Swiss Medical y Sancor dominan el ranking. Te contamos qué tiene cada una y cuál conviene según tu perfil.',
-    metaDescripcion: 'Ranking de las mejores obras sociales de Argentina 2026. Comparativa de OSDE, Swiss Medical, Galeno, Sancor y más. Cuál es la mejor según tu situación.',
+    bajada: 'OSDE y Sancor encabezan el ranking. Te contamos qué tiene cada una y cuál conviene según tu perfil.',
+    metaDescripcion: 'Ranking de las mejores obras sociales de Argentina 2026. Comparativa de OSDE, Galeno, Sancor y más. Cuál es la mejor según tu situación.',
     categoria: 'Ranking',
     fechaPublicacion: '2026-06-14',
     tiempoLectura: 9,
@@ -220,8 +220,7 @@ export const blogPosts: BlogPost[] = [
       intro: 'Con más de 300 obras sociales registradas en Argentina, elegir la mejor puede ser abrumador. Te presentamos el ranking de las más valoradas en 2026, con análisis honesto de qué tiene cada una.',
       secciones: [
         { titulo: '#1 OSDE: la red más grande', cuerpo: 'OSDE informa más de 125.000 prestadores en todo el país. Sus planes 310 y 410 son los más elegidos por trabajadores de empresas medianas y grandes. La desventaja: es de las más caras como destino de derivación.' },
-        { titulo: '#2 Swiss Medical: los mejores sanatorios', cuerpo: 'Swiss Medical Salud destaca por sus 9 sanatorios propios de última generación incluyendo Suizo Argentina, Los Arcos y Agote. Si vivís en CABA o GBA y valorás la infraestructura médica, es difícil de superar.' },
-        { titulo: '#3 Sancor Salud: la mejor cobertura nacional', cuerpo: 'Para quienes viven o viajan al interior del país, Sancor Salud tiene la red más amplia con 30.000+ profesionales en todas las provincias. Es también una de las más elegidas por familias por su balance precio-cobertura.' },
+        { titulo: '#2 Sancor Salud: la mejor cobertura nacional', cuerpo: 'Para quienes viven o viajan al interior del país, Sancor Salud tiene la red más amplia con 30.000+ profesionales en todas las provincias. Es también una de las más elegidas por familias por su balance precio-cobertura.' },
         { titulo: '¿Y las obras sociales sindicales?', cuerpo: 'Las OS sindicales tienen la obligación de dar cobertura del PMO, pero la calidad varía enormemente. Las más grandes y bien gestionadas ofrecen cobertura comparable a las prepagas premium; otras tienen prestadores limitados.' },
       ],
       conclusion: 'No existe "la mejor obra social" en abstracto: depende de tu zona, cuánto usás el sistema de salud y qué aportás. Lo que sí existe es la mejor para tu perfil específico. Usá nuestro comparador para encontrarla.',

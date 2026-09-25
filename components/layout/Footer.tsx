@@ -33,7 +33,7 @@ const condicionLinks = [
 
 const obrasSocialesLinks = [
   { slug: 'osde', label: 'OSDE' },
-  { slug: 'swiss-medical-os', label: 'Swiss Medical Salud' },
+  { slug: 'osecac', label: 'OSECAC' },
   { slug: 'pami', label: 'PAMI' },
   { slug: 'ioma', label: 'IOMA' },
   { slug: 'sancor-os', label: 'Sancor OS' },

@@ -21,7 +21,7 @@ interface Props {
 }
 
 // Obra social → prepaga de la misma marca (como en /obras-sociales/[slug])
-const OS_A_PREPAGA: Record<string, string> = { 'swiss-medical-os': 'swiss-medical', 'sancor-os': 'sancor-salud' }
+const OS_A_PREPAGA: Record<string, string> = { 'sancor-os': 'sancor-salud' }
 
 // Sindicales nacionales con delegaciones en todo el país (fichas propias)
 const SINDICALES_NACIONALES = ['osecac', 'osuomra', 'uocra-construir-salud', 'oschoca', 'osprera', 'ospedyc', 'osuthgra', 'ospacp', 'union-personal', 'bancaria-osba']
