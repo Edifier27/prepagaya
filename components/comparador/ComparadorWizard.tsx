@@ -4,15 +4,18 @@ import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
-import { provinciasSEO } from '@/lib/data/zonas'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE } from '@/lib/utils'
 import { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
-import { CartillaModal } from './CartillaModal'
+import dynamic from 'next/dynamic'
+// El modal de cartilla trae sanatorios, cartillas y zonas (~30 KB
+// comprimidos): se descarga recién cuando alguien lo abre, no en la carga de
+// la home (velocidad en el celular, 25-sep-2026).
+const CartillaModal = dynamic(() => import('./CartillaModal').then((m) => m.CartillaModal), { ssr: false })
+const AsesoramientoPopup = dynamic(() => import('@/components/ui/AsesoramientoPopup').then((m) => m.AsesoramientoPopup), { ssr: false })
 import { PlanModal } from './PlanModal'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { AsesoramientoPopup } from '@/components/ui/AsesoramientoPopup'
 import { leerZonaGeoDeCookie } from '@/lib/geo-zonas'
 import { OPCIONES_PREPAGA_ACTUAL } from '@/lib/data/sondeo'
 
@@ -90,11 +93,6 @@ const ZONA_PREPAGAS: Record<string, string[]> = {
   'otras':        ['swiss-medical','osde','galeno','sancor-salud','medife','avalian','prevencion-salud'],
 }
 
-// Las zonas con dataset SEO local verificado (lib/data/zonas.ts) pisan el
-// mapping manual: fuente única para páginas de zona y cotizador.
-for (const prov of provinciasSEO) {
-  ZONA_PREPAGAS[prov.zonaKey] = prov.prepagas.filter((pz) => pz.enSitio).map((pz) => pz.slug)
-}
 
 // Interior de Buenos Aires (23-sep-2026): antes compartía lista con el GBA y
 // el comparador le ofrecía a alguien de Tandil prepagas que no llegan ahí.
@@ -108,7 +106,16 @@ const INTERIOR_PARTNERS = ['avalian', 'sancor-salud']
 // el resto queda detrás de "Ver más planes" (demasiadas opciones frenan la
 // decisión).
 const RECOMENDADOS_VISIBLES = 4
-ZONA_PREPAGAS['buenos-aires-interior'] = ZONA_PREPAGAS['buenos-aires'].filter((s) => !SIN_COBERTURA_INTERIOR_BA.includes(s))
+
+// Las zonas con dataset SEO local verificado (lib/data/zonas.ts) pisan el
+// mapping manual: fuente única para páginas de zona y cotizador. Llegan por
+// props (`zonasSEO`, armado en el servidor con prepagasEnSitioPorZona) para
+// no cargar lib/data/zonas.ts entero en el navegador.
+function armarZonaPrepagas(zonasSEO: Record<string, string[]>): Record<string, string[]> {
+  const mapa = { ...ZONA_PREPAGAS, ...zonasSEO }
+  mapa['buenos-aires-interior'] = mapa['buenos-aires'].filter((s) => !SIN_COBERTURA_INTERIOR_BA.includes(s))
+  return mapa
+}
 
 // Lista de provincias del cotizador: vive en lib/data/provincias-cotizador.ts
 // (la usan también las herramientas sin cargar este componente entero).
@@ -210,8 +217,8 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
 // SSSalud ({"prepaga/plan": total}, de /api/precios — escala etaria propia de
 // cada prepaga). Los planes sin cuadro oficial siguen con la estimación por
 // multiplicadores de calcGrupal (23-sep-2026).
-function calcResultados(personas: Persona[], zonaKey: string, descuento: number, oficiales: Record<string, number>): Resultado[] {
-  const slugsZona = ZONA_PREPAGAS[zonaKey] ?? ZONA_PREPAGAS['otras']
+function calcResultados(personas: Persona[], zonaKey: string, descuento: number, oficiales: Record<string, number>, zonaPrepagas: Record<string, string[]>): Resultado[] {
+  const slugsZona = zonaPrepagas[zonaKey] ?? zonaPrepagas['otras']
   const prepagasFiltradas = prepagas.filter((p) => slugsZona.includes(p.slug))
   const out: Resultado[] = []
   // Planes con edad acotada (Sancor GEN 18-45, Avalian Plan Hoy 18-35): se
@@ -517,11 +524,14 @@ function SituacionFiltro({ situacion, setSituacion, sueldoBruto, setSueldoBruto 
 // ─── Main component ───────────────────────────────────────────────────────────
 
 interface WizardProps {
+  /** prepagasEnSitioPorZona() de lib/data/zonas.ts, calculado en el servidor */
+  zonasSEO: Record<string, string[]>
   initialZona?: string
   initialProvincia?: string
 }
 
-export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps = {}) {
+export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: WizardProps) {
+  const zonaPrepagas = useMemo(() => armarZonaPrepagas(zonasSEO), [zonasSEO])
   const router = useRouter()
   const pathname = usePathname()
   // Modo de prueba para Darío: entrando con ?testing=dario se salta el
@@ -697,8 +707,8 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
   }
 
   const allResultados = useMemo(() =>
-    (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey, descuentoRate, preciosOficiales) : [],
-    [step, personas, zonaKey, descuentoRate, preciosOficiales]
+    (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas) : [],
+    [step, personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas]
   )
 
   // Prepagas presentes en los resultados de esta zona — la lista del filtro

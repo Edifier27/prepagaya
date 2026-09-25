@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
+import { prepagasEnSitioPorZona } from '@/lib/data/zonas'
 import { PRECIO_ACTUALIZADO, prepagas } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
@@ -117,6 +118,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
       {/* Wizard — ancho amplio para el sidebar de resultados */}
       <section className="container max-w-5xl mx-auto py-10 px-4">
         <ComparadorWizard
+          zonasSEO={prepagasEnSitioPorZona()}
           initialZona={zona}
           initialProvincia={provincia}
         />

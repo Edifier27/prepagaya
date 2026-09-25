@@ -5,9 +5,12 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { SiteChrome } from '@/components/layout/SiteChrome'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/utils'
+import { provinciasMenu } from '@/lib/data/zonas'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
-const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
+// Mono: solo en un par de páginas (códigos) — sin precarga, así no compite
+// con la fuente principal en la carga de cada página.
+const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'], preload: false })
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -50,9 +53,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-AR" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <SiteChrome>{children}</SiteChrome>
+        <SiteChrome provincias={provinciasMenu()}>{children}</SiteChrome>
         <Analytics />
-        <Script src="https://analytics.ahrefs.com/analytics.js" data-key="n963Y9CAcOEi8wFIGX2/pw" strategy="afterInteractive" />
+        {/* lazyOnload: se carga cuando el navegador queda libre, después de la
+            carga de la página (no compite con el primer render en el celular) */}
+        <Script src="https://analytics.ahrefs.com/analytics.js" data-key="n963Y9CAcOEi8wFIGX2/pw" strategy="lazyOnload" />
       </body>
     </html>
   )
