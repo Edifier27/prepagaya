@@ -103,10 +103,10 @@ export const perfiles: PerfilData[] = [
     emoji: '💼',
     titulo: 'Prepagas para monotributistas: opciones y precios',
     metaDescripcion: 'Las mejores prepagas para monotributistas en Argentina 2026. Podés deducir el gasto, contratar sin empleador y elegir entre todas las opciones del mercado. Precios actualizados.',
-    descripcion: 'Como monotributista podés contratar cualquier prepaga del mercado de forma directa, sin necesidad de obra social. Y lo mejor: podés deducir el gasto de tu declaración de ingresos.',
+    descripcion: 'Tu cuota del monotributo ya incluye un aporte a la obra social. Podés usarlo en una prepaga que lo tome y pagar solo la diferencia, o contratar cualquier prepaga en forma directa, sin depender de un empleador.',
     necesidades: [
       'Contratación directa sin empleador',
-      'Deducción del gasto como gasto de negocio',
+      'Usar el aporte de obra social del monotributo para pagar menos',
       'Planes con buena relación precio-calidad',
       'Factura para declarar el gasto',
       'Flexibilidad para cambiar si cambia tu situación',
@@ -125,7 +125,7 @@ export const perfiles: PerfilData[] = [
     faq: [
       {
         q: '¿Los monotributistas pueden tener prepaga sin obra social?',
-        a: 'Sí, los monotributistas pueden contratar cualquier prepaga directamente. No necesitás obra social ni empleador. La prepaga te factura directamente y podés pagar con tarjeta de crédito, débito o transferencia.',
+        a: 'Podés contratar cualquier prepaga en forma directa, sin empleador, pero el aporte de obra social del monotributo lo seguís pagando igual: está dentro de tu cuota mensual (salvo excepciones, como los menores de 18 años o quienes aportan a otro régimen). Por eso conviene una prepaga que tome ese aporte: pagás solo la diferencia. En la página de obras sociales para monotributistas tenés la lista oficial y cuánto se paga por categoría.',
       },
       {
         q: '¿Puedo deducir la prepaga siendo monotributista?',

@@ -234,7 +234,7 @@ export default function HomePage(): React.ReactElement {
               </Link>
             ))}
           </div>
-          <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+          <div className="mt-4 grid grid-cols-[minmax(0,1fr)] gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
             <Buscador variante="barra" />
             <Link href="/cartillas" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D] hover:underline sm:px-2">Cartillas de {PARTNERS_OFICIALES_TEXTO} por zona →</Link>
           </div>

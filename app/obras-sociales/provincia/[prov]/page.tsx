@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { provinciasSEO, type ProvinciaSEO } from '@/lib/data/zonas'
 import { obrasSociales } from '@/lib/data/obras-sociales'
-import { entidadesRegistro, codigoSeisDigitos, grupoDe, nombreLegible, registroDeObraSocial, REGISTRO_VERIFICADO, type EntidadRegistro } from '@/lib/data/registro-sssalud'
-import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
+import { entidadesRegistro, codigoSeisDigitos, grupoDe, nombreLegible, REGISTRO_VERIFICADO, type EntidadRegistro } from '@/lib/data/registro-sssalud'
+import { FICHAS_REGISTRO, urlFichaEntidad } from '@/lib/data/fichas-registro'
 import { delegacionesEn, DELEGACIONES_FUENTE, SSSALUD_0800 } from '@/lib/data/delegaciones-sssalud'
 import { SITE_NAME, SITE_URL, OG_IMAGE, TIEMPO_RESPUESTA } from '@/lib/utils'
 
@@ -24,13 +24,6 @@ const OS_A_PREPAGA: Record<string, string> = { 'swiss-medical-os': 'swiss-medica
 
 // Sindicales nacionales con delegaciones en todo el país (fichas propias)
 const SINDICALES_NACIONALES = ['osecac', 'osuomra', 'uocra-construir-salud', 'oschoca', 'osprera', 'ospedyc', 'osuthgra', 'ospacp', 'union-personal', 'bancaria-osba']
-
-function fichaDeEntidad(e: EntidadRegistro): string {
-  const os = obrasSociales.find((o) => registroDeObraSocial(o.slug)?.slug === e.slug)
-  if (os) return `/obras-sociales/${os.slug}`
-  if (FICHAS_REGISTRO.some((f) => f.slug === e.slug)) return `/obras-sociales/${e.slug}`
-  return `/obras-sociales/codigos#${e.slug}`
-}
 
 function nombreFicha(slug: string): string | null {
   return obrasSociales.find((o) => o.slug === slug)?.nombre ?? FICHAS_REGISTRO.find((f) => f.slug === slug)?.nombreCorto ?? null
@@ -214,7 +207,7 @@ export default async function ObrasSocialesProvinciaPage({ params }: Props) {
                   <tbody>
                     {conSede.map((e) => (
                       <tr key={e.slug} className="border-t border-gray-100 align-top">
-                        <td className="px-3 py-2"><Link href={fichaDeEntidad(e)} className="font-medium text-gray-900 hover:text-[#E8002D]">{nombreLegible(e.nombre)}</Link></td>
+                        <td className="px-3 py-2"><Link href={urlFichaEntidad(e)} className="font-medium text-gray-900 hover:text-[#E8002D]">{nombreLegible(e.nombre)}</Link></td>
                         <td className="px-3 py-2 tabular-nums whitespace-nowrap">{codigoSeisDigitos(e.codigo!)}</td>
                         <td className="px-3 py-2 text-gray-600 hidden sm:table-cell">{[e.localidadSede, e.telefono].filter(Boolean).join(' · ')}</td>
                       </tr>

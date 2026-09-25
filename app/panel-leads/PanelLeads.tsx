@@ -351,34 +351,36 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-white border-b border-gray-100 sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
+      <div className="bg-white border-b border-gray-100 sm:sticky sm:top-0 z-10">
+        {/* En el celular los botones bajan a una segunda fila (25-sep-2026: la
+            fila única medía ~420 px y corría toda la página de costado). */}
+        <div className="max-w-3xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+          <div className="flex items-center gap-3 min-w-0">
             <div className="w-9 h-9 rounded-xl bg-[#E8002D] text-white flex items-center justify-center font-black text-sm flex-shrink-0">P</div>
-            <div>
-              <h1 className="text-sm font-bold text-gray-900 leading-tight">Panel de Leads</h1>
-              <p className="text-xs text-gray-400 leading-tight">{sinLeer > 0 ? `${sinLeer} sin leer` : 'Todo leído'}</p>
+            <div className="min-w-0">
+              <h1 className="text-sm font-bold text-gray-900 leading-tight whitespace-nowrap">Panel de Leads</h1>
+              <p className="text-xs text-gray-400 leading-tight whitespace-nowrap">{sinLeer > 0 ? `${sinLeer} sin leer` : 'Todo leído'}</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={refrescarManual}
               disabled={refrescando}
-              className="text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 disabled:opacity-60 rounded-full px-3 py-1.5 transition-colors flex items-center gap-1.5"
+              className="text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 disabled:opacity-60 rounded-full px-3 py-1.5 transition-colors flex items-center gap-1.5 whitespace-nowrap"
             >
-              <span className={refrescando ? 'animate-spin' : ''}>↻</span>
-              {refrescando ? 'Actualizando…' : 'Refrescar'}
+              <span className={refrescando ? 'animate-spin' : ''} aria-hidden>↻</span>
+              <span className="sr-only sm:not-sr-only">{refrescando ? 'Actualizando…' : 'Refrescar'}</span>
             </button>
             <button
               onClick={() => exportarCSV(leadsFiltrados)}
-              className="text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full px-3 py-1.5 transition-colors"
+              className="text-xs font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full px-3 py-1.5 transition-colors whitespace-nowrap"
               title="Descargar los leads que estás viendo (con filtros) en CSV para Excel"
             >
-              ⬇ Exportar
+              <span aria-hidden>⬇</span> <span className="sr-only sm:not-sr-only">Exportar</span>
             </button>
             <BotonAlertas estado={estadoAlertas} onActivar={activarAlertas} />
             <form action={logout}>
-              <button type="submit" className="text-xs font-semibold text-gray-400 hover:text-gray-600 transition-colors px-2 py-1.5">
+              <button type="submit" className="text-xs font-semibold text-gray-400 hover:text-gray-600 transition-colors px-2 py-1.5 whitespace-nowrap">
                 Salir
               </button>
             </form>
@@ -409,7 +411,7 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
         {/* Barra de filtros: búsqueda + sin leer + resumen de lo aplicado */}
         <div className="bg-white rounded-2xl border border-gray-100 p-3 mb-3 space-y-2.5">
           <div className="flex items-center gap-2">
-            <div className="relative flex-1">
+            <div className="relative flex-1 min-w-0">
               <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-gray-300 absolute left-3 top-1/2 -translate-y-1/2" aria-hidden>
                 <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.45 4.39l3.08 3.08a.75.75 0 11-1.06 1.06l-3.08-3.08A7 7 0 012 9z" clipRule="evenodd" />
               </svg>
@@ -417,7 +419,7 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
                 type="search"
                 value={filtros.busqueda}
                 onChange={(e) => setFiltros((f) => ({ ...f, busqueda: e.target.value }))}
-                placeholder="Buscar por nombre, teléfono, email o prepaga"
+                placeholder="Nombre, teléfono, email o prepaga"
                 className="w-full text-sm bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2 focus:outline-none focus:border-[#E8002D] focus:bg-white"
               />
             </div>
@@ -623,7 +625,7 @@ function StatBreakdown({ titulo, items, activo, onSelect }: {
 function BotonAlertas({ estado, onActivar }: { estado: EstadoAlertas; onActivar: () => void }) {
   if (estado === 'no-soportado') return null
   if (estado === 'activas') {
-    return <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1.5">🔔 Alertas activas</span>
+    return <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1.5 whitespace-nowrap">🔔 Alertas activas</span>
   }
   if (estado === 'rechazadas') {
     return <span className="text-xs text-gray-400" title="Habilitá las notificaciones para este sitio en la config del navegador">Alertas bloqueadas</span>
@@ -632,7 +634,7 @@ function BotonAlertas({ estado, onActivar }: { estado: EstadoAlertas; onActivar:
     <button
       onClick={onActivar}
       disabled={estado === 'activando'}
-      className="text-xs font-semibold text-white bg-[#E8002D] hover:bg-[#c8001f] disabled:opacity-60 rounded-full px-3 py-1.5 transition-colors"
+      className="text-xs font-semibold text-white bg-[#E8002D] hover:bg-[#c8001f] disabled:opacity-60 rounded-full px-3 py-1.5 transition-colors whitespace-nowrap"
     >
       {estado === 'activando' ? 'Activando…' : '🔔 Activar alertas'}
     </button>
@@ -675,38 +677,45 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
 
   return (
     <details className={`group bg-white rounded-xl border transition-colors overflow-hidden ${lead.leido ? 'border-gray-100' : 'border-red-200'}`}>
+      {/* Dos renglones (25-sep-2026): en una sola fila no entraba en el
+          celular y la flecha quedaba cortada. */}
       <summary className="flex items-center gap-2 px-3 py-2.5 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
         {!lead.leido && <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] flex-shrink-0" />}
-        <span className="font-bold text-gray-900 text-sm truncate">{lead.nombre}</span>
-        {lead.veces > 1 && (
-          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 text-amber-700 bg-amber-50" title={`Se repitió ${lead.veces} veces en 24hs`}>
-            ×{lead.veces}
-          </span>
-        )}
-        {cuenta && (
-          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 ${
-            cuenta === 'Gabriela' ? 'text-purple-700 bg-purple-50' : 'text-blue-700 bg-blue-50'
-          }`}>
-            {cuenta}
-          </span>
-        )}
-        {lead.estado && lead.estado !== 'nuevo' && (
-          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 ${estado.clase}`}>{estado.label}</span>
-        )}
-        {vencido && <span className="text-[11px] flex-shrink-0" title="Seguimiento vencido">⏰</span>}
-        {lead.provincia && <span className="text-[11px] text-gray-400 truncate hidden sm:inline">{lead.provincia}</span>}
-        <span className="flex-1" />
-        <span className={`text-[11px] flex-shrink-0 ${kommoOk ? 'text-emerald-500' : 'text-amber-500'}`} title={kommoOk ? 'Kommo OK' : 'Kommo falló'}>
-          {kommoOk ? '✓' : '⚠'}
-        </span>
-        <span className="text-[11px] text-gray-400 flex-shrink-0 whitespace-nowrap">{formatFecha(lead.creado_en)}</span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span className="font-bold text-gray-900 text-sm truncate">{lead.nombre}</span>
+            {lead.veces > 1 && (
+              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 text-amber-700 bg-amber-50" title={`Se repitió ${lead.veces} veces en 24hs`}>
+                ×{lead.veces}
+              </span>
+            )}
+            {cuenta && (
+              <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 ${
+                cuenta === 'Gabriela' ? 'text-purple-700 bg-purple-50' : 'text-blue-700 bg-blue-50'
+              }`}>
+                {cuenta}
+              </span>
+            )}
+            {lead.estado && lead.estado !== 'nuevo' && (
+              <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 ${estado.clase}`}>{estado.label}</span>
+            )}
+          </div>
+          <div className="flex items-center gap-1.5 min-w-0 mt-0.5 text-[11px] text-gray-400">
+            <span className={`flex-shrink-0 ${kommoOk ? 'text-emerald-500' : 'text-amber-500'}`} title={kommoOk ? 'Kommo OK' : 'Kommo falló'}>
+              {kommoOk ? '✓' : '⚠'}
+            </span>
+            <span className="flex-shrink-0 whitespace-nowrap" suppressHydrationWarning>{formatFecha(lead.creado_en)}</span>
+            {vencido && <span className="flex-shrink-0" title="Seguimiento vencido">⏰</span>}
+            {lead.provincia && <span className="truncate">· {lead.provincia}</span>}
+          </div>
+        </div>
         {wa && (
           // Botón (no <a>) con preventDefault: un click dentro de <summary>,
           // además de abrir WhatsApp, plegaría o desplegaría la card.
           <button
             type="button"
             onClick={(e) => { e.preventDefault(); window.open(wa, '_blank', 'noopener') }}
-            className="w-7 h-7 rounded-full bg-[#25D366] hover:bg-[#1ebe5a] text-white flex items-center justify-center flex-shrink-0 transition-colors"
+            className="w-8 h-8 rounded-full bg-[#25D366] hover:bg-[#1ebe5a] text-white flex items-center justify-center flex-shrink-0 transition-colors"
             title={`Escribirle a ${lead.nombre} por WhatsApp`}
             aria-label={`WhatsApp a ${lead.nombre}`}
           >
@@ -721,7 +730,7 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
       <div className="px-3 pb-3 border-t border-gray-50 pt-3">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-1.5 text-xs">
           {lead.celular && <Campo label="Celular"><a href={`tel:${lead.celular}`} className="text-[#E8002D] font-semibold hover:underline">{lead.celular}</a></Campo>}
-          {lead.email && <Campo label="Email"><a href={`mailto:${lead.email}`} className="text-gray-700 hover:underline break-all">{lead.email}</a></Campo>}
+          {lead.email && <Campo label="Email" completo><a href={`mailto:${lead.email}`} className="text-gray-700 hover:underline break-all">{lead.email}</a></Campo>}
           {lead.prepaga && <Campo label="Interés">{lead.prepaga}</Campo>}
           {lead.provincia && <Campo label="Zona">{lead.provincia}</Campo>}
           {lead.zona_detectada && <Campo label="Detectada (aprox.)">{lead.zona_detectada}</Campo>}
@@ -729,9 +738,9 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
           {lead.situacion_laboral && <Campo label="Situación laboral">{lead.situacion_laboral}</Campo>}
           {lead.prepaga_actual && <Campo label="Cobertura actual">{lead.prepaga_actual}</Campo>}
           {lead.presupuesto && <Campo label="Presupuesto (quiz)">{lead.presupuesto}</Campo>}
-          {textoPreferencias(lead.preferencias) && <Campo label="Preferencias">{textoPreferencias(lead.preferencias)}</Campo>}
+          {textoPreferencias(lead.preferencias) && <Campo label="Preferencias" completo>{textoPreferencias(lead.preferencias)}</Campo>}
           {lead.fuente && <Campo label="Fuente">{lead.fuente}</Campo>}
-          {lead.veces > 1 && lead.actualizado_en && <Campo label="Última actividad">{formatFecha(lead.actualizado_en)}</Campo>}
+          {lead.veces > 1 && lead.actualizado_en && <Campo label="Última actividad"><span suppressHydrationWarning>{formatFecha(lead.actualizado_en)}</span></Campo>}
         </div>
 
         {/* Estado comercial */}
@@ -770,7 +779,7 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
           <div className="text-gray-400 text-[10px] uppercase tracking-wide mb-1.5">Seguimiento</div>
           {lead.seguimiento_en ? (
             <div className="flex flex-wrap items-center gap-2 text-[11px]">
-              <span className={`font-semibold ${vencido ? 'text-amber-700' : 'text-gray-700'}`}>
+              <span className={`font-semibold ${vencido ? 'text-amber-700' : 'text-gray-700'}`} suppressHydrationWarning>
                 {vencido ? '⏰ Vencido: ' : '⏰ '}{formatFecha(lead.seguimiento_en)}
               </span>
               <button onClick={() => onActualizar(lead.id, { seguimiento_en: null })} className="text-gray-400 hover:text-gray-600 font-semibold">
@@ -839,11 +848,13 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
   )
 }
 
-function Campo({ label, children }: { label: string; children: React.ReactNode }) {
+// `completo`: ocupa el ancho entero y se ve todo el texto (email, preferencias),
+// en vez de cortarse con "…" en media columna.
+function Campo({ label, children, completo = false }: { label: string; children: React.ReactNode; completo?: boolean }) {
   return (
-    <div>
+    <div className={`min-w-0 ${completo ? 'col-span-2 sm:col-span-3' : ''}`}>
       <div className="text-gray-400 text-[10px] uppercase tracking-wide">{label}</div>
-      <div className="text-gray-700 font-medium truncate">{children}</div>
+      <div className={`text-gray-700 font-medium ${completo ? 'break-words' : 'truncate'}`}>{children}</div>
     </div>
   )
 }

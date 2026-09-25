@@ -49,7 +49,8 @@ Export que pasó Darío el 24-sep (copia en `docs/seo/datos/gsc-2026-09-08-al-22
 - **Guías de trámites con la letra oficial** (la Action "Fuentes oficiales de trámites" lee argentina.gob.ar/sssalud y deja el texto en el log): *Cómo cambiar de obra social* (opción de cambio: solo online con clave fiscal nivel 3, confirmar el mail en 48 h, rige el 1° del mes siguiente, una vez cada 365 días) y *Unificación de aportes*. Actualizadas: derivar aportes a una prepaga y cómo reclamar (denuncia ante la SSSalud).
 - **Errores corregidos en el sitio**: decíamos que el cambio de obra social se podía hacer "en cualquier momento del año" y tardaba "30-60 días hábiles" (hub y ficha de OSDE), que la prepaga "gestiona" la opción y que tarda "hasta 90 días". Lo oficial es lo del punto anterior.
 - **Enlaces a planes**: cada ficha de obra social con prepaga de la misma marca enlaza a sus planes ("OSDE 210", "OSDE Flux"…).
-- Pendiente: *obra social al jubilarse* (ANSES no publica el trámite en una página que se pueda leer; solo "se hace en ANSES") y la lista oficial de obras sociales que aceptan monotributo (está en la SSSalud; hay que bajarla completa con la Action).
+- **Monotributo** (`/obras-sociales/monotributo`): las 44 obras sociales que aceptan monotributistas (listado de la SSSalud) y el aporte de obra social de cada categoría (cuadro de ARCA, vigente desde el 1/08/2026), con una calculadora de cuánto pagás con tu familia (cada adherente paga lo mismo que el titular). Lo baja la Action "Monotributo (datos oficiales)" el día 5 de cada mes. Corregido el perfil de monotributistas: decía que se puede tener prepaga "sin necesidad de obra social" y que se deduce el gasto (el aporte está dentro de la cuota y el monotributista puro no presenta Ganancias).
+- Pendiente: *obra social al jubilarse* (ANSES no publica el trámite en una página que se pueda leer; solo "se hace en ANSES").
 
 ---
 
