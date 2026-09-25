@@ -56,7 +56,7 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
         <div className="container max-w-3xl! mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight text-balance">{f.nombreCorto}: teléfono, código y cómo pasarte a una prepaga</h1>
           <p className="text-gray-700 mt-3 leading-relaxed">
-            {nombreLegible(e.nombre).replace(/^\S+ - /, '')} es la obra social de {f.actividad}. La tienen por defecto quienes trabajan en esa actividad en relación de dependencia{e.opcion ? ', y otros trabajadores pueden elegirla con la opción de cambio' : ''}.
+            {nombreLegible(e.nombre).replace(/^\S+ - /, '')} es la obra social {f.actividad.startsWith('el ') ? `del ${f.actividad.slice(3)}` : `de ${f.actividad}`}. La tienen por defecto quienes trabajan en esa actividad en relación de dependencia{e.opcion ? ', y otros trabajadores pueden elegirla con la opción de cambio' : ''}.
           </p>
 
           <dl className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -120,6 +120,7 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
             ))}
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2 mt-6">
+            {f.guia && <Link href={`/guias/${f.guia.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">{f.guia.texto} →</Link>}
             <Link href="/obras-sociales/codigos" className="text-sm font-semibold text-[#E8002D] hover:underline">Códigos de todas las obras sociales →</Link>
             <Link href="/guias/opcion-de-cambio-obra-social" className="text-sm font-semibold text-[#E8002D] hover:underline">La opción de cambio, paso a paso →</Link>
             <Link href="/guias/derivar-obra-social-a-prepaga" className="text-sm font-semibold text-[#E8002D] hover:underline">Cómo derivar tus aportes →</Link>

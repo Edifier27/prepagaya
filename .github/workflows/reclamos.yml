@@ -1,0 +1,28 @@
+# Busca datos oficiales de reclamos contra prepagas y obras sociales en los
+# catálogos de datos abiertos (datos.salud.gob.ar, datos.gob.ar) y deja en el
+# log columnas y conteos por empresa (25-sep-2026). La red de los entornos de
+# desarrollo no llega a esos sitios; esta Action sí. No guarda nada en el repo.
+name: Datos oficiales de reclamos
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ['claude/**']
+    paths:
+      - 'scripts/reclamos/**'
+      - '.github/workflows/reclamos.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  buscar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Buscar datos de reclamos
+        run: python scripts/reclamos/buscar.py
