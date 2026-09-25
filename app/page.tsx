@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Buscador } from '@/components/layout/Buscador'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { provinciasSEO } from '@/lib/data/zonas'
+import { provinciasSEO, prepagasEnSitioPorZona } from '@/lib/data/zonas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
@@ -202,7 +202,7 @@ export default function HomePage(): React.ReactElement {
           {/* Wizard card */}
           <div className="container max-w-3xl mx-auto pb-10 sm:pb-16">
             <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-white p-5 md:p-10">
-              <ComparadorWizard />
+              <ComparadorWizard zonasSEO={prepagasEnSitioPorZona()} />
             </div>
           </div>
         </div>

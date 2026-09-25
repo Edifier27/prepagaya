@@ -1,5 +1,6 @@
 ﻿import Link from 'next/link'
-import { provinciasSEO } from '@/lib/data/zonas'
+import Image from 'next/image'
+import type { ProvinciaMenu } from '@/lib/data/zonas'
 import { PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
 // Solo el JSON chico de precios oficiales (no lib/data/prepagas.ts): el footer
 // se renderiza dentro de SiteChrome, que es client component.
@@ -102,7 +103,7 @@ function IconArrow() {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export function Footer() {
+export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
   return (
     <footer className="bg-[#0a0f1e] text-gray-400">
       <div className="container py-14">
@@ -315,7 +316,7 @@ export function Footer() {
           <div>
             <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Por provincia</h3>
             <ul className="space-y-2.5">
-              {provinciasSEO.map((prov) => (
+              {provincias.map((prov) => (
                 <li key={prov.slug}>
                   <Link href={`/prepagas/${prov.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
                     {prov.nombre}
@@ -336,8 +337,9 @@ export function Footer() {
             Logo como cita de la fuente de datos, no como aval. */}
         <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-gray-400">
           <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex bg-white rounded-xl px-4 py-2.5 w-fit flex-shrink-0" aria-label="Superintendencia de Servicios de Salud">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logos/sssalud.png" alt="Superintendencia de Servicios de Salud" width={945} height={354} className="h-14 w-auto" />
+            {/* next/image: carga diferida y en el tamaño que se muestra (el PNG
+                original es de 945 px y se bajaba entero en cada página) */}
+            <Image src="/logos/sssalud.png" alt="Superintendencia de Servicios de Salud" width={150} height={56} className="h-14 w-auto" />
           </a>
           <span>
             Fuente:{' '}

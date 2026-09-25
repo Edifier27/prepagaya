@@ -1,10 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CartillaModal } from '@/components/comparador/CartillaModal'
+import dynamic from 'next/dynamic'
 import { ZonaPickerModal } from '@/components/prepagas/ZonaPickerModal'
 import type { Provincia } from '@/components/comparador/ComparadorWizard'
 import type { Plan, Prepaga } from '@/types'
+
+// El modal trae sanatorios, cartillas y zonas (~30 KB comprimidos): se
+// descarga recién al abrirlo, no con la página del plan.
+const CartillaModal = dynamic(() => import('@/components/comparador/CartillaModal').then((m) => m.CartillaModal), { ssr: false })
 
 const ZONA_STORAGE_KEY = 'prepagaya_zona'
 

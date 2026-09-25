@@ -4,8 +4,10 @@ import Link from 'next/link'
 import { Buscador } from './Buscador'
 import { useState } from 'react'
 import { Button } from '@/components/ui/Button'
-import { provinciasSEO } from '@/lib/data/zonas'
-import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import type { ProvinciaMenu } from '@/lib/data/zonas'
+// Solo el JSON chico de precios (no lib/data/prepagas.ts): el header está en
+// todas las páginas y es client component.
+import preciosOficiales from '@/lib/data/precios-oficiales.json'
 import { MiniBuilding, MiniLeaf, MiniElder, MiniCross } from '@/components/ui/CategoryIcon'
 
 // Orden del menú (Darío, 23-sep-2026): Swiss Medical "mejor prepaga",
@@ -28,8 +30,11 @@ const prepagaLinks: { slug: string; nombre: string; colorPrimario: string; badge
   { slug: 'luis-pasteur',  nombre: 'Luis Pasteur',  colorPrimario: '#006837' },
 ]
 
-// Silo SEO local: hubs provinciales con cobertura verificada (lib/data/zonas.ts)
-const zonasMenu = provinciasSEO.map((p) => ({
+const PRECIO_ACTUALIZADO = preciosOficiales.periodoTexto
+
+// Silo SEO local: hubs provinciales con cobertura verificada (lib/data/zonas.ts,
+// llegan por props desde el layout)
+const armarZonasMenu = (provincias: ProvinciaMenu[]) => provincias.map((p) => ({
   href: `/prepagas/${p.slug}`,
   label: `Prepagas en ${p.nombre}`,
   ranking: `/prepagas/${p.slug}/mejores-prepagas`,
@@ -73,7 +78,8 @@ const herramientasMenu = [
 
 type DropdownKey = 'prepagas' | 'zonas' | 'obras-sociales' | 'herramientas' | null
 
-export function Header() {
+export function Header({ provincias }: { provincias: ProvinciaMenu[] }) {
+  const zonasMenu = armarZonasMenu(provincias)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<DropdownKey>(null)
 

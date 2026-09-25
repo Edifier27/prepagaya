@@ -3,7 +3,11 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { AsesoramientoPopup } from '@/components/ui/AsesoramientoPopup'
+import dynamic from 'next/dynamic'
+
+// El popup (cerrado no pinta nada) se descarga después de la carga inicial:
+// está en todas las páginas y casi nadie lo abre de entrada.
+const AsesoramientoPopup = dynamic(() => import('@/components/ui/AsesoramientoPopup').then((m) => m.AsesoramientoPopup), { ssr: false })
 
 const items = [
   {

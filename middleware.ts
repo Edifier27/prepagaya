@@ -36,7 +36,15 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Corre en todo excepto assets estáticos y archivos de Next internos.
-    '/((?!_next/static|_next/image|favicon|logos|icon).*)',
+    // Corre en las páginas, no en assets, API, sitemap/robots ni en las
+    // precargas de links (next-router-prefetch): la cookie ya queda con la
+    // primera página y así cada link visible no pasa por acá (25-sep-2026).
+    {
+      source: '/((?!api|_next/static|_next/image|favicon|logos|icon|sitemap.xml|robots.txt).*)',
+      missing: [
+        { type: 'header', key: 'next-router-prefetch' },
+        { type: 'header', key: 'purpose', value: 'prefetch' },
+      ],
+    },
   ],
 }

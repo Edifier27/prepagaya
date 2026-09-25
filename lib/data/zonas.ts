@@ -1000,6 +1000,17 @@ provinciasSEO.push(
   },
 )
 
+// Versiones chicas para client components (header, footer, comparador): se
+// arman en el servidor y viajan como props, así el navegador no descarga este
+// archivo entero (~100 KB de textos) en cada página.
+export interface ProvinciaMenu { slug: string; nombre: string }
+export const provinciasMenu = (): ProvinciaMenu[] => provinciasSEO.map(({ slug, nombre }) => ({ slug, nombre }))
+
+/** zonaKey → prepagas con ficha en el sitio que llegan a esa zona. */
+export function prepagasEnSitioPorZona(): Record<string, string[]> {
+  return Object.fromEntries(provinciasSEO.map((p) => [p.zonaKey, p.prepagas.filter((pz) => pz.enSitio).map((pz) => pz.slug)]))
+}
+
 export function getProvinciaSEO(slug: string): ProvinciaSEO | undefined {
   return provinciasSEO.find((p) => p.slug === slug)
 }
