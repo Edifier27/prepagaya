@@ -117,7 +117,7 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
     if (esc2) {
       faqs.push({
         q: `¿Qué diferencia hay entre el ${codigo} y el ${cod2} de ${prep.nombre}?`,
-        a: `El ${cod2} es el escalón siguiente: en el primer rango de edad cuesta ${formatPrecio(esc2.rangos[0].precio)} contra ${formatPrecio(escala.rangos[0].precio)} del ${codigo} (lista oficial). ${siguiente.descripcion}`,
+        a: `El ${cod2} es el escalón siguiente de ${prep.nombre}. ${siguiente.descripcion} La diferencia de precio depende de tu edad y tu zona: te la cotizamos, con 15% OFF online.`,
       })
     }
   }
@@ -262,7 +262,9 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
   const perfilDelPlan = getPerfilDelPlan(plan)
   const seo = contenidoPlan(prep, plan)
-  const faqs = [...(seo?.faqs ?? []), ...buildPlanFAQs(plan, prep)]
+  // Una sola pregunta de precio (25-sep-2026): si hay cuadro oficial por edad,
+  // la de "precio a los 30 años" sobra.
+  const faqs = [...(seo?.faqs ?? []), ...buildPlanFAQs(plan, prep).filter((f) => !(seo?.escala && f.q.startsWith('¿Cuánto cuesta el')))]
   const comparativaPlan = getComparativaParaPlan(slug, planSlug)
   const otroPlanComparativa = comparativaPlan
     ? prep.planes.find((p) => p.slug === (comparativaPlan.plan1Slug === planSlug ? comparativaPlan.plan2Slug : comparativaPlan.plan1Slug))
@@ -358,7 +360,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
           <div className="bg-white rounded-2xl border-2 border-[#E8002D] p-6 mb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <div className="text-sm font-bold text-gray-900">{prep.nombre} {plan.nombre}</div>
-              <div className="text-xs text-gray-400 mt-0.5">El precio final depende de tu edad y provincia</div>
+              <div className="text-xs text-gray-500 mt-0.5">Cotizando online: <strong className="text-[#E8002D]">15% OFF</strong> sobre el precio de lista (25% si sos monotributista)</div>
             </div>
             <div className="flex flex-col gap-2 sm:items-end">
               {isPartner ? (
@@ -376,7 +378,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
                   href="/comparador"
                   className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"
                 >
-                  Cotizar mi precio →
+                  Cotizar con 15% OFF →
                 </Link>
               )}
             </div>
@@ -400,11 +402,13 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
           {/* Datos clave — lo primero que alguien busca al comparar un plan */}
           <div className="grid grid-cols-3 gap-3">
-            <div className="bg-gray-50 rounded-xl border border-gray-100 p-3 text-center">
-              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">Precio de lista</div>
-              <div className="text-lg font-black text-gray-900">{formatPrecio(plan.precio)}</div>
-              <div className="text-[10px] text-gray-400">30 años · 1 persona</div>
-            </div>
+            {/* Antes: el precio de lista (se repetía con el cuadro por edad de más
+                abajo). Ahora el incentivo para cotizar (Darío, 25-sep-2026). */}
+            <Link href="/comparador" className="bg-red-50 rounded-xl border border-red-100 p-3 text-center hover:border-[#E8002D] transition-colors">
+              <div className="text-[10px] font-bold text-[#E8002D] uppercase tracking-wide mb-1">Online</div>
+              <div className="text-lg font-black text-[#E8002D]">15% OFF</div>
+              <div className="text-[10px] text-gray-500">25% monotributo</div>
+            </Link>
             <div className="bg-gray-50 rounded-xl border border-gray-100 p-3 text-center">
               {/* Antes "Calidad cartilla x/5": era un puntaje propio sin fuente
                   (23-sep-2026). Ahora, datos del plan. */}
@@ -483,10 +487,17 @@ export default async function PlanPage({ params, searchParams }: Props) {
             {seo.escala && (
               <div>
                 <h2 className="text-xl font-bold text-gray-900 mb-1">Precio del {seo.nombreLargo} por edad</h2>
-                <p className="text-xs text-gray-500 mb-4">
-                  Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona.
+                <p className="text-xs text-gray-500 mb-3">
+                  Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona. Cotizando online tenés 15% OFF sobre estos valores.
                 </p>
-                <table className="w-full text-sm border border-gray-100 rounded-xl overflow-hidden">
+                {/* Plegado (25-sep-2026): el precio estaba demasiado a la vista y
+                    repetido. Queda una sola vez, a un toque. */}
+                <details className="group rounded-xl border border-gray-200">
+                  <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
+                    Ver precio de lista por edad
+                    <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </summary>
+                <table className="w-full text-sm border-t border-gray-100">
                   <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
                     <tr><th className="text-left px-4 py-2">Edad</th><th className="text-right px-4 py-2">Precio mensual</th></tr>
                   </thead>
@@ -499,6 +510,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
                     ))}
                   </tbody>
                 </table>
+                </details>
                 <p className="text-xs text-gray-400 mt-2">El precio final depende de tu zona, tu grupo familiar y las promociones vigentes: te lo cotizamos sin cargo.</p>
               </div>
             )}
@@ -601,7 +613,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
                     </div>
                   </div>
                   <div className="text-right flex-shrink-0 pl-3">
-                    <div className="font-bold text-gray-900 text-sm">{formatPrecio(planInferior.precio)}</div>
                     <NivelPrecioBadge nivel={nivelPrecio(planInferior.precio)} />
                   </div>
                 </Link>
@@ -619,7 +630,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
                     </div>
                   </div>
                   <div className="text-right flex-shrink-0 pl-3">
-                    <div className="font-bold text-gray-900 text-sm">{formatPrecio(planSuperior.precio)}</div>
                     <NivelPrecioBadge nivel={nivelPrecio(planSuperior.precio)} />
                   </div>
                 </Link>
@@ -658,7 +668,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
                 </div>
                 <div className="text-right flex-shrink-0 flex items-center gap-3">
                   <div>
-                    <div className="font-bold text-gray-900 text-sm">{formatPrecio(pl.precio)}</div>
                     <NivelPrecioBadge nivel={nivelPrecio(pl.precio)} />
                   </div>
                   <span className="text-xs text-gray-400">→</span>
@@ -701,7 +710,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">¿Querés contratar el {plan.nombre}?</h2>
           <p className="text-red-200 text-sm mb-6">
-            El precio real depende de tu edad y zona. Cotizá gratis y recibí asesoramiento sin cargo.
+            El precio real depende de tu edad y zona. Cotizá online con 15% OFF (25% si sos monotributista) y recibí asesoramiento sin cargo.
           </p>
           <Link
             href="/comparador"

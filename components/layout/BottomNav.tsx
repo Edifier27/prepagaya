@@ -60,7 +60,7 @@ export function BottomNav(): React.ReactElement {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-gray-200 shadow-2xl">
+      <nav className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-white border-t border-gray-200 shadow-2xl">
         <div className="flex items-stretch">
           {items.map((item) => {
             const active = pathname === item.href
@@ -72,7 +72,13 @@ export function BottomNav(): React.ReactElement {
                   active ? 'text-[#E8002D]' : 'text-gray-400 hover:text-gray-700'
                 }`}
               >
-                {item.icon(active)}
+                <span className="relative">
+                  {item.icon(active)}
+                  {/* Incentivo al clic (25-sep-2026): 15% OFF cotizando online */}
+                  {item.href === '/comparador' && (
+                    <span className="absolute -top-1.5 -right-5 rounded-full bg-[#E8002D] px-1 py-px text-[9px] font-black leading-none text-white">-15%</span>
+                  )}
+                </span>
                 <span className="text-[10px] font-semibold leading-none">{item.label}</span>
               </Link>
             )

@@ -4,6 +4,7 @@ import { Suspense, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { PROVINCIAS } from '@/lib/data/provincias-cotizador'
+import { useZonaDetectada } from '@/lib/use-zona-detectada'
 import { enviarLead, preciosDelGrupo } from '@/lib/leads-cliente'
 import { formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { FormularioLead, type DatosFormulario } from './FormularioLead'
@@ -55,7 +56,10 @@ export function ChequeoPrepaga({ inicial, prepagas, aumentos, mesPrecios }: Prop
 
   const prepaga = prepagas.find((p) => p.slug === prepagaSlug)
   const plan = prepaga?.planes.find((p) => p.slug === planSlug)
-  const prov = PROVINCIAS.find((p) => p.slug === provincia)
+  // Zona precargada por la ubicación aproximada; la persona la puede cambiar.
+  const detectada = useZonaDetectada()
+  const provinciaElegida = provincia || detectada?.provincia.slug || ''
+  const prov = PROVINCIAS.find((p) => p.slug === provinciaElegida)
   const edadesNum = edades.map((e) => parseInt(e, 10)).filter((n) => Number.isInteger(n) && n >= 0 && n <= 99)
   const completo = Boolean(prepaga && plan && prov && edadesNum.length === edades.length && edadesNum.length > 0)
 
@@ -133,10 +137,11 @@ export function ChequeoPrepaga({ inicial, prepagas, aumentos, mesPrecios }: Prop
           </div>
           <div>
             <label htmlFor="ch-provincia" className="block text-sm font-semibold text-gray-800 mb-1">Dónde vivís</label>
-            <select id="ch-provincia" value={provincia} onChange={(e) => cambiar(setProvincia)(e.target.value)} className={campo}>
+            <select id="ch-provincia" value={provinciaElegida} onChange={(e) => cambiar(setProvincia)(e.target.value)} className={campo}>
               <option value="">Elegí…</option>
               {PROVINCIAS.map((p) => <option key={p.slug} value={p.slug}>{p.nombre}</option>)}
             </select>
+            {!provincia && detectada && <p className="mt-1 text-xs text-gray-500">📍 Por tu ubicación aproximada: {detectada.label}. Si no es tu zona, cambiala.</p>}
           </div>
           <fieldset>
             <legend className="block text-sm font-semibold text-gray-800 mb-1">Cómo lo pagás</legend>

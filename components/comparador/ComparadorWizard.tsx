@@ -2004,7 +2004,7 @@ export function ComparadorWizard({ initialZona, initialProvincia }: WizardProps 
       })()}
 
       {comparando.size > 0 && !tablaComparativa && (
-        <div className="fixed bottom-20 md:bottom-6 left-4 right-4 md:left-auto md:right-6 md:w-auto z-40 flex justify-center md:justify-end">
+        <div className="fixed bottom-20 lg:bottom-6 left-4 right-4 md:left-auto md:right-6 md:w-auto z-40 flex justify-center md:justify-end">
           <button
             onClick={() => setTablaComparativa(true)}
             className="flex items-center gap-2 px-6 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-2xl shadow-2xl transition-all text-sm"

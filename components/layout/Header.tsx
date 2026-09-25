@@ -102,7 +102,9 @@ export function Header() {
           </Link>
 
           {/* Nav Desktop */}
-          <nav className="hidden md:flex items-center gap-5">
+          {/* Menú completo desde 1024 px: entre 768 y 1024 no entraba y corría la
+              página de costado (25-sep-2026); ahí va el menú hamburguesa. */}
+          <nav className="hidden lg:flex items-center gap-5">
 
             {/* Prepagas dropdown */}
             <div className="relative" onMouseEnter={() => openDropdown('prepagas')} onMouseLeave={closeDropdown}>
@@ -218,19 +220,21 @@ export function Header() {
           <Buscador />
 
           {/* CTA */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link href="/comparador"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-all shadow-sm hover:shadow-md">
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-all shadow-sm hover:shadow-md whitespace-nowrap">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-4 h-4">
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
               Cotizá gratis
+              {/* Incentivo al clic (Darío, 25-sep-2026): el mismo 15% online del cotizador */}
+              <span className="rounded-md bg-white/20 px-1.5 py-0.5 text-[10px] font-black leading-none">15% OFF</span>
             </Link>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+            className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Abrir menú"
           >
@@ -247,7 +251,7 @@ export function Header() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100 max-h-[80vh] overflow-y-auto">
+          <div className="lg:hidden py-4 border-t border-gray-100 max-h-[80vh] overflow-y-auto">
             <div className="flex flex-col gap-1">
               <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Prepagas</p>
               {prepagaLinks.map((p) => (
@@ -291,7 +295,7 @@ export function Header() {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-4 h-4">
                     <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                   </svg>
-                  Cotizá gratis
+                  Cotizá gratis · 15% OFF online
                 </Link>
               </div>
             </div>
