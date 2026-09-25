@@ -179,11 +179,230 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['unificacion de aportes', 'unificar aportes obra social', 'unificar aportes con mi pareja', 'unificacion de aportes conyuge', 'unificacion de aportes concubino', 'unificacion de aportes sssalud', 'unificar aportes prepaga', 'desunificacion de aportes'],
-    relacionadas: ['opcion-de-cambio-obra-social', 'derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'obra-social-vs-prepaga'],
+    relacionadas: ['opcion-de-cambio-obra-social', 'divorcio-obra-social', 'derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem'],
     fuentes: [
       { texto: 'Argentina.gob.ar — Solicitar unificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes' },
       { texto: 'Argentina.gob.ar — Solicitar unificación de aportes de jubilados', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes-de-jubilados' },
       { texto: 'Argentina.gob.ar — Solicitar desunificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-desunificacion-de-aportes' },
+    ],
+  },
+  {
+    slug: 'obra-social-empleada-domestica',
+    titulo: 'Obra social de la empleada doméstica: cuál le corresponde y cómo elegir otra (2026)',
+    metaDescripcion: 'La obra social del personal de casas particulares es OSPACP, pero la trabajadora puede elegir otra. Para tener cobertura, los aportes tienen que llegar a los de 16 horas semanales o más. Lo que dicen ARCA y ANSES.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-09-25',
+    contenido: {
+      intro: 'Toda trabajadora de casas particulares registrada tiene obra social. La de la actividad es la Obra Social del Personal Auxiliar de Casas Particulares (OSPACP), que se asigna automáticamente con el alta, pero la trabajadora puede elegir otra. Lo que define si tiene cobertura son los aportes: tienen que ser iguales o mayores a los de la categoría de 16 horas semanales o más.',
+      secciones: [
+        {
+          titulo: 'Qué obra social le corresponde',
+          cuerpo: 'Según ARCA, la obra social de la actividad es la del Personal Auxiliar de Casas Particulares (OSPACP), y ANSES aclara que se asigna automáticamente. Pero la que elige es la trabajadora: el empleador solo la declara cuando la da de alta. Con los aportes al día, la cobertura es para ella y para su familia.',
+          enlaces: [{ texto: 'ANSES: personal de casas particulares', url: 'https://www.anses.gob.ar/trabajo/personal-de-casas-particulares' }],
+        },
+        {
+          titulo: 'La regla de las 16 horas',
+          cuerpo: 'El régimen tiene tres categorías según las horas semanales: menos de 12, de 12 a 16, y 16 o más. Para acceder a las prestaciones, los aportes de obra social tienen que ser iguales o superiores a la cuota de la categoría de 16 horas semanales o más. Si trabaja menos horas y el aporte no llega, ANSES indica que la trabajadora puede completar la diferencia o que la puede pagar el empleador.',
+        },
+        {
+          titulo: 'Cómo cambiar de obra social',
+          cuerpo: 'Por internet, con clave fiscal nivel 3 y el servicio "Mi SSSalud" habilitado: se entra al servicio, se toca "Nueva opción" y se completan los datos. También se puede hacer en la sede o delegación de la obra social elegida. Según ARCA, el cambio se puede hacer una vez al año, y quien cambia tiene que quedarse al menos un año antes de volver a cambiar.',
+          enlaces: [{ texto: 'ARCA: obra social en casas particulares', url: 'https://www.arca.gob.ar/casasparticulares/ayuda/empleador/obra-social.asp' }],
+        },
+        {
+          titulo: 'Qué tiene que cubrir',
+          cuerpo: 'ARCA enumera lo que la obra social elegida le tiene que garantizar: atención médica, internación y medicamentos. La constancia de qué obra social tiene asignada (el CODEM) se descarga desde la web de ANSES.',
+        },
+        {
+          titulo: 'Qué le toca al empleador',
+          cuerpo: 'Registrarla en ARCA, sin importar cuántas horas trabaje ni la modalidad, y pagar todos los meses los aportes y contribuciones según las horas semanales. Se pagan a mes vencido (lo trabajado el mes anterior), salvo la ART, que se paga a mes en curso. Según el Ministerio de Trabajo, quien emplea puede deducir la remuneración y los aportes del impuesto a las ganancias.',
+          enlaces: [
+            { texto: 'ARCA: Casas Particulares', url: 'https://www.arca.gob.ar/casasparticulares/' },
+            { texto: 'Trabajo: empleadores de casas particulares', url: 'https://www.argentina.gob.ar/trabajo/casasparticulares/empleadores' },
+          ],
+          cta: {
+            texto: '¿Buscás cobertura para tu familia? Te cotizamos las prepagas de tu zona, con 15% OFF online.',
+            boton: 'Cotizar prepaga',
+            href: '/comparador',
+          },
+        },
+      ],
+      conclusion: 'Registrada, la trabajadora de casas particulares tiene obra social: OSPACP por defecto o la que ella elija. Para que la cobertura funcione, el aporte tiene que llegar al de la categoría de 16 horas o más; si no llega, se puede completar la diferencia.',
+    },
+    faq: [
+      {
+        q: '¿Cuál es la obra social de la empleada doméstica?',
+        a: 'La de la actividad es la Obra Social del Personal Auxiliar de Casas Particulares (OSPACP), que se asigna automáticamente. La trabajadora puede elegir otra.',
+      },
+      {
+        q: '¿Una empleada doméstica que trabaja menos de 16 horas tiene obra social?',
+        a: 'Para tener cobertura, los aportes tienen que ser iguales o mayores a los de la categoría de 16 horas semanales o más. Si son menores, la trabajadora puede completar la diferencia o la puede pagar el empleador (ANSES).',
+      },
+      {
+        q: '¿Quién elige la obra social, la trabajadora o el empleador?',
+        a: 'La trabajadora. El empleador la declara cuando la da de alta.',
+      },
+      {
+        q: '¿Cada cuánto puede cambiar de obra social?',
+        a: 'Una vez al año, y después de cambiar tiene que quedarse al menos un año en la nueva (ARCA).',
+      },
+      {
+        q: '¿La obra social cubre a su familia?',
+        a: 'Sí: según ARCA, los aportes le dan cobertura de obra social a ella y a su familia.',
+      },
+    ],
+    keywords: ['obra social empleada domestica', 'obra social casas particulares', 'ospacp', 'empleada domestica obra social 16 horas', 'cambiar obra social empleada domestica', 'obra social servicio domestico', 'aportes obra social casas particulares'],
+    relacionadas: ['opcion-de-cambio-obra-social', 'que-obra-social-tengo-codem', 'unificar-aportes-obra-social', 'derivar-obra-social-a-prepaga'],
+    fuentes: [
+      { texto: 'ARCA — Obra social (Casas Particulares)', url: 'https://www.arca.gob.ar/casasparticulares/ayuda/empleador/obra-social.asp' },
+      { texto: 'ARCA — Aportes, contribuciones y ART: conceptos', url: 'https://www.arca.gob.ar/casasparticulares/aportes-contribuciones-ART/conceptos.asp' },
+      { texto: 'ANSES — Personal de casas particulares', url: 'https://www.anses.gob.ar/trabajo/personal-de-casas-particulares' },
+      { texto: 'Argentina.gob.ar — Empleadores de casas particulares', url: 'https://www.argentina.gob.ar/trabajo/casasparticulares/empleadores' },
+    ],
+  },
+  {
+    slug: 'hijos-21-a-25-anos-obra-social',
+    titulo: 'Hijos de 21 a 25 años en la obra social: quiénes siguen cubiertos (2026)',
+    metaDescripcion: 'Según la Ley 23.660, los hijos solteros siguen en la obra social del padre o la madre hasta los 21 años, y hasta los 25 inclusive si estudian y están a su cargo. Qué pasa después y qué opciones hay.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-09-25',
+    contenido: {
+      intro: 'Los hijos están en la obra social del padre o la madre como parte del grupo familiar primario. La Ley 23.660 fija dos edades: hasta los 21 años, los hijos solteros; y de 21 a 25 años inclusive, los hijos solteros que estudian y están a exclusivo cargo del titular. Los hijos con discapacidad a cargo siguen cubiertos después de los 21, sin tope.',
+      secciones: [
+        {
+          titulo: 'Qué dice la ley',
+          cuerpo: 'El artículo 9 de la Ley 23.660 define el grupo familiar primario del afiliado titular: su cónyuge; los hijos solteros hasta los 21 años, no emancipados; los hijos solteros de más de 21 y hasta 25 años inclusive, a exclusivo cargo del titular, que cursen estudios regulares oficialmente reconocidos; los hijos con discapacidad a cargo del titular, mayores de 21; los hijos del cónyuge; y los menores con guarda o tutela otorgada por un juez o una autoridad administrativa.',
+          enlaces: [{ texto: 'Ley 23.660 (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/62/texact.htm' }],
+        },
+        {
+          titulo: 'De 21 a 25: las tres condiciones',
+          cuerpo: 'Para seguir cubierto después de los 21, el hijo tiene que cumplir las tres: ser soltero, estar a exclusivo cargo del titular y cursar estudios regulares oficialmente reconocidos. La obra social te va a pedir que lo acredites, en general con el certificado de alumno regular: consultá en la tuya cada cuánto lo tenés que presentar.',
+        },
+        {
+          titulo: 'Qué pasa a los 21 (si no estudia) o a los 26',
+          cuerpo: 'Deja de ser parte del grupo familiar primario y sale de la cobertura del titular. Si trabaja en relación de dependencia, tiene su propia obra social con sus aportes, y puede elegir otra con la opción de cambio. Si es monotributista, la cuota del monotributo incluye la obra social. Si no trabaja, la alternativa es un plan particular de prepaga.',
+          cta: {
+            texto: 'A esa edad los planes de prepaga están entre los más baratos de la lista. Te cotizamos online con 15% OFF.',
+            boton: 'Cotizar plan joven',
+            href: '/comparador',
+          },
+        },
+        {
+          titulo: 'Hijos con discapacidad',
+          cuerpo: 'La ley los incluye después de los 21 años sin fijar un tope: los hijos con discapacidad que están a cargo del titular siguen en el grupo familiar.',
+        },
+        {
+          titulo: 'Otros familiares a cargo',
+          cuerpo: 'La Superintendencia de Servicios de Salud puede autorizar que se sumen otros ascendientes o descendientes por consanguinidad que estén a cargo del titular, como padres o nietos. Por cada persona que se incluye se paga un aporte adicional del 1,5%.',
+        },
+      ],
+      conclusion: 'Hasta los 21 años, los hijos solteros están cubiertos por la obra social del padre o la madre. De 21 a 25 inclusive, solo si estudian y están a cargo. Después, cada uno necesita su propia cobertura: la obra social de su trabajo, la del monotributo o un plan de prepaga. En un plan de prepaga particular, las condiciones para los hijos las fija el contrato.',
+    },
+    faq: [
+      {
+        q: '¿Hasta qué edad un hijo puede estar en la obra social de sus padres?',
+        a: 'Hasta los 21 años si es soltero; hasta los 25 inclusive si además estudia y está a exclusivo cargo del titular. Los hijos con discapacidad a cargo, sin tope de edad.',
+      },
+      {
+        q: '¿Qué necesita un hijo de 21 a 25 para seguir en la obra social?',
+        a: 'Ser soltero, estar a exclusivo cargo del titular y cursar estudios regulares oficialmente reconocidos (Ley 23.660, artículo 9).',
+      },
+      {
+        q: '¿Qué pasa si mi hijo empieza a trabajar?',
+        a: 'En relación de dependencia pasa a tener su propia obra social con sus aportes. La ley excluye del grupo familiar a los hijos menores de 21 emancipados por ejercer una actividad profesional, comercial o laboral, y de 21 a 25 exige que estén a exclusivo cargo del titular.',
+      },
+      {
+        q: '¿Los hijos de mi pareja pueden estar en mi obra social?',
+        a: 'Sí: la ley incluye a los hijos del cónyuge en el grupo familiar primario.',
+      },
+      {
+        q: '¿Puedo sumar a mis padres a la obra social?',
+        a: 'La Superintendencia puede autorizar ascendientes que estén a tu cargo, con un aporte adicional del 1,5% por persona.',
+      },
+    ],
+    keywords: ['hijos 21 a 25 años obra social', 'hasta que edad un hijo puede estar en la obra social', 'hijo estudiante obra social 25 años', 'obra social hijos mayores de 21', 'grupo familiar primario obra social', 'ley 23660 articulo 9'],
+    relacionadas: ['afiliar-recien-nacido-prepaga', 'discapacidad-obra-social-cobertura-100', 'opcion-de-cambio-obra-social', 'edad-maxima-afiliarse-prepaga'],
+    fuentes: [
+      { texto: 'Ley 23.660 de Obras Sociales, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/62/texact.htm' },
+    ],
+  },
+  {
+    slug: 'divorcio-obra-social',
+    titulo: 'Divorcio y obra social: qué pasa con la cobertura y cómo desunificar aportes (2026)',
+    metaDescripcion: 'Con el divorcio, tu ex deja de ser parte de tu grupo familiar en la obra social (Ley 23.660). Si habían unificado aportes, se pide la desunificación ante la Superintendencia con la sentencia. Papeles y vías.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-09-25',
+    contenido: {
+      intro: 'Con el divorcio cambian dos cosas en la obra social. Tu ex deja de ser parte de tu grupo familiar, porque la Ley 23.660 cubre al cónyuge del titular. Y si habían unificado aportes, cada uno puede volver a la obra social de su actividad con la desunificación de aportes, un trámite ante la Superintendencia de Servicios de Salud que se hace online, con turno o por correo.',
+      secciones: [
+        {
+          titulo: 'Tu ex deja de ser familiar a cargo',
+          cuerpo: 'El grupo familiar primario de la Ley 23.660 incluye al cónyuge del afiliado titular. Con la sentencia de divorcio, tu ex deja de ser cónyuge y, con eso, familiar a cargo en tu obra social: avisale a tu obra social. Si tu ex trabaja en relación de dependencia, tiene su propia obra social con sus aportes; si no, va a necesitar su propia cobertura.',
+          cta: {
+            texto: 'Si te quedaste sin cobertura, te cotizamos un plan individual en tu zona, con 15% OFF online.',
+            boton: 'Cotizar plan individual',
+            href: '/comparador',
+          },
+        },
+        {
+          titulo: 'Los hijos siguen cubiertos',
+          cuerpo: 'Los hijos siguen en el grupo familiar del padre o la madre titular, con los límites de edad de la ley: solteros hasta los 21 años, hasta los 25 inclusive si estudian y están a cargo, y sin tope si tienen una discapacidad y están a cargo.',
+        },
+        {
+          titulo: 'Si habían unificado aportes: la desunificación',
+          cuerpo: 'Con la desunificación, separás tus aportes de los de tu cónyuge o concubino y volvés al agente del seguro de tu actividad. Papeles: el formulario de desunificación (se descarga de la página del trámite), fotocopias del DNI de los dos, certificación laboral de tu empleador actual (hay un modelo) o fotocopia del recibo de sueldo, la sentencia de divorcio y el certificado del vínculo (matrimonio o concubinato). La Superintendencia puede pedirte documentación extra.',
+          enlaces: [{ texto: 'Solicitar desunificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-desunificacion-de-aportes' }],
+        },
+        {
+          titulo: 'Cómo presentarlo',
+          cuerpo: 'Elegí una sola vía. Online, por Trámites a Distancia (TAD), con usuario de ARCA o de Mi Argentina. Con turno, que se pide online con Mi Argentina o al 0800-222-72583. O por correo postal, a la sede central de la Superintendencia (Bartolomé Mitre 434, planta baja, CABA, C1035AAN) o a la delegación más cercana a tu domicilio.',
+        },
+        {
+          titulo: 'Si eran concubinos',
+          cuerpo: 'La ley también cubre a quien convive con el titular y recibe de él trato familiar. Si se separan, en lugar de la sentencia de divorcio se presenta la anulación de la certificación de concubinato.',
+        },
+        {
+          titulo: 'Después: otra obra social o una prepaga',
+          cuerpo: 'Con los aportes separados, cada uno puede hacer la opción de cambio (una vez cada 365 días) y elegir otra obra social o una prepaga inscripta como agente del seguro, pagando la diferencia.',
+          cta: {
+            texto: 'La calculadora te dice cuánto cubren tus aportes y cuánto pagarías de diferencia en cada plan.',
+            boton: 'Calcular mi diferencia',
+            href: '/calculadora-aportes',
+          },
+        },
+      ],
+      conclusion: 'El divorcio saca a tu ex de tu grupo familiar en la obra social, y los hijos siguen cubiertos. Si habían unificado aportes, pedí la desunificación con la sentencia de divorcio por TAD, con turno o por correo, y después elegí con qué cobertura seguís.',
+    },
+    faq: [
+      {
+        q: '¿Mi ex sigue en mi obra social después del divorcio?',
+        a: 'No como familiar a cargo: la Ley 23.660 cubre al cónyuge del titular, y con el divorcio deja de serlo.',
+      },
+      {
+        q: '¿Qué pasa con los hijos en la obra social después del divorcio?',
+        a: 'Siguen cubiertos como hijos del titular, con los límites de edad de la ley (21 años, o 25 si estudian y están a cargo).',
+      },
+      {
+        q: '¿Cómo desunifico los aportes?',
+        a: 'Completás el formulario de desunificación y lo presentás con los DNI, la certificación laboral o el recibo de sueldo, la sentencia de divorcio y el certificado del vínculo, por TAD, con turno o por correo a la Superintendencia de Servicios de Salud.',
+      },
+      {
+        q: '¿Y si éramos concubinos?',
+        a: 'Se presenta la anulación de la certificación de concubinato en lugar de la sentencia de divorcio.',
+      },
+      {
+        q: '¿Después de desunificar puedo pasarme a una prepaga?',
+        a: 'Sí, con la opción de cambio (una vez cada 365 días), a una prepaga inscripta como agente del seguro, pagando la diferencia.',
+      },
+    ],
+    keywords: ['divorcio obra social', 'desunificacion de aportes', 'obra social despues del divorcio', 'ex conyuge obra social', 'separacion obra social', 'desunificar aportes obra social'],
+    relacionadas: ['unificar-aportes-obra-social', 'hijos-21-a-25-anos-obra-social', 'opcion-de-cambio-obra-social', 'sin-trabajo-obra-social'],
+    fuentes: [
+      { texto: 'Argentina.gob.ar — Solicitar desunificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-desunificacion-de-aportes' },
+      { texto: 'Ley 23.660 de Obras Sociales, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/62/texact.htm' },
     ],
   },
   {

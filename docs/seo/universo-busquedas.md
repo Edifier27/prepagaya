@@ -52,6 +52,13 @@ Export que pasó Darío el 24-sep (copia en `docs/seo/datos/gsc-2026-09-08-al-22
 - **Monotributo** (`/obras-sociales/monotributo`): las 44 obras sociales que aceptan monotributistas (listado de la SSSalud) y el aporte de obra social de cada categoría (cuadro de ARCA, vigente desde el 1/08/2026), con una calculadora de cuánto pagás con tu familia (cada adherente paga lo mismo que el titular). Lo baja la Action "Monotributo (datos oficiales)" el día 5 de cada mes. Corregido el perfil de monotributistas: decía que se puede tener prepaga "sin necesidad de obra social" y que se deduce el gasto (el aporte está dentro de la cuota y el monotributista puro no presenta Ganancias).
 - Pendiente: *obra social al jubilarse* (ANSES no publica el trámite en una página que se pueda leer; solo "se hace en ANSES").
 
+### Hecho el 25-sep
+
+- **Informe de prensa** `/prensa/sueldo-para-cubrir-la-prepaga`: sueldo bruto para que el 7,5% de aportes pague el plan de entrada de cada prepaga (30 y 45 años, familia de 4, AMBA), con metodología y párrafo para citar. Se recalcula con los cuadros de cada mes. Es el activo para pedir enlaces a medios.
+- **35 fichas más de obras sociales** desde el registro (61 en total): ASE, OSPERYH, Maestranza, colectiveros, OSYPF, educación privada, estaciones de servicio, electricidad, textiles, plásticos, prensa, aeronáuticos, músicos, televisión, municipales, viales, OSMEDICA, OSJERA, OSIM, Luis Pasteur, ANDAR, carne, etc. Se dejó afuera OSPREME porque el registro trae una web rota. Arreglado el texto de todas las fichas: decía "la obra social de el personal".
+- **Tres guías de situaciones con la letra oficial**: *obra social de la empleada doméstica* (ARCA, ANSES, Trabajo: OSPACP por defecto, la elige la trabajadora, cobertura con aportes de 16 horas o más), *hijos de 21 a 25 años* (Ley 23.660, art. 9) y *divorcio y obra social* (desunificación de aportes, SSSalud). En `/tramites`, grupo nuevo "Obra social: cambios de trabajo y de familia".
+- **Ranking de reclamos: no se arma.** Los datos abiertos de la SSSalud tienen reclamos solo por provincia (último corte, junio de 2022) y usuarios por prepaga de 2018. No hay dato oficial por prepaga. El camino sería un pedido de acceso a la información pública (Ley 27.275) a la SSSalud.
+
 ---
 
 ## En cinco líneas

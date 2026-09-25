@@ -51,8 +51,13 @@ const GRUPOS: TramiteGrupo[] = [
   },
   {
     titulo: 'Casos particulares',
-    descripcion: 'Situaciones que no entran en el trámite estándar: quedarte sin trabajo, venir del exterior, o pasar de una prepaga corporativa a una particular.',
-    slugs: ['sin-trabajo-obra-social', 'seguro-medico-obligatorio-extranjeros', 'prepaga-corporativa-vs-particular'],
+    descripcion: 'Situaciones que no entran en el trámite estándar: quedarte sin trabajo, la obra social de la empleada doméstica, venir del exterior, o pasar de una prepaga corporativa a una particular.',
+    slugs: ['sin-trabajo-obra-social', 'obra-social-empleada-domestica', 'seguro-medico-obligatorio-extranjeros', 'prepaga-corporativa-vs-particular'],
+  },
+  {
+    titulo: 'Obra social: cambios de trabajo y de familia',
+    descripcion: 'Cambiar de obra social, sumar los aportes de tu pareja o separarlos después de un divorcio, y hasta qué edad quedan cubiertos los hijos.',
+    slugs: ['opcion-de-cambio-obra-social', 'unificar-aportes-obra-social', 'divorcio-obra-social', 'hijos-21-a-25-anos-obra-social'],
   },
 ]
 
