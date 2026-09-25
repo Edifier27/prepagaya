@@ -14,22 +14,21 @@ from html.parser import HTMLParser
 from urllib.parse import urljoin, urldefrag, urlparse
 
 SEMILLAS = [
-    # Segunda pasada: jubilados (ANSES, PAMI) y el manual del usuario de la SSSalud
-    'https://www.anses.gob.ar/jubilaciones-y-pensiones',
-    'https://www.anses.gob.ar/consultas/obra-social-codem',
-    'https://www.anses.gob.ar/tramite/opcion-de-obra-social-para-jubilados-y-pensionados',
-    'https://www.pami.org.ar/afiliacion',
-    'https://www.argentina.gob.ar/servicio/elegir-o-cambiar-la-obra-social-siendo-jubilado-o-pensionado',
-    'https://www.argentina.gob.ar/sssalud/usuarios/manual-del-usuario',
-    'https://www.argentina.gob.ar/sssalud/usuarios/manual-del-usuario/cambio-de-agente-del-seguro',
-    'https://www.argentina.gob.ar/sssalud/usuarios/manual-del-usuario/tipos-de-usuarios',
+    # Tercera pasada (25-sep-2026): grupo familiar (hijos de 21 a 25 que
+    # estudian, cónyuge y divorcio) en la Ley 23.660, y obra social del
+    # personal de casas particulares (ARCA, ANSES, Trabajo)
+    'http://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/62/texact.htm',
+    'https://www.argentina.gob.ar/servicio/solicitar-desunificacion-de-aportes',
+    'https://www.anses.gob.ar/trabajo/personal-de-casas-particulares',
+    'https://www.arca.gob.ar/casasparticulares/',
+    'https://www.afip.gob.ar/casasparticulares/',
+    'https://www.argentina.gob.ar/trabajo/casasparticulares',
     'https://www.argentina.gob.ar/sssalud/usuarios/manual-del-usuario/afiliacion',
-    'https://www.argentina.gob.ar/sssalud/usuarios',
 ]
-CLAVES = re.compile(r'manual|usuario|afiliac|jubilad|pensionad|obra[-_ ]?social|opcion|opci%C3%B3n|aporte|unific|reclam|jubil|monotribut|padron|padr%C3%B3n|cobertura|prepaga|sssalud|desempleo|traspaso|cambi', re.I)
-DOMINIOS = ('www.argentina.gob.ar', 'argentina.gob.ar', 'www.sssalud.gob.ar', 'sssalud.gob.ar', 'www.anses.gob.ar', 'www.pami.org.ar')
+CLAVES = re.compile(r'casas|domestic|particular|hijo|estudiant|famil|divorc|desunific|conyug|c%C3%B3nyuge|conviv|trabajador|empleador|manual|usuario|afiliac|jubilad|pensionad|obra[-_ ]?social|opcion|opci%C3%B3n|aporte|unific|reclam|jubil|monotribut|padron|padr%C3%B3n|cobertura|prepaga|sssalud|desempleo|traspaso|cambi', re.I)
+DOMINIOS = ('servicios.infoleg.gob.ar', 'www.arca.gob.ar', 'www.afip.gob.ar', 'www.argentina.gob.ar', 'argentina.gob.ar', 'www.sssalud.gob.ar', 'sssalud.gob.ar', 'www.anses.gob.ar', 'www.pami.org.ar')
 MAX_PAGINAS = 60
-MAX_CHARS = 6000
+MAX_CHARS = 9000
 
 
 class Extraer(HTMLParser):
@@ -73,7 +72,7 @@ def bajar(url):
 
 
 # Ya leídas en la primera pasada (24-sep-2026)
-LEIDAS = re.compile(r'/sssalud/(transparencia|institucional|noticias|recepci|base-datos|prestadores|valores-de-planes|medicina-prepaga-0|centro-de-atencion)|/noticias/|hospitales-publicos|transparencia/subsidios|procedimiento-de-mediacion|reclamos-interrupcion')
+LEIDAS = re.compile(r'jubilaciones-y-pensiones|pami\.org\.ar|jubilado|/sssalud/(transparencia|institucional|noticias|recepci|base-datos|prestadores|valores-de-planes|medicina-prepaga-0|centro-de-atencion)|/noticias/|hospitales-publicos|transparencia/subsidios|procedimiento-de-mediacion|reclamos-interrupcion')
 
 
 def main():
