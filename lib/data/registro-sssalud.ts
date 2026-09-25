@@ -90,7 +90,6 @@ export const PREPAGA_A_REGISTRO: Record<string, string> = {
 // OSPAT queda afuera a propósito: en el RNAS es la obra social del personal
 // del turf y la ficha la presenta como de telecomunicaciones (revisar).
 const OBRA_SOCIAL_A_REGISTRO: Record<string, string | null> = {
-  'swiss-medical-os': 'swiss-medical',
   'sancor-os': 'sancor-salud',
   issn: 'issn-neuquen',
   ipsst: 'ipsst-tucuman',

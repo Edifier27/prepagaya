@@ -53,7 +53,6 @@ const condicionMap: Record<string, LetterCfg> = {
 
 const obraSocialMap: Record<string, LetterCfg> = {
   osde:              { letters: 'OS', bg: 'bg-blue-100',    text: 'text-blue-800',    bgHover: 'group-hover:bg-blue-200' },
-  'swiss-medical-os':{ letters: 'SW', bg: 'bg-red-100',     text: 'text-red-800',     bgHover: 'group-hover:bg-red-200' },
   pami:              { letters: 'PA', bg: 'bg-red-100',    text: 'text-red-800',    bgHover: 'group-hover:bg-red-200' },
   ioma:              { letters: 'IO', bg: 'bg-green-100',   text: 'text-green-800',   bgHover: 'group-hover:bg-green-200' },
   'sancor-os':       { letters: 'SC', bg: 'bg-emerald-100', text: 'text-emerald-800', bgHover: 'group-hover:bg-emerald-200' },
