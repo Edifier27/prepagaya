@@ -64,8 +64,14 @@ export default async function InformeSueldoProvincia({ params }: Props) {
       )}
       {seo && (
         <div className="flex flex-wrap gap-x-5 gap-y-2 mt-4">
-          <Link href={`/prepagas-en/${seo.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">Prepagas en {seo.nombre} →</Link>
+          <Link href={`/prepagas/${seo.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">Prepagas en {seo.nombre} →</Link>
           <Link href={`/obras-sociales/provincia/${seo.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">Obras sociales en {seo.nombre} →</Link>
+        </div>
+      )}
+      {/* Río Negro no tiene hub provincial; su página local es la de Bariloche */}
+      {p.slug === 'rio-negro' && (
+        <div className="mt-4">
+          <Link href="/prepagas-en/bariloche" className="text-sm font-semibold text-[#E8002D] hover:underline">Prepagas en Bariloche →</Link>
         </div>
       )}
       <h2 className="text-lg font-bold text-gray-900 mt-8 mb-3">Otras provincias</h2>

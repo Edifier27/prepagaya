@@ -160,6 +160,7 @@ export default function EmpresasSwissMedicalPage() {
               </div>
             ))}
           </div>
+          <Link href="/empresas/swiss-medical/plan-black" className="inline-block mt-4 text-sm font-semibold text-[#E8002D] hover:underline">Todo sobre el Plan Black corporativo →</Link>
         </div>
       </section>
 
