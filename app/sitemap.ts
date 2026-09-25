@@ -10,6 +10,7 @@ import { coberturas } from '@/lib/data/coberturas'
 import { condiciones } from '@/lib/data/condiciones'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
+import { INFORMES_PROVINCIA } from '@/lib/prensa/sueldo-prepaga'
 import { REGISTRO_VERIFICADO } from '@/lib/data/registro-sssalud'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { CARTILLAS, combinacionesPlanZona, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
@@ -109,6 +110,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/sanatorios`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/prensa`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    ...INFORMES_PROVINCIA.map((p) => ({ url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga/${p.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.6 })),
     ...sanatoriosPublicables().map((s) => ({
       url: `${BASE}/sanatorios/${s.slug}`,
       lastModified: CONTENT_UPDATE,
