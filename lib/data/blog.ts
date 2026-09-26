@@ -14,7 +14,10 @@ export interface BlogPost {
   imagen?: string
   contenido: {
     intro: string
-    secciones: { titulo: string; cuerpo: string }[]
+    /** `enlace`: link a la página comercial del tema de la sección (plan,
+     *  comparativa), al pie del texto — así la nota le pasa fuerza a la
+     *  página que tiene que posicionar (26-sep-2026). */
+    secciones: { titulo: string; cuerpo: string; enlace?: { href: string; texto: string } }[]
     conclusion: string
   }
   prepagasRelacionadas?: string[]
@@ -451,18 +454,21 @@ export const blogPosts: BlogPost[] = [
         {
           titulo: '¿Qué es el Plan Flux de OSDE?',
           cuerpo: 'Flux es el plan de OSDE diseñado para el segmento joven (18-35 años). Se posiciona como un plan "ágil y moderno" con coberturas orientadas a las necesidades de los jóvenes: salud mental ilimitada, anticonceptivos cubiertos al 100%, asistencia al viajero gratuita en países limítrofes (Brasil, Chile, Uruguay, Paraguay, Bolivia) y reintegros sin tope.',
+          enlace: { href: '/prepagas/osde/flux', texto: 'Plan Flux de OSDE: cobertura completa y cotización' },
         },
         {
           titulo: '¿Qué incluye el Plan Flux que no tiene el 210?',
           cuerpo: 'Las diferencias clave frente al Plan 210: psicología y psiquiatría sin límite de sesiones (el 210 tiene restricciones), anticonceptivos con cobertura del 100% (en el 210 tienen coseguro), asistencia al viajero gratuita en Mercosur (en el 210 es adicional), y reintegros sin tope por gastos fuera de cartilla.',
+          enlace: { href: '/prepagas/osde/flux-vs-210', texto: 'OSDE Flux vs OSDE 210: cuál conviene, punto por punto' },
         },
         {
           titulo: 'El precio del Plan Flux',
-          cuerpo: 'OSDE no publica el precio del Plan Flux en su sitio web. Según cotizaciones directas, para una persona de 25-30 años el precio estimado es de $230.000-$280.000/mes como abono directo. Como diferencial sobre obra social, puede bajar considerablemente. Contactando a PrepagaYa podés obtener una cotización actualizada.',
+          cuerpo: 'OSDE no publica el precio del Plan Flux en su sitio web, así que no hay un precio de lista público para citar. Si derivás tus aportes de obra social, el valor final baja. Contactando a PrepagaYa podés obtener una cotización actualizada para tu edad.',
         },
         {
           titulo: '¿Conviene Flux frente al Plan 310?',
-          cuerpo: 'El Plan 310 de OSDE ($345.310/mes para 30 años) tiene cobertura más amplia en general, pero el Flux tiene ventajas específicas para jóvenes: la psicología ilimitada es su mayor diferencial. Si usás psicología regularmente (lo más común en el segmento 20-35), el Flux puede ser más conveniente a un precio menor.',
+          cuerpo: 'El Plan 310 de OSDE tiene cobertura más amplia en general, pero el Flux tiene ventajas específicas para jóvenes: la psicología ilimitada es su mayor diferencial. Si usás psicología regularmente (lo más común en el segmento 20-35), el Flux puede ser más conveniente.',
+          enlace: { href: '/prepagas/osde/310', texto: 'Plan 310 de OSDE: precio oficial por edad' },
         },
         {
           titulo: '¿Para quién es ideal el Plan Flux?',

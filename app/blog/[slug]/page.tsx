@@ -213,6 +213,11 @@ export default async function BlogPostPage({ params }: Props) {
                     {seccion.titulo}
                   </h2>
                   <p className="text-gray-600 leading-relaxed">{enlazarPrepagas(seccion.cuerpo, vistas)}</p>
+                  {seccion.enlace && (
+                    <Link href={seccion.enlace.href} className="inline-block mt-3 text-sm font-semibold text-[#E8002D] hover:underline">
+                      {seccion.enlace.texto} →
+                    </Link>
+                  )}
                 </section>
               ))}
 

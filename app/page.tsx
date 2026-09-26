@@ -32,6 +32,9 @@ const jsonLd = [
     '@type': 'WebSite',
     '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
+    // Cómo lo escribe la gente ("prepaga ya"): ayuda a que Google asocie esas
+    // búsquedas con la marca y muestre "PrepagaYa" como nombre del sitio.
+    alternateName: ['Prepaga Ya', 'prepagaya.com.ar'],
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     inLanguage: 'es-AR',
@@ -47,8 +50,10 @@ const jsonLd = [
     '@type': 'Organization',
     '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    alternateName: ['Prepaga Ya', 'prepagaya.com.ar'],
     url: SITE_URL,
-    logo: `${SITE_URL}/panel-icon-512`,
+    // La "P" de la marca (lib/marca.ts), 512 × 512
+    logo: { '@type': 'ImageObject', url: `${SITE_URL}/panel-icon-512`, width: 512, height: 512 },
     description: ENTIDAD_DESCRIPCION,
     areaServed: { '@type': 'Country', name: 'Argentina' },
     knowsAbout: ['medicina prepaga en Argentina', 'comparar prepagas', 'precios de prepagas', 'cartillas médicas', 'obras sociales', ...prepagas.map((p) => p.nombre)],
