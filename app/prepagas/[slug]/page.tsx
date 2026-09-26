@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL, nivelPrecio } from '@/lib/data/prepagas'
-import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
+import { ciudadesDestacadas, getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getCambiosPorOrigen, getCambiosPorDestino } from '@/lib/data/cambios'
 import { getComparativasByPrepaga } from '@/lib/data/comparativas'
 import { obrasSociales } from '@/lib/data/obras-sociales'
@@ -872,6 +872,18 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   </Link>
                 ))}
               </div>
+              {ciudadesDestacadas(prep.slug).length > 0 && (
+                <>
+                  <h3 className="text-sm font-bold text-gray-900 mt-6 mb-3">{prep.nombre} en las ciudades más buscadas</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {ciudadesDestacadas(prep.slug).map((c) => (
+                      <Link key={c.href} href={c.href} className="rounded-full border border-gray-200 px-3 py-1.5 text-sm text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">
+                        {prep.nombre} en {c.nombre}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </section>
         )
