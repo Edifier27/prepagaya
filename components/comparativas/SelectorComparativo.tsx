@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { comparativas } from '@/lib/data/comparativas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { formatPrecio } from '@/lib/utils'
+import { formatPrecio, precioDesde } from '@/lib/utils'
 import type { Prepaga } from '@/types'
 
 const logoColors: Record<string, { bg: string; text: string }> = {
@@ -37,7 +37,7 @@ function PrepagaCard({
   size?: 'sm' | 'md'
 }) {
   const colors = logoColors[prepaga.slug] ?? { bg: '#F3F4F6', text: '#374151' }
-  const minPrecio = Math.min(...prepaga.planes.map((p) => p.precio))
+  const minPrecio = precioDesde(prepaga)
 
   return (
     <button

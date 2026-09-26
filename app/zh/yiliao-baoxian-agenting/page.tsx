@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_ZH, nivelPrecio } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
@@ -141,7 +141,7 @@ export default function YiliaoBaoxianAgentingPage() {
           <p className="text-sm text-gray-500 mb-6">价格水平相对市场而言 — {PRECIO_ACTUALIZADO_ZH}。可免费获取您的精确报价。</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {destacadas.map((p) => {
-              const desde = Math.min(...p.planes.map((pl) => pl.precio))
+              const desde = precioDesde(p)
               return (
                 <Link key={p.slug} href={`/prepagas/${p.slug}`}
                   className="group bg-white rounded-xl border border-gray-200 p-4 hover:border-red-200 hover:shadow-sm transition-all">

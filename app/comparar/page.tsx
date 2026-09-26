@@ -61,8 +61,8 @@ export default function CompararPage(): React.ReactElement {
             {[
               { href: '/comparativas/swiss-medical-vs-osde',   label: 'Swiss Medical vs OSDE' },
               { href: '/comparativas/osde-vs-sancor-salud',    label: 'OSDE vs Sancor' },
-              { href: '/comparativas/swiss-medical-vs-medife',  label: 'Swiss Medical vs Medifé' },
-              { href: '/comparativas/omint-vs-medicus',         label: 'Omint vs Medicus' },
+              { href: '/comparativas/medife-vs-swiss-medical',  label: 'Swiss Medical vs Medifé' },
+              { href: '/comparativas/omint-vs-osde',             label: 'Omint vs OSDE' },
             ].map((c) => (
               <Link key={c.href} href={c.href}
                 className="text-xs font-semibold text-[#E8002D] bg-red-50 border border-red-100 px-3 py-1.5 rounded-full hover:bg-red-100 transition-colors">

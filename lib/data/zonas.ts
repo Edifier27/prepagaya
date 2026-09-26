@@ -1011,6 +1011,38 @@ export function prepagasEnSitioPorZona(): Record<string, string[]> {
   return Object.fromEntries(provinciasSEO.map((p) => [p.zonaKey, p.prepagas.filter((pz) => pz.enSitio).map((pz) => pz.slug)]))
 }
 
+// Ciudades grandes cuyo nombre no es el de su provincia, con búsquedas
+// "prepaga + ciudad" en Search Console (8 al 22-sep-2026: osde rosario 197
+// impresiones, avalian rosario 183, swiss medical rosario 174, osde mar del
+// plata, osde la plata, osde parana, sancor salud posadas, osde bahia
+// blanca…, en posiciones 6 a 12). La ficha de cada prepaga las enlaza: antes
+// solo enlazaba provincias (26-sep-2026). Las ciudades que se llaman como su
+// provincia (Córdoba, Salta, Mendoza…) quedan afuera hasta decidir con datos
+// qué página va para esas búsquedas.
+const CIUDADES_DESTACADAS: [provincia: string, localidad: string][] = [
+  ['santa-fe', 'rosario'],
+  ['buenos-aires', 'mar-del-plata'],
+  ['buenos-aires', 'la-plata'],
+  ['buenos-aires', 'bahia-blanca'],
+  ['entre-rios', 'parana'],
+  ['cordoba', 'rio-cuarto'],
+  ['misiones', 'posadas'],
+  ['chaco', 'resistencia'],
+  ['cordoba', 'villa-carlos-paz'],
+  ['santa-fe', 'rafaela'],
+  ['entre-rios', 'concordia'],
+]
+
+/** Ciudades destacadas con página propia para la prepaga (/prepagas/[prov]/[localidad]/[prepaga]). */
+export function ciudadesDestacadas(prepagaSlug: string): { href: string; nombre: string }[] {
+  return CIUDADES_DESTACADAS.flatMap(([provSlug, locSlug]) => {
+    const prov = provinciasSEO.find((p) => p.slug === provSlug)
+    const loc = prov?.localidades.find((l) => l.slug === locSlug)
+    const llega = prov?.prepagas.some((pz) => pz.slug === prepagaSlug && pz.enSitio)
+    return prov && loc && llega ? [{ href: `/prepagas/${prov.slug}/${loc.slug}/${prepagaSlug}`, nombre: loc.nombre }] : []
+  })
+}
+
 export function getProvinciaSEO(slug: string): ProvinciaSEO | undefined {
   return provinciasSEO.find((p) => p.slug === slug)
 }

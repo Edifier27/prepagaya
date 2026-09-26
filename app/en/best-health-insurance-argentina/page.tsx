@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, precioDesde } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
@@ -119,7 +119,7 @@ export default function BestHealthInsuranceArgentinaPage() {
           <h2 className="text-xl font-bold text-gray-900 mb-6">The 4 most popular options, compared</h2>
           <div className="space-y-4">
             {items.map((p) => {
-              const precioMin = Math.min(...p.planes.map((pl) => pl.precio))
+              const precioMin = precioDesde(p)
               const pos = POSICIONAMIENTO[p.slug]
               return (
                 <div key={p.slug} className="bg-gray-50 rounded-2xl border border-gray-100 p-5">

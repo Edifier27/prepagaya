@@ -199,8 +199,10 @@ export default function PrepagasEconomicasPage() {
 
         {/* Cross-links */}
         <div className="flex flex-wrap gap-3 mb-10 text-sm">
-          <Link href="/guias/prepagas-economicas" className="text-[#E8002D] font-semibold hover:underline">
-            → Guía completa: las prepagas más económicas en detalle
+          {/* La guía /guias/prepagas-economicas se consolidó en esta página
+              (redirige acá): el link apuntaba a sí misma. */}
+          <Link href="/precios" className="text-[#E8002D] font-semibold hover:underline">
+            → Tabla oficial de precios de todos los planes
           </Link>
           <Link href="/ranking" className="text-[#E8002D] font-semibold hover:underline">
             → Ver el ranking general por satisfacción
