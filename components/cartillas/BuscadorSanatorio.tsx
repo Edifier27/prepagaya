@@ -1,14 +1,24 @@
 ﻿'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import Link from 'next/link'
-import { buscarSanatorio, buscarSanatorioReferencia } from '@/lib/data/sanatorios'
-import { nivelPrecio } from '@/lib/data/prepagas'
-import { getProvinciaSEO } from '@/lib/data/zonas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { formatPrecio } from '@/lib/utils'
 import type { Sanatorio, SanatorioReferenciaResult } from '@/lib/data/sanatorios'
 import { ResultadosCartillasPorNombre } from '@/components/cartillas/ResultadosCartillasPorNombre'
+
+// Los datos de sanatorios, zonas y prepagas (~40 KB comprimidos) se
+// descargan recién cuando la persona va a buscar (foco en el campo o primera
+// letra), no al abrir la página: las páginas de cartilla son de las más
+// visitadas desde Google y cargaban todo de entrada (26-sep-2026).
+const cargarMotor = () =>
+  Promise.all([import('@/lib/data/sanatorios'), import('@/lib/data/prepagas'), import('@/lib/data/zonas')]).then(([s, p, z]) => ({
+    buscarSanatorio: s.buscarSanatorio,
+    buscarSanatorioReferencia: s.buscarSanatorioReferencia,
+    nivelPrecio: p.nivelPrecio,
+    getProvinciaSEO: z.getProvinciaSEO,
+  }))
+type Motor = Awaited<ReturnType<typeof cargarMotor>>
 
 interface Props {
   /** Cuando se pasa, filtra los resultados a solo esa prepaga (para embeber en /cartillas/[slug]) — pedido de Darío, 22-sep-2026, para reforzar "cartilla osde" y similares. */
@@ -25,10 +35,28 @@ export function BuscadorSanatorio({ soloPrepagaSlug, soloPrepagaNombre }: Props 
   const [enCartillas, setEnCartillas] = useState(0)
   const onResultadosCartillas = useCallback((n: number) => setEnCartillas(n), [])
 
-  const handleSearch = (val: string) => {
+  const [motor, setMotor] = useState<Motor | null>(null)
+  const pedido = useRef<Promise<Motor> | null>(null)
+  const ultima = useRef('')
+  const preparar = () => {
+    pedido.current ??= cargarMotor().then((m) => { setMotor(m); return m })
+    return pedido.current
+  }
+
+  const handleSearch = async (val: string) => {
     setQuery(val)
-    setBuscado(val.length >= 2)
-    const encontrados = val.length >= 2 ? buscarSanatorio(val) : []
+    ultima.current = val
+    if (val.length < 2) {
+      setBuscado(false)
+      setResultados([])
+      setReferencia([])
+      return
+    }
+    const { buscarSanatorio, buscarSanatorioReferencia } = motor ?? (await preparar())
+    // Si mientras cargaba escribió otra cosa, vale la última búsqueda
+    if (ultima.current !== val) return
+    setBuscado(true)
+    const encontrados = buscarSanatorio(val)
     setResultados(
       soloPrepagaSlug
         ? encontrados.filter((s) => s.planesQueLoCubren.some((p) => p.prepagaSlug === soloPrepagaSlug))
@@ -36,7 +64,7 @@ export function BuscadorSanatorio({ soloPrepagaSlug, soloPrepagaNombre }: Props 
     )
     // La red de referencia (por zona, no por prepaga puntual) no aplica en
     // modo filtrado: no sirve para responder "¿lo cubre ESTA prepaga?".
-    setReferencia(!soloPrepagaSlug && val.length >= 2 ? buscarSanatorioReferencia(val) : [])
+    setReferencia(!soloPrepagaSlug ? buscarSanatorioReferencia(val) : [])
   }
 
   const resultadosFiltrados = soloPrepagaSlug
@@ -56,6 +84,7 @@ export function BuscadorSanatorio({ soloPrepagaSlug, soloPrepagaNombre }: Props 
           type="text"
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
+          onFocus={preparar}
           placeholder={soloPrepagaNombre ? `Buscá tu sanatorio en la cartilla de ${soloPrepagaNombre}...` : 'Escribí el nombre del sanatorio u hospital...'}
           className="w-full pl-12 pr-4 py-4 text-base border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-[#E8002D] transition-colors shadow-sm"
         />
@@ -124,7 +153,7 @@ export function BuscadorSanatorio({ soloPrepagaSlug, soloPrepagaNombre }: Props 
             // ej. /prepagas/cordoba): solo mostrar el link si esa provincia ya
             // tiene hub armado.
             const esLocalidad = ref.href.split('/').length > 3
-            const tieneHub = esLocalidad || Boolean(getProvinciaSEO(ref.zonaKey))
+            const tieneHub = esLocalidad || Boolean(motor?.getProvinciaSEO(ref.zonaKey))
             return (
               <div key={`${ref.zonaKey}-${ref.nombre}`} className="flex items-center justify-between gap-3 bg-amber-50 border border-amber-100 rounded-xl px-5 py-3.5">
                 <div>
@@ -186,7 +215,7 @@ export function BuscadorSanatorio({ soloPrepagaSlug, soloPrepagaNombre }: Props 
                         {/* Precio */}
                         <div className="text-left sm:text-right">
                           <div className="font-bold text-gray-900 text-sm">{formatPrecio(plan.precio)}</div>
-                          <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                          {motor && <NivelPrecioBadge nivel={motor.nivelPrecio(plan.precio)} />}
                         </div>
 
                         {/* CTA */}
