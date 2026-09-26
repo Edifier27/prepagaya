@@ -677,7 +677,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
           </div>
           <div className="mt-4">
             <Link href={`/prepagas/${slug}`} className="text-sm text-[#E8002D] font-semibold hover:underline">
-              ← Ver página completa de {prep.nombre}
+              ← Todos los planes de {prep.nombre} y sus diferencias
             </Link>
           </div>
         </div>

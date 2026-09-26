@@ -136,12 +136,15 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
 
           {/* Prepagas */}
           <div>
-            <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Prepagas</h3>
+            <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Planes por prepaga</h3>
             <ul className="space-y-2.5">
               {prepagaLinks.map((p) => (
                 <li key={p.slug}>
+                  {/* "Planes de X" como texto del link (26-sep-2026): casi todos los
+                      links internos a las fichas decían solo la marca, y la
+                      búsqueda a posicionar es "{prepaga} planes". */}
                   <Link href={`/prepagas/${p.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
-                    {p.nombre}
+                    Planes de {p.nombre}
                   </Link>
                 </li>
               ))}

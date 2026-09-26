@@ -200,7 +200,7 @@ export default async function CoberturaPage({ params }: Props) {
                         </Link>
                       )}
                       <Link href={`/prepagas/${prep.slug}`} className="text-xs font-semibold text-gray-500 hover:text-[#E8002D] transition-colors">
-                        Ver todos los planes →
+                        Ver todos los planes de {prep.nombre} →
                       </Link>
                     </div>
                   </div>
