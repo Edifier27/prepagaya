@@ -9,6 +9,8 @@ import { obrasSociales } from '@/lib/data/obras-sociales'
 import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
+import { compararPlanes, type ComparacionPlanes as DatosComparacion } from '@/lib/planes-comparacion'
+import { ComparacionPlanes } from '@/components/prepagas/ComparacionPlanes'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -44,7 +46,7 @@ function obraSocialHermana(prepagaSlug: string) {
   return obrasSociales.find((o) => o.slug === osSlug)
 }
 
-function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstrella: Plan) {
+function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstrella: Plan, comp: DatosComparacion) {
   const sinCopago = prep.planes.filter(p => !p.copago).map(p => p.nombre)
   const conCopago = prep.planes.filter(p => p.copago).map(p => p.nombre)
   const nivelMin = NIVEL_PRECIO_LABEL[nivelPrecio(precioMin)].label.toLowerCase()
@@ -61,8 +63,20 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
       // nombra los planes explícitamente en texto visible, no solo en el
       // título — es la señal más directa que puede leer Google.
       q: `¿Cuántos planes tiene ${prep.nombre} y cuáles son?`,
-      a: `${prep.nombre} tiene ${prep.planes.length} planes: ${prep.planes.map(pl => pl.nombre).join(', ')}. Van de ${formatPrecio(precioMin)} a ${formatPrecio(precioMax)} por mes (precio de lista, ${PRECIO_ACTUALIZADO.toLowerCase()}) — el valor exacto depende de tu edad y zona.`,
+      // Con el precio de cada plan (26-sep-2026): la lista sola no respondía
+      // "planes de X y precios".
+      a: `${prep.nombre} tiene ${prep.planes.length} planes: ${comp.filas.map((f) => `${f.plan.nombre} (${formatPrecio(f.plan.precio)})`).join(', ')}. Son precios de lista por mes para una persona de 30 años (${PRECIO_ACTUALIZADO.toLowerCase()}); el valor exacto depende de tu edad y zona.`,
     },
+    ...(comp.filas.length > 1 ? [{
+      q: `¿Qué diferencia hay entre los planes de ${prep.nombre}?`,
+      a: [
+        `Cambian el precio (de ${formatPrecio(comp.entrada.plan.precio)} en el ${comp.entrada.plan.nombre} a ${formatPrecio(comp.completo.plan.precio)} en el ${comp.completo.plan.nombre})`,
+        prep.planes.some((pl) => pl.copago) && prep.planes.some((pl) => !pl.copago) ? 'si tienen copago en consultas' : null,
+        comp.entrada.sanatorios && comp.completo.sanatorios && comp.entrada.sanatorios !== comp.completo.sanatorios
+          ? `los sanatorios de la cartilla (${comp.entrada.sanatorios} para internación con el ${comp.entrada.plan.nombre} y ${comp.completo.sanatorios} con el ${comp.completo.plan.nombre})` : null,
+        comp.temas.length ? `y coberturas como ${comp.temas.slice(0, 3).map((t) => t.nombre.toLowerCase()).join(', ')}` : null,
+      ].filter(Boolean).join(', ') + '. En la tabla de esta página está cada plan con sus datos oficiales.',
+    }] : []),
     {
       q: `¿Cuánto cuesta ${prep.nombre} en ${PRECIO_ACTUALIZADO}?`,
       // Con números (26-sep-2026): "osde planes precios 2026" y "valores
@@ -73,7 +87,13 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
     },
     {
       q: `¿Qué plan de ${prep.nombre} conviene más?`,
-      a: `El plan más elegido es el ${planEstrella.nombre}, de nivel de precio ${NIVEL_PRECIO_LABEL[nivelPrecio(planEstrella.precio)].label.toLowerCase()}. ${planEstrella.descripcion}`,
+      // Con datos en vez de "el más elegido" (26-sep-2026)
+      a: [
+        `Depende de qué priorices. Para entrar al menor precio, el ${comp.entrada.plan.nombre} (${formatPrecio(comp.entrada.plan.precio)}).`,
+        comp.sinCopago ? `Sin copago en consultas, el más barato es el ${comp.sinCopago.plan.nombre} (${formatPrecio(comp.sinCopago.plan.precio)}).` : null,
+        comp.masSanatorios ? `La cartilla más amplia arranca en el ${comp.masSanatorios.plan.nombre}, con ${comp.masSanatorios.sanatorios} sanatorios para internación.` : null,
+        comp.completo.plan.slug !== comp.entrada.plan.slug ? `El más completo es el ${comp.completo.plan.nombre} (${formatPrecio(comp.completo.plan.precio)}).` : null,
+      ].filter(Boolean).join(' '),
     },
     {
       q: `¿Cuál es el plan más económico y cuál el premium de ${prep.nombre}?`,
@@ -212,6 +232,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const precioMin = precioDesde(prep)
   const precioMax = Math.max(...prep.planes.map(pl => pl.precio))
   const planEstrella = prep.planes.find(pl => pl.destacado) ?? planesOrdenados[0]
+  const comparacion = compararPlanes(prep)
   // Los planes que comparten cartilla real van pegados en vez de ordenados
   // solo por precio (hoy solo hay data cargada para Swiss Medical).
   const otrosPlanes = ordenarPorCartilla(prep.slug, planesOrdenados).filter(pl => pl.slug !== planEstrella.slug)
@@ -233,7 +254,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const aumentoRango = aumento && aumento.dato.minimo !== aumento.dato.maximo
     ? ` (de ${pct(aumento.dato.minimo)} a ${pct(aumento.dato.maximo)} según el plan y la región)` : ''
   const faqs = [
-    ...buildFAQs(prep, precioMin, precioMax, planEstrella),
+    ...buildFAQs(prep, precioMin, precioMax, planEstrella, comparacion),
     ...(aumento ? [{
       q: `¿Cuánto aumenta ${prep.nombre} en ${aumento.mes.label.toLowerCase()}?`,
       a: `Según el cuadro tarifario que ${prep.nombre} declaró ante la Superintendencia de Servicios de Salud, aumenta ${pct(aumento.dato.mediana)} en ${aumento.mes.label.toLowerCase()}${aumentoRango}. El promedio del mercado ese mes es ${pct(aumento.mes.promedio)}.${aumentoAnterior ? ` En ${aumentoAnterior.mes.label.toLowerCase()} había aumentado ${pct(aumentoAnterior.dato.mediana)}.` : ''}`,
@@ -694,6 +715,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {prep.planes.length > 1 && <ComparacionPlanes prep={prep} datos={comparacion} />}
 
       {/* Para quién es ideal */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">
