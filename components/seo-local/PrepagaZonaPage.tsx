@@ -6,7 +6,7 @@ import { sucursalesEnProvincia } from '@/lib/data/sucursales'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO, type PrepagaZona, type ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL, formatPrecio } from '@/lib/utils'
+import { SITE_URL, formatPrecio, precioDesde } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq } from './shared'
@@ -17,7 +17,7 @@ export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metada
   // similares ya rankeaban en página 1 con CTR bajo por un título sin
   // ningún dato concreto.
   const prepData = prepagas.find((p) => p.slug === pz.slug)
-  const precioMin = prepData ? Math.min(...prepData.planes.map((pl) => pl.precio)) : null
+  const precioMin = prepData ? precioDesde(prepData) : null
   // Sucursales oficiales en la provincia (24-sep-2026): van en el título.
   const nSuc = sucursalesEnProvincia(pz.slug, prov, provinciasSEO).length
   return {

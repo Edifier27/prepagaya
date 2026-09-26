@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL, formatPrecio, PRIORIDAD_PARTNERS } from '@/lib/utils'
+import { SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq } from './shared'
@@ -100,7 +100,7 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
           <div className="space-y-4">
             {prepagasOrdenadas.map((pz) => {
               const prepData = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
-              const precioMin = prepData ? Math.min(...prepData.planes.map((pl) => pl.precio)) : null
+              const precioMin = prepData ? precioDesde(prepData) : null
               const fuerza = FUERZA_LABEL[pz.fuerza]
               const isPartner = PARTNER_ORDER.includes(pz.slug)
               const tienePropio = (PROPIO_POR_PROVINCIA[prov.slug] ?? []).includes(pz.slug)

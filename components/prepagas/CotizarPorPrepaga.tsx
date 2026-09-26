@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { prepagas } from '@/lib/data/prepagas'
-import { formatPrecio } from '@/lib/utils'
+import { formatPrecio, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
@@ -16,7 +16,7 @@ const ocultas = prepagas.filter((p) => !VISIBLE_ORDER.includes(p.slug)).sort((a,
 
 function PrepagaCotizarCard({ p, fuente }: { p: (typeof prepagas)[number]; fuente: string }) {
   const planEstrella = p.planes.find((pl) => pl.destacado) ?? [...p.planes].sort((a, b) => a.precio - b.precio)[0]
-  const precioMin = Math.min(...p.planes.map((pl) => pl.precio))
+  const precioMin = precioDesde(p)
   return (
     <div className="flex flex-col items-center text-center bg-white rounded-2xl border-2 border-gray-100 p-4">
       <PrepagaLogo slug={p.slug} nombre={p.nombre} colorPrimario={p.colorPrimario} size="md" className="mb-2 mt-1" />

@@ -218,3 +218,16 @@ export function formatearCelularInternacional(prefijoPais: string, numeroLocal: 
   const soloDigitosNumero = numeroLocal.replace(/\D/g, '')
   return `${soloDigitosPrefijo}${soloDigitosNumero}`
 }
+
+/**
+ * Precio "desde" de una prepaga: el plan más barato con precio oficial
+ * (cuadros tarifarios de la SSSalud) cuando la prepaga los tiene. Un plan sin
+ * cuadro oficial (hoy OSDE Flux, con un precio de referencia no oficial) no
+ * define el "desde" de la marca: el título de la ficha de OSDE en Google
+ * decía "desde $198.500" por el Flux, y el plan oficial más barato es el 210
+ * (26-sep-2026). Prepagas sin cuadro oficial: el mínimo de sus planes.
+ */
+export function precioDesde(p: Pick<Prepaga, 'planes'>): number {
+  const oficiales = p.planes.filter((pl) => pl.fuentePrecio === 'sssalud')
+  return Math.min(...(oficiales.length ? oficiales : p.planes).map((pl) => pl.precio))
+}

@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL } from '@/lib/data/prepagas'
-import { formatPrecio, SITE_NAME, SITE_URL } from '@/lib/utils'
+import { formatPrecio, SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { Badge } from '@/components/ui/Badge'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
@@ -106,8 +106,8 @@ const jsonLd = [
 export default function PreciosPage(): React.ReactElement {
   // Ordenar prepagas de menor a mayor precio de entrada
   const prepagasOrdenadas = [...prepagas].sort((a, b) => {
-    const minA = Math.min(...a.planes.map(p => p.precio))
-    const minB = Math.min(...b.planes.map(p => p.precio))
+    const minA = precioDesde(a)
+    const minB = precioDesde(b)
     return minA - minB
   })
 

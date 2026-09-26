@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { ciudades } from '@/lib/data/ciudades'
 import { CIUDADES_MIGRADAS } from '@/lib/redirecciones-ciudades'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 
@@ -41,7 +41,7 @@ export default async function CiudadPage({ params }: Props) {
   const disponibles = city.prepagasDisponibles
     .map((s) => prepagas.find((p) => p.slug === s))
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
-    .map((p) => ({ prep: p, precioMin: Math.min(...p.planes.map((pl) => pl.precio)) }))
+    .map((p) => ({ prep: p, precioMin: precioDesde(p) }))
     .sort((a, b) => a.precioMin - b.precioMin)
 
   const masBarata = disponibles[0]

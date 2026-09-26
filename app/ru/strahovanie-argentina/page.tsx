@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_RU, nivelPrecio } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 
@@ -143,7 +143,7 @@ export default function StrahovanieArgentinaPage() {
           <p className="text-sm text-gray-500 mb-6">Уровень цены относительно рынка — {PRECIO_ACTUALIZADO_RU}. Точную цену можно узнать бесплатно.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {destacadas.map((p) => {
-              const desde = Math.min(...p.planes.map((pl) => pl.precio))
+              const desde = precioDesde(p)
               return (
                 <Link key={p.slug} href={`/prepagas/${p.slug}`}
                   className="group bg-white rounded-xl border border-gray-200 p-4 hover:border-red-200 hover:shadow-sm transition-all">

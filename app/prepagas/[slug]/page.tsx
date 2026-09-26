@@ -9,7 +9,7 @@ import { obrasSociales } from '@/lib/data/obras-sociales'
 import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
-import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -167,7 +167,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // estas fichas tenían 1000+ impresiones y CTR menor a 0.5% — el título
   // genérico anterior no respondía la intención de búsqueda "precio" ni
   // "cartilla", que son las dos consultas de mayor volumen sin clics).
-  const precioMinTitulo = Math.min(...prep.planes.map((pl) => pl.precio))
+  const precioMinTitulo = precioDesde(prep)
   return {
     // "Cartilla" salió del título (22-sep-2026): esa intención ahora la toma
     // /cartillas/[prepaga] con datos oficiales por zona; esta ficha apunta a
@@ -209,7 +209,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const osMatch = obraSocialHermana(prep.slug)
 
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
-  const precioMin = Math.min(...prep.planes.map(pl => pl.precio))
+  const precioMin = precioDesde(prep)
   const precioMax = Math.max(...prep.planes.map(pl => pl.precio))
   const planEstrella = prep.planes.find(pl => pl.destacado) ?? planesOrdenados[0]
   // Los planes que comparten cartilla real van pegados en vez de ordenados

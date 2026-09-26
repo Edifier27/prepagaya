@@ -65,8 +65,11 @@ const jsonLd = [
 // ($107.044) que contradecían la tabla oficial, y Google los mostraba como
 // respuesta a "cuánto cuesta una prepaga".
 const TODOS_LOS_PLANES = prepagas.flatMap((p) => p.planes.map((pl) => ({ ...pl, prepaga: p })))
-const PLAN_MAS_BARATO = TODOS_LOS_PLANES.reduce((a, b) => (b.precio < a.precio ? b : a))
-const PLAN_MAS_CARO = TODOS_LOS_PLANES.reduce((a, b) => (b.precio > a.precio ? b : a))
+// Solo planes con precio oficial: la respuesta cita los cuadros de la
+// SSSalud (OSDE Flux, por ejemplo, tiene un precio de referencia no oficial).
+const PLANES_OFICIALES = TODOS_LOS_PLANES.filter((pl) => pl.fuentePrecio === 'sssalud')
+const PLAN_MAS_BARATO = PLANES_OFICIALES.reduce((a, b) => (b.precio < a.precio ? b : a))
+const PLAN_MAS_CARO = PLANES_OFICIALES.reduce((a, b) => (b.precio > a.precio ? b : a))
 const AUMENTO_OFICIAL = ultimoMesOficial()
 
 const faqItems = [

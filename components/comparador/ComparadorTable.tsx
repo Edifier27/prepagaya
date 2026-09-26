@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { prepagas, nivelPrecio, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { formatPrecio } from '@/lib/utils'
+import { formatPrecio, precioDesde } from '@/lib/utils'
 
 function Check({ ok }: { ok: boolean }) {
   return ok ? (
@@ -63,7 +63,7 @@ interface FilaValor {
 function buildValores(slug: string): FilaValor | null {
   const p = prepagas.find((x) => x.slug === slug)
   if (!p) return null
-  const precioMin = Math.min(...p.planes.map((pl) => pl.precio))
+  const precioMin = precioDesde(p)
   const planEstrella = p.planes.find((pl) => pl.destacado) ?? p.planes[0]
   return {
     precio: precioMin,
