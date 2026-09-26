@@ -443,6 +443,13 @@ export function nombreZonaTexto(prepagaSlug: string, z: ZonaCartilla): string {
   return titulo !== nombreCortoZona(z.nombre) ? titulo : z.nombre
 }
 
+/** Fecha de los datos de la cartilla en ISO (vigencia o consulta,
+ *  "dd/mm/aaaa"), para el lastmod del sitemap. */
+export function fechaCartillaISO(c: CartillaPrepaga): string | undefined {
+  const m = c.vigencia.match(/^(\d{2})\/(\d{2})\/(\d{4})$/)
+  return m ? new Date(`${m[3]}-${m[2]}-${m[1]}T12:00:00-03:00`).toISOString() : undefined
+}
+
 /** textoFecha con su artículo: "la cartilla oficial..." / "el buscador oficial..." */
 export function textoFechaConArticulo(c: CartillaPrepaga): string {
   return `${c.tipoFecha === 'vigencia' ? 'la' : 'el'} ${textoFecha(c)}`

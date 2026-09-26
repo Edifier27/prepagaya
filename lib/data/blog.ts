@@ -10,6 +10,8 @@ export interface BlogPost {
   metaDescripcion: string
   categoria: string
   fechaPublicacion: string
+  /** Última revisión del contenido (sitemap lastmod y dateModified) */
+  fechaActualizacion?: string
   tiempoLectura: number
   imagen?: string
   contenido: {
@@ -447,6 +449,7 @@ export const blogPosts: BlogPost[] = [
     metaDescripcion: 'OSDE Plan Flux 2026: qué cubre, precio estimado y si conviene frente al Plan 210 o 310. Todo sobre el plan de OSDE para jóvenes de 18 a 35 años.',
     categoria: 'Análisis',
     fechaPublicacion: '2026-06-25',
+    fechaActualizacion: '2026-09-26',
     tiempoLectura: 6,
     contenido: {
       intro: 'OSDE lanzó el Plan Flux pensado específicamente para personas de 18 a 35 años que quieren algo más que el Plan 210 tradicional, con cobertura de salud mental ilimitada y sin las restricciones burocráticas de los planes standard.',

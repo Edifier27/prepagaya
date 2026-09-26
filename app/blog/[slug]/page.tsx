@@ -46,6 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'article',
       images: [OG_IMAGE],
       publishedTime: post.fechaPublicacion,
+      ...(post.fechaActualizacion ? { modifiedTime: post.fechaActualizacion } : {}),
     },
   }
 }
@@ -95,7 +96,7 @@ export default async function BlogPostPage({ params }: Props) {
       url: `${SITE_URL}/blog/${slug}`,
       image: `${SITE_URL}/opengraph-image`,
       datePublished: post.fechaPublicacion,
-      dateModified: post.fechaPublicacion,
+      dateModified: post.fechaActualizacion ?? post.fechaPublicacion,
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: {
         '@type': 'Organization',
@@ -153,6 +154,9 @@ export default async function BlogPostPage({ params }: Props) {
               <p className="text-lg text-gray-500 leading-relaxed mb-4">{post.bajada}</p>
               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 pb-6 border-b border-gray-100">
                 <span>{new Date(post.fechaPublicacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                {post.fechaActualizacion && (
+                  <span>Actualizado el {new Date(post.fechaActualizacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                )}
                 <span className="flex items-center gap-1.5">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-3.5 h-3.5">
                     <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3" strokeLinecap="round"/>

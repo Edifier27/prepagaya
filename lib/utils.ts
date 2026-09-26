@@ -2,6 +2,7 @@ import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import type { NivelPrecio } from '@/lib/data/prepagas'
 import type { Prepaga, Plan } from '@/types'
+import preciosOficiales from '@/lib/data/precios-oficiales.json'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -95,8 +96,11 @@ export const SITE_DESCRIPTION =
 // prioridad en búsquedas sensibles al tiempo. Antes solo lo usaba el
 // sitemap — ningún schema Article del sitio declaraba dateModified.
 // PRECIOS_UPDATE: para páginas cuyo contenido depende del precio mensual
-// (prepagas, planes, cambios recomendados) — rueda solo cada 1° del mes.
-export const PRECIOS_UPDATE = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
+// (prepagas, planes, cambios recomendados): el día en que se cargaron los
+// cuadros tarifarios oficiales del mes (precios-oficiales.json → generado).
+// Antes era el 1° del mes, aunque los precios de septiembre entraron el 23
+// (auditoría del sitemap, 26-sep-2026).
+export const PRECIOS_UPDATE = new Date(`${preciosOficiales.generado}T12:00:00-03:00`).toISOString()
 // CONTENT_UPDATE: última revisión editorial del contenido estable
 // (coberturas, condiciones, comparativas, obras sociales, perfiles).
 export const CONTENT_UPDATE = new Date('2026-07-14').toISOString()

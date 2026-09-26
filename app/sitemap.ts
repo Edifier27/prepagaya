@@ -13,7 +13,7 @@ import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { INFORMES_PROVINCIA } from '@/lib/prensa/sueldo-prepaga'
 import { REGISTRO_VERIFICADO } from '@/lib/data/registro-sssalud'
 import { cartillasInfo } from '@/lib/data/cartillas'
-import { CARTILLAS, combinacionesPlanZona, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
+import { CARTILLAS, combinacionesPlanZona, fechaCartillaISO, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
@@ -108,9 +108,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Qué prepagas atienden en cada sanatorio (cartillas oficiales, 23-sep-2026)
   const sanatorioRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE}/sanatorios`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${BASE}/prensa`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    ...INFORMES_PROVINCIA.map((p) => ({ url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga/${p.slug}`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.6 })),
+    { url: `${BASE}/prensa`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
+    ...INFORMES_PROVINCIA.map((p) => ({ url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga/${p.slug}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.6 })),
     ...sanatoriosPublicables().map((s) => ({
       url: `${BASE}/sanatorios/${s.slug}`,
       lastModified: CONTENT_UPDATE,
@@ -189,7 +189,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((p) => ({
     url: `${BASE}/blog/${p.slug}`,
-    lastModified: new Date(p.fechaPublicacion).toISOString(),
+    lastModified: new Date(p.fechaActualizacion ?? p.fechaPublicacion).toISOString(),
     changeFrequency: 'monthly' as const,
     priority: 0.65,
   }))
@@ -208,9 +208,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.80,
   }))
 
+  // lastmod de cartillas: la fecha de los datos oficiales relevados
+  // (vigencia del PDF o consulta del buscador), no la editorial general.
+  const fechaCartilla = (slug: string) => (CARTILLAS[slug] && fechaCartillaISO(CARTILLAS[slug])) || CONTENT_UPDATE
   const cartillaRoutes: MetadataRoute.Sitemap = cartillasInfo.map((c) => ({
     url: `${BASE}/cartillas/${c.slug}`,
-    lastModified: CONTENT_UPDATE,
+    lastModified: fechaCartilla(c.slug),
     changeFrequency: 'monthly' as const,
     priority: 0.75,
   }))
@@ -220,7 +223,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const cartillaZonaRoutes: MetadataRoute.Sitemap = Object.values(CARTILLAS).flatMap((c) => [
     ...c.planesConPagina.map((p) => ({
       url: `${BASE}/cartillas/${c.prepagaSlug}/${slugPlan(p)}`,
-      lastModified: CONTENT_UPDATE,
+      lastModified: fechaCartilla(c.prepagaSlug),
       changeFrequency: 'monthly' as const,
       priority: 0.72,
     })),
@@ -228,13 +231,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       .filter((z) => z.indexable)
       .map((z) => ({
         url: `${BASE}/cartillas/${c.prepagaSlug}/${z.slug}`,
-        lastModified: CONTENT_UPDATE,
+        lastModified: fechaCartilla(c.prepagaSlug),
         changeFrequency: 'monthly' as const,
         priority: 0.68,
       })),
     ...combinacionesPlanZona(c.prepagaSlug).map((x) => ({
       url: `${BASE}/cartillas/${c.prepagaSlug}/${x.plan}/${x.zona}`,
-      lastModified: CONTENT_UPDATE,
+      lastModified: fechaCartilla(c.prepagaSlug),
       changeFrequency: 'monthly' as const,
       priority: 0.62,
     })),
