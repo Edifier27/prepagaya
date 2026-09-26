@@ -11,7 +11,17 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 export const metadata: Metadata = {
   title: `Ranking Mejores Prepagas Argentina ${new Date().getFullYear()} — Actualizado`,
   description: `Las mejores prepagas de Argentina en ${new Date().getFullYear()} según satisfacción de afiliados, precio y cobertura. Ranking actualizado al ${PRECIO_ACTUALIZADO} con ${prepagas.length} prepagas analizadas.`,
-  alternates: { canonical: `${SITE_URL}/ranking` },
+  alternates: {
+    canonical: `${SITE_URL}/ranking`,
+    // Par recíproco de las versiones en inglés y ruso del ranking (las dos
+    // declaraban /ranking como su versión en español y /ranking no les
+    // respondía: Google ignora el hreflang sin reciprocidad).
+    languages: {
+      'es-AR': `${SITE_URL}/ranking`,
+      en: `${SITE_URL}/en/best-health-insurance-argentina`,
+      ru: `${SITE_URL}/ru/luchshaya-strahovka-argentina`,
+    },
+  },
 }
 
 // Orden curado por nuestros asesores (no es el ranking por satisfacción):

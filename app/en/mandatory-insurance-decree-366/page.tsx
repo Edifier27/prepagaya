@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${SITE_URL}/en/mandatory-insurance-decree-366`,
     languages: {
-      'es-AR': `${SITE_URL}/para/extranjeros`,
       en: `${SITE_URL}/en/mandatory-insurance-decree-366`,
     },
   },

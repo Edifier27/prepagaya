@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${SITE_URL}/ru/stoimost-strahovaniya-argentina`,
     languages: {
-      'es-AR': `${SITE_URL}/para/extranjeros`,
       en: `${SITE_URL}/en/health-insurance-cost-argentina`,
       ru: `${SITE_URL}/ru/stoimost-strahovaniya-argentina`,
       zh: `${SITE_URL}/zh/yiliao-baoxian-feiyong-agenting`,
