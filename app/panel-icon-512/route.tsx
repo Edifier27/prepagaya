@@ -1,12 +1,12 @@
 import { ImageResponse } from 'next/og'
+import { marcaDataUri } from '@/lib/marca'
 
+// Ícono del panel (PWA) y logo de la organización en los datos estructurados
+// de la home: la misma "P" del header, con el fondo lleno.
 export async function GET() {
   return new ImageResponse(
-    (
-      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#E8002D' }}>
-        <div style={{ display: 'flex', fontFamily: 'sans-serif', fontWeight: 800, fontSize: '280px', color: 'white' }}>P</div>
-      </div>
-    ),
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={marcaDataUri('cuadrado')} width={512} height={512} alt="" />,
     { width: 512, height: 512 },
   )
 }

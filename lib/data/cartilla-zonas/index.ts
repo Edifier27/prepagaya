@@ -421,8 +421,23 @@ export function nombreZonaTitulo(prepagaSlug: string, z: ZonaCartilla): string {
   if (!lugar) return corto
   if (corto.toLowerCase() === 'alrededores') return `alrededores de ${lugar}`
   const c = getCartilla(prepagaSlug)
-  const repetido = c?.zonas.some((o) => o.slug !== z.slug && nombreCortoZona(o.nombre) === corto)
-  return repetido && corto !== lugar ? `${corto} (${lugar})` : corto
+  const otras = c?.zonas.filter((o) => o.slug !== z.slug && nombreCortoZona(o.nombre) === corto) ?? []
+  if (!otras.length) return corto
+  // Con la provincia se entiende mejor que con la filial de la prepaga:
+  // "San Pedro (Buenos Aires)" y no "San Pedro (Pergamino)" (25-sep-2026).
+  // La filial queda si las zonas repetidas están en la misma provincia.
+  const prov = z.provincias[0]
+  const distingue = prov && otras.every((o) => o.provincias[0] !== prov) ? prov : lugar
+  return corto !== distingue ? `${corto} (${distingue})` : corto
+}
+
+/**
+ * Nombre de la zona para el texto corrido: el de la cartilla, salvo las zonas
+ * que se llaman solo "alrededores" ("en alrededores, OSDE tiene…"), que
+ * llevan la filial.
+ */
+export function nombreZonaTexto(prepagaSlug: string, z: ZonaCartilla): string {
+  return z.nombre.trim().toLowerCase() === 'alrededores' ? nombreZonaTitulo(prepagaSlug, z) : z.nombre
 }
 
 /** textoFecha con su artículo: "la cartilla oficial..." / "el buscador oficial..." */

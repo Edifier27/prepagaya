@@ -4,6 +4,8 @@ import {
   combinacionesPlanZona,
   indiceZonas,
   nombreCortoZona,
+  nombreZonaTexto,
+  nombreZonaTitulo,
   slugPlan,
   textoFecha,
   textoFechaConArticulo,
@@ -266,19 +268,19 @@ export function faqsZona(c: CartillaPrepaga, z: ZonaCartilla) {
   if (int.length > 0) {
     faqs.push({
       q: `¿Qué sanatorios cubre ${c.prepagaNombre} en ${corto}?`,
-      a: `Según ${textoFechaConArticulo(c)}, en ${z.nombre} ${c.prepagaNombre} tiene ${int.length} sanatorio${int.length === 1 ? '' : 's'} para internación: ${listaNombres(int)}. Qué sanatorio te toca depende del plan.`,
+      a: `Según ${textoFechaConArticulo(c)}, en ${nombreZonaTexto(c.prepagaSlug, z)} ${c.prepagaNombre} tiene ${int.length} sanatorio${int.length === 1 ? '' : 's'} para internación: ${listaNombres(int)}. Qué sanatorio te toca depende del plan.`,
     })
   }
   if (gua.length > 0) {
     faqs.push({
       q: `¿Dónde hay ${c.labelGuardia.toLowerCase()} de ${c.prepagaNombre} en ${corto}?`,
-      a: `En ${z.nombre} figuran ${gua.length} centro${gua.length === 1 ? '' : 's'} con ${c.labelGuardia.toLowerCase()}: ${listaNombres(gua)}.`,
+      a: `En ${nombreZonaTexto(c.prepagaSlug, z)} figuran ${gua.length} centro${gua.length === 1 ? '' : 's'} con ${c.labelGuardia.toLowerCase()}: ${listaNombres(gua)}.`,
     })
   }
   if (max && min && max.p.id !== min.p.id) {
     faqs.push({
       q: `¿Qué plan de ${c.prepagaNombre} tiene más sanatorios en ${corto}?`,
-      a: `En ${z.nombre}, el ${max.p.label} incluye ${max.n} sanatorio${max.n === 1 ? '' : 's'} para internación y el ${min.p.label}, ${min.n}. Más abajo tenés la cantidad para cada plan.`,
+      a: `En ${nombreZonaTexto(c.prepagaSlug, z)}, el ${max.p.label} incluye ${max.n} sanatorio${max.n === 1 ? '' : 's'} para internación y el ${min.p.label}, ${min.n}. Más abajo tenés la cantidad para cada plan.`,
     })
   }
   faqs.push({
@@ -313,9 +315,9 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
           { name: `Cartilla ${c.prepagaNombre}`, url: `${SITE_URL}${base}` },
           { name: corto },
         ]),
-        ldHospitales(`Sanatorios de ${c.prepagaNombre} en ${z.nombre}`, int, z.provincias[0]),
+        ldHospitales(`Sanatorios de ${c.prepagaNombre} en ${nombreZonaTexto(c.prepagaSlug, z)}`, int, z.provincias[0]),
         ldFaq(faqs),
-        ldPagina(c, `Cartilla ${c.prepagaNombre} en ${z.nombre}`),
+        ldPagina(c, `Cartilla ${c.prepagaNombre} en ${nombreZonaTexto(c.prepagaSlug, z)}`),
       ])}
       <Breadcrumb items={[{ href: '/', label: SITE_NAME }, { href: '/cartillas', label: 'Cartillas' }, { href: base, label: c.prepagaNombre }, { label: corto }]} />
 
@@ -325,10 +327,10 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
             {c.tipoFecha === 'vigencia' ? `Cartilla oficial · vigente al ${c.vigencia}` : `Cartilla oficial · consultada el ${c.vigencia}`}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-3">
-            Cartilla {c.prepagaNombre} en {corto}: sanatorios y {c.labelGuardia.toLowerCase()}
+            Cartilla {c.prepagaNombre} en {nombreZonaTitulo(c.prepagaSlug, z)}: sanatorios y {c.labelGuardia.toLowerCase()}
           </h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl mb-5">
-            En {z.nombre}, la cartilla de {c.prepagaNombre} tiene{' '}
+            En {nombreZonaTexto(c.prepagaSlug, z)}, la cartilla de {c.prepagaNombre} tiene{' '}
             {cuenta.internacion > 0 && <strong>{cuenta.internacion} sanatorio{cuenta.internacion === 1 ? '' : 's'} para internación</strong>}
             {cuenta.internacion > 0 && cuenta.guardia > 0 && ' y '}
             {cuenta.guardia > 0 && <strong>{cuenta.guardia} centro{cuenta.guardia === 1 ? '' : 's'} con {c.labelGuardia.toLowerCase()}</strong>}
@@ -392,7 +394,7 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
         <section className="py-10 bg-white border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">
             <h2 className="text-xl font-bold text-gray-900 mb-1">¿Qué plan de {c.prepagaNombre} necesitás en {corto}?</h2>
-            <p className="text-sm text-gray-500 mb-4">Cantidad de centros que incluye cada plan en {z.nombre}.</p>
+            <p className="text-sm text-gray-500 mb-4">Cantidad de centros que incluye cada plan en {nombreZonaTexto(c.prepagaSlug, z)}.</p>
             <TablaPlanes c={c} z={z} linkPlan={linkPlan} />
             <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-red-50 border border-red-100 rounded-2xl p-4">
               <p className="text-sm text-gray-700">¿No sabés qué plan te conviene? Te ayudamos a elegir según los sanatorios que usás.</p>
@@ -596,19 +598,19 @@ export function faqsPlanZona(c: CartillaPrepaga, p: PlanCartilla, z: ZonaCartill
   if (int.length > 0) {
     faqs.push({
       q: `¿Qué sanatorios cubre ${c.prepagaNombre} ${planCorto(p)} en ${corto}?`,
-      a: `Según ${textoFechaConArticulo(c)}, el ${p.label} incluye en ${z.nombre} ${int.length} sanatorio${int.length === 1 ? '' : 's'} para internación: ${listaNombres(int, 10)}.`,
+      a: `Según ${textoFechaConArticulo(c)}, el ${p.label} incluye en ${nombreZonaTexto(c.prepagaSlug, z)} ${int.length} sanatorio${int.length === 1 ? '' : 's'} para internación: ${listaNombres(int, 10)}.`,
     })
   }
   if (gua.length > 0) {
     faqs.push({
       q: `¿Dónde hay ${c.labelGuardia.toLowerCase()} con ${c.prepagaNombre} ${planCorto(p)} en ${corto}?`,
-      a: `Con el ${p.label}, en ${z.nombre} figuran ${gua.length} centro${gua.length === 1 ? '' : 's'} con ${c.labelGuardia.toLowerCase()}: ${listaNombres(gua, 10)}.`,
+      a: `Con el ${p.label}, en ${nombreZonaTexto(c.prepagaSlug, z)} figuran ${gua.length} centro${gua.length === 1 ? '' : 's'} con ${c.labelGuardia.toLowerCase()}: ${listaNombres(gua, 10)}.`,
     })
   }
   if (noIncluye.length > 0) {
     faqs.push({
       q: `¿Qué sanatorios de ${corto} no incluye el ${p.label}?`,
-      a: `En ${z.nombre}, el ${p.label} no incluye para internación: ${listaNombres(noIncluye, 10)}. Esos centros figuran con otros planes de ${c.prepagaNombre}.`,
+      a: `En ${nombreZonaTexto(c.prepagaSlug, z)}, el ${p.label} no incluye para internación: ${listaNombres(noIncluye, 10)}. Esos centros figuran con otros planes de ${c.prepagaNombre}.`,
     })
   }
   return faqs
@@ -643,9 +645,9 @@ export function PaginaPlanZona({ c, p, z }: { c: CartillaPrepaga; p: PlanCartill
           { name: p.label, url: `${SITE_URL}${base}/${slugPlan(p.id)}` },
           { name: corto },
         ]),
-        ldHospitales(`Sanatorios de ${c.prepagaNombre} ${pc} en ${z.nombre}`, lista.filter((ce) => ce.internacion.length > 0), z.provincias[0]),
+        ldHospitales(`Sanatorios de ${c.prepagaNombre} ${pc} en ${nombreZonaTexto(c.prepagaSlug, z)}`, lista.filter((ce) => ce.internacion.length > 0), z.provincias[0]),
         ldFaq(faqs),
-        ldPagina(c, `Cartilla del ${c.prepagaNombre} ${pc} en ${z.nombre}`),
+        ldPagina(c, `Cartilla del ${c.prepagaNombre} ${pc} en ${nombreZonaTexto(c.prepagaSlug, z)}`),
       ])}
       <Breadcrumb
         items={[
@@ -663,10 +665,10 @@ export function PaginaPlanZona({ c, p, z }: { c: CartillaPrepaga; p: PlanCartill
             {c.tipoFecha === 'vigencia' ? `Cartilla oficial · vigente al ${c.vigencia}` : `Cartilla oficial · consultada el ${c.vigencia}`}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-3">
-            Cartilla {c.prepagaNombre} {pc} en {corto}
+            Cartilla {c.prepagaNombre} {pc} en {nombreZonaTitulo(c.prepagaSlug, z)}
           </h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl mb-5">
-            Con el {p.label} de {c.prepagaNombre}, en {z.nombre} tenés{' '}
+            Con el {p.label} de {c.prepagaNombre}, en {nombreZonaTexto(c.prepagaSlug, z)} tenés{' '}
             {n.internacion > 0 && <strong>{n.internacion} sanatorio{n.internacion === 1 ? '' : 's'} para internación</strong>}
             {n.internacion > 0 && n.guardia > 0 && ' y '}
             {n.guardia > 0 && <strong>{n.guardia} centro{n.guardia === 1 ? '' : 's'} con {c.labelGuardia.toLowerCase()}</strong>}
