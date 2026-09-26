@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { CIUDADES_MIGRADAS } from "./lib/redirecciones-ciudades";
 
 const nextConfig: NextConfig = {
   async redirects() {
@@ -35,84 +36,13 @@ const nextConfig: NextConfig = {
         destination: "/prepagas/swiss-medical",
         permanent: true,
       },
-      // Migración /prepagas-en/[ciudad] → hubs provinciales del silo.
-      // Solo las ciudades cuya provincia ya tiene hub; el resto migra al
-      // expandir provincias (no redirigir a un 404).
-      {
-        source: "/prepagas-en/cordoba",
-        destination: "/prepagas/cordoba",
+      // Migración /prepagas-en/[ciudad] → hubs provinciales del silo
+      // (lista en lib/redirecciones-ciudades.ts).
+      ...Object.entries(CIUDADES_MIGRADAS).map(([ciudad, destino]) => ({
+        source: `/prepagas-en/${ciudad}`,
+        destination: destino,
         permanent: true,
-      },
-      {
-        source: "/prepagas-en/salta",
-        destination: "/prepagas/salta",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/neuquen",
-        destination: "/prepagas/neuquen",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/mendoza",
-        destination: "/prepagas/mendoza",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/tucuman",
-        destination: "/prepagas/tucuman",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/santa-fe",
-        destination: "/prepagas/santa-fe",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/rosario",
-        destination: "/prepagas/santa-fe/rosario",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/buenos-aires",
-        destination: "/prepagas/buenos-aires",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/la-plata",
-        destination: "/prepagas/buenos-aires/la-plata",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/mar-del-plata",
-        destination: "/prepagas/buenos-aires/mar-del-plata",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/posadas",
-        destination: "/prepagas/misiones/posadas",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/entre-rios",
-        destination: "/prepagas/entre-rios",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/chaco",
-        destination: "/prepagas/chaco",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/corrientes",
-        destination: "/prepagas/corrientes",
-        permanent: true,
-      },
-      {
-        source: "/prepagas-en/misiones",
-        destination: "/prepagas/misiones",
-        permanent: true,
-      },
+      })),
       // Consolidación "mejor prepaga para X": /para/[perfil] queda como
       // página canónica única. /guias y /blog tenían versiones casi
       // idénticas compitiendo por la misma búsqueda (canibalización).

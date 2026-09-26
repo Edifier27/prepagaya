@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ciudades } from '@/lib/data/ciudades'
+import { CIUDADES_MIGRADAS } from '@/lib/redirecciones-ciudades'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
@@ -217,7 +218,7 @@ export default async function CiudadPage({ params }: Props) {
             {otrasCiudades.map((c) => (
               <Link
                 key={c.slug}
-                href={`/prepagas-en/${c.slug}`}
+                href={CIUDADES_MIGRADAS[c.slug] ?? `/prepagas-en/${c.slug}`}
                 className="text-xs px-3 py-1.5 bg-gray-50 text-gray-700 border border-gray-200 rounded-full hover:border-red-200 hover:text-[#E8002D] transition-colors font-medium"
               >
                 {c.nombre} →

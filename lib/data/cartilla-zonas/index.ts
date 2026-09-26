@@ -432,12 +432,15 @@ export function nombreZonaTitulo(prepagaSlug: string, z: ZonaCartilla): string {
 }
 
 /**
- * Nombre de la zona para el texto corrido: el de la cartilla, salvo las zonas
- * que se llaman solo "alrededores" ("en alrededores, OSDE tiene…"), que
- * llevan la filial.
+ * Nombre de la zona para el texto corrido: el de la cartilla, salvo cuando
+ * hace falta desambiguar — zonas que se llaman solo "alrededores" ("en
+ * alrededores, OSDE tiene…") o que otra zona de la misma cartilla repite
+ * (Swiss Medical tiene San Pedro en Buenos Aires y en Jujuy: la descripción,
+ * que sale de este texto, quedaba igual en las dos).
  */
 export function nombreZonaTexto(prepagaSlug: string, z: ZonaCartilla): string {
-  return z.nombre.trim().toLowerCase() === 'alrededores' ? nombreZonaTitulo(prepagaSlug, z) : z.nombre
+  const titulo = nombreZonaTitulo(prepagaSlug, z)
+  return titulo !== nombreCortoZona(z.nombre) ? titulo : z.nombre
 }
 
 /** textoFecha con su artículo: "la cartilla oficial..." / "el buscador oficial..." */
