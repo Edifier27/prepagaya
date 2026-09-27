@@ -100,13 +100,13 @@ function Lugar({ l, d, datos, prepaga, tipo }: { l: LugarAtencion; d: number; da
   )
 }
 
-function GuardiasCerca({ prepagaInicial }: { prepagaInicial?: string }) {
+function GuardiasCerca({ prepagaInicial, tipoInicial, origenInicial }: { prepagaInicial?: string; tipoInicial?: Tipo; origenInicial?: Origen }) {
   const [datos, setDatos] = useState<DatosGuardias | null>(null)
   const [error, setError] = useState(false)
   const [prepagaSlug, setPrepagaSlug] = useState(prepagaInicial ?? '')
   const [plan, setPlan] = useState('')
-  const [tipo, setTipo] = useState<Tipo>('guardia')
-  const [origenElegido, setOrigenElegido] = useState<Origen | null>(null)
+  const [tipo, setTipo] = useState<Tipo>(tipoInicial ?? 'guardia')
+  const [origenElegido, setOrigenElegido] = useState<Origen | null>(origenInicial ?? null)
   const [geo, setGeo] = useState<'idle' | 'buscando' | 'denegado' | 'error'>('idle')
   const [q, setQ] = useState('')
   const [cantidad, setCantidad] = useState(PASO)
@@ -245,7 +245,7 @@ function GuardiasCerca({ prepagaInicial }: { prepagaInicial?: string }) {
       {datos && origen && (
         <section id="gc-resultados" className="mt-5 scroll-mt-24" aria-live="polite">
           <h2 className="text-lg font-bold text-gray-900">
-            {resultados.length > 0 ? `Las ${nombreTipo} más cerca de ${origen.texto}` : `No encontramos ${nombreTipo} con ese filtro`}
+            {resultados.length > 0 ? `${tipo === 'guardia' ? 'Las' : 'Los'} ${nombreTipo} más cerca de ${origen.texto}` : `No encontramos ${nombreTipo} con ese filtro`}
           </h2>
           <p className="text-sm text-gray-500 mb-3">
             {prepaga >= 0 ? `${datos.prepagas[prepaga].nombre}${plan ? `, ${datos.prepagas[prepaga].planes.find((p) => p.id === plan)?.label ?? plan}` : ''}` : 'Todas las prepagas'} · ordenadas por distancia en línea recta
@@ -315,12 +315,21 @@ function GuardiasCerca({ prepagaInicial }: { prepagaInicial?: string }) {
 }
 
 function ConParametros() {
-  const p = useSearchParams().get('prepaga') ?? undefined
-  return <GuardiasCerca key={p ?? ''} prepagaInicial={p} />
+  const sp = useSearchParams()
+  const p = sp.get('prepaga') ?? undefined
+  const tipo = sp.get('tipo') === 'internacion' ? 'internacion' : undefined
+  const lat = Number(sp.get('lat'))
+  const lon = Number(sp.get('lon'))
+  const lugar = sp.get('lugar')
+  const origen = sp.has('lat') && sp.has('lon') && lugar && Math.abs(lat) <= 90 && Math.abs(lon) <= 180
+    ? { lat, lon, texto: lugar.slice(0, 60) }
+    : undefined
+  return <GuardiasCerca key={sp.toString()} prepagaInicial={p} tipoInicial={tipo} origenInicial={origen} />
 }
 
-/** El buscador sale en el HTML (fallback) y, ya en el navegador, toma
- *  ?prepaga=<slug> del link (desde las cartillas o el buscador del sitio). */
+/** El buscador sale en el HTML (fallback) y, ya en el navegador, toma del
+ *  link ?prepaga=<slug> (cartillas, buscador del sitio) y, desde las
+ *  cartillas de OSDE, también ?tipo=internacion&lat=…&lon=…&lugar=… */
 export function GuardiasCercaConParametros() {
   return (
     <Suspense fallback={<GuardiasCerca />}>

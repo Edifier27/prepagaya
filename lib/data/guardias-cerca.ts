@@ -173,6 +173,18 @@ export function datosGuardias(): DatosGuardias {
   return cache
 }
 
+/** Sedes con internación de cada prepaga a menos de `km` de un punto, sumando
+ *  todos los planes (para comparar cartillas cerca del centro de una ciudad) */
+export function internacionCerca(lat: number, lon: number, km: number): Record<string, number> {
+  const d = datosGuardias()
+  return Object.fromEntries(
+    d.prepagas.map((p, pi) => [
+      p.slug,
+      d.lugares.filter((l) => l[7].some((c) => c[0] === pi && c[2].length > 0) && metros([lat, lon], [l[4], l[5]]) <= km * 1000).length,
+    ]),
+  )
+}
+
 /** Cuántos lugares con guardia tiene cada prepaga (para el texto de la página) */
 export function resumenGuardias(): { slug: string; nombre: string; guardias: number; internacion: number }[] {
   const d = datosGuardias()
