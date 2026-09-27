@@ -148,7 +148,9 @@ export default function HomePage(): React.ReactElement {
                 ancho de contenido — sin esto, cuando el banner de zona se
                 muestra, quedaban las dos apretadas una al lado de la otra
                 en la misma línea (pedido de Darío, 20-sep-2026). */}
-            <div className="flex justify-center">
+            {/* En el celular no va: el cotizador ya dice "Detectamos que
+                estás en…" (Darío, 28-sep-2026: "mucha data, acortala") */}
+            <div className="hidden sm:flex justify-center">
               <ZonaBanner variant="home" />
             </div>
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-red-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-3 sm:mb-5 shadow-sm">
@@ -164,7 +166,7 @@ export default function HomePage(): React.ReactElement {
             </h1>
             {/* El cotizador son 2 preguntas (zona y edades), no 4 */}
             <p className="text-gray-600 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-              Elegí tu zona y las edades: te mostramos todos los planes con <strong className="text-gray-800">15% de descuento online</strong> (25% si sos monotributista).
+              Zona y edades, y listo: todos los planes con <strong className="text-gray-800">15% OFF online</strong> (25% monotributistas).
             </p>
 
             {/* Trust bullets — ocultos en mobile para que el cotizador entre
@@ -187,10 +189,10 @@ export default function HomePage(): React.ReactElement {
           </div>
 
           {/* Cómo funciona: baja la fricción de "¿qué pasa con mis datos?" antes de empezar.
-              En mobile va compacto en una fila (antes eran 3 bloques apilados
-              que empujaban el cotizador fuera de la primera pantalla). */}
-          <div className="container max-w-2xl mx-auto pb-4 sm:pb-8">
-            <div className="grid grid-cols-3 gap-2 sm:gap-4">
+              Solo en pantallas grandes: en el celular el cotizador va arriba de
+              todo (Darío, 28-sep-2026: "mucha data, acortala"). */}
+          <div className="hidden sm:block container max-w-2xl mx-auto pb-8">
+            <div className="grid grid-cols-3 gap-4">
               {[
                 { n: '1', t: 'Cotizás gratis', d: 'Sin DNI, en menos de 2 minutos' },
                 { n: '2', t: 'Comparás precios reales', d: 'De todas las prepagas en tu zona' },

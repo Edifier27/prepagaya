@@ -83,21 +83,26 @@ export default async function ComparadorPage({ searchParams }: Props) {
 
       {/* Hero — solo visible si no viene con zona preseleccionada */}
       {!zona && (
-        <section className="bg-gradient-to-b from-[#FFF1F2] to-white border-b border-red-100 py-14">
+        // En el celular el encabezado va corto para que el cotizador entre en
+        // la primera pantalla (Darío, 28-sep-2026: "mucha data, acortala"). La
+        // zona detectada ya la muestra el propio cotizador ("Detectamos que
+        // estás en…"): el banner y la pastilla quedan solo en pantallas grandes.
+        <section className="bg-gradient-to-b from-[#FFF1F2] to-white border-b border-red-100 pt-5 pb-4 sm:py-14">
           <div className="container max-w-3xl mx-auto text-center">
-            <ZonaBanner variant="cotizador" />
-            <div className="inline-flex items-center gap-2 bg-white border border-red-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-5 shadow-sm">
+            <div className="hidden sm:block">
+              <ZonaBanner variant="cotizador" />
+            </div>
+            <div className="hidden sm:inline-flex items-center gap-2 bg-white border border-red-100 text-[#E8002D] text-xs font-semibold px-4 py-2 rounded-full mb-5 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] animate-pulse" />
               Comparador personalizado · Gratis · Sin DNI
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
+            <h1 className="text-[1.6rem] leading-tight sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 tracking-tight text-balance">
               Cotizá tu prepaga online: <span className="text-[#E8002D]">precio exacto para tu grupo</span>
             </h1>
-            <p className="text-gray-500 text-base max-w-lg mx-auto leading-relaxed">
-              Ingresá tu zona y las edades, y te mostramos los mejores planes con{' '}
-              <strong className="text-gray-700">15% de descuento</strong> por contratar online (25% si sos monotributista).
+            <p className="text-gray-500 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+              Zona y edades, y listo: planes con <strong className="text-gray-700">15% OFF online</strong> (25% monotributistas). Gratis y sin DNI.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-6 mt-7 text-xs text-gray-500">
+            <div className="hidden sm:flex flex-wrap items-center justify-center gap-6 mt-7 text-xs text-gray-500">
               <span className="flex items-center gap-2">
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-emerald-500"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
                 <strong className="text-gray-700">{prepagas.length} prepagas</strong> comparadas
@@ -116,7 +121,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
       )}
 
       {/* Wizard — ancho amplio para el sidebar de resultados */}
-      <section className="container max-w-5xl mx-auto py-10 px-4">
+      <section className="container max-w-5xl mx-auto pt-4 pb-10 sm:py-10 px-4">
         <ComparadorWizard
           zonasSEO={prepagasEnSitioPorZona()}
           initialZona={zona}
