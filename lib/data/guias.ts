@@ -511,58 +511,81 @@ export const guias: GuiaData[] = [
     prepagasRelacionadas: ['osde', 'galeno', 'sancor-salud'],
   },
   {
+    // 27-sep-2026: la guía suma el buscador "¿Qué me cubre la prepaga?"
+    // (components/herramientas/QueCubreSeccion.tsx) y se reescribió con los
+    // textos oficiales del PMO y las leyes (lib/data/que-cubre.ts). Se
+    // corrigieron: fertilización (son 3 tratamientos de alta complejidad en
+    // total, no por año: Decreto 956/2013, art. 8) y salud mental (el PMO fija
+    // un piso de 30 consultas por año, no "sin límite").
     slug: 'que-cubre-la-prepaga',
-    titulo: '¿Qué cubre una prepaga? Lo obligatorio por ley y lo que cambia según el plan (2026)',
-    metaDescripcion: 'Conocé todo lo que debe cubrir tu prepaga por ley en Argentina según el Plan Médico Obligatorio (PMO). Evitá que te nieguen prestaciones.',
+    titulo: '¿Qué cubre la prepaga? Buscador de coberturas por ley y por plan (2026)',
+    metaDescripcion: 'Buscá psicólogo, ortodoncia, anteojos, fertilización o lo que necesites: si la prepaga lo cubre por ley, con qué porcentaje o límite y qué planes lo incluyen, con la norma oficial.',
     tiempoLectura: 12,
     categoria: 'Cobertura',
-    fechaActualizacion: '2026-07-14',
+    fechaActualizacion: '2026-09-27',
     contenido: {
-      intro: 'El Programa Médico Obligatorio (PMO) es el piso de prestaciones que toda prepaga y obra social debe cubrir por ley, sin importar cuánto pagues ni qué plan tengas. Conocerlo es tu mejor herramienta: la mayoría de las negativas de cobertura que reciben los afiliados son sobre prestaciones que el PMO obliga a cubrir.',
+      intro: 'Toda prepaga tiene que cubrir, como mínimo, el Programa Médico Obligatorio (PMO) y las prestaciones para personas con discapacidad de la Ley 24.901, en todos sus planes, del más barato al más caro (Ley 26.682, art. 7). Además, hay leyes que suman prestaciones obligatorias: fertilización, diabetes, celiaquía, vasectomía y ligadura, autismo, VIH y más. Lo que no está en ninguna norma es superador y depende del plan. Buscá la práctica que necesitás y mirá en qué grupo cae.',
       secciones: [
         {
           titulo: 'Atención básica: consultas, estudios e internación',
-          cuerpo: 'El PMO cubre consultas con médicos de todas las especialidades, estudios de diagnóstico (laboratorio, imágenes, alta complejidad con indicación médica), internación clínica y quirúrgica sin límite de días, y traslados en ambulancia cuando hay indicación. Los planes con copago pueden cobrarte un monto por consulta, pero nunca negarte la prestación.',
+          cuerpo: 'El PMO cubre la consulta con médicos de todas las especialidades reconocidas, los estudios y prácticas de su Anexo II (con el material descartable y los medios de contraste incluidos) y el diagnóstico por imágenes, tomografía y resonancia incluidas. La internación se cubre al 100% y sin límite de tiempo, en sanatorio, hospital de día o domicilio, salvo en salud mental, que tiene su propio tope. Los traslados son parte de la prestación. Según el plan, puede haber copago en consultas y estudios.',
         },
         {
           titulo: 'Medicamentos: 40%, 70% y 100%',
-          cuerpo: 'La cobertura de medicamentos ambulatorios es de al menos 40% del precio de referencia, que sube a 70% para medicamentos de enfermedades crónicas (hipertensión, diabetes, colesterol) y llega a 100% en internación, oncología, diabetes (insulina), HIV, trasplantes y medicación para discapacidad. Muchas prepagas mejoran estos pisos como diferencial comercial: Luis Pasteur, por ejemplo, cubre 60% en farmacia desde su plan base.',
+          cuerpo: 'El piso es el 40% en los medicamentos ambulatorios del formulario del PMO y el 70% en los de enfermedades crónicas que se toman de modo permanente, siempre sobre un precio de referencia (Resolución 310/2004). Es del 100% durante la internación, en los oncológicos según protocolo y en la eritropoyetina para la insuficiencia renal crónica, y en diabetes la Ley 23.753 fija el 100% de los medicamentos y las tiras de autocontrol. Muchas prepagas mejoran estos pisos como diferencial comercial: Luis Pasteur, por ejemplo, cubre 60% en farmacia desde su plan base.',
         },
         {
-          titulo: 'Maternidad y niñez: cobertura al 100%',
-          cuerpo: 'El embarazo, el parto (vaginal o cesárea) y la atención del recién nacido hasta el año de vida tienen cobertura del 100%, incluyendo controles prenatales, ecografías, internación conjunta y neonatología. El Plan Materno Infantil es una de las áreas donde la ley es más estricta: no pueden cobrarte copagos ni aplicar carencias.',
+          titulo: 'Embarazo, parto y primer año: cobertura al 100%',
+          cuerpo: 'El embarazo, desde el diagnóstico hasta el primer mes después del parto, y el bebé hasta que cumple un año tienen cobertura del 100% en internación y en consultorio, sin coseguros: controles, estudios del embarazo, psicoprofilaxis, el parto, la medicación relacionada, las vacunas y la pesquisa neonatal. La Ley de Parto Respetado, que también es parte del PMO, suma derechos como estar acompañada por una persona de tu elección y la internación conjunta con tu bebé.',
         },
         {
           titulo: 'Salud mental, discapacidad y tratamientos especiales',
-          cuerpo: 'La Ley de Salud Mental obliga a cubrir psicología y psiquiatría en igualdad de condiciones que cualquier enfermedad. La cobertura de discapacidad es integral al 100% (tratamientos, educación, transporte). También son obligatorias la fertilización asistida (Ley 26.862), la cobertura de celiaquía (harinas y premezclas), obesidad, diabetes (Ley 23.753) y los tratamientos oncológicos completos.',
+          cuerpo: 'En salud mental, el piso del PMO es de hasta 30 consultas ambulatorias por año calendario (hasta 4 por mes) y de hasta 30 días de internación por año para cuadros agudos; la reglamentación de la Ley de Salud Mental ordena adecuar esa cobertura a los principios de la ley. Kinesiología y fonoaudiología: hasta 25 sesiones por año cada una. La discapacidad tiene cobertura total (Ley 24.901), y son obligatorias la fertilización asistida (Ley 26.862), la diabetes (Ley 23.753), la celiaquía (Ley 26.588), la obesidad y los trastornos alimentarios (Ley 26.396), el autismo (Ley 27.043), el VIH y las hepatitis (Ley 27.675) y los tratamientos oncológicos, entre otras.',
         },
         {
           titulo: 'Qué NO cubre el PMO (y dónde las prepagas se diferencian)',
-          cuerpo: 'Quedan fuera del piso obligatorio: cirugía estética sin causa médica, ortodoncia en adultos, habitación individual, cobertura internacional, y reintegros por profesionales fuera de cartilla. Justamente ahí compiten los planes: cuando pagás un plan medio o alto, estás pagando estas prestaciones superadoras más la calidad de la red. Al comparar planes, mirá esta capa: el piso legal es idéntico en todos.',
+          cuerpo: 'Quedan fuera del piso obligatorio: la cirugía estética sin indicación médica, la ortodoncia, los implantes dentales, los anteojos para adultos, la habitación individual, la cobertura en el exterior y los reintegros por profesionales fuera de cartilla. Justamente ahí compiten los planes: cuando pagás un plan medio o alto, estás pagando estas prestaciones superadoras más la calidad de la red. Al comparar planes, mirá esta capa: el piso legal es idéntico en todos.',
         },
         {
           titulo: 'Qué hacer si te niegan algo del PMO',
           cuerpo: 'Pedí la negativa por escrito, reuní la indicación médica y presentá un reclamo formal ante la prepaga. Si no responden o insisten, denunciá ante la Superintendencia de Servicios de Salud (SSSalud) al 0800-222-72583 o en sssalud.gob.ar: es gratuito, no necesitás abogado y las empresas suelen revertir la negativa apenas la SSSalud interviene. Para urgencias médicas existe además el recurso de amparo judicial.',
+          cta: { texto: '¿Querés un plan con más cobertura que el piso legal? Te decimos cuáles incluyen lo que necesitás y cuánto salen para tu edad.', boton: 'Cotizar', href: '/comparador' },
         },
       ],
-      conclusion: 'El PMO es tu piso de derechos: ninguna prepaga puede cubrir menos, ni siquiera en el plan más barato. Las diferencias reales entre planes están por encima de ese piso. Si te niegan una prestación obligatoria, reclamá: la mayoría de las negativas se revierten con un reclamo bien hecho ante la SSSalud.',
+      conclusion: 'El PMO es tu piso de derechos: ninguna prepaga puede cubrir menos, ni siquiera en el plan más barato. Las diferencias reales entre planes están por encima de ese piso. Si te niegan una prestación obligatoria, pedí la respuesta por escrito y reclamá: primero ante la prepaga y, si no se resuelve, ante la SSSalud.',
     },
     faq: [
       {
         q: '¿El plan más barato cubre menos que el más caro?',
-        a: 'En prestaciones obligatorias (PMO), no: ambos cubren exactamente lo mismo por ley. Las diferencias están en copagos, cartilla, habitación individual, reintegros y prestaciones superadoras como ortodoncia o cirugía estética.',
+        a: 'En prestaciones obligatorias (PMO y leyes especiales), no: todos los planes tienen que cubrirlas (Ley 26.682, art. 7). Las diferencias están en copagos, cartilla, habitación individual, reintegros y prestaciones superadoras como ortodoncia o cirugía estética.',
       },
       {
         q: '¿La prepaga puede negarme un estudio de alta complejidad?',
-        a: 'No, si tiene indicación médica. Puede pedir auditoría previa (autorización), pero la negativa injustificada de un estudio indicado por tu médico es incumplimiento del PMO y es denunciable ante la SSSalud.',
+        a: 'La tomografía y la resonancia están en el PMO. La prepaga puede pedir una autorización previa con la orden de tu médico; si te lo niega, pedí la respuesta por escrito y reclamá ante la SSSalud.',
+      },
+      {
+        q: '¿Cuántas sesiones de psicólogo cubre la prepaga?',
+        a: 'El piso del PMO es de hasta 30 consultas ambulatorias de salud mental por año calendario, con un máximo de 4 por mes (Res. 201/2002, Anexo I, punto 4.3). Hay planes que cubren más o sin copago: Swiss Medical, por ejemplo, cubre 30 sesiones sin cargo por año del SMG20 al SMG60 y 36 en el SMG70, según su comparativo oficial de julio de 2026.',
       },
       {
         q: '¿Las prepagas cubren tratamientos de fertilidad?',
-        a: 'Sí, la Ley 26.862 obliga a cubrir técnicas de baja y alta complejidad (hasta 4 tratamientos de baja y 3 de alta por año, con criterios médicos), incluyendo la medicación, que es el componente más caro.',
+        a: 'Sí, la Ley 26.862 obliga a cubrir la reproducción médicamente asistida, incluida la medicación. Por persona: hasta 4 tratamientos de baja complejidad por año y hasta 3 de alta complejidad, con al menos 3 meses entre uno y otro, y antes de la alta complejidad van como mínimo 3 intentos de baja, salvo causa médica (Decreto 956/2013, art. 8).',
+      },
+      {
+        q: '¿La prepaga cubre anteojos?',
+        a: 'Para chicos de hasta 15 años, sí: anteojos con lentes estándar al 100% (PMO, punto 8.3.2). Para adultos depende del plan: Swiss Medical, por ejemplo, cubre un par de anteojos o lentes de contacto por año en todos sus planes estándar salvo el SMG02.',
       },
     ],
-    keywords: ['que cubre la prepaga', 'que cubre una prepaga', 'que no cubre la prepaga', 'prepaga me niega cobertura'],
+    keywords: ['que cubre la prepaga', 'que cubre una prepaga', 'que no cubre la prepaga', 'la prepaga cubre', 'buscador de coberturas prepaga', 'prepaga me niega cobertura'],
     relacionadas: ['como-reclamar-a-una-prepaga', 'copago-en-prepagas-que-es', 'reintegros-en-prepagas'],
+    fuentes: [
+      { texto: 'PMO: Resolución 201/2002 del Ministerio de Salud, Anexo I — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/73649/res201-2002MS-anexoI.htm' },
+      { texto: 'Resolución 310/2004 (medicamentos) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/90000-94999/94218/norma.htm' },
+      { texto: 'Ley 26.682 (texto actualizado) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Ley 24.754 — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/40000-44999/41166/norma.htm' },
+      { texto: 'Decreto 956/2013 (fertilización) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/215000-219999/217628/norma.htm' },
+      { texto: 'Decreto 603/2013 (salud mental) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/215000-219999/215485/texact.htm' },
+    ],
   },
   {
     slug: 'deducir-prepaga-ganancias',

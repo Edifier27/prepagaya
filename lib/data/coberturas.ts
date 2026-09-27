@@ -33,8 +33,8 @@ export const coberturas: CoberturaData[] = [
     emoji: '🧠',
     titulo: '¿Las prepagas cubren psicología y salud mental?',
     metaDescripcion: 'Descubrí qué prepagas cubren psicología, psiquiatría y salud mental en Argentina. Qué dice la ley, cuántas sesiones cubren y cuáles tienen menos restricciones.',
-    intro: 'La salud mental es una de las coberturas más buscadas en prepagas. La buena noticia: la Ley 26.657 obliga a todas las prepagas a cubrir tratamientos de salud mental en igualdad de condiciones que cualquier otra enfermedad. Pero hay grandes diferencias en calidad de red, cantidad de sesiones sin necesidad de auditoría y acceso a psiquiatras.',
-    queEstableceLaLey: 'La Ley 26.657 (Ley Nacional de Salud Mental) y el PMO establecen que las prepagas deben cubrir tratamientos psicológicos y psiquiátricos sin límite de sesiones cuando existe indicación médica. No pueden requerir autorizaciones previas para las primeras sesiones de urgencia.',
+    intro: 'La salud mental es una de las coberturas más buscadas en prepagas. Todas tienen que cubrir el piso del PMO: hasta 30 consultas por año, con un máximo de 4 por mes. Pero hay grandes diferencias en cuántas sesiones cubre cada plan, si tienen copago, la calidad de la red y el acceso a psiquiatras.',
+    queEstableceLaLey: 'El PMO cubre la atención ambulatoria de salud mental hasta 30 consultas por año calendario, con un máximo de 4 por mes: entrevista psicológica y psiquiátrica, psicopedagogía, psicoterapia individual, grupal, de familia y de pareja, y psicodiagnóstico. La internación por cuadros agudos se cubre hasta 30 días por año (Res. 201/2002, Anexo I, punto 4). La reglamentación de la Ley 26.657 de Salud Mental ordena adecuar esa cobertura a los principios de la ley, y para acceder no se exige certificado de discapacidad (Decreto 603/2013, art. 37).',
     prepagasRecomendadas: [
       { slug: 'swiss-medical', razon: 'La red de profesionales de salud mental de Swiss Medical es la más amplia del país. Tienen psicólogos, psiquiatras y centros especializados en todas las zonas. Del SMG20 al SMG60 cubre 30 sesiones de psicología sin cargo por año y el SMG70, 36 (comparativo oficial de Swiss Medical, julio 2026).', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene +90.000 profesionales adheridos, incluyendo una amplia red de psicólogos en todo el país. El Plan 310 cubre psicología y psiquiatría con copago razonable. Ideal si querés tener muchas opciones de profesionales.', planSlug: '310' },
@@ -54,7 +54,7 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Cuántas sesiones de psicólogo cubre la prepaga por mes?',
-        a: 'Por ley, las prepagas deben cubrir las sesiones indicadas por el profesional sin límite arbitrario. En la práctica, muchos planes cubren entre 2 y 4 sesiones mensuales sin auditoría; más sesiones pueden requerir un informe médico. La Ley 26.657 prohíbe límites que no estén basados en criterios médicos.',
+        a: 'El piso del PMO es de hasta 4 consultas por mes y 30 por año calendario. Hay planes que cubren más: Swiss Medical, por ejemplo, 30 sesiones sin cargo por año del SMG20 al SMG60 y 36 en el SMG70; Avalian Selecta, 48 sin copago (datos oficiales de cada prepaga). Si tu tratamiento necesita más sesiones, pedí que tu profesional lo fundamente por escrito.',
       },
       {
         q: '¿La prepaga cubre tratamientos psiquiátricos y medicación?',
@@ -71,6 +71,7 @@ export const coberturas: CoberturaData[] = [
     ],
     relacionadas: ['maternidad', 'medicamentos', 'urgencias'],
     keywords: ['prepagas que cubren psicología', 'cobertura salud mental prepaga', 'prepaga psicólogo sin copago', 'cuántas sesiones cubre la prepaga', 'ley 26657 prepagas', 'prepaga cubre psicologia argentina', 'prepaga salud mental sesiones', 'cobertura psicologia prepaga 2026'],
+    fechaActualizacion: '2026-09-27',
   },
   {
     slug: 'maternidad',
@@ -162,16 +163,16 @@ export const coberturas: CoberturaData[] = [
     titulo: '¿Las prepagas cubren fertilización in vitro y tratamientos de fertilidad?',
     metaDescripcion: 'Todo sobre la cobertura de fertilidad en prepagas argentinas. FIV, ovodonación, inseminación artificial. Qué dice la ley y cuáles son los mejores planes.',
     intro: 'Argentina tiene una de las legislaciones más avanzadas del mundo en fertilidad: la Ley 26.862 obliga a prepagas y obras sociales a cubrir tratamientos de reproducción médicamente asistida. Sin embargo, hay diferencias importantes en cuántos ciclos cubren, qué técnicas incluyen y la calidad de los centros de fertilidad.',
-    queEstableceLaLey: 'La Ley 26.862 establece que las prepagas deben cubrir hasta 4 tratamientos de fertilización in vitro de baja complejidad y hasta 4 de alta complejidad (FIV) por año, incluyendo la medicación. La ley no discrimina por orientación sexual ni estado civil. La ovodonación también está incluida.',
+    queEstableceLaLey: 'La Ley 26.862 obliga a las prepagas a cubrir de forma integral la reproducción médicamente asistida a toda persona mayor de edad, incluida la medicación. Su reglamentación fija el límite: hasta 4 tratamientos de baja complejidad por año y hasta 3 de alta complejidad (FIV, ICSI), con al menos 3 meses entre uno y otro; antes de la alta complejidad van como mínimo 3 intentos de baja, salvo una causa médica documentada (Decreto 956/2013, art. 8). La ley no discrimina por orientación sexual ni estado civil, y los gametos donados deben venir de bancos inscriptos.',
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'Swiss Medical tiene convenio con los mejores centros de fertilidad del país (CEGYR, Procrearte). Cubre los 4 ciclos por ley más la medicación con descuento en farmacia. Atención personalizada y coordinación entre ginecólogo y especialista en fertilidad.', planSlug: 'smg20' },
+      { slug: 'swiss-medical', razon: 'Swiss Medical tiene convenio con los mejores centros de fertilidad del país (CEGYR, Procrearte). Cubre los tratamientos de la Ley 26.862, con la medicación incluida. Atención personalizada y coordinación entre ginecólogo y especialista en fertilidad.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene la red de centros de fertilidad adheridos más amplia. El Plan 310 cubre los tratamientos por ley. Su ventaja es la cantidad de opciones de centros especializados en todo el país.', planSlug: '310' },
       { slug: 'sancor-salud', razon: 'Sancor Salud cumple la ley 26.862 en todas sus modalidades. Buena opción para el interior del país donde Swiss y OSDE tienen menos centros de fertilidad habilitados.', planSlug: 'plan-4500' },
     ],
     prepagasRestrictivas: [],
     quePreguntar: [
       '¿Cuántos ciclos de FIV cubre por año?',
-      '¿La medicación para fertilidad está incluida con descuento?',
+      '¿Con qué centros de fertilidad trabajan y cómo se autoriza la medicación?',
       '¿Cubrís ovodonación y donación de esperma?',
       '¿Qué centros de fertilidad habilitados tenés en convenio?',
       '¿Aplica el mismo beneficio para parejas del mismo sexo?',
@@ -179,7 +180,7 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Cuántos tratamientos de fertilidad cubre la prepaga por ley?',
-        a: 'La Ley 26.862 establece hasta 4 tratamientos anuales de baja complejidad (estimulación ovárica + inseminación) y hasta 4 de alta complejidad (FIV, ICSI) por año. La medicación asociada también debe ser cubierta. Si la prepaga te niega estos tratamientos, podés reclamar ante SSSalud.',
+        a: 'Hasta 4 tratamientos de baja complejidad por año y hasta 3 de alta complejidad (FIV, ICSI), con al menos 3 meses entre uno y otro (Decreto 956/2013, art. 8). La medicación también tiene que estar cubierta. Si la prepaga te niega estos tratamientos, podés reclamar ante la SSSalud.',
       },
       {
         q: '¿La prepaga cubre la preservación de óvulos (vitrificación)?',
@@ -187,11 +188,12 @@ export const coberturas: CoberturaData[] = [
       },
       {
         q: '¿Hay período de espera para acceder a los tratamientos de fertilidad?',
-        a: 'Las prepagas no pueden aplicar períodos de carencia específicos para fertilidad superiores a los generales del plan. Sin embargo, algunos planes requieren que hayas estado afiliado al menos 6 meses antes de iniciar el tratamiento. Consultá al contratar.',
+        a: 'No debería: la fertilización asistida está incluida en el PMO (Decreto 956/2013, art. 8) y lo que está en el PMO no puede tener carencia (Ley 26.682, art. 10). Además, la infertilidad no cuenta como preexistencia al afiliarte. Si te ponen un plazo de espera, pedilo por escrito y reclamá.',
       },
     ],
     relacionadas: ['maternidad', 'psicologia', 'medicamentos'],
     keywords: ['prepagas que cubren fertilización in vitro', 'ley 26862 prepagas fertilidad', 'FIV cobertura prepaga argentina', 'mejor prepaga para tratamiento de fertilidad', 'prepaga ovodonación', 'prepaga cubre fertilidad argentina', 'prepaga tratamiento fertilidad', 'ley 26862 prepaga', 'fiv cobertura prepaga'],
+    fechaActualizacion: '2026-09-27',
   },
   {
     slug: 'oncologia',

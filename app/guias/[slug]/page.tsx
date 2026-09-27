@@ -8,6 +8,7 @@ import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { StickySectionNav } from '@/components/ui/StickySectionNav'
+import { QueCubreSeccion } from '@/components/herramientas/QueCubreSeccion'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -143,6 +144,11 @@ export default async function GuiaPage({ params }: Props) {
         <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
           <p className="text-gray-800 leading-relaxed">{enlazarPrepagas(guia.contenido.intro, vistas)}</p>
         </div>
+
+        {/* Buscador "¿Qué me cubre la prepaga?" (27-sep-2026): vive en esta
+            guía para que la búsqueda "qué cubre la prepaga" tenga una sola
+            página, con la herramienta arriba y el desarrollo abajo. */}
+        {slug === 'que-cubre-la-prepaga' && <QueCubreSeccion />}
 
         {/* Índice */}
         <div className="mb-8 bg-gray-50 rounded-2xl border border-gray-200 p-4">

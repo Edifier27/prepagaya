@@ -75,7 +75,7 @@ const secciones: Seccion[] = [
     titulo: 'Salud Mental',
     cuerpo: (
       <p className="text-gray-600 leading-relaxed">
-        La <strong>Ley 26.657</strong> (Ley de Salud Mental) obliga a cubrir psicología, psiquiatría y psicopedagogía en igualdad de condiciones que cualquier otra enfermedad: no pueden aplicarse límites de sesiones por año distintos a los que rigen para otras especialidades, ni un copago desproporcionado que funcione como barrera de acceso. Incluye tratamiento ambulatorio, internación en salud mental cuando está indicada, y hospital de día. Ver el detalle completo en <Link href="/condiciones/salud-mental" className="text-[#E8002D] font-semibold hover:underline">prepagas y salud mental</Link>.
+        El PMO cubre la atención ambulatoria de salud mental <strong>hasta 30 consultas por año calendario, con un máximo de 4 por mes</strong>: entrevista psiquiátrica y psicológica, psicopedagogía, psicoterapia individual, grupal, de familia y de pareja, y psicodiagnóstico. La internación por cuadros agudos, en sanatorio u hospital de día, se cubre <strong>hasta 30 días por año</strong> (Res. 201/2002, Anexo I, punto 4). La reglamentación de la <strong>Ley 26.657</strong> de Salud Mental ordena adecuar esa cobertura a los principios de la ley y aclara que no se exige certificado de discapacidad para acceder (Decreto 603/2013, art. 37). Hay planes que cubren más sesiones o las mismas sin copago. Ver el detalle completo en <Link href="/condiciones/salud-mental" className="text-[#E8002D] font-semibold hover:underline">prepagas y salud mental</Link>.
       </p>
     ),
   },
@@ -154,23 +154,23 @@ const secciones: Seccion[] = [
           </li>
           <li className="flex items-start gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] mt-2 flex-shrink-0" />
-            <span className="text-gray-600 text-sm"><strong>Fertilización asistida</strong> (Ley 26.862) — hasta 4 tratamientos de baja complejidad y 3 de alta complejidad por año, incluida la medicación. Ver <Link href="/coberturas/fertilidad" className="text-[#E8002D] font-semibold hover:underline">cobertura de fertilidad</Link>.</span>
+            <span className="text-gray-600 text-sm"><strong>Fertilización asistida</strong> (Ley 26.862) — cobertura integral, incluida la medicación: hasta 4 tratamientos de baja complejidad por año y hasta 3 de alta complejidad, con al menos 3 meses entre uno y otro (Decreto 956/2013, art. 8). Ver <Link href="/coberturas/fertilidad" className="text-[#E8002D] font-semibold hover:underline">cobertura de fertilidad</Link>.</span>
           </li>
           <li className="flex items-start gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] mt-2 flex-shrink-0" />
-            <span className="text-gray-600 text-sm"><strong>Diabetes</strong> (Ley 23.753) — insulina, tiras reactivas según tipo, y equipamiento (bombas de insulina con indicación médica). Ver <Link href="/condiciones/diabetes" className="text-[#E8002D] font-semibold hover:underline">prepagas para diabéticos</Link>.</span>
+            <span className="text-gray-600 text-sm"><strong>Diabetes</strong> (Ley 23.753) — 100% de los medicamentos y de los reactivos para el autocontrol, en las cantidades que indique el médico. Ver <Link href="/condiciones/diabetes" className="text-[#E8002D] font-semibold hover:underline">prepagas para diabéticos</Link>.</span>
           </li>
           <li className="flex items-start gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] mt-2 flex-shrink-0" />
-            <span className="text-gray-600 text-sm"><strong>Celiaquía</strong> (Ley 26.588) — harinas y premezclas libres de gluten con reintegro mensual. Ver <Link href="/condiciones/celiacos" className="text-[#E8002D] font-semibold hover:underline">prepagas para celíacos</Link>.</span>
+            <span className="text-gray-600 text-sm"><strong>Celiaquía</strong> (Ley 26.588) — detección, diagnóstico y tratamiento, y un monto mensual para harinas, premezclas y alimentos sin gluten que fija el Ministerio de Salud. Ver <Link href="/condiciones/celiacos" className="text-[#E8002D] font-semibold hover:underline">prepagas para celíacos</Link>.</span>
           </li>
           <li className="flex items-start gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] mt-2 flex-shrink-0" />
-            <span className="text-gray-600 text-sm"><strong>Trastornos del Espectro Autista</strong> (Ley 27.043) — diagnóstico y tratamiento (terapias ABA, fonoaudiología, terapia ocupacional) sin límite de edad. Ver <Link href="/condiciones/autismo" className="text-[#E8002D] font-semibold hover:underline">prepagas para autismo</Link>.</span>
+            <span className="text-gray-600 text-sm"><strong>Trastornos del Espectro Autista</strong> (Ley 27.043) — pesquisa, detección temprana, diagnóstico y tratamiento, incorporados al PMO. Ver <Link href="/condiciones/autismo" className="text-[#E8002D] font-semibold hover:underline">prepagas para autismo</Link>.</span>
           </li>
           <li className="flex items-start gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] mt-2 flex-shrink-0" />
-            <span className="text-gray-600 text-sm"><strong>Oncología</strong> — diagnóstico, cirugía, radioterapia, quimioterapia y medicación oncológica al 100%, sin límite de tratamientos mientras haya indicación médica. Ver <Link href="/coberturas/oncologia" className="text-[#E8002D] font-semibold hover:underline">cobertura oncológica</Link>.</span>
+            <span className="text-gray-600 text-sm"><strong>Oncología</strong> — diagnóstico y tratamiento de todas las afecciones malignas, con la medicación oncológica al 100% según los protocolos aprobados y sin coseguros. Ver <Link href="/coberturas/oncologia" className="text-[#E8002D] font-semibold hover:underline">cobertura oncológica</Link>.</span>
           </li>
           <li className="flex items-start gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] mt-2 flex-shrink-0" />
@@ -189,7 +189,7 @@ const secciones: Seccion[] = [
     titulo: 'Qué NO cubre el PMO',
     cuerpo: (
       <p className="text-gray-600 leading-relaxed">
-        Quedan fuera del piso obligatorio: cirugía estética sin causa médica (reconstructiva sí está cubierta), ortodoncia e implantes dentales en adultos, habitación individual (salvo indicación médica puntual), cobertura fuera de Argentina, medicina prepaga para mascotas obviamente no aplica, y los reintegros por atenderte con un profesional fuera de la cartilla de tu plan. Ahí es exactamente donde compiten los planes de cada prepaga: cuando pagás más, estás pagando estas prestaciones superadoras y una cartilla más amplia — nunca una cobertura del PMO "mejor" que en el plan económico, porque el PMO es idéntico en todos.
+        Quedan fuera del piso obligatorio: cirugía estética sin causa médica (reconstructiva sí está cubierta), ortodoncia e implantes dentales en adultos, habitación individual (salvo indicación médica puntual), cobertura fuera de Argentina, medicina prepaga para mascotas obviamente no aplica, y los reintegros por atenderte con un profesional fuera de la cartilla de tu plan. Ahí es exactamente donde compiten los planes de cada prepaga: cuando pagás más, estás pagando estas prestaciones superadoras y una cartilla más amplia — nunca una cobertura del PMO &quot;mejor&quot; que en el plan económico, porque el PMO es idéntico en todos.
       </p>
     ),
   },
@@ -287,8 +287,13 @@ export default function PmoPage() {
         {/* GEO: intro con la respuesta directa antes del índice */}
         <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
           <p className="text-gray-800 leading-relaxed">
-            El <strong>Programa Médico Obligatorio (PMO)</strong> es el piso de prestaciones que toda prepaga y obra social de Argentina debe cubrir por ley, sin importar el plan contratado ni cuánto pagués: consultas médicas, estudios, internación sin límite de días, salud mental, rehabilitación, odontología básica, medicamentos (40%, 70% o 100% según el caso) y toda una serie de leyes especiales para diabetes, discapacidad, fertilidad, oncología, celiaquía y más. Nunca puede tener carencias ni rechazarse por preexistencia. Está regulado por la <strong>Resolución 201/2002</strong> de la Superintendencia de Servicios de Salud (SSSalud) y ampliado desde entonces por leyes puntuales — esta guía lo desglosa categoría por categoría, con la fuente oficial de cada dato.
+            El <strong>Programa Médico Obligatorio (PMO)</strong> es el piso de prestaciones que toda prepaga y obra social de Argentina debe cubrir por ley, sin importar el plan contratado ni cuánto pagués: consultas médicas, estudios, internación sin límite de días, salud mental, rehabilitación, odontología básica, medicamentos (40%, 70% o 100% según el caso) y toda una serie de leyes especiales para diabetes, discapacidad, fertilidad, oncología, celiaquía y más. Nunca puede tener carencias ni rechazarse por preexistencia. Está regulado por la <strong>Resolución 201/2002</strong> del Ministerio de Salud de la Nación y ampliado desde entonces por leyes puntuales — esta guía lo desglosa categoría por categoría, con la fuente oficial de cada dato.
           </p>
+        </div>
+
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <p className="text-sm text-gray-700 leading-relaxed">¿Buscás algo puntual, como psicólogo, ortodoncia o anteojos? Escribilo en el buscador y te decimos si es obligatorio, con qué porcentaje y qué planes lo incluyen.</p>
+          <Link href="/guias/que-cubre-la-prepaga#buscador" className="flex-shrink-0 text-center px-4 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">Buscar qué me cubre →</Link>
         </div>
 
         {/* Índice */}

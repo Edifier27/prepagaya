@@ -13,6 +13,7 @@ import { provinciasSEO } from '@/lib/data/zonas'
 import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { normalizarTexto } from '@/lib/cartilla-zonas-geo'
 import { preexistenciasDoc, NIVEL_DOC } from '@/lib/data/preexistencias-documentacion'
+import { prestacionesCobertura, NIVEL_COBERTURA } from '@/lib/data/que-cubre'
 
 // Índice del buscador del sitio (24-sep-2026, idea de Darío: "que busque la
 // prepaga que quieras y le salte nuestra URL"). Se arma en el build y se
@@ -48,9 +49,14 @@ export function indiceBuscador(): EntradaBuscador[] {
   add('Ranking de prepagas', '/ranking', G('Herramientas'), 'Las mejores prepagas', 'mejores ranking')
   add('Prepagas económicas', '/prepagas-economicas', G('Herramientas'), 'Los planes más baratos', 'barata economica')
   add('Preexistencias: qué papeles te piden', '/declaracion-jurada-de-salud', G('Herramientas'), 'Documentación para la declaración jurada de salud', 'preexistencia declaracion jurada ddjj auditoria documentacion papeles enfermedad')
+  add('¿Qué me cubre la prepaga?', '/guias/que-cubre-la-prepaga#buscador', G('Herramientas'), 'Buscador de coberturas: por ley y por plan', 'cobertura cubre pmo obligatorio ley prestacion practica tratamiento estudio')
   // Cada condición del buscador de preexistencias, con lo que piden como subtítulo
   for (const p of preexistenciasDoc) {
     add(`${p.nombre}: qué te piden para afiliarte`, `/declaracion-jurada-de-salud?c=${p.slug}`, G('Coberturas'), NIVEL_DOC[p.nivel].texto, `preexistencia ${p.sinonimos.join(' ')}`)
+  }
+  // Cada prestación del buscador ¿Qué me cubre la prepaga?, con el nivel de cobertura como subtítulo
+  for (const p of prestacionesCobertura) {
+    add(`¿La prepaga cubre ${/^.[a-záéíóú]/.test(p.nombre) ? p.nombre.charAt(0).toLowerCase() + p.nombre.slice(1) : p.nombre}?`, `/guias/que-cubre-la-prepaga?c=${p.slug}#buscador`, G('Coberturas'), NIVEL_COBERTURA[p.nivel].texto, `cubre cobertura ${p.sinonimos.join(' ')}`)
   }
 
   // Prepagas y planes

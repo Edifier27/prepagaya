@@ -1,5 +1,6 @@
 import { formatPrecio } from '@/lib/utils'
 import type { GuiaEnlace, GuiaSeccion } from '@/lib/data/guias'
+import { MONTO_CELIAQUIA } from './monto-celiaquia'
 
 export interface CondicionData {
   slug: string
@@ -25,16 +26,10 @@ export interface CondicionData {
   fechaActualizacion?: string
 }
 
-// Cobertura mensual obligatoria para personas celíacas (Ley 27.196, Decreto
-// 218/2023): 27,5% de la Canasta Básica Alimentaria de un adulto. La publica
-// el Ministerio de Salud cada seis meses: ACTUALIZAR el 26-oct-2026.
-// Fuente: https://www.argentina.gob.ar/salud/nueva-actualizacion-del-monto-cubrir-por-obras-sociales-y-prepagas
-export const MONTO_CELIAQUIA = {
-  monto: 58560.97,
-  montoTexto: '$58.560,97',
-  desdeTexto: '26 de abril de 2026',
-  proximaTexto: '26 de octubre de 2026',
-}
+// Cobertura mensual obligatoria para personas celíacas: vive en su propio
+// archivo para que la usen también los componentes del navegador (el buscador
+// ¿Qué me cubre la prepaga?) sin cargar todas las condiciones.
+export { MONTO_CELIAQUIA }
 
 export const condiciones: CondicionData[] = [
   {
@@ -272,12 +267,12 @@ export const condiciones: CondicionData[] = [
     titulo: 'Mejor prepaga para salud mental: depresión, ansiedad, TOC y más',
     metaDescripcion: 'Qué prepaga cubre mejor la salud mental en Argentina. Tratamiento de depresión, ansiedad, TOC, bipolaridad. Psicólogos, psiquiatras, internaciones. Ley 26657.',
     intro: 'La salud mental va más allá de las sesiones de psicología. Para personas con diagnósticos psiquiátricos (depresión severa, trastorno bipolar, TOC, esquizofrenia), las diferencias entre prepagas son críticas: acceso a psiquiatras, cobertura de medicación psiquiátrica, internaciones y hospitales de día.',
-    queCubreElPMO: 'La Ley 26.657 establece igualdad de cobertura entre salud mental y salud física. Las prepagas deben cubrir: psicoterapia sin límite de sesiones (con indicación), psiquiatría, medicación psiquiátrica con descuento, internaciones en clínicas psiquiátricas y hospital de día. No pueden discriminar por diagnóstico psiquiátrico.',
+    queCubreElPMO: 'El PMO cubre hasta 30 consultas ambulatorias de salud mental por año calendario (hasta 4 por mes), con psicoterapia, entrevistas psicológicas y psiquiátricas, psicopedagogía y psicodiagnóstico, y la internación por cuadros agudos en sanatorio u hospital de día hasta 30 días por año (Res. 201/2002, Anexo I, punto 4). La medicación sigue las reglas generales: 40% en farmacia, 70% en crónicos del formulario y 100% en internación. La Ley 26.657 reconoce el derecho a no ser discriminado por un padecimiento mental, actual o pasado (art. 7).',
     prepagasRecomendadas: [
       {
         slug: 'swiss-medical',
         planSlug: 'smg20',
-        razon: 'Swiss Medical tiene la red de psiquiatras y psicólogos más amplia y con las esperas más cortas. Sus centros atienden patologías complejas incluyendo trastornos severos. La cobertura de medicación psiquiátrica incluye antidepresivos, ansiolíticos y antipsicóticos con 70-100% de descuento.',
+        razon: 'Swiss Medical tiene la red de psiquiatras y psicólogos más amplia y con las esperas más cortas. Sus centros atienden patologías complejas incluyendo trastornos severos.',
       },
       {
         slug: 'osde',
@@ -296,7 +291,7 @@ export const condiciones: CondicionData[] = [
       },
     ],
     preguntasAntesDeFirmar: [
-      '¿Cubrís hospitalización psiquiátrica sin límite de días?',
+      '¿Cuántos días de internación psiquiátrica cubrís por año?',
       '¿Hospital de día psiquiátrico está incluido?',
       '¿La medicación psiquiátrica tiene descuento en el vademécum?',
       '¿Cuántos psiquiatras tienen en mi zona?',
@@ -309,11 +304,12 @@ export const condiciones: CondicionData[] = [
       },
       {
         q: '¿Cuántos días de internación psiquiátrica cubre la prepaga?',
-        a: 'La Ley 26.657 establece que las internaciones psiquiátricas deben cubrirse igual que cualquier otra internación médica, sin límite de días por ley. La prepaga no puede limitar la internación psiquiátrica a menos días que una internación clínica equivalente.',
+        a: 'El piso del PMO es de hasta 30 días por año calendario para cuadros agudos, en sanatorio u hospital de día (Res. 201/2002, Anexo I, punto 4.4); es la única internación con tope, porque el resto se cubre sin límite de tiempo. La reglamentación de la Ley 26.657 ordena adecuar esa cobertura a los principios de la ley (Decreto 603/2013, art. 37): si necesitás más días, pedí que el equipo tratante lo fundamente por escrito.',
       },
     ],
     coberturasRelacionadas: ['psicologia', 'medicamentos', 'urgencias'],
     keywords: ['mejor prepaga salud mental', 'prepaga depresión ansiedad', 'prepaga psiquiatra Argentina', 'cobertura salud mental prepaga', 'ley 26657 prepagas psiquiatría'],
+    fechaActualizacion: '2026-09-27',
   },
   {
     slug: 'artritis',
