@@ -1,3 +1,5 @@
+import type { GuiaEnlace, GuiaSeccion } from '@/lib/data/guias'
+
 export interface CoberturaData {
   slug: string
   nombre: string
@@ -13,6 +15,14 @@ export interface CoberturaData {
   relacionadas: string[] // slugs de otras coberturas
   guiasRelacionadas?: string[] // slugs de guías (lib/data/guias.ts), solo donde hay relación real
   keywords: string[]
+  /** Título del recuadro de la ley (por defecto "Qué establece la ley") */
+  tituloLey?: string
+  /** Desarrollo debajo del recuadro de la ley (ley vs. práctica) */
+  secciones?: GuiaSeccion[]
+  /** Normas y documentos oficiales citados (se listan al pie y van a isBasedOn) */
+  fuentes?: GuiaEnlace[]
+  /** Última revisión del contenido (ISO); si falta, CONTENT_UPDATE */
+  fechaActualizacion?: string
 }
 
 export const coberturas: CoberturaData[] = [
@@ -456,44 +466,91 @@ export const coberturas: CoberturaData[] = [
   },
   {
     slug: 'cirugia-estetica',
+    // Reescrita el 27-sep-2026 con los datos oficiales de cada prepaga
+    // (lib/data/coberturas-marca: OSDE "Servicios y cobertura – Cirugías",
+    // alcance del SMG50 y comparativo de Swiss Medical, planes de Avalian),
+    // la Ley 26.872 (Infoleg id 218211, leída por la Action de fuentes) y el
+    // Decreto 1993/2011, y la experiencia de Darío rotulada como tal. La
+    // versión anterior decía que Medifé Platinum la habilitaba "desde el
+    // primer año" y que la mayoría la limitaba "cada 2 o 3 años": no tenían
+    // fuente y se sacaron.
     nombre: 'Cirugía estética',
     emoji: '💉',
-    titulo: '¿Qué prepaga cubre cirugía estética y con qué condiciones?',
-    metaDescripcion: 'Comparamos la cobertura de cirugía estética entre prepagas argentinas: quién la incluye, desde qué antigüedad y con qué frecuencia. Solo en planes premium.',
-    intro: 'La cirugía estética no reconstructiva es una cobertura exclusiva de los planes más altos del mercado, y las condiciones varían mucho: hay prepagas que la habilitan desde el primer año de antigüedad y otras que exigen 2 años o más. Ninguna la incluye en planes de entrada.',
-    queEstableceLaLey: 'La cirugía estética (no reconstructiva) NO está en el PMO. Es distinta de la cirugía reparadora/reconstructiva (post-mastectomía, accidentes, malformaciones), que sí es de cobertura obligatoria. Cuando una prepaga la ofrece, es un beneficio adicional de sus planes premium, con reglas propias de antigüedad y frecuencia.',
+    titulo: '¿Qué prepaga cubre cirugía estética? Planes, topes y carencias (2026)',
+    metaDescripcion: 'Qué prepagas cubren cirugía estética según sus datos oficiales: OSDE 410, 450 y 510, Swiss Medical SMG50 a SMG70 y Avalian Selecta. Cada cuánto, tope y carencia.',
+    intro: 'La cirugía estética no está en el Programa Médico Obligatorio: solo la cubren algunos planes altos, y cada prepaga pone sus reglas. Según sus datos oficiales, OSDE la bonifica en el 410 (una cada 3 años), el 450 (una cada 2) y el 510 (una por año); Swiss Medical la incluye en el SMG50, el SMG60 y el SMG70 (una por año), y Avalian, en el plan Selecta. Acá está cómo funciona el reintegro, desde cuándo la podés usar y por qué no hay que confundirla con la cirugía reconstructiva, que es obligatoria.',
+    tituloLey: 'Lo que dice la ley',
+    queEstableceLaLey: 'La cirugía estética no está en el PMO: es una prestación superadora, y por eso la prepaga puede ponerle una carencia, que no puede superar los 12 meses corridos desde el comienzo del contrato (Decreto 1993/2011, artículo 10). Distinta es la cirugía reconstructiva después de una mastectomía: la Ley 26.872 obliga a las obras sociales y a las prepagas a cubrirla, "así como la provisión de las prótesis necesarias", en cualquier plan.',
+    secciones: [
+      {
+        titulo: 'Cómo funciona: reintegro con tope',
+        cuerpo: 'En los planes que la incluyen, la cirugía estética suele cubrirse por reintegro, con un tope por plan: si la operación sale más que el tope, la diferencia la pagás vos. En el SMG50 de Swiss Medical, por ejemplo, el alcance oficial del plan dice que es una por año para el titular o su cónyuge, con las prótesis incluidas y un tope de reintegro de $3.765.888 (vigencia septiembre de 2026). OSDE la informa como bonificada en el 410, el 450 y el 510, para cada integrante del grupo familiar. Dónde te operás cambia mucho la cuenta: según nuestra experiencia, en un sanatorio propio de la prepaga (en Swiss Medical, por ejemplo, Los Arcos) la internación, el anestesista y las prótesis los cubre el plan, y el reintegro queda para los honorarios del cirujano; en otro prestador el presupuesto incluye todo y la diferencia suele ser mayor.',
+        cta: { texto: '¿Querés saber cuánto te reintegran por tu cirugía y en qué sanatorio te conviene hacerla? Te lo confirmamos por escrito con la prepaga.', boton: 'Consultar', href: '/comparador' },
+      },
+      {
+        titulo: 'Desde cuándo la podés usar: la carencia',
+        cuerpo: 'Por ley, la carencia de una prestación superadora no puede superar los 12 meses desde que empieza el contrato. En la práctica, en Swiss Medical el SMG50 la habilita a partir de los 12 meses de antigüedad. Algunos planes piden más: si te informan un plazo mayor, pedí que te lo muestren en el contrato, porque la reglamentación vigente no lo permite. Si ya estás en la prepaga y pensás subir a un plan que la incluye, preguntá antes desde cuándo corre la carencia.',
+      },
+      {
+        titulo: 'Reconstructiva no es estética',
+        cuerpo: 'Si la cirugía tiene indicación médica, no es estética. La reconstrucción mamaria después de una mastectomía es obligatoria por la Ley 26.872 en cualquier plan, con las prótesis incluidas, y no depende de que el plan tenga cirugía estética. Si la prepaga te la rechaza como si fuera estética, pedí la respuesta por escrito y reclamá.',
+        cta: { texto: 'Cómo reclamar ante la prepaga y la Superintendencia, paso a paso.', boton: 'Ver la guía', href: '/guias/como-reclamar-a-una-prepaga' },
+      },
+      {
+        titulo: 'Tratamientos dermoestéticos',
+        cuerpo: 'Los tratamientos dermoestéticos, como la toxina botulínica, los rellenos o el láser, no son una cirugía, y cada plan los trata aparte. En Swiss Medical, por ejemplo, según su comparativo oficial de coberturas, están incluidos solo en el SMG70.',
+      },
+    ],
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'El Plan SMG50 de Swiss Medical incluye una cirugía estética por año para el titular o su cónyuge — la frecuencia más generosa que encontramos en el mercado, la mayoría de las prepagas la limita a una vez cada 2 o 3 años.', planSlug: 'smg50' },
-      { slug: 'medife', razon: 'El Plan Platinum de Medifé habilita cirugía estética desde el primer año de antigüedad, mucho antes que la media del mercado (2-3 años).', planSlug: 'platinum' },
-      { slug: 'osde', razon: 'El Plan 410 de OSDE cubre cirugía estética cada 3 años, en un escalón más accesible que el plan tope de línea (510).', planSlug: '410' },
+      { slug: 'swiss-medical', razon: 'El SMG50 incluye una cirugía estética por año para el titular o su cónyuge, con las prótesis incluidas y un tope de reintegro de $3.765.888 (vigencia septiembre de 2026). El SMG60 y el SMG70 también la incluyen, una por año. En la práctica, se habilita a los 12 meses de antigüedad.', planSlug: 'smg50' },
+      { slug: 'osde', razon: 'OSDE la bonifica para cada integrante del grupo familiar: una cada 3 años calendario en el 410, una cada 2 años en el 450 y una por año en el 510.', planSlug: '410' },
+      { slug: 'avalian', razon: 'Avalian la incluye solo en el plan Selecta (AS400 y AS500). Integral y Superior no la incluyen.', planSlug: 'as400' },
     ],
-    prepagasRestrictivas: [
-      { slug: 'sancor-salud', detalle: 'Ningún plan del listado menciona cirugía estética como cobertura explícita.' },
-      { slug: 'premedic', detalle: 'Sus fichas oficiales no incluyen cirugía estética en ningún plan.' },
-    ],
+    prepagasRestrictivas: [],
     quePreguntar: [
-      '¿Desde qué antigüedad como afiliado puedo acceder a la cirugía estética?',
-      '¿Con qué frecuencia la cubre (anual, cada 2 años, cada 3 años)?',
-      '¿Qué procedimientos puntuales incluye y cuáles quedan afuera?',
-      '¿Es para el titular únicamente o también para el grupo familiar?',
-      '¿Hay un cirujano de cartilla o reintegro por atención particular?',
+      '¿Qué plan la incluye y cada cuánto (una por año, cada 2 o cada 3 años)?',
+      '¿Es por reintegro? ¿Cuál es el tope y desde qué fecha rige?',
+      '¿Desde qué antigüedad la puedo usar? (por ley, la carencia no puede superar los 12 meses)',
+      '¿Qué cirugías entran y cuáles quedan afuera?',
+      '¿Incluye las prótesis? ¿Y la internación y el anestesista si me opero en un sanatorio propio?',
+      '¿Es solo para el titular, también para el cónyuge o para todo el grupo familiar?',
     ],
     faq: [
       {
-        q: '¿La prepaga cubre cirugía estética desde que me afilio?',
-        a: 'No. Todas las prepagas que ofrecen esta cobertura exigen un período mínimo de antigüedad como afiliado, que va de 1 año (Medifé Platinum) a 2-3 años en la mayoría de los demás planes que la incluyen.',
+        q: '¿Qué prepaga cubre cirugía estética?',
+        a: 'Según sus datos oficiales: OSDE en el 410 (una cada 3 años), el 450 (una cada 2) y el 510 (una por año), para cada integrante del grupo familiar; Swiss Medical en el SMG50, el SMG60 y el SMG70 (una por año), y Avalian en el plan Selecta (AS400 y AS500). Los planes de entrada no la incluyen.',
       },
       {
-        q: '¿Cuál es la diferencia entre cirugía estética y cirugía reconstructiva?',
-        a: 'La reconstructiva (por ejemplo, tras una mastectomía o un accidente) es de cobertura obligatoria por el PMO en todas las prepagas, sin excepción. La estética (por elección, sin indicación médica) es un beneficio adicional que solo ofrecen los planes premium.',
+        q: '¿La prepaga cubre la cirugía estética desde que me afilio?',
+        a: 'No. Como no está en el PMO, la prepaga puede ponerle una carencia, que por ley no puede superar los 12 meses (Decreto 1993/2011, artículo 10). En la práctica, en el SMG50 de Swiss Medical se habilita a los 12 meses de antigüedad.',
       },
       {
-        q: '¿Todas las prepagas premium cubren cirugía estética?',
-        a: 'No todas. Es exclusiva de los planes más altos de cada empresa, y algunas prepagas (como Sancor Salud o Premedic) directamente no la ofrecen en ningún plan de su cartilla actual.',
+        q: '¿Cuánto cubre la prepaga de una cirugía estética?',
+        a: 'En general es por reintegro con un tope por plan, y la diferencia la pagás vos. En el SMG50 de Swiss Medical el tope es de $3.765.888 (vigencia septiembre de 2026). Si te operás en un sanatorio propio de la prepaga, según nuestra experiencia la internación, el anestesista y las prótesis los cubre el plan, y el reintegro queda para los honorarios del cirujano.',
+      },
+      {
+        q: '¿La prepaga cubre las prótesis mamarias?',
+        a: 'En una cirugía estética, depende del plan: el SMG50 de Swiss Medical, por ejemplo, las incluye. En una reconstrucción después de una mastectomía, las prótesis son obligatorias en cualquier plan (Ley 26.872).',
+      },
+      {
+        q: '¿Cuál es la diferencia entre cirugía estética y reconstructiva?',
+        a: 'La estética es por elección, sin indicación médica, y solo la cubren algunos planes altos. La reconstructiva tiene indicación médica: la reconstrucción mamaria después de una mastectomía, por ejemplo, es obligatoria para todas las prepagas por la Ley 26.872, con las prótesis incluidas.',
+      },
+      {
+        q: '¿La cirugía estética es para todo el grupo familiar?',
+        a: 'Depende de la prepaga: en OSDE es para cada integrante del grupo familiar; en el SMG50 de Swiss Medical, para el titular o su cónyuge.',
       },
     ],
-    relacionadas: ['odontologia', 'psicologia'],
-    keywords: ['prepaga que cubre cirugía estética', 'cirugía plástica prepaga argentina', 'prepagas más lujosas cirugía estética', 'qué prepaga cubre cirugía reconstructiva'],
+    relacionadas: ['cirugia-bariatrica', 'odontologia'],
+    guiasRelacionadas: ['prepaga-sin-periodo-carencia', 'reintegros-en-prepagas', 'como-reclamar-a-una-prepaga'],
+    keywords: ['que prepaga cubre cirugia estetica', 'prepaga cirugia estetica', 'prepaga que cubre cirugia estetica', 'cirugia estetica prepaga carencia', 'cirugia estetica por prepaga reintegro', 'osde cirugia estetica', 'swiss medical cirugia estetica', 'prepaga cubre protesis mamarias', 'reconstruccion mamaria prepaga'],
+    fuentes: [
+      { texto: 'Decreto 1993/2011, reglamentación de la Ley 26.682 (texto actualizado) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/190000-194999/190606/texact.htm' },
+      { texto: 'Ley 26.872: cirugía reconstructiva después de una mastectomía — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/215000-219999/218211/norma.htm' },
+      { texto: 'OSDE, Servicios y cobertura – Cirugías', url: 'https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura/cirugias' },
+      { texto: 'Avalian, planes publicados en su cotizador online', url: 'https://compraonline.avalian.com/cotizacion' },
+    ],
+    fechaActualizacion: '2026-09-27',
   },
 ]
 

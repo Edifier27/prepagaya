@@ -198,7 +198,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const coberturaRoutes: MetadataRoute.Sitemap = coberturas.map((c) => ({
     url: `${BASE}/coberturas/${c.slug}`,
-    lastModified: CONTENT_UPDATE,
+    lastModified: c.fechaActualizacion ? new Date(c.fechaActualizacion).toISOString() : CONTENT_UPDATE,
     changeFrequency: 'monthly' as const,
     priority: 0.80,
   }))
