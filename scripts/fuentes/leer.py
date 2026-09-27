@@ -325,5 +325,40 @@ def undecima():
         print(f'!! {e}')
 
 
+
+# ── Duodécima pasada (27-sep-2026): lo que la undécima dejó incompleto. La
+# Ley 27.491 (vacunas) salió vacía, el art. 2 de la 25.929 cortado, y falta la
+# reglamentación de salud mental (Decreto 603/2013, art. 37: límites de
+# cobertura) y ver si la 27.447 (trasplantes) dice algo de la cobertura.
+def duodecima():
+    base = 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/'
+    for url, nombre, rx in (
+        (base + '315000-319999/318455/norma.htm', 'LEY 27491 (vacunas)', r'prepaga|obras?\s+sociales?|gratuit|cobertura'),
+        (base + '95000-99999/98805/norma.htm', 'LEY 25929 art. 2', None),
+        (base + '310000-314999/312715/norma.htm', 'LEY 27447 (trasplantes) cobertura', r'cobertura|obras?\s+sociales?|prepaga|cargo de'),
+    ):
+        print(f'\n########## {nombre}')
+        try:
+            final, p, t = texto_de(url)
+            print(f'({len(t)} caracteres)')
+            if rx is None:
+                i = t.find('ARTICULO 2')
+                print(t[i:i + 3000])
+            else:
+                print(extractos(t, re.compile(rx, re.I), antes=300, despues=700, tope=6000) or t[:2500])
+        except Exception as e:  # noqa: BLE001
+            print(f'!! {e}')
+    print('\n########## DECRETO 603/2013 (salud mental) art. 37')
+    try:
+        final, p, t = texto_norma(2, 603, 2013)
+        if final is None:
+            print(f'!! {t}')
+        else:
+            i = t.find('ARTICULO 37')
+            print(t[i:i + 2500] if i >= 0 else extractos(t, re.compile(r'cobertura|prepaga', re.I), tope=5000))
+    except Exception as e:  # noqa: BLE001
+        print(f'!! {e}')
+
+
 if __name__ == '__main__':
-    sys.exit(undecima())
+    sys.exit(duodecima())
