@@ -40,7 +40,7 @@ const faqItems = [
   },
   {
     q: '¿Puedo contratar una prepaga a cualquier edad?',
-    a: 'Sí, aunque algunas prepagas pueden aplicar períodos de carencia o preexistencias hasta los 65 años. Pasada esa edad, el ingreso puede estar sujeto a condiciones especiales según cada empresa.',
+    a: 'Sí: la edad no puede ser motivo de rechazo (Ley 26.682, artículo 11). La cuota depende de tu franja etaria, y en la práctica algunas prepagas solo ofrecen planes parciales a partir de cierta edad.',
   },
 ]
 

@@ -1,5 +1,6 @@
 import { normalizarTexto, type PlanCartilla } from '@/lib/cartilla-zonas-geo'
 import { CARTILLAS, type CentroCartilla, type ZonaCartilla } from './index'
+import { PRIORIDAD_PARTNERS } from '@/lib/utils'
 
 // Cruce entre cartillas: sanatorios de internación de una zona que figuran en
 // la cartilla de OTRAS prepagas y no en la que se está mirando ("¿No
@@ -64,6 +65,15 @@ export function planSugerido(prepagaSlug: string, c: CentroCartilla): PlanCartil
   return cart.planes.find((p) => p.id === id)
 }
 
+// Orden de las prepagas en cada fila: la del botón "Cotizar" es la primera.
+// Swiss Medical primero (27-sep-2026, Darío: "en la cartilla de OSDE abajo
+// dice cotizar Premedic… el socio de OSDE en general se pasa a Swiss
+// Medical"). Antes salía el orden de CARTILLAS, con Premedic antes que Swiss.
+export function prioridadPrepaga(slug: string): number {
+  const i = (PRIORIDAD_PARTNERS as readonly string[]).indexOf(slug)
+  return i >= 0 ? i : PRIORIDAD_PARTNERS.length
+}
+
 export interface CentroEnOtras {
   nombre: string
   direccion: string | null
@@ -104,8 +114,13 @@ export function centrosEnOtrasCartillas(prepagaSlug: string, zonaSlug: string): 
       }
     }
   }
-  // Primero los que están en más cartillas (los más "conocidos")
-  out.sort((a, b) => b.en.length - a.en.length || a.nombre.localeCompare(b.nombre, 'es'))
+  // Primero los que se pueden cotizar con Swiss Medical; después, los que
+  // están en más cartillas (los más "conocidos")
+  for (const o of out) o.en.sort((a, b) => prioridadPrepaga(a.prepagaSlug) - prioridadPrepaga(b.prepagaSlug))
+  out.sort((a, b) =>
+    prioridadPrepaga(a.en[0].prepagaSlug) - prioridadPrepaga(b.en[0].prepagaSlug)
+    || b.en.length - a.en.length
+    || a.nombre.localeCompare(b.nombre, 'es'))
   cache.set(k, out)
   return out
 }

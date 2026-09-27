@@ -700,7 +700,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['como reclamar a una prepaga', 'denuncia sssalud prepaga', 'prepaga me niega cobertura que hacer', 'amparo salud prepaga', 'como reclamar prepaga argentina', 'prepaga nego prestacion que hacer', 'superintendencia servicios salud reclamo', 'derechos afiliados prepaga'],
-    relacionadas: ['que-cubre-la-prepaga', 'preexistencias-que-son-como-funcionan', 'baja-de-prepaga-proceso', 'como-pedir-autorizacion-prepaga'],
+    relacionadas: ['que-cubre-la-prepaga', 'baja-de-prepaga-proceso', 'como-pedir-autorizacion-prepaga'],
     fuentes: [
       { texto: 'Argentina.gob.ar — Denuncia por problemáticas de cobertura prestacional', url: 'https://www.argentina.gob.ar/servicio/denuncia-por-problematicas-de-cobertura-prestacional' },
       { texto: 'Superintendencia de Servicios de Salud — Usuarios: denuncias', url: 'https://www.argentina.gob.ar/sssalud/usuarios' },
@@ -793,7 +793,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['contratar prepaga online', 'como afiliarse a una prepaga', 'requisitos prepaga 2026', 'alta prepaga documentacion'],
-    relacionadas: ['como-afiliarse-prepaga-requisitos', 'como-cambiar-de-prepaga', 'preexistencias-que-son-como-funcionan'],
+    relacionadas: ['como-afiliarse-prepaga-requisitos', 'como-cambiar-de-prepaga'],
   },
   {
     // 23-sep-2026: "codem" y "qué obra social tengo" son de las búsquedas de
@@ -926,95 +926,85 @@ export const guias: GuiaData[] = [
   },
   {
     slug: 'prepaga-sin-periodo-carencia',
-    titulo: 'Período de carencia en prepagas: qué es, cuánto dura y cuándo es ilegal (2026)',
-    metaDescripcion: 'Qué es el período de carencia en las prepagas, cuánto dura, cómo se puede reducir y qué prepagas ofrecen las menores esperas para tener cobertura completa.',
-    tiempoLectura: 7,
+    // Reescrita el 27-sep-2026 con la letra oficial (Ley 26.682 y Decreto
+    // 1993/2011 actualizados en Infoleg, Ley simple del Ministerio de
+    // Justicia), el reglamento de contratación de Swiss Medical y la
+    // experiencia de Darío como asesor, separando siempre ley y práctica. La
+    // versión anterior tenía plazos sin fuente ("ortodoncia 6-12 meses",
+    // "cirugía estética 12-24 meses").
+    titulo: 'Carencias en prepagas 2026: qué dice la ley y cómo funcionan en la práctica',
+    metaDescripcion: 'Carencias en prepagas: sin espera para el PMO y como máximo 12 meses para lo superador, según la ley. Qué suele tener carencia y qué pasa si no declaraste algo.',
+    tiempoLectura: 8,
     categoria: 'Cobertura',
-    fechaActualizacion: '2026-07-14',
+    fechaActualizacion: '2026-09-27',
     contenido: {
-      intro: 'El "período de carencia" es probablemente el concepto más malinterpretado del sistema: la mayoría de los afiliados cree que debe esperar meses para usar su prepaga nueva. La realidad legal es otra: las carencias están prohibidas para todo el PMO. Lo que sí existe son esperas para prestaciones superadoras. Saber distinguirlas te evita que te vendan miedo.',
+      intro: 'Todo lo que está en el Programa Médico Obligatorio (PMO) te cubre desde el día en que empieza el contrato: consultas, estudios, internación, parto, urgencias. Las carencias —la norma las llama "períodos de acceso progresivo a la cobertura"— solo pueden aplicarse a prestaciones superadoras, como la cirugía estética de los planes altos, y nunca por más de 12 meses. Acá está lo que dice la norma y, aparte, lo que vemos en la práctica como asesores.',
       secciones: [
         {
-          titulo: 'La regla legal: cero carencia en el PMO',
-          cuerpo: 'El artículo 10 de la Ley 26.682 es explícito: los contratos entre prepagas y usuarios no pueden incluir períodos de carencia para las prestaciones del Programa Médico Obligatorio. Consultas, estudios, urgencias, internación, parto, oncología, medicación crónica: todo eso te cubre desde el día uno de vigencia del contrato, en cualquier prepaga, sin excepción. Cualquier cláusula en contrario es nula.',
+          titulo: 'Lo que dice la ley: sin carencia en el PMO',
+          cuerpo: 'El artículo 10 de la Ley 26.682 dice que los contratos "no pueden incluir períodos de carencia o espera para todas aquellas prestaciones que se encuentran incluidas en el Programa Médico Obligatorio". Para el resto, los plazos "deben estar suficientemente explicitados en el contrato y aprobados por la Autoridad de Aplicación", que es la Superintendencia de Servicios de Salud. Lo que es PMO lo tenés desde el primer día, en cualquier prepaga y en cualquier plan.',
         },
         {
-          titulo: 'Dónde sí hay esperas: las prestaciones superadoras',
-          cuerpo: 'Las carencias legales solo aplican a lo que excede el PMO: ortodoncia y implantes dentales (típicamente 6-12 meses de espera), cirugía estética (12-24 meses, como el plan Oro de Medifé que pide 2 años de antigüedad), cobertura internacional en algunos planes, y reintegros ampliados. Cada empresa define estas esperas en el contrato: leelas antes de firmar si alguna de estas prestaciones es tu motivo de contratación.',
+          titulo: 'Lo superador: 12 meses como máximo',
+          cuerpo: 'La reglamentación (Decreto 1993/2011, artículo 10, con el texto que le dio el Decreto 171/2024) dice que las carencias "solo podrán establecerse para el acceso a las prestaciones sanitarias superadoras o complementarias al Programa Médico Obligatorio" y que "en ningún caso podrán superar los DOCE (12) meses corridos desde el comienzo de la relación contractual". Y si una prestación con carencia pasa a formar parte del PMO, esa carencia "quedará automáticamente anulada". Cada prepaga detalla sus plazos en el anexo de cada plan: pedilo antes de firmar.',
         },
         {
-          titulo: 'Cómo reducir o eliminar las esperas superadoras',
-          cuerpo: 'Tres vías: la continuidad de cobertura (si venís de otra prepaga con plan equivalente, presentá el certificado de cobertura previa; muchas empresas reconocen tu antigüedad y levantan las esperas), las campañas comerciales (las prepagas bonifican carencias para captar afiliados, especialmente en planes medios y altos: pedilo explícitamente, es negociable), y la contratación corporativa (los convenios de empresa suelen entrar sin esperas de ningún tipo).',
+          titulo: 'En la práctica: qué suele tener carencia',
+          cuerpo: 'Lo que vemos como asesores: la cirugía estética es la prestación con carencia más común, y solo está en los planes altos. La ortodoncia suele tener una carencia corta, de alrededor de 6 meses. Los implantes, cuando el plan los cubre por reintegro, se pueden pedir desde el primer día: cuánto te devuelven depende del presupuesto del profesional y del tope del plan. La internación y los tratamientos de fertilización (PMO por la Ley 26.862) no tienen carencia. Algunos planes piden más antigüedad para la cirugía estética; si te informan un plazo mayor a 12 meses, pedí que te lo muestren en el contrato: la reglamentación vigente no lo permite.',
         },
         {
-          titulo: 'Señal de alarma: cuando te "informan" carencias ilegales',
-          cuerpo: 'Si un vendedor te dice que "los primeros 3 meses no cubrís internación" o que "el parto tiene 10 meses de carencia", estás ante información falsa: ambas son prestaciones PMO sin carencia posible. Puede ser desconocimiento del vendedor o táctica para desalentar afiliados que van a usar el servicio pronto. En cualquier caso: pedilo por escrito (no van a poder), y si figura en un contrato, es nulo y denunciable ante la SSSalud.',
+          titulo: 'Mientras corre una carencia, el PMO se atiende igual',
+          cuerpo: 'Durante una carencia no te quedás sin cobertura: lo que es PMO se atiende igual, aunque la prepaga puede derivarte a prestadores que elige para eso. El reglamento de contratación de Swiss Medical, por ejemplo, dice que en ese lapso las prestaciones obligatorias se dan "utilizando a tal efecto los prestadores exclusivos para la atención de prestaciones del Programa Médico Obligatorio", y que el resto de los servicios se pueden usar pagando el arancel.',
+        },
+        {
+          titulo: 'Cirugía estética: cómo funciona el reintegro',
+          cuerpo: 'En los planes que la incluyen, la cirugía estética se cubre por reintegro, con un tope por plan: si la operación sale más que el tope, la diferencia la pagás vos. Con un tope de $3.500.000 y una cirugía de $4.000.000, por ejemplo, ponés $500.000. En Swiss Medical, según nuestra experiencia, el SMG50 la habilita a partir de los 12 meses de antigüedad, con un tope del orden de ese ejemplo en septiembre de 2026. Dónde te operás cambia mucho la cuenta: en un sanatorio propio de la prepaga (en Swiss Medical, por ejemplo, Los Arcos), la internación, el anestesista y las prótesis los cubre el plan y el reintegro queda para los honorarios del cirujano; en otro prestador, el presupuesto incluye todo y la diferencia suele ser mayor.',
+          cta: { texto: '¿Querés saber qué plan cubre la cirugía estética y desde cuándo? Te lo confirmamos por escrito con la prepaga.', boton: 'Consultar', href: '/comparador' },
+        },
+        {
+          titulo: 'La carencia que no esperabas: lo que no declaraste',
+          cuerpo: 'Al afiliarte completás una declaración jurada de salud. Si después un estudio o un médico deja constancia de que el problema venía de antes y no lo declaraste, el auditor médico de la prepaga puede aplicarte un plazo de espera para esa patología —en la práctica vemos, por ejemplo, 180 días para una práctica de traumatología— o directamente rescindir el contrato. La ley lo permite: la falsedad de la declaración jurada es causal de rescisión. El reglamento de Swiss Medical, por ejemplo, prevé que si sospecha una preexistencia no declarada convoca a una junta de tres médicos (podés ir con un médico tuyo) y que puede pedir el reintegro de lo que cubrió. Declarar todo sale siempre más barato.',
+        },
+        {
+          titulo: 'Planes corporativos y cambio de trabajo',
+          cuerpo: 'En la práctica, los planes corporativos (los que contrata tu empleador) entran sin carencias. Si dejás ese trabajo, el artículo 15 de la Ley 26.682 te da 60 días para seguir en un plan de la prepaga con tu antigüedad reconocida, y mientras tanto te tienen que mantener el plan: avisá cuanto antes, porque algunos reglamentos piden hacerlo en menos tiempo. Derivar tus aportes de obra social o pagar como particular no cambia las carencias.',
         },
       ],
-      conclusion: 'Todas las prepagas de Argentina son "sin carencia" para lo que importa: el PMO te cubre desde el primer día por ley. Las únicas esperas legales son sobre prestaciones superadoras, y hasta esas son negociables con certificado de cobertura previa o en campañas comerciales. Que el miedo a la carencia no te ate a una prepaga que ya no te conviene.',
+      conclusion: 'PMO desde el primer día; carencias solo en prestaciones superadoras, escritas en el anexo del plan y por un máximo de 12 meses; y la declaración jurada completa para no tener sorpresas. Si querés saber qué carencias tiene un plan concreto antes de contratarlo, preguntanos: te lo confirmamos por escrito con la prepaga.',
     },
     faq: [
+      {
+        q: '¿Cuánto dura como máximo una carencia en una prepaga?',
+        a: '12 meses corridos desde el comienzo del contrato, y solo para prestaciones superadoras al PMO (Decreto 1993/2011, artículo 10, texto según el Decreto 171/2024). Para lo que está en el PMO no puede haber carencia.',
+      },
       {
         q: '¿Si me afilio hoy y mañana necesito una cirugía, me cubre?',
-        a: 'Si la cirugía es una prestación del PMO con indicación médica, sí: no puede haber carencia. La empresa puede auditar la indicación (autorización previa), pero no negarla por ser afiliado reciente. Distinto es si la condición fue ocultada en la declaración jurada.',
+        a: 'Si es una prestación del PMO con indicación médica, sí: no puede haber carencia. La prepaga puede pedir autorización previa. Si el problema era anterior y no lo declaraste, el auditor puede aplicar un plazo de espera para esa patología o rescindir el contrato por falsedad de la declaración jurada.',
       },
       {
-        q: '¿El embarazo tiene período de carencia?',
-        a: 'No. El Plan Materno Infantil es PMO: controles, parto y atención del bebé están cubiertos al 100% sin carencia. Si estabas embarazada al afiliarte, es una preexistencia que debe declararse, pero la cobertura del parto no puede negarse.',
+        q: '¿Qué prestaciones suelen tener carencia?',
+        a: 'En la práctica, la cirugía estética de los planes altos y la ortodoncia. Los implantes por reintegro se pueden pedir desde el primer día, con el tope del plan. La internación, el parto y la fertilización son PMO y no tienen carencia. Cada plan detalla sus plazos en su anexo.',
       },
       {
-        q: '¿Qué prestaciones suelen tener carencia contractual?',
-        a: 'Ortodoncia e implantes (6-12 meses), cirugía estética (12-24 meses), reintegros ampliados y cobertura internacional en algunos planes. Son siempre prestaciones por encima del PMO y cada contrato define sus plazos.',
+        q: '¿Qué pasa con el PMO mientras corre una carencia?',
+        a: 'Se cubre igual, desde el primer día, aunque la prepaga puede atenderte con prestadores que elige para las prestaciones obligatorias. Lo que tiene carencia es solo la prestación superadora.',
+      },
+      {
+        q: '¿Cambia algo si derivo mis aportes de obra social?',
+        a: 'En la práctica, no: las carencias y la evaluación de la declaración jurada son las mismas que para un plan particular.',
+      },
+      {
+        q: '¿Los planes corporativos tienen carencia?',
+        a: 'En la práctica entran sin carencias. Si dejás el trabajo, la Ley 26.682 (artículo 15) te da 60 días para seguir en un plan de la prepaga con tu antigüedad reconocida.',
       },
     ],
-    keywords: ['prepaga sin carencia', 'periodo de carencia prepaga', 'carencia prepaga ilegal PMO', 'cuanto dura la carencia prepaga', 'periodo de carencia prepaga argentina', 'carencia prepaga que es', 'cuanto dura carencia prepaga', 'preexistencias prepaga argentina'],
-    relacionadas: ['que-cubre-la-prepaga', 'como-cambiar-de-prepaga', 'preexistencias-que-son-como-funcionan', 'prepaga-cubre-vasectomia-ligadura-cirugia-bariatrica'],
-  },
-  {
-    slug: 'preexistencias-que-son-como-funcionan',
-    titulo: 'Preexistencias en prepagas: qué son y cómo te afectan en 2026',
-    metaDescripcion: 'Guía completa sobre las preexistencias en prepagas en Argentina: qué condiciones se consideran, cuánto tiempo duran las restricciones y cuáles son tus derechos.',
-    tiempoLectura: 9,
-    categoria: 'Derechos',
-    fechaActualizacion: '2026-07-14',
-    contenido: {
-      intro: 'Una enfermedad preexistente no te deja fuera del sistema privado de salud: desde la Ley 26.682, ninguna prepaga puede rechazarte por tu historia clínica. Lo que sí pueden hacer es cobrarte un valor diferencial autorizado por el Estado. Entender exactamente cómo funciona este régimen te permite afiliarte con enfermedades crónicas sin sustos ni cláusulas abusivas.',
-      secciones: [
-        {
-          titulo: 'Qué es una preexistencia (y qué no)',
-          cuerpo: 'Preexistencia es toda condición de salud diagnosticada o con síntomas evidentes antes de la firma del contrato: diabetes, hipertensión, asma, enfermedades cardíacas, oncológicas en tratamiento o remisión, embarazo en curso, y también cirugías programadas pendientes. No son preexistencias las condiciones que aparecen después de afiliarte, aunque sea a la semana: para eso está el seguro. La detección se hace mediante tu declaración jurada de salud al ingresar.',
-        },
-        {
-          titulo: 'Tus derechos: te tienen que aceptar, con cobertura completa',
-          cuerpo: 'La Ley 26.682 prohíbe rechazar la afiliación por preexistencias, y además obliga a cubrirlas: la prepaga no puede excluir de la cobertura tu enfermedad declarada. Lo único que la ley permite es que la SSSalud autorice valores diferenciales de cuota para preexistencias de alto costo. En la práctica: te aceptan, te cubren la condición, y podés pagar una cuota mayor a la estándar durante un período o de forma permanente según el caso.',
-        },
-        {
-          titulo: 'La declaración jurada: el documento que define tu relación con la prepaga',
-          cuerpo: 'Todo gira alrededor de la DDJJ de salud. Declarar todo te protege: lo declarado está cubierto y no pueden alegar nada después. Ocultar te expone: si la empresa demuestra falsedad u omisión maliciosa (una internación previa que no mencionaste, medicación crónica que ya tomabas), puede desconocer la cobertura de esa condición e incluso rescindir el contrato. Ante la duda entre declarar o no un episodio menor: declaralo. El costo de una cuota diferencial es siempre menor al de una cobertura desconocida.',
-        },
-        {
-          titulo: 'Estrategias si tenés una condición crónica',
-          cuerpo: 'Compará el trato de la preexistencia entre empresas, no solo el precio: ante la misma diabetes, una empresa puede ofrecerte cuota estándar con programa de seguimiento (Swiss Medical y OSDE tienen programas de crónicos muy desarrollados) y otra un diferencial alto. Pedí por escrito cómo queda cubierta tu condición: medicación, especialistas, insumos. Y si una empresa te "desalienta" verbalmente por tu condición (te dicen que no hay vacantes, dilatan eternamente), eso es un rechazo encubierto ilegal: denunciable ante la SSSalud.',
-        },
-      ],
-      conclusion: 'Las preexistencias cambiaron de régimen hace más de una década, pero el mito del rechazo sigue vivo. La realidad legal: te aceptan, te cubren la condición, y a lo sumo pagás un diferencial autorizado. Tu única obligación es la verdad en la declaración jurada, y tu mejor jugada es comparar cómo trata tu condición específica cada empresa antes de elegir.',
-    },
-    faq: [
-      {
-        q: '¿La prepaga puede negarse a cubrir mi enfermedad preexistente?',
-        a: 'No. Debe cubrir la condición declarada como cualquier otra patología, incluyendo medicación e insumos según el PMO. Lo único permitido es una cuota diferencial autorizada por la SSSalud, no la exclusión de cobertura.',
-      },
-      {
-        q: '¿Cuánto más cara es la cuota con una preexistencia?',
-        a: 'Depende de la condición y la empresa: los valores diferenciales deben estar autorizados por la SSSalud. Para condiciones controladas (hipertensión medicada, diabetes tipo 2 estable) muchas empresas no aplican diferencial. Compará entre empresas: el criterio varía mucho.',
-      },
-      {
-        q: '¿Qué pasa si no declaré algo sin mala intención?',
-        a: 'La empresa debe probar que la omisión fue maliciosa para desconocer coberturas. Un olvido menor de buena fe (una consulta aislada de hace años) difícilmente lo sea. Igualmente, ante cualquier omisión que detectes después de afiliarte, conviene informarla espontáneamente para blindar tu cobertura.',
-      },
+    keywords: ['prepaga sin carencia', 'periodo de carencia prepaga', 'carencia prepaga ley', 'cuanto dura la carencia prepaga', 'carencia prepaga 12 meses', 'carencia cirugia estetica prepaga', 'carencia ortodoncia prepaga', 'periodo de carencia prepaga argentina', 'carencia prepaga que es'],
+    relacionadas: ['que-cubre-la-prepaga', 'como-cambiar-de-prepaga', 'reintegros-en-prepagas', 'prepaga-cubre-vasectomia-ligadura-cirugia-bariatrica'],
+    fuentes: [
+      { texto: 'Ley 26.682 (texto actualizado) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, reglamentación de la Ley 26.682 (texto actualizado) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/190000-194999/190606/texact.htm' },
+      { texto: 'Ley simple: Medicina prepaga — Ministerio de Justicia', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/medicina-prepaga' },
     ],
-    keywords: ['preexistencias prepaga', 'prepaga con enfermedad preexistente', 'declaracion jurada salud prepaga', 'pueden rechazarme por preexistencia'],
-    relacionadas: ['como-reclamar-a-una-prepaga', 'prepaga-sin-periodo-carencia', 'que-cubre-la-prepaga', 'afiliar-recien-nacido-prepaga'],
   },
   {
     slug: 'baja-de-prepaga-proceso',
@@ -1270,6 +1260,7 @@ export const guias: GuiaData[] = [
         {
           titulo: 'La declaración jurada: dedicale tiempo',
           cuerpo: 'Es el documento más importante del legajo: enfermedades diagnosticadas, cirugías, internaciones, medicación habitual, tratamientos en curso. Regla simple: si un médico te lo diagnosticó o lo tomás recetado, va en la DDJJ. Declarar no te expone al rechazo (está prohibido rechazar por preexistencias); ocultar sí te expone a perder cobertura futura. Si tenés dudas sobre cómo declarar algo, pedí completarla con el asesor y dejá constancia escrita de lo conversado.',
+          cta: { texto: '¿Qué papeles te van a pedir según lo que declares? Buscá tu condición y armá la lista.', boton: 'Buscar mi condición', href: '/declaracion-jurada-de-salud' },
         },
         {
           titulo: 'Errores que demoran o encarecen el alta',
@@ -1293,7 +1284,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['requisitos para afiliarse a una prepaga', 'documentacion alta prepaga', 'declaracion jurada salud prepaga', 'afiliacion prepaga extranjeros'],
-    relacionadas: ['como-contratar-prepaga-online', 'preexistencias-que-son-como-funcionan', 'derivar-obra-social-a-prepaga', 'afiliar-recien-nacido-prepaga'],
+    relacionadas: ['como-contratar-prepaga-online', 'derivar-obra-social-a-prepaga', 'afiliar-recien-nacido-prepaga'],
   },
   {
     slug: 'seguro-medico-obligatorio-extranjeros',
@@ -1457,7 +1448,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['certificado unico de discapacidad', 'CUD cobertura 100', 'ley 24901 obra social', 'discapacidad obra social cobertura', 'que cubre el CUD'],
-    relacionadas: ['obra-social-vs-prepaga', 'preexistencias-que-son-como-funcionan', 'como-reclamar-a-una-prepaga'],
+    relacionadas: ['obra-social-vs-prepaga', 'como-reclamar-a-una-prepaga'],
   },
   {
     slug: 'afiliar-recien-nacido-prepaga',
@@ -1479,7 +1470,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Qué pasa si te pasás del plazo',
-          cuerpo: 'Si inscribís al bebé después de la ventana sin carencias, la prepaga puede tratarlo como una afiliación nueva: pedir declaración jurada de salud y aplicar los períodos de espera habituales a cualquier preexistencia que se detecte, igual que a un adulto. Es la principal razón para no dejar pasar el trámite: no es solo burocracia, es la diferencia entre cobertura inmediata y una carencia evitable.',
+          cuerpo: 'Si inscribís al bebé después de la ventana sin carencias, la prepaga puede tratarlo como una afiliación nueva: pedir declaración jurada de salud y, si detecta una preexistencia, proponer una cuota diferencial, igual que con un adulto. Es la principal razón para no dejar pasar el trámite: no es solo burocracia, es la diferencia entre cobertura inmediata y una evaluación médica evitable.',
         },
         {
           titulo: 'Cuánto empieza a costar',
@@ -1499,7 +1490,7 @@ export const guias: GuiaData[] = [
       },
       {
         q: '¿Qué pasa si me atraso en inscribir al bebé?',
-        a: 'La prepaga puede tratarlo como una afiliación nueva fuera de plazo: pedir declaración jurada de salud y aplicar carencias a preexistencias que detecte, igual que haría con un adulto que se afilia por primera vez.',
+        a: 'La prepaga puede tratarlo como una afiliación nueva fuera de plazo: pedir declaración jurada de salud y, si detecta una preexistencia, proponer una cuota diferencial, igual que haría con un adulto que se afilia por primera vez.',
       },
       {
         q: '¿Cuánto cuesta agregar un bebé a la prepaga?',
@@ -1507,7 +1498,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['afiliar bebe recien nacido prepaga', 'plazo para afiliar recien nacido obra social', 'cuanto cuesta afiliar un bebe a la prepaga', 'plan materno infantil recien nacido', 'documentos para afiliar bebe prepaga'],
-    relacionadas: ['preexistencias-que-son-como-funcionan', 'como-afiliarse-prepaga-requisitos', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-afiliarse-prepaga-requisitos', 'cuota-prepaga-por-edad'],
   },
   {
     slug: 'prepaga-corporativa-vs-particular',

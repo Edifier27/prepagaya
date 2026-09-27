@@ -87,7 +87,7 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Puedo contratar una prepaga ya estando embarazada?',
-        a: 'Sí, podés contratar. Sin embargo, la mayoría de las prepagas aplica un período de carencia de entre 9 y 12 meses para la cobertura del parto cuando existe embarazo preexistente. Si ya estás embarazada al contratar, el parto puede no estar cubierto. Consultá siempre antes de firmar.',
+        a: 'La ley dice que sí: el parto está en el PMO, que no puede tener carencia, y las preexistencias no son criterio de rechazo (Ley 26.682, artículo 10). En la práctica, con un embarazo en curso es muy difícil entrar: algunas prepagas no lo aceptan, y si entrás sin declararlo, cuando lo detectan suelen cobrarte las carencias (un pago extra por los meses de espera que no cumpliste). Declaralo siempre y, si te rechazan, pedí la respuesta por escrito para poder reclamar ante la SSSalud.',
       },
       {
         q: '¿Cuántas ecografías cubre la prepaga durante el embarazo?',
@@ -217,7 +217,7 @@ export const coberturas: CoberturaData[] = [
       },
       {
         q: '¿Puedo contratar una prepaga si ya tengo diagnóstico de cáncer?',
-        a: 'Podés contratar, pero la prepaga puede declarar el cáncer como preexistencia y aplicar un período de carencia o excluir esa condición temporalmente. La Ley 26.682 establece que después de 2 años de afiliación, no pueden negarle cobertura por ninguna preexistencia.',
+        a: 'Sí: las preexistencias no son criterio de rechazo (Ley 26.682, artículo 10). La prepaga puede pedir estudios y proponerte una cuota diferencial, cuyo valor y duración autoriza la Superintendencia de Servicios de Salud. El tratamiento oncológico está en el PMO, y lo que está en el PMO no puede tener carencia.',
       },
     ],
     relacionadas: ['medicamentos', 'psicologia', 'urgencias'],
@@ -420,7 +420,7 @@ export const coberturas: CoberturaData[] = [
     titulo: '¿Qué prepaga cubre ortodoncia y hasta qué edad?',
     metaDescripcion: 'Comparamos qué prepagas cubren ortodoncia y brackets en Argentina, y hasta qué edad. Desde planes con tope en 18 años hasta los que la cubren sin límite de edad.',
     intro: 'La ortodoncia es una de las coberturas dentales con más variación entre prepagas: no es parte del PMO, así que cada empresa decide si la incluye, en qué planes y con qué límite de edad. La diferencia entre un plan y otro puede ser la diferencia entre pagar un tratamiento completo de tu bolsillo o tenerlo cubierto.',
-    queEstableceLaLey: 'La ortodoncia NO está en el PMO: es una prestación "superadora" que cada prepaga cubre a discreción, plan por plan. Al no ser obligatoria, las prepagas pueden aplicar límites de edad, topes de reintegro y períodos de carencia más largos que en las prestaciones del PMO.',
+    queEstableceLaLey: 'La ortodoncia NO está en el PMO: es una prestación "superadora" que cada prepaga cubre a discreción, plan por plan. Al no ser obligatoria, las prepagas pueden aplicar límites de edad, topes de reintegro y períodos de carencia, que por ley no pueden superar los 12 meses (Decreto 1993/2011, artículo 10). En la práctica, la ortodoncia suele tener una carencia de alrededor de 6 meses.',
     prepagasRecomendadas: [
       { slug: 'osde', razon: 'El Plan 410 de OSDE cubre ortodoncia sin límite de edad, además de implantes dentales y cirugía estética cada 3 años. Es de los pocos planes que no restringe la ortodoncia a menores.', planSlug: '410' },
       { slug: 'medife', razon: 'El Plan Platinum de Medifé cubre ortodoncia sin límite de edad, sumado a cobertura internacional en el Tratado Schengen. Es la opción más completa de Medifé para tratamientos prolongados.', planSlug: 'platinum' },

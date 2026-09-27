@@ -223,6 +223,13 @@ const nextConfig: NextConfig = {
         destination: "/guias/prepaga-sin-periodo-carencia",
         permanent: true,
       },
+      // La guía de preexistencias duplicaba la ficha de condiciones (27-sep-2026):
+      // quedó una sola página, con la ley y la práctica.
+      {
+        source: "/guias/preexistencias-que-son-como-funcionan",
+        destination: "/condiciones/preexistencias",
+        permanent: true,
+      },
       {
         source: "/blog/prepagas-que-mas-aumentaron",
         destination: "/guias/cuota-prepaga-aumento-inflacion",

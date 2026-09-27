@@ -59,6 +59,16 @@ function centrosInternacion(prepagaSlug: string, planId: string): string[] {
   return [...vistos]
 }
 
+/** Sanatorios con internación en AMBA para un plan del comparador, según la cartilla oficial relevada. */
+export function sanatoriosAmba(prepagaSlug: string, planSlug: string): number | undefined {
+  const c = getCartilla(prepagaSlug)
+  const pc = c?.planes.find((x) => x.comparadorSlug === planSlug || x.otrosComparadorSlugs?.includes(planSlug))
+  if (!pc) return undefined
+  const vistos = new Set<string>()
+  for (const z of zonasAmba(prepagaSlug)) for (const ce of z.centros) if (ce.internacion.includes(pc.id)) vistos.add(ce.nombre)
+  return vistos.size || undefined
+}
+
 export function compararPlanes(prep: Prepaga): ComparacionPlanes {
   const c = getCartilla(prep.slug)
   const temasMarca = coberturasMarca.filter((x) => x.prepagaSlug === prep.slug)

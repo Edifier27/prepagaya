@@ -91,13 +91,13 @@ export const terminos: Termino[] = [
   // CONTRATACIÓN
   {
     termino: 'Carencia',
-    definicion: 'Período inicial después de afiliarte (generalmente 3 a 12 meses) durante el cual ciertas prestaciones —generalmente las relacionadas con preexistencias— aún no están cubiertas.',
+    definicion: 'Plazo desde que te afiliás durante el cual una prestación superadora al PMO todavía no está cubierta. Por ley no puede aplicarse a nada del PMO ni superar los 12 meses corridos (Decreto 1993/2011, artículo 10).',
     categoria: 'Contratación',
-    ejemplo: 'Carencia de 6 meses para cirugías programadas.',
+    ejemplo: 'La cirugía estética de un plan alto, que se habilita recién a los 12 meses de afiliación.',
   },
   {
     termino: 'Preexistencia',
-    definicion: 'Enfermedad, condición o patología que ya tenías antes de contratar la prepaga. La ley obliga a cubrirlas, pero puede haber carencia inicial.',
+    definicion: 'Enfermedad o condición que ya tenías antes de contratar la prepaga y que declarás en la declaración jurada de salud. No puede ser motivo de rechazo, pero la prepaga puede cobrar una cuota diferencial autorizada por la SSSalud (Ley 26.682, artículo 10).',
     categoria: 'Contratación',
   },
   {

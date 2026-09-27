@@ -12,6 +12,7 @@ import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 import { BuscadorCartillaZona } from '@/components/cartillas/BuscadorCartillaZona'
 import { contactos } from '@/lib/data/contactos'
 import { getCartilla, nombreCortoZona, slugPlan, textoFecha, textoFechaConArticulo, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
+import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -97,9 +98,11 @@ export default async function CartillaPrepagaPage({ params }: Props) {
 
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
   const otrasCartillas = cartillasInfo.filter((c) => c.slug !== slug)
+  // Swiss Medical primero: es la alternativa más elegida por los socios de OSDE (Darío, 27-sep-2026)
   const otrasPrepagas = otrasCartillas
     .map((c) => prepagas.find((p) => p.slug === c.slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
+    .sort((a, b) => Number(b.slug === 'swiss-medical') - Number(a.slug === 'swiss-medical'))
 
   const faqs = [
     {
@@ -425,6 +428,8 @@ export default async function CartillaPrepagaPage({ params }: Props) {
         </section>
       )}
 
+      <AlternativaSwiss prepagaSlug={slug} />
+
       {/* Otras cartillas */}
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
@@ -446,7 +451,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
       {/* CTA final */}
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-2">Compará {prep.nombre} con otras prepagas</h2>
+          <h2 className="text-2xl font-bold mb-2">Compará {prep.nombre} con {slug === 'osde' ? 'Swiss Medical y ' : ''}otras prepagas</h2>
           <p className="text-red-200 text-sm mb-6">
             Precios reales de {PRECIO_ACTUALIZADO}, cartillas y coberturas. Gratis, sin DNI y sin compromiso.
           </p>

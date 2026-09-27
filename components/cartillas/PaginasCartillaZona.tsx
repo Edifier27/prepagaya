@@ -20,6 +20,7 @@ import { CentrosLista, UpsellPlanes, centrosConPlanSuperior } from '@/components
 import { BuscadorCartillaZona } from '@/components/cartillas/BuscadorCartillaZona'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { EnOtrasCartillas } from '@/components/cartillas/EnOtrasCartillas'
+import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 import { centrosEnOtrasCartillas } from '@/lib/data/cartilla-zonas/cruce'
 
 // Páginas del silo de cartilla por zona (estructura silo: /cartillas →
@@ -382,10 +383,12 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
         </section>
       )}
 
-            {enOtras.length > 0 && (
+            <AlternativaSwiss prepagaSlug={c.prepagaSlug} zonaSlug={z.slug} enOtras={enOtras} />
+
+      {enOtras.length > 0 && (
         <section className="py-10 bg-white border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">
-            <EnOtrasCartillas items={enOtras} prepagaNombre={c.prepagaNombre} zonaCorta={corto} />
+            <EnOtrasCartillas items={enOtras} prepagaNombre={c.prepagaNombre} zonaCorta={corto} prepagaSlug={c.prepagaSlug} />
           </div>
         </section>
       )}
@@ -702,10 +705,12 @@ export function PaginaPlanZona({ c, p, z }: { c: CartillaPrepaga; p: PlanCartill
         </section>
       )}
 
+      <AlternativaSwiss prepagaSlug={c.prepagaSlug} zonaSlug={z.slug} enOtras={enOtras} />
+
       {enOtras.length > 0 && (
         <section className="py-10 bg-white border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">
-            <EnOtrasCartillas items={enOtras} prepagaNombre={c.prepagaNombre} zonaCorta={corto} max={8} />
+            <EnOtrasCartillas items={enOtras} prepagaNombre={c.prepagaNombre} zonaCorta={corto} max={8} prepagaSlug={c.prepagaSlug} />
           </div>
         </section>
       )}
