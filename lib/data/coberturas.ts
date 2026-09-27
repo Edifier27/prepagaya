@@ -87,7 +87,7 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Puedo contratar una prepaga ya estando embarazada?',
-        a: 'Sí, podés contratar. Sin embargo, la mayoría de las prepagas aplica un período de carencia de entre 9 y 12 meses para la cobertura del parto cuando existe embarazo preexistente. Si ya estás embarazada al contratar, el parto puede no estar cubierto. Consultá siempre antes de firmar.',
+        a: 'La ley dice que sí: el parto está en el PMO, que no puede tener carencia, y las preexistencias no son criterio de rechazo (Ley 26.682, artículo 10). En la práctica, algunas prepagas no toman afiliaciones con un embarazo en curso. Declaralo siempre en la declaración jurada y, si te rechazan, pedí la respuesta por escrito para poder reclamar ante la SSSalud.',
       },
       {
         q: '¿Cuántas ecografías cubre la prepaga durante el embarazo?',
@@ -217,7 +217,7 @@ export const coberturas: CoberturaData[] = [
       },
       {
         q: '¿Puedo contratar una prepaga si ya tengo diagnóstico de cáncer?',
-        a: 'Podés contratar, pero la prepaga puede declarar el cáncer como preexistencia y aplicar un período de carencia o excluir esa condición temporalmente. La Ley 26.682 establece que después de 2 años de afiliación, no pueden negarle cobertura por ninguna preexistencia.',
+        a: 'Sí: las preexistencias no son criterio de rechazo (Ley 26.682, artículo 10). La prepaga puede pedir estudios y proponerte una cuota diferencial, cuyo valor y duración autoriza la Superintendencia de Servicios de Salud. El tratamiento oncológico está en el PMO, y lo que está en el PMO no puede tener carencia.',
       },
     ],
     relacionadas: ['medicamentos', 'psicologia', 'urgencias'],

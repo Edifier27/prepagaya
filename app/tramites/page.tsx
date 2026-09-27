@@ -37,7 +37,7 @@ const GRUPOS: TramiteGrupo[] = [
   {
     titulo: 'Cambiar de prepaga (traspaso)',
     descripcion: 'Cómo pasar de una prepaga a otra sin perder cobertura ni pagar dos cuotas, y qué pasa con las carencias y preexistencias.',
-    slugs: ['como-cambiar-de-prepaga', 'prepaga-sin-periodo-carencia', 'preexistencias-que-son-como-funcionan'],
+    slugs: ['como-cambiar-de-prepaga', 'prepaga-sin-periodo-carencia'],
   },
   {
     titulo: 'Derivar los aportes de tu obra social',

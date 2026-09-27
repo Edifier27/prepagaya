@@ -70,8 +70,9 @@ export default async function CondicionPage({ params }: Props) {
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/condiciones/${slug}` },
-      dateModified: CONTENT_UPDATE,
+      dateModified: cond.fechaActualizacion ?? CONTENT_UPDATE,
       inLanguage: 'es-AR',
+      ...(cond.fuentes ? { isBasedOn: cond.fuentes.map((f) => f.url) } : {}),
     },
     {
       '@context': 'https://schema.org',
@@ -132,7 +133,7 @@ export default async function CondicionPage({ params }: Props) {
               <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-blue-500 flex-shrink-0">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
               </svg>
-              Qué te cubre cualquier prepaga por ley
+              {cond.tituloLey ?? 'Qué te cubre cualquier prepaga por ley'}
             </h2>
             <p className="text-sm text-gray-700 leading-relaxed">{cond.queCubreElPMO}</p>
             <Link href="/pmo" className="inline-block mt-3 text-sm font-semibold text-blue-700 hover:underline">
@@ -142,7 +143,37 @@ export default async function CondicionPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Prepagas recomendadas */}
+      {/* Desarrollo: lo que dice la norma y lo que pasa en la práctica */}
+      {cond.secciones && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto space-y-8">
+            {cond.secciones.map((sec) => (
+              <div key={sec.titulo}>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">{sec.titulo}</h2>
+                <p className="text-gray-700 leading-relaxed">{sec.cuerpo}</p>
+                {sec.enlaces && (
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {sec.enlaces.map((e) => (
+                      <a key={e.url} href={e.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-lg border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">
+                        {e.texto} ↗
+                      </a>
+                    ))}
+                  </div>
+                )}
+                {sec.cta && (
+                  <div className="mt-3 rounded-xl bg-red-50 border border-red-100 p-4">
+                    <p className="text-sm text-gray-800 leading-relaxed">{sec.cta.texto}</p>
+                    <Link href={sec.cta.href} className="inline-block mt-2 text-sm font-bold text-[#E8002D] hover:underline">{sec.cta.boton} →</Link>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Prepagas recomendadas (solo si hay recomendaciones con fundamento) */}
+      {recomendadas.length > 0 && (
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-1">Las mejores prepagas para {cond.nombre.toLowerCase()}</h2>
@@ -185,6 +216,7 @@ export default async function CondicionPage({ params }: Props) {
           </div>
         </div>
       </section>
+      )}
 
       {/* Mid CTA */}
       <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] py-5">
@@ -237,6 +269,17 @@ export default async function CondicionPage({ params }: Props) {
               </details>
             ))}
           </div>
+          {cond.fuentes && (
+            <p className="mt-6 text-xs text-gray-400 leading-relaxed">
+              Fuentes oficiales:{' '}
+              {cond.fuentes.map((f, i) => (
+                <span key={f.url}>
+                  {i > 0 && ' · '}
+                  <a href={f.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">{f.texto}</a>
+                </span>
+              ))}
+            </p>
+          )}
         </div>
       </section>
 

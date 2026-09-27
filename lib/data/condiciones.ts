@@ -1,4 +1,5 @@
 import { formatPrecio } from '@/lib/utils'
+import type { GuiaEnlace, GuiaSeccion } from '@/lib/data/guias'
 
 export interface CondicionData {
   slug: string
@@ -14,6 +15,14 @@ export interface CondicionData {
   coberturasRelacionadas: string[] // slugs de coberturas
   guiasRelacionadas?: string[] // slugs de guías (lib/data/guias.ts), solo donde hay relación real
   keywords: string[]
+  /** Título del recuadro de la ley (por defecto "Qué te cubre cualquier prepaga por ley") */
+  tituloLey?: string
+  /** Secciones de desarrollo debajo del recuadro de la ley (ley vs. práctica) */
+  secciones?: GuiaSeccion[]
+  /** Normas y páginas oficiales citadas (se listan al pie y van a isBasedOn) */
+  fuentes?: GuiaEnlace[]
+  /** Última revisión del contenido (ISO); si falta, CONTENT_UPDATE */
+  fechaActualizacion?: string
 }
 
 // Cobertura mensual obligatoria para personas celíacas (Ley 27.196, Decreto
@@ -63,7 +72,7 @@ export const condiciones: CondicionData[] = [
     faq: [
       {
         q: '¿Puedo contratar una prepaga si tengo diabetes?',
-        a: 'Sí, podés contratar cualquier prepaga aunque tengas diabetes. La Ley 26.682 prohíbe rechazar afiliados por razones de salud. La prepaga puede declarar la diabetes como preexistencia y aplicar un período de espera de hasta 12 meses para nuevas complicaciones, pero debe cubrir la medicación e insumos desde el primer día.',
+        a: 'Sí, podés contratar cualquier prepaga aunque tengas diabetes. La Ley 26.682 prohíbe rechazar afiliados por razones de salud. Si la declarás, la prepaga puede pedir estudios y proponerte una cuota diferencial, que tiene que autorizar la Superintendencia de Servicios de Salud. Lo que está en el PMO, como la insulina y los controles, no puede tener carencia.',
       },
       {
         q: '¿La prepaga cubre la bomba de insulina?',
@@ -165,7 +174,7 @@ export const condiciones: CondicionData[] = [
       },
       {
         q: '¿La hipertensión es una preexistencia que puede rechazar una prepaga?',
-        a: 'Ninguna prepaga puede rechazar afiliados por hipertensión. Puede declararla como preexistencia y aplicar un período de espera de hasta 12 meses para nuevas complicaciones cardiovasculares (como una cirugía electiva). La medicación y controles de rutina deben cubrirse desde el inicio.',
+        a: 'Ninguna prepaga puede rechazar afiliados por hipertensión: las preexistencias no son criterio de rechazo (Ley 26.682, artículo 10). Lo que puede hacer es evaluarla y, si corresponde, proponer una cuota diferencial autorizada por la SSSalud; según nuestra experiencia, una hipertensión controlada muchas veces entra con la cuota normal. Lo que está en el PMO no puede tener carencia.',
       },
     ],
     coberturasRelacionadas: ['medicamentos', 'urgencias', 'rehabilitacion'],
@@ -173,52 +182,88 @@ export const condiciones: CondicionData[] = [
   },
   {
     slug: 'preexistencias',
+    // Reescrita el 27-sep-2026 con la letra oficial (Ley 26.682 art. 10 y 11,
+    // Decreto 1993/2011 art. 9, 10 y 17 actualizados en Infoleg), el
+    // reglamento de contratación de Swiss Medical y la experiencia de Darío
+    // como asesor, separando ley y práctica. La versión anterior decía que no
+    // se podían cobrar "sobreprecios permanentes", que había una carencia de
+    // 12 meses por preexistencia y que a los 24 meses se levantaba todo: nada
+    // de eso está en la norma. También recomendaba prepagas "más flexibles"
+    // sin ninguna fuente, así que la sección de recomendadas queda vacía.
     nombre: 'Preexistencias',
     emoji: '📋',
-    titulo: 'Prepaga con preexistencias: qué dice la ley y cuáles son las más flexibles',
-    metaDescripcion: 'Todo sobre preexistencias en prepagas argentinas. Qué dice la ley, cuánto tiempo duran, qué prepagas son más flexibles y cómo protegerte.',
-    intro: 'Las preexistencias son la principal preocupación de quienes quieren contratar una prepaga con enfermedades o condiciones de salud previas. La buena noticia: la ley argentina pone límites muy claros a lo que pueden hacer las prepagas con las preexistencias, y después de 2 años no pueden usarlas como excusa para negar ningún tratamiento.',
-    queCubreElPMO: 'La Ley 26.682 establece que las prepagas pueden declarar preexistencias al ingreso, pero NO pueden rechazar afiliados por ellas ni cobrar sobreprecios permanentes. Los períodos de carencia para preexistencias tienen un máximo de 12 meses. Después de 24 meses de afiliación, la prepaga no puede negar cobertura por ninguna preexistencia.',
-    prepagasRecomendadas: [
+    titulo: 'Prepaga con preexistencias: qué dice la ley y cómo es el trámite real',
+    metaDescripcion: 'No te pueden rechazar por una preexistencia, pero sí cobrarte una cuota diferencial que autoriza la SSSalud. Cómo es la auditoría y qué pasa si no declarás algo.',
+    intro: 'Tener una enfermedad previa no te impide entrar a una prepaga: la ley dice que las preexistencias no pueden ser motivo de rechazo. Lo que sí puede pasar es que la prepaga te pida estudios, que un auditor médico evalúe tu caso y que te proponga una cuota más alta, con un valor que tiene que autorizar la Superintendencia de Servicios de Salud. Acá separamos lo que dice la norma de lo que vemos todos los días como asesores.',
+    tituloLey: 'Lo que dice la ley',
+    queCubreElPMO: 'La Ley 26.682 (artículo 10) dice que las enfermedades preexistentes "solamente pueden establecerse a partir de la declaración jurada del usuario y no pueden ser criterio del rechazo de admisión", y que la Superintendencia de Servicios de Salud "autorizará valores diferenciales debidamente justificados" para esos casos. La reglamentación (Decreto 1993/2011, artículo 10) distingue preexistencias temporarias, crónicas y de alto costo, y deja en manos de la SSSalud el valor de la cuota diferencial y cuánto tiempo se paga: la prepaga presenta el pedido y la SSSalud tiene 30 días para expedirse. Lo que está en el PMO no puede tener carencia, tengas o no preexistencias.',
+    secciones: [
       {
-        slug: 'sancor-salud',
-        planSlug: 'plan-3000',
-        razon: 'Sancor Salud es conocida por tener un proceso de admisión más flexible para personas con preexistencias. Sus períodos de carencia tienden a ser menores y el proceso de declaración es más ágil que en prepagas más grandes.',
+        titulo: 'Cómo es el trámite en la práctica',
+        cuerpo: 'Según nuestra experiencia como asesores, el circuito es así. Completás la declaración jurada de salud. Si declarás algo, la solicitud pasa al auditor médico de la prepaga, que puede pedirte estudios o un resumen de tu historia clínica. Con eso hay tres salidas: te acepta con la cuota normal, te pide más estudios, o arma una estructura de costos y la presenta a la SSSalud para cobrarte una cuota diferencial. En los casos que vemos, esa cuota puede llegar a triplicar la normal. Con el valor aprobado, vos decidís si aceptás o no. Pedí que la aceptación quede por escrito, con el valor y la duración de la cuota diferencial si la hay: los reglamentos de contratación, como el de Swiss Medical, prevén que las preexistencias declaradas se cubren cuando la empresa las acepta en forma expresa.',
       },
       {
-        slug: 'premedic',
-        planSlug: 'plan-300',
-        razon: 'Premedic tiene una política de admisión más accesible y períodos de carencia más cortos para muchas condiciones. Es una buena opción para quienes tienen preexistencias menores y presupuesto ajustado.',
+        titulo: 'Qué preexistencias pasan más fácil',
+        cuerpo: 'No hay una lista oficial: cada prepaga tiene su propio criterio de auditoría, y la misma condición puede tener respuestas distintas según dónde la presentes. Según nuestra experiencia, hay cosas que casi nunca piden papeles, como las várices, la gota o un hipotiroidismo común. Una hipertensión controlada suele pasar sin auditoría (en Swiss Medical, por ejemplo), y una diabetes sí pasa por auditoría. Otras prepagas tienen auditorías más exigentes.',
       },
       {
-        slug: 'medife',
-        planSlug: 'medife-plus',
-        razon: 'Medife tiene una política de preexistencias razonable. Para condiciones estables y controladas, los períodos de carencia son relativamente cortos.',
+        titulo: 'Qué te va a pedir el auditor',
+        cuerpo: 'En general, un resumen de historia clínica firmado por tu médico con el diagnóstico, cuándo empezó, cómo evolucionó, cómo estás hoy, las internaciones y el tratamiento, más los últimos estudios y un laboratorio reciente. Según nuestra experiencia, en una hipertensión con varios medicamentos suelen pedir estudios cardiológicos; en una diabetes, un formulario del diabetólogo o del endocrinólogo; y con un índice de masa corporal de 30 o más, un resumen con peso, talla y los tratamientos de los últimos dos años. Llevarlo todo junto desde el principio evita idas y vueltas. Derivar tus aportes de obra social o pagar como particular no cambia la evaluación.',
+        cta: { texto: '¿Tenés una preexistencia? Contanos tu caso y te decimos cómo suele evaluarlo cada prepaga antes de que presentes la declaración.', boton: 'Consultar', href: '/comparador' },
+      },
+      {
+        titulo: 'Qué declarar y qué pasa si no lo declarás',
+        cuerpo: 'La declaración jurada pregunta por enfermedades, cirugías, internaciones, tratamientos y medicación; algunas, como la de Swiss Medical, también por los profesionales que consultaste en los últimos 12 meses. Una cirugía que ya te indicaron y todavía no te hiciste también se declara. Si la prepaga detecta después algo que venía de antes y no declaraste, puede aplicarte un plazo de espera para esa patología o rescindir el contrato por falsedad de la declaración jurada, y reclamarte lo que haya cubierto. El reglamento de Swiss Medical, por ejemplo, prevé una junta de tres médicos para decidir si la enfermedad era anterior, a la que podés ir con un médico tuyo. El plazo durante el cual se puede invocar la falsedad lo fija la SSSalud (Decreto 1993/2011, artículo 9). Declarar todo sale siempre más barato.',
+      },
+      {
+        titulo: 'Embarazo en curso y edad: la ley y la práctica',
+        cuerpo: 'En la práctica hay prepagas que no toman afiliaciones con un embarazo en curso, y otras que a partir de cierta edad solo ofrecen planes parciales. La norma dice otra cosa: las preexistencias y la edad no pueden ser criterio de rechazo (Ley 26.682, artículos 10 y 11), y desde el Decreto 102/2025 los planes de la última franja etaria "deben estar disponibles sin límites de edad máxima" (Decreto 1993/2011, artículo 17). Si te rechazan o te ofrecen solo un plan inferior, pedí la respuesta por escrito: con eso podés reclamar ante la Superintendencia de Servicios de Salud.',
+        cta: { texto: 'Cómo hacer el reclamo ante la SSSalud, paso a paso.', boton: 'Ver la guía', href: '/guias/como-reclamar-a-una-prepaga' },
       },
     ],
+    prepagasRecomendadas: [],
     preguntasAntesDeFirmar: [
-      '¿Declaran mi condición como preexistencia? ¿Por cuánto tiempo?',
-      '¿Qué cobertura tengo durante el período de carencia?',
-      '¿Puedo recurrir si considero que el período es excesivo?',
-      '¿Cuándo exactamente desaparece la limitación por preexistencia?',
+      '¿Mi condición pasa por auditoría médica? ¿Qué estudios necesitan?',
+      'Si me cobran una cuota diferencial: ¿cuánto es, por cuánto tiempo y cuándo la autorizó la SSSalud?',
+      '¿La aceptación de mi preexistencia queda por escrito?',
+      '¿La declaración jurada pide los médicos que consulté en el último año?',
+      '¿Qué carencias tiene el plan para prestaciones superadoras? (el máximo legal es 12 meses)',
     ],
     faq: [
       {
-        q: '¿Puede una prepaga rechazarme por tener una enfermedad previa?',
-        a: 'No. La Ley 26.682 prohíbe expresamente rechazar afiliados por razones de salud o preexistencias. Si una prepaga intenta rechazarte, podés denunciarlo ante la Superintendencia de Servicios de Salud (SSSalud). Sí pueden aplicar períodos de carencia, pero no rechazarte.',
+        q: '¿Una prepaga me puede rechazar por una enfermedad previa?',
+        a: 'Según la Ley 26.682 (artículo 10), no: las preexistencias no pueden ser criterio de rechazo. Lo que sí puede hacer la prepaga es pedirte estudios y proponerte una cuota diferencial, cuyo valor y duración autoriza la Superintendencia de Servicios de Salud. Si te rechazan, pedí la respuesta por escrito y reclamá ante la SSSalud.',
       },
       {
-        q: '¿Cuánto tiempo dura la carencia por preexistencia?',
-        a: 'El máximo legal es 12 meses. Durante ese período, la prepaga puede no cubrir tratamientos relacionados con esa preexistencia específica, pero sí debe cubrirte todo lo demás. A los 24 meses de afiliación, todas las carencias por preexistencias desaparecen por ley.',
+        q: '¿Cuánto más se paga con una preexistencia?',
+        a: 'Depende del caso: el valor lo presenta la prepaga y lo autoriza la SSSalud, que también fija por cuánto tiempo se paga (Decreto 1993/2011, artículo 10). Según nuestra experiencia, puede llegar a triplicar la cuota, aunque muchas condiciones controladas entran con la cuota normal.',
+      },
+      {
+        q: '¿Hay carencia por preexistencia?',
+        a: 'Para lo que está en el PMO no puede haber carencia (Ley 26.682, artículo 10), y para las prestaciones superadoras el máximo es de 12 meses (Decreto 1993/2011, artículo 10). Para una preexistencia declarada, lo que prevé la ley es la cuota diferencial. Distinto es lo que no declaraste: ahí el auditor puede aplicar un plazo de espera para esa patología o rescindir el contrato.',
       },
       {
         q: '¿Qué pasa si no declaro una preexistencia?',
-        a: 'No declarar una preexistencia puede resultar en que la prepaga rechace cobertura en el futuro cuando detecten la condición. Si la preexistencia fue declarada y pasó el período de carencia, la cobertura es plena. Recomendamos siempre declarar honestamente.',
+        a: 'Si la prepaga detecta después que la enfermedad era anterior, puede aplicarte un plazo de espera para esa patología o rescindir el contrato por falsedad de la declaración jurada, y reclamarte lo que haya cubierto. Declarar todo sale siempre más barato.',
+      },
+      {
+        q: '¿Cambia algo si derivo mis aportes o pago como particular?',
+        a: 'No. Según nuestra experiencia, la auditoría médica y la cuota diferencial se aplican igual en los dos casos.',
+      },
+      {
+        q: '¿Me pueden rechazar por la edad?',
+        a: 'La ley dice que no: la edad no puede ser criterio de rechazo (Ley 26.682, artículo 11) y los planes de la última franja etaria deben estar disponibles sin límite de edad máxima (Decreto 1993/2011, artículo 17, texto del Decreto 102/2025). En la práctica, algunas prepagas solo ofrecen planes parciales a partir de cierta edad: pedí la respuesta por escrito.',
       },
     ],
     coberturasRelacionadas: ['medicamentos', 'psicologia', 'urgencias'],
-    guiasRelacionadas: ['preexistencias-que-son-como-funcionan', 'prepaga-sin-periodo-carencia'],
-    keywords: ['prepaga con preexistencias', 'período de carencia prepaga', 'ley 26682 preexistencias', 'prepaga flexible preexistencias', 'cómo afectan las preexistencias a la prepaga'],
+    guiasRelacionadas: ['prepaga-sin-periodo-carencia', 'como-afiliarse-prepaga-requisitos', 'como-reclamar-a-una-prepaga', 'edad-maxima-afiliarse-prepaga'],
+    keywords: ['prepaga con preexistencias', 'preexistencias prepaga', 'prepaga enfermedad preexistente', 'cuota diferencial preexistencia', 'declaracion jurada de salud prepaga', 'ley 26682 preexistencias', 'no declare una preexistencia prepaga', 'auditoria medica prepaga'],
+    fuentes: [
+      { texto: 'Ley 26.682 (texto actualizado) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, reglamentación de la Ley 26.682 (texto actualizado) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/190000-194999/190606/texact.htm' },
+      { texto: 'Ley simple: Medicina prepaga — Ministerio de Justicia', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/medicina-prepaga' },
+    ],
+    fechaActualizacion: '2026-09-27',
   },
   {
     slug: 'salud-mental',
@@ -395,7 +440,7 @@ export const condiciones: CondicionData[] = [
       },
       {
         q: '¿Puedo contratar una prepaga después de haber tenido un infarto?',
-        a: 'Podés contratar, pero la enfermedad cardiovascular puede declararse como preexistencia con un período de carencia de hasta 12 meses para procedimientos electivos relacionados. La medicación cardíaca y las urgencias deben cubrirse desde el primer día.',
+        a: 'Sí: las preexistencias no son criterio de rechazo (Ley 26.682, artículo 10). La prepaga puede pedir estudios y proponerte una cuota diferencial, que tiene que autorizar la SSSalud. Lo que está en el PMO, como las urgencias y la internación, no puede tener carencia.',
       },
     ],
     coberturasRelacionadas: ['medicamentos', 'urgencias', 'rehabilitacion'],
