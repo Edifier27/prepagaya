@@ -76,8 +76,13 @@ def bajar(url):
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (compatible; prepagaya-fuentes/1.0)', 'Accept-Language': 'es-AR,es'})
     with urllib.request.urlopen(req, timeout=25) as r:
         crudo = r.read()
-        cs = r.headers.get_content_charset() or 'utf-8'
-        return r.geturl(), crudo.decode(cs, errors='replace')
+        cs = r.headers.get_content_charset()
+        if cs:
+            return r.geturl(), crudo.decode(cs, errors='replace')
+        try:
+            return r.geturl(), crudo.decode('utf-8')
+        except UnicodeDecodeError:
+            return r.geturl(), crudo.decode('cp1252', errors='replace')
 
 
 # Ya leídas en la primera pasada (24-sep-2026)
@@ -207,5 +212,57 @@ def leyes():
             print(f'!! {e}')
 
 
+# ── Décima pasada (27-sep-2026): Anexo I del PMO completo (prestaciones),
+# Anexos III y IV (inicio), la Resolución 310/2004 del Ministerio de Salud
+# (medicamentos) entre los 5 resultados del buscador, el art. 7 de la Ley
+# 26.682 (PMO y discapacidad) y el texto de las leyes 27.043, 27.305 y 24.455
+# que salieron vacías por la codificación.
+def decima():
+    base = 'https://servicios.infoleg.gob.ar/infolegInternet/'
+    anexos = base + 'anexos/70000-74999/73649/res201-2002MS-anexo'
+    for nombre, tope in (('I', 70000), ('III', 4000), ('IV', 4000)):
+        print(f'\n########## PMO ANEXO {nombre}')
+        try:
+            final, p, t = texto_de(anexos + nombre + '.htm')
+            print(f'({len(t)} caracteres)')
+            print(t[:tope])
+        except Exception as e:  # noqa: BLE001
+            print(f'!! {e}')
+    for i in (103765, 95169, 94218, 93100, 92579):
+        try:
+            final, p, t = texto_de(f'{base}verNorma.do?id={i}')
+            if not re.search(r'SALUD', t):
+                continue
+            print(f'\n########## RES 310/2004 candidata id={i}')
+            print(t[:500].replace('\n', ' | '))
+            textos = [(x.strip(), urljoin(final, h)) for h, x in p.anclas if re.search(r'Texto (completo|actualizado)', x, re.I)]
+            textos.sort(key=lambda e: 0 if 'actualizado' in e[0].lower() else 1)
+            for nombre, url in textos[:1]:
+                final, p2, t2 = texto_de(url)
+                print(f'## {nombre}: {final} ({len(t2)} caracteres)')
+                print(t2[:9000])
+                for h, x in p2.anclas:
+                    if 'anexo' in h.lower():
+                        print(f'  -> {x.strip()[:60]} | {urljoin(final, h)}')
+        except Exception as e:  # noqa: BLE001
+            print(f'!! {e}')
+    print('\n########## LEY 26682 art. 7')
+    try:
+        final, p, t = texto_de(base + 'anexos/180000-184999/182180/texact.htm')
+        i = t.find('ARTICULO 7')
+        print(t[i:i + 1500] if i >= 0 else t[:3000])
+    except Exception as e:  # noqa: BLE001
+        print(f'!! {e}')
+    for url, nombre in ((base + 'anexos/240000-244999/240452/norma.htm', 'LEY 27043 (TEA)'),
+                        (base + 'anexos/265000-269999/267397/norma.htm', 'LEY 27305 (leche medicamentosa)'),
+                        (base + 'anexos/10000-14999/14919/norma.htm', 'LEY 24455 (HIV y adicciones)')):
+        print(f'\n########## {nombre}')
+        try:
+            final, p, t = texto_de(url)
+            print(t[:6000])
+        except Exception as e:  # noqa: BLE001
+            print(f'!! {e}')
+
+
 if __name__ == '__main__':
-    sys.exit(leyes())
+    sys.exit(decima())
