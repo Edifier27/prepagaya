@@ -14,18 +14,26 @@ from html.parser import HTMLParser
 from urllib.parse import urljoin, urldefrag, urlparse
 
 SEMILLAS = [
-    # Sexta pasada (27-sep-2026): solo los artículos de carencias,
-    # preexistencias y edad del texto actualizado de la Ley 26.682 y de su
-    # reglamentación (Decreto 1993/2011). La quinta pasada imprimió de más y
-    # el log llegó cortado.
-    'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm',
-    'https://servicios.infoleg.gob.ar/infolegInternet/anexos/190000-194999/190606/texact.htm',
-    'https://servicios.infoleg.gob.ar/infolegInternet/anexos/190000-194999/190606/norma.htm',
+    # Séptima pasada (27-sep-2026): cirugía reconstructiva vs. estética para
+    # /coberturas/cirugia-estetica. Ley 26.872 (reconstrucción mamaria después
+    # de una mastectomía) y el PMO (Res. 201/2002). Se buscan desde el
+    # buscador de Infoleg y de argentina.gob.ar y se siguen solo los links que
+    # nombran la norma.
+    'https://servicios.infoleg.gob.ar/infolegInternet/buscarNormas.do?tipoNorma=1&numero=26872',
+    'https://servicios.infoleg.gob.ar/infolegInternet/verNormas.do?tipoNorma=1&numero=26872',
+    'https://www.argentina.gob.ar/normativa/buscar?tipo=Ley&numero=26872',
+    'https://www.argentina.gob.ar/normativa/nacional/ley-26872-218914',
+    'https://www.argentina.gob.ar/normativa/nacional/ley-26872-218927',
+    'https://www.argentina.gob.ar/salud/cancer/tipos/cancer-de-mama',
+    'https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/73649/norma.htm',
+    'https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/73649/texact.htm',
 ]
-# Extractos: en las normas se imprime solo alrededor de estos artículos/temas
-EXTRACTO = re.compile(r'ART[IÍ]CULO\s*(8|9|10|11|12)\s*[°º.-]|carencia|preexist|franja etaria|sesenta y cinco|65 años', re.I)
-SOLO_SEMILLAS = True
-CLAVES = re.compile(r'acceso|informacion-publica|informaci%C3%B3n-p%C3%BAblica|aaip|solicitar-informacion|responsable|casas|domestic|particular|hijo|estudiant|famil|divorc|desunific|conyug|c%C3%B3nyuge|conviv|trabajador|empleador|manual|usuario|afiliac|jubilad|pensionad|obra[-_ ]?social|opcion|opci%C3%B3n|aporte|unific|reclam|jubil|monotribut|padron|padr%C3%B3n|cobertura|prepaga|sssalud|desempleo|traspaso|cambi', re.I)
+# Extractos: se imprime solo alrededor de estos temas
+EXTRACTO = re.compile(r'26\.?872|mastectom|reconstruc|reparador|pr[oó]tesis mamari|cirug[ií]a pl[aá]stica|est[eé]tic', re.I)
+SOLO_SEMILLAS = False
+# Links a seguir (por texto del link o por URL): solo los que nombran la norma
+SEGUIR = re.compile(r'26\.?872|26872|mastectom|reconstrucci[oó]n mamaria', re.I)
+MAX_SEGUIDOS = 15
 DOMINIOS = ('servicios.infoleg.gob.ar', 'www.arca.gob.ar', 'www.afip.gob.ar', 'www.argentina.gob.ar', 'argentina.gob.ar', 'www.sssalud.gob.ar', 'sssalud.gob.ar', 'www.anses.gob.ar', 'www.pami.org.ar')
 MAX_PAGINAS = 60
 MAX_CHARS = 9000
@@ -87,6 +95,7 @@ LEIDAS = re.compile(r'casasparticulares|anses\.gob\.ar/(hijos|trabajo|matrimonio
 
 def main():
     cola, vistos, n = list(SEMILLAS), set(), 0
+    seguidos = [0]
     while cola and n < MAX_PAGINAS:
         url = urldefrag(cola.pop(0))[0]
         if url in vistos or LEIDAS.search(url):
@@ -103,30 +112,25 @@ def main():
         texto = html.unescape(''.join(p.texto))
         texto = re.sub(r'[ \t\r\f\v]+', ' ', texto)
         texto = re.sub(r'\n\s*\n+', '\n', texto).strip()
-        if 'infoleg' in final and EXTRACTO:
-            # Ventanas alrededor de cada coincidencia, fusionadas
-            rangos = []
-            for m in EXTRACTO.finditer(texto):
-                a, b = max(0, m.start() - 300), min(len(texto), m.end() + 1800)
-                if rangos and a <= rangos[-1][1]:
-                    rangos[-1][1] = max(rangos[-1][1], b)
-                else:
-                    rangos.append([a, b])
-            partes = '\n[...]\n'.join(texto[a:b] for a, b in rangos)
-            print(f'\n##### {final}\n## {p.titulo.strip()} ({len(texto)} caracteres)\n{partes[:30000]}')
-        else:
-            tope = MAX_CHARS_NORMA if 'infoleg' in final else MAX_CHARS
-            print(f'\n##### {final}\n## {p.titulo.strip()}\n{texto[:tope]}')
+        rangos = []
+        for m in EXTRACTO.finditer(texto):
+            a, b = max(0, m.start() - 400), min(len(texto), m.end() + 1500)
+            if rangos and a <= rangos[-1][1]:
+                rangos[-1][1] = max(rangos[-1][1], b)
+            else:
+                rangos.append([a, b])
+        partes = '\n[...]\n'.join(texto[a:b] for a, b in rangos)
+        print(f'\n##### {final}\n## {p.titulo.strip()} ({len(texto)} caracteres, {len(rangos)} extractos)\n{partes[:12000] if partes else texto[:600]}')
+        # Links que nombran la norma, para saber dónde está el texto
+        for h, t in p.anclas:
+            if SEGUIR.search(t) or SEGUIR.search(h):
+                print(f'  -> {t.strip()[:120]} | {urljoin(final, h)}')
         if SOLO_SEMILLAS:
             continue
-        # Infoleg: de la lista de normas vinculadas, solo decretos/DNU de la ley
         for h, t in p.anclas:
             u = urldefrag(urljoin(final, h))[0]
-            if 'infoleg' in urlparse(u).netloc and INFOLEG_SEGUIR.search(t) and u not in vistos:
-                cola.insert(0, u)
-        for h in p.links:
-            u = urldefrag(urljoin(final, h))[0]
-            if urlparse(u).netloc in DOMINIOS and CLAVES.search(u) and u not in vistos and not re.search(r'\.(pdf|jpg|png|zip|docx?)$', u, re.I):
+            if (SEGUIR.search(t) or SEGUIR.search(u)) and u not in vistos and urlparse(u).netloc in DOMINIOS and seguidos[0] < MAX_SEGUIDOS:
+                seguidos[0] += 1
                 cola.append(u)
     print(f'\nPáginas leídas: {n}')
 
