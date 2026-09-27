@@ -126,5 +126,86 @@ def main():
     print(f'\nPáginas leídas: {n}')
 
 
+# ── Novena pasada (27-sep-2026): leyes especiales para el buscador "¿Qué me
+# cubre la prepaga?". Para cada ley: buscador de Infoleg → ficha (verNorma)
+# → "Texto completo" o "Texto actualizado". Se imprimen los artículos que
+# hablan de cobertura. Además, ubicar los anexos del PMO (Res. 201/2002) y la
+# Resolución 310/2004 (medicamentos).
+LEYES = {
+    26862: 'fertilización asistida', 26130: 'anticoncepción quirúrgica', 26396: 'trastornos alimentarios / obesidad',
+    23753: 'diabetes', 24901: 'discapacidad', 26657: 'salud mental', 27043: 'TEA', 25415: 'hipoacusia',
+    26588: 'celiaquía', 25673: 'salud sexual', 27610: 'IVE', 26743: 'identidad de género', 24455: 'HIV y adicciones',
+    26279: 'pesquisa neonatal', 27552: 'fibrosis quística', 27305: 'leche medicamentosa',
+}
+COBERTURA = re.compile(r'cobertura|prepaga|obras? sociales?|100 ?%|cien por ciento|incorp[oó]rase|Programa M[eé]dico Obligatorio|PMO|tratamiento|prestaci', re.I)
+MAX_LOG_LEY = 7000
+
+
+def texto_de(url):
+    final, cuerpo = bajar(url)
+    p = Extraer()
+    p.feed(cuerpo)
+    t = html.unescape(''.join(p.texto))
+    t = re.sub(r'[ \t\r\f\v]+', ' ', t)
+    t = re.sub(r'\n\s*\n+', '\n', t).strip()
+    return final, p, t
+
+
+def extractos(t, rx, antes=250, despues=1100, tope=MAX_LOG_LEY):
+    rangos = []
+    for m in rx.finditer(t):
+        a, b = max(0, m.start() - antes), min(len(t), m.end() + despues)
+        if rangos and a <= rangos[-1][1]:
+            rangos[-1][1] = max(rangos[-1][1], b)
+        else:
+            rangos.append([a, b])
+    return '\n[...]\n'.join(t[a:b] for a, b in rangos)[:tope]
+
+
+def leyes():
+    base = 'https://servicios.infoleg.gob.ar/infolegInternet/'
+    for num, tema in LEYES.items():
+        print(f'\n########## LEY {num} ({tema})')
+        try:
+            final, p, t = texto_de(f'{base}buscarNormas.do?tipoNorma=1&numero={num}')
+            ficha = next((urljoin(final, h) for h, x in p.anclas if 'verNorma.do' in h), None)
+            if not ficha:
+                print('!! sin ficha'); continue
+            final, p, t = texto_de(ficha)
+            print(f'ficha: {final}')
+            print(t[:400].replace('\n', ' | '))
+            textos = [(x.strip(), urljoin(final, h)) for h, x in p.anclas if re.search(r'Texto (completo|actualizado)', x, re.I)]
+            # el actualizado primero, si existe
+            textos.sort(key=lambda e: 0 if 'actualizado' in e[0].lower() else 1)
+            if not textos:
+                print('!! sin link al texto'); continue
+            nombre, url = textos[0]
+            final, p, t = texto_de(url)
+            print(f'## {nombre}: {final} ({len(t)} caracteres)')
+            print(extractos(t, re.compile(r'ART[IÍ]CULO\s*\d+|ART\.\s*\d+', re.I), antes=0, despues=900) if len(t) < 9000 else extractos(t, COBERTURA))
+        except Exception as e:  # noqa: BLE001
+            print(f'!! {e}')
+    # PMO: anexos de la Res. 201/2002 (links de su página)
+    print('\n########## PMO Res. 201/2002: anexos')
+    try:
+        final, p, t = texto_de(base + 'anexos/70000-74999/73649/norma.htm')
+        for h, x in p.anclas:
+            print(f'  -> {x.strip()[:80]} | {urljoin(final, h)}')
+    except Exception as e:  # noqa: BLE001
+        print(f'!! {e}')
+    # Resolución 310/2004 (medicamentos): probar los tipos de norma del buscador
+    for tipo in (2, 3, 4, 5):
+        url = f'{base}buscarNormas.do?tipoNorma={tipo}&numero=310&anioSancion=2004'
+        print(f'\n########## búsqueda Res 310/2004, tipoNorma={tipo}')
+        try:
+            final, p, t = texto_de(url)
+            print(t[:700].replace('\n', ' | '))
+            for h, x in p.anclas:
+                if 'verNorma' in h:
+                    print(f'  -> {x.strip()[:60]} | {urljoin(final, h)}')
+        except Exception as e:  # noqa: BLE001
+            print(f'!! {e}')
+
+
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(leyes())
