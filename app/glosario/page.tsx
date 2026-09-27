@@ -124,8 +124,9 @@ export default function GlosarioPage(): React.ReactElement {
           <div className="space-y-4">
             {filtrados.map((t) => (
               <div
-                key={t.termino}
-                className="bg-white rounded-2xl border border-gray-100 p-5 hover:border-gray-200 transition-colors"
+                key={t.slug}
+                id={t.slug}
+                className="scroll-mt-24 bg-white rounded-2xl border border-gray-100 p-5 hover:border-gray-200 transition-colors target:border-[#E8002D] target:ring-2 target:ring-red-100"
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <h2 className="font-bold text-gray-900 text-lg leading-snug">{t.termino}</h2>
@@ -134,6 +135,11 @@ export default function GlosarioPage(): React.ReactElement {
                   </span>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">{t.definicion}</p>
+                {t.fuente && (
+                  <p className="mt-2 text-xs text-gray-400">
+                    Fuente: <a href={t.fuente.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">{t.fuente.texto}</a>
+                  </p>
+                )}
                 {t.ejemplo && (
                   <div className="mt-3 flex items-start gap-2 bg-gray-50 rounded-xl px-4 py-3 border border-gray-100">
                     <span className="text-xs font-bold text-gray-400 mt-0.5 flex-shrink-0">Ej:</span>

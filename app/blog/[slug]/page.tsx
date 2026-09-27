@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { enlazarPrepagas, PlanesMencionados } from '@/components/ui/TextoConEnlaces'
+import { marcarTerminos } from '@/components/glosario/marcarTerminos'
+import { GlosarioDePagina } from '@/components/glosario/GlosarioDePagina'
 import { blogPosts } from '@/lib/data/blog'
 import { prepagas } from '@/lib/data/prepagas'
 import { coberturas } from '@/lib/data/coberturas'
@@ -119,6 +121,7 @@ export default async function BlogPostPage({ params }: Props) {
   ]
 
   const vistas = new Set<string>()
+  const vistosGlosario = new Set<string>()
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -175,7 +178,7 @@ export default async function BlogPostPage({ params }: Props) {
                 lo primero que aparece en el HTML, así que la respuesta
                 directa tiene que ir antes que cualquier índice de navegación. */}
             <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
-              <p className="text-gray-800 leading-relaxed">{enlazarPrepagas(post.contenido.intro, vistas)}</p>
+              <p className="text-gray-800 leading-relaxed">{marcarTerminos(enlazarPrepagas(post.contenido.intro, vistas), vistosGlosario)}</p>
             </div>
 
             {/* Resumen citable para posts de ranking/listicle (GEO,
@@ -216,7 +219,7 @@ export default async function BlogPostPage({ params }: Props) {
                     </span>
                     {seccion.titulo}
                   </h2>
-                  <p className="text-gray-600 leading-relaxed">{enlazarPrepagas(seccion.cuerpo, vistas)}</p>
+                  <p className="text-gray-600 leading-relaxed">{marcarTerminos(enlazarPrepagas(seccion.cuerpo, vistas), vistosGlosario)}</p>
                   {seccion.enlace && (
                     <Link href={seccion.enlace.href} className="inline-block mt-3 text-sm font-semibold text-[#E8002D] hover:underline">
                       {seccion.enlace.texto} →
@@ -231,9 +234,10 @@ export default async function BlogPostPage({ params }: Props) {
                   <span className="w-6 h-6 rounded-full bg-green-100 border border-green-200 flex items-center justify-center text-[11px] font-bold text-green-600">✓</span>
                   Conclusión
                 </h2>
-                <p className="text-gray-600 leading-relaxed">{enlazarPrepagas(post.contenido.conclusion, vistas)}</p>
+                <p className="text-gray-600 leading-relaxed">{marcarTerminos(enlazarPrepagas(post.contenido.conclusion, vistas), vistosGlosario)}</p>
               </div>
               <PlanesMencionados vistas={vistas} />
+              <GlosarioDePagina texto={[post.contenido.intro, ...post.contenido.secciones.map((x) => x.cuerpo), post.contenido.conclusion].join(' ')} />
             </article>
 
             {/* Prepagas relacionadas */}

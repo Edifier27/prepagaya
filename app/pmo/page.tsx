@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { GlosarioDePagina } from '@/components/glosario/GlosarioDePagina'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { condiciones } from '@/lib/data/condiciones'
 import { coberturas } from '@/lib/data/coberturas'
@@ -353,6 +354,11 @@ export default function PmoPage() {
             ))}
           </div>
         </section>
+
+        {/* Glosario del PMO (28-sep-2026) */}
+        <div className="mb-10">
+          <GlosarioDePagina slugs={['pmo', 'prestacion-superadora', 'carencia', 'preexistencia', 'coseguro', 'internacion', 'plan-materno-infantil', 'alta-complejidad', 'precio-de-referencia', 'cud']} />
+        </div>
 
         {/* FAQ */}
         <section className="mb-10">

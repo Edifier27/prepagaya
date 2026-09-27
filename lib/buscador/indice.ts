@@ -56,7 +56,7 @@ export function indiceBuscador(): EntradaBuscador[] {
   }
   // Cada condición del buscador de preexistencias, con lo que piden como subtítulo
   for (const p of preexistenciasDoc) {
-    add(`${p.nombre}: qué te piden para afiliarte`, `/declaracion-jurada-de-salud?c=${p.slug}`, G('Coberturas'), NIVEL_DOC[p.nivel].texto, `preexistencia ${p.sinonimos.join(' ')}`)
+    add(`${p.nombre}: qué te piden para afiliarte`, '/declaracion-jurada-de-salud', G('Coberturas'), NIVEL_DOC[p.nivel].texto, `preexistencia ${p.sinonimos.join(' ')}`)
   }
   // Cada prestación del buscador ¿Qué me cubre la prepaga?, con el nivel de cobertura como subtítulo
   for (const p of prestacionesCobertura) {

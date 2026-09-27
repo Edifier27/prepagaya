@@ -23,7 +23,7 @@ function SiteChromeInner({ children, provincias }: { children: React.ReactNode; 
   const hideChrome = modoEnfocado || sinChrome
   return (
     <div className={`flex-1 flex flex-col ${hideChrome ? '' : 'pb-16 lg:pb-0'}`}>
-      {!hideChrome && <Header provincias={provincias} />}
+      {!hideChrome && <Header />}
       <main className="flex-1">{children}</main>
       {!hideChrome && <Footer provincias={provincias} />}
       {!hideChrome && <BottomNav />}

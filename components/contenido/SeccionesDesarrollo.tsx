@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { GuiaEnlace, GuiaSeccion } from '@/lib/data/guias'
+import { marcarTerminos } from '@/components/glosario/marcarTerminos'
 
 // Bloques compartidos por las fichas de condiciones y de coberturas: el
 // desarrollo (lo que dice la norma y lo que pasa en la práctica) y la línea
@@ -7,13 +8,14 @@ import type { GuiaEnlace, GuiaSeccion } from '@/lib/data/guias'
 
 export function SeccionesDesarrollo({ secciones }: { secciones?: GuiaSeccion[] }) {
   if (!secciones?.length) return null
+  const vistos = new Set<string>()
   return (
     <section className="py-10 bg-white border-t border-gray-100">
       <div className="container max-w-4xl mx-auto space-y-8">
         {secciones.map((sec) => (
           <div key={sec.titulo}>
             <h2 className="text-xl font-bold text-gray-900 mb-2">{sec.titulo}</h2>
-            <p className="text-gray-700 leading-relaxed">{sec.cuerpo}</p>
+            <p className="text-gray-700 leading-relaxed">{marcarTerminos(sec.cuerpo, vistos)}</p>
             {sec.enlaces && (
               <div className="flex flex-wrap gap-2 mt-3">
                 {sec.enlaces.map((e) => (

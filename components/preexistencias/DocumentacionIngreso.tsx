@@ -21,7 +21,7 @@ export function DocumentacionIngreso({ href, tema }: { href: string; tema: strin
               </div>
               {p.documentos.length > 0 && <p className="text-sm text-gray-700 mt-2 leading-relaxed">{p.documentos.join(' ')}</p>}
               {p.nota && <p className="text-sm text-gray-500 mt-2 leading-relaxed">{p.nota}</p>}
-              <Link href={`/declaracion-jurada-de-salud?c=${p.slug}`} className="inline-block mt-2 text-sm font-semibold text-[#E8002D] hover:underline">
+              <Link href="/declaracion-jurada-de-salud" className="inline-block mt-2 text-sm font-semibold text-[#E8002D] hover:underline">
                 Armar mi lista de documentación →
               </Link>
             </li>

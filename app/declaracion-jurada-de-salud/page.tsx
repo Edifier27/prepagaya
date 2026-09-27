@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { BuscadorPreexistenciasConUrl } from '@/components/herramientas/BuscadorPreexistencias'
+import { GlosarioDePagina } from '@/components/glosario/GlosarioDePagina'
+import { BuscadorPreexistencias } from '@/components/herramientas/BuscadorPreexistencias'
 import {
   CATEGORIAS_DDJJ, NIVEL_DOC, PREEXISTENCIAS_DOC_FECHA, SIN_AUDITORIA_LISTA,
   preexistenciasDeCategoria,
@@ -97,7 +98,7 @@ export default function DeclaracionJuradaPage() {
           <p className="text-gray-700 mt-3 mb-6 leading-relaxed">
             Escribí lo que tenés o te trataste y te mostramos qué documentación suelen pedir las prepagas para afiliarte. Sumá todo a tu lista y llevalo junto: te ahorra idas y vueltas con el auditor.
           </p>
-          <BuscadorPreexistenciasConUrl />
+          <BuscadorPreexistencias />
         </div>
       </section>
 
@@ -166,6 +167,9 @@ export default function DeclaracionJuradaPage() {
 
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-3xl! mx-auto">
+          <div className="mb-8">
+            <GlosarioDePagina slugs={['declaracion-jurada', 'preexistencia', 'cuota-diferencial', 'auditoria-medica', 'carencia', 'baja']} />
+          </div>
           <h2 className="text-xl font-bold text-gray-900 mb-4">Preguntas frecuentes</h2>
           <div className="space-y-4">
             {faqs.map((f) => (
