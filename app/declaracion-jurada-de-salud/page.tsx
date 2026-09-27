@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: '¿Qué es un resumen de historia clínica?',
-    a: 'Es un informe que firma tu médico, en general el especialista que te trata, con el diagnóstico, cuándo empezó, cómo evolucionó, cómo estás hoy y qué tratamiento hacés. Es lo que más se pide: tiene que estar actualizado.',
+    a: 'Es un informe firmado y sellado por tu médico, en general el especialista que te trata, y es lo que más se pide. Tiene que decir: la fecha de la primera consulta y el motivo, el diagnóstico, los síntomas y el tiempo de evolución, otros antecedentes o enfermedades, los estudios que te hiciste (con fecha y resultado resumido), la medicación que tomás y desde cuándo, y si tenés certificado único de discapacidad. Tiene que estar actualizado.',
   },
   {
     q: '¿Tengo que declarar algo que ya se curó?',

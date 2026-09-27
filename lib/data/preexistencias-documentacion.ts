@@ -223,7 +223,10 @@ export const preexistenciasDoc: PreexistenciaDoc[] = [
     slug: 'diabetes', nombre: 'Diabetes (tipo 1 o tipo 2)', categoria: 'metabolicas',
     sinonimos: ['diabetes', 'diabetico', 'diabetica', 'azucar', 'glucemia', 'insulina', 'metformina', 'dbt', 'diabetes tipo 1', 'diabetes tipo 2'],
     nivel: 'si',
-    documentos: ['La planilla de acreditación de diabetes, completada por tu diabetólogo o endocrinólogo.'],
+    documentos: [
+      'La planilla de acreditación de diabetes, completada por tu diabetólogo o endocrinólogo: tipo de diabetes, años de diagnóstico, complicaciones y tratamiento.',
+      'Los estudios de los últimos 12 meses: hemoglobina glicosilada (HbA1c), glucemia en ayunas, fondo de ojo, índice albúmina/creatinina en orina y examen de pie.',
+    ],
     nota: 'Pasa por auditoría médica, uses insulina o no.',
     enlace: { href: '/condiciones/diabetes', texto: 'Prepagas y diabetes' },
   },
