@@ -14,23 +14,14 @@ from html.parser import HTMLParser
 from urllib.parse import urljoin, urldefrag, urlparse
 
 SEMILLAS = [
-    # Séptima pasada (27-sep-2026): cirugía reconstructiva vs. estética para
-    # /coberturas/cirugia-estetica. Ley 26.872 (reconstrucción mamaria después
-    # de una mastectomía) y el PMO (Res. 201/2002). Se buscan desde el
-    # buscador de Infoleg y de argentina.gob.ar y se siguen solo los links que
-    # nombran la norma.
-    'https://servicios.infoleg.gob.ar/infolegInternet/buscarNormas.do?tipoNorma=1&numero=26872',
-    'https://servicios.infoleg.gob.ar/infolegInternet/verNormas.do?tipoNorma=1&numero=26872',
-    'https://www.argentina.gob.ar/normativa/buscar?tipo=Ley&numero=26872',
-    'https://www.argentina.gob.ar/normativa/nacional/ley-26872-218914',
-    'https://www.argentina.gob.ar/normativa/nacional/ley-26872-218927',
-    'https://www.argentina.gob.ar/salud/cancer/tipos/cancer-de-mama',
-    'https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/73649/norma.htm',
-    'https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/73649/texact.htm',
+    # Octava pasada (27-sep-2026): el texto de la Ley 26.872 (Infoleg id
+    # 218211), que la séptima encontró en el buscador de Infoleg.
+    'https://servicios.infoleg.gob.ar/infolegInternet/anexos/215000-219999/218211/norma.htm',
+    'https://servicios.infoleg.gob.ar/infolegInternet/anexos/215000-219999/218211/texact.htm',
 ]
 # Extractos: se imprime solo alrededor de estos temas
 EXTRACTO = re.compile(r'26\.?872|mastectom|reconstruc|reparador|pr[oó]tesis mamari|cirug[ií]a pl[aá]stica|est[eé]tic', re.I)
-SOLO_SEMILLAS = False
+SOLO_SEMILLAS = True
 # Links a seguir (por texto del link o por URL): solo los que nombran la norma
 SEGUIR = re.compile(r'26\.?872|26872|mastectom|reconstrucci[oó]n mamaria', re.I)
 MAX_SEGUIDOS = 15
