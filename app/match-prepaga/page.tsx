@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: '¿Cómo se elige el plan que más me conviene?',
-    a: 'Comparamos cada plan con cuadro de precios oficial contra lo que contestaste: nivel de precio, copago, cartilla o libre elección, y lo que vas a usar (terapia, ortodoncia, anteojos, viajes, implantes, deporte). Gana el que cumple más puntos; si empatan, mostramos primero a nuestros partners.',
+    a: 'Comparamos cada plan con cuadro de precios oficial contra lo que contestaste: nivel de precio, copago, cartilla o libre elección, y lo que vas a usar (terapia, ortodoncia, anteojos, viajes, implantes, deporte). Gana el que cumple más puntos; si empatan, mostramos primero a nuestros partners. Además, arriba de todo va la recomendación de nuestros asesores: el plan de Swiss Medical que mejor se ajusta a lo que contestaste, con sus puntos a la vista. Si otro plan cumple más de lo que marcaste, lo ves justo debajo.',
   },
   {
     q: '¿De dónde salen las coberturas?',
@@ -79,7 +79,7 @@ export default function MatchPrepagaPage() {
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight text-balance">¿Qué prepaga te conviene?</h1>
           <p className="text-gray-700 mt-3 mb-6 leading-relaxed">
-            Seis preguntas y te mostramos el plan que más coincide con lo que buscás, con el porqué punto por punto y datos oficiales de cada plan.
+            Seis preguntas y te mostramos la recomendación de nuestros asesores y el plan que más coincide con lo que buscás, con el porqué punto por punto y datos oficiales de cada plan.
           </p>
           <MatchPrepaga datos={datos} usos={usos} />
         </div>

@@ -39,6 +39,12 @@ const EDADES = [
   { label: '65 o más', min: 65 },
 ]
 const RAPIDAS = ['caba', 'buenos-aires', 'buenos-aires-interior', 'cordoba', 'santa-fe', 'mendoza']
+// Swiss Medical va siempre arriba como recomendación de los asesores (Darío,
+// 27-sep-2026: "que en el match siempre salga Swiss Medical como mejor
+// opción"). Se muestra rotulada como recomendación, con sus puntos reales; si
+// otro plan cumple más de lo que la persona marcó, aparece debajo como "el que
+// más coincide", para no presentar como coincidencia lo que es recomendación.
+const RECOMENDADA = 'swiss-medical'
 
 function evaluar(p: PlanMatch, r: Respuestas, usos: Props['usos']): Match {
   const criterios: Criterio[] = []
@@ -111,7 +117,10 @@ export function MatchPrepaga({ datos, usos }: Props) {
 
   const TOTAL = 6
   const avanzar = (cambio: Partial<Respuestas>) => { setR((prev) => ({ ...prev, ...cambio })); setPaso((p) => p + 1) }
-  const resultados = paso >= TOTAL ? ranking(datos, r, usos).slice(0, 3) : []
+  const todos = paso >= TOTAL ? ranking(datos, r, usos) : []
+  const swissMejor = todos.find((m) => m.plan.prepaga === RECOMENDADA)
+  const recomendada = swissMejor && todos[0].plan.prepaga !== RECOMENDADA ? swissMejor : undefined
+  const resultados = recomendada ? [recomendada, ...todos.filter((m) => m !== recomendada).slice(0, 2)] : todos.slice(0, 3)
   const prov = PROVINCIAS.find((p) => p.slug === r.provincia)
 
   async function enviar(d: DatosFormulario) {
@@ -264,7 +273,9 @@ export function MatchPrepaga({ datos, usos }: Props) {
   const precioDe = (m: Match) => (precios ? precios[m.plan.k] : undefined)
 
   if (primero && fase !== 'resultado') {
-    return <MatchAnimacion fase={fase} plan={`${primero.plan.prepagaNombre} ${primero.plan.planNombre}`} />
+    return recomendada
+      ? <MatchAnimacion fase={fase} titulo="¡Listo, ya tenemos tus opciones!" plan={`Nuestra recomendación: ${primero.plan.prepagaNombre} ${primero.plan.planNombre}`} />
+      : <MatchAnimacion fase={fase} plan={`${primero.plan.prepagaNombre} ${primero.plan.planNombre}`} />
   }
 
   return (
@@ -276,11 +287,13 @@ export function MatchPrepaga({ datos, usos }: Props) {
       ) : (
         <>
           <div className={`rounded-3xl border-2 border-[#E8002D]/30 bg-white p-5 sm:p-7 shadow-sm ${claseEntrar}`}>
-            <p className="text-xs font-bold uppercase tracking-wide text-[#E8002D]">Tu match</p>
+            <p className="text-xs font-bold uppercase tracking-wide text-[#E8002D]">{recomendada ? 'Nuestra recomendación' : 'Tu match'}</p>
             <div className="flex items-start justify-between gap-3 mt-1">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">{primero.plan.prepagaNombre} {primero.plan.planNombre}</h2>
-                <p className="text-sm text-gray-700 mt-1">Cumple {cumple(primero)} de {primero.criterios.length} cosas que te importan</p>
+                <p className="text-sm text-gray-700 mt-1">
+                  {recomendada && <>Recomendado por nuestros asesores. </>}Cumple {cumple(primero)} de {primero.criterios.length} cosas que te importan
+                </p>
               </div>
               <PrecioMatch valor={precioDe(primero)} bloqueado={!precios} calculando={Boolean(edadesGrupo)} onVer={() => setFormAbierto(true)} />
             </div>
@@ -297,11 +310,12 @@ export function MatchPrepaga({ datos, usos }: Props) {
 
           {otros.length > 0 && (
             <>
-              <h3 className="font-bold text-gray-900 mt-6 mb-2">Otras dos que te pueden servir</h3>
+              <h3 className="font-bold text-gray-900 mt-6 mb-2">{recomendada ? 'Otras opciones' : 'Otras dos que te pueden servir'}</h3>
               <ul className="space-y-3">
-                {otros.map((m) => (
+                {otros.map((m, i) => (
                   <li key={m.plan.k} className="rounded-2xl border border-gray-200 bg-white p-4 flex items-start justify-between gap-3">
                     <div className="min-w-0">
+                      {recomendada && i === 0 && <p className="text-[11px] font-bold uppercase tracking-wide text-gray-500 mb-0.5">El que más coincide con lo que marcaste</p>}
                       <Link href={`/prepagas/${m.plan.prepaga}/${m.plan.plan}`} className="font-semibold text-gray-900 hover:text-[#E8002D]">{m.plan.prepagaNombre} {m.plan.planNombre}</Link>
                       <p className="text-xs text-gray-600 mt-0.5">Cumple {cumple(m)} de {m.criterios.length}{m.criterios.some((c) => c.ok === false) ? ` · no: ${m.criterios.filter((c) => c.ok === false).map((c) => c.texto.split(':')[0].toLowerCase()).join(', ')}` : ''}</p>
                     </div>
