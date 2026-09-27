@@ -250,6 +250,12 @@ export default async function CartillaPrepagaPage({ params }: Props) {
               labelGuardia={cartillaZonas.labelGuardia}
               textoFecha={textoFecha(cartillaZonas)}
             />
+            <p className="mt-4 text-center text-sm text-gray-600">
+              ¿Necesitás una guardia ahora?{' '}
+              <Link href={`/guardias-cerca?prepaga=${cartillaZonas.prepagaSlug}`} className="font-semibold text-[#E8002D] hover:underline">
+                Mirá las {cartillaZonas.labelGuardia.toLowerCase()} de {prep.nombre} más cerca tuyo, con tu ubicación →
+              </Link>
+            </p>
             <div className="mt-6 flex flex-wrap justify-center gap-2">
               {cartillaZonas.planesConPagina.map((id) => {
                 const pl = cartillaZonas.planes.find((x) => x.id === id)!

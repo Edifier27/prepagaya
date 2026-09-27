@@ -50,6 +50,10 @@ export function indiceBuscador(): EntradaBuscador[] {
   add('Prepagas económicas', '/prepagas-economicas', G('Herramientas'), 'Los planes más baratos', 'barata economica')
   add('Preexistencias: qué papeles te piden', '/declaracion-jurada-de-salud', G('Herramientas'), 'Documentación para la declaración jurada de salud', 'preexistencia declaracion jurada ddjj auditoria documentacion papeles enfermedad')
   add('¿Qué me cubre la prepaga?', '/guias/que-cubre-la-prepaga#buscador', G('Herramientas'), 'Buscador de coberturas: por ley y por plan', 'cobertura cubre pmo obligatorio ley prestacion practica tratamiento estudio')
+  add('¿Dónde me atiendo? Guardias cerca', '/guardias-cerca', G('Herramientas'), 'Guardias y sanatorios de tu prepaga más cerca tuyo', 'guardia guardias cerca urgencia emergencia sanatorio donde me atiendo ubicacion')
+  for (const c of Object.values(CARTILLAS)) {
+    add(`Guardias de ${c.prepagaNombre} cerca tuyo`, `/guardias-cerca?prepaga=${c.prepagaSlug}`, G('Herramientas'), 'Con tu ubicación, según la cartilla oficial', `guardia guardias urgencia cerca ${c.prepagaNombre}`)
+  }
   // Cada condición del buscador de preexistencias, con lo que piden como subtítulo
   for (const p of preexistenciasDoc) {
     add(`${p.nombre}: qué te piden para afiliarte`, `/declaracion-jurada-de-salud?c=${p.slug}`, G('Coberturas'), NIVEL_DOC[p.nivel].texto, `preexistencia ${p.sinonimos.join(' ')}`)

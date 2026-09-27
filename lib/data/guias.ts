@@ -1186,6 +1186,7 @@ export const guias: GuiaData[] = [
         {
           titulo: 'A qué guardia ir: la diferencia entre red propia y convenio',
           cuerpo: 'Las prepagas con sanatorios propios (Swiss Medical, Galeno con la red Trinidad, CEMIC, Hospital Italiano, Hominis con el Güemes) te orientan a sus guardias, donde el ingreso es directo con la credencial. Las de red abierta (OSDE, Medifé, Sancor) cubren las guardias de su cartilla: identificá hoy la más cercana a tu casa y tu trabajo. En una emergencia grave con riesgo de vida andá al centro más cercano, sea o no de cartilla: la cobertura de la emergencia real no depende de la cartilla, y la empresa debe cubrirla o gestionar la derivación una vez estabilizado.',
+          cta: { texto: '¿A qué guardia te conviene ir? Con tu ubicación te mostramos las de tu prepaga y tu plan más cerca, con cómo llegar y el teléfono.', boton: 'Ver guardias cerca', href: '/guardias-cerca' },
         },
         {
           titulo: 'Ambulancia y emergencias domiciliarias',
