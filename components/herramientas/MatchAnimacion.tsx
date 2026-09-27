@@ -6,7 +6,7 @@ import s from './MatchAnimacion.module.css'
 // y el plan elegido. Los tiempos los maneja MatchPrepaga.
 export type FaseMatch = 'buscando' | 'listo'
 
-export function MatchAnimacion({ fase, plan }: { fase: FaseMatch; plan?: string }) {
+export function MatchAnimacion({ fase, plan, titulo = '¡Tenemos tu match!' }: { fase: FaseMatch; plan?: string; titulo?: string }) {
   return (
     <div className={s.caja} role="status" aria-live="polite">
       <div className={s.icono}>
@@ -38,7 +38,7 @@ export function MatchAnimacion({ fase, plan }: { fase: FaseMatch; plan?: string 
         </div>
       ) : (
         <p className={s.titulo}>
-          ¡Tenemos tu match!
+          {titulo}
           {plan && <span className={s.plan}>{plan}</span>}
         </p>
       )}
