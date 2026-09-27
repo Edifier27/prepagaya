@@ -5,10 +5,11 @@ import { coberturas } from '@/lib/data/coberturas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { guias } from '@/lib/data/guias'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, OG_IMAGE, PRIORIDAD_PARTNERS } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 import { DocumentacionIngreso } from '@/components/preexistencias/DocumentacionIngreso'
+import { FuentesOficiales, SeccionesDesarrollo } from '@/components/contenido/SeccionesDesarrollo'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -64,6 +65,17 @@ export default async function CoberturaPage({ params }: Props) {
     // implantes-dentales cuelga del hub de odontología
   const porPrepaga = coberturasMarca.filter((x) => x.tema === slug || (slug === 'odontologia' && x.tema === 'implantes-dentales'))
 
+  // Qué planes la incluyen, prepaga por prepaga, con los datos oficiales (Swiss Medical primero)
+  const prioridad = (s: string) => { const i = (PRIORIDAD_PARTNERS as readonly string[]).indexOf(s); return i >= 0 ? i : 99 }
+  const incluyen = coberturasMarca
+    .filter((x) => x.tema === slug)
+    .map((x) => ({ x, planes: x.planes.filter((pl) => pl.incluido && !pl.sinDato) }))
+    .filter((r) => r.planes.length > 0)
+    .sort((a, b) => prioridad(a.x.prepagaSlug) - prioridad(b.x.prepagaSlug))
+
+  // Los links al detalle que ya están en "Qué planes cubren" no se repiten abajo
+  const porPrepagaResto = porPrepaga.filter((p) => !incluyen.some((i) => i.x.tema === p.tema && i.x.prepagaSlug === p.prepagaSlug))
+
   const guiasRel = (cob.guiasRelacionadas ?? [])
     .map((s) => guias.find((g) => g.slug === s))
     .filter((g): g is NonNullable<typeof g> => Boolean(g))
@@ -79,8 +91,9 @@ export default async function CoberturaPage({ params }: Props) {
       author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/coberturas/${slug}` },
-      dateModified: CONTENT_UPDATE,
+      dateModified: cob.fechaActualizacion ?? CONTENT_UPDATE,
       inLanguage: 'es-AR',
+      ...(cob.fuentes ? { isBasedOn: cob.fuentes.map((f) => f.url) } : {}),
     },
     {
       '@context': 'https://schema.org',
@@ -141,7 +154,7 @@ export default async function CoberturaPage({ params }: Props) {
               <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-blue-500 flex-shrink-0">
                 <path fillRule="evenodd" d="M10 1L3 5v6c0 5.55 3.84 10.74 7 12 3.16-1.26 7-6.45 7-12V5l-7-4z" clipRule="evenodd" />
               </svg>
-              Qué establece la ley
+              {cob.tituloLey ?? 'Qué establece la ley'}
             </h2>
             <p className="text-sm text-gray-700 leading-relaxed">{cob.queEstableceLaLey}</p>
             <Link href="/pmo" className="inline-block mt-3 text-sm font-semibold text-blue-700 hover:underline">
@@ -151,14 +164,44 @@ export default async function CoberturaPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Qué planes la incluyen, con los datos oficiales de cada prepaga */}
+      {incluyen.length > 0 && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Qué planes cubren {cob.nombre.toLowerCase()}</h2>
+            <p className="text-sm text-gray-500 mb-5">Según los documentos oficiales de cada prepaga.</p>
+            <ul className="space-y-3">
+              {incluyen.map(({ x, planes }) => (
+                <li key={x.prepagaSlug} className="rounded-2xl border border-gray-200 p-4">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="font-bold text-gray-900">{x.prepagaNombre}</h3>
+                    <Link href={`/coberturas/${x.tema}/${x.prepagaSlug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">Ver el detalle →</Link>
+                  </div>
+                  <ul className="mt-2 space-y-1">
+                    {planes.map((pl) => (
+                      <li key={pl.plan} className="text-sm text-gray-700">
+                        <span className="font-semibold">{pl.plan}</span>{pl.detalle ? `: ${pl.detalle}` : ''}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-xs text-gray-400 mt-2">Fuente: {x.fuentes.map((f) => `${f.nombre} (${f.fecha})`).join(' · ')}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      <SeccionesDesarrollo secciones={cob.secciones} />
+
             {/* Silo: detalle oficial por prepaga (/coberturas/[tema]/[prepaga]) */}
-      {porPrepaga.length > 0 && (
+      {porPrepagaResto.length > 0 && (
         <section className="py-8 bg-white border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">
             <h2 className="text-lg font-bold text-gray-900 mb-1">{cob.nombre} por prepaga, plan por plan</h2>
             <p className="text-sm text-gray-500 mb-4">Con los datos oficiales de cada prepaga.</p>
             <div className="flex flex-wrap gap-2">
-              {porPrepaga.map((x) => (
+              {porPrepagaResto.map((x) => (
                 <Link key={`${x.tema}-${x.prepagaSlug}`} href={`/coberturas/${x.tema}/${x.prepagaSlug}`} className="text-sm px-4 py-2 bg-white text-gray-800 border border-gray-200 rounded-xl hover:border-red-200 hover:text-[#E8002D] transition-colors font-semibold">
                   {x.pregunta}
                 </Link>
@@ -286,6 +329,7 @@ export default async function CoberturaPage({ params }: Props) {
               </details>
             ))}
           </div>
+          <FuentesOficiales fuentes={cob.fuentes} />
         </div>
       </section>
 

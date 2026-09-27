@@ -9,6 +9,7 @@ import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CondicionIcon, CoberturaIcon } from '@/components/ui/CategoryIcon'
 import { DocumentacionIngreso } from '@/components/preexistencias/DocumentacionIngreso'
+import { FuentesOficiales, SeccionesDesarrollo } from '@/components/contenido/SeccionesDesarrollo'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -145,33 +146,7 @@ export default async function CondicionPage({ params }: Props) {
       </section>
 
       {/* Desarrollo: lo que dice la norma y lo que pasa en la práctica */}
-      {cond.secciones && (
-        <section className="py-10 bg-white border-t border-gray-100">
-          <div className="container max-w-4xl mx-auto space-y-8">
-            {cond.secciones.map((sec) => (
-              <div key={sec.titulo}>
-                <h2 className="text-xl font-bold text-gray-900 mb-2">{sec.titulo}</h2>
-                <p className="text-gray-700 leading-relaxed">{sec.cuerpo}</p>
-                {sec.enlaces && (
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {sec.enlaces.map((e) => (
-                      <a key={e.url} href={e.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 rounded-lg border border-gray-200 px-3 py-2 text-sm font-semibold text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">
-                        {e.texto} ↗
-                      </a>
-                    ))}
-                  </div>
-                )}
-                {sec.cta && (
-                  <div className="mt-3 rounded-xl bg-red-50 border border-red-100 p-4">
-                    <p className="text-sm text-gray-800 leading-relaxed">{sec.cta.texto}</p>
-                    <Link href={sec.cta.href} className="inline-block mt-2 text-sm font-bold text-[#E8002D] hover:underline">{sec.cta.boton} →</Link>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      <SeccionesDesarrollo secciones={cond.secciones} />
 
       {/* Qué documentación piden al afiliarte (buscador de preexistencias) */}
       {slug !== 'preexistencias' && <DocumentacionIngreso href={`/condiciones/${slug}`} tema={cond.nombre} />}
@@ -273,17 +248,7 @@ export default async function CondicionPage({ params }: Props) {
               </details>
             ))}
           </div>
-          {cond.fuentes && (
-            <p className="mt-6 text-xs text-gray-400 leading-relaxed">
-              Fuentes oficiales:{' '}
-              {cond.fuentes.map((f, i) => (
-                <span key={f.url}>
-                  {i > 0 && ' · '}
-                  <a href={f.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">{f.texto}</a>
-                </span>
-              ))}
-            </p>
-          )}
+          <FuentesOficiales fuentes={cond.fuentes} />
         </div>
       </section>
 

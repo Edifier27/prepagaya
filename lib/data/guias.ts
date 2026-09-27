@@ -958,8 +958,8 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Cirugía estética: cómo funciona el reintegro',
-          cuerpo: 'En los planes que la incluyen, la cirugía estética se cubre por reintegro, con un tope por plan: si la operación sale más que el tope, la diferencia la pagás vos. Con un tope de $3.500.000 y una cirugía de $4.000.000, por ejemplo, ponés $500.000. En Swiss Medical, según nuestra experiencia, el SMG50 la habilita a partir de los 12 meses de antigüedad, con un tope del orden de ese ejemplo en septiembre de 2026. Dónde te operás cambia mucho la cuenta: en un sanatorio propio de la prepaga (en Swiss Medical, por ejemplo, Los Arcos), la internación, el anestesista y las prótesis los cubre el plan y el reintegro queda para los honorarios del cirujano; en otro prestador, el presupuesto incluye todo y la diferencia suele ser mayor.',
-          cta: { texto: '¿Querés saber qué plan cubre la cirugía estética y desde cuándo? Te lo confirmamos por escrito con la prepaga.', boton: 'Consultar', href: '/comparador' },
+          cuerpo: 'En los planes que la incluyen, la cirugía estética se cubre por reintegro, con un tope por plan: si la operación sale más que el tope, la diferencia la pagás vos. Con un tope de $3.500.000 y una cirugía de $4.000.000, por ejemplo, ponés $500.000. En Swiss Medical, según nuestra experiencia, el SMG50 la habilita a partir de los 12 meses de antigüedad; según el alcance oficial del plan, el tope de reintegro es de $3.765.888 (vigencia septiembre de 2026). Dónde te operás cambia mucho la cuenta: en un sanatorio propio de la prepaga (en Swiss Medical, por ejemplo, Los Arcos), la internación, el anestesista y las prótesis los cubre el plan y el reintegro queda para los honorarios del cirujano; en otro prestador, el presupuesto incluye todo y la diferencia suele ser mayor.',
+          cta: { texto: 'Qué plan de cada prepaga cubre la cirugía estética, cada cuánto y con qué tope.', boton: 'Ver cirugía estética por prepaga', href: '/coberturas/cirugia-estetica' },
         },
         {
           titulo: 'La carencia que no esperabas: lo que no declaraste',
