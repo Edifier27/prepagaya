@@ -264,5 +264,66 @@ def decima():
             print(f'!! {e}')
 
 
+
+# ── Undécima pasada (27-sep-2026): leyes que faltan para el buscador "¿Qué me
+# cubre la prepaga?": 24.754 (prepagas = prestaciones obligatorias de las obras
+# sociales), 27.491 (vacunas), 27.675 (VIH), 27.447 (trasplantes), 27.674
+# (cáncer infantil), 25.929 (parto respetado), 27.611 (mil días), el art. 37 de
+# la 26.657 (salud mental) y el Decreto 956/2013 (fertilización: cuántos
+# tratamientos).
+LEYES_11 = {24754: 'prepagas', 27491: 'vacunación', 27675: 'VIH', 27447: 'trasplantes',
+            27674: 'cáncer infantil', 25929: 'parto respetado', 27611: 'mil días'}
+PREPAGA = re.compile(r'prepaga|obras? sociales?|Programa M[eé]dico Obligatorio|PMO|cien por ciento|100 ?%', re.I)
+
+
+def texto_norma(tipo, num, anio=None):
+    base = 'https://servicios.infoleg.gob.ar/infolegInternet/'
+    url = f'{base}buscarNormas.do?tipoNorma={tipo}&numero={num}' + (f'&anioSancion={anio}' if anio else '')
+    final, p, t = texto_de(url)
+    fichas = [urljoin(final, h) for h, x in p.anclas if 'verNorma.do' in h]
+    if not fichas:
+        return None, None, t[:600]
+    final, p, t = texto_de(fichas[0])
+    print(f'ficha: {final}')
+    print(t[:350].replace('\n', ' | '))
+    textos = [(x.strip(), urljoin(final, h)) for h, x in p.anclas if re.search(r'Texto (completo|actualizado)', x, re.I)]
+    textos.sort(key=lambda e: 0 if 'actualizado' in e[0].lower() else 1)
+    if not textos:
+        return None, None, 'sin link al texto'
+    final, p, t = texto_de(textos[0][1])
+    print(f'## {textos[0][0]}: {final} ({len(t)} caracteres)')
+    return final, p, t
+
+
+def undecima():
+    for num, tema in LEYES_11.items():
+        print(f'\n########## LEY {num} ({tema})')
+        try:
+            final, p, t = texto_norma(1, num)
+            if final is None:
+                print(f'!! {t}'); continue
+            print(t[:5000] if len(t) < 5000 else extractos(t, PREPAGA, antes=500, despues=900, tope=6000))
+        except Exception as e:  # noqa: BLE001
+            print(f'!! {e}')
+    print('\n########## LEY 26657 art. 37 y prepagas')
+    try:
+        final, p, t = texto_de('https://servicios.infoleg.gob.ar/infolegInternet/anexos/175000-179999/175977/norma.htm')
+        i = t.find('ARTICULO 37')
+        print(t[i:i + 1200] if i >= 0 else '!! sin art. 37')
+        print(extractos(t, re.compile(r'prepaga', re.I), antes=600, despues=600, tope=3000))
+    except Exception as e:  # noqa: BLE001
+        print(f'!! {e}')
+    print('\n########## DECRETO 956/2013 (fertilización)')
+    try:
+        final, p, t = texto_norma(2, 956, 2013)
+        if final is None:
+            print(f'!! {t}')
+        else:
+            i = t.find('ARTICULO 8')
+            print(t[i:i + 2500] if i >= 0 else extractos(t, re.compile(r'tratamientos|complejidad', re.I), tope=5000))
+    except Exception as e:  # noqa: BLE001
+        print(f'!! {e}')
+
+
 if __name__ == '__main__':
-    sys.exit(decima())
+    sys.exit(undecima())
