@@ -217,7 +217,7 @@ export const condiciones: CondicionData[] = [
       },
       {
         titulo: 'Embarazo en curso y edad: la ley y la práctica',
-        cuerpo: 'En la práctica hay prepagas que no toman afiliaciones con un embarazo en curso, y otras que a partir de cierta edad solo ofrecen planes parciales. La norma dice otra cosa: las preexistencias y la edad no pueden ser criterio de rechazo (Ley 26.682, artículos 10 y 11), y desde el Decreto 102/2025 los planes de la última franja etaria "deben estar disponibles sin límites de edad máxima" (Decreto 1993/2011, artículo 17). Si te rechazan o te ofrecen solo un plan inferior, pedí la respuesta por escrito: con eso podés reclamar ante la Superintendencia de Servicios de Salud.',
+        cuerpo: 'En la práctica, con un embarazo en curso es muy difícil entrar: hay prepagas que directamente no lo aceptan. Y si alguien entra embarazada sin declararlo, cuando la prepaga lo detecta suele cobrarle las carencias, es decir, un pago extra por los meses de espera que no cumplió. También hay prepagas que a partir de cierta edad solo ofrecen planes parciales. La norma dice otra cosa: las preexistencias y la edad no pueden ser criterio de rechazo (Ley 26.682, artículos 10 y 11), y desde el Decreto 102/2025 los planes de la última franja etaria "deben estar disponibles sin límites de edad máxima" (Decreto 1993/2011, artículo 17). Si te rechazan o te ofrecen solo un plan inferior, pedí la respuesta por escrito: con eso podés reclamar ante la Superintendencia de Servicios de Salud.',
         cta: { texto: 'Cómo hacer el reclamo ante la SSSalud, paso a paso.', boton: 'Ver la guía', href: '/guias/como-reclamar-a-una-prepaga' },
       },
     ],

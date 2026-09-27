@@ -479,7 +479,7 @@ export const preexistenciasDoc: PreexistenciaDoc[] = [
     sinonimos: ['embarazo', 'embarazada', 'fum', 'ultima menstruacion', 'ecografia obstetrica'],
     nivel: 'si',
     documentos: ['La fecha de tu última menstruación.', 'Si estás embarazada, la ecografía obstétrica.'],
-    nota: 'En la práctica, algunas prepagas no toman afiliaciones con un embarazo en curso, aunque la ley dice que las preexistencias no pueden ser motivo de rechazo.',
+    nota: 'En la práctica, con un embarazo en curso es muy difícil entrar: algunas prepagas no lo aceptan, aunque la ley dice que las preexistencias no pueden ser motivo de rechazo. Si entrás embarazada sin declararlo, cuando lo detectan suelen cobrarte las carencias (un pago extra por los meses de espera que no cumpliste). Declaralo siempre.',
     enlace: { href: '/condiciones/preexistencias', texto: 'Preexistencias: la ley y la práctica' },
   },
   {
