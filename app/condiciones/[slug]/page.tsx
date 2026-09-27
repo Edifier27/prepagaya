@@ -8,6 +8,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CondicionIcon, CoberturaIcon } from '@/components/ui/CategoryIcon'
+import { DocumentacionIngreso } from '@/components/preexistencias/DocumentacionIngreso'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -171,6 +172,9 @@ export default async function CondicionPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {/* Qué documentación piden al afiliarte (buscador de preexistencias) */}
+      {slug !== 'preexistencias' && <DocumentacionIngreso href={`/condiciones/${slug}`} tema={cond.nombre} />}
 
       {/* Prepagas recomendadas (solo si hay recomendaciones con fundamento) */}
       {recomendadas.length > 0 && (

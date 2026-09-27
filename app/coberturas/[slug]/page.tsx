@@ -8,6 +8,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
+import { DocumentacionIngreso } from '@/components/preexistencias/DocumentacionIngreso'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -166,6 +167,9 @@ export default async function CoberturaPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {/* Qué documentación piden al afiliarte (buscador de preexistencias) */}
+      <DocumentacionIngreso href={`/coberturas/${slug}`} tema={cob.nombre} />
 
       {/* Prepagas recomendadas */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">

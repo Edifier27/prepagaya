@@ -12,6 +12,7 @@ import { blogPosts } from '@/lib/data/blog'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { normalizarTexto } from '@/lib/cartilla-zonas-geo'
+import { preexistenciasDoc, NIVEL_DOC } from '@/lib/data/preexistencias-documentacion'
 
 // Índice del buscador del sitio (24-sep-2026, idea de Darío: "que busque la
 // prepaga que quieras y le salte nuestra URL"). Se arma en el build y se
@@ -46,6 +47,11 @@ export function indiceBuscador(): EntradaBuscador[] {
   add('Códigos de obras sociales', '/obras-sociales/codigos', G('Herramientas'), 'Código RNOS para AFIP/ARCA', 'codigo rnos rnas afip arca alta temprana')
   add('Ranking de prepagas', '/ranking', G('Herramientas'), 'Las mejores prepagas', 'mejores ranking')
   add('Prepagas económicas', '/prepagas-economicas', G('Herramientas'), 'Los planes más baratos', 'barata economica')
+  add('Preexistencias: qué papeles te piden', '/declaracion-jurada-de-salud', G('Herramientas'), 'Documentación para la declaración jurada de salud', 'preexistencia declaracion jurada ddjj auditoria documentacion papeles enfermedad')
+  // Cada condición del buscador de preexistencias, con lo que piden como subtítulo
+  for (const p of preexistenciasDoc) {
+    add(`${p.nombre}: qué te piden para afiliarte`, `/declaracion-jurada-de-salud?c=${p.slug}`, G('Coberturas'), NIVEL_DOC[p.nivel].texto, `preexistencia ${p.sinonimos.join(' ')}`)
+  }
 
   // Prepagas y planes
   for (const p of prepagas) {

@@ -8,6 +8,7 @@ import { perfiles } from '@/lib/data/perfiles'
 import { blogPosts } from '@/lib/data/blog'
 import { coberturas } from '@/lib/data/coberturas'
 import { condiciones } from '@/lib/data/condiciones'
+import { PREEXISTENCIAS_DOC_FECHA } from '@/lib/data/preexistencias-documentacion'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { INFORMES_PROVINCIA } from '@/lib/prensa/sueldo-prepaga'
@@ -46,6 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/metodologia`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/prepaga-por-presupuesto`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.80 },
     { url: `${BASE}/buscar-por-sanatorio`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/declaracion-jurada-de-salud`, lastModified: new Date(PREEXISTENCIAS_DOC_FECHA).toISOString(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/chequeo-prepaga`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/match-prepaga`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/calculadora-aportes`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },

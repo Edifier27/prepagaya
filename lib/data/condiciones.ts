@@ -209,7 +209,7 @@ export const condiciones: CondicionData[] = [
       {
         titulo: 'Qué te va a pedir el auditor',
         cuerpo: 'En general, un resumen de historia clínica firmado por tu médico con el diagnóstico, cuándo empezó, cómo evolucionó, cómo estás hoy, las internaciones y el tratamiento, más los últimos estudios y un laboratorio reciente. Según nuestra experiencia, en una hipertensión con varios medicamentos suelen pedir estudios cardiológicos; en una diabetes, un formulario del diabetólogo o del endocrinólogo; y con un índice de masa corporal de 30 o más, un resumen con peso, talla y los tratamientos de los últimos dos años. Llevarlo todo junto desde el principio evita idas y vueltas. Derivar tus aportes de obra social o pagar como particular no cambia la evaluación.',
-        cta: { texto: '¿Tenés una preexistencia? Contanos tu caso y te decimos cómo suele evaluarlo cada prepaga antes de que presentes la declaración.', boton: 'Consultar', href: '/comparador' },
+        cta: { texto: '¿Qué te van a pedir a vos? Buscá tu condición y armá la lista de documentación para la declaración jurada.', boton: 'Buscar mi condición', href: '/declaracion-jurada-de-salud' },
       },
       {
         titulo: 'Qué declarar y qué pasa si no lo declarás',

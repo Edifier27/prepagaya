@@ -1260,6 +1260,7 @@ export const guias: GuiaData[] = [
         {
           titulo: 'La declaración jurada: dedicale tiempo',
           cuerpo: 'Es el documento más importante del legajo: enfermedades diagnosticadas, cirugías, internaciones, medicación habitual, tratamientos en curso. Regla simple: si un médico te lo diagnosticó o lo tomás recetado, va en la DDJJ. Declarar no te expone al rechazo (está prohibido rechazar por preexistencias); ocultar sí te expone a perder cobertura futura. Si tenés dudas sobre cómo declarar algo, pedí completarla con el asesor y dejá constancia escrita de lo conversado.',
+          cta: { texto: '¿Qué papeles te van a pedir según lo que declares? Buscá tu condición y armá la lista.', boton: 'Buscar mi condición', href: '/declaracion-jurada-de-salud' },
         },
         {
           titulo: 'Errores que demoran o encarecen el alta',
