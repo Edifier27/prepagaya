@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import type { DatosMatch, PlanMatch, UsoMatch } from '@/lib/data/match'
 import { PROVINCIAS } from '@/lib/data/provincias-cotizador'
@@ -8,6 +8,7 @@ import { useZonaDetectada } from '@/lib/use-zona-detectada'
 import { enviarLead, preciosDelGrupo } from '@/lib/leads-cliente'
 import { formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { FormularioLead, type DatosFormulario } from './FormularioLead'
+import { MatchAnimacion, claseCriterio, claseEntrar, type FaseMatch } from './MatchAnimacion'
 
 // "Match" (/match-prepaga, 24-sep-2026): seis tarjetas de a una, y el plan
 // que más coincide con lo que la persona dijo, con el porqué punto por punto.
@@ -101,6 +102,13 @@ export function MatchPrepaga({ datos, usos }: Props) {
   // Zona aproximada por la ubicación: aparece primero, con un toque (25-sep-2026)
   const detectada = useZonaDetectada()
 
+  // Animación antes del resultado, como la de un pago o una transferencia
+  // (Darío, 27-sep-2026): "buscando" ~1,6 s, check con confeti ~1,1 s.
+  const [fase, setFase] = useState<FaseMatch | 'resultado'>('resultado')
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([])
+  const cortarTimers = () => { timers.current.forEach(clearTimeout); timers.current = [] }
+  useEffect(() => cortarTimers, [])
+
   const TOTAL = 6
   const avanzar = (cambio: Partial<Respuestas>) => { setR((prev) => ({ ...prev, ...cambio })); setPaso((p) => p + 1) }
   const resultados = paso >= TOTAL ? ranking(datos, r, usos).slice(0, 3) : []
@@ -131,6 +139,13 @@ export function MatchPrepaga({ datos, usos }: Props) {
 
   function verMatch() {
     setPaso(TOTAL)
+    cortarTimers()
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setFase('resultado')
+    } else {
+      setFase('buscando')
+      timers.current.push(setTimeout(() => setFase('listo'), 1600), setTimeout(() => setFase('resultado'), 2750))
+    }
     if (edadesGrupo) preciosDelGrupo(prov?.zonaKey ?? 'caba', edadesGrupo).then(setPrecios)
   }
 
@@ -248,6 +263,10 @@ export function MatchPrepaga({ datos, usos }: Props) {
   const cumple = (m: Match) => m.criterios.filter((c) => c.ok === true).length
   const precioDe = (m: Match) => (precios ? precios[m.plan.k] : undefined)
 
+  if (primero && fase !== 'resultado') {
+    return <MatchAnimacion fase={fase} plan={`${primero.plan.prepagaNombre} ${primero.plan.planNombre}`} />
+  }
+
   return (
     <div aria-live="polite">
       {!primero ? (
@@ -256,7 +275,7 @@ export function MatchPrepaga({ datos, usos }: Props) {
         </div>
       ) : (
         <>
-          <div className="rounded-3xl border-2 border-[#E8002D]/30 bg-white p-5 sm:p-7 shadow-sm">
+          <div className={`rounded-3xl border-2 border-[#E8002D]/30 bg-white p-5 sm:p-7 shadow-sm ${claseEntrar}`}>
             <p className="text-xs font-bold uppercase tracking-wide text-[#E8002D]">Tu match</p>
             <div className="flex items-start justify-between gap-3 mt-1">
               <div>
@@ -266,8 +285,8 @@ export function MatchPrepaga({ datos, usos }: Props) {
               <PrecioMatch valor={precioDe(primero)} bloqueado={!precios} calculando={Boolean(edadesGrupo)} onVer={() => setFormAbierto(true)} />
             </div>
             <ul className="mt-4 space-y-1.5">
-              {primero.criterios.map((c) => (
-                <li key={c.texto} className="flex gap-2 text-sm">
+              {primero.criterios.map((c, i) => (
+                <li key={c.texto} className={`flex gap-2 text-sm ${claseCriterio}`} style={{ animationDelay: `${0.25 + i * 0.09}s` }}>
                   <span className={c.ok === true ? 'text-green-700' : c.ok === false ? 'text-red-600' : 'text-gray-400'} aria-hidden>{c.ok === true ? '✓' : c.ok === false ? '✗' : '–'}</span>
                   <span className="text-gray-800">{c.texto}</span>
                 </li>
@@ -302,7 +321,7 @@ export function MatchPrepaga({ datos, usos }: Props) {
               Ver cuánto me sale cada uno →
             </button>
           )}
-          <button type="button" onClick={() => { setPaso(0); setR({ usos: [] }); setPrecios(null) }} className="mt-3 w-full text-sm font-semibold text-gray-600 hover:text-gray-900">
+          <button type="button" onClick={() => { cortarTimers(); setPaso(0); setR({ usos: [] }); setPrecios(null) }} className="mt-3 w-full text-sm font-semibold text-gray-600 hover:text-gray-900">
             Empezar de nuevo
           </button>
           <p className="text-xs text-gray-500 mt-4">Coberturas según los documentos oficiales de cada prepaga; si un plan no tiene el dato, no lo contamos ni a favor ni en contra. <Link href="/buscar-por-sanatorio" className="underline">¿Tenés sanatorios preferidos? Chequealos acá</Link>.</p>
