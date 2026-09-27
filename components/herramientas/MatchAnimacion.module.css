@@ -1,0 +1,195 @@
+/* Animación del "match" (27-sep-2026, pedido de Darío: "como cuando pagás por
+   Mercado Libre o hacés una transferencia"). Módulo propio para que solo se
+   cargue en /match-prepaga. */
+
+.caja {
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 2rem 1.25rem;
+  border-radius: 1.5rem;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+  text-align: center;
+}
+
+.icono {
+  position: relative;
+  width: 96px;
+  height: 96px;
+}
+
+.svg {
+  width: 96px;
+  height: 96px;
+  overflow: visible;
+}
+
+/* Buscando: anillo rojo que gira */
+.anillo {
+  fill: none;
+  stroke: #e8002d;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 118 58;
+  transform-origin: 32px 32px;
+  animation: girar 0.9s linear infinite;
+}
+
+.pista {
+  fill: none;
+  stroke: #fde2e7;
+  stroke-width: 5;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+/* Listo: círculo verde que aparece con rebote y el check que se dibuja */
+.circulo {
+  fill: #00a650;
+  transform-origin: 32px 32px;
+  animation: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes pop {
+  from { transform: scale(0.4); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.check {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 44;
+  stroke-dashoffset: 44;
+  animation: dibujar 0.35s 0.25s ease-out forwards;
+}
+
+@keyframes dibujar {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Onda que sale del círculo */
+.onda {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 3px solid #00a650;
+  animation: onda 0.8s 0.1s ease-out both;
+}
+
+@keyframes onda {
+  from { transform: scale(0.85); opacity: 0.6; }
+  to { transform: scale(1.6); opacity: 0; }
+}
+
+/* Confeti: 14 papelitos que salen en círculo */
+.confeti {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+}
+
+.confeti i {
+  position: absolute;
+  left: -3px;
+  top: -5px;
+  width: 6px;
+  height: 10px;
+  border-radius: 2px;
+  background: #e8002d;
+  opacity: 0;
+  --angulo: calc(var(--i) * 25.7deg);
+  animation: estallar 0.9s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.confeti i:nth-child(4n + 2) { background: #00a650; }
+.confeti i:nth-child(4n + 3) { background: #f5b400; }
+.confeti i:nth-child(4n + 4) { background: #3483fa; }
+
+@keyframes estallar {
+  0% { transform: rotate(var(--angulo)) translateY(0) scale(0.5); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: rotate(var(--angulo)) translateY(-86px) rotate(200deg) scale(1); opacity: 0; }
+}
+
+/* Mensajes mientras busca: uno después del otro */
+.mensajes {
+  position: relative;
+  height: 1.5rem;
+  width: 100%;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.mensajes span {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: mensaje 0.55s ease-out both;
+}
+
+.mensajes span:nth-child(1) { animation-delay: 0s; }
+.mensajes span:nth-child(2) { animation-delay: 0.55s; }
+.mensajes span:nth-child(3) { animation: mensaje-final 0.35s 1.1s ease-out forwards; }
+
+@keyframes mensaje {
+  0% { opacity: 0; transform: translateY(8px); }
+  20%, 80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+
+@keyframes mensaje-final {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.titulo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+  animation: subir 0.4s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.plan {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #e8002d;
+  animation: subir 0.4s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes subir {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Resultado: la tarjeta sube y los criterios aparecen de a uno */
+.entrar {
+  animation: subir 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.criterio {
+  animation: subir 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anillo, .circulo, .check, .onda, .confeti i, .mensajes span, .titulo, .plan, .entrar, .criterio {
+    animation: none;
+  }
+  .check { stroke-dashoffset: 0; }
+  .mensajes span:nth-child(3) { opacity: 1; }
+  .confeti, .onda { display: none; }
+}
