@@ -1,174 +1,312 @@
 export type CategoriaGlosario = 'Costos' | 'Cobertura' | 'Contratación' | 'Legal' | 'Tipos'
 
+export interface FuenteTermino {
+  texto: string
+  url: string
+}
+
 export interface Termino {
+  /** ancla en /glosario (#slug) */
+  slug: string
   termino: string
   definicion: string
   categoria: CategoriaGlosario
   ejemplo?: string
+  /** Cómo aparece en los textos del sitio, para marcarlo y explicarlo en el
+   *  lugar (components/glosario). Sin tildes ni mayúsculas no importa. */
+  alias?: string[]
+  fuente?: FuenteTermino
 }
+
+// Glosario revisado el 28-sep-2026 (Darío: "un glosario con la info bien
+// pro"): cada definición sale de una norma o de la guía oficial "Ley simple:
+// Medicina prepaga" de argentina.gob.ar. Se sacaron datos que no estaban
+// verificados (porcentajes de aumento por edad, precios de ejemplo que
+// vencen, plazos "por ley" que ninguna norma fija) y el ANSSAL, que ya no
+// existe. Los alias sirven para explicar cada término la primera vez que
+// aparece en una guía o ficha.
+
+const LEY_SIMPLE: FuenteTermino = { texto: 'Ley simple: Medicina prepaga (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/medicina-prepaga' }
+const PMO: FuenteTermino = { texto: 'PMO, Res. 201/2002, Anexo I (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/73649/res201-2002MS-anexoI.htm' }
+const LEY_26682: FuenteTermino = { texto: 'Ley 26.682 (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' }
+const DEC_1993: FuenteTermino = { texto: 'Decreto 1993/2011 (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/190000-194999/190606/texact.htm' }
+const RES_310: FuenteTermino = { texto: 'Res. 310/2004 del Ministerio de Salud (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/90000-94999/94218/norma.htm' }
+const LEY_24901: FuenteTermino = { texto: 'Ley 24.901 (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/45000-49999/47677/texact.htm' }
 
 export const terminos: Termino[] = [
   // COSTOS
   {
+    slug: 'cuota-mensual',
     termino: 'Cuota mensual',
-    definicion: 'Monto fijo que pagás todos los meses por tu cobertura de salud prepaga. Varía según tu edad, el plan elegido y si contratás en relación de dependencia o como particular.',
+    definicion: 'Lo que pagás todos los meses por tu plan. Depende del plan, de la edad de cada integrante del grupo y de si pagás como particular o derivando tus aportes, y se actualiza con los aumentos que informa cada prepaga.',
     categoria: 'Costos',
-    ejemplo: 'Un plan SMG20 de Swiss Medical cuesta $185.000/mes para una persona de 30 años.',
+    alias: ['cuota mensual'],
   },
   {
+    slug: 'copago',
     termino: 'Copago',
-    definicion: 'Monto fijo que abonás en el momento de cada prestación: consulta médica, análisis o práctica. Es adicional a la cuota mensual.',
+    definicion: 'Monto que pagás en el momento de usar una prestación (una consulta, un estudio), además de la cuota. Hay planes con copago y planes sin copago: los sin copago tienen la cuota más alta.',
     categoria: 'Costos',
-    ejemplo: 'Copago de $5.000 por cada consulta con especialista.',
+    alias: ['copago', 'copagos', 'sin copago', 'con copago'],
   },
   {
+    slug: 'coseguro',
     termino: 'Coseguro',
-    definicion: 'Porcentaje del costo total de una práctica o medicamento que la prepaga te transfiere a vos. A diferencia del copago, no es un monto fijo sino proporcional al costo.',
+    definicion: 'Es el nombre que usa el PMO para lo que pagás vos en cada consulta o estudio: un monto fijo, no un porcentaje. Hay prestaciones exentas de todo coseguro: el embarazo, el parto y el puerperio, el bebé hasta que cumple un año, los pacientes oncológicos y los programas preventivos.',
     categoria: 'Costos',
-    ejemplo: '20% de coseguro en cirugías electivas.',
+    alias: ['coseguro', 'coseguros'],
+    fuente: PMO,
   },
   {
-    termino: 'Bono de consulta',
-    definicion: 'Comprobante que emite la prepaga para que puedas atenderte con un médico. En algunos planes lo generás por la app; en otros es un cupón físico.',
+    slug: 'cuota-diferencial',
+    termino: 'Cuota diferencial',
+    definicion: 'Cuota más alta que la prepaga puede cobrarte por una enfermedad preexistente que declaraste. El monto y el plazo durante el que se cobra tienen que estar autorizados por la Superintendencia de Servicios de Salud.',
+    categoria: 'Costos',
+    alias: ['cuota diferencial', 'cuota mayor'],
+    fuente: LEY_SIMPLE,
+  },
+  {
+    slug: 'franja-etaria',
+    termino: 'Franja etaria',
+    definicion: 'Rango de edad que usa la prepaga para fijar la cuota. La cuota de la última franja no puede superar el triple de la de la primera. Si tenés 10 años o más de antigüedad continua en la misma prepaga, no pueden aumentarte la cuota por cumplir 65.',
+    categoria: 'Costos',
+    alias: ['franja etaria', 'franjas etarias', 'rango etario', 'rangos etarios', 'aumento por edad'],
+    fuente: LEY_SIMPLE,
+  },
+  {
+    slug: 'lista-deriva',
+    termino: 'Lista deriva',
+    definicion: 'Lista de precios para quienes pagan la prepaga derivando sus aportes de la obra social (relación de dependencia o monotributo), distinta de la lista de precios para particulares.',
     categoria: 'Costos',
   },
   {
-    termino: 'Ajuste por edad',
-    definicion: 'Las cuotas de prepaga aumentan con la edad del afiliado. El aumento puede ser de hasta un 100-200% entre los 30 y los 65 años.',
+    slug: 'reintegro',
+    termino: 'Reintegro',
+    definicion: 'Devolución de una parte de lo que pagaste cuando te atendés con un profesional fuera de la cartilla. Solo lo tienen algunos planes, con topes por práctica que la prepaga actualiza.',
     categoria: 'Costos',
-    ejemplo: 'Un plan que cuesta $120.000 a los 30 años puede costar $340.000 a los 60.',
+    alias: ['reintegro', 'reintegros'],
   },
   {
-    termino: 'Lista Deriva',
-    definicion: 'Precios sin IVA para personas en relación de dependencia que derivan sus aportes a la prepaga. Son más bajos que los precios de particular.',
+    slug: 'precio-de-referencia',
+    termino: 'Precio de referencia',
+    definicion: 'Valor fijo sobre el que se calcula el porcentaje de cobertura de los medicamentos del PMO: 40% en los de uso habitual y 70% en los de enfermedades crónicas que se toman de forma permanente.',
     categoria: 'Costos',
+    alias: ['precio de referencia'],
+    fuente: RES_310,
   },
 
   // COBERTURA
   {
-    termino: 'PMO',
-    definicion: 'Programa Médico Obligatorio. Conjunto mínimo de prestaciones que toda prepaga u obra social debe cubrir por ley en Argentina, regulado por la Resolución 201/2002 de la SSSalud. Ninguna empresa puede negar las prácticas del PMO.',
+    slug: 'pmo',
+    termino: 'PMO (Programa Médico Obligatorio)',
+    definicion: 'Piso de prestaciones que toda prepaga tiene que cubrir en todos sus planes, del más barato al más caro. Lo fija el Ministerio de Salud (Res. 201/2002) y lo amplían leyes especiales, como las de fertilización, diabetes o celiaquía.',
     categoria: 'Cobertura',
-    ejemplo: 'El PMO incluye consultas médicas, análisis clínicos, internación, parto y medicamentos.',
+    alias: ['PMO', 'Programa Médico Obligatorio'],
+    fuente: LEY_26682,
   },
   {
+    slug: 'prestacion-superadora',
+    termino: 'Prestación superadora',
+    definicion: 'Todo lo que un plan cubre por encima del PMO: por ejemplo, ortodoncia, cirugía estética, habitación individual, cobertura en el exterior o reintegros. Es donde se diferencian los planes, y puede tener carencia.',
+    categoria: 'Cobertura',
+    alias: ['prestación superadora', 'prestaciones superadoras', 'superadora', 'superadoras'],
+  },
+  {
+    slug: 'cartilla',
     termino: 'Cartilla médica',
-    definicion: 'Listado oficial de médicos, clínicas y sanatorios habilitados por tu prepaga. Podés consultar qué profesionales aceptan tu cobertura antes de sacar turno.',
+    definicion: 'Lista de profesionales, sanatorios y guardias que cubre tu plan. Si el médico con el que te tratabas deja la cartilla, tenés derecho a que te siga atendiendo hasta el alta.',
     categoria: 'Cobertura',
+    alias: ['cartilla', 'cartillas', 'cartilla médica'],
+    fuente: LEY_SIMPLE,
   },
   {
-    termino: 'Red abierta',
-    definicion: 'Plan que te permite atenderte con cualquier médico o clínica del país, aunque no esté en la cartilla. Ofrecen máxima libertad de elección.',
+    slug: 'red-abierta',
+    termino: 'Red abierta (libre elección)',
+    definicion: 'Plan que, además de la cartilla, te deja atenderte con otros profesionales y pedir reintegro de una parte de lo que pagaste. Los planes altos suelen tenerlo.',
     categoria: 'Cobertura',
-    ejemplo: 'OSDE Plan 410 y 510 tienen red abierta total.',
+    alias: ['red abierta', 'libre elección'],
   },
   {
+    slug: 'red-cerrada',
     termino: 'Red cerrada',
-    definicion: 'Plan donde solo podés atenderte con los prestadores que figuran en la cartilla de tu prepaga. Suelen ser más económicos que los planes de red abierta.',
+    definicion: 'Plan en el que solo te cubren los profesionales y sanatorios de la cartilla, sin reintegros. Suelen ser los planes más económicos.',
     categoria: 'Cobertura',
+    alias: ['red cerrada', 'plan cerrado', 'cartilla cerrada'],
   },
   {
+    slug: 'alta-complejidad',
     termino: 'Alta complejidad',
-    definicion: 'Prestaciones de gran costo tecnológico o médico: trasplantes, oncología avanzada, cirugías cardíacas, diálisis. El PMO obliga a cubrirlas al 100%.',
+    definicion: 'Estudios y tratamientos de mayor costo o tecnología, como la resonancia, la tomografía o una cirugía programada. Están en el PMO y la prepaga suele pedir autorización previa con la orden médica.',
     categoria: 'Cobertura',
+    alias: ['alta complejidad'],
   },
   {
+    slug: 'autorizacion-previa',
     termino: 'Autorización previa',
-    definicion: 'Aprobación que la prepaga debe darte antes de realizarte una práctica de mediana o alta complejidad. Por ley, tiene plazos máximos de respuesta.',
+    definicion: 'Aprobación que la prepaga te pide antes de algunas prácticas (estudios de alta complejidad, cirugías, internaciones programadas). Se tramita con la orden y el informe del médico; si te la niegan, pedí la respuesta por escrito.',
     categoria: 'Cobertura',
+    alias: ['autorización previa', 'autorizaciones previas', 'auditoría previa'],
   },
   {
+    slug: 'auditoria-medica',
+    termino: 'Auditoría médica',
+    definicion: 'El equipo médico de la prepaga que revisa tu declaración jurada y tus estudios al afiliarte, y que autoriza las prácticas que lo requieren.',
+    categoria: 'Cobertura',
+    alias: ['auditoría médica', 'auditor médico', 'auditoría'],
+  },
+  {
+    slug: 'internacion',
     termino: 'Internación',
-    definicion: 'Estadía en sanatorio o clínica por 24 horas o más. El PMO exige cobertura total de la internación; solo puede existir copago si está previsto en el contrato.',
+    definicion: 'Por el PMO se cubre al 100% y sin límite de tiempo, en sanatorio, en hospital de día o en tu casa (internación domiciliaria), con los medicamentos incluidos. La única excepción al "sin límite" es salud mental, que tiene su propio tope.',
     categoria: 'Cobertura',
+    alias: ['internación', 'internaciones', 'internación domiciliaria'],
+    fuente: PMO,
   },
   {
-    termino: 'Cobertura ambulatoria',
-    definicion: 'Prestaciones que recibís sin necesidad de internarte: consultas médicas, análisis, radiografías, vacunas, kinesiología.',
+    slug: 'plan-materno-infantil',
+    termino: 'Plan Materno Infantil',
+    definicion: 'Parte del PMO que cubre al 100% y sin coseguros el embarazo (desde el diagnóstico), el parto y el primer mes después, y al bebé hasta que cumple un año.',
     categoria: 'Cobertura',
+    alias: ['plan materno infantil', 'materno infantil'],
+    fuente: PMO,
+  },
+  {
+    slug: 'urgencia-emergencia',
+    termino: 'Urgencia y emergencia',
+    definicion: 'Urgencia es, por ejemplo, un accidente o una complicación del embarazo; emergencia, una situación en la que corre riesgo tu vida o puede haber lesiones irreparables. Tenés derecho a que te atiendan aunque haya dudas sobre si tu plan lo cubre.',
+    categoria: 'Cobertura',
+    alias: ['emergencia', 'emergencias', 'urgencia', 'urgencias'],
+    fuente: LEY_SIMPLE,
+  },
+  {
+    slug: 'cobertura-ambulatoria',
+    termino: 'Cobertura ambulatoria',
+    definicion: 'Lo que recibís sin internarte: consultas, estudios, kinesiología, vacunas y medicamentos de farmacia.',
+    categoria: 'Cobertura',
+    alias: ['ambulatoria', 'ambulatorio', 'ambulatorios'],
   },
 
   // CONTRATACIÓN
   {
+    slug: 'carencia',
     termino: 'Carencia',
-    definicion: 'Plazo desde que te afiliás durante el cual una prestación superadora al PMO todavía no está cubierta. Por ley no puede aplicarse a nada del PMO ni superar los 12 meses corridos (Decreto 1993/2011, artículo 10).',
+    definicion: 'Plazo de espera desde que te afiliás para usar una prestación superadora. No puede aplicarse a nada del PMO, el contrato tiene que decir a qué prestaciones alcanza y nunca puede superar los 12 meses desde la firma.',
     categoria: 'Contratación',
-    ejemplo: 'La cirugía estética de un plan alto, que se habilita recién a los 12 meses de afiliación.',
+    ejemplo: 'La cirugía estética de un plan alto, que se habilita recién a los meses de afiliarte.',
+    alias: ['carencia', 'carencias', 'período de carencia', 'periodo de carencia'],
+    fuente: DEC_1993,
   },
   {
+    slug: 'preexistencia',
     termino: 'Preexistencia',
-    definicion: 'Enfermedad o condición que ya tenías antes de contratar la prepaga y que declarás en la declaración jurada de salud. No puede ser motivo de rechazo, pero la prepaga puede cobrar una cuota diferencial autorizada por la SSSalud (Ley 26.682, artículo 10).',
+    definicion: 'Enfermedad o condición que ya tenías antes de afiliarte. Se informa en la declaración jurada de salud y no puede ser motivo de rechazo; la prepaga puede cobrar una cuota diferencial autorizada por la SSSalud.',
     categoria: 'Contratación',
+    alias: ['preexistencia', 'preexistencias', 'preexistente', 'preexistentes'],
+    fuente: LEY_26682,
   },
   {
+    slug: 'declaracion-jurada',
+    termino: 'Declaración jurada de salud',
+    definicion: 'Formulario que completás al afiliarte sobre tu historia médica y la de tu grupo. Hay que responder con la verdad: si después se descubre un dato falso, la prepaga puede terminar el contrato.',
+    categoria: 'Contratación',
+    alias: ['declaración jurada', 'declaraciones juradas', 'DDJJ'],
+    fuente: LEY_SIMPLE,
+  },
+  {
+    slug: 'derivacion-de-aportes',
     termino: 'Derivación de aportes',
-    definicion: 'Mecanismo por el cual un trabajador en relación de dependencia redirige sus aportes obligatorios de salud (3% empleado + 6% empleador) a la prepaga que prefiera.',
+    definicion: 'Usar los aportes de tu obra social (de tu sueldo o del monotributo) para pagar una prepaga, a través de una obra social que tenga convenio con ella. Pagás solo la diferencia entre la cuota y tus aportes.',
     categoria: 'Contratación',
+    alias: ['derivación de aportes', 'derivar aportes', 'derivar tus aportes', 'derivás tus aportes', 'derivando tus aportes', 'derivan sus aportes'],
   },
   {
-    termino: 'Período de declaración jurada',
-    definicion: 'Al afiliarte, declarás tus condiciones de salud actuales. La prepaga no puede rechazarte, pero puede imponer carencias en base a lo declarado.',
+    slug: 'grupo-familiar',
+    termino: 'Grupo familiar',
+    definicion: 'Quienes podés sumar a tu plan: tu cónyuge o conviviente, tus hijos solteros hasta los 21 (hasta los 25 si estudian y están a tu cargo, y sin límite si tienen una discapacidad y están a tu cargo), los hijos de tu cónyuge y los menores bajo tu guarda o tutela.',
     categoria: 'Contratación',
+    alias: ['grupo familiar'],
+    fuente: LEY_SIMPLE,
   },
   {
-    termino: 'Rescisión',
-    definicion: 'Finalización voluntaria del contrato con la prepaga. Debés notificarlo con anticipación según lo que indique el contrato (generalmente 30 días).',
+    slug: 'baja',
+    termino: 'Baja de la prepaga',
+    definicion: 'Podés darte de baja en cualquier momento, avisando con 30 días de anticipación, una vez por año, sin multas ni cargos y sin que te exijan pagar lo adeudado. La prepaga solo puede terminar el contrato por 3 cuotas impagas consecutivas (intimándote antes) o por falsedad en la declaración jurada.',
     categoria: 'Contratación',
+    alias: ['darte de baja', 'darse de baja', 'dar de baja', 'rescisión', 'rescindir'],
+    fuente: LEY_SIMPLE,
   },
   {
+    slug: 'monotributista',
     termino: 'Monotributista',
-    definicion: 'Trabajador adherido al régimen de Monotributo. Paga obra social incluida en su cuota mensual, pero también puede contratar una prepaga privada de forma directa.',
+    definicion: 'Quien está en el Monotributo paga una obra social dentro de su cuota mensual, y puede derivar ese aporte a una prepaga o contratar una de forma particular.',
     categoria: 'Contratación',
+    alias: ['monotributista', 'monotributistas', 'monotributo'],
   },
 
   // LEGAL
   {
+    slug: 'ley-26682',
     termino: 'Ley 26.682',
-    definicion: 'Marco Regulatorio de Medicina Prepaga sancionado en 2011. Regula los derechos y obligaciones de prepagas, prohíbe el rechazo por preexistencias y establece el PMO como piso mínimo.',
+    definicion: 'Marco regulatorio de la medicina prepaga (2011). Obliga a cubrir el PMO en todos los planes, prohíbe rechazar a alguien por preexistencias o por edad y fija las reglas de carencias, bajas y aumentos por edad.',
     categoria: 'Legal',
+    alias: ['Ley 26.682', 'Ley 26682'],
+    fuente: LEY_26682,
   },
   {
-    termino: 'SSS',
-    definicion: 'Superintendencia de Servicios de Salud. Organismo estatal que regula, fiscaliza y sanciona a prepagas y obras sociales en Argentina. Podés hacer reclamos ante la SSS.',
+    slug: 'sssalud',
+    termino: 'SSSalud (Superintendencia de Servicios de Salud)',
+    definicion: 'Organismo del Estado que controla a las prepagas y obras sociales y recibe los reclamos de los afiliados, gratis, en el 0800-222-72583 o en sssalud.gob.ar.',
     categoria: 'Legal',
+    alias: ['SSSalud', 'Superintendencia de Servicios de Salud', 'SSS', 'Superintendencia'],
   },
   {
-    termino: 'ANSSAL',
-    definicion: 'Administración Nacional del Seguro de Salud. Redistribuye los aportes del Fondo Solidario de Redistribución entre las obras sociales para garantizar la cobertura mínima.',
+    slug: 'cud',
+    termino: 'CUD (Certificado Único de Discapacidad)',
+    definicion: 'Certificado que acredita una discapacidad. Con él rige la cobertura total de las prestaciones básicas de la Ley 24.901, que las prepagas también tienen que dar.',
     categoria: 'Legal',
+    alias: ['CUD', 'Certificado Único de Discapacidad'],
+    fuente: LEY_24901,
   },
 
   // TIPOS
   {
+    slug: 'prepaga',
     termino: 'Prepaga',
-    definicion: 'Empresa privada de medicina prepagada. La afiliación es voluntaria y se paga directamente. Ofrecen mayor cobertura y más opciones que las obras sociales.',
+    definicion: 'Empresa de medicina prepaga inscripta en el registro de la SSSalud. Te afiliás de forma voluntaria y pagás una cuota (como particular o derivando tus aportes).',
     categoria: 'Tipos',
   },
   {
+    slug: 'obra-social',
     termino: 'Obra social',
-    definicion: 'Cobertura de salud obligatoria para trabajadores en relación de dependencia, financiada con aportes del empleado (3%) y el empleador (6%).',
+    definicion: 'Cobertura de salud de los trabajadores en relación de dependencia, financiada con aportes del empleado (3% del sueldo) y contribuciones del empleador (6%).',
     categoria: 'Tipos',
   },
   {
+    slug: 'plan-parcial',
+    termino: 'Plan parcial',
+    definicion: 'Plan que no cubre todo el PMO. Solo puede ofrecerse en servicios odontológicos, en emergencias y traslados, o en prepagas de una sola localidad con menos de 5.000 afiliados, y no se puede pagar con aportes.',
+    categoria: 'Tipos',
+    alias: ['plan parcial', 'planes parciales', 'cobertura parcial'],
+    fuente: LEY_SIMPLE,
+  },
+  {
+    slug: 'pami',
     termino: 'PAMI',
-    definicion: 'Programa de Atención Médica Integral. Obra social para jubilados, pensionados y veteranos de guerra. Es la obra social más grande de América Latina.',
+    definicion: 'Obra social de jubilados y pensionados del sistema nacional.',
     categoria: 'Tipos',
+    alias: ['PAMI'],
   },
   {
+    slug: 'ioma',
     termino: 'IOMA',
-    definicion: 'Instituto de Obra Médica Asistencial. Obra social para empleados de la provincia de Buenos Aires y sus familias.',
+    definicion: 'Instituto de Obra Médico Asistencial: la obra social de los empleados públicos de la provincia de Buenos Aires y sus familias.',
     categoria: 'Tipos',
-  },
-  {
-    termino: 'Plan complementario',
-    definicion: 'Prepaga contratada para ampliar la cobertura de tu obra social. Permite acceder a más especialistas, mejores sanatorios y menor tiempo de espera.',
-    categoria: 'Tipos',
-  },
-  {
-    termino: 'Plan superador',
-    definicion: 'Cobertura adicional que contratás con tu misma obra social para acceder a prestaciones y sanatorios de mayor nivel que los del plan básico.',
-    categoria: 'Tipos',
+    alias: ['IOMA'],
   },
 ]
 
 export const categoriasGlosario: CategoriaGlosario[] = ['Costos', 'Cobertura', 'Contratación', 'Legal', 'Tipos']
+
+export function terminoPorSlug(slug: string): Termino | undefined {
+  return terminos.find((t) => t.slug === slug)
+}

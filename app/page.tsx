@@ -3,6 +3,12 @@ import Link from 'next/link'
 import { Buscador } from '@/components/layout/Buscador'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO, prepagasEnSitioPorZona } from '@/lib/data/zonas'
+
+// Zonas a la vista en el home (Darío, 28-sep-2026): las principales; el resto
+// va detrás de "Ver más provincias".
+const SLUGS_PRINCIPALES = ['caba', 'cordoba', 'santa-fe', 'mendoza', 'neuquen', 'salta']
+const zonasPrincipales = SLUGS_PRINCIPALES.map((s) => provinciasSEO.find((p) => p.slug === s)).filter((p): p is (typeof provinciasSEO)[number] => Boolean(p))
+const zonasResto = provinciasSEO.filter((p) => !SLUGS_PRINCIPALES.includes(p.slug))
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
@@ -224,22 +230,28 @@ export default function HomePage(): React.ReactElement {
       <section className="py-10 bg-white border-b border-gray-100">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">¿Cómo querés empezar?</h2>
-          <p className="text-sm text-gray-600 mb-5">Además del cotizador, tres atajos con datos oficiales.</p>
-          <div className="grid gap-3 sm:grid-cols-3">
+          <p className="text-sm text-gray-600 mb-5">Además del cotizador, atajos con datos oficiales.</p>
+          {/* 28-sep-2026: suman "¿Qué me cubre?", "¿Dónde me atiendo?" y
+              preexistencias. En el celular van sin la bajada, para que la
+              lista no se haga larga (Darío: "mucha data"). */}
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { href: '/buscar-por-sanatorio', titulo: 'Tengo mis sanatorios', texto: 'Elegí dónde te atendés y mirá qué plan los cubre a todos, con las cartillas oficiales.', cta: 'Buscar por sanatorio', icono: 'M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M12 8v4M10 10h4' },
               { href: '/chequeo-prepaga', titulo: 'Ya tengo prepaga', texto: 'Chequeá cuánto pagás, cuánto aumenta el mes que viene y cuánto podés ahorrar.', cta: 'Chequear mi cuota', icono: 'M9 12l2 2 4-4M7.8 4.7a3.4 3.4 0 001.9-.8 3.4 3.4 0 014.6 0 3.4 3.4 0 001.9.8 3.4 3.4 0 013.1 3.1c.1.7.4 1.4.8 1.9a3.4 3.4 0 010 4.6 3.4 3.4 0 00-.8 1.9 3.4 3.4 0 01-3.1 3.1 3.4 3.4 0 00-1.9.8 3.4 3.4 0 01-4.6 0 3.4 3.4 0 00-1.9-.8 3.4 3.4 0 01-3.1-3.1 3.4 3.4 0 00-.8-1.9 3.4 3.4 0 010-4.6 3.4 3.4 0 00.8-1.9 3.4 3.4 0 013.1-3.1z' },
               { href: '/match-prepaga', titulo: 'No sé cuál me conviene', texto: 'Seis preguntas y te mostramos el plan que más coincide con lo que buscás.', cta: 'Hacer el test', icono: 'M8.2 9a4 4 0 017.6 1c0 2-3 3-3 3M12 17h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+              { href: '/guias/que-cubre-la-prepaga#buscador', titulo: '¿Qué me cubre la prepaga?', texto: 'Escribí una práctica y mirá si es obligatoria por ley y qué planes la incluyen.', cta: 'Buscar una práctica', icono: 'M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z' },
+              { href: '/guardias-cerca', titulo: '¿Dónde me atiendo?', texto: 'Con tu ubicación, las guardias y los sanatorios de tu prepaga más cerca.', cta: 'Ver guardias cerca', icono: 'M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12zM12 11.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z' },
+              { href: '/declaracion-jurada-de-salud', titulo: 'Tengo una preexistencia', texto: 'Mirá qué papeles te piden al afiliarte según lo que tengas.', cta: 'Buscar mi condición', icono: 'M9 12h6M9 16h6M8 3h8l1 3h2a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h2l1-3z' },
             ].map((p) => (
               <Link key={p.href} href={p.href}
-                className="group flex gap-4 sm:flex-col sm:gap-0 rounded-2xl border-2 border-gray-100 bg-gradient-to-b from-red-50/50 to-white p-4 sm:p-5 hover:border-[#E8002D] hover:shadow-md transition-all">
+                className="group flex items-center gap-4 sm:items-stretch sm:flex-col sm:gap-0 rounded-2xl border-2 border-gray-100 bg-gradient-to-b from-red-50/50 to-white p-3.5 sm:p-5 hover:border-[#E8002D] hover:shadow-md transition-all">
                 <span className="w-11 h-11 shrink-0 rounded-xl bg-[#E8002D] flex items-center justify-center sm:mb-3">
                   <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6" aria-hidden><path d={p.icono} /></svg>
                 </span>
                 <span className="flex flex-col flex-1 min-w-0">
                   <span className="text-base sm:text-lg font-bold text-gray-900">{p.titulo}</span>
-                  <span className="text-sm text-gray-600 mt-1 flex-1">{p.texto}</span>
-                  <span className="mt-2 sm:mt-3 text-sm font-bold text-[#E8002D] group-hover:underline">{p.cta} →</span>
+                  <span className="hidden sm:block text-sm text-gray-600 mt-1 flex-1">{p.texto}</span>
+                  <span className="mt-1 sm:mt-3 text-sm font-bold text-[#E8002D] group-hover:underline">{p.cta} →</span>
                 </span>
               </Link>
             ))}
@@ -330,18 +342,21 @@ export default function HomePage(): React.ReactElement {
       </section>
 
       {/* ── Prepagas por zona (silo SEO local): intención "prepagas en [ciudad]" ── */}
-      <section id="zonas" className="py-14">
+      <section id="zonas" className="py-10 sm:py-14">
         <div className="container">
-          <div className="text-center mb-10">
+          <div className="text-center mb-6 sm:mb-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Prepagas por zona</h2>
             <p className="text-gray-500 text-sm max-w-xl mx-auto">
-              La cartilla real cambia según dónde vivas. Verificamos qué prepagas tienen cobertura efectiva en cada provincia, incluyendo las regionales que las comparativas nacionales ignoran.
+              La cartilla cambia según dónde vivas: estas son las prepagas con cobertura verificada en cada provincia.
             </p>
           </div>
+          {/* 28-sep-2026 (Darío: "acortalas, poné las principales y el botón
+              ver más"): seis provincias a la vista y el resto plegado. Todas
+              quedan en el HTML (enlazado interno). */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 max-w-4xl mx-auto">
-            {provinciasSEO.map((prov) => (
-              <div key={prov.slug} className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-4 sm:p-6 flex flex-col">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-red-50 flex items-center justify-center mb-3 sm:mb-4">
+            {zonasPrincipales.map((prov) => (
+              <div key={prov.slug} className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-3.5 sm:p-6 flex flex-col">
+                <div className="hidden sm:flex w-10 h-10 rounded-xl bg-red-50 items-center justify-center mb-4">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 sm:w-5 sm:h-5 text-[#E8002D]">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" strokeLinecap="round" strokeLinejoin="round"/>
                     <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none"/>
@@ -354,17 +369,53 @@ export default function HomePage(): React.ReactElement {
                 <p className="sm:hidden text-xs text-gray-500 flex-1">
                   {prov.prepagas.length} prepagas verificadas
                 </p>
-                <div className="flex items-center gap-3 sm:gap-4 mt-3 sm:mt-4 pt-3 border-t border-gray-50 flex-wrap">
+                <div className="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-4 pt-2 sm:pt-3 border-t border-gray-50">
                   <Link href={`/prepagas/${prov.slug}`} className="text-xs sm:text-sm font-bold text-[#E8002D] hover:underline">
                     Ver cobertura →
                   </Link>
-                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="text-xs sm:text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
                     Ranking
                   </Link>
                 </div>
               </div>
             ))}
           </div>
+          {zonasResto.length > 0 && (
+            <details className="group max-w-4xl mx-auto mt-4">
+              <summary className="mx-auto flex w-fit cursor-pointer list-none items-center gap-2 rounded-xl border-2 border-gray-200 bg-white px-5 py-2.5 text-sm font-bold text-gray-800 hover:border-[#E8002D] hover:text-[#E8002D]">
+                <span className="group-open:hidden">Ver más provincias ({zonasResto.length})</span>
+                <span className="hidden group-open:inline">Ver menos</span>
+                <svg className="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 mt-4">
+                {zonasResto.map((prov) => (
+              <div key={prov.slug} className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-3.5 sm:p-6 flex flex-col">
+                <div className="hidden sm:flex w-10 h-10 rounded-xl bg-red-50 items-center justify-center mb-4">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 sm:w-5 sm:h-5 text-[#E8002D]">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" strokeLinecap="round" strokeLinejoin="round"/>
+                    <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none"/>
+                  </svg>
+                </div>
+                <h3 className="font-bold text-gray-900 text-sm sm:text-lg mb-1 leading-snug">Prepagas en {prov.nombre}</h3>
+                <p className="hidden sm:block text-sm text-gray-500 leading-relaxed flex-1">
+                  {prov.prepagas.length} prepagas con cobertura verificada, precios {PRECIO_ACTUALIZADO.toLowerCase()} y cartillas en {prov.capitalNombre} y el interior.
+                </p>
+                <p className="sm:hidden text-xs text-gray-500 flex-1">
+                  {prov.prepagas.length} prepagas verificadas
+                </p>
+                <div className="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-4 pt-2 sm:pt-3 border-t border-gray-50">
+                  <Link href={`/prepagas/${prov.slug}`} className="text-xs sm:text-sm font-bold text-[#E8002D] hover:underline">
+                    Ver cobertura →
+                  </Link>
+                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                    Ranking
+                  </Link>
+                </div>
+              </div>
+            ))}
+              </div>
+            </details>
+          )}
           <p className="text-center text-xs text-gray-400 mt-6">¿Tu provincia no está? Estamos sumando todas las provincias — mientras tanto <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">cotizá acá</Link> y te mostramos las prepagas de tu zona.</p>
         </div>
       </section>

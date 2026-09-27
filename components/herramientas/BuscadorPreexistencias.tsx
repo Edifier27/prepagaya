@@ -1,7 +1,6 @@
 'use client'
 
-import { Suspense, useMemo, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { preexistenciasDoc, NIVEL_DOC as NIVEL, type PreexistenciaDoc } from '@/lib/data/preexistencias-documentacion'
 import { FormularioLead, type DatosFormulario } from '@/components/herramientas/FormularioLead'
@@ -40,7 +39,7 @@ function buscar(q: string): PreexistenciaDoc[] {
     .map((x) => x.p)
 }
 
-const SUGERIDAS = ['diabetes', 'hipertension', 'hipotiroidismo', 'asma', 'obesidad', 'depresion', 'columna', 'embarazo', 'cancer', 'arritmias']
+const SUGERIDAS = ['diabetes', 'hipertension', 'hipotiroidismo', 'asma', 'obesidad', 'hernias', 'columna', 'embarazo', 'cancer', 'arritmias']
 
 function Tarjeta({ p, enLista, onToggle }: { p: PreexistenciaDoc; enLista: boolean; onToggle: () => void }) {
   return (
@@ -70,9 +69,12 @@ function Tarjeta({ p, enLista, onToggle }: { p: PreexistenciaDoc; enLista: boole
   )
 }
 
-function BuscadorPreexistencias({ inicial }: { inicial?: PreexistenciaDoc }) {
-  const [q, setQ] = useState(inicial?.nombre ?? '')
-  const [lista, setLista] = useState<string[]>(inicial ? [inicial.slug] : [])
+// Arranca siempre vacío (Darío, 28-sep-2026: "solo dejá el buscador, no
+// coloques la preexistencia"): antes, un link con ?c= precargaba la
+// condición y la sumaba sola a la lista.
+export function BuscadorPreexistencias() {
+  const [q, setQ] = useState('')
+  const [lista, setLista] = useState<string[]>([])
   const [formAbierto, setFormAbierto] = useState(false)
   const [enviado, setEnviado] = useState<string | null>(null)
 
@@ -177,18 +179,3 @@ function BuscadorPreexistencias({ inicial }: { inicial?: PreexistenciaDoc }) {
   )
 }
 
-function ConCondicionDeUrl() {
-  const c = useSearchParams().get('c')
-  const inicial = c ? preexistenciasDoc.find((x) => x.slug === c) : undefined
-  return <BuscadorPreexistencias key={inicial?.slug} inicial={inicial} />
-}
-
-/** El buscador sale en el HTML (fallback) y, ya en el navegador, se reemplaza
- *  por el que toma ?c=<slug> del link (desde una ficha o el buscador del sitio). */
-export function BuscadorPreexistenciasConUrl() {
-  return (
-    <Suspense fallback={<BuscadorPreexistencias />}>
-      <ConCondicionDeUrl />
-    </Suspense>
-  )
-}

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { GlosarioDePagina } from '@/components/glosario/GlosarioDePagina'
 import { notFound } from 'next/navigation'
 import { coberturas } from '@/lib/data/coberturas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
@@ -312,8 +313,15 @@ export default async function CoberturaPage({ params }: Props) {
         </div>
       </section>
 
+      {/* Glosario de la ficha (28-sep-2026): los términos salen de todo el texto de la ficha */}
+      <section className="pt-10 bg-gray-50 border-t border-gray-100">
+        <div className="container max-w-4xl mx-auto">
+          <GlosarioDePagina texto={JSON.stringify(cob)} />
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section className="py-10 bg-gray-50 border-t border-gray-100">
+      <section className="py-10 bg-gray-50">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes</h2>
           <div className="space-y-2">
