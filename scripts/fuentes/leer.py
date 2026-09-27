@@ -360,5 +360,8 @@ def duodecima():
         print(f'!! {e}')
 
 
+# ── Decimotercera pasada (27-sep-2026): coordenadas de las sedes de las
+# cartillas con Georef, para "¿Dónde me atiendo?" (ver geocodificar.py).
 if __name__ == '__main__':
-    sys.exit(duodecima())
+    from geocodificar import main as geocodificar
+    sys.exit(geocodificar())
