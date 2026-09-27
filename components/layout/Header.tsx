@@ -71,6 +71,7 @@ const herramientasMenu = [
   { href: '/chequeo-prepaga', label: '¿Pagás de más? Chequeá tu prepaga' },
   { href: '/declaracion-jurada-de-salud', label: 'Preexistencias: qué papeles te piden' },
   { href: '/guias/que-cubre-la-prepaga#buscador', label: '¿Qué me cubre la prepaga? Buscador' },
+  { href: '/guardias-cerca', label: '¿Dónde me atiendo? Guardias cerca' },
   { href: '/match-prepaga', label: '¿Qué prepaga me conviene? Test' },
   { href: '/calculadora-aportes', label: 'De tu obra social a una prepaga' },
   { href: '/cartillas', label: 'Cartillas médicas' },
