@@ -7,6 +7,7 @@ import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO, type PrepagaZona, type ProvinciaSEO, type LocalidadZona } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
+import { preciosDeZona, zonaDeLocalidad } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
@@ -51,8 +52,10 @@ export function localidadPrepagaMetadata(prov: ProvinciaSEO, loc: LocalidadZona,
 export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; loc: LocalidadZona; pz: PrepagaZona }) {
   const corto = nombreCorto(loc.nombre)
   const prepData = prepagas.find((p) => p.slug === pz.slug)
-  const planesOrdenados = prepData ? [...prepData.planes].sort((a, b) => a.precio - b.precio) : []
-  const precios = planesOrdenados.map((p) => p.precio)
+  // Con la lista oficial de la región (28-sep-2026): antes, el de CABA
+  const zona = prepData ? preciosDeZona(prepData, zonaDeLocalidad(prov, loc)) : null
+  const planesOrdenados = zona?.planes ?? []
+  const precios = planesOrdenados.flatMap((x) => (x.precio !== null ? [x.precio] : []))
   const precioMin = precios.length ? Math.min(...precios) : null
   const precioMax = precios.length ? Math.max(...precios) : null
   const fuerza = FUERZA_LABEL[pz.fuerza]
@@ -79,7 +82,9 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
     ...(precioMin !== null && precioMax !== null
       ? [{
           q: `¿Cuánto cuesta ${pz.nombre} en ${corto}?`,
-          a: `Los planes de ${pz.nombre} van de ${formatPrecio(precioMin)} a ${formatPrecio(precioMax)} por mes en precio de lista (${PRECIO_ACTUALIZADO.toLowerCase()}). Los planes y precios son los mismos en toda la provincia; lo que cambia según la zona es la cartilla de sanatorios disponibles cerca tuyo.`,
+          a: zona?.regional
+            ? `Según la lista oficial de ${pz.nombre} para la región de ${corto} (${PRECIO_ACTUALIZADO.toLowerCase()}, 30 años, IVA incluido), los planes van de ${formatPrecio(precioMin)} a ${formatPrecio(precioMax)} por mes. Según la zona también cambia la cartilla de sanatorios disponibles cerca tuyo.`
+            : `En la lista de CABA (${PRECIO_ACTUALIZADO.toLowerCase()}, 30 años), los planes de ${pz.nombre} van de ${formatPrecio(precioMin)} a ${formatPrecio(precioMax)} por mes. En ${corto} pueden ser distintos: cotizá y te pasamos el precio de tu zona.`,
         }]
       : []),
     ...(hermanas.length > 0
@@ -184,9 +189,13 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
         {prepData && planesOrdenados.length > 0 && (
           <section className="mb-10">
             <h2 className="text-xl font-bold text-gray-900 mb-2">Planes de {pz.nombre} — {PRECIO_ACTUALIZADO}</h2>
-            <p className="text-sm text-gray-500 mb-5">Mismos planes y precios de lista en toda la provincia. Tu edad y grupo familiar definen el valor final.</p>
+            <p className="text-sm text-gray-500 mb-5">
+              {zona?.regional
+                ? `Precio de lista oficial para la región de ${corto} a los 30 años (contratación directa, IVA incluido). Tu edad y tu grupo familiar definen el valor final.`
+                : `Precio de lista de CABA a los 30 años: en ${corto} puede ser distinto. Cotizá y te pasamos el de tu zona.`}
+            </p>
             <div className="space-y-3">
-              {planesOrdenados.map((plan) => (
+              {planesOrdenados.map(({ plan, precio }) => (
                 <div key={plan.slug}
                   className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all">
                   <Link href={`/prepagas/${pz.slug}/${plan.slug}?provincia=${prov.slug}`} className="min-w-0 flex-1 group">
@@ -194,8 +203,14 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
                     <div className="text-xs text-gray-500 mt-0.5 line-clamp-1">{plan.descripcion}</div>
                   </Link>
                   <div className="flex items-center gap-2 flex-shrink-0 flex-wrap sm:flex-nowrap">
-                    <span className="text-sm font-bold text-gray-900">{formatPrecio(plan.precio)}</span>
-                    <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
+                    {precio !== null ? (
+                      <>
+                        <span className="text-sm font-bold text-gray-900">{formatPrecio(precio)}</span>
+                        <NivelPrecioBadge nivel={nivelPrecio(precio)} />
+                      </>
+                    ) : (
+                      <span className="text-xs text-gray-500">Sin precio oficial para esta zona</span>
+                    )}
                     <ContratarPlanButton
                       prepagaNombre={pz.nombre}
                       planNombre={plan.nombre}
@@ -206,6 +221,12 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
                   </div>
                 </div>
               ))}
+            </div>
+            {/* Link a la ficha con el texto con que se busca (28-sep-2026: "swiss medical planes") */}
+            <div className="mt-4">
+              <Link href={`/prepagas/${pz.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">
+                Todos los planes de {pz.nombre} y qué cubre cada uno →
+              </Link>
             </div>
           </section>
         )}

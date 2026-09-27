@@ -659,7 +659,8 @@ export const prepagas: Prepaga[] = [
   },
   {
     slug: 'medife',
-    nombre: 'Medife',
+    // Con tilde, como se escribe la marca (28-sep-2026); la URL sigue /medife
+    nombre: 'Medifé',
     logo: '/logos/medife.jpg',
     colorPrimario: '#009639',
     descripcion:

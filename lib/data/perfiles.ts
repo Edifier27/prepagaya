@@ -133,7 +133,7 @@ export const perfiles: PerfilData[] = [
       },
       {
         q: '¿Cuánto cuesta una prepaga para un monotributista en 2026?',
-        a: 'Los precios van de nivel económico a nivel premium según el plan y la prepaga que elijas. Para un monotributista, la recomendación es apuntar a un plan de nivel de precio medio, donde encontrás buena cobertura con opciones como Sancor, Medife o Premedic. Además, como monotributista accedés al 25% de descuento por contratar online. Cotizá gratis para ver el monto exacto.',
+        a: 'Los precios van de nivel económico a nivel premium según el plan y la prepaga que elijas. Para un monotributista, la recomendación es apuntar a un plan de nivel de precio medio, donde encontrás buena cobertura con opciones como Sancor, Medifé o Premedic. Además, como monotributista accedés al 25% de descuento por contratar online. Cotizá gratis para ver el monto exacto.',
       },
       {
         q: '¿Es lo mismo para un freelancer o trabajador remoto que no vive en CABA?',
@@ -191,7 +191,7 @@ export const perfiles: PerfilData[] = [
     nombre: 'Jóvenes',
     emoji: '🧑',
     titulo: 'Mejor prepaga para jóvenes: opciones económicas',
-    metaDescripcion: 'Las mejores prepagas económicas para jóvenes en Argentina. Planes de nivel de precio accesible con buena cobertura. Compará Swiss Medical S1, Premedic 200, Medife y más.',
+    metaDescripcion: 'Las mejores prepagas económicas para jóvenes en Argentina. Planes de nivel de precio accesible con buena cobertura. Compará Swiss Medical S1, Premedic 200, Medifé y más.',
     descripcion: 'Si sos joven y sano, probablemente no necesitás el plan más completo del mercado. Te mostramos las opciones más económicas con cobertura real para el día a día.',
     necesidades: [
       'Precio accesible (budget-friendly)',

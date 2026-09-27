@@ -6,7 +6,7 @@ import { SITE_NAME, SITE_URL } from '@/lib/utils'
 export const metadata: Metadata = {
   title: `Calculadora de Prepagas por Edad ${new Date().getFullYear()} — ¿Cuánto pago a los 40, 50, 60 años?`,
   description:
-    'Calculá el precio real de tu prepaga según tu edad. Precios actualizados por tramo etario para Swiss Medical, OSDE, Sancor Salud, CEMIC, Premedic y Medife. Incluye simulador de costo real con copagos.',
+    'Calculá el precio real de tu prepaga según tu edad. Precios actualizados por tramo etario para Swiss Medical, OSDE, Sancor Salud, CEMIC, Premedic y Medifé. Incluye simulador de costo real con copagos.',
   alternates: { canonical: `${SITE_URL}/calculadora` },
   keywords: [
     'precio prepaga por edad',

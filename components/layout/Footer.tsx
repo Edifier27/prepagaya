@@ -12,7 +12,7 @@ const prepagaLinks = [
   { slug: 'cemic', nombre: 'CEMIC' },
   { slug: 'sancor-salud', nombre: 'Sancor Salud' },
   { slug: 'premedic', nombre: 'Premedic' },
-  { slug: 'medife', nombre: 'Medife' },
+  { slug: 'medife', nombre: 'Medifé' },
 ]
 
 const coberturaLinks = [

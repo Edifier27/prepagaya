@@ -11,6 +11,7 @@ import { getCartillaInfo } from '@/lib/data/cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { compararPlanes, type ComparacionPlanes as DatosComparacion } from '@/lib/planes-comparacion'
 import { ComparacionPlanes } from '@/components/prepagas/ComparacionPlanes'
+import { CartillasSwiss, faqCartillasSwiss } from '@/components/prepagas/CartillasSwiss'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -253,8 +254,10 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const pct = (n: number) => `${n.toLocaleString('es-AR')}%`
   const aumentoRango = aumento && aumento.dato.minimo !== aumento.dato.maximo
     ? ` (de ${pct(aumento.dato.minimo)} a ${pct(aumento.dato.maximo)} según el plan y la región)` : ''
+  const faqCartillas = faqCartillasSwiss(prep)
   const faqs = [
     ...buildFAQs(prep, precioMin, precioMax, planEstrella, comparacion),
+    ...(faqCartillas ? [faqCartillas] : []),
     ...(aumento ? [{
       q: `¿Cuánto aumenta ${prep.nombre} en ${aumento.mes.label.toLowerCase()}?`,
       a: `Según el cuadro tarifario que ${prep.nombre} declaró ante la Superintendencia de Servicios de Salud, aumenta ${pct(aumento.dato.mediana)} en ${aumento.mes.label.toLowerCase()}${aumentoRango}. El promedio del mercado ese mes es ${pct(aumento.mes.promedio)}.${aumentoAnterior ? ` En ${aumentoAnterior.mes.label.toLowerCase()} había aumentado ${pct(aumentoAnterior.dato.mediana)}.` : ''}`,
@@ -717,6 +720,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
       </section>
 
       {prep.planes.length > 1 && <ComparacionPlanes prep={prep} datos={comparacion} />}
+
+      <CartillasSwiss prep={prep} />
 
       {/* Para quién es ideal */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">

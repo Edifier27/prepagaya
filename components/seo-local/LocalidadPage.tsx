@@ -2,7 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { LocalidadZona, ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL, precioDesde } from '@/lib/utils'
+import { SITE_URL } from '@/lib/utils'
+import { preciosDeZona, zonaDeLocalidad } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
 
@@ -88,7 +89,7 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
           <div className="space-y-3">
             {destacadas.map((pz) => {
               const prepData = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
-              const precioMin = prepData ? precioDesde(prepData) : null
+              const precioMin = prepData ? preciosDeZona(prepData, zonaDeLocalidad(prov, loc)).desde : null
               const inner = (
                 <>
                   <div className="min-w-0">
