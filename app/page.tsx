@@ -11,7 +11,7 @@ const zonasPrincipales = SLUGS_PRINCIPALES.map((s) => provinciasSEO.find((p) => 
 const zonasResto = provinciasSEO.filter((p) => !SLUGS_PRINCIPALES.includes(p.slug))
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
@@ -424,19 +424,19 @@ export default function HomePage(): React.ReactElement {
       <section className="py-14 bg-white border-b border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">El comparador de todas las prepagas de Argentina</h2>
-          <p className="text-gray-700 leading-relaxed mb-6 text-center">{ENTIDAD_DESCRIPCION}</p>
+          <p className="text-gray-700 leading-relaxed mb-6 text-center">{prepagas.length} prepagas y {TOTAL_PLANES} planes, con los precios oficiales de cada mes.</p>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700">
             <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
-              <strong className="text-gray-900">Todas las prepagas, no solo nuestros partners.</strong> El comparador incluye {prepagas.length} prepagas con el precio de {PRECIO_ACTUALIZADO}, para que veas el mercado completo. <Link href="/precios" className="text-[#E8002D] font-semibold hover:underline">Ver precios</Link>
+              <strong className="text-gray-900">Todas las prepagas, no solo nuestros partners.</strong> Con los precios de {PRECIO_ACTUALIZADO}. <Link href="/precios" className="text-[#E8002D] font-semibold hover:underline">Ver precios</Link>
             </li>
             <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
-              <strong className="text-gray-900">Cartillas por zona.</strong> Buscás tu sanatorio o tu barrio y ves qué plan de {PARTNERS_OFICIALES_TEXTO} lo incluye. <Link href="/cartillas" className="text-[#E8002D] font-semibold hover:underline">Buscar en cartillas</Link>
+              <strong className="text-gray-900">Cartillas por zona.</strong> Buscá tu sanatorio y mirá qué plan lo incluye. <Link href="/cartillas" className="text-[#E8002D] font-semibold hover:underline">Buscar en cartillas</Link>
             </li>
             <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
-              <strong className="text-gray-900">Coberturas plan por plan.</strong> Ortodoncia, anteojos, psicología, internación y más, con la fuente oficial citada en cada dato. <Link href="/coberturas" className="text-[#E8002D] font-semibold hover:underline">Ver coberturas</Link>
+              <strong className="text-gray-900">Coberturas plan por plan.</strong> Ortodoncia, anteojos, psicología y más, con fuente oficial. <Link href="/coberturas" className="text-[#E8002D] font-semibold hover:underline">Ver coberturas</Link>
             </li>
             <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
-              <strong className="text-gray-900">Partner oficial de {PARTNERS_OFICIALES.length} prepagas, con respuesta en {TIEMPO_RESPUESTA}.</strong> Nuestro sistema propio de cotización nos permite mandarte la cotización formal enseguida, y pagás lo mismo que yendo directo. <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo trabajamos</Link>
+              <strong className="text-gray-900">Partner oficial de {PARTNERS_OFICIALES_TEXTO}.</strong> Cotización formal en {TIEMPO_RESPUESTA} y pagás lo mismo que yendo directo. <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo trabajamos</Link>
             </li>
           </ul>
         </div>
