@@ -105,6 +105,62 @@ def resolver(intentos):
     return res
 
 
+def distancia_km(a, b):
+    import math
+    r = math.pi / 180
+    h = math.sin((b[0] - a[0]) * r / 2) ** 2 + math.cos(a[0] * r) * math.cos(b[0] * r) * math.sin((b[1] - a[1]) * r / 2) ** 2
+    return 6371 * 2 * math.asin(math.sqrt(h))
+
+
+NOMBRE_PROV = {v: k for k, v in PROV.items()}
+NOMBRE_PROV['02'] = 'Ciudad Autónoma de Buenos Aires'
+
+
+def nominatim(params):
+    import time
+    import urllib.parse
+    time.sleep(1.1)
+    url = 'https://nominatim.openstreetmap.org/search?' + urllib.parse.urlencode({**params, 'format': 'jsonv2', 'limit': 3, 'countrycodes': 'ar'})
+    req = urllib.request.Request(url, headers={'User-Agent': 'prepagaya.com.ar/1.0 (https://www.prepagaya.com.ar; carga unica de cartillas)'})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.loads(r.read().decode())
+
+
+def osm(todas, res):
+    pendientes = [(c, s) for c, s in todas.items() if (c not in res or res[c]['m'] == 'l') and s['provs']]
+    print(f'OSM: {len(pendientes)} para buscar')
+    ok = 0
+    for n, (clave, s) in enumerate(pendientes):
+        centro = (res[clave]['lat'], res[clave]['lon']) if clave in res else None
+        prov = NOMBRE_PROV.get(s['provs'][0], '')
+        ciudad = s['pistas'][0] if s['pistas'] else ''
+        intentos = [{'street': s['calle'], 'city': ciudad, 'state': prov}] if ciudad else []
+        intentos.append({'q': ', '.join(x for x in (s['calle'], ciudad, prov, 'Argentina') if x)})
+        for q in intentos:
+            try:
+                r = nominatim(q)
+            except Exception as e:  # noqa: BLE001
+                print(f'!! osm {clave}: {e}')
+                break
+            elegido = None
+            for x in r:
+                lat, lon = float(x['lat']), float(x['lon'])
+                if centro and distancia_km(centro, (lat, lon)) > 15:
+                    continue
+                casa = x.get('addresstype') in ('building', 'house', 'amenity') or x.get('type') in ('house', 'hospital', 'clinic', 'doctors') or x.get('category') in ('building', 'amenity')
+                calle = x.get('category') == 'highway' or x.get('addresstype') == 'road'
+                if casa or (calle and centro):
+                    elegido = {'lat': round(lat, 5), 'lon': round(lon, 5), 'm': 'o' if casa else 'c', 'loc': ciudad}
+                    break
+            if elegido:
+                res[clave] = elegido
+                ok += 1
+                break
+        if n % 100 == 0:
+            print(f'OSM {n}/{len(pendientes)}: {ok} ubicadas', flush=True)
+    print(f'OSM: {ok} mejoradas')
+
+
 def main():
     todas = sedes()
     print(f'Sedes únicas: {len(todas)}')
@@ -157,6 +213,37 @@ def main():
                     res[clave] = {'lat': round(u['lat'], 5), 'lon': round(u['lon'], 5), 'm': 'l', 'loc': l.get('nombre')}
                     break
     print(f'Ubicadas en total: {len(res)} de {len(todas)}')
+
+    # Ronda 3 (14.a pasada): la dirección en toda la provincia, quedándose con
+    # el resultado más cercano al centro de la localidad (hasta 12 km).
+    aprox = [(c, s) for c, s in todas.items() if c in res and res[c]['m'] == 'l' and s['provs']]
+    consultas = [(c, {'direccion': s['calle'], 'provincia': s['provs'][0], 'max': 10}) for c, s in aprox]
+    mejoradas = 0
+    for i in range(0, len(consultas), LOTE):
+        lote = consultas[i:i + LOTE]
+        try:
+            r = post('direcciones', {'direcciones': [q for _, q in lote]})
+        except Exception as e:  # noqa: BLE001
+            print(f'!! provincia {i}: {e}')
+            continue
+        for (clave, _), rr in zip(lote, r.get('resultados', [])):
+            centro = (res[clave]['lat'], res[clave]['lon'])
+            mejor = None
+            for d in rr.get('direcciones') or []:
+                u = d.get('ubicacion') or {}
+                if u.get('lat') is None:
+                    continue
+                km = distancia_km(centro, (u['lat'], u['lon']))
+                if km <= 12 and (mejor is None or km < mejor[0]):
+                    mejor = (km, u, (d.get('localidad_censal') or {}).get('nombre'))
+            if mejor:
+                res[clave] = {'lat': round(mejor[1]['lat'], 5), 'lon': round(mejor[1]['lon'], 5), 'm': 'd', 'loc': mejor[2]}
+                mejoradas += 1
+    print(f'Ronda 3 (provincia, cerca de la localidad): {mejoradas} mejoradas')
+
+    # Ronda 4: OpenStreetMap (Nominatim) para las que siguen aproximadas o sin
+    # ubicar, una consulta por segundo (política de uso de Nominatim).
+    osm(todas, res)
     for clave in todas:
         if clave in res:
             print('GEO|' + json.dumps({'k': clave, **res[clave]}, ensure_ascii=False))
