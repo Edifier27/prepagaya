@@ -1,4 +1,5 @@
 import type { GuiaEnlace, GuiaSeccion } from '@/lib/data/guias'
+import { topeCirugiaSmg50 } from '@/lib/data/topes-reintegro'
 
 export interface CoberturaData {
   slug: string
@@ -484,7 +485,7 @@ export const coberturas: CoberturaData[] = [
     secciones: [
       {
         titulo: 'Cómo funciona: reintegro con tope',
-        cuerpo: 'En los planes que la incluyen, la cirugía estética suele cubrirse por reintegro, con un tope por plan: si la operación sale más que el tope, la diferencia la pagás vos. En el SMG50 de Swiss Medical, por ejemplo, el alcance oficial del plan dice que es una por año para el titular o su cónyuge, con las prótesis incluidas y un tope de reintegro de $3.765.888 (vigencia septiembre de 2026). OSDE la informa como bonificada en el 410, el 450 y el 510, para cada integrante del grupo familiar. Dónde te operás cambia mucho la cuenta: según nuestra experiencia, en un sanatorio propio de la prepaga (en Swiss Medical, por ejemplo, Los Arcos) la internación, el anestesista y las prótesis los cubre el plan, y el reintegro queda para los honorarios del cirujano; en otro prestador el presupuesto incluye todo y la diferencia suele ser mayor.',
+        cuerpo: `En los planes que la incluyen, la cirugía estética suele cubrirse por reintegro, con un tope por plan: si la operación sale más que el tope, la diferencia la pagás vos. En el SMG50 de Swiss Medical, por ejemplo, el alcance oficial del plan dice que es una por año para el titular o su cónyuge, con las prótesis incluidas y un tope de reintegro que ${topeCirugiaSmg50}. OSDE la informa como bonificada en el 410, el 450 y el 510, para cada integrante del grupo familiar. Dónde te operás cambia mucho la cuenta: según nuestra experiencia, en un sanatorio propio de la prepaga (en Swiss Medical, por ejemplo, Los Arcos) la internación, el anestesista y las prótesis los cubre el plan, y el reintegro queda para los honorarios del cirujano; en otro prestador el presupuesto incluye todo y la diferencia suele ser mayor.`,
         cta: { texto: '¿Querés saber cuánto te reintegran por tu cirugía y en qué sanatorio te conviene hacerla? Te lo confirmamos por escrito con la prepaga.', boton: 'Consultar', href: '/comparador' },
       },
       {
@@ -502,7 +503,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'El SMG50 incluye una cirugía estética por año para el titular o su cónyuge, con las prótesis incluidas y un tope de reintegro de $3.765.888 (vigencia septiembre de 2026). El SMG60 y el SMG70 también la incluyen, una por año. En la práctica, se habilita a los 12 meses de antigüedad.', planSlug: 'smg50' },
+      { slug: 'swiss-medical', razon: `El SMG50 incluye una cirugía estética por año para el titular o su cónyuge, con las prótesis incluidas y un tope de reintegro que ${topeCirugiaSmg50}. El SMG60 y el SMG70 también la incluyen, una por año. En la práctica, se habilita a los 12 meses de antigüedad.`, planSlug: 'smg50' },
       { slug: 'osde', razon: 'OSDE la bonifica para cada integrante del grupo familiar: una cada 3 años calendario en el 410, una cada 2 años en el 450 y una por año en el 510.', planSlug: '410' },
       { slug: 'avalian', razon: 'Avalian la incluye solo en el plan Selecta (AS400 y AS500). Integral y Superior no la incluyen.', planSlug: 'as400' },
     ],
@@ -526,7 +527,7 @@ export const coberturas: CoberturaData[] = [
       },
       {
         q: '¿Cuánto cubre la prepaga de una cirugía estética?',
-        a: 'En general es por reintegro con un tope por plan, y la diferencia la pagás vos. En el SMG50 de Swiss Medical el tope es de $3.765.888 (vigencia septiembre de 2026). Si te operás en un sanatorio propio de la prepaga, según nuestra experiencia la internación, el anestesista y las prótesis los cubre el plan, y el reintegro queda para los honorarios del cirujano.',
+        a: `En general es por reintegro con un tope por plan, y la diferencia la pagás vos. En el SMG50 de Swiss Medical el tope ${topeCirugiaSmg50}. Si te operás en un sanatorio propio de la prepaga, según nuestra experiencia la internación, el anestesista y las prótesis los cubre el plan, y el reintegro queda para los honorarios del cirujano.`,
       },
       {
         q: '¿La prepaga cubre las prótesis mamarias?',
