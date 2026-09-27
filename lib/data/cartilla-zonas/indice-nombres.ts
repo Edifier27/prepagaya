@@ -1,6 +1,6 @@
 import { nombreCortoZona } from '@/lib/cartilla-zonas-geo'
 import { CARTILLAS, type CentroCartilla } from './index'
-import { claveZona, esMismo, nucleoNombre, planSugerido } from './cruce'
+import { claveZona, esMismo, nucleoNombre, planSugerido, prioridadPrepaga } from './cruce'
 
 // Índice liviano de sanatorios de internación de todas las cartillas por zona,
 // para el buscador por nombre (components/cartillas/BuscadorSanatorio.tsx):
@@ -50,6 +50,8 @@ export function indiceNombres(): GrupoIndice[] {
       }
     }
   }
+  // La primera prepaga de cada grupo es la del botón "Cotizar": Swiss Medical primero (ver cruce.ts)
   cache = [...regiones.values()].flatMap((l) => l.map((x) => x.g)).filter((g) => g.k)
+  for (const g of cache) g.en.sort((a, b) => prioridadPrepaga(a[0]) - prioridadPrepaga(b[0]))
   return cache
 }

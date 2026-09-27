@@ -232,7 +232,7 @@ export function BuscadorCartillaZona({
               )}
               {datos.enOtras && datos.enOtras.length > 0 && (
                 <div className="mt-6">
-                  <EnOtrasCartillas items={datos.enOtras} prepagaNombre={prepagaNombre} zonaCorta={zonaCorta} max={6} />
+                  <EnOtrasCartillas items={datos.enOtras} prepagaNombre={prepagaNombre} zonaCorta={zonaCorta} max={6} prepagaSlug={prepagaSlug} />
                 </div>
               )}
               <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gray-50 border border-gray-100 rounded-2xl p-4">

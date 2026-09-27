@@ -11,15 +11,21 @@ export function EnOtrasCartillas({
   prepagaNombre,
   zonaCorta,
   max = 12,
+  prepagaSlug,
 }: {
   items: CentroEnOtras[]
   prepagaNombre: string
   zonaCorta: string
   max?: number
+  prepagaSlug?: string
 }) {
   if (items.length === 0) return null
-  const visibles = items.slice(0, max)
-  const resto = items.slice(max)
+  // En OSDE, a la vista solo los que se pueden cotizar con Swiss Medical (el
+  // socio de OSDE en general se pasa a Swiss, Darío 27-sep-2026); el resto,
+  // plegado. Los items ya vienen con Swiss primero (cruce.ts).
+  const corte = prepagaSlug === 'osde' ? Math.min(max, items.filter((c) => c.en[0].prepagaSlug === 'swiss-medical').length) : max
+  const visibles = items.slice(0, corte)
+  const resto = items.slice(corte)
   const fila = (c: CentroEnOtras) => {
     const primera = c.en[0]
     return (
@@ -57,10 +63,12 @@ export function EnOtrasCartillas({
       <p className="text-sm text-gray-600 mb-4">
         Estos sanatorios para internación de {zonaCorta} no los encontramos en la cartilla de {prepagaNombre}, pero figuran en la de otras prepagas (y en qué plan):
       </p>
-      <ul className="space-y-2">{visibles.map(fila)}</ul>
+      {visibles.length > 0 && <ul className="space-y-2">{visibles.map(fila)}</ul>}
       {resto.length > 0 && (
         <details className="mt-2">
-          <summary className="cursor-pointer text-sm font-semibold text-sky-800 py-2">Ver {resto.length} más</summary>
+          <summary className="cursor-pointer text-sm font-semibold text-sky-800 py-2">
+            {visibles.length > 0 ? `Ver ${resto.length} más` : `Ver ${resto.length === 1 ? 'el sanatorio' : `los ${resto.length} sanatorios`} en otras prepagas`}
+          </summary>
           <ul className="space-y-2 mt-2">{resto.map(fila)}</ul>
         </details>
       )}
