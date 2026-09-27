@@ -1,4 +1,4 @@
-import { topeCirugiaSmg50 } from '@/lib/data/topes-reintegro'
+import { topeCirugiaSmg50Oficial } from '@/lib/data/topes-reintegro'
 // Cobertura puntual por prepaga y plan ("¿Swiss Medical cubre ortodoncia?"),
 // para /coberturas/[tema]/[prepaga]. Cada dato sale de un documento oficial de
 // la prepaga, citado en `fuentes` — nada estimado ni "de mercado". Los montos
@@ -192,7 +192,7 @@ const swiss: CoberturaMarca[] = [
       SW('SMG70', ['smg70'], true, '1 por año sin cargo'),
     ],
     detalles: [
-      { texto: `En el SMG50: 1 por año para el titular o cónyuge, incluye prótesis; por reintegro, con un tope que ${topeCirugiaSmg50}.`, fuente: 'Alcance de la cobertura SMG50' },
+      { texto: `En el SMG50: 1 por año para el titular o cónyuge, incluye prótesis; por reintegro, con un tope ${topeCirugiaSmg50Oficial} (se actualiza todos los meses).`, fuente: 'Alcance de la cobertura SMG50' },
       { texto: 'Los tratamientos dermoestéticos están incluidos solo en el SMG70.', fuente: 'Comparativo de coberturas, julio 2026' },
     ],
     fuentes: [SWISS_COMPARATIVO, SWISS_ALCANCE],
