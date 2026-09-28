@@ -11,7 +11,7 @@ import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 import { BuscadorCartillaZona } from '@/components/cartillas/BuscadorCartillaZona'
 import { contactos } from '@/lib/data/contactos'
-import { getCartilla, nombreCortoZona, slugPlan, textoFecha, textoFechaConArticulo, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
+import { getCartilla, nombreCortoZona, slugPlan, textoFecha, textoFechaDe, textoFechaConArticulo, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
 import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 
 interface Props {
@@ -238,7 +238,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
               Cartilla {prep.nombre} por zona y plan: sanatorios y {cartillaZonas.labelGuardia.toLowerCase()}
             </h2>
             <p className="text-sm text-gray-500 mb-6 text-center">
-              Elegí tu zona y tu plan y mirá qué sanatorios y {cartillaZonas.labelGuardia.toLowerCase()} tiene {prep.nombre} cerca tuyo. Datos de la {textoFecha(cartillaZonas)}.
+              Elegí tu zona y tu plan y mirá qué sanatorios y {cartillaZonas.labelGuardia.toLowerCase()} tiene {prep.nombre} cerca tuyo. Datos {textoFechaDe(cartillaZonas)}.
             </p>
             <BuscadorCartillaZona
               prepagaSlug={cartillaZonas.prepagaSlug}

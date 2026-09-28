@@ -4,6 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { ComparadorTable } from '@/components/comparador/ComparadorTable'
+import { ComparadorLadoALado } from '@/components/comparador/ComparadorLadoALado'
 
 export const metadata: Metadata = {
   title: 'Comparar Prepagas Lado a Lado: Tabla Comparativa 2026',
@@ -70,6 +71,16 @@ export default function CompararPage(): React.ReactElement {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Plan contra plan (28-sep-2026): destino del botón "Comparar este plan
+          con otro" de cada ficha de plan (/comparar?plan=prepaga/plan#planes). */}
+      <section id="planes" className="py-10 bg-white scroll-mt-20">
+        <div className="container max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold text-gray-900 mb-1">Compará dos planes lado a lado</h2>
+          <p className="text-sm text-gray-500 mb-6">Elegí la prepaga y el plan de cada lado: precio, copago, red y coberturas.</p>
+          <ComparadorLadoALado />
         </div>
       </section>
 

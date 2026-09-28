@@ -1,6 +1,6 @@
 ﻿'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
@@ -115,6 +115,21 @@ export function ComparadorLadoALado(): React.ReactElement {
   const [ladoA, setLadoA] = useState<Lado>({ prepagaSlug: 'swiss-medical', planSlug: 'smg20' })
   const [ladoB, setLadoB] = useState<Lado>({ prepagaSlug: 'osde', planSlug: '310' })
   const [sinIva, setSinIva] = useState(false)
+
+  // "Comparar este plan con otro" desde la ficha de un plan (28-sep-2026):
+  // /comparar?plan=swiss-medical/smg20 carga ese plan del lado A y, del lado
+  // B, uno de otra prepaga. Se lee en el cliente para que la página siga estática.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('plan')
+    if (!q) return
+    const [prepagaSlug, planSlug] = q.split('/')
+    if (!getPlan(prepagaSlug, planSlug)) return
+    setLadoA({ prepagaSlug, planSlug })
+    if (prepagaSlug === ladoB.prepagaSlug) {
+      setLadoB(prepagaSlug === 'swiss-medical' ? { prepagaSlug: 'osde', planSlug: '310' } : { prepagaSlug: 'swiss-medical', planSlug: 'smg20' })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const prepagaA = getPrepaga(ladoA.prepagaSlug)
   const prepagaB = getPrepaga(ladoB.prepagaSlug)

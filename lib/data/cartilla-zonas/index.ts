@@ -454,3 +454,8 @@ export function fechaCartillaISO(c: CartillaPrepaga): string | undefined {
 export function textoFechaConArticulo(c: CartillaPrepaga): string {
   return `${c.tipoFecha === 'vigencia' ? 'la' : 'el'} ${textoFecha(c)}`
 }
+
+/** Con "de": "de la cartilla oficial…" / "del buscador oficial…". */
+export function textoFechaDe(c: CartillaPrepaga): string {
+  return `${c.tipoFecha === 'vigencia' ? 'de la' : 'del'} ${textoFecha(c)}`
+}

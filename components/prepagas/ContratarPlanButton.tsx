@@ -12,21 +12,28 @@ interface Props {
   className?: string
   /** Datos extra que ya respondió la persona (ej. respuestas del quiz), ver lib/data/sondeo.ts */
   datosExtra?: Record<string, string>
+  /** Título del popup (28-sep-2026: cada botón con su propio encabezado) */
+  titulo?: string
+  /** Planes para elegir en el popup (botón de la ficha de la prepaga, sin plan fijo) */
+  planesOpciones?: string[]
 }
 
-export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra }: Props) {
+export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra, titulo, planesOpciones }: Props) {
   const [open, setOpen] = useState(false)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
+  const [planElegido, setPlanElegido] = useState('')
+  const [edades, setEdades] = useState('')
 
   const ok = nombre.trim().length >= 2 && celular.trim().length >= 8 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
-  const interes = planNombre ? `${prepagaNombre} — ${planNombre}` : prepagaNombre
+  const planFinal = planNombre ?? (planElegido || undefined)
+  const interes = planFinal ? `${prepagaNombre} — ${planFinal}` : prepagaNombre
 
   function handleClose() {
     setOpen(false)
-    setNombre(''); setCelular(''); setEmail(''); setStatus('idle')
+    setNombre(''); setCelular(''); setEmail(''); setStatus('idle'); setPlanElegido(''); setEdades('')
   }
 
   async function handleSubmit() {
@@ -42,6 +49,8 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
           email: email.trim(),
           fuente,
           prepaga_interes: interes,
+          // Edades opcionales: el asesor cotiza el precio exacto sin repreguntar
+          ...(edades.trim() ? { personas: edades.trim() } : {}),
           ...datosExtra,
         }),
       })
@@ -70,7 +79,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
         >
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
-          <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden">
+          <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden max-h-[92vh] overflow-y-auto">
             <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] px-6 py-5 text-white">
               <button
                 onClick={handleClose}
@@ -81,9 +90,9 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                   <path d="M18 6L6 18M6 6l12 12"/>
                 </svg>
               </button>
-              <div className="text-xl font-bold mb-1">{planNombre ? `Contratar ${planNombre}` : `Cotización de ${prepagaNombre}`}</div>
+              <div className="text-xl font-bold mb-1 pr-6">{titulo ?? (planNombre ? `Contratar ${planNombre}` : `Cotización de ${prepagaNombre}`)}</div>
               <p className="text-red-100 text-sm leading-relaxed">
-                Dejanos tus datos y un asesor oficial te contacta con el precio exacto de {interes} para tu edad.
+                Dejanos tus datos y un asesor oficial te pasa el precio exacto de {interes} para tu edad, con 15% OFF por contratar online.
               </p>
             </div>
 
@@ -101,6 +110,18 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
               ) : (
                 <>
                   <div className="space-y-3 mb-4">
+                    {!planNombre && planesOpciones && planesOpciones.length > 0 && (
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-700 mb-1">¿Qué plan te interesa?</label>
+                        <select
+                          value={planElegido} onChange={(e) => setPlanElegido(e.target.value)}
+                          className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:border-[#E8002D] transition-colors"
+                        >
+                          <option value="">Todavía no sé: quiero que me asesoren</option>
+                          {planesOpciones.map((pl) => <option key={pl} value={pl}>{pl}</option>)}
+                        </select>
+                      </div>
+                    )}
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">Nombre *</label>
                       <input
@@ -114,6 +135,14 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                       <input
                         type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
                         placeholder="11 2345-6789" autoComplete="tel" inputMode="numeric"
+                        className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">Edades de quienes se asocian <span className="font-normal text-gray-400">(opcional)</span></label>
+                      <input
+                        type="text" value={edades} onChange={(e) => setEdades(e.target.value)}
+                        placeholder="Ej: 35 y 33" inputMode="text"
                         className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
                       />
                     </div>
@@ -132,7 +161,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                     disabled={!ok || status === 'loading'}
                     className="w-full py-3.5 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition-colors"
                   >
-                    {status === 'loading' ? 'Enviando...' : 'Quiero contratar'}
+                    {status === 'loading' ? 'Enviando...' : planFinal ? `Quiero el ${planFinal}` : 'Quiero mi cotización'}
                   </button>
                   <p className="text-center text-xs text-gray-400 mt-3">Tu información es privada · Sin compromiso</p>
                 </>
