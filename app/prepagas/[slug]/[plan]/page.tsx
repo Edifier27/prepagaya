@@ -363,24 +363,20 @@ export default async function PlanPage({ params, searchParams }: Props) {
               <div className="text-xs text-gray-500 mt-0.5">Cotizando online: <strong className="text-[#E8002D]">15% OFF</strong> sobre el precio de lista (25% si sos monotributista)</div>
             </div>
             <div className="flex flex-col gap-2 sm:items-end">
-              {isPartner ? (
-                <>
-                  <ContratarPlanButton prepagaNombre={prep.nombre} planNombre={plan.nombre} />
+              <ContratarPlanButton
+                    prepagaNombre={prep.nombre}
+                    planNombre={plan.nombre}
+                    fuente="ficha-plan"
+                    titulo={`Cotizá y contratá el ${prep.nombre} ${plan.nombre.replace(/^Plan\s+/, '')}`}
+                  />
+                  {/* Comparar este plan con otro (Darío, 28-sep-2026) */}
                   <Link
-                    href="/comparador"
-                    className="text-xs text-gray-400 hover:text-[#E8002D] transition-colors font-medium"
+                    href={`/comparar?plan=${prep.slug}/${plan.slug}#planes`}
+                    className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold rounded-xl text-sm w-full sm:w-auto transition-colors"
                   >
-                    O cotizá para mi edad primero →
+                    Comparar este plan con otro
                   </Link>
-                </>
-              ) : (
-                <Link
-                  href="/comparador"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"
-                >
-                  Cotizar con 15% OFF →
-                </Link>
-              )}
+
             </div>
           </div>
 
@@ -712,12 +708,18 @@ export default async function PlanPage({ params, searchParams }: Props) {
           <p className="text-red-200 text-sm mb-6">
             El precio real depende de tu edad y zona. Cotizá online con 15% OFF (25% si sos monotributista) y recibí asesoramiento sin cargo.
           </p>
-          <Link
-            href="/comparador"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Cotizar gratis →
-          </Link>
+          <div className="flex flex-col items-center gap-3">
+              <ContratarPlanButton
+                prepagaNombre={prep.nombre}
+                planNombre={plan.nombre}
+                fuente="ficha-plan-final"
+                titulo={`Cotizá y contratá el ${prep.nombre} ${plan.nombre.replace(/^Plan\s+/, '')}`}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
+              />
+              <Link href={`/comparar?plan=${prep.slug}/${plan.slug}#planes`} className="text-sm text-red-100 hover:text-white font-semibold underline underline-offset-2">
+                O compará el {plan.nombre} con otro plan
+              </Link>
+            </div>
         </div>
       </section>
     </>

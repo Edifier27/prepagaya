@@ -451,12 +451,25 @@ export default async function PrepagaSlugPage({ params }: Props) {
               <p className="text-gray-600 text-sm leading-relaxed mb-5 max-w-xl">{prep.descripcion}</p>
 
               <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/comparador"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
-                >
-                  {isPartner ? 'Cotizar y contratar online →' : 'Cotizar mi precio exacto →'}
-                </Link>
+                {/* 28-sep-2026 (Darío): en todas las prepagas, "Cotizar y
+                    contratar online" abre el cotizador de ESTA prepaga (popup
+                    con selector de plan), no el comparador general. Comparar
+                    queda como botón aparte. */}
+                <ContratarPlanButton
+                      prepagaNombre={prep.nombre}
+                      fuente="ficha-prepaga"
+                      label="Cotizar y contratar online"
+                      titulo={`Cotizá y contratá ${prep.nombre}`}
+                      planesOpciones={prep.planes.map((pl) => pl.nombre)}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
+                    />
+                    <Link
+                      href="/comparador"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold rounded-xl transition-all text-sm"
+                    >
+                      Comparar con otras prepagas
+                    </Link>
+
                 {/* Botón a la cartilla por zona/nombre — pedido de Darío, 23-sep-2026, para darle visibilidad */}
                 {getCartillaInfo(prep.slug) && (
                   <Link
@@ -1278,14 +1291,21 @@ export default async function PrepagaSlugPage({ params }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Cotizá {prep.nombre} para tu perfil</h2>
           <p className="text-red-200 text-sm mb-6">
-            El precio cambia según tu edad y zona. Usá el cotizador para ver el precio exacto y comparar con otras prepagas.
+            El precio cambia según tu edad y zona. Te pasamos el precio exacto con 15% OFF por contratar online.
           </p>
-          <Link
-            href="/comparador"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Cotizar gratis →
-          </Link>
+          <div className="flex flex-col items-center gap-3">
+              <ContratarPlanButton
+                prepagaNombre={prep.nombre}
+                fuente="ficha-prepaga-final"
+                label={`Cotizar ${prep.nombre}`}
+                titulo={`Cotizá y contratá ${prep.nombre}`}
+                planesOpciones={prep.planes.map((pl) => pl.nombre)}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
+              />
+              <Link href="/comparador" className="text-sm text-red-100 hover:text-white font-semibold underline underline-offset-2">
+                O compará {prep.nombre} con otras prepagas
+              </Link>
+            </div>
         </div>
       </section>
     </>
