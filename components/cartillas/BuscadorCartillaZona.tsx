@@ -13,9 +13,11 @@ import {
 } from '@/lib/cartilla-zonas-geo'
 import type { ZonaCartilla } from '@/lib/data/cartilla-zonas'
 import { CentrosLista, UpsellPlanes, centrosConPlanSuperior } from '@/components/cartillas/CentrosLista'
+import { CentrosEspecialidad } from '@/components/cartillas/CentrosEspecialidad'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { EnOtrasCartillas } from '@/components/cartillas/EnOtrasCartillas'
 import type { CentroEnOtras } from '@/lib/data/cartilla-zonas/cruce'
+import type { ZonaEspecialidades } from '@/lib/data/cartilla-zonas/especialidades'
 
 interface Props {
   prepagaSlug: string
@@ -31,6 +33,10 @@ interface Props {
   planInicial?: string
   /** Zonas rápidas para mostrar como chips cuando no hay zona elegida */
   zonasRapidas?: string[]
+  /** Especialidades disponibles (pediatría, ginecología...) — solo si esta prepaga tiene cartilla por especialidad */
+  especialidades?: string[]
+  /** Especialidad preseleccionada, ej. desde /para/fertilizacion-asistida (usa "Esterilidad") */
+  especialidadInicial?: string
 }
 
 // Buscador de cartilla por zona y plan (OSDE / Premedic / Avalian). La zona
@@ -48,13 +54,17 @@ export function BuscadorCartillaZona({
   textoFecha,
   planInicial,
   zonasRapidas = ['caba', 'gba-zona-norte', 'gba-zona-oeste', 'gba-zona-sur'],
+  especialidades = [],
+  especialidadInicial,
 }: Props) {
   const indice = useMemo(() => grupos.flatMap((g) => g.zonas), [grupos])
   const [zonaSlug, setZonaSlug] = useState('')
   const [plan, setPlan] = useState(planInicial ?? '')
   const [detectadaLabel, setDetectadaLabel] = useState<string | null>(null)
-  const [seccion, setSeccion] = useState<SeccionCartilla>('internacion')
+  const [seccion, setSeccion] = useState<SeccionCartilla | 'especialidad'>(especialidadInicial ? 'especialidad' : 'internacion')
+  const [especialidad, setEspecialidad] = useState(especialidadInicial ?? especialidades[0] ?? '')
   const [datos, setDatos] = useState<(ZonaCartilla & { enOtras?: CentroEnOtras[] }) | null>(null)
+  const [datosEsp, setDatosEsp] = useState<ZonaEspecialidades | null>(null)
   const [cargando, setCargando] = useState(false)
   const [error, setError] = useState(false)
 
@@ -89,6 +99,21 @@ export function BuscadorCartillaZona({
     }
   }, [prepagaSlug, zonaSlug])
 
+  useEffect(() => {
+    if (!zonaSlug || especialidades.length === 0) {
+      setDatosEsp(null)
+      return
+    }
+    let cancelado = false
+    fetch(`/api/cartilla-zona-especialidades/${prepagaSlug}/${zonaSlug}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((z: ZonaEspecialidades) => !cancelado && setDatosEsp(z))
+      .catch(() => !cancelado && setDatosEsp(null))
+    return () => {
+      cancelado = true
+    }
+  }, [prepagaSlug, zonaSlug, especialidades.length])
+
   const zonaIndice = indice.find((z) => z.slug === zonaSlug)
   const planesZona = planes.filter((p) => !zonaIndice || zonaIndice.planes.includes(p.id))
   const planObj = planes.find((p) => p.id === plan)
@@ -104,7 +129,7 @@ export function BuscadorCartillaZona({
       }))
   }, [datos, plan])
   const conteo = (s: SeccionCartilla) => centrosFiltrados.filter((c) => c[s].length > 0).length
-  const upsell = datos && plan ? centrosConPlanSuperior(datos.centros, plan, planes, escalera, seccion) : []
+  const upsell = datos && plan && seccion !== 'especialidad' ? centrosConPlanSuperior(datos.centros, plan, planes, escalera, seccion) : []
   const zonaCorta = datos ? nombreCortoZona(datos.nombre) : ''
 
   return (
@@ -186,7 +211,7 @@ export function BuscadorCartillaZona({
       {zonaSlug && (
         <div className="mt-6">
           <div className="flex gap-2 mb-4 overflow-x-auto" role="tablist">
-            {(['internacion', 'guardia'] as const).map((s) => (
+            {(['internacion', 'guardia', ...(especialidades.length > 0 ? (['especialidad'] as const) : [])] as const).map((s) => (
               <button
                 key={s}
                 type="button"
@@ -202,19 +227,57 @@ export function BuscadorCartillaZona({
                     <span className="sm:hidden">Internación</span>
                     <span className="hidden sm:inline">Sanatorios para internación</span>
                   </>
-                ) : (
+                ) : s === 'guardia' ? (
                   labelGuardia
+                ) : (
+                  'Especialidades'
                 )}
-                {datos && <span className={`ml-1.5 text-xs ${seccion === s ? 'text-red-200' : 'text-gray-400'}`}>{conteo(s)}</span>}
+                {s !== 'especialidad' && datos && <span className={`ml-1.5 text-xs ${seccion === s ? 'text-red-200' : 'text-gray-400'}`}>{conteo(s)}</span>}
               </button>
             ))}
           </div>
 
-          {cargando && <div className="text-sm text-gray-400 py-8 text-center">Cargando cartilla…</div>}
-          {error && !cargando && (
-            <div className="text-sm text-gray-500 py-8 text-center">No pudimos cargar la cartilla de esta zona. Probá de nuevo.</div>
-          )}
-          {datos && !cargando && (
+          {seccion === 'especialidad' ? (
+            <div>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {especialidades.map((e) => (
+                  <button
+                    key={e}
+                    type="button"
+                    onClick={() => setEspecialidad(e)}
+                    className={`px-3 py-1.5 text-xs font-semibold rounded-full border transition-colors ${
+                      especialidad === e ? 'bg-gray-900 text-white border-gray-900' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
+                    }`}
+                  >
+                    {e === 'Esterilidad' ? 'Fertilidad / Esterilidad' : e}
+                  </button>
+                ))}
+              </div>
+              {!datosEsp && <div className="text-sm text-gray-400 py-8 text-center">Cargando especialidades…</div>}
+              {datosEsp && (
+                <CentrosEspecialidad
+                  centros={datosEsp.especialidades[especialidad]?.centros ?? []}
+                  profesionales={
+                    plan
+                      ? datosEsp.especialidades[especialidad]?.profesionalesPorPlan[plan] ?? 0
+                      : datosEsp.especialidades[especialidad]?.profesionales ?? 0
+                  }
+                  especialidad={especialidad}
+                  plan={plan || undefined}
+                  zonaCorta={zonaCorta}
+                />
+              )}
+              <p className="mt-4 text-xs text-gray-400 leading-relaxed">
+                Fuente: buscador oficial de cartilla de Swiss Medical, consultado el {textoFecha.replace('buscador oficial consultado el ', '')}.
+              </p>
+            </div>
+          ) : (
+            <>
+              {cargando && <div className="text-sm text-gray-400 py-8 text-center">Cargando cartilla…</div>}
+              {error && !cargando && (
+                <div className="text-sm text-gray-500 py-8 text-center">No pudimos cargar la cartilla de esta zona. Probá de nuevo.</div>
+              )}
+              {datos && !cargando && (
             <>
               <CentrosLista
                 centros={centrosFiltrados}
@@ -258,6 +321,8 @@ export function BuscadorCartillaZona({
                   className="flex-shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-sm text-sm"
                 />
               </div>
+            </>
+          )}
             </>
           )}
         </div>

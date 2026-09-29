@@ -59,6 +59,7 @@ const herramientasGrupos: { titulo: string; items: ItemMenu[] }[] = [
       { href: '/guias/que-cubre-la-prepaga#buscador', label: '¿Qué me cubre la prepaga?', desc: 'Buscá cualquier práctica', nuevo: true },
       { href: '/guardias-cerca', label: '¿Dónde me atiendo?', desc: 'Guardias cerca con tu ubicación', nuevo: true },
       { href: '/buscar-por-sanatorio', label: '¿Qué prepaga cubre mi sanatorio?', desc: 'Con las cartillas oficiales' },
+      { href: '/fertilizacion-asistida', label: 'Fertilización asistida', desc: 'Qué cubre la ley y centros por zona', nuevo: true },
       { href: '/declaracion-jurada-de-salud', label: 'Preexistencias', desc: 'Qué papeles te piden al afiliarte' },
       { href: '/cartillas', label: 'Cartillas médicas', desc: 'Sanatorios y guardias por zona' },
     ],

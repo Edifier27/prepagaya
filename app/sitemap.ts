@@ -48,6 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/prepaga-por-presupuesto`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.80 },
     { url: `${BASE}/buscar-por-sanatorio`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/guardias-cerca`, lastModified: new Date('2026-09-27').toISOString(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/fertilizacion-asistida`, lastModified: new Date('2026-09-28').toISOString(), changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/declaracion-jurada-de-salud`, lastModified: new Date(PREEXISTENCIAS_DOC_FECHA).toISOString(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/chequeo-prepaga`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/match-prepaga`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
