@@ -6,6 +6,10 @@ import PanelResenas from './PanelResenas'
 import type { LeadRow, EstadoLead } from '@/lib/db'
 import { whatsappLinkParaLead } from '@/lib/utils'
 
+// Mismo shape que DestinoLead de lib/kommo.ts — no se puede importar ese
+// archivo acá (es server-only), así que se repite el tipo.
+type DestinoLead = { tipo: 'dario' | 'gabriela' } | { tipo: 'email'; email: string }
+
 // Preferencias (JSON de lib/data/sondeo.ts) en una línea legible para el panel.
 const ETIQUETAS_PREFERENCIAS: Record<string, string> = {
   copago: 'Copago', coberturas: 'Coberturas', zona: 'Zona (quiz)', saludMental: 'Salud mental',
@@ -149,34 +153,53 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
       .catch(() => {})
   }, [])
 
-  // A qué cuenta de Kommo van los leads nuevos (acceso directo, 29-sep-2026):
-  // se puede cambiar acá mismo, sin pedir un deploy.
-  const [cuentaKommo, setCuentaKommo] = useState<'dario' | 'gabriela' | null>(null)
-  const [cambiandoCuenta, setCambiandoCuenta] = useState(false)
+  // A dónde van los leads nuevos (acceso directo, 29-sep-2026): cuenta de
+  // Kommo de Darío, de Gabriela, o un mail suelto por EmailJS. Se puede
+  // cambiar acá mismo, sin pedir un deploy.
+  const [destino, setDestino] = useState<DestinoLead | null>(null)
+  const [emailBorrador, setEmailBorrador] = useState('')
+  const [mostrarInputEmail, setMostrarInputEmail] = useState(false)
+  const [guardandoDestino, setGuardandoDestino] = useState(false)
   useEffect(() => {
     fetch('/api/panel/config')
       .then((r) => (r.ok ? r.json() : null))
-      .then((d) => d && setCuentaKommo(d.cuentaKommo))
+      .then((d) => {
+        if (!d?.destino) return
+        setDestino(d.destino)
+        if (d.destino.tipo === 'email') {
+          setEmailBorrador(d.destino.email)
+          setMostrarInputEmail(true)
+        }
+      })
       .catch(() => {})
   }, [])
-  const elegirCuentaKommo = useCallback(async (nueva: 'dario' | 'gabriela') => {
-    if (cuentaKommo === nueva || cambiandoCuenta) return
-    const anterior = cuentaKommo
-    setCambiandoCuenta(true)
-    setCuentaKommo(nueva) // optimista
+  const guardarDestino = useCallback(async (nuevo: DestinoLead) => {
+    if (guardandoDestino) return
+    const anterior = destino
+    setGuardandoDestino(true)
+    setDestino(nuevo) // optimista
     try {
       const res = await fetch('/api/panel/config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cuentaKommo: nueva }),
+        body: JSON.stringify({ destino: nuevo }),
       })
-      if (!res.ok) setCuentaKommo(anterior) // revierte si falló
+      if (!res.ok) setDestino(anterior) // revierte si falló
     } catch {
-      setCuentaKommo(anterior)
+      setDestino(anterior)
     } finally {
-      setCambiandoCuenta(false)
+      setGuardandoDestino(false)
     }
-  }, [cuentaKommo, cambiandoCuenta])
+  }, [destino, guardandoDestino])
+  const elegirCuenta = useCallback((tipo: 'dario' | 'gabriela') => {
+    setMostrarInputEmail(false)
+    guardarDestino({ tipo })
+  }, [guardarDestino])
+  const guardarEmailDestino = useCallback(() => {
+    const email = emailBorrador.trim()
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return
+    guardarDestino({ tipo: 'email', email })
+  }, [emailBorrador, guardarDestino])
   const ultimoId = useRef(leadsIniciales[0]?.id ?? 0)
 
   const alternar = useCallback((clave: FiltroChip, valor: string) => {
@@ -392,26 +415,61 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            {cuentaKommo && (
-              <div
-                className="flex items-center gap-1 bg-gray-100 rounded-xl p-1"
-                title="Los leads nuevos (sin contacto previo en Kommo) van a la cuenta marcada"
-              >
-                {(['dario', 'gabriela'] as const).map((cuenta) => (
+            {destino && (
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <div
+                  className="flex items-center gap-1 bg-gray-100 rounded-xl p-1"
+                  title="A dónde van los leads nuevos (sin contacto previo en Kommo)"
+                >
+                  {(['dario', 'gabriela'] as const).map((tipo) => (
+                    <button
+                      key={tipo}
+                      onClick={() => elegirCuenta(tipo)}
+                      disabled={guardandoDestino}
+                      aria-pressed={destino.tipo === tipo}
+                      className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
+                        destino.tipo === tipo
+                          ? 'bg-[#E8002D] text-white shadow-sm'
+                          : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
+                      }`}
+                    >
+                      {tipo === 'dario' ? 'Darío' : 'Gaby'}
+                    </button>
+                  ))}
                   <button
-                    key={cuenta}
-                    onClick={() => elegirCuentaKommo(cuenta)}
-                    disabled={cambiandoCuenta}
-                    aria-pressed={cuentaKommo === cuenta}
+                    onClick={() => setMostrarInputEmail(true)}
+                    disabled={guardandoDestino}
+                    aria-pressed={destino.tipo === 'email'}
                     className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
-                      cuentaKommo === cuenta
+                      destino.tipo === 'email'
                         ? 'bg-[#E8002D] text-white shadow-sm'
                         : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
                     }`}
                   >
-                    {cuenta === 'dario' ? 'Darío' : 'Gaby'}
+                    Otro mail
                   </button>
-                ))}
+                </div>
+                {mostrarInputEmail && (
+                  <form
+                    onSubmit={(e) => { e.preventDefault(); guardarEmailDestino() }}
+                    className="flex items-center gap-1"
+                  >
+                    <input
+                      type="email"
+                      value={emailBorrador}
+                      onChange={(e) => setEmailBorrador(e.target.value)}
+                      placeholder="mail@ejemplo.com"
+                      className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 w-36 focus:outline-none focus:border-red-300"
+                    />
+                    <button
+                      type="submit"
+                      disabled={guardandoDestino || !emailBorrador.trim()}
+                      className="text-xs font-bold text-white bg-gray-700 hover:bg-gray-800 disabled:opacity-50 rounded-lg px-2.5 py-1.5 whitespace-nowrap"
+                    >
+                      Guardar
+                    </button>
+                  </form>
+                )}
               </div>
             )}
             <button

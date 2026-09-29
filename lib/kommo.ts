@@ -15,31 +15,38 @@
 // y cargar leads falsos en el CRM. Vence a los 90 días por las dudas de que
 // quede dando vueltas en una bandeja de entrada vieja.
 //
-// Reparto entre cuentas: los leads nuevos van a la cuenta configurada como
-// default (ver getCuentaKommoDefault más abajo, editable desde /panel-leads
-// sin deploy). Arrancó en 'dario' el 29-sep-2026. Un contacto que ya existía
-// en la otra cuenta de antes sigue resolviendo ahí (ver `existente?.cuenta`
-// en crearLeadEnKommo) para no duplicarlo.
+// Destino de los leads nuevos: configurable desde /panel-leads (acceso
+// directo pedido por Darío, 29-sep-2026, para no depender de un deploy).
+// Tres opciones: cuenta de Kommo de Darío, cuenta de Kommo de Gabriela, o un
+// mail suelto (no entra a Kommo, se manda por EmailJS — ver
+// app/api/cron/procesar-leads-kommo). Un contacto que ya existía en Kommo de
+// antes sigue resolviendo en esa cuenta (ver `existente?.cuenta` en
+// crearLeadEnKommo) para no duplicarlo, sea cual sea el destino configurado.
 import crypto from 'crypto'
 import { normalizarCelularAR } from './utils'
 import { getConfig, setConfig } from './db'
 
 const KOMMO_LINK_SECRET = process.env.KOMMO_LINK_SECRET ?? ''
 
-// Cuenta que recibe los leads nuevos: configurable desde /panel-leads (acceso
-// directo pedido por Darío, 29-sep-2026, para no depender de un deploy cada
-// vez que hay que repartir entre su cuenta y la de Gabriela). La clave vive
-// en la tabla `config` (ver lib/db.ts); sin fila cargada o sin base
-// configurada, cae en 'dario' — mismo default que quedó puesto hoy a mano.
-const CLAVE_CUENTA_KOMMO = 'kommo_cuenta_default'
+// Mismo nombre de clave que cuando solo admitía 'dario'/'gabriela' (no hace
+// falta migrar nada, el valor ya guardado sigue siendo válido).
+const CLAVE_DESTINO_TIPO = 'kommo_cuenta_default'
+const CLAVE_DESTINO_EMAIL = 'kommo_cuenta_default_email'
 
-export async function getCuentaKommoDefault(): Promise<KommoCuenta> {
-  const valor = await getConfig(CLAVE_CUENTA_KOMMO)
-  return valor === 'gabriela' ? 'gabriela' : 'dario'
+export type DestinoLead = { tipo: 'dario' | 'gabriela' } | { tipo: 'email'; email: string }
+
+export async function getDestinoLead(): Promise<DestinoLead> {
+  const tipo = await getConfig(CLAVE_DESTINO_TIPO)
+  if (tipo === 'email') {
+    const email = (await getConfig(CLAVE_DESTINO_EMAIL)) ?? ''
+    return { tipo: 'email', email }
+  }
+  return { tipo: tipo === 'gabriela' ? 'gabriela' : 'dario' }
 }
 
-export async function setCuentaKommoDefault(cuenta: KommoCuenta): Promise<void> {
-  await setConfig(CLAVE_CUENTA_KOMMO, cuenta)
+export async function setDestinoLead(destino: DestinoLead): Promise<void> {
+  await setConfig(CLAVE_DESTINO_TIPO, destino.tipo)
+  if (destino.tipo === 'email') await setConfig(CLAVE_DESTINO_EMAIL, destino.email)
 }
 
 /** Celular listo para mandar a Kommo con "+" adelante: normalizado a
@@ -241,9 +248,12 @@ export async function crearLeadEnKommo(d: KommoLeadData): Promise<ResultadoKommo
   }
 
   // Cuenta destino: la del contacto existente (si hay uno sin lead propio,
-  // para no duplicarlo), o la que esté configurada como default para leads
-  // nuevos (ver getCuentaKommoDefault, editable desde /panel-leads).
-  const cuenta = existente?.cuenta ?? (await getCuentaKommoDefault())
+  // para no duplicarlo), o la que esté configurada como default. Esta
+  // función no se llama cuando el destino configurado es 'email' (ver
+  // app/api/cron/procesar-leads-kommo, que rama antes) — el 'dario' de acá
+  // es solo un resguardo defensivo por si algo la llama en ese estado.
+  const destino = await getDestinoLead()
+  const cuenta = existente?.cuenta ?? (destino.tipo === 'email' ? 'dario' : destino.tipo)
   const cfg = cuentaConfig(cuenta)
   if (!cfg.subdominio || !cfg.token) {
     return { ok: false, error: `Falta configurar Kommo para la cuenta de ${cfg.nombreDisplay} en el servidor.` }
