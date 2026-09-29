@@ -168,6 +168,14 @@ export default async function CoberturaPage({ params }: Props) {
                 ¿Tenés un diagnóstico de salud mental (depresión, bipolaridad, TOC)? Mirá qué prepaga conviene por condición →
               </Link>
             )}
+            {/* /fertilizacion-asistida quedó huérfana (auditoría de crawling
+                interno, 29-sep-2026): ninguna página del sitio la enlazaba
+                todavía, aunque este hub es su lugar natural. */}
+            {cob.slug === 'fertilidad' && (
+              <Link href="/fertilizacion-asistida" className="block mt-2 text-sm font-semibold text-blue-700 hover:underline">
+                Guía completa de la Ley 26.862 y los centros de fertilidad de Swiss Medical →
+              </Link>
+            )}
           </div>
         </div>
       </section>
