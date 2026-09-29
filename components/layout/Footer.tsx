@@ -337,20 +337,26 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
         </div>
 
         {/* Fuente de precios (23-sep-2026): cuadros tarifarios oficiales de la SSSalud.
-            Logo como cita de la fuente de datos, no como aval. */}
-        <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-gray-400">
-          <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex bg-white rounded-xl px-4 py-2.5 w-fit flex-shrink-0" aria-label="Superintendencia de Servicios de Salud">
-            {/* next/image: carga diferida y en el tamaño que se muestra (el PNG
-                original es de 945 px y se bajaba entero en cada página) */}
-            <Image src="/logos/sssalud.png" alt="Superintendencia de Servicios de Salud" width={150} height={56} className="h-14 w-auto" />
-          </a>
-          <span>
-            Fuente:{' '}
-            <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-200">
-              Superintendencia de Servicios de Salud
-            </a>
+            Logo como cita de la fuente de datos, no como aval. Card con borde
+            (29-sep-2026, a pedido de Darío: el logo suelto quedaba pobre) para que
+            se lea como credencial/cita oficial, no como un elemento flotante suelto. */}
+        <a
+          href={preciosOficiales.fuenteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-10 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 w-fit max-w-full hover:border-white/20 hover:bg-white/[0.05] transition-colors"
+        >
+          {/* next/image: carga diferida y en el tamaño que se muestra (el PNG
+              original es de 945 px y se bajaba entero en cada página) */}
+          <span className="inline-flex flex-shrink-0 bg-white rounded-lg p-2">
+            <Image src="/logos/sssalud.png" alt="" width={150} height={56} className="h-9 sm:h-10 w-auto" />
           </span>
-        </div>
+          <span className="min-w-0">
+            <span className="block text-[10px] font-semibold uppercase tracking-wider text-gray-500">Datos oficiales de</span>
+            <span className="block text-sm font-semibold text-gray-200">Superintendencia de Servicios de Salud</span>
+            <span className="block text-xs text-gray-500 mt-0.5">Precios, RNEMP y regulación de prepagas y obras sociales</span>
+          </span>
+        </a>
 
         {/* Divider */}
         <div className="border-t border-white/[0.06] mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
