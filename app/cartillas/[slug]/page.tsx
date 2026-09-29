@@ -12,6 +12,7 @@ import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 import { BuscadorCartillaZona } from '@/components/cartillas/BuscadorCartillaZona'
 import { contactos } from '@/lib/data/contactos'
 import { getCartilla, nombreCortoZona, slugPlan, textoFecha, textoFechaDe, textoFechaConArticulo, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
+import { especialidadesDisponibles, tipoEspecialidades } from '@/lib/data/cartilla-zonas/especialidades'
 import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 
 interface Props {
@@ -249,6 +250,8 @@ export default async function CartillaPrepagaPage({ params }: Props) {
               planesConPagina={cartillaZonas.planesConPagina}
               labelGuardia={cartillaZonas.labelGuardia}
               textoFecha={textoFecha(cartillaZonas)}
+              especialidades={especialidadesDisponibles(slug)}
+              especialidadesLabel={tipoEspecialidades(slug) === 'guardia' ? 'Especialistas de guardia' : 'Especialidades'}
             />
             <p className="mt-4 text-center text-sm text-gray-600">
               ¿Necesitás una guardia ahora?{' '}

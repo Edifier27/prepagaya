@@ -1,8 +1,11 @@
 """Parser de las cartillas PDF oficiales de OSDE (downloadPDF/CartillaFF_PP.pdf).
 
-Extrae solo instituciones de dos secciones:
+Extrae solo instituciones de tres secciones:
   - SANATORIOS PARA INTERNACIÓN
   - CENTROS CON SERVICIO DE GUARDIA (LAS 24 HS)
+  - ESPECIALISTAS DE GUARDIA (instituciones con especialista de guardia, por
+    especialidad — NO es "CUERPO MÉDICO", que mezcla instituciones con
+    médicos particulares con nombre y apellido y por eso no se parsea)
 Uso: python parse.py pdfs/Cartilla60_31.pdf [...]  -> imprime JSON
 """
 import json, re, sys, io, unicodedata
@@ -11,6 +14,7 @@ import pymupdf
 SECCIONES = {
     'SANATORIOS PARA INTERNACI': 'internacion',
     'CENTROS CON SERVICIO DE GUARDIA': 'guardia',
+    'ESPECIALISTAS DE GUARDIA': 'especialistas',
 }
 MARCAS = {
     '(***)': 'solo-cartilla',   # internación con profesionales de cartilla exclusivamente
@@ -78,6 +82,7 @@ def parse_pdf(path):
     items = []
     seccion = None
     zona = None
+    especialidad = None  # solo dentro de "especialistas": "CARDIÓLOGOS DE GUARDIA" -> "Cardiólogos"
     actual = None
     cerrado = False  # tras la leyenda de asteriscos, ignorar el resto de la columna/página
 
@@ -94,6 +99,7 @@ def parse_pdf(path):
             if ln['size'] >= 12:  # título de sección
                 cerrar()
                 seccion = None
+                especialidad = None
                 for k, v in SECCIONES.items():
                     if t.upper().startswith(k):
                         seccion = v
@@ -109,6 +115,16 @@ def parse_pdf(path):
             if t.startswith(FIN_BLOQUE):
                 cerrar()
                 cerrado = True
+                continue
+            # "CARDIÓLOGOS DE GUARDIA", "GINECÓLOGOS Y OBSTETRAS DE GUARDIA":
+            # subtítulo de especialidad dentro de "especialistas" — mismo
+            # tamaño/negrita que un nombre de institución, se distingue porque
+            # está todo en mayúsculas y termina en "DE GUARDIA".
+            if seccion == 'especialistas' and ln['bold'] and ln['size'] == 9 and t == t.upper() and t.endswith('DE GUARDIA'):
+                cerrar()
+                base = norm(re.sub(r'\s*DE GUARDIA$', '', t))
+                especialidad = ' '.join(w.lower() if i and w.lower() == 'y' else w.capitalize() for i, w in enumerate(base.split()))
+                zona = None
                 continue
             if ln['bold'] and ln['size'] == 10:  # subtítulo de zona
                 cerrar()
@@ -130,7 +146,7 @@ def parse_pdf(path):
                         t = norm(t[len(k):])
                         break
                 actual = {'filial': filial, 'filialNombre': filial_nombre, 'plan': plan,
-                          'seccion': seccion, 'zona': zona, 'nombre': t, 'marca': marca,
+                          'seccion': seccion, 'zona': zona, 'especialidad': especialidad, 'nombre': t, 'marca': marca,
                           'notas': [], 'sedes': [], 'pagina': pi}
                 continue
             if actual is None:
