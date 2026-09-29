@@ -2,9 +2,6 @@
 import Image from 'next/image'
 import type { ProvinciaMenu } from '@/lib/data/zonas'
 import { PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
-// Solo el JSON chico de precios oficiales (no lib/data/prepagas.ts): el footer
-// se renderiza dentro de SiteChrome, que es client component.
-import preciosOficiales from '@/lib/data/precios-oficiales.json'
 
 const prepagaLinks = [
   { slug: 'swiss-medical', nombre: 'Swiss Medical' },
@@ -341,7 +338,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
             (29-sep-2026, a pedido de Darío: el logo suelto quedaba pobre) para que
             se lea como credencial/cita oficial, no como un elemento flotante suelto. */}
         <a
-          href={preciosOficiales.fuenteUrl}
+          href="https://www.sssalud.gob.ar/"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-10 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 w-fit max-w-full hover:border-white/20 hover:bg-white/[0.05] transition-colors"
