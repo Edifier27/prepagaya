@@ -1,13 +1,19 @@
 import swissEspecialidadesData from './swiss-medical-especialidades.json'
+import osdeEspecialidadesData from './osde-especialidades.json'
 
-// Cartilla por especialidad (pediatría, traumatología, ginecología,
-// cardiología, dermatología, oftalmología, esterilidad/fertilidad) — SOLO
-// centros e instituciones, nunca datos de médicos particulares. De los
-// profesionales particulares solo se guarda la cantidad (deduplicada por su
-// id en la fuente oficial). Decisión de Darío, 28-sep-2026.
+// Cartilla por especialidad — SOLO centros e instituciones, nunca datos de
+// médicos particulares. De los profesionales particulares solo se guarda la
+// cantidad (deduplicada por su id en la fuente oficial). Decisión de Darío,
+// 28-sep-2026.
 //
-// Por ahora solo Swiss Medical (scripts/cartilla-swiss/especialidades.py);
-// se suma OSDE cuando esté su cartilla oficial vigente 2026 parseada.
+// Dos "tipos" de fuente, según lo que expone cada prepaga:
+//  - 'general' (Swiss Medical, scripts/cartilla-swiss/especialidades.py): el
+//    buscador público de especialidades médicas, cuenta profesionales.
+//  - 'guardia' (OSDE, sección "ESPECIALISTAS DE GUARDIA" del PDF oficial,
+//    scripts/cartilla-osde/merge.py): OSDE no tiene un buscador general por
+//    especialidad sin mezclar médicos particulares — solo la sección de
+//    especialistas de guardia (institución con especialista 24hs), que es
+//    limpia. Por eso no hay conteo de profesionales acá (siempre 0).
 
 export interface SedeEspecialidad {
   direccion: string | null
@@ -49,12 +55,28 @@ interface EspecialidadesJson {
   zonas: ZonaEspecialidades[]
 }
 
+const TIPOS: Record<string, 'general' | 'guardia'> = {
+  'swiss-medical': 'general',
+  osde: 'guardia',
+}
+
 const FUENTES: Partial<Record<string, EspecialidadesJson>> = {
   'swiss-medical': swissEspecialidadesData as EspecialidadesJson,
+  osde: osdeEspecialidadesData as EspecialidadesJson,
 }
 
 export function tieneEspecialidades(prepagaSlug: string): boolean {
   return Boolean(FUENTES[prepagaSlug])
+}
+
+/** Slugs de las prepagas que tienen cartilla por especialidad (para generateStaticParams). */
+export function prepagasConEspecialidades(): string[] {
+  return Object.keys(FUENTES)
+}
+
+/** 'guardia' (OSDE: solo instituciones con especialista de guardia) o 'general' (Swiss: cartilla completa por especialidad). */
+export function tipoEspecialidades(prepagaSlug: string): 'general' | 'guardia' {
+  return TIPOS[prepagaSlug] ?? 'general'
 }
 
 export function especialidadesDisponibles(prepagaSlug: string): string[] {

@@ -52,7 +52,7 @@ export function CentrosEspecialidad({
     return (
       <div className="bg-gray-50 border border-gray-100 rounded-xl p-5">
         <p className="text-sm text-gray-800">
-          La cartilla oficial de Swiss Medical suma más de {profesionales} profesional{profesionales === 1 ? '' : 'es'} y centro{profesionales === 1 ? '' : 's'} médico{profesionales === 1 ? '' : 's'} de {especialidadLower} en {zonaCorta}
+          La cartilla oficial de {prepagaNombre} suma más de {profesionales} profesional{profesionales === 1 ? '' : 'es'} y centro{profesionales === 1 ? '' : 's'} médico{profesionales === 1 ? '' : 's'} de {especialidadLower} en {zonaCorta}
           {plan ? ' con este plan' : ''}. Por privacidad no mostramos sus datos individuales — un asesor te los confirma al cotizar.
         </p>
         <ContratarPlanButton
@@ -106,7 +106,7 @@ export function CentrosEspecialidad({
       {profesionales > 0 && (
         <p className="mt-4 text-sm text-gray-600 bg-gray-50 border border-gray-100 rounded-xl p-4">
           Además, la cartilla oficial suma más de {profesionales} profesional{profesionales === 1 ? '' : 'es'} de {especialidadLower} en {zonaCorta}
-          {plan ? ' con este plan' : ''} (médicos particulares: por privacidad no mostramos sus datos individuales, confirmalos en Swiss Medical).
+          {plan ? ' con este plan' : ''} (médicos particulares: por privacidad no mostramos sus datos individuales, confirmalos en {prepagaNombre}).
         </p>
       )}
     </div>

@@ -35,6 +35,8 @@ interface Props {
   zonasRapidas?: string[]
   /** Especialidades disponibles (pediatría, ginecología...) — solo si esta prepaga tiene cartilla por especialidad */
   especialidades?: string[]
+  /** Texto de la pestaña: "Especialidades" (Swiss) o "Especialistas de guardia" (OSDE) */
+  especialidadesLabel?: string
   /** Especialidad preseleccionada, ej. desde /para/fertilizacion-asistida (usa "Esterilidad") */
   especialidadInicial?: string
 }
@@ -55,6 +57,7 @@ export function BuscadorCartillaZona({
   planInicial,
   zonasRapidas = ['caba', 'gba-zona-norte', 'gba-zona-oeste', 'gba-zona-sur'],
   especialidades = [],
+  especialidadesLabel = 'Especialidades',
   especialidadInicial,
 }: Props) {
   const indice = useMemo(() => grupos.flatMap((g) => g.zonas), [grupos])
@@ -230,7 +233,7 @@ export function BuscadorCartillaZona({
                 ) : s === 'guardia' ? (
                   labelGuardia
                 ) : (
-                  'Especialidades'
+                  especialidadesLabel
                 )}
                 {s !== 'especialidad' && datos && <span className={`ml-1.5 text-xs ${seccion === s ? 'text-red-200' : 'text-gray-400'}`}>{conteo(s)}</span>}
               </button>
