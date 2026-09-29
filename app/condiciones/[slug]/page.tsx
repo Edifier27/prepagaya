@@ -142,6 +142,15 @@ export default async function CondicionPage({ params }: Props) {
             <Link href="/pmo" className="inline-block mt-3 text-sm font-semibold text-blue-700 hover:underline">
               Ver el Programa Médico Obligatorio completo →
             </Link>
+            {/* Cruce con /coberturas/psicologia (auditoría de enlazado interno,
+                29-sep-2026): esta página es para diagnósticos psiquiátricos
+                puntuales, la otra es la cobertura general de sesiones — se
+                confunden en la búsqueda, así que se enlazan entre sí. */}
+            {cond.slug === 'salud-mental' && (
+              <Link href="/coberturas/psicologia" className="block mt-2 text-sm font-semibold text-blue-700 hover:underline">
+                ¿Cuántas sesiones de psicología cubre cada plan? Mirá la cobertura de psicología y salud mental →
+              </Link>
+            )}
           </div>
         </div>
       </section>

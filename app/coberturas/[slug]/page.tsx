@@ -161,6 +161,13 @@ export default async function CoberturaPage({ params }: Props) {
             <Link href="/pmo" className="inline-block mt-3 text-sm font-semibold text-blue-700 hover:underline">
               Ver el Programa Médico Obligatorio completo →
             </Link>
+            {/* Cruce con /condiciones/salud-mental (auditoría de enlazado
+                interno, 29-sep-2026): ver nota espejo en condiciones/[slug]. */}
+            {cob.slug === 'psicologia' && (
+              <Link href="/condiciones/salud-mental" className="block mt-2 text-sm font-semibold text-blue-700 hover:underline">
+                ¿Tenés un diagnóstico de salud mental (depresión, bipolaridad, TOC)? Mirá qué prepaga conviene por condición →
+              </Link>
+            )}
           </div>
         </div>
       </section>

@@ -5,6 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, prepagasEnSanatorio, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { idCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
+import { getCartillaInfo } from '@/lib/data/cartillas'
 
 // "¿Qué prepagas atienden en el Hospital X?" (23-sep-2026): búsqueda que la
 // competencia cubre con notas escritas a mano. Acá todo sale de las cartillas
@@ -253,6 +254,14 @@ export default async function SanatorioPage({ params }: Props) {
                   <p className="text-xs text-gray-400 mt-2">
                     Fuente: <a href={p.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">cartilla oficial de {p.prepagaNombre}</a> ({p.fecha}).
                   </p>
+                  {/* Enlazado interno (auditoría 29-sep-2026): esta página no
+                      linkeaba a /cartillas, aunque es el contenido más
+                      relacionado — buscador completo de esa misma prepaga. */}
+                  {getCartillaInfo(p.prepagaSlug) && (
+                    <Link href={`/cartillas/${p.prepagaSlug}`} className="inline-block mt-2 text-xs font-semibold text-[#E8002D] hover:underline">
+                      Buscar otro médico o sanatorio en la cartilla de {p.prepagaNombre} →
+                    </Link>
+                  )}
                 </div>
               )
             })}
