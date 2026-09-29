@@ -242,6 +242,13 @@ export const terminos: Termino[] = [
     categoria: 'Contratación',
     alias: ['monotributista', 'monotributistas', 'monotributo'],
   },
+  {
+    slug: 'doble-cobertura',
+    termino: 'Doble cobertura (dos prepagas a la vez)',
+    definicion: 'Sí se puede: contratar una prepaga es un contrato privado entre vos y la empresa, así que podés tener más de una al mismo tiempo (por ejemplo, una por tu trabajo y otra particular) y usar la que más te convenga en cada caso. Lo que no se puede es estar afiliado a dos obras sociales a la vez: ahí tus aportes van a una sola, la que te corresponde por tu empleo (con opción de cambio una vez al año).',
+    categoria: 'Contratación',
+    alias: ['doble cobertura', 'dos prepagas', 'tener dos prepagas', 'dos prepagas al mismo tiempo'],
+  },
 
   // LEGAL
   {
