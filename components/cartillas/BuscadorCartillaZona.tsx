@@ -74,6 +74,7 @@ export function BuscadorCartillaZona({
   const [datos, setDatos] = useState<(ZonaCartilla & { enOtras?: CentroEnOtras[] }) | null>(null)
   const [datosEsp, setDatosEsp] = useState<ZonaEspecialidades | null>(null)
   const [datosFarm, setDatosFarm] = useState<ZonaFarmacias | null>(null)
+  const [cargandoFarm, setCargandoFarm] = useState(false)
   const [cargando, setCargando] = useState(false)
   const [error, setError] = useState(false)
 
@@ -126,13 +127,22 @@ export function BuscadorCartillaZona({
   useEffect(() => {
     if (!zonaSlug || !tieneFarmacias) {
       setDatosFarm(null)
+      setCargandoFarm(false)
       return
     }
     let cancelado = false
+    setCargandoFarm(true)
+    setDatosFarm(null)
     fetch(`/api/cartilla-zona-farmacias/${prepagaSlug}/${zonaSlug}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((z: ZonaFarmacias) => !cancelado && setDatosFarm(z))
-      .catch(() => !cancelado && setDatosFarm(null))
+      // 404 = esta zona no tiene farmacias en la fuente oficial (no es un
+      // error de carga): se deja un centros vacío y CentrosFarmacia ya
+      // muestra el mensaje de "no hay farmacias" en vez de "Cargando…" eterno.
+      // (zonaCorta se calcula más abajo en el componente y se pasa aparte
+      // como prop, no se usa el "nombre" de este objeto.)
+      .catch(() => !cancelado && setDatosFarm({ slug: zonaSlug, nombre: '', provincias: [], centros: [] }))
+      .finally(() => !cancelado && setCargandoFarm(false))
     return () => {
       cancelado = true
     }
@@ -303,8 +313,8 @@ export function BuscadorCartillaZona({
             </div>
           ) : seccion === 'farmacia' ? (
             <div>
-              {!datosFarm && <div className="text-sm text-gray-400 py-8 text-center">Cargando farmacias…</div>}
-              {datosFarm && <CentrosFarmacia centros={datosFarm.centros} plan={plan || undefined} zonaCorta={zonaCorta} />}
+              {cargandoFarm && <div className="text-sm text-gray-400 py-8 text-center">Cargando farmacias…</div>}
+              {!cargandoFarm && datosFarm && <CentrosFarmacia centros={datosFarm.centros} plan={plan || undefined} zonaCorta={zonaCorta} />}
               <p className="mt-4 text-xs text-gray-400 leading-relaxed">Fuente: {textoFecha}.</p>
             </div>
           ) : (

@@ -208,6 +208,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `cuanto sale ${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
       `cuanto cuesta ${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} cobertura`,
+      `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} que cubre`,
+      // "cartilla" (29-sep-2026): autocomplete y "la gente también pregunta" de
+      // Google muestran esta intención con mucho volumen y la página no la
+      // tenía en keywords, aunque sí tiene el contenido (cartillaPlanLink,
+      // sección "Qué incluye el plan").
+      `cartilla ${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
+      `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} cartilla`,
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} opiniones`,
     ],
   }
@@ -265,6 +272,16 @@ export default async function PlanPage({ params, searchParams }: Props) {
   // Una sola pregunta de precio (25-sep-2026): si hay cuadro oficial por edad,
   // la de "precio a los 30 años" sobra.
   const faqs = [...(seo?.faqs ?? []), ...buildPlanFAQs(plan, prep).filter((f) => !(seo?.escala && f.q.startsWith('¿Cuánto cuesta el')))]
+  // "¿Qué incluye la cartilla de [prepaga] [plan]?" (29-sep-2026): es la
+  // pregunta que Google muestra en "la gente también pregunta" para este tipo
+  // de búsqueda — solo se agrega cuando hay cartilla oficial real para
+  // apuntar (cartillaPlanLink), la sección ya está más abajo en la página.
+  if (cartillaPlanLink) {
+    faqs.push({
+      q: `¿Qué incluye la cartilla de ${prep.nombre} ${plan.nombre}?`,
+      a: `Más abajo en esta página tenés la cartilla oficial de ${cartillaPlanLink.label === plan.nombre ? 'este plan' : `la cartilla ${cartillaPlanLink.label}`}: los sanatorios para internación y guardias por zona (CABA, GBA e interior), con dirección y teléfono de cada centro, según datos oficiales.`,
+    })
+  }
   const comparativaPlan = getComparativaParaPlan(slug, planSlug)
   const otroPlanComparativa = comparativaPlan
     ? prep.planes.find((p) => p.slug === (comparativaPlan.plan1Slug === planSlug ? comparativaPlan.plan2Slug : comparativaPlan.plan1Slug))
