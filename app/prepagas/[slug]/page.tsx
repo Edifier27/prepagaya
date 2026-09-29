@@ -46,6 +46,21 @@ function obraSocialHermana(prepagaSlug: string) {
   return obrasSociales.find((o) => o.slug === osSlug)
 }
 
+// "¿[Prepaga] es obra social o prepaga?" (29-sep-2026, mucho volumen de
+// búsqueda en las 5 marcas partner). No se puede generalizar la respuesta:
+// OSDE es técnicamente una obra social aunque se la conoce como prepaga (ver
+// lib/data/obras-sociales.ts, ya investigado); las demás son medicina
+// prepaga. Investigado marca por marca con fuente oficial (29-sep-2026) — por
+// eso queda como mapa fijo en vez de una regla genérica, y solo se muestra
+// la FAQ en las marcas verificadas.
+const ES_OBRA_SOCIAL_O_PREPAGA: Record<string, string> = {
+  'swiss-medical': 'Es una empresa de medicina prepaga (RNEMP Nº 1-1332-8), no una obra social: a diferencia de una obra social, no tiene un Programa Médico Obligatorio propio, solo ofrece planes de medicina prepaga. Desde octubre de 2024 también está inscripta como Agente del Seguro de Salud (RNAS), lo que te permite derivar tus aportes de obra social directo a Swiss Medical sin pasar por una obra social intermediaria.',
+  osde: 'Técnicamente es una obra social, aunque mucha gente la conoce como prepaga porque compite en el segmento premium del mercado con planes de alta cobertura.',
+  'sancor-salud': 'Es una prepaga: la Asociación Mutual Sancor Salud está inscripta en el Registro Nacional de Entidades de Medicina Prepaga (RNEMP). Es una entidad totalmente distinta de Sancor OS (la obra social) y también de Prevención Salud (la prepaga del Grupo Sancor Seguros): comparten parte del nombre, pero son tres empresas sin relación societaria entre sí.',
+  premedic: 'Es una empresa de medicina prepaga, no una obra social.',
+  avalian: 'Es una empresa de medicina prepaga, no una obra social ni una mutual. Está registrada ante la Superintendencia de Servicios de Salud como entidad de medicina prepaga (RNEMP), aunque forma parte de un grupo asociativo integrado por la Asociación de Cooperativas Argentinas (ACA), el Grupo Asegurador La Segunda, Coovaeco y la Fundación Nodos.',
+}
+
 function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstrella: Plan, comp: DatosComparacion) {
   const sinCopago = prep.planes.filter(p => !p.copago).map(p => p.nombre)
   const conCopago = prep.planes.filter(p => p.copago).map(p => p.nombre)
@@ -119,6 +134,17 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
       q: `¿Cómo contratar ${prep.nombre}?`,
       a: `Podés cotizar el precio exacto para tu edad y zona usando el comparador gratuito de PrepagaYa. Un asesor te contactará para completar el trámite sin costo adicional.`,
     },
+    // "monotributistas" (29-sep-2026): verdad general del sistema argentino,
+    // no un dato específico de la marca — se puede afirmar para cualquier
+    // prepaga sin necesitar una fuente puntual por marca.
+    {
+      q: `¿${prep.nombre} acepta monotributistas?`,
+      a: `Sí. Como monotributista podés contratar ${prep.nombre} en forma directa, sin depender de un empleador. El aporte de obra social del monotributo lo seguís pagando igual dentro de tu cuota mensual; conviene elegir una prepaga que lo tome, así pagás solo la diferencia.`,
+    },
+    ...(ES_OBRA_SOCIAL_O_PREPAGA[prep.slug] ? [{
+      q: `¿${prep.nombre} es obra social o prepaga?`,
+      a: ES_OBRA_SOCIAL_O_PREPAGA[prep.slug],
+    }] : []),
   ]
 }
 
@@ -206,6 +232,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `prepaga ${prep.nombre.toLowerCase()}`,
       `cuanto sale ${prep.nombre.toLowerCase()}`,
       `aumento ${prep.nombre.toLowerCase()}`,
+      // "cartilla" y "es obra social o prepaga" (29-sep-2026): volumen real y
+      // repetido en las 5 marcas partner, ver lib/data/coberturas-marca.ts y
+      // ES_OBRA_SOCIAL_O_PREPAGA más arriba.
+      `cartilla ${prep.nombre.toLowerCase()}`,
+      `${prep.nombre.toLowerCase()} cartilla`,
+      `${prep.nombre.toLowerCase()} monotributistas`,
+      ...(ES_OBRA_SOCIAL_O_PREPAGA[slug] ? [`${prep.nombre.toLowerCase()} es obra social o prepaga`] : []),
       ...(contactos[slug] ? [`telefono ${prep.nombre.toLowerCase()}`] : []),
       ...(KEYWORDS_EXTRA[slug] ?? []),
     ],
