@@ -1,6 +1,7 @@
 import sancorFarmaciasData from './sancor-salud-farmacias.json'
 import avalianFarmaciasData from './avalian-farmacias.json'
 import premedicFarmaciasData from './premedic-farmacias.json'
+import osdeFarmaciasData from './osde-farmacias.json'
 
 // Cartilla de farmacias por zona — SOLO comercios habilitados (nunca datos de
 // médicos particulares; en farmacias no aplica ese problema, son negocios).
@@ -8,7 +9,9 @@ import premedicFarmaciasData from './premedic-farmacias.json'
 //  - Sancor Salud: scripts/cartilla-sancor/farmacias.py (categoría "FARMACIAS")
 //  - Avalian: scripts/cartilla-avalian/farmacias.py (clase "1")
 //  - Premedic: scripts/cartilla-premedic/farmacias.py (prestación "90")
-// OSDE y Swiss Medical quedan para una siguiente etapa (29-sep-2026).
+//  - OSDE: scripts/cartilla-osde/merge.py (sección "FARMACIAS" del PDF oficial;
+//    sin lat/lon, el PDF no trae coordenadas)
+// Swiss Medical queda para una siguiente etapa (29-sep-2026).
 
 export interface SedeFarmacia {
   direccion: string | null
@@ -45,6 +48,7 @@ const FUENTES: Partial<Record<string, FarmaciasJson>> = {
   'sancor-salud': sancorFarmaciasData as FarmaciasJson,
   avalian: avalianFarmaciasData as FarmaciasJson,
   premedic: premedicFarmaciasData as FarmaciasJson,
+  osde: osdeFarmaciasData as FarmaciasJson,
 }
 
 export function tieneFarmacias(prepagaSlug: string): boolean {
