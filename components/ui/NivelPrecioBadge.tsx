@@ -13,7 +13,7 @@ export function NivelPrecioBadge({ nivel, className }: NivelPrecioBadgeProps) {
       className={cn(
         'inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full border',
         nivel === 'economico' && 'bg-emerald-50 text-emerald-700 border-emerald-200',
-        nivel === 'medio' && 'bg-red-50 text-[#E8002D] border-red-200',
+        nivel === 'medio' && 'bg-red-50 text-[#B8001F] border-red-200',
         nivel === 'premium' && 'bg-purple-50 text-purple-700 border-purple-200',
         className
       )}

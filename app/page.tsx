@@ -373,7 +373,7 @@ export default function HomePage(): React.ReactElement {
                   <Link href={`/prepagas/${prov.slug}`} className="text-xs sm:text-sm font-bold text-[#E8002D] hover:underline">
                     Ver cobertura →
                   </Link>
-                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-500 hover:text-[#E8002D] font-medium transition-colors">
                     Ranking
                   </Link>
                 </div>
@@ -407,7 +407,7 @@ export default function HomePage(): React.ReactElement {
                   <Link href={`/prepagas/${prov.slug}`} className="text-xs sm:text-sm font-bold text-[#E8002D] hover:underline">
                     Ver cobertura →
                   </Link>
-                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-500 hover:text-[#E8002D] font-medium transition-colors">
                     Ranking
                   </Link>
                 </div>
@@ -416,7 +416,7 @@ export default function HomePage(): React.ReactElement {
               </div>
             </details>
           )}
-          <p className="text-center text-xs text-gray-400 mt-6">¿Tu provincia no está? Estamos sumando todas las provincias — mientras tanto <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">cotizá acá</Link> y te mostramos las prepagas de tu zona.</p>
+          <p className="text-center text-xs text-gray-500 mt-6">¿Tu provincia no está? Estamos sumando todas las provincias — mientras tanto <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">cotizá acá</Link> y te mostramos las prepagas de tu zona.</p>
         </div>
       </section>
 
@@ -426,16 +426,16 @@ export default function HomePage(): React.ReactElement {
           <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">El comparador de todas las prepagas de Argentina</h2>
           <p className="text-gray-700 leading-relaxed mb-6 text-center">{prepagas.length} prepagas y {TOTAL_PLANES} planes, con los precios oficiales de cada mes.</p>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700">
-            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <li className="bg-white rounded-xl border border-gray-100 p-4">
               <strong className="text-gray-900">Todas las prepagas, no solo nuestros partners.</strong> Con los precios de {PRECIO_ACTUALIZADO}. <Link href="/precios" className="text-[#E8002D] font-semibold hover:underline">Ver precios</Link>
             </li>
-            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <li className="bg-white rounded-xl border border-gray-100 p-4">
               <strong className="text-gray-900">Cartillas por zona.</strong> Buscá tu sanatorio y mirá qué plan lo incluye. <Link href="/cartillas" className="text-[#E8002D] font-semibold hover:underline">Buscar en cartillas</Link>
             </li>
-            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <li className="bg-white rounded-xl border border-gray-100 p-4">
               <strong className="text-gray-900">Coberturas plan por plan.</strong> Ortodoncia, anteojos, psicología y más, con fuente oficial. <Link href="/coberturas" className="text-[#E8002D] font-semibold hover:underline">Ver coberturas</Link>
             </li>
-            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <li className="bg-white rounded-xl border border-gray-100 p-4">
               <strong className="text-gray-900">Partner oficial de {PARTNERS_OFICIALES_TEXTO}.</strong> Cotización formal en {TIEMPO_RESPUESTA} y pagás lo mismo que yendo directo. <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo trabajamos</Link>
             </li>
           </ul>
@@ -514,7 +514,7 @@ export default function HomePage(): React.ReactElement {
         <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="text-white text-center sm:text-left">
             <h2 className="text-xl font-bold mb-1">¿Cuánto cuesta tu prepaga en {PRECIO_ACTUALIZADO}?</h2>
-            <p className="text-red-200 text-sm">Ingresá tu zona y tu edad — te calculamos el precio exacto en segundos, gratis.</p>
+            <p className="text-white text-sm">Ingresá tu zona y tu edad — te calculamos el precio exacto en segundos, gratis.</p>
           </div>
           <Link
             href="/comparador"
@@ -629,7 +629,7 @@ export default function HomePage(): React.ReactElement {
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             ¿Listo para encontrar tu prepaga ideal?
           </h2>
-          <p className="text-red-100 mb-8 text-sm">
+          <p className="text-white mb-8 text-sm">
             Comparamos Swiss Medical, OSDE, Sancor Salud, CEMIC, Medifé, Omint y más. Precios reales, sin DNI, sin compromiso.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">

@@ -432,7 +432,7 @@ function ZonaStep({ onSelect, zonaSugerida }: { onSelect: (p: Provincia) => void
               <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none"/>
             </svg>
           </div>
-          <span className={`flex-1 font-semibold text-base transition-colors ${selected ? 'text-gray-900' : 'text-gray-400'}`}>
+          <span className={`flex-1 font-semibold text-base transition-colors ${selected ? 'text-gray-900' : 'text-gray-500'}`}>
             {selected ? selected.nombre : 'Seleccioná tu provincia'}
           </span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}

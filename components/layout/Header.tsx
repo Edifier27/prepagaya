@@ -231,7 +231,7 @@ export function Header() {
               </svg>
               Cotizá gratis
               {/* Incentivo al clic (Darío, 25-sep-2026): el mismo 15% online del cotizador */}
-              <span className="rounded-md bg-white/20 px-1.5 py-0.5 text-[10px] font-black leading-none">15% OFF</span>
+              <span className="rounded-md bg-white/5 border border-white/25 px-1.5 py-0.5 text-[10px] font-black leading-none">15% OFF</span>
             </Link>
           </div>
 
