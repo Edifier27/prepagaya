@@ -2,6 +2,7 @@ import sancorFarmaciasData from './sancor-salud-farmacias.json'
 import avalianFarmaciasData from './avalian-farmacias.json'
 import premedicFarmaciasData from './premedic-farmacias.json'
 import osdeFarmaciasData from './osde-farmacias.json'
+import swissMedicalFarmaciasData from './swiss-medical-farmacias.json'
 
 // Cartilla de farmacias por zona — SOLO comercios habilitados (nunca datos de
 // médicos particulares; en farmacias no aplica ese problema, son negocios).
@@ -11,7 +12,9 @@ import osdeFarmaciasData from './osde-farmacias.json'
 //  - Premedic: scripts/cartilla-premedic/farmacias.py (prestación "90")
 //  - OSDE: scripts/cartilla-osde/merge.py (sección "FARMACIAS" del PDF oficial;
 //    sin lat/lon, el PDF no trae coordenadas)
-// Swiss Medical queda para una siguiente etapa (29-sep-2026).
+//  - Swiss Medical: scripts/cartilla-swiss/farmacias.py (endpoint dedicado
+//    getFarmaciasCartillaWithoutLoc, distinto del de médicos/sanatorios —
+//    encontrado inspeccionando la red real del buscador oficial, 29-sep-2026)
 
 export interface SedeFarmacia {
   direccion: string | null
@@ -49,6 +52,7 @@ const FUENTES: Partial<Record<string, FarmaciasJson>> = {
   avalian: avalianFarmaciasData as FarmaciasJson,
   premedic: premedicFarmaciasData as FarmaciasJson,
   osde: osdeFarmaciasData as FarmaciasJson,
+  'swiss-medical': swissMedicalFarmaciasData as FarmaciasJson,
 }
 
 export function tieneFarmacias(prepagaSlug: string): boolean {
