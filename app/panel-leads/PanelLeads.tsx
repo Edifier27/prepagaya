@@ -148,6 +148,35 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
       .then((d) => setResenasPendientes(d.resenas.length))
       .catch(() => {})
   }, [])
+
+  // A qué cuenta de Kommo van los leads nuevos (acceso directo, 29-sep-2026):
+  // se puede cambiar acá mismo, sin pedir un deploy.
+  const [cuentaKommo, setCuentaKommo] = useState<'dario' | 'gabriela' | null>(null)
+  const [cambiandoCuenta, setCambiandoCuenta] = useState(false)
+  useEffect(() => {
+    fetch('/api/panel/config')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => d && setCuentaKommo(d.cuentaKommo))
+      .catch(() => {})
+  }, [])
+  const alternarCuentaKommo = useCallback(async () => {
+    if (!cuentaKommo || cambiandoCuenta) return
+    const nueva = cuentaKommo === 'dario' ? 'gabriela' : 'dario'
+    setCambiandoCuenta(true)
+    setCuentaKommo(nueva) // optimista
+    try {
+      const res = await fetch('/api/panel/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cuentaKommo: nueva }),
+      })
+      if (!res.ok) setCuentaKommo(cuentaKommo) // revierte si falló
+    } catch {
+      setCuentaKommo(cuentaKommo)
+    } finally {
+      setCambiandoCuenta(false)
+    }
+  }, [cuentaKommo, cambiandoCuenta])
   const ultimoId = useRef(leadsIniciales[0]?.id ?? 0)
 
   const alternar = useCallback((clave: FiltroChip, valor: string) => {
@@ -363,6 +392,17 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
+            {cuentaKommo && (
+              <button
+                onClick={alternarCuentaKommo}
+                disabled={cambiandoCuenta}
+                title="Los leads nuevos (sin contacto previo en Kommo) van a esta cuenta. Tocá para cambiar."
+                className="text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 disabled:opacity-60 rounded-full px-3 py-1.5 transition-colors flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <span aria-hidden>⇄</span>
+                Leads nuevos a: {cuentaKommo === 'dario' ? 'Darío' : 'Gabriela'}
+              </button>
+            )}
             <button
               onClick={refrescarManual}
               disabled={refrescando}

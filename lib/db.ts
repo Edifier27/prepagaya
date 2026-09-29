@@ -96,9 +96,36 @@ function asegurarTablas(): Promise<unknown> {
           creado_en TIMESTAMPTZ NOT NULL DEFAULT now()
         )
       `,
+      // Config chica de una fila por clave (29-sep-2026): para ajustes que
+      // Darío quiere poder cambiar él mismo desde el panel sin pedirme un
+      // deploy — hoy solo la cuenta de Kommo que recibe los leads nuevos
+      // (ver getConfig/setConfig y app/api/panel/config/route.ts).
+      sql`
+        CREATE TABLE IF NOT EXISTS config (
+          clave TEXT PRIMARY KEY,
+          valor TEXT NOT NULL,
+          actualizado_en TIMESTAMPTZ NOT NULL DEFAULT now()
+        )
+      `,
     ])
   }
   return tablasListas
+}
+
+export async function getConfig(clave: string): Promise<string | null> {
+  if (!sql) return null
+  await asegurarTablas()
+  const filas = await sql`SELECT valor FROM config WHERE clave = ${clave}`
+  return (filas[0]?.valor as string | undefined) ?? null
+}
+
+export async function setConfig(clave: string, valor: string): Promise<void> {
+  if (!sql) return
+  await asegurarTablas()
+  await sql`
+    INSERT INTO config (clave, valor, actualizado_en) VALUES (${clave}, ${valor}, now())
+    ON CONFLICT (clave) DO UPDATE SET valor = ${valor}, actualizado_en = now()
+  `
 }
 
 export interface LeadRow {
