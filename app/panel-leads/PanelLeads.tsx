@@ -159,9 +159,9 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
       .then((d) => d && setCuentaKommo(d.cuentaKommo))
       .catch(() => {})
   }, [])
-  const alternarCuentaKommo = useCallback(async () => {
-    if (!cuentaKommo || cambiandoCuenta) return
-    const nueva = cuentaKommo === 'dario' ? 'gabriela' : 'dario'
+  const elegirCuentaKommo = useCallback(async (nueva: 'dario' | 'gabriela') => {
+    if (cuentaKommo === nueva || cambiandoCuenta) return
+    const anterior = cuentaKommo
     setCambiandoCuenta(true)
     setCuentaKommo(nueva) // optimista
     try {
@@ -170,9 +170,9 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cuentaKommo: nueva }),
       })
-      if (!res.ok) setCuentaKommo(cuentaKommo) // revierte si falló
+      if (!res.ok) setCuentaKommo(anterior) // revierte si falló
     } catch {
-      setCuentaKommo(cuentaKommo)
+      setCuentaKommo(anterior)
     } finally {
       setCambiandoCuenta(false)
     }
@@ -393,15 +393,26 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {cuentaKommo && (
-              <button
-                onClick={alternarCuentaKommo}
-                disabled={cambiandoCuenta}
-                title="Los leads nuevos (sin contacto previo en Kommo) van a esta cuenta. Tocá para cambiar."
-                className="text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 disabled:opacity-60 rounded-full px-3 py-1.5 transition-colors flex items-center gap-1.5 whitespace-nowrap"
+              <div
+                className="flex items-center gap-1 bg-gray-100 rounded-xl p-1"
+                title="Los leads nuevos (sin contacto previo en Kommo) van a la cuenta marcada"
               >
-                <span aria-hidden>⇄</span>
-                Leads nuevos a: {cuentaKommo === 'dario' ? 'Darío' : 'Gabriela'}
-              </button>
+                {(['dario', 'gabriela'] as const).map((cuenta) => (
+                  <button
+                    key={cuenta}
+                    onClick={() => elegirCuentaKommo(cuenta)}
+                    disabled={cambiandoCuenta}
+                    aria-pressed={cuentaKommo === cuenta}
+                    className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
+                      cuentaKommo === cuenta
+                        ? 'bg-[#E8002D] text-white shadow-sm'
+                        : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
+                    }`}
+                  >
+                    {cuenta === 'dario' ? 'Darío' : 'Gaby'}
+                  </button>
+                ))}
+              </div>
             )}
             <button
               onClick={refrescarManual}
