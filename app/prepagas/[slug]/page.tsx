@@ -59,6 +59,18 @@ const ES_OBRA_SOCIAL_O_PREPAGA: Record<string, string> = {
   'sancor-salud': 'Es una prepaga: la Asociación Mutual Sancor Salud está inscripta en el Registro Nacional de Entidades de Medicina Prepaga (RNEMP). Es una entidad totalmente distinta de Sancor OS (la obra social) y también de Prevención Salud (la prepaga del Grupo Sancor Seguros): comparten parte del nombre, pero son tres empresas sin relación societaria entre sí.',
   premedic: 'Es una empresa de medicina prepaga, no una obra social.',
   avalian: 'Es una empresa de medicina prepaga, no una obra social ni una mutual. Está registrada ante la Superintendencia de Servicios de Salud como entidad de medicina prepaga (RNEMP), aunque forma parte de un grupo asociativo integrado por la Asociación de Cooperativas Argentinas (ACA), el Grupo Asegurador La Segunda, Coovaeco y la Fundación Nodos.',
+  'prevencion-salud': 'Es una empresa de medicina prepaga, no una obra social. Es la prepaga del Grupo Sancor Seguros (una aseguradora) — una entidad totalmente distinta de Sancor Salud, que es una mutual de medicina prepaga independiente sin relación societaria con el grupo.',
+}
+
+// "¿Prevención Salud es lo mismo que Sancor Salud?" (29-sep-2026, keyword
+// research de Darío): confusión real y con volumen propio, van en las dos
+// direcciones. Solo tiene sentido para estas dos marcas puntuales, por eso
+// es un mapa aparte y no una regla genérica como ES_OBRA_SOCIAL_O_PREPAGA.
+const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
+  'prevencion-salud': [{
+    q: '¿Prevención Salud es lo mismo que Sancor Salud?',
+    a: 'No, son dos empresas distintas y sin relación societaria, aunque comparten parte del nombre y se confunden seguido. Prevención Salud es la empresa de medicina prepaga del Grupo Sancor Seguros (una aseguradora). Sancor Salud es una mutual de medicina prepaga independiente, con más de 60 años de trayectoria propia y sin vínculo con el Grupo Sancor Seguros.',
+  }],
 }
 
 function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstrella: Plan, comp: DatosComparacion) {
@@ -318,6 +330,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
       q: `¿${prep.nombre} tiene app?`,
       a: `Sí. La app oficial se llama "${app.nombreApp}" y está en Google Play. ${app.credencialDigital ? 'Incluye credencial digital. ' : ''}Según su ficha oficial permite: ${app.funciones.slice(0, 4).map((f) => f.toLowerCase()).join('; ')}.`,
     }] : []),
+    ...(FAQ_EXTRA[slug] ?? []),
   ]
 
   const jsonLd: Record<string, unknown>[] = [
