@@ -4,7 +4,7 @@ import { GlosarioDePagina } from '@/components/glosario/GlosarioDePagina'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { condiciones } from '@/lib/data/condiciones'
 import { coberturas } from '@/lib/data/coberturas'
-import { StickySectionNav } from '@/components/ui/StickySectionNav'
+import { BlogTOC } from '@/components/blog/BlogTOC'
 
 export const metadata: Metadata = {
   title: 'PMO 2026: Qué Cubre el Programa Médico Obligatorio por Ley',
@@ -253,8 +253,6 @@ export default function PmoPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <StickySectionNav items={secciones.map((s) => ({ id: s.id, label: s.titulo }))} />
-
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">
@@ -265,7 +263,9 @@ export default function PmoPage() {
         </div>
       </div>
 
-      <div className="container py-10 max-w-3xl mx-auto">
+      <div className="container py-10">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-10 max-w-5xl mx-auto">
+      <div className="min-w-0">
         <header className="mb-8">
           <span className="inline-block text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-100 rounded-full px-3 py-1 mb-4">
             Referencia legal · Fuente: SSSalud
@@ -297,8 +297,8 @@ export default function PmoPage() {
           <Link href="/guias/que-cubre-la-prepaga#buscador" className="flex-shrink-0 text-center px-4 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">Buscar qué me cubre →</Link>
         </div>
 
-        {/* Índice */}
-        <div className="mb-8 bg-gray-50 rounded-2xl border border-gray-200 p-4">
+        {/* Índice (mobile; en desktop lo tiene el sidebar de la derecha) */}
+        <div className="lg:hidden mb-8 bg-gray-50 rounded-2xl border border-gray-200 p-4">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">En esta guía</p>
           <ul className="space-y-2">
             {secciones.map((s, i) => (
@@ -392,6 +392,14 @@ export default function PmoPage() {
             ← Ver también: ¿Qué cubre una prepaga obligatoriamente?
           </Link>
         </div>
+      </div>
+
+      {/* Sidebar TOC (solo desktop) */}
+      <div className="hidden lg:block">
+        <BlogTOC sections={secciones.map((s) => ({ id: s.id, titulo: s.titulo }))} />
+      </div>
+
+      </div>
       </div>
     </>
   )
