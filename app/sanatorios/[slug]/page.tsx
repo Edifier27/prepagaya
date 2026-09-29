@@ -21,6 +21,22 @@ export function generateStaticParams() {
 /** Artículo según el nombre: "la Clínica de Cuyo", "el Hospital Alemán". */
 const art = (nombre: string) => (/^cl[ií]nica/i.test(nombre) ? 'la' : 'el')
 
+// "¿Es público o privado?" (29-sep-2026, keyword research de Darío): volumen
+// real en Hospital Italiano y Hospital Alemán. Verificado con fuente: ambos
+// son asociaciones civiles sin fines de lucro, ni público ni privado en el
+// sentido tradicional — no es una regla generalizable a todos los sanatorios
+// del listado, por eso queda como mapa aparte y no una FAQ genérica.
+const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
+  'hospital-italiano': [{
+    q: '¿El Hospital Italiano es público o privado?',
+    a: 'Ninguno de los dos en el sentido estricto: es una asociación civil sin fines de lucro, fundada en 1853 por la Sociedad Italiana de Beneficencia en Buenos Aires. No depende del Estado (no es un hospital público) ni reparte ganancias entre accionistas (no es una empresa privada con fines de lucro). Se financia con las cuotas de su propio Plan de Salud, los convenios con prepagas y obras sociales, y las prestaciones que factura.',
+  }],
+  'hospital-aleman': [{
+    q: '¿El Hospital Alemán es público o privado?',
+    a: 'Ninguno de los dos en el sentido estricto: es una asociación civil sin fines de lucro (Asociación Civil Hospital Alemán), fundada el 26 de agosto de 1867 por la Sociedad Alemana de Socorros a Enfermos. No depende del Estado ni reparte ganancias entre accionistas. Además de atender pacientes de distintas prepagas y obras sociales, tiene su propio Plan Médico de afiliación directa.',
+  }],
+}
+
 const ORDEN = [...PRIORIDAD_PARTNERS, 'osde']
 function ordenar(lista: PrepagaEnSanatorio[]) {
   return [...lista].sort((a, b) => (ORDEN.indexOf(a.prepagaSlug) + 99) % 99 - (ORDEN.indexOf(b.prepagaSlug) + 99) % 99)
@@ -49,6 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `que prepagas atienden en el ${s.nombre.toLowerCase()}`,
       `obra social ${s.nombre.toLowerCase()}`,
       `${s.nombre.toLowerCase()} prepaga`,
+      ...(FAQ_EXTRA[slug] ? [`${s.nombre.toLowerCase()} es publico o privado`] : []),
     ],
   }
 }
@@ -90,6 +107,7 @@ export default async function SanatorioPage({ params }: Props) {
       q: '¿Es lo mismo internación que guardia?',
       a: 'No. Un plan puede incluir un sanatorio solo para guardia, solo para internación o para las dos. En esta página lo mostramos por separado, tal como figura en cada cartilla oficial.',
     },
+    ...(FAQ_EXTRA[slug] ?? []),
   ]
 
   const fuentes = [...new Set(lista.map((p) => p.fuenteUrl))]

@@ -60,6 +60,13 @@ const ES_OBRA_SOCIAL_O_PREPAGA: Record<string, string> = {
   premedic: 'Es una empresa de medicina prepaga, no una obra social.',
   avalian: 'Es una empresa de medicina prepaga, no una obra social ni una mutual. Está registrada ante la Superintendencia de Servicios de Salud como entidad de medicina prepaga (RNEMP), aunque forma parte de un grupo asociativo integrado por la Asociación de Cooperativas Argentinas (ACA), el Grupo Asegurador La Segunda, Coovaeco y la Fundación Nodos.',
   'prevencion-salud': 'Es una empresa de medicina prepaga, no una obra social. Es la prepaga del Grupo Sancor Seguros (una aseguradora) — una entidad totalmente distinta de Sancor Salud, que es una mutual de medicina prepaga independiente sin relación societaria con el grupo.',
+  // Medicus/Hominis (29-sep-2026, keyword research de Darío): ambas son
+  // prepagas puras (RNEMP), no obras sociales — se confunden porque, como la
+  // mayoría de las prepagas grandes, reciben el aporte de obra social por
+  // derivación directa (medicus.com.ar tiene su propia guía de derivación de
+  // aportes, lo que confirma que es la entidad RECEPTORA, no la obra social).
+  medicus: 'Es una empresa de medicina prepaga, no una obra social. La confusión viene de que, como la mayoría de las prepagas grandes, Medicus puede recibir el aporte que te descuentan de tu obra social mediante el sistema de derivación de aportes — pero eso no la convierte en una obra social.',
+  hominis: 'Es una empresa de medicina prepaga, no una obra social. Medicina Prepaga Hominis S.A. está inscripta en el Registro Nacional de Entidades de Medicina Prepaga (RNEMP Nº 111438) desde 2015, con alcance en CABA y el Gran Buenos Aires.',
 }
 
 // "¿Prevención Salud es lo mismo que Sancor Salud?" (29-sep-2026, keyword
@@ -213,6 +220,8 @@ const KEYWORDS_EXTRA: Record<string, string[]> = {
   'sancor-salud': ['sancor salud precios', 'sancor salud cordoba', 'sancor plan 1000', 'sancor salud interior del país'],
   'avalian': ['avalian ex aca salud', 'aca salud ahora avalian', 'avalian planes precios', 'avalian as200', 'avalian as300'],
   'premedic': ['premedic precios', 'premedic opiniones', 'premedic plan 200', 'premedic monotributistas', 'prepaga mas barata argentina'],
+  medicus: ['medicus prestadores', 'mi medicus', 'medicus telefono', 'medicus atencion al asociado', 'medicus que sanatorios tiene'],
+  hominis: ['hominis autorizaciones', 'hominis atencion al socio', 'hominis opiniones'],
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
