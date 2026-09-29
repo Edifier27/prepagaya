@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
+import { trackLead } from '@/lib/analytics'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE } from '@/lib/utils'
@@ -936,6 +937,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
     setLeadStatus('loading')
     try {
       await sendEmail(buildPayload())
+      trackLead('cotizacion-wizard')
       setLeadStatus('success')
       setShowPopup(false)
       setStep('resultados')

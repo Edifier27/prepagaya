@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { CODIGO_PAIS_INTL, formatearCelularInternacional } from '@/lib/utils'
+import { trackLead } from '@/lib/analytics'
 
 type Locale = 'us' | 'ru' | 'zh'
 
@@ -114,6 +115,7 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
           pais: locale,
         }),
       })
+      trackLead(fuente)
       setStatus('success')
     } catch {
       setStatus('idle')

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { trackLead } from '@/lib/analytics'
 
 interface Props {
   prepagaNombre: string
@@ -57,6 +58,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
       // Ya no redirige al WhatsApp del asesor — el lead solo llega por mail
       // y el asesor contacta desde ahí cuando le conviene (pedido de Darío,
       // 9-sep-2026: no quiere que el visitante le escriba directo).
+      trackLead(fuente)
       setStatus('success')
     } catch {
       setStatus('idle')

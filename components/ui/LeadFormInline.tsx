@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useState } from 'react'
+import { trackLead } from '@/lib/analytics'
 
 interface Props {
   prepagaNombre?: string
@@ -18,6 +19,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
     e.preventDefault()
     if (!nombre.trim() || !celular.trim() || !email.trim()) return
     setStatus('loading')
+    const fuente = prepagaNombre ? `sidebar-${prepagaNombre.toLowerCase().replace(/\s+/g, '-')}` : 'sidebar-inline'
     try {
       const res = await fetch('/api/leads', {
         method: 'POST',
@@ -26,7 +28,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: email.trim(),
-          fuente: prepagaNombre ? `sidebar-${prepagaNombre.toLowerCase().replace(/\s+/g, '-')}` : 'sidebar-inline',
+          fuente,
           prepaga_interes: prepagaNombre ?? '',
           fecha: new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }),
         }),
@@ -34,6 +36,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
       // Ya no redirige al WhatsApp del asesor — el lead solo llega por mail
       // y el asesor contacta desde ahí cuando le conviene (pedido de Darío,
       // 9-sep-2026: no quiere que el visitante le escriba directo).
+      if (res.ok) trackLead(fuente)
       setStatus(res.ok ? 'success' : 'error')
     } catch {
       setStatus('error')

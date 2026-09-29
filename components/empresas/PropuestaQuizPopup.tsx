@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { trackLead } from '@/lib/analytics'
 
 const RANGOS_EMPLEADOS = ['2-5', '6-10', '11-25', '26-50', '+50']
 
@@ -144,6 +145,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
           prepaga_interes: `PyME${prepagaContexto ? ` · ${prepagaContexto}` : ''} · ${empresa.trim()} · ${empleados} empleados · ${modalidadLabel} · Prioridad: ${prioridadLabel}`,
         }),
       })
+      trackLead('pyme-empresas')
       setStatus('success')
     } catch {
       setStatus('error')
