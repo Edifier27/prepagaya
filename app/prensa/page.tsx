@@ -152,6 +152,7 @@ export default function PrensaPage() {
             <ul className="space-y-2 text-sm text-gray-700">
               <li><Link href="/prensa/sueldo-para-cubrir-la-prepaga" className="text-[#E8002D] font-semibold hover:underline">¿Cuánto hay que ganar para que los aportes paguen la prepaga?</Link> Sueldo necesario por prepaga, con los cuadros oficiales, en el AMBA y en cada provincia.</li>
               <li><Link href="/prensa/sondeo" className="text-[#E8002D] font-semibold hover:underline">Sondeo: quién busca prepaga en Argentina</Link> Edad, grupo familiar y provincia de quienes cotizan.</li>
+              <li><Link href="/prensa/prepagas-dadas-de-baja" className="text-[#E8002D] font-semibold hover:underline">Qué prepagas dio de baja la Superintendencia</Link> Los 4 casos de 2026, con resolución y fuente oficial.</li>
             </ul>
           </div>
         </div>

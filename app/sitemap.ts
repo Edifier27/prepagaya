@@ -114,6 +114,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/sanatorios`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/prensa`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE}/prensa/prepagas-dadas-de-baja`, lastModified: new Date('2026-09-29').toISOString(), changeFrequency: 'monthly', priority: 0.6 },
     ...INFORMES_PROVINCIA.map((p) => ({ url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga/${p.slug}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.6 })),
     ...sanatoriosPublicables().map((s) => ({
       url: `${BASE}/sanatorios/${s.slug}`,
