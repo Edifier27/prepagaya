@@ -49,10 +49,31 @@ export const viewport: Viewport = {
   themeColor: '#E8002D',
 }
 
+// Google Tag Manager (29-sep-2026, a pedido de Darío): el sitio no tenía
+// Google Analytics conectado, solo Vercel Analytics y Ahrefs. Se instala vía
+// GTM (no GA4 directo) para poder sumar otras etiquetas a futuro sin volver
+// a tocar código — se administran desde tagmanager.google.com.
+const GTM_ID = 'GTM-5257K2L9'
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es-AR" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <Script
+          id="gtm"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         <SiteChrome provincias={provinciasMenu()}>{children}</SiteChrome>
         <Analytics />
         {/* lazyOnload: se carga cuando el navegador queda libre, después de la
