@@ -264,7 +264,9 @@ export function BuscadorCartillaZona({
                   }
                   especialidad={especialidad}
                   plan={plan || undefined}
+                  planLabel={planObj?.label}
                   zonaCorta={zonaCorta}
+                  prepagaNombre={prepagaNombre}
                 />
               )}
               <p className="mt-4 text-xs text-gray-400 leading-relaxed">
