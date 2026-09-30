@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { TrustBadge } from '@/components/ui/TrustBadge'
 import { trackLead } from '@/lib/analytics'
 
 const RANGOS_EMPLEADOS = ['2-5', '6-10', '11-25', '26-50', '+50']
@@ -314,6 +315,8 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                   />
                 </div>
               </div>
+
+              <TrustBadge dark className="mb-3" />
 
               <button
                 onClick={handleSubmit}

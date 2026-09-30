@@ -4,6 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { trackLead } from '@/lib/analytics'
+import { TrustBadge } from '@/components/ui/TrustBadge'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE } from '@/lib/utils'
@@ -1199,6 +1200,8 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
               {leadStatus === 'error' && (
                 <p className="text-red-500 text-xs text-center mb-3">Hubo un problema. Intentá de nuevo.</p>
               )}
+
+              <TrustBadge className="mb-3" />
 
               <button onClick={handleVerPrecios} disabled={!popupOk || leadStatus === 'loading'}
                 className="w-full py-4 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-2xl transition-all shadow-lg text-base flex items-center justify-center gap-2">

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { trackLead } from '@/lib/analytics'
+import { TrustBadge } from './TrustBadge'
 
 interface Props {
   open: boolean
@@ -249,6 +250,8 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
                       />
                     </div>
                   </div>
+
+                  <TrustBadge className="mb-3" />
 
                   <button
                     onClick={handleSubmit}

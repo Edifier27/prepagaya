@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { trackLead } from '@/lib/analytics'
+import { TrustBadge } from './TrustBadge'
 
 interface Props {
   prepagaNombre?: string
@@ -101,6 +102,8 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
         {status === 'error' && (
           <p className="text-xs text-red-500">Hubo un problema. Intentá de nuevo.</p>
         )}
+
+        <TrustBadge />
 
         <button
           type="submit"

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { CODIGO_PAIS_INTL, formatearCelularInternacional } from '@/lib/utils'
 import { trackLead } from '@/lib/analytics'
+import { TrustBadge } from '@/components/ui/TrustBadge'
 
 type Locale = 'us' | 'ru' | 'zh'
 
@@ -28,7 +29,7 @@ interface Textos {
   enviando: string
   exitoTitulo: string
   exitoTexto: string
-  privacidad: string
+  seguridad: string
   interesInterno: string // metadata interna en español, para el panel de Darío/Gabriela
 }
 
@@ -46,7 +47,7 @@ const TEXTOS: Record<Locale, Textos> = {
     enviando: 'Sending...',
     exitoTitulo: 'Done!',
     exitoTexto: 'We received your info. An advisor will contact you shortly with your exact quote.',
-    privacidad: 'Your information is private · No obligation',
+    seguridad: 'Secure SSL connection · Data protected',
     interesInterno: 'Extranjero (EE.UU.)',
   },
   ru: {
@@ -62,7 +63,7 @@ const TEXTOS: Record<Locale, Textos> = {
     enviando: 'Отправка...',
     exitoTitulo: 'Готово!',
     exitoTexto: 'Мы получили ваши данные. Консультант свяжется с вами в ближайшее время с точным расчётом.',
-    privacidad: 'Ваши данные конфиденциальны · Без обязательств',
+    seguridad: 'Безопасное SSL-соединение · Данные защищены',
     interesInterno: 'Extranjero (Rusia)',
   },
   zh: {
@@ -78,7 +79,7 @@ const TEXTOS: Record<Locale, Textos> = {
     enviando: '发送中...',
     exitoTitulo: '完成!',
     exitoTexto: '我们已收到您的信息,顾问会尽快与您联系,提供准确报价。',
-    privacidad: '您的信息完全保密 · 无任何义务',
+    seguridad: 'SSL 安全连接 · 数据受保护',
     interesInterno: 'Extranjero (China)',
   },
 }
@@ -198,6 +199,8 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
                     </div>
                   </div>
 
+                  <TrustBadge texto={t.seguridad} className="mb-3" />
+
                   <button
                     onClick={handleSubmit}
                     disabled={!ok || status === 'loading'}
@@ -205,7 +208,6 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
                   >
                     {status === 'loading' ? t.enviando : t.submit}
                   </button>
-                  <p className="text-center text-xs text-gray-400 mt-3">{t.privacidad}</p>
                 </>
               )}
             </div>

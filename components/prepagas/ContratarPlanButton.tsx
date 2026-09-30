@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { trackLead } from '@/lib/analytics'
+import { TrustBadge } from '@/components/ui/TrustBadge'
 
 interface Props {
   prepagaNombre: string
@@ -158,6 +159,8 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                     </div>
                   </div>
 
+                  <TrustBadge className="mb-3" />
+
                   <button
                     onClick={handleSubmit}
                     disabled={!ok || status === 'loading'}
@@ -165,7 +168,6 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                   >
                     {status === 'loading' ? 'Enviando...' : planFinal ? `Quiero el ${planFinal}` : 'Quiero mi cotización'}
                   </button>
-                  <p className="text-center text-xs text-gray-400 mt-3">Tu información es privada · Sin compromiso</p>
                 </>
               )}
             </div>

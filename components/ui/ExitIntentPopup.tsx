@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { trackLead } from '@/lib/analytics'
+import { TrustBadge } from './TrustBadge'
 
 const CUPON_CODE = 'PREPAGAYA15'
 
@@ -148,6 +149,8 @@ export function ExitIntentPopup(): React.ReactElement | null {
                   />
                 </div>
               </div>
+
+              <TrustBadge className="mb-3" />
 
               <button
                 onClick={handleSubmit}
