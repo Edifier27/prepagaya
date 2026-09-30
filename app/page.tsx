@@ -543,13 +543,19 @@ export default function HomePage(): React.ReactElement {
               const ahorra = c.deltaMensual > 0
               return (
                 <Link key={c.slug} href={`/cambios/${c.slug}`}
-                  className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-6 flex flex-col group">
-                  <div className="flex items-center gap-2.5 mb-4">
-                    <PrepagaLogo slug={origen.slug} nombre={origen.nombre} colorPrimario={origen.colorPrimario} size="xs" />
+                  className="relative bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-6 flex flex-col group">
+                  <div className="flex items-center gap-3 mb-4">
+                    <PrepagaLogo slug={origen.slug} nombre={origen.nombre} colorPrimario={origen.colorPrimario} size="sm" />
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" className="w-4 h-4 text-gray-300 flex-shrink-0">
                       <path d="M5 12h14m-6-6l6 6-6 6"/>
                     </svg>
-                    <PrepagaLogo slug={destino.slug} nombre={destino.nombre} colorPrimario={destino.colorPrimario} size="xs" />
+                    <PrepagaLogo slug={destino.slug} nombre={destino.nombre} colorPrimario={destino.colorPrimario} size="sm" />
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 w-9 h-9 rounded-full bg-[#E8002D] flex items-center justify-center shadow-md">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                      <path d="M17 1l4 4-4 4" /><path d="M3 11V9a4 4 0 014-4h14" />
+                      <path d="M7 23l-4-4 4-4" /><path d="M21 13v2a4 4 0 01-4 4H3" />
+                    </svg>
                   </div>
                   <h3 className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors mb-1">
                     ¿Estás en {origen.nombre}?
