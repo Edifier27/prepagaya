@@ -180,7 +180,7 @@ export default function StoimostStrahovaniyaArgentinaPage() {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Узнайте точную цену, а не диапазон</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             Бесплатно, без регистрации, без DNI. С вами свяжется консультант, который работает с иностранцами.
           </p>
           <ContratarPlanButtonIntl

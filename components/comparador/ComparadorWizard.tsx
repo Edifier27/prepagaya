@@ -1250,13 +1250,13 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
       <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-5 text-white mb-6 lg:sticky lg:top-4 lg:z-40 lg:shadow-lg">
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
-            <div className="text-red-200 text-xs mb-1">Tu cotización personalizada</div>
+            <div className="text-white text-xs mb-1">Tu cotización personalizada</div>
             <div className="font-bold text-lg leading-snug">
               <span className="uppercase text-black">{nombre}</span>, estos son los mejores planes para vos{personas.length > 1 ? ' y tu grupo familiar' : ''}
             </div>
             <button
               onClick={() => setEditandoGrupo((v) => !v)}
-              className="flex items-center gap-1.5 text-red-200 text-sm mt-0.5 hover:text-white transition-colors group"
+              className="flex items-center gap-1.5 text-white text-sm mt-0.5 hover:underline transition-colors group"
             >
               <span>
                 {personas.length} persona{personas.length !== 1 ? 's' : ''} · {personas.map(p => `${p.edad} años`).join(', ')}
@@ -1269,9 +1269,9 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
             </button>
           </div>
           <div className="bg-white/15 rounded-xl px-4 py-2.5 text-center flex-shrink-0">
-            <div className="text-xs text-red-200 mb-0.5">Descuento aplicado</div>
+            <div className="text-xs text-white mb-0.5">Descuento aplicado</div>
             <div className="text-2xl font-black">{Math.round(descuentoRate * 100)}% OFF</div>
-            <div className="text-xs text-red-200">{aporteMensual > 0 ? 'más tu aporte descontado' : 'por 12 meses'}</div>
+            <div className="text-xs text-white">{aporteMensual > 0 ? 'más tu aporte descontado' : 'por 12 meses'}</div>
           </div>
         </div>
 

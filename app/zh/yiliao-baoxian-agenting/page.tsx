@@ -178,7 +178,7 @@ export default function YiliaoBaoxianAgentingPage() {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">比较真实价格的保险计划</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             免费、无需注册、无需DNI。专门服务外国客户的顾问将与您联系。
           </p>
           <ContratarPlanButtonIntl

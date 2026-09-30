@@ -120,7 +120,7 @@ export function CalculadoraEdad() {
             <div className="text-white font-bold text-sm">
               A los {edad} años, {planes[0].prepaga.nombre} {planes[0].plan.nombre} te sale desde {formatPrecio(planes[0].precioAjustado)}/mes
             </div>
-            <div className="text-red-200 text-xs">Este es un valor estimado. ¿Querés el precio exacto para tu zona y grupo familiar?</div>
+            <div className="text-white text-xs">Este es un valor estimado. ¿Querés el precio exacto para tu zona y grupo familiar?</div>
           </div>
           <ContratarPlanButton
             prepagaNombre={planes[0].prepaga.nombre}

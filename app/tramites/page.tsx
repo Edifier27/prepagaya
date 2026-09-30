@@ -177,7 +177,7 @@ export default function TramitesPage() {
         <div className="mt-12 bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <div className="text-white font-bold">¿Todavía no elegiste prepaga?</div>
-            <div className="text-red-200 text-xs">Antes de hacer cualquier trámite, comparemos precios reales según tu edad y zona.</div>
+            <div className="text-white text-xs">Antes de hacer cualquier trámite, comparemos precios reales según tu edad y zona.</div>
           </div>
           <Link
             href="/comparador"

@@ -157,7 +157,7 @@ export default function CambiosPage() {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">¿No encontrás tu prepaga actual?</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             Cotizá gratis y te mostramos todas las opciones con precio real para tu edad y zona.
           </p>
           <Link

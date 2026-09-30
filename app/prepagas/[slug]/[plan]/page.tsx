@@ -722,7 +722,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">¿Querés contratar el {plan.nombre}?</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             El precio real depende de tu edad y zona. Cotizá online con 15% OFF (25% si sos monotributista) y recibí asesoramiento sin cargo.
           </p>
           <div className="flex flex-col items-center gap-3">

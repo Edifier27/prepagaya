@@ -239,7 +239,7 @@ export default function FertilizacionAsistidaPage() {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">¿No tenés prepaga todavía?</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             Cualquier prepaga que contrates cubre fertilización asistida por ley, en cualquier plan. Comparamos precios reales para tu edad, gratis y sin DNI.
           </p>
           <Link

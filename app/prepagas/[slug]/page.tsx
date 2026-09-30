@@ -772,7 +772,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
           <div className="mt-6 bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-center sm:text-left">
               <div className="text-white font-bold text-lg">¿Cuánto te sale {prep.nombre} a vos?</div>
-              <div className="text-red-200 text-sm mt-0.5">El precio final depende de tu edad y tu zona. Cotizalo gratis, sin DNI y sin compromiso.</div>
+              <div className="text-white text-sm mt-0.5">El precio final depende de tu edad y tu zona. Cotizalo gratis, sin DNI y sin compromiso.</div>
             </div>
             <ContratarPlanButton
               prepagaNombre={prep.nombre}
@@ -812,7 +812,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
         <div className="container max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
           <div>
             <div className="text-white font-bold text-sm">¿Cuánto te costaría {prep.nombre} a tu edad?</div>
-            <div className="text-red-200 text-xs">El precio varía con la edad. Cotizá gratis en 2 minutos.</div>
+            <div className="text-white text-xs">El precio varía con la edad. Cotizá gratis en 2 minutos.</div>
           </div>
           <Link
             href="/comparador"
@@ -1345,7 +1345,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Cotizá {prep.nombre} para tu perfil</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             El precio cambia según tu edad y zona. Te pasamos el precio exacto con 15% OFF por contratar online.
           </p>
           <div className="flex flex-col items-center gap-3">

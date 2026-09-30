@@ -380,7 +380,7 @@ export default function PmoPage() {
         <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <div className="text-white font-bold">¿Ya sabés qué te tiene que cubrir? Ahora comparemos precios</div>
-            <div className="text-red-200 text-xs">El PMO es igual en todas — la diferencia está en la cartilla y el precio. Cotizá gratis.</div>
+            <div className="text-white text-xs">El PMO es igual en todas — la diferencia está en la cartilla y el precio. Cotizá gratis.</div>
           </div>
           <Link href="/comparador" className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors shadow-sm">
             Cotizar gratis →
