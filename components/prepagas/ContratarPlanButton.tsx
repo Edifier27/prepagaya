@@ -29,7 +29,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
   const [planElegido, setPlanElegido] = useState('')
   const [edades, setEdades] = useState('')
 
-  const ok = nombre.trim().length >= 2 && celular.trim().length >= 8 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
+  const ok = nombre.trim().length >= 2 && celular.trim().length >= 8 && (email.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
   const planFinal = planNombre ?? (planElegido || undefined)
   const interes = planFinal ? `${prepagaNombre} — ${planFinal}` : prepagaNombre
 
@@ -48,7 +48,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
         body: JSON.stringify({
           nombre: nombre.trim(),
           celular: celular.trim(),
-          email: email.trim(),
+          email: email.trim() || `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
           fuente,
           prepaga_interes: interes,
           // Edades opcionales: el asesor cotiza el precio exacto sin repreguntar
@@ -93,7 +93,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                   <path d="M18 6L6 18M6 6l12 12"/>
                 </svg>
               </button>
-              <div className="text-xl font-bold mb-1 pr-6">{titulo ?? (planNombre ? `Contratar ${planNombre}` : `Cotización de ${prepagaNombre}`)}</div>
+              <div className="text-xl font-bold mb-1 pr-6">{titulo ?? 'Cotizá online y Ahorrá'}</div>
               <p className="text-red-100 text-sm leading-relaxed">
                 Dejanos tus datos y un asesor oficial te pasa el precio exacto de {interes} para tu edad, con 15% OFF por contratar online.
               </p>
@@ -145,12 +145,12 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                       <label className="block text-xs font-semibold text-gray-700 mb-1">Edades de quienes se asocian <span className="font-normal text-gray-400">(opcional)</span></label>
                       <input
                         type="text" value={edades} onChange={(e) => setEdades(e.target.value)}
-                        placeholder="Ej: 35 y 33" inputMode="text"
+                        placeholder="33,35,1" inputMode="text"
                         className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-gray-700 mb-1">Email *</label>
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">Email <span className="font-normal text-gray-400">(opcional)</span></label>
                       <input
                         type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                         placeholder="tu@email.com" autoComplete="email"
@@ -166,7 +166,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                     disabled={!ok || status === 'loading'}
                     className="w-full py-3.5 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition-colors"
                   >
-                    {status === 'loading' ? 'Enviando...' : planFinal ? `Quiero el ${planFinal}` : 'Quiero mi cotización'}
+                    {status === 'loading' ? 'Enviando...' : planFinal ? `Cotizar ${planFinal} →` : 'Cotizar →'}
                   </button>
                 </>
               )}
