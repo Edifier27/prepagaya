@@ -569,9 +569,18 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
   // mostrar ("Banfield (GBA Sur)"); `provincia` mantiene el nombre real de
   // PROVINCIAS para no romper el resto del wizard, que espera ese formato.
   const [zonaSugerida, setZonaSugerida] = useState<{ provincia: Provincia; label: string } | null>(null)
+  // Localidad puntual detectada por IP (ej. "tandil"), cuando coincide con una
+  // zona real del silo de cartillas (lib/data/cartilla-zonas) — permite
+  // linkear directo a la cartilla de ESA localidad desde "Ver cartilla" en
+  // vez de a la genérica (pedido de Darío, 30-sep-2026: "si total, eso ya lo
+  // tenemos"). Se guarda sin importar si el usuario confirma o cambia la
+  // zona del wizard, porque la cartilla real depende de dónde vive, no de
+  // qué provincia eligió para cotizar.
+  const [localidadDetectada, setLocalidadDetectada] = useState<string | null>(null)
   useEffect(() => {
-    if (initialZona) return
     const geo = leerZonaGeoDeCookie()
+    if (geo?.localidadSlug) setLocalidadDetectada(geo.localidadSlug)
+    if (initialZona) return
     if (!geo) return
     // El geo distingue interior bonaerense solo en el label (wizardSlug es
     // 'buenos-aires' para toda la provincia): se mapea acá a la opción propia.
@@ -1994,6 +2003,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
             plan={cartillaAbierta.plan}
             zonaKey={zonaKey}
             provinciaNombre={provinciaNombre}
+            localidadSlug={localidadDetectada}
             onClose={() => setCartillaAbierta(null)}
             onQuiero={() => handleAccederPlan(cartillaAbierta)}
             quieroDisabled={enviando || yaEnviado}

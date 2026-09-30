@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { sanatoriosDePlan, REFERENCIA_POR_ZONA, REFERENCIA_GBA_SUBZONAS, SMG_CENTER_NOTA } from '@/lib/data/sanatorios'
 import { getCartillaInfo } from '@/lib/data/cartillas'
+import { getZona } from '@/lib/data/cartilla-zonas'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import type { Plan, Prepaga } from '@/types'
 
@@ -11,6 +12,8 @@ interface Props {
   plan: Plan
   zonaKey: string
   provinciaNombre: string
+  /** Localidad detectada por IP (ej. "tandil"), si coincide con una zona real del silo de cartillas. */
+  localidadSlug?: string | null
   onClose: () => void
   /**
    * Cuando el modal se abre desde el wizard (que ya mandó el lead en el
@@ -26,10 +29,11 @@ interface Props {
   quieroLabel?: string
 }
 
-export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose, onQuiero, quieroDisabled, quieroLabel }: Props) {
+export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, localidadSlug, onClose, onQuiero, quieroDisabled, quieroLabel }: Props) {
   // sanatoriosDePlan ya filtra por zona: todo lo que devuelve es local.
   const resultados = sanatoriosDePlan(prepaga.slug, plan.slug, zonaKey)
   const cartillaInfo = getCartillaInfo(prepaga.slug)
+  const zonaLocal = localidadSlug ? getZona(prepaga.slug, localidadSlug) : undefined
 
   const nombresVerificados = new Set(resultados.map((r) => r.sanatorio.nombre.toLowerCase()))
   const esGBA = zonaKey === 'buenos-aires'
@@ -176,13 +180,23 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, onClose
               />
             )}
             <p className="text-xs text-gray-500 mb-2">¿Querés ver el detalle completo?</p>
-            <Link
-              href={`/cartillas/${prepaga.slug}`}
-              className="text-sm font-semibold text-[#E8002D] hover:underline"
-              onClick={onClose}
-            >
-              Guía de cartilla de {prepaga.nombre} →
-            </Link>
+            {zonaLocal ? (
+              <Link
+                href={`/cartillas/${prepaga.slug}/${localidadSlug}`}
+                className="text-sm font-semibold text-[#E8002D] hover:underline"
+                onClick={onClose}
+              >
+                Cartilla completa de {prepaga.nombre} en {zonaLocal.nombre} →
+              </Link>
+            ) : (
+              <Link
+                href={`/cartillas/${prepaga.slug}`}
+                className="text-sm font-semibold text-[#E8002D] hover:underline"
+                onClick={onClose}
+              >
+                Guía de cartilla de {prepaga.nombre} →
+              </Link>
+            )}
             {cartillaInfo && (
               <a
                 href={cartillaInfo.urlCartilla}
