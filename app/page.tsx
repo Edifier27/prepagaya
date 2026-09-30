@@ -14,6 +14,7 @@ import { ultimoMesOficial } from '@/lib/data/aumentos'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
@@ -543,18 +544,12 @@ export default function HomePage(): React.ReactElement {
               return (
                 <Link key={c.slug} href={`/cambios/${c.slug}`}
                   className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-6 flex flex-col group">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0"
-                      style={{ backgroundColor: origen.colorPrimario + '22', color: origen.colorPrimario }}>
-                      {origen.nombre[0]}
-                    </div>
+                  <div className="flex items-center gap-2.5 mb-4">
+                    <PrepagaLogo slug={origen.slug} nombre={origen.nombre} colorPrimario={origen.colorPrimario} size="xs" />
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" className="w-4 h-4 text-gray-300 flex-shrink-0">
                       <path d="M5 12h14m-6-6l6 6-6 6"/>
                     </svg>
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0"
-                      style={{ backgroundColor: destino.colorPrimario + '22', color: destino.colorPrimario }}>
-                      {destino.nombre[0]}
-                    </div>
+                    <PrepagaLogo slug={destino.slug} nombre={destino.nombre} colorPrimario={destino.colorPrimario} size="xs" />
                   </div>
                   <h3 className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors mb-1">
                     ¿Estás en {origen.nombre}?
