@@ -76,7 +76,7 @@ const secciones: Seccion[] = [
     titulo: 'Salud Mental',
     cuerpo: (
       <p className="text-gray-600 leading-relaxed">
-        El PMO cubre la atención ambulatoria de salud mental <strong>hasta 30 consultas por año calendario, con un máximo de 4 por mes</strong>: entrevista psiquiátrica y psicológica, psicopedagogía, psicoterapia individual, grupal, de familia y de pareja, y psicodiagnóstico. La internación por cuadros agudos, en sanatorio u hospital de día, se cubre <strong>hasta 30 días por año</strong> (Res. 201/2002, Anexo I, punto 4). La reglamentación de la <strong>Ley 26.657</strong> de Salud Mental ordena adecuar esa cobertura a los principios de la ley y aclara que no se exige certificado de discapacidad para acceder (Decreto 603/2013, art. 37). Hay planes que cubren más sesiones o las mismas sin copago. Ver el detalle completo en <Link href="/condiciones/salud-mental" className="text-[#E8002D] font-semibold hover:underline">prepagas y salud mental</Link>.
+        El PMO cubre la atención ambulatoria de salud mental <strong>hasta 30 consultas por año calendario, con un máximo de 4 por mes</strong>: entrevista psiquiátrica y psicológica, psicopedagogía, psicoterapia individual, grupal, de familia y de pareja, y psicodiagnóstico. La internación por cuadros agudos, en sanatorio u hospital de día, se cubre <strong>hasta 30 días por año</strong> (Res. 201/2002, Anexo I, punto 4). El mismo anexo también obliga a las prepagas a ofrecer actividades de promoción y prevención en salud mental: depresión, suicidio, adicciones, violencia y maltrato familiar. La reglamentación de la <strong>Ley 26.657</strong> de Salud Mental ordena adecuar esa cobertura a los principios de la ley y aclara que no se exige certificado de discapacidad para acceder (Decreto 603/2013, art. 37). Hay planes que cubren más sesiones o las mismas sin copago. Ver el detalle completo en <Link href="/condiciones/salud-mental" className="text-[#E8002D] font-semibold hover:underline">prepagas y salud mental</Link>.
       </p>
     ),
   },
@@ -93,9 +93,14 @@ const secciones: Seccion[] = [
     id: 'odontologia',
     titulo: 'Odontología',
     cuerpo: (
-      <p className="text-gray-600 leading-relaxed">
-        Consulta odontológica, diagnóstico, prevención (control y profilaxis), operatoria dental (obturaciones), extracciones y radiografías odontológicas. Quedan fuera del piso obligatorio la ortodoncia en adultos, los implantes y la odontología estética — ahí sí compiten los planes de cada prepaga con coberturas superadoras o descuentos en redes propias.
-      </p>
+      <div className="space-y-3">
+        <p className="text-gray-600 leading-relaxed">
+          Consulta, diagnóstico y plan de tratamiento —incluida la consulta de urgencia sin turno previo—, limpieza (tartrectomía) una vez por año para mayores de 18, control preventivo y aplicación de flúor dos veces al año hasta los 18, selladores de fosas y fisuras hasta los 15 años, operatoria dental (obturaciones), <strong>tratamiento de endodoncia</strong> (conducto) en piezas uni y multirradiculares, tratamiento de gingivitis y de enfermedad periodontal, extracciones y cirugías bucales menores, y radiografías — periapical, bite-wing, oclusal, <strong>panorámica</strong> y cefalométrica.
+        </p>
+        <p className="text-gray-600 leading-relaxed">
+          Los planes pueden cobrarte un coseguro simbólico por estas prácticas, menor para menores de 15 y mayores de 65 que para el resto. Quedan fuera del piso obligatorio la ortodoncia, los implantes y las prótesis dentales — no hay una obligación de reintegro por ley para estas prácticas en el PMO; algunas prepagas y obras sociales las ofrecen como beneficio propio, adicional al piso legal.
+        </p>
+      </div>
     ),
   },
   {
@@ -190,7 +195,7 @@ const secciones: Seccion[] = [
     titulo: 'Qué NO cubre el PMO',
     cuerpo: (
       <p className="text-gray-600 leading-relaxed">
-        Quedan fuera del piso obligatorio: cirugía estética sin causa médica (reconstructiva sí está cubierta), ortodoncia e implantes dentales en adultos, habitación individual (salvo indicación médica puntual), cobertura fuera de Argentina, medicina prepaga para mascotas obviamente no aplica, y los reintegros por atenderte con un profesional fuera de la cartilla de tu plan. Ahí es exactamente donde compiten los planes de cada prepaga: cuando pagás más, estás pagando estas prestaciones superadoras y una cartilla más amplia — nunca una cobertura del PMO &quot;mejor&quot; que en el plan económico, porque el PMO es idéntico en todos.
+        Quedan fuera del piso obligatorio: cirugía estética sin causa médica (reconstructiva sí está cubierta), ortodoncia, implantes y prótesis dentales, habitación individual (salvo indicación médica puntual), cobertura fuera de Argentina, medicina prepaga para mascotas obviamente no aplica, y los reintegros por atenderte con un profesional fuera de la cartilla de tu plan. Ahí es exactamente donde compiten los planes de cada prepaga: cuando pagás más, estás pagando estas prestaciones superadoras y una cartilla más amplia — nunca una cobertura del PMO &quot;mejor&quot; que en el plan económico, porque el PMO es idéntico en todos.
       </p>
     ),
   },
@@ -333,8 +338,10 @@ export default function PmoPage() {
           <p className="text-sm text-gray-700 leading-relaxed">
             Esta guía está basada en la Resolución 201/2002 y sus actualizaciones, publicadas por la Superintendencia de Servicios de Salud. Podés consultar el texto oficial en{' '}
             <a href="https://www.argentina.gob.ar/sssalud/programa-medico-obligatorio" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline">argentina.gob.ar/sssalud/programa-medico-obligatorio</a>
-            {' '}y{' '}
-            <a href="https://www.sssalud.gob.ar/pmo/res_201.php" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline">sssalud.gob.ar/pmo</a>.
+            , {' '}
+            <a href="https://www.sssalud.gob.ar/pmo/res_201.php" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline">sssalud.gob.ar/pmo</a>
+            {' '}y el texto completo del Anexo I en{' '}
+            <a href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/73649/res201-2002MS-anexoI.htm" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline">infoleg.gob.ar</a>.
           </p>
         </div>
 
