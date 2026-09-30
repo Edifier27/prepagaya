@@ -39,7 +39,11 @@ export async function GET(req: NextRequest) {
     const celular = lead.celular ?? ''
     const email = lead.email ?? ''
     const prepaga = lead.prepaga ?? ''
-    const provincia = lead.provincia ?? ''
+    // Si la persona no pasó por el wizard (no dio su provincia a mano), usamos
+    // la zona aproximada por IP que ya se guarda para todos los formularios
+    // (lib/geo-zonas.ts vía app/api/leads/route.ts) — así a Kommo le llega una
+    // zona igual, sin haberle preguntado nada (pedido de Darío, 30-sep-2026).
+    const provincia = lead.provincia || lead.zona_detectada || ''
     const edades = lead.edades ?? ''
     const fuente = lead.fuente ?? 'web'
     const fecha = new Date(lead.creado_en).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
