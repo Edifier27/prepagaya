@@ -18,6 +18,7 @@ import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 
 interface Props {
   params: Promise<{ slug: string }>
+  searchParams: Promise<{ seccion?: string }>
 }
 
 export async function generateStaticParams() {
@@ -60,8 +61,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function CartillaPrepagaPage({ params }: Props) {
+export default async function CartillaPrepagaPage({ params, searchParams }: Props) {
   const { slug } = await params
+  const { seccion } = await searchParams
   const info = cartillasInfo.find((c) => c.slug === slug)
   const prep = prepagas.find((p) => p.slug === slug)
   if (!info || !prep) notFound()
@@ -254,6 +256,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
               especialidades={especialidadesDisponibles(slug)}
               especialidadesLabel={tipoEspecialidades(slug) === 'guardia' ? 'Especialistas de guardia' : 'Especialidades'}
               tieneFarmacias={tieneFarmacias(slug)}
+              farmaciaInicial={seccion === 'farmacia'}
             />
             <p className="mt-4 text-center text-sm text-gray-600">
               ¿Necesitás una guardia ahora?{' '}
@@ -381,7 +384,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
         <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
           <div>
             <div className="text-white font-bold text-sm">¿Tu médico o sanatorio no está en esta cartilla?</div>
-            <div className="text-red-200 text-xs">Compará qué prepagas lo cubren y cuánto costaría cambiarte.</div>
+            <div className="text-white text-xs">Compará qué prepagas lo cubren y cuánto costaría cambiarte.</div>
           </div>
           <Link
             href="/cartillas"
@@ -463,7 +466,7 @@ export default async function CartillaPrepagaPage({ params }: Props) {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Compará {prep.nombre} con {slug === 'osde' ? 'Swiss Medical y ' : ''}otras prepagas</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             Precios reales de {PRECIO_ACTUALIZADO}, cartillas y coberturas. Gratis, sin DNI y sin compromiso.
           </p>
           <Link

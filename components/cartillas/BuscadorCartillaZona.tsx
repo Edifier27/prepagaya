@@ -43,6 +43,8 @@ interface Props {
   especialidadInicial?: string
   /** Si esta prepaga tiene cartilla de farmacias (lib/data/cartilla-zonas/farmacias.ts) */
   tieneFarmacias?: boolean
+  /** Abre directo en la pestaña de Farmacias, ej. desde ?seccion=farmacia */
+  farmaciaInicial?: boolean
 }
 
 // Buscador de cartilla por zona y plan (OSDE / Premedic / Avalian). La zona
@@ -64,12 +66,15 @@ export function BuscadorCartillaZona({
   especialidadesLabel = 'Especialidades',
   especialidadInicial,
   tieneFarmacias = false,
+  farmaciaInicial = false,
 }: Props) {
   const indice = useMemo(() => grupos.flatMap((g) => g.zonas), [grupos])
   const [zonaSlug, setZonaSlug] = useState('')
   const [plan, setPlan] = useState(planInicial ?? '')
   const [detectadaLabel, setDetectadaLabel] = useState<string | null>(null)
-  const [seccion, setSeccion] = useState<SeccionCartilla | 'especialidad' | 'farmacia'>(especialidadInicial ? 'especialidad' : 'internacion')
+  const [seccion, setSeccion] = useState<SeccionCartilla | 'especialidad' | 'farmacia'>(
+    farmaciaInicial && tieneFarmacias ? 'farmacia' : especialidadInicial ? 'especialidad' : 'internacion'
+  )
   const [especialidad, setEspecialidad] = useState(especialidadInicial ?? especialidades[0] ?? '')
   const [datos, setDatos] = useState<(ZonaCartilla & { enOtras?: CentroEnOtras[] }) | null>(null)
   const [datosEsp, setDatosEsp] = useState<ZonaEspecialidades | null>(null)
@@ -272,7 +277,7 @@ export function BuscadorCartillaZona({
                 ) : (
                   'Farmacias'
                 )}
-                {s !== 'especialidad' && s !== 'farmacia' && datos && <span className={`ml-1.5 text-xs ${seccion === s ? 'text-red-200' : 'text-gray-400'}`}>{conteo(s)}</span>}
+                {s !== 'especialidad' && s !== 'farmacia' && datos && <span className={`ml-1.5 text-xs ${seccion === s ? 'text-white' : 'text-gray-400'}`}>{conteo(s)}</span>}
               </button>
             ))}
           </div>
