@@ -242,6 +242,8 @@ const nextConfig: NextConfig = {
       },
       // IOSPER pasó a ser OSER en 2025 (Ley 11.202): misma obra social (1-oct-2026)
       { source: "/obras-sociales/iosper", destination: "/obras-sociales/oser", permanent: true },
+      // "AmSALUD" no existe con ese nombre: es Amasalud, el plan de OSSACRA (1-oct-2026)
+      { source: "/obras-sociales/amsalud", destination: "/obras-sociales/ossacra", permanent: true },
       // UPCN Salud → Unión Personal, el nombre con el que se busca (23-sep-2026)
       {
         source: "/obras-sociales/upcn",
