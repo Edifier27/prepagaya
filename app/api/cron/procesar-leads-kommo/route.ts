@@ -55,13 +55,23 @@ export async function GET(req: NextRequest) {
 
     // Destino "Otro mail" (pedido de Darío, 29-sep-2026) o el lado "mail" de
     // una alternancia: no toca Kommo para nada, va directo por EmailJS.
+    // Envuelto en try/catch (1-oct-2026): sin esto, una falla acá tiraba todo
+    // el cron abajo, y como leadsPendientesDeKommo() siempre trae primero el
+    // más viejo, el mismo lead trabado volvía a tirar el cron cada minuto sin
+    // dejar pasar nunca a los que venían después en la cola.
     if (destino.tipo === 'email') {
-      await mandarLeadPorEmail({
-        nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
-        kommo_link: '', kommo_label: '', duplicado_banner: '', to: destino.email,
-      })
-      await marcarResultadoKommo(lead.id, `Email directo a ${destino.email}`, '')
-      ok++
+      try {
+        await mandarLeadPorEmail({
+          nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
+          kommo_link: '', kommo_label: '', duplicado_banner: '', to: destino.email,
+        })
+        await marcarResultadoKommo(lead.id, `Email directo a ${destino.email}`, '')
+        ok++
+      } catch (err) {
+        await marcarResultadoKommo(lead.id, `Error: ${err}`, '')
+        fallidos++
+        console.error('[CRON-KOMMO] error mandando email directo, lead', lead.id, ':', err)
+      }
       continue
     }
 

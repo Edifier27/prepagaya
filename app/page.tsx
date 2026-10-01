@@ -552,7 +552,7 @@ export default function HomePage(): React.ReactElement {
                     <PrepagaLogo slug={destino.slug} nombre={destino.nombre} colorPrimario={destino.colorPrimario} size="sm" />
                   </div>
                   <div className="absolute -bottom-2 -right-2 w-9 h-9 rounded-full bg-[#E8002D] flex items-center justify-center shadow-md">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180">
                       <path d="M17 1l4 4-4 4" /><path d="M3 11V9a4 4 0 014-4h14" />
                       <path d="M7 23l-4-4 4-4" /><path d="M21 13v2a4 4 0 01-4 4H3" />
                     </svg>

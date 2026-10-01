@@ -334,10 +334,15 @@ export async function leadsPendientesDeKommo(minutosEspera = 3): Promise<LeadRow
   return rows as unknown as LeadRow[]
 }
 
+/** Nunca tira: si falla, el cron de procesar-leads-kommo igual tiene que seguir con el resto de la cola. */
 export async function marcarResultadoKommo(id: number, estado: string, link: string): Promise<void> {
   if (!sql) return
-  await asegurarTablas()
-  await sql`UPDATE leads SET kommo_estado = ${estado}, kommo_link = ${link} WHERE id = ${id}`
+  try {
+    await asegurarTablas()
+    await sql`UPDATE leads SET kommo_estado = ${estado}, kommo_link = ${link} WHERE id = ${id}`
+  } catch (err) {
+    console.error('[DB] error marcando resultado de Kommo, lead', id, ':', err)
+  }
 }
 
 export async function listarLeads(limite = 300): Promise<LeadRow[]> {
