@@ -603,56 +603,173 @@ export const obrasSociales: ObraSocialData[] = [
     keywords: ['union personal', 'union personal obra social', 'union personal cartilla', 'union personal telefono', 'obra social upcn', 'upcn obra social'],
   },
   {
+    // Actualizado 30-sep-2026: el Decreto 88/2026 (6-feb-2026) dispuso la
+    // disolución y liquidación de IOSFA, dividiendo su cobertura en dos
+    // entidades nuevas — OSFA (Fuerzas Armadas) y OSFFESEG (Fuerzas Federales
+    // de Seguridad). Fuentes: Boletín Oficial / Decreto 88/2026, Parlamentario,
+    // Perfil, Canal26, La Capital MDP, iosfa.gob.ar (aviso "Nuevo esquema de
+    // cobertura médica"). IOSFA deja de existir el 5-feb-2027.
     slug: 'iosfa',
     nombre: 'IOSFA',
     emoji: '🎖️',
     tipo: 'estatal',
-    titulo: 'IOSFA 2026: la obra social de las Fuerzas Armadas y Seguridad',
-    metaDescripcion: 'IOSFA 2026: la obra social del Instituto de Obra Social de las Fuerzas Armadas. Quiénes pueden afiliarse, qué cubre y cómo tramitar prestaciones.',
-    descripcion: 'IOSFA es la obra social de las Fuerzas Armadas y Fuerzas de Seguridad argentinas.',
-    intro: 'IOSFA (Instituto de Obra Social de las Fuerzas Armadas) brinda cobertura de salud al personal militar y de seguridad de Argentina, incluyendo sus familias. Es una de las obras sociales con mayor nivel de prestaciones en el país.',
+    titulo: 'IOSFA 2026: se disuelve — qué pasa con tu cobertura y a dónde vas ahora',
+    metaDescripcion: 'IOSFA está en liquidación desde el Decreto 88/2026 y deja de existir en febrero de 2027. Se divide en OSFA (Fuerzas Armadas) y OSFFESEG (Fuerzas de Seguridad). Qué cambia para vos.',
+    descripcion: 'IOSFA, la ex obra social de las Fuerzas Armadas y de Seguridad, está en proceso de disolución.',
+    intro: 'IOSFA (Instituto de Obra Social de las Fuerzas Armadas) dejó de ser la obra social activa de los militares y fuerzas de seguridad: el Decreto 88/2026 dispuso su disolución y liquidación, con fecha límite el 5 de febrero de 2027. En su lugar se crearon dos entidades nuevas, separadas por fuerza: OSFA para el personal de Ejército, Armada y Fuerza Aérea, y OSFFESEG para Gendarmería y Prefectura Naval. Si todavía sos afiliado de IOSFA, tu cobertura está en transición hacia una de esas dos — no hace falta ningún trámite de tu parte.',
     beneficiarios: 200000,
     quienesPuedenAfiliarse: [
-      'Personal en actividad de las Fuerzas Armadas (Ejército, Armada, Fuerza Aérea)',
-      'Personal de la Gendarmería Nacional y Prefectura Naval',
-      'Personal retirado de las fuerzas',
+      'Ya no admite nuevos afiliados: está en liquidación',
+      'Los afiliados existentes están pasando a OSFA (Fuerzas Armadas) o a OSFFESEG (Gendarmería y Prefectura), según corresponda',
+    ],
+    aportes: {
+      trabajador: 'Descuento del haber mensual (ahora a nombre de OSFA u OSFFESEG, según la fuerza)',
+      empleador: 'El Estado Nacional',
+      monotributista: 'No aplica (es exclusiva para las fuerzas)',
+    },
+    cobertura: [
+      'En transición: IOSFA mantiene por un tiempo los tratamientos de alta complejidad ya autorizados y la provisión de medicación crónica, para no cortar continuidad mientras se completa el pase a OSFA/OSFFESEG',
+    ],
+    diferenciadores: [
+      'Ya no es la obra social activa: es el organismo que se está liquidando',
+    ],
+    pros: [
+      'Mientras dura la transición, sostiene los tratamientos de alta complejidad ya en curso',
+    ],
+    contras: [
+      'Está en liquidación: no es una cobertura a elegir ni en la que dar de alta a nadie nuevo',
+      'La fecha de disolución definitiva es el 5 de febrero de 2027',
+    ],
+    derivacion: false,
+    web: 'iosfa.gob.ar',
+    fuenteOficial: 'Decreto 88/2026 (Boletín Oficial) y aviso "Nuevo esquema de cobertura médica" en iosfa.gob.ar',
+    verificado: '2026-09-30',
+    faq: [
+      { q: '¿IOSFA sigue existiendo?', a: 'Está en proceso de disolución y liquidación desde el Decreto 88/2026 (6 de febrero de 2026), con fecha límite el 5 de febrero de 2027. No toma afiliados nuevos: los que ya tenía están pasando a OSFA o a OSFFESEG.' },
+      { q: '¿Por qué se disolvió IOSFA?', a: 'El Gobierno invocó un desequilibrio financiero persistente, con un déficit declarado de unos $200.000 millones, y la heterogeneidad de su padrón de afiliados (fuerzas con necesidades muy distintas bajo una misma estructura).' },
+      { q: '¿Qué obra social me corresponde ahora si era de IOSFA?', a: 'Depende de tu fuerza: si sos de Ejército, Armada o Fuerza Aérea, pasás a OSFA (Ministerio de Defensa). Si sos de Gendarmería o Prefectura Naval, pasás a OSFFESEG, cuya atención médica gestiona Medicus desde el 1 de junio de 2026.' },
+      { q: '¿Tengo que hacer algún trámite por el cambio?', a: 'Según los avisos oficiales, no: el pase es automático y no requiere presentarte en persona, pagar nada ni gestionar nada a través de terceros. Confirmá tus datos si te llega un mail de validación de OSFA u OSFFESEG.' },
+    ],
+    keywords: ['iosfa obra social', 'iosfa disolucion', 'iosfa se disuelve', 'que paso con iosfa', 'iosfa cierre', 'iosfa 2026'],
+  },
+  {
+    // Nueva (30-sep-2026): creada por el Decreto 88/2026 para el personal de
+    // las Fuerzas Armadas, en reemplazo de IOSFA. A diferencia de OSFFESEG, no
+    // tercerizó la atención en una prepaga: arma su propia red de
+    // prestadores, y los medios reportan problemas de cobertura durante la
+    // transición. Fuentes: Decreto 88/2026, Perfil ("A seis meses de la
+    // disolución del IOSFA las Fuerzas Armadas siguen sin cobertura médica"),
+    // Parlamentario, defonline.com.ar.
+    slug: 'osfa',
+    nombre: 'OSFA',
+    emoji: '🎖️',
+    tipo: 'estatal',
+    titulo: 'OSFA 2026: la nueva obra social de las Fuerzas Armadas (ex IOSFA)',
+    metaDescripcion: 'OSFA es la obra social de Ejército, Armada y Fuerza Aérea desde 2026, creada al disolverse IOSFA. Quiénes cubre, qué problemas reportó la transición y tus alternativas.',
+    descripcion: 'OSFA es la obra social de las Fuerzas Armadas (Ejército, Armada y Fuerza Aérea), creada en 2026 al disolverse IOSFA.',
+    intro: 'OSFA (Obra Social de las Fuerzas Armadas) se creó por el Decreto 88/2026, bajo la órbita del Ministerio de Defensa, para cubrir al personal de Ejército, Armada y Fuerza Aérea que antes estaba en IOSFA. A diferencia de lo que hizo el Ministerio de Seguridad con Gendarmería y Prefectura (que tercerizó la atención en Medicus), OSFA arma su propia red de prestadores en vez de delegarla en una prepaga — y varios medios reportaron, a seis meses de la transición, dificultades de cobertura en algunas zonas.',
+    beneficiarios: 200000,
+    quienesPuedenAfiliarse: [
+      'Personal en actividad del Ejército, la Armada y la Fuerza Aérea',
+      'Personal retirado de esas tres fuerzas',
       'Familiares a cargo del afiliado titular',
     ],
     aportes: {
       trabajador: 'Descuento del haber mensual',
-      empleador: 'El Estado Nacional (a través del presupuesto de Defensa)',
+      empleador: 'El Estado Nacional (Ministerio de Defensa)',
       monotributista: 'No aplica (es exclusiva para las fuerzas)',
     },
     cobertura: [
-      'PMO completo',
-      'Hospitales militares propios en todo el país',
-      'Red de prestadores civiles',
-      'Alta complejidad y cirugías de alta especialización',
-      'Rehabilitación y tratamientos especializados',
-      'Salud mental',
-      'Medicamentos',
+      'Red de prestadores propia, en formación (no tercerizada en una prepaga)',
+      'Continuidad de los hospitales militares que ya existían',
+      'Reintegro por atención particular cuando no hay prestador disponible: la persona puede atenderse por su cuenta y pedir el reintegro dentro de los 30 días, según reportes periodísticos',
     ],
     diferenciadores: [
-      'Hospitales militares propios de alta complejidad',
-      'Cobertura especial para lesiones en servicio activo',
-      'Red propia en todo el territorio',
+      'Mantiene su propia red de hospitales militares en vez de delegar en una prepaga',
+      'El Ministerio de Defensa desarrolla una app propia con credencial digital para la gestión',
     ],
     pros: [
-      'Hospitales propios en las principales ciudades',
-      'Alta complejidad disponible en red propia',
-      'Cobertura especial para situaciones de servicio',
+      'Sostiene la red de hospitales militares existente',
+      'Reintegro disponible si no hay prestador cercano',
     ],
     contras: [
-      'Solo para personal de las Fuerzas Armadas y Seguridad',
-      'Los hospitales militares varían en equipamiento según la guarnición',
+      'Medios reportaron fallas de cobertura en varias zonas a seis meses de la transición, con reclamos públicos de afiliados y veteranos',
+      'El propio organismo reconoció que todavía no funciona al 100% y estimó un año para la puesta a punto completa',
+      'No tiene una opción formal de derivar aportes a una prepaga privada',
     ],
     derivacion: false,
-    web: 'iosfa.gob.ar',
+    fuenteOficial: 'Decreto 88/2026 (Boletín Oficial) y cobertura periodística de Perfil y Parlamentario',
+    verificado: '2026-09-30',
     faq: [
-      { q: '¿Qué es IOSFA?', a: 'IOSFA es el Instituto de Obra Social de las Fuerzas Armadas, la entidad que brinda cobertura de salud al personal militar (Ejército, Armada y Fuerza Aérea) y de seguridad (Gendarmería, Prefectura) y sus familias.' },
-      { q: '¿IOSFA tiene hospitales propios?', a: 'Sí, IOSFA gestiona los hospitales militares que existen en las principales ciudades y guarniciones del país. Estos hospitales son de alta complejidad y son el primer nivel de atención para el personal militar.' },
+      { q: '¿Qué es OSFA?', a: 'Es la Obra Social de las Fuerzas Armadas, creada por el Decreto 88/2026 para el personal de Ejército, Armada y Fuerza Aérea, en reemplazo de IOSFA.' },
+      { q: '¿OSFA funciona bien?', a: 'Según reportes periodísticos de mediados de 2026, no al 100%: hubo dificultades de cobertura en ciertas zonas durante la transición, y la propia conducción de OSFA reconoció el problema y estimó alrededor de un año para normalizar el servicio.' },
+      { q: '¿Puedo derivar mis aportes de OSFA a una prepaga?', a: 'No hay una opción formal de libre elección confirmada para el personal de las Fuerzas Armadas. Si tenés un problema puntual de cobertura, algunos afiliados optaron por atenderse de forma particular y pedir el reintegro, o por la cobertura especial de PAMI para veteranos, según el caso.' },
+      { q: '¿OSFA es lo mismo que IOSFA?', a: 'No: IOSFA está en liquidación. OSFA es la entidad nueva que lo reemplaza específicamente para el personal de las Fuerzas Armadas (Gendarmería y Prefectura pasaron a OSFFESEG, no a OSFA).' },
     ],
-    keywords: ['iosfa obra social', 'iosfa fuerzas armadas', 'iosfa hospital militar', 'iosfa cobertura'],
+    keywords: ['osfa obra social', 'osfa fuerzas armadas', 'osfa ex iosfa', 'osfa cobertura', 'que es osfa'],
+  },
+  {
+    // Nueva (30-sep-2026): creada por el Decreto 88/2026 para Gendarmería y
+    // Prefectura Naval. A diferencia de OSFA, la atención médica se tercerizó
+    // por completo en Medicus desde el 1-jun-2026. Fuentes: Decreto 88/2026,
+    // argentina.gob.ar/seguridad/nueva-obra-social (oficial), iosfa.gob.ar
+    // (aviso de transición), Confidencial, El Estratégico, Tiempo Militar.
+    slug: 'osffeseg',
+    nombre: 'OSFFESEG',
+    emoji: '🎖️',
+    tipo: 'estatal',
+    titulo: 'OSFFESEG 2026: la obra social de Gendarmería y Prefectura, gestionada por Medicus',
+    metaDescripcion: 'OSFFESEG cubre a Gendarmería y Prefectura Naval desde 2026 (ex IOSFA). La atención médica la gestiona Medicus desde junio de 2026, con planes MS1 y MS2. Aportes, teléfonos y cómo funciona.',
+    descripcion: 'OSFFESEG es la obra social de las Fuerzas Federales de Seguridad (Gendarmería y Prefectura Naval), creada en 2026 al disolverse IOSFA.',
+    intro: 'OSFFESEG (Obra Social de las Fuerzas Federales de Seguridad) se creó por el Decreto 88/2026, bajo el Ministerio de Seguridad, para cubrir al personal de Gendarmería Nacional y Prefectura Naval que antes estaba en IOSFA. A diferencia de OSFA (Fuerzas Armadas), acá el Ministerio tercerizó toda la atención médica: desde el 1 de junio de 2026 la gestiona Medicus, con dos planes (MS1 y MS2) y sus propios canales de atención.',
+    beneficiarios: 200000,
+    quienesPuedenAfiliarse: [
+      'Personal en actividad de la Gendarmería Nacional Argentina',
+      'Personal en actividad de la Prefectura Naval Argentina',
+      'Retirados y pensionados de ambas fuerzas',
+      'Grupo familiar primario del afiliado titular',
+    ],
+    aportes: {
+      trabajador: '7% para personal en actividad sin grupo familiar, 8% con grupo familiar',
+      empleador: 'El Estado Nacional (Ministerio de Seguridad)',
+      monotributista: 'No aplica — aporte de 8% para retirados/pensionados sin grupo familiar, 9% con grupo familiar',
+    },
+    cobertura: [
+      'Atención médica integral a cargo de Medicus (plan MS1 con copago de $20.000, o plan MS2 sin copago)',
+      'Credencial y trámites digitales por la app "Mi Medicus"',
+      'Emergencias y urgencias por la línea de Medicus',
+    ],
+    diferenciadores: [
+      'Única entre las ex-IOSFA con la atención médica completamente tercerizada en una prepaga (Medicus)',
+      'Dos planes a elección: con copago (MS1) o sin copago (MS2)',
+      'Canales de atención propios: teléfono gratuito, WhatsApp y mail dedicados',
+    ],
+    pros: [
+      'Cartilla y gestión de una prepaga establecida (Medicus), no una red armada desde cero',
+      'Plan sin copago disponible (MS2)',
+      'Inscripción sin trámite presencial: validación de datos online',
+    ],
+    contras: [
+      'Es un cambio reciente (junio 2026): todavía no hay suficiente antigüedad para evaluar la cartilla real a fondo',
+      'No tiene una opción formal de derivar aportes a otra prepaga distinta de Medicus',
+    ],
+    derivacion: false,
+    web: 'medicus.com.ar/ministeriodeseguridad',
+    telefonos: [
+      { etiqueta: 'Línea gratuita', valor: '0800-220-9006' },
+      { etiqueta: 'WhatsApp', valor: '+54 9 11 5094-1119' },
+      { etiqueta: 'Emergencias', valor: '011 4129-5300', detalle: 'opción 1' },
+    ],
+    fuenteOficial: 'argentina.gob.ar/seguridad/nueva-obra-social (oficial) y Decreto 88/2026',
+    verificado: '2026-09-30',
+    faq: [
+      { q: '¿Qué es OSFFESEG?', a: 'Es la Obra Social de las Fuerzas Federales de Seguridad, creada por el Decreto 88/2026 para el personal de Gendarmería Nacional y Prefectura Naval, en reemplazo de IOSFA.' },
+      { q: '¿Quién atiende médicamente a los afiliados de OSFFESEG?', a: 'Medicus S.A., por contrato con el Ministerio de Seguridad desde el 1 de junio de 2026. Cubre a unos 200.000 afiliados entre personal activo, retirados, pensionados y sus familias.' },
+      { q: '¿Qué planes tiene OSFFESEG con Medicus?', a: 'Dos: el Plan MS1, con copago de $20.000, y el Plan MS2, sin copago.' },
+      { q: '¿Cuánto se aporta a OSFFESEG?', a: '7% del haber para personal activo sin grupo familiar, 8% con grupo familiar; 8% para retirados y pensionados sin grupo familiar, 9% con grupo familiar.' },
+      { q: '¿OSFFESEG es lo mismo que OSFA?', a: 'No: son dos entidades distintas creadas por el mismo decreto. OSFA es para Ejército, Armada y Fuerza Aérea (Ministerio de Defensa); OSFFESEG es para Gendarmería y Prefectura Naval (Ministerio de Seguridad), con la atención tercerizada en Medicus.' },
+    ],
+    keywords: ['osffeseg', 'osffeseg obra social', 'osffeseg medicus', 'obra social gendarmeria', 'obra social prefectura naval', 'osffeseg telefono'],
   },
   {
     slug: 'osdepym',
