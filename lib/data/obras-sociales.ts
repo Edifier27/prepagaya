@@ -1301,21 +1301,23 @@ export const obrasSociales: ObraSocialData[] = [
     keywords: ['oschoca', 'oschoca telefono', 'oschoca obra social', 'obra social camioneros', 'obra social choferes de camiones'],
   },
   {
-    // Nueva (1-oct-2026): obra social bancaria. Pedido puntual de Darío: tiene
-    // un convenio real con Swiss Medical (confirmado — identidadsindical.ar
-    // y otras notas: "la Obra Social Bancaria firmó un convenio con Swiss
-    // Medical" con 20% de descuento para sus beneficiarios). OSBA pasó a
-    // llamarse formalmente OSSSB (Obra Social Servicios Sociales Bancarios)
-    // pero "bancarios obra social"/"OSBA" sigue siendo como la busca la
-    // gente. Teléfonos verificados en osssb.com.
+    // Nueva (1-oct-2026): obra social bancaria. Pedido puntual de Darío,
+    // corregido 1-oct: no es "OSBA firmó un convenio", es el mismo convenio
+    // CORPORATIVO DE AFINIDAD que ya describimos en /empresas/swiss-medical
+    // ("5 bancos con convenio de afinidad") — Swiss Medical lo cierra con el
+    // BANCO empleador, no con la obra social sindical. Se describe con esa
+    // misma terminología para no inventar un mecanismo distinto al que ya
+    // tenemos documentado. OSBA pasó a llamarse formalmente OSSSB (Obra
+    // Social Servicios Sociales Bancarios); teléfonos verificados en
+    // osssb.com.
     slug: 'osba-bancarios',
     nombre: 'OSBA (Bancarios)',
     emoji: '🏦',
     tipo: 'sindical',
-    titulo: 'OSBA / OSSSB: la obra social de los bancarios, con convenio Swiss Medical (2026)',
-    metaDescripcion: 'OSBA (hoy OSSSB), la obra social de los trabajadores bancarios: tiene un convenio con Swiss Medical con 20% de descuento. Teléfonos, cartilla y cómo acceder al convenio.',
+    titulo: 'OSBA / OSSSB: la obra social de los bancarios y el convenio corporativo con Swiss Medical (2026)',
+    metaDescripcion: 'OSBA (hoy OSSSB), la obra social de los trabajadores bancarios. Varios bancos tienen además un convenio corporativo de afinidad con Swiss Medical. Teléfonos, cartilla y cómo cotizarlo.',
     descripcion: 'La obra social de los trabajadores bancarios, hoy llamada formalmente OSSSB (Obra Social Servicios Sociales Bancarios).',
-    intro: 'OSBA, conocida formalmente como OSSSB (Obra Social Servicios Sociales Bancarios), es la obra social de los trabajadores del sector bancario. Firmó un convenio con Swiss Medical que le da a sus beneficiarios acceso a planes de Swiss Medical con 20% de descuento — una vía distinta a la derivación de aportes general, pensada específicamente para afiliados bancarios.',
+    intro: 'OSBA, conocida formalmente como OSSSB (Obra Social Servicios Sociales Bancarios), es la obra social de los trabajadores del sector bancario. Además, Swiss Medical tiene convenios corporativos de afinidad con varios bancos del país: no es un acuerdo con la obra social sindical, sino con el banco como empleador, y le da a su personal acceso al precio corporativo por volumen, con la factura llegando directo a cada empleado.',
     quienesPuedenAfiliarse: [
       'Trabajadores del sector bancario en relación de dependencia',
       'Grupo familiar a cargo del titular',
@@ -1328,17 +1330,16 @@ export const obrasSociales: ObraSocialData[] = [
       'PMO',
       'Cartilla propia con farmacias y ópticas',
       'Urgencias psiquiátricas, oftalmológicas y odontológicas con prestadores de convenio',
-      'Acceso a planes de Swiss Medical con 20% de descuento (convenio OSBA-Swiss Medical)',
     ],
     diferenciadores: [
-      'Convenio directo con Swiss Medical, con descuento del 20% para sus beneficiarios',
+      'Varios bancos tienen convenio corporativo de afinidad con Swiss Medical para su personal',
     ],
     pros: [
-      'Convenio con Swiss Medical ya armado: no hace falta derivar aportes para acceder a un descuento',
+      'Si tu banco tiene convenio de afinidad con Swiss Medical, accedés al precio corporativo sin que la empresa gestione nada: la factura llega directo a vos',
       'Call center y canales de comunicación las 24 horas para urgencias',
     ],
     contras: [
-      'El 20% de descuento de Swiss Medical no es lo mismo que la cobertura completa de un plan propio: conviene comparar el costo final',
+      'El convenio de afinidad depende de que tu banco en particular lo tenga firmado — no es automático para todo el sector',
     ],
     derivacion: true,
     web: 'osssb.com',
@@ -1352,18 +1353,17 @@ export const obrasSociales: ObraSocialData[] = [
       { etiqueta: 'Urgencias odontológicas (SIACO CABA)', valor: '5253-3400', detalle: 'Las 24 hs' },
     ],
     // Gancho de conversión distinto al resto: acá el angulo real no es
-    // "derivá tus aportes", es "ya tenés acceso a Swiss Medical con
-    // descuento por tu obra social — mirá si te conviene ir más a fondo
-    // y contratarlo directo". Aprovecha que ya tenemos toda la ficha de
-    // Swiss Medical armada en el sitio.
-    ganchoConversion: 'Como bancario ya tenés 20% de descuento en Swiss Medical por el convenio con OSBA — mirá los planes completos y cotizá cuánto te saldría.',
+    // "derivá tus aportes", es "tu banco puede tener acceso corporativo a
+    // Swiss Medical — cotizalo". Aprovecha la ficha /empresas/swiss-medical
+    // que ya tenemos armada con el detalle del convenio de afinidad.
+    ganchoConversion: 'Si trabajás en un banco, puede que tengas acceso al convenio corporativo de Swiss Medical — cotizá tu plan y comparalo con lo que tenés hoy.',
     faq: [
       { q: '¿OSBA y OSSSB son la misma obra social?', a: 'Sí: OSBA (Obra Social Bancaria Argentina) pasó a llamarse formalmente OSSSB (Obra Social Servicios Sociales Bancarios), pero mucha gente la sigue buscando como OSBA.' },
-      { q: '¿Es cierto que OSBA tiene un convenio con Swiss Medical?', a: 'Sí: la Obra Social Bancaria firmó un convenio con Swiss Medical que da a sus beneficiarios acceso a planes de Swiss Medical con 20% de descuento.' },
+      { q: '¿Es cierto que los bancarios tienen un convenio con Swiss Medical?', a: 'Sí, pero es un convenio corporativo de afinidad que Swiss Medical cierra con el banco como empleador (tiene acuerdos con varios bancos del país), no un beneficio de la obra social sindical OSBA/OSSSB en sí. Si tu banco lo tiene firmado, accedés al precio corporativo con la factura a tu nombre.' },
       { q: '¿Cuál es el teléfono de OSBA?', a: 'Call Center: 0800-222-3462 (lunes a viernes de 9 a 16:30). Atención las 24 horas: 11-2761-0695.' },
-      { q: '¿Me conviene el 20% de descuento o derivar mis aportes directo a Swiss Medical?', a: 'Depende del plan y de tu sueldo: el 20% de descuento es un beneficio adicional sobre el precio de lista, pero derivando tus aportes podés terminar pagando menos de tu bolsillo según el plan. Cotizá los dos caminos para comparar.' },
+      { q: '¿Cómo sé si mi banco tiene el convenio de afinidad con Swiss Medical?', a: 'Consultá en RRHH de tu banco, o cotizá directo con nosotros: te confirmamos si tu empleador tiene el convenio activo y qué precio corporativo te corresponde.' },
     ],
-    keywords: ['osba', 'osba obra social', 'obra social bancaria', 'osssb', 'bancarios obra social', 'osba swiss medical', 'convenio osba swiss medical'],
+    keywords: ['osba', 'osba obra social', 'obra social bancaria', 'osssb', 'bancarios obra social', 'swiss medical bancarios', 'convenio bancarios swiss medical'],
   },
   {
     // Nueva (1-oct-2026): obra social de Luz y Fuerza. Nombre oficial OSFATLyF
