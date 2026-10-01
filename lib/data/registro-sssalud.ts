@@ -87,8 +87,6 @@ export const PREPAGA_A_REGISTRO: Record<string, string> = {
 }
 
 // Fichas de obras sociales del sitio que tienen entrada en el registro con otro slug.
-// OSPAT queda afuera a propósito: en el RNAS es la obra social del personal
-// del turf y la ficha la presenta como de telecomunicaciones (revisar).
 const OBRA_SOCIAL_A_REGISTRO: Record<string, string | null> = {
   'sancor-os': 'sancor-salud',
   issn: 'issn-neuquen',
@@ -96,7 +94,6 @@ const OBRA_SOCIAL_A_REGISTRO: Record<string, string | null> = {
   oser: 'iosper-entre-rios',
   insssep: 'insssep-chaco',
   ioscor: 'ips-corrientes',
-  ospat: null,
 }
 
 export function registroDeObraSocial(osSlug: string): EntidadRegistro | undefined {

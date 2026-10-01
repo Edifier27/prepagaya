@@ -16,7 +16,7 @@ import {
   NOTA_PROVINCIAS_PARCIALES_OSECAC,
   PROVINCIAS_PARCIALES_OSECAC,
 } from '@/lib/data/sindicales-zonas/osecac'
-import { getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
+import { CARTILLAS_SINDICALES, getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -85,7 +85,14 @@ export default async function ObraSocialPage({ params }: Props) {
     return <FichaRegistroPage ficha={r.ficha} entidad={r.entidad} />
   }
 
-  const otras = obrasSociales.filter((o) => o.slug !== slug).slice(0, 8)
+  // Relacionadas (1-oct-2026): del mismo tipo primero y, entre esas, las que
+  // tienen cartilla oficial; así el enlace interno va a fichas más completas.
+  const otras = obrasSociales
+    .filter((o) => o.slug !== slug)
+    .map((o) => ({ o, peso: (o.tipo === os.tipo ? 2 : 0) + (CARTILLAS_SINDICALES[o.slug] ? 1 : 0) }))
+    .sort((a, b) => b.peso - a.peso)
+    .slice(0, 12)
+    .map((x) => x.o)
   const cartilla = getCartillaSindical(os.slug)
   const cartillaTot = cartilla ? totales(cartilla) : null
   const prepagaMatch = prepagaHermana(os.slug)
@@ -100,7 +107,24 @@ export default async function ObraSocialPage({ params }: Props) {
       ? `${codigo} (RNAS ${registro.codigo}). Es el número con el que figura en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: el que carga tu empleador en tu alta en ARCA (ex AFIP) y el que se usa en la opción de cambio.`
       : `${os.nombre} no tiene código en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: es una obra social con régimen propio, así que no se puede elegir con la opción de cambio de obra social.`,
   } : null
-  const faq = faqCodigo ? [...os.faq, faqCodigo] : os.faq
+  // "¿Qué sanatorios tiene X?" con los números de su cartilla oficial
+  const faqCartilla = cartilla && cartillaTot ? {
+    q: `¿Qué sanatorios tiene ${os.nombre}?`,
+    a: `Según la cartilla oficial que presentó ante la Superintendencia de Servicios de Salud, ${os.nombre} tiene ${cartillaTot.internacion.toLocaleString('es-AR')} sanatorios y clínicas con internación, ${cartillaTot.guardia.toLocaleString('es-AR')} guardias y ${cartillaTot.diagnostico.toLocaleString('es-AR')} centros de diagnóstico en ${cartillaTot.provincias} provincias. Donde más tiene: ${provinciasConPagina(cartilla).slice(0, 3).map((p) => p.nombre).join(', ').replace(/, ([^,]*)$/, ' y $1')}. En PrepagaYa podés ver cada uno por provincia y localidad, con dirección y teléfono.`,
+  } : null
+  const faq = [...os.faq, ...(faqCartilla ? [faqCartilla] : []), ...(faqCodigo ? [faqCodigo] : [])]
+
+  // La obra social como entidad (1-oct-2026): nombre legal, código RNAS, sede,
+  // teléfono y web oficial, para que buscadores e IA la identifiquen.
+  const entidad = {
+    '@type': 'Organization',
+    name: registro?.razonSocial ? nombreLegible(registro.razonSocial) : os.nombre,
+    alternateName: os.nombre,
+    ...(os.web ? { url: `https://www.${os.web.replace(/^www\./, '')}` } : {}),
+    ...(os.telefonos?.[0] ? { telephone: os.telefonos[0].valor } : registro?.telefono ? { telephone: registro.telefono } : {}),
+    ...(registro?.codigo ? { identifier: { '@type': 'PropertyValue', propertyID: 'RNAS', value: registro.codigo } } : {}),
+    ...(registro?.domicilio ? { address: { '@type': 'PostalAddress', streetAddress: registro.domicilio, addressLocality: registro.localidadSede, addressCountry: 'AR' } } : {}),
+  }
 
   const jsonLd = [
     {
@@ -115,6 +139,7 @@ export default async function ObraSocialPage({ params }: Props) {
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/obras-sociales/${slug}` },
       dateModified: os.verificado ?? CONTENT_UPDATE,
       inLanguage: 'es-AR',
+      about: entidad,
       ...(os.fuenteOficial ? { isBasedOn: os.fuenteOficial } : {}),
     },
     {

@@ -1,7 +1,9 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
+import { CARTILLAS_SINDICALES, totales } from '@/lib/data/sindicales-cartillas'
+import { osDeCartilla } from '@/lib/data/sindicales-cartillas/os'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
@@ -130,7 +132,7 @@ export default function ObrasSocialesHubPage() {
         {porTipo.jubilados.map((os) => (
           <section key={os.slug}>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-lg font-bold text-gray-900">Para jubilados y pensionados</span>
+              <h2 className="text-lg font-bold text-gray-900">Para jubilados y pensionados</h2>
               <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${tiposColores[os.tipo]}`}>{tiposLabels[os.tipo]}</span>
             </div>
             <Link href={`/obras-sociales/${os.slug}`} className="group block bg-white rounded-2xl border-2 border-orange-200 p-6 hover:shadow-md transition-all">
@@ -154,7 +156,7 @@ export default function ObrasSocialesHubPage() {
         {porTipo.provincial.length > 0 && (
           <section>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-lg font-bold text-gray-900">Obras sociales provinciales</span>
+              <h2 className="text-lg font-bold text-gray-900">Obras sociales provinciales</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {porTipo.provincial.map((os) => (
@@ -167,7 +169,7 @@ export default function ObrasSocialesHubPage() {
         {/* Empresariales (las que compiten con prepagas) */}
         <section>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-lg font-bold text-gray-900">Obras sociales empresariales (compiten con prepagas)</span>
+            <h2 className="text-lg font-bold text-gray-900">Obras sociales empresariales (compiten con prepagas)</h2>
           </div>
           <p className="text-sm text-gray-500 mb-4">Estas entidades operan tanto como obra social como prepaga privada. Son las más elegidas por la red de prestadores premium.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -180,7 +182,7 @@ export default function ObrasSocialesHubPage() {
         {/* Sindicales / para derivación */}
         <section>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-lg font-bold text-gray-900">Obras sociales sindicales y destinos de derivación</span>
+            <h2 className="text-lg font-bold text-gray-900">Obras sociales sindicales y destinos de derivación</h2>
           </div>
           <p className="text-sm text-gray-500 mb-4">Si trabajás en relación de dependencia, podés <strong>derivar tus aportes</strong> a cualquiera de estas obras sociales para mejorar tu cobertura.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -190,10 +192,31 @@ export default function ObrasSocialesHubPage() {
           </div>
         </section>
 
+        {/* Cartillas oficiales (1-oct-2026): Anexo III de la Res. SSSalud 2165/21 */}
+        <section>
+          <div className="flex items-center gap-2 mb-2">
+            <h2 className="text-lg font-bold text-gray-900">Cartillas oficiales de obras sociales sindicales</h2>
+          </div>
+          <p className="text-sm text-gray-500 mb-4">Sanatorios, guardias y centros de diagnóstico por provincia, con dirección y teléfono, del listado que cada obra social presenta ante la Superintendencia.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {Object.values(CARTILLAS_SINDICALES).map((c) => {
+              const os = osDeCartilla(c.slug)
+              if (!os) return null
+              const t = totales(c)
+              return (
+                <Link key={c.slug} href={`/obras-sociales/${c.slug}/cartilla`} className="rounded-xl border border-gray-200 bg-white p-4 hover:border-[#E8002D] transition-colors">
+                  <div className="font-semibold text-gray-900 text-sm">Cartilla de {os.nombre}</div>
+                  <div className="text-xs text-gray-500 mt-1 tabular-nums">{t.internacion} sanatorios · {t.guardia} guardias · {t.provincias} provincias</div>
+                </Link>
+              )
+            })}
+          </div>
+        </section>
+
         {/* Fichas armadas con el registro de la SSSalud (24-sep-2026) */}
         <section>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-lg font-bold text-gray-900">Más obras sociales sindicales</span>
+            <h2 className="text-lg font-bold text-gray-900">Más obras sociales sindicales</h2>
           </div>
           <p className="text-sm text-gray-500 mb-4">Teléfono de la sede, código y cómo pasar tus aportes a una prepaga, según el registro de la Superintendencia.</p>
           <div className="flex flex-wrap gap-2">
@@ -217,7 +240,7 @@ export default function ObrasSocialesHubPage() {
         {/* Por provincia (24-sep-2026) */}
         <section>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-lg font-bold text-gray-900">Obras sociales por provincia</span>
+            <h2 className="text-lg font-bold text-gray-900">Obras sociales por provincia</h2>
           </div>
           <p className="text-sm text-gray-500 mb-4">Cuál te toca según cómo trabajás, la obra social provincial y las que tienen sede en cada provincia.</p>
           <div className="flex flex-wrap gap-2">
