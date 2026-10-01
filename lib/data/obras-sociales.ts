@@ -1107,6 +1107,12 @@ export const obrasSociales: ObraSocialData[] = [
       { etiqueta: 'Orientación al beneficiario', valor: '0800-777-8725 (0800-77-RURAL)', detalle: 'Las 24 horas' },
       { etiqueta: 'Riesgo de vida / emergencias', valor: '0810-444-0911' },
     ],
+    // Gancho de conversión (1-oct-2026): acá "teléfono" gana por lejos a
+    // "turnos" (720 contra 10 búsquedas/mes, Google Ads Keyword Planner) —
+    // la gente busca el 0800 para gestionar algo, no un portal de turnos
+    // online. El punto real para esta obra social es la red de prestadores
+    // más chica en zonas rurales (ya reflejado en "contras" más arriba).
+    ganchoConversion: '¿La cartilla de OSPRERA no te alcanza en tu zona? Derivá tus aportes a una prepaga con más sanatorios cerca tuyo.',
     faq: [
       { q: '¿Cuál es el teléfono de OSPRERA?', a: 'Orientación al beneficiario: 0800-777-8725 (0800-77-RURAL), las 24 horas. Emergencias y riesgo de vida: 0810-444-0911.' },
       { q: '¿OSPRERA acepta monotributistas?', a: 'Sí: según OSPRERA, atiende tanto a trabajadores rurales como a monotributistas y sus familias.' },
@@ -1114,6 +1120,127 @@ export const obrasSociales: ObraSocialData[] = [
       { q: '¿Me conviene OSPRERA o una prepaga?', a: 'Depende de tu zona y de los sanatorios que quieras usar. Te cotizamos gratis una prepaga con tus aportes para que compares.' },
     ],
     keywords: ['osprera', 'osprera telefono', 'osprera cartilla', 'osprera monotributo', 'obra social trabajadores rurales'],
+  },
+  {
+    // Nueva (1-oct-2026): tercer y cuarto sindical del silo por volumen real
+    // (Google Ads Keyword Planner): "cartilla osuthgra" es la búsqueda más
+    // grande de todo el universo OSUTHGRA (1.600/mes), muy por encima de
+    // "teléfono" o "turnos" — distinto al patrón de OSECAC/Unión Personal.
+    // OJO: el sitio osuthgra.org.ar se declara "PARA AFILIADOS A CABA Y GBA"
+    // — no queda claro que cubra todo el país con esta misma estructura, así
+    // que se aclara la limitación en vez de asumir cobertura nacional.
+    slug: 'osuthgra',
+    nombre: 'OSUTHGRA',
+    emoji: '🍽️',
+    tipo: 'sindical',
+    titulo: 'OSUTHGRA: cartilla, teléfonos y afiliación para gastronómicos y hoteleros (2026)',
+    metaDescripcion: 'OSUTHGRA, la obra social de trabajadores gastronómicos y hoteleros: cartilla médica, teléfonos de urgencias (0800-222-8855) y cómo derivar tus aportes a una prepaga.',
+    descripcion: 'La obra social de los trabajadores gastronómicos y hoteleros (UTHGRA).',
+    intro: 'OSUTHGRA es la obra social de UTHGRA, el sindicato de trabajadores gastronómicos y hoteleros. Su portal oficial (osuthgra.org.ar) está dirigido específicamente a afiliados de CABA y GBA, con consultorios propios, videoconsulta y guía de trámites online.',
+    quienesPuedenAfiliarse: [
+      'Trabajadores gastronómicos y hoteleros en relación de dependencia',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Consultorios propios con odontología y oftalmología',
+      'Videoconsulta médica para afiliados de CABA y GBA',
+      'Urgencias médicas y odontológicas',
+    ],
+    diferenciadores: [
+      'Videoconsulta con profesionales propios, sin trasladarte al sanatorio',
+      'Credencial digital y guía de trámites online',
+    ],
+    pros: [
+      'Consultorios propios de odontología y oftalmología',
+      'Atención a urgencias las 24 horas',
+    ],
+    contras: [
+      'El portal y los servicios digitales están pensados para afiliados de CABA y GBA; en el resto del país la cobertura real puede variar',
+    ],
+    derivacion: true,
+    web: 'osuthgra.org.ar',
+    fuenteOficial: 'https://osuthgra.org.ar/contactos/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'COA (urgencias médicas)', valor: '0800-222-8855', detalle: 'También (011) 4959-8200 (CABA Norte) y (011) 4522-6584' },
+      { etiqueta: 'Urgencias odontológicas CABA', valor: 'Triunvirato 4096 1°', detalle: 'Las 24 hs' },
+      { etiqueta: 'Urgencias odontológicas resto del país', valor: '(011) 4127-0500 (rotativas)' },
+      { etiqueta: 'WhatsApp', valor: '11 3854-5300' },
+    ],
+    // Gancho de conversión (1-oct-2026): acá "cartilla" es la búsqueda
+    // dominante (1.600/mes, Google Ads Keyword Planner) — la gente busca
+    // saber qué prestadores tiene, no turnos ni teléfono.
+    ganchoConversion: '¿Buscás una cartilla más amplia que la de OSUTHGRA? Derivá tus aportes a una prepaga y accedé a más sanatorios y especialistas.',
+    faq: [
+      { q: '¿Cuál es el teléfono de OSUTHGRA?', a: 'COA (urgencias médicas): 0800-222-8855, también (011) 4959-8200 (CABA Norte) y (011) 4522-6584. Urgencias odontológicas para afiliados de CABA: Triunvirato 4096 1°, las 24 hs. Resto del país: (011) 4127-0500 (rotativas).' },
+      { q: '¿OSUTHGRA cubre todo el país?', a: 'Su portal y los servicios digitales (videoconsulta, turnos online) están dirigidos a afiliados de CABA y GBA. Si trabajás gastronomía u hotelería en el interior, confirmá con tu delegación local qué cartilla y trámites te corresponden.' },
+      { q: '¿Puedo pasar de OSUTHGRA a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['osuthgra', 'osuthgra telefono', 'cartilla osuthgra', 'osuthgra turnos', 'obra social gastronomicos', 'obra social hoteleros'],
+  },
+  {
+    // Nueva (1-oct-2026): quinto sindical del silo. Nombre oficial completo
+    // OSPECON (Obra Social del Personal de la Construcción), conocida
+    // públicamente como "Construir Salud" — ambos nombres se usan en su
+    // propio sitio oficial. Acá "teléfono" y "turnos" están parejos (590 y
+    // 480/mes, Google Ads Keyword Planner), "cartilla" bastante más abajo (140).
+    slug: 'construir-salud',
+    nombre: 'Construir Salud',
+    emoji: '🦺',
+    tipo: 'sindical',
+    titulo: 'Construir Salud (OSPECON): teléfonos, turnos y cartilla para la construcción (2026)',
+    metaDescripcion: 'Construir Salud (OSPECON), la obra social del personal de la construcción: urgencias 0800-345-7700, atención al beneficiario 0800-222-0123, cartilla por zona y cómo derivar tus aportes.',
+    descripcion: 'La obra social del personal de la construcción (UOCRA), con centros médicos propios en todo el país.',
+    intro: 'Construir Salud es el nombre público de OSPECON, la Obra Social del Personal de la Construcción (UOCRA). Tiene centros médicos propios (CEMAP) tanto en AMBA como en el interior del país, con guías de atención separadas para cada zona.',
+    quienesPuedenAfiliarse: [
+      'Trabajadores de la construcción en relación de dependencia',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Centros médicos propios (CEMAP) en AMBA y en el interior',
+      'Farmacias y ópticas con convenio',
+      'Cobertura de discapacidad, salud mental y violencia de género',
+    ],
+    diferenciadores: [
+      'Centros médicos propios con guías de atención separadas por zona (AMBA / interior)',
+      'Portal de gestión propio para trámites online',
+    ],
+    pros: [
+      'Más de 50 centros médicos propios (CEMAP) en el país, según su cartilla oficial',
+      'Atención a urgencias las 24 horas',
+    ],
+    contras: [
+      'La cartilla completa por zona está en un PDF separado, no es un buscador online interactivo',
+    ],
+    derivacion: true,
+    web: 'construirsalud.com.ar',
+    fuenteOficial: 'https://construirsalud.com.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Urgencias', valor: '0800-345-7700', detalle: 'Las 24 hs' },
+      { etiqueta: 'Atención al beneficiario', valor: '0800-222-0123' },
+    ],
+    // Gancho de conversión (1-oct-2026): "teléfono" (590) y "turnos" (480)
+    // van parejos, bastante por encima de "cartilla" (140) — mezcla de los
+    // dos dolores, a diferencia de OSECAC/UP donde turnos domina solo.
+    ganchoConversion: '¿Tardás en conseguir turno o te cuesta comunicarte con Construir Salud? Derivá tus aportes a una prepaga y mejorá tu cobertura.',
+    faq: [
+      { q: '¿Cuál es el teléfono de Construir Salud?', a: 'Urgencias: 0800-345-7700, las 24 horas. Atención al beneficiario: 0800-222-0123.' },
+      { q: '¿Construir Salud es lo mismo que OSPECON?', a: 'Sí: OSPECON (Obra Social del Personal de la Construcción) es el nombre legal; "Construir Salud" es el nombre con el que se presenta públicamente.' },
+      { q: '¿Dónde veo la cartilla de Construir Salud?', a: 'Publican una cartilla oficial en PDF con los Centros Médicos de Atención Primaria (CEMAP) por zona, separada en AMBA e interior del país, disponible en construirsalud.com.ar.' },
+      { q: '¿Puedo pasar de Construir Salud a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['construir salud', 'construir salud telefono', 'construir salud turnos', 'cartilla construir salud', 'ospecon', 'obra social construccion'],
   },
   {
     slug: 'ospoce',
