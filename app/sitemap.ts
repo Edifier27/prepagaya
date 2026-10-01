@@ -15,6 +15,7 @@ import { INFORMES_PROVINCIA } from '@/lib/prensa/sueldo-prepaga'
 import { REGISTRO_VERIFICADO } from '@/lib/data/registro-sssalud'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { CARTILLAS, combinacionesPlanZona, fechaCartillaISO, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
+import { CARTILLAS_SINDICALES, provinciasConPagina } from '@/lib/data/sindicales-cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
@@ -274,7 +275,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: CONTENT_UPDATE,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
-    })),
+    })),    // Cartillas oficiales de sindicales (Anexo III, Res. SSSalud 2165/21)
+    ...Object.values(CARTILLAS_SINDICALES).flatMap((c) => [
+      { url: `${BASE}/obras-sociales/${c.slug}/cartilla`, lastModified: c.descargado, changeFrequency: 'monthly' as const, priority: 0.75 },
+      ...provinciasConPagina(c).map((p) => ({
+        url: `${BASE}/obras-sociales/${c.slug}/cartilla/${p.slug}`,
+        lastModified: c.descargado,
+        changeFrequency: 'monthly' as const,
+        priority: 0.65,
+      })),
+    ]),
   ]
 
   return [

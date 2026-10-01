@@ -16,6 +16,7 @@ import {
   NOTA_PROVINCIAS_PARCIALES_OSECAC,
   PROVINCIAS_PARCIALES_OSECAC,
 } from '@/lib/data/sindicales-zonas/osecac'
+import { getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -85,6 +86,8 @@ export default async function ObraSocialPage({ params }: Props) {
   }
 
   const otras = obrasSociales.filter((o) => o.slug !== slug).slice(0, 8)
+  const cartilla = getCartillaSindical(os.slug)
+  const cartillaTot = cartilla ? totales(cartilla) : null
   const prepagaMatch = prepagaHermana(os.slug)
   const provinciaMatch = provinciasSEO.find((p) => p.obraSocialProvincial?.slug === os.slug)
   // Código del registro de la SSSalud (24-sep-2026): "código [obra social]"
@@ -240,6 +243,25 @@ export default async function ObraSocialPage({ params }: Props) {
                   </div>
                 )
               })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Cartilla oficial (1-oct-2026): sindicales que publican el Anexo III
+          de la Res. SSSalud 2165/21. Silo /obras-sociales/[slug]/cartilla. */}
+      {cartilla && cartillaTot && (
+        <section id="cartilla" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Cartilla de {os.nombre}</h2>
+            <p className="text-sm text-gray-600 mb-5 max-w-3xl">
+              {cartillaTot.internacion.toLocaleString('es-AR')} sanatorios con internación, {cartillaTot.guardia.toLocaleString('es-AR')} guardias y {cartillaTot.diagnostico.toLocaleString('es-AR')} centros de diagnóstico en {cartillaTot.provincias} provincias, según el listado oficial que presentó ante la Superintendencia.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Link href={`/obras-sociales/${os.slug}/cartilla`} className="text-sm px-4 py-1.5 rounded-full bg-[#E8002D] text-white font-semibold hover:bg-[#B8001F]">Ver la cartilla completa →</Link>
+              {provinciasConPagina(cartilla).slice(0, 8).map((p) => (
+                <Link key={p.slug} href={`/obras-sociales/${os.slug}/cartilla/${p.slug}`} className="text-sm px-3 py-1.5 rounded-full border border-gray-200 hover:border-[#E8002D] text-gray-700">{p.nombre}</Link>
+              ))}
             </div>
           </div>
         </section>
