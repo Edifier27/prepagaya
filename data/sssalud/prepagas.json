@@ -270,6 +270,11 @@
 "descripcion": "CONURBANO SALUD"
 },
 {
+"rnemp": 214915,
+"nombre_comercial": "COOP.DE PROV.DE OBRAS Y SERV.PCOS DE GDOR.CRESPO LTDA.",
+"descripcion": "COOP.DE PROV.DE OBRAS Y SERV.PCOS DE GDOR.CRESPO LTDA."
+},
+{
 "rnemp": 111520,
 "nombre_comercial": "CORPORACION MEDICA",
 "descripcion": "CORPORACION ASISTENCIAL S.A."
@@ -580,6 +585,11 @@
 "descripcion": "MUTUAL DE INTEGRANTES DEL PODER JUDICIAL"
 },
 {
+"rnemp": 115843,
+"nombre_comercial": "NATIVUS SRL",
+"descripcion": "NATIVUS SRL"
+},
+{
 "rnemp": 120177,
 "nombre_comercial": "NOBIS MEDICAL",
 "descripcion": "NOBIS SA"
@@ -738,6 +748,11 @@
 "rnemp": 110657,
 "nombre_comercial": "PRIMEDIC SALUD",
 "descripcion": "PRIMED SA"
+},
+{
+"rnemp": 115065,
+"nombre_comercial": "PRIVAMED",
+"descripcion": "PRIVAMED S.A"
 },
 {
 "rnemp": 110312,
@@ -920,14 +935,14 @@
 "descripcion": "VITA`S S.A."
 },
 {
-"rnemp": 113052,
-"nombre_comercial": "VITTAL",
-"descripcion": "SOCORRO MEDICO PRIVADO S.A."
-},
-{
 "rnemp": 112981,
 "nombre_comercial": "VITTAL",
 "descripcion": "MPE S.A."
+},
+{
+"rnemp": 113052,
+"nombre_comercial": "VITTAL",
+"descripcion": "SOCORRO MEDICO PRIVADO S.A."
 },
 {
 "rnemp": 110183,
@@ -940,13 +955,23 @@
 "descripcion": "OBRA SOCIAL DEL PERSONAL DE DIRECCION DE PERFUMERIA E.W. HOPE"
 },
 {
-"rnemp": 620745,
-"nombre_comercial": null,
-"descripcion": "OBRA SOCIAL DE COMISARIOS  NAVALES                                                                                                                                                                                                                        "
-},
-{
 "rnemp": 620738,
 "nombre_comercial": null,
 "descripcion": "OBRA SOCIAL DE DIRECCION OSDO                                                                                                                                                                                                                             "
+},
+{
+"rnemp": 120771,
+"nombre_comercial": null,
+"descripcion": "CARE SALUD S.A.                                                                                                                                                                                                                                           "
+},
+{
+"rnemp": 118514,
+"nombre_comercial": null,
+"descripcion": "SANITAS SALUD S.R.L.                                                                                                                                                                                                                                      "
+},
+{
+"rnemp": 620745,
+"nombre_comercial": null,
+"descripcion": "OBRA SOCIAL DE COMISARIOS  NAVALES                                                                                                                                                                                                                        "
 }
 ]
