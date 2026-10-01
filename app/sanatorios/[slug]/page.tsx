@@ -6,6 +6,8 @@ import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, prepagasEnSanatorio, sanatorios
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { idCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
 import { getCartillaInfo } from '@/lib/data/cartillas'
+import { obrasSocialesEnSanatorio } from '@/lib/data/sanatorios-obras-sociales'
+import { CARTILLAS_SINDICALES } from '@/lib/data/sindicales-cartillas'
 
 // "¿Qué prepagas atienden en el Hospital X?" (23-sep-2026): búsqueda que la
 // competencia cubre con notas escritas a mano. Acá todo sale de las cartillas
@@ -38,6 +40,10 @@ const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
   }],
 }
 
+const NUM_OS_RELEVADAS = Object.keys(CARTILLAS_SINDICALES).length
+const tiposOs = (o: { internacion: boolean; guardia: boolean }) =>
+  o.internacion && o.guardia ? 'internación y guardia' : o.internacion ? 'internación' : 'guardia'
+
 const ORDEN = [...PRIORIDAD_PARTNERS, 'osde']
 function ordenar(lista: PrepagaEnSanatorio[]) {
   return [...lista].sort((a, b) => (ORDEN.indexOf(a.prepagaSlug) + 99) % 99 - (ORDEN.indexOf(b.prepagaSlug) + 99) % 99)
@@ -65,6 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ...(s.ciudadNombre ? [`prepagas ${s.ciudadNombre.toLowerCase()}`, `que prepagas atienden en ${s.ciudadNombre.toLowerCase()}`] : []),
       `que prepagas atienden en el ${s.nombre.toLowerCase()}`,
       `obra social ${s.nombre.toLowerCase()}`,
+      `que obras sociales atiende el ${s.nombre.toLowerCase()}`,
       `${s.nombre.toLowerCase()} prepaga`,
       ...(FAQ_EXTRA[slug] ? [`${s.nombre.toLowerCase()} es publico o privado`] : []),
     ],
@@ -79,6 +86,8 @@ export default async function SanatorioPage({ params }: Props) {
   if (lista.length < 2) notFound()
 
   const conInternacion = lista.filter((p) => p.desde)
+  // Obras sociales con este sanatorio en su cartilla oficial (1-oct-2026)
+  const obrasSociales = obrasSocialesEnSanatorio(slug)
   // "Mis sanatorios" con este ya cargado, para sumar los otros de la persona.
   const idBuscador = idCobertura(s.claves, s.excluir, s.ciudad)
   const hrefBuscador = idBuscador ? `/buscar-por-sanatorio?s=${encodeURIComponent(idBuscador)}` : '/buscar-por-sanatorio'
@@ -108,10 +117,16 @@ export default async function SanatorioPage({ params }: Props) {
       q: '¿Es lo mismo internación que guardia?',
       a: 'No. Un plan puede incluir un sanatorio solo para guardia, solo para internación o para las dos. En esta página lo mostramos por separado, tal como figura en cada cartilla oficial.',
     },
+    ...(obrasSociales.length
+      ? [{
+          q: `¿Qué obras sociales atiende ${art(s.nombre)} ${s.nombre}?`,
+          a: `Según los listados oficiales de prestadores que cada obra social presenta ante la Superintendencia de Servicios de Salud, ${art(s.nombre)} ${s.nombre} figura en ${obrasSociales.length === 1 ? 'la cartilla de ' : 'estas cartillas: '}${obrasSociales.map((o) => `${o.osNombre}: ${tiposOs(o)}`).join('; ')}. Relevamos las ${NUM_OS_RELEVADAS} obras sociales sindicales que publican ese listado: puede trabajar con otras.`,
+        }]
+      : []),
     ...(FAQ_EXTRA[slug] ?? []),
   ]
 
-  const fuentes = [...new Set(lista.map((p) => p.fuenteUrl))]
+  const fuentes = [...new Set([...lista.map((p) => p.fuenteUrl), ...obrasSociales.map((o) => o.fuente)])]
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -271,6 +286,39 @@ export default async function SanatorioPage({ params }: Props) {
           </p>
         </div>
       </section>
+
+      {/* "¿Qué obras sociales atiende?" (1-oct-2026): cruce con las cartillas
+          oficiales de obras sociales (lib/data/sanatorios-obras-sociales.ts) */}
+      {obrasSociales.length > 0 && (
+        <section id="obras-sociales" className="py-10 bg-gray-50 border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Obras sociales que atiende {art(s.nombre)} {s.nombre}</h2>
+            <p className="text-sm text-gray-600 mb-5 max-w-3xl">
+              Según el listado oficial de prestadores que cada obra social presenta ante la Superintendencia de Servicios de Salud.
+              Relevamos las {NUM_OS_RELEVADAS} obras sociales sindicales que lo publican: si la tuya no aparece, puede que igual lo tenga.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {obrasSociales.map((o) => (
+                <li key={o.osSlug} className="rounded-xl border border-gray-200 bg-white p-4">
+                  <div className="flex items-start justify-between gap-2">
+                    <Link href={`/obras-sociales/${o.osSlug}`} className="font-semibold text-gray-900 hover:text-[#E8002D]">{o.osNombre}</Link>
+                    <div className="flex gap-1.5 shrink-0">
+                      {o.internacion && <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-red-50 text-[#B8001F]">Internación</span>}
+                      {o.guardia && <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-800">Guardia</span>}
+                    </div>
+                  </div>
+                  {o.sedes[0]?.domicilio && <div className="text-sm text-gray-600 mt-1">{[...new Set(o.sedes.map((x) => x.domicilio).filter(Boolean))].slice(0, 3).join(' · ')}</div>}
+                  <Link href={o.urlCartilla} className="inline-block text-xs font-semibold text-[#E8002D] hover:underline mt-2">Ver la cartilla de {o.osNombre} →</Link>
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm text-gray-700 mt-5">
+              ¿Tu obra social no lo tiene? Con tus mismos aportes podés pasarte a una prepaga que sí lo incluya y pagar solo la diferencia.{' '}
+              <Link href="/calculadora-aportes" className="text-[#E8002D] font-semibold hover:underline">Calculá cuánto sería →</Link>
+            </p>
+          </div>
+        </section>
+      )}
 
       <section id="cotizar" className="py-12 bg-[#E8002D] text-white scroll-mt-20">
         <div className="container max-w-xl mx-auto text-center">

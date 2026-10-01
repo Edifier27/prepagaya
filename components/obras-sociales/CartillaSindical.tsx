@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { OsCartilla } from '@/lib/data/sindicales-cartillas/os'
 import { registroDeObraSocial } from '@/lib/data/registro-sssalud'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { sanatorioConPagina } from '@/lib/data/sanatorios-obras-sociales'
 import {
   contar,
   especialidadesDestacadas,
@@ -314,7 +315,8 @@ export function PaginaCartillaSindical({ os, c }: { os: OsCartilla; c: CartillaS
 
 // ── Provincia ───────────────────────────────────────────────────────────────
 
-function Institucion({ i, extra }: { i: InstitucionCartilla; extra?: string }) {
+function Institucion({ i, extra, osSlug }: { i: InstitucionCartilla; extra?: string; osSlug?: string }) {
+  const sanatorio = osSlug ? sanatorioConPagina(osSlug, i.n, i.dom) : undefined
   return (
     <li className="rounded-xl border border-gray-200 bg-white p-4">
       <div className="font-semibold text-gray-900 text-sm">{i.n}</div>
@@ -328,6 +330,11 @@ function Institucion({ i, extra }: { i: InstitucionCartilla; extra?: string }) {
           <a href={`tel:${telHref(i.tel)}`} className="ml-auto text-sm font-semibold text-[#E8002D] hover:underline">{i.tel}</a>
         )}
       </div>
+      {sanatorio && (
+        <Link href={`/sanatorios/${sanatorio.slug}`} className="inline-block text-xs font-semibold text-gray-600 hover:text-[#E8002D] mt-2">
+          ¿Qué prepagas tienen {/^cl[ií]nica/i.test(sanatorio.nombre) ? 'la' : 'el'} {sanatorio.nombre}? →
+        </Link>
+      )}
     </li>
   )
 }
@@ -417,7 +424,7 @@ export function PaginaCartillaProvincia({ os, c, p }: { os: OsCartilla; c: Carti
             <div key={l.loc} id={slugLoc(l.loc)} className="scroll-mt-20">
               <h2 className="text-lg font-bold text-gray-900 mb-3">{os.nombre} en {l.loc}</h2>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {p.instituciones.filter((i) => i.loc === l.loc).map((i) => <Institucion key={`${i.n}-${i.dom}`} i={i} />)}
+                {p.instituciones.filter((i) => i.loc === l.loc).map((i) => <Institucion key={`${i.n}-${i.dom}`} i={i} osSlug={os.slug} />)}
               </ul>
             </div>
           ))}
