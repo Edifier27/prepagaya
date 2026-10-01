@@ -469,7 +469,7 @@ export default async function ObraSocialPage({ params }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Compará {os.nombre} con las prepagas del mercado</h2>
           <p className="text-white text-sm mb-6">
-            Precios reales actualizados. Sin DNI y sin compromiso. Decidí con toda la información.
+            {os.ganchoConversion ?? 'Precios reales actualizados. Sin DNI y sin compromiso. Decidí con toda la información.'}
           </p>
           <Link
             href="/comparador"

@@ -48,6 +48,8 @@ export interface ObraSocialData {
   verificado?: string
   /** Teléfonos oficiales, copiados de la web de la obra social */
   telefonos?: { etiqueta: string; valor: string; detalle?: string }[]
+  /** Bajada del CTA final, específica al dolor real de esta obra social (ej. "no conseguís turnos"). Si no está, se usa el genérico. */
+  ganchoConversion?: string
   faq: { q: string; a: string }[]
   keywords: string[]
 }
@@ -969,13 +971,18 @@ export const obrasSociales: ObraSocialData[] = [
       { etiqueta: 'Turnos', valor: '0810-999-0101', detalle: 'Tené a mano el DNI del paciente' },
       { etiqueta: 'Reclamos', valor: '0800-666-0445' },
     ],
+    // Gancho de conversión (1-oct-2026): "osecac turnos" es la búsqueda más
+    // grande de todo el universo OSECAC (12.100/mes, el doble que "cartilla
+    // osecac") — el dolor real de la gente es no conseguir turno, no "quiero
+    // cambiarme de obra social". El CTA apunta directo a eso.
+    ganchoConversion: '¿No conseguís turno en OSECAC? Derivá tus aportes a una prepaga, mejorá tu cobertura y conseguí turnos más rápido.',
     faq: [
       { q: '¿Cuál es el teléfono de OSECAC?', a: 'Emergencias 0810-333-0004; beneficiarios 0800-666-0400; turnos 0810-999-0101; reclamos 0800-666-0445.' },
       { q: '¿Cómo saco turno en OSECAC?', a: 'Por teléfono al 0810-999-0101 (con el DNI del paciente a mano) o de forma online con tu usuario web o la app Mi OSECAC.' },
       { q: '¿Desde cuándo existe OSECAC?', a: 'Desde 1964: nació como I.M.M.A. (Instituto Médico Mercantil Argentina).' },
       { q: '¿Puedo pasar de OSECAC a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
     ],
-    keywords: ['osecac', 'osecac telefono', 'osecac turnos', 'osecac cartilla', 'osecac guardias', 'obra social empleados de comercio'],
+    keywords: ['osecac', 'osecac telefono', 'osecac turnos', 'osecac cartilla', 'osecac guardias', 'osecac farmacias', 'osecac delegaciones', 'obra social empleados de comercio'],
   },
   {
     // Reescrita 23-sep-2026 con datos de ospesalud.com.ar (sitio oficial; no
@@ -1739,6 +1746,68 @@ export const obrasSociales: ObraSocialData[] = [
       { q: '¿ObSBA o una prepaga en CABA?', a: 'Si sos afiliado y buscás cartilla premium sin restricciones (sanatorios de alta complejidad de todas las prepagas), podés complementar ObSBA con una prepaga privada.' },
     ],
     keywords: ['obsba', 'obsba obra social', 'obra social ciudad de buenos aires', 'obsba sanatorio méndez', 'obsba afiliación'],
+  },
+  {
+    // Nueva (1-oct-2026): Río Negro es la PRIMERA provincia en permitir
+    // derivar los aportes de su obra social provincial a otra obra social o
+    // una prepaga — rompe el patrón de "cautiva" que tienen el resto de las
+    // provinciales (ver ObSBA, Apross, etc. más arriba, todas con
+    // derivacion: false). Ley aprobada 24-sep-2026 (35 a favor, 9 en contra),
+    // impulsada por el gobernador Weretilneck. OJO: la ley ya está aprobada
+    // pero la implementación real recién arranca en 2027 (el Ejecutivo tiene
+    // 120 días para reglamentarla) — no es un trámite disponible hoy mismo.
+    // Fuentes: La Nación ("Río Negro es la primera provincia..."),
+    // Barilocheopina, Noti-Río, Vozradio, Diario Río Negro.
+    slug: 'ipross',
+    nombre: 'IPROSS',
+    emoji: '🏔️',
+    tipo: 'provincial',
+    titulo: 'IPROSS 2026: Río Negro, primera provincia en permitir derivar los aportes',
+    metaDescripcion: 'IPROSS (Río Negro) dejó de ser obligatoria: la Legislatura aprobó que los estatales deriven el 4% de su aporte a otra obra social o una prepaga. Cómo funciona y desde cuándo rige.',
+    descripcion: 'IPROSS es la obra social de los empleados estatales de Río Negro, y la primera obra social provincial del país en permitir elegir otra cobertura.',
+    intro: 'IPROSS (Instituto Provincial del Seguro de Salud) es la obra social de los trabajadores estatales de Río Negro. El 24 de septiembre de 2026 la Legislatura rionegrina aprobó, por 35 votos a favor y 9 en contra, una reforma impulsada por el gobernador Alberto Weretilneck que termina con la afiliación obligatoria: de ahora en más, los estatales van a poder elegir otra obra social o una prepaga en vez de IPROSS. Es la primera provincia del país en dar este paso. Importante: la ley ya está aprobada, pero la implementación recién va a estar disponible en 2027, porque el Poder Ejecutivo tiene 120 días para reglamentarla.',
+    quienesPuedenAfiliarse: [
+      'Trabajadores de la administración pública provincial de Río Negro',
+      'Empleados municipales alcanzados por el régimen',
+      'Jubilados y pensionados del sistema provincial',
+    ],
+    aportes: {
+      trabajador: '4% del salario (derivable a otra cobertura desde que se reglamente la ley)',
+      empleador: '7%, que según la ley queda siempre en IPROSS, derive uno su aporte o no',
+      monotributista: 'No aplica: es exclusiva de empleados estatales y municipales de Río Negro',
+    },
+    cobertura: [
+      'PMO completo',
+      'Red de prestadores y hospitales públicos de Río Negro',
+      'Internación, urgencias y maternidad',
+      'Salud mental',
+      'Medicamentos con descuento',
+    ],
+    diferenciadores: [
+      'Primera obra social provincial de Argentina en permitir derivar el aporte personal a otra cobertura',
+      'El 7% patronal queda en IPROSS igual, elijas derivar o no',
+      'Los jubilados derivan el 5,5% de su haber (distinto al 4% de los activos)',
+    ],
+    pros: [
+      'Hasta ahora era obligatoria sin excepción; ahora vas a poder elegir',
+      'Cobertura automática para todo el personal estatal mientras tanto',
+    ],
+    contras: [
+      'La implementación recién arranca en 2027: todavía no es un trámite disponible',
+      'Solo se deriva el aporte personal (4% o 5,5%), no el patronal — para una prepaga, esa diferencia la pagás vos',
+      'Quien se va, según el proyecto, tiene que esperar un plazo para poder volver a IPROSS',
+    ],
+    derivacion: true,
+    fuenteOficial: 'La Nación, Diario Río Negro y cobertura de medios rionegrinos sobre la Ley aprobada el 24-sep-2026',
+    verificado: '2026-10-01',
+    faq: [
+      { q: '¿Qué cambió en IPROSS?', a: 'Hasta ahora, todo empleado estatal de Río Negro estaba obligado a tener IPROSS. Desde la ley aprobada el 24 de septiembre de 2026, va a poder elegir otra obra social o una prepaga en su lugar — es la primera provincia del país en permitirlo.' },
+      { q: '¿Ya puedo derivar mis aportes de IPROSS?', a: 'Todavía no: la ley está aprobada, pero el Poder Ejecutivo tiene 120 días para reglamentarla, así que la implementación real está proyectada para 2027, no para hoy.' },
+      { q: '¿Cuánto puedo derivar?', a: 'El 100% de tu aporte personal: 4% si sos trabajador activo, 5,5% si sos jubilado o pensionado. El aporte patronal (7%) se queda en IPROSS de todas formas.' },
+      { q: '¿Me alcanza el 4% para pagar una prepaga?', a: 'Depende de tu sueldo y del plan que elijas: en la mayoría de los casos el aporte derivado cubre una parte del plan, y la diferencia la pagás de tu bolsillo. Cotizá tu caso puntual para saber cuánto te quedaría poniendo vos.' },
+      { q: '¿Si me voy de IPROSS puedo volver después?', a: 'Según lo discutido en la Legislatura, sí, pero con un plazo de espera — todavía hay que ver cómo queda exactamente una vez reglamentada la ley.' },
+    ],
+    keywords: ['ipross', 'ipross rio negro', 'ipross derivar aportes', 'ipross libre eleccion', 'ipross prepaga', 'ipross 2026'],
   },
 ]
 
