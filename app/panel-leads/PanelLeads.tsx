@@ -8,7 +8,11 @@ import { whatsappLinkParaLead } from '@/lib/utils'
 
 // Mismo shape que DestinoLead de lib/kommo.ts — no se puede importar ese
 // archivo acá (es server-only), así que se repite el tipo.
-type DestinoLead = { tipo: 'dario' | 'gabriela' } | { tipo: 'email'; email: string }
+type DestinoLead =
+  | { tipo: 'dario' | 'gabriela' }
+  | { tipo: 'email'; email: string }
+  | { tipo: 'alternar-cuentas' }
+  | { tipo: 'alternar-mail'; cuenta: 'dario' | 'gabriela'; email: string }
 
 // Preferencias (JSON de lib/data/sondeo.ts) en una línea legible para el panel.
 const ETIQUETAS_PREFERENCIAS: Record<string, string> = {
@@ -159,6 +163,9 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   const [destino, setDestino] = useState<DestinoLead | null>(null)
   const [emailBorrador, setEmailBorrador] = useState('')
   const [mostrarInputEmail, setMostrarInputEmail] = useState(false)
+  const [mostrarAlternarMail, setMostrarAlternarMail] = useState(false)
+  const [cuentaAlternarBorrador, setCuentaAlternarBorrador] = useState<'dario' | 'gabriela'>('dario')
+  const [emailAlternarBorrador, setEmailAlternarBorrador] = useState('')
   const [guardandoDestino, setGuardandoDestino] = useState(false)
   useEffect(() => {
     fetch('/api/panel/config')
@@ -169,6 +176,11 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
         if (d.destino.tipo === 'email') {
           setEmailBorrador(d.destino.email)
           setMostrarInputEmail(true)
+        }
+        if (d.destino.tipo === 'alternar-mail') {
+          setCuentaAlternarBorrador(d.destino.cuenta)
+          setEmailAlternarBorrador(d.destino.email)
+          setMostrarAlternarMail(true)
         }
       })
       .catch(() => {})
@@ -193,13 +205,24 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   }, [destino, guardandoDestino])
   const elegirCuenta = useCallback((tipo: 'dario' | 'gabriela') => {
     setMostrarInputEmail(false)
+    setMostrarAlternarMail(false)
     guardarDestino({ tipo })
+  }, [guardarDestino])
+  const elegirAlternarCuentas = useCallback(() => {
+    setMostrarInputEmail(false)
+    setMostrarAlternarMail(false)
+    guardarDestino({ tipo: 'alternar-cuentas' })
   }, [guardarDestino])
   const guardarEmailDestino = useCallback(() => {
     const email = emailBorrador.trim()
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return
     guardarDestino({ tipo: 'email', email })
   }, [emailBorrador, guardarDestino])
+  const guardarAlternarMail = useCallback(() => {
+    const email = emailAlternarBorrador.trim()
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return
+    guardarDestino({ tipo: 'alternar-mail', cuenta: cuentaAlternarBorrador, email })
+  }, [emailAlternarBorrador, cuentaAlternarBorrador, guardarDestino])
   const ultimoId = useRef(leadsIniciales[0]?.id ?? 0)
 
   const alternar = useCallback((clave: FiltroChip, valor: string) => {
@@ -437,7 +460,7 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
                     </button>
                   ))}
                   <button
-                    onClick={() => setMostrarInputEmail(true)}
+                    onClick={() => { setMostrarInputEmail(true); setMostrarAlternarMail(false) }}
                     disabled={guardandoDestino}
                     aria-pressed={destino.tipo === 'email'}
                     className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
@@ -447,6 +470,32 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
                     }`}
                   >
                     Otro mail
+                  </button>
+                  <button
+                    onClick={elegirAlternarCuentas}
+                    disabled={guardandoDestino}
+                    aria-pressed={destino.tipo === 'alternar-cuentas'}
+                    title="Un lead para Darío, el siguiente para Gaby, y así"
+                    className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
+                      destino.tipo === 'alternar-cuentas'
+                        ? 'bg-[#E8002D] text-white shadow-sm'
+                        : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
+                    }`}
+                  >
+                    Uno y uno
+                  </button>
+                  <button
+                    onClick={() => { setMostrarAlternarMail(true); setMostrarInputEmail(false) }}
+                    disabled={guardandoDestino}
+                    aria-pressed={destino.tipo === 'alternar-mail'}
+                    title="Un lead a la cuenta de Kommo elegida, el siguiente a un mail suelto"
+                    className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
+                      destino.tipo === 'alternar-mail'
+                        ? 'bg-[#E8002D] text-white shadow-sm'
+                        : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
+                    }`}
+                  >
+                    Cuenta + mail
                   </button>
                 </div>
                 {mostrarInputEmail && (
@@ -464,6 +513,35 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
                     <button
                       type="submit"
                       disabled={guardandoDestino || !emailBorrador.trim()}
+                      className="text-xs font-bold text-white bg-gray-700 hover:bg-gray-800 disabled:opacity-50 rounded-lg px-2.5 py-1.5 whitespace-nowrap"
+                    >
+                      Guardar
+                    </button>
+                  </form>
+                )}
+                {mostrarAlternarMail && (
+                  <form
+                    onSubmit={(e) => { e.preventDefault(); guardarAlternarMail() }}
+                    className="flex items-center gap-1"
+                  >
+                    <select
+                      value={cuentaAlternarBorrador}
+                      onChange={(e) => setCuentaAlternarBorrador(e.target.value === 'gabriela' ? 'gabriela' : 'dario')}
+                      className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 focus:outline-none focus:border-red-300"
+                    >
+                      <option value="dario">Darío</option>
+                      <option value="gabriela">Gaby</option>
+                    </select>
+                    <input
+                      type="email"
+                      value={emailAlternarBorrador}
+                      onChange={(e) => setEmailAlternarBorrador(e.target.value)}
+                      placeholder="mail@ejemplo.com"
+                      className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 w-36 focus:outline-none focus:border-red-300"
+                    />
+                    <button
+                      type="submit"
+                      disabled={guardandoDestino || !emailAlternarBorrador.trim()}
                       className="text-xs font-bold text-white bg-gray-700 hover:bg-gray-800 disabled:opacity-50 rounded-lg px-2.5 py-1.5 whitespace-nowrap"
                     >
                       Guardar

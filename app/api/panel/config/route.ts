@@ -18,7 +18,8 @@ export async function POST(req: NextRequest) {
   }
   const body = await req.json().catch(() => null)
   const tipo = body?.destino?.tipo
-  if (tipo !== 'dario' && tipo !== 'gabriela' && tipo !== 'email') {
+  const TIPOS_VALIDOS = ['dario', 'gabriela', 'email', 'alternar-cuentas', 'alternar-mail']
+  if (!TIPOS_VALIDOS.includes(tipo)) {
     return NextResponse.json({ error: 'Tipo de destino inválido' }, { status: 400 })
   }
   let destino: DestinoLead
@@ -28,6 +29,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Email inválido' }, { status: 400 })
     }
     destino = { tipo: 'email', email }
+  } else if (tipo === 'alternar-mail') {
+    const email = String(body?.destino?.email ?? '').trim()
+    const cuenta = body?.destino?.cuenta === 'gabriela' ? 'gabriela' : 'dario'
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: 'Email inválido' }, { status: 400 })
+    }
+    destino = { tipo: 'alternar-mail', cuenta, email }
   } else {
     destino = { tipo }
   }

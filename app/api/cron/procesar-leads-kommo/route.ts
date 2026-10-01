@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SITE_URL } from '@/lib/utils'
-import { buildKommoLink, crearLeadEnKommo, getDestinoLead, kommoLeadUrl, nombreCuenta } from '@/lib/kommo'
+import { buildKommoLink, crearLeadEnKommo, getDestinoLead, kommoLeadUrl, nombreCuenta, resolverDestino } from '@/lib/kommo'
 import { leadsPendientesDeKommo, marcarResultadoKommo, seguimientosVencidos, marcarSeguimientoAvisado } from '@/lib/db'
 import { avisarLeadPorPush } from '@/lib/push'
 import { mandarLeadPorEmail } from '@/lib/emailjs'
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
   }
 
   const pendientes = await leadsPendientesDeKommo(3)
-  const destino = await getDestinoLead()
+  const destinoConfigurado = await getDestinoLead()
   let ok = 0
   let fallidos = 0
 
@@ -49,8 +49,12 @@ export async function GET(req: NextRequest) {
     const fecha = new Date(lead.creado_en).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
     const pais = lead.pais ?? undefined
 
-    // Destino "Otro mail" (pedido de Darío, 29-sep-2026): no toca Kommo para
-    // nada, va directo por EmailJS a la dirección configurada en el panel.
+    // Resuelto por lead, no antes del loop: los destinos "alternar-*" avanzan
+    // el reparto 1 a 1 en cada llamado (pedido de Darío, 30-sep-2026).
+    const destino = await resolverDestino(destinoConfigurado)
+
+    // Destino "Otro mail" (pedido de Darío, 29-sep-2026) o el lado "mail" de
+    // una alternancia: no toca Kommo para nada, va directo por EmailJS.
     if (destino.tipo === 'email') {
       await mandarLeadPorEmail({
         nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
@@ -62,7 +66,7 @@ export async function GET(req: NextRequest) {
     }
 
     try {
-      const resultado = await crearLeadEnKommo({ nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, ts: String(Date.now()), pais })
+      const resultado = await crearLeadEnKommo({ nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, ts: String(Date.now()), pais }, destino)
       if (resultado.ok && resultado.cuenta && resultado.leadId) {
         const cuentaDisplay = nombreCuenta(resultado.cuenta)
         const kommo_link = kommoLeadUrl(resultado.cuenta, resultado.leadId)
