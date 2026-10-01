@@ -5,6 +5,7 @@ import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
+import { BuscadorObrasSociales, type ItemBuscadorOS } from '@/components/obras-sociales/BuscadorObrasSociales'
 
 export const metadata: Metadata = {
   title: `Obras Sociales Argentina 2026 — Comparativa y Guías Completas`,
@@ -42,6 +43,17 @@ const tiposColores: Record<string, string> = {
   empresarial: 'bg-green-100 text-green-700',
 }
 
+// Fichas del registro de la SSSalud que todavía no tienen una página propia
+// armada a mano (lib/data/obras-sociales.ts) — las que sí, como osecac,
+// osctc, osperyh, ospedyc, osdop u ospacp, se sacan de acá para no listarlas
+// dos veces con tratamiento distinto (1-oct-2026).
+const fichasSinPaginaPropia = FICHAS_REGISTRO.filter((f) => !obrasSociales.some((os) => os.slug === f.slug))
+
+const itemsBuscador: ItemBuscadorOS[] = [
+  ...obrasSociales.map((os) => ({ slug: os.slug, nombre: os.nombre, sub: tiposLabels[os.tipo], keywords: os.keywords })),
+  ...fichasSinPaginaPropia.map((f) => ({ slug: f.slug, nombre: f.nombreCorto, sub: `Obra social de ${f.actividad}`, keywords: f.keywords })),
+]
+
 export default function ObrasSocialesHubPage() {
   const porTipo = {
     jubilados: obrasSociales.filter((os) => os.tipo === 'jubilados'),
@@ -76,6 +88,9 @@ export default function ObrasSocialesHubPage() {
           <p className="text-gray-600 max-w-2xl mx-auto mb-6">
             Comparativa completa de las principales obras sociales: OSDE, Swiss Medical, Galeno, Medicus, PAMI, IOMA y más. Qué cubren, quiénes pueden afiliarse y cómo derivar tus aportes.
           </p>
+          <div className="mb-8">
+            <BuscadorObrasSociales items={itemsBuscador} />
+          </div>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/coberturas" className="text-sm font-medium bg-white border border-gray-200 px-4 py-2 rounded-xl hover:border-blue-300 hover:bg-red-50 transition-all">
               Qué cubren por ley
@@ -182,7 +197,7 @@ export default function ObrasSocialesHubPage() {
           </div>
           <p className="text-sm text-gray-500 mb-4">Teléfono de la sede, código y cómo pasar tus aportes a una prepaga, según el registro de la Superintendencia.</p>
           <div className="flex flex-wrap gap-2">
-            {FICHAS_REGISTRO.map((f) => (
+            {fichasSinPaginaPropia.map((f) => (
               <Link key={f.slug} href={`/obras-sociales/${f.slug}`} className="text-xs px-3 py-1.5 bg-white text-gray-700 border border-gray-200 rounded-full hover:border-red-200 hover:text-[#E8002D] transition-colors font-medium">
                 {f.nombreCorto}
               </Link>
