@@ -1240,7 +1240,65 @@ export const obrasSociales: ObraSocialData[] = [
       { q: '¿Dónde veo la cartilla de Construir Salud?', a: 'Publican una cartilla oficial en PDF con los Centros Médicos de Atención Primaria (CEMAP) por zona, separada en AMBA e interior del país, disponible en construirsalud.com.ar.' },
       { q: '¿Puedo pasar de Construir Salud a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
     ],
-    keywords: ['construir salud', 'construir salud telefono', 'construir salud turnos', 'cartilla construir salud', 'ospecon', 'obra social construccion'],
+    keywords: ['construir salud', 'construir salud telefono', 'construir salud turnos', 'cartilla construir salud', 'ospecon', 'obra social construccion', 'uocra obra social'],
+  },
+  {
+    // Nueva (1-oct-2026): sexto sindical del silo (2.900 búsquedas/mes,
+    // Google Ads Keyword Planner). OJO: OSCHOCA cubre solo CABA y provincia
+    // de Buenos Aires (confirmado: el sindicato de camioneros tiene
+    // seccionales regionales separadas, esta es la de Buenos Aires,
+    // camioneros-ba.org.ar) — no es cobertura nacional.
+    slug: 'oschoca',
+    nombre: 'OSCHOCA',
+    emoji: '🚛',
+    tipo: 'sindical',
+    titulo: 'OSCHOCA: obra social de camioneros en Buenos Aires — teléfonos y afiliación (2026)',
+    metaDescripcion: 'OSCHOCA, la obra social de choferes de camiones de Buenos Aires: teléfonos de auditoría médica y reclamos, cómo afiliarte y si te conviene derivar a una prepaga.',
+    descripcion: 'La obra social de choferes de camiones de la Ciudad y la Provincia de Buenos Aires, desde 1945.',
+    intro: 'OSCHOCA (Obra Social de Choferes de Camiones) es la obra social del sindicato de camioneros, con sede en CABA y cobertura para choferes de camión y trabajadores del transporte de cargas, logística y distribución en Buenos Aires. Existe desde 1945, financiada principalmente por el aporte de los trabajadores.',
+    quienesPuedenAfiliarse: [
+      'Choferes de camiones en relación de dependencia',
+      'Trabajadores de transporte de cargas, logística y distribución alcanzados por el convenio',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Auditoría médica propia',
+      'Ambulancias',
+      'Cobertura de discapacidad',
+      'Beneficios adicionales del sindicato: becas, turismo, sepelios',
+    ],
+    diferenciadores: [
+      'Vinculada directamente al Sindicato de Camioneros, con beneficios adicionales (turismo, Club de Camioneros, mutual)',
+    ],
+    pros: [
+      'Auditoría médica y gestión de reclamos con línea propia',
+      'Beneficios extra del sindicato (becas universitarias, turismo, sepelios)',
+    ],
+    contras: [
+      'Cobertura regional: solo CABA y provincia de Buenos Aires, no nacional',
+    ],
+    derivacion: true,
+    web: 'camioneros-ba.org.ar',
+    fuenteOficial: 'https://camioneros-ba.org.ar/index.php/contactenos/telefonos-utiles',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Auditoría médica', valor: '4378-1012' },
+      { etiqueta: 'Reclamo pago de hospital', valor: '4378-1000', detalle: 'internos 1315 / 1415' },
+      { etiqueta: 'Accidentes de trabajo y enf. profesionales', valor: '4378-1083 / 4378-1082' },
+      { etiqueta: 'Trámites y seguro de sepelio', valor: '4378-1025 / 0800-1220222' },
+    ],
+    ganchoConversion: '¿Necesitás una cartilla con cobertura fuera de Buenos Aires? Derivá tus aportes de OSCHOCA a una prepaga con alcance nacional.',
+    faq: [
+      { q: '¿Qué zona cubre OSCHOCA?', a: 'CABA y la provincia de Buenos Aires. Si trabajás en transporte de cargas en otra provincia, consultá con tu seccional regional del sindicato de camioneros, que puede tener una obra social o convenio distinto.' },
+      { q: '¿Cuál es el teléfono de OSCHOCA?', a: 'Auditoría médica: 4378-1012. Reclamo de pago de hospital: 4378-1000 (internos 1315/1415). Accidentes de trabajo: 4378-1083 / 4378-1082.' },
+      { q: '¿Puedo pasar de OSCHOCA a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['oschoca', 'oschoca telefono', 'oschoca obra social', 'obra social camioneros', 'obra social choferes de camiones'],
   },
   {
     slug: 'ospoce',
