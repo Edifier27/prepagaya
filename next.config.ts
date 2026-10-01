@@ -325,6 +325,24 @@ const nextConfig: NextConfig = {
         destination: "/empresas",
         permanent: true,
       },
+      // Fichas genéricas del registro de la SSSalud que canibalizaban la
+      // ficha completa de la misma obra social, armada a mano con datos
+      // reales (1-oct-2026): mismo RNOS, dos URLs distintas.
+      {
+        source: "/obras-sociales/uocra-construir-salud",
+        destination: "/obras-sociales/construir-salud",
+        permanent: true,
+      },
+      {
+        source: "/obras-sociales/bancaria-osba",
+        destination: "/obras-sociales/osba-bancarios",
+        permanent: true,
+      },
+      {
+        source: "/obras-sociales/osfatlyf",
+        destination: "/obras-sociales/luz-y-fuerza",
+        permanent: true,
+      },
     ];
   },
 };

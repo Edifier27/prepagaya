@@ -21,16 +21,22 @@ export interface FichaRegistro {
 
 export const FICHAS_REGISTRO: FichaRegistro[] = [
   { slug: 'osuomra', nombreCorto: 'OSUOMRA (UOM)', actividad: 'los trabajadores metalúrgicos (Unión Obrera Metalúrgica)', keywords: ['osuomra', 'obra social uom', 'uom obra social telefono'] },
-  { slug: 'uocra-construir-salud', nombreCorto: 'Construir Salud (UOCRA)', actividad: 'los trabajadores de la construcción', keywords: ['construir salud', 'obra social uocra', 'construir salud telefono'] },
-  { slug: 'oschoca', nombreCorto: 'OSCHOCA (Camioneros)', actividad: 'los choferes de camiones', keywords: ['oschoca', 'obra social camioneros', 'oschoca telefono'] },
+  // 'uocra-construir-salud' y 'oschoca' sacados de acá (1-oct-2026): ya
+  // tienen ficha completa propia en lib/data/obras-sociales.ts con los
+  // slugs 'construir-salud' y 'oschoca' — quedar acá canibalizaba la misma
+  // obra social en dos URLs. Ver redirects en next.config.ts.
   { slug: 'ospedyc', nombreCorto: 'OSPEDYC (UTEDyC)', actividad: 'el personal de entidades deportivas y civiles', keywords: ['ospedyc', 'obra social utedyc', 'ospedyc telefono'] },
   { slug: 'ospacp', nombreCorto: 'OSPACP (Casas Particulares)', actividad: 'el personal auxiliar de casas particulares', keywords: ['ospacp', 'obra social empleada domestica', 'obra social casas particulares'], guia: { slug: 'obra-social-empleada-domestica', texto: 'Obra social de la empleada doméstica: las 16 horas y cómo elegir otra' } },
   { slug: 'ospia', nombreCorto: 'OSPIA (Alimentación)', actividad: 'el personal de la industria de la alimentación', keywords: ['ospia', 'obra social alimentacion', 'ospia telefono'] },
-  { slug: 'bancaria-osba', nombreCorto: 'OSBA (La Bancaria)', actividad: 'los empleados bancarios', keywords: ['osba', 'obra social bancaria', 'la bancaria obra social'] },
+  // 'bancaria-osba' sacado de acá (1-oct-2026): ya tiene ficha completa
+  // propia con slug 'osba-bancarios' en lib/data/obras-sociales.ts — ver
+  // redirect en next.config.ts.
   { slug: 'osmata', nombreCorto: 'OSMATA (SMATA)', actividad: 'los mecánicos y afines del transporte automotor', keywords: ['osmata', 'obra social smata', 'osmata telefono'] },
   { slug: 'ospsa-sanidad', nombreCorto: 'OSPSA (Sanidad)', actividad: 'el personal de la sanidad', keywords: ['ospsa', 'obra social sanidad', 'ospsa telefono'] },
   { slug: 'osuthgra', nombreCorto: 'OSUTHGRA (Gastronómicos)', actividad: 'los trabajadores gastronómicos y hoteleros', keywords: ['osuthgra', 'obra social gastronomicos', 'osuthgra telefono'] },
-  { slug: 'osfatlyf', nombreCorto: 'OSFATLYF (Luz y Fuerza)', actividad: 'los trabajadores de Luz y Fuerza', keywords: ['osfatlyf', 'obra social luz y fuerza'] },
+  // 'osfatlyf' sacado de acá (1-oct-2026): ya tiene ficha completa propia
+  // con slug 'luz-y-fuerza' en lib/data/obras-sociales.ts — ver redirect en
+  // next.config.ts.
   { slug: 'osdop', nombreCorto: 'OSDOP (Docentes Particulares)', actividad: 'los docentes particulares', keywords: ['osdop', 'obra social docentes particulares', 'osdop telefono'] },
   { slug: 'osplad', nombreCorto: 'OSPLAD', actividad: 'la actividad docente', keywords: ['osplad', 'obra social docente', 'osplad telefono'] },
   { slug: 'osfymt', nombreCorto: 'Obra Social del Personal de Farmacias', actividad: 'el personal de farmacias', keywords: ['obra social farmacias', 'obra social del personal de farmacias'] },
