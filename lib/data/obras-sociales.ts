@@ -1412,6 +1412,125 @@ export const obrasSociales: ObraSocialData[] = [
     keywords: ['osfatlyf', 'luz y fuerza obra social', 'obra social luz y fuerza'],
   },
   {
+    // Nueva (1-oct-2026): mismo slug 'osctc' que ya existía en FICHAS_REGISTRO
+    // (ficha genérica armada solo con el registro de la SSSalud) — esta
+    // entrada la reemplaza porque obrasSociales tiene prioridad en
+    // app/obras-sociales/[slug]/page.tsx. "uta obra social" tiene volumen real
+    // (4.400/mes, Google Ads Keyword Planner) y "cartilla" es el sub-intent
+    // dominante (320/mes vs 140/mes de "telefono") — verificado 1-oct-2026
+    // contra obrasocialuta.com.ar, el sitio oficial de la obra social (no el
+    // de UTA el sindicato, que es uta.org.ar).
+    slug: 'osctc',
+    nombre: 'OSCTCP (UTA)',
+    emoji: '🚌',
+    tipo: 'sindical',
+    titulo: 'OSCTCP: la obra social de UTA — teléfonos y cobertura (2026)',
+    metaDescripcion: 'OSCTCP, la obra social de los conductores de transporte colectivo de pasajeros (UTA): urgencias 4959-9530, consultas 11 4011-5123/5124. Cartilla, cobertura y cómo derivar tus aportes.',
+    descripcion: 'La obra social de los conductores de transporte colectivo de pasajeros, afiliados a UTA.',
+    intro: 'OSCTCP (Obra Social Conductores de Transporte Colectivo de Pasajeros) es la obra social de los choferes de colectivos nucleados en UTA (Unión Tranviarios Automotor). Tiene atención domiciliaria en CABA y GBA, delegaciones propias y atención telefónica para el interior del país.',
+    quienesPuedenAfiliarse: [
+      'Conductores de transporte colectivo de pasajeros en relación de dependencia, afiliados a UTA',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Atención médica domiciliaria en CABA y GBA',
+      'Delegaciones propias en el interior del país',
+      'Vademécum propio',
+    ],
+    diferenciadores: [
+      'Urgencias y emergencias médicas domiciliarias las 24 horas en CABA y GBA',
+    ],
+    pros: [
+      'Línea de urgencias y emergencias las 24 horas, los 365 días',
+      'Delegaciones en todo el país para el interior',
+    ],
+    contras: [
+      'La atención domiciliaria de urgencias es solo para CABA y GBA',
+    ],
+    derivacion: true,
+    web: 'obrasocialuta.com.ar',
+    fuenteOficial: 'https://obrasocialuta.com.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Urgencias y emergencias (CABA y GBA)', valor: '4959-9530', detalle: 'Atención las 24 hs, los 365 días' },
+      { etiqueta: 'Consultas e informes (Capital y GBA)', valor: '11 4011-5123 / 5124', detalle: 'De 10 a 17 hs' },
+      { etiqueta: 'Consultas e informes (interior del país)', valor: '0810 122 8080', detalle: 'De 10 a 17 hs' },
+    ],
+    // Gancho de conversión (1-oct-2026): "cartilla" es el sub-intent real más
+    // grande ("obra social uta cartilla" 320/mes vs "telefono" 140/mes) y la
+    // propia obra social acota la atención domiciliaria de urgencias a
+    // CABA/GBA — el dolor real para quien maneja en el interior.
+    ganchoConversion: '¿Manejás en el interior y la cartilla de OSCTCP no te alcanza? Derivá tus aportes a una prepaga con cobertura en todo el país.',
+    faq: [
+      { q: '¿Cuál es el teléfono de OSCTCP?', a: 'Urgencias y emergencias (CABA y GBA): 4959-9530, las 24 horas. Consultas e informes: 11 4011-5123/5124 en Capital y GBA, 0810 122 8080 en el interior.' },
+      { q: '¿OSCTCP es lo mismo que UTA?', a: 'No: UTA (Unión Tranviarios Automotor) es el sindicato; OSCTCP (Obra Social Conductores de Transporte Colectivo de Pasajeros) es su obra social.' },
+      { q: '¿Puedo pasar de OSCTCP a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['osctcp', 'osctc', 'uta obra social', 'obra social uta', 'obra social colectiveros', 'osctcp telefono', 'osctcp cartilla'],
+  },
+  {
+    // Nueva (1-oct-2026): mismo slug 'osperyh' que ya existía en
+    // FICHAS_REGISTRO (ficha genérica) — esta entrada la reemplaza. "osperyh"
+    // tiene volumen real (2.900/mes) con "cartilla" y "telefono" empatados
+    // como sub-intent (90/mes cada uno) — verificado 1-oct-2026 contra
+    // osperyh.org.ar, el sitio oficial (gestionado por SUTERH, el sindicato).
+    slug: 'osperyh',
+    nombre: 'OSPERYH (Encargados de Edificios)',
+    emoji: '🏢',
+    tipo: 'sindical',
+    titulo: 'OSPERYH: la obra social de los encargados de edificios — teléfonos (2026)',
+    metaDescripcion: 'OSPERYH, la obra social del personal de edificios de renta y horizontal de CABA y GBA (SUTERH): urgencias 0800-266-6662, delegaciones 0810 222 7883. Cartilla y cómo derivar tus aportes.',
+    descripcion: 'La obra social del personal de edificios de renta y propiedad horizontal de CABA y el Gran Buenos Aires.',
+    intro: 'OSPERYH (Obra Social del Personal de Edificios de Renta y Horizontal) es la obra social de los encargados y porteros de edificios de CABA y el Gran Buenos Aires, gestionada por el sindicato SUTERH. Tiene delegaciones propias con especialidades médicas y un servicio de urgencias y emergencias domiciliario.',
+    quienesPuedenAfiliarse: [
+      'Encargados y personal de edificios de renta y propiedad horizontal de CABA y GBA, en relación de dependencia',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Delegaciones propias con especialidades (cardiología, ginecología, traumatología y más)',
+      'Urgencias y emergencias médicas domiciliarias, hasta 60 km de CABA',
+      'Clínica propia (Clínica Ciudad SUTERH-OSPERYH)',
+    ],
+    diferenciadores: [
+      'Delegaciones propias en CABA y GBA con especialidades médicas y guardia',
+    ],
+    pros: [
+      'Urgencias y emergencias domiciliarias gratuitas, con clínica propia de guardia',
+      'Varias delegaciones con especialidades en CABA y GBA',
+    ],
+    contras: [
+      'Solo cubre CABA y GBA: no tiene la misma red fuera de esa zona',
+    ],
+    derivacion: true,
+    web: 'osperyh.org.ar',
+    fuenteOficial: 'https://osperyh.org.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Urgencias y emergencias (S.U.E.)', valor: '0800-266-6662', detalle: 'Atención domiciliaria, hasta 60 km de CABA' },
+      { etiqueta: 'Delegaciones (conmutador)', valor: '0810 222 7883', detalle: 'Marcar el interno de tu delegación' },
+    ],
+    // Gancho de conversión (1-oct-2026): "cartilla" y "telefono" empatan como
+    // sub-intent (90/mes cada uno) — la obra social solo cubre CABA/GBA, el
+    // dolor real para quien vive o se muda fuera de esa zona.
+    ganchoConversion: '¿Vivís fuera de CABA o GBA y la cartilla de OSPERYH no te cubre? Derivá tus aportes a una prepaga con cobertura en todo el país.',
+    faq: [
+      { q: '¿Cuál es el teléfono de OSPERYH?', a: 'Urgencias y emergencias (S.U.E.): 0800-266-6662. Delegaciones: 0810 222 7883 (marcando el interno de cada una).' },
+      { q: '¿OSPERYH y SUTERH son lo mismo?', a: 'No: SUTERH (Sindicato Único de Trabajadores de Edificios de Renta y Horizontal) es el sindicato; OSPERYH es su obra social.' },
+      { q: '¿Puedo pasar de OSPERYH a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['osperyh', 'osperyh telefono', 'osperyh cartilla', 'obra social encargados de edificio', 'obra social porteros', 'suterh obra social'],
+  },
+  {
     slug: 'ospoce',
     nombre: 'OSPOCE',
     emoji: '🏛️',
