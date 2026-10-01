@@ -189,7 +189,7 @@ export function esCelularArgentinoValido(raw: string): boolean {
  */
 export function whatsappLinkParaLead(nombre: string, celular: string): string {
   const numero = normalizarCelularAR(celular)
-  const mensaje = `Hola ${nombre}. Soy Dario de Swiss Medical. Te contacto por tu consulta.`
+  const mensaje = `Hola ${nombre}! Te escribo por tu consulta en la web. Contame, ¿buscás cobertura para vos solo o para grupo familiar?`
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
 }
 
