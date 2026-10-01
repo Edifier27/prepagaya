@@ -1531,6 +1531,175 @@ export const obrasSociales: ObraSocialData[] = [
     keywords: ['osperyh', 'osperyh telefono', 'osperyh cartilla', 'obra social encargados de edificio', 'obra social porteros', 'suterh obra social'],
   },
   {
+    // Nueva (1-oct-2026): mismo slug 'ospedyc' que ya existía en
+    // FICHAS_REGISTRO — esta entrada la reemplaza. Hallazgo grande del día:
+    // "ospedyc" tiene 12.100/mes (Google Ads Keyword Planner), más que
+    // cualquier otra sindical agregada hoy salvo OSECAC y Unión Personal.
+    // "cartilla" es el sub-intent dominante (880/mes, empatado con OSDOP).
+    // Verificado 1-oct-2026 contra ospedyc.org.ar (redirige a ospedyc.org),
+    // el sitio oficial.
+    slug: 'ospedyc',
+    nombre: 'OSPEDYC (UTEDyC)',
+    emoji: '🏋️',
+    tipo: 'sindical',
+    titulo: 'OSPEDYC: la obra social de UTEDyC — teléfonos y centros médicos (2026)',
+    metaDescripcion: 'OSPEDYC, la obra social del personal de entidades deportivas y civiles (UTEDyC): urgencias y call center 0800-345-6773. Centros médicos propios, cartilla y cómo derivar tus aportes.',
+    descripcion: 'La obra social del personal de entidades deportivas y civiles, afiliados a UTEDyC.',
+    intro: 'OSPEDYC (Obra Social del Personal de Entidades Deportivas y Civiles) es la obra social de los trabajadores de clubes, gimnasios y entidades civiles y deportivas, nucleados en UTEDyC. Tiene centros médicos propios en varias provincias, teleconsultas y un asistente virtual (OSPY) por WhatsApp y web.',
+    quienesPuedenAfiliarse: [
+      'Personal de entidades deportivas y civiles (clubes, gimnasios, asociaciones) en relación de dependencia, afiliados a UTEDyC',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Centros médicos propios en CABA, GBA, Mar del Plata, Córdoba y Santa Fe',
+      'Teleconsultas y asistente virtual OSPY (WhatsApp y web)',
+      'Plataforma Mi OSPEDYC para bonos, recetas y constancias',
+    ],
+    diferenciadores: [
+      'Centros médicos propios en varias provincias, con cobertura nacional',
+    ],
+    pros: [
+      'Call center y urgencias las 24 horas',
+      'Centros médicos propios, no solo cartilla de terceros',
+    ],
+    contras: [
+      'Los centros médicos propios se concentran en algunas provincias: en el resto se depende de la cartilla de prestadores',
+    ],
+    derivacion: true,
+    web: 'ospedyc.org.ar',
+    fuenteOficial: 'https://www.ospedyc.org.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Urgencias y emergencias / Call Center', valor: '0800-345-6773', detalle: 'Lunes a viernes de 8 a 20 hs' },
+    ],
+    // Gancho de conversión (1-oct-2026): "cartilla" es el sub-intent real más
+    // grande (880/mes, igual que OSDOP) — el dolor es que los centros propios
+    // no están en todas las provincias.
+    ganchoConversion: '¿No tenés un centro médico de OSPEDYC cerca? Derivá tus aportes a una prepaga con cartilla en tu zona.',
+    faq: [
+      { q: '¿Cuál es el teléfono de OSPEDYC?', a: 'Call Center y urgencias: 0800-345-6773, de lunes a viernes de 8 a 20 hs. También podés escribirle al asistente virtual OSPY por WhatsApp o desde la web.' },
+      { q: '¿OSPEDYC y UTEDyC son lo mismo?', a: 'No: UTEDyC (Unión de Trabajadores de Entidades Deportivas y Civiles) es el sindicato; OSPEDYC es su obra social.' },
+      { q: '¿Puedo pasar de OSPEDYC a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['ospedyc', 'ospedyc telefono', 'ospedyc cartilla', 'obra social utedyc', 'utedyc obra social'],
+  },
+  {
+    // Nueva (1-oct-2026): mismo slug 'osdop' que ya existía en
+    // FICHAS_REGISTRO — esta entrada la reemplaza. "osdop"/"obra social
+    // docentes particulares" tiene 9.900/mes cada uno (Google Ads Keyword
+    // Planner); "cartilla" es el sub-intent dominante (880/mes). Verificado
+    // 1-oct-2026 contra osdop.org.ar, el sitio oficial.
+    slug: 'osdop',
+    nombre: 'OSDOP (Docentes Particulares)',
+    emoji: '📚',
+    tipo: 'sindical',
+    titulo: 'OSDOP: la obra social de los docentes particulares — teléfonos (2026)',
+    metaDescripcion: 'OSDOP, la obra social de los docentes de escuelas privadas: atención 0810-345-2527 y 0800-666-6450. Cartilla, coseguros y cómo derivar tus aportes a una prepaga.',
+    descripcion: 'La obra social de los docentes que trabajan en establecimientos de enseñanza privada.',
+    intro: 'OSDOP (Obra Social de Docentes Particulares) es la obra social de los docentes de establecimientos de enseñanza privada, vinculada al sindicato SADOP. También pueden elegirla por opción de cambio trabajadores de otras actividades.',
+    quienesPuedenAfiliarse: [
+      'Docentes de establecimientos de enseñanza privada en relación de dependencia',
+      'Otros trabajadores en relación de dependencia, por opción de cambio',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Cartilla propia por región',
+      'Credencial y trámites digitales (Osdop Digital)',
+      'Cobertura de discapacidad y salud mental',
+    ],
+    diferenciadores: [
+      'Abierta a trabajadores de otras actividades por opción de cambio, no solo docentes',
+    ],
+    pros: [
+      'Atención telefónica y trámites online (Osdop Digital)',
+      'Cartilla organizada por región del país',
+    ],
+    contras: [
+      'Cobra coseguros en varias prestaciones (valores vigentes publicados en su web)',
+    ],
+    derivacion: true,
+    web: 'osdop.org.ar',
+    fuenteOficial: 'https://www.osdop.org.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Consultas, trámites y reclamos', valor: '0810-345-2527', detalle: 'Lunes a viernes de 9 a 17 hs' },
+      { etiqueta: 'Consultas, trámites y reclamos', valor: '0800-666-6450', detalle: 'Lunes a viernes de 9 a 17 hs' },
+    ],
+    // Gancho de conversión (1-oct-2026): "cartilla" es el sub-intent real más
+    // grande (880/mes, igual que OSPEDYC).
+    ganchoConversion: '¿La cartilla de OSDOP no te alcanza en tu zona? Derivá tus aportes a una prepaga con más sanatorios cerca tuyo.',
+    faq: [
+      { q: '¿Cuál es el teléfono de OSDOP?', a: '0810-345-2527 y 0800-666-6450, de lunes a viernes de 9 a 17 hs.' },
+      { q: '¿Si no soy docente puedo elegir OSDOP?', a: 'Sí: aunque nació para docentes de escuelas privadas, cualquier trabajador en relación de dependencia puede elegirla por la opción de cambio.' },
+      { q: '¿Puedo pasar de OSDOP a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['osdop', 'obra social docentes particulares', 'osdop telefono', 'osdop cartilla', 'obra social sadop'],
+  },
+  {
+    // Nueva (1-oct-2026): mismo slug 'ospacp' que ya existía en
+    // FICHAS_REGISTRO — esta entrada la reemplaza. "ospacp" tiene 6.600/mes
+    // (Google Ads Keyword Planner) y "telefono" es el sub-intent dominante
+    // (320/mes). Verificado 1-oct-2026 contra ospacp.org.ar, el sitio oficial.
+    slug: 'ospacp',
+    nombre: 'OSPACP (Casas Particulares)',
+    emoji: '🏠',
+    tipo: 'sindical',
+    titulo: 'OSPACP: la obra social del personal de casas particulares (2026)',
+    metaDescripcion: 'OSPACP, la obra social del personal de casas particulares (empleadas/os domésticos): línea 0800-222-72583. Cartilla, consultorios propios y requisitos para afiliarte.',
+    descripcion: 'La obra social del personal auxiliar de casas particulares (empleadas y empleados domésticos).',
+    intro: 'OSPACP (Obra Social del Personal Auxiliar de Casas Particulares) es la obra social de los trabajadores de casas particulares, vinculada al sindicato UPACP. Da cobertura desde 1975 y tiene consultorios propios, cartilla médica y delegaciones en el país.',
+    quienesPuedenAfiliarse: [
+      'Personal de casas particulares (empleadas/os domésticos) registrado, que trabaje 16 horas semanales o más para uno o varios empleadores',
+      'Grupo familiar a cargo del titular',
+    ],
+    cobertura: [
+      'PMO',
+      'Consultorios propios',
+      'Cartilla médica',
+      'Vademécum farmacéutico propio',
+      'Delegaciones en el país',
+    ],
+    diferenciadores: [
+      'Consultorios propios, además de la cartilla de prestadores',
+    ],
+    pros: [
+      'Línea de atención las 24 horas, los 365 días',
+      'Consultorios propios para no depender solo de terceros',
+    ],
+    contras: [
+      'El acceso depende de llegar a las 16 horas semanales registradas: por debajo de eso no da cobertura',
+    ],
+    derivacion: true,
+    web: 'ospacp.org.ar',
+    fuenteOficial: 'https://ospacp.org.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Salud (consultas y urgencias)', valor: '0800-222-72583', detalle: 'Las 24 horas, los 365 días' },
+    ],
+    // Gancho de conversión (1-oct-2026): "telefono" es el sub-intent real más
+    // grande acá (320/mes vs 140/mes de "cartilla") — a diferencia del resto
+    // del silo. El aporte de casas particulares es un monto fijo chico por
+    // las horas trabajadas (no un % del sueldo), muy por debajo de lo que
+    // cuesta una prepaga: el gancho apunta al empleador, no al trabajador.
+    ganchoConversion: 'Si sos empleador y querés que tu empleada/o tenga una cobertura mejor que la de OSPACP, cotizale un plan de prepaga.',
+    faq: [
+      { q: '¿Cuál es el teléfono de OSPACP?', a: '0800-222-72583 (SALUD), las 24 horas los 365 días.' },
+      { q: '¿Desde cuántas horas trabajadas da cobertura OSPACP?', a: 'Desde las 16 horas semanales registradas, sumando uno o varios empleadores.' },
+      { q: '¿Se puede cambiar de OSPACP a otra obra social o prepaga?', a: 'Sí: el personal de casas particulares puede hacer la opción de cambio una vez por año, con clave fiscal nivel 3 y el servicio "Mi SSSalud" de la Superintendencia de Servicios de Salud. Igual, el aporte de casas particulares es un monto fijo chico por las horas trabajadas, así que conviene comparar bien contra el costo de una prepaga.' },
+    ],
+    keywords: ['ospacp', 'ospacp telefono', 'obra social empleada domestica', 'obra social casas particulares', 'obra social personal domestico'],
+  },
+  {
     slug: 'ospoce',
     nombre: 'OSPOCE',
     emoji: '🏛️',
