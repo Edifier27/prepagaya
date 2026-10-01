@@ -55,6 +55,26 @@ FUENTES = {
         'pagina': 'https://www.osdop.org.ar/',
         'archivo': 'osdop.pdf',
     },
+    'ospacp': {
+        'url': 'https://ospacp.org.ar/wp-content/uploads/2025/07/Cartilla.pdf',
+        'pagina': 'https://ospacp.org.ar/cartilla-medica/',
+        'archivo': 'ospacp.pdf',
+    },
+    'osprera': {
+        'url': 'https://www.osprera.org.ar/pdf/cartilla-sss-2026/anexo-iii-2026.xlsx',
+        'pagina': 'https://www.osprera.org.ar/cartilla-sss-2026.php',
+        'archivo': 'osprera.xlsx',
+    },
+    'osuthgra': {
+        'url': 'https://osuthgra.org.ar/wp-content/uploads/2025/11/ANEXO-III-CARTILLA-MEDICO-ASISTENCIAL-LISTADO-PRESTADORES.pdf',
+        'pagina': 'https://osuthgra.org.ar/',
+        'archivo': 'osuthgra.pdf',
+    },
+    'ospat': {
+        'url': 'https://www.ospat.com.ar/wp-content/uploads/2026/07/1-2170-5_-_anexo_iii_-_res._2165-21_1_0-1-12.xlsx',
+        'pagina': 'https://www.ospat.com.ar/soluciones-online/cartilla/',
+        'archivo': 'ospat.xlsx',
+    },
     'osperyh': {
         'url': 'https://osperyh.org.ar/wp-content/uploads/2026/07/106500_ANEXO_III.pdf',
         'pagina': 'https://osperyh.org.ar/procedimientos-y-cartilla-aprobados-por-superintendencia-de-servicios-de-salud/',
@@ -105,7 +125,25 @@ TIPOS = {
     'farmacia': 'farmacia',
     'optica': 'optica',
     'ortopedia': 'ortopedia',
+    'establecimiento de alta complejidad': 'internacion',
+    'centros de urgencia o emergencia medicas': 'guardia',
+    # Planilla oficial 2026
+    'centros de urgencia o emergencias medicas': 'guardia',
+    'centros de internacion': 'internacion',
+    'establecimiento ambulatorio': 'ambulatorio',
+    'especialista': 'ambulatorio',
 }
+
+
+def tipo_de(texto):
+    c = clave(texto)
+    if c in TIPOS:
+        return TIPOS[c]
+    # "Ambulatorio/Especialista Gastroenterología": especialidad pegada al tipo
+    for k in sorted(TIPOS, key=len, reverse=True):
+        if c.startswith(k):
+            return TIPOS[k]
+    return None
 
 # Un prestador se nombra solo si el nombre es claramente de una institución.
 # El CUIT no alcanza: hay obras sociales que cargan a cada médico con el CUIT
@@ -147,7 +185,13 @@ def clave(s):
 
 def provincia(s):
     c = re.sub(r'\s+provincia$', '', clave(s))
-    return PROVINCIAS.get(c)
+    if c in PROVINCIAS:
+        return PROVINCIAS[c]
+    # "Ciudad Autonoma de Buenos AiresComuna 14": provincia pegada al partido
+    for k in sorted(PROVINCIAS, key=len, reverse=True):
+        if c.startswith(k) and len(k) > 6:
+            return PROVINCIAS[k]
+    return None
 
 
 _MINUS = {'de', 'del', 'la', 'las', 'los', 'y', 'e', 'el', 'en', 'a'}
@@ -208,8 +252,8 @@ def caratula_xlsx(ruta):
             vals = [v for v in fila if v is not None]
             for i, v in enumerate(vals):
                 t = str(v)
-                if t.startswith('RNAS') and i + 1 < len(vals) and str(vals[i + 1]).isdigit():
-                    datos['rnas'] = str(vals[i + 1])
+                if (t.startswith('RNAS') or t.startswith('RNOS')) and i + 1 < len(vals) and re.fullmatch(r'[\d-]{6,}', str(vals[i + 1])):
+                    datos['rnas'] = str(vals[i + 1]).replace('-', '')
                 if t.startswith('PER') and 'VIGENCIA' in t and i + 1 < len(vals) and re.match(r'^\d{4}', str(vals[i + 1])):
                     datos['vigencia'] = str(vals[i + 1]).replace('/', '-')
                 if 'TOTAL DE BENEFICIARIOS' in t and i + 1 < len(vals) and isinstance(vals[i + 1], (int, float)):
@@ -252,7 +296,7 @@ def generar(slug):
     entidades = {}
     descartadas = collections.Counter()
     for r in filas:
-        tipo = TIPOS.get(clave(r['tipo']))
+        tipo = tipo_de(r['tipo'])
         prov = provincia(r['provincia'])
         if not tipo or not prov:
             descartadas['tipo' if not tipo else 'provincia'] += 1

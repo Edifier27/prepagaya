@@ -25,6 +25,42 @@ def _sin_tildes(s):
     return ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
 
 
+# Encabezado de la planilla -> campo. La versión 2026 de la planilla oficial
+# agregó columnas ("OTRA ESPECIALIDAD", "CODIGO POSTAL") y renombró otras
+# ("DEPARTAMENTO/PARTIDO", "JURISDICCION"): se ubican por nombre.
+_COLUMNAS_XLSX = [
+    ('nombre', ('NOMBRE',)),
+    ('cuit', ('CUIT',)),
+    ('tipo', ('TIPO DE PRESTADOR',)),
+    ('especialidad', ('ESPECIALIDAD',)),
+    ('ap', ('ADULTO',)),
+    ('provincia', ('PROVINCIA',)),
+    ('partido', ('PARTIDO', 'DEPARTAMENTO')),
+    ('localidad', ('LOCALIDAD', 'JURISDICCION')),
+    ('beneficiarios', ('BENEFICIARIOS',)),
+    ('domicilio', ('DOMICILIO',)),
+    ('telefono', ('TELEFONO',)),
+    ('correo', ('CORREO',)),
+]
+
+
+def _columnas(encabezado):
+    hdr = [_sin_tildes(_limpio(c)).upper() for c in encabezado]
+    indices = {}
+    for campo, claves in _COLUMNAS_XLSX:
+        i = None
+        for j, h in enumerate(hdr):
+            if campo == 'especialidad' and h.startswith('OTRA'):
+                continue
+            if campo == 'localidad' and 'BENEFICIARIOS' in h:
+                continue
+            if any(h.startswith(k) or (k in h and campo in ('partido', 'beneficiarios')) for k in claves):
+                i = j
+                break
+        indices[campo] = i
+    return indices
+
+
 def leer_xlsx(ruta):
     import openpyxl
     wb = openpyxl.load_workbook(ruta, read_only=True, data_only=True)
@@ -35,11 +71,12 @@ def leer_xlsx(ruta):
                 break
         else:
             continue
+        indices = _columnas(fila)
         out = []
         for fila in filas:
             if not fila or not fila[0]:
                 continue
-            d = {k: _limpio(fila[i] if i < len(fila) else None) for i, k in enumerate(CAMPOS)}
+            d = {k: _limpio(fila[i] if i is not None and i < len(fila) else None) for k, i in indices.items()}
             if d['tipo']:
                 out.append(d)
         return out
