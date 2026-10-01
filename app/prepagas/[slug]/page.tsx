@@ -241,8 +241,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // planes y precios y enlaza a la cartilla.
     // "Cuánto sale" (23-sep-2026): "cuánto sale osde" busca ~7 veces más que
     // "prepagas precios" (Google Trends); es la misma intención de esta ficha.
-    // absolute: sin el sufijo "| PrepagaYa", para que entre completo en Google (~65 caracteres).
-    title: { absolute: `${prep.nombre}: planes y cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()}, desde ${formatPrecio(precioMinTitulo)}` },
+    // "precios" explícito (30-sep-2026): datos reales de Ahrefs muestran
+    // "[prepaga] planes"/"[prepaga] precios" rankeando muy mal (pos. 15-28
+    // con volumen real: "osde planes" 3.1K, "sancor salud precios" 600)
+    // mientras "[prepaga] cartilla" rankea 1-2 — el título no decía "precios"
+    // ni una sola vez. Se saca el monto del título (ya está en la
+    // descripción) para poder sumar "precios" sin superar ~60 caracteres.
+    // absolute: sin el sufijo "| PrepagaYa", para que entre completo en Google.
+    title: { absolute: `${prep.nombre}: planes, precios y cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()}` },
     // Descripción ≤ ~160 caracteres (antes ~185 y Google cortaba el "Cotizá gratis")
     description: `¿Cuánto sale ${prep.nombre}? Planes desde ${formatPrecio(precioMinTitulo)}/mes en ${PRECIO_ACTUALIZADO.toLowerCase()}${prep.planes.some((pl) => pl.fuentePrecio === 'sssalud') ? ' (precio oficial SSSalud)' : ''}. Precio por edad, cartilla${contactos[prep.slug] ? ', teléfonos' : ''} y opiniones. Cotizá gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
