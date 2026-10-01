@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
 import type { FichaRegistro as Ficha } from '@/lib/data/fichas-registro'
 import { codigoSeisDigitos, nombreLegible, REGISTRO_VERIFICADO, type EntidadRegistro } from '@/lib/data/registro-sssalud'
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
@@ -19,6 +20,8 @@ export function faqsFichaRegistro(f: Ficha, e: EntidadRegistro) {
 export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; entidad: EntidadRegistro }) {
   const codigo = codigoSeisDigitos(e.codigo!)
   const faqs = faqsFichaRegistro(f, e)
+  const cartilla = getCartillaSindical(f.slug)
+  const cartillaTot = cartilla ? totales(cartilla) : null
   const fecha = new Date(`${REGISTRO_VERIFICADO}T12:00:00`).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
   const jsonLd = [
     {
@@ -89,6 +92,24 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
           </p>
         </div>
       </section>
+
+      {/* Cartilla oficial (1-oct-2026), si la obra social publica el Anexo III */}
+      {cartilla && cartillaTot && (
+        <section id="cartilla" className="py-8 bg-white border-b border-gray-100">
+          <div className="container max-w-3xl! mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Cartilla de {f.nombreCorto}</h2>
+            <p className="text-sm text-gray-600 mb-4">
+              {cartillaTot.internacion.toLocaleString('es-AR')} sanatorios con internación, {cartillaTot.guardia.toLocaleString('es-AR')} guardias y {cartillaTot.diagnostico.toLocaleString('es-AR')} centros de diagnóstico en {cartillaTot.provincias} provincias, según el listado oficial que presentó ante la Superintendencia.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Link href={`/obras-sociales/${f.slug}/cartilla`} className="text-sm px-4 py-1.5 rounded-full bg-[#E8002D] text-white font-semibold hover:bg-[#B8001F]">Ver la cartilla completa →</Link>
+              {provinciasConPagina(cartilla).slice(0, 8).map((p) => (
+                <Link key={p.slug} href={`/obras-sociales/${f.slug}/cartilla/${p.slug}`} className="text-sm px-3 py-1.5 rounded-full border border-gray-200 hover:border-[#E8002D] text-gray-700">{p.nombre}</Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-8 bg-white">
         <div className="container max-w-3xl! mx-auto">

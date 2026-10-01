@@ -8,6 +8,9 @@ import ospacp from './ospacp.json'
 import ospat from './ospat.json'
 import osprera from './osprera.json'
 import osuthgra from './osuthgra.json'
+import osseg from './osseg.json'
+import ospsa from './ospsa-sanidad.json'
+import ospa from './os-del-personal-aeronautico.json'
 
 // Cartillas oficiales de obras sociales sindicales (1-oct-2026): salen del
 // Anexo III de la Res. SSSalud 2165/2021, el listado completo de prestadores
@@ -52,7 +55,7 @@ export interface CartillaSindical {
 }
 
 export const CARTILLAS_SINDICALES: Record<string, CartillaSindical> = Object.fromEntries(
-  ([bancarios, construir, osdop, osmedica, osperyh, ospes, ospacp, ospat, osprera, osuthgra] as CartillaSindical[]).map((c) => [c.slug, c])
+  ([bancarios, construir, osdop, osmedica, osperyh, ospes, ospacp, ospat, osprera, osuthgra, osseg, ospsa, ospa] as CartillaSindical[]).map((c) => [c.slug, c])
 )
 
 export function getCartillaSindical(slug: string): CartillaSindical | undefined {

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import type { ObraSocialData } from '@/lib/data/obras-sociales'
+import type { OsCartilla } from '@/lib/data/sindicales-cartillas/os'
 import { registroDeObraSocial } from '@/lib/data/registro-sssalud'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import {
@@ -42,7 +42,7 @@ export function urlCartilla(slug: string, prov?: string) {
   return `/obras-sociales/${slug}/cartilla${prov ? `/${prov}` : ''}`
 }
 
-function Migas({ os, prov }: { os: ObraSocialData; prov?: ProvinciaCartilla }) {
+function Migas({ os, prov }: { os: OsCartilla; prov?: ProvinciaCartilla }) {
   return (
     <div className="bg-gray-50 border-b border-gray-100 py-3">
       <div className="container">
@@ -68,7 +68,7 @@ function Migas({ os, prov }: { os: ObraSocialData; prov?: ProvinciaCartilla }) {
   )
 }
 
-function Fuente({ c, os }: { c: CartillaSindical; os: ObraSocialData }) {
+function Fuente({ c, os }: { c: CartillaSindical; os: OsCartilla }) {
   return (
     <p className="text-xs text-gray-500 leading-relaxed">
       Fuente: listado completo de prestadores que {os.nombre} presentó ante la Superintendencia de Servicios de Salud
@@ -80,7 +80,7 @@ function Fuente({ c, os }: { c: CartillaSindical; os: ObraSocialData }) {
   )
 }
 
-function Cta({ os }: { os: ObraSocialData }) {
+function Cta({ os }: { os: OsCartilla }) {
   const conCodigo = !!registroDeObraSocial(os.slug)?.codigo
   return (
     <section className="py-12 bg-[#E8002D] text-white">
@@ -127,7 +127,7 @@ function Preguntas({ faq }: { faq: { q: string; a: string }[] }) {
   )
 }
 
-function jsonLd(os: ObraSocialData, c: CartillaSindical, faq: { q: string; a: string }[], prov?: ProvinciaCartilla) {
+function jsonLd(os: OsCartilla, c: CartillaSindical, faq: { q: string; a: string }[], prov?: ProvinciaCartilla) {
   const url = `${SITE_URL}${urlCartilla(os.slug, prov?.slug)}`
   return [
     {
@@ -170,7 +170,7 @@ const listaTipos = (i: { internacion: number; guardia: number; diagnostico: numb
 
 // ── Resumen nacional ────────────────────────────────────────────────────────
 
-export function faqsCartilla(os: ObraSocialData, c: CartillaSindical) {
+export function faqsCartilla(os: OsCartilla, c: CartillaSindical) {
   const t = totales(c)
   const top = provinciasConPagina(c).slice(0, 3).map((p) => p.nombre)
   const faq = [
@@ -204,7 +204,7 @@ export function faqsCartilla(os: ObraSocialData, c: CartillaSindical) {
   return faq
 }
 
-export function PaginaCartillaSindical({ os, c }: { os: ObraSocialData; c: CartillaSindical }) {
+export function PaginaCartillaSindical({ os, c }: { os: OsCartilla; c: CartillaSindical }) {
   const t = totales(c)
   const provs = c.provincias
   const faq = faqsCartilla(os, c)
@@ -334,7 +334,7 @@ function Institucion({ i, extra }: { i: InstitucionCartilla; extra?: string }) {
 
 const slugLoc = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
-export function faqsProvincia(os: ObraSocialData, c: CartillaSindical, p: ProvinciaCartilla) {
+export function faqsProvincia(os: OsCartilla, c: CartillaSindical, p: ProvinciaCartilla) {
   const locs = localidades(p)
   const sanatorios = p.instituciones.filter((i) => i.t.includes('internacion'))
   const guardias = p.instituciones.filter((i) => i.t.includes('guardia'))
@@ -368,7 +368,7 @@ export function faqsProvincia(os: ObraSocialData, c: CartillaSindical, p: Provin
   return faq
 }
 
-export function PaginaCartillaProvincia({ os, c, p }: { os: ObraSocialData; c: CartillaSindical; p: ProvinciaCartilla }) {
+export function PaginaCartillaProvincia({ os, c, p }: { os: OsCartilla; c: CartillaSindical; p: ProvinciaCartilla }) {
   const faq = faqsProvincia(os, c, p)
   const locs = localidades(p)
   const esp = especialidadesDestacadas(p)

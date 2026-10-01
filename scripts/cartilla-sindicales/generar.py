@@ -24,6 +24,7 @@ import unicodedata
 import urllib.request
 
 from anexo3 import leer
+import cartilla_por_especialidad
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 DESTINO = os.path.join(AQUI, '..', '..', 'lib', 'data', 'sindicales-cartillas')
@@ -74,6 +75,23 @@ FUENTES = {
         'url': 'https://www.ospat.com.ar/wp-content/uploads/2026/07/1-2170-5_-_anexo_iii_-_res._2165-21_1_0-1-12.xlsx',
         'pagina': 'https://www.ospat.com.ar/soluciones-online/cartilla/',
         'archivo': 'ospat.xlsx',
+    },
+    'osseg': {
+        'url': 'https://www.osseg.org.ar/files/Anexo_III_2026.pdf',
+        'pagina': 'https://www.osseg.org.ar/cobertura',
+        'archivo': 'osseg.pdf',
+    },
+    'ospsa-sanidad': {
+        'url': 'https://www2.sanidad.org.ar/ospsa/wp-content/uploads/2026/06/Cartilla-Medica-de-Prestadores-2026.pdf',
+        'pagina': 'https://www.sanidad.org.ar/',
+        'archivo': 'ospsa-sanidad.pdf',
+        'lector': cartilla_por_especialidad.leer,
+        'caratula': {'vigencia': '2026'},
+    },
+    'os-del-personal-aeronautico': {
+        'url': 'https://ospa.com.ar/anexos/anexo-III.xlsx',
+        'pagina': 'https://ospa.com.ar/',
+        'archivo': 'ospa.xlsx',
     },
     'osperyh': {
         'url': 'https://osperyh.org.ar/wp-content/uploads/2026/07/106500_ANEXO_III.pdf',
@@ -143,6 +161,11 @@ def tipo_de(texto):
     for k in sorted(TIPOS, key=len, reverse=True):
         if c.startswith(k):
             return TIPOS[k]
+    # Especialidad cargada en la columna de tipo ("Internación Cardiología")
+    if c.startswith('internacion'):
+        return 'internacion'
+    if c.startswith(('emergencia', 'urgencia')):
+        return 'guardia'
     return None
 
 # Un prestador se nombra solo si el nombre es claramente de una institución.
@@ -272,6 +295,11 @@ def caratula_pdf(ruta):
     m = re.search(r'VIGENCIA:\s*(\d{4}[-/]\d{4})', texto)
     if m:
         datos['vigencia'] = m.group(1).replace('/', '-')
+    else:
+        # "VIGENCIA: 01/01/2026 AL 31/12/2026"
+        m = re.search(r'VIGENCIA:\s*\d{2}/\d{2}/(\d{4})\s+AL\s+\d{2}/\d{2}/(\d{4})', texto)
+        if m:
+            datos['vigencia'] = m.group(1) if m.group(1) == m.group(2) else f'{m.group(1)}-{m.group(2)}'
     m = re.search(r'BENEFICIARIOS:\s*(\d{3,})', texto)
     if m:
         datos['beneficiarios'] = int(m.group(1))
@@ -287,10 +315,10 @@ def generar(slug):
         with open(cache, encoding='utf-8') as fh:
             filas = json.load(fh)
     else:
-        filas = leer(ruta)
+        filas = f.get('lector', leer)(ruta)
         with open(cache, 'w', encoding='utf-8') as fh:
             json.dump(filas, fh, ensure_ascii=False)
-    car =caratula_pdf(ruta) if ruta.endswith('.pdf') else caratula_xlsx(ruta)
+    car = f.get('caratula') or (caratula_pdf(ruta) if ruta.endswith('.pdf') else caratula_xlsx(ruta))
 
     # Entidad = mismo prestador en el mismo domicilio
     entidades = {}

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getObraSocialBySlug } from '@/lib/data/obras-sociales'
+import { osDeCartilla } from '@/lib/data/sindicales-cartillas/os'
 import { CARTILLAS_SINDICALES, contar, getCartillaSindical, getProvinciaCartilla, provinciasConPagina } from '@/lib/data/sindicales-cartillas'
 import { PaginaCartillaProvincia, urlCartilla } from '@/components/obras-sociales/CartillaSindical'
 import { SITE_URL, OG_IMAGE } from '@/lib/utils'
@@ -19,7 +19,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, prov } = await params
-  const os = getObraSocialBySlug(slug)
+  const os = osDeCartilla(slug)
   const c = getCartillaSindical(slug)
   const p = c && getProvinciaCartilla(c, prov)
   if (!os || !c || !p) return {}
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CartillaSindicalProvinciaPage({ params }: Props) {
   const { slug, prov } = await params
-  const os = getObraSocialBySlug(slug)
+  const os = osDeCartilla(slug)
   const c = getCartillaSindical(slug)
   const p = c && getProvinciaCartilla(c, prov)
   if (!os || !c || !p) notFound()
