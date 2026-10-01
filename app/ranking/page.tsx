@@ -62,7 +62,7 @@ const faqs = [
 
 export const metadata: Metadata = {
   title: `Mejores prepagas de Argentina ${ANIO}: ranking por categoría y precio`,
-  description: `¿Cuál es la mejor prepaga? Ranking ${MES}: mejor prepaga en general, más económica y mejor para el interior, con precio oficial desde y satisfacción de las ${prepagas.length} prepagas.`,
+  description: `¿Cuál es la mejor prepaga? Ranking ${MES} por categoría: mejor en general, más económica y mejor cartilla, con precio oficial y satisfacción real.`,
   alternates: {
     canonical: `${SITE_URL}/ranking`,
     // Par recíproco de las versiones en inglés y ruso del ranking (las dos

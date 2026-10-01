@@ -217,7 +217,7 @@ export default async function CartillaPrepagaPage({ params, searchParams }: Prop
               href={`/prepagas/${prep.slug}`}
               className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-600 font-semibold rounded-xl transition-all text-sm"
             >
-              Ver planes y precios →
+              Ver planes y precios de {prep.nombre} →
             </Link>
           </div>
           <a

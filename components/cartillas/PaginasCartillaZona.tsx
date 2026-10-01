@@ -344,6 +344,9 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
               Buscar en otra zona
             </Link>
           </div>
+          <Link href={`/prepagas/${c.prepagaSlug}`} className="inline-block mt-3 text-sm font-semibold text-gray-500 hover:text-[#E8002D] transition-colors">
+            Ver planes y precios de {c.prepagaNombre} →
+          </Link>
           {planes.length > 1 && (
             <div className="mt-6">
               <div className="text-xs font-semibold text-gray-500 mb-2">Filtrar por plan:</div>
