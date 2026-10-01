@@ -595,14 +595,31 @@ export const obrasSociales: ObraSocialData[] = [
     derivacion: true,
     web: 'unionpersonal.com.ar',
     fuenteOficial: 'https://www.unionpersonal.com.ar/',
-    verificado: '2026-09-23',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Riesgo de vida', valor: '0800-199-0911' },
+      { etiqueta: 'Urgencias y visitas médicas', valor: '0810-222-0085' },
+      { etiqueta: 'Atención al afiliado', valor: '0810-555-1100' },
+      { etiqueta: 'Urgencias odontológicas', valor: '0810-362-0047' },
+      { etiqueta: 'Urgencias psiquiátricas', valor: '0810-555-1100' },
+      { etiqueta: 'Desde el exterior', valor: '+5411 4516-8102' },
+    ],
+    // Gancho de conversión (1-oct-2026): igual que en OSECAC, "union personal
+    // turnos" (6.600/mes) le gana a "cartilla union personal" y "teléfono"
+    // (5.400 cada una) — confirmado con Google Ads Keyword Planner. Acá
+    // además no hay portal propio de turnos online (se gestiona por
+    // WhatsApp o los teléfonos de atención), así que el dolor real es más
+    // fuerte todavía.
+    ganchoConversion: '¿Tenés que esperar para conseguir un turno? Derivá tus aportes a una prepaga, mejorá tu cobertura y sacá turno online al toque.',
     faq: [
       { q: '¿Unión Personal es la obra social de UPCN?', a: 'Sí. Es la Obra Social de la Unión del Personal Civil de la Nación (UPCN).' },
       { q: '¿Qué es Accord Salud respecto de Unión Personal?', a: 'Son los planes superadores de Unión Personal: se incorporaron en 1998 para mejorar la cobertura de la obra social.' },
       { q: '¿Cuál es el teléfono de Unión Personal?', a: 'Según su web: riesgo de vida 0800-199-0911; urgencias y visitas médicas 0810-222-0085; atención 0810-555-1100; urgencias odontológicas 0810-362-0047.' },
+      { q: '¿Cómo saco un turno en Unión Personal?', a: 'No tiene un portal de turnos 100% autogestionable: se pide por WhatsApp (ícono en la web oficial, completando los datos que te piden) o llamando a los teléfonos de atención (0810-555-1100 / 0810-222-0085).' },
+      { q: '¿Dónde quedan las sucursales de Unión Personal?', a: 'La Casa Central está en Tucumán 949, CABA. También tiene sucursales en Avellaneda (Buenos Aires), Corrientes, Formosa, Santa Rosa (La Pampa), Mendoza, San Carlos de Bariloche (Río Negro) y Ushuaia (Tierra del Fuego), todas de lunes a viernes de 9:30 a 16:00.' },
       { q: '¿Puedo pasar de Unión Personal a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis y comparamos con lo que tenés.' },
     ],
-    keywords: ['union personal', 'union personal obra social', 'union personal cartilla', 'union personal telefono', 'obra social upcn', 'upcn obra social'],
+    keywords: ['union personal', 'union personal obra social', 'union personal cartilla', 'union personal telefono', 'union personal turnos', 'cartilla union personal', 'obra social upcn', 'upcn obra social'],
   },
   {
     // Actualizado 30-sep-2026: el Decreto 88/2026 (6-feb-2026) dispuso la
