@@ -9,6 +9,13 @@ import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
 import { registroDeObraSocial, codigoSeisDigitos, nombreLegible } from '@/lib/data/registro-sssalud'
 import { FICHAS_REGISTRO, fichaRegistro } from '@/lib/data/fichas-registro'
 import { FichaRegistroPage } from '@/components/obras-sociales/FichaRegistro'
+import { DelegacionesOsecac } from '@/components/obras-sociales/DelegacionesOsecac'
+import {
+  delegacionesPorProvincia,
+  DESCARGADO_OSECAC_DELEGACIONES,
+  NOTA_PROVINCIAS_PARCIALES_OSECAC,
+  PROVINCIAS_PARCIALES_OSECAC,
+} from '@/lib/data/sindicales-zonas/osecac'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -234,6 +241,25 @@ export default async function ObraSocialPage({ params }: Props) {
                 )
               })}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* Delegaciones de OSECAC (1-oct-2026): 382 delegaciones/agencias/sub-agencias/
+          corresponsalías reales, scrapeadas del buscador oficial. "osecac
+          delegaciones" y "osecac [ciudad]" son búsquedas reales — ver
+          scripts/sindicales-osecac/scrape.py. */}
+      {os.slug === 'osecac' && (
+        <section id="delegaciones" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Delegaciones y agencias de OSECAC en todo el país</h2>
+            <p className="text-sm text-gray-500 mb-5">Buscá la más cercana por provincia o localidad: dirección, teléfono y horario.</p>
+            <DelegacionesOsecac
+              grupos={delegacionesPorProvincia()}
+              descargado={DESCARGADO_OSECAC_DELEGACIONES}
+              notaProvinciasParciales={NOTA_PROVINCIAS_PARCIALES_OSECAC}
+              provinciasParciales={PROVINCIAS_PARCIALES_OSECAC}
+            />
           </div>
         </section>
       )}

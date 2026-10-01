@@ -998,8 +998,9 @@ export const obrasSociales: ObraSocialData[] = [
       { q: '¿Cómo saco turno en OSECAC?', a: 'Por teléfono al 0810-999-0101 (con el DNI del paciente a mano) o de forma online con tu usuario web o la app Mi OSECAC.' },
       { q: '¿Desde cuándo existe OSECAC?', a: 'Desde 1964: nació como I.M.M.A. (Instituto Médico Mercantil Argentina).' },
       { q: '¿Puedo pasar de OSECAC a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+      { q: '¿Dónde queda la delegación de OSECAC más cercana?', a: 'OSECAC tiene delegaciones, agencias, sub-agencias y corresponsalías en todo el país. Buscá la tuya por provincia o localidad en el listado de delegaciones de esta misma página.' },
     ],
-    keywords: ['osecac', 'osecac telefono', 'osecac turnos', 'osecac cartilla', 'osecac guardias', 'osecac farmacias', 'osecac delegaciones', 'obra social empleados de comercio'],
+    keywords: ['osecac', 'osecac telefono', 'osecac turnos', 'osecac cartilla', 'osecac guardias', 'osecac farmacias', 'osecac delegaciones', 'osecac delegaciones por provincia', 'obra social empleados de comercio'],
   },
   {
     // Reescrita 23-sep-2026 con datos de ospesalud.com.ar (sitio oficial; no
