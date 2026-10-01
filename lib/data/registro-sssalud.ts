@@ -93,7 +93,7 @@ const OBRA_SOCIAL_A_REGISTRO: Record<string, string | null> = {
   'sancor-os': 'sancor-salud',
   issn: 'issn-neuquen',
   ipsst: 'ipsst-tucuman',
-  iosper: 'iosper-entre-rios',
+  oser: 'iosper-entre-rios',
   insssep: 'insssep-chaco',
   ioscor: 'ips-corrientes',
   ospat: null,

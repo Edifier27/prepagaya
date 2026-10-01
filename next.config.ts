@@ -240,6 +240,8 @@ const nextConfig: NextConfig = {
         destination: "/prepagas-economicas",
         permanent: true,
       },
+      // IOSPER pasó a ser OSER en 2025 (Ley 11.202): misma obra social (1-oct-2026)
+      { source: "/obras-sociales/iosper", destination: "/obras-sociales/oser", permanent: true },
       // UPCN Salud → Unión Personal, el nombre con el que se busca (23-sep-2026)
       {
         source: "/obras-sociales/upcn",
