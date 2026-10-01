@@ -1,0 +1,175 @@
+<style>
+    #map-container {
+        height: 350px
+    }
+
+    div.scroll {
+        width: 100%;
+        height: 100px;
+        overflow: auto;
+    }
+</style>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBdZ9KsibBWyVxdVOF3cFkIeNB1eoEYYc"></script>
+
+
+<script type="text/javascript">
+    function CerrarError() {
+    
+        $('#AlertaGeneral').hide('fade');
+    }
+   
+</script>
+
+
+                <div class="row" style="margin-top:20px">
+                    <div class="col-lg-8 col-xs-12">
+
+                        <h3> Delegación: SAN LUIS </h3>
+
+                        <ul>
+
+                            <li><strong>Dirección:</strong> BELGRANO 746 , SAN LUIS &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </li>
+                            
+                                <li><strong>Teléfono:</strong> 0266- 442-2161/3535 / 443-7181 / 444-7165 </li>
+                                                            <li><strong>Email / WhatsApp:</strong> presta_sluis@osecac.org.ar</li>
+                                                            <li><strong>Horario:</strong> 07:00 A 18:00 </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-33.3036189/-66.3334685/SAN LUIS" data-i>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                </a>
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                        
+                    </div>
+
+                </div>
+                <div style="clear:both"></div>
+                <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: MERLO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> SAN LUIS </li>
+                                <li><strong>Dirección:</strong> POETA AG&#220;ERO 685/687, MERLO (SAN LUIS) </li>
+                                
+                                    <li><strong>Teléfono:</strong> 02656 47 3473 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_sluis@osecac.org.ar</li>
+                                                                    <li><strong>Horario:</strong> 08:30 A 12:30 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-32.3456283/-65.0157088/MERLO" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                <div class="row" style="margin-top:20px">
+                    <div class="col-lg-8 col-xs-12">
+
+                        <h3> Delegación: VILLA MERCEDES </h3>
+
+                        <ul>
+
+                            <li><strong>Dirección:</strong> SAN MARTIN 735 , VILLA MERCEDES &#160;&#160;&#160;&#160;&#160; </li>
+                            
+                                <li><strong>Teléfono:</strong> 02657- 42-1297/9237 / 43-1323 </li>
+                                                            <li><strong>Email / WhatsApp:</strong> osecacvillamercedes@gmail.com</li>
+                                                            <li><strong>Horario:</strong> 08:00 A 13:00 </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-33.6802494/-65.4611745/VILLA MERCEDES" data-i>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                </a>
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                        
+                    </div>
+
+                </div>
+                <div style="clear:both"></div>
+                <hr class="style4" style="margin:20px 0">
+
+
+    <div class="text-center">
+        <ul class="pagination">
+
+                <li class="disabled"><a>&laquo;</a></li>
+
+                        <li class="active"><a>1</a></li>
+                            <li class="disabled"><a>&raquo;</a></li>
+
+        </ul>
+    </div>
+
+<div class="modal fade" id="mapmodals">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="title_id"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="map-container"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript">
+
+    function map_init(var_lati, var_long, var_markerTitle, var_contentString) {
+        var var_location = new google.maps.LatLng(var_lati, var_long);
+        var var_mapoptions = {
+            zoom: 18,
+            mapTypeControl: false,
+            center: var_location,
+            panControl: false,
+            rotateControl: false,
+            streetViewControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var var_map = new google.maps.Map(document.getElementById("map-container"), var_mapoptions);
+        var marker = new google.maps.Marker({
+            position: var_location,
+            map: var_map,
+            title: var_markerTitle,
+            draggable: false,
+        });
+        $('#mapmodals').on('shown.bs.modal', function () {
+            google.maps.event.trigger(var_map, "resize");
+            var_map.setCenter(var_location);
+        });
+    }
+    function control(elem) {
+
+        var id = $(elem).data('assigned-id');
+        var vector = id.split('/');
+        var latitud = vector[0].replace(",", ".");
+        var longitud = vector[1].replace(",", ".");
+        var var_mapTitle = vector[2];
+
+        map_init(latitud, longitud, vector[2], "");
+
+        $(".modal-header #title_id").html(var_mapTitle);
+        $('#mapmodals').modal('show');
+    };
+</script>
