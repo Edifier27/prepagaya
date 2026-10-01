@@ -1301,6 +1301,116 @@ export const obrasSociales: ObraSocialData[] = [
     keywords: ['oschoca', 'oschoca telefono', 'oschoca obra social', 'obra social camioneros', 'obra social choferes de camiones'],
   },
   {
+    // Nueva (1-oct-2026): obra social bancaria. Pedido puntual de Darío: tiene
+    // un convenio real con Swiss Medical (confirmado — identidadsindical.ar
+    // y otras notas: "la Obra Social Bancaria firmó un convenio con Swiss
+    // Medical" con 20% de descuento para sus beneficiarios). OSBA pasó a
+    // llamarse formalmente OSSSB (Obra Social Servicios Sociales Bancarios)
+    // pero "bancarios obra social"/"OSBA" sigue siendo como la busca la
+    // gente. Teléfonos verificados en osssb.com.
+    slug: 'osba-bancarios',
+    nombre: 'OSBA (Bancarios)',
+    emoji: '🏦',
+    tipo: 'sindical',
+    titulo: 'OSBA / OSSSB: la obra social de los bancarios, con convenio Swiss Medical (2026)',
+    metaDescripcion: 'OSBA (hoy OSSSB), la obra social de los trabajadores bancarios: tiene un convenio con Swiss Medical con 20% de descuento. Teléfonos, cartilla y cómo acceder al convenio.',
+    descripcion: 'La obra social de los trabajadores bancarios, hoy llamada formalmente OSSSB (Obra Social Servicios Sociales Bancarios).',
+    intro: 'OSBA, conocida formalmente como OSSSB (Obra Social Servicios Sociales Bancarios), es la obra social de los trabajadores del sector bancario. Firmó un convenio con Swiss Medical que le da a sus beneficiarios acceso a planes de Swiss Medical con 20% de descuento — una vía distinta a la derivación de aportes general, pensada específicamente para afiliados bancarios.',
+    quienesPuedenAfiliarse: [
+      'Trabajadores del sector bancario en relación de dependencia',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Cartilla propia con farmacias y ópticas',
+      'Urgencias psiquiátricas, oftalmológicas y odontológicas con prestadores de convenio',
+      'Acceso a planes de Swiss Medical con 20% de descuento (convenio OSBA-Swiss Medical)',
+    ],
+    diferenciadores: [
+      'Convenio directo con Swiss Medical, con descuento del 20% para sus beneficiarios',
+    ],
+    pros: [
+      'Convenio con Swiss Medical ya armado: no hace falta derivar aportes para acceder a un descuento',
+      'Call center y canales de comunicación las 24 horas para urgencias',
+    ],
+    contras: [
+      'El 20% de descuento de Swiss Medical no es lo mismo que la cobertura completa de un plan propio: conviene comparar el costo final',
+    ],
+    derivacion: true,
+    web: 'osssb.com',
+    fuenteOficial: 'https://www.osssb.com/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Call Center', valor: '0800-222-3462', detalle: 'Lunes a viernes de 9 a 16:30 hs' },
+      { etiqueta: 'Atención 24 hs', valor: '11-2761-0695' },
+      { etiqueta: 'Urgencias psiquiátricas (APPSI)', valor: '11-2257-2258' },
+      { etiqueta: 'Urgencias oftalmológicas (CITO)', valor: '4123-9300' },
+      { etiqueta: 'Urgencias odontológicas (SIACO CABA)', valor: '5253-3400', detalle: 'Las 24 hs' },
+    ],
+    // Gancho de conversión distinto al resto: acá el angulo real no es
+    // "derivá tus aportes", es "ya tenés acceso a Swiss Medical con
+    // descuento por tu obra social — mirá si te conviene ir más a fondo
+    // y contratarlo directo". Aprovecha que ya tenemos toda la ficha de
+    // Swiss Medical armada en el sitio.
+    ganchoConversion: 'Como bancario ya tenés 20% de descuento en Swiss Medical por el convenio con OSBA — mirá los planes completos y cotizá cuánto te saldría.',
+    faq: [
+      { q: '¿OSBA y OSSSB son la misma obra social?', a: 'Sí: OSBA (Obra Social Bancaria Argentina) pasó a llamarse formalmente OSSSB (Obra Social Servicios Sociales Bancarios), pero mucha gente la sigue buscando como OSBA.' },
+      { q: '¿Es cierto que OSBA tiene un convenio con Swiss Medical?', a: 'Sí: la Obra Social Bancaria firmó un convenio con Swiss Medical que da a sus beneficiarios acceso a planes de Swiss Medical con 20% de descuento.' },
+      { q: '¿Cuál es el teléfono de OSBA?', a: 'Call Center: 0800-222-3462 (lunes a viernes de 9 a 16:30). Atención las 24 horas: 11-2761-0695.' },
+      { q: '¿Me conviene el 20% de descuento o derivar mis aportes directo a Swiss Medical?', a: 'Depende del plan y de tu sueldo: el 20% de descuento es un beneficio adicional sobre el precio de lista, pero derivando tus aportes podés terminar pagando menos de tu bolsillo según el plan. Cotizá los dos caminos para comparar.' },
+    ],
+    keywords: ['osba', 'osba obra social', 'obra social bancaria', 'osssb', 'bancarios obra social', 'osba swiss medical', 'convenio osba swiss medical'],
+  },
+  {
+    // Nueva (1-oct-2026): obra social de Luz y Fuerza. Nombre oficial OSFATLyF
+    // (Obra Social de la Federación Argentina de Trabajadores de Luz y
+    // Fuerza). No se encontró un teléfono público claro en su sitio oficial
+    // (osfatlyf.org) — se linkea el sitio en vez de inventar un número.
+    slug: 'luz-y-fuerza',
+    nombre: 'OSFATLyF (Luz y Fuerza)',
+    emoji: '⚡',
+    tipo: 'sindical',
+    titulo: 'OSFATLyF: la obra social de Luz y Fuerza — cobertura y afiliación (2026)',
+    metaDescripcion: 'OSFATLyF, la obra social de la Federación Argentina de Trabajadores de Luz y Fuerza: qué cubre, cómo afiliarte y si te conviene derivar tus aportes a una prepaga.',
+    descripcion: 'La obra social de la Federación Argentina de Trabajadores de Luz y Fuerza.',
+    intro: 'OSFATLyF (Obra Social de la Federación Argentina de Trabajadores de Luz y Fuerza) es la obra social de los trabajadores del sector eléctrico nucleados en Luz y Fuerza. Tiene app móvil propia para gestionar la credencial y trámites.',
+    quienesPuedenAfiliarse: [
+      'Trabajadores del sector eléctrico en relación de dependencia, nucleados en Luz y Fuerza',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'App móvil propia para credencial y trámites',
+      'Cobertura de discapacidad, salud mental y violencia de género',
+    ],
+    diferenciadores: [
+      'App móvil propia para gestión de credencial y trámites',
+    ],
+    pros: [
+      'Gestión digital de la credencial por app',
+    ],
+    contras: [
+      'No publica un teléfono de atención claro en su sitio oficial: la vía de contacto es el formulario web',
+    ],
+    derivacion: true,
+    web: 'osfatlyf.org',
+    fuenteOficial: 'https://osfatlyf.org/',
+    verificado: '2026-10-01',
+    faq: [
+      { q: '¿Cuál es el sitio oficial de OSFATLyF?', a: 'osfatlyf.org. No publica un teléfono de atención al público de forma clara; el contacto se hace por el formulario web de la sección "Contacto".' },
+      { q: '¿Puedo pasar de OSFATLyF a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['osfatlyf', 'luz y fuerza obra social', 'obra social luz y fuerza'],
+  },
+  {
     slug: 'ospoce',
     nombre: 'OSPOCE',
     emoji: '🏛️',
