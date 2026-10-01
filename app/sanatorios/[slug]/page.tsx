@@ -8,6 +8,7 @@ import { idCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import { obrasSocialesEnSanatorio } from '@/lib/data/sanatorios-obras-sociales'
 import { CARTILLAS_SINDICALES } from '@/lib/data/sindicales-cartillas'
+import { pediatriaDeSanatorio } from '@/lib/data/sanatorios-pediatria'
 
 // "¿Qué prepagas atienden en el Hospital X?" (23-sep-2026): búsqueda que la
 // competencia cubre con notas escritas a mano. Acá todo sale de las cartillas
@@ -74,6 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `que obras sociales atiende el ${s.nombre.toLowerCase()}`,
       `${s.nombre.toLowerCase()} prepaga`,
       ...(FAQ_EXTRA[slug] ? [`${s.nombre.toLowerCase()} es publico o privado`] : []),
+      ...(pediatriaDeSanatorio(slug) ? [`pediatras ${s.nombre.toLowerCase()}`, `${s.nombre.toLowerCase()} pediatria`, `pediatra ${s.nombre.toLowerCase().replace(/^sanatorio /, '')}`] : []),
     ],
   }
 }
@@ -88,6 +90,8 @@ export default async function SanatorioPage({ params }: Props) {
   const conInternacion = lista.filter((p) => p.desde)
   // Obras sociales con este sanatorio en su cartilla oficial (1-oct-2026)
   const obrasSociales = obrasSocialesEnSanatorio(slug)
+  // Pediatría (1-oct-2026): solo conteos del cuerpo médico oficial, sin nombres
+  const pediatria = pediatriaDeSanatorio(slug)
   // "Mis sanatorios" con este ya cargado, para sumar los otros de la persona.
   const idBuscador = idCobertura(s.claves, s.excluir, s.ciudad)
   const hrefBuscador = idBuscador ? `/buscar-por-sanatorio?s=${encodeURIComponent(idBuscador)}` : '/buscar-por-sanatorio'
@@ -121,6 +125,12 @@ export default async function SanatorioPage({ params }: Props) {
       ? [{
           q: `¿Qué obras sociales atiende ${art(s.nombre)} ${s.nombre}?`,
           a: `Según los listados oficiales de prestadores que cada obra social presenta ante la Superintendencia de Servicios de Salud, ${art(s.nombre)} ${s.nombre} figura en ${obrasSociales.length === 1 ? 'la cartilla de ' : 'estas cartillas: '}${obrasSociales.map((o) => `${o.osNombre}: ${tiposOs(o)}`).join('; ')}. Relevamos las ${NUM_OS_RELEVADAS} obras sociales sindicales que publican ese listado: puede trabajar con otras.`,
+        }]
+      : []),
+    ...(pediatria
+      ? [{
+          q: `¿Cuántos pediatras tiene ${art(s.nombre)} ${s.nombre}?`,
+          a: `Según el cuerpo médico que publica ${art(s.nombre)} ${s.nombre}, atienden ${pediatria.totalGenerales} pediatras de pediatría general (${pediatria.generalesPorSede.map((x) => `${x.n} en ${x.sede}`).join(', ').replace(/, ([^,]*)$/, ' y $1')}) y ${pediatria.totalSubespecialistas} subespecialistas pediátricos, como neumonología, cardiología y dermatología. Para atenderte con ellos, tu prepaga tiene que incluir el sanatorio en tu plan.`,
         }]
       : []),
     ...(FAQ_EXTRA[slug] ?? []),
@@ -289,6 +299,44 @@ export default async function SanatorioPage({ params }: Props) {
 
       {/* "¿Qué obras sociales atiende?" (1-oct-2026): cruce con las cartillas
           oficiales de obras sociales (lib/data/sanatorios-obras-sociales.ts) */}
+      {/* Pediatría (1-oct-2026): conteos del cuerpo médico oficial, sin nombres */}
+      {pediatria && (
+        <section id="pediatria" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Pediatría en {art(s.nombre)} {s.nombre}</h2>
+            <p className="text-sm text-gray-600 mb-5 max-w-3xl">
+              {pediatria.totalGenerales} pediatras de pediatría general y {pediatria.totalSubespecialistas} subespecialistas pediátricos, según el{' '}
+              <a href={pediatria.fuente} target="_blank" rel="noopener noreferrer" className="underline">cuerpo médico oficial</a>{' '}
+              del sanatorio ({new Date(`${pediatria.verificado}T12:00:00`).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' })}). Ahí podés ver quiénes son y en qué sede atiende cada uno.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+              {pediatria.generalesPorSede.map((x) => (
+                <div key={x.sede} className="rounded-xl border border-gray-200 p-4">
+                  <div className="text-2xl font-black text-gray-900 tabular-nums">{x.n}</div>
+                  <div className="text-xs text-gray-500 mt-1">pediatras en {x.sede}</div>
+                </div>
+              ))}
+            </div>
+            <h3 className="text-sm font-bold text-gray-900 mb-2">Subespecialidades pediátricas</h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 mb-6">
+              {pediatria.subespecialidades.map((x) => (
+                <li key={x.nombre} className="flex justify-between gap-3 text-sm border-b border-gray-100 py-1">
+                  <span className="text-gray-700">{x.nombre}</span>
+                  <span className="font-semibold text-gray-900 tabular-nums">{x.n}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="#cotizar" className="group flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white p-5 hover:border-[#E8002D] transition-colors">
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-gray-900">¿Tu cobertura dejó {art(s.nombre)} {s.nombre} y no querés cambiar de pediatra?</div>
+                <div className="text-sm text-gray-600 mt-0.5">Elegí un plan que lo incluya: arriba tenés desde qué plan lo cubre cada prepaga.</div>
+              </div>
+              <span className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm">Cotizar →</span>
+            </a>
+          </div>
+        </section>
+      )}
+
       {obrasSociales.length > 0 && (
         <section id="obras-sociales" className="py-10 bg-gray-50 border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">

@@ -44,6 +44,7 @@ export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'sanatorio-agote', nombre: 'Sanatorio Agote', claves: ['agote'] },
   { slug: 'instituto-alexander-fleming', nombre: 'Instituto Alexander Fleming', claves: ['fleming'], excluir: ['trinidad'] },
   { slug: 'hospital-cemic', nombre: 'Hospital Universitario CEMIC', claves: ['cemic'] },
+  { slug: 'sanatorio-las-lomas', nombre: 'Sanatorio Las Lomas', claves: ['lomas'], excluir: ['zamora', 'policl', 'ojos', 'odontolog', 'centro', 'mirador'] },
   // Interior: los que figuran en 3 o más cartillas oficiales de su ciudad
   { slug: 'sanatorio-allende', nombre: 'Sanatorio Allende', claves: ['allende'], excluir: ['transito', 'caceres'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
   { slug: 'clinica-reina-fabiola', nombre: 'Clínica Universitaria Reina Fabiola', claves: ['reina', 'fabiola'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
