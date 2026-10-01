@@ -1811,6 +1811,109 @@ export const obrasSociales: ObraSocialData[] = [
     keywords: ['ospes', 'ospes obra social', 'obra social estaciones de servicio', 'obra social gomerias', 'obra social garages'],
   },
   {
+    // Nueva (1-oct-2026): mismo slug 'ospia' que ya existía en
+    // FICHAS_REGISTRO — esta entrada la reemplaza. Volumen moderado
+    // ("ospia cartilla"/"ospia telefono" empatados, 110/mes cada uno) pero
+    // fuente oficial muy sólida: 60+ delegaciones y presencia en 17+
+    // provincias, verificado 1-oct-2026 contra ospia.org.ar.
+    slug: 'ospia',
+    nombre: 'OSPIA (Industria de la Alimentación)',
+    emoji: '🍞',
+    tipo: 'sindical',
+    titulo: 'OSPIA: la obra social de la industria de la alimentación (2026)',
+    metaDescripcion: 'OSPIA, la obra social de los trabajadores de la industria alimenticia: línea gratuita 0800-666-6774. Más de 60 delegaciones en todo el país, cartilla y cómo derivar tus aportes.',
+    descripcion: 'La obra social del personal de la industria de la alimentación, con delegaciones en todo el país.',
+    intro: 'OSPIA (Obra Social del Personal de la Industria de la Alimentación) cubre a los trabajadores de la industria alimenticia, con más de 60 delegaciones en 17 provincias y una línea gratuita nacional.',
+    quienesPuedenAfiliarse: [
+      'Trabajadores de la industria de la alimentación en relación de dependencia',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Cartilla prestacional propia, actualizada por período',
+      'App con credencial digital',
+      'Programas de discapacidad y salud mental',
+    ],
+    diferenciadores: [
+      'Más de 60 delegaciones en 17 provincias',
+    ],
+    pros: [
+      'Línea gratuita de atención en todo el país',
+      'Presencia federal: no se concentra solo en CABA',
+    ],
+    contras: [
+      'La cartilla y los prestadores disponibles varían según la delegación',
+    ],
+    derivacion: true,
+    web: 'ospia.org.ar',
+    fuenteOficial: 'https://www.ospia.org.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Línea gratuita (todo el país)', valor: '0800-666-6774' },
+    ],
+    ganchoConversion: '¿La cartilla de OSPIA no te alcanza en tu zona? Derivá tus aportes a una prepaga con más sanatorios cerca tuyo.',
+    faq: [
+      { q: '¿Cuál es el teléfono de OSPIA?', a: '0800-666-6774, línea gratuita en todo el país.' },
+      { q: '¿OSPIA tiene delegaciones en todo el país?', a: 'Sí: más de 60 delegaciones en más de 17 provincias, según la propia obra social.' },
+      { q: '¿Puedo pasar de OSPIA a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['ospia', 'ospia obra social', 'obra social alimentacion', 'ospia telefono', 'ospia cartilla'],
+  },
+  {
+    // Nueva (1-oct-2026): mismo slug 'ase' que ya existía en FICHAS_REGISTRO
+    // — esta entrada la reemplaza. "ase obra social" tiene 1.000/mes.
+    // Verificado 1-oct-2026 contra ase.com.ar, el sitio oficial.
+    slug: 'ase',
+    nombre: 'ASE (Personal de Dirección)',
+    emoji: '💼',
+    tipo: 'sindical',
+    titulo: 'ASE: la obra social del personal de dirección — Acción Social de Empresarios (2026)',
+    metaDescripcion: 'ASE (Acción Social de Empresarios), la obra social del personal de dirección de empresas: línea nacional 0810-3333-273. Cobertura, gestiones online y cómo derivar tus aportes.',
+    descripcion: 'La obra social del personal de dirección de empresas, administrada por Acción Social de Empresarios.',
+    intro: 'ASE (Acción Social de Empresarios) es la obra social del personal de dirección de empresas desde 1977, con filiales en el país y gestiones online para no tener que ir de forma presencial.',
+    quienesPuedenAfiliarse: [
+      'Personal de dirección de empresas en relación de dependencia',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Gestiones y trámites online, sin necesidad de ir a una filial',
+      'Filiales en el país',
+    ],
+    diferenciadores: [
+      'Pensada específicamente para personal de dirección y mandos gerenciales',
+    ],
+    pros: [
+      'Línea nacional gratuita única para todo el país',
+      'Trámites online para evitar la presencialidad',
+    ],
+    contras: [
+      'Pensada para personal jerárquico: la cartilla puede no ajustarse a otros perfiles',
+    ],
+    derivacion: true,
+    web: 'ase.com.ar',
+    fuenteOficial: 'https://www.ase.com.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Línea nacional', valor: '0810-3333-273' },
+    ],
+    ganchoConversion: '¿Querés una cobertura premium para personal jerárquico? Cotizá una prepaga y compará contra ASE.',
+    faq: [
+      { q: '¿Cuál es el teléfono de ASE?', a: '0810-3333-273, línea nacional desde cualquier parte del país.' },
+      { q: '¿Quién puede afiliarse a ASE?', a: 'Principalmente personal de dirección de empresas, aunque como cualquier obra social con código, se puede elegir por la opción de cambio.' },
+      { q: '¿Puedo pasar de ASE a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['ase obra social', 'ase accion social de empresarios', 'ase telefono', 'obra social personal de direccion'],
+  },
+  {
     slug: 'ospoce',
     nombre: 'OSPOCE',
     emoji: '🏛️',
