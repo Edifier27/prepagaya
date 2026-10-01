@@ -1700,6 +1700,117 @@ export const obrasSociales: ObraSocialData[] = [
     keywords: ['ospacp', 'ospacp telefono', 'obra social empleada domestica', 'obra social casas particulares', 'obra social personal domestico'],
   },
   {
+    // Nueva (1-oct-2026): mismo slug 'osmedica' que ya existía en
+    // FICHAS_REGISTRO — esta entrada la reemplaza. Otro hallazgo grande:
+    // "osmedica cartilla" sola tiene 5.400/mes (Google Ads Keyword Planner),
+    // más que la base "osmedica" de muchas otras sindicales juntas.
+    // Verificado 1-oct-2026 contra osmedica.com.ar, el sitio oficial.
+    slug: 'osmedica',
+    nombre: 'OSMEDICA (Médicos de CABA)',
+    emoji: '🩺',
+    tipo: 'sindical',
+    titulo: 'OSMEDICA: la obra social de los médicos de CABA — cartilla y teléfonos (2026)',
+    metaDescripcion: 'OSMEDICA, la obra social de los médicos de la Ciudad de Buenos Aires: centro de atención 0800-999-5396, urgencias 0810 345 0762. Cartilla, sedes y cómo derivar tus aportes.',
+    descripcion: 'La obra social de los médicos de la Ciudad de Buenos Aires.',
+    intro: 'OSMEDICA (Obra Social de los Médicos de la Ciudad de Buenos Aires) es la obra social de los profesionales médicos porteños. Tiene centros médicos propios y varias sedes administrativas en CABA y GBA.',
+    quienesPuedenAfiliarse: [
+      'Médicos de la Ciudad de Buenos Aires en relación de dependencia',
+      'Otros trabajadores en relación de dependencia, por opción de cambio',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Centros médicos propios',
+      'Emergencias médicas y médico a domicilio en CABA y GBA',
+      'Emergencias psiquiátricas las 24 horas en CABA y AMBA',
+    ],
+    diferenciadores: [
+      'Varias sedes propias en CABA y GBA (Metropolitana, Temperley, San Miguel, San Fernando, Lanús Este)',
+    ],
+    pros: [
+      'Centro de atención telefónica permanente para emergencias',
+      'Varias sedes propias, no solo cartilla de terceros',
+    ],
+    contras: [
+      'Las sedes propias se concentran en CABA y GBA',
+    ],
+    derivacion: true,
+    web: 'osmedica.com.ar',
+    fuenteOficial: 'https://osmedica.com.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Centro de atención (Sede Central)', valor: '0800-999-5396' },
+      { etiqueta: 'Emergencias médicas (CABA y GBA)', valor: '0810 345 0762', detalle: 'Gratuito, las 24 hs' },
+      { etiqueta: 'Emergencias psiquiátricas (CABA y AMBA)', valor: '11 4192-9150', detalle: 'Las 24 hs, los 365 días' },
+    ],
+    // Gancho de conversión (1-oct-2026): "cartilla" es, por lejos, el
+    // sub-intent dominante (5.400/mes vs 390/mes de "telefono").
+    ganchoConversion: '¿La cartilla de OSMEDICA no te alcanza? Derivá tus aportes a una prepaga con más especialistas y sanatorios.',
+    faq: [
+      { q: '¿Cuál es el teléfono de OSMEDICA?', a: 'Centro de atención: 0800-999-5396. Emergencias médicas en CABA y GBA: 0810 345 0762 (gratuito, las 24 hs). Emergencias psiquiátricas: 11 4192-9150.' },
+      { q: '¿Solo los médicos pueden afiliarse a OSMEDICA?', a: 'Nació para médicos de CABA, pero cualquier trabajador en relación de dependencia puede elegirla por la opción de cambio.' },
+      { q: '¿Puedo pasar de OSMEDICA a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['osmedica', 'osmedica cartilla', 'osmedica telefono', 'osmedica turnos', 'obra social de los medicos', 'obra social medicos caba'],
+  },
+  {
+    // Nueva (1-oct-2026): mismo slug 'ospes' que ya existía en
+    // FICHAS_REGISTRO — esta entrada la reemplaza. "ospes obra social" tiene
+    // 6.600/mes (Google Ads Keyword Planner). Verificado 1-oct-2026 contra
+    // ospes.org.ar, el sitio oficial (tiene delegaciones provinciales propias
+    // además de la administración nacional).
+    slug: 'ospes',
+    nombre: 'OSPES (Estaciones de Servicio)',
+    emoji: '⛽',
+    tipo: 'sindical',
+    titulo: 'OSPES: la obra social de estaciones de servicio y gomerías (2026)',
+    metaDescripcion: 'OSPES, la obra social del personal de estaciones de servicio, garages, lavaderos y gomerías: administración (011) 4956-0954, beneficiarios 0800-666-1230. Cobertura y afiliación.',
+    descripcion: 'La obra social del personal de estaciones de servicio, garages, playas de estacionamiento, lavaderos automáticos y gomerías de la República Argentina.',
+    intro: 'OSPES (Obra Social para el Personal de Estaciones de Servicio, Garages, Playas de Estacionamiento, Lavaderos Automáticos y Gomerías) cubre a los trabajadores de ese sector en todo el país, con una administración nacional en CABA y delegaciones provinciales propias.',
+    quienesPuedenAfiliarse: [
+      'Personal de estaciones de servicio, garages, playas de estacionamiento, lavaderos automáticos y gomerías, en relación de dependencia',
+      'Grupo familiar a cargo del titular',
+    ],
+    aportes: {
+      trabajador: '3% del salario bruto (Ley 23.660)',
+      empleador: '6% del salario bruto (Ley 23.660)',
+    },
+    cobertura: [
+      'PMO',
+      'Plan Médico Asistencial propio',
+      'Delegaciones provinciales',
+    ],
+    diferenciadores: [
+      'Administración nacional más delegaciones propias por provincia',
+    ],
+    pros: [
+      'Línea gratuita de beneficiarios',
+      'Delegaciones provinciales propias, no solo un canal centralizado',
+    ],
+    contras: [
+      'La atención varía según la delegación provincial: conviene confirmar los prestadores de tu zona',
+    ],
+    derivacion: true,
+    web: 'ospes.org.ar',
+    fuenteOficial: 'https://www.ospes.org.ar/',
+    verificado: '2026-10-01',
+    telefonos: [
+      { etiqueta: 'Administración (CABA)', valor: '(011) 4956-0954', detalle: 'También 4956-0321' },
+      { etiqueta: 'Beneficiarios', valor: '0800-666-1230' },
+    ],
+    ganchoConversion: '¿OSPES no te alcanza en tu zona? Derivá tus aportes a una prepaga con cartilla en todo el país.',
+    faq: [
+      { q: '¿Cuál es el teléfono de OSPES?', a: 'Administración: (011) 4956-0954 / 0321. Línea de beneficiarios: 0800-666-1230.' },
+      { q: '¿OSPES tiene delegaciones en todo el país?', a: 'Sí: además de la administración nacional en CABA, tiene delegaciones provinciales propias (por ejemplo en Santa Fe y La Pampa).' },
+      { q: '¿Puedo pasar de OSPES a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
+    ],
+    keywords: ['ospes', 'ospes obra social', 'obra social estaciones de servicio', 'obra social gomerias', 'obra social garages'],
+  },
+  {
     slug: 'ospoce',
     nombre: 'OSPOCE',
     emoji: '🏛️',
