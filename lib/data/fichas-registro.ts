@@ -17,6 +17,10 @@ export interface FichaRegistro {
   keywords: string[]
   /** Guía propia de la actividad, si hay */
   guia?: { slug: string; texto: string }
+  /** Teléfonos y canales de atención copiados de la web oficial (1-oct-2026) */
+  canales?: { etiqueta: string; valor: string; detalle?: string }[]
+  /** Página oficial de donde salen los canales */
+  fuenteCanales?: string
 }
 
 export const FICHAS_REGISTRO: FichaRegistro[] = [
@@ -32,7 +36,7 @@ export const FICHAS_REGISTRO: FichaRegistro[] = [
   // propia con slug 'osba-bancarios' en lib/data/obras-sociales.ts — ver
   // redirect en next.config.ts.
   { slug: 'osmata', nombreCorto: 'OSMATA (SMATA)', actividad: 'los mecánicos y afines del transporte automotor', keywords: ['osmata', 'obra social smata', 'osmata telefono'] },
-  { slug: 'ospsa-sanidad', nombreCorto: 'OSPSA (Sanidad)', actividad: 'el personal de la sanidad', keywords: ['ospsa', 'obra social sanidad', 'ospsa telefono'] },
+  { slug: 'ospsa-sanidad', nombreCorto: 'OSPSA (Sanidad)', actividad: 'el personal de la sanidad', keywords: ['ospsa', 'obra social sanidad', 'ospsa telefono'], fuenteCanales: 'https://sanidad.org.ar/contacto/', canales: [{ etiqueta: 'Urgencias y emergencias', valor: '0800-999-7264' }, { etiqueta: 'Sede', valor: '(011) 4943-9400', detalle: 'Dean Funes 1242, CABA' }, { etiqueta: 'WhatsApp', valor: '11 4030-7264' }] },
   { slug: 'osuthgra', nombreCorto: 'OSUTHGRA (Gastronómicos)', actividad: 'los trabajadores gastronómicos y hoteleros', keywords: ['osuthgra', 'obra social gastronomicos', 'osuthgra telefono'] },
   // 'osfatlyf' sacado de acá (1-oct-2026): ya tiene ficha completa propia
   // con slug 'luz-y-fuerza' en lib/data/obras-sociales.ts — ver redirect en
@@ -48,7 +52,7 @@ export const FICHAS_REGISTRO: FichaRegistro[] = [
   { slug: 'osapm', nombreCorto: 'OSAPM (Visitadores Médicos)', actividad: 'los agentes de propaganda médica', keywords: ['osapm', 'obra social visitadores medicos'] },
   { slug: 'osa', nombreCorto: 'Obra Social de Actores (OSA)', actividad: 'los actores', keywords: ['obra social de actores', 'osa actores'] },
   { slug: 'os-pe-pri', nombreCorto: 'OSPEPRI (Meopp)', actividad: 'los petroleros privados', keywords: ['meopp', 'ospepri', 'obra social petroleros privados'] },
-  { slug: 'ospsip', nombreCorto: 'OSPSIP (Seguridad)', actividad: 'el personal de seguridad comercial, industrial e investigaciones privadas', keywords: ['ospsip', 'obra social seguridad privada', 'obra social vigiladores'] },
+  { slug: 'ospsip', nombreCorto: 'OSPSIP (Seguridad)', actividad: 'el personal de seguridad comercial, industrial e investigaciones privadas', keywords: ['ospsip', 'obra social seguridad privada', 'obra social vigiladores'], fuenteCanales: 'https://www.ospsip.org.ar/', canales: [{ etiqueta: 'Emergencias médicas 24 h', valor: '0810-777-8733' }, { etiqueta: 'Call center', valor: '0800-333-6777', detalle: 'De 9 a 17' }, { etiqueta: 'WhatsApp atención al afiliado', valor: '+54 11 7194-2000' }] },
   { slug: 'ostel', nombreCorto: 'OSTEL (Telecomunicaciones)', actividad: 'el personal de las telecomunicaciones', keywords: ['ostel', 'obra social telefonicos'] },
   // Tanda 2 (25-sep-2026): 35 más, las de más búsqueda entre las que no
   // tenían página (sindicales grandes y de personal de dirección).
@@ -65,7 +69,7 @@ export const FICHAS_REGISTRO: FichaRegistro[] = [
   { slug: 'ospim', nombreCorto: 'OSPIM (Madereros)', actividad: 'el personal de la industria maderera', keywords: ['ospim', 'obra social madereros', 'ospim telefono'] },
   { slug: 'os-del-personal-de-la-industria-textil', nombreCorto: 'OSPIT (Textiles)', actividad: 'el personal de la industria textil', keywords: ['ospit', 'obra social textil', 'ospit telefono'] },
   { slug: 'ospiv', nombreCorto: 'OSPIV (Industria del Vestido)', actividad: 'el personal de la industria del vestido', keywords: ['ospiv', 'obra social del vestido', 'ospiv telefono'] },
-  { slug: 'os-del-personal-de-la-industria-del-plastico', nombreCorto: 'OSPIP (Plásticos)', actividad: 'el personal de la industria del plástico', keywords: ['ospip', 'obra social plasticos', 'ospip telefono'] },
+  { slug: 'os-del-personal-de-la-industria-del-plastico', nombreCorto: 'OSPIP (Plásticos)', actividad: 'el personal de la industria del plástico', keywords: ['ospip', 'obra social plasticos', 'ospip telefono'], fuenteCanales: 'https://www.ospip.org.ar/contacto/', canales: [{ etiqueta: 'Línea de consulta 24 h, todo el país', valor: '0800-222-6774' }, { etiqueta: 'Derivaciones', valor: '(011) 2120-8000', detalle: 'Interno 4268, lunes a viernes de 9 a 17' }, { etiqueta: 'Fuera de horario, fines de semana y feriados', valor: '0810-777-8733', detalle: 'Grupo Emerger' }, { etiqueta: 'Urgencias psiquiátricas', valor: '(011) 4192-9150' }] },
   { slug: 'osppcyq', nombreCorto: 'OSPPCYQ (Papeleros)', actividad: 'el personal del papel, cartón y químicos', keywords: ['osppcyq', 'obra social papeleros', 'obra social del papel'] },
   { slug: 'ospg', nombreCorto: 'OSPG (Personal Gráfico)', actividad: 'el personal gráfico', keywords: ['ospg', 'obra social del personal grafico', 'ospg telefono'] },
   { slug: 'osppra', nombreCorto: 'OSPPRA (Prensa)', actividad: 'el personal de prensa', keywords: ['osppra', 'obra social de prensa', 'osppra telefono'] },
@@ -75,14 +79,14 @@ export const FICHAS_REGISTRO: FichaRegistro[] = [
   { slug: 'osdem', nombreCorto: 'OSDEM (Músicos)', actividad: 'los músicos', keywords: ['osdem', 'obra social de musicos', 'osdem telefono'] },
   { slug: 'os-del-personal-del-espectaculo-publico', nombreCorto: 'OSPEP (Espectáculo Público)', actividad: 'el personal del espectáculo público', keywords: ['ospep espectaculo publico', 'obra social espectaculo publico', 'ospep salud'] },
   { slug: 'osptv', nombreCorto: 'OSPTV (Televisión)', actividad: 'el personal de televisión', keywords: ['osptv', 'obra social television', 'osptv telefono'] },
-  { slug: 'osfatun', nombreCorto: 'OSFATUN', actividad: 'los trabajadores de las universidades nacionales', keywords: ['osfatun', 'osfatun telefono', 'obra social universidades nacionales'] },
+  { slug: 'osfatun', nombreCorto: 'OSFATUN', actividad: 'los trabajadores de las universidades nacionales', keywords: ['osfatun', 'osfatun telefono', 'obra social universidades nacionales'], fuenteCanales: 'https://www.osfatun.com.ar/', canales: [{ etiqueta: 'Call center', valor: '0800-666-5173' }, { etiqueta: 'WhatsApp (SOF, asistente virtual)', valor: '+54 11 3693-7247' }] },
   { slug: 'oscoema', nombreCorto: 'OSCOEMA (Municipales)', actividad: 'los obreros y empleados municipales', keywords: ['oscoema', 'obra social municipales', 'oscoema telefono'] },
   { slug: 'ostva', nombreCorto: 'OSTVA (Viales)', actividad: 'los trabajadores viales', keywords: ['ostva', 'obra social viales', 'ostva telefono'] },
   { slug: 'os-del-personal-de-panaderias', nombreCorto: 'OSPEP (Panaderías)', actividad: 'el personal de panaderías', keywords: ['obra social panaderos', 'ospep panaderias', 'obra social del personal de panaderias'] },
   { slug: 'osmedica', nombreCorto: 'OSMEDICA (Médicos de CABA)', actividad: 'los médicos de la Ciudad de Buenos Aires', keywords: ['osmedica', 'osmedica telefono', 'obra social de los medicos'] },
-  { slug: 'osjera', nombreCorto: 'OSJERA (Personal Jerárquico)', actividad: 'el personal jerárquico de la industria gráfica y del agua y la energía', keywords: ['osjera', 'osjera telefono', 'obra social personal jerarquico'] },
+  { slug: 'osjera', nombreCorto: 'OSJERA (Personal Jerárquico)', actividad: 'el personal jerárquico de la industria gráfica y del agua y la energía', keywords: ['osjera', 'osjera telefono', 'obra social personal jerarquico'], fuenteCanales: 'https://www.osjera.com.ar/', canales: [{ etiqueta: 'Urgencias 24 h, todos los días', valor: '0810-345-6753' }, { etiqueta: 'Atención al afiliado', valor: '0810-333-0251', detalle: 'De 9 a 16' }, { etiqueta: 'Sede', valor: '+54 11 4380-3700' }] },
   { slug: 'osim', nombreCorto: 'OSIM (Dirección Metalúrgica)', actividad: 'el personal de dirección de la industria metalúrgica y otras actividades empresarias', keywords: ['osim', 'osim obra social', 'osim telefono'] },
-  { slug: 'ospatca', nombreCorto: 'OSPATCA (Administrativos de la Construcción)', actividad: 'el personal administrativo y técnico de la construcción', keywords: ['ospatca', 'ospatca telefono', 'obra social administrativos construccion'] },
+  { slug: 'ospatca', nombreCorto: 'OSPATCA (Administrativos de la Construcción)', actividad: 'el personal administrativo y técnico de la construcción', keywords: ['ospatca', 'ospatca telefono', 'obra social administrativos construccion'], fuenteCanales: 'https://www.ospatca.org.ar/contacto/', canales: [{ etiqueta: 'Emergencias y urgencias 24 h', valor: '15-6633-3680 / 15-3536-7897' }, { etiqueta: 'Línea gratuita', valor: '0800-333-3480' }, { etiqueta: 'Sede', valor: '(011) 6091-7900 / (011) 4640-4700', detalle: 'Sáenz Peña 1144, CABA' }] },
   { slug: 'luis-pasteur', nombreCorto: 'Luis Pasteur (Dirección de Sanidad)', actividad: 'el personal de dirección de la sanidad', keywords: ['luis pasteur obra social', 'obra social luis pasteur telefono', 'osluispasteur'] },
   { slug: 'ospcyd', nombreCorto: 'OSPCYD (Carga y Descarga)', actividad: 'el personal de carga y descarga', keywords: ['ospcyd', 'obra social carga y descarga', 'ospcyd telefono'] },
   { slug: 'osvvra', nombreCorto: 'OSVVRA (Viajantes, ANDAR)', actividad: 'los viajantes vendedores', keywords: ['osvvra', 'andar obra social', 'obra social viajantes'] },

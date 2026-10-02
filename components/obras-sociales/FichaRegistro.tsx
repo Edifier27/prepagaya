@@ -14,7 +14,8 @@ export function faqsFichaRegistro(f: Ficha, e: EntidadRegistro) {
   const codigo = codigoSeisDigitos(e.codigo!)
   return [
     { q: `¿Cuál es el código de ${f.nombreCorto}?`, a: `${codigo} (RNAS ${e.codigo}). Es el número con el que figura en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: el que carga tu empleador en tu alta y el que se usa en la opción de cambio.` },
-    ...(e.telefono ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `El teléfono de la sede que figura en el registro de la Superintendencia de Servicios de Salud es ${e.telefono}${e.domicilio ? ` (${e.domicilio}${e.localidadSede ? `, ${e.localidadSede}` : ''})` : ''}. Para turnos y autorizaciones, consultá los canales de tu delegación${e.web ? ` en ${e.web.replace(/^https?:\/\//, '')}` : ''}.` }] : []),
+    ...(f.canales?.length ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `${f.canales.map((c) => `${c.etiqueta}: ${c.valor}${c.detalle ? ` (${c.detalle})` : ''}`).join('. ')}. Son los canales que publica ${f.nombreCorto} en su web oficial.` }] : []),
+    ...(!f.canales?.length && e.telefono ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `El teléfono de la sede que figura en el registro de la Superintendencia de Servicios de Salud es ${e.telefono}${e.domicilio ? ` (${e.domicilio}${e.localidadSede ? `, ${e.localidadSede}` : ''})` : ''}. Para turnos y autorizaciones, consultá los canales de tu delegación${e.web ? ` en ${e.web.replace(/^https?:\/\//, '')}` : ''}.` }] : []),
     { q: `¿Puedo pasar mis aportes de ${f.nombreCorto} a una prepaga?`, a: `Sí: en relación de dependencia podés hacer la opción de cambio (online, con clave fiscal, una vez cada 365 días) y pasar tus aportes a una prepaga inscripta como agente del seguro, pagando solo la diferencia. La calculadora de aportes te dice cuánto sería con tu sueldo.` },
     // Por intención de búsqueda (1-oct-2026): baja, discapacidad, monotributo, "¿es buena?" y Swiss Medical
     ...faqsGuia({ osNombre: f.nombreCorto, osSlug: f.slug, codigo: e.codigo }),
@@ -97,6 +98,31 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
           </p>
         </div>
       </section>
+
+      {/* Teléfonos y canales de atención de la web oficial (1-oct-2026) */}
+      {f.canales && f.canales.length > 0 && (
+        <section id="telefonos" className="py-8 bg-white border-b border-gray-100">
+          <div className="container max-w-3xl! mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Teléfonos de {f.nombreCorto}</h2>
+            <p className="text-sm text-gray-500 mb-4">
+              Publicados por {f.nombreCorto} en{' '}
+              {f.fuenteCanales ? <a href={f.fuenteCanales} target="_blank" rel="noopener noreferrer" className="underline">su web oficial</a> : 'su web oficial'} (verificados el 1 de octubre de 2026).
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {f.canales.map((c) => {
+                const numero = c.valor.split('/')[0].replace(/[^\d+]/g, '')
+                return (
+                  <div key={c.etiqueta} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                    <div className="text-xs font-semibold text-gray-500">{c.etiqueta}</div>
+                    <a href={`tel:${numero}`} className="block mt-1 font-bold text-gray-900 tabular-nums hover:text-[#E8002D]">{c.valor}</a>
+                    {c.detalle && <div className="text-xs text-gray-500 mt-1">{c.detalle}</div>}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Cartilla oficial (1-oct-2026), si la obra social publica el Anexo III */}
       {cartilla && cartillaTot && (
