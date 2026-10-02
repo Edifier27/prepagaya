@@ -338,7 +338,10 @@ function mensajePerfil(personas: Persona[], descuento: number): { titulo: string
   if (edades[0] < 22) {
     return {
       titulo: 'Planes para vos: buen precio y atención rápida',
-      texto: `A tu edad pagás de los precios más bajos de cada prepaga. Te mostramos planes ágiles, con turnos, credencial y autorizaciones desde el celular, y con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+      // Chequeo médico deportivo sin cargo desde el SMG02: confirmado por
+      // Darío (partner oficial de Swiss), 1-oct-2026; no figura con ese nombre
+      // en los folletos 09/2026. Reintegro de gimnasio: planes Sport (folletos).
+      texto: `A tu edad pagás de los precios más bajos de cada prepaga. En Swiss Medical, el chequeo médico deportivo es sin cargo desde el plan SMG02, y los planes Sport suman reintegro de gimnasio y deportes. Turnos, credencial y autorizaciones desde el celular, con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
     }
   }
   return {
