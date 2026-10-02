@@ -27,14 +27,14 @@ const planesSwiss = prepagas.find((p) => p.slug === 'swiss-medical')?.planes.map
 const SUELDOS_EJEMPLO = [1_200_000, 1_800_000, 2_500_000, 3_000_000]
 const diferencia = (sueldo: number) => Math.max(0, Math.round(smg20 - sueldo * APORTE_DERIVABLE))
 
-export function PasateConTusAportes({ osNombre, osSlug, sanatoriosOs }: { osNombre: string; osSlug: string; sanatoriosOs?: number }) {
+export function PasateConTusAportes({ osNombre, osSlug, sanatoriosOs, fuente, titulo }: { osNombre: string; osSlug: string; sanatoriosOs?: number; fuente?: string; titulo?: string }) {
   const coseguros = COSEGUROS_OS[osSlug]
   return (
     <section id="pasarte" className="py-12 bg-gradient-to-b from-red-50/60 to-white border-t border-gray-100">
       <div className="container max-w-4xl mx-auto">
         <p className="text-xs font-bold uppercase tracking-wide text-[#E8002D] mb-2">Tus aportes, tu elección</p>
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight text-balance">
-          ¿Tenés {osNombre}? Con tus mismos aportes podés tener Swiss Medical, sin copagos
+          {titulo ?? `¿Tenés ${osNombre}? Con tus mismos aportes podés tener Swiss Medical, sin copagos`}
         </h2>
         <p className="text-gray-700 leading-relaxed mt-3 max-w-3xl">
           Todos los meses se descuenta de tu sueldo un aporte para tu salud. Ese aporte es tuyo, no de {osNombre}: la ley te deja
@@ -58,7 +58,8 @@ export function PasateConTusAportes({ osNombre, osSlug, sanatoriosOs }: { osNomb
             <p className="text-xs text-gray-500 mt-2">
               Coseguros oficiales de {osNombre}{coseguros.plan ? ` (plan ${coseguros.plan})` : ''}, vigencia: {coseguros.vigencia}{' '}
               (<a href={coseguros.fuente} target="_blank" rel="noopener noreferrer" className="underline">fuente</a>). Swiss Medical: folleto
-              oficial del plan SMG20, vigencia {SWISS_COPAGOS_VIGENCIA}.
+              oficial del plan SMG20, vigencia {SWISS_COPAGOS_VIGENCIA}.{' '}
+              <Link href="/obras-sociales/coseguros" className="underline">Coseguros de otras obras sociales</Link>.
             </p>
           </div>
         )}
@@ -130,13 +131,13 @@ export function PasateConTusAportes({ osNombre, osSlug, sanatoriosOs }: { osNomb
         <div className="mt-8 flex flex-col sm:flex-row gap-3">
           <ContratarPlanButton
             prepagaNombre="Swiss Medical"
-            fuente={`ficha-os-${osSlug}`}
+            fuente={fuente ?? `ficha-os-${osSlug}`}
             label="Quiero Swiss Medical con mis aportes"
             titulo={`Pasá de ${osNombre} a Swiss Medical`}
             planesOpciones={planesSwiss}
             datosExtra={{ obra_social_actual: osNombre }}
           />
-          <Link href={`/calculadora-aportes?os=${osSlug}`} className="inline-flex items-center justify-center px-6 py-3 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] text-gray-800 font-bold text-sm">
+          <Link href={osSlug ? `/calculadora-aportes?os=${osSlug}` : '/calculadora-aportes'} className="inline-flex items-center justify-center px-6 py-3 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] text-gray-800 font-bold text-sm">
             Calcular mi diferencia con mi sueldo
           </Link>
         </div>

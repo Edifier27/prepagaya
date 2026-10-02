@@ -63,9 +63,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const lista = s ? prepagasEnSanatorio(slug) : []
   if (!s || lista.length < 2) return {}
   const nombres = ordenar(lista).map((p) => p.prepagaNombre)
+  // Si también hay obras sociales con el sanatorio en su cartilla oficial, el
+  // título lo dice: "qué obra social atiende el X" se busca mucho (1-oct-2026)
+  const os = obrasSocialesEnSanatorio(slug)
   return {
-    title: `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`,
-    description: `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
+    title: os.length
+      ? `Qué prepagas y obras sociales atienden en ${art(s.nombre)} ${s.nombre}`
+      : `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`,
+    description: os.length
+      ? `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')} (desde qué plan, para internación y guardia) y las obras sociales ${os.map((o) => o.osNombre).join(', ')}, según sus cartillas oficiales. Cotizá gratis.`
+      : `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
     alternates: { canonical: `${SITE_URL}/sanatorios/${slug}` },
     keywords: [
       `prepagas ${s.nombre.toLowerCase()}`,
@@ -73,6 +80,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `que prepagas atienden en el ${s.nombre.toLowerCase()}`,
       `obra social ${s.nombre.toLowerCase()}`,
       `que obras sociales atiende el ${s.nombre.toLowerCase()}`,
+      `que obra social atiende el ${s.nombre.toLowerCase()}`,
+      `obras sociales que trabajan con el ${s.nombre.toLowerCase()}`,
       `${s.nombre.toLowerCase()} prepaga`,
       ...(FAQ_EXTRA[slug] ? [`${s.nombre.toLowerCase()} es publico o privado`] : []),
       ...(pediatriaDeSanatorio(slug) ? [`pediatras ${s.nombre.toLowerCase()}`, `${s.nombre.toLowerCase()} pediatria`, `pediatra ${s.nombre.toLowerCase().replace(/^sanatorio /, '')}`] : []),
@@ -184,7 +193,7 @@ export default async function SanatorioPage({ params }: Props) {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-10">
         <div className="container max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight text-balance">
-            ¿Qué prepagas atienden en {art(s.nombre)} {s.nombre}?
+            ¿Qué prepagas{obrasSociales.length ? ' y obras sociales' : ''} atienden en {art(s.nombre)} {s.nombre}?
           </h1>
           <p className="text-gray-700 text-base leading-relaxed max-w-3xl">
             Según sus cartillas oficiales, {art(s.nombre)} <strong>{s.nombre}</strong> figura en <strong>{lista.map((p) => p.prepagaNombre).join(', ')}</strong>.

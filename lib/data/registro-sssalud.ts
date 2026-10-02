@@ -94,6 +94,10 @@ const OBRA_SOCIAL_A_REGISTRO: Record<string, string | null> = {
   oser: 'iosper-entre-rios',
   insssep: 'insssep-chaco',
   ioscor: 'ips-corrientes',
+  // 1-oct-2026: verificados por código (Bancarios 1-2630-4 = RNAS de su Anexo III)
+  'construir-salud': 'uocra-construir-salud',
+  'osba-bancarios': 'bancaria-osba',
+  'luz-y-fuerza': 'osfatlyf',
 }
 
 export function registroDeObraSocial(osSlug: string): EntidadRegistro | undefined {

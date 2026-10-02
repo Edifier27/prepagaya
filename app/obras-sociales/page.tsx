@@ -192,6 +192,22 @@ export default function ObrasSocialesHubPage() {
           </div>
         </section>
 
+        {/* Guías genéricas con datos oficiales (1-oct-2026) */}
+        <section>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              { href: '/obras-sociales/mejores', t: 'Mejores obras sociales 2026', d: 'Ranking por tamaño de su cartilla oficial, coseguros y monotributo.' },
+              { href: '/obras-sociales/coseguros', t: 'Coseguros de obras sociales', d: 'Cuánto cobra cada una por consulta y visita a domicilio.' },
+              { href: '/obras-sociales/obra-social-de-cada-prepaga', t: 'La obra social de cada prepaga', d: 'El código de Swiss Medical, OSDE, Sancor y más para pasar tus aportes.' },
+            ].map((x) => (
+              <Link key={x.href} href={x.href} className="rounded-xl border-2 border-[#E8002D]/15 bg-white p-4 hover:border-[#E8002D] transition-colors">
+                <div className="font-bold text-gray-900 text-sm">{x.t} →</div>
+                <div className="text-xs text-gray-500 mt-1">{x.d}</div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* Cartillas oficiales (1-oct-2026): Anexo III de la Res. SSSalud 2165/21 */}
         <section>
           <div className="flex items-center gap-2 mb-2">

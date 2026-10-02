@@ -39,8 +39,8 @@ export const COSEGUROS_OS: Record<string, CoseguroOs> = {
     vigencia: '1 de agosto de 2026',
     plan: 'PMO',
     items: [
-      { concepto: 'Visita a domicilio de 8 a 20 (5 a 64 años)', valor: '$29.700' },
-      { concepto: 'Visita a domicilio de 20 a 8 (5 a 64 años)', valor: '$41.600' },
+      { concepto: 'Visita a domicilio de día, de 8 a 20 (5 a 64 años)', valor: '$29.700' },
+      { concepto: 'Visita a domicilio de noche, de 20 a 8 (5 a 64 años)', valor: '$41.600' },
     ],
   },
   ospsip: {

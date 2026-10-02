@@ -44,6 +44,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/obras-sociales`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/obras-sociales/codigos`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/obras-sociales/monotributo`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
+    // Páginas genéricas de obras sociales (1-oct-2026, keyword research)
+    { url: `${BASE}/obras-sociales/mejores`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/obras-sociales/coseguros`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/obras-sociales/obra-social-de-cada-prepaga`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/sobre-nosotros`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/metodologia`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/prepaga-por-presupuesto`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.80 },
