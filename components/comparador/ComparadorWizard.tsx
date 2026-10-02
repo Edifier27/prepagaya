@@ -338,11 +338,9 @@ function mensajePerfil(personas: Persona[], descuento: number): { titulo: string
   if (edades[0] < 22) {
     return {
       titulo: 'Planes para vos: buen precio y atención rápida',
-      // Chequeo médico deportivo sin cargo: beneficio que da PrepagaYa (Darío,
-      // 1-oct-2026: "es por mí, no está en ningún lado") a quien contrata Swiss
-      // Medical desde el SMG02 (SMG20 incluido). NO es un beneficio de Swiss:
-      // no atribuírselo. Reintegro de gimnasio: planes Sport (folletos 09/2026).
-      texto: `A tu edad pagás de los precios más bajos de cada prepaga. Y si contratás Swiss Medical con PrepagaYa desde el plan SMG02 (o el SMG20), te damos el chequeo médico deportivo sin cargo. Los planes Sport de Swiss suman reintegro de gimnasio y deportes. Un asesor te responde en ${TIEMPO_RESPUESTA}, con un ${pct} de descuento.`,
+      // Reintegro de gimnasio y deportes: planes Sport de Swiss (folletos 09/2026).
+      // El chequeo deportivo sin cargo NO va (Darío, 2-oct-2026).
+      texto: `A tu edad pagás de los precios más bajos de cada prepaga. Los planes Sport de Swiss Medical suman reintegro de gimnasio y deportes. Turnos, credencial y autorizaciones desde el celular, con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
     }
   }
   return {
