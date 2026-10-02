@@ -7,7 +7,7 @@ import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE } from '@/lib/utils'
+import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 import dynamic from 'next/dynamic'
 // El modal de cartilla trae sanatorios, cartillas y zonas (~30 KB
@@ -314,6 +314,49 @@ const SITUACIONES: SituacionDef[] = [
 
 const STEP_LABELS = ['Zona', 'Integrantes', 'Ver precios']
 const STEP_ORDER: Step[] = ['zona', 'edades', 'preview']
+
+// Mensaje según quién cotiza (1-oct-2026, pedido de Darío): familia, grupo de
+// adultos, persona sola y joven (menos de 22). Solo afirma lo que cubre
+// cualquier plan (PMO) o lo que es del sitio (descuento, tiempo de respuesta).
+function mensajePerfil(personas: Persona[], descuento: number): { titulo: string; texto: string } | null {
+  const edades = personas.map((p) => parseInt(p.edad)).filter((n) => Number.isFinite(n) && n >= 0)
+  if (!edades.length) return null
+  const menores = edades.filter((e) => e < 18).length
+  const pct = `${Math.round(descuento * 100)}%`
+  if (edades.length > 1 && menores > 0) {
+    return {
+      titulo: 'Te mostramos los mejores planes para familias',
+      texto: `Pediatría, vacunas del calendario, maternidad y guardia para los chicos están cubiertas en cualquier plan: lo que cambia es en qué sanatorios te atendés y si pagás copagos. Por eso te ordenamos los planes que mejor resuelven eso para los ${edades.length} de tu familia, con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+    }
+  }
+  if (edades.length > 1) {
+    return {
+      titulo: `Los mejores planes para ${edades.length} personas`,
+      texto: `Comparamos el precio total del grupo, no por persona, y ya te aplicamos un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+    }
+  }
+  if (edades[0] < 22) {
+    return {
+      titulo: 'Planes para vos: buen precio y atención rápida',
+      texto: `A tu edad pagás de los precios más bajos de cada prepaga. Te mostramos planes ágiles, con turnos, credencial y autorizaciones desde el celular, y con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+    }
+  }
+  return {
+    titulo: 'Los mejores planes para vos, con el mayor ahorro',
+    texto: `Priorizamos la cobertura que más vas a usar (consultas, estudios y guardia) al mejor precio para tu edad, y ya te aplicamos un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+  }
+}
+
+function MensajePerfil({ personas, descuento }: { personas: Persona[]; descuento: number }) {
+  const m = mensajePerfil(personas, descuento)
+  if (!m) return null
+  return (
+    <div className="rounded-2xl border border-[#E8002D]/20 bg-red-50/60 px-4 py-3 mb-5 text-left">
+      <div className="font-bold text-gray-900 text-sm">{m.titulo}</div>
+      <p className="text-sm text-gray-700 mt-0.5">{m.texto}</p>
+    </div>
+  )
+}
 
 function ProgressBar({ step, onStepClick }: { step: Step; onStepClick?: (step: Step) => void }) {
   const idx = STEP_ORDER.indexOf(step)
@@ -1098,6 +1141,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             {!showPopup ? `Planes disponibles en ${provinciaNombre}` : 'Tu comparación está lista'}
           </h2>
+          {!showPopup && <div className="max-w-xl mx-auto mt-3"><MensajePerfil personas={personas} descuento={descuentoRate} /></div>}
           {!showPopup && countdown > 0 && (
             <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-800 text-sm font-semibold px-4 py-2 rounded-full">
               <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
@@ -1254,6 +1298,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
 
   return (
     <div>
+      <MensajePerfil personas={personas} descuento={descuentoRate} />
       {/* Summary header — sticky en desktop (pedido de Darío, 17-sep-2026: que
           "Cotización para {nombre}" siga a la persona al bajar, en vez de
           desaparecer al scrollear). En mobile no es sticky: ahí la versión
