@@ -1,55 +1,90 @@
 import Link from 'next/link'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { calcularSueldos, millonesLargo, MES } from '@/lib/prensa/sueldo-prepaga'
-import { TIEMPO_RESPUESTA } from '@/lib/utils'
+import { preciosParaGrupo } from '@/lib/precios/motor'
+import { APORTE_DERIVABLE, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
 import { prepagas } from '@/lib/data/prepagas'
+import { COSEGUROS_OS, SWISS_COPAGOS_VIGENCIA } from '@/lib/data/coseguros-os'
 
 // Bloque de conversión para las fichas de obras sociales sindicales (1-oct-2026,
 // pedido de Darío: persuasivo, hacia planes superadores, Swiss Medical primero).
 // Todo lo que afirma tiene fuente:
 // - Swiss Medical S.A. está en el listado de la opción de cambio (RNAS 9-0080-5).
-// - El sueldo sale del cuadro "con aportes" que Swiss declara ante la SSSalud
-//   (lib/prensa/sueldo-prepaga.ts), 30 años, AMBA.
+// - Precios "con aportes" del cuadro que Swiss declara ante la SSSalud (motor
+//   de precios), 30 años, AMBA; el aporte que llega es APORTE_DERIVABLE.
+// - SMG20 sin copagos en consultas, domicilio y estudios: folleto oficial del
+//   plan, vigencia 09/2026. El S1 (entrada) sí tiene copagos: se aclara.
+// - Coseguros de cada obra social: lib/data/coseguros-os.ts (publicación oficial).
 // - Sanatorios, SMG Center, ICBA, Guardia Ágil y Swity: confirmados por Darío
 //   (partner oficial) y en la ficha de Swiss (lib/data/prepagas.ts).
 
-const filas = calcularSueldos('caba')
-const swiss = filas.find((f) => f.prepaga === 'Swiss Medical')
-const premedic = filas.find((f) => f.prepaga === 'Premedic')
-const planesSwissData = prepagas.find((p) => p.slug === 'swiss-medical')?.planes ?? []
-const planesSwiss = planesSwissData.map((p) => p.nombre)
-// Si el plan de entrada tiene copago, se aclara (no prometer "todo cubierto")
-const swissConCopago = !!swiss && planesSwissData.find((p) => p.nombre === swiss.plan)?.copago === true
-
-export function datosSwissAportes() {
-  return swiss ? { plan: swiss.plan, sueldo: swiss.sueldo.s30 } : null
-}
+const precios30 = preciosParaGrupo([30], 'caba', 'desregulado')
+const smg20 = precios30['swiss-medical/smg20'] ?? 0
+const sueldoSmg20 = smg20 / APORTE_DERIVABLE
+const swissEntrada = calcularSueldos('caba').find((f) => f.prepaga === 'Swiss Medical')
+const planesSwiss = prepagas.find((p) => p.slug === 'swiss-medical')?.planes.map((p) => p.nombre) ?? []
+// Sueldos de ejemplo para mostrar la diferencia a pagar por el SMG20
+const SUELDOS_EJEMPLO = [1_200_000, 1_800_000, 2_500_000, 3_000_000]
+const diferencia = (sueldo: number) => Math.max(0, Math.round(smg20 - sueldo * APORTE_DERIVABLE))
 
 export function PasateConTusAportes({ osNombre, osSlug, sanatoriosOs }: { osNombre: string; osSlug: string; sanatoriosOs?: number }) {
+  const coseguros = COSEGUROS_OS[osSlug]
   return (
     <section id="pasarte" className="py-12 bg-gradient-to-b from-red-50/60 to-white border-t border-gray-100">
       <div className="container max-w-4xl mx-auto">
         <p className="text-xs font-bold uppercase tracking-wide text-[#E8002D] mb-2">Tus aportes, tu elección</p>
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight text-balance">
-          ¿Tenés {osNombre}? Con tus mismos aportes podés tener Swiss Medical
+          ¿Tenés {osNombre}? Con tus mismos aportes podés tener Swiss Medical, sin copagos
         </h2>
         <p className="text-gray-700 leading-relaxed mt-3 max-w-3xl">
-          Todos los meses se descuenta de tu sueldo un aporte para tu cobertura de salud. Ese aporte es tuyo, no de {osNombre}:
-          la ley te deja elegir a dónde va. Si lo pasás a Swiss Medical, tus aportes pagan el plan y vos ponés solo la diferencia,
-          o nada, según lo que ganes.
+          Todos los meses se descuenta de tu sueldo un aporte para tu salud. Ese aporte es tuyo, no de {osNombre}: la ley te deja
+          elegir a dónde va. Si lo pasás a Swiss Medical, tu aporte paga el plan y vos ponés solo la diferencia, o nada, según lo que ganes.
         </p>
 
-        {swiss && (
+        {coseguros && (
+          <div className="mt-6 rounded-2xl bg-white border border-gray-200 p-5">
+            <div className="font-bold text-gray-900">Lo que pagás hoy en {osNombre} cada vez que la usás</div>
+            <ul className="mt-3 divide-y divide-gray-100">
+              {coseguros.items.map((x) => (
+                <li key={x.concepto} className="flex justify-between gap-4 py-2 text-sm">
+                  <span className="text-gray-700">{x.concepto}</span>
+                  <span className="font-bold text-gray-900 tabular-nums">{x.valor}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm text-gray-800 mt-3">
+              En el <strong>Swiss Medical SMG20</strong>, las consultas, las visitas a domicilio y los estudios son <strong>sin cargo</strong>.
+            </p>
+            <p className="text-xs text-gray-500 mt-2">
+              Coseguros oficiales de {osNombre}{coseguros.plan ? ` (plan ${coseguros.plan})` : ''} vigentes a partir del {coseguros.vigencia}{' '}
+              (<a href={coseguros.fuente} target="_blank" rel="noopener noreferrer" className="underline">fuente</a>). Swiss Medical: folleto
+              oficial del plan SMG20, vigencia {SWISS_COPAGOS_VIGENCIA}.
+            </p>
+          </div>
+        )}
+
+        {smg20 > 0 && (
           <div className="mt-6 rounded-2xl bg-white border-2 border-[#E8002D]/20 p-5 sm:p-6">
             <div className="text-sm text-gray-600">Con un sueldo bruto desde</div>
-            <div className="text-3xl sm:text-4xl font-black text-gray-900 tabular-nums">{millonesLargo(swiss.sueldo.s30)}</div>
+            <div className="text-3xl sm:text-4xl font-black text-gray-900 tabular-nums">{millonesLargo(sueldoSmg20)}</div>
             <div className="text-sm text-gray-700 mt-1">
-              tus aportes pagan el <strong>Swiss Medical {swiss.plan}</strong> completo, sin diferencia{swissConCopago ? ' (plan de entrada, con copago en las consultas)' : ''}.
+              tu aporte paga el <strong>Swiss Medical SMG20</strong> completo: sin copagos en consultas, visitas a domicilio ni estudios.
+            </div>
+            <div className="mt-4">
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Si ganás menos, pagás solo la diferencia</div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {SUELDOS_EJEMPLO.map((s) => (
+                  <div key={s} className="rounded-lg bg-gray-50 p-3">
+                    <div className="text-xs text-gray-500">Sueldo de {millonesLargo(s)}</div>
+                    <div className="font-bold text-gray-900 tabular-nums">{formatPrecio(diferencia(s))}/mes</div>
+                  </div>
+                ))}
+              </div>
             </div>
             <p className="text-xs text-gray-500 mt-3">
               Persona de 30 años en el AMBA, con el cuadro tarifario “con aportes” que Swiss Medical declara ante la Superintendencia
-              de Servicios de Salud ({MES}). Si ganás menos, pagás solo la diferencia; si querés un plan sin copago, también se calcula
-              con tus aportes.
+              de Servicios de Salud ({MES}). Tu precio exacto depende de tu edad y tu grupo familiar.
+              {swissEntrada && ` Si buscás algo más económico, el ${swissEntrada.plan}, de entrada, se cubre con un sueldo desde ${millonesLargo(swissEntrada.sueldo.s30)}, pero tiene copago en consultas, domicilio y guardia.`}
             </p>
           </div>
         )}
@@ -105,12 +140,6 @@ export function PasateConTusAportes({ osNombre, osSlug, sanatoriosOs }: { osNomb
             Calcular mi diferencia con mi sueldo
           </Link>
         </div>
-        {premedic && (
-          <p className="text-xs text-gray-500 mt-4">
-            ¿Buscás lo más económico? Con aportes desde {millonesLargo(premedic.sueldo.s30)} de sueldo bruto pagás el Premedic {premedic.plan} completo.{' '}
-            <Link href="/comparador" className="underline">Compará todas las prepagas</Link>.
-          </p>
-        )}
       </div>
     </section>
   )
@@ -120,8 +149,18 @@ export function PasateConTusAportes({ osNombre, osSlug, sanatoriosOs }: { osNomb
 export function faqPasarseASwiss(osNombre: string) {
   return {
     q: `¿Puedo pasar mis aportes de ${osNombre} a Swiss Medical?`,
-    a: swiss
-      ? `Sí. Swiss Medical figura en el listado oficial de la opción de cambio, así que podés derivarle tus aportes y pagar solo la diferencia del plan. Con un sueldo bruto desde ${millonesLargo(swiss.sueldo.s30)}, los aportes pagan el Swiss Medical ${swiss.plan}${swissConCopago ? ' (con copago en consultas)' : ''} completo para una persona de 30 años en el AMBA (cuadro oficial de ${MES}). El trámite es online, en la web de la Superintendencia, y el cambio se activa el primer día del mes siguiente.`
+    a: smg20 > 0
+      ? `Sí. Swiss Medical figura en el listado oficial de la opción de cambio, así que podés derivarle tus aportes y pagar solo la diferencia del plan. Con un sueldo bruto desde ${millonesLargo(sueldoSmg20)}, el aporte paga el Swiss Medical SMG20 completo, sin copagos en consultas, visitas a domicilio ni estudios (persona de 30 años en el AMBA, cuadro oficial de ${MES}). El trámite es online, en la web de la Superintendencia, y el cambio se activa el primer día del mes siguiente.`
       : `Sí. Swiss Medical figura en el listado oficial de la opción de cambio, así que podés derivarle tus aportes y pagar solo la diferencia del plan.`,
+  }
+}
+
+/** Si la obra social publica coseguros: "¿cuánto cobra de coseguro?" para la ficha. */
+export function faqCoseguros(osNombre: string, osSlug: string) {
+  const c = COSEGUROS_OS[osSlug]
+  if (!c) return null
+  return {
+    q: `¿Cuánto cobra ${osNombre} de coseguro?`,
+    a: `Según los valores oficiales vigentes a partir del ${c.vigencia}${c.plan ? ` (plan ${c.plan})` : ''}: ${c.items.map((x) => `${x.concepto.toLowerCase()}, ${x.valor}`).join('; ')}. Desde la Resolución 1926/2024 de la Superintendencia, cada obra social fija sus coseguros libremente, avisando con 30 días.`,
   }
 }

@@ -3,7 +3,7 @@ import { getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/si
 import type { FichaRegistro as Ficha } from '@/lib/data/fichas-registro'
 import { codigoSeisDigitos, nombreLegible, REGISTRO_VERIFICADO, type EntidadRegistro } from '@/lib/data/registro-sssalud'
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
-import { PasateConTusAportes, faqPasarseASwiss } from '@/components/obras-sociales/PasateConTusAportes'
+import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/components/obras-sociales/PasateConTusAportes'
 import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
 
 // Ficha de obra social armada con el registro de la SSSalud (lib/data/
@@ -18,6 +18,7 @@ export function faqsFichaRegistro(f: Ficha, e: EntidadRegistro) {
     ...(!f.canales?.length && e.telefono ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `El teléfono de la sede que figura en el registro de la Superintendencia de Servicios de Salud es ${e.telefono}${e.domicilio ? ` (${e.domicilio}${e.localidadSede ? `, ${e.localidadSede}` : ''})` : ''}. Para turnos y autorizaciones, consultá los canales de tu delegación${e.web ? ` en ${e.web.replace(/^https?:\/\//, '')}` : ''}.` }] : []),
     { q: `¿Puedo pasar mis aportes de ${f.nombreCorto} a una prepaga?`, a: `Sí: en relación de dependencia podés hacer la opción de cambio (online, con clave fiscal, una vez cada 365 días) y pasar tus aportes a una prepaga inscripta como agente del seguro, pagando solo la diferencia. La calculadora de aportes te dice cuánto sería con tu sueldo.` },
     // Por intención de búsqueda (1-oct-2026): baja, discapacidad, monotributo, "¿es buena?" y Swiss Medical
+    ...[faqCoseguros(f.nombreCorto, f.slug)].filter((x): x is { q: string; a: string } => !!x),
     ...faqsGuia({ osNombre: f.nombreCorto, osSlug: f.slug, codigo: e.codigo }),
     faqPasarseASwiss(f.nombreCorto),
   ]

@@ -16,7 +16,7 @@ import {
   NOTA_PROVINCIAS_PARCIALES_OSECAC,
   PROVINCIAS_PARCIALES_OSECAC,
 } from '@/lib/data/sindicales-zonas/osecac'
-import { PasateConTusAportes, faqPasarseASwiss } from '@/components/obras-sociales/PasateConTusAportes'
+import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/components/obras-sociales/PasateConTusAportes'
 import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
 import { CARTILLAS_SINDICALES, getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
 
@@ -121,7 +121,8 @@ export default async function ObraSocialPage({ params }: Props) {
   const conversion = os.tipo === 'sindical' && !!registro?.codigo
   const datosGuia = { osNombre: os.nombre, osSlug: os.slug, codigo: registro?.codigo, conCartilla: !!cartilla }
   const preguntasOs = new Set(os.faq.map((f) => f.q))
-  const faqsExtra = conversion ? [...faqsGuia(datosGuia), faqPasarseASwiss(os.nombre)].filter((f) => !preguntasOs.has(f.q)) : []
+  const faqCos = faqCoseguros(os.nombre, os.slug)
+  const faqsExtra = conversion ? [...(faqCos ? [faqCos] : []), ...faqsGuia(datosGuia), faqPasarseASwiss(os.nombre)].filter((f) => !preguntasOs.has(f.q)) : []
   const faq = [...os.faq, ...(faqCartilla ? [faqCartilla] : []), ...faqsExtra, ...(faqCodigo ? [faqCodigo] : [])]
 
   // La obra social como entidad (1-oct-2026): nombre legal, código RNAS, sede,
