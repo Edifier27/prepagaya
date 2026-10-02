@@ -51,6 +51,62 @@ export const COSEGUROS_OS: Record<string, CoseguroOs> = {
       { concepto: 'Consulta con especialista', valor: '$9.100' },
     ],
   },
+  ospia: {
+    fuente: 'https://www.ospia.org.ar/pdfs/ospia-coseguros-junio-2026.pdf',
+    vigencia: '1 de junio de 2026',
+    items: [
+      { concepto: 'Consulta con médico de familia, generalista o pediatra', valor: '$6.000' },
+      { concepto: 'Consulta con especialista', valor: '$12.000' },
+      { concepto: 'Visita a domicilio de día', valor: '$25.000' },
+      { concepto: 'Visita a domicilio de noche', valor: '$30.000' },
+    ],
+  },
+  osmedica: {
+    fuente: 'https://osmedica.com.ar/wp-content/uploads/2026/07/OSMEDICA-coseguros-agosto-2026.pdf',
+    vigencia: 'agosto de 2026',
+    items: [
+      { concepto: 'Consulta con médico de familia o clínico', valor: '$11.000' },
+      { concepto: 'Consulta con especialista', valor: '$17.000' },
+      { concepto: 'Visita a domicilio de día', valor: '$25.000' },
+      { concepto: 'Visita a domicilio de noche', valor: '$35.000' },
+    ],
+  },
+  osdop: {
+    fuente: 'https://www.osdop.org.ar/coseguros-actualizados/',
+    vigencia: '1 de septiembre de 2026',
+    items: [
+      { concepto: 'Consulta médica', valor: '$11.700' },
+      { concepto: 'Visita a domicilio de día', valor: '$17.000' },
+      { concepto: 'Visita a domicilio de noche', valor: '$23.000' },
+      { concepto: 'Estudio de alta complejidad', valor: '$60.000' },
+    ],
+  },
+  ospat: {
+    fuente: 'https://www.ospat.com.ar/wp-content/uploads/2026/08/COSEGUROS-OCTUBRE-2026-Nuevos-Valores.xlsx',
+    vigencia: 'octubre de 2026',
+    items: [
+      { concepto: 'Consulta médica o teleconsulta', valor: '$7.324' },
+    ],
+  },
+  ospacp: {
+    fuente: 'https://ospacp.org.ar/wp-content/uploads/2026/06/COSEGUROS-OSPACP.pdf',
+    vigencia: 'junio de 2026 (fecha de publicación)',
+    items: [
+      { concepto: 'Consulta con médico de familia, generalista o pediatra', valor: '$2.019' },
+      { concepto: 'Consulta con especialista', valor: '$3.786' },
+      { concepto: 'Visita a domicilio de día', valor: '$6.310' },
+      { concepto: 'Visita a domicilio de noche', valor: '$8.834' },
+    ],
+  },
+  osuomra: {
+    fuente: 'https://osuomra.org.ar/wp-content/uploads/2025/09/VALORES-DE-COSEGUROS-ACTUALIZADOS-1-NOVIEMBRE-2025.xlsx',
+    vigencia: '1 de noviembre de 2025 (último valor publicado)',
+    items: [
+      { concepto: 'Consulta con médico de cabecera', valor: '$3.400' },
+      { concepto: 'Consulta con especialista', valor: '$8.000' },
+      { concepto: 'Consulta con especialista, afiliados monotributistas', valor: '$30.000' },
+    ],
+  },
 }
 
 // Swiss Medical, folletos oficiales de cada plan (vigencia 09/2026, AMBA).

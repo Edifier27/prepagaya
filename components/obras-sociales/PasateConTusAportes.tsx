@@ -56,7 +56,7 @@ export function PasateConTusAportes({ osNombre, osSlug, sanatoriosOs }: { osNomb
               En el <strong>Swiss Medical SMG20</strong>, las consultas, las visitas a domicilio y los estudios son <strong>sin cargo</strong>.
             </p>
             <p className="text-xs text-gray-500 mt-2">
-              Coseguros oficiales de {osNombre}{coseguros.plan ? ` (plan ${coseguros.plan})` : ''} vigentes a partir del {coseguros.vigencia}{' '}
+              Coseguros oficiales de {osNombre}{coseguros.plan ? ` (plan ${coseguros.plan})` : ''}, vigencia: {coseguros.vigencia}{' '}
               (<a href={coseguros.fuente} target="_blank" rel="noopener noreferrer" className="underline">fuente</a>). Swiss Medical: folleto
               oficial del plan SMG20, vigencia {SWISS_COPAGOS_VIGENCIA}.
             </p>
@@ -161,6 +161,6 @@ export function faqCoseguros(osNombre: string, osSlug: string) {
   if (!c) return null
   return {
     q: `¿Cuánto cobra ${osNombre} de coseguro?`,
-    a: `Según los valores oficiales vigentes a partir del ${c.vigencia}${c.plan ? ` (plan ${c.plan})` : ''}: ${c.items.map((x) => `${x.concepto.toLowerCase()}, ${x.valor}`).join('; ')}. Desde la Resolución 1926/2024 de la Superintendencia, cada obra social fija sus coseguros libremente, avisando con 30 días.`,
+    a: `Según sus valores oficiales${c.plan ? ` del plan ${c.plan}` : ''} (vigencia: ${c.vigencia}): ${c.items.map((x) => `${x.concepto.toLowerCase()}, ${x.valor}`).join('; ')}. Desde la Resolución 1926/2024 de la Superintendencia, cada obra social fija sus coseguros libremente, avisando con 30 días.`,
   }
 }
