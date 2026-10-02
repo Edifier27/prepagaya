@@ -16,6 +16,8 @@ import {
   NOTA_PROVINCIAS_PARCIALES_OSECAC,
   PROVINCIAS_PARCIALES_OSECAC,
 } from '@/lib/data/sindicales-zonas/osecac'
+import { PasateConTusAportes, faqPasarseASwiss } from '@/components/obras-sociales/PasateConTusAportes'
+import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
 import { CARTILLAS_SINDICALES, getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
@@ -52,13 +54,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const r = fichaRegistro(slug)
     if (!r) return {}
     const { ficha: f, entidad: e } = r
-    const title = `${f.nombreCorto}: teléfono y código de obra social (2026)`
-    const description = `Código de obra social ${codigoSeisDigitos(e.codigo!)}${e.telefono ? `, teléfono ${e.telefono}` : ''} y sede de ${nombreLegible(e.nombre).replace(/^\S+ - /, '')}, según la Superintendencia. Calculá cuánto pagarías con tus aportes en una prepaga.`
+    // Intenciones de búsqueda (autocompletado de Google, 1-oct-2026): teléfono,
+    // código, afiliación/baja, discapacidad, monotributo y "¿es buena?"
+    const title = `${f.nombreCorto}: teléfono, código y cómo cambiarte (2026)`
+    const description = `${f.nombreCorto}: código ${codigoSeisDigitos(e.codigo!)}${e.telefono ? `, teléfono ${e.telefono}` : ''}, cómo darte de baja, qué cubre en discapacidad y si acepta monotributistas. Y cómo pasar tus aportes a Swiss Medical pagando solo la diferencia.`
     return {
       title,
       description,
       alternates: { canonical: `${SITE_URL}/obras-sociales/${slug}` },
-      keywords: f.keywords,
+      keywords: [...f.keywords, ...['baja', 'discapacidad', 'monotributo', 'credencial'].map((k) => `${f.keywords[0]} ${k}`)],
       openGraph: { title, description, type: 'article', images: [OG_IMAGE] },
     }
   }
@@ -112,7 +116,13 @@ export default async function ObraSocialPage({ params }: Props) {
     q: `¿Qué sanatorios tiene ${os.nombre}?`,
     a: `Según la cartilla oficial que presentó ante la Superintendencia de Servicios de Salud, ${os.nombre} tiene ${cartillaTot.internacion.toLocaleString('es-AR')} sanatorios y clínicas con internación, ${cartillaTot.guardia.toLocaleString('es-AR')} guardias y ${cartillaTot.diagnostico.toLocaleString('es-AR')} centros de diagnóstico en ${cartillaTot.provincias} provincias. Donde más tiene: ${provinciasConPagina(cartilla).slice(0, 3).map((p) => p.nombre).join(', ').replace(/, ([^,]*)$/, ' y $1')}. En PrepagaYa podés ver cada uno por provincia y localidad, con dirección y teléfono.`,
   } : null
-  const faq = [...os.faq, ...(faqCartilla ? [faqCartilla] : []), ...(faqCodigo ? [faqCodigo] : [])]
+  // Sindicales con código (se pueden dejar con la opción de cambio): guía por
+  // intención de búsqueda y bloque para pasarse a Swiss Medical (1-oct-2026)
+  const conversion = os.tipo === 'sindical' && !!registro?.codigo
+  const datosGuia = { osNombre: os.nombre, osSlug: os.slug, codigo: registro?.codigo, conCartilla: !!cartilla }
+  const preguntasOs = new Set(os.faq.map((f) => f.q))
+  const faqsExtra = conversion ? [...faqsGuia(datosGuia), faqPasarseASwiss(os.nombre)].filter((f) => !preguntasOs.has(f.q)) : []
+  const faq = [...os.faq, ...(faqCartilla ? [faqCartilla] : []), ...faqsExtra, ...(faqCodigo ? [faqCodigo] : [])]
 
   // La obra social como entidad (1-oct-2026): nombre legal, código RNAS, sede,
   // teléfono y web oficial, para que buscadores e IA la identifiquen.
@@ -382,6 +392,8 @@ export default async function ObraSocialPage({ params }: Props) {
         </div>
       </section>
 
+      {conversion && <PasateConTusAportes osNombre={os.nombre} osSlug={os.slug} sanatoriosOs={cartillaTot?.internacion} />}
+
       {/* Cross-link a la cobertura de prepagas de la provincia, cuando es la obra social provincial */}
       {provinciaMatch && (
         <section className="py-10 bg-gray-50 border-t border-gray-100">
@@ -498,6 +510,8 @@ export default async function ObraSocialPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {conversion && <GuiaObraSocial {...datosGuia} />}
 
       {/* FAQ */}
       <section className="py-10 bg-white border-t border-gray-100">

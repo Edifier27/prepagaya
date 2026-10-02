@@ -3,6 +3,8 @@ import { getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/si
 import type { FichaRegistro as Ficha } from '@/lib/data/fichas-registro'
 import { codigoSeisDigitos, nombreLegible, REGISTRO_VERIFICADO, type EntidadRegistro } from '@/lib/data/registro-sssalud'
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { PasateConTusAportes, faqPasarseASwiss } from '@/components/obras-sociales/PasateConTusAportes'
+import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
 
 // Ficha de obra social armada con el registro de la SSSalud (lib/data/
 // fichas-registro.ts). Todo lo que dice sale del registro o del nombre
@@ -14,6 +16,9 @@ export function faqsFichaRegistro(f: Ficha, e: EntidadRegistro) {
     { q: `¿Cuál es el código de ${f.nombreCorto}?`, a: `${codigo} (RNAS ${e.codigo}). Es el número con el que figura en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: el que carga tu empleador en tu alta y el que se usa en la opción de cambio.` },
     ...(e.telefono ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `El teléfono de la sede que figura en el registro de la Superintendencia de Servicios de Salud es ${e.telefono}${e.domicilio ? ` (${e.domicilio}${e.localidadSede ? `, ${e.localidadSede}` : ''})` : ''}. Para turnos y autorizaciones, consultá los canales de tu delegación${e.web ? ` en ${e.web.replace(/^https?:\/\//, '')}` : ''}.` }] : []),
     { q: `¿Puedo pasar mis aportes de ${f.nombreCorto} a una prepaga?`, a: `Sí: en relación de dependencia podés hacer la opción de cambio (online, con clave fiscal, una vez cada 365 días) y pasar tus aportes a una prepaga inscripta como agente del seguro, pagando solo la diferencia. La calculadora de aportes te dice cuánto sería con tu sueldo.` },
+    // Por intención de búsqueda (1-oct-2026): baja, discapacidad, monotributo, "¿es buena?" y Swiss Medical
+    ...faqsGuia({ osNombre: f.nombreCorto, osSlug: f.slug, codigo: e.codigo }),
+    faqPasarseASwiss(f.nombreCorto),
   ]
 }
 
@@ -111,17 +116,11 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
         </section>
       )}
 
+      <PasateConTusAportes osNombre={f.nombreCorto} osSlug={f.slug} sanatoriosOs={cartillaTot?.internacion} />
+
       <section className="py-8 bg-white">
         <div className="container max-w-3xl! mx-auto">
-          <Link href={`/calculadora-aportes?os=${f.slug}`} className="group flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white p-5 hover:border-[#E8002D] transition-colors">
-            <div className="flex-1 min-w-0">
-              <div className="font-bold text-gray-900">¿Tenés {f.nombreCorto}? Con tus mismos aportes podés tener una prepaga</div>
-              <div className="text-sm text-gray-600 mt-0.5">Poné tu sueldo y mirá cuánto pagarías de diferencia en cada plan, con los precios oficiales.</div>
-            </div>
-            <span className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm">Calcular mi diferencia →</span>
-          </Link>
-
-          <h2 className="text-xl font-bold text-gray-900 mt-10 mb-3">Cómo cambiarte de {f.nombreCorto}</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Cómo cambiarte de {f.nombreCorto}</h2>
           <ol className="list-decimal pl-5 space-y-2 text-sm text-gray-700">
             <li>Elegí la obra social o la prepaga a la que querés pasar tus aportes: tiene que estar inscripta en el Registro Nacional de Agentes del Seguro (si sos monotributista, en el de las que aceptan monotributo).</li>
             <li>Hacé la opción de cambio online, en la web de la Superintendencia de Servicios de Salud, con tu clave fiscal nivel 3 de ARCA. Es el único canal: no hace falta ir a ningún lado ni pagarle a un gestor.</li>
@@ -131,7 +130,14 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
           <p className="text-sm text-gray-600 mt-3">La opción se puede hacer una vez cada 365 días y no se puede volver atrás: tenés que quedarte al menos un año. No pueden hacerla quienes se quedaron sin trabajo ni quienes están en licencia por maternidad.</p>
           <p className="text-sm text-gray-600 mt-3">Si te pasás a una prepaga, un asesor te cotiza con tus aportes y te guía en el trámite. Te respondemos en {TIEMPO_RESPUESTA}.</p>
 
-          <h2 className="text-xl font-bold text-gray-900 mt-10 mb-3">Preguntas frecuentes</h2>
+        </div>
+      </section>
+
+      <GuiaObraSocial osNombre={f.nombreCorto} osSlug={f.slug} codigo={e.codigo} conCartilla={!!cartilla} omitirBaja />
+
+      <section className="py-8 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl! mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Preguntas frecuentes</h2>
           <div className="space-y-4">
             {faqs.map((x) => (
               <div key={x.q}>
