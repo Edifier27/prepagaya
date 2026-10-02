@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { trackLead } from '@/lib/analytics'
+import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 
 interface Props {
@@ -59,7 +59,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
       // Ya no redirige al WhatsApp del asesor — el lead solo llega por mail
       // y el asesor contacta desde ahí cuando le conviene (pedido de Darío,
       // 9-sep-2026: no quiere que el visitante le escriba directo).
-      trackLead(fuente)
+      trackLead(fuente, { prepaga: interes })
       setStatus('success')
     } catch {
       setStatus('idle')
@@ -69,7 +69,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
   return (
     <>
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => { setOpen(true); trackEvent('abrir_cotizador', { fuente, prepaga: prepagaNombre }) }}
         className={className ?? "inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"}
       >
         {label ?? (planNombre ? `Contratar ${planNombre}` : 'Cotización personalizada')} →

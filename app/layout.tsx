@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
+import { ClicsMedibles } from '@/components/ui/ClicsMedibles'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </noscript>
         <SiteChrome provincias={provinciasMenu()}>{children}</SiteChrome>
         <Analytics />
+        <ClicsMedibles />
         {/* lazyOnload: se carga cuando el navegador queda libre, después de la
             carga de la página (no compite con el primer render en el celular) */}
         <Script src="https://analytics.ahrefs.com/analytics.js" data-key="n963Y9CAcOEi8wFIGX2/pw" strategy="lazyOnload" />

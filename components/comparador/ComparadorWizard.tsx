@@ -3,7 +3,7 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { trackLead } from '@/lib/analytics'
+import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
@@ -560,6 +560,8 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
   }, [])
 
   const [step, setStep] = useState<Step>(initialZona ? 'edades' : 'zona')
+  // Embudo del comparador en GA4 (1-oct-2026): en qué paso se va la gente
+  useEffect(() => { trackEvent('wizard_paso', { paso: step }) }, [step])
   const [zonaKey, setZonaKey] = useState(initialZona ?? '')
   const [provinciaNombre, setProvinciaNombre] = useState(initialProvincia ?? '')
 
