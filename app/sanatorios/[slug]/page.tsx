@@ -9,6 +9,7 @@ import { getCartillaInfo } from '@/lib/data/cartillas'
 import { obrasSocialesEnSanatorio } from '@/lib/data/sanatorios-obras-sociales'
 import { CARTILLAS_SINDICALES } from '@/lib/data/sindicales-cartillas'
 import { pediatriaDeSanatorio } from '@/lib/data/sanatorios-pediatria'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
 // "¿Qué prepagas atienden en el Hospital X?" (23-sep-2026): búsqueda que la
 // competencia cubre con notas escritas a mano. Acá todo sale de las cartillas
@@ -209,6 +210,43 @@ export default async function SanatorioPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Conversión (Darío, 3-oct-2026): "si lo querés en cartilla, está en
+          estos planes" + cotizar cada prepaga con sus planes preseleccionables.
+          Planes = los que lo incluyen para internación en la cartilla oficial. */}
+      {lista.some((p) => p.internacion.length > 0) && (
+        <section className="py-10 bg-white">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 text-balance">
+              Si estás buscando tener {art(s.nombre)} {s.nombre} en cartilla, lo encontrás en estos planes
+            </h2>
+            <p className="text-sm text-gray-600 mt-1 mb-5">Para internación, según la cartilla oficial de cada prepaga. Elegí el plan y cotizalo gratis.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {lista.filter((p) => p.internacion.length > 0).map((p) => (
+                <div key={p.prepagaSlug} className="rounded-2xl border-2 border-gray-100 hover:border-[#E8002D]/30 p-5 flex flex-col gap-3 transition-colors">
+                  <div className="font-bold text-gray-900">{p.prepagaNombre}</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {p.internacion.map((pl) => (
+                      <span key={pl.id} className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        {pl.label}
+                      </span>
+                    ))}
+                  </div>
+                  <ContratarPlanButton
+                    prepagaNombre={p.prepagaNombre}
+                    fuente="sanatorio-planes"
+                    label={`Cotizá ${p.prepagaNombre}`}
+                    titulo={`${p.prepagaNombre} con ${art(s.nombre)} ${s.nombre}`}
+                    planesOpciones={p.internacion.map((pl) => pl.label)}
+                    datosExtra={{ sanatorio: s.nombre }}
+                    className="mt-auto inline-flex items-center justify-center px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Tabla resumen (GEO): la respuesta en un formato que los motores de IA
           citan tal cual; el detalle por prepaga va abajo. */}

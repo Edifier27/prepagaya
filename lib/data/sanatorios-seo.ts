@@ -23,48 +23,73 @@ export interface SanatorioSEO {
   ciudad?: string
   /** Cómo se muestra la ciudad: "Rosario", "Córdoba"... */
   ciudadNombre?: string
+  /** Especialidad por la que se lo busca (solo si es su especialidad
+   *  institucional: lo dice su nombre o es un instituto monotemático) */
+  especialidad?: Especialidad
 }
+
+export const ESPECIALIDADES = ['Cardiología', 'Neurología', 'Oncología', 'Traumatología', 'Maternidad', 'Pediatría'] as const
+export type Especialidad = (typeof ESPECIALIDADES)[number]
 
 export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'hospital-italiano', nombre: 'Hospital Italiano', claves: ['italiano'], excluir: ['plata', 'rosario', 'cordoba', 'mendoza'] },
   { slug: 'hospital-aleman', nombre: 'Hospital Alemán', claves: ['aleman'] },
   { slug: 'hospital-britanico', nombre: 'Hospital Británico', claves: ['britanico'] },
   { slug: 'hospital-austral', nombre: 'Hospital Universitario Austral', claves: ['austral'] },
-  { slug: 'fleni', nombre: 'FLENI', claves: ['fleni'] },
-  { slug: 'fundacion-favaloro', nombre: 'Hospital Universitario Fundación Favaloro', claves: ['favaloro'] },
+  { slug: 'fleni', nombre: 'FLENI', claves: ['fleni'], especialidad: 'Neurología' },
+  { slug: 'fundacion-favaloro', nombre: 'Hospital Universitario Fundación Favaloro', claves: ['favaloro'], especialidad: 'Cardiología' },
   { slug: 'sanatorio-otamendi', nombre: 'Sanatorio Otamendi', claves: ['otamendi'] },
   { slug: 'sanatorio-mater-dei', nombre: 'Sanatorio Mater Dei', claves: ['mater', 'dei'] },
   { slug: 'sanatorio-guemes', nombre: 'Sanatorio Güemes', claves: ['guemes'] },
   { slug: 'sanatorio-de-la-trinidad', nombre: 'Sanatorio de la Trinidad', claves: ['trinidad'] },
   { slug: 'sanatorio-finochietto', nombre: 'Sanatorio Finochietto', claves: ['finochietto'] },
-  { slug: 'clinica-suizo-argentina', nombre: 'Clínica y Maternidad Suizo Argentina', claves: ['suizo'] },
+  { slug: 'clinica-suizo-argentina', nombre: 'Clínica y Maternidad Suizo Argentina', claves: ['suizo'], especialidad: 'Maternidad' },
   { slug: 'sanatorio-anchorena', nombre: 'Sanatorio Anchorena', claves: ['anchorena'] },
   { slug: 'sanatorio-los-arcos', nombre: 'Sanatorio Los Arcos', claves: ['arcos'] },
   { slug: 'clinica-bazterrica', nombre: 'Clínica Bazterrica', claves: ['bazterrica'] },
   { slug: 'sanatorio-agote', nombre: 'Sanatorio Agote', claves: ['agote'] },
-  { slug: 'instituto-alexander-fleming', nombre: 'Instituto Alexander Fleming', claves: ['fleming'], excluir: ['trinidad'] },
+  { slug: 'instituto-alexander-fleming', nombre: 'Instituto Alexander Fleming', claves: ['fleming'], excluir: ['trinidad'], especialidad: 'Oncología' },
   { slug: 'hospital-cemic', nombre: 'Hospital Universitario CEMIC', claves: ['cemic'] },
   { slug: 'sanatorio-las-lomas', nombre: 'Sanatorio Las Lomas', claves: ['lomas'], excluir: ['zamora', 'policl', 'ojos', 'odontolog', 'centro', 'mirador'] },
+  // AMBA, 3-oct-2026: los que figuran en 2 o más cartillas oficiales
+  // (cruce de lib/data/cartilla-zonas con las claves de abajo)
+  { slug: 'instituto-cardiovascular-de-buenos-aires', nombre: 'ICBA Instituto Cardiovascular de Buenos Aires', claves: ['cardiovascular'], especialidad: 'Cardiología' },
+  { slug: 'instituto-dupuytren', nombre: 'Instituto Dupuytren', claves: ['dupuytren'], especialidad: 'Traumatología' },
+  { slug: 'sanatorio-san-lucas', nombre: 'Sanatorio San Lucas', claves: ['san', 'lucas'] },
+  { slug: 'clinica-santa-isabel', nombre: 'Clínica Santa Isabel', claves: ['santa', 'isabel'] },
+  { slug: 'sanatorio-de-la-providencia', nombre: 'Sanatorio de la Providencia', claves: ['providencia'] },
+  { slug: 'clinica-la-sagrada-familia', nombre: 'Clínica La Sagrada Familia', claves: ['sagrada', 'familia'] },
+  { slug: 'clinica-adventista-belgrano', nombre: 'Clínica Adventista Belgrano', claves: ['adventista'] },
+  { slug: 'clinica-san-camilo', nombre: 'Clínica San Camilo', claves: ['camilo'] },
+  { slug: 'sanatorio-colegiales', nombre: 'Sanatorio Colegiales', claves: ['colegiales'] },
+  { slug: 'hospital-sirio-libanes', nombre: 'Hospital Sirio Libanés', claves: ['sirio'] },
+  { slug: 'clinica-zabala', nombre: 'Clínica Zabala', claves: ['zabala'] },
+  { slug: 'clinica-olivos', nombre: 'Clínica Olivos', claves: ['olivos'], excluir: ['sanatorio'] },
+  { slug: 'sanatorio-juncal', nombre: 'Sanatorio Juncal', claves: ['juncal'] },
+  { slug: 'sanatorio-modelo-quilmes', nombre: 'Sanatorio Modelo Quilmes', claves: ['modelo', 'quilmes'] },
+  { slug: 'sanatorio-bernal', nombre: 'Sanatorio Bernal', claves: ['bernal'] },
+  { slug: 'sanatorio-itoiz', nombre: 'Sanatorio Itoiz', claves: ['itoiz'] },
+  { slug: 'clinica-bessone', nombre: 'Clínica Bessone', claves: ['bessone'] },
   // Interior: los que figuran en 3 o más cartillas oficiales de su ciudad
   { slug: 'sanatorio-allende', nombre: 'Sanatorio Allende', claves: ['allende'], excluir: ['transito', 'caceres'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
   { slug: 'clinica-reina-fabiola', nombre: 'Clínica Universitaria Reina Fabiola', claves: ['reina', 'fabiola'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
   { slug: 'sanatorio-del-salvador', nombre: 'Sanatorio del Salvador', claves: ['salvador'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
-  { slug: 'instituto-modelo-de-cardiologia', nombre: 'Instituto Modelo de Cardiología', claves: ['modelo', 'cardiologia'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
+  { slug: 'instituto-modelo-de-cardiologia', nombre: 'Instituto Modelo de Cardiología', claves: ['modelo', 'cardiologia'], ciudad: 'cordoba', ciudadNombre: 'Córdoba', especialidad: 'Cardiología' },
   { slug: 'sanatorio-britanico-rosario', nombre: 'Sanatorio Británico de Rosario', claves: ['britanico'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
   { slug: 'sanatorio-parque-rosario', nombre: 'Sanatorio Parque de Rosario', claves: ['parque'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
-  { slug: 'sanatorio-de-la-mujer-rosario', nombre: 'Sanatorio de la Mujer (Rosario)', claves: ['mujer'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'sanatorio-de-la-mujer-rosario', nombre: 'Sanatorio de la Mujer (Rosario)', claves: ['mujer'], ciudad: 'rosario', ciudadNombre: 'Rosario', especialidad: 'Maternidad' },
   { slug: 'hospital-espanol-rosario', nombre: 'Hospital Español de Rosario', claves: ['espanol'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
   { slug: 'sanatorio-americano-rosario', nombre: 'Sanatorio Americano (Rosario)', claves: ['americano'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
   { slug: 'centro-medico-ipam', nombre: 'Centro Médico IPAM (Rosario)', claves: ['ipam'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
-  { slug: 'instituto-cardiovascular-de-rosario', nombre: 'Instituto Cardiovascular de Rosario', claves: ['cardiovascular'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'instituto-cardiovascular-de-rosario', nombre: 'Instituto Cardiovascular de Rosario', claves: ['cardiovascular'], ciudad: 'rosario', ciudadNombre: 'Rosario', especialidad: 'Cardiología' },
   { slug: 'hospital-italiano-garibaldi-rosario', nombre: 'Hospital Italiano Garibaldi (Rosario)', claves: ['italiano'], excluir: ['sanatorio'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
-  { slug: 'sanatorio-de-ninos-rosario', nombre: 'Sanatorio de Niños (Rosario)', claves: ['ninos'], excluir: ['vilela'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'sanatorio-de-ninos-rosario', nombre: 'Sanatorio de Niños (Rosario)', claves: ['ninos'], excluir: ['vilela'], ciudad: 'rosario', ciudadNombre: 'Rosario', especialidad: 'Pediatría' },
   { slug: 'clinica-de-cuyo', nombre: 'Clínica de Cuyo', claves: ['cuyo'], excluir: ['oftalmologico'], ciudad: 'mendoza', ciudadNombre: 'Mendoza' },
   { slug: 'clinica-mayo-tucuman', nombre: 'Clínica Mayo (Tucumán)', claves: ['mayo'], excluir: ['sanatorio'], ciudad: 'tucuman', ciudadNombre: 'Tucumán' },
   { slug: 'sanatorio-del-norte-tucuman', nombre: 'Sanatorio del Norte (Tucumán)', claves: ['norte'], ciudad: 'tucuman', ciudadNombre: 'Tucumán' },
   { slug: 'hospital-italiano-la-plata', nombre: 'Hospital Italiano de La Plata', claves: ['italiano', 'plata'], ciudad: 'plata', ciudadNombre: 'La Plata' },
   { slug: 'instituto-medico-platense', nombre: 'Instituto Médico Platense', claves: ['platense'], ciudad: 'plata', ciudadNombre: 'La Plata' },
-  { slug: 'clinica-colon-mar-del-plata', nombre: 'Clínica y Maternidad Colón (Mar del Plata)', claves: ['colon'], ciudad: 'mar del plata', ciudadNombre: 'Mar del Plata' },
+  { slug: 'clinica-colon-mar-del-plata', nombre: 'Clínica y Maternidad Colón (Mar del Plata)', claves: ['colon'], ciudad: 'mar del plata', ciudadNombre: 'Mar del Plata', especialidad: 'Maternidad' },
   { slug: 'hospital-regional-espanol-bahia-blanca', nombre: 'Hospital Regional Español (Bahía Blanca)', claves: ['regional', 'espanol'], ciudad: 'bahia blanca', ciudadNombre: 'Bahía Blanca' },
   { slug: 'hospital-privado-del-sur', nombre: 'Hospital Privado del Sur (Bahía Blanca)', claves: ['privado', 'sur'], excluir: ['italiano'], ciudad: 'bahia blanca', ciudadNombre: 'Bahía Blanca' },
   { slug: 'sanatorio-altos-de-salta', nombre: 'Sanatorio Altos de Salta', claves: ['altos', 'salta'], ciudad: 'salta', ciudadNombre: 'Salta' },
