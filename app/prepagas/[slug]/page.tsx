@@ -27,6 +27,7 @@ import { planesConTarifa } from '@/lib/precios/motor'
 import { sucursalesEnProvincia, totalSucursales, FUENTES_SUCURSALES } from '@/lib/data/sucursales'
 import { provinciasSEO as PROVINCIAS_SEO_SUC } from '@/lib/data/zonas'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -432,6 +433,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <BarraCotizar titulo={prep.nombre} origen={`ficha:${slug}`} href={`/comparador?prepaga=${slug}&desde=barra`} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

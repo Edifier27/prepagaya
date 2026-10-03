@@ -71,8 +71,14 @@ export async function POST(req: NextRequest) {
     pagina = new URL(req.headers.get('referer') ?? '').pathname.slice(0, 100)
   } catch { /* sin referer */ }
 
+  // Leads que llegaron al comparador desde la barra "Cotizá X" de fichas y
+  // planes (3-oct-2026): se miden como "cotizacion-wizard · barra". Solo en
+  // Vercel Analytics; la fuente guardada (base, Kommo, planilla) no cambia.
+  const origen = String(body.origen ?? '').trim()
+  const fuenteMedida = /^[a-z-]{3,20}$/.test(origen) ? `${fuente} · ${origen}` : fuente
+
   await Promise.allSettled([
-    track('Lead enviado', { fuente: fuente.slice(0, 60), pagina: pagina || '(desconocida)', provincia: provincia ? provincia.slice(0, 40) : 'Sin especificar' }, { headers: req.headers }),
+    track('Lead enviado', { fuente: fuenteMedida.slice(0, 60), pagina: pagina || '(desconocida)', provincia: provincia ? provincia.slice(0, 40) : 'Sin especificar' }, { headers: req.headers }),
     guardarLead({ nombre, celular, email, prepaga, provincia, edades: personas, fuente, pais: pais || undefined, zonaDetectada, situacionLaboral, presupuesto, prepagaActual, preferencias }),
     avisarLeadPorTelegram(textoAlertaLead({
       nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommoLink: '',

@@ -570,14 +570,25 @@ function SituacionFiltro({ situacion, setSituacion, sueldoBruto, setSueldoBruto 
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
+interface OrigenCotizacion {
+  prepaga: string
+  prepagaNombre: string
+  plan?: string
+  planNombre?: string
+  /** "barra" cuando viene de la barra fija de fichas y planes */
+  desde?: string
+}
+
 interface WizardProps {
   /** prepagasEnSitioPorZona() de lib/data/zonas.ts, calculado en el servidor */
   zonasSEO: Record<string, string[]>
   initialZona?: string
   initialProvincia?: string
+  /** Prepaga y plan que la persona estaba mirando (barra "Cotizá X", 3-oct-2026) */
+  origen?: OrigenCotizacion
 }
 
-export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: WizardProps) {
+export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, origen }: WizardProps) {
   const zonaPrepagas = useMemo(() => armarZonaPrepagas(zonasSEO), [zonasSEO])
   const router = useRouter()
   const pathname = usePathname()
@@ -736,7 +747,12 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
     }, 1500)
     return () => clearTimeout(t)
   }, [leadStatus, situacion, situacionTocada, prepagaActual, activeCobs, copago, email, celular])
-  const [activePrepagas, setActivePrepagas] = useState<Set<string>>(new Set())
+  // Si viene desde la ficha o el plan de una prepaga, los resultados arrancan
+  // filtrados por esa prepaga y Swiss Medical al lado (prioridad de Darío);
+  // la persona saca el filtro con un toque.
+  const [activePrepagas, setActivePrepagas] = useState<Set<string>>(
+    () => new Set(origen ? [origen.prepaga, ...(origen.prepaga !== 'swiss-medical' ? ['swiss-medical'] : [])] : []),
+  )
   const [activeNivelPrecio, setActiveNivelPrecio] = useState<Set<NivelPrecio>>(new Set())
   const [activeCaracteristicas, setActiveCaracteristicas] = useState<Set<CaracteristicaId>>(new Set())
   const [sortBy, setSortBy] = useState<'relevancia' | 'precio-asc' | 'precio-desc'>('relevancia')
@@ -937,7 +953,12 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
     // seteado por handleAccederPlan cuando aprieta "Cotización personalizada"
     // en un plan específico) y si no hay uno, cae al primer resultado
     // mostrado. Este es el valor que termina en el mail como "Interesado en".
-    const interes = extra.plan_elegido ?? (planesTexto.split('\n')[0] ?? '')
+    // Si llegó desde la página de un plan, ese plan es el interés por defecto
+    const delOrigen = origen?.plan ? allResultados.find((r) => r.prepaga.slug === origen.prepaga && r.plan.slug === origen.plan) : undefined
+    const interesOrigen = delOrigen
+      ? `${delOrigen.prepaga.nombre} — ${delOrigen.plan.nombre} | $${delOrigen.precioGrupal.toLocaleString('es-AR')}/mes (venía de la página del plan)`
+      : origen ? `${origen.prepagaNombre}${origen.planNombre ? ` — ${origen.planNombre}` : ''} (venía de su página)` : undefined
+    const interes = extra.plan_elegido ?? interesOrigen ?? (planesTexto.split('\n')[0] ?? '')
     const edadResumen = resumenEdadesNatural()
     return {
       name: nombre.trim(),
@@ -965,6 +986,8 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
       aporte_descontado: aporteMensual > 0 ? `$${aporteMensual.toLocaleString('es-AR')}/mes` : '',
       presupuesto: 'calculado por edad',
       fecha: new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }),
+      // Solo para medir en Vercel Analytics de dónde llegó (lo lee /api/leads)
+      ...(origen?.desde ? { origen: origen.desde } : {}),
       ...extra,
     }
   }
