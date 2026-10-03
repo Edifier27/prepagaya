@@ -20,35 +20,32 @@ export const perfiles: PerfilData[] = [
     nombre: 'Familias',
     emoji: '👨‍👩‍👧‍👦',
     titulo: 'Mejor prepaga para familias',
-    metaDescripcion: 'Encontrá la mejor prepaga para tu familia en Argentina. Comparamos precios, coberturas pediátricas y maternidad de Swiss Medical, OSDE, Sancor y más. Precios junio 2026.',
+    metaDescripcion: 'Encontrá la mejor prepaga para tu familia en Argentina. Comparamos precios oficiales, cobertura pediátrica y maternidad de Swiss Medical, OSDE, Sancor y más. Cotizá gratis para tu grupo familiar.',
     descripcion: 'Elegir una prepaga para toda la familia requiere equilibrar cobertura pediátrica, maternidad, precio total y amplitud de red. Te ayudamos a encontrar la opción que mejor se adapta a tu grupo familiar.',
     necesidades: [
       'Pediatría con turnos rápidos',
       'Maternidad completa (parto, cesárea, neonatología)',
-      'Descuentos por grupo familiar (2do, 3er integrante)',
+      'Una cuota total que puedas sostener: cada integrante paga según su edad',
       'Cobertura odontológica para niños',
       'Red amplia en tu zona',
       'Salud mental para adultos y niños',
     ],
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'Excelente red pediátrica y maternidad en sus sanatorios propios. App para gestionar turnos de toda la familia.' },
-      { slug: 'osde', razon: 'La mayor red de prestadores del país. Ideal para familias que necesitan cobertura en distintas zonas.' },
-      { slug: 'sancor-salud', razon: 'Muy buena relación precio-calidad para familias. El plan 3000 cubre pediatría y maternidad a precios accesibles.' },
-      { slug: 'medife', razon: 'Planes familiares con descuento progresivo. Buena opción para familias en AMBA.' },
+      { slug: 'swiss-medical', razon: 'Tiene maternidad propia, la Clínica y Maternidad Suizo Argentina, que está en la cartilla de todos sus planes salvo el S1 y el SMG02. App para gestionar los turnos de toda la familia.' },
+      { slug: 'osde', razon: 'En su lista oficial, los chicos y jóvenes de hasta 27 años pagan bastante menos que un adulto, algo que pesa en una familia con hijos.' },
+      { slug: 'sancor-salud', razon: 'Los planes F700 y F800, con copago, son sus cuotas más bajas según su lista oficial; el Plan 3000 no tiene copago.' },
+      { slug: 'medife', razon: 'En su lista oficial, el Plan Bronce cuesta lo mismo desde el nacimiento hasta los 35 años, así que la cuota de la familia es fácil de prever.' },
     ],
     planesRecomendados: [
-      { prepagaSlug: 'swiss-medical', planSlug: 'smg20', razon: 'Cubre toda la familia con red abierta y excelente maternidad' },
-      { prepagaSlug: 'sancor-salud', planSlug: 'plan-3000', razon: 'Mejor relación precio-calidad para familias con niños' },
-      { prepagaSlug: 'osde', planSlug: '310', razon: 'Red amplia con buena cobertura pediátrica' },
+      { prepagaSlug: 'swiss-medical', planSlug: 'smg20', razon: 'Cartilla Global, con la Maternidad Suizo Argentina y el Hospital Italiano en CABA, sin copago' },
+      { prepagaSlug: 'sancor-salud', planSlug: 'plan-3000', razon: 'Sin copago en consultas, para una familia que va seguido al pediatra' },
+      { prepagaSlug: 'osde', planSlug: '310', razon: 'Los chicos de hasta 27 años pagan menos que un adulto según su lista oficial' },
     ],
     faq: [
-      {
-        q: '¿Cuánto sale una prepaga para una familia de 4 personas?',
-        a: 'Depende de la edad de cada integrante y de si buscás un plan de nivel económico o premium. Una familia tipo (2 adultos de 35 años + 2 hijos menores) puede pagar desde nivel de precio medio en las opciones más accesibles hasta nivel premium en las prepagas de cartilla más amplia. Los niños menores de 18 años suelen pagar entre el 50% y 70% del valor del adulto. Cotizá gratis para ver el monto exacto de tu grupo familiar.',
-      },
+      // La pregunta "¿Cuánto sale una prepaga para una familia de 4?" se arma en la página con los precios oficiales
       {
         q: '¿Las prepagas dan descuento por grupo familiar?',
-        a: 'Sí. La mayoría de las prepagas aplican descuentos a partir del segundo integrante. Generalmente el 2do integrante paga el 100%, el 3ro entre el 60-80%, y del 4to en adelante entre el 50-60%. Los menores de 18 siempre tienen tarifa especial.',
+        a: 'En las listas oficiales que declaran ante la Superintendencia de Servicios de Salud no hay un descuento por grupo: cada integrante paga según su franja de edad, y en algunas prepagas los chicos pagan menos que un adulto. Lo que sí baja la cuota: contratar online (15% OFF cotizando acá) y, si los dos trabajan en relación de dependencia, unificar los aportes de ambos en la misma prepaga. Si hay alguna bonificación comercial vigente por grupo, el asesor te la confirma al cotizar.',
       },
       {
         q: '¿Qué prepaga cubre mejor el parto?',
@@ -62,7 +59,7 @@ export const perfiles: PerfilData[] = [
     nombre: 'Embarazadas',
     emoji: '🤰',
     titulo: 'Mejor prepaga para embarazadas',
-    metaDescripcion: 'Guía completa: las mejores prepagas para embarazadas en Argentina. Cobertura del parto, período de carencia, maternidad y atención prenatal. Actualizado junio 2026.',
+    metaDescripcion: 'Guía completa: las mejores prepagas para embarazadas en Argentina. Cobertura del parto, período de carencia, maternidad y atención prenatal. Cotizá gratis.',
     descripcion: 'Si estás embarazada o planificando un embarazo, la elección de prepaga es una decisión urgente. Te explicamos qué buscar, qué períodos de carencia existen y cuáles son las mejores opciones.',
     necesidades: [
       'Cobertura del parto sin cargo de carencia (afiliándote con más de 2 meses de margen antes de la FUM)',
@@ -101,43 +98,49 @@ export const perfiles: PerfilData[] = [
     slug: 'monotributistas',
     nombre: 'Monotributistas',
     emoji: '💼',
-    titulo: 'Prepagas para monotributistas: opciones y precios',
-    metaDescripcion: 'Las mejores prepagas para monotributistas en Argentina 2026. Podés deducir el gasto, contratar sin empleador y elegir entre todas las opciones del mercado. Precios actualizados.',
-    descripcion: 'Tu cuota del monotributo ya incluye un aporte a la obra social. Podés usarlo en una prepaga que lo tome y pagar solo la diferencia, o contratar cualquier prepaga en forma directa, sin depender de un empleador.',
+    // Search Console (hasta el 24-sep-2026): "prepaga monotributista" y
+    // variantes, unas 124 impresiones en el puesto 10-12. El aporte por
+    // categoría y la lista de obras sociales salen de ARCA y la SSSalud
+    // (lib/data/monotributo.ts) y se arman en la página.
+    titulo: 'Prepagas para monotributistas: cómo usar el aporte y cuánto pagás',
+    metaDescripcion: 'Cómo usar el aporte de obra social del monotributo en una prepaga, cuánto aporta cada categoría según ARCA y los planes más económicos según la lista oficial. 25% OFF cotizando online.',
+    descripcion: 'Tu cuota del monotributo ya incluye un aporte a la obra social. Podés derivarlo a una prepaga que lo tome y pagar solo la diferencia, o contratar cualquier prepaga en forma directa, sin depender de un empleador. Acá tenés cuánto aporta tu categoría y qué planes conviene mirar.',
     necesidades: [
-      'Contratación directa sin empleador',
       'Usar el aporte de obra social del monotributo para pagar menos',
-      'Planes con buena relación precio-calidad',
-      'Factura para declarar el gasto',
-      'Flexibilidad para cambiar si cambia tu situación',
+      'Contratación directa, sin empleador',
+      'Una cuota que no se coma tu facturación: los planes con copago son los más baratos',
+      'Sumar a tu familia: cada adherente aporta lo mismo que el titular',
+      'Factura de la prepaga para tus comprobantes',
+      'Poder cambiar de plan si cambia tu categoría',
     ],
     prepagasRecomendadas: [
-      { slug: 'premedic', razon: 'La más económica del mercado. Ideal si querés cobertura básica a bajo costo y trabajás en CABA/GBA.' },
-      { slug: 'sancor-salud', razon: 'Excelente balance precio-cobertura. El Plan 3000 cubre todo lo necesario para un monotributista.' },
-      { slug: 'medife', razon: 'Buena opción en AMBA con planes accesibles y cobertura completa.' },
-      { slug: 'swiss-medical', razon: 'Si tu monotributo te da mayor flexibilidad económica, Swiss Medical ofrece la mejor experiencia de atención.' },
+      { slug: 'swiss-medical', razon: 'Sus cuotas más bajas son las de los planes con copago, según su lista oficial. El S2 usa la cartilla Global, que en CABA incluye sus sanatorios propios (Suizo Argentina, Los Arcos, Agote, Zabala) y el Hospital Italiano; el S1, la Nubial Quality, con el Hospital Británico, el Güemes y el Trinidad.' },
+      { slug: 'premedic', razon: 'Tiene la cuota más baja del mercado según las listas oficiales: el Plan C-100, con copago. Su red está concentrada en CABA y GBA.' },
+      { slug: 'sancor-salud', razon: 'Los planes F700 y F800, con copago, son sus cuotas más bajas según su lista oficial.' },
+      { slug: 'medife', razon: 'Medifé+, con copago, es su cuota más baja según su lista oficial.' },
     ],
     planesRecomendados: [
-      { prepagaSlug: 'premedic', planSlug: 'plan-200', razon: 'El plan más económico del mercado con cobertura PMO completa' },
-      { prepagaSlug: 'sancor-salud', planSlug: 'plan-3000', razon: 'Mejor precio-calidad para monotributistas' },
-      { prepagaSlug: 'medife', planSlug: 'medife-plus', razon: 'El plan de entrada de Medifé: buena cobertura en AMBA a precio competitivo, con acceso a Cam Doctor y Sanatorio Finochietto.' },
+      { prepagaSlug: 'swiss-medical', planSlug: 's1', razon: 'La cuota más baja de Swiss Medical, con copago. Cartilla Nubial Quality: en CABA, Hospital Británico, Güemes y Trinidad' },
+      { prepagaSlug: 'premedic', planSlug: 'plan-c100', razon: 'La cuota más baja del mercado según las listas oficiales, con copago' },
+      { prepagaSlug: 'sancor-salud', planSlug: 'f700', razon: 'La cuota más baja de Sancor Salud según su lista oficial, con copago' },
     ],
     faq: [
+      // La pregunta "¿Cuánto aporta mi categoría…?" se arma en la página con el cuadro de ARCA
       {
         q: '¿Los monotributistas pueden tener prepaga sin obra social?',
-        a: 'Podés contratar cualquier prepaga en forma directa, sin empleador, pero el aporte de obra social del monotributo lo seguís pagando igual: está dentro de tu cuota mensual (salvo excepciones, como los menores de 18 años o quienes aportan a otro régimen). Por eso conviene una prepaga que tome ese aporte: pagás solo la diferencia. En la página de obras sociales para monotributistas tenés la lista oficial y cuánto se paga por categoría.',
+        a: 'Podés contratar cualquier prepaga en forma directa, sin empleador, pero el aporte de obra social del monotributo lo seguís pagando igual: está dentro de tu cuota mensual (salvo excepciones, como quienes aportan a otro régimen). Por eso conviene una prepaga que tome ese aporte: pagás solo la diferencia. En la página de obras sociales para monotributistas tenés la lista oficial y cuánto se paga por categoría.',
       },
       {
         q: '¿Puedo deducir la prepaga siendo monotributista?',
-        a: 'Depende de tu situación. Los monotributistas puros (que solo tienen ingresos del monotributo) no presentan declaración de ganancias, así que no deducen en ese impuesto. Sin embargo, si tenés ingresos en relación de dependencia además del monotributo, sí podés deducir la prepaga en tu liquidación anual hasta el límite establecido por AFIP.',
+        a: 'Depende de tu situación. Si solo tenés ingresos del monotributo, no presentás declaración de Ganancias, así que no la deducís en ese impuesto. Si además tenés un sueldo en relación de dependencia, sí podés deducir la cuota de la prepaga en Ganancias con el tope que fija ARCA.',
       },
       {
         q: '¿Cuánto cuesta una prepaga para un monotributista en 2026?',
-        a: 'Los precios van de nivel económico a nivel premium según el plan y la prepaga que elijas. Para un monotributista, la recomendación es apuntar a un plan de nivel de precio medio, donde encontrás buena cobertura con opciones como Sancor, Medifé o Premedic. Además, como monotributista accedés al 25% de descuento por contratar online. Cotizá gratis para ver el monto exacto.',
+        a: 'Lo mismo que para cualquier persona: el precio depende de la edad y del plan, no de cómo facturás. Lo que cambia es que podés descontar el aporte de obra social que ya pagás en el monotributo si la prepaga lo toma. En la tabla de planes recomendados tenés el precio de lista oficial a los 30 años; cotizando online como monotributista tenés 25% OFF.',
       },
       {
         q: '¿Es lo mismo para un freelancer o trabajador remoto que no vive en CABA?',
-        a: 'Sí, aplica igual: si facturás por monotributo, contratás la prepaga en forma directa sin depender de un empleador. Si trabajás remoto y no tenés una ubicación fija, priorizá cobertura nacional real por sobre la cartilla premium de una sola ciudad — OSDE, Sancor Salud y Medifé son las que más red tienen fuera de CABA/GBA.',
+        a: 'Sí: si facturás por monotributo, contratás la prepaga en forma directa sin depender de un empleador. Lo que cambia según dónde vivís es la cartilla y el precio, porque cada prepaga declara una lista distinta por región. Antes de elegir, revisá en la cartilla de tu zona qué sanatorios y guardias tenés cerca.',
       },
     ],
     keywords: ['prepagas para monotributistas', 'prepaga monotributista argentina', 'contratar prepaga sin obra social', 'mejor prepaga monotributo 2026', 'prepaga freelancers autonomos', 'prepaga trabajadores remotos argentina'],
@@ -146,42 +149,46 @@ export const perfiles: PerfilData[] = [
     slug: 'adultos-mayores',
     nombre: 'Adultos mayores',
     emoji: '👴',
-    titulo: 'Mejor prepaga para adultos mayores y jubilados',
-    metaDescripcion: 'Encontrá la mejor prepaga para mayores de 60 años en Argentina. Coberturas geriátricas, precios por edad y qué tener en cuenta. Comparativa actualizada junio 2026.',
-    descripcion: 'Las personas mayores de 60 años tienen necesidades específicas: mayor acceso a especialistas, cobertura geriátrica, medicamentos, y a menudo enfrentan precios más altos por edad. Te ayudamos a elegir bien.',
+    // Search Console (3-oct-2026): "cuanto cuesta una prepaga para mayores de
+    // 70 años" y "prepaga para mayores de 60". La página muestra los precios
+    // oficiales por edad (components/perfiles/PreciosMayores.tsx).
+    titulo: 'Prepagas para mayores de 60 y 70 años: precios y cuál conviene',
+    metaDescripcion: '¿Cuánto cuesta una prepaga para mayores de 60, 65 y 70 años? Precios oficiales de cada prepaga por edad, qué dice la ley (no te pueden rechazar por la edad) y cuál conviene. Cotizá gratis.',
+    descripcion: 'Después de los 60 la cuota pesa más y cada prepaga sube distinto con la edad: algunas dejan de aumentar mucho antes que otras. Acá tenés los precios oficiales por edad de cada una y lo que dice la ley para que elijas bien.',
     necesidades: [
-      'Amplia red de especialistas (cardiología, traumatología, neurología)',
-      'Cobertura de medicamentos con descuento',
-      'Atención domiciliaria',
-      'Internación geriátrica de calidad',
-      'Sin límites de internación por año',
+      'Red de especialistas cerca de tu casa (cardiología, traumatología, neurología)',
+      'Cobertura de medicamentos de uso crónico',
+      'Atención domiciliaria y urgencias',
+      'Internación en sanatorios que conozcas',
       'Rehabilitación y kinesiología',
+      'Una cuota que puedas sostener con los años',
     ],
     prepagasRecomendadas: [
-      { slug: 'osde', razon: 'La red más amplia del país garantiza acceso a cualquier especialista. Ideal para adultos mayores que necesitan múltiples especialidades.' },
-      { slug: 'swiss-medical', razon: 'Excelente atención en sus propias clínicas con especialistas de primer nivel. Alta satisfacción entre adultos mayores.' },
-      { slug: 'cemic', razon: 'Sus clínicas universitarias son referencia en especialidades para adultos mayores. Geriatría y neurología de excelencia.' },
+      { slug: 'swiss-medical', razon: 'Sanatorios propios en CABA y GBA. Los planes SMG30 a SMG70 usan la cartilla Premium, que en CABA suma el Hospital Alemán y Fleni. Según su cuadro oficial, el precio deja de subir por edad a los 61.' },
+      { slug: 'osde', razon: 'Según su cuadro oficial, el precio deja de subir por edad a partir de los 36 años: a los 70 pagás lo mismo que a los 40.' },
+      { slug: 'cemic', razon: 'Tiene hospital universitario propio en CABA.' },
     ],
     planesRecomendados: [
-      { prepagaSlug: 'osde', planSlug: '410', razon: 'Sin copago para múltiples visitas a especialistas por mes' },
-      { prepagaSlug: 'swiss-medical', planSlug: 'smg30', razon: 'Red abierta con excelente cobertura de especialistas' },
+      { prepagaSlug: 'swiss-medical', planSlug: 'smg30', razon: 'Cartilla Premium (Hospital Alemán y Fleni en CABA) y sin copago en consultas' },
+      { prepagaSlug: 'osde', planSlug: '410', razon: 'Sin copago en consultas y con el mismo precio desde los 36 años' },
     ],
     faq: [
-      {
-        q: '¿Cuánto cuesta una prepaga para mayores de 65 años?',
-        a: 'Los precios aumentan significativamente con la edad. A los 65 años, un plan que cuesta $200.000 a los 30 puede llegar a $400.000-$600.000. A los 70+, los precios pueden superar el millón de pesos mensuales en planes premium.',
-      },
+      // La pregunta "¿Cuánto cuesta…?" se arma con los precios oficiales en la página
       {
         q: '¿Las prepagas pueden negarse a afiliar a adultos mayores?',
-        a: 'No pueden negarse por razones de salud o edad, pero sí pueden cobrar más según la edad. La ley establece que el precio puede aumentar por edad pero no pueden rechazar la afiliación ni imponer períodos de carencia por preexistencias.',
+        a: 'No. La Ley 26.682 no permite rechazar a alguien por su edad. Lo que cambia es el precio, según los rangos de edad que cada prepaga declara ante la Superintendencia de Servicios de Salud. Por una preexistencia pueden cobrarte una cuota diferencial autorizada por la Superintendencia, pero tampoco pueden rechazarte.',
       },
       {
-        q: '¿Qué prepaga tiene mejor cobertura geriátrica?',
-        a: 'OSDE y Swiss Medical destacan por su cobertura geriátrica integral. CEMIC tiene un centro geriátrico universitario de referencia. Para adultos mayores en CABA, estas tres son las mejores opciones.',
+        q: '¿Me pueden aumentar la cuota por cumplir 65?',
+        a: 'Si tenés 10 años o más de antigüedad en la misma prepaga, no: la Ley 26.682 no permite aumentos por edad a mayores de 65 con esa antigüedad. Si te cambiás de prepaga, en la nueva empezás de cero con la antigüedad, así que conviene hacer la cuenta antes.',
       },
       {
-        q: '¿Conviene una prepaga complementaria a PAMI en vez de reemplazarlo?',
-        a: 'Para muchos jubilados sí: la prepaga contratada puede descontar el aporte que ya hacés a PAMI (3% del haber), lo que reduce el costo de bolsillo. A cambio ganás turnos con especialistas en días en vez de semanas, internación en clínicas de mayor nivel y gestión más ágil de autorizaciones — pero seguís teniendo PAMI como red de respaldo y para medicamentos. Si tenés el haber mínimo, evaluá bien: el costo extra puede no ser sostenible, y ahí conviene aprovechar al máximo los beneficios de PAMI (Médico de Cabecera, medicamentos gratuitos).',
+        q: '¿Qué prepaga conviene después de los 60?',
+        a: 'Depende de dónde te atendés y de cuánto querés pagar. Mirá dos cosas en la tabla de precios: cuánto sale hoy cada plan y a qué edad deja de subir (OSDE, por ejemplo, cobra lo mismo desde los 36 según su cuadro oficial). Después confirmá que estén tus sanatorios en la cartilla del plan. Te lo cotizamos gratis con 15% OFF.',
+      },
+      {
+        q: '¿Puedo tener PAMI y una prepaga al mismo tiempo?',
+        a: 'Sí. Muchos jubilados mantienen PAMI y suman una prepaga para tener turnos más rápidos con especialistas e internación en sanatorios privados. Si querés cambiar de PAMI a otra obra social, los jubilados hacen la opción en ANSES. Te asesoramos sin cargo para ver qué te conviene según tu haber.',
       },
     ],
     keywords: ['prepaga para mayores de 60', 'prepaga adultos mayores argentina', 'mejor prepaga jubilados', 'prepaga geriatrica argentina', 'prepaga complementaria pami', 'prepaga o pami jubilados'],
@@ -191,10 +198,10 @@ export const perfiles: PerfilData[] = [
     nombre: 'Jóvenes',
     emoji: '🧑',
     titulo: 'Mejor prepaga para jóvenes: opciones económicas',
-    metaDescripcion: 'Las mejores prepagas económicas para jóvenes en Argentina. Planes de nivel de precio accesible con buena cobertura. Compará Swiss Medical S1, Premedic 200, Medifé y más.',
+    metaDescripcion: 'Las prepagas más económicas para jóvenes en Argentina según las listas oficiales: Swiss Medical S1, Premedic C-100, Medifé+ y más. Qué mirar además del precio. Cotizá gratis.',
     descripcion: 'Si sos joven y sano, probablemente no necesitás el plan más completo del mercado. Te mostramos las opciones más económicas con cobertura real para el día a día.',
     necesidades: [
-      'Precio accesible (budget-friendly)',
+      'Una cuota baja: los planes con copago son los más baratos',
       'Urgencias y emergencias cubiertas',
       'Salud mental (psicólogo, psiquiatría)',
       'Sin copago excesivo en consultas de uso frecuente',
@@ -202,15 +209,15 @@ export const perfiles: PerfilData[] = [
       'Cobertura odontológica básica',
     ],
     prepagasRecomendadas: [
-      { slug: 'premedic', razon: 'De nivel de precio más económico del mercado. El Plan 200 cubre todo lo esencial para un joven sano en CABA/GBA.' },
-      { slug: 'swiss-medical', razon: 'El plan S1 está diseñado especialmente para jóvenes. Precio accesible con el respaldo de la mejor red de sanatorios.' },
-      { slug: 'medife', razon: 'Plan Económico accesible con buena cobertura para jóvenes en AMBA.' },
-      { slug: 'sancor-salud', razon: 'El Plan 1500 ofrece buena cobertura a precio competitivo.' },
+      { slug: 'swiss-medical', razon: 'El S1, con copago, es su cuota más baja según su lista oficial. Usa la cartilla Nubial Quality, que en CABA incluye el Hospital Británico, el Güemes y el Trinidad.' },
+      { slug: 'premedic', razon: 'Tiene la cuota más baja del mercado según las listas oficiales: el Plan C-100, con copago. Su red está concentrada en CABA y GBA.' },
+      { slug: 'medife', razon: 'Medifé+, con copago, es su cuota más baja según su lista oficial.' },
+      { slug: 'sancor-salud', razon: 'Los planes F700 y F800, con copago, son sus cuotas más bajas según su lista oficial.' },
     ],
     planesRecomendados: [
-      { prepagaSlug: 'premedic', planSlug: 'plan-200', razon: 'El plan más económico del mercado — ideal para jóvenes sanos' },
-      { prepagaSlug: 'swiss-medical', planSlug: 's1', razon: 'Plan diseñado para jóvenes con red de sanatorios propios' },
-      { prepagaSlug: 'sancor-salud', planSlug: 'plan-1500', razon: 'Buena cobertura a precio accesible con red nacional' },
+      { prepagaSlug: 'swiss-medical', planSlug: 's1', razon: 'La cuota más baja de Swiss Medical, con copago. Cartilla Nubial Quality: en CABA, Hospital Británico, Güemes y Trinidad' },
+      { prepagaSlug: 'premedic', planSlug: 'plan-c100', razon: 'La cuota más baja del mercado según las listas oficiales, con copago' },
+      { prepagaSlug: 'medife', planSlug: 'medife-plus', razon: 'La cuota más baja de Medifé según su lista oficial, con copago' },
     ],
     faq: [
       {
@@ -219,7 +226,7 @@ export const perfiles: PerfilData[] = [
       },
       {
         q: '¿Cuál es la prepaga más barata para jóvenes?',
-        a: 'Premedic Plan 200 es consistentemente una de las de nivel de precio más económico. Swiss Medical S1 es la opción más accesible entre las prepagas grandes con sanatorios propios. Ambas cubren el PMO completo. Cotizá gratis para ver el monto exacto a tu edad.',
+        a: 'Según las listas oficiales que cada prepaga declara ante la Superintendencia de Servicios de Salud, la cuota más baja es la del Plan C-100 de Premedic, con copago. Entre las prepagas grandes, el S1 de Swiss Medical es su plan más económico. Todos los planes cubren como mínimo el Programa Médico Obligatorio. Cotizá gratis para ver el monto exacto a tu edad, con 15% OFF online.',
       },
     ],
     keywords: ['prepaga economica jovenes', 'prepaga barata argentina 2026', 'prepaga para estudiantes', 'prepaga mas barata argentina'],
@@ -263,7 +270,7 @@ export const perfiles: PerfilData[] = [
       },
       {
         q: '¿Cuánto cuesta una prepaga para un extranjero?',
-        a: 'Pagás lo mismo que un argentino: el precio depende de la edad y el plan, no de la nacionalidad. En 2026 los planes van desde ~$170.000/mes (planes de entrada) hasta más de $1.000.000/mes (premium) para un adulto de 30 años. Cotizá gratis para ver el valor exacto de tu edad.',
+        a: 'Pagás lo mismo que un argentino: el precio depende de la edad y el plan, no de la nacionalidad. Según las listas oficiales de 2026, para un adulto de 30 años van desde menos de $100.000 por mes (planes con copago) hasta más de $1.000.000 (los premium). Cotizá gratis para ver el valor exacto de tu edad.',
       },
       {
         q: '¿La prepaga sirve como seguro para el trámite de residencia?',

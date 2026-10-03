@@ -7,6 +7,14 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { PreciosMayores, faqPreciosMayores } from '@/components/perfiles/PreciosMayores'
+import { faqAporteMonotributo, faqFamilia } from '@/lib/perfiles-faq'
+
+const FAQ_CON_DATOS: Record<string, () => { q: string; a: string } | null> = {
+  'adultos-mayores': faqPreciosMayores,
+  familias: faqFamilia,
+  monotributistas: faqAporteMonotributo,
+}
 
 interface Props {
   params: Promise<{ perfil: string }>
@@ -21,7 +29,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const perf = perfiles.find((p) => p.slug === perfil)
   if (!perf) return {}
   return {
-    title: `${perf.titulo} (${PRECIO_ACTUALIZADO})`,
+    // Títulos con dos partes ("Prepagas para monotributistas: cómo usar…"):
+    // el año va pegado a la primera y no se suma el mes, para no pasar los
+    // 70 caracteres
+    title: perf.titulo.includes(': ') ? perf.titulo.replace(': ', ' 2026: ') : `${perf.titulo} (${PRECIO_ACTUALIZADO})`,
     description: perf.metaDescripcion,
     alternates: {
       canonical: `${SITE_URL}/para/${perfil}`,
@@ -70,6 +81,10 @@ export default async function PerfilPage({ params }: Props) {
     .sort((a, b) => Number(b.prep.slug === 'swiss-medical') - Number(a.prep.slug === 'swiss-medical'))
 
   const otrosPerfiles = perfiles.filter((p) => p.slug !== perfil).slice(0, 8)
+  // Preguntas que se responden con datos oficiales (precios de la SSSalud,
+  // cuadro de ARCA): van primeras y cambian solas con cada mes
+  const faqDatos = FAQ_CON_DATOS[perf.slug]?.()
+  const faq = faqDatos ? [faqDatos, ...perf.faq] : perf.faq
 
   const jsonLd = [
     {
@@ -97,7 +112,7 @@ export default async function PerfilPage({ params }: Props) {
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: perf.faq.map(({ q, a }) => ({
+      mainEntity: faq.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
         acceptedAnswer: { '@type': 'Answer', text: a },
@@ -129,7 +144,11 @@ export default async function PerfilPage({ params }: Props) {
             Guía por perfil · {PRECIO_ACTUALIZADO}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-            {perf.titulo} <span className="text-[#E8002D]">2026</span>
+            {perf.titulo.includes(': ') ? (
+              <>{perf.titulo.split(': ')[0]} <span className="text-[#E8002D]">2026</span>: {perf.titulo.split(': ').slice(1).join(': ')}</>
+            ) : (
+              <>{perf.titulo} <span className="text-[#E8002D]">2026</span></>
+            )}
           </h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl">{perf.descripcion}</p>
           {PERFIL_IDIOMAS[perfil] && (
@@ -161,6 +180,9 @@ export default async function PerfilPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Adultos mayores: precios oficiales a los 60, 65 y 70 años (3-oct-2026) */}
+      {perf.slug === 'adultos-mayores' && <PreciosMayores />}
 
       {/* Monotributistas: la lista oficial de obras sociales y el aporte por categoría (24-sep-2026) */}
       {perf.slug === 'monotributistas' && (
@@ -314,7 +336,7 @@ export default async function PerfilPage({ params }: Props) {
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes</h2>
           <div className="space-y-2">
-            {perf.faq.map(({ q, a }) => (
+            {faq.map(({ q, a }) => (
               <details key={q} className="group bg-white rounded-xl border border-gray-200 overflow-hidden">
                 <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold text-sm text-gray-900 select-none list-none">
                   <h3 className="font-semibold text-sm text-gray-900 m-0">{q}</h3>
