@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { normalizarBusqueda } from '@/lib/busqueda'
 import { useZonaDetectada } from '@/lib/use-zona-detectada'
 import type { DelegacionOsecac, GrupoProvinciaOsecac } from '@/lib/data/sindicales-zonas/osecac'
@@ -83,6 +83,17 @@ export function DelegacionesOsecac({
     (!t || normalizarBusqueda(`${e.nombre} ${e.direccion ?? ''}`).includes(t))
 
   const totalVisible = grupos.reduce((n, g) => n + g.entidades.filter((e) => visible(g, e)).length, 0)
+  // "Ver más" por tandas (Darío, 3-oct-2026): 6, después 18, después todas.
+  // Se reinicia al cambiar de provincia o de búsqueda.
+  const TANDAS = [6, 18, Infinity]
+  const [tanda, setTanda] = useState(0)
+  useEffect(() => { setTanda(0) }, [provincia, t])
+  const limite = TANDAS[tanda]
+  // Orden de aparición de las visibles, para cortar en el límite
+  const indiceVisible = new Map<DelegacionOsecac, number>()
+  for (const g of grupos) for (const e of g.entidades) if (visible(g, e)) indiceVisible.set(e, indiceVisible.size)
+  const mostrada = (g: GrupoProvinciaOsecac, e: DelegacionOsecac) => visible(g, e) && (indiceVisible.get(e) ?? 0) < limite
+  const quedan = Math.max(0, totalVisible - limite)
   const sinDelegaciones = !elegida && provDetectada && !provDetectada.grupo
   const fecha = descargado
     ? new Date(`${descargado}T12:00:00`).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -148,7 +159,7 @@ export function DelegacionesOsecac({
 
       <div className="space-y-8">
         {grupos.map((g) => {
-          const algunoVisible = g.entidades.some((e) => visible(g, e))
+          const algunoVisible = g.entidades.some((e) => mostrada(g, e))
           return (
             <div key={g.provincia} hidden={!algunoVisible}>
               <h3 className="text-sm font-bold text-gray-900 mb-3">
@@ -156,13 +167,26 @@ export function DelegacionesOsecac({
               </h3>
               <ul className="grid gap-3 sm:grid-cols-2">
                 {g.entidades.map((e) => (
-                  <Card key={`${e.tipo}-${e.nombre}-${e.direccion ?? ''}`} e={e} oculta={!visible(g, e)} />
+                  <Card key={`${e.tipo}-${e.nombre}-${e.direccion ?? ''}`} e={e} oculta={!mostrada(g, e)} />
                 ))}
               </ul>
             </div>
           )
         })}
         {(provincia || t) && totalVisible === 0 && <p className="text-sm text-gray-500 py-8 text-center">No encontramos delegaciones que coincidan con la búsqueda.</p>}
+        {quedan > 0 && (
+          <div className="text-center">
+            <button
+              type="button"
+              onClick={() => setTanda((x) => Math.min(x + 1, TANDAS.length - 1))}
+              className="px-6 py-2.5 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] text-gray-800 font-bold text-sm"
+            >
+              {tanda + 1 < TANDAS.length - 1 && quedan > TANDAS[tanda + 1] - limite
+                ? `Ver ${TANDAS[tanda + 1] - limite} más (quedan ${quedan})`
+                : `Ver las ${quedan} restantes`}
+            </button>
+          </div>
+        )}
       </div>
 
       <p className="text-xs text-gray-400 leading-relaxed mt-6">

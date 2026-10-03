@@ -1,4 +1,4 @@
-﻿import Link from 'next/link'
+import Link from 'next/link'
 import Image from 'next/image'
 import type { ProvinciaMenu } from '@/lib/data/zonas'
 import { PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
@@ -97,6 +97,34 @@ function IconArrow() {
     </svg>
   )
 }
+
+// Obras sociales en el footer (Darío, 3-oct-2026): sindicales y provinciales,
+// las de más búsqueda primero. Enlace interno al silo de /obras-sociales.
+const osSindicales = [
+  { slug: 'osecac', nombre: 'OSECAC (Comercio)' },
+  { slug: 'osuomra', nombre: 'UOM (Metalúrgicos)' },
+  { slug: 'union-personal', nombre: 'Unión Personal (UPCN)' },
+  { slug: 'osprera', nombre: 'OSPRERA (Rurales)' },
+  { slug: 'construir-salud', nombre: 'Construir Salud (UOCRA)' },
+  { slug: 'osmata', nombre: 'OSMATA (SMATA)' },
+  { slug: 'ospsa-sanidad', nombre: 'OSPSA (Sanidad)' },
+  { slug: 'osba-bancarios', nombre: 'OSBA (Bancarios)' },
+  { slug: 'osdop', nombre: 'OSDOP (Docentes)' },
+  { slug: 'osuthgra', nombre: 'OSUTHGRA (Gastronómicos)' },
+]
+
+const osProvinciales = [
+  { slug: 'ioma', nombre: 'IOMA (Buenos Aires)' },
+  { slug: 'apross', nombre: 'APROSS (Córdoba)' },
+  { slug: 'iapos', nombre: 'IAPOS (Santa Fe)' },
+  { slug: 'osep-mendoza', nombre: 'OSEP (Mendoza)' },
+  { slug: 'ips-salta', nombre: 'IPS Salta' },
+  { slug: 'oser', nombre: 'OSER (Entre Ríos)' },
+  { slug: 'ipsst', nombre: 'IPSST (Tucumán)' },
+  { slug: 'issn', nombre: 'ISSN (Neuquén)' },
+  { slug: 'obsba', nombre: 'ObSBA (CABA)' },
+  { slug: 'ipross', nombre: 'IPROSS (Río Negro)' },
+]
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
@@ -331,6 +359,45 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
             </ul>
           </div>
 
+        </div>
+
+        {/* Obras sociales: sindicales y provinciales (3-oct-2026) */}
+        <div className="mt-12 pt-10 border-t border-white/[0.06] grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-8">
+          <div>
+            <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Obras sociales sindicales</h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5">
+              {osSindicales.map((o) => (
+                <li key={o.slug}>
+                  <Link href={`/obras-sociales/${o.slug}`} className="text-sm text-gray-400 hover:text-white transition-colors">{o.nombre}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Obras sociales provinciales</h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5">
+              {osProvinciales.map((o) => (
+                <li key={o.slug}>
+                  <Link href={`/obras-sociales/${o.slug}`} className="text-sm text-gray-400 hover:text-white transition-colors">{o.nombre}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Guías de obras sociales</h3>
+            <ul className="space-y-2.5">
+              <li><Link href="/obras-sociales/mejores" className="text-sm text-gray-400 hover:text-white transition-colors">Mejores obras sociales 2026</Link></li>
+              <li><Link href="/obras-sociales/coseguros" className="text-sm text-gray-400 hover:text-white transition-colors">Coseguros de obras sociales</Link></li>
+              <li><Link href="/obras-sociales/obra-social-de-cada-prepaga" className="text-sm text-gray-400 hover:text-white transition-colors">La obra social de cada prepaga</Link></li>
+              <li><Link href="/obras-sociales/monotributo" className="text-sm text-gray-400 hover:text-white transition-colors">Obras sociales para monotributistas</Link></li>
+              <li><Link href="/obras-sociales/codigos" className="text-sm text-gray-400 hover:text-white transition-colors">Códigos de obras sociales</Link></li>
+              <li>
+                <Link href="/obras-sociales" className="inline-flex items-center gap-1 text-xs text-purple-400 hover:text-purple-300 transition-colors font-medium mt-1">
+                  Todas las obras sociales <IconArrow />
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Fuente de precios (23-sep-2026): cuadros tarifarios oficiales de la SSSalud.

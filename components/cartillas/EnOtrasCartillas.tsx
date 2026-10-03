@@ -26,8 +26,19 @@ export function EnOtrasCartillas({
   const corte = prepagaSlug === 'osde' ? Math.min(max, items.filter((c) => c.en[0].prepagaSlug === 'swiss-medical').length) : max
   const visibles = items.slice(0, corte)
   const resto = items.slice(corte)
+  // Botón "Cotizar": una mezcla de prepagas (Darío, 3-oct-2026: en Swiss salía
+  // siempre "Cotizar Premedic"). En cada sanatorio se ofrece, entre las que lo
+  // tienen, la que menos veces se ofreció hasta ahora (a igualdad, el orden del
+  // cruce: partners primero).
+  const usos = new Map<string, number>()
+  const ofrecida = new Map<string, CentroEnOtras['en'][number]>()
+  for (const c of items) {
+    const elegida = [...c.en].sort((a, b) => (usos.get(a.prepagaSlug) ?? 0) - (usos.get(b.prepagaSlug) ?? 0))[0]
+    usos.set(elegida.prepagaSlug, (usos.get(elegida.prepagaSlug) ?? 0) + 1)
+    ofrecida.set(c.nombre, elegida)
+  }
   const fila = (c: CentroEnOtras) => {
-    const primera = c.en[0]
+    const primera = ofrecida.get(c.nombre) ?? c.en[0]
     return (
       <li key={c.nombre} className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white border border-sky-100 rounded-xl p-3">
         <div className="min-w-0">
