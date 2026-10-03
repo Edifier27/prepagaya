@@ -18,7 +18,8 @@ declare global {
 function push(event: string, params: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return
   window.dataLayer = window.dataLayer || []
-  window.dataLayer.push({ event, pagina: window.location.pathname, ...params })
+  const limpiaPaso = event === 'generate_lead' || event === 'abrir_cotizador' ? { paso: undefined } : {}
+  window.dataLayer.push({ event, pagina: window.location.pathname, ...limpiaPaso, ...params })
 }
 
 export function trackEvent(event: string, params: Record<string, unknown> = {}) {
