@@ -186,7 +186,7 @@ export const blogPosts: BlogPost[] = [
           cuerpo: 'Premedic es ideal para: jóvenes y adultos sanos en CABA/GBA que necesitan cobertura de urgencias y consultas básicas, monotributistas que buscan el menor costo posible, personas sin familia a cargo que no usan mucho el sistema. No es la mejor opción para quienes tienen enfermedades crónicas o necesitan especialidades frecuentes.',
         },
       ],
-      conclusion: 'Premedic sí vale la pena para el perfil correcto: joven, sano, CABA/GBA, que necesita cobertura de respaldo. Su 82% de satisfacción lo confirma. Pero si necesitás cobertura nacional, red amplia de especialistas o sanatorios de calidad, vale la pena invertir un poco más en Sancor o Medife.',
+      conclusion: 'Premedic sí vale la pena para el perfil correcto: joven, sano, CABA/GBA, que necesita cobertura de respaldo. Su 82% de satisfacción lo confirma. Pero si necesitás cobertura nacional, red amplia de especialistas o sanatorios de calidad, vale la pena invertir un poco más en Sancor o Medifé.',
     },
     prepagasRelacionadas: ['premedic', 'sancor-salud', 'medife'],
     keywords: ['premedic vale la pena', 'premedic prepaga opinion', 'premedic vs sancor', 'prepaga mas barata argentina vale'],

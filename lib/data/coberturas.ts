@@ -261,7 +261,7 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Cuánto descuento me hace la prepaga en farmacia?',
-        a: 'El PMO garantiza 40% en genéricos y 70% en crónicos. En Swiss Medical, la cobertura en farmacia es del 40% en todos sus planes estándar (comparativo oficial, julio 2026). Premedic y Medife aplican el mínimo del PMO. Para medicación de alto costo oncológica o de enfermedades raras, la cobertura es del 100% por ley.',
+        a: 'El PMO garantiza 40% en genéricos y 70% en crónicos. En Swiss Medical, la cobertura en farmacia es del 40% en todos sus planes estándar (comparativo oficial, julio 2026). Premedic y Medifé aplican el mínimo del PMO. Para medicación de alto costo oncológica o de enfermedades raras, la cobertura es del 100% por ley.',
       },
       {
         q: '¿La prepaga cubre insulina y medicamentos para diabetes?',
@@ -378,7 +378,7 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Cuántas sesiones de kinesiología cubre la prepaga por mes?',
-        a: 'Por ley no hay límite si existe indicación médica. En la práctica, Swiss Medical y OSDE autorizan entre 12-20 sesiones mensuales sin auditoría. A partir de ese número pueden pedir un informe de evolución. Premedic y Medife tienen límites más estrictos.',
+        a: 'Por ley no hay límite si existe indicación médica. En la práctica, Swiss Medical y OSDE autorizan entre 12-20 sesiones mensuales sin auditoría. A partir de ese número pueden pedir un informe de evolución. Premedic y Medifé tienen límites más estrictos.',
       },
       {
         q: '¿La prepaga cubre kinesiología en domicilio?',

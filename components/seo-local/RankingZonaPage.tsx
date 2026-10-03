@@ -2,7 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, precioDesde } from '@/lib/utils'
+import { SITE_URL, formatPrecio, PRIORIDAD_PARTNERS } from '@/lib/utils'
+import { preciosDeZona } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb } from './shared'
 
@@ -39,7 +40,7 @@ function destacadosPorObjetivo(prov: ProvinciaSEO) {
   const conPrecio = prov.prepagas
     .map((pz) => {
       const prepData = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
-      const precioMin = prepData ? precioDesde(prepData) : null
+      const precioMin = prepData ? preciosDeZona(prepData, prov.zonaKey).desde : null
       return { pz, precioMin }
     })
     .filter((x): x is { pz: typeof x.pz; precioMin: number } => x.precioMin !== null)
@@ -135,7 +136,7 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
         <div className="space-y-5 mb-10">
           {prov.prepagas.map((pz, i) => {
             const prepData = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
-            const precioMin = prepData ? precioDesde(prepData) : null
+            const precioMin = prepData ? preciosDeZona(prepData, prov.zonaKey).desde : null
             const fuerza = FUERZA_LABEL[pz.fuerza]
             const isPartner = PARTNER_ORDER.includes(pz.slug)
             return (

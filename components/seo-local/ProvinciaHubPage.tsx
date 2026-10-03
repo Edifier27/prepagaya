@@ -2,7 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, precioDesde } from '@/lib/utils'
+import { SITE_URL, formatPrecio, PRIORIDAD_PARTNERS } from '@/lib/utils'
+import { preciosDeZona } from '@/lib/precios/zona'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq } from './shared'
@@ -14,7 +15,8 @@ export function provinciaHubMetadata(prov: ProvinciaSEO): Metadata {
   // 1.5% con un título genérico sin ningún número).
   const preciosProv = prov.prepagas
     .filter((pz) => pz.enSitio)
-    .flatMap((pz) => prepagas.find((p) => p.slug === pz.slug)?.planes.map((pl) => pl.precio) ?? [])
+    // Lista oficial de la región (28-sep-2026): antes, la de CABA
+    .flatMap((pz) => { const d = prepagas.find((p) => p.slug === pz.slug); const m = d ? preciosDeZona(d, prov.zonaKey).desde : null; return m ? [m] : [] })
   const precioMin = preciosProv.length ? Math.min(...preciosProv) : null
   return {
     title: precioMin
@@ -100,7 +102,7 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
           <div className="space-y-4">
             {prepagasOrdenadas.map((pz) => {
               const prepData = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
-              const precioMin = prepData ? precioDesde(prepData) : null
+              const precioMin = prepData ? preciosDeZona(prepData, prov.zonaKey).desde : null
               const fuerza = FUERZA_LABEL[pz.fuerza]
               const isPartner = PARTNER_ORDER.includes(pz.slug)
               const tienePropio = (PROPIO_POR_PROVINCIA[prov.slug] ?? []).includes(pz.slug)

@@ -10,11 +10,12 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
-import { escalaPorEdad } from '@/lib/precios/motor'
+import { escalaPorEdad, preciosPorRegion } from '@/lib/precios/motor'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
 import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
-import { linkCartillaPlan, CARTILLAS } from '@/lib/data/cartilla-zonas'
+import { linkCartillaPlan, CARTILLAS, type CartillaPrepaga } from '@/lib/data/cartilla-zonas'
+import { clavesRenombre, resumirZonaPlan } from '@/lib/cartilla-plan-resumen'
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
 import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
 import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
@@ -64,16 +65,29 @@ function getPerfilDelPlan(plan: Plan): { titulo: string; desc: string }[] {
 // OSDE, Premedic, Avalian y Sancor): todo sale de datos con fuente — escala de
 // precio por edad del cuadro tarifario SSSalud y la cobertura plan por plan de
 // las fichas oficiales (coberturas-marca.ts), cuando la hay.
-const PREPAGAS_PLAN_SEO = ['swiss-medical', 'osde', 'premedic', 'avalian', 'sancor-salud']
+// Medifé se sumó el 28-sep-2026 (Darío: mejorar las páginas de planes de
+// todas las prepagas). Prevención espera: su cuadro oficial tiene solo tres
+// franjas de edad con valores que hay que confirmar.
+const PREPAGAS_PLAN_SEO = ['swiss-medical', 'osde', 'premedic', 'avalian', 'sancor-salud', 'medife']
 
-/** Nombre corto del plan como se busca: "Swiss Medical SMG20", "OSDE 210". */
+/** Nombre corto del plan como se busca: "Swiss Medical SMG20", "OSDE 210".
+ *  Si el nombre no tiene número queda "Plan": "Medifé Plan Oro" (se busca
+ *  "medife plan oro", no "medife oro"). */
 function codigoPlan(plan: Plan) {
-  return plan.nombre.replace(/^Plan\s+/, '')
+  const corto = plan.nombre.replace(/^Plan\s+/, '')
+  return /\d/.test(corto) ? corto : plan.nombre
+}
+
+/** Nombre de la cartilla oficial de un plan: "Global", "Premium", "Plan 310" */
+function cartillaDePlan(c: CartillaPrepaga | undefined, planSlug: string): string | undefined {
+  const pc = c?.planes.find((x) => x.comparadorSlug === planSlug || x.otrosComparadorSlugs?.includes(planSlug))
+  if (!pc) return undefined
+  return pc.label.match(/\(([^)]+)\)$/)?.[1] ?? pc.label
 }
 
 function regionTexto(r: string) {
   if (/^(general|avalian)$/i.test(r)) return 'lista general'
-  if (r === r.toUpperCase() && r.length > 4) return r.toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase())
+  if (r === r.toUpperCase() && r.length > 4) return r.toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase()).replace(/ (De|Del|Y) /g, (x) => x.toLowerCase())
   return r
 }
 
@@ -89,12 +103,15 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
   const reintegros = coberturas.find((c) => c.tema === 'reintegros')?.fila
   const precioEdad = (edad: number) => escala?.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio
   // Plan siguiente en la escalera (orden por precio a los 30), sin variantes
-  // (Sport de Swiss, GEN y con coseguro de Sancor, planes con edad acotada)
+  // (Sport de Swiss, GEN, Digital Flex y con coseguro de Sancor, planes con edad acotada)
   const orden = [...prep.planes]
-    .filter((x) => !x.slug.startsWith('sport') && !x.slug.endsWith('-cc') && !x.edadMaxima)
+    .filter((x) => !x.slug.startsWith('sport') && !x.slug.endsWith('-cc') && !x.slug.includes('digital-flex') && !x.edadMaxima)
     .sort((a, b) => a.precio - b.precio)
   const idx = orden.findIndex((x) => x.slug === plan.slug)
   const siguiente = idx >= 0 ? orden[idx + 1] : undefined
+  const anterior = idx > 0 ? orden[idx - 1] : undefined
+  const regiones = preciosPorRegion(prep.slug, plan.slug)
+  const diferencias = tablaDiferencias(prep, plan, siguiente ?? anterior, coberturas)
   const faqs: { q: string; a: string }[] = []
   if (escala) {
     const edades = [40, 50, 60].filter((e) => precioEdad(e))
@@ -111,17 +128,54 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
         : `No. Según la ficha oficial, el ${codigo} no tiene reintegros: te atendés con los prestadores de la cartilla.`,
     })
   }
-  if (siguiente && escala) {
-    const esc2 = escalaPorEdad(prep.slug, siguiente.slug, 'caba')
+  if (siguiente && diferencias && diferencias.otro.slug === siguiente.slug) {
+    // Con datos concretos (28-sep-2026): se busca "smg20 vs smg30"
     const cod2 = codigoPlan(siguiente)
-    if (esc2) {
-      faqs.push({
-        q: `¿Qué diferencia hay entre el ${codigo} y el ${cod2} de ${prep.nombre}?`,
-        a: `El ${cod2} es el escalón siguiente de ${prep.nombre}. ${siguiente.descripcion} La diferencia de precio depende de tu edad y tu zona: te la cotizamos, con 15% OFF online.`,
-      })
-    }
+    const p30 = diferencias.filas.find((f) => f.edad === 30)
+    const plano = (t: string) => t.replace(/^[✓✕] /, '').replace(/^\S/, (c) => c.toLowerCase())
+    const cambios = diferencias.filas.filter((f) => !f.edad && f.a !== f.b).slice(0, 3).map((f) => `${f.label.toLowerCase()}: ${plano(f.a)} en el ${codigo} y ${plano(f.b)} en el ${cod2}`)
+    faqs.push({
+      q: `¿Qué diferencia hay entre el ${codigo} y el ${cod2} de ${prep.nombre}?`,
+      a: `${p30 ? `A los 30 años, en la lista oficial de ${PRECIO_ACTUALIZADO.toLowerCase()} (${region}), el ${codigo} sale ${p30.a} y el ${cod2} ${p30.b} por mes. ` : ''}${cambios.length ? `Cambia ${cambios.join('; ')}. ` : ''}${siguiente.descripcion}`,
+    })
   }
-  return { codigo, nombreLargo, escala, region, coberturas, faqs }
+  return { codigo, nombreLargo, escala, region, coberturas, faqs, regiones, diferencias }
+}
+
+type FilaCobertura = { tema: string; nombre: string; fila: { incluido: boolean; detalle?: string; sinDato?: boolean } }
+
+function textoCobertura(f?: FilaCobertura['fila']): string {
+  if (!f || f.sinDato) return 'Sin dato'
+  return f.incluido ? `✓ ${f.detalle ?? 'Incluido'}` : `✕ ${f.detalle ?? 'No incluido'}`
+}
+
+/** Tabla del plan contra el escalón vecino, solo con datos oficiales: precio
+ *  de lista por edad (SSSalud), copago, cartilla y lo que dicen las fichas. */
+function tablaDiferencias(prep: Prepaga, plan: Plan, otro: Plan | undefined, coberturas: FilaCobertura[]) {
+  if (!otro) return null
+  const e1 = escalaPorEdad(prep.slug, plan.slug, 'caba')
+  const e2 = escalaPorEdad(prep.slug, otro.slug, 'caba')
+  if (!e1 || !e2) return null
+  const precio = (e: typeof e1, edad: number) => e.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio
+  const filas: { label: string; a: string; b: string; edad?: number }[] = []
+  for (const edad of [30, 45, 60]) {
+    const a = precio(e1, edad)
+    const b = precio(e2, edad)
+    if (a && b) filas.push({ label: `Precio de lista a los ${edad} años`, a: formatPrecio(a), b: formatPrecio(b), edad })
+  }
+  filas.push({ label: 'Copago en consultas', a: plan.copago ? 'Con copago' : 'Sin copago', b: otro.copago ? 'Con copago' : 'Sin copago' })
+  const c1 = cartillaDePlan(CARTILLAS[prep.slug], plan.slug)
+  const c2 = cartillaDePlan(CARTILLAS[prep.slug], otro.slug)
+  if (c1 && c2) filas.push({ label: 'Cartilla', a: c1, b: c2 })
+  const delOtro = coberturasMarca
+    .filter((c) => c.prepagaSlug === prep.slug)
+    .flatMap((c) => c.planes.filter((f) => f.planSlugs.includes(otro.slug)).map((f) => ({ tema: c.tema, nombre: c.temaNombre, fila: f })))
+  for (const t of [...new Set([...coberturas.map((c) => c.tema), ...delOtro.map((c) => c.tema)])]) {
+    const x = coberturas.find((c) => c.tema === t)
+    const y = delOtro.find((c) => c.tema === t)
+    filas.push({ label: (x ?? y)!.nombre, a: textoCobertura(x?.fila), b: textoCobertura(y?.fila) })
+  }
+  return { otro, esSuperior: otro.precio > plan.precio, filas, conFichas: coberturas.length + delOtro.length > 0 }
 }
 
 function buildPlanFAQs(plan: Plan, prep: Prepaga) {
@@ -258,6 +312,13 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const planCartilla = cartillaDef?.planes.find((x) => x.comparadorSlug === plan.slug || x.otrosComparadorSlugs?.includes(plan.slug))
 
   const isPartner = PARTNERS_OFICIALES_SLUGS.includes(slug)
+  // Sanatorios del plan en CABA, armados en el servidor (28-sep-2026): Google
+  // ve la cartilla del plan ("smg20 cartilla", "qué cubre el smg20")
+  const renombre = sanatorios.map((x) => ({ nombre: x.nombre, aliases: x.aliases }))
+  const zonaCaba = cartillaDef?.zonas.find((z) => z.slug === 'caba')
+  const resumenCaba = planCartilla && zonaCaba
+    ? resumirZonaPlan(zonaCaba, zonaCaba.slug, zonaCaba.nombre, planCartilla.id, clavesRenombre(renombre))
+    : undefined
 
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
   const planIdx = planesOrdenados.findIndex(p => p.slug === planSlug)
@@ -524,6 +585,28 @@ export default async function PlanPage({ params, searchParams }: Props) {
                   </tbody>
                 </table>
                 </details>
+                {seo.regiones.length > 0 && (
+                  <details className="group mt-3 rounded-xl border border-gray-200">
+                    <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
+                      Ver precio por zona (a los 30 años)
+                      <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                    </summary>
+                    <table className="w-full text-sm border-t border-gray-100">
+                      <caption className="sr-only">Precio de lista del {seo.nombreLargo} a los 30 años según la zona</caption>
+                      <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+                        <tr><th className="text-left px-4 py-2">Zona</th><th className="text-right px-4 py-2">Precio mensual</th></tr>
+                      </thead>
+                      <tbody>
+                        {seo.regiones.map((r) => (
+                          <tr key={r.region} className="border-t border-gray-100">
+                            <td className="px-4 py-2 text-gray-700">{r.zonas.join(', ')}</td>
+                            <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(r.precio)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </details>
+                )}
                 <p className="text-xs text-gray-400 mt-2">El precio final depende de tu zona, tu grupo familiar y las promociones vigentes: te lo cotizamos sin cargo.</p>
               </div>
             )}
@@ -557,8 +640,43 @@ export default async function PlanPage({ params, searchParams }: Props) {
               planNombre={plan.nombre}
               planCartillaId={planCartilla.id}
               labelGuardia={cartillaDef.labelGuardia}
-              renombre={sanatorios.map((x) => ({ nombre: x.nombre, aliases: x.aliases }))}
+              renombre={renombre}
+              inicial={resumenCaba}
             />
+          </div>
+        </section>
+      )}
+
+      {/* Diferencias con el escalón vecino, con datos oficiales (28-sep-2026: se busca "smg20 vs smg30") */}
+      {seo?.diferencias && (
+        <section className="py-10 bg-gray-50 border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Diferencias entre el {seo.codigo} y el {codigoPlan(seo.diferencias.otro)}</h2>
+            <p className="text-xs text-gray-500 mb-4">
+              {seo.diferencias.esSuperior ? 'El plan siguiente' : 'El plan anterior'} de {prep.nombre}. Precios de la lista oficial de {PRECIO_ACTUALIZADO.toLowerCase()} ({seo.region}, contratación directa, IVA incluido){seo.diferencias.conFichas ? ` y coberturas según las fichas de ${prep.nombre}` : ''}.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
+              <table className="w-full text-sm">
+                <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+                  <tr>
+                    <th className="text-left px-4 py-2 font-semibold"><span className="sr-only">Dato</span></th>
+                    <th className="text-left px-4 py-2 font-semibold text-gray-900">{seo.codigo}</th>
+                    <th className="text-left px-4 py-2 font-semibold">
+                      <Link href={`/prepagas/${slug}/${seo.diferencias.otro.slug}`} className="hover:text-[#E8002D] hover:underline">{codigoPlan(seo.diferencias.otro)}</Link>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {seo.diferencias.filas.map((f) => (
+                    <tr key={f.label} className="border-t border-gray-100 align-top">
+                      <th scope="row" className="text-left px-4 py-2 font-medium text-gray-600">{f.label}</th>
+                      <td className="px-4 py-2 text-gray-900">{f.a}</td>
+                      <td className="px-4 py-2 text-gray-700">{f.b}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
       )}

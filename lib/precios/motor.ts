@@ -143,6 +143,35 @@ export function preciosParaGrupo(edades: number[], zona: string, modalidad: Moda
   return out
 }
 
+// Zonas del comparador con su nombre, en el orden en que se muestran
+const ZONAS: [string, string][] = [
+  ['caba', 'CABA'], ['buenos-aires', 'GBA'], ['buenos-aires-interior', 'Interior de Buenos Aires'], ['cordoba', 'Córdoba'],
+  ['santa-fe', 'Santa Fe'], ['mendoza', 'Mendoza'], ['tucuman', 'Tucumán'], ['entre-rios', 'Entre Ríos'], ['salta', 'Salta'],
+  ['neuquen', 'Neuquén'], ['rio-negro', 'Río Negro'], ['misiones', 'Misiones'], ['chaco', 'Chaco'], ['corrientes', 'Corrientes'], ['jujuy', 'Jujuy'],
+]
+
+/**
+ * Precio de lista (directo, con IVA) de un plan a una edad en cada región
+ * que declara la prepaga, con las zonas que caen en cada una — para la
+ * tabla "precio por zona" de las páginas de plan (28-sep-2026). Vacío si la
+ * prepaga declara una sola región o no hay cuadro.
+ */
+export function preciosPorRegion(prepaga: string, plan: string, edad = 30): { region: string; zonas: string[]; precio: number }[] {
+  const tabla = DATOS.tarifas[prepaga]?.[plan]
+  if (!tabla) return []
+  const out = new Map<string, { region: string; zonas: string[]; precio: number }>()
+  for (const [zona, nombre] of ZONAS) {
+    const region = regionesDe(prepaga, zona).find((r) => tabla[r]?.d?.length)
+    if (!region) continue
+    const v = valorParaEdad(tabla[region].d, edad)
+    if (v === null) continue
+    const fila = out.get(region) ?? { region, zonas: [], precio: Math.round(v * DATOS.iva) }
+    fila.zonas.push(nombre)
+    out.set(region, fila)
+  }
+  return out.size > 1 ? [...out.values()] : []
+}
+
 export const FUENTE_PRECIOS = DATOS.fuente
 
 /** Planes con cuadro oficial, por prepaga, y el período del cuadro (AAAAMM). */

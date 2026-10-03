@@ -76,7 +76,7 @@ function PrepagaCard({ p, destacado }: { p: Prepaga; destacado?: boolean }) {
 
 export const metadata: Metadata = {
   title: `Prepagas Argentina ${new Date().getFullYear()}: Listado, Precios y Comparativas`,
-  description: `Compará todas las prepagas de Argentina en un solo lugar. Precios actualizados de Swiss Medical, OSDE, CEMIC, Sancor Salud, Premedic y Medife. ${PRECIO_ACTUALIZADO}.`,
+  description: `Compará todas las prepagas de Argentina en un solo lugar. Precios actualizados de Swiss Medical, OSDE, CEMIC, Sancor Salud, Premedic y Medifé. ${PRECIO_ACTUALIZADO}.`,
   alternates: { canonical: `${SITE_URL}/prepagas` },
 }
 
