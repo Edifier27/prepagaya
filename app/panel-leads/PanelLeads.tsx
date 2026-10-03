@@ -13,6 +13,7 @@ type DestinoLead =
   | { tipo: 'email'; email: string }
   | { tipo: 'alternar-cuentas' }
   | { tipo: 'alternar-mail'; cuenta: 'dario' | 'gabriela'; email: string }
+  | { tipo: 'crm-asesor' }
 
 // Preferencias (JSON de lib/data/sondeo.ts) en una línea legible para el panel.
 const ETIQUETAS_PREFERENCIAS: Record<string, string> = {
@@ -167,12 +168,15 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   const [cuentaAlternarBorrador, setCuentaAlternarBorrador] = useState<'dario' | 'gabriela'>('dario')
   const [emailAlternarBorrador, setEmailAlternarBorrador] = useState('')
   const [guardandoDestino, setGuardandoDestino] = useState(false)
+  // Destino "CRM Asesor" (3-oct-2026, en prueba): solo se ofrece si el servidor tiene la conexión configurada
+  const [crmAsesorDisponible, setCrmAsesorDisponible] = useState(false)
   useEffect(() => {
     fetch('/api/panel/config')
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (!d?.destino) return
         setDestino(d.destino)
+        setCrmAsesorDisponible(Boolean(d.crmAsesor))
         if (d.destino.tipo === 'email') {
           setEmailBorrador(d.destino.email)
           setMostrarInputEmail(true)
@@ -497,6 +501,27 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
                   >
                     Cuenta + mail
                   </button>
+                  {crmAsesorDisponible && (
+                    <button
+                      onClick={() => {
+                        if (destino.tipo === 'crm-asesor') return
+                        if (!window.confirm('¿Mandar los leads nuevos al CRM Asesor (en prueba) en vez de a Kommo?')) return
+                        setMostrarInputEmail(false)
+                        setMostrarAlternarMail(false)
+                        guardarDestino({ tipo: 'crm-asesor' })
+                      }}
+                      disabled={guardandoDestino}
+                      aria-pressed={destino.tipo === 'crm-asesor'}
+                      title="En prueba: los leads van al CRM Asesor en vez de a Kommo"
+                      className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
+                        destino.tipo === 'crm-asesor'
+                          ? 'bg-[#0B6E5F] text-white shadow-sm'
+                          : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
+                      }`}
+                    >
+                      CRM Asesor
+                    </button>
+                  )}
                 </div>
                 {mostrarInputEmail && (
                   <form

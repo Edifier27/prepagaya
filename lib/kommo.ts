@@ -47,6 +47,8 @@ export type DestinoLead =
   | { tipo: 'alternar-cuentas' }
   /** Un lead a la cuenta de Kommo elegida, el siguiente a un mail suelto. */
   | { tipo: 'alternar-mail'; cuenta: 'dario' | 'gabriela'; email: string }
+  /** CRM Asesor (3-oct-2026, en prueba): el lead va al CRM nuevo en vez de a Kommo. Ver lib/crm-asesor.ts. */
+  | { tipo: 'crm-asesor' }
 
 export async function getDestinoLead(): Promise<DestinoLead> {
   const tipo = await getConfig(CLAVE_DESTINO_TIPO)
@@ -55,6 +57,7 @@ export async function getDestinoLead(): Promise<DestinoLead> {
     return { tipo: 'email', email }
   }
   if (tipo === 'alternar-cuentas') return { tipo: 'alternar-cuentas' }
+  if (tipo === 'crm-asesor') return { tipo: 'crm-asesor' }
   if (tipo === 'alternar-mail') {
     const email = (await getConfig(CLAVE_DESTINO_EMAIL)) ?? ''
     const cuenta = (await getConfig(CLAVE_DESTINO_CUENTA_PAR)) === 'gabriela' ? 'gabriela' : 'dario'
@@ -81,7 +84,7 @@ async function proximoLadoAlternado(clave: string, lados: readonly [string, stri
   return siguiente
 }
 
-export type DestinoResuelto = { tipo: 'dario' | 'gabriela' } | { tipo: 'email'; email: string }
+export type DestinoResuelto = { tipo: 'dario' | 'gabriela' } | { tipo: 'email'; email: string } | { tipo: 'crm-asesor' }
 
 /** Resuelve un destino "alternar-*" al destino real (Kommo o mail) que le
  *  toca a ESTE lead puntual. Los destinos fijos se devuelven tal cual.
@@ -309,7 +312,7 @@ export async function crearLeadEnKommo(d: KommoLeadData, destinoResuelto?: Desti
   // siendo 'email' (esta función no debería llamarse en ese caso — ver
   // app/api/cron/procesar-leads-kommo, que rama antes).
   const destino = destinoResuelto ?? (await resolverDestino(await getDestinoLead()))
-  const cuenta = existente?.cuenta ?? (destino.tipo === 'email' ? 'dario' : destino.tipo)
+  const cuenta = existente?.cuenta ?? (destino.tipo === 'dario' || destino.tipo === 'gabriela' ? destino.tipo : 'dario')
   const cfg = cuentaConfig(cuenta)
   if (!cfg.subdominio || !cfg.token) {
     return { ok: false, error: `Falta configurar Kommo para la cuenta de ${cfg.nombreDisplay} en el servidor.` }

@@ -4,6 +4,7 @@ import { buildKommoLink, crearLeadEnKommo, getDestinoLead, kommoLeadUrl, nombreC
 import { leadsPendientesDeKommo, marcarResultadoKommo, seguimientosVencidos, marcarSeguimientoAvisado } from '@/lib/db'
 import { avisarLeadPorPush } from '@/lib/push'
 import { mandarLeadPorEmail } from '@/lib/emailjs'
+import { mandarLeadACrmAsesor } from '@/lib/crm-asesor'
 
 // Hasta 50 leads por corrida, cada uno con su propio llamado a Kommo — con
 // Vercel Pro el límite de duración sube bastante del default de Hobby, pero
@@ -59,6 +60,31 @@ export async function GET(req: NextRequest) {
     // el cron abajo, y como leadsPendientesDeKommo() siempre trae primero el
     // más viejo, el mismo lead trabado volvía a tirar el cron cada minuto sin
     // dejar pasar nunca a los que venían después en la cola.
+    // Destino "CRM Asesor" (3-oct-2026, en prueba): va al CRM nuevo y no toca
+    // Kommo. Si el CRM falla, el lead no se pierde: sale por mail a Darío con
+    // el link para cargarlo en Kommo, igual que cuando falla Kommo.
+    if (destino.tipo === 'crm-asesor') {
+      const r = await mandarLeadACrmAsesor(lead)
+      if (r.ok) {
+        await marcarResultadoKommo(lead.id, 'OK (CRM Asesor)', '')
+        ok++
+      } else {
+        await marcarResultadoKommo(lead.id, `Error CRM Asesor: ${r.error ?? 'sin detalle'}`, '')
+        try {
+          const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
+          await mandarLeadPorEmail({
+            nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
+            kommo_link, kommo_label: 'Cargar en Kommo', duplicado_banner: '',
+          })
+        } catch (err) {
+          console.error('[CRON-KOMMO] tampoco salió el mail de respaldo, lead', lead.id, ':', err)
+        }
+        fallidos++
+        console.error('[CRON-KOMMO] no se pudo cargar en el CRM Asesor, lead', lead.id, ':', r.error)
+      }
+      continue
+    }
+
     if (destino.tipo === 'email') {
       try {
         await mandarLeadPorEmail({
