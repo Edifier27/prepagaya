@@ -6,6 +6,9 @@ import { COSEGUROS_OS } from '@/lib/data/coseguros-os'
 import { OS_MONOTRIBUTO } from '@/lib/data/monotributo'
 import { registroDeObraSocial } from '@/lib/data/registro-sssalud'
 import { PasateConTusAportes } from '@/components/obras-sociales/PasateConTusAportes'
+import { GrillaObrasSociales, type ItemGrilla } from '@/components/obras-sociales/GrillaObrasSociales'
+import { obrasSociales } from '@/lib/data/obras-sociales'
+import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
 
 // "mejores obras sociales 2026", "ranking obras sociales", "cuál es la mejor
@@ -36,6 +39,43 @@ const filas = Object.values(CARTILLAS_SINDICALES)
     }
   })
   .sort((a, b) => b.t.internacion - a.t.internacion)
+
+// Grillas por tipo (Darío, 3-oct-2026): sindicales primero, provinciales
+// después, las más buscadas arriba. Sindicales: orden por búsquedas mensuales
+// de Google Ads Keyword Planner (1-oct-2026, registradas en cada ficha de
+// lib/data/obras-sociales.ts; donde solo se midieron sub-búsquedas, como
+// "osecac turnos" 12.100 o "union personal turnos/cartilla/teléfono" 17.400,
+// se suman como piso). Provinciales: todavía sin medición de búsquedas; el
+// orden provisorio es por afiliados/padrón provincial (IOMA, la más grande),
+// a reemplazar cuando se mida en Keyword Planner. El resto, alfabético.
+const ORDEN_SINDICALES = ['osecac', 'union-personal', 'ospedyc', 'osdop', 'ospacp', 'ospes', 'osmedica', 'osctc', 'oschoca', 'osperyh', 'osuthgra', 'ase']
+const ORDEN_PROVINCIALES = ['ioma', 'apross', 'iapos', 'osep-mendoza', 'oser', 'ips-salta']
+// Fichas del registro que no son de un sindicato/actividad (empresa)
+const NO_SINDICALES = new Set(['osypf'])
+
+const ordenar = (orden: string[]) => (a: ItemGrilla, b: ItemGrilla) => {
+  const ia = orden.indexOf(a.slug)
+  const ib = orden.indexOf(b.slug)
+  if (ia !== -1 || ib !== -1) return (ia === -1 ? Infinity : ia) - (ib === -1 ? Infinity : ib)
+  return a.nombre.localeCompare(b.nombre, 'es')
+}
+const conCartilla = new Set(Object.keys(CARTILLAS_SINDICALES))
+const item = (slug: string, nombre: string, bajada: string): ItemGrilla => ({
+  slug,
+  nombre,
+  bajada,
+  cartilla: conCartilla.has(slug),
+  coseguro: valor(slug, /especialista/i) ?? valor(slug, /consulta/i),
+})
+const slugsFicha = new Set(obrasSociales.map((o) => o.slug))
+const sindicales = [
+  ...obrasSociales.filter((o) => o.tipo === 'sindical').map((o) => item(o.slug, o.nombre, o.descripcion)),
+  ...FICHAS_REGISTRO.filter((f) => !slugsFicha.has(f.slug) && !NO_SINDICALES.has(f.slug)).map((f) => item(f.slug, f.nombreCorto, `La obra social de ${f.actividad}.`)),
+].sort(ordenar(ORDEN_SINDICALES))
+const provinciales = obrasSociales
+  .filter((o) => o.tipo === 'provincial')
+  .map((o) => item(o.slug, o.nombre, o.descripcion))
+  .sort(ordenar(ORDEN_PROVINCIALES))
 
 const TITULO = 'Mejores obras sociales de Argentina 2026: ranking con datos oficiales'
 const top = filas.slice(0, 3).map((f) => f.nombre)
@@ -120,6 +160,22 @@ export default function MejoresObrasSocialesPage() {
       </section>
 
       <section className="py-10 bg-white">
+        <div className="container max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900">Obras sociales sindicales</h2>
+          <p className="text-sm text-gray-600 mt-1 mb-5">Las más buscadas primero. Teléfonos, cartilla, coseguros y cómo pasar tus aportes a otra cobertura.</p>
+          <GrillaObrasSociales items={sindicales} nombreGrupo="sindicales" />
+        </div>
+      </section>
+
+      <section className="py-10 bg-gray-50 border-t border-gray-100">
+        <div className="container max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900">Obras sociales provinciales</h2>
+          <p className="text-sm text-gray-600 mt-1 mb-5">Las de los empleados públicos de cada provincia: quién puede afiliarse, qué cubre y cómo comunicarte.</p>
+          <GrillaObrasSociales items={provinciales} nombreGrupo="provinciales" />
+        </div>
+      </section>
+
+      <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Ranking por tamaño de la red oficial</h2>
           <div className="overflow-x-auto rounded-xl border border-gray-200">
