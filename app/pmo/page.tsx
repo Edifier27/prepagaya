@@ -7,15 +7,19 @@ import { coberturas } from '@/lib/data/coberturas'
 import { BlogTOC } from '@/components/blog/BlogTOC'
 
 export const metadata: Metadata = {
-  title: 'PMO 2026: Qué Cubre el Programa Médico Obligatorio por Ley',
-  description: 'Guía completa y detallada del Programa Médico Obligatorio (PMO) en Argentina: qué cubre cada categoría, porcentajes de medicamentos (40%, 70%, 100%), leyes especiales y qué hacer si te niegan una prestación. Fuente: SSSalud.',
+  // Search Console (hasta el 24-sep-2026): "pmo actualizado" y "plan médico
+  // obligatorio" (así lo busca mucha gente; el nombre oficial es Programa)
+  // suman unas 180 impresiones, con "plan médico obligatorio" entre los
+  // puestos 18 y 42.
+  title: 'PMO actualizado 2026: qué cubre el Plan Médico Obligatorio',
+  description: 'El PMO (Programa o Plan Médico Obligatorio) actualizado a 2026: qué tienen que cubrir todas las prepagas y obras sociales, medicamentos al 40%, 70% y 100%, leyes especiales y qué hacer si te niegan una prestación.',
   alternates: { canonical: `${SITE_URL}/pmo` },
   keywords: [
-    'pmo que cubre', 'programa medico obligatorio', 'pmo 2026', 'que cubre el pmo por ley',
+    'pmo que cubre', 'programa medico obligatorio', 'plan medico obligatorio', 'pmo actualizado', 'pmo 2026', 'que cubre el pmo por ley',
     'resolucion 201/2002 sssalud', 'pmo medicamentos porcentaje', 'pmo prepaga obligatorio',
   ],
   openGraph: {
-    title: 'PMO 2026: Qué Cubre el Programa Médico Obligatorio por Ley',
+    title: 'PMO actualizado 2026: qué cubre el Plan Médico Obligatorio',
     description: 'Guía completa del PMO: cada categoría de cobertura, porcentajes de medicamentos y leyes especiales, con fuente oficial de la SSSalud.',
     type: 'article',
     images: [OG_IMAGE],
@@ -36,7 +40,7 @@ const secciones: Seccion[] = [
     cuerpo: (
       <>
         <p className="text-gray-600 leading-relaxed">
-          El Programa Médico Obligatorio (PMO) es el conjunto de prestaciones mínimas que toda obra social y toda prepaga de Argentina debe garantizar, sin excepción, sea cual sea el plan contratado. Lo estableció originalmente la <strong>Resolución 201/2002</strong> del entonces Ministerio de Salud (con el nombre de PMOE, Programa Médico Obligatorio de Emergencia) y desde entonces se fue ampliando con nuevas leyes especiales.
+          El Programa Médico Obligatorio (PMO), que mucha gente busca como <em>Plan Médico Obligatorio</em>, es el conjunto de prestaciones mínimas que toda obra social y toda prepaga de Argentina debe garantizar, sin excepción, sea cual sea el plan contratado. Lo estableció originalmente la <strong>Resolución 201/2002</strong> del entonces Ministerio de Salud (con el nombre de PMOE, Programa Médico Obligatorio de Emergencia) y desde entonces se fue ampliando con nuevas leyes especiales.
         </p>
         <p className="text-gray-600 leading-relaxed mt-3">
           La <strong>Ley 26.682</strong> (Marco Regulatorio de Medicina Prepaga, 2011) extendió esta obligación a las empresas de medicina prepaga: todas deben cubrir el PMO completo como piso mínimo, <strong>sin período de carencia, sin poder rechazarte por preexistencias y sin examen de admisión</strong> para las prestaciones que el programa incluye. Esto es válido para el plan más económico y el más caro por igual: la diferencia entre planes está en lo que cada empresa suma por encima de ese piso (habitación individual, cartilla más amplia, menores copagos), nunca en el PMO en sí.
@@ -191,11 +195,40 @@ const secciones: Seccion[] = [
     ),
   },
   {
+    // Para quien busca "PMO actualizado": qué leyes se le fueron sumando
+    // después de la Resolución 201/2002 (las más buscadas, con su año)
+    id: 'actualizaciones',
+    titulo: 'PMO actualizado: las leyes que se le fueron sumando',
+    cuerpo: (
+      <div>
+        <p className="text-gray-600 leading-relaxed mb-3">
+          El PMO no es un texto fijo: la Resolución 201/2002 es la base, la Resolución 310/2004 fijó la cobertura del 70% para los medicamentos de uso crónico, y cada ley nueva que obliga a obras sociales y prepagas a cubrir algo pasa a formar parte del piso. Estas son algunas de las que se sumaron:
+        </p>
+        <ul className="space-y-2">
+          {[
+            ['Ley 26.743 (2012)', 'Identidad de género: los tratamientos hormonales y las intervenciones de adecuación quedan incluidos en el PMO.'],
+            ['Ley 27.305 (2016)', 'Leche medicamentosa al 100% para quienes tienen alergia a la proteína de la leche de vaca y otros trastornos que la requieren.'],
+            ['Ley 27.552 (2020)', 'Fibrosis quística: cobertura integral de diagnóstico y tratamiento.'],
+            ['Ley 27.610 (2020)', 'Interrupción voluntaria del embarazo y atención postaborto, sin costo para la persona.'],
+            ['Ley 27.611 (2020)', 'Plan de los 1000 días: cuidado integral del embarazo y de los chicos hasta los 3 años.'],
+            ['Ley 27.674 (2022)', 'Oncopediatría: cobertura del 100% para chicos y adolescentes con cáncer, hasta los 18 años.'],
+            ['Ley 27.675 (2022)', 'Respuesta integral al VIH, las hepatitis virales, otras infecciones de transmisión sexual y la tuberculosis.'],
+          ].map(([ley, texto]) => (
+            <li key={ley} className="flex items-start gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E8002D] mt-2 flex-shrink-0" />
+              <span className="text-gray-600 text-sm"><strong>{ley}</strong> — {texto}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ),
+  },
+  {
     id: 'que-no-cubre',
     titulo: 'Qué NO cubre el PMO',
     cuerpo: (
       <p className="text-gray-600 leading-relaxed">
-        Quedan fuera del piso obligatorio: cirugía estética sin causa médica (reconstructiva sí está cubierta), ortodoncia, implantes y prótesis dentales, habitación individual (salvo indicación médica puntual), cobertura fuera de Argentina, medicina prepaga para mascotas obviamente no aplica, y los reintegros por atenderte con un profesional fuera de la cartilla de tu plan. Ahí es exactamente donde compiten los planes de cada prepaga: cuando pagás más, estás pagando estas prestaciones superadoras y una cartilla más amplia — nunca una cobertura del PMO &quot;mejor&quot; que en el plan económico, porque el PMO es idéntico en todos.
+        Quedan fuera del piso obligatorio: cirugía estética sin causa médica (reconstructiva sí está cubierta), ortodoncia, implantes y prótesis dentales, habitación individual (salvo indicación médica puntual), cobertura fuera de Argentina y los reintegros por atenderte con un profesional fuera de la cartilla de tu plan. Ahí es exactamente donde compiten los planes de cada prepaga: cuando pagás más, estás pagando estas prestaciones superadoras y una cartilla más amplia — nunca una cobertura del PMO &quot;mejor&quot; que en el plan económico, porque el PMO es idéntico en todos.
       </p>
     ),
   },
@@ -222,7 +255,7 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: 'PMO: Qué Cubre el Programa Médico Obligatorio por Ley',
+    headline: 'PMO actualizado: qué cubre el Programa Médico Obligatorio por ley',
     description: 'Guía completa del Programa Médico Obligatorio en Argentina: cada categoría de cobertura, porcentajes de medicamentos y leyes especiales.',
     url: `${SITE_URL}/pmo`,
     image: `${SITE_URL}/opengraph-image`,
@@ -276,7 +309,7 @@ export default function PmoPage() {
             Referencia legal · Fuente: SSSalud
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-            PMO: qué cubre el Programa Médico Obligatorio por ley
+            PMO actualizado: qué cubre el Programa Médico Obligatorio por ley
           </h1>
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 pb-6 border-b border-gray-100">
             <span>Actualizado {new Date(CONTENT_UPDATE.slice(0, 10) + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>

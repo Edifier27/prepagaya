@@ -1,4 +1,30 @@
 import { topeCirugiaSmg50 } from '@/lib/data/topes-reintegro'
+import { escalaPorEdad, precioGrupo } from '@/lib/precios/motor'
+import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { formatPrecio } from '@/lib/utils'
+
+// Precios de lista oficiales para las guías que dan números (3-oct-2026):
+// CABA y GBA, contratación directa, IVA incluido. Salen de los cuadros de la
+// SSSalud y cambian solos cada mes; antes estaban escritos a mano y quedaban
+// viejos ("arranca en $110.000", "$170.000").
+const MES = PRECIO_ACTUALIZADO.toLowerCase()
+const lista = (prepaga: string, plan: string, edad = 30) => {
+  const r = precioGrupo(prepaga, plan, [edad], 'caba')
+  return r ? formatPrecio(r.total) : '—'
+}
+// Edades en las que cambia el precio de un plan: "36, 41, 46, 51, 56 y 61"
+const cortes = (prepaga: string, plan: string) => {
+  const xs = (escalaPorEdad(prepaga, plan, 'caba')?.rangos ?? []).slice(1).map((r) => String(r.desde))
+  return xs.length > 1 ? `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}` : xs[0] ?? '—'
+}
+const ultimoCorte = (prepaga: string, plan: string) => String(escalaPorEdad(prepaga, plan, 'caba')?.rangos.at(-1)?.desde ?? '—')
+// La cuota más baja del mercado a los 30 años
+const MAS_BARATO = prepagas
+  .flatMap((p) => p.planes.filter((pl) => pl.fuentePrecio === 'sssalud').map((pl) => ({ p, pl, r: precioGrupo(p.slug, pl.slug, [30], 'caba') })))
+  .filter((x) => x.r)
+  .sort((a, b) => (a.r?.total ?? 0) - (b.r?.total ?? 0))[0]
+const DESDE = MAS_BARATO?.r ? formatPrecio(MAS_BARATO.r.total) : '—'
+const DESDE_PLAN = MAS_BARATO ? `${MAS_BARATO.p.nombre} ${MAS_BARATO.pl.nombre.replace(/^Plan /, '')}${MAS_BARATO.pl.copago ? ', con copago' : ''}` : ''
 
 export interface GuiaEnlace {
   texto: string
@@ -465,9 +491,9 @@ export const guias: GuiaData[] = [
     metaDescripcion: 'Comparamos obra social y prepaga en Argentina: diferencias, costos, cobertura y cuándo conviene cada una. Tomá la mejor decisión para tu salud.',
     tiempoLectura: 10,
     categoria: 'Comparativas',
-    fechaActualizacion: '2026-07-14',
+    fechaActualizacion: '2026-10-03',
     contenido: {
-      intro: 'Obra social y prepaga no son lo mismo, aunque en Argentina la línea se volvió difusa: OSDE es técnicamente una obra social y compite con Swiss Medical, que es una prepaga. La diferencia real está en cómo se financian, quién puede afiliarse y qué nivel de servicio ofrecen. Entender esto te puede ahorrar cientos de miles de pesos por mes.',
+      intro: 'No, no son lo mismo. La obra social se paga con los aportes de tu sueldo (o del monotributo) y la prepaga, con una cuota que depende de tu edad y del plan. Las dos tienen que cubrir el mismo piso, el Programa Médico Obligatorio, y se pueden combinar: si trabajás en relación de dependencia, podés derivar tus aportes a una prepaga y pagar solo la diferencia. En la práctica la línea se volvió difusa (OSDE, por ejemplo, está inscripta como obra social y compite con prepagas como Swiss Medical), pero entender la diferencia te puede ahorrar mucha plata por mes.',
       secciones: [
         {
           titulo: 'La diferencia de fondo: solidaria vs privada',
@@ -475,11 +501,11 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'La tercera vía: derivar aportes a una prepaga',
-          cuerpo: 'Si trabajás en relación de dependencia, podés derivar tus aportes de obra social a una prepaga: tus contribuciones se descuentan del precio del plan y además el precio "deriva aporte" no paga el IVA (10,5%) que paga la contratación directa. En la práctica, el mismo plan puede costarte entre 30% y 40% menos derivando aportes. Por ejemplo, un plan intermedio de Galeno baja de nivel de precio medio-alto a un nivel bastante más accesible con aportes (julio 2026).',
+          cuerpo: 'Si trabajás en relación de dependencia, podés derivar tus aportes de obra social a una prepaga: tus contribuciones se descuentan del precio del plan y además el precio "deriva aporte" no paga el IVA (10,5%) que paga la contratación directa. Cuánto ahorrás depende de tu sueldo: cuanto más alto, más grande el aporte que se descuenta de la cuota.',
         },
         {
           titulo: 'Cuándo conviene quedarse en la obra social',
-          cuerpo: 'Si tu obra social sindical tiene buena cartilla en tu zona y usás el sistema poco (consultas de rutina, alguna urgencia), pagar una prepaga puede ser plata tirada: ya estás cubierto con tus aportes sin costo extra. También conviene si tu sueldo es bajo: el aporte es proporcional al salario, mientras que la cuota de prepaga es fija y en 2026 arranca en $110.000 por persona.',
+          cuerpo: `Si tu obra social sindical tiene buena cartilla en tu zona y usás el sistema poco (consultas de rutina, alguna urgencia), pagar una prepaga puede ser plata tirada: ya estás cubierto con tus aportes sin costo extra. También conviene si tu sueldo es bajo: el aporte es proporcional al salario, mientras que la cuota de una prepaga es fija y, según las listas oficiales de ${MES}, la más baja del mercado es de ${DESDE} por persona a los 30 años (${DESDE_PLAN}).`,
         },
         {
           titulo: 'Cuándo conviene pasarse a una prepaga',
@@ -487,7 +513,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Los números de 2026',
-          cuerpo: 'Una prepaga de nivel de precio económico (Premedic, Hominis) ya cubre el PMO completo. El segmento medio (Galeno Plata, Sancor 3000, Medifé Bronce) suma más cartilla. Las premium (OSDE 410/510, Swiss SMG40+) son las de mayor nivel de precio. Contra eso, la obra social ya la pagás con tus aportes. La pregunta correcta no es cuál es mejor en abstracto, sino cuánto valorás el acceso rápido y la cartilla premium.',
+          cuerpo: `Según las listas oficiales de ${MES} (a los 30 años, CABA y GBA, con IVA): la cuota más baja del mercado es de ${DESDE} (${DESDE_PLAN}) y ya cubre el PMO completo. Un plan medio sin copago, como el SMG20 de Swiss Medical, sale ${lista('swiss-medical', 'smg20')}; uno de los más completos, como el OSDE 410, ${lista('osde', '410')}. Contra eso, la obra social ya la pagás con tus aportes. La pregunta correcta no es cuál es mejor en abstracto, sino cuánto valorás el acceso rápido y la cartilla.`,
         },
       ],
       conclusion: 'No hay una respuesta única: la obra social gana en costo (ya la pagás), la prepaga gana en servicio. El punto medio que la mayoría no conoce es la derivación de aportes, que te da servicio de prepaga descontando lo que ya aportás. Antes de decidir, compará el plan que te interesa en las dos modalidades.',
@@ -635,45 +661,49 @@ export const guias: GuiaData[] = [
   },
   {
     slug: 'cuota-prepaga-por-edad',
-    titulo: '¿Cuánto sube la prepaga con la edad? Tabla completa 2026',
-    metaDescripcion: 'Descubrí cómo aumentan los precios de las prepagas según tu edad en Argentina. Tabla comparativa por empresa y consejos para pagar menos.',
+    // 3-oct-2026: los porcentajes y precios aproximados ("un joven de 22 paga
+    // 10-20% menos", "los hijos pagan entre el 40% y el 70%") no coincidían
+    // con las listas oficiales. Ahora los números salen de los cuadros de la
+    // SSSalud y cambian solos cada mes.
+    titulo: '¿Cuánto sube la prepaga con la edad? Precios oficiales por edad 2026',
+    metaDescripcion: 'Cuánto sube la cuota de la prepaga con la edad según las listas oficiales: en qué edades cambia el precio de cada plan, ejemplos de Swiss Medical, OSDE y Sancor Salud, y qué dice la ley después de los 65.',
     tiempoLectura: 6,
     categoria: 'Precios',
-    fechaActualizacion: '2026-07-14',
+    fechaActualizacion: '2026-10-03',
     contenido: {
-      intro: 'La edad es el factor que más pesa en el precio de una prepaga: el mismo plan puede costar el doble o el triple según cuántos años tengas al contratar. Entender cómo funcionan las bandas etarias te permite anticipar cuánto vas a pagar y aprovechar la regla que casi nadie conoce: la antigüedad te protege de los aumentos por edad.',
+      intro: 'La edad es lo que más pesa en el precio de una prepaga: el mismo plan puede costar el doble o el triple según cuántos años tengas. Cada prepaga declara ante la Superintendencia de Servicios de Salud un precio por franja de edad, y las franjas cambian de una a otra. Entenderlas te permite anticipar cuánto vas a pagar y aprovechar la regla que casi nadie conoce: la antigüedad te protege de los aumentos por edad.',
       secciones: [
         {
-          titulo: 'Cómo funcionan las bandas etarias',
-          cuerpo: 'Las prepagas segmentan sus precios por rangos de edad: típicamente 0-17, 18-25, 26-35, 36-45, 46-55, 56-65 y 66+. Los precios de referencia que ves publicados (incluidos los nuestros) son para la banda de 26-35 años. Un joven de 22 puede pagar 10-20% menos que ese valor; una persona de 50, entre 40% y 80% más; y al ingresar con más de 60, el precio puede duplicar o triplicar el de referencia.',
+          titulo: 'Cómo funcionan las franjas de edad',
+          cuerpo: `Las franjas no son iguales en todas las prepagas, ni siquiera en todos los planes de una misma empresa. Según las listas oficiales de ${MES}, el SMG20 de Swiss Medical cambia de precio a los ${cortes('swiss-medical', 'smg20')} años; el Plan 3000 de Sancor Salud, a los ${cortes('sancor-salud', 'plan-3000')}; y el 310 de OSDE solo a los ${cortes('osde', '310')}. Después de la última franja, el precio ya no sube por edad: solo por los aumentos generales de cada mes.`,
         },
         {
           titulo: 'La protección legal que tenés que conocer',
           cuerpo: 'La Ley 26.682 establece que los mayores de 65 años con 10 o más años de antigüedad continua en la misma prepaga no pueden sufrir aumentos por razón de edad. Traducción práctica: si contratás a los 50 y te quedás, a los 65 tu cuota solo sube por los ajustes generales de precios, no por envejecer. Es el argumento más fuerte para elegir bien una vez y construir antigüedad.',
         },
         {
-          titulo: 'Aproximación de precios por edad (plan medio, julio 2026)',
-          cuerpo: 'Tomando como referencia un plan medio de ~$300.000 para 30 años: a los 22 años pagarías ~$255.000-270.000; a los 40, ~$360.000-400.000; a los 50, ~$450.000-520.000; a los 60, ~$550.000-700.000; ingresando a los 70, puede superar el $1.000.000 en las premium. Cada empresa pondera distinto: algunas castigan menos el ingreso tardío (Sancor, Federada) y otras lo encarecen fuerte (las premium de AMBA).',
+          titulo: 'Cuánto sube un mismo plan con la edad',
+          cuerpo: `Precios de lista oficiales de ${MES} (CABA y GBA, contratación directa, IVA incluido). El SMG20 de Swiss Medical sale ${lista('swiss-medical', 'smg20', 30)} a los 30 años, ${lista('swiss-medical', 'smg20', 40)} a los 40, ${lista('swiss-medical', 'smg20', 50)} a los 50 y ${lista('swiss-medical', 'smg20', 61)} desde los ${ultimoCorte('swiss-medical', 'smg20')}. El Plan 3000 de Sancor Salud: ${lista('sancor-salud', 'plan-3000', 30)} a los 30, ${lista('sancor-salud', 'plan-3000', 40)} a los 40, ${lista('sancor-salud', 'plan-3000', 50)} a los 50, ${lista('sancor-salud', 'plan-3000', 60)} a los 60 y ${lista('sancor-salud', 'plan-3000', 70)} a los 70. El 310 de OSDE: ${lista('osde', '310', 25)} a los 25, ${lista('osde', '310', 30)} a los 30 y ${lista('osde', '310', 40)} desde los ${ultimoCorte('osde', '310')}. Cotizando online tenés 15% OFF sobre estos valores.`,
         },
         {
           titulo: 'Estrategias para pagar menos a cualquier edad',
-          cuerpo: 'Primero: derivá aportes si podés; el descuento del IVA y de tus contribuciones aplica a toda edad. Segundo: entrá joven y no cortes la afiliación; la continuidad es tu activo. Tercero: después de los 55, compará planes diseñados para mayores (Hospital Italiano Plan Mayor, opciones de CEMIC) contra el ingreso general, suelen tener mejor relación precio-cobertura para esa etapa. Cuarto: si sos jubilado, evaluá la prepaga complementaria a PAMI en lugar de un plan completo.',
+          cuerpo: `Primero: derivá aportes si podés; el descuento del IVA y de tus contribuciones aplica a toda edad. Segundo: entrá joven y no cortes la afiliación; la continuidad es tu activo. Tercero: fijate a qué edad deja de subir cada plan: en el 310 de OSDE el precio es el mismo desde los ${ultimoCorte('osde', '310')} y en el SMG20 de Swiss Medical, desde los ${ultimoCorte('swiss-medical', 'smg20')}. Cuarto: si sos jubilado, podés mantener PAMI y sumar una prepaga para tener turnos e internación en sanatorios privados.`,
         },
       ],
-      conclusion: 'La edad define tu precio de entrada, pero la antigüedad define tu precio futuro: quien construye 10 años de continuidad llega a los 65 protegido por ley contra los aumentos etarios. Si estás cerca de un cambio de banda (por ejemplo, por cumplir 36), contratar antes del cumpleaños puede fijarte en la banda anterior.',
+      conclusion: 'La edad define tu precio de entrada, pero la antigüedad define tu precio futuro: quien construye 10 años de continuidad llega a los 65 protegido por ley contra los aumentos por edad. Si estás por cumplir una edad en la que cambia la franja (por ejemplo, 36), cotizá con la edad que vas a tener: la cuota cambia al cumplirla.',
     },
     faq: [
       {
         q: '¿La prepaga puede aumentarme la cuota cuando cumplo años?',
-        a: 'Depende del contrato: muchas aplican el cambio de banda etaria al cruzar ciertos umbrales. Pero si tenés más de 65 años y 10+ años de antigüedad en la empresa, la ley prohíbe aumentos por edad.',
+        a: 'Sí, cuando pasás a otra de las franjas de edad que la prepaga declara ante la Superintendencia (en muchos planes, por ejemplo, a los 36). La excepción: si tenés más de 65 años y 10 o más de antigüedad en la misma prepaga, la Ley 26.682 no permite aumentos por edad.',
       },
       {
         q: '¿Hay prepagas que acepten personas mayores de 70?',
-        a: 'Sí. No pueden rechazarte por edad según la ley, aunque los precios de ingreso a edades avanzadas son altos. Los planes específicos para mayores (Hospital Italiano Mayor, líneas senior de otras empresas) suelen ser más convenientes que el ingreso a un plan general.',
+        a: `Sí. La ley no permite rechazarte por la edad; lo que cambia es el precio. Según las listas oficiales de ${MES}, a los 70 años el SMG20 de Swiss Medical sale ${lista('swiss-medical', 'smg20', 70)} y el 310 de OSDE, ${lista('osde', '310', 70)}. En la guía de prepagas para mayores de 60 tenés el precio de cada prepaga a los 60, 65 y 70 años.`,
       },
       {
         q: '¿Los hijos pagan lo mismo que los adultos en un plan familiar?',
-        a: 'No, los menores de 18 tienen tarifas reducidas, generalmente entre el 40% y el 70% del valor de un adulto joven. Al cumplir 18-21 (según la empresa) pasan a tarifa de adulto, lo que encarece notablemente el grupo familiar.',
+        a: `Depende de la prepaga. En la lista oficial de OSDE, los menores de 28 pagan menos (en el 310, ${lista('osde', '310', 10)} contra ${lista('osde', '310', 30)} a los 30), y en el Plan 300 de Premedic, los menores de 30. En otras, como el SMG20 de Swiss Medical o el Plan Bronce de Medifé, un chico paga lo mismo que un adulto de hasta 35 años.`,
       },
     ],
     keywords: ['precio prepaga por edad', 'cuanto sube la prepaga con la edad', 'prepaga mayores 60', 'bandas etarias prepagas'],
@@ -1317,7 +1347,7 @@ export const guias: GuiaData[] = [
     metaDescripcion: 'El Decreto 366/25 hizo obligatorio el seguro médico para entrar a Argentina. Qué exige Migraciones, quiénes están exentos y cuándo conviene una prepaga local en vez de asistencia al viajero.',
     tiempoLectura: 7,
     categoria: 'Trámites',
-    fechaActualizacion: '2026-07-21',
+    fechaActualizacion: '2026-10-03',
     contenido: {
       intro: 'Desde mediados de 2025, entrar a Argentina sin cobertura médica dejó de ser una opción: el Decreto 366/25 exige que todo extranjero no residente cuente con un seguro médico válido durante su estadía, sin importar si viene por turismo, trabajo o estudio. Y para quienes se quedan a vivir, la pregunta cambia: ¿alcanza con la asistencia al viajero o conviene pasarse a una prepaga local? Esta guía responde las dos cosas.',
       secciones: [
@@ -1335,7 +1365,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Cuánto cuesta en 2026',
-          cuerpo: 'Para un adulto de 30 años, los planes de entrada arrancan alrededor de $170.000 por mes y los premium superan el $1.000.000. Entre medio hay una franja amplia ($300.000 a $500.000) con planes sin copago y sanatorios de primer nivel, que es donde se ubica la mayoría de los expatriados. La cuota sube con la edad, así que cotizá con tu edad real para ver el número exacto.',
+          cuerpo: `Según las listas oficiales de ${MES}, para un adulto de 30 años la cuota más baja del mercado es de ${DESDE} por mes (${DESDE_PLAN}). Los planes sin copago con sanatorios de primer nivel, como el SMG20 de Swiss Medical (${lista('swiss-medical', 'smg20')}) o el 310 de OSDE (${lista('osde', '310')}), están en el medio, y un premium como el SMG70 de Swiss Medical sale ${lista('swiss-medical', 'smg70')}. La cuota sube con la edad, así que cotizá con tu edad real para ver el número exacto.`,
         },
         {
           titulo: 'Errores comunes de extranjeros al elegir cobertura',

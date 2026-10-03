@@ -3,7 +3,8 @@
 #
 # Los días 1 y 15 de cada mes: baja los dos últimos períodos publicados,
 # regenera precios (lib/data/precios-oficiales.json, tarifas-oficiales.json) y
-# aumentos (aumentos-oficiales.json), controla que ningún plan salte más de
+# aumentos (aumentos-oficiales.json) y el historial por plan
+# (historial-precios.json, para /historial-precios), controla que ningún plan salte más de
 # 15% o desaparezca, compila el sitio y, si todo está bien, commitea a main
 # (Vercel publica solo). Si algo falla, no publica y avisa por Telegram.
 #
@@ -46,6 +47,7 @@ jobs:
         run: |
           python scripts/cuadros-sssalud/generar.py
           python scripts/cuadros-sssalud/aumentos.py
+          python scripts/cuadros-sssalud/historial.py
 
       - name: Controlar cambios de precio
         run: python scripts/cuadros-sssalud/validar.py
@@ -60,7 +62,7 @@ jobs:
         run: |
           git config user.name "prepagaya-bot"
           git config user.email "bot@prepagaya.com.ar"
-          git add data/sssalud lib/data/precios-oficiales.json lib/data/tarifas-oficiales.json lib/data/aumentos-oficiales.json
+          git add data/sssalud lib/data/precios-oficiales.json lib/data/tarifas-oficiales.json lib/data/aumentos-oficiales.json lib/data/historial-precios.json
           if git diff --cached --quiet; then
             echo "Sin cambios en los cuadros."
           else
