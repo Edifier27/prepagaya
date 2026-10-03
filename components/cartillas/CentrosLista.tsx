@@ -1,7 +1,9 @@
+import { Fragment } from 'react'
 import Link from 'next/link'
 import type { PlanCartilla, SeccionCartilla } from '@/lib/cartilla-zonas-geo'
 import type { CentroCartilla } from '@/lib/data/cartilla-zonas'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { ListaFiltrable } from '@/components/cartillas/ListaFiltrable'
 
 // Lista de centros de una zona (OSDE / Premedic / Avalian). Sin 'use client'
 // y sin importar valores de lib/data/cartilla-zonas (solo tipos) para poder
@@ -66,11 +68,14 @@ export function CentrosLista({
     )
   }
   return (
-    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-      {lista.map((c) => {
+    <ListaFiltrable
+      className="grid grid-cols-1 md:grid-cols-2 gap-3"
+      itemClassName="bg-white rounded-xl border border-gray-200 p-4 flex flex-col gap-2"
+      textos={lista.map((c) => [c.nombre, ...c.sedes.map((s) => `${s.direccion} ${s.localidad ?? ''}`)].join(' '))}
+      items={lista.map((c) => {
         const sedes = c.sedes.filter((s) => s.servicios.includes(seccion))
         return (
-          <li key={c.nombre} className="bg-white rounded-xl border border-gray-200 p-4 flex flex-col gap-2">
+          <Fragment key={c.nombre}>
             <div>
               <h4 className="font-semibold text-gray-900 text-sm leading-snug">{c.nombre}</h4>
               {c.notas.length > 0 && <div className="text-xs text-amber-700 mt-0.5">{c.notas.join(' ')}</div>}
@@ -112,10 +117,10 @@ export function CentrosLista({
                 <div className="text-[11px] text-gray-400 mt-1.5">{MARCA_TEXTO[c.marca]}.</div>
               )}
             </div>
-          </li>
+          </Fragment>
         )
       })}
-    </ul>
+    />
   )
 }
 
