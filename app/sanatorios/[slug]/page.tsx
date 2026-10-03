@@ -5,6 +5,10 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, prepagasEnSanatorio, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { idCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
+import { getCartillaInfo } from '@/lib/data/cartillas'
+import { obrasSocialesEnSanatorio } from '@/lib/data/sanatorios-obras-sociales'
+import { CARTILLAS_SINDICALES } from '@/lib/data/sindicales-cartillas'
+import { pediatriaDeSanatorio } from '@/lib/data/sanatorios-pediatria'
 
 // "¿Qué prepagas atienden en el Hospital X?" (23-sep-2026): búsqueda que la
 // competencia cubre con notas escritas a mano. Acá todo sale de las cartillas
@@ -20,6 +24,26 @@ export function generateStaticParams() {
 
 /** Artículo según el nombre: "la Clínica de Cuyo", "el Hospital Alemán". */
 const art = (nombre: string) => (/^cl[ií]nica/i.test(nombre) ? 'la' : 'el')
+
+// "¿Es público o privado?" (29-sep-2026, keyword research de Darío): volumen
+// real en Hospital Italiano y Hospital Alemán. Verificado con fuente: ambos
+// son asociaciones civiles sin fines de lucro, ni público ni privado en el
+// sentido tradicional — no es una regla generalizable a todos los sanatorios
+// del listado, por eso queda como mapa aparte y no una FAQ genérica.
+const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
+  'hospital-italiano': [{
+    q: '¿El Hospital Italiano es público o privado?',
+    a: 'Ninguno de los dos en el sentido estricto: es una asociación civil sin fines de lucro, fundada en 1853 por la Sociedad Italiana de Beneficencia en Buenos Aires. No depende del Estado (no es un hospital público) ni reparte ganancias entre accionistas (no es una empresa privada con fines de lucro). Se financia con las cuotas de su propio Plan de Salud, los convenios con prepagas y obras sociales, y las prestaciones que factura.',
+  }],
+  'hospital-aleman': [{
+    q: '¿El Hospital Alemán es público o privado?',
+    a: 'Ninguno de los dos en el sentido estricto: es una asociación civil sin fines de lucro (Asociación Civil Hospital Alemán), fundada el 26 de agosto de 1867 por la Sociedad Alemana de Socorros a Enfermos. No depende del Estado ni reparte ganancias entre accionistas. Además de atender pacientes de distintas prepagas y obras sociales, tiene su propio Plan Médico de afiliación directa.',
+  }],
+}
+
+const NUM_OS_RELEVADAS = Object.keys(CARTILLAS_SINDICALES).length
+const tiposOs = (o: { internacion: boolean; guardia: boolean }) =>
+  o.internacion && o.guardia ? 'internación y guardia' : o.internacion ? 'internación' : 'guardia'
 
 const ORDEN = [...PRIORIDAD_PARTNERS, 'osde']
 function ordenar(lista: PrepagaEnSanatorio[]) {
@@ -39,16 +63,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const lista = s ? prepagasEnSanatorio(slug) : []
   if (!s || lista.length < 2) return {}
   const nombres = ordenar(lista).map((p) => p.prepagaNombre)
+  // Si también hay obras sociales con el sanatorio en su cartilla oficial, el
+  // título lo dice: "qué obra social atiende el X" se busca mucho (1-oct-2026)
+  const os = obrasSocialesEnSanatorio(slug)
   return {
-    title: `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`,
-    description: `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
+    title: os.length
+      ? `Qué prepagas y obras sociales atienden en ${art(s.nombre)} ${s.nombre}`
+      : `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`,
+    description: os.length
+      ? `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')} (desde qué plan, para internación y guardia) y las obras sociales ${os.map((o) => o.osNombre).join(', ')}, según sus cartillas oficiales. Cotizá gratis.`
+      : `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
     alternates: { canonical: `${SITE_URL}/sanatorios/${slug}` },
     keywords: [
       `prepagas ${s.nombre.toLowerCase()}`,
       ...(s.ciudadNombre ? [`prepagas ${s.ciudadNombre.toLowerCase()}`, `que prepagas atienden en ${s.ciudadNombre.toLowerCase()}`] : []),
       `que prepagas atienden en el ${s.nombre.toLowerCase()}`,
       `obra social ${s.nombre.toLowerCase()}`,
+      `que obras sociales atiende el ${s.nombre.toLowerCase()}`,
+      `que obra social atiende el ${s.nombre.toLowerCase()}`,
+      `obras sociales que trabajan con el ${s.nombre.toLowerCase()}`,
       `${s.nombre.toLowerCase()} prepaga`,
+      ...(FAQ_EXTRA[slug] ? [`${s.nombre.toLowerCase()} es publico o privado`] : []),
+      ...(pediatriaDeSanatorio(slug) ? [`pediatras ${s.nombre.toLowerCase()}`, `${s.nombre.toLowerCase()} pediatria`, `pediatra ${s.nombre.toLowerCase().replace(/^sanatorio /, '')}`] : []),
     ],
   }
 }
@@ -61,6 +97,10 @@ export default async function SanatorioPage({ params }: Props) {
   if (lista.length < 2) notFound()
 
   const conInternacion = lista.filter((p) => p.desde)
+  // Obras sociales con este sanatorio en su cartilla oficial (1-oct-2026)
+  const obrasSociales = obrasSocialesEnSanatorio(slug)
+  // Pediatría (1-oct-2026): solo conteos del cuerpo médico oficial, sin nombres
+  const pediatria = pediatriaDeSanatorio(slug)
   // "Mis sanatorios" con este ya cargado, para sumar los otros de la persona.
   const idBuscador = idCobertura(s.claves, s.excluir, s.ciudad)
   const hrefBuscador = idBuscador ? `/buscar-por-sanatorio?s=${encodeURIComponent(idBuscador)}` : '/buscar-por-sanatorio'
@@ -90,9 +130,22 @@ export default async function SanatorioPage({ params }: Props) {
       q: '¿Es lo mismo internación que guardia?',
       a: 'No. Un plan puede incluir un sanatorio solo para guardia, solo para internación o para las dos. En esta página lo mostramos por separado, tal como figura en cada cartilla oficial.',
     },
+    ...(obrasSociales.length
+      ? [{
+          q: `¿Qué obras sociales atiende ${art(s.nombre)} ${s.nombre}?`,
+          a: `Según los listados oficiales de prestadores que cada obra social presenta ante la Superintendencia de Servicios de Salud, ${art(s.nombre)} ${s.nombre} figura en ${obrasSociales.length === 1 ? 'la cartilla de ' : 'estas cartillas: '}${obrasSociales.map((o) => `${o.osNombre}: ${tiposOs(o)}`).join('; ')}. Relevamos las ${NUM_OS_RELEVADAS} obras sociales sindicales que publican ese listado: puede trabajar con otras.`,
+        }]
+      : []),
+    ...(pediatria
+      ? [{
+          q: `¿Cuántos pediatras tiene ${art(s.nombre)} ${s.nombre}?`,
+          a: `Según el cuerpo médico que publica ${art(s.nombre)} ${s.nombre}, atienden ${pediatria.totalGenerales} pediatras de pediatría general (${pediatria.generalesPorSede.map((x) => `${x.n} en ${x.sede}`).join(', ').replace(/, ([^,]*)$/, ' y $1')}) y ${pediatria.totalSubespecialistas} subespecialistas pediátricos, como neumonología, cardiología y dermatología. Para atenderte con ellos, tu prepaga tiene que incluir el sanatorio en tu plan.`,
+        }]
+      : []),
+    ...(FAQ_EXTRA[slug] ?? []),
   ]
 
-  const fuentes = [...new Set(lista.map((p) => p.fuenteUrl))]
+  const fuentes = [...new Set([...lista.map((p) => p.fuenteUrl), ...obrasSociales.map((o) => o.fuente)])]
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -140,7 +193,7 @@ export default async function SanatorioPage({ params }: Props) {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-10">
         <div className="container max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight text-balance">
-            ¿Qué prepagas atienden en {art(s.nombre)} {s.nombre}?
+            ¿Qué prepagas{obrasSociales.length ? ' y obras sociales' : ''} atienden en {art(s.nombre)} {s.nombre}?
           </h1>
           <p className="text-gray-700 text-base leading-relaxed max-w-3xl">
             Según sus cartillas oficiales, {art(s.nombre)} <strong>{s.nombre}</strong> figura en <strong>{lista.map((p) => p.prepagaNombre).join(', ')}</strong>.
@@ -235,6 +288,14 @@ export default async function SanatorioPage({ params }: Props) {
                   <p className="text-xs text-gray-400 mt-2">
                     Fuente: <a href={p.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">cartilla oficial de {p.prepagaNombre}</a> ({p.fecha}).
                   </p>
+                  {/* Enlazado interno (auditoría 29-sep-2026): esta página no
+                      linkeaba a /cartillas, aunque es el contenido más
+                      relacionado — buscador completo de esa misma prepaga. */}
+                  {getCartillaInfo(p.prepagaSlug) && (
+                    <Link href={`/cartillas/${p.prepagaSlug}`} className="inline-block mt-2 text-xs font-semibold text-[#E8002D] hover:underline">
+                      Buscar otro médico o sanatorio en la cartilla de {p.prepagaNombre} →
+                    </Link>
+                  )}
                 </div>
               )
             })}
@@ -244,6 +305,77 @@ export default async function SanatorioPage({ params }: Props) {
           </p>
         </div>
       </section>
+
+      {/* "¿Qué obras sociales atiende?" (1-oct-2026): cruce con las cartillas
+          oficiales de obras sociales (lib/data/sanatorios-obras-sociales.ts) */}
+      {/* Pediatría (1-oct-2026): conteos del cuerpo médico oficial, sin nombres */}
+      {pediatria && (
+        <section id="pediatria" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Pediatría en {art(s.nombre)} {s.nombre}</h2>
+            <p className="text-sm text-gray-600 mb-5 max-w-3xl">
+              {pediatria.totalGenerales} pediatras de pediatría general y {pediatria.totalSubespecialistas} subespecialistas pediátricos, según el{' '}
+              <a href={pediatria.fuente} target="_blank" rel="noopener noreferrer" className="underline">cuerpo médico oficial</a>{' '}
+              del sanatorio ({new Date(`${pediatria.verificado}T12:00:00`).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' })}). Ahí podés ver quiénes son y en qué sede atiende cada uno.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+              {pediatria.generalesPorSede.map((x) => (
+                <div key={x.sede} className="rounded-xl border border-gray-200 p-4">
+                  <div className="text-2xl font-black text-gray-900 tabular-nums">{x.n}</div>
+                  <div className="text-xs text-gray-500 mt-1">pediatras en {x.sede}</div>
+                </div>
+              ))}
+            </div>
+            <h3 className="text-sm font-bold text-gray-900 mb-2">Subespecialidades pediátricas</h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 mb-6">
+              {pediatria.subespecialidades.map((x) => (
+                <li key={x.nombre} className="flex justify-between gap-3 text-sm border-b border-gray-100 py-1">
+                  <span className="text-gray-700">{x.nombre}</span>
+                  <span className="font-semibold text-gray-900 tabular-nums">{x.n}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="#cotizar" className="group flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white p-5 hover:border-[#E8002D] transition-colors">
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-gray-900">¿Tu cobertura dejó {art(s.nombre)} {s.nombre} y no querés cambiar de pediatra?</div>
+                <div className="text-sm text-gray-600 mt-0.5">Elegí un plan que lo incluya: arriba tenés desde qué plan lo cubre cada prepaga.</div>
+              </div>
+              <span className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm">Cotizar →</span>
+            </a>
+          </div>
+        </section>
+      )}
+
+      {obrasSociales.length > 0 && (
+        <section id="obras-sociales" className="py-10 bg-gray-50 border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Obras sociales que atiende {art(s.nombre)} {s.nombre}</h2>
+            <p className="text-sm text-gray-600 mb-5 max-w-3xl">
+              Según el listado oficial de prestadores que cada obra social presenta ante la Superintendencia de Servicios de Salud.
+              Relevamos las {NUM_OS_RELEVADAS} obras sociales sindicales que lo publican: si la tuya no aparece, puede que igual lo tenga.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {obrasSociales.map((o) => (
+                <li key={o.osSlug} className="rounded-xl border border-gray-200 bg-white p-4">
+                  <div className="flex items-start justify-between gap-2">
+                    <Link href={`/obras-sociales/${o.osSlug}`} className="font-semibold text-gray-900 hover:text-[#E8002D]">{o.osNombre}</Link>
+                    <div className="flex gap-1.5 shrink-0">
+                      {o.internacion && <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-red-50 text-[#B8001F]">Internación</span>}
+                      {o.guardia && <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-800">Guardia</span>}
+                    </div>
+                  </div>
+                  {o.sedes[0]?.domicilio && <div className="text-sm text-gray-600 mt-1">{[...new Set(o.sedes.map((x) => x.domicilio).filter(Boolean))].slice(0, 3).join(' · ')}</div>}
+                  <Link href={o.urlCartilla} className="inline-block text-xs font-semibold text-[#E8002D] hover:underline mt-2">Ver la cartilla de {o.osNombre} →</Link>
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm text-gray-700 mt-5">
+              ¿Tu obra social no lo tiene? Con tus mismos aportes podés pasarte a una prepaga que sí lo incluya y pagar solo la diferencia.{' '}
+              <Link href="/calculadora-aportes" className="text-[#E8002D] font-semibold hover:underline">Calculá cuánto sería →</Link>
+            </p>
+          </div>
+        </section>
+      )}
 
       <section id="cotizar" className="py-12 bg-[#E8002D] text-white scroll-mt-20">
         <div className="container max-w-xl mx-auto text-center">

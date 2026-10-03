@@ -180,7 +180,7 @@ export default function HealthInsuranceCostArgentinaPage() {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Get your exact price, not just a range</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             Free, no registration, no DNI required. An advisor who works with foreigners will contact you.
           </p>
           <ContratarPlanButtonIntl

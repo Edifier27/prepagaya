@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { trackLead } from '@/lib/analytics'
+import { TrustBadge } from './TrustBadge'
 
 interface Props {
   open: boolean
@@ -96,6 +98,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
       // Ya no redirige al WhatsApp del asesor — el lead solo llega por mail
       // y el asesor contacta desde ahí cuando le conviene (pedido de Darío,
       // 9-sep-2026: no quiere que el visitante le escriba directo).
+      trackLead('quiero-asesoramiento')
       setStatus('success')
     } catch {
       setStatus('idle')
@@ -247,6 +250,8 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
                       />
                     </div>
                   </div>
+
+                  <TrustBadge className="mb-3" />
 
                   <button
                     onClick={handleSubmit}

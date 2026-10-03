@@ -2,9 +2,6 @@
 import Image from 'next/image'
 import type { ProvinciaMenu } from '@/lib/data/zonas'
 import { PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
-// Solo el JSON chico de precios oficiales (no lib/data/prepagas.ts): el footer
-// se renderiza dentro de SiteChrome, que es client component.
-import preciosOficiales from '@/lib/data/precios-oficiales.json'
 
 const prepagaLinks = [
   { slug: 'swiss-medical', nombre: 'Swiss Medical' },
@@ -126,10 +123,10 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
                 Prepaga<span className="text-red-400">Ya</span>
               </span>
             </div>
-            <p className="text-sm text-gray-500 leading-relaxed max-w-xs">
+            <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
               El comparador de prepagas y obras sociales más completo de Argentina. Precios actualizados, opiniones reales y comparativas independientes.
             </p>
-            <p className="text-xs text-gray-600 mt-4 leading-relaxed max-w-xs">
+            <p className="text-xs text-gray-400 mt-4 leading-relaxed max-w-xs">
               Precios de referencia para persona de 30 años. Los precios finales varían según edad y zona geográfica.
             </p>
           </div>
@@ -143,7 +140,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
                   {/* "Planes de X" como texto del link (26-sep-2026): casi todos los
                       links internos a las fichas decían solo la marca, y la
                       búsqueda a posicionar es "{prepaga} planes". */}
-                  <Link href={`/prepagas/${p.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
+                  <Link href={`/prepagas/${p.slug}`} className="text-sm text-gray-400 hover:text-white transition-colors">
                     Planes de {p.nombre}
                   </Link>
                 </li>
@@ -162,7 +159,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
             <ul className="space-y-2.5">
               {coberturaLinks.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/coberturas/${c.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
+                  <Link href={`/coberturas/${c.slug}`} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {c.label}
                   </Link>
                 </li>
@@ -181,7 +178,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
             <ul className="space-y-2.5">
               {condicionLinks.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/condiciones/${c.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
+                  <Link href={`/condiciones/${c.slug}`} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {c.label}
                   </Link>
                 </li>
@@ -204,7 +201,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
             <h3 className="text-white text-xs font-semibold uppercase tracking-widest mb-4">Herramientas</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/precios" className="group flex items-center gap-2.5 text-sm text-gray-500 hover:text-white transition-colors">
+                <Link href="/precios" className="group flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors">
                   <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-red-500/20 flex items-center justify-center transition-colors text-blue-400">
                     <IconChart />
                   </span>
@@ -212,7 +209,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
                 </Link>
               </li>
               <li>
-                <Link href="/comparador" className="group flex items-center gap-2.5 text-sm text-gray-500 hover:text-white transition-colors">
+                <Link href="/comparador" className="group flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors">
                   <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-red-500/20 flex items-center justify-center transition-colors text-blue-400">
                     <IconTarget />
                   </span>
@@ -220,12 +217,12 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
                 </Link>
               </li>
               <li>
-                <Link href="/empresas" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                <Link href="/empresas" className="text-sm text-gray-400 hover:text-white transition-colors pl-0.5">
                   Prepagas para empresas
                 </Link>
               </li>
               <li>
-                <Link href="/calculadora" className="group flex items-center gap-2.5 text-sm text-gray-500 hover:text-white transition-colors">
+                <Link href="/calculadora" className="group flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors">
                   <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-red-500/20 flex items-center justify-center transition-colors text-blue-400">
                     <IconCalculator />
                   </span>
@@ -233,7 +230,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
                 </Link>
               </li>
               <li>
-                <Link href="/comparar" className="group flex items-center gap-2.5 text-sm text-gray-500 hover:text-white transition-colors">
+                <Link href="/comparar" className="group flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors">
                   <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-red-500/20 flex items-center justify-center transition-colors text-blue-400">
                     <IconCompare />
                   </span>
@@ -241,7 +238,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
                 </Link>
               </li>
               <li>
-                <Link href="/ranking" className="group flex items-center gap-2.5 text-sm text-gray-500 hover:text-white transition-colors">
+                <Link href="/ranking" className="group flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors">
                   <span className="w-7 h-7 rounded-lg bg-white/5 group-hover:bg-red-500/20 flex items-center justify-center transition-colors text-blue-400">
                     <IconChart />
                   </span>
@@ -249,37 +246,37 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
                 </Link>
               </li>
               <li>
-                <Link href="/prepaga-por-presupuesto" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                <Link href="/prepaga-por-presupuesto" className="text-sm text-gray-400 hover:text-white transition-colors pl-0.5">
                   Prepaga según tu presupuesto
                 </Link>
               </li>
               <li>
-                <Link href="/historial-precios" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                <Link href="/historial-precios" className="text-sm text-gray-400 hover:text-white transition-colors pl-0.5">
                   Historial de precios
                 </Link>
               </li>
               <li>
-                <Link href="/cartillas" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                <Link href="/cartillas" className="text-sm text-gray-400 hover:text-white transition-colors pl-0.5">
                   Cartillas médicas
                 </Link>
               </li>
               <li>
-                <Link href="/aumentos" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                <Link href="/aumentos" className="text-sm text-gray-400 hover:text-white transition-colors pl-0.5">
                   Aumentos de prepagas
                 </Link>
               </li>
               <li>
-                <Link href="/prepaga-por-presupuesto" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                <Link href="/prepaga-por-presupuesto" className="text-sm text-gray-400 hover:text-white transition-colors pl-0.5">
                   Prepaga por presupuesto
                 </Link>
               </li>
               <li>
-                <Link href="/glosario" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                <Link href="/glosario" className="text-sm text-gray-400 hover:text-white transition-colors pl-0.5">
                   Glosario
                 </Link>
               </li>
               <li>
-                <Link href="/en/health-insurance-argentina" className="text-sm text-gray-500 hover:text-white transition-colors pl-0.5">
+                <Link href="/en/health-insurance-argentina" className="text-sm text-gray-400 hover:text-white transition-colors pl-0.5">
                   English version
                 </Link>
               </li>
@@ -302,7 +299,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
               </li>
               {guiaLinks.map((g) => (
                 <li key={g.slug}>
-                  <Link href={g.href ?? `/guias/${g.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
+                  <Link href={g.href ?? `/guias/${g.slug}`} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {g.label}
                   </Link>
                 </li>
@@ -321,7 +318,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
             <ul className="space-y-2.5">
               {provincias.map((prov) => (
                 <li key={prov.slug}>
-                  <Link href={`/prepagas/${prov.slug}`} className="text-sm text-gray-500 hover:text-white transition-colors">
+                  <Link href={`/prepagas/${prov.slug}`} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {prov.nombre}
                   </Link>
                 </li>
@@ -337,35 +334,41 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
         </div>
 
         {/* Fuente de precios (23-sep-2026): cuadros tarifarios oficiales de la SSSalud.
-            Logo como cita de la fuente de datos, no como aval. */}
-        <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-gray-400">
-          <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="inline-flex bg-white rounded-xl px-4 py-2.5 w-fit flex-shrink-0" aria-label="Superintendencia de Servicios de Salud">
-            {/* next/image: carga diferida y en el tamaño que se muestra (el PNG
-                original es de 945 px y se bajaba entero en cada página) */}
-            <Image src="/logos/sssalud.png" alt="Superintendencia de Servicios de Salud" width={150} height={56} className="h-14 w-auto" />
-          </a>
-          <span>
-            Fuente:{' '}
-            <a href={preciosOficiales.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-200">
-              Superintendencia de Servicios de Salud
-            </a>
+            Logo como cita de la fuente de datos, no como aval. Card con borde
+            (29-sep-2026, a pedido de Darío: el logo suelto quedaba pobre) para que
+            se lea como credencial/cita oficial, no como un elemento flotante suelto. */}
+        <a
+          href="https://www.sssalud.gob.ar/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-10 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 w-fit max-w-full hover:border-white/20 hover:bg-white/[0.05] transition-colors"
+        >
+          {/* next/image: carga diferida y en el tamaño que se muestra (el PNG
+              original es de 945 px y se bajaba entero en cada página) */}
+          <span className="inline-flex flex-shrink-0 bg-white rounded-lg p-2">
+            <Image src="/logos/sssalud.png" alt="" width={150} height={56} className="h-9 sm:h-10 w-auto" />
           </span>
-        </div>
+          <span className="min-w-0">
+            <span className="block text-[10px] font-semibold uppercase tracking-wider text-gray-400">Datos oficiales de</span>
+            <span className="block text-sm font-semibold text-gray-200">Superintendencia de Servicios de Salud</span>
+            <span className="block text-xs text-gray-400 mt-0.5">Precios, RNEMP y regulación de prepagas y obras sociales</span>
+          </span>
+        </a>
 
         {/* Divider */}
         <div className="border-t border-white/[0.06] mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-600">
+          <p className="text-xs text-gray-400">
             © 2026 PrepagaYa · Comparador de prepagas y obras sociales de Argentina. Partner oficial de {PARTNERS_OFICIALES_TEXTO};
             también mostramos el resto de las prepagas del mercado para que compares todo. Las empresas comparadas
             están reguladas por la Superintendencia de Servicios de Salud (SSSalud).
           </p>
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-gray-600">
-            <Link href="/sobre-nosotros" className="hover:text-gray-400 transition-colors">Sobre nosotros</Link>
-            <Link href="/metodologia" className="hover:text-gray-400 transition-colors">Metodología</Link>
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-gray-400">
+            <Link href="/sobre-nosotros" className="hover:text-white transition-colors">Sobre nosotros</Link>
+            <Link href="/metodologia" className="hover:text-white transition-colors">Metodología</Link>
             {/* Sala de prensa: sin link en el sitio, los periodistas no la encontraban */}
-            <Link href="/prensa" className="hover:text-gray-400 transition-colors">Prensa</Link>
-            <Link href="/privacidad" className="hover:text-gray-400 transition-colors">Privacidad</Link>
-            <Link href="/terminos-y-condiciones" className="hover:text-gray-400 transition-colors">Términos y Condiciones</Link>
+            <Link href="/prensa" className="hover:text-white transition-colors">Prensa</Link>
+            <Link href="/privacidad" className="hover:text-white transition-colors">Privacidad</Link>
+            <Link href="/terminos-y-condiciones" className="hover:text-white transition-colors">Términos y Condiciones</Link>
           </div>
         </div>
 

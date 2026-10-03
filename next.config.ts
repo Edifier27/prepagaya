@@ -240,6 +240,10 @@ const nextConfig: NextConfig = {
         destination: "/prepagas-economicas",
         permanent: true,
       },
+      // IOSPER pasó a ser OSER en 2025 (Ley 11.202): misma obra social (1-oct-2026)
+      { source: "/obras-sociales/iosper", destination: "/obras-sociales/oser", permanent: true },
+      // "AmSALUD" no existe con ese nombre: es Amasalud, el plan de OSSACRA (1-oct-2026)
+      { source: "/obras-sociales/amsalud", destination: "/obras-sociales/ossacra", permanent: true },
       // UPCN Salud → Unión Personal, el nombre con el que se busca (23-sep-2026)
       {
         source: "/obras-sociales/upcn",
@@ -323,6 +327,24 @@ const nextConfig: NextConfig = {
       {
         source: "/para/empresas",
         destination: "/empresas",
+        permanent: true,
+      },
+      // Fichas genéricas del registro de la SSSalud que canibalizaban la
+      // ficha completa de la misma obra social, armada a mano con datos
+      // reales (1-oct-2026): mismo RNOS, dos URLs distintas.
+      {
+        source: "/obras-sociales/uocra-construir-salud",
+        destination: "/obras-sociales/construir-salud",
+        permanent: true,
+      },
+      {
+        source: "/obras-sociales/bancaria-osba",
+        destination: "/obras-sociales/osba-bancarios",
+        permanent: true,
+      },
+      {
+        source: "/obras-sociales/osfatlyf",
+        destination: "/obras-sociales/luz-y-fuerza",
         permanent: true,
       },
     ];

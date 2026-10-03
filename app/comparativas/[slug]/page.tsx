@@ -369,7 +369,7 @@ export default async function ComparativaPage({ params }: Props) {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">¿Todavía no te decidís?</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             Cotizá {p1.nombre} y {p2.nombre} con tu edad real y compará el precio exacto. Gratis y sin compromiso.
           </p>
           <Link

@@ -182,7 +182,7 @@ export function BuscadorSanatorio({ soloPrepagaSlug, soloPrepagaNombre }: Props 
               {/* Header del sanatorio */}
               <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] px-6 py-4 text-white">
                 <div className="font-bold text-lg">{san.nombre}</div>
-                <div className="text-red-200 text-xs mt-0.5">
+                <div className="text-white text-xs mt-0.5">
                   {san.zonas.map((z) => z === 'caba' ? 'CABA' : z === 'gba' ? 'GBA' : z.charAt(0).toUpperCase() + z.slice(1)).join(' · ')}
                   {' · '}
                   {san.planesQueLoCubren.length} plan{san.planesQueLoCubren.length !== 1 ? 'es' : ''} lo cubren

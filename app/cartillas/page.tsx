@@ -50,7 +50,7 @@ const cartillas = [
     slug: 'sancor-salud',
     nombre: 'Sancor Salud',
     url: 'https://www.sancorsalud.com.ar/cartilla',
-    profesionales: '30.000+ prestadores nacionales',
+    profesionales: '200.000+ prestadores (según SanCor Salud)',
     tip: 'Buscá por especialidad + ciudad. La red más amplia del interior del país.',
     planes: 'F700, F800, Plan 1000, 1500, 3000, 4500',
     inicial: 'SS',

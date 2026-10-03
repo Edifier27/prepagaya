@@ -18,8 +18,14 @@ function SiteChromeInner({ children, provincias }: { children: React.ReactNode; 
   // prensa) — van sin header, footer ni popups. /panel-leads: el panel
   // interno tiene su propia barra; con el header del sitio arriba quedaba
   // tapada en el celular, y la barra de abajo y el popup de salida sobran.
+  // /en, /ru, /zh: silo para extranjeros (Darío, 29-sep-2026) — el header,
+  // footer y bottom nav del sitio están en español y mandaban a /comparador
+  // (también en español), rompiendo la experiencia. Cada página de este silo
+  // ya tiene su propio CTA traducido (ContratarPlanButtonIntl) y sus propios
+  // links cruzados entre idiomas, así que no queda ninguna sin salida.
   const ruta = usePathname() ?? ''
   const sinChrome = ruta.startsWith('/widget/') || ruta.startsWith('/panel-leads')
+    || ruta.startsWith('/en/') || ruta.startsWith('/ru/') || ruta.startsWith('/zh/')
   const hideChrome = modoEnfocado || sinChrome
   return (
     <div className={`flex-1 flex flex-col ${hideChrome ? '' : 'pb-16 lg:pb-0'}`}>

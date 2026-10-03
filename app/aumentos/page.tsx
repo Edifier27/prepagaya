@@ -321,7 +321,7 @@ export default function AumentosPage() {
                 ? `Los precios suben ~${proyeccion.porcentaje.toLocaleString('es-AR')}% en ${proyeccion.label.toLowerCase()}`
                 : 'Los precios se ajustan todos los meses'}
             </div>
-            <div className="text-red-200 text-xs">Cotizá hoy con los valores de {PRECIO_ACTUALIZADO} y fijá tu precio de ingreso.</div>
+            <div className="text-white text-xs">Cotizá hoy con los valores de {PRECIO_ACTUALIZADO} y fijá tu precio de ingreso.</div>
           </div>
           <Link
             href="/comparador"

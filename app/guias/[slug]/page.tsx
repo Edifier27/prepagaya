@@ -7,7 +7,7 @@ import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
-import { StickySectionNav } from '@/components/ui/StickySectionNav'
+import { BlogTOC } from '@/components/blog/BlogTOC'
 import { QueCubreSeccion } from '@/components/herramientas/QueCubreSeccion'
 import { marcarTerminos } from '@/components/glosario/marcarTerminos'
 import { GlosarioDePagina } from '@/components/glosario/GlosarioDePagina'
@@ -105,10 +105,6 @@ export default async function GuiaPage({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <StickySectionNav
-        items={guia.contenido.secciones.map((s) => ({ id: slugifyId(s.titulo), label: s.titulo }))}
-      />
-
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
@@ -122,7 +118,9 @@ export default async function GuiaPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="container py-10 max-w-3xl mx-auto">
+      <div className="container py-10">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-10 max-w-5xl mx-auto">
+      <div className="min-w-0">
         {/* Header */}
         <header className="mb-8">
           <Badge variant="gray" className="mb-4">{guia.categoria}</Badge>
@@ -155,8 +153,8 @@ export default async function GuiaPage({ params }: Props) {
             página, con la herramienta arriba y el desarrollo abajo. */}
         {slug === 'que-cubre-la-prepaga' && <QueCubreSeccion />}
 
-        {/* Índice */}
-        <div className="mb-8 bg-gray-50 rounded-2xl border border-gray-200 p-4">
+        {/* Índice (mobile; en desktop lo tiene el sidebar de la derecha) */}
+        <div className="lg:hidden mb-8 bg-gray-50 rounded-2xl border border-gray-200 p-4">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">En esta guía</p>
           <ul className="space-y-2">
             {guia.contenido.secciones.map((s, i) => (
@@ -359,6 +357,14 @@ export default async function GuiaPage({ params }: Props) {
             </div>
           </section>
         )}
+      </div>
+
+      {/* Sidebar TOC (solo desktop) */}
+      <div className="hidden lg:block">
+        <BlogTOC sections={guia.contenido.secciones.map((s) => ({ id: slugifyId(s.titulo), titulo: s.titulo }))} />
+      </div>
+
+      </div>
       </div>
     </>
   )

@@ -1,0 +1,763 @@
+<style>
+    #map-container {
+        height: 350px
+    }
+
+    div.scroll {
+        width: 100%;
+        height: 100px;
+        overflow: auto;
+    }
+</style>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBdZ9KsibBWyVxdVOF3cFkIeNB1eoEYYc"></script>
+
+
+<script type="text/javascript">
+    function CerrarError() {
+    
+        $('#AlertaGeneral').hide('fade');
+    }
+   
+</script>
+
+
+                <div class="row" style="margin-top:20px">
+                    <div class="col-lg-8 col-xs-12">
+
+                        <h3> Delegación: RESISTENCIA </h3>
+
+                        <ul>
+
+                            <li><strong>Dirección:</strong> SANTA FE 178 , RESISTENCIA &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </li>
+                            
+                                <li><strong>Teléfono:</strong> 0362- 444-8983/9798/9806 / 443-7985 </li>
+                                                            <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                            <li><strong>Horario:</strong> 09:00 A 13:00 </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-27.448096/-58.986119/RESISTENCIA" data-i>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                </a>
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                        
+                    </div>
+
+                </div>
+                <div style="clear:both"></div>
+                <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: CHARATA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> SARMIENTO 178 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03731 42 1458 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 8:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: QUITILIPI </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> SANTA FE 832 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0364 448 0220 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: ROQUE S PE&#209;A </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> BELGRANO N&#176; 442 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0364 42 0414 / / 443 1397 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 07:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: VILLA ANGELA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> 9 DE JULIO 460 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03735 42 0015 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: JUAN JOSE CASTELLI </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> ROQUE SAENZ PE&#209;A 352, JUAN JOSE CASTELLI </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03644 47 1350 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: LAS BRE&#209;AS </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> SARMIENTO 1214, LAS BRE&#209;AS </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03731 46 0100 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: BOCA DEL EXPENDIO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> PELLEGRINI 371 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03644 42 1743 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: CAMPO LARGO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> SAN MARTIN 969, CAMPO LARGO </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0364 449 5903 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-26.8056713/-60.8429847/CAMPO LARGO" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: CNEL DU GRATY </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> BELGRANO Y AVELLANEDA, CNEL DU GRATY </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03735 49 8439 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 17:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-27.6818622/-60.9070379/CNEL DU GRATY" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: CORZUELA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> RIVADAVIA 233, CORZUELA </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03644 47 0017 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-27.4257175/-59.0243784/CORZUELA" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: GRAL PINEDO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> MARIA CURI 330, GRAL PINEDO </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03731 48 0042 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-27.4257175/-59.0243784/GRAL PINEDO" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: GRAL SAN MARTIN  </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> PARAGUAY 52, GRAL J DE S MARTIN </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03725 42 0306 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 17:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-26.5390756/-59.3401962/GRAL SAN MARTIN " data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: HERMOSO CAMPO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> AV SARMIENTO 96, HERMOSO CAMPO </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03735 44 7959 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-27.4257175/-59.0243784/HERMOSO CAMPO" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: LA ESCONDIDA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> CENTRO EMP COMERCIO, LA ESCONDIDA </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0362 523 2925 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-27.4483459/-58.9848657/LA ESCONDIDA" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: MACHAGAY </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> URUGUAY 50, MACHAGAY </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03734 47 0783 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: PAMPA DEL INFIERNO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> BUENOS AIRES 25, PAMPA DEL INFIERNO </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0364 449 7735 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-26.5078582/-61.1741694/PAMPA DEL INFIERNO" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: PAMPA EL INDIO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> CHACABUCO M214 PC 13, PAMPA DEL INDIO </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0375 15 494131 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 09:00 A 12:00 Y 17:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: PRESIDENCIA DE LA PLAZA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> M MORENO S/N, PTE DE LA PLAZA </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03734 42 0309 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: PTO TIROL </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> 12 DE OCTUBRE S/N, PUERTO TIROL </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03722 49 2006 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 17:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-27.376731/-59.09515/PTO TIROL" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: SAN BERNARDO (CH) </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> BELGRANO 78, SAN BERNARDO (CHACO) </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03735 496 4448 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 17:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-27.2882979/-60.7147157/SAN BERNARDO (CH)" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: SANTA SYLVINA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> LEANDRO N ALEM 154, SANTA SYLVINA </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03735 49 2230 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-27.8396236/-61.1328345/SANTA SYLVINA" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: TRES ISLETAS </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> PARAGUAY S/N, TRES ISLETAS </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0364 446 1390 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 Y 16:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: VILLA BERTHET </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> RESISTENCIA </li>
+                                <li><strong>Dirección:</strong> AV. ROQUE SAENZ PE&#209;A 343, VILLA BERTHET </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03735 49 7030 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> presta_resistencia@osecac.org.ar (Presta-deriv)- empa_resistencia@osecac.org.ar (Empa)- disca_resistencia@osecac.org.ar (medic)- materiales_resistencia@osecac.org.ar (diab)- conta_resistencia@osecac.org.ar (Conta)- fisca_resistencia@osecac.org.ar (Fisca)</li>
+                                                                    <li><strong>Horario:</strong> 17:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+
+
+    <div class="text-center">
+        <ul class="pagination">
+
+                <li class="disabled"><a>&laquo;</a></li>
+
+                        <li class="active"><a>1</a></li>
+                            <li class="disabled"><a>&raquo;</a></li>
+
+        </ul>
+    </div>
+
+<div class="modal fade" id="mapmodals">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="title_id"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="map-container"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript">
+
+    function map_init(var_lati, var_long, var_markerTitle, var_contentString) {
+        var var_location = new google.maps.LatLng(var_lati, var_long);
+        var var_mapoptions = {
+            zoom: 18,
+            mapTypeControl: false,
+            center: var_location,
+            panControl: false,
+            rotateControl: false,
+            streetViewControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var var_map = new google.maps.Map(document.getElementById("map-container"), var_mapoptions);
+        var marker = new google.maps.Marker({
+            position: var_location,
+            map: var_map,
+            title: var_markerTitle,
+            draggable: false,
+        });
+        $('#mapmodals').on('shown.bs.modal', function () {
+            google.maps.event.trigger(var_map, "resize");
+            var_map.setCenter(var_location);
+        });
+    }
+    function control(elem) {
+
+        var id = $(elem).data('assigned-id');
+        var vector = id.split('/');
+        var latitud = vector[0].replace(",", ".");
+        var longitud = vector[1].replace(",", ".");
+        var var_mapTitle = vector[2];
+
+        map_init(latitud, longitud, vector[2], "");
+
+        $(".modal-header #title_id").html(var_mapTitle);
+        $('#mapmodals').modal('show');
+    };
+</script>

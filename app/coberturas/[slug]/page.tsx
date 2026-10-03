@@ -11,6 +11,7 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 import { DocumentacionIngreso } from '@/components/preexistencias/DocumentacionIngreso'
 import { FuentesOficiales, SeccionesDesarrollo } from '@/components/contenido/SeccionesDesarrollo'
+import { tieneFarmacias } from '@/lib/data/cartilla-zonas/farmacias'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -161,6 +162,21 @@ export default async function CoberturaPage({ params }: Props) {
             <Link href="/pmo" className="inline-block mt-3 text-sm font-semibold text-blue-700 hover:underline">
               Ver el Programa Médico Obligatorio completo →
             </Link>
+            {/* Cruce con /condiciones/salud-mental (auditoría de enlazado
+                interno, 29-sep-2026): ver nota espejo en condiciones/[slug]. */}
+            {cob.slug === 'psicologia' && (
+              <Link href="/condiciones/salud-mental" className="block mt-2 text-sm font-semibold text-blue-700 hover:underline">
+                ¿Tenés un diagnóstico de salud mental (depresión, bipolaridad, TOC)? Mirá qué prepaga conviene por condición →
+              </Link>
+            )}
+            {/* /fertilizacion-asistida quedó huérfana (auditoría de crawling
+                interno, 29-sep-2026): ninguna página del sitio la enlazaba
+                todavía, aunque este hub es su lugar natural. */}
+            {cob.slug === 'fertilidad' && (
+              <Link href="/fertilizacion-asistida" className="block mt-2 text-sm font-semibold text-blue-700 hover:underline">
+                Guía completa de la Ley 26.862 y los centros de fertilidad de Swiss Medical →
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -250,6 +266,11 @@ export default async function CoberturaPage({ params }: Props) {
                       <Link href={`/prepagas/${prep.slug}`} className="text-xs font-semibold text-gray-500 hover:text-[#E8002D] transition-colors">
                         Ver todos los planes de {prep.nombre} →
                       </Link>
+                      {slug === 'medicamentos' && tieneFarmacias(prep.slug) && (
+                        <Link href={`/cartillas/${prep.slug}?seccion=farmacia`} className="text-xs font-semibold text-gray-500 hover:text-[#E8002D] transition-colors">
+                          Buscar farmacia cercana de {prep.nombre} →
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -284,7 +305,7 @@ export default async function CoberturaPage({ params }: Props) {
         <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
           <div>
             <div className="text-white font-bold text-sm">¿Buscás la mejor cobertura de {cob.nombre.toLowerCase()}?</div>
-            <div className="text-red-200 text-xs">Compará precios y coberturas reales en 2 minutos, gratis.</div>
+            <div className="text-white text-xs">Compará precios y coberturas reales en 2 minutos, gratis.</div>
           </div>
           <Link
             href="/comparador"
@@ -387,7 +408,7 @@ export default async function CoberturaPage({ params }: Props) {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Compará la cobertura de {cob.nombre.toLowerCase()} entre prepagas</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             Precios reales de {PRECIO_ACTUALIZADO}. Sin DNI y sin compromiso. Encontrá el plan que mejor te cubre.
           </p>
           <Link

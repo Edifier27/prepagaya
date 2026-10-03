@@ -1,7 +1,10 @@
 import Link from 'next/link'
+import { getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
 import type { FichaRegistro as Ficha } from '@/lib/data/fichas-registro'
 import { codigoSeisDigitos, nombreLegible, REGISTRO_VERIFICADO, type EntidadRegistro } from '@/lib/data/registro-sssalud'
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/components/obras-sociales/PasateConTusAportes'
+import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
 
 // Ficha de obra social armada con el registro de la SSSalud (lib/data/
 // fichas-registro.ts). Todo lo que dice sale del registro o del nombre
@@ -11,14 +14,21 @@ export function faqsFichaRegistro(f: Ficha, e: EntidadRegistro) {
   const codigo = codigoSeisDigitos(e.codigo!)
   return [
     { q: `¿Cuál es el código de ${f.nombreCorto}?`, a: `${codigo} (RNAS ${e.codigo}). Es el número con el que figura en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: el que carga tu empleador en tu alta y el que se usa en la opción de cambio.` },
-    ...(e.telefono ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `El teléfono de la sede que figura en el registro de la Superintendencia de Servicios de Salud es ${e.telefono}${e.domicilio ? ` (${e.domicilio}${e.localidadSede ? `, ${e.localidadSede}` : ''})` : ''}. Para turnos y autorizaciones, consultá los canales de tu delegación${e.web ? ` en ${e.web.replace(/^https?:\/\//, '')}` : ''}.` }] : []),
+    ...(f.canales?.length ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `${f.canales.map((c) => `${c.etiqueta}: ${c.valor}${c.detalle ? ` (${c.detalle})` : ''}`).join('. ')}. Son los canales que publica ${f.nombreCorto} en su web oficial.` }] : []),
+    ...(!f.canales?.length && e.telefono ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `El teléfono de la sede que figura en el registro de la Superintendencia de Servicios de Salud es ${e.telefono}${e.domicilio ? ` (${e.domicilio}${e.localidadSede ? `, ${e.localidadSede}` : ''})` : ''}. Para turnos y autorizaciones, consultá los canales de tu delegación${e.web ? ` en ${e.web.replace(/^https?:\/\//, '')}` : ''}.` }] : []),
     { q: `¿Puedo pasar mis aportes de ${f.nombreCorto} a una prepaga?`, a: `Sí: en relación de dependencia podés hacer la opción de cambio (online, con clave fiscal, una vez cada 365 días) y pasar tus aportes a una prepaga inscripta como agente del seguro, pagando solo la diferencia. La calculadora de aportes te dice cuánto sería con tu sueldo.` },
+    // Por intención de búsqueda (1-oct-2026): baja, discapacidad, monotributo, "¿es buena?" y Swiss Medical
+    ...[faqCoseguros(f.nombreCorto, f.slug)].filter((x): x is { q: string; a: string } => !!x),
+    ...faqsGuia({ osNombre: f.nombreCorto, osSlug: f.slug, codigo: e.codigo }),
+    faqPasarseASwiss(f.nombreCorto),
   ]
 }
 
 export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; entidad: EntidadRegistro }) {
   const codigo = codigoSeisDigitos(e.codigo!)
   const faqs = faqsFichaRegistro(f, e)
+  const cartilla = getCartillaSindical(f.slug)
+  const cartillaTot = cartilla ? totales(cartilla) : null
   const fecha = new Date(`${REGISTRO_VERIFICADO}T12:00:00`).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
   const jsonLd = [
     {
@@ -90,17 +100,54 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
         </div>
       </section>
 
+      {/* Teléfonos y canales de atención de la web oficial (1-oct-2026) */}
+      {f.canales && f.canales.length > 0 && (
+        <section id="telefonos" className="py-8 bg-white border-b border-gray-100">
+          <div className="container max-w-3xl! mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Teléfonos de {f.nombreCorto}</h2>
+            <p className="text-sm text-gray-500 mb-4">
+              Publicados por {f.nombreCorto} en{' '}
+              {f.fuenteCanales ? <a href={f.fuenteCanales} target="_blank" rel="noopener noreferrer" className="underline">su web oficial</a> : 'su web oficial'} (verificados el 1 de octubre de 2026).
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {f.canales.map((c) => {
+                const numero = c.valor.split('/')[0].replace(/[^\d+]/g, '')
+                return (
+                  <div key={c.etiqueta} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                    <div className="text-xs font-semibold text-gray-500">{c.etiqueta}</div>
+                    <a href={`tel:${numero}`} className="block mt-1 font-bold text-gray-900 tabular-nums hover:text-[#E8002D]">{c.valor}</a>
+                    {c.detalle && <div className="text-xs text-gray-500 mt-1">{c.detalle}</div>}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Cartilla oficial (1-oct-2026), si la obra social publica el Anexo III */}
+      {cartilla && cartillaTot && (
+        <section id="cartilla" className="py-8 bg-white border-b border-gray-100">
+          <div className="container max-w-3xl! mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Cartilla de {f.nombreCorto}</h2>
+            <p className="text-sm text-gray-600 mb-4">
+              {cartillaTot.internacion.toLocaleString('es-AR')} sanatorios con internación, {cartillaTot.guardia.toLocaleString('es-AR')} guardias y {cartillaTot.diagnostico.toLocaleString('es-AR')} centros de diagnóstico en {cartillaTot.provincias} provincias, según el listado oficial que presentó ante la Superintendencia.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Link href={`/obras-sociales/${f.slug}/cartilla`} className="text-sm px-4 py-1.5 rounded-full bg-[#E8002D] text-white font-semibold hover:bg-[#B8001F]">Ver la cartilla completa →</Link>
+              {provinciasConPagina(cartilla).slice(0, 8).map((p) => (
+                <Link key={p.slug} href={`/obras-sociales/${f.slug}/cartilla/${p.slug}`} className="text-sm px-3 py-1.5 rounded-full border border-gray-200 hover:border-[#E8002D] text-gray-700">{p.nombre}</Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <PasateConTusAportes osNombre={f.nombreCorto} osSlug={f.slug} sanatoriosOs={cartillaTot?.internacion} />
+
       <section className="py-8 bg-white">
         <div className="container max-w-3xl! mx-auto">
-          <Link href={`/calculadora-aportes?os=${f.slug}`} className="group flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white p-5 hover:border-[#E8002D] transition-colors">
-            <div className="flex-1 min-w-0">
-              <div className="font-bold text-gray-900">¿Tenés {f.nombreCorto}? Con tus mismos aportes podés tener una prepaga</div>
-              <div className="text-sm text-gray-600 mt-0.5">Poné tu sueldo y mirá cuánto pagarías de diferencia en cada plan, con los precios oficiales.</div>
-            </div>
-            <span className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm">Calcular mi diferencia →</span>
-          </Link>
-
-          <h2 className="text-xl font-bold text-gray-900 mt-10 mb-3">Cómo cambiarte de {f.nombreCorto}</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Cómo cambiarte de {f.nombreCorto}</h2>
           <ol className="list-decimal pl-5 space-y-2 text-sm text-gray-700">
             <li>Elegí la obra social o la prepaga a la que querés pasar tus aportes: tiene que estar inscripta en el Registro Nacional de Agentes del Seguro (si sos monotributista, en el de las que aceptan monotributo).</li>
             <li>Hacé la opción de cambio online, en la web de la Superintendencia de Servicios de Salud, con tu clave fiscal nivel 3 de ARCA. Es el único canal: no hace falta ir a ningún lado ni pagarle a un gestor.</li>
@@ -110,7 +157,14 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
           <p className="text-sm text-gray-600 mt-3">La opción se puede hacer una vez cada 365 días y no se puede volver atrás: tenés que quedarte al menos un año. No pueden hacerla quienes se quedaron sin trabajo ni quienes están en licencia por maternidad.</p>
           <p className="text-sm text-gray-600 mt-3">Si te pasás a una prepaga, un asesor te cotiza con tus aportes y te guía en el trámite. Te respondemos en {TIEMPO_RESPUESTA}.</p>
 
-          <h2 className="text-xl font-bold text-gray-900 mt-10 mb-3">Preguntas frecuentes</h2>
+        </div>
+      </section>
+
+      <GuiaObraSocial osNombre={f.nombreCorto} osSlug={f.slug} codigo={e.codigo} conCartilla={!!cartilla} omitirBaja />
+
+      <section className="py-8 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl! mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Preguntas frecuentes</h2>
           <div className="space-y-4">
             {faqs.map((x) => (
               <div key={x.q}>

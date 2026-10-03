@@ -44,8 +44,9 @@ export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'sanatorio-agote', nombre: 'Sanatorio Agote', claves: ['agote'] },
   { slug: 'instituto-alexander-fleming', nombre: 'Instituto Alexander Fleming', claves: ['fleming'], excluir: ['trinidad'] },
   { slug: 'hospital-cemic', nombre: 'Hospital Universitario CEMIC', claves: ['cemic'] },
+  { slug: 'sanatorio-las-lomas', nombre: 'Sanatorio Las Lomas', claves: ['lomas'], excluir: ['zamora', 'policl', 'ojos', 'odontolog', 'centro', 'mirador'] },
   // Interior: los que figuran en 3 o más cartillas oficiales de su ciudad
-  { slug: 'sanatorio-allende', nombre: 'Sanatorio Allende', claves: ['allende'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
+  { slug: 'sanatorio-allende', nombre: 'Sanatorio Allende', claves: ['allende'], excluir: ['transito', 'caceres'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
   { slug: 'clinica-reina-fabiola', nombre: 'Clínica Universitaria Reina Fabiola', claves: ['reina', 'fabiola'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
   { slug: 'sanatorio-del-salvador', nombre: 'Sanatorio del Salvador', claves: ['salvador'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
   { slug: 'instituto-modelo-de-cardiologia', nombre: 'Instituto Modelo de Cardiología', claves: ['modelo', 'cardiologia'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
@@ -57,8 +58,8 @@ export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'centro-medico-ipam', nombre: 'Centro Médico IPAM (Rosario)', claves: ['ipam'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
   { slug: 'instituto-cardiovascular-de-rosario', nombre: 'Instituto Cardiovascular de Rosario', claves: ['cardiovascular'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
   { slug: 'hospital-italiano-garibaldi-rosario', nombre: 'Hospital Italiano Garibaldi (Rosario)', claves: ['italiano'], excluir: ['sanatorio'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
-  { slug: 'sanatorio-de-ninos-rosario', nombre: 'Sanatorio de Niños (Rosario)', claves: ['ninos'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
-  { slug: 'clinica-de-cuyo', nombre: 'Clínica de Cuyo', claves: ['cuyo'], ciudad: 'mendoza', ciudadNombre: 'Mendoza' },
+  { slug: 'sanatorio-de-ninos-rosario', nombre: 'Sanatorio de Niños (Rosario)', claves: ['ninos'], excluir: ['vilela'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'clinica-de-cuyo', nombre: 'Clínica de Cuyo', claves: ['cuyo'], excluir: ['oftalmologico'], ciudad: 'mendoza', ciudadNombre: 'Mendoza' },
   { slug: 'clinica-mayo-tucuman', nombre: 'Clínica Mayo (Tucumán)', claves: ['mayo'], excluir: ['sanatorio'], ciudad: 'tucuman', ciudadNombre: 'Tucumán' },
   { slug: 'sanatorio-del-norte-tucuman', nombre: 'Sanatorio del Norte (Tucumán)', claves: ['norte'], ciudad: 'tucuman', ciudadNombre: 'Tucumán' },
   { slug: 'hospital-italiano-la-plata', nombre: 'Hospital Italiano de La Plata', claves: ['italiano', 'plata'], ciudad: 'plata', ciudadNombre: 'La Plata' },
@@ -67,7 +68,7 @@ export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'hospital-regional-espanol-bahia-blanca', nombre: 'Hospital Regional Español (Bahía Blanca)', claves: ['regional', 'espanol'], ciudad: 'bahia blanca', ciudadNombre: 'Bahía Blanca' },
   { slug: 'hospital-privado-del-sur', nombre: 'Hospital Privado del Sur (Bahía Blanca)', claves: ['privado', 'sur'], excluir: ['italiano'], ciudad: 'bahia blanca', ciudadNombre: 'Bahía Blanca' },
   { slug: 'sanatorio-altos-de-salta', nombre: 'Sanatorio Altos de Salta', claves: ['altos', 'salta'], ciudad: 'salta', ciudadNombre: 'Salta' },
-  { slug: 'sanatorio-tandil', nombre: 'Sanatorio Tandil', claves: ['tandil'], excluir: ['chacabuco'], ciudad: 'tandil', ciudadNombre: 'Tandil' },
+  { slug: 'sanatorio-tandil', nombre: 'Sanatorio Tandil', claves: ['tandil'], excluir: ['chacabuco', 'agremiacion'], ciudad: 'tandil', ciudadNombre: 'Tandil' },
 ]
 
 export interface PrepagaEnSanatorio {

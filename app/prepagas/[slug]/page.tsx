@@ -47,6 +47,40 @@ function obraSocialHermana(prepagaSlug: string) {
   return obrasSociales.find((o) => o.slug === osSlug)
 }
 
+// "¿[Prepaga] es obra social o prepaga?" (29-sep-2026, mucho volumen de
+// búsqueda en las 5 marcas partner). No se puede generalizar la respuesta:
+// OSDE es técnicamente una obra social aunque se la conoce como prepaga (ver
+// lib/data/obras-sociales.ts, ya investigado); las demás son medicina
+// prepaga. Investigado marca por marca con fuente oficial (29-sep-2026) — por
+// eso queda como mapa fijo en vez de una regla genérica, y solo se muestra
+// la FAQ en las marcas verificadas.
+const ES_OBRA_SOCIAL_O_PREPAGA: Record<string, string> = {
+  'swiss-medical': 'Es una empresa de medicina prepaga (RNEMP Nº 1-1332-8), no una obra social: a diferencia de una obra social, no tiene un Programa Médico Obligatorio propio, solo ofrece planes de medicina prepaga. Desde octubre de 2024 también está inscripta como Agente del Seguro de Salud (RNAS), lo que te permite derivar tus aportes de obra social directo a Swiss Medical sin pasar por una obra social intermediaria.',
+  osde: 'Técnicamente es una obra social, aunque mucha gente la conoce como prepaga porque compite en el segmento premium del mercado con planes de alta cobertura.',
+  'sancor-salud': 'Es una prepaga: la Asociación Mutual Sancor Salud está inscripta en el Registro Nacional de Entidades de Medicina Prepaga (RNEMP). Es una entidad totalmente distinta de Sancor OS (la obra social) y también de Prevención Salud (la prepaga del Grupo Sancor Seguros): comparten parte del nombre, pero son tres empresas sin relación societaria entre sí.',
+  premedic: 'Es una empresa de medicina prepaga, no una obra social.',
+  avalian: 'Es una empresa de medicina prepaga, no una obra social ni una mutual. Está registrada ante la Superintendencia de Servicios de Salud como entidad de medicina prepaga (RNEMP), aunque forma parte de un grupo asociativo integrado por la Asociación de Cooperativas Argentinas (ACA), el Grupo Asegurador La Segunda, Coovaeco y la Fundación Nodos.',
+  'prevencion-salud': 'Es una empresa de medicina prepaga, no una obra social. Es la prepaga del Grupo Sancor Seguros (una aseguradora) — una entidad totalmente distinta de Sancor Salud, que es una mutual de medicina prepaga independiente sin relación societaria con el grupo.',
+  // Medicus/Hominis (29-sep-2026, keyword research de Darío): ambas son
+  // prepagas puras (RNEMP), no obras sociales — se confunden porque, como la
+  // mayoría de las prepagas grandes, reciben el aporte de obra social por
+  // derivación directa (medicus.com.ar tiene su propia guía de derivación de
+  // aportes, lo que confirma que es la entidad RECEPTORA, no la obra social).
+  medicus: 'Es una empresa de medicina prepaga, no una obra social. La confusión viene de que, como la mayoría de las prepagas grandes, Medicus puede recibir el aporte que te descuentan de tu obra social mediante el sistema de derivación de aportes — pero eso no la convierte en una obra social.',
+  hominis: 'Es una empresa de medicina prepaga, no una obra social. Medicina Prepaga Hominis S.A. está inscripta en el Registro Nacional de Entidades de Medicina Prepaga (RNEMP Nº 111438) desde 2015, con alcance en CABA y el Gran Buenos Aires.',
+}
+
+// "¿Prevención Salud es lo mismo que Sancor Salud?" (29-sep-2026, keyword
+// research de Darío): confusión real y con volumen propio, van en las dos
+// direcciones. Solo tiene sentido para estas dos marcas puntuales, por eso
+// es un mapa aparte y no una regla genérica como ES_OBRA_SOCIAL_O_PREPAGA.
+const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
+  'prevencion-salud': [{
+    q: '¿Prevención Salud es lo mismo que Sancor Salud?',
+    a: 'No, son dos empresas distintas y sin relación societaria, aunque comparten parte del nombre y se confunden seguido. Prevención Salud es la empresa de medicina prepaga del Grupo Sancor Seguros (una aseguradora). Sancor Salud es una mutual de medicina prepaga independiente, con más de 60 años de trayectoria propia y sin vínculo con el Grupo Sancor Seguros.',
+  }],
+}
+
 function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstrella: Plan, comp: DatosComparacion) {
   const sinCopago = prep.planes.filter(p => !p.copago).map(p => p.nombre)
   const conCopago = prep.planes.filter(p => p.copago).map(p => p.nombre)
@@ -120,6 +154,17 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
       q: `¿Cómo contratar ${prep.nombre}?`,
       a: `Podés cotizar el precio exacto para tu edad y zona usando el comparador gratuito de PrepagaYa. Un asesor te contactará para completar el trámite sin costo adicional.`,
     },
+    // "monotributistas" (29-sep-2026): verdad general del sistema argentino,
+    // no un dato específico de la marca — se puede afirmar para cualquier
+    // prepaga sin necesitar una fuente puntual por marca.
+    {
+      q: `¿${prep.nombre} acepta monotributistas?`,
+      a: `Sí. Como monotributista podés contratar ${prep.nombre} en forma directa, sin depender de un empleador. El aporte de obra social del monotributo lo seguís pagando igual dentro de tu cuota mensual; conviene elegir una prepaga que lo tome, así pagás solo la diferencia.`,
+    },
+    ...(ES_OBRA_SOCIAL_O_PREPAGA[prep.slug] ? [{
+      q: `¿${prep.nombre} es obra social o prepaga?`,
+      a: ES_OBRA_SOCIAL_O_PREPAGA[prep.slug],
+    }] : []),
   ]
 }
 
@@ -176,6 +221,8 @@ const KEYWORDS_EXTRA: Record<string, string[]> = {
   'sancor-salud': ['sancor salud precios', 'sancor salud cordoba', 'sancor plan 1000', 'sancor salud interior del país'],
   'avalian': ['avalian ex aca salud', 'aca salud ahora avalian', 'avalian planes precios', 'avalian as200', 'avalian as300'],
   'premedic': ['premedic precios', 'premedic opiniones', 'premedic plan 200', 'premedic monotributistas', 'prepaga mas barata argentina'],
+  medicus: ['medicus prestadores', 'mi medicus', 'medicus telefono', 'medicus atencion al asociado', 'medicus que sanatorios tiene'],
+  hominis: ['hominis autorizaciones', 'hominis atencion al socio', 'hominis opiniones'],
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -195,8 +242,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // planes y precios y enlaza a la cartilla.
     // "Cuánto sale" (23-sep-2026): "cuánto sale osde" busca ~7 veces más que
     // "prepagas precios" (Google Trends); es la misma intención de esta ficha.
-    // absolute: sin el sufijo "| PrepagaYa", para que entre completo en Google (~65 caracteres).
-    title: { absolute: `${prep.nombre}: planes y cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()}, desde ${formatPrecio(precioMinTitulo)}` },
+    // "precios" explícito (30-sep-2026): datos reales de Ahrefs muestran
+    // "[prepaga] planes"/"[prepaga] precios" rankeando muy mal (pos. 15-28
+    // con volumen real: "osde planes" 3.1K, "sancor salud precios" 600)
+    // mientras "[prepaga] cartilla" rankea 1-2 — el título no decía "precios"
+    // ni una sola vez. Se saca el monto del título (ya está en la
+    // descripción) para poder sumar "precios" sin superar ~60 caracteres.
+    // absolute: sin el sufijo "| PrepagaYa", para que entre completo en Google.
+    title: { absolute: `${prep.nombre}: planes, precios y cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()}` },
     // Descripción ≤ ~160 caracteres (antes ~185 y Google cortaba el "Cotizá gratis")
     description: `¿Cuánto sale ${prep.nombre}? Planes desde ${formatPrecio(precioMinTitulo)}/mes en ${PRECIO_ACTUALIZADO.toLowerCase()}${prep.planes.some((pl) => pl.fuentePrecio === 'sssalud') ? ' (precio oficial SSSalud)' : ''}. Precio por edad, cartilla${contactos[prep.slug] ? ', teléfonos' : ''} y opiniones. Cotizá gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
@@ -207,6 +260,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `prepaga ${prep.nombre.toLowerCase()}`,
       `cuanto sale ${prep.nombre.toLowerCase()}`,
       `aumento ${prep.nombre.toLowerCase()}`,
+      // "cartilla" y "es obra social o prepaga" (29-sep-2026): volumen real y
+      // repetido en las 5 marcas partner, ver lib/data/coberturas-marca.ts y
+      // ES_OBRA_SOCIAL_O_PREPAGA más arriba.
+      `cartilla ${prep.nombre.toLowerCase()}`,
+      `${prep.nombre.toLowerCase()} cartilla`,
+      `${prep.nombre.toLowerCase()} monotributistas`,
+      ...(ES_OBRA_SOCIAL_O_PREPAGA[slug] ? [`${prep.nombre.toLowerCase()} es obra social o prepaga`] : []),
       ...(contactos[slug] ? [`telefono ${prep.nombre.toLowerCase()}`] : []),
       ...(KEYWORDS_EXTRA[slug] ?? []),
     ],
@@ -288,6 +348,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
       q: `¿${prep.nombre} tiene app?`,
       a: `Sí. La app oficial se llama "${app.nombreApp}" y está en Google Play. ${app.credencialDigital ? 'Incluye credencial digital. ' : ''}Según su ficha oficial permite: ${app.funciones.slice(0, 4).map((f) => f.toLowerCase()).join('; ')}.`,
     }] : []),
+    ...(FAQ_EXTRA[slug] ?? []),
   ]
 
   const jsonLd: Record<string, unknown>[] = [
@@ -454,12 +515,25 @@ export default async function PrepagaSlugPage({ params }: Props) {
               <p className="text-gray-600 text-sm leading-relaxed mb-5 max-w-xl">{prep.descripcion}</p>
 
               <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/comparador"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
-                >
-                  {isPartner ? 'Cotizar y contratar online →' : 'Cotizar mi precio exacto →'}
-                </Link>
+                {/* 28-sep-2026 (Darío): en todas las prepagas, "Cotizar y
+                    contratar online" abre el cotizador de ESTA prepaga (popup
+                    con selector de plan), no el comparador general. Comparar
+                    queda como botón aparte. */}
+                <ContratarPlanButton
+                      prepagaNombre={prep.nombre}
+                      fuente="ficha-prepaga"
+                      label="Cotizar y contratar online"
+                      titulo={`Cotizá y contratá ${prep.nombre}`}
+                      planesOpciones={prep.planes.map((pl) => pl.nombre)}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
+                    />
+                    <Link
+                      href="/comparador"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold rounded-xl transition-all text-sm"
+                    >
+                      Comparar con otras prepagas
+                    </Link>
+
                 {/* Botón a la cartilla por zona/nombre — pedido de Darío, 23-sep-2026, para darle visibilidad */}
                 {getCartillaInfo(prep.slug) && (
                   <Link
@@ -707,7 +781,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
           <div className="mt-6 bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-center sm:text-left">
               <div className="text-white font-bold text-lg">¿Cuánto te sale {prep.nombre} a vos?</div>
-              <div className="text-red-200 text-sm mt-0.5">El precio final depende de tu edad y tu zona. Cotizalo gratis, sin DNI y sin compromiso.</div>
+              <div className="text-white text-sm mt-0.5">El precio final depende de tu edad y tu zona. Cotizalo gratis, sin DNI y sin compromiso.</div>
             </div>
             <ContratarPlanButton
               prepagaNombre={prep.nombre}
@@ -749,7 +823,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
         <div className="container max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
           <div>
             <div className="text-white font-bold text-sm">¿Cuánto te costaría {prep.nombre} a tu edad?</div>
-            <div className="text-red-200 text-xs">El precio varía con la edad. Cotizá gratis en 2 minutos.</div>
+            <div className="text-white text-xs">El precio varía con la edad. Cotizá gratis en 2 minutos.</div>
           </div>
           <Link
             href="/comparador"
@@ -1282,15 +1356,22 @@ export default async function PrepagaSlugPage({ params }: Props) {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Cotizá {prep.nombre} para tu perfil</h2>
-          <p className="text-red-200 text-sm mb-6">
-            El precio cambia según tu edad y zona. Usá el cotizador para ver el precio exacto y comparar con otras prepagas.
+          <p className="text-white text-sm mb-6">
+            El precio cambia según tu edad y zona. Te pasamos el precio exacto con 15% OFF por contratar online.
           </p>
-          <Link
-            href="/comparador"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
-          >
-            Cotizar gratis →
-          </Link>
+          <div className="flex flex-col items-center gap-3">
+              <ContratarPlanButton
+                prepagaNombre={prep.nombre}
+                fuente="ficha-prepaga-final"
+                label={`Cotizar ${prep.nombre}`}
+                titulo={`Cotizá y contratá ${prep.nombre}`}
+                planesOpciones={prep.planes.map((pl) => pl.nombre)}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
+              />
+              <Link href="/comparador" className="text-sm text-red-100 hover:text-white font-semibold underline underline-offset-2">
+                O compará {prep.nombre} con otras prepagas
+              </Link>
+            </div>
         </div>
       </section>
     </>

@@ -1,11 +1,11 @@
 ﻿'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
 import { NIVEL_PRECIO_LABEL, precioDeriva } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
 type Lado = {
   prepagaSlug: string
@@ -115,6 +115,21 @@ export function ComparadorLadoALado(): React.ReactElement {
   const [ladoA, setLadoA] = useState<Lado>({ prepagaSlug: 'swiss-medical', planSlug: 'smg20' })
   const [ladoB, setLadoB] = useState<Lado>({ prepagaSlug: 'osde', planSlug: '310' })
   const [sinIva, setSinIva] = useState(false)
+
+  // "Comparar este plan con otro" desde la ficha de un plan (28-sep-2026):
+  // /comparar?plan=swiss-medical/smg20 carga ese plan del lado A y, del lado
+  // B, uno de otra prepaga. Se lee en el cliente para que la página siga estática.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('plan')
+    if (!q) return
+    const [prepagaSlug, planSlug] = q.split('/')
+    if (!getPlan(prepagaSlug, planSlug)) return
+    setLadoA({ prepagaSlug, planSlug })
+    if (prepagaSlug === ladoB.prepagaSlug) {
+      setLadoB(prepagaSlug === 'swiss-medical' ? { prepagaSlug: 'osde', planSlug: '310' } : { prepagaSlug: 'swiss-medical', planSlug: 'smg20' })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const prepagaA = getPrepaga(ladoA.prepagaSlug)
   const prepagaB = getPrepaga(ladoB.prepagaSlug)
@@ -350,23 +365,27 @@ export function ComparadorLadoALado(): React.ReactElement {
             </tbody>
           </table>
 
-          {/* CTAs */}
+          {/* CTAs — antes eran <Link href="/"> (rotos, mandaban al home sin
+              dejar el dato del lead): ahora abren el popup de cotización, mismo
+              patrón que el resto del sitio. */}
           <div className="grid grid-cols-2 border-t border-gray-200">
             <div className="py-5 px-4 flex justify-center border-r border-gray-200">
-              <Link
-                href="/"
+              <ContratarPlanButton
+                prepagaNombre={prepagaA!.nombre}
+                planNombre={planA!.nombre}
+                fuente="comparador-lado-a-lado"
+                label={`Cotizar ${planA!.nombre}`}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00875A] hover:bg-[#006644] text-white text-sm font-bold rounded-xl transition-all shadow-sm hover:shadow-md"
-              >
-                Cotizar {planA!.nombre}
-              </Link>
+              />
             </div>
             <div className="py-5 px-4 flex justify-center">
-              <Link
-                href="/"
+              <ContratarPlanButton
+                prepagaNombre={prepagaB!.nombre}
+                planNombre={planB!.nombre}
+                fuente="comparador-lado-a-lado"
+                label={`Cotizar ${planB!.nombre}`}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00875A] hover:bg-[#006644] text-white text-sm font-bold rounded-xl transition-all shadow-sm hover:shadow-md"
-              >
-                Cotizar {planB!.nombre}
-              </Link>
+              />
             </div>
           </div>
         </div>

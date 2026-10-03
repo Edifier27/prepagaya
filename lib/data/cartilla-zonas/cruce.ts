@@ -26,7 +26,7 @@ export function nucleoNombre(nombre: string): string[] {
     .filter((w) => w.length > 1 && !GENERICAS.has(w))
 }
 
-function claveDireccion(dir: string | null): string | null {
+export function claveDireccion(dir: string | null): string | null {
   if (!dir) return null
   const n = normalizarTexto(dir).replace(/\b(av|avda|avenida|calle|bv|boulevard|pje|pasaje|gral|general|dr|pte|presidente)\b/g, ' ')
   const num = n.match(/\b(\d{2,5})\b/)

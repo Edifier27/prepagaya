@@ -1,8 +1,14 @@
 """Parser de las cartillas PDF oficiales de OSDE (downloadPDF/CartillaFF_PP.pdf).
 
-Extrae solo instituciones de dos secciones:
+Extrae solo instituciones de cuatro secciones:
   - SANATORIOS PARA INTERNACIÓN
   - CENTROS CON SERVICIO DE GUARDIA (LAS 24 HS)
+  - ESPECIALISTAS DE GUARDIA (instituciones con especialista de guardia, por
+    especialidad — NO es "CUERPO MÉDICO", que mezcla instituciones con
+    médicos particulares con nombre y apellido y por eso no se parsea)
+  - FARMACIAS (comercios; se descarta la subsección "CENTROS DE VACUNACIÓN"
+    que viene en la misma página, y la portada "FARMACIAS - NORMAS PARA LA
+    ATENCIÓN")
 Uso: python parse.py pdfs/Cartilla60_31.pdf [...]  -> imprime JSON
 """
 import json, re, sys, io, unicodedata
@@ -11,7 +17,12 @@ import pymupdf
 SECCIONES = {
     'SANATORIOS PARA INTERNACI': 'internacion',
     'CENTROS CON SERVICIO DE GUARDIA': 'guardia',
+    'ESPECIALISTAS DE GUARDIA': 'especialistas',
+    'FARMACIAS': 'farmacia',
 }
+# Subtítulos (bold, tamaño 9, todo mayúsculas) que aparecen DENTRO de la
+# sección "FARMACIAS - <Zona>": solo interesa lo que cae bajo "FARMACIAS".
+SUBCATEGORIAS_FARMACIA = ('CENTROS DE VACUNACIÓN', 'FARMACIAS')
 MARCAS = {
     '(***)': 'solo-cartilla',   # internación con profesionales de cartilla exclusivamente
     '(**)': 'cuerpo-propio',    # solamente con su cuerpo profesional
@@ -78,6 +89,8 @@ def parse_pdf(path):
     items = []
     seccion = None
     zona = None
+    especialidad = None  # solo dentro de "especialistas": "CARDIÓLOGOS DE GUARDIA" -> "Cardiólogos"
+    subcategoria = None  # solo dentro de "farmacia": "CENTROS DE VACUNACIÓN" o "FARMACIAS"
     actual = None
     cerrado = False  # tras la leyenda de asteriscos, ignorar el resto de la columna/página
 
@@ -94,13 +107,24 @@ def parse_pdf(path):
             if ln['size'] >= 12:  # título de sección
                 cerrar()
                 seccion = None
-                for k, v in SECCIONES.items():
-                    if t.upper().startswith(k):
-                        seccion = v
-                        # "SANATORIOS PARA INTERNACIÓN - Ciudad de Buenos Aires"
-                        if ' - ' in t:
-                            zona = norm(t.split(' - ', 1)[1])
-                        break
+                especialidad = None
+                subcategoria = None
+                # "FARMACIAS - NORMAS PARA LA ATENCIÓN" es la portada
+                # informativa de la sección, no una zona: se ignora.
+                if 'NORMAS PARA LA ATENCI' not in t.upper():
+                    for k, v in SECCIONES.items():
+                        if t.upper().startswith(k):
+                            seccion = v
+                            # "SANATORIOS PARA INTERNACIÓN - Ciudad de Buenos Aires"
+                            if ' - ' in t:
+                                zona = norm(t.split(' - ', 1)[1])
+                            break
+                    # Algunas zonas de "farmacia" traen antes "CENTROS DE
+                    # VACUNACIÓN" (se salta hasta ver "FARMACIAS"); otras van
+                    # directo a las farmacias sin repetir el subtítulo: por
+                    # eso arranca asumiendo "FARMACIAS", no None.
+                    if seccion == 'farmacia':
+                        subcategoria = 'FARMACIAS'
                 continue
             if seccion is None:
                 continue
@@ -110,12 +134,36 @@ def parse_pdf(path):
                 cerrar()
                 cerrado = True
                 continue
+            # "CARDIÓLOGOS DE GUARDIA", "GINECÓLOGOS Y OBSTETRAS DE GUARDIA":
+            # subtítulo de especialidad dentro de "especialistas" — mismo
+            # tamaño/negrita que un nombre de institución, se distingue porque
+            # está todo en mayúsculas y termina en "DE GUARDIA".
+            if seccion == 'especialistas' and ln['bold'] and ln['size'] == 9 and t == t.upper() and t.endswith('DE GUARDIA'):
+                cerrar()
+                base = norm(re.sub(r'\s*DE GUARDIA$', '', t))
+                especialidad = ' '.join(w.lower() if i and w.lower() == 'y' else w.capitalize() for i, w in enumerate(base.split()))
+                zona = None
+                continue
+            # Dentro de "FARMACIAS - <Zona>": "CENTROS DE VACUNACIÓN" y
+            # "FARMACIAS" son subcategorías de la misma página (solo se
+            # guarda lo que cae bajo "FARMACIAS"); los barrios ("Belgrano -
+            # Colegiales", bold tamaño 10) NO son una zona nueva acá, a
+            # diferencia de sanatorios/guardias.
+            if seccion == 'farmacia' and ln['bold'] and ln['size'] == 9 and t == t.upper() and t in SUBCATEGORIAS_FARMACIA:
+                cerrar()
+                subcategoria = t
+                continue
+            if seccion == 'farmacia' and ln['bold'] and ln['size'] == 10:
+                cerrar()
+                continue
             if ln['bold'] and ln['size'] == 10:  # subtítulo de zona
                 cerrar()
                 cerrado = False  # en el interior la leyenda va ARRIBA de la lista
                 zona = t
                 continue
             if cerrado:
+                continue
+            if seccion == 'farmacia' and subcategoria != 'FARMACIAS':
                 continue
             if ln['bold']:
                 # nombre (puede venir partido en 2 líneas bold seguidas)
@@ -130,7 +178,7 @@ def parse_pdf(path):
                         t = norm(t[len(k):])
                         break
                 actual = {'filial': filial, 'filialNombre': filial_nombre, 'plan': plan,
-                          'seccion': seccion, 'zona': zona, 'nombre': t, 'marca': marca,
+                          'seccion': seccion, 'zona': zona, 'especialidad': especialidad, 'nombre': t, 'marca': marca,
                           'notas': [], 'sedes': [], 'pagina': pi}
                 continue
             if actual is None:

@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { whatsappLinkParaLead, SITE_URL } from '@/lib/utils'
-import { buildKommoLink, crearLeadEnKommo, kommoLeadUrl, nombreCuenta } from '@/lib/kommo'
+import { SITE_URL } from '@/lib/utils'
+import { buildKommoLink, crearLeadEnKommo, getDestinoLead, kommoLeadUrl, nombreCuenta, resolverDestino } from '@/lib/kommo'
 import { leadsPendientesDeKommo, marcarResultadoKommo, seguimientosVencidos, marcarSeguimientoAvisado } from '@/lib/db'
 import { avisarLeadPorPush } from '@/lib/push'
+import { mandarLeadPorEmail } from '@/lib/emailjs'
 
 // Hasta 50 leads por corrida, cada uno con su propio llamado a Kommo — con
 // Vercel Pro el límite de duración sube bastante del default de Hobby, pero
@@ -20,58 +21,6 @@ export const maxDuration = 60
 // integraciones opcionales del sitio).
 const CRON_SECRET = process.env.CRON_SECRET ?? ''
 
-// Mismas credenciales EmailJS que usaba antes app/api/leads/route.ts — acá
-// es donde ahora vive el fallback, porque recién acá sabemos si Kommo
-// falló de verdad (antes se sabía al toque; con el delay, se sabe cuando
-// corre este cron).
-const EMAILJS_SERVICE_ID  = process.env.EMAILJS_SERVICE_ID  ?? 'PREPAGAYA'
-const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID ?? 'template_8p5ihaj'
-const EMAILJS_PUBLIC_KEY  = process.env.EMAILJS_PUBLIC_KEY  ?? 'lVlSZHupNk1R5ZDES'
-const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY ?? ''
-
-function bannerDuplicado(cuenta: string): string {
-  return `<tr><td style="padding:16px 32px 0 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FEF3C7;border:1px solid #FDE68A;border-radius:12px;"><tr><td style="padding:14px 18px;"><span style="display:block;font-size:13px;font-weight:700;color:#92400E;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">⚠️ Ya es un contacto en Kommo (cuenta de ${cuenta})</span><span style="display:block;font-size:12px;color:#92400E;margin-top:4px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">Puede que ya lo hayas contactado antes — revisá el historial en Kommo antes de escribirle de nuevo.</span></td></tr></table></td></tr>`
-}
-
-async function mandarEmailFallback(d: {
-  nombre: string; celular: string; email: string; prepaga: string
-  provincia: string; edades: string; fuente: string; fecha: string
-  kommo_link: string; kommo_label: string; duplicado_banner: string
-}) {
-  if (!EMAILJS_PRIVATE_KEY) {
-    console.error('[CRON-KOMMO] Falta EMAILJS_PRIVATE_KEY — EmailJS va a rechazar el envío (modo estricto).')
-  }
-  try {
-    const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        service_id:  EMAILJS_SERVICE_ID,
-        template_id: EMAILJS_TEMPLATE_ID,
-        user_id:     EMAILJS_PUBLIC_KEY,
-        accessToken: EMAILJS_PRIVATE_KEY,
-        template_params: {
-          name:      d.nombre,
-          email:     d.email.toLowerCase(),
-          celular:   d.celular || 'No informado',
-          prepaga:   d.prepaga || 'No especificada',
-          zona:      d.provincia || 'No especificada',
-          edades:    d.edades || 'No especificado',
-          fuente:    d.fuente,
-          fecha:     d.fecha,
-          whatsapp_link: d.celular ? whatsappLinkParaLead(d.nombre, d.celular) : '',
-          kommo_link: d.kommo_link,
-          kommo_label: d.kommo_label,
-          duplicado_banner: d.duplicado_banner,
-        },
-      }),
-    })
-    if (!res.ok) console.error('[CRON-KOMMO] EmailJS error:', res.status, await res.text().catch(() => ''))
-  } catch (err) {
-    console.error('[CRON-KOMMO] EmailJS fetch error:', err)
-  }
-}
-
 export async function GET(req: NextRequest) {
   if (CRON_SECRET) {
     const auth = req.headers.get('authorization')
@@ -81,6 +30,7 @@ export async function GET(req: NextRequest) {
   }
 
   const pendientes = await leadsPendientesDeKommo(3)
+  const destinoConfigurado = await getDestinoLead()
   let ok = 0
   let fallidos = 0
 
@@ -89,14 +39,44 @@ export async function GET(req: NextRequest) {
     const celular = lead.celular ?? ''
     const email = lead.email ?? ''
     const prepaga = lead.prepaga ?? ''
-    const provincia = lead.provincia ?? ''
+    // Si la persona no pasó por el wizard (no dio su provincia a mano), usamos
+    // la zona aproximada por IP que ya se guarda para todos los formularios
+    // (lib/geo-zonas.ts vía app/api/leads/route.ts) — así a Kommo le llega una
+    // zona igual, sin haberle preguntado nada (pedido de Darío, 30-sep-2026).
+    const provincia = lead.provincia || lead.zona_detectada || ''
     const edades = lead.edades ?? ''
     const fuente = lead.fuente ?? 'web'
     const fecha = new Date(lead.creado_en).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
     const pais = lead.pais ?? undefined
 
+    // Resuelto por lead, no antes del loop: los destinos "alternar-*" avanzan
+    // el reparto 1 a 1 en cada llamado (pedido de Darío, 30-sep-2026).
+    const destino = await resolverDestino(destinoConfigurado)
+
+    // Destino "Otro mail" (pedido de Darío, 29-sep-2026) o el lado "mail" de
+    // una alternancia: no toca Kommo para nada, va directo por EmailJS.
+    // Envuelto en try/catch (1-oct-2026): sin esto, una falla acá tiraba todo
+    // el cron abajo, y como leadsPendientesDeKommo() siempre trae primero el
+    // más viejo, el mismo lead trabado volvía a tirar el cron cada minuto sin
+    // dejar pasar nunca a los que venían después en la cola.
+    if (destino.tipo === 'email') {
+      try {
+        await mandarLeadPorEmail({
+          nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
+          kommo_link: '', kommo_label: '', duplicado_banner: '', to: destino.email,
+        })
+        await marcarResultadoKommo(lead.id, `Email directo a ${destino.email}`, '')
+        ok++
+      } catch (err) {
+        await marcarResultadoKommo(lead.id, `Error: ${err}`, '')
+        fallidos++
+        console.error('[CRON-KOMMO] error mandando email directo, lead', lead.id, ':', err)
+      }
+      continue
+    }
+
     try {
-      const resultado = await crearLeadEnKommo({ nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, ts: String(Date.now()), pais })
+      const resultado = await crearLeadEnKommo({ nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, ts: String(Date.now()), pais }, destino)
       if (resultado.ok && resultado.cuenta && resultado.leadId) {
         const cuentaDisplay = nombreCuenta(resultado.cuenta)
         const kommo_link = kommoLeadUrl(resultado.cuenta, resultado.leadId)
@@ -105,7 +85,7 @@ export async function GET(req: NextRequest) {
       } else {
         const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
         await marcarResultadoKommo(lead.id, `Error: ${resultado.error ?? 'sin detalle'}`, '')
-        await mandarEmailFallback({
+        await mandarLeadPorEmail({
           nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
           kommo_link, kommo_label: 'Cargar en Kommo', duplicado_banner: '',
         })
@@ -115,7 +95,7 @@ export async function GET(req: NextRequest) {
     } catch (err) {
       const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
       await marcarResultadoKommo(lead.id, `Error: ${err}`, '')
-      await mandarEmailFallback({
+      await mandarLeadPorEmail({
         nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
         kommo_link, kommo_label: 'Cargar en Kommo', duplicado_banner: '',
       })

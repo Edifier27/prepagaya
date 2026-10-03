@@ -59,6 +59,7 @@ const herramientasGrupos: { titulo: string; items: ItemMenu[] }[] = [
       { href: '/guias/que-cubre-la-prepaga#buscador', label: '¿Qué me cubre la prepaga?', desc: 'Buscá cualquier práctica', nuevo: true },
       { href: '/guardias-cerca', label: '¿Dónde me atiendo?', desc: 'Guardias cerca con tu ubicación', nuevo: true },
       { href: '/buscar-por-sanatorio', label: '¿Qué prepaga cubre mi sanatorio?', desc: 'Con las cartillas oficiales' },
+      { href: '/fertilizacion-asistida', label: 'Fertilización asistida', desc: 'Qué cubre la ley y centros por zona', nuevo: true },
       { href: '/declaracion-jurada-de-salud', label: 'Preexistencias', desc: 'Qué papeles te piden al afiliarte' },
       { href: '/cartillas', label: 'Cartillas médicas', desc: 'Sanatorios y guardias por zona' },
     ],
@@ -230,7 +231,7 @@ export function Header() {
               </svg>
               Cotizá gratis
               {/* Incentivo al clic (Darío, 25-sep-2026): el mismo 15% online del cotizador */}
-              <span className="rounded-md bg-white/20 px-1.5 py-0.5 text-[10px] font-black leading-none">15% OFF</span>
+              <span className="rounded-md bg-white/5 border border-white/25 px-1.5 py-0.5 text-[10px] font-black leading-none">15% OFF</span>
             </Link>
           </div>
 

@@ -179,7 +179,7 @@ export default async function CiudadPage({ params }: Props) {
         <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
           <div>
             <div className="text-white font-bold text-sm">¿Cuál te conviene en {city.nombre}?</div>
-            <div className="text-red-200 text-xs">Cotizá con tu edad real y compará las opciones de tu zona. Gratis, en 2 minutos.</div>
+            <div className="text-white text-xs">Cotizá con tu edad real y compará las opciones de tu zona. Gratis, en 2 minutos.</div>
           </div>
           <Link
             href="/comparador"
@@ -232,7 +232,7 @@ export default async function CiudadPage({ params }: Props) {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Encontrá tu prepaga ideal en {city.nombre}</h2>
-          <p className="text-red-200 text-sm mb-6">
+          <p className="text-white text-sm mb-6">
             Compará precios reales de {PRECIO_ACTUALIZADO} para tu zona. Gratis, sin DNI y sin compromiso.
           </p>
           <Link

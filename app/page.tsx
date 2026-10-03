@@ -14,6 +14,7 @@ import { ultimoMesOficial } from '@/lib/data/aumentos'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
@@ -373,7 +374,7 @@ export default function HomePage(): React.ReactElement {
                   <Link href={`/prepagas/${prov.slug}`} className="text-xs sm:text-sm font-bold text-[#E8002D] hover:underline">
                     Ver cobertura →
                   </Link>
-                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-500 hover:text-[#E8002D] font-medium transition-colors">
                     Ranking
                   </Link>
                 </div>
@@ -407,7 +408,7 @@ export default function HomePage(): React.ReactElement {
                   <Link href={`/prepagas/${prov.slug}`} className="text-xs sm:text-sm font-bold text-[#E8002D] hover:underline">
                     Ver cobertura →
                   </Link>
-                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                  <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="hidden sm:inline text-sm text-gray-500 hover:text-[#E8002D] font-medium transition-colors">
                     Ranking
                   </Link>
                 </div>
@@ -416,7 +417,7 @@ export default function HomePage(): React.ReactElement {
               </div>
             </details>
           )}
-          <p className="text-center text-xs text-gray-400 mt-6">¿Tu provincia no está? Estamos sumando todas las provincias — mientras tanto <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">cotizá acá</Link> y te mostramos las prepagas de tu zona.</p>
+          <p className="text-center text-xs text-gray-500 mt-6">¿Tu provincia no está? Estamos sumando todas las provincias — mientras tanto <Link href="/comparador" className="text-[#E8002D] font-semibold hover:underline">cotizá acá</Link> y te mostramos las prepagas de tu zona.</p>
         </div>
       </section>
 
@@ -426,16 +427,16 @@ export default function HomePage(): React.ReactElement {
           <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">El comparador de todas las prepagas de Argentina</h2>
           <p className="text-gray-700 leading-relaxed mb-6 text-center">{prepagas.length} prepagas y {TOTAL_PLANES} planes, con los precios oficiales de cada mes.</p>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700">
-            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <li className="bg-white rounded-xl border border-gray-100 p-4">
               <strong className="text-gray-900">Todas las prepagas, no solo nuestros partners.</strong> Con los precios de {PRECIO_ACTUALIZADO}. <Link href="/precios" className="text-[#E8002D] font-semibold hover:underline">Ver precios</Link>
             </li>
-            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <li className="bg-white rounded-xl border border-gray-100 p-4">
               <strong className="text-gray-900">Cartillas por zona.</strong> Buscá tu sanatorio y mirá qué plan lo incluye. <Link href="/cartillas" className="text-[#E8002D] font-semibold hover:underline">Buscar en cartillas</Link>
             </li>
-            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <li className="bg-white rounded-xl border border-gray-100 p-4">
               <strong className="text-gray-900">Coberturas plan por plan.</strong> Ortodoncia, anteojos, psicología y más, con fuente oficial. <Link href="/coberturas" className="text-[#E8002D] font-semibold hover:underline">Ver coberturas</Link>
             </li>
-            <li className="bg-gray-50 rounded-xl border border-gray-100 p-4">
+            <li className="bg-white rounded-xl border border-gray-100 p-4">
               <strong className="text-gray-900">Partner oficial de {PARTNERS_OFICIALES_TEXTO}.</strong> Cotización formal en {TIEMPO_RESPUESTA} y pagás lo mismo que yendo directo. <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo trabajamos</Link>
             </li>
           </ul>
@@ -514,7 +515,7 @@ export default function HomePage(): React.ReactElement {
         <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="text-white text-center sm:text-left">
             <h2 className="text-xl font-bold mb-1">¿Cuánto cuesta tu prepaga en {PRECIO_ACTUALIZADO}?</h2>
-            <p className="text-red-200 text-sm">Ingresá tu zona y tu edad — te calculamos el precio exacto en segundos, gratis.</p>
+            <p className="text-white text-sm">Ingresá tu zona y tu edad — te calculamos el precio exacto en segundos, gratis.</p>
           </div>
           <Link
             href="/comparador"
@@ -542,19 +543,19 @@ export default function HomePage(): React.ReactElement {
               const ahorra = c.deltaMensual > 0
               return (
                 <Link key={c.slug} href={`/cambios/${c.slug}`}
-                  className="bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-6 flex flex-col group">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0"
-                      style={{ backgroundColor: origen.colorPrimario + '22', color: origen.colorPrimario }}>
-                      {origen.nombre[0]}
-                    </div>
+                  className="relative bg-white rounded-2xl border-2 border-gray-100 hover:border-red-200 hover:shadow-md transition-all p-6 flex flex-col group">
+                  <div className="flex items-center gap-3 mb-4">
+                    <PrepagaLogo slug={origen.slug} nombre={origen.nombre} colorPrimario={origen.colorPrimario} size="sm" />
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" className="w-4 h-4 text-gray-300 flex-shrink-0">
                       <path d="M5 12h14m-6-6l6 6-6 6"/>
                     </svg>
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center text-sm font-black flex-shrink-0"
-                      style={{ backgroundColor: destino.colorPrimario + '22', color: destino.colorPrimario }}>
-                      {destino.nombre[0]}
-                    </div>
+                    <PrepagaLogo slug={destino.slug} nombre={destino.nombre} colorPrimario={destino.colorPrimario} size="sm" />
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 w-9 h-9 rounded-full bg-[#E8002D] flex items-center justify-center shadow-md">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 transition-transform duration-500 group-hover:rotate-180">
+                      <path d="M17 1l4 4-4 4" /><path d="M3 11V9a4 4 0 014-4h14" />
+                      <path d="M7 23l-4-4 4-4" /><path d="M21 13v2a4 4 0 01-4 4H3" />
+                    </svg>
                   </div>
                   <h3 className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors mb-1">
                     ¿Estás en {origen.nombre}?
@@ -629,7 +630,7 @@ export default function HomePage(): React.ReactElement {
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             ¿Listo para encontrar tu prepaga ideal?
           </h2>
-          <p className="text-red-100 mb-8 text-sm">
+          <p className="text-white mb-8 text-sm">
             Comparamos Swiss Medical, OSDE, Sancor Salud, CEMIC, Medifé, Omint y más. Precios reales, sin DNI, sin compromiso.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">

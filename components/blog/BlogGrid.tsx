@@ -78,7 +78,7 @@ export function BlogGrid({ posts, categorias }: Props) {
               <p className="text-red-100 mb-6 max-w-2xl text-base leading-relaxed">
                 {destacado.bajada}
               </p>
-              <div className="flex items-center gap-5 text-sm text-red-200">
+              <div className="flex items-center gap-5 text-sm text-white">
                 <span>{new Date(destacado.fechaPublicacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                 <span className="flex items-center gap-1.5">
                   <ClockIcon />

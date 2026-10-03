@@ -15,6 +15,7 @@ import { INFORMES_PROVINCIA } from '@/lib/prensa/sueldo-prepaga'
 import { REGISTRO_VERIFICADO } from '@/lib/data/registro-sssalud'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { CARTILLAS, combinacionesPlanZona, fechaCartillaISO, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
+import { CARTILLAS_SINDICALES, provinciasConPagina } from '@/lib/data/sindicales-cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
@@ -43,11 +44,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/obras-sociales`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/obras-sociales/codigos`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/obras-sociales/monotributo`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
+    // Páginas genéricas de obras sociales (1-oct-2026, keyword research)
+    { url: `${BASE}/obras-sociales/mejores`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/obras-sociales/coseguros`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/obras-sociales/obra-social-de-cada-prepaga`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/sobre-nosotros`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/metodologia`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/prepaga-por-presupuesto`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.80 },
     { url: `${BASE}/buscar-por-sanatorio`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/guardias-cerca`, lastModified: new Date('2026-09-27').toISOString(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/fertilizacion-asistida`, lastModified: new Date('2026-09-28').toISOString(), changeFrequency: 'monthly', priority: 0.75 },
     { url: `${BASE}/declaracion-jurada-de-salud`, lastModified: new Date(PREEXISTENCIAS_DOC_FECHA).toISOString(), changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/chequeo-prepaga`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/match-prepaga`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
@@ -113,6 +119,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/sanatorios`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/prensa`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE}/prensa/prepagas-dadas-de-baja`, lastModified: new Date('2026-09-29').toISOString(), changeFrequency: 'monthly', priority: 0.6 },
     ...INFORMES_PROVINCIA.map((p) => ({ url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga/${p.slug}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.6 })),
     ...sanatoriosPublicables().map((s) => ({
       url: `${BASE}/sanatorios/${s.slug}`,
@@ -272,7 +279,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: CONTENT_UPDATE,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
-    })),
+    })),    // Cartillas oficiales de sindicales (Anexo III, Res. SSSalud 2165/21)
+    ...Object.values(CARTILLAS_SINDICALES).flatMap((c) => [
+      { url: `${BASE}/obras-sociales/${c.slug}/cartilla`, lastModified: c.descargado, changeFrequency: 'monthly' as const, priority: 0.75 },
+      ...provinciasConPagina(c).map((p) => ({
+        url: `${BASE}/obras-sociales/${c.slug}/cartilla/${p.slug}`,
+        lastModified: c.descargado,
+        changeFrequency: 'monthly' as const,
+        priority: 0.65,
+      })),
+    ]),
   ]
 
   return [

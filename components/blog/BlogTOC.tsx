@@ -145,7 +145,7 @@ export function BlogTOC({ sections }: Props) {
       {/* Mini CTA */}
       <div className="bg-gradient-to-br from-[#E8002D] to-[#8B0000] rounded-2xl p-4 text-white">
         <p className="text-xs font-bold mb-1">¿Te quedó alguna duda?</p>
-        <p className="text-[11px] text-red-200 mb-3 leading-relaxed">Un asesor te explica todo sin costo y sin compromiso.</p>
+        <p className="text-[11px] text-white mb-3 leading-relaxed">Un asesor te explica todo sin costo y sin compromiso.</p>
         <Link
           href="/comparador"
           className="block text-center text-xs font-bold bg-white text-[#E8002D] rounded-xl py-2 hover:bg-red-50 transition-colors"

@@ -9,6 +9,16 @@ import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
 import { registroDeObraSocial, codigoSeisDigitos, nombreLegible } from '@/lib/data/registro-sssalud'
 import { FICHAS_REGISTRO, fichaRegistro } from '@/lib/data/fichas-registro'
 import { FichaRegistroPage } from '@/components/obras-sociales/FichaRegistro'
+import { DelegacionesOsecac } from '@/components/obras-sociales/DelegacionesOsecac'
+import {
+  delegacionesPorProvincia,
+  DESCARGADO_OSECAC_DELEGACIONES,
+  NOTA_PROVINCIAS_PARCIALES_OSECAC,
+  PROVINCIAS_PARCIALES_OSECAC,
+} from '@/lib/data/sindicales-zonas/osecac'
+import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/components/obras-sociales/PasateConTusAportes'
+import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
+import { CARTILLAS_SINDICALES, getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -44,13 +54,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const r = fichaRegistro(slug)
     if (!r) return {}
     const { ficha: f, entidad: e } = r
-    const title = `${f.nombreCorto}: teléfono y código de obra social (2026)`
-    const description = `Código de obra social ${codigoSeisDigitos(e.codigo!)}${e.telefono ? `, teléfono ${e.telefono}` : ''} y sede de ${nombreLegible(e.nombre).replace(/^\S+ - /, '')}, según la Superintendencia. Calculá cuánto pagarías con tus aportes en una prepaga.`
+    // Intenciones de búsqueda (autocompletado de Google, 1-oct-2026): teléfono,
+    // código, afiliación/baja, discapacidad, monotributo y "¿es buena?"
+    const title = `${f.nombreCorto}: teléfono, código y cómo cambiarte (2026)`
+    const description = `${f.nombreCorto}: código ${codigoSeisDigitos(e.codigo!)}${e.telefono ? `, teléfono ${e.telefono}` : ''}, cómo darte de baja, qué cubre en discapacidad y si acepta monotributistas. Y cómo pasar tus aportes a Swiss Medical pagando solo la diferencia.`
     return {
       title,
       description,
       alternates: { canonical: `${SITE_URL}/obras-sociales/${slug}` },
-      keywords: f.keywords,
+      keywords: [...f.keywords, ...['baja', 'discapacidad', 'monotributo', 'credencial'].map((k) => `${f.keywords[0]} ${k}`)],
       openGraph: { title, description, type: 'article', images: [OG_IMAGE] },
     }
   }
@@ -77,7 +89,16 @@ export default async function ObraSocialPage({ params }: Props) {
     return <FichaRegistroPage ficha={r.ficha} entidad={r.entidad} />
   }
 
-  const otras = obrasSociales.filter((o) => o.slug !== slug).slice(0, 8)
+  // Relacionadas (1-oct-2026): del mismo tipo primero y, entre esas, las que
+  // tienen cartilla oficial; así el enlace interno va a fichas más completas.
+  const otras = obrasSociales
+    .filter((o) => o.slug !== slug)
+    .map((o) => ({ o, peso: (o.tipo === os.tipo ? 2 : 0) + (CARTILLAS_SINDICALES[o.slug] ? 1 : 0) }))
+    .sort((a, b) => b.peso - a.peso)
+    .slice(0, 12)
+    .map((x) => x.o)
+  const cartilla = getCartillaSindical(os.slug)
+  const cartillaTot = cartilla ? totales(cartilla) : null
   const prepagaMatch = prepagaHermana(os.slug)
   const provinciaMatch = provinciasSEO.find((p) => p.obraSocialProvincial?.slug === os.slug)
   // Código del registro de la SSSalud (24-sep-2026): "código [obra social]"
@@ -90,7 +111,31 @@ export default async function ObraSocialPage({ params }: Props) {
       ? `${codigo} (RNAS ${registro.codigo}). Es el número con el que figura en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: el que carga tu empleador en tu alta en ARCA (ex AFIP) y el que se usa en la opción de cambio.`
       : `${os.nombre} no tiene código en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: es una obra social con régimen propio, así que no se puede elegir con la opción de cambio de obra social.`,
   } : null
-  const faq = faqCodigo ? [...os.faq, faqCodigo] : os.faq
+  // "¿Qué sanatorios tiene X?" con los números de su cartilla oficial
+  const faqCartilla = cartilla && cartillaTot ? {
+    q: `¿Qué sanatorios tiene ${os.nombre}?`,
+    a: `Según la cartilla oficial que presentó ante la Superintendencia de Servicios de Salud, ${os.nombre} tiene ${cartillaTot.internacion.toLocaleString('es-AR')} sanatorios y clínicas con internación, ${cartillaTot.guardia.toLocaleString('es-AR')} guardias y ${cartillaTot.diagnostico.toLocaleString('es-AR')} centros de diagnóstico en ${cartillaTot.provincias} provincias. Donde más tiene: ${provinciasConPagina(cartilla).slice(0, 3).map((p) => p.nombre).join(', ').replace(/, ([^,]*)$/, ' y $1')}. En PrepagaYa podés ver cada uno por provincia y localidad, con dirección y teléfono.`,
+  } : null
+  // Sindicales con código (se pueden dejar con la opción de cambio): guía por
+  // intención de búsqueda y bloque para pasarse a Swiss Medical (1-oct-2026)
+  const conversion = os.tipo === 'sindical' && !!registro?.codigo
+  const datosGuia = { osNombre: os.nombre, osSlug: os.slug, codigo: registro?.codigo, conCartilla: !!cartilla }
+  const preguntasOs = new Set(os.faq.map((f) => f.q))
+  const faqCos = faqCoseguros(os.nombre, os.slug)
+  const faqsExtra = conversion ? [...(faqCos ? [faqCos] : []), ...faqsGuia(datosGuia), faqPasarseASwiss(os.nombre)].filter((f) => !preguntasOs.has(f.q)) : []
+  const faq = [...os.faq, ...(faqCartilla ? [faqCartilla] : []), ...faqsExtra, ...(faqCodigo ? [faqCodigo] : [])]
+
+  // La obra social como entidad (1-oct-2026): nombre legal, código RNAS, sede,
+  // teléfono y web oficial, para que buscadores e IA la identifiquen.
+  const entidad = {
+    '@type': 'Organization',
+    name: registro?.razonSocial ? nombreLegible(registro.razonSocial) : os.nombre,
+    alternateName: os.nombre,
+    ...(os.web ? { url: `https://www.${os.web.replace(/^www\./, '')}` } : {}),
+    ...(os.telefonos?.[0] ? { telephone: os.telefonos[0].valor } : registro?.telefono ? { telephone: registro.telefono } : {}),
+    ...(registro?.codigo ? { identifier: { '@type': 'PropertyValue', propertyID: 'RNAS', value: registro.codigo } } : {}),
+    ...(registro?.domicilio ? { address: { '@type': 'PostalAddress', streetAddress: registro.domicilio, addressLocality: registro.localidadSede, addressCountry: 'AR' } } : {}),
+  }
 
   const jsonLd = [
     {
@@ -105,6 +150,7 @@ export default async function ObraSocialPage({ params }: Props) {
       mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/obras-sociales/${slug}` },
       dateModified: os.verificado ?? CONTENT_UPDATE,
       inLanguage: 'es-AR',
+      about: entidad,
       ...(os.fuenteOficial ? { isBasedOn: os.fuenteOficial } : {}),
     },
     {
@@ -238,6 +284,44 @@ export default async function ObraSocialPage({ params }: Props) {
         </section>
       )}
 
+      {/* Cartilla oficial (1-oct-2026): sindicales que publican el Anexo III
+          de la Res. SSSalud 2165/21. Silo /obras-sociales/[slug]/cartilla. */}
+      {cartilla && cartillaTot && (
+        <section id="cartilla" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Cartilla de {os.nombre}</h2>
+            <p className="text-sm text-gray-600 mb-5 max-w-3xl">
+              {cartillaTot.internacion.toLocaleString('es-AR')} sanatorios con internación, {cartillaTot.guardia.toLocaleString('es-AR')} guardias y {cartillaTot.diagnostico.toLocaleString('es-AR')} centros de diagnóstico en {cartillaTot.provincias} provincias, según el listado oficial que presentó ante la Superintendencia.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Link href={`/obras-sociales/${os.slug}/cartilla`} className="text-sm px-4 py-1.5 rounded-full bg-[#E8002D] text-white font-semibold hover:bg-[#B8001F]">Ver la cartilla completa →</Link>
+              {provinciasConPagina(cartilla).slice(0, 8).map((p) => (
+                <Link key={p.slug} href={`/obras-sociales/${os.slug}/cartilla/${p.slug}`} className="text-sm px-3 py-1.5 rounded-full border border-gray-200 hover:border-[#E8002D] text-gray-700">{p.nombre}</Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Delegaciones de OSECAC (1-oct-2026): 382 delegaciones/agencias/sub-agencias/
+          corresponsalías reales, scrapeadas del buscador oficial. "osecac
+          delegaciones" y "osecac [ciudad]" son búsquedas reales — ver
+          scripts/sindicales-osecac/scrape.py. */}
+      {os.slug === 'osecac' && (
+        <section id="delegaciones" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Delegaciones y agencias de OSECAC en todo el país</h2>
+            <p className="text-sm text-gray-500 mb-5">Buscá la más cercana por provincia o localidad: dirección, teléfono y horario.</p>
+            <DelegacionesOsecac
+              grupos={delegacionesPorProvincia()}
+              descargado={DESCARGADO_OSECAC_DELEGACIONES}
+              notaProvinciasParciales={NOTA_PROVINCIAS_PARCIALES_OSECAC}
+              provinciasParciales={PROVINCIAS_PARCIALES_OSECAC}
+            />
+          </div>
+        </section>
+      )}
+
       {/* Quiénes pueden afiliarse */}
       <section className="py-10 bg-white">
         <div className="container max-w-4xl mx-auto">
@@ -309,6 +393,8 @@ export default async function ObraSocialPage({ params }: Props) {
         </div>
       </section>
 
+      {conversion && <PasateConTusAportes osNombre={os.nombre} osSlug={os.slug} sanatoriosOs={cartillaTot?.internacion} />}
+
       {/* Cross-link a la cobertura de prepagas de la provincia, cuando es la obra social provincial */}
       {provinciaMatch && (
         <section className="py-10 bg-gray-50 border-t border-gray-100">
@@ -370,7 +456,7 @@ export default async function ObraSocialPage({ params }: Props) {
         <div className="container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4">
           <div>
             <div className="text-white font-bold text-sm">¿Te conviene {os.nombre} o una prepaga?</div>
-            <div className="text-red-200 text-xs">Compará precios y coberturas reales antes de decidir. Gratis y sin compromiso.</div>
+            <div className="text-white text-xs">Compará precios y coberturas reales antes de decidir. Gratis y sin compromiso.</div>
           </div>
           <Link
             href="/comparador"
@@ -426,6 +512,8 @@ export default async function ObraSocialPage({ params }: Props) {
         </div>
       </section>
 
+      {conversion && <GuiaObraSocial {...datosGuia} />}
+
       {/* FAQ */}
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
@@ -468,8 +556,8 @@ export default async function ObraSocialPage({ params }: Props) {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Compará {os.nombre} con las prepagas del mercado</h2>
-          <p className="text-red-200 text-sm mb-6">
-            Precios reales actualizados. Sin DNI y sin compromiso. Decidí con toda la información.
+          <p className="text-white text-sm mb-6">
+            {os.ganchoConversion ?? 'Precios reales actualizados. Sin DNI y sin compromiso. Decidí con toda la información.'}
           </p>
           <Link
             href="/comparador"

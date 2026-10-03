@@ -1,0 +1,875 @@
+<style>
+    #map-container {
+        height: 350px
+    }
+
+    div.scroll {
+        width: 100%;
+        height: 100px;
+        overflow: auto;
+    }
+</style>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBdZ9KsibBWyVxdVOF3cFkIeNB1eoEYYc"></script>
+
+
+<script type="text/javascript">
+    function CerrarError() {
+    
+        $('#AlertaGeneral').hide('fade');
+    }
+   
+</script>
+
+
+                <div class="row" style="margin-top:20px">
+                    <div class="col-lg-8 col-xs-12">
+
+                        <h3> Delegación: CONCORDIA </h3>
+
+                        <ul>
+
+                            <li><strong>Dirección:</strong> BARTOLOME MITRE 164/166/168 PISO 2&#176;, CONCORDIA </li>
+                            
+                                <li><strong>Teléfono:</strong> 0345 4215105/ 4223687/ 4210225 </li>
+                                                            <li><strong>Email / WhatsApp:</strong> 0345- 15-403-8731</li>
+                                                            <li><strong>Horario:</strong> 07:00 A 15:00 </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                </a>
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                        
+                    </div>
+
+                </div>
+                <div style="clear:both"></div>
+                <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: CHAJARI </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> CONCORDIA </li>
+                                <li><strong>Dirección:</strong> BARTOLOME MITRE 1021 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03456 42 2077 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0345- 15-403-8731</li>
+                                                                    <li><strong>Horario:</strong> 7:00 A 20:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: FEDERACION </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> CONCORDIA </li>
+                                <li><strong>Dirección:</strong> 25 DE MARZO Y RACEDO, FEDERACION </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03456 48 1825 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0345- 15-403-8731</li>
+                                                                    <li><strong>Horario:</strong> 07:00 A 15:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-30.978203/-57.929587/FEDERACION" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: FEDERAL </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> CONCORDIA </li>
+                                <li><strong>Dirección:</strong> ARIENTE 1254, FEDERAL </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03454 42 2366 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0345- 15-403-8731</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 13:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-30.9497721/-58.7857496/FEDERAL" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: S SALVADOR-ER </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> CONCORDIA </li>
+                                <li><strong>Dirección:</strong> L CASTRO 75, SAN SALVADOR </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0345 491 0101 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0345- 15-403-8731</li>
+                                                                    <li><strong>Horario:</strong> 13:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-31.6226982/-58.5074577/S SALVADOR-ER" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                <div class="row" style="margin-top:20px">
+                    <div class="col-lg-8 col-xs-12">
+
+                        <h3> Delegación: PARANA </h3>
+
+                        <ul>
+
+                            <li><strong>Dirección:</strong> BAVIO 333 , PARANA &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </li>
+                            
+                                <li><strong>Teléfono:</strong> 0343- 423-0034/5540/5541/0032 / 422-3409 </li>
+                                                            <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                            <li><strong>Horario:</strong> 07:00 A 15:00 </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-31.7335762/-60.5362865/PARANA" data-i>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                </a>
+                    </div>
+                    <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                        
+                    </div>
+
+                </div>
+                <div style="clear:both"></div>
+                <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: COLON </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> ALBERDI Y GRAL ALVEAR </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03447 42 1431 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 07:00 A 15:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: CONCEPCION DEL URUGUAY </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> BV HIPOLITO YRIGOYEN 1268 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03442 42 2330 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: CRESPO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> SARMIENTO 1322 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0343 495 3648 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 7:00 A 15:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: GUALEGUAY </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> URQUIZA 79/85 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03444 42 4966 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 7:00 A 15:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: GUALEGUAYCHU </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> P COLOMBO 721 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03446 42 3709 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: LA PAZ </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> SAN MARTIN 438 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03437 42 1055 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 8:00 A 12:30 Y 16:30 A 20:30 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: NOGOYA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> 25 DE MAYO 738 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03435 42 4020 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: VIALE </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> MALVINAS 260 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0343 492 0686 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: VICTORIA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> EZPELETA 137 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03436 42 1504 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Agencia: VILLAGUAY </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> RIVADAVIA 784 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03455 42 1084 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: BASAVILBASO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> PODESTA Y QUIROZ, BASAVILBASO </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03445 48 1848 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 12:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-32.3691449/-58.8716856/BASAVILBASO" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: BOVRIL </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> AUGUSTO TIMOTEO VANDOR 246, BOVRIL </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03438 42 1794 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 09:00 A 18:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: CERRITO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> AV. RACEDO N&#186; 428 </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0343 - 4891217 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-31.5850798/-60.0770003/CERRITO" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: DIAMANTE </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> 9 DE JULIO 466/468, DIAMANTE </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0343 498 3663 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 07:00 A 15:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-32.0688681/-60.6383776/DIAMANTE" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: RAMIREZ </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> PTE. PERON 301, GRAL RAMIREZ </li>
+                                
+                                    <li><strong>Teléfono:</strong> 0343 490 1373 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 07:00 A 15:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-32.1734023/-60.1989433/RAMIREZ" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: SAN JOSE </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> 9 DE JULIO 1674, SAN JOSE </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03447 47 2075 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 07:00 A 15:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: SANTA ELENA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> PRESIDENTE PERON 947, SANTA ELENA </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03437 48 2000 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 09:00 A 18:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-30.9512291/-59.8013306/SANTA ELENA" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: URDINARRAIN </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> PATRIARCA 302, URDINARRAIN </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03446 48 0423 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:00 A 16:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a data-toggle="tooltip" data-placement="bottom" data-container="body" title="No disponible">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3>Sub Agencia: VILLA ELISA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> ESTRADA 1571, VILLA ELISA (ENTRE RIOS) </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03447 48 0311 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 08:30 A 12:30 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-32.1609331/-58.39996099999996/VILLA ELISA" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: MACIA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> RAUL ALFONSIN 352, MACIA </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03445 46 1795 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 07:00 A 11:30 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-31.7746654/-60.4956461/MACIA" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: ROSARIO DEL TALA </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> URQUIZA 168, ROSARIO DEL TALA </li>
+                                
+                                    <li><strong>Teléfono:</strong> 03445 42 1445 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 07:00 A 15:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-32.3015687/-59.13612899999998/ROSARIO DEL TALA" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-lg-8 col-xs-12">
+
+                            <h3> Corresponsalia: SAN JOSE FELICIANO </h3>
+
+                            <ul>
+                                <li><strong>Delegación:</strong> PARANA </li>
+                                <li><strong>Dirección:</strong> PTE. ILLIA 81, S JOSE DE FELICIANO </li>
+                                
+                                    <li><strong>Teléfono:</strong> 003437 15 735740 </li>
+                                                                    <li><strong>Email / WhatsApp:</strong> 0343- 15-535-8760</li>
+                                                                    <li><strong>Horario:</strong> 09:00 A 13:00 </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+
+                                    <a href="#PopupMapa" data-toggle="modal" onclick="control(this);" data-assigned-id="-30.3907605/-58.7487665/SAN JOSE FELICIANO" data-i>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i> Ver en el mapa
+                                    </a>
+                        </div>
+                        <div class="col-lg-2 col-xs-12" style="padding-top:30px">
+                            
+                        </div>
+
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr class="style4" style="margin:20px 0">
+
+
+    <div class="text-center">
+        <ul class="pagination">
+
+                <li class="disabled"><a>&laquo;</a></li>
+
+                        <li class="active"><a>1</a></li>
+                            <li class="disabled"><a>&raquo;</a></li>
+
+        </ul>
+    </div>
+
+<div class="modal fade" id="mapmodals">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="title_id"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="map-container"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript">
+
+    function map_init(var_lati, var_long, var_markerTitle, var_contentString) {
+        var var_location = new google.maps.LatLng(var_lati, var_long);
+        var var_mapoptions = {
+            zoom: 18,
+            mapTypeControl: false,
+            center: var_location,
+            panControl: false,
+            rotateControl: false,
+            streetViewControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var var_map = new google.maps.Map(document.getElementById("map-container"), var_mapoptions);
+        var marker = new google.maps.Marker({
+            position: var_location,
+            map: var_map,
+            title: var_markerTitle,
+            draggable: false,
+        });
+        $('#mapmodals').on('shown.bs.modal', function () {
+            google.maps.event.trigger(var_map, "resize");
+            var_map.setCenter(var_location);
+        });
+    }
+    function control(elem) {
+
+        var id = $(elem).data('assigned-id');
+        var vector = id.split('/');
+        var latitud = vector[0].replace(",", ".");
+        var longitud = vector[1].replace(",", ".");
+        var var_mapTitle = vector[2];
+
+        map_init(latitud, longitud, vector[2], "");
+
+        $(".modal-header #title_id").html(var_mapTitle);
+        $('#mapmodals').modal('show');
+    };
+</script>

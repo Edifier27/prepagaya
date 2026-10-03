@@ -3,9 +3,11 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
+import { trackEvent, trackLead } from '@/lib/analytics'
+import { TrustBadge } from '@/components/ui/TrustBadge'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE } from '@/lib/utils'
+import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 import dynamic from 'next/dynamic'
 // El modal de cartilla trae sanatorios, cartillas y zonas (~30 KB
@@ -313,6 +315,51 @@ const SITUACIONES: SituacionDef[] = [
 const STEP_LABELS = ['Zona', 'Integrantes', 'Ver precios']
 const STEP_ORDER: Step[] = ['zona', 'edades', 'preview']
 
+// Mensaje según quién cotiza (1-oct-2026, pedido de Darío): familia, grupo de
+// adultos, persona sola y joven (menos de 22). Solo afirma lo que cubre
+// cualquier plan (PMO) o lo que es del sitio (descuento, tiempo de respuesta).
+function mensajePerfil(personas: Persona[], descuento: number): { titulo: string; texto: string } | null {
+  const edades = personas.map((p) => parseInt(p.edad)).filter((n) => Number.isFinite(n) && n >= 0)
+  if (!edades.length) return null
+  const menores = edades.filter((e) => e < 18).length
+  const pct = `${Math.round(descuento * 100)}%`
+  if (edades.length > 1 && menores > 0) {
+    return {
+      titulo: 'Te mostramos los mejores planes para familias',
+      texto: `Pediatría, vacunas del calendario, maternidad y guardia para los chicos están cubiertas en cualquier plan: lo que cambia es en qué sanatorios te atendés y si pagás copagos. Por eso te ordenamos los planes que mejor resuelven eso para los ${edades.length} de tu familia, con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+    }
+  }
+  if (edades.length > 1) {
+    return {
+      titulo: `Los mejores planes para ${edades.length} personas`,
+      texto: `Comparamos el precio total del grupo, no por persona, y ya te aplicamos un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+    }
+  }
+  if (edades[0] < 22) {
+    return {
+      titulo: 'Planes para vos: buen precio y atención rápida',
+      // Reintegro de gimnasio y deportes: planes Sport de Swiss (folletos 09/2026).
+      // El chequeo deportivo sin cargo NO va (Darío, 2-oct-2026).
+      texto: `A tu edad pagás de los precios más bajos de cada prepaga. Los planes Sport de Swiss Medical suman reintegro de gimnasio y deportes. Turnos, credencial y autorizaciones desde el celular, con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+    }
+  }
+  return {
+    titulo: 'Los mejores planes para vos, con el mayor ahorro',
+    texto: `Priorizamos la cobertura que más vas a usar (consultas, estudios y guardia) al mejor precio para tu edad, y ya te aplicamos un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+  }
+}
+
+function MensajePerfil({ personas, descuento }: { personas: Persona[]; descuento: number }) {
+  const m = mensajePerfil(personas, descuento)
+  if (!m) return null
+  return (
+    <div className="rounded-2xl border border-[#E8002D]/20 bg-red-50/60 px-4 py-3 mb-5 text-left">
+      <div className="font-bold text-gray-900 text-sm">{m.titulo}</div>
+      <p className="text-sm text-gray-700 mt-0.5">{m.texto}</p>
+    </div>
+  )
+}
+
 function ProgressBar({ step, onStepClick }: { step: Step; onStepClick?: (step: Step) => void }) {
   const idx = STEP_ORDER.indexOf(step)
   if (idx < 0) return null
@@ -431,7 +478,7 @@ function ZonaStep({ onSelect, zonaSugerida }: { onSelect: (p: Provincia) => void
               <circle cx="12" cy="9" r="2.5" fill="currentColor" stroke="none"/>
             </svg>
           </div>
-          <span className={`flex-1 font-semibold text-base transition-colors ${selected ? 'text-gray-900' : 'text-gray-400'}`}>
+          <span className={`flex-1 font-semibold text-base transition-colors ${selected ? 'text-gray-900' : 'text-gray-500'}`}>
             {selected ? selected.nombre : 'Seleccioná tu provincia'}
           </span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}
@@ -558,6 +605,8 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
   }, [])
 
   const [step, setStep] = useState<Step>(initialZona ? 'edades' : 'zona')
+  // Embudo del comparador en GA4 (1-oct-2026): en qué paso se va la gente
+  useEffect(() => { trackEvent('wizard_paso', { paso: step }) }, [step])
   const [zonaKey, setZonaKey] = useState(initialZona ?? '')
   const [provinciaNombre, setProvinciaNombre] = useState(initialProvincia ?? '')
 
@@ -567,9 +616,18 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
   // mostrar ("Banfield (GBA Sur)"); `provincia` mantiene el nombre real de
   // PROVINCIAS para no romper el resto del wizard, que espera ese formato.
   const [zonaSugerida, setZonaSugerida] = useState<{ provincia: Provincia; label: string } | null>(null)
+  // Localidad puntual detectada por IP (ej. "tandil"), cuando coincide con una
+  // zona real del silo de cartillas (lib/data/cartilla-zonas) — permite
+  // linkear directo a la cartilla de ESA localidad desde "Ver cartilla" en
+  // vez de a la genérica (pedido de Darío, 30-sep-2026: "si total, eso ya lo
+  // tenemos"). Se guarda sin importar si el usuario confirma o cambia la
+  // zona del wizard, porque la cartilla real depende de dónde vive, no de
+  // qué provincia eligió para cotizar.
+  const [localidadDetectada, setLocalidadDetectada] = useState<string | null>(null)
   useEffect(() => {
-    if (initialZona) return
     const geo = leerZonaGeoDeCookie()
+    if (geo?.localidadSlug) setLocalidadDetectada(geo.localidadSlug)
+    if (initialZona) return
     if (!geo) return
     // El geo distingue interior bonaerense solo en el label (wizardSlug es
     // 'buenos-aires' para toda la provincia): se mapea acá a la opción propia.
@@ -936,6 +994,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
     setLeadStatus('loading')
     try {
       await sendEmail(buildPayload())
+      trackLead('cotizacion-wizard')
       setLeadStatus('success')
       setShowPopup(false)
       setStep('resultados')
@@ -1084,6 +1143,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             {!showPopup ? `Planes disponibles en ${provinciaNombre}` : 'Tu comparación está lista'}
           </h2>
+          {!showPopup && <div className="max-w-xl mx-auto mt-3"><MensajePerfil personas={personas} descuento={descuentoRate} /></div>}
           {!showPopup && countdown > 0 && (
             <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-800 text-sm font-semibold px-4 py-2 rounded-full">
               <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
@@ -1198,6 +1258,8 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
                 <p className="text-red-500 text-xs text-center mb-3">Hubo un problema. Intentá de nuevo.</p>
               )}
 
+              <TrustBadge className="mb-3" />
+
               <button onClick={handleVerPrecios} disabled={!popupOk || leadStatus === 'loading'}
                 className="w-full py-4 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-2xl transition-all shadow-lg text-base flex items-center justify-center gap-2">
                 {leadStatus === 'loading' ? (
@@ -1238,6 +1300,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
 
   return (
     <div>
+      <MensajePerfil personas={personas} descuento={descuentoRate} />
       {/* Summary header — sticky en desktop (pedido de Darío, 17-sep-2026: que
           "Cotización para {nombre}" siga a la persona al bajar, en vez de
           desaparecer al scrollear). En mobile no es sticky: ahí la versión
@@ -1245,13 +1308,13 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
       <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-5 text-white mb-6 lg:sticky lg:top-4 lg:z-40 lg:shadow-lg">
         <div className="flex items-center justify-between gap-4">
           <div className="min-w-0">
-            <div className="text-red-200 text-xs mb-1">Tu cotización personalizada</div>
+            <div className="text-white text-xs mb-1">Tu cotización personalizada</div>
             <div className="font-bold text-lg leading-snug">
               <span className="uppercase text-black">{nombre}</span>, estos son los mejores planes para vos{personas.length > 1 ? ' y tu grupo familiar' : ''}
             </div>
             <button
               onClick={() => setEditandoGrupo((v) => !v)}
-              className="flex items-center gap-1.5 text-red-200 text-sm mt-0.5 hover:text-white transition-colors group"
+              className="flex items-center gap-1.5 text-white text-sm mt-0.5 hover:underline transition-colors group"
             >
               <span>
                 {personas.length} persona{personas.length !== 1 ? 's' : ''} · {personas.map(p => `${p.edad} años`).join(', ')}
@@ -1264,9 +1327,9 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
             </button>
           </div>
           <div className="bg-white/15 rounded-xl px-4 py-2.5 text-center flex-shrink-0">
-            <div className="text-xs text-red-200 mb-0.5">Descuento aplicado</div>
+            <div className="text-xs text-white mb-0.5">Descuento aplicado</div>
             <div className="text-2xl font-black">{Math.round(descuentoRate * 100)}% OFF</div>
-            <div className="text-xs text-red-200">{aporteMensual > 0 ? 'más tu aporte descontado' : 'por 12 meses'}</div>
+            <div className="text-xs text-white">{aporteMensual > 0 ? 'más tu aporte descontado' : 'por 12 meses'}</div>
           </div>
         </div>
 
@@ -1989,6 +2052,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia }: Wi
             plan={cartillaAbierta.plan}
             zonaKey={zonaKey}
             provinciaNombre={provinciaNombre}
+            localidadSlug={localidadDetectada}
             onClose={() => setCartillaAbierta(null)}
             onQuiero={() => handleAccederPlan(cartillaAbierta)}
             quieroDisabled={enviando || yaEnviado}
