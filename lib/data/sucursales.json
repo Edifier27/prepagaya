@@ -1,5 +1,5 @@
 {
- "generado": "2026-09-24",
+ "generado": "2026-10-03",
  "fuentes": {
   "osde": "https://www.osde.com.ar/buscadorsucursales",
   "swiss-medical": "https://www.swissmedical.com.ar/prepagaclientes/sucursales",
@@ -845,7 +845,7 @@
   {
    "prepaga": "osde",
    "nombre": "OSDE Mar De Ajo / San Bernardo",
-   "direccion": "Av. Libertador Gral. San Martín 880 Loc 7 y 8",
+   "direccion": "Av. Libertador Gral. San Martín 880 Loc 8",
    "localidad": "Mar de Ajó",
    "region": "Buenos Aires",
    "horario": "Lunes a viernes de 9:00 a 13:00.",
@@ -2169,17 +2169,6 @@
    "horario": "Lunes a Viernes de 9 a 17 hs.",
    "lat": -34.59491417,
    "lon": -58.39355841
-  },
-  {
-   "prepaga": "swiss-medical",
-   "nombre": "Swiss Medical Sucursal Río Grande",
-   "direccion": "Rosales 246 - Río Grande - Tierra del Fuego",
-   "localidad": "Río Grande",
-   "region": "Tierra del Fuego",
-   "telefono": "0810-444-7700",
-   "horario": "Lunes a Viernes de 9 a 17 hs.",
-   "lat": -53.78744921,
-   "lon": -67.69546531
   },
   {
    "prepaga": "swiss-medical",
