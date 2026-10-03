@@ -61,11 +61,25 @@ const jsonLd = {
 }
 
 interface Props {
-  searchParams: Promise<{ zona?: string; provincia?: string }>
+  searchParams: Promise<{ zona?: string; provincia?: string; prepaga?: string; plan?: string; desde?: string }>
 }
 
 export default async function ComparadorPage({ searchParams }: Props) {
-  const { zona, provincia } = await searchParams
+  const { zona, provincia, prepaga: prepagaParam, plan: planParam, desde } = await searchParams
+  // Llegada desde la barra "Cotizá X" de una ficha o página de plan
+  // (3-oct-2026): los resultados vienen filtrados por esa prepaga y el lead
+  // dice qué plan estaba mirando. Solo slugs que existen.
+  const prepOrigen = prepagas.find((p) => p.slug === prepagaParam)
+  const planOrigen = prepOrigen?.planes.find((pl) => pl.slug === planParam)
+  const origen = prepOrigen
+    ? {
+        prepaga: prepOrigen.slug,
+        prepagaNombre: prepOrigen.nombre,
+        plan: planOrigen?.slug,
+        planNombre: planOrigen?.nombre,
+        desde: desde && /^[a-z-]{3,20}$/.test(desde) ? desde : undefined,
+      }
+    : undefined
 
   return (
     <>
@@ -122,10 +136,17 @@ export default async function ComparadorPage({ searchParams }: Props) {
 
       {/* Wizard — ancho amplio para el sidebar de resultados */}
       <section className="container max-w-5xl mx-auto pt-4 pb-10 sm:py-10 px-4">
+        {origen && (
+          <p className="max-w-xl mx-auto mb-4 rounded-xl border border-red-100 bg-red-50 px-4 py-2.5 text-center text-sm text-gray-700">
+            Cotizando <strong className="text-gray-900">{origen.prepagaNombre}{origen.planNombre ? ` ${origen.planNombre.replace(/^Plan /, '')}` : ''}</strong>
+            {origen.prepaga !== 'swiss-medical' ? ' y, para comparar, Swiss Medical' : ''}. Con tu zona y edades te mostramos el precio exacto.
+          </p>
+        )}
         <ComparadorWizard
           zonasSEO={prepagasEnSitioPorZona()}
           initialZona={zona}
           initialProvincia={provincia}
+          origen={origen}
         />
       </section>
 

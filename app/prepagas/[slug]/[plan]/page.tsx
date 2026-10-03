@@ -10,6 +10,7 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { escalaPorEdad, preciosPorRegion } from '@/lib/precios/motor'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
@@ -393,6 +394,16 @@ export default async function PlanPage({ params, searchParams }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <BarraCotizar
+        titulo={`${prep.nombre} ${codigoPlan(plan)}`}
+        origen={`plan:${slug}/${planSlug}`}
+        href={`/comparador?${new URLSearchParams({
+          prepaga: slug,
+          plan: planSlug,
+          desde: 'barra',
+          ...(provDelLink ? { zona: provDelLink.zonaKey, provincia: provDelLink.nombre } : {}),
+        })}`}
+      />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">
