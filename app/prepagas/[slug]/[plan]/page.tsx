@@ -775,7 +775,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
           <div className="container max-w-4xl mx-auto">
             <h2 className="text-xl font-bold text-gray-900 mb-1">Diferencias entre el {seo.codigo} y el {codigoPlan(seo.diferencias.otro)}</h2>
             <p className="text-xs text-gray-500 mb-4">
-              {seo.diferencias.esSuperior ? 'El plan siguiente' : 'El plan anterior'} de {prep.nombre}. Precios de la lista oficial de {PRECIO_ACTUALIZADO.toLowerCase()} ({seo.region}, contratación directa, IVA incluido){seo.diferencias.conFichas ? ` y coberturas según las fichas de ${prep.nombre}` : ''}.
+              {seo.diferencias.esSuperior ? 'El plan siguiente' : 'El plan anterior'} de {prep.nombre}: qué cambia en cobertura{seo.diferencias.conFichas ? `, según las fichas oficiales de ${prep.nombre}` : ''}. Los precios por edad están más arriba.
               {(() => {
                 const par = paresComparativaAuto().find((c) => c.prep.slug === prep.slug && [c.plan1.slug, c.plan2.slug].includes(plan.slug) && [c.plan1.slug, c.plan2.slug].includes(seo.diferencias!.otro.slug))
                 return par ? (
@@ -800,7 +800,8 @@ export default async function PlanPage({ params, searchParams }: Props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {seo.diferencias.filas.map((f) => (
+                  {/* Sin filas de precio (Darío, 4-oct-2026): los precios ya están más arriba */}
+                  {seo.diferencias.filas.filter((f) => !f.edad).map((f) => (
                     <tr key={f.label} className="border-t border-gray-100 align-top">
                       <th scope="row" className="text-left px-4 py-2 font-medium text-gray-600">{f.label}</th>
                       <td className="px-4 py-2 text-gray-900">{f.a}</td>
