@@ -21,7 +21,7 @@ import { LocalidadPage, localidadMetadata } from '@/components/seo-local/Localid
 import { comparativasPlanes, getComparativaPlanes, getComparativaParaPlan, type ComparativaPlanes } from '@/lib/data/comparativas-planes'
 import { ComparativaPlanesPage, comparativaPlanesMetadata } from '@/components/prepagas/ComparativaPlanesPage'
 import { paresComparativaAuto, ordenPlanes } from '@/lib/comparativas-auto'
-import { OrejitaPlanSiguiente } from '@/components/prepagas/OrejitaPlanSiguiente'
+import { OrejitaPlan, type OrejitaDatos } from '@/components/prepagas/OrejitaPlan'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -232,69 +232,130 @@ function sanatoriosCaba(prepSlug: string, planSlug: string): number {
   return caba.centros.filter((x) => x.internacion.includes(pc.id)).length
 }
 
-// Orejita "plan siguiente" (Darío, 4-oct-2026): qué suma el escalón de
-// arriba, solo con datos con fuente. Con cuadro SSSalud y fichas oficiales
-// (tablaDiferencias): copago, cartilla y coberturas que mejoran. Si la
-// prepaga no tiene esas fichas, lo que la cobertura publicada del plan
-// siguiente tiene y la de este no. Sin mejoras concretas, no hay orejita.
-function orejitaPlan(prep: Prepaga, plan: Plan) {
-  const orden = ordenPlanes(prep)
-  const idx = orden.findIndex((x) => x.slug === plan.slug)
-  const siguiente = idx >= 0 ? orden[idx + 1] : undefined
-  if (!siguiente) return null
-  const [cod1, cod2] = [codigoPlan(plan), codigoPlan(siguiente)]
-  const cob1 = coberturasMarca
+// Orejitas de navegación entre planes (Darío, 4-oct-2026): en cada página de
+// plan, a la derecha el plan siguiente ("¿buscás más cobertura?") y a la
+// izquierda el anterior ("¿buscás pagar menos?"), en todas las prepagas.
+// Lo que cambia sale solo de datos con fuente: con cuadro SSSalud y fichas
+// oficiales (tablaDiferencias), copago, sanatorios con internación en CABA
+// (cartilla oficial) y coberturas; si no, la cobertura publicada de cada plan.
+// Sin diferencias puntuales, la orejita derecha usa la descripción del plan.
+
+/** Qué tiene `mejor` que `base` no tenga, en frases cortas */
+function ventajas(prep: Prepaga, base: Plan, mejor: Plan): string[] {
+  const cobBase = coberturasMarca
     .filter((x) => x.prepagaSlug === prep.slug)
-    .flatMap((x) => x.planes.filter((f) => f.planSlugs.includes(plan.slug)).map((f) => ({ tema: x.tema, nombre: x.temaNombre, fila: f })))
-  const dif = tablaDiferencias(prep, plan, siguiente, cob1)
-  const mejoras: string[] = []
-  let diferencia: string | undefined
+    .flatMap((x) => x.planes.filter((f) => f.planSlugs.includes(base.slug)).map((f) => ({ tema: x.tema, nombre: x.temaNombre, fila: f })))
+  const dif = tablaDiferencias(prep, base, mejor, cobBase)
+  const out: string[] = []
   if (dif) {
     const sinMarca = (t: string) => t.replace(/^[✓✕] /, '')
     for (const f of dif.filas) {
       if (f.edad || f.a === f.b || f.b === 'Sin dato') continue
       if (f.label === 'Copago en consultas') {
-        if (f.a === 'Con copago' && f.b === 'Sin copago') mejoras.push('consultas sin copago')
+        if (f.a === 'Con copago' && f.b === 'Sin copago') out.push('consultas sin copago')
       } else if (f.label === 'Cartilla') {
-        // Sanatorios con internación en CABA de cada plan, de la cartilla oficial
-        // (solo si el plan siguiente tiene más: un nombre distinto no dice que sea mejor,
-        // ej. S2 "Global" → SMG02 "Nubial Quality" es una cartilla más chica)
-        const sanatorios = sanatoriosCaba(prep.slug, siguiente.slug) - sanatoriosCaba(prep.slug, plan.slug)
-        if (sanatorios > 0) mejoras.push(`${sanatorios} sanatorio${sanatorios === 1 ? '' : 's'} más para internación en CABA`)
+        // Solo si de verdad tiene más sanatorios: un nombre distinto no dice que
+        // sea mejor (S2 "Global" → SMG02 "Nubial Quality" es una cartilla más chica)
+        const n = sanatoriosCaba(prep.slug, mejor.slug) - sanatoriosCaba(prep.slug, base.slug)
+        if (n > 0) out.push(`${n} sanatorio${n === 1 ? '' : 's'} más para internación en CABA`)
       } else if (f.b.startsWith('✓') && (f.a.startsWith('✕') || f.a === 'Sin dato')) {
-        mejoras.push(f.label.toLowerCase())
+        out.push(f.label.toLowerCase())
       } else if (f.b.startsWith('✓') && f.a.startsWith('✓')) {
+        // Solo con un detalle corto y concreto ("hasta 18 años")
         const detalle = sinMarca(f.b)
-        // Solo si el detalle es corto y concreto ("hasta 18 años"): con "Incluido" a secas
-        // o un texto largo no se puede decir en una línea que sea mejor
-        if (detalle.length <= 32 && !/^incluido$/i.test(detalle)) mejoras.push(`${f.label.toLowerCase()} (${detalle.replace(/^\S/, (c) => c.toLowerCase())})`)
+        if (detalle.length <= 32 && !/^incluido$/i.test(detalle)) out.push(`${f.label.toLowerCase()} (${detalle.replace(/^\S/, (c) => c.toLowerCase())})`)
       }
     }
-    const p30 = dif.filas.find((f) => f.edad === 30)
-    const e1 = escalaPorEdad(prep.slug, plan.slug, 'caba')
-    const e2 = escalaPorEdad(prep.slug, siguiente.slug, 'caba')
-    const precio = (e: typeof e1, edad: number) => e?.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio ?? 0
-    const d = precio(e2, 30) - precio(e1, 30)
-    if (p30 && d > 0) diferencia = `Cuesta ${formatPrecio(d)} más por mes a los 30 años (lista oficial ${PRECIO_ACTUALIZADO.toLowerCase()})`
-  } else {
-    const tiene = new Set(plan.cobertura.map((c) => c.toLowerCase()))
-    for (const c of siguiente.cobertura) if (!tiene.has(c.toLowerCase())) mejoras.push(c.replace(/^\S/, (ch) => ch.toLowerCase()))
-    if (plan.copago && !siguiente.copago && !mejoras.some((m) => /copago/i.test(m))) mejoras.unshift('consultas sin copago')
-    const d = siguiente.precio - plan.precio
-    if (d > 0) diferencia = `Cuesta ${formatPrecio(d)} más por mes a los 30 años (precio de lista ${PRECIO_ACTUALIZADO.toLowerCase()})`
+  } else if (base.copago && !mejor.copago) {
+    // Sin fichas oficiales plan por plan solo se afirma el copago: comparar
+    // las listas de cobertura escritas distinto daba falsos ("el Flux no
+    // tiene internación"). El resto lo cuenta la descripción del plan.
+    out.push('consultas sin copago')
   }
-  if (!mejoras.length) return null
-  const par = paresComparativaAuto().find((c) => c.prep.slug === prep.slug && c.plan1.slug === plan.slug && c.plan2.slug === siguiente.slug)
-  const manual = comparativasPlanes.find((c) => c.prepagaSlug === prep.slug && [c.plan1Slug, c.plan2Slug].includes(plan.slug) && [c.plan1Slug, c.plan2Slug].includes(siguiente.slug))
-  return {
-    plan: cod1,
-    siguiente: cod2,
-    mejoras: mejoras.slice(0, 3),
-    diferencia,
-    href: `/prepagas/${prep.slug}/${siguiente.slug}`,
-    hrefComparar: par ? `/prepagas/${prep.slug}/${par.slug}` : manual ? `/prepagas/${prep.slug}/${manual.slug}` : undefined,
-    origen: `${prep.slug}/${plan.slug}`,
+  return out
+}
+
+/** Diferencia de cuota a los 30 años (lista oficial si la hay, si no el precio de lista del plan) */
+function diferencia30(prep: Prepaga, a: Plan, b: Plan): { monto: number; oficial: boolean } {
+  const e1 = escalaPorEdad(prep.slug, a.slug, 'caba')
+  const e2 = escalaPorEdad(prep.slug, b.slug, 'caba')
+  const precio = (e: typeof e1, edad: number) => e?.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio ?? 0
+  if (e1 && e2 && precio(e1, 30) && precio(e2, 30)) return { monto: precio(e2, 30) - precio(e1, 30), oficial: true }
+  return { monto: b.precio - a.precio, oficial: false }
+}
+
+const listaY = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')} y ${xs[xs.length - 1]}` : xs[0] ?? '')
+
+function hrefComparacion(prep: Prepaga, a: Plan, b: Plan): string | undefined {
+  const par = paresComparativaAuto().find((c) => c.prep.slug === prep.slug && c.plan1.slug === a.slug && c.plan2.slug === b.slug)
+  if (par) return `/prepagas/${prep.slug}/${par.slug}`
+  const manual = comparativasPlanes.find((c) => c.prepagaSlug === prep.slug && [c.plan1Slug, c.plan2Slug].includes(a.slug) && [c.plan1Slug, c.plan2Slug].includes(b.slug))
+  return manual ? `/prepagas/${prep.slug}/${manual.slug}` : undefined
+}
+
+/** Línea de un plan: las variantes (GEN, con coseguro, Digital Flex, Sport) son escaleras aparte */
+function lineaDePlan(slug: string): string {
+  if (slug.endsWith('-gen')) return 'gen'
+  if (slug.endsWith('-cc')) return 'cc'
+  if (slug.includes('digital-flex')) return 'digital-flex'
+  if (slug.startsWith('sport')) return 'sport'
+  return 'principal'
+}
+
+function orejitasPlan(prep: Prepaga, plan: Plan) {
+  // Escalera por precio dentro de la línea del plan. Los planes con edad
+  // acotada (Flux) se ubican por precio en la línea principal.
+  const linea = lineaDePlan(plan.slug)
+  const orden = linea === 'principal'
+    ? ordenPlanes(prep)
+    : prep.planes.filter((x) => lineaDePlan(x.slug) === linea).sort((a, b) => a.precio - b.precio)
+  const idx = orden.findIndex((x) => x.slug === plan.slug)
+  // Con coseguro / Digital Flex en el tope de su línea: el siguiente es el mismo plan sin la variante
+  const base = prep.planes.find((x) => x.slug === plan.slug.replace(/-cc$|-digital-flex$/, '') && x.slug !== plan.slug)
+  const siguiente = idx >= 0 ? (orden[idx + 1] ?? (linea === 'cc' || linea === 'digital-flex' ? base : undefined)) : orden.find((x) => x.precio > plan.precio)
+  const anterior = idx >= 0 ? orden[idx - 1] : [...orden].reverse().find((x) => x.precio < plan.precio)
+  const cod = codigoPlan(plan)
+  const lista = (o: { oficial: boolean }) => (o.oficial ? `lista oficial ${PRECIO_ACTUALIZADO.toLowerCase()}` : `precio de lista ${PRECIO_ACTUALIZADO.toLowerCase()}`)
+
+  let derecha: OrejitaDatos | null = null
+  if (siguiente) {
+    const cod2 = codigoPlan(siguiente)
+    const suma = ventajas(prep, plan, siguiente).slice(0, 3)
+    const d = diferencia30(prep, plan, siguiente)
+    derecha = {
+      lado: 'derecha',
+      etiqueta: 'Plan siguiente',
+      destino: cod2,
+      texto: suma.length
+        ? `¿Buscás un plan con **${listaY(suma)}**? Pasá del ${cod} al **${cod2}**.`
+        : `¿Buscás más cobertura? El **${cod2}** es el plan siguiente de ${prep.nombre}. ${siguiente.descripcion}`,
+      nota: d.monto > 0 ? `Cuesta ${formatPrecio(d.monto)} más por mes a los 30 años (${lista(d)}).` : undefined,
+      href: `/prepagas/${prep.slug}/${siguiente.slug}`,
+      hrefComparar: hrefComparacion(prep, plan, siguiente),
+      origen: `${prep.slug}/${plan.slug}>${siguiente.slug}`,
+    }
   }
+
+  let izquierda: OrejitaDatos | null = null
+  // Solo si de verdad es más barato ("¿buscás pagar menos?")
+  const dAnterior = anterior ? diferencia30(prep, anterior, plan) : null
+  if (anterior && dAnterior && dAnterior.monto > 0) {
+    const cod0 = codigoPlan(anterior)
+    const d = dAnterior
+    const pierde = ventajas(prep, anterior, plan).filter((x) => x !== 'consultas sin copago').slice(0, 3)
+    const conCopago = anterior.copago && !plan.copago
+    izquierda = {
+      lado: 'izquierda',
+      etiqueta: conCopago ? 'Plan con copago' : 'Más económico',
+      destino: cod0,
+      texto: `¿Buscás pagar menos? El **${cod0}**${d.monto > 0 ? ` cuesta **${formatPrecio(d.monto)} menos** por mes a los 30 años` : ' es el plan anterior'}${conCopago ? ', con copago en consultas' : ''}.${pierde.length ? ` Frente al ${cod}, dejás de tener ${listaY(pierde.map((x) => x.replace(' más para', ' para')))}.` : ''}`,
+      nota: d.monto > 0 ? `Diferencia según la ${lista(d)}.` : undefined,
+      href: `/prepagas/${prep.slug}/${anterior.slug}`,
+      hrefComparar: hrefComparacion(prep, anterior, plan),
+      origen: `${prep.slug}/${plan.slug}<${anterior.slug}`,
+    }
+  }
+  return { derecha, izquierda }
 }
 
 function buildPlanFAQs(plan: Plan, prep: Prepaga) {
@@ -421,7 +482,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) notFound()
 
-  const orejita = orejitaPlan(prep, plan)
+  const orejitas = orejitasPlan(prep, plan)
   const { provincia } = await searchParams
   const cartillaPlanLink = linkCartillaPlan(prep.slug, plan.slug)
   // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba") ya
@@ -514,7 +575,8 @@ export default async function PlanPage({ params, searchParams }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      {orejita && <OrejitaPlanSiguiente {...orejita} />}
+      {orejitas.derecha && <OrejitaPlan {...orejitas.derecha} />}
+      {orejitas.izquierda && <OrejitaPlan {...orejitas.izquierda} />}
       <BarraCotizar
         titulo={`${prep.nombre} ${codigoPlan(plan)}`}
         origen={`plan:${slug}/${planSlug}`}
