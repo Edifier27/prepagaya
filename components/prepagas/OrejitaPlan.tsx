@@ -71,15 +71,16 @@ export function OrejitaPlan({ lado, etiqueta, destino, texto, nota, href, hrefCo
         <button
           type="button"
           onClick={() => { setAbierta(true); trackEvent('orejita_plan_abrir', { origen, lado }) }}
-          className={`flex items-center gap-1.5 text-white py-2.5 shadow-lg transition-colors ${der ? 'rounded-l-xl pl-3 pr-2 bg-gray-900 hover:bg-[#E8002D]' : 'rounded-r-xl pr-3 pl-2 flex-row-reverse bg-gray-600 hover:bg-[#E8002D]'}`}
+          className={`flex items-center gap-1 lg:gap-1.5 text-white py-1.5 lg:py-2.5 shadow-lg transition-colors ${der ? 'rounded-l-xl pl-3 pr-2 bg-gray-900 hover:bg-[#E8002D]' : 'rounded-r-xl pr-3 pl-2 flex-row-reverse bg-gray-600 hover:bg-[#E8002D]'}`}
           aria-label={`${etiqueta}: ${destino}`}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" className="w-4 h-4 shrink-0">
             <path d={der ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M19 12l-7 7-7-7'} />
           </svg>
           <span className={`leading-tight ${der ? 'text-left' : 'text-right'}`}>
-            <span className="block text-[10px] text-gray-300">{etiqueta}</span>
-            <span className="block text-sm font-bold">{destino}</span>
+            {/* En el celular solo el nombre, para tapar menos */}
+            <span className="hidden lg:block text-[10px] text-gray-300">{etiqueta}</span>
+            <span className="block text-xs lg:text-sm font-bold">{destino}</span>
           </span>
         </button>
       )}

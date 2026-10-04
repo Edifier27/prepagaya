@@ -22,6 +22,7 @@ import { comparativasPlanes, getComparativaPlanes, getComparativaParaPlan, type 
 import { ComparativaPlanesPage, comparativaPlanesMetadata } from '@/components/prepagas/ComparativaPlanesPage'
 import { paresComparativaAuto, ordenPlanes } from '@/lib/comparativas-auto'
 import { OrejitaPlan, type OrejitaDatos } from '@/components/prepagas/OrejitaPlan'
+import { CarruselPlanes, type TarjetaPlan } from '@/components/prepagas/CarruselPlanes'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -507,6 +508,29 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const planInferior = planIdx > 0 ? planesOrdenados[planIdx - 1] : null
   const planSuperior = planIdx < planesOrdenados.length - 1 ? planesOrdenados[planIdx + 1] : null
   const otrosPlanes = ordenarPorCartilla(slug, planesOrdenados).filter(pl => pl.slug !== planSlug)
+  // Carrusel "Otros planes" (4-oct-2026): primero los de arriba del actual,
+  // del más cercano al más caro; después los más económicos, del más cercano
+  // al más barato.
+  const tarjeta = (pl: Plan, relacion: TarjetaPlan['relacion']): TarjetaPlan => ({
+    slug: pl.slug,
+    nombre: pl.nombre,
+    href: `/prepagas/${slug}/${pl.slug}`,
+    relacion,
+    precio: formatPrecio(pl.precio),
+    copago: pl.copago,
+    redAbierta: pl.redAbierta,
+    destacado: pl.destacado,
+    cartilla: getGrupoCartilla(slug, pl.slug)?.nombre,
+  })
+  // Los de la misma línea primero (SMG20 → SMG30, SMG40…); las variantes
+  // (Sport, GEN, con coseguro…) al final.
+  const mismaLinea = otrosPlanes.filter((pl) => lineaDePlan(pl.slug) === lineaDePlan(plan.slug))
+  const otraLinea = otrosPlanes.filter((pl) => lineaDePlan(pl.slug) !== lineaDePlan(plan.slug))
+  const enOrden = (lista: Plan[]) => [
+    ...lista.filter((pl) => pl.precio > plan.precio).sort((x, y) => x.precio - y.precio).map((pl) => tarjeta(pl, 'superior')),
+    ...lista.filter((pl) => pl.precio <= plan.precio).sort((x, y) => y.precio - x.precio).map((pl) => tarjeta(pl, 'economico')),
+  ]
+  const tarjetasPlanes: TarjetaPlan[] = [...enOrden(mismaLinea), ...enOrden(otraLinea)]
   const planMenosCopagoSlug = getPlanMenosCopago(slug, planSlug, prep.planes)
   const planMenosCopago = planMenosCopagoSlug ? prep.planes.find((p) => p.slug === planMenosCopagoSlug) : undefined
 
@@ -970,38 +994,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Otros planes de {prep.nombre}</h2>
-          <div className="space-y-2">
-            {otrosPlanes.map((pl) => {
-              const grupoCartilla = getGrupoCartilla(slug, pl.slug)
-              return (
-              <Link
-                key={pl.slug}
-                href={`/prepagas/${slug}/${pl.slug}`}
-                className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group"
-              >
-                <div>
-                  <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm flex items-center gap-2 flex-wrap">
-                    {pl.nombre}
-                    {pl.destacado && (
-                      <span className="text-[10px] bg-[#E8002D] text-white px-2 py-0.5 rounded-full font-bold">MÁS ELEGIDO</span>
-                    )}
-                    {grupoCartilla && (
-                      <span className="text-[10px] bg-red-50 text-[#E8002D] px-2 py-0.5 rounded-full font-bold">{grupoCartilla.nombre}</span>
-                    )}
-                  </div>
-                  <div className="text-xs text-gray-400 mt-0.5">
-                    {pl.copago ? 'Con copago' : 'Sin copago'} · Red {pl.redAbierta ? 'abierta' : 'cerrada'}
-                  </div>
-                </div>
-                <div className="text-right flex-shrink-0 flex items-center gap-3">
-                  <div>
-                    <NivelPrecioBadge nivel={nivelPrecio(pl.precio)} />
-                  </div>
-                  <span className="text-xs text-gray-400">→</span>
-                </div>
-              </Link>
-            )})}
-          </div>
+          <CarruselPlanes planes={tarjetasPlanes} origen={`${slug}/${planSlug}`} />
           <div className="mt-4">
             <Link href={`/prepagas/${slug}`} className="text-sm text-[#E8002D] font-semibold hover:underline">
               ← Todos los planes de {prep.nombre} y sus diferencias
