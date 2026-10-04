@@ -1,0 +1,39 @@
+# IndexNow (4-oct-2026): avisa a Bing las páginas nuevas o cambiadas
+# (scripts/indexnow.mjs). Corre después de cada push a main (espera a que
+# Vercel termine el deploy) y todos los días; a mano con "todo" manda el
+# sitemap completo.
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'lib/data/**'
+      - 'components/**'
+  schedule:
+    - cron: '0 12 * * *' # 9:00 hora argentina
+  workflow_dispatch:
+    inputs:
+      todo:
+        description: 'Mandar todo el sitemap'
+        type: boolean
+        default: false
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Esperar el deploy de Vercel
+        if: github.event_name == 'push'
+        run: sleep 300
+      - name: Avisar a IndexNow
+        run: node scripts/indexnow.mjs ${{ inputs.todo && '--todo' || '' }}
