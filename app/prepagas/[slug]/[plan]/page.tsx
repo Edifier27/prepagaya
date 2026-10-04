@@ -20,8 +20,9 @@ import { clavesRenombre, resumirZonaPlan } from '@/lib/cartilla-plan-resumen'
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
 import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
 import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
-import { comparativasPlanes, getComparativaPlanes, getComparativaParaPlan } from '@/lib/data/comparativas-planes'
+import { comparativasPlanes, getComparativaPlanes, getComparativaParaPlan, type ComparativaPlanes } from '@/lib/data/comparativas-planes'
 import { ComparativaPlanesPage, comparativaPlanesMetadata } from '@/components/prepagas/ComparativaPlanesPage'
+import { paresComparativaAuto } from '@/lib/comparativas-auto'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -133,7 +134,7 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
     // Con datos concretos (28-sep-2026): se busca "smg20 vs smg30"
     const cod2 = codigoPlan(siguiente)
     const p30 = diferencias.filas.find((f) => f.edad === 30)
-    const plano = (t: string) => t.replace(/^[✓✕] /, '').replace(/^\S/, (c) => c.toLowerCase())
+    const plano = (t: string) => (/^[✓✕] /.test(t) ? t.slice(2).replace(/^\S/, (c) => c.toLowerCase()) : t.replace(/^(Con|Sin) /, (m) => m.toLowerCase()))
     const cambios = diferencias.filas.filter((f) => !f.edad && f.a !== f.b).slice(0, 3).map((f) => `${f.label.toLowerCase()}: ${plano(f.a)} en el ${codigo} y ${plano(f.b)} en el ${cod2}`)
     faqs.push({
       q: `¿Qué diferencia hay entre el ${codigo} y el ${cod2} de ${prep.nombre}?`,
@@ -179,6 +180,50 @@ function tablaDiferencias(prep: Prepaga, plan: Plan, otro: Plan | undefined, cob
   return { otro, esSuperior: otro.precio > plan.precio, filas, conFichas: coberturas.length + delOtro.length > 0 }
 }
 
+// Comparativas automáticas plan vs plan vecino (4-oct-2026): los pares salen
+// de lib/comparativas-auto.ts; el contenido, de la misma tabla de diferencias
+// de la página de plan (cuadro SSSalud, fichas oficiales, cartillas).
+function comparativaAuto(slug: string, planSlug: string) {
+  const c = paresComparativaAuto().find((x) => x.prep.slug === slug && x.slug === planSlug)
+  if (!c) return null
+  const { prep, plan1, plan2 } = c
+  const cob1 = coberturasMarca
+    .filter((x) => x.prepagaSlug === prep.slug)
+    .flatMap((x) => x.planes.filter((f) => f.planSlugs.includes(plan1.slug)).map((f) => ({ tema: x.tema, nombre: x.temaNombre, fila: f })))
+  const dif = tablaDiferencias(prep, plan1, plan2, cob1)
+  if (!dif) return null
+  const [cod1, cod2] = [codigoPlan(plan1), codigoPlan(plan2)]
+  const e1 = escalaPorEdad(prep.slug, plan1.slug, 'caba')!
+  const e2 = escalaPorEdad(prep.slug, plan2.slug, 'caba')!
+  const precio = (e: typeof e1, edad: number) => e.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio ?? 0
+  const region = regionTexto(e1.region)
+  const d30 = precio(e2, 30) - precio(e1, 30)
+  const plano = (t: string) => (/^[✓✕] /.test(t) ? t.slice(2).replace(/^\S/, (ch) => ch.toLowerCase()) : t.replace(/^(Con|Sin) /, (m) => m.toLowerCase()))
+  const cambios = dif.filas.filter((f) => !f.edad && f.a !== f.b)
+  const textoCambios = cambios.slice(0, 4).map((f) => `${f.label.toLowerCase()}: ${plano(f.a)} en el ${cod1} y ${plano(f.b)} en el ${cod2}`)
+  const comp: ComparativaPlanes = {
+    slug: planSlug,
+    prepagaSlug: prep.slug,
+    plan1Slug: plan1.slug,
+    plan2Slug: plan2.slug,
+    titulo: `${prep.nombre} ${cod1} vs ${cod2}: diferencias y cuál conviene`,
+    descripcion: `Diferencias entre el ${cod1} y el ${cod2} de ${prep.nombre}: precio por edad según la lista oficial, copago, cartilla y coberturas.`,
+    respuestaCorta: `A los 30 años, el ${cod2} cuesta ${formatPrecio(Math.abs(d30))} ${d30 >= 0 ? 'más' : 'menos'} por mes que el ${cod1} (lista oficial de ${PRECIO_ACTUALIZADO.toLowerCase()}, ${region}).${textoCambios.length ? ` Lo que cambia: ${textoCambios.join('; ')}.` : ' Según los datos oficiales que relevamos, el resto de la cobertura es igual.'}`,
+    veredicto: `Conviene el ${cod1} si buscás la cuota más baja de los dos${plan1.copago && !plan2.copago ? ' y vas poco al médico, porque tiene copago en consultas' : ''}. Conviene el ${cod2} si ${cambios.length ? `te importa lo que suma (${cambios.slice(0, 3).map((f) => f.label.toLowerCase()).join(', ')})` : 'preferís el plan superior'} y la diferencia de ${formatPrecio(Math.abs(d30))} por mes te cierra. Si trabajás en relación de dependencia, tus aportes pueden cubrir parte de la cuota o toda: cotizalo para ver tu número exacto.`,
+    faqExtra: [
+      {
+        q: `¿Cuánto más sale el ${cod2} que el ${cod1}?`,
+        a: `Según el cuadro tarifario que ${prep.nombre} declara ante la Superintendencia de Servicios de Salud (${PRECIO_ACTUALIZADO}, ${region}, IVA incluido): ${[30, 45, 60].filter((e) => precio(e1, e) && precio(e2, e)).map((e) => `a los ${e} años, ${formatPrecio(precio(e1, e))} el ${cod1} y ${formatPrecio(precio(e2, e))} el ${cod2}`).join('; ')}.`,
+      },
+      ...(textoCambios.length
+        ? [{ q: `¿Qué cambia entre el ${cod1} y el ${cod2}?`, a: `${textoCambios.join('. ').replace(/^\S/, (ch) => ch.toUpperCase())}. Datos de las fichas oficiales y la cartilla de ${prep.nombre}.` }]
+        : []),
+      { q: `¿Puedo pasar del ${cod1} al ${cod2}?`, a: `Sí, se puede cambiar de plan dentro de ${prep.nombre}. Al subir de plan pueden aplicar carencias para las prestaciones nuevas: consultalo con un asesor antes de hacer el cambio.` },
+    ],
+  }
+  return { comp, prep, plan1, plan2, filas: dif.filas }
+}
+
 function buildPlanFAQs(plan: Plan, prep: Prepaga) {
   return [
     {
@@ -210,6 +255,7 @@ export async function generateStaticParams() {
       p.planes.map((pl) => ({ slug: p.slug, plan: pl.slug }))
     ),
     ...comparativasPlanes.map((c) => ({ slug: c.prepagaSlug, plan: c.slug })),
+    ...paresComparativaAuto().map((c) => ({ slug: c.prep.slug, plan: c.slug })),
     ...provinciasSEO.flatMap((prov) => [
       { slug: prov.slug, plan: 'mejores-prepagas' },
       ...prov.prepagas.filter((pz) => pz.enSitio).map((pz) => ({ slug: prov.slug, plan: pz.slug })),
@@ -237,6 +283,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (prepComp && plan1Comp && plan2Comp) return comparativaPlanesMetadata(comp, prepComp, plan1Comp, plan2Comp)
     return {}
   }
+  const auto = comparativaAuto(slug, planSlug)
+  if (auto) return comparativaPlanesMetadata(auto.comp, auto.prep, auto.plan1, auto.plan2)
   const prep = prepagas.find((p) => p.slug === slug)
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) return {}
@@ -294,6 +342,8 @@ export default async function PlanPage({ params, searchParams }: Props) {
     if (!prepComp || !plan1Comp || !plan2Comp) notFound()
     return <ComparativaPlanesPage comp={comp} prep={prepComp} plan1={plan1Comp} plan2={plan2Comp} />
   }
+  const auto = comparativaAuto(slug, planSlug)
+  if (auto) return <ComparativaPlanesPage comp={auto.comp} prep={auto.prep} plan1={auto.plan1} plan2={auto.plan2} filas={auto.filas} />
   const prep = prepagas.find((p) => p.slug === slug)
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) notFound()
@@ -665,6 +715,17 @@ export default async function PlanPage({ params, searchParams }: Props) {
             <h2 className="text-xl font-bold text-gray-900 mb-1">Diferencias entre el {seo.codigo} y el {codigoPlan(seo.diferencias.otro)}</h2>
             <p className="text-xs text-gray-500 mb-4">
               {seo.diferencias.esSuperior ? 'El plan siguiente' : 'El plan anterior'} de {prep.nombre}. Precios de la lista oficial de {PRECIO_ACTUALIZADO.toLowerCase()} ({seo.region}, contratación directa, IVA incluido){seo.diferencias.conFichas ? ` y coberturas según las fichas de ${prep.nombre}` : ''}.
+              {(() => {
+                const par = paresComparativaAuto().find((c) => c.prep.slug === prep.slug && [c.plan1.slug, c.plan2.slug].includes(plan.slug) && [c.plan1.slug, c.plan2.slug].includes(seo.diferencias!.otro.slug))
+                return par ? (
+                  <>
+                    {' '}
+                    <Link href={`/prepagas/${prep.slug}/${par.slug}`} className="font-semibold text-[#E8002D] hover:underline">
+                      Ver la comparación completa →
+                    </Link>
+                  </>
+                ) : null
+              })()}
             </p>
             <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
               <table className="w-full text-sm">

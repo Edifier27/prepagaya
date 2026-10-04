@@ -37,7 +37,14 @@ function Check({ ok }: { ok: boolean }) {
     : <span className="text-gray-300 font-bold">✕</span>
 }
 
-export function ComparativaPlanesPage({ comp, prep, plan1, plan2 }: { comp: ComparativaPlanes; prep: Prepaga; plan1: Plan; plan2: Plan }) {
+export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
+  comp: ComparativaPlanes
+  prep: Prepaga
+  plan1: Plan
+  plan2: Plan
+  /** Tabla de diferencias con datos oficiales (comparativas automáticas) */
+  filas?: { label: string; a: string; b: string; edad?: number }[]
+}) {
   const masBarato = plan1.precio < plan2.precio ? plan1 : plan2
   const masCaro = plan1.precio < plan2.precio ? plan2 : plan1
   const diferencia = Math.abs(plan1.precio - plan2.precio)
@@ -148,14 +155,20 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2 }: { comp: Comp
                 </tr>
               </thead>
               <tbody>
-                {/* Sin la fila "Precio de lista": ya está arriba (25-sep-2026, no repetir precios) */}
-                <FilaComparacion label="Copago en consultas" v1={<Check ok={!plan1.copago} />} v2={<Check ok={!plan2.copago} />} />
-                <FilaComparacion label="Red abierta" v1={<Check ok={plan1.redAbierta} />} v2={<Check ok={plan2.redAbierta} />} />
-                <FilaComparacion label="Plan más elegido" v1={plan1.destacado ? <Check ok /> : '—'} v2={plan2.destacado ? <Check ok /> : '—'} />
+                {filas ? (
+                  filas.map((f) => <FilaComparacion key={f.label} label={f.label} v1={f.a} v2={f.b} />)
+                ) : (
+                  <>
+                    {/* Sin la fila "Precio de lista": ya está arriba (25-sep-2026, no repetir precios) */}
+                    <FilaComparacion label="Copago en consultas" v1={<Check ok={!plan1.copago} />} v2={<Check ok={!plan2.copago} />} />
+                    <FilaComparacion label="Red abierta" v1={<Check ok={plan1.redAbierta} />} v2={<Check ok={plan2.redAbierta} />} />
+                    <FilaComparacion label="Plan más elegido" v1={plan1.destacado ? <Check ok /> : '—'} v2={plan2.destacado ? <Check ok /> : '—'} />
+                  </>
+                )}
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-gray-400 mt-3">✓ en “Copago en consultas” significa que NO tiene copago (mejor). Precios de lista para persona de 30 años, {PRECIO_ACTUALIZADO.toLowerCase()}.</p>
+          <p className="text-xs text-gray-400 mt-3">{filas ? `Precios de la lista oficial que ${prep.nombre} declara ante la SSSalud (${PRECIO_ACTUALIZADO.toLowerCase()}, contratación directa, IVA incluido); coberturas según las fichas oficiales.` : <>✓ en “Copago en consultas” significa que NO tiene copago (mejor). Precios de lista para persona de 30 años, {PRECIO_ACTUALIZADO.toLowerCase()}.</>}</p>
 
           {/* Cobertura destacada de cada uno */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
@@ -230,7 +243,7 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2 }: { comp: Comp
           <h2 className="text-2xl font-bold mb-2">¿Querés saber cuál te conviene a vos?</h2>
           <p className="text-white text-sm mb-6">Cotizá online con 15% OFF (25% si sos monotributista) y te decimos qué plan de {prep.nombre} encaja con tu edad y presupuesto.</p>
           <Link
-            href="/comparador"
+            href={`/comparador?prepaga=${prep.slug}&desde=comparativa`}
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
           >
             Cotizar gratis →
