@@ -9,7 +9,7 @@ interface Props {
   planNombre?: string
   /** De qué página/flujo viene el lead — se manda a /api/leads para trackear el origen. */
   fuente?: string
-  /** Texto del botón. Por defecto "Contratar {planNombre}" o "Cotización personalizada" si no hay plan. */
+  /** Texto del botón. Por defecto "Cotizar {planNombre}" (Darío, 4-oct-2026: "cotizar" en vez de "contratar") o "Cotización personalizada" si no hay plan. */
   label?: string
   className?: string
   /** Datos extra que ya respondió la persona (ej. respuestas del quiz), ver lib/data/sondeo.ts */
@@ -72,7 +72,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
         onClick={() => { setOpen(true); trackEvent('abrir_cotizador', { fuente, prepaga: prepagaNombre }) }}
         className={className ?? "inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"}
       >
-        {label ?? (planNombre ? `Contratar ${planNombre}` : 'Cotización personalizada')} →
+        {label ?? (planNombre ? `Cotizar ${planNombre}` : 'Cotización personalizada')} →
       </button>
 
       {open && (

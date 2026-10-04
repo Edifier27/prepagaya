@@ -8,13 +8,11 @@ import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIA
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
-import { CartillaModalTrigger } from '@/components/prepagas/CartillaModalTrigger'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { escalaPorEdad, preciosPorRegion } from '@/lib/precios/motor'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
-import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
 import { linkCartillaPlan, CARTILLAS, type CartillaPrepaga } from '@/lib/data/cartilla-zonas'
 import { clavesRenombre, resumirZonaPlan } from '@/lib/cartilla-plan-resumen'
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
@@ -22,7 +20,8 @@ import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/Pre
 import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
 import { comparativasPlanes, getComparativaPlanes, getComparativaParaPlan, type ComparativaPlanes } from '@/lib/data/comparativas-planes'
 import { ComparativaPlanesPage, comparativaPlanesMetadata } from '@/components/prepagas/ComparativaPlanesPage'
-import { paresComparativaAuto } from '@/lib/comparativas-auto'
+import { paresComparativaAuto, ordenPlanes } from '@/lib/comparativas-auto'
+import { OrejitaPlanSiguiente } from '@/components/prepagas/OrejitaPlanSiguiente'
 import type { Prepaga } from '@/types'
 
 interface Props {
@@ -224,6 +223,80 @@ function comparativaAuto(slug: string, planSlug: string) {
   return { comp, prep, plan1, plan2, filas: dif.filas }
 }
 
+/** Sanatorios con internación en CABA de un plan, según la cartilla oficial */
+function sanatoriosCaba(prepSlug: string, planSlug: string): number {
+  const c = CARTILLAS[prepSlug]
+  const pc = c?.planes.find((x) => x.comparadorSlug === planSlug || x.otrosComparadorSlugs?.includes(planSlug))
+  const caba = c?.zonas.find((z) => z.slug === 'caba')
+  if (!pc || !caba) return 0
+  return caba.centros.filter((x) => x.internacion.includes(pc.id)).length
+}
+
+// Orejita "plan siguiente" (Darío, 4-oct-2026): qué suma el escalón de
+// arriba, solo con datos con fuente. Con cuadro SSSalud y fichas oficiales
+// (tablaDiferencias): copago, cartilla y coberturas que mejoran. Si la
+// prepaga no tiene esas fichas, lo que la cobertura publicada del plan
+// siguiente tiene y la de este no. Sin mejoras concretas, no hay orejita.
+function orejitaPlan(prep: Prepaga, plan: Plan) {
+  const orden = ordenPlanes(prep)
+  const idx = orden.findIndex((x) => x.slug === plan.slug)
+  const siguiente = idx >= 0 ? orden[idx + 1] : undefined
+  if (!siguiente) return null
+  const [cod1, cod2] = [codigoPlan(plan), codigoPlan(siguiente)]
+  const cob1 = coberturasMarca
+    .filter((x) => x.prepagaSlug === prep.slug)
+    .flatMap((x) => x.planes.filter((f) => f.planSlugs.includes(plan.slug)).map((f) => ({ tema: x.tema, nombre: x.temaNombre, fila: f })))
+  const dif = tablaDiferencias(prep, plan, siguiente, cob1)
+  const mejoras: string[] = []
+  let diferencia: string | undefined
+  if (dif) {
+    const sinMarca = (t: string) => t.replace(/^[✓✕] /, '')
+    for (const f of dif.filas) {
+      if (f.edad || f.a === f.b || f.b === 'Sin dato') continue
+      if (f.label === 'Copago en consultas') {
+        if (f.a === 'Con copago' && f.b === 'Sin copago') mejoras.push('consultas sin copago')
+      } else if (f.label === 'Cartilla') {
+        // Sanatorios con internación en CABA de cada plan, de la cartilla oficial
+        // (solo si el plan siguiente tiene más: un nombre distinto no dice que sea mejor,
+        // ej. S2 "Global" → SMG02 "Nubial Quality" es una cartilla más chica)
+        const sanatorios = sanatoriosCaba(prep.slug, siguiente.slug) - sanatoriosCaba(prep.slug, plan.slug)
+        if (sanatorios > 0) mejoras.push(`${sanatorios} sanatorio${sanatorios === 1 ? '' : 's'} más para internación en CABA`)
+      } else if (f.b.startsWith('✓') && (f.a.startsWith('✕') || f.a === 'Sin dato')) {
+        mejoras.push(f.label.toLowerCase())
+      } else if (f.b.startsWith('✓') && f.a.startsWith('✓')) {
+        const detalle = sinMarca(f.b)
+        // Solo si el detalle es corto y concreto ("hasta 18 años"): con "Incluido" a secas
+        // o un texto largo no se puede decir en una línea que sea mejor
+        if (detalle.length <= 32 && !/^incluido$/i.test(detalle)) mejoras.push(`${f.label.toLowerCase()} (${detalle.replace(/^\S/, (c) => c.toLowerCase())})`)
+      }
+    }
+    const p30 = dif.filas.find((f) => f.edad === 30)
+    const e1 = escalaPorEdad(prep.slug, plan.slug, 'caba')
+    const e2 = escalaPorEdad(prep.slug, siguiente.slug, 'caba')
+    const precio = (e: typeof e1, edad: number) => e?.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio ?? 0
+    const d = precio(e2, 30) - precio(e1, 30)
+    if (p30 && d > 0) diferencia = `Cuesta ${formatPrecio(d)} más por mes a los 30 años (lista oficial ${PRECIO_ACTUALIZADO.toLowerCase()})`
+  } else {
+    const tiene = new Set(plan.cobertura.map((c) => c.toLowerCase()))
+    for (const c of siguiente.cobertura) if (!tiene.has(c.toLowerCase())) mejoras.push(c.replace(/^\S/, (ch) => ch.toLowerCase()))
+    if (plan.copago && !siguiente.copago && !mejoras.some((m) => /copago/i.test(m))) mejoras.unshift('consultas sin copago')
+    const d = siguiente.precio - plan.precio
+    if (d > 0) diferencia = `Cuesta ${formatPrecio(d)} más por mes a los 30 años (precio de lista ${PRECIO_ACTUALIZADO.toLowerCase()})`
+  }
+  if (!mejoras.length) return null
+  const par = paresComparativaAuto().find((c) => c.prep.slug === prep.slug && c.plan1.slug === plan.slug && c.plan2.slug === siguiente.slug)
+  const manual = comparativasPlanes.find((c) => c.prepagaSlug === prep.slug && [c.plan1Slug, c.plan2Slug].includes(plan.slug) && [c.plan1Slug, c.plan2Slug].includes(siguiente.slug))
+  return {
+    plan: cod1,
+    siguiente: cod2,
+    mejoras: mejoras.slice(0, 3),
+    diferencia,
+    href: `/prepagas/${prep.slug}/${siguiente.slug}`,
+    hrefComparar: par ? `/prepagas/${prep.slug}/${par.slug}` : manual ? `/prepagas/${prep.slug}/${manual.slug}` : undefined,
+    origen: `${prep.slug}/${plan.slug}`,
+  }
+}
+
 function buildPlanFAQs(plan: Plan, prep: Prepaga) {
   return [
     {
@@ -348,15 +421,12 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) notFound()
 
-  const { cartilla, provincia } = await searchParams
-  const abrirCartilla = cartilla === '1'
+  const orejita = orejitaPlan(prep, plan)
+  const { provincia } = await searchParams
   const cartillaPlanLink = linkCartillaPlan(prep.slug, plan.slug)
   // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba") ya
-  // sabemos la provincia. Si no, CartillaModalTrigger pregunta una vez (o usa
-  // la última guardada) en vez de asumir Buenos Aires por default.
+  // sabemos la provincia: la barra "Cotizá" la pasa al comparador.
   const provDelLink = provincia ? getProvinciaSEO(provincia) : undefined
-  const zonaKeyCartilla = provDelLink?.zonaKey
-  const provinciaNombreCartilla = provDelLink?.nombre
 
   // Plan de la cartilla oficial que corresponde a este plan (ej. SMG20 → "SMG20", S1 → "SMG02")
   const cartillaDef = CARTILLAS[prep.slug]
@@ -444,6 +514,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {orejita && <OrejitaPlanSiguiente {...orejita} />}
       <BarraCotizar
         titulo={`${prep.nombre} ${codigoPlan(plan)}`}
         origen={`plan:${slug}/${planSlug}`}
@@ -560,15 +631,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
           <Link href="/calculadora" className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-[#E8002D] font-medium mt-2 transition-colors">
             ¿Cuánto te sale a tu edad? Calculalo acá →
           </Link>
-          {cartillaPlanLink && (
-            <div className="mt-4">
-              <CartillaOficialLink
-                href={cartillaPlanLink.href}
-                titulo={`Cartilla del ${prep.nombre} ${plan.nombre} por zona`}
-                texto={`Sanatorios para internación y guardias que incluye ${cartillaPlanLink.label === plan.nombre ? 'este plan' : `la cartilla ${cartillaPlanLink.label}`}, zona por zona.`}
-              />
-            </div>
-          )}
         </div>
       </section>
 
@@ -600,7 +662,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
         <div className="container max-w-4xl mx-auto">
           <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
             <h2 className="text-xl font-bold text-gray-900">¿Qué incluye el {plan.nombre}?</h2>
-            <CartillaModalTrigger prepaga={prep} plan={plan} zonaKey={zonaKeyCartilla} provinciaNombre={provinciaNombreCartilla} autoOpen={abrirCartilla} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {plan.cobertura.map((c) => (
@@ -911,7 +972,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
       {/* CTA final */}
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-2">¿Querés contratar el {plan.nombre}?</h2>
+          <h2 className="text-2xl font-bold mb-2">¿Querés cotizar el {plan.nombre}?</h2>
           <p className="text-white text-sm mb-6">
             El precio real depende de tu edad y zona. Cotizá online con 15% OFF (25% si sos monotributista) y recibí asesoramiento sin cargo.
           </p>
