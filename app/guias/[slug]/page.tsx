@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { enlazarPrepagas, PlanesMencionados } from '@/components/ui/TextoConEnlaces'
 import { notFound } from 'next/navigation'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { guias } from '@/lib/data/guias'
 import { prepagas, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
@@ -103,6 +104,7 @@ export default async function GuiaPage({ params }: Props) {
   const textoGlosario = [guia.contenido.intro, ...guia.contenido.secciones.map((x) => x.cuerpo), guia.contenido.conclusion, ...guia.faq.map((f) => `${f.q} ${f.a}`)].join(' ')
   return (
     <>
+      <BarraCotizar titulo={prepagasRelacionadas[0] ? prepagasRelacionadas[0].nombre : 'tu prepaga'} origen={`guia:${guia.slug}`} href={prepagasRelacionadas[0] ? `/comparador?prepaga=${prepagasRelacionadas[0].slug}&desde=barra` : '/comparador?desde=barra'} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Breadcrumb */}

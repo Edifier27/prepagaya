@@ -709,6 +709,10 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
   const [email, setEmail] = useState('')
+  // Email opcional (4-oct-2026): el comparador trae la mitad de los leads y
+  // cada campo obligatorio menos suma. Sin email va el mismo comodín que usa
+  // ContratarPlanButton, y el complemento lo usa igual para encontrar el lead.
+  const emailFinal = email.trim() || `${celular.trim().replace(/\D/g, '')}@sin-email.com`
   const [leadStatus, setLeadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   // Preview countdown
@@ -737,7 +741,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: email.trim(),
+          email: emailFinal,
           celular: celular.trim(),
           situacion_laboral: situacionTocada ? SITUACIONES.find((s) => s.id === situacion)?.label : '',
           prepaga_actual: prepagaActual,
@@ -746,7 +750,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
       }).catch(() => {})
     }, 1500)
     return () => clearTimeout(t)
-  }, [leadStatus, situacion, situacionTocada, prepagaActual, activeCobs, copago, email, celular])
+  }, [leadStatus, situacion, situacionTocada, prepagaActual, activeCobs, copago, emailFinal, celular])
   // Si viene desde la ficha o el plan de una prepaga, los resultados arrancan
   // filtrados por esa prepaga y Swiss Medical al lado (prioridad de Darío);
   // la persona saca el filtro con un toque.
@@ -930,7 +934,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     const n = parseInt(p.edad)
     return p.edad !== '' && !isNaN(n) && n > 0 && n < 110
   })
-  const popupOk = nombre.trim().length > 0 && esCelularArgentinoValido(celular) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
+  const popupOk = nombre.trim().length > 0 && esCelularArgentinoValido(celular) && (email.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
 
   // Frase en lenguaje natural para el mensaje de WhatsApp ("una persona de
   // 35 años" / "un grupo de 3 personas (35, 8 y 5 años)") — pensada para que
@@ -965,7 +969,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
       nombre: nombre.trim(),
       celular: celular.trim(),
       reply_to: 'cotizaciones@prepagaya.com.ar',
-      email: email.trim(),
+      email: emailFinal,
       provincia: provinciaNombre,
       // En lenguaje natural (no "1 persona — edades: 35 años") porque este
       // mismo valor se reusa tal cual para armar el mensaje de WhatsApp.
@@ -1262,7 +1266,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1">Email *</label>
+                  <label className="block text-xs font-semibold text-gray-600 mb-1">Email <span className="font-normal text-gray-400">(opcional)</span></label>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" className="w-4 h-4">

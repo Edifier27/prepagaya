@@ -19,21 +19,53 @@ const SUGERENCIAS = ['Swiss Medical', 'OSDE', 'Código de obra social', 'Aumento
 // Grupos que suben en el orden cuando empatan (Prepagas, Herramientas, Obras sociales)
 const BONUS_GRUPO: Record<number, number> = { 0: 2, 1: 3, 2: 1, 4: 2 }
 
-function buscar(prep: Preparada[], q: string): Preparada[] {
-  const tokens = normalizarBusqueda(q).split(/\s+/).filter(Boolean)
-  if (!tokens.length) return []
+// Palabras que no ayudan a encontrar nada (4-oct-2026: la gente escribe
+// preguntas enteras, "OSECAC admite derivación de aportes", y con que una
+// palabra no estuviera en el índice no salía ningún resultado).
+const VACIAS = new Set(['de', 'del', 'la', 'el', 'los', 'las', 'y', 'o', 'u', 'en', 'que', 'con', 'para', 'por', 'es', 'mi', 'me', 'tengo', 'cual', 'cuales', 'mejor', 'un', 'una', 'al', 'a', 'se', 'como', 'admite', 'puedo', 'hay', 'sin'])
+
+function tokensDe(q: string): string[] {
+  return normalizarBusqueda(q)
+    .split(/\s+/)
+    .filter(Boolean)
+    // Códigos: "0-0090-1" o "0-00901" se buscan como "000901"
+    .map((tk) => (/^[\d-]+$/.test(tk) && tk.replace(/\D/g, '').length >= 4 ? tk.replace(/\D/g, '') : tk.replace(/[¿?¡!.,]/g, '')))
+    .filter((tk) => tk && !VACIAS.has(tk))
+}
+
+/** `parcial`: no hubo nada con todas las palabras y se muestra lo más parecido. */
+function buscar(prep: Preparada[], q: string): { lista: Preparada[]; parcial: boolean } {
+  const tokens = tokensDe(q)
+  if (!tokens.length) return { lista: [], parcial: false }
+  const puntuar = (p: Preparada, tks: string[]) => {
+    let s = (BONUS_GRUPO[p.e[2]] ?? 0) + (p.e[5] ?? 0)
+    for (const tk of tks) s += p.t.startsWith(tk) ? 5 : p.t.includes(` ${tk}`) ? 3 : p.t.includes(tk) ? 2 : 0
+    return s - p.t.length / 40
+  }
   const res: { p: Preparada; s: number }[] = []
   for (const p of prep) {
     if (!tokens.every((tk) => p.todo.includes(tk))) continue
-    let s = (BONUS_GRUPO[p.e[2]] ?? 0) + (p.e[5] ?? 0)
-    for (const tk of tokens) s += p.t.startsWith(tk) ? 5 : p.t.includes(` ${tk}`) ? 3 : p.t.includes(tk) ? 2 : 0
-    s -= p.t.length / 40
-    res.push({ p, s })
+    res.push({ p, s: puntuar(p, tokens) })
   }
-  // Si hay suficientes coincidencias en el título, las que solo coinciden
-  // por la dirección o el subtítulo (ej. una clínica en la calle Güemes) sobran.
-  const enTitulo = res.filter((x) => tokens.every((tk) => x.p.t.includes(tk)))
-  return (enTitulo.length >= 5 ? enTitulo : res).sort((a, b) => b.s - a.s).slice(0, 12).map((x) => x.p)
+  if (res.length) {
+    // Si hay suficientes coincidencias en el título, las que solo coinciden
+    // por la dirección o el subtítulo (ej. una clínica en la calle Güemes) sobran.
+    const enTitulo = res.filter((x) => tokens.every((tk) => x.p.t.includes(tk)))
+    return { lista: (enTitulo.length >= 5 ? enTitulo : res).sort((a, b) => b.s - a.s).slice(0, 12).map((x) => x.p), parcial: false }
+  }
+  // Sin coincidencia completa: lo que tenga más palabras (de 3+ letras) en común
+  const utiles = tokens.filter((tk) => tk.length >= 3)
+  if (utiles.length < 2) return { lista: [], parcial: false }
+  let mejor = 0
+  const parciales: { p: Preparada; n: number; s: number }[] = []
+  for (const p of prep) {
+    const encontradas = utiles.filter((tk) => p.todo.includes(tk))
+    if (!encontradas.length) continue
+    mejor = Math.max(mejor, encontradas.length)
+    parciales.push({ p, n: encontradas.length, s: puntuar(p, encontradas) })
+  }
+  const lista = parciales.filter((x) => x.n === mejor).sort((a, b) => b.s - a.s).slice(0, 8).map((x) => x.p)
+  return { lista, parcial: lista.length > 0 }
 }
 
 export function Buscador({ variante = 'icono' }: { variante?: 'icono' | 'barra' }) {
@@ -75,14 +107,14 @@ export function Buscador({ variante = 'icono' }: { variante?: 'icono' | 'barra' 
   const preparadas = useMemo<Preparada[]>(() => (ix?.entradas ?? []).map((e) => ({
     e, t: normalizarBusqueda(e[0]), todo: normalizarBusqueda(`${e[0]} ${e[3]} ${e[4]}`),
   })), [ix])
-  const resultados = useMemo(() => buscar(preparadas, q), [preparadas, q])
+  const { lista: resultados, parcial } = useMemo(() => buscar(preparadas, q), [preparadas, q])
 
   // Búsquedas sin resultado: se registran (sin datos personales) para saber qué falta.
   useEffect(() => {
-    if (!ix || q.trim().length < 3 || resultados.length) return
-    const t = setTimeout(() => track('Buscador sin resultados', { q: q.trim().slice(0, 60) }), 1200)
+    if (!ix || q.trim().length < 3 || (resultados.length && !parcial)) return
+    const t = setTimeout(() => track('Buscador sin resultados', { q: q.trim().slice(0, 60), parcial: parcial ? 'si' : 'no' }), 1200)
     return () => clearTimeout(t)
-  }, [ix, q, resultados.length])
+  }, [ix, q, resultados.length, parcial])
 
   function ir(e: EntradaBuscador) {
     track('Buscador', { q: q.trim().slice(0, 60), destino: e[1].slice(0, 100) })
@@ -147,10 +179,13 @@ export function Buscador({ variante = 'icono' }: { variante?: 'icono' | 'barra' 
               ) : !ix ? (
                 <p className="p-4 text-sm text-gray-500">Cargando…</p>
               ) : resultados.length === 0 ? (
-                <div className="p-4 text-sm text-gray-600">
-                  No encontramos “{q.trim()}”. Probá con otra palabra, o <button type="button" onClick={() => { cerrar(); router.push('/comparador') }} className="font-semibold text-[#E8002D] hover:underline">cotizá gratis</button> y un asesor te responde.
+                <div className="p-4">
+                  <p className="text-sm text-gray-600">No encontramos “{q.trim()}”. Probá con el nombre de la prepaga, el plan o el sanatorio.</p>
+                  <AsesorCta q={q} ir={(url) => { cerrar(); router.push(url) }} />
                 </div>
               ) : (
+                <>
+                {parcial && <p className="px-4 pt-3 text-xs text-gray-500">No encontramos “{q.trim()}” exacto. Esto es lo más parecido:</p>}
                 <ul role="listbox" aria-label="Resultados">
                   {resultados.map(({ e }, i) => (
                     <li key={e[1]} role="option" aria-selected={i === activo}>
@@ -165,11 +200,29 @@ export function Buscador({ variante = 'icono' }: { variante?: 'icono' | 'barra' 
                     </li>
                   ))}
                 </ul>
+                {parcial && <div className="px-4 pb-4"><AsesorCta q={q} ir={(url) => { cerrar(); router.push(url) }} /></div>}
+                </>
               )}
             </div>
           </div>
         </div>
       )}
     </>
+  )
+}
+
+/** Sin respuesta exacta: un asesor la contesta (lleva al comparador, donde se deja el contacto). */
+function AsesorCta({ q, ir }: { q: string; ir: (url: string) => void }) {
+  return (
+    <div className="mt-3 rounded-xl bg-red-50 border border-red-100 p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <span className="text-sm text-gray-800">¿Tenés una consulta puntual? <strong>Te la responde un asesor</strong>, gratis.</span>
+      <button
+        type="button"
+        onClick={() => { track('Buscador a asesor', { q: q.trim().slice(0, 60) }); ir('/comparador?desde=buscador') }}
+        className="shrink-0 px-4 py-2 rounded-lg bg-[#E8002D] hover:bg-[#B8001F] text-white text-sm font-bold"
+      >
+        Consultar gratis →
+      </button>
+    </div>
   )
 }

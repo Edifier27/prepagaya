@@ -22,6 +22,7 @@ import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { EnOtrasCartillas } from '@/components/cartillas/EnOtrasCartillas'
 import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 import { centrosEnOtrasCartillas } from '@/lib/data/cartilla-zonas/cruce'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 
 // Páginas del silo de cartilla por zona (estructura silo: /cartillas →
 // /cartillas/[prepaga] → /cartillas/[prepaga]/[zona | plan-x] →
@@ -210,6 +211,20 @@ function ldFaq(faqs: { q: string; a: string }[]) {
   }
 }
 
+// Barra fija "Cotizá X" en el celular (4-oct-2026): las cartillas por zona
+// son la sección con más páginas vistas (3,5 por visitante) y convertían
+// poco. Lleva al comparador con la prepaga (y el plan) ya elegidos.
+function Barra({ c, p }: { c: CartillaPrepaga; p?: PlanCartilla }) {
+  const params = new URLSearchParams({ prepaga: c.prepagaSlug, ...(p?.comparadorSlug ? { plan: p.comparadorSlug } : {}), desde: 'barra' })
+  return (
+    <BarraCotizar
+      titulo={p ? `${c.prepagaNombre} ${planCorto(p)}` : c.prepagaNombre}
+      origen={`cartilla:${c.prepagaSlug}${p ? `/${p.id}` : ''}`}
+      href={`/comparador?${params}`}
+    />
+  )
+}
+
 function Cta({ c, plan, zonaCorta, grande }: { c: CartillaPrepaga; plan?: PlanCartilla; zonaCorta?: string; grande?: boolean }) {
   const label = `Cotizar ${c.prepagaNombre}${plan ? ` ${planCorto(plan)}` : ''}${zonaCorta ? ` en ${zonaCorta}` : ''}`
   return (
@@ -309,6 +324,7 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
 
   return (
     <>
+      <Barra c={c} />
       {jsonLd([
         ldBreadcrumb([
           { name: SITE_NAME, url: SITE_URL },
@@ -475,6 +491,7 @@ export function PaginaPlan({ c, p }: { c: CartillaPrepaga; p: PlanCartilla }) {
 
   return (
     <>
+      <Barra c={c} p={p} />
       {jsonLd([
         ldBreadcrumb([
           { name: SITE_NAME, url: SITE_URL },
@@ -643,6 +660,7 @@ export function PaginaPlanZona({ c, p, z }: { c: CartillaPrepaga; p: PlanCartill
 
   return (
     <>
+      <Barra c={c} p={p} />
       {jsonLd([
         ldBreadcrumb([
           { name: SITE_NAME, url: SITE_URL },

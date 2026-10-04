@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { prepagas } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
@@ -80,13 +81,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+// Barra fija "Cotizá" en el celular (4-oct-2026): las fichas de obras
+// sociales tienen tráfico y casi no dejaban contactos. Lleva al comparador
+// con Swiss Medical, la opción que se promociona con los aportes. "Con tus
+// aportes" solo donde se puede derivar (sindicales, empresariales y fichas
+// del registro); provinciales, estatales y PAMI no están en la opción de cambio.
+function BarraOs({ slug, derivable }: { slug: string; derivable: boolean }) {
+  return <BarraCotizar titulo={derivable ? 'Swiss Medical con tus aportes' : 'Swiss Medical'} origen={`obra-social:${slug}`} href="/comparador?prepaga=swiss-medical&desde=barra" />
+}
+
 export default async function ObraSocialPage({ params }: Props) {
   const { slug } = await params
   const os = obrasSociales.find((o) => o.slug === slug)
   if (!os) {
     const r = fichaRegistro(slug)
     if (!r) notFound()
-    return <FichaRegistroPage ficha={r.ficha} entidad={r.entidad} />
+    return (
+      <>
+        <FichaRegistroPage ficha={r.ficha} entidad={r.entidad} />
+        <BarraOs slug={slug} derivable />
+      </>
+    )
   }
 
   // Relacionadas (1-oct-2026): del mismo tipo primero y, entre esas, las que
@@ -175,6 +190,7 @@ export default async function ObraSocialPage({ params }: Props) {
 
   return (
     <>
+      <BarraOs slug={os.slug} derivable={os.tipo === 'sindical' || os.tipo === 'empresarial'} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Breadcrumb */}
