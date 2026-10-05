@@ -120,11 +120,19 @@ export function ComparadorLadoALado(): React.ReactElement {
   // /comparar?plan=swiss-medical/smg20 carga ese plan del lado A y, del lado
   // B, uno de otra prepaga. Se lee en el cliente para que la página siga estática.
   useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get('plan')
+    const params = new URLSearchParams(window.location.search)
+    const q = params.get('plan')
     if (!q) return
     const [prepagaSlug, planSlug] = q.split('/')
     if (!getPlan(prepagaSlug, planSlug)) return
     setLadoA({ prepagaSlug, planSlug })
+    // ?contra=prepaga/plan (4-oct-2026): "Compará los planes de X juntos"
+    // de la ficha de plan carga los dos lados, aunque sean de la misma prepaga
+    const [prepagaB, planBSlug] = (params.get('contra') ?? '').split('/')
+    if (prepagaB && planBSlug && getPlan(prepagaB, planBSlug)) {
+      setLadoB({ prepagaSlug: prepagaB, planSlug: planBSlug })
+      return
+    }
     if (prepagaSlug === ladoB.prepagaSlug) {
       setLadoB(prepagaSlug === 'swiss-medical' ? { prepagaSlug: 'osde', planSlug: '310' } : { prepagaSlug: 'swiss-medical', planSlug: 'smg20' })
     }

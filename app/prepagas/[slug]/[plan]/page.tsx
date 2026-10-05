@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
 import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
-import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
@@ -504,9 +503,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
     : undefined
 
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
-  const planIdx = planesOrdenados.findIndex(p => p.slug === planSlug)
-  const planInferior = planIdx > 0 ? planesOrdenados[planIdx - 1] : null
-  const planSuperior = planIdx < planesOrdenados.length - 1 ? planesOrdenados[planIdx + 1] : null
   const otrosPlanes = ordenarPorCartilla(slug, planesOrdenados).filter(pl => pl.slug !== planSlug)
   // Carrusel "Otros planes" (4-oct-2026): primero los de arriba del actual,
   // del más cercano al más caro; después los más económicos, del más cercano
@@ -531,6 +527,12 @@ export default async function PlanPage({ params, searchParams }: Props) {
     ...lista.filter((pl) => pl.precio <= plan.precio).sort((x, y) => y.precio - x.precio).map((pl) => tarjeta(pl, 'economico')),
   ]
   const tarjetasPlanes: TarjetaPlan[] = [...enOrden(mismaLinea), ...enOrden(otraLinea)]
+  const paresComparar = [...mismaLinea, ...otraLinea].map((otro) => {
+    const par = paresComparativaAuto().find((c) => c.prep.slug === slug && [c.plan1.slug, c.plan2.slug].includes(plan.slug) && [c.plan1.slug, c.plan2.slug].includes(otro.slug))
+    const manual = comparativasPlanes.find((c) => c.prepagaSlug === slug && [c.plan1Slug, c.plan2Slug].includes(plan.slug) && [c.plan1Slug, c.plan2Slug].includes(otro.slug))
+    const href = par ? `/prepagas/${slug}/${par.slug}` : manual ? `/prepagas/${slug}/${manual.slug}` : `/comparar?plan=${slug}/${planSlug}&contra=${slug}/${otro.slug}#planes`
+    return { otro, href }
+  })
   const planMenosCopagoSlug = getPlanMenosCopago(slug, planSlug, prep.planes)
   const planMenosCopago = planMenosCopagoSlug ? prep.planes.find((p) => p.slug === planMenosCopagoSlug) : undefined
 
@@ -945,46 +947,36 @@ export default async function PlanPage({ params, searchParams }: Props) {
         </section>
       )}
 
-      {/* Comparar con planes adyacentes */}
-      {(planInferior || planSuperior) && (
+      {/* Compará los planes de X juntos (Darío, 4-oct-2026; reemplaza "Comparar
+          con otros planes"): este plan contra cada uno de la misma prepaga.
+          Si el par tiene comparación propia va ahí; si no, al comparador
+          lado a lado con los dos planes cargados. */}
+      {paresComparar.length > 0 && (
         <section className="py-10 bg-white border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">
-            <h2 className="text-xl font-bold text-gray-900 mb-5">Comparar con otros planes</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {planInferior && (
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Compará los planes de {prep.nombre} juntos</h2>
+            <p className="text-sm text-gray-500 mb-5">El {codigoPlan(plan)} contra cada plan de {prep.nombre}: precio, copago, cartilla y coberturas, lado a lado.</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {paresComparar.map((x) => (
                 <Link
-                  href={`/prepagas/${slug}/${planInferior.slug}`}
-                  className="group flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-sm transition-all"
+                  key={x.otro.slug}
+                  href={x.href}
+                  className="group flex items-center justify-between gap-2 rounded-xl border border-gray-200 hover:border-[#E8002D]/40 hover:bg-red-50/40 px-3.5 py-3 transition-colors"
                 >
-                  <div>
-                    <div className="text-xs text-gray-400 mb-1">Plan anterior</div>
-                    <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">{planInferior.nombre}</div>
-                    <div className="text-xs text-gray-500 mt-0.5">
-                      {planInferior.copago ? 'Con copago' : 'Sin copago'} · Red {planInferior.redAbierta ? 'abierta' : 'cerrada'}
-                    </div>
-                  </div>
-                  <div className="text-right flex-shrink-0 pl-3">
-                    <NivelPrecioBadge nivel={nivelPrecio(planInferior.precio)} />
-                  </div>
+                  <span className="text-sm font-semibold text-gray-900 group-hover:text-[#E8002D]">
+                    {codigoPlan(plan)} <span className="text-gray-400 font-normal">vs</span> {codigoPlan(x.otro)}
+                  </span>
+                  <span className="text-gray-300 group-hover:text-[#E8002D]">→</span>
                 </Link>
-              )}
-              {planSuperior && (
-                <Link
-                  href={`/prepagas/${slug}/${planSuperior.slug}`}
-                  className="group flex items-center justify-between p-4 bg-red-50 rounded-xl border border-red-100 hover:border-red-200 hover:shadow-sm transition-all"
-                >
-                  <div>
-                    <div className="text-xs text-[#E8002D] mb-1 font-medium">Plan superior</div>
-                    <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">{planSuperior.nombre}</div>
-                    <div className="text-xs text-gray-500 mt-0.5">
-                      {planSuperior.copago ? 'Con copago' : 'Sin copago'} · Red {planSuperior.redAbierta ? 'abierta' : 'cerrada'}
-                    </div>
-                  </div>
-                  <div className="text-right flex-shrink-0 pl-3">
-                    <NivelPrecioBadge nivel={nivelPrecio(planSuperior.precio)} />
-                  </div>
-                </Link>
-              )}
+              ))}
+            </div>
+            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+              <Link href={`/prepagas/${slug}#diferencias-planes`} className="text-sm font-semibold text-[#E8002D] hover:underline">
+                Ver todos los planes de {prep.nombre} juntos →
+              </Link>
+              <Link href={`/comparar?plan=${slug}/${planSlug}#planes`} className="text-sm font-semibold text-gray-600 hover:text-[#E8002D] hover:underline">
+                Comparar con un plan de otra prepaga →
+              </Link>
             </div>
           </div>
         </section>
