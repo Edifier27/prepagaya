@@ -29,4 +29,6 @@ export function trackEvent(event: string, params: Record<string, unknown> = {}) 
 /** Conversión: el formulario se envió bien. `fuente` dice desde qué formulario/página. */
 export function trackLead(fuente: string, params: { prepaga?: string } = {}) {
   push('generate_lead', { fuente, ...params })
+  // Para no mostrarle más el popup de salida a quien ya dejó sus datos
+  try { localStorage.setItem('pya_lead_enviado', String(Date.now())) } catch {}
 }

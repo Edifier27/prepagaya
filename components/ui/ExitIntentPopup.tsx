@@ -5,6 +5,9 @@ import { trackLead } from '@/lib/analytics'
 import { TrustBadge } from './TrustBadge'
 
 const CUPON_CODE = 'PREPAGAYA15'
+const MINIMO_EN_SITIO = 60_000
+const INACTIVIDAD_CELULAR = 180_000
+const SIETE_DIAS = 7 * 24 * 60 * 60 * 1000
 
 export function ExitIntentPopup(): React.ReactElement | null {
   const [visible, setVisible] = useState(false)
@@ -13,27 +16,41 @@ export function ExitIntentPopup(): React.ReactElement | null {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
   const fired = useRef(false)
 
+  // Menos invasivo (Darío, 5-oct-2026: "siento que es un poco spam"):
+  // - recién después de 1 minuto en el sitio (se cuenta toda la visita);
+  // - en el celular, a los 3 minutos sin tocar la pantalla (antes 90 s);
+  // - si lo cierran, no vuelve por 7 días (antes, en cada visita);
+  // - nunca a quien ya dejó sus datos ni dentro del comparador.
   useEffect(() => {
-    const dismissed = sessionStorage.getItem('exit-popup-dismissed')
-    if (dismissed) return
+    const leer = (k: string) => { try { return localStorage.getItem(k) } catch { return null } }
+    const cerrado = Number(leer('pya_exit_popup_cerrado') ?? 0)
+    if (cerrado && Date.now() - cerrado < SIETE_DIAS) return
+    if (leer('pya_lead_enviado')) return
+    if (window.location.pathname.startsWith('/comparador')) return
 
-    const onMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 10 && !fired.current) {
-        fired.current = true
-        setTimeout(() => setVisible(true), 300)
-      }
+    let inicio = Date.now()
+    try {
+      const guardado = Number(sessionStorage.getItem('pya_visita_inicio'))
+      if (guardado) inicio = guardado
+      else sessionStorage.setItem('pya_visita_inicio', String(inicio))
+    } catch {}
+    const yaPuede = () => Date.now() - inicio >= MINIMO_EN_SITIO
+
+    const mostrar = () => {
+      if (fired.current || !yaPuede() || leer('pya_lead_enviado')) return
+      fired.current = true
+      setVisible(true)
     }
 
-    // Mobile: inactividad 90 segundos sin interacción
+    const onMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 10) setTimeout(mostrar, 300)
+    }
+
+    // Celular: inactividad sin tocar la pantalla
     let idleTimer: ReturnType<typeof setTimeout>
     const resetIdle = () => {
       clearTimeout(idleTimer)
-      idleTimer = setTimeout(() => {
-        if (!fired.current) {
-          fired.current = true
-          setVisible(true)
-        }
-      }, 90_000)
+      idleTimer = setTimeout(mostrar, INACTIVIDAD_CELULAR)
     }
 
     document.addEventListener('mouseleave', onMouseLeave)
@@ -49,7 +66,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
 
   const dismiss = () => {
     setVisible(false)
-    sessionStorage.setItem('exit-popup-dismissed', '1')
+    try { localStorage.setItem('pya_exit_popup_cerrado', String(Date.now())) } catch {}
   }
 
   const handleSubmit = async () => {
