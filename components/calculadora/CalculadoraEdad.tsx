@@ -2,11 +2,12 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
 import { formatPrecio } from '@/lib/utils'
-import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { Carrusel } from '@/components/ui/Carrusel'
+import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 
 // ─── Tramos etarios (multiplicadores sobre precio base 30 años) ───────────────
 // Basados en cuadros tarifarios promedio del mercado. Los valores reales varían
@@ -41,6 +42,8 @@ interface PlanConPrecio {
   costoReal: number
 }
 
+const PRIMERAS = ['swiss-medical', 'osde', 'premedic', 'sancor-salud']
+
 export function CalculadoraEdad() {
   const [edad, setEdad] = useState(35)
   // Simulador
@@ -67,9 +70,21 @@ export function CalculadoraEdad() {
     return result.sort((a, b) =>
       mostrarSimulador ? a.costoReal - b.costoReal : a.precioAjustado - b.precioAjustado
     )
-  }, [edad, tramo, visitasMes, medicamentos, estudiosAnio, mostrarSimulador])
+  }, [tramo, visitasMes, medicamentos, estudiosAnio, mostrarSimulador])
 
   const precioMin = planes[0]?.precioAjustado ?? 0
+  const porPrepaga = useMemo(() => {
+    const grupos = new Map<string, { prepaga: Prepaga; items: PlanConPrecio[] }>()
+    for (const x of planes) {
+      const g = grupos.get(x.prepaga.slug) ?? { prepaga: x.prepaga, items: [] }
+      g.items.push(x)
+      grupos.set(x.prepaga.slug, g)
+    }
+    const lista = [...grupos.values()]
+    const pos = (slug: string) => (PRIMERAS.includes(slug) ? PRIMERAS.indexOf(slug) : PRIMERAS.length)
+    // Las cuatro primeras en ese orden; el resto, de la más barata a la más cara
+    return lista.sort((a, b) => pos(a.prepaga.slug) - pos(b.prepaga.slug) || (a.items[0]?.precioAjustado ?? 0) - (b.items[0]?.precioAjustado ?? 0))
+  }, [planes])
   const precioMax = planes[planes.length - 1]?.precioAjustado ?? 0
 
   return (
@@ -219,7 +234,9 @@ export function CalculadoraEdad() {
         </div>
       )}
 
-      {/* ── Tabla de resultados ─────────────────────────────────────────────── */}
+      {/* ── Carrusel por prepaga (Darío, 5-oct-2026): Swiss Medical, OSDE,
+          Premedic y Sancor primero; el resto después. Cada tarjeta con el
+          precio a tu edad, sus planes y algunos beneficios. ───────────────── */}
       <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
         <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
           <h3 className="font-bold text-gray-900">
@@ -228,50 +245,55 @@ export function CalculadoraEdad() {
           <span className="text-xs text-gray-400">{PRECIO_ACTUALIZADO}</span>
         </div>
 
-        <div className="divide-y divide-gray-100">
-          {planes.map(({ prepaga, plan, precioAjustado, costoReal }, i) => (
-            <div
-              key={`${prepaga.slug}-${plan.slug}`}
-              className={`px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:bg-gray-50 transition-colors ${
-                i === 0 ? 'bg-green-50 hover:bg-green-50' : ''
-              }`}
-            >
-              <div className="flex items-start gap-3">
-                {i === 0 && (
-                  <span className="flex-shrink-0 text-xs bg-[#00875A] text-white px-2 py-0.5 rounded-full font-bold mt-0.5">
-                    Más económico
-                  </span>
-                )}
-                <div>
-                  <div className="font-semibold text-gray-900">
-                    {prepaga.nombre}
-                    <span className="text-gray-400 font-normal"> · </span>
-                    {plan.nombre}
+        <div className="p-4 sm:p-5">
+          <Carrusel
+            etiqueta="prepagas"
+            items={porPrepaga.map(({ prepaga, items }) => {
+              const desde = items[0]
+              const valor = (x: PlanConPrecio) => (mostrarSimulador ? x.costoReal : x.precioAjustado)
+              return (
+                <div key={prepaga.slug} className="h-full rounded-2xl border-2 border-gray-100 p-4 flex flex-col gap-3">
+                  <div className="flex items-center gap-3">
+                    <PrepagaLogo slug={prepaga.slug} nombre={prepaga.nombre} colorPrimario={prepaga.colorPrimario} size="sm" />
+                    <div className="min-w-0">
+                      <Link href={`/prepagas/${prepaga.slug}`} className="font-bold text-gray-900 hover:text-[#E8002D] leading-tight">{prepaga.nombre}</Link>
+                      <div className="text-xs text-gray-500">{prepaga.satisfaccion}% satisfacción</div>
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2 mt-1">
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${plan.copago ? 'bg-gray-100 text-gray-500' : 'bg-green-100 text-green-700 font-medium'}`}>
-                      {plan.copago ? 'Con copago' : 'Sin copago'}
-                    </span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${plan.redAbierta ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-500'}`}>
-                      {plan.redAbierta ? 'Red abierta' : 'Red cerrada'}
-                    </span>
+                  <div className="rounded-xl bg-gray-50 px-3 py-2">
+                    <div className="text-[11px] text-gray-500">Desde, a los {edad} años</div>
+                    <div className="text-2xl font-black text-gray-900 tabular-nums">{formatPrecio(valor(desde))}<span className="text-xs font-semibold text-gray-400">/mes</span></div>
+                    <div className="text-[11px] text-gray-500">{desde.plan.nombre}{desde.plan.copago ? ' · con copago' : ' · sin copago'}</div>
                   </div>
+                  {prepaga.pros.length > 0 && (
+                    <ul className="space-y-1 text-xs text-gray-600">
+                      {prepaga.pros.slice(0, 3).map((b) => (
+                        <li key={b} className="flex gap-1.5"><span className="text-emerald-600 font-bold">✓</span><span>{b}</span></li>
+                      ))}
+                    </ul>
+                  )}
+                  <ul className="divide-y divide-gray-100 border-t border-gray-100 text-sm">
+                    {items.slice(0, 5).map((x) => (
+                      <li key={x.plan.slug}>
+                        <Link href={`/prepagas/${prepaga.slug}/${x.plan.slug}`} className="flex items-center justify-between gap-2 py-1.5 hover:text-[#E8002D]">
+                          <span className="truncate">{x.plan.nombre}</span>
+                          <span className="font-semibold tabular-nums shrink-0">{formatPrecio(valor(x))}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  {items.length > 5 && <Link href={`/prepagas/${prepaga.slug}`} className="text-xs font-semibold text-gray-500 hover:text-[#E8002D]">+{items.length - 5} planes más</Link>}
+                  <ContratarPlanButton
+                    prepagaNombre={prepaga.nombre}
+                    fuente="calculadora-edad"
+                    label={`Cotizar ${prepaga.nombre}`}
+                    planesOpciones={items.map((x) => x.plan.nombre)}
+                    className="mt-auto w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white rounded-xl text-sm font-bold transition-colors"
+                  />
                 </div>
-              </div>
-              <div className="flex items-center gap-4 sm:flex-col sm:items-end">
-                <div className="text-right">
-                  <div className="font-black text-gray-900">{formatPrecio(mostrarSimulador ? costoReal : precioAjustado)}</div>
-                  <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
-                </div>
-                <Link
-                  href={`/prepagas/${prepaga.slug}/${plan.slug}`}
-                  className="text-sm font-semibold text-[#E8002D] hover:underline whitespace-nowrap"
-                >
-                  Ver plan →
-                </Link>
-              </div>
-            </div>
-          ))}
+              )
+            })}
+          />
         </div>
 
         <div className="px-5 py-3 bg-gray-50 border-t border-gray-100">

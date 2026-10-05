@@ -4,7 +4,6 @@ import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { prepagasEnSitioPorZona } from '@/lib/data/zonas'
 import { PRECIO_ACTUALIZADO, prepagas } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
-import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
 
 // Mapa de keywords (auditoría SEO 24-sep-2026): el home ya pelea
@@ -150,8 +149,8 @@ export default async function ComparadorPage({ searchParams }: Props) {
         />
       </section>
 
-      {/* Cotizar por prepaga — para quien ya sabe cuál quiere y no necesita el wizard */}
-      <CotizarPorPrepaga fuente="comparador-por-prepaga" />
+      {/* Sin "Cotizar por prepaga" (Darío, 5-oct-2026): el comparador queda
+          solo con el wizard */}
 
       {/* Preguntas frecuentes — texto indexable para "comparador de prepagas" */}
       <section className="py-12 bg-white border-t border-gray-100">
