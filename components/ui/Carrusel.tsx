@@ -5,6 +5,7 @@ import { useRef, type ReactNode } from 'react'
 // Carrusel genérico con flechas (compu) y deslizamiento (celular). Las
 // tarjetas llegan armadas desde el servidor y quedan todas en el HTML.
 // `itemClassName` define el ancho de cada tarjeta (ej. de a tres en la compu).
+// Todas las tarjetas quedan del alto de la más alta (Darío, 4-oct-2026).
 export function Carrusel({
   items,
   itemClassName = 'basis-[85%] sm:basis-[calc((100%-1rem)/2)] lg:basis-[calc((100%-2rem)/3)]',
@@ -37,10 +38,10 @@ export function Carrusel({
       </div>
       <div
         ref={pista}
-        className="flex items-start gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex items-stretch gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((it, i) => (
-          <div key={i} className={`snap-start shrink-0 ${itemClassName}`}>
+          <div key={i} className={`snap-start shrink-0 flex [&>*]:w-full ${itemClassName}`}>
             {it}
           </div>
         ))}
