@@ -54,7 +54,8 @@ export default function CalculadoraAportesPage() {
   const prepagas = prepagasCotizables()
   const os = [
     ...obrasSociales.map((o) => ({ slug: o.slug, nombre: o.nombre })),
-    ...FICHAS_REGISTRO.map((f) => ({ slug: f.slug, nombre: f.nombreCorto })),
+    // Sin las del registro que ya tienen ficha propia (mismo slug)
+    ...FICHAS_REGISTRO.filter((f) => !obrasSociales.some((o) => o.slug === f.slug)).map((f) => ({ slug: f.slug, nombre: f.nombreCorto })),
   ].sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
   const jsonLd = [
     {

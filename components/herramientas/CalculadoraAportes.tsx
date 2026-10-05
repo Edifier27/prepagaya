@@ -27,6 +27,8 @@ interface Props {
 interface Fila { prepaga: PrepagaCotizable; plan: PlanCotizable; valor: number; diferencia: number }
 
 const numero = (s: string) => parseInt(s.replace(/\D/g, ''), 10) || 0
+/** Descuento por 12 meses cotizando con PrepagaYa (el mismo que aplica el comparador) */
+const DESCUENTO_ASESOR = 0.15
 const miles = (n: number) => (n ? n.toLocaleString('es-AR') : '')
 
 function Calculadora({ prepagas, obrasSociales, inicialOs }: Props) {
@@ -81,6 +83,10 @@ function Calculadora({ prepagas, obrasSociales, inicialOs }: Props) {
   }
   const destacadas = [...mejores.values()].sort((a, b) => prioridad(a.prepaga.slug) - prioridad(b.prepaga.slug) || a.diferencia - b.diferencia)
   const todas = [...filas].sort((a, b) => a.diferencia - b.diferencia || a.valor - b.valor)
+  // Carteles (Darío, 5-oct-2026): sin diferencia → festejo; con diferencia →
+  // cuánto queda con el 15% por 12 meses que consigue un asesor oficial.
+  const mejor = destacadas.length ? [...destacadas].sort((a, b) => a.diferencia - b.diferencia || prioridad(a.prepaga.slug) - prioridad(b.prepaga.slug))[0] : undefined
+  const conDescuento = mejor ? Math.max(0, Math.round(mejor.valor * (1 - DESCUENTO_ASESOR)) - aporte) : 0
 
   async function enviar(d: DatosFormulario) {
     await enviarLead({
@@ -97,7 +103,6 @@ function Calculadora({ prepagas, obrasSociales, inicialOs }: Props) {
   }
 
   const campo = 'w-full rounded-xl border-2 border-gray-200 px-3 py-3 text-base bg-white focus:outline-none focus:border-[#E8002D]'
-  const precio = (n: number) => (nombre ? formatPrecio(n) : <span className="blur-[5px] select-none text-gray-300" aria-hidden>$ 000.000</span>)
 
   return (
     <div>
@@ -170,66 +175,103 @@ function Calculadora({ prepagas, obrasSociales, inicialOs }: Props) {
               Para {prov?.nombre ?? 'tu zona'} las prepagas no publican un cuadro con aportes para estas edades. Un asesor te lo cotiza. <button type="button" onClick={() => setFormAbierto(true)} className="font-semibold underline">Quiero que me contacten</button>
             </section>
           ) : (
-            <section className="rounded-2xl border-2 border-[#E8002D]/20 bg-red-50/40 p-5">
-              <h2 className="text-lg font-bold text-gray-900">
-                {cubiertos.length > 0
-                  ? `Con tus aportes, ${cubiertos.length === 1 ? 'un plan te sale' : `${cubiertos.length} planes te salen`} sin pagar diferencia`
-                  : 'Con tus aportes, pagás solo la diferencia'}
-              </h2>
-              <p className="text-sm text-gray-700 mt-1">
-                {obraSocial ? `Hoy tus aportes van a ${obraSocial}. ` : ''}Pasándolos a una prepaga, el aporte se descuenta de la cuota y el precio no lleva IVA.
-              </p>
-              <ul className="mt-4 space-y-2">
-                {destacadas.slice(0, 5).map((f) => (
-                  <li key={`${f.prepaga.slug}/${f.plan.slug}`} className="flex items-center justify-between gap-3 rounded-xl bg-white border border-gray-200 px-4 py-3">
-                    <div className="min-w-0">
-                      <div className="font-semibold text-gray-900 text-sm">{f.prepaga.nombre}</div>
-                      {nombre ? <Link href={`/prepagas/${f.prepaga.slug}/${f.plan.slug}`} className="text-xs text-[#E8002D] hover:underline">{f.plan.nombre}</Link> : <div className="text-xs text-gray-400 blur-[4px] select-none" aria-hidden>Plan 000</div>}
+            <>
+              {mejor && mejor.diferencia === 0 && (
+                <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 text-white p-5 sm:p-6 shadow-lg">
+                  <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/10" aria-hidden />
+                  <div className="absolute -right-2 bottom-2 w-16 h-16 rounded-full bg-white/10" aria-hidden />
+                  <div className="relative">
+                    <div className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-bold">
+                      <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 011.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clipRule="evenodd" /></svg>
+                      {cubiertos.length === 1 ? '1 plan cubierto' : `${cubiertos.length} planes cubiertos`}
                     </div>
-                    <div className="text-right shrink-0">
-                      <div className="font-bold text-gray-900 tabular-nums">{f.diferencia === 0 && nombre ? 'Sin diferencia' : precio(f.diferencia)}</div>
-                      <div className="text-[11px] text-gray-500">{nombre ? `${f.diferencia ? 'de diferencia' : 'lo cubren tus aportes'} · plan ${formatPrecio(f.valor)}` : 'de diferencia por mes'}</div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              {nombre ? (
-                <>
-                  <p className="text-sm text-green-900 bg-green-50 border border-green-200 rounded-xl p-3 mt-4">
-                    <strong>Listo, {nombre}.</strong> Un asesor te escribe en {TIEMPO_RESPUESTA} para confirmar tu aporte con el recibo y hacer el cambio sin que te quedes sin cobertura.
-                  </p>
-                  <button type="button" onClick={() => setVerTodos(!verTodos)} className="mt-3 text-sm font-semibold text-gray-700 hover:text-gray-900">{verTodos ? 'Ocultar' : `Ver los ${todas.length} planes`}</button>
-                  {verTodos && (
-                    <table className="mt-2 w-full text-sm">
-                      <thead><tr className="text-left text-xs text-gray-500"><th className="py-1 font-medium">Plan</th><th className="py-1 font-medium text-right">Valor con aportes</th><th className="py-1 font-medium text-right">Tu diferencia</th></tr></thead>
-                      <tbody className="divide-y divide-gray-100">
-                        {todas.map((f) => (
-                          <tr key={`${f.prepaga.slug}/${f.plan.slug}`}>
-                            <td className="py-1.5"><Link href={`/prepagas/${f.prepaga.slug}/${f.plan.slug}`} className="hover:text-[#E8002D]">{f.prepaga.nombre} {f.plan.nombre}</Link></td>
-                            <td className="py-1.5 text-right tabular-nums">{formatPrecio(f.valor)}</td>
-                            <td className="py-1.5 text-right tabular-nums font-semibold">{f.diferencia ? formatPrecio(f.diferencia) : '—'}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </>
-              ) : (
-                <button type="button" onClick={() => setFormAbierto(true)} className="mt-4 w-full py-4 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-2xl transition-colors">
-                  Ver cuánto pago de diferencia en cada plan →
-                </button>
+                    <h2 className="text-2xl sm:text-3xl font-black mt-3 leading-tight">¡No abonás diferencia!</h2>
+                    <p className="mt-2 text-emerald-50">
+                      Con tus aportes, el <strong className="text-white">{mejor.prepaga.nombre} {mejor.plan.nombre}</strong> te sale <strong className="text-white">$ 0 por mes</strong>.
+                    </p>
+                    {nombre ? (
+                      <p className="mt-4 rounded-xl bg-white/15 p-3 text-sm"><strong>Listo, {nombre}.</strong> Un asesor oficial te escribe en {TIEMPO_RESPUESTA} para confirmar tu aporte con el recibo y hacer el cambio.</p>
+                    ) : (
+                      <button type="button" onClick={() => setFormAbierto(true)} className="mt-4 w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-emerald-700 font-bold hover:bg-emerald-50 transition-colors animate-pulse hover:animate-none">
+                        Quiero pasarme sin pagar diferencia →
+                      </button>
+                    )}
+                  </div>
+                </section>
               )}
-              <p className="text-xs text-gray-500 mt-3">Valores con aportes (sin IVA) del cuadro que cada prepaga declara ante la Superintendencia de Servicios de Salud. El aporte real sale de tu recibo: el asesor lo confirma antes del cambio.</p>
-            </section>
+
+              {mejor && mejor.diferencia > 0 && (
+                <section className="rounded-2xl bg-gradient-to-br from-[#E8002D] to-[#B8001F] text-white p-5 sm:p-6 shadow-lg">
+                  <p className="text-sm text-red-100">Tu mejor opción: {mejor.prepaga.nombre} {mejor.plan.nombre}</p>
+                  <h2 className="text-2xl sm:text-3xl font-black mt-1 leading-tight">Abonás {formatPrecio(mejor.diferencia)} de diferencia</h2>
+                  <p className="mt-2 text-red-50">
+                    Consultá con un asesor oficial y obtené un <strong className="text-white">15% de descuento por 12 meses</strong>:{' '}
+                    {conDescuento === 0
+                      ? <strong className="text-white">no abonás diferencia.</strong>
+                      : <>abonás solo <strong className="text-white">{formatPrecio(conDescuento)}</strong> por mes.</>}
+                  </p>
+                  {nombre ? (
+                    <p className="mt-4 rounded-xl bg-white/15 p-3 text-sm"><strong>Listo, {nombre}.</strong> Un asesor oficial te escribe en {TIEMPO_RESPUESTA} con tu precio exacto y el descuento.</p>
+                  ) : (
+                    <button type="button" onClick={() => setFormAbierto(true)} className="mt-4 w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-[#E8002D] font-bold hover:bg-red-50 transition-colors">
+                      {conDescuento === 0 ? 'Quiero no abonar diferencia →' : 'Quiero mi 15% de descuento →'}
+                    </button>
+                  )}
+                </section>
+              )}
+
+              <section className="rounded-2xl border border-gray-200 bg-white p-5">
+                <h2 className="text-lg font-bold text-gray-900">
+                  {cubiertos.length > 0
+                    ? `Con tus aportes, ${cubiertos.length === 1 ? 'un plan te sale' : `${cubiertos.length} planes te salen`} sin pagar diferencia`
+                    : 'Con tus aportes, pagás solo la diferencia'}
+                </h2>
+                <p className="text-sm text-gray-700 mt-1">
+                  {obraSocial ? `Hoy tus aportes van a ${obraSocial}. ` : ''}Pasándolos a una prepaga, el aporte se descuenta de la cuota y el precio no lleva IVA.
+                </p>
+                <ul className="mt-4 space-y-2">
+                  {destacadas.slice(0, 5).map((f) => (
+                    <li key={`${f.prepaga.slug}/${f.plan.slug}`} className="flex items-center justify-between gap-3 rounded-xl bg-gray-50 border border-gray-100 px-4 py-3">
+                      <div className="min-w-0">
+                        <div className="font-semibold text-gray-900 text-sm">{f.prepaga.nombre}</div>
+                        <Link href={`/prepagas/${f.prepaga.slug}/${f.plan.slug}`} className="text-xs text-[#E8002D] hover:underline">{f.plan.nombre}</Link>
+                      </div>
+                      <div className="text-right shrink-0">
+                        {f.diferencia === 0
+                          ? <div className="font-bold text-emerald-700">Sin diferencia</div>
+                          : <div className="font-bold text-gray-900 tabular-nums">{formatPrecio(f.diferencia)}</div>}
+                        <div className="text-[11px] text-gray-500">{f.diferencia ? 'de diferencia' : 'lo cubren tus aportes'} · plan {formatPrecio(f.valor)}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <button type="button" onClick={() => setVerTodos(!verTodos)} className="mt-3 text-sm font-semibold text-gray-700 hover:text-gray-900">{verTodos ? 'Ocultar' : `Ver los ${todas.length} planes`}</button>
+                {verTodos && (
+                  <table className="mt-2 w-full text-sm">
+                    <thead><tr className="text-left text-xs text-gray-500"><th className="py-1 font-medium">Plan</th><th className="py-1 font-medium text-right">Valor con aportes</th><th className="py-1 font-medium text-right">Tu diferencia</th></tr></thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {todas.map((f) => (
+                        <tr key={`${f.prepaga.slug}/${f.plan.slug}`}>
+                          <td className="py-1.5"><Link href={`/prepagas/${f.prepaga.slug}/${f.plan.slug}`} className="hover:text-[#E8002D]">{f.prepaga.nombre} {f.plan.nombre}</Link></td>
+                          <td className="py-1.5 text-right tabular-nums">{formatPrecio(f.valor)}</td>
+                          <td className="py-1.5 text-right tabular-nums font-semibold">{f.diferencia ? formatPrecio(f.diferencia) : '—'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+                <p className="text-xs text-gray-500 mt-3">Valores con aportes (sin IVA) del cuadro que cada prepaga declara ante la Superintendencia de Servicios de Salud. El 15% de descuento por 12 meses es cotizando con PrepagaYa. El aporte real sale de tu recibo: el asesor lo confirma antes del cambio.</p>
+              </section>
+            </>
           )}
         </div>
       )}
 
       {formAbierto && (
         <FormularioLead
-          titulo="Tu diferencia plan por plan"
-          bajada="Te mostramos cuánto pagarías en cada plan con tus aportes y un asesor te ayuda con el cambio."
-          textoBoton="Ver mi diferencia →"
+          titulo="Hablá con un asesor oficial"
+          bajada="Te confirmamos tu aporte con el recibo, te aplicamos el 15% de descuento por 12 meses y te ayudamos con el cambio."
+          textoBoton="Quiero que me contacten →"
           onCerrar={() => setFormAbierto(false)}
           onEnviar={enviar}
         />
