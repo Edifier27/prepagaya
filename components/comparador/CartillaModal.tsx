@@ -2,8 +2,7 @@
 
 import Link from 'next/link'
 import { sanatoriosDePlan, REFERENCIA_POR_ZONA, REFERENCIA_GBA_SUBZONAS, SMG_CENTER_NOTA } from '@/lib/data/sanatorios'
-import { getCartillaInfo } from '@/lib/data/cartillas'
-import { getZona } from '@/lib/data/cartilla-zonas'
+import { getZona, CARTILLAS, linkCartillaPlan, tieneCombinacion } from '@/lib/data/cartilla-zonas'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import type { Plan, Prepaga } from '@/types'
 
@@ -32,8 +31,23 @@ interface Props {
 export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, localidadSlug, onClose, onQuiero, quieroDisabled, quieroLabel }: Props) {
   // sanatoriosDePlan ya filtra por zona: todo lo que devuelve es local.
   const resultados = sanatoriosDePlan(prepaga.slug, plan.slug, zonaKey)
-  const cartillaInfo = getCartillaInfo(prepaga.slug)
   const zonaLocal = localidadSlug ? getZona(prepaga.slug, localidadSlug) : undefined
+  // Centros de la cartilla oficial de esta localidad para este plan (4-oct-2026,
+  // Darío: en Tandil decía "todavía no tenemos verificado" teniendo la
+  // cartilla de la zona). Internación primero; si no hay, guardias.
+  const planCartilla = CARTILLAS[prepaga.slug]?.planes.find((x) => x.comparadorSlug === plan.slug || x.otrosComparadorSlugs?.includes(plan.slug))
+  const conInternacion = zonaLocal && planCartilla ? zonaLocal.centros.filter((c) => c.internacion.includes(planCartilla.id)) : []
+  const centrosZona = conInternacion.length
+    ? conInternacion
+    : zonaLocal && planCartilla ? zonaLocal.centros.filter((c) => c.guardia.includes(planCartilla.id)) : []
+  const linkPlan = linkCartillaPlan(prepaga.slug, plan.slug)
+  // Página del plan en esa zona si existe; si no (el plan tiene todos los
+  // centros de la zona), la cartilla de la zona, que marca los planes de cada centro.
+  const hrefPlanZona = zonaLocal && localidadSlug
+    ? linkPlan && tieneCombinacion(prepaga.slug, linkPlan.href.split('/').pop()!, localidadSlug)
+      ? `${linkPlan.href}/${localidadSlug}`
+      : `/cartillas/${prepaga.slug}/${localidadSlug}`
+    : null
 
   const nombresVerificados = new Set(resultados.map((r) => r.sanatorio.nombre.toLowerCase()))
   const esGBA = zonaKey === 'buenos-aires'
@@ -102,7 +116,29 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, localid
             </>
           )}
 
-          {resultados.length === 0 && (
+          {resultados.length === 0 && centrosZona.length > 0 && zonaLocal && (
+            <div className="mb-5">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+                {conInternacion.length ? 'Sanatorios para internación' : 'Guardias'} en {zonaLocal.nombre}
+              </p>
+              <div className="space-y-2.5">
+                {centrosZona.slice(0, 3).map((c) => (
+                  <div key={c.nombre} className="bg-gray-50 rounded-xl border border-gray-100 p-3.5">
+                    <div className="font-semibold text-sm text-gray-900">{c.nombre}</div>
+                    {c.sedes[0]?.direccion && <div className="text-xs text-gray-500 mt-0.5">{c.sedes[0].direccion}</div>}
+                  </div>
+                ))}
+              </div>
+              {hrefPlanZona && (
+                <Link href={hrefPlanZona} onClick={onClose} className="inline-block mt-3 text-sm font-semibold text-[#E8002D] hover:underline">
+                  {centrosZona.length > 3 ? `Ver los ${centrosZona.length} de ${plan.nombre} en ${zonaLocal.nombre}` : `Ver la cartilla de ${plan.nombre} en ${zonaLocal.nombre}`} →
+                </Link>
+              )}
+              <p className="text-[11px] text-gray-400 mt-2">Según la cartilla oficial de {prepaga.nombre}.</p>
+            </div>
+          )}
+
+          {resultados.length === 0 && centrosZona.length === 0 && (
             <div className="mb-5">
               <p className="text-sm text-gray-600 leading-relaxed mb-3">
                 Todavía no tenemos verificado qué sanatorios cubre puntualmente este plan. Esto es lo que incluye en general:
@@ -179,8 +215,17 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, localid
                 className="w-full mb-4 inline-flex items-center justify-center gap-2 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors"
               />
             )}
-            <p className="text-xs text-gray-500 mb-2">¿Querés ver el detalle completo?</p>
-            {zonaLocal ? (
+            {/* Con los sanatorios de la zona a la vista, el link ya está arriba */}
+            {!(resultados.length === 0 && centrosZona.length > 0) && <p className="text-xs text-gray-500 mb-2">¿Querés ver el detalle completo?</p>}
+            {resultados.length === 0 && centrosZona.length > 0 ? null : hrefPlanZona && zonaLocal ? (
+              <Link
+                href={hrefPlanZona}
+                className="text-sm font-semibold text-[#E8002D] hover:underline"
+                onClick={onClose}
+              >
+                Cartilla del {plan.nombre} en {zonaLocal.nombre} →
+              </Link>
+            ) : zonaLocal ? (
               <Link
                 href={`/cartillas/${prepaga.slug}/${localidadSlug}`}
                 className="text-sm font-semibold text-[#E8002D] hover:underline"
@@ -196,16 +241,6 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, localid
               >
                 Guía de cartilla de {prepaga.nombre} →
               </Link>
-            )}
-            {cartillaInfo && (
-              <a
-                href={cartillaInfo.urlCartilla}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-xs text-gray-400 hover:text-gray-600 mt-1.5 transition-colors"
-              >
-                ¿Preferís confirmarlo vos mismo? Cartilla oficial de {prepaga.nombre} ↗
-              </a>
             )}
           </div>
         </div>
