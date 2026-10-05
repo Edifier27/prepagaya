@@ -1327,38 +1327,44 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
   return (
     <div>
-      <MensajePerfil personas={personas} descuento={descuentoRate} />
+      {/* Sin el cartel de perfil arriba de los resultados (Darío, 4-oct-2026):
+          queda solo en la pantalla previa */}
       {/* Summary header — sticky en desktop (pedido de Darío, 17-sep-2026: que
           "Cotización para {nombre}" siga a la persona al bajar, en vez de
           desaparecer al scrollear). En mobile no es sticky: ahí la versión
           compacta (nombre · edad · zona) vive al lado del botón de Filtros. */}
       <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-5 text-white mb-6 lg:sticky lg:top-4 lg:z-40 lg:shadow-lg">
-        <div className="flex items-center justify-between gap-4">
+        {/* Más simple (Darío, 4-oct-2026: "mucha información, desordenada"):
+            saludo + título, el descuento en una píldora y una sola línea con
+            el grupo y la zona, que se edita con un toque. */}
+        <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <div className="text-white text-xs mb-1">Tu cotización personalizada</div>
-            <div className="font-bold text-lg leading-snug">
-              <span className="uppercase text-black">{nombre}</span>, estos son los mejores planes para vos{personas.length > 1 ? ' y tu grupo familiar' : ''}
+            <div className="text-red-100 text-xs">Hola{nombre.trim() ? `, ${nombre.trim().split(/\s+/)[0].replace(/^./, (c) => c.toUpperCase())}` : ''}</div>
+            <div className="font-bold text-lg sm:text-xl leading-tight">
+              Tus mejores planes{personas.length > 1 ? ' para tu grupo' : ''}
             </div>
-            <button
-              onClick={() => setEditandoGrupo((v) => !v)}
-              className="flex items-center gap-1.5 text-white text-sm mt-0.5 hover:underline transition-colors group"
-            >
-              <span>
-                {personas.length} persona{personas.length !== 1 ? 's' : ''} · {personas.map(p => `${p.edad} años`).join(', ')}
-                {provinciaNombre ? ` · ${provinciaNombre}` : ''}
-              </span>
-              <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 flex-shrink-0 opacity-70 group-hover:opacity-100">
-                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                <path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clipRule="evenodd" />
-              </svg>
-            </button>
           </div>
-          <div className="bg-white/15 rounded-xl px-4 py-2.5 text-center flex-shrink-0">
-            <div className="text-xs text-white mb-0.5">Descuento aplicado</div>
-            <div className="text-2xl font-black">{Math.round(descuentoRate * 100)}% OFF</div>
-            <div className="text-xs text-white">{aporteMensual > 0 ? 'más tu aporte descontado' : 'por 12 meses'}</div>
+          <div className="flex-shrink-0 rounded-xl bg-white text-[#E8002D] px-3 py-1.5 text-center leading-tight shadow-sm">
+            <div className="text-base sm:text-lg font-black">{Math.round(descuentoRate * 100)}% OFF</div>
+            <div className="text-[10px] font-semibold text-gray-500">{aporteMensual > 0 ? '+ tu aporte' : 'por 12 meses'}</div>
           </div>
         </div>
+        <button
+          onClick={() => setEditandoGrupo((v) => !v)}
+          className="mt-3 w-full flex items-center justify-between gap-2 rounded-xl bg-white/10 hover:bg-white/20 px-3 py-2 text-sm text-white transition-colors"
+        >
+          <span className="truncate">
+            {personas.length === 1 ? `${personas[0].edad} años` : `${personas.length} personas · ${personas.map((p) => p.edad).join(', ')} años`}
+            {provinciaNombre ? ` · ${provinciaNombre}` : ''}
+          </span>
+          <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs font-semibold">
+            <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
+              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+              <path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clipRule="evenodd" />
+            </svg>
+            {editandoGrupo ? 'Listo' : 'Editar'}
+          </span>
+        </button>
 
         {/* Editor de integrantes — agregar/sacar sin volver atrás en el wizard */}
         {editandoGrupo && (
