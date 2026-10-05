@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Carrusel } from '@/components/ui/Carrusel'
 import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
@@ -48,11 +49,11 @@ const faqs = [
   }] : []),
   {
     q: '¿Cuál es la prepaga más barata?',
-    a: `El plan más económico de esta tabla es ${planMasBarato.prepaga.nombre} ${planMasBarato.nombre}, desde ${formatPrecio(precioMin)}/mes para una persona de 30 años.`,
+    a: `El plan más económico de esta página es ${planMasBarato.prepaga.nombre} ${planMasBarato.nombre}, desde ${formatPrecio(precioMin)}/mes para una persona de 30 años.`,
   },
   {
     q: '¿Los precios varían según la edad?',
-    a: 'Sí. Los precios de esta tabla son para una persona de 30 años, y cada prepaga tiene su propia escala por edad: algunas suben cada cinco años y otras mantienen el precio a partir de cierta edad. Con la calculadora ves el precio para tu edad.',
+    a: 'Sí. Los precios de esta página son para una persona de 30 años, y cada prepaga tiene su propia escala por edad: algunas suben cada cinco años y otras mantienen el precio a partir de cierta edad. Con la calculadora ves el precio para tu edad.',
   },
   {
     q: '¿El precio incluye IVA?',
@@ -111,6 +112,12 @@ export default function PreciosPage(): React.ReactElement {
     return minA - minB
   })
 
+  const PRIMERAS = ['swiss-medical', 'osde', 'sancor-salud', 'premedic']
+  const prepagasCarrusel = [
+    ...PRIMERAS.map((slug) => prepagasOrdenadas.find((p) => p.slug === slug)).filter((p): p is (typeof prepagas)[number] => Boolean(p)),
+    ...prepagasOrdenadas.filter((p) => !PRIMERAS.includes(p.slug)),
+  ]
+
   const totalPlanes = prepagas.reduce((acc, p) => acc + p.planes.length, 0)
 
   return (
@@ -143,7 +150,7 @@ export default function PreciosPage(): React.ReactElement {
             <span className="text-[#E8002D]"> — {MES_ACTUAL}</span>
           </h1>
           <p className="text-gray-600 max-w-2xl text-base mb-6">
-            Tabla completa con todos los planes y precios de las {prepagas.length} principales prepagas.
+            Todos los planes y precios de las {prepagas.length} principales prepagas.
             Precios visibles sin formularios. Referencia: persona de 30 años, contratación individual.{' '}
             Fuente: cuadros tarifarios oficiales de la{' '}
             <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-800">Superintendencia de Servicios de Salud</a>
@@ -195,89 +202,6 @@ export default function PreciosPage(): React.ReactElement {
         </div>
       </section>
 
-      {/* Tabla resumen — todas las prepagas */}
-      <section className="py-10 bg-white">
-        <div className="container max-w-5xl mx-auto">
-          <div className="flex items-center justify-between mb-5">
-            <h2 className="text-xl font-bold text-gray-900">Precio más bajo por prepaga — {MES_ACTUAL}</h2>
-            <span className="text-xs text-gray-400 hidden sm:block">Persona 30 años · contratación directa con IVA</span>
-          </div>
-
-          <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="text-left px-5 py-3.5 font-semibold text-gray-700">#</th>
-                    <th className="text-left px-5 py-3.5 font-semibold text-gray-700">Prepaga</th>
-                    <th className="text-left px-5 py-3.5 font-semibold text-gray-700">Plan más económico</th>
-                    <th className="text-right px-5 py-3.5 font-semibold text-gray-700">Precio/mes</th>
-                    <th className="text-right px-5 py-3.5 font-semibold text-gray-700">Precio plan estrella</th>
-                    <th className="text-center px-5 py-3.5 font-semibold text-gray-700">Satisfacción</th>
-                    <th className="px-5 py-3.5"></th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {prepagasOrdenadas.map((p, i) => {
-                    const planMin = [...p.planes].sort((a, b) => a.precio - b.precio)[0]
-                    const planEstrella = p.planes.find(pl => pl.destacado) ?? planMin
-                    return (
-                      <tr key={p.slug} className="hover:bg-gray-50 transition-colors group">
-                        <td className="px-5 py-4 text-gray-400 font-medium">{i + 1}</td>
-                        <td className="px-5 py-4">
-                          <Link
-                            href={`/prepagas/${p.slug}`}
-                            className="flex items-center gap-2.5 group-hover:text-[#E8002D] transition-colors"
-                          >
-                            <div
-                              className="w-3 h-3 rounded-full flex-shrink-0"
-                              style={{ backgroundColor: p.colorPrimario }}
-                            />
-                            <span className="font-semibold text-gray-900 group-hover:text-[#E8002D]">
-                              {p.nombre}
-                            </span>
-                          </Link>
-                        </td>
-                        <td className="px-5 py-4 text-gray-600">{planMin.nombre}</td>
-                        <td className="px-5 py-4 text-right">
-                          <span className="font-bold text-[#E8002D]">{formatPrecio(planMin.precio)}</span>
-                        </td>
-                        <td className="px-5 py-4 text-right text-gray-500">
-                          {planEstrella.slug !== planMin.slug
-                            ? formatPrecio(planEstrella.precio)
-                            : <span className="text-gray-300">—</span>
-                          }
-                        </td>
-                        <td className="px-5 py-4 text-center">
-                          <span className={`text-xs font-bold px-2 py-1 rounded-full ${
-                            p.satisfaccion >= 80 ? 'bg-green-100 text-green-700' :
-                            p.satisfaccion >= 75 ? 'bg-red-100 text-red-700' :
-                            'bg-gray-100 text-gray-600'
-                          }`}>
-                            {p.satisfaccion}%
-                          </span>
-                        </td>
-                        <td className="px-5 py-4 text-right">
-                          <Link
-                            href={`/prepagas/${p.slug}`}
-                            className="text-xs font-semibold text-[#E8002D] hover:underline whitespace-nowrap"
-                          >
-                            Ver planes →
-                          </Link>
-                        </td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <p className="text-xs text-gray-400 mt-3">
-            * Precios orientativos para persona de 30 años contratación individual con IVA. Los precios varían según edad y zona. Actualizado: {MES_ACTUAL}.
-          </p>
-        </div>
-      </section>
-
       {/* Desglose completo por prepaga */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-5xl mx-auto">
@@ -286,11 +210,15 @@ export default function PreciosPage(): React.ReactElement {
             Hacé clic en cualquier plan para ver cobertura completa, copago y detalles.
           </p>
 
-          <div className="space-y-6">
-            {prepagasOrdenadas.map((p) => {
+          {/* Carrusel (Darío, 4-oct-2026): arranca con Swiss Medical, OSDE,
+              Sancor Salud y Premedic; el resto por precio. Todas las
+              tarjetas quedan en el HTML. */}
+          <Carrusel
+            etiqueta="prepagas"
+            items={prepagasCarrusel.map((p) => {
               const planesOrdenados = [...p.planes].sort((a, b) => a.precio - b.precio)
               return (
-                <div key={p.slug} className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+                <div key={p.slug} className="bg-white rounded-2xl border border-gray-200 overflow-hidden h-full">
                   {/* Header prepaga */}
                   <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100"
                     style={{ borderLeftWidth: 4, borderLeftColor: p.colorPrimario }}>
@@ -377,7 +305,7 @@ export default function PreciosPage(): React.ReactElement {
                 </div>
               )
             })}
-          </div>
+          />
         </div>
       </section>
 
