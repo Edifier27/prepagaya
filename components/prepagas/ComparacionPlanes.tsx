@@ -34,7 +34,11 @@ export function ComparacionPlanes({ prep, datos }: { prep: Prepaga; datos: Datos
             oficiales (ver globosDePlanes). */}
         <Carrusel
           etiqueta="planes"
-          items={filas.map((f) => (
+          items={[
+            // Línea Sport de Swiss siempre al final (Darío, 4-oct-2026)
+            ...filas.filter((f) => !f.plan.slug.startsWith('sport')),
+            ...filas.filter((f) => f.plan.slug.startsWith('sport')),
+          ].map((f) => (
             <TarjetaPlan key={f.plan.slug} f={f} globos={globos.get(f.plan.slug) ?? []} hayCartilla={hayCartilla} href={href(f.plan.slug)} />
           ))}
         />
