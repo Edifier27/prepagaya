@@ -299,12 +299,15 @@ export default function HomePage(): React.ReactElement {
                   href={`/prepagas/${prep.slug}`}
                   className="relative flex items-center gap-3 p-3 sm:flex-col sm:items-stretch sm:gap-0 sm:p-0 bg-white rounded-2xl border border-gray-200 hover:border-[#E8002D]/40 hover:shadow-lg hover:-translate-y-0.5 transition-all group overflow-hidden"
                 >
-                  {/* Cabecera: logo y puesto */}
+                  {/* Puesto: banda diagonal en la esquina (Darío, 4-oct-2026) */}
+                  <div className="pointer-events-none absolute top-0 left-0 w-20 h-20 overflow-hidden z-10" aria-label={`Puesto ${pos}`}>
+                    <div className={`absolute top-[12px] -left-[34px] w-[120px] -rotate-45 bg-gradient-to-r ${medalla} text-center text-[11px] font-black py-0.5 shadow-sm`}>
+                      #{pos}
+                    </div>
+                  </div>
+                  {/* Cabecera: logo */}
                   <div className="relative flex items-center justify-center sm:h-24 sm:bg-gradient-to-b sm:from-gray-50 sm:to-white sm:border-b sm:border-gray-100 flex-shrink-0">
                     <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="md" />
-                    <span className={`absolute -top-1 -left-1 sm:top-3 sm:left-3 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br ${medalla} flex items-center justify-center text-xs sm:text-sm font-black shadow-sm ring-2 ring-white`}>
-                      {pos}
-                    </span>
                   </div>
 
                   <div className="min-w-0 flex-1 sm:p-5 sm:pt-4 flex flex-col">
