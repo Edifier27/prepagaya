@@ -193,7 +193,7 @@
    "(****) Afiliación individual a obra social, sin adherentes. Por cada adherente, además, deberá ingresarse ese mismo importe. footer a { text-decoration: none !important; } #logoAFIPFooter { height: 72px; margin-top: -15px; } #logoAFIPFooter a { padding: 0 !important; float: none !important; margin: 0 !important; } #logosFooter { overflow: hidden; margin-bottom: 25px !important; } #logosFooter a { display: block; float: left; background-position: center center; width: 28px; height: 28px; background-size: contain; background-repeat: no-repeat; margin-right: 3px; } #logosFooter a.footer-logo-facebook { background-image: url"
   ]
  },
- "generado": "2026-09-24",
+ "generado": "2026-10-05",
  "obrasSociales": [
   {
    "codigo": "0-0150-8",
@@ -307,6 +307,24 @@
    "codigo": "1-0970-7",
    "nombre": "OBRA SOCIAL DEL PERSONAL DE IMPRENTAS, DIARIOS Y AFINES",
    "domicilio": "SAN JOSE 157",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-1130-8",
+   "nombre": "OBRA SOCIAL DE MAQUINISTAS DE TEATRO Y TELEVISION",
+   "domicilio": "AVDA CORRIENTES 1642 PISO 1 OFICINA 21",
+   "localidad": "CAPITAL FEDERAL",
+   "telefono": "",
+   "lineaGratuita": "",
+   "habilitadaOpciones": true
+  },
+  {
+   "codigo": "1-1150-6",
+   "nombre": "OBRA SOCIAL ASOCIACION PROFESIONAL DE CAPITANES Y BAQUEANOS FLUVIALES Y PERSONAL CON CONOCIMIENTO DE ZONA DE LA MARINA MERCANTE",
+   "domicilio": "ARISTOBULO DEL VALLE 319",
    "localidad": "CAPITAL FEDERAL",
    "telefono": "",
    "lineaGratuita": "",
