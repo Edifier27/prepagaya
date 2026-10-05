@@ -11,7 +11,7 @@ const zonasPrincipales = SLUGS_PRINCIPALES.map((s) => provinciasSEO.find((p) => 
 const zonasResto = provinciasSEO.filter((p) => !SLUGS_PRINCIPALES.includes(p.slug))
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio, precioDesde } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
@@ -264,8 +264,9 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      {/* ── Cotizar por prepaga — debajo del cotizador ─────────────────────── */}
-      <CotizarPorPrepaga fuente="home-por-prepaga" />
+      {/* ── Todas las prepagas — debajo del cotizador. Lleva a la ficha de cada
+          una (Darío, 4-oct-2026), así las fichas toman fuerza ── */}
+      <CotizarPorPrepaga fuente="home-por-prepaga" modo="ver" />
 
       {/* ── Ranking de prepagas: intención "mejor prepaga argentina" / precios ── */}
       <section className="py-14 bg-white border-b border-gray-100">
@@ -281,54 +282,72 @@ export default function HomePage(): React.ReactElement {
             <p className="text-gray-500 text-sm mt-2">Nuestras prepagas partner destacadas: cotizás y contratás con nosotros</p>
           </div>
 
+          {/* Tarjetas del ranking (rediseño 4-oct-2026, Darío: "mismo tamaño,
+              mejor diseño"): logo, puesto, tier, satisfacción, planes y precio
+              desde (lista oficial), con un CTA claro a la ficha. */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {prepagasRanking.slice(0, 3).map((prep, i) => {
               const planReferencia = prep.planes.find(pl => pl.destacado) ?? prep.planes[0]
               const pos = i + 1
-              const medalColor =
-                pos === 1 ? 'bg-amber-400 text-white' :
-                pos === 2 ? 'bg-gray-400 text-white' :
-                            'bg-amber-700 text-white'
+              const medalla =
+                pos === 1 ? 'from-amber-300 to-amber-500 text-amber-950' :
+                pos === 2 ? 'from-gray-200 to-gray-400 text-gray-800' :
+                            'from-orange-300 to-amber-700 text-white'
               return (
                 <Link
                   key={prep.slug}
                   href={`/prepagas/${prep.slug}`}
-                  className="flex items-center gap-3 p-3 sm:flex-col sm:items-stretch sm:gap-3 sm:p-5 bg-white rounded-2xl border-2 border-amber-200 hover:border-amber-400 transition-all group hover:shadow-md"
+                  className="relative flex items-center gap-3 p-3 sm:flex-col sm:items-stretch sm:gap-0 sm:p-0 bg-white rounded-2xl border border-gray-200 hover:border-[#E8002D]/40 hover:shadow-lg hover:-translate-y-0.5 transition-all group overflow-hidden"
                 >
-                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base font-black flex-shrink-0 ${medalColor}`}>
-                    {pos}
+                  {/* Cabecera: logo y puesto */}
+                  <div className="relative flex items-center justify-center sm:h-24 sm:bg-gradient-to-b sm:from-gray-50 sm:to-white sm:border-b sm:border-gray-100 flex-shrink-0">
+                    <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="md" />
+                    <span className={`absolute -top-1 -left-1 sm:top-3 sm:left-3 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br ${medalla} flex items-center justify-center text-xs sm:text-sm font-black shadow-sm ring-2 ring-white`}>
+                      {pos}
+                    </span>
                   </div>
 
-                  <div className="min-w-0 flex-1 sm:flex-none">
-                    {/* Posición + nombre — en mobile todo en una fila compacta */}
+                  <div className="min-w-0 flex-1 sm:p-5 sm:pt-4 flex flex-col">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors truncate">{prep.nombre}</div>
+                      <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors truncate sm:text-lg">{prep.nombre}</div>
                       {TIER_PARTNER[prep.slug] && (
-                        <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-black px-1.5 sm:px-2 py-0.5 rounded-full border flex-shrink-0"
-                          style={{ color: '#92400E', backgroundColor: '#FEF3C7', borderColor: '#FDE68A' }}>
+                        <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-black px-1.5 sm:px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 flex-shrink-0">
                           ★ {TIER_PARTNER[prep.slug]}
                         </span>
                       )}
                     </div>
 
-                    <div className="text-xs text-gray-500 mt-0.5 sm:mt-0">{prep.planes.length} planes · {prep.satisfaccion}% satisfacción</div>
-
-                    {/* Satisfaction bar */}
-                    <div className="w-full h-1 sm:h-1.5 bg-gray-100 rounded-full overflow-hidden mt-1.5 sm:mt-2">
-                      <div className="h-full bg-[#E8002D] rounded-full" style={{ width: `${prep.satisfaccion}%` }} />
+                    <div className="mt-1.5 sm:mt-3">
+                      <div className="flex items-baseline justify-between text-xs">
+                        <span className="text-gray-500">Satisfacción</span>
+                        <span className="font-bold text-gray-900 tabular-nums">{prep.satisfaccion}%</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden mt-1">
+                        <div className="h-full bg-gradient-to-r from-[#E8002D] to-[#FF4D6D] rounded-full" style={{ width: `${prep.satisfaccion}%` }} />
+                      </div>
                     </div>
 
-                    {/* Nivel de precio + arrow — solo desktop: en mobile
-                        sobraba (pedido de Darío, 17-sep-2026: la card ya
-                        tenía toda la info que necesita de un vistazo) */}
-                    <div className="hidden sm:flex items-center justify-between mt-3">
+                    <div className="hidden sm:grid grid-cols-2 gap-2 mt-4">
+                      <div className="rounded-xl bg-gray-50 px-3 py-2">
+                        <div className="text-[10px] uppercase tracking-wide text-gray-400 font-semibold">Planes</div>
+                        <div className="font-bold text-gray-900 tabular-nums">{prep.planes.length}</div>
+                      </div>
+                      <div className="rounded-xl bg-gray-50 px-3 py-2">
+                        <div className="text-[10px] uppercase tracking-wide text-gray-400 font-semibold">Desde</div>
+                        <div className="font-bold text-gray-900 tabular-nums text-sm">{formatPrecio(precioDesde(prep))}</div>
+                      </div>
+                    </div>
+                    <div className="sm:hidden text-xs text-gray-500 mt-1">{prep.planes.length} planes · desde {formatPrecio(precioDesde(prep))}</div>
+
+                    <div className="hidden sm:flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
                       <NivelPrecioBadge nivel={nivelPrecio(planReferencia.precio)} />
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"
-                        className="w-4 h-4 text-gray-300 group-hover:text-[#E8002D] transition-colors flex-shrink-0">
-                        <path d="M9 18l6-6-6-6"/>
-                      </svg>
+                      <span className="text-sm font-bold text-[#E8002D] group-hover:translate-x-0.5 transition-transform">Ver planes →</span>
                     </div>
                   </div>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"
+                    className="sm:hidden w-4 h-4 text-gray-300 group-hover:text-[#E8002D] flex-shrink-0">
+                    <path d="M9 18l6-6-6-6"/>
+                  </svg>
                 </Link>
               )
             })}
