@@ -152,6 +152,40 @@ export default async function ComparadorPage({ searchParams }: Props) {
       {/* Sin "Cotizar por prepaga" (Darío, 5-oct-2026): el comparador queda
           solo con el wizard */}
 
+      {/* Confianza debajo del comparador (Darío, 6-oct-2026): cómo funciona,
+          en tres columnas. Solo afirmaciones que el sitio ya respalda. */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-5xl mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              {
+                titulo: 'Cotización online',
+                texto: `Gratis y sin DNI: el precio exacto para tu edad y tu zona, y un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+                icono: <path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />,
+              },
+              {
+                titulo: 'Alta simplificada',
+                texto: 'Un asesor oficial te acompaña en todo el trámite con la prepaga. Pagás lo mismo que yendo directo.',
+                icono: <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />,
+              },
+              {
+                titulo: `Más de ${Math.floor(TOTAL_PLANES / 10) * 10} planes comparados`,
+                texto: `${prepagas.length} prepagas con los precios oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()} que declaran ante la Superintendencia.`,
+                icono: <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />,
+              },
+            ].map((c) => (
+              <div key={c.titulo} className="rounded-2xl border border-gray-100 bg-gray-50/60 p-5">
+                <div className="w-10 h-10 rounded-xl bg-red-50 text-[#E8002D] flex items-center justify-center mb-3">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">{c.icono}</svg>
+                </div>
+                <h2 className="font-bold text-gray-900">{c.titulo}</h2>
+                <p className="text-sm text-gray-600 leading-relaxed mt-1">{c.texto}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Preguntas frecuentes — texto indexable para "comparador de prepagas" */}
       <section className="py-12 bg-white border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
