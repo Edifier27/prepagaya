@@ -165,7 +165,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
               },
               {
                 titulo: 'Alta simplificada',
-                texto: 'Un asesor oficial te acompaña en todo el trámite con la prepaga. Pagás lo mismo que yendo directo.',
+                texto: 'Un asesor oficial te acompaña en todo el trámite con la prepaga. Cotizá online y obtené un 15% de descuento.',
                 icono: <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />,
               },
               {
