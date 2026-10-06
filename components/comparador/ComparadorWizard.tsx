@@ -656,9 +656,20 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     // 'buenos-aires' para toda la provincia): se mapea acá a la opción propia.
     const slug = geo.wizardSlug === 'buenos-aires' && geo.label.includes('Interior de Buenos Aires') ? 'buenos-aires-interior' : geo.wizardSlug
     const prov = PROVINCIAS.find((p) => p.slug === slug)
-    if (prov) setZonaSugerida({ provincia: prov, label: geo.label })
+    if (!prov) return
+    setZonaSugerida({ provincia: prov, label: geo.label })
+    // Con la zona detectada se arranca directo en las edades (6-oct-2026, GA4:
+    // la mitad abandonaba en el paso de la zona). La zona queda arriba con
+    // "Cambiar". Solo en /comparador: el wizard del home lleva a esta página.
+    if (window.location.pathname === '/comparador') {
+      setZonaKey(prov.zonaKey)
+      setProvinciaNombre(prov.nombre)
+      setZonaDetectadaLabel(geo.label)
+      setStep('edades')
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  const [zonaDetectadaLabel, setZonaDetectadaLabel] = useState<string | null>(null)
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
 
   // Precios oficiales del grupo (motor de precios, /api/precios): se piden al
@@ -1096,13 +1107,16 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     return (
       <div>
         <ProgressBar step="edades" onStepClick={setStep} />
-        <BackBtn onClick={() => setStep('zona')} />
+        {!zonaDetectadaLabel && <BackBtn onClick={() => setStep('zona')} />}
         {provinciaNombre && (
           <div className="inline-flex items-center gap-2 bg-red-50 border border-red-100 text-[#E8002D] text-xs font-semibold px-3 py-1.5 rounded-full mb-5">
             <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
             </svg>
-            {provinciaNombre}
+            {zonaDetectadaLabel ?? provinciaNombre}
+            <button type="button" onClick={() => { setZonaDetectadaLabel(null); setStep('zona') }} className="ml-1 underline font-bold hover:text-[#B8001F]">
+              Cambiar
+            </button>
           </div>
         )}
         <div className="mb-8">
