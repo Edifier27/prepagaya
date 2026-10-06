@@ -402,6 +402,18 @@ function ProgressBar({ step, onStepClick }: { step: Step; onStepClick?: (step: S
   )
 }
 
+/**
+ * Botones −/+ de la edad (6-oct-2026). Clarity, comparador en el celular: el
+ * "+" era el elemento más tocado (102 toques en 47 visitas) porque con el campo
+ * vacío arrancaba en 1 y había que tocarlo 35 veces para llegar a 35. Ahora,
+ * con la edad del titular vacía, cualquiera de los dos arranca en 30.
+ */
+function pasoEdad(edad: string, delta: 1 | -1, indice: number): string {
+  const actual = parseInt(edad, 10)
+  if (Number.isNaN(actual)) return indice === 0 ? '30' : String(Math.max(0, delta))
+  return String(Math.min(110, Math.max(0, actual + delta)))
+}
+
 function BackBtn({ onClick }: { onClick: () => void }) {
   return (
     <button onClick={onClick} className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 transition-colors mb-2">
@@ -1119,11 +1131,13 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
               <div className="flex items-center gap-2 flex-shrink-0 sm:ml-auto">
                 <button
                   type="button"
-                  onClick={() => updateEdad(p.id, String(Math.max(0, (parseInt(p.edad) || 0) - 1)))}
+                  onClick={() => updateEdad(p.id, pasoEdad(p.edad, -1, i))}
                   className="w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
                 >−</button>
                 <input
-                  type="number" min={0} max={110}
+                  type="number" min={0} max={110} inputMode="numeric"
+                  // Foco en la edad del titular al entrar al paso: el teclado numérico ya abierto
+                  autoFocus={i === 0 && !p.edad}
                   value={p.edad}
                   onChange={(e) => updateEdad(p.id, e.target.value)}
                   placeholder="Ej: 35"
@@ -1131,7 +1145,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 />
                 <button
                   type="button"
-                  onClick={() => updateEdad(p.id, String(Math.min(110, (parseInt(p.edad) || 0) + 1)))}
+                  onClick={() => updateEdad(p.id, pasoEdad(p.edad, 1, i))}
                   className="w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
                 >+</button>
                 <span className="text-sm text-gray-400 font-medium flex-shrink-0">años</span>
@@ -1376,7 +1390,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 </span>
                 <div className="flex items-center gap-1.5 flex-shrink-0">
                   <button
-                    onClick={() => updateEdad(p.id, String(Math.max(0, (parseInt(p.edad) || 0) - 1)))}
+                    onClick={() => updateEdad(p.id, pasoEdad(p.edad, -1, i))}
                     className="w-7 h-7 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white font-bold transition-colors"
                   >−</button>
                   <input
@@ -1387,7 +1401,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                     className="w-16 text-center text-sm font-bold bg-white/90 text-gray-900 rounded-lg px-1 py-1.5 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <button
-                    onClick={() => updateEdad(p.id, String(Math.min(110, (parseInt(p.edad) || 0) + 1)))}
+                    onClick={() => updateEdad(p.id, pasoEdad(p.edad, 1, i))}
                     className="w-7 h-7 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white font-bold transition-colors"
                   >+</button>
                 </div>
