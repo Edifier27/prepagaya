@@ -245,6 +245,11 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
     guardarDestino({ tipo: 'alternar-mail', cuenta: cuentaAlternarBorrador, email })
   }, [emailAlternarBorrador, cuentaAlternarBorrador, guardarDestino])
   const ultimoId = useRef(leadsIniciales[0]?.id ?? 0)
+  // Ids de los leads que todavía no salieron (kommo_estado = 'Pendiente')
+  const porEnviar = useRef<number[]>([])
+  useEffect(() => {
+    porEnviar.current = leads.filter((l) => l.kommo_estado === 'Pendiente').map((l) => l.id)
+  }, [leads])
 
   const alternar = useCallback((clave: FiltroChip, valor: string) => {
     setFiltros((f) => ({ ...f, [clave]: f[clave] === valor ? null : valor }))
@@ -255,12 +260,25 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
   // 20-sep-2026: poder forzar la actualización sin esperar los 20s).
   const refrescar = useCallback(async (notificarSiHayNuevos: boolean) => {
     try {
-      const res = await fetch(`/api/panel/leads?after=${ultimoId.current}`)
+      // Además de los nuevos, se vuelven a pedir los que siguen "por enviar",
+      // así la fila pasa sola a "Enviado al CRM" o "No enviado" cuando el cron
+      // los procesa, sin recargar el panel (7-oct-2026).
+      const desde = Math.min(ultimoId.current, ...porEnviar.current.map((id) => id - 1))
+      const res = await fetch(`/api/panel/leads?after=${desde}`)
       if (!res.ok) return
-      const { leads: nuevos } = (await res.json()) as { leads: LeadRow[] }
-      if (nuevos.length === 0) return
+      const { leads: traidos } = (await res.json()) as { leads: LeadRow[] }
+      if (traidos.length === 0) return
 
-      setLeads((prev) => [...nuevos, ...prev])
+      const nuevos = traidos.filter((l) => l.id > ultimoId.current)
+      const porId = new Map(traidos.map((l) => [l.id, l]))
+      // De los que ya estaban en pantalla solo se pisa lo que cambia el
+      // servidor por su cuenta (envío e intereses apilados), no lo que se
+      // edita desde el panel.
+      setLeads((prev) => [...nuevos, ...prev.map((l) => {
+        const s = porId.get(l.id)
+        return s ? { ...l, kommo_estado: s.kommo_estado, kommo_link: s.kommo_link, prepaga: s.prepaga, veces: s.veces, actualizado_en: s.actualizado_en } : l
+      })])
+      if (nuevos.length === 0) return
       ultimoId.current = Math.max(ultimoId.current, ...nuevos.map((l) => l.id))
 
       if (notificarSiHayNuevos && document.hidden && Notification.permission === 'granted') {
@@ -889,11 +907,33 @@ function BotonAlertas({ estado, onActivar }: { estado: EstadoAlertas; onActivar:
   )
 }
 
-// "OK (Darío)" / "OK (Gabriela) — ya era contacto" → "Darío" / "Gabriela".
+// "OK (Darío)" / "OK (Gabriela) — ya era contacto" / "OK (CRM Darío)" → "Darío" / "Gabriela".
 function extraerCuentaKommo(estado: string | null): string | null {
   if (!estado) return null
   const m = estado.match(/OK \(([^)]+)\)/)
-  return m ? m[1] : null
+  return m ? m[1].replace(/^CRM /, '') : null
+}
+
+// A dónde fue el lead, leído de kommo_estado (la columna conserva el nombre de
+// cuando solo existía Kommo): "Pendiente" · "OK (CRM Darío)" · "Error CRM
+// Darío: …" · "OK (Gabriela) — ya era contacto" · "Error: …" · "Email directo
+// a x". Pedido de Darío (7-oct-2026): que la fila diga ENVIADO o NO ENVIADO al
+// CRM en vez del ✓/⚠ de Kommo.
+type Envio = { tipo: 'pendiente' | 'enviado' | 'fallo'; texto: string; detalle?: string }
+const CLASE_ENVIO: Record<Envio['tipo'], string> = {
+  enviado: 'text-emerald-700 bg-emerald-50',
+  fallo: 'text-red-700 bg-red-50',
+  pendiente: 'text-gray-500 bg-gray-100',
+}
+function estadoEnvio(estado: string | null): Envio | null {
+  if (!estado) return null
+  if (estado === 'Pendiente') return { tipo: 'pendiente', texto: 'Por enviar', detalle: 'Sale a los 3 minutos de la última actividad de la persona' }
+  if (estado.startsWith('OK (CRM')) return { tipo: 'enviado', texto: 'Enviado al CRM' }
+  if (estado.startsWith('OK')) return { tipo: 'enviado', texto: 'Enviado a Kommo' }
+  if (estado.startsWith('Email directo')) return { tipo: 'enviado', texto: 'Enviado por mail', detalle: estado }
+  const crm = estado.match(/^Error CRM [^:]*:\s*([\s\S]*)$/)
+  if (crm) return { tipo: 'fallo', texto: 'No enviado al CRM', detalle: crm[1] }
+  return { tipo: 'fallo', texto: 'No enviado', detalle: estado.replace(/^Error:\s*/, '') }
 }
 
 // Fila compacta y plegable (pedido de Darío, 20-sep-2026: la card anterior
@@ -907,7 +947,7 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
   onActualizar: (id: number, cambios: Partial<Pick<LeadRow, 'estado' | 'notas' | 'seguimiento_en'>>) => Promise<void>
 }) {
   const cuenta = extraerCuentaKommo(lead.kommo_estado)
-  const kommoOk = lead.kommo_estado?.startsWith('OK') ?? false
+  const envio = estadoEnvio(lead.kommo_estado)
   const wa = linkWhatsapp(lead)
   const [confirmando, setConfirmando] = useState(false)
   const [eliminando, setEliminando] = useState(false)
@@ -949,9 +989,11 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
             )}
           </div>
           <div className="flex items-center gap-1.5 min-w-0 mt-0.5 text-[11px] text-gray-400">
-            <span className={`flex-shrink-0 ${kommoOk ? 'text-emerald-500' : 'text-amber-500'}`} title={kommoOk ? 'Kommo OK' : 'Kommo falló'}>
-              {kommoOk ? '✓' : '⚠'}
-            </span>
+            {envio && (
+              <span className={`flex-shrink-0 text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full ${CLASE_ENVIO[envio.tipo]}`} title={envio.detalle}>
+                {envio.texto}
+              </span>
+            )}
             <span className="flex-shrink-0 whitespace-nowrap" suppressHydrationWarning>{formatFecha(lead.creado_en)}</span>
             {vencido && <span className="flex-shrink-0" title="Seguimiento vencido">⏰</span>}
             {lead.provincia && <span className="truncate">· {lead.provincia}</span>}
@@ -990,6 +1032,11 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
           {lead.fuente && <Campo label="Fuente">{lead.fuente}</Campo>}
           {lead.veces > 1 && lead.actualizado_en && <Campo label="Última actividad"><span suppressHydrationWarning>{formatFecha(lead.actualizado_en)}</span></Campo>}
         </div>
+        {envio?.tipo === 'fallo' && (
+          <p className="mt-2 text-[11px] text-red-700 bg-red-50 rounded-lg px-2.5 py-1.5 break-words">
+            {envio.texto}{envio.detalle ? `: ${envio.detalle}` : ''}
+          </p>
+        )}
 
         {/* Estado comercial */}
         <div className="mt-3 pt-3 border-t border-gray-50">
