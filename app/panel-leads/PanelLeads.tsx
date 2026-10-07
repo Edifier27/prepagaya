@@ -170,6 +170,23 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   const [guardandoDestino, setGuardandoDestino] = useState(false)
   // Destino "CRM Asesor" (3-oct-2026, en prueba): solo se ofrece si el servidor tiene la conexión configurada
   const [crmAsesorDisponible, setCrmAsesorDisponible] = useState(false)
+  // "Probar conexión" (7-oct-2026): lead ficticio a los dos CRM, sin cambiar el destino
+  const [probandoCrm, setProbandoCrm] = useState(false)
+  async function probarCrm() {
+    setProbandoCrm(true)
+    try {
+      const r = await fetch('/api/panel/probar-crm', { method: 'POST' })
+      const d = await r.json().catch(() => null)
+      if (!r.ok) { window.alert(`No se pudo probar: ${d?.error ?? r.status}`); return }
+      const linea = (quien: string, x?: { ok: boolean; error?: string }) => `${quien}: ${x?.ok ? 'OK, el lead de prueba entró' : `ERROR — ${x?.error ?? 'sin detalle'}`}`
+      window.alert(`${linea('CRM Darío', d?.dario)}
+${linea('CRM Gabriela', d?.gabriela)}
+
+Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
+    } finally {
+      setProbandoCrm(false)
+    }
+  }
   useEffect(() => {
     fetch('/api/panel/config')
       .then((r) => (r.ok ? r.json() : null))
@@ -531,6 +548,14 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
                           {etiqueta}
                         </button>
                       ))}
+                      <button
+                        onClick={probarCrm}
+                        disabled={probandoCrm}
+                        title="Manda un lead ficticio (teléfono de prueba) al CRM de Darío y al de Gabriela, sin cambiar el destino"
+                        className="text-xs font-semibold rounded-lg px-2.5 py-1.5 text-[#0B6E5F] hover:bg-emerald-50 disabled:opacity-60 whitespace-nowrap underline"
+                      >
+                        {probandoCrm ? 'Probando…' : 'Probar conexión'}
+                      </button>
                     </>
                   )}
                 </div>
