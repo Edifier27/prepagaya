@@ -1,4 +1,5 @@
 import type { LeadRow } from '@/lib/db'
+import { normalizarCelularAR } from '@/lib/utils'
 
 // Conexión con el CRM Asesor (pedido de Darío, 3-oct-2026): destino opcional
 // "CRM Asesor" en /panel-leads, en etapa de prueba. Mientras no se elija ese
@@ -31,7 +32,9 @@ export async function mandarLeadACrmAsesor(
 
   const cuerpo = {
     nombre: lead.nombre,
-    telefono: lead.celular ?? '',
+    // Igual que a Kommo (7-oct-2026): argentino normalizado; del exterior
+    // (lead.pais) con "+" y su código de país, que es como el CRM los acepta.
+    telefono: lead.celular ? (lead.pais ? `+${lead.celular.replace(/\D/g, '')}` : `+${normalizarCelularAR(lead.celular)}`) : '',
     email: lead.email ?? '',
     // La provincia la eligió la persona en el cotizador (confiable); la zona
     // detectada es por IP (aproximada) y el CRM se la hace confirmar al lead.
