@@ -12,11 +12,16 @@ import type { LeadRow } from '@/lib/db'
 const URL_CRM = process.env.CRM_ASESOR_URL ?? ''
 const CLAVE = process.env.CRM_ASESOR_API_KEY ?? ''
 const BYPASS = process.env.CRM_ASESOR_BYPASS ?? ''
+// Cuenta de destino en el CRM (7-oct-2026): sin "asesor" el CRM lo carga en la
+// cuenta del número principal (Darío); con el email de Gabriela, en la de ella
+// (tiene que tener su número de WhatsApp conectado en el CRM; si no, el CRM
+// lo rechaza y el lead sale por mail como respaldo).
+const EMAIL_GABRIELA = process.env.CRM_ASESOR_EMAIL_GABRIELA ?? 'gabriela.lazarte@gmail.com'
 
 export const crmAsesorConfigurado = () => Boolean(URL_CRM && CLAVE)
 
 /** Manda un lead ya consolidado (el mismo que iría a Kommo) al CRM Asesor. */
-export async function mandarLeadACrmAsesor(lead: LeadRow): Promise<{ ok: boolean; error?: string }> {
+export async function mandarLeadACrmAsesor(lead: LeadRow, cuenta: 'dario' | 'gabriela' = 'dario'): Promise<{ ok: boolean; error?: string }> {
   if (!crmAsesorConfigurado()) return { ok: false, error: 'Falta CRM_ASESOR_URL o CRM_ASESOR_API_KEY en el servidor.' }
 
   const cuerpo = {
@@ -33,6 +38,7 @@ export async function mandarLeadACrmAsesor(lead: LeadRow): Promise<{ ok: boolean
     presupuesto: lead.presupuesto ?? '',
     origen: 'web',
     origen_detalle: `PrepagaYa · ${lead.fuente ?? 'web'}`,
+    ...(cuenta === 'gabriela' ? { asesor: EMAIL_GABRIELA } : {}),
   }
 
   try {

@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
   }
   const body = await req.json().catch(() => null)
   const tipo = body?.destino?.tipo
-  const TIPOS_VALIDOS = ['dario', 'gabriela', 'email', 'alternar-cuentas', 'alternar-mail', 'crm-asesor']
+  const TIPOS_VALIDOS = ['dario', 'gabriela', 'email', 'alternar-cuentas', 'alternar-mail', 'crm-dario', 'crm-gabriela', 'crm-alternar']
   if (!TIPOS_VALIDOS.includes(tipo)) {
     return NextResponse.json({ error: 'Tipo de destino inválido' }, { status: 400 })
   }
@@ -38,11 +38,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Email inválido' }, { status: 400 })
     }
     destino = { tipo: 'alternar-mail', cuenta, email }
-  } else if (tipo === 'crm-asesor') {
+  } else if (tipo === 'crm-dario' || tipo === 'crm-gabriela' || tipo === 'crm-alternar') {
     if (!crmAsesorConfigurado()) {
       return NextResponse.json({ error: 'La conexión con el CRM Asesor no está configurada' }, { status: 400 })
     }
-    destino = { tipo: 'crm-asesor' }
+    destino = { tipo }
   } else {
     destino = { tipo }
   }

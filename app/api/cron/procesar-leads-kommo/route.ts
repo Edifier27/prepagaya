@@ -63,13 +63,14 @@ export async function GET(req: NextRequest) {
     // Destino "CRM Asesor" (3-oct-2026, en prueba): va al CRM nuevo y no toca
     // Kommo. Si el CRM falla, el lead no se pierde: sale por mail a Darío con
     // el link para cargarlo en Kommo, igual que cuando falla Kommo.
-    if (destino.tipo === 'crm-asesor') {
-      const r = await mandarLeadACrmAsesor(lead)
+    if (destino.tipo === 'crm') {
+      const r = await mandarLeadACrmAsesor(lead, destino.cuenta)
+      const quien = destino.cuenta === 'gabriela' ? 'Gabriela' : 'Darío'
       if (r.ok) {
-        await marcarResultadoKommo(lead.id, 'OK (CRM Asesor)', '')
+        await marcarResultadoKommo(lead.id, `OK (CRM ${quien})`, '')
         ok++
       } else {
-        await marcarResultadoKommo(lead.id, `Error CRM Asesor: ${r.error ?? 'sin detalle'}`, '')
+        await marcarResultadoKommo(lead.id, `Error CRM ${quien}: ${r.error ?? 'sin detalle'}`, '')
         try {
           const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
           await mandarLeadPorEmail({

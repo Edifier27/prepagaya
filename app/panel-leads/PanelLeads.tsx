@@ -13,7 +13,7 @@ type DestinoLead =
   | { tipo: 'email'; email: string }
   | { tipo: 'alternar-cuentas' }
   | { tipo: 'alternar-mail'; cuenta: 'dario' | 'gabriela'; email: string }
-  | { tipo: 'crm-asesor' }
+  | { tipo: 'crm-dario' | 'crm-gabriela' | 'crm-alternar' }
 
 // Preferencias (JSON de lib/data/sondeo.ts) en una línea legible para el panel.
 const ETIQUETAS_PREFERENCIAS: Record<string, string> = {
@@ -501,26 +501,37 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
                   >
                     Cuenta + mail
                   </button>
+                  {/* CRM Asesor (7-oct-2026): igual que con Kommo, a Darío, a Gabriela o uno y uno */}
                   {crmAsesorDisponible && (
-                    <button
-                      onClick={() => {
-                        if (destino.tipo === 'crm-asesor') return
-                        if (!window.confirm('¿Mandar los leads nuevos al CRM Asesor (en prueba) en vez de a Kommo?')) return
-                        setMostrarInputEmail(false)
-                        setMostrarAlternarMail(false)
-                        guardarDestino({ tipo: 'crm-asesor' })
-                      }}
-                      disabled={guardandoDestino}
-                      aria-pressed={destino.tipo === 'crm-asesor'}
-                      title="En prueba: los leads van al CRM Asesor en vez de a Kommo"
-                      className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
-                        destino.tipo === 'crm-asesor'
-                          ? 'bg-[#0B6E5F] text-white shadow-sm'
-                          : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
-                      }`}
-                    >
-                      CRM Asesor
-                    </button>
+                    <>
+                      <span className="self-center text-[10px] font-bold uppercase tracking-wide text-[#0B6E5F] pl-2 pr-0.5">CRM</span>
+                      {([
+                        ['crm-dario', 'Darío', 'al CRM de Darío'],
+                        ['crm-gabriela', 'Gabriela', 'al CRM de Gabriela'],
+                        ['crm-alternar', 'Uno y uno', 'al CRM, uno para Darío y el siguiente para Gabriela'],
+                      ] as const).map(([tipo, etiqueta, descripcion]) => (
+                        <button
+                          key={tipo}
+                          onClick={() => {
+                            if (destino.tipo === tipo) return
+                            if (!window.confirm(`¿Mandar los leads nuevos ${descripcion} en vez de a Kommo?`)) return
+                            setMostrarInputEmail(false)
+                            setMostrarAlternarMail(false)
+                            guardarDestino({ tipo })
+                          }}
+                          disabled={guardandoDestino}
+                          aria-pressed={destino.tipo === tipo}
+                          title={`Los leads nuevos van ${descripcion}`}
+                          className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
+                            destino.tipo === tipo
+                              ? 'bg-[#0B6E5F] text-white shadow-sm'
+                              : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
+                          }`}
+                        >
+                          {etiqueta}
+                        </button>
+                      ))}
+                    </>
                   )}
                 </div>
                 {mostrarInputEmail && (
