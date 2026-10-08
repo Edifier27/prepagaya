@@ -707,6 +707,9 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     setPersonas(prev => prev.map(p => p.id === id ? { ...p, edad } : p))
   }
   const [editandoGrupo, setEditandoGrupo] = useState(false)
+  // Clarity (8-oct-2026): el "Ver precios" deshabilitado recibía clics muertos
+  // y el "+" se tocaba decenas de veces. Ahora el botón siempre responde.
+  const [faltaEdad, setFaltaEdad] = useState(false)
 
   // Modo enfocado: apenas se elige la zona y se avanza, se oculta el
   // header/footer/bottom-nav para que la cotización no tenga forma de
@@ -1149,11 +1152,12 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                   className="w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
                 >−</button>
                 <input
+                  id={`edad-${p.id}`}
                   type="number" min={0} max={110} inputMode="numeric"
                   // Foco en la edad del titular al entrar al paso: el teclado numérico ya abierto
                   autoFocus={i === 0 && !p.edad}
                   value={p.edad}
-                  onChange={(e) => updateEdad(p.id, e.target.value)}
+                  onChange={(e) => { updateEdad(p.id, e.target.value); setFaltaEdad(false) }}
                   placeholder="Ej: 35"
                   className="w-20 flex-shrink-0 text-center text-lg font-bold border-2 border-gray-200 rounded-xl px-2 py-2 focus:outline-none focus:border-[#E8002D] transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
@@ -1163,6 +1167,21 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                   className="w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
                 >+</button>
                 <span className="text-sm text-gray-400 font-medium flex-shrink-0">años</span>
+              </div>
+              {/* Atajos de edad: en Clarity el 24% de los clics eran el + y el − */}
+              <div className="flex flex-wrap gap-1.5 sm:basis-full" role="group" aria-label={`Edad rápida de ${i === 0 ? 'titular' : `integrante ${i + 1}`}`}>
+                {(i === 0 ? [25, 30, 35, 40, 45, 50, 55, 60, 65, 70] : [1, 5, 10, 18, 25, 30, 40, 50, 60, 65]).map((n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    onClick={() => { updateEdad(p.id, String(n)); setFaltaEdad(false) }}
+                    className={`px-2.5 py-1 rounded-lg border text-xs font-semibold transition-colors ${
+                      p.edad === String(n) ? 'bg-[#E8002D] border-[#E8002D] text-white' : 'border-gray-200 text-gray-500 hover:border-[#E8002D] hover:text-[#E8002D]'
+                    }`}
+                  >
+                    {n}
+                  </button>
+                ))}
               </div>
             </div>
           ))}
@@ -1176,9 +1195,21 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           </button>
         )}
 
-        <div className="flex justify-end">
-          <button onClick={() => setStep('preview')} disabled={!edadesOk}
-            className="inline-flex items-center gap-2 px-10 py-4 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-2xl transition-all shadow-md hover:shadow-lg text-base">
+        <div className="flex flex-col items-end gap-2">
+          {faltaEdad && (
+            <p role="alert" className="text-sm font-semibold text-[#E8002D]">Elegí la edad de cada integrante para ver los precios.</p>
+          )}
+          <button
+            onClick={() => {
+              if (edadesOk) { setStep('preview'); return }
+              setFaltaEdad(true)
+              const vacia = personas.find((p) => !(p.edad !== '' && parseInt(p.edad) > 0 && parseInt(p.edad) < 110))
+              if (vacia) document.getElementById(`edad-${vacia.id}`)?.focus()
+            }}
+            aria-disabled={!edadesOk}
+            className={`inline-flex items-center gap-2 px-10 py-4 font-bold rounded-2xl transition-all text-base ${
+              edadesOk ? 'bg-[#E8002D] hover:bg-[#B8001F] text-white shadow-md hover:shadow-lg' : 'bg-gray-200 text-gray-400'
+            }`}>
             Ver precios →
           </button>
         </div>

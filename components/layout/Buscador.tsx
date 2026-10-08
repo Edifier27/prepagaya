@@ -90,7 +90,7 @@ export function Buscador({ variante = 'icono' }: { variante?: 'icono' | 'barra' 
     if (variante !== 'icono') return
     const f = (e: KeyboardEvent) => {
       const escribiendo = e.target instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)
-      if ((e.key === '/' && !escribiendo) || (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey))) { e.preventDefault(); abrir() }
+      if ((e.key === '/' && !escribiendo) || (e.key?.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey))) { e.preventDefault(); abrir() }
     }
     window.addEventListener('keydown', f)
     return () => window.removeEventListener('keydown', f)

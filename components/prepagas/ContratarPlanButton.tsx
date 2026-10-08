@@ -25,7 +25,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
   const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [planElegido, setPlanElegido] = useState('')
   const [edades, setEdades] = useState('')
 
@@ -42,7 +42,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
     if (!ok) return
     setStatus('loading')
     try {
-      await fetch('/api/leads', {
+      const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -56,13 +56,16 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
           ...datosExtra,
         }),
       })
+      // Sin esto, un 4xx/5xx de la API mostraba "¡Listo!" y contaba un
+      // generate_lead falso en GA4 (8-oct-2026).
+      if (!res.ok) throw new Error(String(res.status))
       // Ya no redirige al WhatsApp del asesor — el lead solo llega por mail
       // y el asesor contacta desde ahí cuando le conviene (pedido de Darío,
       // 9-sep-2026: no quiere que el visitante le escriba directo).
       trackLead(fuente, { prepaga: interes })
       setStatus('success')
     } catch {
-      setStatus('idle')
+      setStatus('error')
     }
   }
 
@@ -161,6 +164,12 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
 
                   <TrustBadge className="mb-3" />
 
+                  {status === 'error' && (
+                    <p role="alert" className="text-sm text-red-600 mb-3">No pudimos enviarlo. Probá de nuevo en un momento.</p>
+                  )}
+                  {!ok && status !== 'error' && (
+                    <p className="text-xs text-gray-400 mb-2 text-center">Completá tu nombre y celular para continuar.</p>
+                  )}
                   <button
                     onClick={handleSubmit}
                     disabled={!ok || status === 'loading'}
