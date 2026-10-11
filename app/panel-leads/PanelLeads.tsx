@@ -426,9 +426,13 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
       .filter(([, f]) => f.vendidos > 0)
       .sort((a, b) => b[1].vendidos - a[1].vendidos)
 
+    // Desde cuándo hay datos: el lead más viejo guardado (11-oct-2026)
+    const desde = leads.reduce<string | null>((min, l) => (!min || l.creado_en < min ? l.creado_en : min), null)
+
     return {
       total: leads.length,
       hoy,
+      desde,
       porZona: contar(leads.map((l) => l.provincia)),
       porRegion: contar(leads.map((l) => partesZona(l.zona_detectada)?.region ?? null)),
       porFuente: contar(leads.map((l) => l.fuente)),
@@ -748,6 +752,7 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
 interface Stats {
   total: number
   hoy: number
+  desde: string | null
   porZona: [string, number][]
   porFuente: [string, number][]
   porMes: [string, number][]
@@ -773,6 +778,11 @@ function StatsPanel({ stats, filtros, onAlternar, onHoy, onEstado }: {
 }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 p-4 mb-3">
+      {stats.desde && (
+        <div className="mb-3 rounded-xl border border-blue-100 bg-blue-50 px-3 py-2 text-xs text-blue-800">
+          📅 Registramos datos desde el <strong>{new Date(stats.desde).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</strong>. Los contactos anteriores a esa fecha no están en el panel.
+        </div>
+      )}
       <div className="grid grid-cols-2 gap-3 mb-4">
         <div className="bg-gray-50 rounded-xl p-3">
           <div className="text-2xl font-black text-gray-900 leading-none">{stats.total}</div>
@@ -787,6 +797,28 @@ function StatsPanel({ stats, filtros, onAlternar, onHoy, onEstado }: {
           <div className={`text-[11px] mt-1 ${filtros.soloHoy ? 'text-red-100' : 'text-gray-500'}`}>Hoy · tocá para filtrar</div>
         </button>
       </div>
+
+      {/* Leads por mes (11-oct-2026): una tarjeta por mes, tocá para filtrar */}
+      {stats.porMes.length > 0 && (
+        <div className="mb-4">
+          <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">Leads por mes</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            {stats.porMes.map(([mes, n]) => {
+              const sel = filtros.mes === mes
+              return (
+                <button
+                  key={mes}
+                  onClick={() => onAlternar('mes', mes)}
+                  className={`text-left rounded-xl p-3 transition-colors ${sel ? 'bg-[#E8002D]' : 'bg-gray-50 hover:bg-red-50'}`}
+                >
+                  <div className={`text-xl font-black leading-none ${sel ? 'text-white' : 'text-gray-900'}`}>{n}</div>
+                  <div className={`text-[11px] mt-1 ${sel ? 'text-red-100' : 'text-gray-500'}`}>{mesLabel(mes)}</div>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Embudo comercial: tocá un estado para filtrar */}
       <div className="mb-4">
@@ -821,19 +853,6 @@ function StatsPanel({ stats, filtros, onAlternar, onHoy, onEstado }: {
           </div>
         )}
       </div>
-
-      {stats.porMes.length > 0 && (
-        <div className="mb-4">
-          <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">Por mes</div>
-          <div className="flex flex-wrap gap-1.5">
-            {stats.porMes.map(([mes, n]) => (
-              <ChipFiltro key={mes} activo={filtros.mes === mes} onClick={() => onAlternar('mes', mes)}>
-                {mesLabel(mes)} <span className={filtros.mes === mes ? 'text-red-100' : 'text-gray-400'}>· {n}</span>
-              </ChipFiltro>
-            ))}
-          </div>
-        </div>
-      )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <StatBreakdown titulo="Por zona elegida" items={stats.porZona} activo={filtros.zona} onSelect={(v) => onAlternar('zona', v)} />

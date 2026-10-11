@@ -345,7 +345,9 @@ export async function marcarResultadoKommo(id: number, estado: string, link: str
   }
 }
 
-export async function listarLeads(limite = 300): Promise<LeadRow[]> {
+// Sin tope práctico (11-oct-2026): con LIMIT 300 el panel contaba solo los
+// últimos 300 y el total y los meses se quedaban clavados.
+export async function listarLeads(limite = 10000): Promise<LeadRow[]> {
   if (!sql) return []
   await asegurarTablas()
   const rows = await sql`SELECT * FROM leads WHERE eliminado_en IS NULL ORDER BY creado_en DESC LIMIT ${limite}`
