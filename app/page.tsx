@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SelectorPlanesConPrepagas } from '@/components/prepagas/SelectorPlanes'
-import { datosSelector } from '@/lib/selector-planes'
 import { Buscador } from '@/components/layout/Buscador'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO, prepagasEnSitioPorZona } from '@/lib/data/zonas'
@@ -128,9 +126,6 @@ const TIER_PARTNER: Record<string, string> = {
   'sancor-salud': 'INTERMEDIA',
   'premedic': 'ECONÓMICA',
 }
-
-// Prepagas de la card "Elegí tu plan": en el orden de PRIORIDAD_PARTNERS, después OSDE y Medifé
-const SELECTOR_PREPAGAS = ['swiss-medical', 'premedic', 'avalian', 'sancor-salud', 'osde', 'medife']
 
 export default function HomePage(): React.ReactElement {
   const prepagasRanking = RANKING_ORDER
@@ -272,16 +267,6 @@ export default function HomePage(): React.ReactElement {
       {/* ── Todas las prepagas — debajo del cotizador. Lleva a la ficha de cada
           una (Darío, 4-oct-2026), así las fichas toman fuerza ── */}
       <CotizarPorPrepaga fuente="home-por-prepaga" modo="ver" />
-
-      {/* ── Elegí tu plan (Darío, 11-oct-2026: "como la página de Jeep"): una
-          card por prepaga con botones por plan; al tocar uno cambia la card ── */}
-      <section id="planes" className="py-12 bg-gray-50 border-b border-gray-100">
-        <div className="container max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 mb-1 text-center">Elegí tu plan</h2>
-          <p className="text-sm text-gray-500 mb-6 text-center">Tocá cada plan y mirá qué cambia: precio, copago, cartilla y lo que suma. Datos oficiales de cada prepaga.</p>
-          <SelectorPlanesConPrepagas lista={SELECTOR_PREPAGAS.map((s) => datosSelector(s)).filter((d) => d !== null)} origen="home" />
-        </div>
-      </section>
 
       {/* ── Ranking de prepagas: intención "mejor prepaga argentina" / precios ── */}
       <section className="py-14 bg-white border-b border-gray-100">
