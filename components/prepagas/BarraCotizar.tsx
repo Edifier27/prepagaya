@@ -31,13 +31,11 @@ export function BarraCotizar({ titulo, href, origen }: { titulo: string; href: s
         href={href}
         tabIndex={visible ? 0 : -1}
         onClick={() => trackEvent('barra_cotizar_click', { origen })}
-        className="flex items-center justify-between gap-3 rounded-2xl bg-[#E8002D] px-4 py-3 text-white shadow-xl"
+        className="flex items-center justify-between gap-3 rounded-2xl bg-[#E8002D] px-4 py-2 text-white shadow-xl"
       >
-        <span className="min-w-0">
-          <span className="block truncate text-sm font-bold">Cotizá {titulo}</span>
-          <span className="block truncate text-[11px] text-red-100">15% OFF online · gratis y sin DNI</span>
-        </span>
-        <span className="flex-shrink-0 rounded-xl bg-white px-3 py-2 text-sm font-bold text-[#E8002D]">Ver mi precio →</span>
+        {/* Una sola línea (11-oct-2026): ocupa menos pantalla en el celular */}
+        <span className="min-w-0 truncate text-sm font-bold">Cotizá {titulo} <span className="font-semibold text-red-100">· 15% OFF</span></span>
+        <span className="flex-shrink-0 rounded-xl bg-white px-3 py-1.5 text-sm font-bold text-[#E8002D]">Ver mi precio →</span>
       </Link>
     </div>
   )

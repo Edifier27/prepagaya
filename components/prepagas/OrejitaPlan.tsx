@@ -34,9 +34,10 @@ export function OrejitaPlan({ lado, etiqueta, destino, texto, nota, href, hrefCo
   const der = lado === 'derecha'
 
   return (
-    // Celular: arriba de la barra "Cotizá" y la navegación de abajo. Compu: a media altura.
+    // Solo en compu, a media altura (11-oct-2026): en el celular tapaban el
+    // texto y ahora el pase de plan a plan está en "Elegí tu plan", arriba.
     <div
-      className={`fixed z-30 bottom-[9.5rem] lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 flex items-end lg:items-center ${der ? 'right-0' : 'left-0'}`}
+      className={`fixed z-30 top-1/2 -translate-y-1/2 hidden lg:flex items-center ${der ? 'right-0' : 'left-0'}`}
     >
       {abierta ? (
         <div className={`${der ? 'mr-3' : 'ml-3'} w-[min(20rem,calc(100vw-2rem))] rounded-2xl bg-white border border-gray-200 shadow-2xl p-4`}>
