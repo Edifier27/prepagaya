@@ -5,6 +5,7 @@ import { codigoSeisDigitos, nombreLegible, REGISTRO_VERIFICADO, type EntidadRegi
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/components/obras-sociales/PasateConTusAportes'
 import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
+import { AportesCta } from '@/components/obras-sociales/AportesCta'
 
 // Ficha de obra social armada con el registro de la SSSalud (lib/data/
 // fichas-registro.ts). Todo lo que dice sale del registro o del nombre
@@ -69,26 +70,26 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
             {nombreLegible(e.nombre).replace(/^\S+ - /, '')} es la obra social {f.actividad.startsWith('el ') ? `del ${f.actividad.slice(3)}` : `de ${f.actividad}`}. La tienen por defecto quienes trabajan en esa actividad en relación de dependencia{e.opcion ? ', y otros trabajadores pueden elegirla con la opción de cambio' : ''}.
           </p>
 
-          <dl className="mt-6 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl border border-gray-200 bg-white p-4">
+          <dl className="mt-6 grid grid-cols-2 gap-2 sm:gap-3">
+            <div className="rounded-xl border border-gray-200 bg-white p-3 sm:p-4">
               <dt className="text-xs text-gray-500">Código de obra social</dt>
-              <dd className="text-2xl font-black text-gray-900 tabular-nums">{codigo}</dd>
+              <dd className="text-xl sm:text-2xl font-black text-gray-900 tabular-nums">{codigo}</dd>
               <dd className="text-xs text-gray-500">RNAS {e.codigo}</dd>
             </div>
             {e.telefono && (
-              <div className="rounded-xl border border-gray-200 bg-white p-4">
+              <div className="rounded-xl border border-gray-200 bg-white p-3 sm:p-4">
                 <dt className="text-xs text-gray-500">Teléfono de la sede</dt>
-                <dd className="text-lg font-bold text-gray-900"><a href={`tel:${e.telefono.split('/')[0].replace(/[^\d]/g, '')}`} className="hover:text-[#E8002D]">{e.telefono}</a></dd>
+                <dd className="text-sm sm:text-lg font-bold text-gray-900 break-words"><a href={`tel:${e.telefono.split('/')[0].replace(/[^\d]/g, '')}`} className="hover:text-[#E8002D]">{e.telefono}</a></dd>
               </div>
             )}
             {e.domicilio && (
-              <div className="rounded-xl border border-gray-200 bg-white p-4">
+              <div className="rounded-xl border border-gray-200 bg-white p-3 sm:p-4">
                 <dt className="text-xs text-gray-500">Sede</dt>
                 <dd className="text-sm font-semibold text-gray-900">{e.domicilio}{e.localidadSede ? `, ${e.localidadSede}` : ''}</dd>
               </div>
             )}
             {e.web && (
-              <div className="rounded-xl border border-gray-200 bg-white p-4">
+              <div className="rounded-xl border border-gray-200 bg-white p-3 sm:p-4">
                 <dt className="text-xs text-gray-500">Sitio oficial</dt>
                 <dd className="text-sm font-semibold"><a href={e.web} target="_blank" rel="noopener noreferrer" className="text-[#E8002D] hover:underline break-all">{e.web.replace(/^https?:\/\/(www\.)?/, '')}</a></dd>
               </div>
@@ -97,6 +98,7 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
           <p className="text-xs text-gray-500 mt-3">
             Razón social: {e.razonSocial}. Fuente: <a href={e.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline">Registro Nacional de Agentes del Seguro de la SSSalud</a>, datos verificados el {fecha}.
           </p>
+          <AportesCta osNombre={f.nombreCorto} osSlug={f.slug} />
         </div>
       </section>
 

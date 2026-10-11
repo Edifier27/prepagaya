@@ -10,7 +10,7 @@ import {
   nombreZonaTitulo,
   slugPlan,
 } from '@/lib/data/cartilla-zonas'
-import { PaginaPlan, PaginaZona, anio, faqsZona, mesAnio, planCorto } from '@/components/cartillas/PaginasCartillaZona'
+import { PaginaPlan, PaginaZona, anio, mesAnio, planCorto } from '@/components/cartillas/PaginasCartillaZona'
 
 // Segundo nivel del silo de cartillas por zona:
 //   /cartillas/osde/gba-zona-norte   → cartilla de la zona ("cartilla osde zona norte")
@@ -38,8 +38,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (plan) {
     const pc = planCorto(plan)
     return {
-      title: `Cartilla ${c.prepagaNombre} ${pc} ${anio(c)}: sanatorios y ${c.labelGuardia.toLowerCase()} por zona`,
-      description: `Cartilla del ${plan.label} de ${c.prepagaNombre}: todos los sanatorios para internación y ${c.labelGuardia.toLowerCase()} por zona (CABA, GBA e interior), con dirección y teléfono. Datos oficiales de ${mesAnio(c)}.`,
+      // Títulos de hasta ~60 caracteres y descripción que no se corta (11-oct-2026):
+      // Google corta lo que pasa de ese largo y en el celular se ve todavía menos.
+      title: { absolute: `Cartilla ${c.prepagaNombre} ${pc} ${anio(c)}: sanatorios por zona` },
+      description: `Sanatorios y ${c.labelGuardia.toLowerCase()} del ${plan.label} de ${c.prepagaNombre} en CABA, GBA y el interior, con dirección y teléfono. Cartilla oficial de ${mesAnio(c)}.`,
       alternates: { canonical: `${SITE_URL}/cartillas/${slug}/${zona}` },
       keywords: [
         `cartilla ${c.prepagaNombre.toLowerCase()} ${pc.toLowerCase()}`,
@@ -53,10 +55,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!z) return {}
   const corto = nombreZonaTitulo(slug, z)
   const idx = indiceZonas(slug).find((x) => x.slug === z.slug)
-  const faq = faqsZona(c, z)[0]
+  // Antes la descripción era la primera respuesta del FAQ cortada a 120
+  // caracteres ("Según el buscador oficial consultado el 22/09/2026, en
+  // Ciudad de Buenos Aires Swiss Medical tiene 27 sanatorios para…"). Ahora
+  // arranca con los números de la zona (11-oct-2026).
+  const internacion = z.centros.filter((x) => x.internacion.length > 0).length
+  const guardias = z.centros.filter((x) => x.guardia.length > 0).length
+  const numeros = [
+    internacion ? `${internacion} sanatorio${internacion === 1 ? '' : 's'} con internación` : '',
+    guardias ? `${guardias} ${guardias === 1 ? 'centro' : 'centros'} con ${c.labelGuardia.toLowerCase()}` : '',
+  ].filter(Boolean).join(' y ')
   return {
-    title: `Cartilla ${c.prepagaNombre} ${corto} ${anio(c)}: sanatorios y ${c.labelGuardia.toLowerCase()} por plan`,
-    description: `${faq ? faq.a.slice(0, 120).replace(/\s+\S*$/, '') + '…' : `Cartilla de ${c.prepagaNombre} en ${z.nombre}.`} Dirección, teléfono y qué plan incluye cada uno. Datos oficiales de ${mesAnio(c)}.`,
+    title: { absolute: `Cartilla ${c.prepagaNombre} ${corto} ${anio(c)}: sanatorios por plan` },
+    description: `${numeros ? `${c.prepagaNombre} en ${corto}: ${numeros}` : `Cartilla de ${c.prepagaNombre} en ${corto}`}, con dirección, teléfono y desde qué plan. Cartilla oficial de ${mesAnio(c)}.`,
     alternates: { canonical: `${SITE_URL}/cartillas/${slug}/${z.slug}` },
     ...(idx && !idx.indexable ? { robots: { index: false, follow: true } } : {}),
     keywords: [

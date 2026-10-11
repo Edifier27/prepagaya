@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { coberturasMarca, getCoberturaMarca } from '@/lib/data/coberturas-marca'
@@ -247,6 +248,7 @@ export default async function CoberturaMarcaPage({ params }: Props) {
           </div>
         </div>
       </section>
+      {prep && <BarraCotizar titulo={prep.nombre} origen={`cobertura:${slug}/${prepaga}`} href={`/comparador?prepaga=${prep.slug}&desde=barra`} />}
     </>
   )
 }

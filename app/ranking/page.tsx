@@ -61,7 +61,8 @@ const faqs = [
 ]
 
 export const metadata: Metadata = {
-  title: `Mejores prepagas de Argentina ${ANIO}: ranking por categoría y precio`,
+  // "las 10 mejores prepagas de argentina" es como más se busca (11-oct-2026)
+  title: { absolute: `Las 10 mejores prepagas de Argentina ${ANIO}: ranking y precios` },
   description: `¿Cuál es la mejor prepaga? Ranking ${MES} por categoría: mejor en general, más económica y mejor cartilla, con precio oficial y satisfacción declarada.`,
   alternates: {
     canonical: `${SITE_URL}/ranking`,

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { comparativas } from '@/lib/data/comparativas'
@@ -8,17 +9,28 @@ import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, 
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
+import { PARES_CRUZADOS, comparacionCruzada } from '@/lib/comparativas-cruzadas'
+import { ComparacionCruzadaPage } from '@/components/comparativas/ComparacionCruzadaPage'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  return comparativas.map((c) => ({ slug: c.slug }))
+  return [...comparativas.map((c) => ({ slug: c.slug })), ...PARES_CRUZADOS.map((p) => ({ slug: p.slug }))]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
+  const cruzada = comparacionCruzada(slug)
+  if (cruzada) {
+    return {
+      title: { absolute: cruzada.titulo },
+      description: cruzada.descripcion,
+      alternates: { canonical: `${SITE_URL}/comparativas/${slug}` },
+      openGraph: { title: cruzada.titulo, description: cruzada.descripcion, type: 'article', images: [OG_IMAGE] },
+    }
+  }
   const comp = comparativas.find((c) => c.slug === slug)
   if (!comp) return {}
   return {
@@ -40,6 +52,8 @@ function precioMin(p: Prepaga): number {
 
 export default async function ComparativaPage({ params }: Props) {
   const { slug } = await params
+  const cruzada = comparacionCruzada(slug)
+  if (cruzada) return <ComparacionCruzadaPage c={cruzada} />
   const comp = comparativas.find((c) => c.slug === slug)
   if (!comp) notFound()
 
@@ -327,6 +341,25 @@ export default async function ComparativaPage({ params }: Props) {
       </section>
 
       {/* FAQ */}
+      {/* Plan por plan (11-oct-2026): comparaciones entre planes de las dos marcas */}
+      {PARES_CRUZADOS.some((x) => [x.a[0], x.b[0]].sort().join() === [p1.slug, p2.slug].sort().join()) && (
+        <section className="py-8 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">Plan por plan</h2>
+            <div className="flex flex-wrap gap-2">
+              {PARES_CRUZADOS.filter((x) => [x.a[0], x.b[0]].sort().join() === [p1.slug, p2.slug].sort().join()).map((x) => {
+                const cc = comparacionCruzada(x.slug)
+                return cc ? (
+                  <Link key={x.slug} href={`/comparativas/${x.slug}`} className="text-sm px-4 py-2 rounded-xl border border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] font-semibold text-gray-800">
+                    {cc.a.nombre} vs {cc.b.nombre} →
+                  </Link>
+                ) : null
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes</h2>
@@ -380,6 +413,7 @@ export default async function ComparativaPage({ params }: Props) {
           </Link>
         </div>
       </section>
+      <BarraCotizar titulo={`${p1.nombre} o ${p2.nombre}`} origen={`comparativa:${slug}`} href={`/comparador?prepaga=${p1.slug === 'swiss-medical' ? p2.slug : p1.slug}&desde=barra`} />
     </>
   )
 }

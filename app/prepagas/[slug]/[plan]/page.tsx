@@ -431,11 +431,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // absolute: sin "| PrepagaYa", para que Google lo muestre completo.
     title: {
       absolute: escalaMeta
-        ? `${prep.nombre} ${codigoPlan(plan)}: cuánto sale por edad y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`
+        // Precio en el título (11-oct-2026): las búsquedas "smg20 precio 2026",
+        // "osde 210 precio" tenían impresiones y 0 clics con el título sin monto
+        ? `${prep.nombre} ${codigoPlan(plan)}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`
         : `${prep.nombre} ${plan.nombre}: cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()} y qué cubre`,
     },
     description: escalaMeta
-      ? `${prep.nombre} ${codigoPlan(plan)} en ${PRECIO_ACTUALIZADO.toLowerCase()}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes hasta los ${escalaMeta.rangos[0].hasta} años (lista oficial SSSalud, ${regionTexto(escalaMeta.region)}). ${plan.copago ? 'Con copago' : 'Sin copago'}, red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Precio por edad, qué cubre y sanatorios de tu zona.`
+      ? `Precio oficial del ${codigoPlan(plan)} de ${prep.nombre}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes hasta los ${escalaMeta.rangos[0].hasta} años. ${plan.copago ? 'Con copago' : 'Sin copago'}. Precio por edad, qué cubre y sanatorios. Cotizá con 15% OFF.`
       : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}${plan.fuentePrecio === 'sssalud' ? ', lista oficial SSSalud' : ''}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
     keywords: [

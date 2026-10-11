@@ -37,11 +37,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // cartilla oficial cargada, se dice que es la oficial por zona y por plan.
   const oficial = getCartilla(slug)
   return {
+    // 11-oct-2026: "osde cartilla" tenía 3.257 impresiones y 1 clic con el
+    // título largo (Google lo cortaba). Título corto con lo que la web
+    // oficial no da: buscar el sanatorio y ver desde qué plan está.
     title: oficial
-      ? `Cartilla ${prep.nombre} 2026: sanatorios y guardias por zona y por plan (oficial)`
+      ? { absolute: `Cartilla ${prep.nombre} 2026 por plan: buscá tu sanatorio` }
       : `Cartilla ${prep.nombre} 2026: sanatorios, guardias y cómo consultarla`,
     description: oficial
-      ? `Cartilla de ${prep.nombre} con datos oficiales: qué sanatorios y guardias hay en tu zona y desde qué plan está cada centro. Buscá tu sanatorio, mirá la cartilla de tu plan y cotizá gratis.`
+      ? `Buscá tu sanatorio o guardia de ${prep.nombre} y fijate desde qué plan está, zona por zona. Cartilla oficial con dirección y teléfono.`
       : `Cartilla de ${prep.nombre}: cómo consultarla online, qué plan necesitás para cada sanatorio y cómo comparar la red antes de contratar. Actualizado ${PRECIO_ACTUALIZADO}.`,
     alternates: { canonical: `${SITE_URL}/cartillas/${slug}` },
     keywords: [

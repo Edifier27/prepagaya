@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { AportesCta } from '@/components/obras-sociales/AportesCta'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import type { OsCartilla } from '@/lib/data/sindicales-cartillas/os'
 import { registroDeObraSocial } from '@/lib/data/registro-sssalud'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
@@ -309,11 +311,42 @@ export function PaginaCartillaSindical({ os, c }: { os: OsCartilla; c: CartillaS
 
       <Preguntas faq={faq} />
       <Cta os={os} />
+      <BarraCotizar
+        titulo={registroDeObraSocial(os.slug)?.codigo ? 'Swiss Medical con tus aportes' : 'Swiss Medical'}
+        origen={`cartilla-os:${os.slug}`}
+        href="/comparador?prepaga=swiss-medical&desde=barra"
+      />
     </>
   )
 }
 
 // ── Provincia ───────────────────────────────────────────────────────────────
+
+// El mismo centro aparece una vez por cada número de la calle que declara
+// (Clínica Imac en Díaz Vélez 4363, 4364, 4365 y 4368): se muestra una sola
+// tarjeta con todas las direcciones y la suma de lo que atiende (11-oct-2026).
+function agrupar(xs: InstitucionCartilla[]): InstitucionCartilla[] {
+  const out = new Map<string, InstitucionCartilla & { doms: string[] }>()
+  for (const i of xs) {
+    const clave = `${i.n.toLowerCase()}|${i.tel ?? ''}`
+    const prev = out.get(clave)
+    if (!prev) {
+      out.set(clave, { ...i, t: [...i.t], doms: i.dom ? [i.dom] : [] })
+      continue
+    }
+    for (const t of i.t) if (!prev.t.includes(t)) prev.t.push(t)
+    if (i.inf) prev.inf = true
+    if (i.dom && !prev.doms.includes(i.dom)) prev.doms.push(i.dom)
+  }
+  return [...out.values()].map(({ doms, ...i }) => ({ ...i, dom: doms.length > 1 ? unirDirecciones(doms) : doms[0] }))
+}
+
+// "Av Diaz Velez 4363", "Av Diaz Velez 4364" → "Av Diaz Velez 4363, 4364"
+function unirDirecciones(doms: string[]): string {
+  const m = doms.map((d) => d.match(/^(.*\D)\s(\d+)$/))
+  if (m.every((x) => x && x[1] === m[0]![1])) return `${m[0]![1]} ${m.map((x) => x![2]).join(', ')}`
+  return doms.join(' · ')
+}
 
 function Institucion({ i, extra, osSlug }: { i: InstitucionCartilla; extra?: string; osSlug?: string }) {
   const sanatorio = osSlug ? sanatorioConPagina(osSlug, i.n, i.dom) : undefined
@@ -403,6 +436,7 @@ export function PaginaCartillaProvincia({ os, c, p }: { os: OsCartilla; c: Carti
             {p.profesionales > 0 ? `, más ${fmt(p.profesionales)} profesionales en consultorio` : ''}
             {p.farmacias > 0 ? ` y ${fmt(p.farmacias)} farmacias` : ''}.
           </p>
+          <AportesCta osNombre={os.nombre} osSlug={os.slug} derivable={!!registroDeObraSocial(os.slug)?.codigo} />
           {locs.length > 1 && (
             <div className="mt-5">
               <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Ir a tu localidad</div>
@@ -424,7 +458,7 @@ export function PaginaCartillaProvincia({ os, c, p }: { os: OsCartilla; c: Carti
             <div key={l.loc} id={slugLoc(l.loc)} className="scroll-mt-20">
               <h2 className="text-lg font-bold text-gray-900 mb-3">{os.nombre} en {l.loc}</h2>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {p.instituciones.filter((i) => i.loc === l.loc).map((i) => <Institucion key={`${i.n}-${i.dom}`} i={i} osSlug={os.slug} />)}
+                {agrupar(p.instituciones.filter((i) => i.loc === l.loc)).map((i) => <Institucion key={`${i.n}-${i.tel}-${i.dom}`} i={i} osSlug={os.slug} />)}
               </ul>
             </div>
           ))}
@@ -479,6 +513,11 @@ export function PaginaCartillaProvincia({ os, c, p }: { os: OsCartilla; c: Carti
 
       <Preguntas faq={faq} />
       <Cta os={os} />
+      <BarraCotizar
+        titulo={registroDeObraSocial(os.slug)?.codigo ? 'Swiss Medical con tus aportes' : 'Swiss Medical'}
+        origen={`cartilla-os:${os.slug}/${p.slug}`}
+        href="/comparador?prepaga=swiss-medical&desde=barra"
+      />
     </>
   )
 }
