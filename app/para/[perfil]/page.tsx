@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { perfiles } from '@/lib/data/perfiles'
@@ -384,6 +385,7 @@ export default async function PerfilPage({ params }: Props) {
           </Link>
         </div>
       </section>
+      <BarraCotizar titulo="tu prepaga" origen={`perfil:${perfil}`} href="/comparador?prepaga=swiss-medical&desde=barra" />
     </>
   )
 }

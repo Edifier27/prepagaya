@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { AportesCta } from '@/components/obras-sociales/AportesCta'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import {
   entidadesRegistro, entidadRegistro, codigoSeisDigitos, grupoDe, registroDeObraSocial,
@@ -124,6 +126,7 @@ export default function CodigosObrasSocialesPage() {
           <p className="text-xs text-gray-500 mt-3">
             Fuente: <a href="https://www.sssalud.gob.ar/index.php?cat=agsis&page=listRnos" target="_blank" rel="noopener noreferrer" className="underline">SSSalud — Registro Nacional de Agentes del Seguro</a>. Datos verificados el {fecha}.
           </p>
+          <AportesCta />
 
           <h2 className="text-lg font-bold text-gray-900 mt-8 mb-3">Los más buscados</h2>
           <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -212,6 +215,7 @@ export default function CodigosObrasSocialesPage() {
           </div>
         </div>
       </section>
+      <BarraCotizar titulo="Swiss Medical con tus aportes" origen="obras-sociales:codigos" href="/comparador?prepaga=swiss-medical&desde=barra" />
     </>
   )
 }

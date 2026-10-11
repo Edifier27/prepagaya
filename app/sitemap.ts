@@ -20,6 +20,7 @@ import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
 import { paresComparativaAuto } from '@/lib/comparativas-auto'
+import { PARES_CRUZADOS } from '@/lib/comparativas-cruzadas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { PRECIOS_UPDATE, CONTENT_UPDATE } from '@/lib/utils'
 
@@ -101,7 +102,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ])
 
-  const comparativaRoutes: MetadataRoute.Sitemap = comparativas.map((c) => ({
+  const comparativaRoutes: MetadataRoute.Sitemap = [...comparativas, ...PARES_CRUZADOS].map((c) => ({
     url: `${BASE}/comparativas/${c.slug}`,
     lastModified: PRECIOS_UPDATE,
     changeFrequency: 'monthly' as const,

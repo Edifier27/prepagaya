@@ -55,7 +55,7 @@ function buscar(prep: Preparada[], q: string): { lista: Preparada[]; parcial: bo
   }
   // Sin coincidencia completa: lo que tenga más palabras (de 3+ letras) en común
   const utiles = tokens.filter((tk) => tk.length >= 3)
-  if (utiles.length < 2) return { lista: [], parcial: false }
+  if (utiles.length < 2) return aproximada(prep, tokens, puntuar)
   let mejor = 0
   const parciales: { p: Preparada; n: number; s: number }[] = []
   for (const p of prep) {
@@ -65,6 +65,39 @@ function buscar(prep: Preparada[], q: string): { lista: Preparada[]; parcial: bo
     parciales.push({ p, n: encontradas.length, s: puntuar(p, encontradas) })
   }
   const lista = parciales.filter((x) => x.n === mejor).sort((a, b) => b.s - a.s).slice(0, 8).map((x) => x.p)
+  return lista.length ? { lista, parcial: true } : aproximada(prep, tokens, puntuar)
+}
+
+// Errores de tipeo (11-oct-2026): "Medicis", "osogra", "OSDE poasadas"
+// quedaban sin resultados. Último intento: palabras de 4+ letras que se
+// parezcan (1 letra de diferencia, 2 si la palabra es larga) a alguna del título.
+function distancia(a: string, b: string, max: number): number {
+  if (Math.abs(a.length - b.length) > max) return max + 1
+  let prev = Array.from({ length: b.length + 1 }, (_, j) => j)
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i]
+    let minFila = i
+    for (let j = 1; j <= b.length; j++) {
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1))
+      minFila = Math.min(minFila, cur[j])
+    }
+    if (minFila > max) return max + 1
+    prev = cur
+  }
+  return prev[b.length]
+}
+
+function aproximada(prep: Preparada[], tokens: string[], puntuar: (p: Preparada, tks: string[]) => number): { lista: Preparada[]; parcial: boolean } {
+  const largos = tokens.filter((tk) => tk.length >= 4 && !/^\d+$/.test(tk))
+  if (!largos.length) return { lista: [], parcial: false }
+  const res: { p: Preparada; n: number; s: number }[] = []
+  for (const p of prep) {
+    const palabras = p.t.split(/\s+/)
+    const encontradas = largos.filter((tk) => p.todo.includes(tk) || palabras.some((w) => w.length >= 4 && distancia(tk, w, tk.length >= 7 ? 2 : 1) <= (tk.length >= 7 ? 2 : 1)))
+    if (encontradas.length) res.push({ p, n: encontradas.length, s: puntuar(p, encontradas) })
+  }
+  const mejor = Math.max(0, ...res.map((x) => x.n))
+  const lista = res.filter((x) => x.n === mejor).sort((a, b) => b.s - a.s).slice(0, 8).map((x) => x.p)
   return { lista, parcial: lista.length > 0 }
 }
 
