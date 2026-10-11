@@ -21,7 +21,6 @@ import { comparativasPlanes, getComparativaPlanes, getComparativaParaPlan, type 
 import { ComparativaPlanesPage, comparativaPlanesMetadata } from '@/components/prepagas/ComparativaPlanesPage'
 import { paresComparativaAuto, ordenPlanes } from '@/lib/comparativas-auto'
 import { OrejitaPlan, type OrejitaDatos } from '@/components/prepagas/OrejitaPlan'
-import { ElegirPlan, type EscalonPlan, type OpcionPlan } from '@/components/prepagas/ElegirPlan'
 import { CarruselPlanes, type TarjetaPlan } from '@/components/prepagas/CarruselPlanes'
 import type { Prepaga } from '@/types'
 
@@ -359,76 +358,6 @@ function orejitasPlan(prep: Prepaga, plan: Plan) {
   return { derecha, izquierda }
 }
 
-// "Elegí tu plan" (Darío, 11-oct-2026): la escalera de planes de la línea y
-// las opciones "¿Qué buscás?" con la recomendación de cada una. Mismos datos
-// que las orejitas (cuadro SSSalud, fichas oficiales, cartillas).
-function elegirPlanDatos(prep: Prepaga, plan: Plan): { escalera: EscalonPlan[]; opciones: OpcionPlan[] } {
-  const linea = lineaDePlan(plan.slug)
-  let orden = linea === 'principal'
-    ? ordenPlanes(prep)
-    : prep.planes.filter((x) => lineaDePlan(x.slug) === linea).sort((a, b) => a.precio - b.precio)
-  if (!orden.some((x) => x.slug === plan.slug)) orden = [...orden, plan].sort((a, b) => a.precio - b.precio)
-  const precio30 = (pl: Plan) => {
-    const e = escalaPorEdad(prep.slug, pl.slug, 'caba')
-    const v = e?.rangos.find((r) => r.desde <= 30 && 30 <= r.hasta)?.precio
-    return v ? formatPrecio(v) : null
-  }
-  const escalera: EscalonPlan[] = orden.map((pl) => ({
-    slug: pl.slug, codigo: codigoPlan(pl), precio: precio30(pl), copago: pl.copago, href: `/prepagas/${prep.slug}/${pl.slug}`, actual: pl.slug === plan.slug,
-  }))
-  const idx = orden.findIndex((x) => x.slug === plan.slug)
-  const cod = codigoPlan(plan)
-  const mayus = (t: string) => t.replace(/^\S/, (c) => c.toUpperCase())
-  const opciones: OpcionPlan[] = []
-
-  const anterior = idx > 0 ? orden[idx - 1] : undefined
-  const dAnt = anterior ? diferencia30(prep, anterior, plan) : null
-  if (anterior && dAnt && dAnt.monto > 0) {
-    const cod0 = codigoPlan(anterior)
-    const pierde = ventajas(prep, anterior, plan).slice(0, 4)
-    opciones.push({
-      id: 'menos', pestana: 'Pagar menos', titulo: `Elegí el ${cod0}`, bueno: 'menos',
-      diferencia: `${formatPrecio(dAnt.monto)} menos por mes a los 30 años`,
-      gana: [`La cuota más baja que el ${cod}`],
-      pierde: [...(anterior.edadMaxima ? [`Solo se puede contratar hasta los ${anterior.edadMaxima} años`] : []), ...pierde.map((x) => `Dejás de tener ${x.replace(' más para', ' para')}`)],
-      href: `/prepagas/${prep.slug}/${anterior.slug}`, hrefComparar: hrefComparacion(prep, anterior, plan) ?? `/comparar?plan=${prep.slug}/${plan.slug}&contra=${prep.slug}/${anterior.slug}#planes`, destino: cod0,
-    })
-  }
-  const siguiente = idx >= 0 ? orden[idx + 1] : undefined
-  if (siguiente) {
-    const cod2 = codigoPlan(siguiente)
-    const d = diferencia30(prep, plan, siguiente)
-    const suma = ventajas(prep, plan, siguiente).slice(0, 4)
-    opciones.push({
-      id: 'mas', pestana: 'Más cobertura', titulo: `Elegí el ${cod2}`, bueno: 'mas',
-      diferencia: d.monto > 0 ? `${formatPrecio(d.monto)} más por mes a los 30 años` : undefined,
-      gana: suma.length ? suma.map(mayus) : [siguiente.descripcion],
-      pierde: [],
-      href: `/prepagas/${prep.slug}/${siguiente.slug}`, hrefComparar: hrefComparacion(prep, plan, siguiente) ?? `/comparar?plan=${prep.slug}/${plan.slug}&contra=${prep.slug}/${siguiente.slug}#planes`, destino: cod2,
-    })
-  }
-  if (plan.copago) {
-    const sinCopago = orden.slice(idx + 1).find((x) => !x.copago)
-    if (sinCopago && sinCopago.slug !== siguiente?.slug) {
-      const cod3 = codigoPlan(sinCopago)
-      const d = diferencia30(prep, plan, sinCopago)
-      opciones.push({
-        id: 'sin-copago', pestana: 'Sin copago', titulo: `Elegí el ${cod3}`, bueno: 'mas',
-        diferencia: d.monto > 0 ? `${formatPrecio(d.monto)} más por mes a los 30 años` : undefined,
-        gana: ['Consultas sin copago', ...ventajas(prep, plan, sinCopago).filter((x) => x !== 'consultas sin copago').slice(0, 3).map(mayus)],
-        pierde: [],
-        href: `/prepagas/${prep.slug}/${sinCopago.slug}`, hrefComparar: `/comparar?plan=${prep.slug}/${plan.slug}&contra=${prep.slug}/${sinCopago.slug}#planes`, destino: cod3,
-      })
-    }
-  }
-  opciones.push({
-    id: 'este', pestana: `Me quedo con el ${cod}`, titulo: `El ${cod} es para vos si…`, bueno: 'igual',
-    gana: getPerfilDelPlan(plan).map((x) => x.titulo),
-    pierde: [],
-  })
-  return { escalera, opciones }
-}
-
 function buildPlanFAQs(plan: Plan, prep: Prepaga) {
   return [
     {
@@ -556,7 +485,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
   if (!prep || !plan) notFound()
 
   const orejitas = orejitasPlan(prep, plan)
-  const elegir = elegirPlanDatos(prep, plan)
   const { provincia } = await searchParams
   const cartillaPlanLink = linkCartillaPlan(prep.slug, plan.slug)
   // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba") ya
@@ -768,16 +696,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
           <p className="text-gray-600 text-sm leading-relaxed mb-5">{plan.descripcion}</p>
 
-          {/* Escalera de planes y "¿Qué buscás?" (11-oct-2026). Reemplaza los
-              tres recuadros (15% OFF, copago, satisfacción), que repetían lo
-              que ya dicen el botón y las etiquetas de arriba. */}
-          <ElegirPlan
-            prepaga={prep.nombre}
-            actual={codigoPlan(plan)}
-            escalera={elegir.escalera}
-            opciones={elegir.opciones}
-            origen={`plan:${slug}/${planSlug}`}
-          />
         </div>
       </section>
 
