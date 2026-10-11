@@ -83,7 +83,7 @@ export function ComparacionPlanes({ prep, datos }: { prep: Prepaga; datos: Datos
   )
 }
 
-type Globo = { texto: string; tono: 'rojo' | 'verde' | 'azul' | 'violeta' }
+export type Globo = { texto: string; tono: 'rojo' | 'verde' | 'azul' | 'violeta' }
 
 /**
  * Qué destaca a cada plan, solo con los datos de la comparación:
@@ -92,7 +92,7 @@ type Globo = { texto: string; tono: 'rojo' | 'verde' | 'azul' | 'violeta' }
  * - por cobertura (fichas oficiales): en el primer plan (por precio) que la
  *   tiene, "Suma X"; si ya estaba en uno más barato con otro detalle, "Mejor en X".
  */
-function globosDePlanes(datos: Datos): Map<string, Globo[]> {
+export function globosDePlanes(datos: Datos): Map<string, Globo[]> {
   const out = new Map<string, Globo[]>()
   const poner = (slug: string, g: Globo) => out.set(slug, [...(out.get(slug) ?? []), g])
   poner(datos.entrada.plan.slug, { texto: 'Mejor precio', tono: 'verde' })
