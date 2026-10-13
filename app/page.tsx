@@ -23,7 +23,7 @@ import { ZonaBanner } from '@/components/ui/ZonaBanner'
 // descripción entra en los ~155 caracteres que muestra Google (la general
 // del sitio tenía 180 y se cortaba).
 export const metadata: Metadata = {
-  title: { absolute: `Comparador de Prepagas Argentina 2026 con Precios Reales — ${SITE_NAME}` },
+  title: { absolute: `Comparador de Prepagas 2026 con Precios Reales — ${SITE_NAME}` },
   description: `Compará todas las prepagas de Argentina con el precio oficial de ${PRECIO_ACTUALIZADO.toLowerCase()}: planes, coberturas y cartillas por zona. Cotizá gratis y sin DNI.`,
   alternates: { canonical: SITE_URL },
 }

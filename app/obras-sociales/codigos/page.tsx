@@ -28,7 +28,7 @@ const codigoDe = (slug: string) => {
 }
 
 export const metadata: Metadata = {
-  title: 'Códigos de obras sociales y prepagas para AFIP/ARCA (2026)',
+  title: 'Códigos de obras sociales y prepagas AFIP/ARCA 2026',
   description: `Buscá el código de tu obra social o prepaga: Swiss Medical ${codigoDe('swiss-medical')}, OSDE ${codigoDe('osde')}, OSECAC ${codigoDe('osecac')} y ${conCodigo.length - 3} más, del registro oficial de la SSSalud.`,
   alternates: { canonical: URL },
   openGraph: {
