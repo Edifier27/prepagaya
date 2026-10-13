@@ -15,6 +15,9 @@ const masEstable = rankingOficial[0]
 // Partners que todavía no declararon el mes (para aclararlo en la tabla)
 const sinDeclarar = oficial ? ['swiss-medical', 'premedic', 'avalian', 'sancor-salud', 'osde'].filter((s) => !oficial.prepagas[s]) : []
 
+// Precio "desde" del enlace a /prepagas-economicas: sale de los planes con precio oficial SSSalud.
+const precioMinimoOficial = Math.min(...prepagas.flatMap((p) => p.planes).filter((pl) => pl.fuentePrecio === 'sssalud').map((pl) => pl.precio))
+
 export const metadata: Metadata = {
   title: oficial
     ? `Aumento de prepagas en ${oficial.label}: cuánto sube cada una (dato oficial)`
@@ -430,7 +433,7 @@ export default function AumentosPage() {
             </Link>
             <Link href="/prepagas-economicas" className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
               <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">Las prepagas más económicas</div>
-              <div className="text-xs text-gray-400 mt-1">Desde $105.000/mes →</div>
+              <div className="text-xs text-gray-400 mt-1">Desde {formatPrecio(precioMinimoOficial)}/mes →</div>
             </Link>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Beneficios Impositivos de la Prepaga Corporativa: Deducción de Ganancias',
-  description: 'Cómo deducir de Ganancias la cobertura médica de tus empleados: qué puede deducir la empresa, qué puede deducir cada empleado, y los límites que fija AFIP.',
+  description: 'Cómo deducir de Ganancias la cobertura médica de tus empleados: qué puede deducir la empresa, qué puede deducir cada empleado, y los límites que fija ARCA.',
   alternates: { canonical: `${SITE_URL}/empresas/beneficios-impositivos` },
   keywords: ['deducir prepaga empleados ganancias', 'beneficios impositivos plan corporativo', 'prepaga gasto deducible empresa', 'deduccion ganancias cobertura medica empleados'],
 }
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: '¿El empleado también puede deducir lo que paga de su bolsillo?',
-    a: 'Sí, los aportes a cuotas médico-asistenciales (incluida la parte de un plan corporativo que paga el propio empleado) están entre los conceptos deducibles de la Ganancias de cuarta categoría, con el límite porcentual que fija AFIP sobre la ganancia neta del período.',
+    a: 'Sí, los aportes a cuotas médico-asistenciales (incluida la parte de un plan corporativo que paga el propio empleado) están entre los conceptos deducibles de la Ganancias de cuarta categoría, con el límite porcentual que fija ARCA sobre la ganancia neta del período.',
   },
   {
     q: '¿Cambia algo si es plan corporativo particular en vez de derivación de aportes?',
@@ -84,7 +84,7 @@ export default function BeneficiosImpositivosPage() {
             </div>
             <div className="bg-gray-50 rounded-2xl border border-gray-100 p-5">
               <h2 className="text-lg font-bold text-gray-900 mb-2">Del lado del empleado</h2>
-              <p className="text-sm text-gray-600 leading-relaxed">Si el empleado paga una parte de su bolsillo (por ejemplo, para sumar a su grupo familiar), ese monto entra entre los conceptos deducibles de su Ganancias de cuarta categoría, junto con otros aportes a cuotas médico-asistenciales. AFIP fija un límite porcentual sobre la ganancia neta del período — no es 100% ilimitado.</p>
+              <p className="text-sm text-gray-600 leading-relaxed">Si el empleado paga una parte de su bolsillo (por ejemplo, para sumar a su grupo familiar), ese monto entra entre los conceptos deducibles de su Ganancias de cuarta categoría, junto con otros aportes a cuotas médico-asistenciales. ARCA fija un límite porcentual sobre la ganancia neta del período — no es 100% ilimitado.</p>
             </div>
             <div className="bg-gray-50 rounded-2xl border border-gray-100 p-5">
               <h2 className="text-lg font-bold text-gray-900 mb-2">Por qué conviene definir bien la estructura del convenio desde el principio</h2>
@@ -94,7 +94,7 @@ export default function BeneficiosImpositivosPage() {
 
           <div className="bg-blue-50 border-l-4 border-blue-500 rounded-r-2xl p-5 mb-10">
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong>Importante:</strong> esta página resume el criterio general de tratamiento impositivo, no reemplaza el asesoramiento de tu contador o estudio contable. Los porcentajes y límites de deducción los fija y actualiza periódicamente AFIP — confirmá los valores vigentes antes de tomar una decisión.
+              <strong>Importante:</strong> esta página resume el criterio general de tratamiento impositivo, no reemplaza el asesoramiento de tu contador o estudio contable. Los porcentajes y límites de deducción los fija y actualiza periódicamente ARCA — confirmá los valores vigentes antes de tomar una decisión.
             </p>
           </div>
 

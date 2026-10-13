@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     q: '¿Qué documentación pide Swiss Medical para dar de alta el convenio corporativo?',
-    a: 'El formulario de Ingresos Brutos, el estatuto de la empresa, el último formulario 931 de AFIP con el comprobante de pago, y una nómina con los datos básicos de cada empleado (nombre, apellido, edad y sueldo bruto). Con eso se arma la propuesta a medida.',
+    a: 'El formulario de Ingresos Brutos, el estatuto de la empresa, el último formulario 931 de ARCA con el comprobante de pago, y una nómina con los datos básicos de cada empleado (nombre, apellido, edad y sueldo bruto). Con eso se arma la propuesta a medida.',
   },
 ]
 
