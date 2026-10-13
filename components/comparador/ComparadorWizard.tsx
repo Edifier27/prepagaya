@@ -744,6 +744,10 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   // Preview countdown
   const [countdown, setCountdown] = useState(3)
   const [showPopup, setShowPopup] = useState(false)
+  // Clarity (13-oct-2026): en el celular el botón del popup recibía toques
+  // estando desactivado (16 en 68 visitas) y sin decir qué faltaba. Ahora
+  // responde siempre y, si falta algo, lo marca debajo de cada campo.
+  const [intentoDatos, setIntentoDatos] = useState(false)
 
   // Results filters
   const [activeCobs, setActiveCobs] = useState<Set<CobId>>(new Set())
@@ -960,7 +964,17 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     const n = parseInt(p.edad)
     return p.edad !== '' && !isNaN(n) && n > 0 && n < 110
   })
-  const popupOk = nombre.trim().length > 0 && esCelularArgentinoValido(celular) && (email.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+  const faltaNombre = nombre.trim().length === 0
+  const faltaCelular = !esCelularArgentinoValido(celular)
+  const emailMal = email.trim() !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
+  const popupOk = !faltaNombre && !faltaCelular && !emailMal
+
+  function marcarFaltantes(enfocar: boolean) {
+    setIntentoDatos(true)
+    if (!enfocar) return
+    const id = faltaNombre ? 'lead-nombre' : faltaCelular ? 'lead-celular' : emailMal ? 'lead-email' : null
+    if (id) document.getElementById(id)?.focus()
+  }
 
   // Frase en lenguaje natural para el mensaje de WhatsApp ("una persona de
   // 35 años" / "un grupo de 3 personas (35, 8 y 5 años)") — pensada para que
@@ -1043,7 +1057,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   }
 
   async function handleVerPrecios() {
-    if (!popupOk) return
+    if (!popupOk) { marcarFaltantes(true); return }
     setLeadStatus('loading')
     try {
       await sendEmail(buildPayload())
@@ -1289,7 +1303,8 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
         {/* Popup — fixed overlay, no close button */}
         {showPopup && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" />
+            {/* Tocar afuera no cierra (el precio se ve después de dejar los datos): marca qué falta */}
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" onClick={() => marcarFaltantes(false)} />
             <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 max-w-sm w-full">
 
               <div className="w-14 h-14 bg-gradient-to-br from-[#E8002D] to-[#B8001F] rounded-2xl flex items-center justify-center mx-auto mb-5">
@@ -1304,9 +1319,10 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
               <div className="space-y-3 mb-5">
                 <div>
                   <label className="block text-xs font-semibold text-gray-600 mb-1">Nombre *</label>
-                  <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)}
-                    placeholder="Tu nombre"
-                    className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors" />
+                  <input id="lead-nombre" type="text" value={nombre} onChange={(e) => setNombre(e.target.value)}
+                    placeholder="Tu nombre" autoComplete="given-name" aria-invalid={intentoDatos && faltaNombre}
+                    className={`w-full border-2 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors ${intentoDatos && faltaNombre ? 'border-[#E8002D] bg-red-50/40' : 'border-gray-200'}`} />
+                  {intentoDatos && faltaNombre && <p className="text-[11px] font-semibold text-[#E8002D] mt-1">Falta tu nombre.</p>}
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-gray-600 mb-1">Celular *</label>
@@ -1316,11 +1332,13 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
                       </svg>
                     </span>
-                    <input type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
-                      placeholder="11 2345-6789"
-                      className="w-full border-2 border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors" />
+                    <input id="lead-celular" type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
+                      placeholder="11 2345-6789" autoComplete="tel-national" inputMode="tel" aria-invalid={intentoDatos && faltaCelular}
+                      className={`w-full border-2 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors ${intentoDatos && faltaCelular ? 'border-[#E8002D] bg-red-50/40' : 'border-gray-200'}`} />
                   </div>
-                  {celular.trim().length > 0 && !esCelularArgentinoValido(celular) && (
+                  {intentoDatos && faltaCelular ? (
+                    <p className="text-[11px] font-semibold text-[#E8002D] mt-1">{celular.trim() ? 'Revisá el número: con código de área, por ejemplo 11 2345-6789.' : 'Falta tu celular, con código de área.'}</p>
+                  ) : celular.trim().length > 0 && faltaCelular && (
                     <p className="text-[11px] text-amber-600 mt-1">Revisá el número — parece incompleto o inválido.</p>
                   )}
                 </div>
@@ -1333,10 +1351,11 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                         <path d="M22 6l-10 7L2 6"/>
                       </svg>
                     </span>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                      placeholder="tu@email.com" autoComplete="email"
-                      className="w-full border-2 border-gray-200 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors" />
+                    <input id="lead-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                      placeholder="tu@email.com" autoComplete="email" aria-invalid={intentoDatos && emailMal}
+                      className={`w-full border-2 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors ${intentoDatos && emailMal ? 'border-[#E8002D] bg-red-50/40' : 'border-gray-200'}`} />
                   </div>
+                  {intentoDatos && emailMal && <p className="text-[11px] font-semibold text-[#E8002D] mt-1">Revisá el email o dejalo vacío.</p>}
                 </div>
               </div>
 
@@ -1346,8 +1365,8 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
               <TrustBadge className="mb-3" />
 
-              <button onClick={handleVerPrecios} disabled={!popupOk || leadStatus === 'loading'}
-                className="w-full py-4 bg-[#E8002D] hover:bg-[#B8001F] disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-2xl transition-all shadow-lg text-base flex items-center justify-center gap-2">
+              <button onClick={handleVerPrecios} disabled={leadStatus === 'loading'} aria-disabled={!popupOk}
+                className={`w-full py-4 font-bold rounded-2xl transition-all shadow-lg text-base flex items-center justify-center gap-2 disabled:cursor-wait ${popupOk ? 'bg-[#E8002D] hover:bg-[#B8001F] text-white' : 'bg-gray-200 text-gray-500'}`}>
                 {leadStatus === 'loading' ? (
                   <><svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg> Procesando...</>
                 ) : 'Ver mi resultado →'}
@@ -1359,6 +1378,10 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 </svg>
                 Tu información es privada · Sin compromiso
               </p>
+              <button type="button" onClick={() => { setShowPopup(false); setStep('edades') }}
+                className="block mx-auto mt-3 text-xs font-semibold text-gray-500 underline underline-offset-2 hover:text-[#E8002D]">
+                ← Cambiar edades
+              </button>
             </div>
           </div>
         )}
