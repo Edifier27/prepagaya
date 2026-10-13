@@ -2095,7 +2095,15 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
                     {/* Precio + botón en la misma fila */}
                     <div className={`flex items-center justify-between gap-3 border-t border-gray-100 ${grande ? 'mt-4 pt-4' : 'mt-3 pt-3'}`}>
-                      <div className="min-w-0">
+                      {/* El precio con candado también pide la cotización (13-oct-2026,
+                          Clarity: la gente tocaba el precio, el "% OFF" y el "/mes"
+                          esperando verlo y no pasaba nada: clics muertos) */}
+                      <button
+                        type="button"
+                        onClick={() => { if (!(isAccedido && planAccedidoStatus !== 'idle')) handleAccederPlan(res) }}
+                        className="min-w-0 text-left cursor-pointer"
+                        aria-label={`Ver el precio de ${res.prepaga.nombre} ${res.plan.nombre}`}
+                      >
                         <div className="flex items-baseline gap-1.5 flex-wrap">
                           {res.precioGrupal > precioFinal(res.precioDesc) && (
                             <span className="text-xs text-gray-400 line-through blur-[3px] select-none" aria-hidden>{formatPrecio(res.precioGrupal)}</span>
@@ -2103,7 +2111,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                           <PrecioBloqueado texto={<>{formatPrecio(precioFinal(res.precioDesc))}<span className="text-xs font-medium text-gray-400">/mes*</span></>} />
                         </div>
                         <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoRate * 100)}% OFF</div>
-                      </div>
+                      </button>
                       {isAccedido && planAccedidoStatus === 'success' ? (
                         <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center max-w-[160px]">
                           ¡Listo! En breve te enviamos la cotización
