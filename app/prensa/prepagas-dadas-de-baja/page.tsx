@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // Informe de prensa (29-sep-2026, a pedido de Darío): qué prepagas dio de
 // baja la Superintendencia y por qué — hay volumen de búsqueda real
@@ -100,7 +101,7 @@ export default function PrepagasDadasDeBajaPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">

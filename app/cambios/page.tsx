@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: `¿A qué prepaga conviene cambiarse en 2026? Guía por empresa`,
@@ -49,7 +50,7 @@ const itemListSchema = [
 export default function CambiosPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(itemListSchema) }} />
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-50 to-white py-10 border-b border-gray-100">

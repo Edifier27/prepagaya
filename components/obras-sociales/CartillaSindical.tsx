@@ -5,6 +5,7 @@ import type { OsCartilla } from '@/lib/data/sindicales-cartillas/os'
 import { registroDeObraSocial } from '@/lib/data/registro-sssalud'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { sanatorioConPagina } from '@/lib/data/sanatorios-obras-sociales'
+import { ldJson } from '@/lib/jsonld'
 import {
   contar,
   especialidadesDestacadas,
@@ -215,7 +216,7 @@ export function PaginaCartillaSindical({ os, c }: { os: OsCartilla; c: CartillaS
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(os, c, faq)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd(os, c, faq)) }} />
       <Migas os={os} />
 
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-10">
@@ -421,7 +422,7 @@ export function PaginaCartillaProvincia({ os, c, p }: { os: OsCartilla; c: Carti
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(os, c, faq, p)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd(os, c, faq, p)) }} />
       <Migas os={os} prov={p} />
 
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-10">

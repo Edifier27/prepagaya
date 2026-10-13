@@ -4,6 +4,7 @@ import { QuizPrepaga } from '@/components/quiz/QuizPrepaga'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { prepagas, PRECIO_ACTUALIZADO, PRECIO_REFERENCIA } from '@/lib/data/prepagas'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
+import { ldJson } from '@/lib/jsonld'
 
 // "¿Qué prepaga puedo pagar con mi presupuesto?" (auditoría SEO 24-sep-2026):
 // la página era solo el quiz (339 palabras, la más flaca del sitio). Los
@@ -43,7 +44,7 @@ const faqSchema = {
 export default function PrepagaPorPresupuestoPage(): React.ReactElement {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(faqSchema) }} />
 
       <div className="bg-gray-50 border-b border-gray-200 py-3">
         <div className="container">

@@ -6,6 +6,7 @@ import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/components/obras-sociales/PasateConTusAportes'
 import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
 import { AportesCta } from '@/components/obras-sociales/AportesCta'
+import { ldJson } from '@/lib/jsonld'
 
 // Ficha de obra social armada con el registro de la SSSalud (lib/data/
 // fichas-registro.ts). Todo lo que dice sale del registro o del nombre
@@ -50,7 +51,7 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

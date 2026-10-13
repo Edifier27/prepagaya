@@ -6,6 +6,7 @@ import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
+import { ldJson } from '@/lib/jsonld'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -114,7 +115,7 @@ export default async function CambioPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

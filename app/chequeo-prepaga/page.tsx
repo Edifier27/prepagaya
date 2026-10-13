@@ -5,6 +5,7 @@ import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { prepagasCotizables } from '@/lib/data/planes-cotizables'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
 import { SITE_NAME, SITE_URL, OG_IMAGE, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // Puerta 2 de la propuesta (docs/producto/propuesta-buscador-interactivo.md):
 // para quien ya tiene prepaga. Convierte el tráfico de "aumento de [prepaga]"
@@ -89,7 +90,7 @@ export default function ChequeoPrepagaPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <section className="bg-gradient-to-b from-red-50/60 to-white border-b border-gray-100 pt-8 pb-12">
         <div className="container max-w-3xl! mx-auto">
           <nav className="text-sm text-gray-500 mb-5">

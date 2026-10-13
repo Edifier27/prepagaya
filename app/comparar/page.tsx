@@ -5,6 +5,7 @@ import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { ComparadorTable } from '@/components/comparador/ComparadorTable'
 import { ComparadorLadoALado } from '@/components/comparador/ComparadorLadoALado'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Comparar Prepagas Lado a Lado: Tabla Comparativa 2026',
@@ -32,7 +33,7 @@ const jsonLd = {
 export default function CompararPage(): React.ReactElement {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-200 py-3">
         <div className="container">

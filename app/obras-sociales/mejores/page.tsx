@@ -10,6 +10,7 @@ import { GrillaObrasSociales, type ItemGrilla } from '@/components/obras-sociale
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // "mejores obras sociales 2026", "ranking obras sociales", "cuál es la mejor
 // obra social" (keyword research, 1-oct-2026). Ranking SOLO con datos
@@ -135,7 +136,7 @@ const fmt = (n: number) => n.toLocaleString('es-AR')
 export default function MejoresObrasSocialesPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

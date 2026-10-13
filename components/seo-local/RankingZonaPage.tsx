@@ -6,6 +6,7 @@ import { SITE_URL, formatPrecio, PRIORIDAD_PARTNERS } from '@/lib/utils'
 import { preciosDeZona } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { BreadcrumbBar, CtaCotizador, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb } from './shared'
+import { ldJson } from '@/lib/jsonld'
 
 // Partners comerciales de PrepagaYa: siempre se destacan visualmente en el ranking,
 // aunque el orden del ranking en sí se mantiene honesto según cartilla real de la zona.
@@ -83,7 +84,7 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <BreadcrumbBar crumbs={crumbs} />
 
       <div className="container py-10 max-w-4xl mx-auto">

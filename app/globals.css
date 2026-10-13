@@ -27,6 +27,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Header sticky: que las anclas (#sucursales, #telefonos…) no queden tapadas */
+  scroll-padding-top: 80px;
   -webkit-font-smoothing: antialiased;
 }
 

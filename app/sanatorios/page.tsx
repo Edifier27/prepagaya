@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ESPECIALIDADES, prepagasEnSanatorio, sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { SanatoriosPorZona } from '@/components/sanatorios/SanatoriosPorZona'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Qué prepagas atienden en cada sanatorio: CABA, GBA y el interior',
@@ -20,7 +21,7 @@ export default function SanatoriosPage() {
   }
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

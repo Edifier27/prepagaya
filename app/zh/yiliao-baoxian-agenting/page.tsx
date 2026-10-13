@@ -4,6 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO_ZH, nivelPrecio } from '@/lib/data/prepaga
 import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: { absolute: `阿根廷医疗保险指南:外国人须知(${PRECIO_ACTUALIZADO_ZH}) — ${SITE_NAME}` },
@@ -81,7 +82,7 @@ export default function YiliaoBaoxianAgentingPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">

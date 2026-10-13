@@ -23,6 +23,7 @@ import { EnOtrasCartillas } from '@/components/cartillas/EnOtrasCartillas'
 import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 import { centrosEnOtrasCartillas } from '@/lib/data/cartilla-zonas/cruce'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
+import { ldJson } from '@/lib/jsonld'
 
 // Páginas del silo de cartilla por zona (estructura silo: /cartillas →
 // /cartillas/[prepaga] → /cartillas/[prepaga]/[zona | plan-x] →
@@ -149,7 +150,7 @@ function Fuente({ c, extra }: { c: CartillaPrepaga; extra?: string }) {
 }
 
 function jsonLd(data: object[]) {
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(data) }} />
 }
 
 // WebPage con fuente y fecha (GEO): los motores de IA priorizan datos con

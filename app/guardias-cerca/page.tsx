@@ -4,6 +4,7 @@ import { GuardiasCercaConParametros } from '@/components/herramientas/GuardiasCe
 import { resumenGuardias } from '@/lib/data/guardias-cerca'
 import { CARTILLAS, textoFecha } from '@/lib/data/cartilla-zonas'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // "¿Dónde me atiendo?" (27-sep-2026, segunda herramienta de búsqueda que
 // aprobó Darío): con la ubicación del celular, las guardias y los sanatorios
@@ -81,7 +82,7 @@ export default function GuardiasCercaPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <section className="bg-gradient-to-b from-red-50/60 to-white border-b border-gray-100 pt-8 pb-12">
         <div className="container max-w-3xl! mx-auto">

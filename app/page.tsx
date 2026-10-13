@@ -18,6 +18,7 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
+import { ldJson } from '@/lib/jsonld'
 
 // Home = "comparador de prepagas" (la búsqueda principal del sitio). La
 // descripción entra en los ~155 caracteres que muestra Google (la general
@@ -136,7 +137,7 @@ export default function HomePage(): React.ReactElement {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }}
 
       />
 
@@ -610,7 +611,7 @@ export default function HomePage(): React.ReactElement {
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
+              __html: ldJson({
                 '@context': 'https://schema.org',
                 '@type': 'FAQPage',
                 mainEntity: faqItems.map((item) => ({

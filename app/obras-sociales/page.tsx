@@ -8,6 +8,7 @@ import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ObraSocialIcon } from '@/components/ui/CategoryIcon'
 import { BuscadorObrasSociales, type ItemBuscadorOS } from '@/components/obras-sociales/BuscadorObrasSociales'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: `Obras Sociales Argentina 2026 — Comparativa y Guías Completas`,
@@ -67,7 +68,7 @@ export default function ObrasSocialesHubPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-200 py-3">
         <div className="container">

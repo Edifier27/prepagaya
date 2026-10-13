@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { PRECIO_ACTUALIZADO_ZH } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: { absolute: `阿根廷医疗保险费用是多少?(${PRECIO_ACTUALIZADO_ZH}真实价格) — ${SITE_NAME}` },
@@ -81,7 +82,7 @@ const jsonLd = [
 export default function YiliaoBaoxianFeiyongAgentingPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">

@@ -11,6 +11,7 @@ import { preciosDeZona } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq } from './shared'
+import { ldJson } from '@/lib/jsonld'
 
 export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metadata {
   // Mismo criterio de precio real "desde" que /prepagas/[slug] y el hub
@@ -83,7 +84,7 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson([
         jsonLdBreadcrumb(crumbs),
         jsonLdFaq(faq),
         jsonLdArticle(`${pz.nombre} en ${prov.nombre}`, `Planes, precios y cobertura de ${pz.nombre} en ${prov.nombre}.`, `/prepagas/${prov.slug}/${pz.slug}`),

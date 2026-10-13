@@ -8,6 +8,7 @@ import { entidadesRegistro, codigoSeisDigitos, grupoDe, nombreLegible, REGISTRO_
 import { FICHAS_REGISTRO, urlFichaEntidad } from '@/lib/data/fichas-registro'
 import { delegacionesEn, DELEGACIONES_FUENTE, SSSALUD_0800 } from '@/lib/data/delegaciones-sssalud'
 import { SITE_NAME, SITE_URL, OG_IMAGE, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // Obras sociales por provincia (24-sep-2026, docs/seo/universo-busquedas.md):
 // "obras sociales en córdoba", "mejor obra social mendoza", "obra social
@@ -116,7 +117,7 @@ export default async function ObrasSocialesProvinciaPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

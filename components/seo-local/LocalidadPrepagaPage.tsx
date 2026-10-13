@@ -11,6 +11,7 @@ import { preciosDeZona, zonaDeLocalidad } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
+import { ldJson } from '@/lib/jsonld'
 
 // Debajo de este número de prestadores de referencia relevados en la
 // localidad puntual, la cartilla local se considera "fina": en vez de
@@ -104,7 +105,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson([
         jsonLdBreadcrumb(crumbs),
         jsonLdFaq(faq),
         jsonLdArticle(`${pz.nombre} en ${corto}, ${prov.nombre}`, `Planes, precios y cobertura de ${pz.nombre} en ${loc.nombre}, ${prov.nombre}.`, `/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`),

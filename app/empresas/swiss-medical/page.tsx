@@ -4,6 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { PedirPropuestaCard } from '@/components/empresas/PedirPropuestaCard'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: `Swiss Medical para Empresas: Plan Corporativo y Convenio de Afinidad`,
@@ -68,7 +69,7 @@ const jsonLd = [
 export default function EmpresasSwissMedicalPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">

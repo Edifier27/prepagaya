@@ -9,6 +9,7 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { Button } from '@/components/ui/Button'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import type { Plan, Prepaga } from '@/types'
+import { ldJson } from '@/lib/jsonld'
 
 // Solo precios oficiales (27-sep-2026): el ranking mezclaba precios de
 // referencia sin cuadro de la SSSalud (Medicus, Luis Pasteur, Hominis, OSDE
@@ -146,7 +147,7 @@ const jsonLd = [
 export default function PrepagasEconomicasPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <section className="bg-gradient-to-b from-gray-50 to-white py-12 border-b border-gray-200">
         <div className="container">

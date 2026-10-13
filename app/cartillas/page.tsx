@@ -4,6 +4,7 @@ import { SITE_URL } from '@/lib/utils'
 import { BuscadorSanatorio } from '@/components/cartillas/BuscadorSanatorio'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Cartillas médicas de prepagas 2026: buscá tu sanatorio',
@@ -131,7 +132,7 @@ const jsonLd = {
 export default function CartillasPage(): React.ReactElement {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-200 py-3">
         <div className="container">

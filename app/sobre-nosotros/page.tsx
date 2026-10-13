@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Sobre Nosotros',
@@ -67,7 +68,7 @@ const equipo = [
 export default function SobreNosotrosPage() {
   return (
     <div className="container py-12 max-w-4xl mx-auto">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Header */}
       <div className="text-center mb-12">

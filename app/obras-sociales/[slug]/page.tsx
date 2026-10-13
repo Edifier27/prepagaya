@@ -20,6 +20,7 @@ import {
 import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/components/obras-sociales/PasateConTusAportes'
 import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
 import { CARTILLAS_SINDICALES, getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
+import { ldJson } from '@/lib/jsonld'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -191,7 +192,7 @@ export default async function ObraSocialPage({ params }: Props) {
   return (
     <>
       <BarraOs slug={os.slug} derivable={os.tipo === 'sindical' || os.tipo === 'empresarial'} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

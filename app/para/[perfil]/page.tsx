@@ -10,6 +10,7 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { PreciosMayores, faqPreciosMayores } from '@/components/perfiles/PreciosMayores'
 import { faqAporteMonotributo, faqFamilia } from '@/lib/perfiles-faq'
+import { ldJson } from '@/lib/jsonld'
 
 const FAQ_CON_DATOS: Record<string, () => { q: string; a: string } | null> = {
   'adultos-mayores': faqPreciosMayores,
@@ -123,7 +124,7 @@ export default async function PerfilPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

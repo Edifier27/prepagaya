@@ -11,6 +11,7 @@ import { CARTILLAS_SINDICALES } from '@/lib/data/sindicales-cartillas'
 import { pediatriaDeSanatorio } from '@/lib/data/sanatorios-pediatria'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
+import { ldJson } from '@/lib/jsonld'
 
 // "¿Qué prepagas atienden en el Hospital X?" (23-sep-2026): búsqueda que la
 // competencia cubre con notas escritas a mano. Acá todo sale de las cartillas
@@ -179,7 +180,7 @@ export default async function SanatorioPage({ params }: Props) {
   return (
     <>
       <BarraCotizar titulo={`un plan con ${art(s.nombre)} ${s.nombre}`} origen={`sanatorio:${s.slug}`} href="/comparador?desde=barra" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">

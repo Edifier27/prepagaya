@@ -28,6 +28,7 @@ import { sucursalesEnProvincia, totalSucursales, FUENTES_SUCURSALES } from '@/li
 import { provinciasSEO as PROVINCIAS_SEO_SUC } from '@/lib/data/zonas'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
+import { ldJson } from '@/lib/jsonld'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -439,7 +440,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <BarraCotizar titulo={prep.nombre} origen={`ficha:${slug}`} href={`/comparador?prepaga=${slug}&desde=barra`} />
 
       {/* Breadcrumb */}
@@ -620,6 +621,25 @@ export default async function PrepagaSlugPage({ params }: Props) {
               ¿Buscás un médico puntual? Cartilla de {prep.nombre}: sanatorios y cómo consultarla →
             </Link>
           )}
+
+          {/* Accesos rápidos (13-oct-2026, Clarity): en mobile solo el 11% llega
+              a la mitad de la ficha, y sucursales/teléfonos están al 60-72%
+              aunque "[prepaga] + ciudad/teléfono" es de lo más buscado. */}
+          <nav aria-label={`Secciones de ${prep.nombre}`} className="mt-4 -mx-4 px-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+            {[
+              { href: '#planes', label: 'Planes' },
+              ...(getCartillaInfo(prep.slug) ? [{ href: `/cartillas/${prep.slug}`, label: 'Cartilla' }] : []),
+              ...(totalSucursales(prep.slug) ? [{ href: '#sucursales', label: 'Sucursales' }] : []),
+              ...(contacto ? [{ href: '#telefonos', label: 'Teléfonos' }] : []),
+              ...(conv?.codigoAfip?.codigos.length ? [{ href: '#convenios', label: 'Código AFIP' }] : []),
+              { href: '#opiniones', label: 'Opiniones' },
+              { href: '#preguntas', label: 'Preguntas' },
+            ].map((x) => (
+              <Link key={x.href} href={x.href} className="shrink-0 rounded-full border border-gray-200 bg-white px-3.5 py-1.5 text-sm font-medium text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D] transition-colors">
+                {x.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </section>
 
@@ -653,7 +673,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
       )}
 
       {/* Planes */}
-      <section className="py-10 bg-white">
+      <section id="planes" className="py-10 bg-white">
         <div className="container max-w-5xl mx-auto">
           <div className="flex items-end justify-between mb-5">
             <h2 className="text-xl font-bold text-gray-900">Planes y precios de {prep.nombre} — {PRECIO_ACTUALIZADO.toLowerCase()}</h2>
@@ -1334,7 +1354,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
       )}
 
       {/* FAQ */}
-      <section className="py-10 bg-gray-50 border-t border-gray-100">
+      <section id="preguntas" className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes sobre {prep.nombre}</h2>
           <div className="space-y-2">

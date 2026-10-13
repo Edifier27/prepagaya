@@ -4,6 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO_RU, nivelPrecio } from '@/lib/data/prepaga
 import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: { absolute: `Медицинская страховка в Аргентине: гид для иностранцев (${PRECIO_ACTUALIZADO_RU}) — ${SITE_NAME}` },
@@ -81,7 +82,7 @@ export default function StrahovanieArgentinaPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">

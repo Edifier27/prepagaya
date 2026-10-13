@@ -4,6 +4,7 @@ import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { BlogGrid } from '@/components/blog/BlogGrid'
 import Link from 'next/link'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: `Blog de Prepagas Argentina — Guías, Análisis y Precios ${new Date().getFullYear()}`,
@@ -29,7 +30,7 @@ export default function BlogPage(): React.ReactElement {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       {/* Hero */}
       <section className="bg-white border-b border-gray-100 py-10">
         <div className="container">

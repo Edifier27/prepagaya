@@ -7,6 +7,7 @@ import { coberturas } from '@/lib/data/coberturas'
 import { prepagas } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { ldJson } from '@/lib/jsonld'
 
 // Silo de coberturas: /coberturas/[tema] → /coberturas/[tema]/[prepaga]
 // ("¿Swiss Medical cubre ortodoncia?"). Todo el contenido sale de
@@ -88,7 +89,7 @@ export default async function CoberturaMarcaPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">

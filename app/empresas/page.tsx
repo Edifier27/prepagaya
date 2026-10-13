@@ -5,6 +5,7 @@ import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { PedirPropuestaCard } from '@/components/empresas/PedirPropuestaCard'
 import { EmpresasComparador } from '@/components/empresas/EmpresasComparador'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: `Prepaga para Empresas y PyMEs: Planes Corporativos — ${PRECIO_ACTUALIZADO}`,
@@ -72,7 +73,7 @@ const jsonLd = [
 export default function EmpresasPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/[0.08] py-20 sm:py-28">

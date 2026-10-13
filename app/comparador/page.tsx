@@ -5,6 +5,7 @@ import { prepagasEnSitioPorZona } from '@/lib/data/zonas'
 import { PRECIO_ACTUALIZADO, prepagas } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
+import { ldJson } from '@/lib/jsonld'
 
 // Mapa de keywords (auditoría SEO 24-sep-2026): el home ya pelea
 // "comparador de prepagas" y esta página competía con él por la misma
@@ -82,11 +83,11 @@ export default async function ComparadorPage({ searchParams }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: ldJson({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
             mainEntity: faqs.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),

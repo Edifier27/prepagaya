@@ -8,6 +8,7 @@ import {
   MONOTRIBUTO_GENERADO, OS_MONOTRIBUTO, VIGENCIA_CATEGORIAS, formatoPesos,
 } from '@/lib/data/monotributo'
 import { SITE_NAME, SITE_URL, OG_IMAGE, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // Obras sociales para monotributistas (24-sep-2026, docs/seo/universo-busquedas.md,
 // familia D): "obra social monotributo", "obras sociales que aceptan
@@ -90,7 +91,7 @@ export default function ObrasSocialesMonotributoPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

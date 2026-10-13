@@ -5,6 +5,7 @@ import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
 import historial from '@/lib/data/historial-precios.json'
+import { ldJson } from '@/lib/jsonld'
 
 // Historial de precios (3-oct-2026). Antes era una serie del OSDE 310 de
 // 2024-2025 escrita a mano, sin fuente verificable, que terminaba en junio
@@ -125,7 +126,7 @@ export default function HistorialPreciosPage(): React.ReactElement {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }}
       />
 
       <div className="bg-gray-50 border-b border-gray-200 py-3">

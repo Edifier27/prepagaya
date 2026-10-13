@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { MatchPrepaga } from '@/components/herramientas/MatchPrepaga'
 import { datosMatch, USOS_MATCH } from '@/lib/data/match'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // Puerta 3 de la propuesta (docs/producto/propuesta-buscador-interactivo.md):
 // para quien no sabe por dónde empezar. Busca "qué prepaga me conviene" y
@@ -69,7 +70,7 @@ export default function MatchPrepagaPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <section className="bg-gradient-to-b from-red-50/60 to-white border-b border-gray-100 pt-8 pb-12">
         <div className="container max-w-2xl! mx-auto">
           <nav className="text-sm text-gray-500 mb-5">

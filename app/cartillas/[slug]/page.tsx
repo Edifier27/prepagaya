@@ -15,6 +15,7 @@ import { getCartilla, nombreCortoZona, slugPlan, textoFecha, textoFechaDe, texto
 import { especialidadesDisponibles, tipoEspecialidades } from '@/lib/data/cartilla-zonas/especialidades'
 import { tieneFarmacias } from '@/lib/data/cartilla-zonas/farmacias'
 import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
+import { ldJson } from '@/lib/jsonld'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -172,7 +173,7 @@ export default async function CartillaPrepagaPage({ params, searchParams }: Prop
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

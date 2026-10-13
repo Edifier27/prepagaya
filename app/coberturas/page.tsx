@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { coberturas } from '@/lib/data/coberturas'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: `Coberturas de Prepagas en Argentina — Qué cubre cada plan`,
@@ -28,7 +29,7 @@ const jsonLd = {
 export default function CoberturasHubPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-200 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500">

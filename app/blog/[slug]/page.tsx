@@ -14,6 +14,7 @@ import { BlogAuthorBox } from '@/components/ui/BlogAuthorBox'
 import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 import { BlogTOC } from '@/components/blog/BlogTOC'
 import { RankingResumen } from '@/components/blog/RankingResumen'
+import { ldJson } from '@/lib/jsonld'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -123,7 +124,7 @@ export default async function BlogPostPage({ params }: Props) {
   const vistosGlosario = new Set<string>()
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

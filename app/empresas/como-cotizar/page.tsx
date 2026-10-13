@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Cómo Cotizar un Plan Corporativo de Prepaga: Guía Paso a Paso',
@@ -56,7 +57,7 @@ const jsonLd = [
 export default function ComoCotizarEmpresasPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">

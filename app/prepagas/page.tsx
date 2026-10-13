@@ -6,6 +6,7 @@ import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS } from '@/lib/uti
 import { Badge } from '@/components/ui/Badge'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
+import { ldJson } from '@/lib/jsonld'
 
 function PrepagaCard({ p, destacado }: { p: Prepaga; destacado?: boolean }) {
   const planMasBarato = [...p.planes].sort((a, b) => a.precio - b.precio)[0]
@@ -106,7 +107,7 @@ export default function PrepagasPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-50 to-white py-12 border-b border-gray-200">

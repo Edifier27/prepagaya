@@ -6,6 +6,7 @@ import { SITE_URL } from '@/lib/utils'
 import { preciosDeZona, zonaDeLocalidad } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
+import { ldJson } from '@/lib/jsonld'
 
 export function localidadMetadata(prov: ProvinciaSEO, loc: LocalidadZona): Metadata {
   const year = new Date().getFullYear()
@@ -53,7 +54,7 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson([
         jsonLdBreadcrumb(crumbs),
         jsonLdFaq(faq),
         jsonLdArticle(`Prepagas en ${corto}, ${prov.nombre}`, `Las prepagas con cartilla en ${loc.nombre}, ${prov.nombre}.`, `/prepagas/${prov.slug}/${loc.slug}`),

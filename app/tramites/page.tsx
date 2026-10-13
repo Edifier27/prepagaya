@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { guias } from '@/lib/data/guias'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Trámites de Prepaga 2026: Autorizaciones, Alta, Baja y Traspaso',
@@ -96,7 +97,7 @@ export default function TramitesPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-200 py-3">
         <div className="container">

@@ -4,6 +4,7 @@ import { filasSondeo } from '@/lib/db'
 import { agregarSondeo, MIN_BASE } from '@/lib/data/sondeo'
 import { SondeoVista } from '@/components/prensa/SondeoVista'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // Sondeo PrepagaYa (24-sep-2026): quién busca prepaga en Argentina, a partir
 // de las cotizaciones del sitio. Es el formato que más links le da a
@@ -47,7 +48,7 @@ export default async function SondeoPage() {
 
   return (
     <>
-      {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />}
+      {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />}
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">

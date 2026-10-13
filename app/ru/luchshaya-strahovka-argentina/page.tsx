@@ -4,6 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO_RU, nivelPrecio } from '@/lib/data/prepaga
 import { SITE_NAME, SITE_URL, formatPrecio, precioDesde } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
+import { ldJson } from '@/lib/jsonld'
 
 // Declinación rusa de "clínica" según el número (1 клиника / 2-4 клиники /
 // 0,5+,11-14 клиник) — sanatoriosPropios varía por prepaga (0, 1, 9, 11...)
@@ -96,7 +97,7 @@ export default function LuchshayaStrahovkaArgentinaPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">

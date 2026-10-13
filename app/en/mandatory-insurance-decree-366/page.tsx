@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: { absolute: `Argentina Mandatory Insurance Requirement 2026 (Decree 366/25) — ${SITE_NAME}` },
@@ -73,7 +74,7 @@ const jsonLd = [
 export default function MandatoryInsuranceDecree366Page() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-12">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { centrosPorEspecialidad, fuenteEspecialidades } from '@/lib/data/cartilla-zonas/especialidades'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // Fertilización asistida (28-sep-2026, pedido de Darío): explica la Ley
 // 26.862 + Decreto 956/2013 (fuente: InfoLeg, textos completos verificados).
@@ -116,7 +117,7 @@ export default function FertilizacionAsistidaPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Hero */}
       <section className="bg-gradient-to-b from-red-50/60 to-white border-b border-gray-100 pt-8 pb-12">

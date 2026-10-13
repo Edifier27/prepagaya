@@ -23,6 +23,7 @@ import { paresComparativaAuto, ordenPlanes } from '@/lib/comparativas-auto'
 import { OrejitaPlan, type OrejitaDatos } from '@/components/prepagas/OrejitaPlan'
 import { CarruselPlanes, type TarjetaPlan } from '@/components/prepagas/CarruselPlanes'
 import type { Prepaga } from '@/types'
+import { ldJson } from '@/lib/jsonld'
 
 interface Props {
   params: Promise<{ slug: string; plan: string }>
@@ -602,7 +603,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       {orejitas.derecha && <OrejitaPlan {...orejitas.derecha} />}
       {orejitas.izquierda && <OrejitaPlan {...orejitas.izquierda} />}
       <BarraCotizar

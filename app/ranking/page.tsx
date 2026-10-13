@@ -9,6 +9,7 @@ import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import type { Prepaga } from '@/types'
+import { ldJson } from '@/lib/jsonld'
 
 // Rediseño 28-sep-2026 (UX + copy): respuesta directa arriba (GEO), ganadores
 // por categoría alineados con el posicionamiento de partners (Swiss mejor
@@ -100,7 +101,7 @@ export default function RankingPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Hero con respuesta directa */}
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 pt-8 pb-10">

@@ -4,6 +4,7 @@ import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
+import { ldJson } from '@/lib/jsonld'
 
 type Comp = NonNullable<ReturnType<typeof comparacionCruzada>>
 
@@ -55,7 +56,7 @@ export function ComparacionCruzadaPage({ c }: { c: Comp }) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

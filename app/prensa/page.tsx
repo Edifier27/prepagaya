@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { InsertarWidget } from '@/components/prensa/InsertarWidget'
+import { ldJson } from '@/lib/jsonld'
 
 // Sala de prensa (23-sep-2026): el informe mensual de aumentos con el dato
 // oficial de la SSSalud, listo para citar. Objetivo: que los medios nos citen
@@ -62,7 +63,7 @@ const jsonLd = [
 export default function PrensaPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">

@@ -6,6 +6,7 @@ import { prepagas } from '@/lib/data/prepagas'
 import { PasateConTusAportes } from '@/components/obras-sociales/PasateConTusAportes'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { SITE_NAME, SITE_URL, OG_IMAGE, PRIORIDAD_PARTNERS } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // "obra social sindical de swiss medical / osde / sancor / medife / omint",
 // "cómo derivar aportes a swiss medical", "cambiar de obra social a swiss
@@ -111,7 +112,7 @@ export default function ObraSocialDeCadaPrepagaPage() {
   const fecha = new Date(`${REGISTRO_VERIFICADO}T12:00:00`).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

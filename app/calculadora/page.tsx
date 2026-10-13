@@ -2,6 +2,7 @@
 import { CalculadoraEdad } from '@/components/calculadora/CalculadoraEdad'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: `Calculadora de Prepagas por Edad ${new Date().getFullYear()} — ¿Cuánto pago a los 40, 50, 60 años?`,
@@ -47,11 +48,11 @@ const faqItems = [
 export default function CalculadoraPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: ldJson({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
             mainEntity: faqItems.map((item) => ({

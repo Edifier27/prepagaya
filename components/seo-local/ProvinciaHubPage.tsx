@@ -7,6 +7,7 @@ import { preciosDeZona } from '@/lib/precios/zona'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, FUERZA_LABEL, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq } from './shared'
+import { ldJson } from '@/lib/jsonld'
 
 export function provinciaHubMetadata(prov: ProvinciaSEO): Metadata {
   // Precio real "desde" con las prepagas enSitio de la provincia — mismo
@@ -57,7 +58,7 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <BreadcrumbBar crumbs={crumbs} />
 
       <div className="container py-10 max-w-4xl mx-auto">

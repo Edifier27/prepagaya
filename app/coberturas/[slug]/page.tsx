@@ -12,6 +12,7 @@ import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 import { DocumentacionIngreso } from '@/components/preexistencias/DocumentacionIngreso'
 import { FuentesOficiales, SeccionesDesarrollo } from '@/components/contenido/SeccionesDesarrollo'
 import { tieneFarmacias } from '@/lib/data/cartilla-zonas/farmacias'
+import { ldJson } from '@/lib/jsonld'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -119,7 +120,7 @@ export default async function CoberturaPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

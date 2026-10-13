@@ -10,6 +10,7 @@ import {
 } from '@/lib/data/registro-sssalud'
 import { FiltroCodigos } from '@/components/obras-sociales/FiltroCodigos'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // Directorio de códigos de obras sociales y prepagas (24-sep-2026).
 // "código obra social afip", "código [obra social]" y "rnos [obra social]"
@@ -106,7 +107,7 @@ export default function CodigosObrasSocialesPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">

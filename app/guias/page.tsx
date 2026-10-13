@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { guias } from '@/lib/data/guias'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: `Guías de Prepagas Argentina ${new Date().getFullYear()} — Todo lo que necesitás saber`,
@@ -28,7 +29,7 @@ export default function GuiasPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <section className="bg-gradient-to-b from-gray-50 to-white py-12 border-b border-gray-200">
         <div className="container">
           <nav className="text-sm text-gray-500 mb-4">

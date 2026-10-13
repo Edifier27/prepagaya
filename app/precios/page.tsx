@@ -7,6 +7,7 @@ import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { Badge } from '@/components/ui/Badge'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
 import preciosOficiales from '@/lib/data/precios-oficiales.json'
+import { ldJson } from '@/lib/jsonld'
 
 // El mes se toma de PRECIO_ACTUALIZADO (lib/data/prepagas.ts) — única fuente
 // de verdad para evitar que esta página quede desincronizada del resto del sitio.
@@ -122,7 +123,7 @@ export default function PreciosPage(): React.ReactElement {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-200 py-3">
         <div className="container">

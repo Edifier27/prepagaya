@@ -5,6 +5,7 @@ import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { condiciones } from '@/lib/data/condiciones'
 import { coberturas } from '@/lib/data/coberturas'
 import { BlogTOC } from '@/components/blog/BlogTOC'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   // Search Console (hasta el 24-sep-2026): "pmo actualizado" y "plan médico
@@ -289,7 +290,7 @@ export default function PmoPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">

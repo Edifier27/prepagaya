@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { APORTE_DERIVABLE, SITE_NAME, SITE_URL } from '@/lib/utils'
 import { MES, PERFILES, millones, millonesLargo, resumenSueldos, textosInforme, type FilaSueldo } from '@/lib/prensa/sueldo-prepaga'
+import { ldJson } from '@/lib/jsonld'
 
 // Página del informe "cuánto hay que ganar para que los aportes paguen la
 // prepaga" (lib/prensa/sueldo-prepaga.ts): la usan el informe del AMBA y los
@@ -53,7 +54,7 @@ export function InformeSueldo({ filas, lugar, region, h1, url, migas, children }
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

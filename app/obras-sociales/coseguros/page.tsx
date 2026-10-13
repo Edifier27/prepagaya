@@ -4,6 +4,7 @@ import { COSEGUROS_OS } from '@/lib/data/coseguros-os'
 import { osDeCartilla } from '@/lib/data/sindicales-cartillas/os'
 import { PasateConTusAportes } from '@/components/obras-sociales/PasateConTusAportes'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // "coseguro obra social", "obra social sin coseguro", "cuánto cobra X de
 // coseguro" (keyword research, 1-oct-2026). Desde la Res. SSSalud 1926/2024
@@ -101,7 +102,7 @@ const jsonLd = [
 export default function CosegurosPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="bg-gray-50 border-b border-gray-100 py-3">
         <div className="container">
           <nav className="text-sm text-gray-500 flex items-center gap-1 flex-wrap">

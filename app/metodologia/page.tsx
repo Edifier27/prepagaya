@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SITE_NAME, SITE_URL, CONTENT_UPDATE, PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Metodología — Cómo elaboramos nuestros rankings',
@@ -39,7 +40,7 @@ const fuentes = [
 export default function MetodologiaPage() {
   return (
     <div className="container py-12 max-w-4xl mx-auto">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
         Metodología de {SITE_NAME}

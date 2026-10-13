@@ -4,6 +4,7 @@ import { aumentos2026, aumentoAcumulado, INFLACION_ACUMULADA_2026, AUMENTOS_OFIC
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { ldJson } from '@/lib/jsonld'
 
 const acumulado = aumentoAcumulado()
 const ultimoConfirmado = [...aumentos2026].reverse().find((a) => !a.esProyeccion)!
@@ -121,7 +122,7 @@ export default function AumentosPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

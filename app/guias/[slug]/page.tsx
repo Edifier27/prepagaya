@@ -12,6 +12,7 @@ import { BlogTOC } from '@/components/blog/BlogTOC'
 import { QueCubreSeccion } from '@/components/herramientas/QueCubreSeccion'
 import { marcarTerminos } from '@/components/glosario/marcarTerminos'
 import { GlosarioDePagina } from '@/components/glosario/GlosarioDePagina'
+import { ldJson } from '@/lib/jsonld'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -105,7 +106,7 @@ export default async function GuiaPage({ params }: Props) {
   return (
     <>
       <BarraCotizar titulo={prepagasRelacionadas[0] ? prepagasRelacionadas[0].nombre : 'tu prepaga'} origen={`guia:${guia.slug}`} href={prepagasRelacionadas[0] ? `/comparador?prepaga=${prepagasRelacionadas[0].slug}&desde=barra` : '/comparador?desde=barra'} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

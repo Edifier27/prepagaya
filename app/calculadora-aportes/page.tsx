@@ -7,6 +7,7 @@ import { obrasSociales } from '@/lib/data/obras-sociales'
 import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, OG_IMAGE, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // "De tu obra social a una prepaga" (24-sep-2026). Es la oferta para todo el
 // tráfico de obras sociales (docs/seo/universo-busquedas.md): busca "derivar
@@ -86,7 +87,7 @@ export default function CalculadoraAportesPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <section className="bg-gradient-to-b from-red-50/60 to-white border-b border-gray-100 pt-8 pb-12">
         <div className="container max-w-3xl! mx-auto">
           <nav className="text-sm text-gray-500 mb-5">

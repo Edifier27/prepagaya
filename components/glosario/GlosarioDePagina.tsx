@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { terminoPorSlug, type Termino } from '@/lib/data/glosario'
 import { SITE_URL } from '@/lib/utils'
 import { terminosEnTexto } from './marcarTerminos'
+import { ldJson } from '@/lib/jsonld'
 
 // "Glosario de esta página" (28-sep-2026): las palabras técnicas de la página
 // en un acordeón, al pie del contenido. Se arman solas a partir del texto (o
@@ -29,7 +30,7 @@ export function GlosarioDePagina({ texto, slugs, max = 10 }: { texto?: string; s
   }
   return (
     <section aria-labelledby="glosario-pagina" className="rounded-2xl border border-gray-200 bg-white p-5">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id="glosario-pagina" className="text-lg font-bold text-gray-900">Glosario de esta página</h2>
         <Link href="/glosario" className="text-sm font-semibold text-[#E8002D] hover:underline">Glosario completo →</Link>

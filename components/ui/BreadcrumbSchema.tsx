@@ -1,5 +1,6 @@
 ﻿import Link from 'next/link'
 import { SITE_URL, SITE_NAME } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 interface Crumb {
   label: string
@@ -29,7 +30,7 @@ export function BreadcrumbSchema({ crumbs }: Props): React.ReactElement {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: ldJson(schema) }}
       />
       <nav aria-label="breadcrumb" className="text-sm text-gray-400 mb-4 flex items-center gap-1.5 flex-wrap">
         {all.map((c, i) => (

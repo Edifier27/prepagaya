@@ -5,6 +5,7 @@ import type { ComparativaPlanes } from '@/lib/data/comparativas-planes'
 import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import type { Prepaga } from '@/types'
+import { ldJson } from '@/lib/jsonld'
 
 type Plan = Prepaga['planes'][number]
 
@@ -85,7 +86,7 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">

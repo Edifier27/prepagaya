@@ -5,6 +5,7 @@ import { indiceCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
 import { CARTILLAS, textoFecha } from '@/lib/data/cartilla-zonas'
 import { SANATORIOS_SEO, sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL, OG_IMAGE, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { ldJson } from '@/lib/jsonld'
 
 // Puerta 1 de la propuesta (docs/producto/propuesta-buscador-interactivo.md):
 // buscar prepaga empezando por los sanatorios de la persona. Busca "qué
@@ -80,7 +81,7 @@ export default function BuscarPorSanatorioPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <section className="bg-gradient-to-b from-red-50/60 to-white border-b border-gray-100 pt-8 pb-12">
         <div className="container max-w-3xl! mx-auto">
