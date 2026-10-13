@@ -214,25 +214,6 @@ export const blogPosts: BlogPost[] = [
     keywords: ['como pagar menos prepaga', 'reducir costo prepaga argentina', 'bajar cuota prepaga', 'prepaga mas barata sin perder cobertura'],
   },
   {
-    slug: 'mejores-obras-sociales-argentina',
-    titulo: 'Las mejores obras sociales de Argentina 2026: ranking y comparativa',
-    bajada: 'OSDE y Sancor encabezan el ranking. Te contamos qué tiene cada una y cuál conviene según tu perfil.',
-    metaDescripcion: 'Ranking de las mejores obras sociales de Argentina 2026. Comparativa de OSDE, Galeno, Sancor y más. Cuál es la mejor según tu situación.',
-    categoria: 'Ranking',
-    fechaPublicacion: '2026-06-14',
-    tiempoLectura: 9,
-    contenido: {
-      intro: 'Con más de 300 obras sociales registradas en Argentina, elegir la mejor puede ser abrumador. Te presentamos el ranking de las más valoradas en 2026, con análisis honesto de qué tiene cada una.',
-      secciones: [
-        { titulo: '#1 OSDE: la red más grande', cuerpo: 'OSDE informa más de 125.000 prestadores en todo el país. Sus planes 310 y 410 son los más elegidos por trabajadores de empresas medianas y grandes. La desventaja: es de las más caras como destino de derivación.' },
-        { titulo: '#2 Sancor Salud: la mejor cobertura nacional', cuerpo: 'Para quienes viven o viajan al interior del país, Sancor Salud tiene la red más amplia con 30.000+ profesionales en todas las provincias. Es también una de las más elegidas por familias por su balance precio-cobertura.' },
-        { titulo: '¿Y las obras sociales sindicales?', cuerpo: 'Las OS sindicales tienen la obligación de dar cobertura del PMO, pero la calidad varía enormemente. Las más grandes y bien gestionadas ofrecen cobertura comparable a las prepagas premium; otras tienen prestadores limitados.' },
-      ],
-      conclusion: 'No existe "la mejor obra social" en abstracto: depende de tu zona, cuánto usás el sistema de salud y qué aportás. Lo que sí existe es la mejor para tu perfil específico. Usá nuestro comparador para encontrarla.',
-    },
-    keywords: ['mejores obras sociales argentina 2026', 'ranking obras sociales', 'mejor obra social para derivar', 'comparar obras sociales argentina'],
-  },
-  {
     slug: 'pami-que-cubre-guia-completa',
     titulo: 'PAMI 2026: qué cubre realmente y cómo aprovecharla al máximo',
     bajada: 'PAMI cubre más de lo que muchos jubilados conocen. Medicamentos gratis, óptica, odontología, kinesiología y más. Guía completa.',
@@ -333,27 +314,6 @@ export const blogPosts: BlogPost[] = [
       conclusion: 'La telemedicina es un complemento muy útil, especialmente para consultas de seguimiento, renovación de recetas y salud mental. Verificá que tu prepaga la incluya antes de contratar si es algo que valorás.',
     },
     keywords: ['telemedicina prepaga argentina', 'consulta online prepaga', 'prepaga videollamada medica', 'telemedicina osde swiss medical'],
-  },
-  {
-    slug: 'osde-plan-210-vs-310',
-    titulo: 'OSDE Plan 210 vs 310: ¿cuál conviene en 2026?',
-    bajada: 'El 210 es la opción económica; el 310 tiene mucho más por un 60% de diferencia de precio. Analizamos en qué casos conviene cada uno.',
-    metaDescripcion: 'OSDE Plan 210 vs 310 2026. Diferencias de precio, cobertura y prestaciones. Cuándo conviene el 210 y cuándo pagar más por el 310.',
-    categoria: 'Análisis',
-    fechaPublicacion: '2026-05-27',
-    tiempoLectura: 6,
-    contenido: {
-      intro: 'El Plan 210 y el Plan 310 son los dos planes de OSDE más elegidos. Representan la propuesta económica y la estándar de la empresa más grande de Argentina.',
-      secciones: [
-        { titulo: 'Diferencia de precio', cuerpo: 'Para una persona de 30 años como aporte adicional a la OS sindical, el OSDE 210 cuesta aproximadamente $45.000/mes, mientras que el 310 llega a $110.000. La diferencia es casi del 60%.' },
-        { titulo: 'Las diferencias de cobertura', cuerpo: 'El 210 tiene la red OSDE completa pero con copago en consultas médicas y algunas restricciones en especialistas y medicamentos. El 310 incluye consultas sin copago en muchas especialidades y mejor cobertura de medicamentos.' },
-        { titulo: '¿Cuándo conviene el 210?', cuerpo: 'Ideal para: trabajadores jóvenes y sanos que van poco al médico, personas que acceden a OSDE a través del empleador y buscan principalmente la red OSDE, y para ahorrar si tienen buena salud.' },
-        { titulo: '¿Cuándo conviene el 310?', cuerpo: 'El 310 conviene cuando: vas frecuentemente al médico (el copago del 210 se acumula), tenés enfermedades crónicas con medicamentos, usás servicios de salud mental, o tenés familia a cargo con distintas necesidades.' },
-      ],
-      conclusion: 'Para jóvenes y sanos que principalmente valoran la red OSDE: el 210 puede ser suficiente. Para quienes usan frecuentemente el sistema, el 310 se paga solo con el ahorro en copagos y medicamentos.',
-    },
-    prepagasRelacionadas: ['osde'],
-    keywords: ['osde plan 210 vs 310', 'diferencia osde 210 y 310', 'osde 310 vale la pena', 'osde plan economico argentina'],
   },
   {
     slug: 'cemic-para-quien-conviene',
@@ -482,43 +442,6 @@ export const blogPosts: BlogPost[] = [
     },
     prepagasRelacionadas: ['osde'],
     keywords: ['osde plan flux', 'plan flux osde precio', 'osde flux para jovenes', 'osde plan jovenes 2026'],
-  },
-  {
-    slug: 'swiss-medical-smg20-vs-osde-310',
-    titulo: 'Swiss Medical SMG20 vs OSDE Plan 310: comparativa completa 2026',
-    bajada: 'Son los dos planes intermedios más elegidos de Argentina, con precios similares (~$325k vs ~$345k). ¿Cuál da más por tu dinero?',
-    metaDescripcion: 'Swiss Medical SMG20 vs OSDE Plan 310: precio, cobertura, red de prestadores y satisfacción comparados en 2026. Cuál conviene según tu perfil.',
-    categoria: 'Comparativas',
-    fechaPublicacion: '2026-06-25',
-    tiempoLectura: 8,
-    contenido: {
-      intro: 'El Swiss Medical SMG20 ($325.467/mes) y el OSDE Plan 310 ($345.310/mes) son los planes intermedios más buscados del mercado argentino. Compiten en el mismo segmento de precio y ambos incluyen cobertura sin copago. ¿Cuál conviene?',
-      secciones: [
-        {
-          titulo: 'Comparativa de precios (persona de 30 años)',
-          cuerpo: 'SMG20 de Swiss Medical: $325.467/mes sin copago. Plan 310 de OSDE: $345.310/mes sin copago. La diferencia mensual es de $19.843 a favor de Swiss Medical — casi $238.000 al año. Ambos precios son para contratación particular directa, sin descuento de obra social.',
-        },
-        {
-          titulo: 'Red de prestadores: OSDE es más grande',
-          cuerpo: 'El Plan 310 te da acceso a la red de OSDE, que informa más de 125.000 prestadores en todo el país, incluyendo el Hospital Alemán sin costo adicional. El SMG20 tiene una red más acotada pero acceso a sanatorios propios de Swiss Medical (Suizo Argentina, Los Arcos, Agote, Zabala y más) que tienen nivel de hotelería y equipamiento superior.',
-        },
-        {
-          titulo: 'Coberturas diferenciales: cada plan tiene sus ventajas',
-          cuerpo: 'SMG20 incluye: ortodoncia hasta 15 años, 30 sesiones de psicología por año, cobertura de urgencias en Brasil. Plan 310 incluye: ortodoncia hasta 18 años, visita domiciliaria, consulta médica online incluida, Hospital Alemán en red, y reintegros sin tope por gastos fuera de cartilla.',
-        },
-        {
-          titulo: 'Satisfacción de afiliados',
-          cuerpo: 'Swiss Medical tiene 76% de satisfacción de afiliados con 3.8/5 estrellas. OSDE tiene 74% de satisfacción con 3.7/5. La diferencia es pequeña. Donde Swiss Medical marca diferencia es en la calidad de infraestructura de sus sanatorios propios.',
-        },
-        {
-          titulo: '¿Quién debería elegir cada uno?',
-          cuerpo: 'Elegí SMG20 si: valorás los sanatorios propios de Swiss Medical, vivís en CABA/GBA donde la red es más densa, o querés el plan más económico entre los dos. Elegí Plan 310 si: necesitás cobertura fuera de Buenos Aires (OSDE es mucho mejor en el interior), querés acceso al Hospital Alemán, o priorizás la red más amplia del país.',
-        },
-      ],
-      conclusion: 'Para afiliados en AMBA: el SMG20 gana por precio ($19.843 menos al mes) y por los sanatorios propios. Para afiliados con necesidad de cobertura nacional o que priorizan amplitud de red: el Plan 310 de OSDE no tiene competencia. En cualquier caso, cotizá los dos y verificá tu médico de cabecera en ambas cartillas.',
-    },
-    prepagasRelacionadas: ['swiss-medical', 'osde'],
-    keywords: ['smg20 vs osde 310', 'swiss medical smg20 osde plan 310', 'osde 310 vs swiss medical', 'comparar planes intermedios prepaga 2026'],
   },
   {
     slug: 'mejor-prepaga-precio-calidad-argentina-2026',

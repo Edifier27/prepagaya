@@ -6,7 +6,8 @@ import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButt
 import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: { absolute: `How Much Does Health Insurance Cost in Argentina? (${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
+  // Más corto (auditoría 13-oct-2026: 3.619 impresiones, CTR 0,14%)
+  title: { absolute: `Health Insurance Cost in Argentina: Real Prices (${PRECIO_ACTUALIZADO_EN})` },
   description:
     'Real 2026 prepaga prices in Argentina by coverage tier: entry-level, mid-range and premium — plus what actually moves the price (age, copay, plan) and the 15% online discount.',
   alternates: {

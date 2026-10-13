@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
     return [
       // URLs con impresiones en Search Console que daban 404 (export del
       // 24-sep-2026): páginas viejas y variantes mal escritas.
+      // Canibalización blog vs página comercial (auditoría 13-oct-2026): el
+      // post y la comparativa competían por la misma búsqueda.
+      { source: "/blog/osde-plan-210-vs-310", destination: "/prepagas/osde/210-vs-310", permanent: true },
+      { source: "/blog/swiss-medical-smg20-vs-osde-310", destination: "/comparativas/swiss-medical-smg20-vs-osde-310", permanent: true },
+      { source: "/blog/mejores-obras-sociales-argentina", destination: "/obras-sociales/mejores", permanent: true },
       { source: "/cambios/omint-a-osde", destination: "/comparativas/omint-vs-osde", permanent: true },
       { source: "/guias/prepagas-precios-actualizados", destination: "/precios", permanent: true },
       { source: "/guias/prepagas-monotributistas", destination: "/para/monotributistas", permanent: true },

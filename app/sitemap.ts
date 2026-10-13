@@ -297,6 +297,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ]),
   ]
 
+  // Sin URLs repetidas (auditoría 13-oct-2026: 10 obras sociales aparecían dos
+  // veces, una por la ficha editorial y otra por el registro de la SSSalud).
+  const vistas = new Set<string>()
   return [
     ...staticRoutes,
     ...intlRoutes,
@@ -317,5 +320,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...cartillaRoutes,
     ...cartillaZonaRoutes,
     ...coberturaMarcaRoutes,
-  ]
+  ].filter((r) => (vistas.has(r.url) ? false : (vistas.add(r.url), true)))
 }

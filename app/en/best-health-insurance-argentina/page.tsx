@@ -7,7 +7,8 @@ import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButt
 import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: { absolute: `Best Health Insurance in Argentina for Foreigners (${PRECIO_ACTUALIZADO_EN}) — ${SITE_NAME}` },
+  // Más corto y con "expats" (auditoría 13-oct-2026: 7.682 impresiones, CTR 0,17%)
+  title: { absolute: `Best Health Insurance in Argentina for Expats (${PRECIO_ACTUALIZADO_EN})` },
   description:
     'Swiss Medical, OSDE, Sancor Salud or Premedic? A side-by-side comparison of the top Argentine prepaga plans for expats — network size, satisfaction rating, and real 2026 prices.',
   alternates: {

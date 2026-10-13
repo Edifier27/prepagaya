@@ -1143,14 +1143,16 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
         <div className="space-y-3 mb-4">
           {personas.map((p, i) => (
-            <div key={p.id} className="relative flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 bg-white border-2 border-gray-100 rounded-2xl p-4 hover:border-red-100 transition-colors">
+            <div key={p.id} className="relative flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4 bg-white border-2 border-gray-100 rounded-2xl p-4 hover:border-red-100 transition-colors">
               {i > 0 && (
                 <button onClick={() => removePersona(p.id)} aria-label="Quitar integrante"
                   className="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-[#E8002D] hover:bg-[#B8001F] text-white flex items-center justify-center transition-colors text-sm font-bold leading-none shadow-sm ring-2 ring-white">
                   ×
                 </button>
               )}
-              <div className="flex items-center gap-4 min-w-0">
+              {/* En PC los atajos pasan a su propia fila (sm:flex-wrap + basis-full)
+                  para que no aprieten "Titular / Edad en años" (Darío, 13-oct-2026) */}
+              <div className="flex items-center gap-4 min-w-0 sm:shrink-0">
                 <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center flex-shrink-0">
                   <span className="text-sm font-bold text-[#E8002D]">{i + 1}</span>
                 </div>
