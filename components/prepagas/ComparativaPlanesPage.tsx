@@ -192,23 +192,14 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
         </div>
       </section>
 
-      {/* Veredicto */}
-      <section className="py-10 bg-gray-50 border-t border-gray-100">
-        <div className="container max-w-3xl mx-auto">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">¿Cuál conviene?</h2>
-          <div className="bg-white rounded-2xl border border-gray-200 p-6">
-            <p className="text-sm text-gray-700 leading-relaxed">{comp.veredicto}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
+      {/* FAQ subida debajo de la tabla y con la primera abierta (13-oct-2026,
+          Clarity: en flux-vs-210 casi la mitad de los toques eran las preguntas) */}
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes</h2>
           <div className="space-y-2">
-            {comp.faqExtra.map(({ q, a }) => (
-              <details key={q} className="group bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+            {comp.faqExtra.map(({ q, a }, i) => (
+              <details key={q} open={i === 0} className="group bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
                 <summary className="flex items-center justify-between p-4 cursor-pointer font-semibold text-sm text-gray-900 select-none list-none">
                   <h3 className="font-semibold text-sm text-gray-900 m-0">{q}</h3>
                   <svg className="w-4 h-4 text-gray-400 flex-shrink-0 ml-3 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -220,6 +211,16 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
                 </div>
               </details>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Veredicto */}
+      <section className="py-10 bg-gray-50 border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">¿Cuál conviene?</h2>
+          <div className="bg-white rounded-2xl border border-gray-200 p-6">
+            <p className="text-sm text-gray-700 leading-relaxed">{comp.veredicto}</p>
           </div>
         </div>
       </section>

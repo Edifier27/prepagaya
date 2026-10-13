@@ -584,7 +584,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
 
             {/* Right: nivel de precio card */}
             <div className="sm:w-52 flex-shrink-0">
-              <div className="bg-white rounded-2xl border-2 border-[#E8002D] p-5 text-center shadow-sm">
+              {/* Clickeable (13-oct-2026, Clarity): "Desde $" juntaba clics muertos */}
+              <Link href="#planes" className="block bg-white rounded-2xl border-2 border-[#E8002D] p-5 text-center shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">Desde</div>
                 <div className="text-2xl font-black text-gray-900">{formatPrecio(precioMin)}</div>
                 <div className="flex justify-center mt-1.5">
@@ -593,23 +594,25 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 <div className="mt-4 pt-3 border-t border-gray-100 space-y-1">
                   <div className="text-xs text-gray-500 font-medium">{prep.planes.length} planes disponibles</div>
                   <div className="text-xs text-gray-400">El precio exacto depende de tu edad y zona</div>
+                  <div className="text-xs font-bold text-[#E8002D] pt-1">Ver planes y precios ↓</div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
             {[
-              ...(prep.profesionales ? [{ label: 'Prestadores', value: `${(prep.profesionales / 1000).toFixed(0)}k+` }] : []),
-              { label: 'Centros propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red convenio' },
-              { label: 'Satisfacción', value: `${prep.satisfaccion}%` },
-              ...(opiniones.cantidad > 0 ? [{ label: 'Opiniones de usuarios', value: String(opiniones.cantidad) }] : []),
+              ...(prep.profesionales ? [{ label: 'Prestadores', value: `${(prep.profesionales / 1000).toFixed(0)}k+`, href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' }] : []),
+              { label: 'Centros propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red convenio', href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' },
+              { label: 'Satisfacción', value: `${prep.satisfaccion}%`, href: '#opiniones' },
+              ...(opiniones.cantidad > 0 ? [{ label: 'Opiniones de usuarios', value: String(opiniones.cantidad), href: '#opiniones' }] : []),
             ].map((s) => (
-              <div key={s.label} className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm">
+              // Clickeables (13-oct-2026, Clarity: clics muertos en "Satisfacción")
+              <Link key={s.label} href={s.href} className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:border-red-200 transition-colors">
                 <div className="text-lg font-bold text-[#E8002D]">{s.value}</div>
                 <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -723,12 +726,12 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 </div>
               </Link>
               <div className="flex-shrink-0 flex flex-col items-stretch sm:items-end gap-2">
-                <div className="text-right sm:text-right">
+                <Link href={`/prepagas/${slug}/${planEstrella.slug}`} className="text-right sm:text-right">
                   <div className="font-black text-gray-900 text-lg">{formatPrecio(planEstrella.precio)}</div>
                   <div className="flex sm:justify-end">
                     <NivelPrecioBadge nivel={nivelPrecio(planEstrella.precio)} />
                   </div>
-                </div>
+                </Link>
                 <div className="flex gap-2 flex-wrap sm:justify-end">
                   <Link href={`/prepagas/${slug}/${planEstrella.slug}`}
                     className="inline-flex items-center gap-1.5 px-4 py-2 border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] rounded-xl text-xs font-bold transition-colors whitespace-nowrap">
@@ -825,6 +828,81 @@ export default async function PrepagaSlugPage({ params }: Props) {
       {prep.planes.length > 1 && <ComparacionPlanes prep={prep} datos={comparacion} />}
 
       <CartillasSwiss prep={prep} />
+
+      {/* Sucursales y teléfonos subidos debajo de los planes (13-oct-2026, Clarity:
+          en mobile estaban al 60-72% de la página y solo el 11% pasa de la mitad). */}
+      {/* Sucursales oficiales por provincia (24-sep-2026): "osde rosario",
+          "swiss medical tucumán"... Cada provincia lleva a su página, donde
+          están las direcciones (lib/data/sucursales.ts). */}
+      {(() => {
+        const total = totalSucursales(prep.slug)
+        const porProv = PROVINCIAS_SEO_SUC
+          .filter((pv) => pv.prepagas.some((x) => x.slug === prep.slug && x.enSitio))
+          .map((pv) => ({ pv, n: sucursalesEnProvincia(prep.slug, pv, PROVINCIAS_SEO_SUC).length }))
+          .filter((x) => x.n > 0)
+        if (!total || !porProv.length) return null
+        return (
+          <section id="sucursales" className="py-10 bg-white border-t border-gray-100">
+            <div className="container max-w-5xl mx-auto">
+              <h2 className="text-xl font-bold text-gray-900 mb-1">Sucursales de {prep.nombre}</h2>
+              <p className="text-sm text-gray-600 mb-4">{total} sucursales y centros de atención en el país, según el buscador oficial de {prep.nombre}. Elegí tu provincia para ver direcciones y horarios:</p>
+              <ul className="flex flex-wrap gap-2">
+                {porProv.map(({ pv, n }) => (
+                  <li key={pv.slug}>
+                    <Link href={`/prepagas/${pv.slug}/${prep.slug}#sucursales`} className="inline-block rounded-full border border-gray-200 px-3 py-1.5 text-sm text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">
+                      {pv.nombre} <span className="text-gray-400">{n}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {FUENTES_SUCURSALES[prep.slug] && <a href={FUENTES_SUCURSALES[prep.slug]} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-xs text-gray-500 underline">Buscador oficial de sucursales de {prep.nombre}</a>}
+            </div>
+          </section>
+        )
+      })()}
+
+      {/* Teléfonos (23-sep-2026): "teléfono osde" / "swiss medical teléfono"
+          tienen mucho volumen. Va como H2 dentro de la ficha (no página
+          aparte) para no canibalizar. Solo datos de lib/data/contactos.ts. */}
+      {contacto && (
+        <section id="telefonos" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-5xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Teléfonos de {prep.nombre} y canales de atención</h2>
+            <p className="text-sm text-gray-500 mb-5">
+              Publicados por {prep.nombre} en su{' '}
+              <a href={contacto.fuente} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-700">web oficial</a>
+              {' '}(verificados el {CONTACTOS_VERIFICADOS}).
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {contacto.canales.map((c) => {
+                const numero = /\d{6}/.test(c.valor.replace(/\D/g, '')) ? c.valor.split('/')[0].replace(/[^\d+]/g, '') : null
+                return (
+                  <div key={c.etiqueta} className={`rounded-xl border p-4 ${c.tipo === 'emergencias' ? 'border-red-100 bg-red-50/60' : 'border-gray-100 bg-gray-50'}`}>
+                    <div className="text-xs font-semibold text-gray-500">{c.etiqueta}</div>
+                    {numero ? (
+                      <a href={c.tipo === 'whatsapp' ? `https://wa.me/${numero.startsWith('+54') ? numero.slice(1) : `549${numero}`}` : `tel:${numero}`} className="block mt-1 font-bold text-gray-900 tabular-nums hover:text-[#E8002D]">
+                        {c.valor}
+                      </a>
+                    ) : (
+                      <div className="mt-1 font-semibold text-gray-900 text-sm">{c.valor}</div>
+                    )}
+                    {c.detalle && <div className="text-xs text-gray-500 mt-1">{c.detalle}</div>}
+                  </div>
+                )
+              })}
+            </div>
+            <div className="mt-5 rounded-2xl border-2 border-[#E8002D]/20 bg-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <p className="text-sm text-gray-700">
+                <strong>¿Querés contratar {prep.nombre}?</strong>{' '}
+                {isPartner ? `Somos partner oficial: te cotizamos en ${TIEMPO_RESPUESTA}, sin esperas en el conmutador.` : `Te cotizamos en ${TIEMPO_RESPUESTA} y lo comparamos con otras prepagas.`}
+              </p>
+              <Link href="/comparador" className="flex-shrink-0 text-center px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
+                Cotizar {prep.nombre} →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Para quién es ideal */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">
@@ -1193,36 +1271,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Sucursales oficiales por provincia (24-sep-2026): "osde rosario",
-          "swiss medical tucumán"... Cada provincia lleva a su página, donde
-          están las direcciones (lib/data/sucursales.ts). */}
-      {(() => {
-        const total = totalSucursales(prep.slug)
-        const porProv = PROVINCIAS_SEO_SUC
-          .filter((pv) => pv.prepagas.some((x) => x.slug === prep.slug && x.enSitio))
-          .map((pv) => ({ pv, n: sucursalesEnProvincia(prep.slug, pv, PROVINCIAS_SEO_SUC).length }))
-          .filter((x) => x.n > 0)
-        if (!total || !porProv.length) return null
-        return (
-          <section id="sucursales" className="py-10 bg-white border-t border-gray-100">
-            <div className="container max-w-5xl mx-auto">
-              <h2 className="text-xl font-bold text-gray-900 mb-1">Sucursales de {prep.nombre}</h2>
-              <p className="text-sm text-gray-600 mb-4">{total} sucursales y centros de atención en el país, según el buscador oficial de {prep.nombre}. Elegí tu provincia para ver direcciones y horarios:</p>
-              <ul className="flex flex-wrap gap-2">
-                {porProv.map(({ pv, n }) => (
-                  <li key={pv.slug}>
-                    <Link href={`/prepagas/${pv.slug}/${prep.slug}#sucursales`} className="inline-block rounded-full border border-gray-200 px-3 py-1.5 text-sm text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">
-                      {pv.nombre} <span className="text-gray-400">{n}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              {FUENTES_SUCURSALES[prep.slug] && <a href={FUENTES_SUCURSALES[prep.slug]} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-xs text-gray-500 underline">Buscador oficial de sucursales de {prep.nombre}</a>}
-            </div>
-          </section>
-        )
-      })()}
-
       {/* Convenios, código AFIP y PAMI (23-sep-2026): solo se muestra lo que
           esté cargado en lib/data/convenios.ts. */}
       {conv && (
@@ -1306,49 +1354,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 </div>
               </div>
             )}
-          </div>
-        </section>
-      )}
-
-      {/* Teléfonos (23-sep-2026): "teléfono osde" / "swiss medical teléfono"
-          tienen mucho volumen. Va como H2 dentro de la ficha (no página
-          aparte) para no canibalizar. Solo datos de lib/data/contactos.ts. */}
-      {contacto && (
-        <section id="telefonos" className="py-10 bg-white border-t border-gray-100">
-          <div className="container max-w-5xl mx-auto">
-            <h2 className="text-xl font-bold text-gray-900 mb-1">Teléfonos de {prep.nombre} y canales de atención</h2>
-            <p className="text-sm text-gray-500 mb-5">
-              Publicados por {prep.nombre} en su{' '}
-              <a href={contacto.fuente} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-700">web oficial</a>
-              {' '}(verificados el {CONTACTOS_VERIFICADOS}).
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {contacto.canales.map((c) => {
-                const numero = /\d{6}/.test(c.valor.replace(/\D/g, '')) ? c.valor.split('/')[0].replace(/[^\d+]/g, '') : null
-                return (
-                  <div key={c.etiqueta} className={`rounded-xl border p-4 ${c.tipo === 'emergencias' ? 'border-red-100 bg-red-50/60' : 'border-gray-100 bg-gray-50'}`}>
-                    <div className="text-xs font-semibold text-gray-500">{c.etiqueta}</div>
-                    {numero ? (
-                      <a href={c.tipo === 'whatsapp' ? `https://wa.me/${numero.startsWith('+54') ? numero.slice(1) : `549${numero}`}` : `tel:${numero}`} className="block mt-1 font-bold text-gray-900 tabular-nums hover:text-[#E8002D]">
-                        {c.valor}
-                      </a>
-                    ) : (
-                      <div className="mt-1 font-semibold text-gray-900 text-sm">{c.valor}</div>
-                    )}
-                    {c.detalle && <div className="text-xs text-gray-500 mt-1">{c.detalle}</div>}
-                  </div>
-                )
-              })}
-            </div>
-            <div className="mt-5 rounded-2xl border-2 border-[#E8002D]/20 bg-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <p className="text-sm text-gray-700">
-                <strong>¿Querés contratar {prep.nombre}?</strong>{' '}
-                {isPartner ? `Somos partner oficial: te cotizamos en ${TIEMPO_RESPUESTA}, sin esperas en el conmutador.` : `Te cotizamos en ${TIEMPO_RESPUESTA} y lo comparamos con otras prepagas.`}
-              </p>
-              <Link href="/comparador" className="flex-shrink-0 text-center px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
-                Cotizar {prep.nombre} →
-              </Link>
-            </div>
           </div>
         </section>
       )}

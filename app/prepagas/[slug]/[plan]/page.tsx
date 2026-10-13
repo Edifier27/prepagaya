@@ -752,9 +752,10 @@ export default async function PlanPage({ params, searchParams }: Props) {
                 <p className="text-xs text-gray-500 mb-3">
                   Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona. Cotizando online tenés 15% OFF sobre estos valores.
                 </p>
-                {/* Plegado (25-sep-2026): el precio estaba demasiado a la vista y
-                    repetido. Queda una sola vez, a un toque. */}
-                <details className="group rounded-xl border border-gray-200">
+                {/* Plegado (25-sep-2026) y vuelto a abrir (13-oct-2026, Clarity):
+                    "Ver precio de lista por edad" era lo más tocado de la página
+                    (18% en OSDE 210). La tabla por zona sigue plegada. */}
+                <details open className="group rounded-xl border border-gray-200">
                   <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
                     Ver precio de lista por edad
                     <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>

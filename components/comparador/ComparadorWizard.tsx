@@ -1163,7 +1163,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 <button
                   type="button"
                   onClick={() => updateEdad(p.id, pasoEdad(p.edad, -1, i))}
-                  className="w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
+                  className="hidden sm:flex w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
                 >−</button>
                 <input
                   id={`edad-${p.id}`}
@@ -1178,18 +1178,21 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 <button
                   type="button"
                   onClick={() => updateEdad(p.id, pasoEdad(p.edad, 1, i))}
-                  className="w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 flex items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
+                  className="hidden sm:flex w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
                 >+</button>
                 <span className="text-sm text-gray-400 font-medium flex-shrink-0">años</span>
               </div>
-              {/* Atajos de edad: en Clarity el 24% de los clics eran el + y el − */}
+              {/* Atajos de edad: en Clarity el 24% de los clics eran el + y el −.
+                  13-oct-2026: en el celular el "−" seguía siendo lo más tocado
+                  (111 toques, los menores de 30 bajaban de a uno). En mobile se
+                  sacan −/+ y quedan el campo (teclado numérico) y atajos más grandes. */}
               <div className="flex flex-wrap gap-1.5 sm:basis-full" role="group" aria-label={`Edad rápida de ${i === 0 ? 'titular' : `integrante ${i + 1}`}`}>
                 {(i === 0 ? [25, 30, 35, 40, 45, 50, 55, 60, 65, 70] : [1, 5, 10, 18, 25, 30, 40, 50, 60, 65]).map((n) => (
                   <button
                     key={n}
                     type="button"
                     onClick={() => { updateEdad(p.id, String(n)); setFaltaEdad(false) }}
-                    className={`px-2.5 py-1 rounded-lg border text-xs font-semibold transition-colors ${
+                    className={`min-w-[2.75rem] px-3 py-2 sm:px-2.5 sm:py-1 rounded-lg border text-sm sm:text-xs font-semibold transition-colors ${
                       p.edad === String(n) ? 'bg-[#E8002D] border-[#E8002D] text-white' : 'border-gray-200 text-gray-500 hover:border-[#E8002D] hover:text-[#E8002D]'
                     }`}
                   >
@@ -1235,6 +1238,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
   if (step === 'preview') {
     const previewItems = allResultados.slice(0, 4)
+    const precioDesdePreview = allResultados.length ? Math.min(...allResultados.map((r) => precioFinal(r.precioDesc))) : 0
     return (
       <div>
         <ProgressBar step="preview" onStepClick={setStep} />
@@ -1305,16 +1309,28 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
             {/* Tocar afuera no cierra (el precio se ve después de dejar los datos): marca qué falta */}
             <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" onClick={() => marcarFaltantes(false)} />
-            <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 max-w-sm w-full">
+            <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 max-w-sm w-full max-h-[calc(100dvh-2rem)] overflow-y-auto">
 
-              <div className="w-14 h-14 bg-gradient-to-br from-[#E8002D] to-[#B8001F] rounded-2xl flex items-center justify-center mx-auto mb-5">
+              <div className="hidden sm:flex w-14 h-14 bg-gradient-to-br from-[#E8002D] to-[#B8001F] rounded-2xl items-center justify-center mx-auto mb-5">
                 <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={1.5} strokeLinecap="round" className="w-7 h-7">
                   <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
                 </svg>
               </div>
 
               <h3 className="text-xl font-bold text-gray-900 text-center mb-1">Tu comparación está lista</h3>
-              <p className="text-sm text-gray-500 text-center mb-6">Ingresá tus datos para ver el resultado completo</p>
+              {/* Precio de muestra antes de pedir los datos (13-oct-2026, Clarity:
+                  de 25 que llegaban acá, 12 mandaban el formulario). Solo el
+                  piso: el detalle por plan sigue al dejar los datos. */}
+              {precioDesdePreview > 0 ? (
+                <div className="text-center mb-5">
+                  <p className="text-sm text-gray-500">Para {personas.length === 1 ? 'vos' : `tu grupo de ${personas.length}`} en {provinciaNombre}, planes desde</p>
+                  <p className="text-3xl font-black text-gray-900 tabular-nums mt-0.5">{formatPrecio(precioDesdePreview)}<span className="text-base font-bold text-gray-500">/mes</span></p>
+                  <p className="text-xs font-semibold text-[#00875A] mt-1">con {Math.round(descuentoRate * 100)}% OFF · {allResultados.length} planes</p>
+                  <p className="text-sm text-gray-500 mt-3">Dejá tus datos para ver el precio de cada plan</p>
+                </div>
+              ) : (
+                <p className="text-sm text-gray-500 text-center mb-6">Ingresá tus datos para ver el resultado completo</p>
+              )}
 
               <div className="space-y-3 mb-5">
                 <div>
