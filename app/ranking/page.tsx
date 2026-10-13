@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { CtaMedio } from '@/components/ui/CtaMedio'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, PARTNERS_OFICIALES_TEXTO, TIEMPO_RESPUESTA } from '@/lib/utils'
@@ -206,6 +207,8 @@ export default function RankingPage() {
           </ol>
         </div>
       </section>
+
+      <CtaMedio titulo="¿Cuál de estas prepagas te conviene a vos?" texto="Cotizá gratis y sin DNI: precio exacto para tu edad y zona, con 15% de descuento online." />
 
       {/* Datos: satisfacción y precio, en tablas compactas */}
       <section className="py-10 bg-white">

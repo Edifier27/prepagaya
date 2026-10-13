@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { CtaMedio } from '@/components/ui/CtaMedio'
 import { AportesCta } from '@/components/obras-sociales/AportesCta'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { obrasSociales } from '@/lib/data/obras-sociales'
@@ -29,7 +30,9 @@ const codigoDe = (slug: string) => {
 
 export const metadata: Metadata = {
   title: 'Códigos de obras sociales y prepagas para AFIP/ARCA (2026)',
-  description: `Buscá el código de tu obra social o prepaga: Swiss Medical ${codigoDe('swiss-medical')}, OSDE ${codigoDe('osde')}, OSECAC ${codigoDe('osecac')} y ${conCodigo.length - 3} más, del registro oficial de la SSSalud.`,
+  // + "¿no sabés cuál es tu obra social?" (13-oct-2026): "consulta de obra
+  // social por dni" tenía 1.180 impresiones en esta página con 0,6% de CTR
+  description: `Buscá el código de tu obra social o prepaga: Swiss Medical ${codigoDe('swiss-medical')}, OSDE ${codigoDe('osde')}, OSECAC ${codigoDe('osecac')} y ${conCodigo.length - 3} más (SSSalud). ¿No sabés cuál tenés? Consultala por DNI.`,
   alternates: { canonical: URL },
   openGraph: {
     title: 'Códigos de obras sociales y prepagas para AFIP/ARCA',
@@ -145,6 +148,17 @@ export default function CodigosObrasSocialesPage() {
         </div>
       </section>
 
+      {/* "consulta de obra social por dni" (Search Console, 13-oct-2026: 1.180
+          impresiones que caen en esta página): a la guía del CODEM */}
+      <section className="pb-6 bg-white">
+        <div className="container max-w-4xl mx-auto">
+          <Link href="/guias/que-obra-social-tengo-codem" className="flex items-center justify-between gap-3 rounded-2xl border-2 border-sky-100 bg-sky-50 hover:border-sky-300 px-4 py-3.5 transition-colors">
+            <span className="text-sm text-gray-800"><strong>¿No sabés cuál es tu obra social?</strong> Consultala por DNI o CUIL y sacá el CODEM, paso a paso.</span>
+            <span className="shrink-0 text-sm font-bold text-sky-700">Ver cómo →</span>
+          </Link>
+        </div>
+      </section>
+
       <section className="pb-10 bg-white">
         <div className="container max-w-4xl! mx-auto">
           <FiltroCodigos
@@ -197,6 +211,8 @@ export default function CodigosObrasSocialesPage() {
           </div>
         </div>
       </section>
+
+      <CtaMedio titulo="¿Querés pasar tus aportes a una prepaga?" texto="Con tus aportes de sueldo pagás solo la diferencia. Calculá cuánto te queda en cada plan, gratis." href="/calculadora-aportes" boton="Calcular mi diferencia" />
 
       <section className="py-10 bg-gray-50 border-t border-gray-100">
         <div className="container max-w-4xl! mx-auto">

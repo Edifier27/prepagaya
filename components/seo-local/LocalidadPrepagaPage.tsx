@@ -29,13 +29,20 @@ export function localidadPrepagaMetadata(prov: ProvinciaSEO, loc: LocalidadZona,
   // encontrar la sucursal. Si hay sucursal oficial en la localidad, va en el
   // título y en la descripción.
   const suc = sucursalesEnLocalidad(pz.slug, prov, loc, provinciasSEO)
+  const prepData = prepagas.find((p) => p.slug === pz.slug)
+  const precioDesde = prepData ? preciosDeZona(prepData, zonaDeLocalidad(prov, loc)).desde : null
   return {
     // Intención "planes y precios" en la localidad. La intención "cartilla" la
     // toma el silo /cartillas/[prepaga]/[zona] (datos oficiales por zona);
     // antes este título decía "cartilla" y competía con esas páginas.
+    // Sin sucursal (13-oct-2026, Search Console: "[prepaga] rosario" suma
+    // 5.000 impresiones con 0,34% de CTR): el precio "desde" de la zona.
     title: suc.length
       ? `${pz.nombre} en ${corto}: ${suc.length === 1 ? 'sucursal' : 'sucursales'}, planes y precios ${year}`
-      : `${pz.nombre} en ${corto}, ${prov.nombre}: planes y precios ${year}`,
+      : precioDesde
+        // absolute: sin " | PrepagaYa", para que Google no corte el precio
+        ? { absolute: `${pz.nombre} en ${corto}: planes desde ${formatPrecio(precioDesde)}/mes (${PRECIO_ACTUALIZADO.toLowerCase()})` }
+        : `${pz.nombre} en ${corto}, ${prov.nombre}: planes y precios ${year}`,
     description: suc.length
       ? `${suc.length === 1 ? 'Sucursal' : 'Sucursales'} de ${pz.nombre} en ${corto}: ${suc.slice(0, 2).map((x) => x.direccion.split(' - ')[0]).join(' y ')}. Planes y precios (${PRECIO_ACTUALIZADO.toLowerCase()}) y cotización online gratis.`
       : `Planes y precios de ${pz.nombre} en ${loc.nombre}, ${prov.nombre} (${PRECIO_ACTUALIZADO.toLowerCase()}), cobertura en la zona y cotización online gratis, sin DNI.`,
