@@ -10,8 +10,12 @@ Fuentes (páginas oficiales de cada prepaga):
            gateway.api-osde.com.ar/os-sucursales/v1/sucursales)
   Swiss    https://www.swissmedical.com.ar/prepagaclientes/sucursales (API
            del buscador: mobile.swissmedical.com.ar/api-smg/v0/getSucursales)
-Pendientes: Sancor (el buscador carga los datos por un camino que no se
-encontró) y Avalian (su sitio rechaza los pedidos desde GitHub).
+  Avalian  https://www.avalian.com/centros (xhr/cartilla.php: localidades
+           con filtro "cda" y centros_atencion por localidad). Su sitio puede
+           rechazar los pedidos desde GitHub: si falla, se conservan los que
+           había (la lista se baja corriendo este script en una compu).
+Sancor: no. Todos los datos de su buscador (hasta la lista de provincias)
+piden un token de reCAPTCHA, y eso no se saltea.
   Galeno   https://www.galeno.com.ar/sucursales/ (__NEXT_DATA__ del sitio)
   Premedic https://web.grupopremedic.com.ar/sucursales
   Medifé   https://www.medife.com.ar/sucursales
@@ -23,13 +27,14 @@ from datetime import date
 
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36'
 SALIDA = os.path.join(os.path.dirname(__file__), '..', '..', 'lib', 'data', 'sucursales.json')
-MINIMOS = {'osde': 40, 'swiss-medical': 30, 'galeno': 15, 'premedic': 12, 'medife': 15}
+MINIMOS = {'osde': 40, 'swiss-medical': 30, 'galeno': 15, 'premedic': 12, 'medife': 15, 'avalian': 15}
 FUENTES = {
     'osde': 'https://www.osde.com.ar/buscadorsucursales',
     'swiss-medical': 'https://www.swissmedical.com.ar/prepagaclientes/sucursales',
     'galeno': 'https://www.galeno.com.ar/sucursales/',
     'premedic': 'https://web.grupopremedic.com.ar/sucursales',
     'medife': 'https://www.medife.com.ar/sucursales',
+    'avalian': 'https://www.avalian.com/centros',
 }
 
 
@@ -151,13 +156,47 @@ def medife():
     return out
 
 
+def avalian():
+    import urllib.parse
+    xhr_landing = 'https://www.avalian.com/xhr/contacto_landings.php'
+    xhr = 'https://www.avalian.com/xhr/cartilla.php'
+    h = {'Content-Type': 'application/x-www-form-urlencoded', 'Referer': FUENTES['avalian'], 'X-Requested-With': 'XMLHttpRequest'}
+
+    def post(url, datos):
+        req = urllib.request.Request(url, data=urllib.parse.urlencode(datos).encode(), headers={'User-Agent': UA, **h})
+        with urllib.request.urlopen(req, timeout=40, context=ssl.create_default_context()) as r:
+            return json.loads(r.read().decode('utf-8', 'replace'))
+
+    provincias = post(xhr_landing, {'accion': 'provincias', 'centros': 'true'})['msg']['provincias']
+    out = []
+    for p in provincias:
+        locs = post(xhr, {'accion': 'localidades', 'provincia': p['codigo'], 'filter': 'cda'})['msg'].get('localidades') or []
+        for l in locs:
+            r = post(xhr, {'accion': 'centros_atencion', 'localidad': l['id']})
+            for c in (r.get('msg') or {}).get('centros') or []:
+                ha = c.get('horario_atencion') or {}
+                horario = f"Lunes a viernes de {ha['desde']} a {ha['hasta']} hs" if ha.get('desde') and ha.get('hasta') else None
+                out.append({
+                    # Las que no son filiales son agencias (cooperativas, etc.) que atienden por Avalian
+                    'nombre': limpio(c.get('agencia')).title() if limpio(c.get('agencia')).upper().startswith('AVALIAN') else f"Avalian (atención en {limpio(c.get('agencia')).title()})",
+                    'direccion': limpio(c.get('domicilio')).title(),
+                    'localidad': limpio(c.get('localidad')).title(),
+                    'region': limpio(c.get('provincia')).title(),
+                    'telefono': limpio(c.get('telefono')) or None,
+                    'horario': horario,
+                    'lat': float(c['latitud']) if c.get('latitud') else None,
+                    'lon': float(c['longitud']) if c.get('longitud') else None,
+                })
+    return out
+
+
 def main():
     anterior = {}
     if os.path.exists(SALIDA):
         anterior = json.load(open(SALIDA, encoding='utf-8'))
     por_prepaga = {p: [s for s in anterior.get('sucursales', []) if s['prepaga'] == p] for p in FUENTES}
     resumen = []
-    for prepaga, fn in [('osde', osde), ('swiss-medical', swiss), ('galeno', galeno), ('premedic', premedic), ('medife', medife)]:
+    for prepaga, fn in [('osde', osde), ('swiss-medical', swiss), ('galeno', galeno), ('premedic', premedic), ('medife', medife), ('avalian', avalian)]:
         try:
             lista = fn()
         except Exception as e:  # noqa: BLE001
