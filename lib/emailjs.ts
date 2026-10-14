@@ -11,6 +11,8 @@ const EMAILJS_SERVICE_ID  = process.env.EMAILJS_SERVICE_ID  ?? 'PREPAGAYA'
 const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID ?? 'template_8p5ihaj'
 const EMAILJS_PUBLIC_KEY  = process.env.EMAILJS_PUBLIC_KEY  ?? 'lVlSZHupNk1R5ZDES'
 const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY ?? ''
+// Mail de Darío para los avisos de respaldo (no va en el código: variable de entorno de Vercel)
+const EMAIL_AVISOS = process.env.LEADS_EMAIL_AVISOS ?? ''
 
 export function bannerDuplicado(cuenta: string): string {
   return `<tr><td style="padding:16px 32px 0 32px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#FEF3C7;border:1px solid #FDE68A;border-radius:12px;"><tr><td style="padding:14px 18px;"><span style="display:block;font-size:13px;font-weight:700;color:#92400E;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">⚠️ Ya es un contacto en Kommo (cuenta de ${cuenta})</span><span style="display:block;font-size:12px;color:#92400E;margin-top:4px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">Puede que ya lo hayas contactado antes — revisá el historial en Kommo antes de escribirle de nuevo.</span></td></tr></table></td></tr>`
@@ -52,7 +54,9 @@ export async function mandarLeadPorEmail(d: LeadParaEmail): Promise<void> {
           kommo_link: d.kommo_link,
           kommo_label: d.kommo_label,
           duplicado_banner: d.duplicado_banner,
-          ...(d.to ? { to_email: d.to } : {}),
+          // La plantilla de EmailJS tiene "To Email" = {{to_email}} (14-oct-2026): siempre se dice a quién va. Sin
+          // destino explícito (avisos de respaldo cuando falla Kommo o el CRM) va al mail de avisos de Darío.
+          to_email: d.to || EMAIL_AVISOS,
         },
       }),
     })
