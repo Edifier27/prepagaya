@@ -525,3 +525,20 @@ export async function moderarResena(id: number, estado: EstadoResena): Promise<s
   const rows = await sql`UPDATE resenas SET estado = ${estado}, moderado_en = now() WHERE id = ${id} RETURNING prepaga_slug`
   return (rows[0] as { prepaga_slug: string } | undefined)?.prepaga_slug ?? null
 }
+
+/** Cupo diario por mail (14-oct-2026): cuántos leads reales (no de prueba) salieron hoy por el cupo. */
+export async function contarCupoMailDesde(desdeISO: string): Promise<number> {
+  if (!sql) return 0
+  try {
+    await asegurarTablas()
+    const filas = await sql`
+      SELECT count(*)::int AS n FROM leads
+      WHERE (kommo_estado LIKE 'Cupo mail:%' OR kommo_estado = 'Dario B2')
+        AND coalesce(fuente, '') NOT LIKE 'prueba%'
+        AND creado_en >= ${desdeISO}`
+    return Number(filas[0]?.n) || 0
+  } catch (err) {
+    console.error('[DB] error contando el cupo por mail:', err)
+    return 0
+  }
+}
