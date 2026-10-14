@@ -23,8 +23,9 @@ export function ComparacionPlanes({ prep, datos }: { prep: Prepaga; datos: Datos
       <div className="container max-w-5xl mx-auto">
         <h2 className="text-xl font-bold text-gray-900 mb-2">Diferencias entre los planes de {prep.nombre}: cuál elegir</h2>
         <p className="text-sm text-gray-600 mb-5 max-w-3xl">
-          {prep.nombre} tiene {filas.length} planes. Van de {formatPrecio(entrada.plan.precio)} ({entrada.plan.nombre}) a {formatPrecio(completo.plan.precio)} ({completo.plan.nombre}) por mes para una persona de 30 años
-          {entrada.oficial ? `, según el cuadro tarifario oficial de ${mes}` : ` (precio de referencia, ${mes})`}.
+          {entrada.oficial
+            ? <>{prep.nombre} tiene {filas.length} planes. Van de {formatPrecio(entrada.plan.precio)} ({entrada.plan.nombre}) a {formatPrecio(completo.plan.precio)} ({completo.plan.nombre}) por mes para una persona de 30 años, según el cuadro tarifario oficial de {mes}.</>
+            : <>{prep.nombre} tiene {filas.length} planes. No publica una lista de precios oficial: se cotizan según tu edad y zona.</>}
           {hayCartilla ? ' Además del precio, cambian el copago, los sanatorios de la cartilla' : ' Además del precio, cambia el copago'}
           {hayCoberturas ? ' y coberturas como ' + datos.temas.slice(0, 3).map((t) => t.nombre.toLowerCase()).join(', ') : ''}.
         </p>
@@ -66,17 +67,17 @@ export function ComparacionPlanes({ prep, datos }: { prep: Prepaga; datos: Datos
         <h3 className="text-base font-bold text-gray-900 mt-8 mb-3">¿Qué plan de {prep.nombre} te conviene?</h3>
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
           <Recomendacion titulo="Para entrar al menor precio" f={entrada} href={href(entrada.plan.slug)}
-            texto={`${formatPrecio(entrada.plan.precio)} por mes${entrada.plan.copago ? ', con copago en consultas' : ', sin copago en consultas'}.`} />
+            texto={`${entrada.oficial ? `${formatPrecio(entrada.plan.precio)} por mes` : 'Precio a cotizar'}${entrada.plan.copago ? ', con copago en consultas' : ', sin copago en consultas'}.`} />
           {sinCopago && (
             <Recomendacion titulo="Sin copago, al menor precio" f={sinCopago} href={href(sinCopago.plan.slug)}
-              texto={`${formatPrecio(sinCopago.plan.precio)} por mes: no pagás cada consulta.`} />
+              texto={`${sinCopago.oficial ? `${formatPrecio(sinCopago.plan.precio)} por mes` : 'Precio a cotizar'}: no pagás cada consulta.`} />
           )}
           {masSanatorios && (
             <Recomendacion titulo="La cartilla más amplia" f={masSanatorios} href={href(masSanatorios.plan.slug)}
-              texto={`${masSanatorios.sanatorios} sanatorios para internación, desde ${formatPrecio(masSanatorios.plan.precio)}.${masSanatorios.cartillaLabel ? ` Misma cartilla: ${masSanatorios.cartillaLabel}.` : ''}`} />
+              texto={`${masSanatorios.sanatorios} sanatorios para internación${masSanatorios.oficial ? `, desde ${formatPrecio(masSanatorios.plan.precio)}` : ''}.${masSanatorios.cartillaLabel ? ` Misma cartilla: ${masSanatorios.cartillaLabel}.` : ''}`} />
           )}
           <Recomendacion titulo="El plan más completo" f={completo} href={href(completo.plan.slug)}
-            texto={`${formatPrecio(completo.plan.precio)} por mes${completo.sanatorios ? `, ${completo.sanatorios} sanatorios para internación` : ''}${completo.incluye.length ? ` e incluye ${completo.incluye.map((c) => c.nombre.toLowerCase()).join(', ')}` : ''}.`} />
+            texto={`${completo.oficial ? `${formatPrecio(completo.plan.precio)} por mes` : 'Precio a cotizar'}${completo.sanatorios ? `, ${completo.sanatorios} sanatorios para internación` : ''}${completo.incluye.length ? ` e incluye ${completo.incluye.map((c) => c.nombre.toLowerCase()).join(', ')}` : ''}.`} />
         </ul>
       </div>
     </section>
@@ -95,7 +96,7 @@ type Globo = { texto: string; tono: 'rojo' | 'verde' | 'azul' | 'violeta' }
 function globosDePlanes(datos: Datos): Map<string, Globo[]> {
   const out = new Map<string, Globo[]>()
   const poner = (slug: string, g: Globo) => out.set(slug, [...(out.get(slug) ?? []), g])
-  poner(datos.entrada.plan.slug, { texto: 'Mejor precio', tono: 'verde' })
+  if (datos.entrada.oficial) poner(datos.entrada.plan.slug, { texto: 'Mejor precio', tono: 'verde' })
   if (datos.sinCopago && datos.sinCopago.plan.slug !== datos.entrada.plan.slug) poner(datos.sinCopago.plan.slug, { texto: 'Sin copago al menor precio', tono: 'verde' })
   if (datos.masSanatorios) poner(datos.masSanatorios.plan.slug, { texto: 'La cartilla más amplia', tono: 'azul' })
   for (const sa of datos.saltos) {

@@ -19,8 +19,15 @@ function desdeOficial(prepagaSlug: string): string {
   if (!d) return ''
   return `${formatPrecio(d.plan.precio)}/mes (${d.p.nombre} ${d.plan.nombre}, ${d.oficial ? 'precio de lista oficial' : 'precio de referencia'} para una persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()})`
 }
+/** "Desde $X/mes (...)" o, sin precio oficial, "Precio a cotizar" (13-oct-2026) */
+function desdeLinea(prepagaSlug: string): string {
+  const d = planDesde(prepagaSlug)
+  return d && !Number.isFinite(d.plan.precio) ? 'Precio a cotizar según tu edad y zona' : `Desde ${desdeOficial(prepagaSlug)}`
+}
 const respuestaMonotributo = (prepagaSlug: string, nombre: string) =>
-  `El plan más accesible de ${nombre} arranca en ${desdeOficial(prepagaSlug)}${planDesde(prepagaSlug)?.oficial ? ', según el cuadro tarifario de la Superintendencia de Servicios de Salud' : ''}. El precio final depende de tu edad y del plan que elijas: cotizalo gratis para ver el tuyo.`
+  !Number.isFinite(planDesde(prepagaSlug)?.plan.precio ?? 0)
+    ? `${nombre} no publica una lista de precios oficial: el valor depende de tu edad y del plan que elijas. Cotizalo gratis para ver el tuyo.`
+    : `El plan más accesible de ${nombre} arranca en ${desdeOficial(prepagaSlug)}${planDesde(prepagaSlug)?.oficial ? ', según el cuadro tarifario de la Superintendencia de Servicios de Salud' : ''}. El precio final depende de tu edad y del plan que elijas: cotizalo gratis para ver el tuyo.`
 
 export interface ObraSocialData {
   slug: string
@@ -74,7 +81,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto',
       empleador: '6% del salario bruto',
-      monotributista: `Desde ${desdeOficial('osde')}`,
+      monotributista: desdeLinea('osde'),
     },
     cobertura: [
       'PMO completo (Plan Médico Obligatorio)',
@@ -139,7 +146,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto (más la diferencia del plan)',
       empleador: '6% del salario bruto',
-      monotributista: `Desde ${desdeOficial('medicus')}`,
+      monotributista: desdeLinea('medicus'),
     },
     cobertura: [
       'Programa Médico Obligatorio (PMO) en todos los planes',
@@ -197,7 +204,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto (más la diferencia del plan)',
       empleador: '6% del salario bruto',
-      monotributista: `Desde ${desdeOficial('galeno')}`,
+      monotributista: desdeLinea('galeno'),
     },
     cobertura: [
       'Programa Médico Obligatorio (PMO) en todos los planes',
@@ -367,7 +374,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto (más la diferencia del plan)',
       empleador: '6% del salario bruto',
-      monotributista: `Desde ${desdeOficial('medife')}`,
+      monotributista: desdeLinea('medife'),
     },
     cobertura: [
       'Programa Médico Obligatorio (PMO) en todos los planes',
@@ -480,7 +487,7 @@ export const obrasSociales: ObraSocialData[] = [
     aportes: {
       trabajador: '3% del salario bruto (más la diferencia del plan)',
       empleador: '6% del salario bruto',
-      monotributista: `Desde ${desdeOficial('sancor-salud')}`,
+      monotributista: desdeLinea('sancor-salud'),
     },
     cobertura: [
       'Programa Médico Obligatorio (PMO) en todos los planes',

@@ -28,7 +28,8 @@ export function preciosDeZona(prep: Prepaga, zona: string | null) {
   const conRegion = prep.planes.map((plan) => ({ plan, r: zona ? precioGrupo(prep.slug, plan.slug, [30], zona) : null }))
   const regional = conRegion.some((x) => x.plan.fuentePrecio === 'sssalud' && x.r)
   const planes: { plan: Prepaga['planes'][number]; precio: number | null }[] = conRegion
-    .map(({ plan, r }) => ({ plan, precio: regional ? r?.total ?? null : plan.precio }))
+    // Sin precio oficial (Infinity) → null: "a cotizar"
+    .map(({ plan, r }) => ({ plan, precio: regional ? r?.total ?? null : Number.isFinite(plan.precio) ? plan.precio : null }))
     .sort((a, b) => (a.precio ?? Infinity) - (b.precio ?? Infinity))
   const conPrecio = planes.filter((x): x is { plan: Prepaga['planes'][number]; precio: number } => x.precio !== null)
   const base = conPrecio.filter((x) => x.plan.fuentePrecio === 'sssalud')

@@ -22,9 +22,12 @@ export const NIVEL_PRECIO_LABEL: Record<NivelPrecio, { simbolo: string; label: s
   economico: { simbolo: '$', label: 'Económico' },
   medio: { simbolo: '$$', label: 'Precio medio' },
   premium: { simbolo: '$$$', label: 'Premium' },
+  'a-cotizar': { simbolo: '—', label: 'A cotizar' },
 }
 
 export function formatPrecio(precio: number): string {
+  // Planes sin precio con fuente oficial (Infinity, ver lib/data/prepagas.ts)
+  if (!Number.isFinite(precio)) return 'A cotizar'
   return new Intl.NumberFormat('es-AR', {
     style: 'currency',
     currency: 'ARS',

@@ -94,6 +94,29 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
   // que ya pasa con "{prepaga} planes").
   const planMasBarato = prep.planes.find(pl => pl.precio === precioMin) ?? prep.planes[0]
   const planMasCaro = prep.planes.find(pl => pl.precio === precioMax) ?? prep.planes[0]
+  // Sin ningún precio con fuente oficial (13-oct-2026): las respuestas no
+  // dan montos, explican que se cotiza.
+  if (!Number.isFinite(precioMin)) {
+    return [
+      {
+        q: `¿Cuántos planes tiene ${prep.nombre} y cuáles son?`,
+        a: `${prep.nombre} tiene ${prep.planes.length} planes: ${prep.planes.map((pl) => pl.nombre).join(', ')}. ${prep.nombre} no publica una lista de precios oficial, así que el valor se cotiza según tu edad, tu zona y tu grupo familiar.`,
+      },
+      {
+        q: `¿Cuánto cuesta ${prep.nombre} en ${PRECIO_ACTUALIZADO}?`,
+        a: `${prep.nombre} no tiene un precio de lista público que podamos citar con fuente oficial. Te lo cotizamos gratis y sin DNI para tu edad y zona; un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+      },
+      {
+        q: `¿Cómo cotizar ${prep.nombre} online?`,
+        a: `Dejás tu zona y la edad de cada integrante y un asesor te pasa el precio de cada plan de ${prep.nombre} en ${TIEMPO_RESPUESTA}. Es gratis y sin DNI.`,
+      },
+      ...(sinCopago.length > 0 && conCopago.length > 0 ? [{
+        q: `¿${prep.nombre} tiene copago en consultas?`,
+        a: `Depende del plan. Sin copago: ${sinCopago.join(', ')}. Con copago: ${conCopago.join(', ')}.`,
+      }] : []),
+      ...(FAQ_EXTRA[prep.slug] ?? []),
+    ]
+  }
   return [
     {
       // FAQ pensada para "{prepaga} planes" (pedido de Darío, 15-sep-2026):
@@ -260,7 +283,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // absolute: sin el sufijo "| PrepagaYa", para que entre completo en Google.
     title: { absolute: `${prep.nombre}: planes, precios y cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()}` },
     // Descripción ≤ ~160 caracteres (antes ~185 y Google cortaba el "Cotizá gratis")
-    description: `¿Cuánto sale ${prep.nombre}? Planes desde ${formatPrecio(precioMinTitulo)}/mes en ${PRECIO_ACTUALIZADO.toLowerCase()}${prep.planes.some((pl) => pl.fuentePrecio === 'sssalud') ? ' (precio oficial SSSalud)' : ''}. Precio por edad, cartilla${contactos[prep.slug] ? ', teléfonos' : ''} y opiniones. Cotizá gratis.`,
+    description: `¿Cuánto sale ${prep.nombre}? ${Number.isFinite(precioMinTitulo) ? `Planes desde ${formatPrecio(precioMinTitulo)}/mes` : 'Precio a cotizar según tu edad y zona'} en ${PRECIO_ACTUALIZADO.toLowerCase()}${prep.planes.some((pl) => pl.fuentePrecio === 'sssalud') ? ' (precio oficial SSSalud)' : ''}. Precio por edad, cartilla${contactos[prep.slug] ? ', teléfonos' : ''} y opiniones. Cotizá gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} planes`,
@@ -300,7 +323,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
 
   const planesOrdenados = [...prep.planes].sort((a, b) => a.precio - b.precio)
   const precioMin = precioDesde(prep)
-  const precioMax = Math.max(...prep.planes.map(pl => pl.precio))
+  const precioMax = Math.max(...prep.planes.map(pl => pl.precio).filter(Number.isFinite))
   const planEstrella = prep.planes.find(pl => pl.destacado) ?? planesOrdenados[0]
   const comparacion = compararPlanes(prep)
   // Los planes que comparten cartilla real van pegados en vez de ordenados
@@ -397,15 +420,16 @@ export default async function PrepagaSlugPage({ params }: Props) {
       // Google no tiene forma de mostrar "desde $X" en el resultado de
       // búsqueda para consultas tipo "{prepaga} planes" (pedido de Darío,
       // 15-sep-2026: posicionar justo esa keyword).
-      offers: {
+      // Solo con precios oficiales (offerCount = planes con precio)
+      ...(Number.isFinite(precioMin) ? { offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'ARS',
         lowPrice: precioMin,
         highPrice: precioMax,
-        offerCount: prep.planes.length,
+        offerCount: prep.planes.filter((pl) => Number.isFinite(pl.precio)).length,
         availability: 'https://schema.org/InStock',
         priceValidUntil: PRECIO_VALIDO_HASTA,
-      },
+      } } : {}),
     },
     {
       '@context': 'https://schema.org',
@@ -504,7 +528,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     <Link href={`/prepagas/${slug}/${pl.slug}`} className="font-medium text-gray-900 hover:text-[#E8002D] hover:underline">{pl.nombre.replace(/^Plan /, '')}</Link>
                   </span>
                 ))}
-                . Precio de lista desde {formatPrecio(precioMin)} por mes (30 años, {PRECIO_ACTUALIZADO.toLowerCase()}).
+                {Number.isFinite(precioMin)
+                  ? <>. Precio de lista desde {formatPrecio(precioMin)} por mes (30 años, {PRECIO_ACTUALIZADO.toLowerCase()}).</>
+                  : <>. Sin lista de precios oficial: el precio se cotiza según tu edad y zona.</>}
               </p>
 
               {/* Rating: solo el de las reseñas reales del sitio (las mismas del
@@ -586,7 +612,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
             <div className="sm:w-52 flex-shrink-0">
               {/* Clickeable (13-oct-2026, Clarity): "Desde $" juntaba clics muertos */}
               <Link href="#planes" className="block bg-white rounded-2xl border-2 border-[#E8002D] p-5 text-center shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">Desde</div>
+                <div className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">{Number.isFinite(precioMin) ? 'Desde' : 'Precio'}</div>
                 <div className="text-2xl font-black text-gray-900">{formatPrecio(precioMin)}</div>
                 <div className="flex justify-center mt-1.5">
                   <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
@@ -688,7 +714,11 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">Superintendencia de Servicios de Salud</a>
                 {' '}({PRECIO_ACTUALIZADO}): 30 años, contratación directa, CABA/AMBA, IVA incluido.</>
             ) : (
-              <>Precios de referencia para 30 años, contratación individual. El valor final depende de tu edad y zona.</>
+              prep.planes.some((pl) => pl.fuentePrecio === 'sssalud') ? (
+                <>Precios de lista oficiales declarados ante la Superintendencia de Servicios de Salud ({PRECIO_ACTUALIZADO}), 30 años. Los planes que no figuran en la lista oficial se cotizan a pedido.</>
+              ) : (
+                <>{prep.nombre} no publica una lista de precios oficial: cada plan se cotiza según tu edad, tu zona y tu grupo familiar.</>
+              )
             )}
           </p>
 

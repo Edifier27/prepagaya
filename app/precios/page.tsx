@@ -21,7 +21,7 @@ const VARIACION_PROMEDIO = MES_OFICIAL ? `+${MES_OFICIAL.promedio.toLocaleString
 
 const todosLosPlanes = prepagas.flatMap((p) => p.planes.map((pl) => ({ ...pl, prepaga: p })))
 const precioMin = Math.min(...todosLosPlanes.map((pl) => pl.precio))
-const precioMax = Math.max(...todosLosPlanes.map((pl) => pl.precio))
+const precioMax = Math.max(...todosLosPlanes.map((pl) => pl.precio).filter(Number.isFinite))
 const planMasBarato = todosLosPlanes.find((pl) => pl.precio === precioMin)!
 
 // "¿Cuánto sale una prepaga?" (23-sep-2026): esta sección reemplaza a la guía

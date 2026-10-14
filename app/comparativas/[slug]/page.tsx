@@ -64,7 +64,8 @@ export default async function ComparativaPage({ params }: Props) {
   // Quién gana en precio sale del precio de lista "desde" que muestra la
   // tabla (24-sep-2026). Antes era un campo fijo y en 10 de 27 comparativas
   // el tilde quedaba al lado del precio más caro de la misma fila.
-  const ganadorPrecio = precioMin(p1) <= precioMin(p2) ? p1.slug : p2.slug
+  // Sin precio oficial de alguna de las dos no hay ganador en precio (13-oct-2026)
+  const ganadorPrecio = !Number.isFinite(precioMin(p1)) || !Number.isFinite(precioMin(p2)) ? null : precioMin(p1) <= precioMin(p2) ? p1.slug : p2.slug
 
   const filas: {
     label: string
@@ -84,7 +85,9 @@ export default async function ComparativaPage({ params }: Props) {
   const faqs = [
     {
       q: `¿Cuál es más barata: ${p1.nombre} o ${p2.nombre}?`,
-      a: `En ${PRECIO_ACTUALIZADO}, ${p1.nombre} es de nivel de precio ${NIVEL_PRECIO_LABEL[nivelPrecio(precioMin(p1))].label.toLowerCase()} y ${p2.nombre} de nivel ${NIVEL_PRECIO_LABEL[nivelPrecio(precioMin(p2))].label.toLowerCase()} en su plan de entrada. ${
+      a: !Number.isFinite(precioMin(p1)) || !Number.isFinite(precioMin(p2))
+        ? `${[p1, p2].filter((p) => !Number.isFinite(precioMin(p))).map((p) => p.nombre).join(' y ')} no ${[p1, p2].filter((p) => !Number.isFinite(precioMin(p))).length > 1 ? 'publican' : 'publica'} una lista de precios oficial, así que no se puede comparar el precio con datos oficiales. Cotizá gratis y te pasamos el valor de las dos para tu edad.`
+        : `En ${PRECIO_ACTUALIZADO}, ${p1.nombre} es de nivel de precio ${NIVEL_PRECIO_LABEL[nivelPrecio(precioMin(p1))].label.toLowerCase()} y ${p2.nombre} de nivel ${NIVEL_PRECIO_LABEL[nivelPrecio(precioMin(p2))].label.toLowerCase()} en su plan de entrada. ${
         ganadorPrecio === p1.slug ? p1.nombre : p2.nombre
       } gana en precio. Cotizá gratis para ver el monto exacto a tu edad.`,
     },

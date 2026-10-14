@@ -7,6 +7,8 @@ interface NivelPrecioBadgeProps {
 }
 
 export function NivelPrecioBadge({ nivel, className }: NivelPrecioBadgeProps) {
+  // Sin precio oficial: el precio ya dice "A cotizar", no se repite en el badge
+  if (nivel === 'a-cotizar') return null
   const { label } = NIVEL_PRECIO_LABEL[nivel]
   return (
     <span

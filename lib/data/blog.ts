@@ -466,7 +466,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: 'Entre $200.000 y $280.000/mes: OSDE Flux (menores de 35)',
-          cuerpo: 'A $198.500/mes (exclusivo 18-35 años), el Plan Flux de OSDE ofrece la red más grande del país, psicología ilimitada sin copago y anticonceptivos al 100%. Si calificás por edad, supera ampliamente en cobertura al Sancor F700 ($257.337) y al Swiss Medical S1 ($185.773, red cerrada). El Flux es el mejor plan de su franja si tenés menos de 35 años.',
+          cuerpo: 'Exclusivo para 18 a 35 años, el Plan Flux de OSDE suma psicología ilimitada sin copago y anticonceptivos al 100% sobre la red de OSDE. Su precio no figura en la lista oficial que OSDE declara ante la SSSalud, así que se cotiza según tu edad: si calificás, conviene cotizarlo junto a los planes de entrada de otras prepagas.',
         },
         {
           titulo: 'Entre $280.000 y $380.000/mes: Sancor Plan 1000',
@@ -474,7 +474,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: 'Por encima de $380.000/mes: Medicus Plan Celeste',
-          cuerpo: 'A $399.484/mes, el Plan Celeste de Medicus tiene el 87% de satisfacción más alto del mercado, sin copago, acceso a 11 centros propios y a los mejores hospitales privados del país (Mater Dei, Alemán, Otamendi, Favaloro, CEMIC). Para quien puede pagar en esta franja, la calidad de atención de Medicus supera a OSDE 310 y Swiss Medical SMG20.',
+          cuerpo: 'El Plan Celeste de Medicus (precio a cotizar: Medicus no declara cuadro tarifario ante la SSSalud) tiene el 87% de satisfacción más alto del mercado, sin copago, acceso a 11 centros propios y a los mejores hospitales privados del país (Mater Dei, Alemán, Otamendi, Favaloro, CEMIC). Para quien puede pagar en esta franja, la calidad de atención de Medicus supera a OSDE 310 y Swiss Medical SMG20.',
         },
         {
           titulo: 'El error más común al elegir por precio',

@@ -215,7 +215,7 @@ export const comparativas: Comparativa[] = [
     descripcion: 'Comparamos Avalian (ex ACA Salud) contra OSDE, la prepaga líder del mercado, en precio, red de prestadores y satisfacción de afiliados.',
     ganadorRed: 'osde',
     ganadorSatisfaccion: 'osde',
-    veredicto: 'OSDE informa más de 125.000 prestadores y Avalian más de 100.000. Según los cuadros tarifarios oficiales, el Cerca AS100 de Avalian sale menos que el Plan 210 de OSDE (el Flux de OSDE es más barato, pero es exclusivo para menores de 35), y en la punta el Selecta AS500 también queda por debajo del 510. Si priorizás la red de OSDE, OSDE. Si buscás telemedicina 24hs incluida en todos los planes y una cuota más baja en los extremos de la grilla, Avalian.',
+    veredicto: 'OSDE informa más de 125.000 prestadores y Avalian más de 100.000. Según los cuadros tarifarios oficiales, el Cerca AS100 de Avalian sale menos que el Plan 210 de OSDE (el Flux de OSDE, exclusivo para menores de 35, no tiene precio en la lista oficial), y en la punta el Selecta AS500 también queda por debajo del 510. Si priorizás la red de OSDE, OSDE. Si buscás telemedicina 24hs incluida en todos los planes y una cuota más baja en los extremos de la grilla, Avalian.',
   },
   {
     slug: 'avalian-vs-swiss-medical',
@@ -297,7 +297,7 @@ export const comparativas: Comparativa[] = [
     descripcion: 'Galeno contra OSDE: precio de lista oficial, sanatorios propios, copago y red de prestadores, plan por plan.',
     ganadorRed: 'osde',
     ganadorSatisfaccion: 'osde',
-    veredicto: 'Galeno tiene 5 sanatorios propios (los Sanatorios de la Trinidad) y más de 80 sucursales; OSDE no tiene sanatorios propios, pero informa más de 125.000 prestadores en todo el país. En precio de lista, el plan de entrada de Galeno (Azul 200) sale menos que el Plan 210 de OSDE, aunque el Flux de OSDE, exclusivo para menores de 35, es el más barato de los dos. Todos los planes de Galeno salvo el Oro 550 tienen copago; en OSDE, solo el 210. Si querés internarte en un sanatorio propio en AMBA, Galeno. Si priorizás la red más amplia y planes sin copago, OSDE.',
+    veredicto: 'Galeno tiene 5 sanatorios propios (los Sanatorios de la Trinidad) y más de 80 sucursales; OSDE no tiene sanatorios propios, pero informa más de 125.000 prestadores en todo el país. En precio de lista, el plan de entrada de Galeno (Azul 200) sale menos que el Plan 210 de OSDE (el Flux, exclusivo para menores de 35, no tiene precio en la lista oficial). Todos los planes de Galeno salvo el Oro 550 tienen copago; en OSDE, solo el 210. Si querés internarte en un sanatorio propio en AMBA, Galeno. Si priorizás la red más amplia y planes sin copago, OSDE.',
   },
   {
     slug: 'omint-vs-osde',

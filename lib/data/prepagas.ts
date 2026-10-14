@@ -1503,6 +1503,19 @@ for (const p of prepagas) {
   }
 }
 
+// Sin fuente oficial → "Precio a cotizar" (Darío, 13-oct-2026: nada de
+// precios sin fuente). El precio queda en Infinity: no se muestra
+// (formatPrecio → "A cotizar"), va último al ordenar y no entra en los
+// "desde". Para cargar uno, mapearlo en scripts/cuadros-sssalud/generar.py.
+for (const p of prepagas) {
+  for (const pl of p.planes) {
+    if (pl.fuentePrecio !== 'sssalud') pl.precio = Number.POSITIVE_INFINITY
+  }
+}
+
+/** ¿El plan tiene precio con fuente oficial? */
+export const tienePrecio = (pl: { precio: number }) => Number.isFinite(pl.precio)
+
 export const PRECIOS_FUENTE = preciosOficiales.fuente
 export const PRECIOS_FUENTE_URL = preciosOficiales.fuenteUrl
 
@@ -1538,13 +1551,15 @@ export const PRECIO_ACTUALIZADO_ZH = MES_INDICE >= 0 ? `${anioActualizado}年${M
 // en toda superficie pública que asocie precio a una marca puntual (las
 // prepagas no permiten publicar esa combinación) — el monto real sigue
 // existiendo para ordenar/filtrar puertas adentro, solo deja de renderizarse.
-export type NivelPrecio = 'economico' | 'medio' | 'premium'
+export type NivelPrecio = 'economico' | 'medio' | 'premium' | 'a-cotizar'
 
 const TODOS_LOS_PRECIOS = prepagas
   .flatMap((p) => p.planes.map((pl) => pl.precio))
+  .filter((n) => Number.isFinite(n))
   .sort((a, b) => a - b)
 
 export function nivelPrecio(precio: number): NivelPrecio {
+  if (!Number.isFinite(precio)) return 'a-cotizar'
   let i = 0
   while (i < TODOS_LOS_PRECIOS.length && TODOS_LOS_PRECIOS[i] < precio) i++
   const pct = i / TODOS_LOS_PRECIOS.length

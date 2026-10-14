@@ -363,7 +363,9 @@ function buildPlanFAQs(plan: Plan, prep: Prepaga) {
   return [
     {
       q: `¿Cuánto cuesta el ${plan.nombre} de ${prep.nombre}?`,
-      a: `El ${plan.nombre} de ${prep.nombre} cuesta ${formatPrecio(plan.precio)} por mes (precio de lista para una persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}). El valor final varía según tu edad y tu provincia: a mayor edad, mayor es el costo mensual. Cotizá gratis en PrepagaYa para ver el precio exacto de tu perfil.`,
+      a: !Number.isFinite(plan.precio)
+        ? `${prep.nombre} no publica un precio de lista oficial del ${plan.nombre}: se cotiza según tu edad, tu zona y tu grupo familiar. Cotizá gratis en PrepagaYa y un asesor te pasa el valor exacto.`
+        : `El ${plan.nombre} de ${prep.nombre} cuesta ${formatPrecio(plan.precio)} por mes (precio de lista para una persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}). El valor final varía según tu edad y tu provincia: a mayor edad, mayor es el costo mensual. Cotizá gratis en PrepagaYa para ver el precio exacto de tu perfil.`,
     },
     {
       q: `¿El ${plan.nombre} tiene copago en consultas?`,
@@ -439,7 +441,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     description: escalaMeta
       ? `Precio oficial del ${codigoPlan(plan)} de ${prep.nombre}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes hasta los ${escalaMeta.rangos[0].hasta} años. ${plan.copago ? 'Con copago' : 'Sin copago'}. Precio por edad, qué cubre y sanatorios. Cotizá con 15% OFF.`
-      : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}${plan.fuentePrecio === 'sssalud' ? ', lista oficial SSSalud' : ''}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
+      : !Number.isFinite(plan.precio)
+        ? `${prep.nombre} ${plan.nombre}: qué cubre, ${plan.copago ? 'con copago' : 'sin copago'}, red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Sin lista de precios oficial: cotizalo gratis para tu edad y zona.`
+        : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}${plan.fuentePrecio === 'sssalud' ? ', lista oficial SSSalud' : ''}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
@@ -571,14 +575,15 @@ export default async function PlanPage({ params, searchParams }: Props) {
       description: plan.descripcion,
       url: `${SITE_URL}/prepagas/${slug}/${planSlug}`,
       provider: { '@type': 'Organization', name: prep.nombre },
-      offers: {
+      // Sin precio oficial no se declara oferta con monto
+      ...(Number.isFinite(plan.precio) ? { offers: {
         '@type': 'Offer',
         price: plan.precio,
         priceCurrency: 'ARS',
         availability: 'https://schema.org/InStock',
         url: `${SITE_URL}/prepagas/${slug}/${planSlug}`,
         priceValidUntil: PRECIO_VALIDO_HASTA,
-      },
+      } } : {}),
     },
     {
       '@context': 'https://schema.org',

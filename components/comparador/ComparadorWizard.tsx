@@ -991,7 +991,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
   function buildPayload(extra: Record<string, string> = {}): Record<string, string> {
     const planesTexto = allResultados.slice(0, 5).map((r, i) =>
-      `${i + 1}. ${r.prepaga.nombre} — ${r.plan.nombre} | $${r.precioGrupal.toLocaleString('es-AR')}/mes`
+      `${i + 1}. ${r.prepaga.nombre} — ${r.plan.nombre} | ${Number.isFinite(r.precioGrupal) ? `$${r.precioGrupal.toLocaleString('es-AR')}/mes` : 'precio a cotizar'}`
     ).join('\n')
     // "interes" prioriza el plan puntual que la persona eligió (plan_elegido,
     // seteado por handleAccederPlan cuando aprieta "Cotización personalizada"
@@ -1000,7 +1000,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     // Si llegó desde la página de un plan, ese plan es el interés por defecto
     const delOrigen = origen?.plan ? allResultados.find((r) => r.prepaga.slug === origen.prepaga && r.plan.slug === origen.plan) : undefined
     const interesOrigen = delOrigen
-      ? `${delOrigen.prepaga.nombre} — ${delOrigen.plan.nombre} | $${delOrigen.precioGrupal.toLocaleString('es-AR')}/mes (venía de la página del plan)`
+      ? `${delOrigen.prepaga.nombre} — ${delOrigen.plan.nombre} | ${Number.isFinite(delOrigen.precioGrupal) ? `$${delOrigen.precioGrupal.toLocaleString('es-AR')}/mes` : 'precio a cotizar'} (venía de la página del plan)`
       : origen ? `${origen.prepagaNombre}${origen.planNombre ? ` — ${origen.planNombre}` : ''} (venía de su página)` : undefined
     const interes = extra.plan_elegido ?? interesOrigen ?? (planesTexto.split('\n')[0] ?? '')
     const edadResumen = resumenEdadesNatural()

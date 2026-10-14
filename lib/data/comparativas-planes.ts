@@ -23,12 +23,14 @@ export const comparativasPlanes: ComparativaPlanes[] = [
     plan2Slug: '210',
     titulo: 'OSDE Flux vs OSDE 210: ¿cuál conviene?',
     descripcion: 'Comparamos el Plan Flux y el Plan 210 de OSDE en precio, copago y cobertura para saber cuál elegir según tu edad.',
-    respuestaCorta: 'Si tenés entre 18 y 35 años, el Flux es la mejor opción: cuesta menos que el 210, no tiene copago y suma psicología ilimitada. Si tenés 36 años o más, no podés elegir Flux — el 210 queda como la puerta de entrada a OSDE.',
-    veredicto: 'No es una comparación de "mejor vs peor" sino de elegibilidad por edad. El Flux es exclusivo para socios de 18 a 35 años y, dentro de ese rango, no tiene punto de comparación real con el 210: cuesta menos, no tiene copago en consultas y agrega psicología ilimitada, anticonceptivos al 100% y asistencia al viajero en países limítrofes. El Plan 210 tiene copago y es más caro, pero es la única puerta de entrada a OSDE para quienes ya pasaron los 35 años (o para grupos familiares con integrantes fuera de ese rango, que no pueden anotarse todos en Flux).',
+    // 13-oct-2026: sin afirmaciones de precio del Flux — no figura en la lista
+    // oficial de OSDE ante la SSSalud ni OSDE lo publica.
+    respuestaCorta: 'Si tenés entre 18 y 35 años, el Flux suma psicología ilimitada y no tiene copago en consultas. Su precio no figura en la lista oficial, así que conviene cotizarlo junto al 210. Si tenés 36 años o más, no podés elegir Flux: el 210 queda como la puerta de entrada a OSDE.',
+    veredicto: 'No es una comparación de "mejor vs peor" sino de elegibilidad por edad. El Flux es exclusivo para socios de 18 a 35 años y, dentro de ese rango, frente al 210 no tiene copago en consultas y agrega psicología ilimitada, anticonceptivos al 100% y asistencia al viajero en países limítrofes. El precio del Flux no está en la lista oficial: cotizá los dos para tu edad y compará. El Plan 210 tiene copago, pero es la única puerta de entrada a OSDE para quienes ya pasaron los 35 años (o para grupos familiares con integrantes fuera de ese rango, que no pueden anotarse todos en Flux).',
     faqExtra: [
       {
-        q: '¿Por qué el Plan Flux es más barato que el 210 si tiene más cobertura?',
-        a: 'Porque OSDE lo pensó como plan de captación para socios jóvenes (18 a 35 años): al ser un perfil que estadísticamente usa menos el sistema de salud, la prepaga puede ofrecer una cuota más baja con beneficios pensados para esa etapa (psicología ilimitada, anticonceptivos, asistencia al viajero) sin copago.',
+        q: '¿Cuánto cuesta el Plan Flux comparado con el 210?',
+        a: 'El 210 tiene precio de lista oficial declarado por OSDE ante la Superintendencia de Servicios de Salud (está arriba, para 30 años). El Flux no figura en esa lista ni OSDE publica su precio, así que se cotiza según tu edad. Cotizá los dos gratis y te pasamos la diferencia exacta.',
       },
       {
         q: '¿Puedo pasar del Plan Flux al 210 cuando cumpla 36 años?',

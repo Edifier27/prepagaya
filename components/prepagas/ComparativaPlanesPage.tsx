@@ -12,7 +12,8 @@ type Plan = Prepaga['planes'][number]
 export function comparativaPlanesMetadata(comp: ComparativaPlanes, prep: Prepaga, plan1: Plan, plan2: Plan): Metadata {
   return {
     title: `${prep.nombre} ${plan1.nombre} vs ${plan2.nombre}: Precios y Diferencias — ${PRECIO_ACTUALIZADO}`,
-    description: `${comp.descripcion} ${plan1.nombre}: ${formatPrecio(plan1.precio)}/mes. ${plan2.nombre}: ${formatPrecio(plan2.precio)}/mes.`,
+    // Solo los montos con fuente oficial (13-oct-2026)
+    description: `${comp.descripcion}${[plan1, plan2].filter((p) => Number.isFinite(p.precio)).map((p) => ` ${p.nombre}: ${formatPrecio(p.precio)}/mes.`).join('')}`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prep.slug}/${comp.slug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} ${plan1.nombre.toLowerCase()} vs ${plan2.nombre.toLowerCase()}`,
@@ -125,13 +126,13 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
                 key={plan.slug}
                 href={`/prepagas/${prep.slug}/${plan.slug}`}
                 className={`rounded-2xl border-2 p-4 text-center transition-all hover:shadow-sm ${
-                  plan.slug === masBarato.slug ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'
+                  plan.slug === masBarato.slug && Number.isFinite(diferencia) ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'
                 }`}
               >
                 <div className="text-sm font-bold text-gray-900 mb-1">{plan.nombre}</div>
                 <div className="text-2xl font-black text-gray-900">{formatPrecio(plan.precio)}</div>
-                <div className="text-[10px] text-gray-400 mb-2">/mes · 30 años</div>
-                {plan.slug === masBarato.slug && (
+                <div className="text-[10px] text-gray-400 mb-2">{Number.isFinite(plan.precio) ? '/mes · 30 años' : 'sin lista oficial'}</div>
+                {plan.slug === masBarato.slug && Number.isFinite(diferencia) && (
                   <span className="inline-block text-[10px] font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded-full">
                     {formatPrecio(diferencia)} más barato
                   </span>
