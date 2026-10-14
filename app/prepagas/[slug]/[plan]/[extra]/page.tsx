@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
+import { getProvinciaSEO, provinciasSEO, prepagaEnLocalidad } from '@/lib/data/zonas'
 import { LocalidadPrepagaPage, localidadPrepagaMetadata } from '@/components/seo-local/LocalidadPrepagaPage'
 
 interface Props {
@@ -16,7 +16,7 @@ export async function generateStaticParams() {
   return provinciasSEO.flatMap((prov) =>
     prov.localidades.flatMap((loc) =>
       prov.prepagas
-        .filter((pz) => pz.enSitio)
+        .filter((pz) => prepagaEnLocalidad(pz, loc.slug))
         .map((pz) => ({ slug: prov.slug, plan: loc.slug, extra: pz.slug }))
     )
   )
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!prov) return {}
   const loc = prov.localidades.find((l) => l.slug === plan)
   const pz = prov.prepagas.find((p) => p.slug === extra && p.enSitio)
-  if (!loc || !pz) return {}
+  if (!loc || !pz || !prepagaEnLocalidad(pz, loc.slug)) return {}
   return localidadPrepagaMetadata(prov, loc, pz)
 }
 
@@ -38,6 +38,6 @@ export default async function LocalidadPrepagaRoute({ params }: Props) {
   if (!prov) notFound()
   const loc = prov.localidades.find((l) => l.slug === plan)
   const pz = prov.prepagas.find((p) => p.slug === extra && p.enSitio)
-  if (!loc || !pz) notFound()
+  if (!loc || !pz || !prepagaEnLocalidad(pz, loc.slug)) notFound()
   return <LocalidadPrepagaPage prov={prov} loc={loc} pz={pz} />
 }

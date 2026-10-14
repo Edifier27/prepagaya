@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
       { source: "/blog/osde-plan-210-vs-310", destination: "/prepagas/osde/210-vs-310", permanent: true },
       { source: "/blog/swiss-medical-smg20-vs-osde-310", destination: "/comparativas/swiss-medical-smg20-vs-osde-310", permanent: true },
       { source: "/blog/mejores-obras-sociales-argentina", destination: "/obras-sociales/mejores", permanent: true },
+      // Hospital Italiano (13-oct-2026): los "Plan A/B/C" no existen (la SSSalud
+      // declara Vita y Magna) y no tiene cobertura fuera de CABA y GBA.
+      { source: "/prepagas/hospital-italiano/plan-:x(a|b|c)", destination: "/prepagas/hospital-italiano", permanent: true },
+      { source: "/prepagas/buenos-aires/:loc(la-plata|mar-del-plata|bahia-blanca|tandil|azul)/hospital-italiano", destination: "/prepagas/hospital-italiano", permanent: true },
       { source: "/cambios/omint-a-osde", destination: "/comparativas/omint-vs-osde", permanent: true },
       { source: "/guias/prepagas-precios-actualizados", destination: "/precios", permanent: true },
       { source: "/guias/prepagas-monotributistas", destination: "/para/monotributistas", permanent: true },

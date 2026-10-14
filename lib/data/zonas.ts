@@ -12,6 +12,9 @@ export interface PrepagaZona {
   resumen: string
   cartillaLocal: string[]
   verificado: boolean
+  /** Si está, la prepaga solo tiene página en estas localidades de la
+   *  provincia (ej. Hospital Italiano: solo GBA, 13-oct-2026). */
+  soloLocalidades?: string[]
 }
 
 export interface LocalidadZona {
@@ -707,7 +710,9 @@ provinciasSEO.push(
       { slug: 'omint', nombre: 'Omint', enSitio: true, fuerza: 'marginal', verificado: true,
         resumen: 'Sus tres sanatorios propios (Bazterrica, Del Sol, Santa Isabel) están dentro de CABA; en GBA opera con red de convenios.',
         cartillaLocal: ['Sin sanatorios propios en el conurbano', 'Cobertura internacional en todos los planes'] },
+      // Solo CABA y GBA (cuadro SSSalud: región Buenos Aires; sin cobertura en el interior)
       { slug: 'hospital-italiano', nombre: 'Plan de Salud Hospital Italiano', enSitio: true, fuerza: 'marginal', verificado: true,
+        soloLocalidades: ['zona-norte', 'san-isidro', 'vicente-lopez', 'tigre-san-fernando', 'pilar', 'san-miguel', 'escobar', 'zona-sur', 'lomas-de-zamora', 'banfield', 'temperley', 'quilmes', 'berazategui', 'florencio-varela', 'adrogue', 'monte-grande', 'avellaneda-lanus', 'zona-oeste', 'moron', 'ramos-mejia-san-justo', 'isidro-casanova', 'ituzaingo-merlo'],
         resumen: 'Sus centros ambulatorios propios se extienden por toda el AMBA, no solo CABA, así que buena parte del conurbano tiene acceso directo a la red del Hospital Italiano sin depender de convenios.',
         cartillaLocal: ['Centros ambulatorios propios en varios puntos del conurbano (AMBA)', 'Historia clínica unificada en toda la red', 'Internación en el Hospital Italiano de Buenos Aires'] },
       { slug: 'hominis', nombre: 'Hominis', enSitio: true, fuerza: 'marginal', verificado: false,
@@ -1045,4 +1050,9 @@ export function ciudadesDestacadas(prepagaSlug: string): { href: string; nombre:
 
 export function getProvinciaSEO(slug: string): ProvinciaSEO | undefined {
   return provinciasSEO.find((p) => p.slug === slug)
+}
+
+/** ¿La prepaga tiene página propia en esta localidad? */
+export function prepagaEnLocalidad(pz: PrepagaZona, locSlug: string): boolean {
+  return pz.enSitio && (!pz.soloLocalidades || pz.soloLocalidades.includes(locSlug))
 }

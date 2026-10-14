@@ -17,7 +17,7 @@ import { cartillasInfo } from '@/lib/data/cartillas'
 import { CARTILLAS, combinacionesPlanZona, fechaCartillaISO, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
 import { CARTILLAS_SINDICALES, provinciasConPagina } from '@/lib/data/sindicales-cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
-import { provinciasSEO } from '@/lib/data/zonas'
+import { provinciasSEO, prepagaEnLocalidad } from '@/lib/data/zonas'
 import { sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
 import { paresComparativaAuto } from '@/lib/comparativas-auto'
 import { PARES_CRUZADOS } from '@/lib/comparativas-cruzadas'
@@ -187,7 +187,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Cruce localidad × prepaga (ej. "Swiss Medical en Bahía Blanca") —
     // un nivel más específico que la ficha de prepaga a nivel provincial.
     ...prov.localidades.flatMap((loc) =>
-      prov.prepagas.filter((pz) => pz.enSitio).map((pz) => ({
+      prov.prepagas.filter((pz) => prepagaEnLocalidad(pz, loc.slug)).map((pz) => ({
         url: `${BASE}/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`,
         lastModified: PRECIOS_UPDATE,
         changeFrequency: 'monthly' as const,

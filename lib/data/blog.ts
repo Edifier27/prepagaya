@@ -23,6 +23,10 @@ export interface BlogPost {
     conclusion: string
   }
   prepagasRelacionadas?: string[]
+  /** Página comercial del tema, como botón destacado debajo de la intro
+   *  (13-oct-2026: el post de Flux tenía 6.273 impresiones y la página del
+   *  plan 88 — el post tiene que mandarle la visita y la fuerza). */
+  paginaPrincipal?: { href: string; texto: string }
   keywords: string[]
 }
 
@@ -427,6 +431,7 @@ export const blogPosts: BlogPost[] = [
         {
           titulo: 'El precio del Plan Flux',
           cuerpo: 'OSDE no publica el precio del Plan Flux en su sitio web, así que no hay un precio de lista público para citar. Si derivás tus aportes de obra social, el valor final baja. Contactando a PrepagaYa podés obtener una cotización actualizada para tu edad.',
+          enlace: { href: '/prepagas/osde/flux', texto: 'Cotizá el Plan Flux para tu edad' },
         },
         {
           titulo: '¿Conviene Flux frente al Plan 310?',
@@ -441,6 +446,7 @@ export const blogPosts: BlogPost[] = [
       conclusion: 'El Plan Flux es una propuesta inteligente de OSDE para captar al segmento joven con coberturas que realmente usan. Su diferencial más fuerte es la psicología ilimitada. Si tenés entre 18-35 años y usás salud mental con frecuencia, merece cotizarse junto al Plan 310 para comparar.',
     },
     prepagasRelacionadas: ['osde'],
+    paginaPrincipal: { href: '/prepagas/osde/flux', texto: 'Ver el Plan Flux: coberturas y cotización' },
     keywords: ['osde plan flux', 'plan flux osde precio', 'osde flux para jovenes', 'osde plan jovenes 2026'],
   },
   {

@@ -179,6 +179,13 @@ export default async function BlogPostPage({ params }: Props) {
               <p className="text-gray-800 leading-relaxed">{marcarTerminos(enlazarPrepagas(post.contenido.intro, vistas), vistosGlosario)}</p>
             </div>
 
+            {post.paginaPrincipal && (
+              <Link href={post.paginaPrincipal.href} className="mb-8 flex items-center justify-between gap-3 rounded-2xl bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold px-5 py-4 transition-colors">
+                {post.paginaPrincipal.texto}
+                <span aria-hidden>→</span>
+              </Link>
+            )}
+
             {/* Resumen citable para posts de ranking/listicle (GEO,
                 17-sep-2026): pros/contras/precio por prepaga, armado con
                 datos reales de prepagas.ts — no reescribe el post, lo

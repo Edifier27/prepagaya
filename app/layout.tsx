@@ -17,7 +17,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: `${SITE_NAME} — Comparador de Prepagas Argentina 2026`,
-    template: `%s | ${SITE_NAME}`,
+    // Sin " | PrepagaYa" (auditoría 13-oct-2026): Google ya muestra el nombre
+    // del sitio arriba del resultado, y el sufijo hacía que 403 títulos
+    // pasaran los 60 caracteres y se cortaran.
+    template: '%s',
   },
   description: SITE_DESCRIPTION,
   keywords: ['prepagas argentina', 'comparar prepagas', 'mejor prepaga', 'medicina prepaga', 'swiss medical', 'osde', 'sancor salud'],
@@ -62,7 +65,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col">
         <Script
           id="gtm"
-          strategy="afterInteractive"
+          // lazyOnload (13-oct-2026, auditoría): GTM + GA4 son ~135 KB de JS
+          // que competían con la hidratación y los primeros toques (INP 230 ms
+          // en Clarity). Los eventos que se empujan antes quedan en dataLayer
+          // y GTM los procesa al cargar.
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             // El panel interno (/panel-leads) no se mide: en Clarity eran 42 sesiones
             // y en GA4 sumaba sesiones de 25 minutos al promedio (8-oct-2026).

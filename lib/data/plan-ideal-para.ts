@@ -54,9 +54,6 @@ export const planIdealPara: Record<string, string> = {
   'medicus-azul':      'El máximo de Medicus: cirugía estética, implantes, cobertura en Europa y checkup ejecutivo anual gratuito.',
 
   // Hospital Italiano
-  'hospital-italiano-plan-a': 'Ideal para quienes se atienden en AMBA y quieren la red del Hospital Italiano a precio de entrada.',
-  'hospital-italiano-plan-b': 'El plan estrella: acceso completo al HI con medicina preventiva y gestión de crónicos. Para quienes usan el sistema con frecuencia.',
-  'hospital-italiano-plan-c': 'Máxima cobertura sin copago. Para familias que priorizan la calidad del Hospital Italiano sin restricciones.',
 
   // Federada Salud
   'federada-salud-gold-100': 'Ideal para afiliados del interior que buscan cobertura PMO completa con red nacional a precio accesible.',

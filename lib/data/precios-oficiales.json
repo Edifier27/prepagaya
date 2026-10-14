@@ -12,9 +12,11 @@
     "sancor-salud": 202610,
     "prevencion-salud": 202610,
     "avalian": 202609,
-    "galeno": 202610
+    "galeno": 202610,
+    "luis-pasteur": 202610,
+    "hospital-italiano": 202610
   },
-  "generado": "2026-09-30",
+  "generado": "2026-10-13",
   "precios": {
     "swiss-medical": {
       "smg02": 283109,
@@ -96,6 +98,17 @@
       "oro-400": 471484,
       "oro-440": 546821,
       "oro-550": 825999
+    },
+    "luis-pasteur": {
+      "novo": 343157,
+      "n": 403758,
+      "p": 497168,
+      "s": 646236,
+      "v": 1221355
+    },
+    "hospital-italiano": {
+      "vita": 190072,
+      "magna": 265949
     }
   }
 }

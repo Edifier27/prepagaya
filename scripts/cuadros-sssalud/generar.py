@@ -59,10 +59,19 @@ MAPEO = {
     'galeno': {'rnemp': 112851, 'region': 'Pais', 'planes': {
         'azul-200': 'Azul 200', 'azul-220': 'Azul 220', 'plata-300': 'Plata 300', 'plata-330': 'Plata 330',
         'oro-400': 'Oro 400', 'oro-440': 'Oro 440', 'oro-550': 'Oro 550'}},
+    # 13-oct-2026 (auditoría): Luis Pasteur cruza por nombre exacto; la lista
+    # manual del sitio estaba a menos de la mitad de lo declarado. La SSSalud
+    # es la fuente: se usa la oficial (modalidad Directo, región única).
+    'luis-pasteur': {'rnemp': 610133, 'region': 'Rep. Arg.', 'planes': {
+        'novo': 'NOVO', 'n': 'N', 'p': 'P', 's': 'S', 'v': 'V'}},
+    # Hospital Italiano declara dos planes, Vita y Magna (región Buenos Aires).
+    # Los "Plan A/B/C" que tenía el sitio no existen en la SSSalud.
+    'hospital-italiano': {'rnemp': 413145, 'region': 'BUENOS AIRES', 'planes': {
+        'vita': 'VITA', 'magna': 'MAGNA'}},
 }
 # Pendientes de confirmar a qué plan oficial corresponde cada plan del sitio
-# (23-sep-2026): Omint, Prevención, Hospital Italiano, Federada y CEMIC (nombres distintos),
-# y Luis Pasteur (cruza por nombre pero da +100% contra el sitio: revisar).
+# (23-sep-2026): Omint, Federada y CEMIC (nombres distintos). OSDE Flux no
+# figura en los cuadros de OSDE.
 # Medicus y Hominis no declaran cuadros en la SSSalud.
 
 MESES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']

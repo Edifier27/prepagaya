@@ -5,7 +5,7 @@ import { SucursalesBloque } from './SucursalesBloque'
 import { sucursalesEnLocalidad } from '@/lib/data/sucursales'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { provinciasSEO, type PrepagaZona, type ProvinciaSEO, type LocalidadZona } from '@/lib/data/zonas'
+import { provinciasSEO, prepagaEnLocalidad, type PrepagaZona, type ProvinciaSEO, type LocalidadZona } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { preciosDeZona, zonaDeLocalidad } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -71,7 +71,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
   const cartillaLink = linkCartillaZona(pz.slug, prov.slug, prov.nombre, loc.nombre)
 
   // Otras prepagas con ficha propia (enSitio) disponibles en la misma localidad
-  const hermanas = prov.prepagas.filter((h) => h.slug !== pz.slug && h.enSitio).slice(0, 3)
+  const hermanas = prov.prepagas.filter((h) => h.slug !== pz.slug && prepagaEnLocalidad(h, loc.slug)).slice(0, 3)
 
   const crumbs = [
     { nombre: 'Prepagas', href: '/prepagas' },
