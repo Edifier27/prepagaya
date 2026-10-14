@@ -5,6 +5,7 @@ import { leadsPendientesDeKommo, marcarResultadoKommo, seguimientosVencidos, mar
 import { avisarLeadPorPush } from '@/lib/push'
 import { mandarLeadPorEmail } from '@/lib/emailjs'
 import { mandarLeadACrmAsesor } from '@/lib/crm-asesor'
+import { devolverCupoMail, tomarCupoMail } from '@/lib/cupo-mail'
 
 // Hasta 50 leads por corrida, cada uno con su propio llamado a Kommo — con
 // Vercel Pro el límite de duración sube bastante del default de Hobby, pero
@@ -49,6 +50,25 @@ export async function GET(req: NextRequest) {
     const fuente = lead.fuente ?? 'web'
     const fecha = new Date(lead.creado_en).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
     const pais = lead.pais ?? undefined
+
+    // Cupo diario por mail (pedido de Darío, 14-oct-2026): los primeros 3 leads de cada día van a un mail aparte y
+    // en el panel quedan con su rótulo ("Dario B2"). Va antes del destino normal y no lo toca (ni avanza alternancias).
+    const cupo = await tomarCupoMail()
+    if (cupo) {
+      try {
+        await mandarLeadPorEmail({
+          nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
+          kommo_link: '', kommo_label: '', duplicado_banner: '', to: cupo.email,
+        })
+        await marcarResultadoKommo(lead.id, cupo.rotulo, '')
+        ok++
+        continue
+      } catch (err) {
+        // Si no salió, el lead no se pierde: sigue al destino de siempre y el lugar del cupo se devuelve
+        await devolverCupoMail()
+        console.error('[CRON-KOMMO] no salió el mail del cupo, lead', lead.id, ':', err)
+      }
+    }
 
     // Resuelto por lead, no antes del loop: los destinos "alternar-*" avanzan
     // el reparto 1 a 1 en cada llamado (pedido de Darío, 30-sep-2026).
