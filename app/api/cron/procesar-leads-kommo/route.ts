@@ -60,7 +60,7 @@ export async function GET(req: NextRequest) {
           nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
           kommo_link: '', kommo_label: '', duplicado_banner: '', to: cupo.email,
         })
-        await marcarResultadoKommo(lead.id, cupo.rotulo, '')
+        await marcarResultadoKommo(lead.id, `Cupo mail: ${cupo.rotulo}`, '')
         ok++
         continue
       } catch (err) {

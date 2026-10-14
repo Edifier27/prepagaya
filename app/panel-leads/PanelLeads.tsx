@@ -951,6 +951,10 @@ function estadoEnvio(estado: string | null): Envio | null {
   if (estado.startsWith('OK (CRM')) return { tipo: 'enviado', texto: 'Enviado al CRM' }
   if (estado.startsWith('OK')) return { tipo: 'enviado', texto: 'Enviado a Kommo' }
   if (estado.startsWith('Email directo')) return { tipo: 'enviado', texto: 'Enviado por mail', detalle: estado }
+  // Cupo diario por mail (14-oct-2026): se ve solo el rótulo ("Dario B2"), nunca el mail. Los guardados el primer día
+  // como "Dario B2" a secas también cuentan como enviados.
+  if (estado.startsWith('Cupo mail: ')) return { tipo: 'enviado', texto: estado.slice('Cupo mail: '.length) }
+  if (estado === 'Dario B2') return { tipo: 'enviado', texto: estado }
   const crm = estado.match(/^Error CRM [^:]*:\s*([\s\S]*)$/)
   if (crm) return { tipo: 'fallo', texto: 'No enviado al CRM', detalle: crm[1] }
   return { tipo: 'fallo', texto: 'No enviado', detalle: estado.replace(/^Error:\s*/, '') }
