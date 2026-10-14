@@ -34,9 +34,10 @@ export async function usadosHoy(): Promise<number> {
 
 /** Si el cupo está prendido y hoy todavía queda lugar, cuenta este lead y devuelve el cupo; si no, null.
  *  Llamar una vez por lead (el cron los procesa de a uno). */
-export async function tomarCupoMail(): Promise<CupoMail | null> {
+export async function tomarCupoMail({ prueba = false } = {}): Promise<CupoMail | null> {
   const c = await getCupoMail()
   if (!c.activo || !mailDe(c) || c.porDia <= 0) return null
+  if (prueba) return { ...c, email: mailDe(c) }
   const usados = await usadosHoy()
   if (usados >= c.porDia) return null
   await setConfig(CLAVE_USO, JSON.stringify({ fecha: hoyAR(), usados: usados + 1 }))

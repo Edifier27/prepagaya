@@ -53,7 +53,8 @@ export async function GET(req: NextRequest) {
 
     // Cupo diario por mail (pedido de Darío, 14-oct-2026): los primeros 3 leads de cada día van a un mail aparte y
     // en el panel quedan con su rótulo ("Dario B2"). Va antes del destino normal y no lo toca (ni avanza alternancias).
-    const cupo = await tomarCupoMail()
+    // Los datos de prueba del cupo (fuente "prueba-cupo-mail") van siempre al mail y no gastan lugar del día
+    const cupo = fuente.startsWith('prueba-cupo') ? await tomarCupoMail({ prueba: true }) : await tomarCupoMail()
     if (cupo) {
       try {
         await mandarLeadPorEmail({
