@@ -9,7 +9,7 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
-import { escalaPorEdad, preciosPorRegion } from '@/lib/precios/motor'
+import { escalaPorEdad, preciosPorRegion, precioGrupo } from '@/lib/precios/motor'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
 import { linkCartillaPlan, CARTILLAS, type CartillaPrepaga } from '@/lib/data/cartilla-zonas'
@@ -141,7 +141,51 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
       a: `${p30 ? `A los 30 años, en la lista oficial de ${PRECIO_ACTUALIZADO.toLowerCase()} (${region}), el ${codigo} sale ${p30.a} y el ${cod2} ${p30.b} por mes. ` : ''}${cambios.length ? `Cambia ${cambios.join('; ')}. ` : ''}${siguiente.descripcion}`,
     })
   }
-  return { codigo, nombreLargo, escala, region, coberturas, faqs, regiones, diferencias }
+  // Precio por grupo familiar (14-oct-2026, keyword research: "cuánto sale
+  // osde 210 para 3/4 personas", "para grupo familiar", "para jubilados").
+  // Motor oficial (cuadro SSSalud, CABA/AMBA, directo, IVA incluido).
+  const GRUPOS: { label: string; edades: number[] }[] = [
+    { label: 'Pareja de 35 años', edades: [35, 35] },
+    { label: '1 adulto (35) y 1 hijo (5)', edades: [35, 5] },
+    { label: '2 adultos (35) y 1 hijo (5)', edades: [35, 35, 5] },
+    { label: '2 adultos (35) y 2 hijos (5 y 8)', edades: [35, 35, 5, 8] },
+    { label: 'Pareja de 50 años', edades: [50, 50] },
+    { label: 'Pareja de 65 años', edades: [65, 65] },
+  ]
+  const familias = escala
+    ? GRUPOS.flatMap((g) => { const r = precioGrupo(prep.slug, plan.slug, g.edades, 'caba'); return r ? [{ ...g, total: r.total }] : [] })
+    : []
+  const fam4 = familias.find((x) => x.edades.length === 4)
+  if (fam4) {
+    faqs.push({
+      q: `¿Cuánto sale el ${nombreLargo} para una familia de 4?`,
+      a: `Para 2 adultos de 35 años y 2 hijos de 5 y 8, el ${nombreLargo} sale ${formatPrecio(fam4.total)} por mes de lista (${PRECIO_ACTUALIZADO}, ${region}, contratación directa, IVA incluido), según el cuadro tarifario oficial. Si derivás aportes, el valor baja.`,
+    })
+  }
+  const may = familias.find((x) => x.edades[0] === 65)
+  if (may) {
+    faqs.push({
+      q: `¿Cuánto cuesta el ${nombreLargo} para jubilados o mayores de 65?`,
+      a: `Para una persona de 65 años, el ${nombreLargo} sale ${formatPrecio(may.total / 2)} por mes de lista; una pareja de 65, ${formatPrecio(may.total)} (${PRECIO_ACTUALIZADO}, ${region}, cuadro tarifario oficial).`,
+    })
+  }
+  // "¿El OSDE 210 cubre anteojos?" y similares, desde las fichas oficiales
+  const PREG: Record<string, string> = {
+    optica: 'cubre anteojos', ortodoncia: 'cubre ortodoncia', 'implantes-dentales': 'cubre implantes dentales',
+    'cirugia-estetica': 'cubre cirugías estéticas', exterior: 'tiene cobertura en el exterior', psicologia: 'cubre psicología',
+    odontologia: 'cubre odontología', anticonceptivos: 'cubre anticonceptivos',
+  }
+  for (const c of coberturas) {
+    const verbo = PREG[c.tema]
+    if (!verbo || c.fila.sinDato) continue
+    faqs.push({
+      q: `¿El ${nombreLargo} ${verbo}?`,
+      a: c.fila.incluido
+        ? `Sí. Según la ficha oficial de ${prep.nombre}: ${c.fila.detalle ? c.fila.detalle.replace(/^\S/, (ch) => ch.toLowerCase()) : 'incluido'}.`
+        : `No. Según la ficha oficial de ${prep.nombre}, el ${codigo} no incluye ${c.nombre.toLowerCase()}${c.fila.detalle ? ` (${c.fila.detalle.toLowerCase()})` : ''}.`,
+    })
+  }
+  return { codigo, nombreLargo, escala, region, coberturas, faqs, regiones, diferencias, familias }
 }
 
 type FilaCobertura = { tema: string; nombre: string; fila: { incluido: boolean; detalle?: string; sinDato?: boolean } }
@@ -795,6 +839,28 @@ export default async function PlanPage({ params, searchParams }: Props) {
                           <tr key={r.region} className="border-t border-gray-100">
                             <td className="px-4 py-2 text-gray-700">{r.zonas.join(', ')}</td>
                             <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(r.precio)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </details>
+                )}
+                {seo.familias.length > 0 && (
+                  <details className="group mt-3 rounded-xl border border-gray-200">
+                    <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
+                      Ver precio para tu grupo familiar
+                      <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                    </summary>
+                    <table className="w-full text-sm border-t border-gray-100">
+                      <caption className="sr-only">Precio de lista del {seo.nombreLargo} según el grupo familiar</caption>
+                      <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+                        <tr><th className="text-left px-4 py-2">Grupo</th><th className="text-right px-4 py-2">Total por mes</th></tr>
+                      </thead>
+                      <tbody>
+                        {seo.familias.map((g) => (
+                          <tr key={g.label} className="border-t border-gray-100">
+                            <td className="px-4 py-2 text-gray-700">{g.label}</td>
+                            <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(g.total)}</td>
                           </tr>
                         ))}
                       </tbody>

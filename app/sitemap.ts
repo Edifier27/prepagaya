@@ -18,6 +18,8 @@ import { CARTILLAS, combinacionesPlanZona, fechaCartillaISO, indiceZonas, slugPl
 import { CARTILLAS_SINDICALES, provinciasConPagina } from '@/lib/data/sindicales-cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { provinciasSEO, prepagaEnLocalidad } from '@/lib/data/zonas'
+import { mesesArchivoAumentos } from '@/lib/data/aumentos'
+import { PREPAGAS_DERIVAR } from '@/lib/data/convenios'
 import { sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
 import { paresComparativaAuto } from '@/lib/comparativas-auto'
 import { PARES_CRUZADOS } from '@/lib/comparativas-cruzadas'
@@ -32,6 +34,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/prepagas`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/precios`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.95 },
     { url: `${BASE}/aumentos`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.9 },
+    ...PREPAGAS_DERIVAR.map((x) => ({ url: `${BASE}/derivar-aportes/${x}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.8 })),
+    ...mesesArchivoAumentos().map((m) => ({ url: `${BASE}/aumentos/${m.slug}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'yearly' as const, priority: 0.6 })),
     { url: `${BASE}/ranking`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/comparativas`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/guias`, lastModified: CONTENT_UPDATE, changeFrequency: 'monthly', priority: 0.7 },

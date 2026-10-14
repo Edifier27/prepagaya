@@ -96,3 +96,18 @@ export function aumentoAcumulado(): number {
   return Math.round((factor - 1) * 1000) / 10
 }
 
+
+// Archivo mensual /aumentos/[mes] (14-oct-2026): "octubre-2026" ↔ "202610".
+const MESES_SLUG = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+export const slugMesAumento = (periodo: string) => `${MESES_SLUG[Number(periodo.slice(4)) - 1]}-${periodo.slice(0, 4)}`
+export function periodoDeSlugAumento(slug: string): string | null {
+  const [mes, anio] = slug.split('-')
+  const i = MESES_SLUG.indexOf(mes)
+  return i >= 0 && /^\d{4}$/.test(anio ?? '') ? `${anio}${String(i + 1).padStart(2, '0')}` : null
+}
+/** Meses oficiales anteriores al actual (los que tienen página de archivo), del más nuevo al más viejo. */
+export function mesesArchivoAumentos(): { periodo: string; slug: string; label: string; promedio: number }[] {
+  const actual = ultimoMesOficial()?.periodo
+  return Object.keys(AUMENTOS_OFICIALES.meses).sort().reverse().filter((p) => p !== actual)
+    .map((p) => ({ periodo: p, slug: slugMesAumento(p), label: AUMENTOS_OFICIALES.meses[p].label, promedio: AUMENTOS_OFICIALES.meses[p].promedio }))
+}

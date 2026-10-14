@@ -22,8 +22,8 @@ import { getAppPrepaga, APPS_FECHA, APPS_FUENTE } from '@/lib/data/apps-prepagas
 import { resenasAprobadas } from '@/lib/db'
 import { ResenaForm } from '@/components/prepagas/ResenaForm'
 import { contactos, CONTACTOS_VERIFICADOS } from '@/lib/data/contactos'
-import { getConvenios } from '@/lib/data/convenios'
-import { planesConTarifa } from '@/lib/precios/motor'
+import { getConvenios, PREPAGAS_DERIVAR } from '@/lib/data/convenios'
+import { planesConTarifa, escalaPorEdad } from '@/lib/precios/motor'
 import { sucursalesEnProvincia, totalSucursales, FUENTES_SUCURSALES } from '@/lib/data/sucursales'
 import { provinciasSEO as PROVINCIAS_SEO_SUC } from '@/lib/data/zonas'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
@@ -197,6 +197,21 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
       q: `¿${prep.nombre} es obra social o prepaga?`,
       a: ES_OBRA_SOCIAL_O_PREPAGA[prep.slug],
     }] : []),
+    // Keyword research 14-oct-2026: "[prepaga] para jubilados / mayores de
+    // 65", "[prepaga] dar de baja". Precio del cuadro oficial; la baja, con
+    // lo verificado en la guía /guias/baja-de-prepaga-proceso.
+    ...(() => {
+      const e = comp.entrada.oficial ? escalaPorEdad(prep.slug, comp.entrada.plan.slug, 'caba') : null
+      const p65 = e?.rangos.find((x) => x.desde <= 65 && 65 <= x.hasta)?.precio
+      return p65 ? [{
+        q: `¿Cuánto cuesta ${prep.nombre} para jubilados o mayores de 65?`,
+        a: `El plan más económico de ${prep.nombre}, el ${comp.entrada.plan.nombre}, sale ${formatPrecio(p65)} por mes para una persona de 65 años según el cuadro tarifario oficial (${PRECIO_ACTUALIZADO.toLowerCase()}, contratación directa, IVA incluido). Si tenés 10 años de antigüedad continua en la prepaga, la ley no permite aumentarte por edad después de los 65.`,
+      }] : []
+    })(),
+    {
+      q: `¿Cómo dar de baja ${prep.nombre}?`,
+      a: `Con el botón de baja que ${prep.nombre} tiene que ofrecer en su web, tan accesible como el alta: no hay permanencia mínima ni multa. Pedila antes del cierre de facturación (entre el 20 y el 25) para que no se genere la cuota siguiente y guardá la constancia. Antes de darte de baja, pensá en la antigüedad: bajar de plan o pasarte a otra prepaga sin hueco de cobertura la conserva.`,
+    },
   ]
 }
 
@@ -617,6 +632,13 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 <div className="flex justify-center mt-1.5">
                   <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
                 </div>
+                {/* Sello de fuente (14-oct-2026, tendencias de diseño: transparencia) */}
+                {Number.isFinite(precioMin) && (
+                  <div className="mt-2 inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3" aria-hidden><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    Precio oficial SSSalud
+                  </div>
+                )}
                 <div className="mt-4 pt-3 border-t border-gray-100 space-y-1">
                   <div className="text-xs text-gray-500 font-medium">{prep.planes.length} planes disponibles</div>
                   <div className="text-xs text-gray-400">El precio exacto depende de tu edad y zona</div>
@@ -842,7 +864,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
 
           <div className="mt-6 bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-center sm:text-left">
-              <div className="text-white font-bold text-lg">¿Cuánto te sale {prep.nombre} a vos?</div>
+              {/* H2 "Cotizador de X" (14-oct-2026): "[prepaga] cotizador" / "cotizar
+                  [prepaga]" sin URL nueva, para no canibalizar la ficha */}
+              <h2 className="text-white font-bold text-lg">Cotizador de {prep.nombre}: ¿cuánto te sale a vos?</h2>
               <div className="text-white text-sm mt-0.5">El precio final depende de tu edad y tu zona. Cotizalo gratis, sin DNI y sin compromiso.</div>
             </div>
             <ContratarPlanButton
@@ -1320,7 +1344,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 </div>
                 {conv.codigoAfip.fuente && <p className="text-xs text-gray-400 mt-3">Fuente: {conv.codigoAfip.fuente.url ? <a href={conv.codigoAfip.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{conv.codigoAfip.fuente.texto}</a> : conv.codigoAfip.fuente.texto}</p>}
                 <div className="flex flex-wrap gap-x-5 gap-y-1 mt-3">
-                  <Link href="/guias/derivar-obra-social-a-prepaga" className="text-sm font-semibold text-[#E8002D] hover:underline">Cómo derivar tus aportes a {prep.nombre} →</Link>
+                  <Link href={(PREPAGAS_DERIVAR as readonly string[]).includes(prep.slug) ? `/derivar-aportes/${prep.slug}` : '/guias/derivar-obra-social-a-prepaga'} className="text-sm font-semibold text-[#E8002D] hover:underline">Cómo derivar tus aportes a {prep.nombre} →</Link>
                   <Link href="/obras-sociales/codigos" className="text-sm font-semibold text-[#E8002D] hover:underline">Códigos de todas las obras sociales →</Link>
                 </div>
               </div>

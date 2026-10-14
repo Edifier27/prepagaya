@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { aumentos2026, aumentoAcumulado, INFLACION_ACUMULADA_2026, AUMENTOS_OFICIALES, ultimoMesOficial } from '@/lib/data/aumentos'
+import { aumentos2026, aumentoAcumulado, INFLACION_ACUMULADA_2026, AUMENTOS_OFICIALES, ultimoMesOficial, mesesArchivoAumentos } from '@/lib/data/aumentos'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
@@ -228,6 +228,14 @@ export default function AumentosPage() {
       <section className="py-10 bg-white">
         <div className="container max-w-4xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Aumento mes a mes en 2026</h2>
+          {mesesArchivoAumentos().length > 0 && (
+            <div className="flex flex-wrap gap-2 -mt-2 mb-5">
+              <span className="text-xs text-gray-500 self-center">Detalle oficial por prepaga:</span>
+              {mesesArchivoAumentos().map((m) => (
+                <Link key={m.slug} href={`/aumentos/${m.slug}`} className="rounded-full border border-gray-200 px-3 py-1 text-xs font-semibold text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">{m.label}</Link>
+              ))}
+            </div>
+          )}
           <div className="overflow-x-auto rounded-2xl border border-gray-200">
             <table className="w-full text-sm">
               <thead>

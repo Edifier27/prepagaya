@@ -189,3 +189,6 @@ export function getConvenios(prepagaSlug: string): ConveniosPrepaga | null {
   const hay = Boolean(c.codigoAfip?.codigos.length || c.pami?.respuesta || c.convenios?.length || c.bancos?.length)
   return hay ? c : null
 }
+
+/** Partners con página /derivar-aportes/[prepaga] (14-oct-2026): los que tienen código en el RNAS. */
+export const PREPAGAS_DERIVAR = ['swiss-medical', 'osde', 'sancor-salud', 'avalian'] as const

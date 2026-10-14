@@ -671,6 +671,20 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   }, [])
   const [zonaDetectadaLabel, setZonaDetectadaLabel] = useState<string | null>(null)
   const [personas, setPersonas] = useState<Persona[]>([{ id: 1, edad: '' }])
+  // Guardar el avance (14-oct-2026, tendencias UX de seguros: retomar donde
+  // quedó). Solo las edades del grupo, nada personal; vence a los 7 días.
+  useEffect(() => {
+    try {
+      const g = JSON.parse(localStorage.getItem('pya_grupo') ?? 'null') as { personas: Persona[]; t: number } | null
+      if (g && Date.now() - g.t < 7 * 864e5 && Array.isArray(g.personas) && g.personas.length) {
+        setPersonas((actual) => (actual.length === 1 && !actual[0].edad ? g.personas : actual))
+      }
+    } catch {}
+  }, [])
+  useEffect(() => {
+    if (!personas.some((p) => p.edad)) return
+    try { localStorage.setItem('pya_grupo', JSON.stringify({ personas, t: Date.now() })) } catch {}
+  }, [personas])
 
   // Precios oficiales del grupo (motor de precios, /api/precios): se piden al
   // llegar a preview/resultados y cada vez que cambian edades o zona.
