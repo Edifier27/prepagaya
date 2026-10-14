@@ -6,6 +6,7 @@ import { contarCupoMailDesde, getConfig, setConfig } from './db'
 export type CupoMail = { activo: boolean; email: string; porDia: number; rotulo: string }
 
 const CLAVE = 'cupo_mail'
+const CLAVE_REINICIO = 'cupo_mail_reinicio'
 // Lo que pidió Darío; vale hasta que se cambie desde el panel. El mail NO va en el código ni se muestra en el panel
 // (pedido de Darío): sale de la variable de entorno CUPO_MAIL_EMAIL de Vercel, o del que se cargue desde el panel.
 const POR_DEFECTO: CupoMail = { activo: true, email: '', porDia: 3, rotulo: 'Dario B2' }
@@ -25,7 +26,15 @@ export async function setCupoMail(c: CupoMail): Promise<void> {
 
 /** Cuántos van hoy: se cuentan los leads reales que salieron por el cupo (los de prueba no cuentan). */
 export async function usadosHoy(): Promise<number> {
-  return contarCupoMailDesde(new Date(`${hoyAR()}T00:00:00-03:00`).toISOString())
+  const inicioDia = new Date(`${hoyAR()}T00:00:00-03:00`).toISOString()
+  // "Reiniciar hoy" desde el panel: lo que salió antes no cuenta (ej.: un lead que terminó atendiendo Darío)
+  const reinicio = (await getConfig(CLAVE_REINICIO)) ?? ''
+  return contarCupoMailDesde(reinicio > inicioDia ? reinicio : inicioDia)
+}
+
+/** El cupo de hoy vuelve a empezar desde ahora. */
+export async function reiniciarCupoHoy(): Promise<void> {
+  await setConfig(CLAVE_REINICIO, new Date().toISOString())
 }
 
 /** Si el cupo está prendido y hoy todavía queda lugar, cuenta este lead y devuelve el cupo; si no, null.

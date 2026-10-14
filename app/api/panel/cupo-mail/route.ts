@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sesionValidaEnRequest } from '@/lib/panel-auth'
-import { cupoParaPanel, getCupoMail, setCupoMail, usadosHoy } from '@/lib/cupo-mail'
+import { cupoParaPanel, getCupoMail, reiniciarCupoHoy, setCupoMail, usadosHoy } from '@/lib/cupo-mail'
 
 // Cupo diario por mail (pedido de Darío, 14-oct-2026): ver lib/cupo-mail.ts
 export async function GET(req: NextRequest) {
@@ -11,7 +11,9 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   if (!sesionValidaEnRequest(req)) return NextResponse.json({ error: 'No autorizado' }, { status: 401 })
-  const b = (await req.json().catch(() => null))?.cupo
+  const cuerpo = await req.json().catch(() => null)
+  if (cuerpo?.reiniciar) { await reiniciarCupoHoy(); return NextResponse.json({ ok: true }) }
+  const b = cuerpo?.cupo
   // Mail vacío = se queda el que ya estaba configurado
   const email = String(b?.email ?? '').trim() || (await getCupoMail()).email
   const porDia = Math.max(0, Math.min(50, Math.round(Number(b?.porDia) || 0)))

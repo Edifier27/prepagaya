@@ -1231,6 +1231,19 @@ function CupoMailControl() {
           <input name="porDia" type="number" min={0} max={50} defaultValue={cupo.porDia} className="border border-gray-200 rounded-lg px-2 py-1.5 w-14" title="Leads por día" />
           <input name="rotulo" defaultValue={cupo.rotulo} className="border border-gray-200 rounded-lg px-2 py-1.5 w-24" title="Cómo aparece en el panel" />
           <button type="submit" disabled={guardando} className="font-bold text-white bg-gray-700 hover:bg-gray-800 disabled:opacity-50 rounded-lg px-2.5 py-1.5">Guardar</button>
+          <button
+            type="button"
+            disabled={guardando || usados === 0}
+            title="Lo que ya salió hoy deja de contar (por ejemplo, un dato que terminaste atendiendo vos)"
+            onClick={async () => {
+              if (!window.confirm('¿Reiniciar el cupo de hoy? Lo que ya salió deja de contar.')) return
+              const r = await fetch('/api/panel/cupo-mail', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ reiniciar: true }) })
+              if (r.ok) setUsados(0)
+            }}
+            className="font-semibold text-gray-600 hover:bg-gray-200 disabled:opacity-40 rounded-lg px-2.5 py-1.5 underline"
+          >
+            Reiniciar hoy
+          </button>
         </form>
       )}
     </div>
