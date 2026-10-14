@@ -6,6 +6,7 @@ import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
+import { TablaDiferenciasPlanes, type FilaDiferencia } from '@/components/prepagas/TablaDiferenciasPlanes'
 
 type Plan = Prepaga['planes'][number]
 
@@ -45,7 +46,7 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
   plan1: Plan
   plan2: Plan
   /** Tabla de diferencias con datos oficiales (comparativas automáticas) */
-  filas?: { label: string; a: string; b: string; edad?: number }[]
+  filas?: FilaDiferencia[]
 }) {
   const masBarato = plan1.precio < plan2.precio ? plan1 : plan2
   const masCaro = plan1.precio < plan2.precio ? plan2 : plan1
@@ -147,6 +148,9 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
       <section className="py-10 bg-white">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">{plan1.nombre} vs {plan2.nombre}, punto por punto</h2>
+          {filas ? (
+            <TablaDiferenciasPlanes filas={filas} nombreA={plan1.nombre} nombreB={plan2.nombre} superior={plan2.precio > plan1.precio ? 'b' : 'a'} conPrecios />
+          ) : (
           <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
             <table className="w-full">
               <thead>
@@ -157,19 +161,16 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
                 </tr>
               </thead>
               <tbody>
-                {filas ? (
-                  filas.map((f) => <FilaComparacion key={f.label} label={f.label} v1={f.a} v2={f.b} />)
-                ) : (
-                  <>
+                <>
                     {/* Sin la fila "Precio de lista": ya está arriba (25-sep-2026, no repetir precios) */}
                     <FilaComparacion label="Copago en consultas" v1={<Check ok={!plan1.copago} />} v2={<Check ok={!plan2.copago} />} />
                     <FilaComparacion label="Red abierta" v1={<Check ok={plan1.redAbierta} />} v2={<Check ok={plan2.redAbierta} />} />
                     <FilaComparacion label="Plan más elegido" v1={plan1.destacado ? <Check ok /> : '—'} v2={plan2.destacado ? <Check ok /> : '—'} />
-                  </>
-                )}
+                </>
               </tbody>
             </table>
           </div>
+          )}
           <p className="text-xs text-gray-400 mt-3">{filas ? `Precios de la lista oficial que ${prep.nombre} declara ante la SSSalud (${PRECIO_ACTUALIZADO.toLowerCase()}, contratación directa, IVA incluido); coberturas según las fichas oficiales.` : <>✓ en “Copago en consultas” significa que NO tiene copago (mejor). Precios de lista para persona de 30 años, {PRECIO_ACTUALIZADO.toLowerCase()}.</>}</p>
 
           {/* Cobertura destacada de cada uno */}

@@ -555,6 +555,44 @@ export const coberturas: CoberturaData[] = [
     ],
     fechaActualizacion: '2026-09-27',
   },
+  // 14-oct-2026 (keyword research: 149 búsquedas de "cobertura en el
+  // exterior", "asistencia al viajero", "osde 210 cobertura en Uruguay"…).
+  // Solo lo que dicen las fichas oficiales (coberturas-marca, tema exterior).
+  {
+    slug: 'exterior',
+    nombre: 'Cobertura en el exterior',
+    emoji: '✈️',
+    titulo: '¿Qué prepagas cubren en el exterior? Asistencia al viajero por plan',
+    metaDescripcion: 'Qué prepagas y planes cubren atención médica fuera de Argentina: países limítrofes o internacional, según las fichas oficiales de Swiss Medical, Avalian y Premedic.',
+    intro: 'Si viajás seguido, la cobertura en el exterior puede ahorrarte un seguro de viaje aparte. No todos los planes la tienen y el alcance cambia mucho: algunos cubren solo países limítrofes y otros, todo el mundo. Acá está plan por plan según lo que publica cada prepaga.',
+    queEstableceLaLey: 'La ley no obliga a las prepagas a cubrir atención médica fuera del país: el Programa Médico Obligatorio es la cobertura mínima dentro de Argentina. La cobertura en el exterior (asistencia al viajero) es un beneficio de cada plan, con sus propios topes y condiciones.',
+    prepagasRecomendadas: [
+      { slug: 'swiss-medical', razon: 'Según su comparativo oficial de julio 2026, Swiss Medical incluye cobertura en el exterior desde el SMG30 en adelante (SMG30, SMG40, SMG50, SMG60 y SMG70). El S1, el S2, el SMG02 y el SMG20 no la incluyen.', planSlug: 'smg30' },
+      { slug: 'avalian', razon: 'Según el cotizador oficial de Avalian, el plan Integral cubre Argentina y países limítrofes, y los planes Superior y Selecta tienen cobertura internacional.', planSlug: 'as300' },
+      { slug: 'premedic', razon: 'Según sus fichas oficiales, los planes 200, 300, 400 y 500 de Premedic tienen cobertura nacional y en países limítrofes.', planSlug: 'plan-300' },
+    ],
+    prepagasRestrictivas: [
+      { slug: 'swiss-medical', detalle: 'Los planes S1, S2, SMG02 y SMG20 no incluyen cobertura en el exterior según el comparativo oficial de Swiss Medical.' },
+    ],
+    quePreguntar: [
+      '¿El plan cubre solo países limítrofes o todo el mundo?',
+      '¿Cuál es el tope de cobertura por viaje y cuántos días cubre?',
+      '¿Cubre enfermedades preexistentes y deportes durante el viaje?',
+      '¿Hay que avisar antes de viajar o activar la asistencia?',
+    ],
+    faq: [
+      {
+        q: '¿La prepaga me cubre si viajo al exterior?',
+        a: 'Depende del plan. La ley no obliga a cubrir fuera del país, pero muchos planes incluyen asistencia al viajero: por ejemplo, Swiss Medical desde el SMG30, Avalian Superior y Selecta (internacional) y Premedic 200 a 500 (países limítrofes), según sus fichas oficiales.',
+      },
+      {
+        q: '¿Qué prepaga cubre en Uruguay, Brasil o Chile?',
+        a: 'Los planes con cobertura en países limítrofes (por ejemplo, Avalian Integral y Premedic 200 a 500 según sus fichas oficiales) cubren esos países. Los planes con cobertura internacional, como Avalian Superior y Selecta, cubren además el resto del mundo. Confirmá topes y condiciones antes de viajar.',
+      },
+    ],
+    relacionadas: ['urgencias', 'medicamentos', 'odontologia'],
+    keywords: ['prepaga con cobertura en el exterior', 'asistencia al viajero prepaga', 'cobertura medica internacional prepaga', 'prepaga cubre en uruguay', 'prepaga cubre en brasil', 'cobertura medica en el exterior', 'swiss medical cobertura internacional'],
+  },
 ]
 
 export function getCoberturaBySlug(slug: string) {

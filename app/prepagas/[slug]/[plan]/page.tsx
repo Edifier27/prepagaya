@@ -24,6 +24,7 @@ import { OrejitaPlan, type OrejitaDatos } from '@/components/prepagas/OrejitaPla
 import { CarruselPlanes, type TarjetaPlan } from '@/components/prepagas/CarruselPlanes'
 import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
+import { TablaDiferenciasPlanes } from '@/components/prepagas/TablaDiferenciasPlanes'
 
 interface Props {
   params: Promise<{ slug: string; plan: string }>
@@ -203,23 +204,32 @@ function tablaDiferencias(prep: Prepaga, plan: Plan, otro: Plan | undefined, cob
   const e2 = escalaPorEdad(prep.slug, otro.slug, 'caba')
   if (!e1 || !e2) return null
   const precio = (e: typeof e1, edad: number) => e.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio
-  const filas: { label: string; a: string; b: string; edad?: number }[] = []
+  // mejora: en qué columna está lo que se suma (14-oct-2026, Darío: "que en
+  // el 410 se marque con color lo que se agrega", fácil y pragmático)
+  const filas: { label: string; a: string; b: string; edad?: number; mejora?: 'a' | 'b' }[] = []
+  const superior: 'a' | 'b' = otro.precio > plan.precio ? 'b' : 'a'
   for (const edad of [30, 45, 60]) {
     const a = precio(e1, edad)
     const b = precio(e2, edad)
     if (a && b) filas.push({ label: `Precio de lista a los ${edad} años`, a: formatPrecio(a), b: formatPrecio(b), edad })
   }
-  filas.push({ label: 'Copago en consultas', a: plan.copago ? 'Con copago' : 'Sin copago', b: otro.copago ? 'Con copago' : 'Sin copago' })
+  filas.push({ label: 'Copago en consultas', a: plan.copago ? 'Con copago' : 'Sin copago', b: otro.copago ? 'Con copago' : 'Sin copago',
+    mejora: plan.copago === otro.copago ? undefined : plan.copago ? 'b' : 'a' })
   const c1 = cartillaDePlan(CARTILLAS[prep.slug], plan.slug)
   const c2 = cartillaDePlan(CARTILLAS[prep.slug], otro.slug)
-  if (c1 && c2) filas.push({ label: 'Cartilla', a: c1, b: c2 })
+  if (c1 && c2) filas.push({ label: 'Cartilla', a: c1, b: c2, mejora: c1 === c2 ? undefined : superior })
   const delOtro = coberturasMarca
     .filter((c) => c.prepagaSlug === prep.slug)
     .flatMap((c) => c.planes.filter((f) => f.planSlugs.includes(otro.slug)).map((f) => ({ tema: c.tema, nombre: c.temaNombre, fila: f })))
   for (const t of [...new Set([...coberturas.map((c) => c.tema), ...delOtro.map((c) => c.tema)])]) {
     const x = coberturas.find((c) => c.tema === t)
     const y = delOtro.find((c) => c.tema === t)
-    filas.push({ label: (x ?? y)!.nombre, a: textoCobertura(x?.fila), b: textoCobertura(y?.fila) })
+    const a = textoCobertura(x?.fila)
+    const b = textoCobertura(y?.fila)
+    const ia = !!x?.fila.incluido && !x.fila.sinDato
+    const ib = !!y?.fila.incluido && !y.fila.sinDato
+    const mejora = a === b || x?.fila.sinDato || y?.fila.sinDato ? undefined : ia && !ib ? 'a' : ib && !ia ? 'b' : ia && ib ? superior : undefined
+    filas.push({ label: (x ?? y)!.nombre, a, b, mejora })
   }
   return { otro, esSuperior: otro.precio > plan.precio, filas, conFichas: coberturas.length + delOtro.length > 0 }
 }
@@ -926,29 +936,14 @@ export default async function PlanPage({ params, searchParams }: Props) {
                 ) : null
               })()}
             </p>
-            <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
-                  <tr>
-                    <th className="text-left px-4 py-2 font-semibold"><span className="sr-only">Dato</span></th>
-                    <th className="text-left px-4 py-2 font-semibold text-gray-900">{seo.codigo}</th>
-                    <th className="text-left px-4 py-2 font-semibold">
-                      <Link href={`/prepagas/${slug}/${seo.diferencias.otro.slug}`} className="hover:text-[#E8002D] hover:underline">{codigoPlan(seo.diferencias.otro)}</Link>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Sin filas de precio (Darío, 4-oct-2026): los precios ya están más arriba */}
-                  {seo.diferencias.filas.filter((f) => !f.edad).map((f) => (
-                    <tr key={f.label} className="border-t border-gray-100 align-top">
-                      <th scope="row" className="text-left px-4 py-2 font-medium text-gray-600">{f.label}</th>
-                      <td className="px-4 py-2 text-gray-900">{f.a}</td>
-                      <td className="px-4 py-2 text-gray-700">{f.b}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            {/* Sin filas de precio (Darío, 4-oct-2026): los precios ya están más arriba */}
+            <TablaDiferenciasPlanes
+              filas={seo.diferencias.filas}
+              nombreA={seo.codigo}
+              nombreB={codigoPlan(seo.diferencias.otro)}
+              hrefB={`/prepagas/${slug}/${seo.diferencias.otro.slug}`}
+              superior={seo.diferencias.esSuperior ? 'b' : 'a'}
+            />
           </div>
         </section>
       )}

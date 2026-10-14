@@ -43,5 +43,21 @@ export function paresComparativaAuto(): { prep: Prepaga; plan1: Plan; plan2: Pla
       out.push({ prep, plan1, plan2, slug })
     }
   }
+  // Saltos de dos escalones que también se buscan (keyword research,
+  // 14-oct-2026: "osde 210 vs 410", "smg20 vs smg40")
+  for (const [ps, a, b] of SALTOS_BUSCADOS) {
+    const prep = prepagas.find((p) => p.slug === ps)
+    const plan1 = prep?.planes.find((x) => x.slug === a)
+    const plan2 = prep?.planes.find((x) => x.slug === b)
+    const slug = `${a}-vs-${b}`
+    if (!prep || !plan1 || !plan2 || out.some((x) => x.prep.slug === ps && x.slug === slug)) continue
+    if (!escalaPorEdad(ps, a, 'caba') || !escalaPorEdad(ps, b, 'caba') || !conFicha(ps, a) || !conFicha(ps, b)) continue
+    out.push({ prep, plan1, plan2, slug })
+  }
   return out
 }
+
+const SALTOS_BUSCADOS: [string, string, string][] = [
+  ['osde', '210', '410'],
+  ['swiss-medical', 'smg20', 'smg40'],
+]
