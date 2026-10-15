@@ -585,9 +585,12 @@ export const coberturas: CoberturaData[] = [
         q: '¿La prepaga me cubre si viajo al exterior?',
         a: 'Depende del plan. La ley no obliga a cubrir fuera del país, pero muchos planes incluyen asistencia al viajero: por ejemplo, Swiss Medical desde el SMG30, Avalian Superior y Selecta (internacional) y Premedic 200 a 500 (países limítrofes), según sus fichas oficiales.',
       },
+      // Empresas de asistencia: Swiss Medical con fuente (alianza con Universal
+      // Assistance desde julio 2023); OSDE, Sancor Salud, Medifé y Medicus
+      // confirmadas por Darío como asesor (15-oct-2026).
       {
-        q: '¿Qué empresa de asistencia al viajero usa Swiss Medical?',
-        a: 'Universal Assistance: Swiss Medical tiene una alianza con esa empresa desde julio de 2023, y Universal Assistance tiene una página para afiliados de Swiss Medical con descuentos para contratar sus planes de asistencia. Confirmá con Swiss Medical qué incluye tu plan antes de viajar.',
+        q: '¿Qué empresa de asistencia al viajero usa cada prepaga?',
+        a: 'Swiss Medical, OSDE, Sancor Salud y Medifé trabajan con Universal Assistance (Swiss Medical tiene una alianza con esa empresa desde julio de 2023). Medicus trabaja con Pax Assistance. Qué incluye cada plan (países, topes y días) cambia según el plan: confirmalo antes de viajar.',
       },
       {
         q: '¿Qué prepaga cubre en Uruguay, Brasil o Chile?',
@@ -595,7 +598,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['urgencias', 'medicamentos', 'odontologia'],
-    keywords: ['prepaga con cobertura en el exterior', 'asistencia al viajero prepaga', 'cobertura medica internacional prepaga', 'prepaga cubre en uruguay', 'prepaga cubre en brasil', 'cobertura medica en el exterior', 'swiss medical cobertura internacional'],
+    keywords: ['prepaga con cobertura en el exterior', 'asistencia al viajero prepaga', 'cobertura medica internacional prepaga', 'prepaga cubre en uruguay', 'prepaga cubre en brasil', 'cobertura medica en el exterior', 'swiss medical cobertura internacional', 'osde universal assistance', 'sancor salud asistencia al viajero', 'medife universal assistance', 'medicus pax assistance'],
   },
 ]
 
