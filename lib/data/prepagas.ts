@@ -195,7 +195,6 @@ export const prepagas: Prepaga[] = [
     ],
     contras: [
       'No tiene sanatorios propios (trabaja con red de convenios)',
-      'Plan 210 tiene copago en consultas',
       'Burocracia en autorizaciones de alta complejidad',
       'Precios de planes premium entre los más altos del mercado',
     ],
@@ -219,7 +218,8 @@ export const prepagas: Prepaga[] = [
         precio: 267250,
         descripcion: 'El plan más accesible de OSDE. Cobertura básica con acceso a la red completa de prestadores.',
         cobertura: ['Internación', 'Urgencias', 'Consultas', 'Maternidad'],
-        copago: true,
+        // Sin copago: confirmado por Darío como asesor (15-oct-2026)
+        copago: false,
         redAbierta: true,
       },
       {

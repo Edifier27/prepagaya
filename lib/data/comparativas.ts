@@ -297,7 +297,7 @@ export const comparativas: Comparativa[] = [
     descripcion: 'Galeno contra OSDE: precio de lista oficial, sanatorios propios, copago y red de prestadores, plan por plan.',
     ganadorRed: 'osde',
     ganadorSatisfaccion: 'osde',
-    veredicto: 'Galeno tiene 5 sanatorios propios (los Sanatorios de la Trinidad) y más de 80 sucursales; OSDE no tiene sanatorios propios, pero informa más de 125.000 prestadores en todo el país. En precio de lista, el plan de entrada de Galeno (Azul 200) sale menos que el Plan 210 de OSDE (el Flux, exclusivo para menores de 35, no tiene precio en la lista oficial). Todos los planes de Galeno salvo el Oro 550 tienen copago; en OSDE, solo el 210. Si querés internarte en un sanatorio propio en AMBA, Galeno. Si priorizás la red más amplia y planes sin copago, OSDE.',
+    veredicto: 'Galeno tiene 5 sanatorios propios (los Sanatorios de la Trinidad) y más de 80 sucursales; OSDE no tiene sanatorios propios, pero informa más de 125.000 prestadores en todo el país. En precio de lista, el plan de entrada de Galeno (Azul 200) sale menos que el Plan 210 de OSDE (el Flux, exclusivo para menores de 35, no tiene precio en la lista oficial). Todos los planes de Galeno salvo el Oro 550 tienen copago; los planes de OSDE, no. Si querés internarte en un sanatorio propio en AMBA, Galeno. Si priorizás la red más amplia y planes sin copago, OSDE.',
   },
   {
     slug: 'omint-vs-osde',

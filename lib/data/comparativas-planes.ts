@@ -25,8 +25,8 @@ export const comparativasPlanes: ComparativaPlanes[] = [
     descripcion: 'Comparamos el Plan Flux y el Plan 210 de OSDE en precio, copago y cobertura para saber cuál elegir según tu edad.',
     // 13-oct-2026: sin afirmaciones de precio del Flux — no figura en la lista
     // oficial de OSDE ante la SSSalud ni OSDE lo publica.
-    respuestaCorta: 'Si tenés entre 18 y 35 años, el Flux suma psicología ilimitada y no tiene copago en consultas. Su precio no figura en la lista oficial, así que conviene cotizarlo junto al 210. Si tenés 36 años o más, no podés elegir Flux: el 210 queda como la puerta de entrada a OSDE.',
-    veredicto: 'No es una comparación de "mejor vs peor" sino de elegibilidad por edad. El Flux es exclusivo para socios de 18 a 35 años y, dentro de ese rango, frente al 210 no tiene copago en consultas y agrega psicología ilimitada, anticonceptivos al 100% y asistencia al viajero en países limítrofes. El precio del Flux no está en la lista oficial: cotizá los dos para tu edad y compará. El Plan 210 tiene copago, pero es la única puerta de entrada a OSDE para quienes ya pasaron los 35 años (o para grupos familiares con integrantes fuera de ese rango, que no pueden anotarse todos en Flux).',
+    respuestaCorta: 'Si tenés entre 18 y 35 años, el Flux suma psicología ilimitada, anticonceptivos al 100% y asistencia al viajero. Su precio no figura en la lista oficial, así que conviene cotizarlo junto al 210. Si tenés 36 años o más, no podés elegir Flux: el 210 queda como la puerta de entrada a OSDE.',
+    veredicto: 'No es una comparación de "mejor vs peor" sino de elegibilidad por edad. El Flux es exclusivo para socios de 18 a 35 años y, dentro de ese rango, frente al 210 agrega psicología ilimitada, anticonceptivos al 100% y asistencia al viajero en países limítrofes. El precio del Flux no está en la lista oficial: cotizá los dos para tu edad y compará. El Plan 210 es la única puerta de entrada a OSDE para quienes ya pasaron los 35 años (o para grupos familiares con integrantes fuera de ese rango, que no pueden anotarse todos en Flux).',
     faqExtra: [
       {
         q: '¿Cuánto cuesta el Plan Flux comparado con el 210?',
@@ -38,7 +38,7 @@ export const comparativasPlanes: ComparativaPlanes[] = [
       },
       {
         q: '¿El Plan Flux cubre lo mismo que el 210 en internación y urgencias?',
-        a: 'Sí, ambos acceden a la misma red de OSDE (más de 125.000 prestadores, según OSDE) y a la cobertura base de internación y urgencias de OSDE. La diferencia está en los adicionales (psicología ilimitada, anticonceptivos 100%, asistencia al viajero en el Flux) y en que el 210 tiene copago en consultas y el Flux no.',
+        a: 'Sí, ambos acceden a la misma red de OSDE (más de 125.000 prestadores, según OSDE) y a la cobertura base de internación y urgencias de OSDE. La diferencia está en los adicionales (psicología ilimitada, anticonceptivos 100%, asistencia al viajero en el Flux).',
       },
     ],
   },
