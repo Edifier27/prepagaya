@@ -197,6 +197,10 @@ export const perfiles: PerfilData[] = [
       }] : []),
       // La pregunta "¿Cuánto cuesta…?" se arma con los precios oficiales en la página
       {
+        q: '¿Qué prepaga acepta jubilados?',
+        a: 'Todas. La Ley 26.682 no permite que una prepaga rechace a alguien por su edad, así que podés contratar cualquiera siendo jubilado. Lo que cambia es el precio por edad: más abajo están los precios oficiales a los 60, 65 y 70 de cada una.',
+      },
+      {
         q: '¿Las prepagas pueden negarse a afiliar a adultos mayores?',
         a: 'No. La Ley 26.682 no permite rechazar a alguien por su edad. Lo que cambia es el precio, según los rangos de edad que cada prepaga declara ante la Superintendencia de Servicios de Salud. Por una preexistencia pueden cobrarte una cuota diferencial autorizada por la Superintendencia, pero tampoco pueden rechazarte.',
       },

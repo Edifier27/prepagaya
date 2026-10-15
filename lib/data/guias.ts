@@ -1253,11 +1253,12 @@ export const guias: GuiaData[] = [
   },
   {
     slug: 'reintegros-en-prepagas',
-    titulo: 'Reintegros en prepagas: cómo pedirlos y cuánto te devuelven 2026',
+    // 15-oct-2026: título con la búsqueda "cómo pedir reintegro en OSDE / Swiss Medical"
+    titulo: '¿Cómo pedir un reintegro en tu prepaga? Paso a paso en OSDE y Swiss Medical (2026)',
     metaDescripcion: 'Guía práctica sobre los reintegros de gastos médicos en prepagas argentinas: qué gastos cubren, cómo presentar la solicitud y en cuánto tiempo te devuelven el dinero.',
     tiempoLectura: 6,
     categoria: 'Derechos',
-    fechaActualizacion: '2026-07-14',
+    fechaActualizacion: '2026-10-15',
     contenido: {
       intro: 'El reintegro es lo que separa a los planes de red cerrada de los de red abierta: la posibilidad de atenderte con el profesional que quieras, pagar de tu bolsillo y que la prepaga te devuelva una parte. Es también uno de los beneficios peor utilizados: montos que prescriben sin reclamarse, presentaciones rechazadas por errores de forma y afiliados que pagan planes con reintegro que nunca usan.',
       secciones: [
@@ -1268,6 +1269,17 @@ export const guias: GuiaData[] = [
         {
           titulo: 'El trámite: qué presentar y cómo',
           cuerpo: 'Necesitás la factura o recibo oficial del profesional (con matrícula y CUIT: los "recibos comunes" se rechazan), la orden o indicación médica cuando corresponde (estudios, tratamientos), y en algunos casos el informe o resumen de la atención. Hoy casi todas las empresas reciben reintegros por la app con foto de la documentación: OSDE, Swiss, Galeno y Medifé lo resuelven 100% digital. Cargalo apenas tengas la factura: los plazos de presentación prescriben (habitualmente 60 a 180 días desde la fecha de atención según empresa).',
+        },
+        {
+          titulo: 'Cómo se pide en OSDE',
+          cuerpo: 'Según OSDE, primero el titular tiene que registrar una cuenta bancaria: los reintegros se acreditan ahí en pesos, aunque el gasto haya sido en moneda extranjera. Después presentás los comprobantes en Gestiones Online > Solicitar un reintegro, en la app o en la web de OSDE. El plazo para presentarlos es de un año desde la fecha de la prestación. Los montos son por beneficiario, intransferibles y no acumulativos.',
+          enlaces: [{ texto: 'OSDE — Cómo utilizar el servicio (reintegros)', url: 'https://www.osde.com.ar/informacion-al-socio/como-utilizar-el-servicio' }],
+        },
+        {
+          titulo: 'Cómo se pide en Swiss Medical',
+          cuerpo: 'Swiss Medical gestiona los reintegros desde su web de clientes y la app. Antes de un tratamiento podés pedir un presupuesto de reintegro para saber cuánto te devuelven según tu plan: te responden en un plazo máximo de 72 horas hábiles. El presupuesto tiene que tener la firma y el sello del profesional y el detalle de cada prestación con su importe.',
+          enlaces: [{ texto: 'Swiss Medical — Preguntas frecuentes', url: 'https://www.swissmedical.com.ar/prepagaclientes/faqs' }],
+          cta: { texto: 'Si te atendés fuera de cartilla seguido, lo que importa es el tope de reintegro de cada plan. Compará planes con reintegros.', boton: 'Ver planes con reintegros', href: '/coberturas/reintegros/swiss-medical' },
         },
         {
           titulo: 'Plazos de devolución y qué hacer si no pagan',
@@ -1294,7 +1306,7 @@ export const guias: GuiaData[] = [
         a: 'No, los planes de red cerrada no contemplan reintegros: cubren solo prestadores de cartilla. Para atenderte fuera de la red con devolución necesitás un plan de red abierta o mixta, que son más caros justamente por eso.',
       },
     ],
-    keywords: ['reintegros prepaga', 'como pedir reintegro prepaga', 'reintegro consulta medica', 'plan con reintegros prepaga', 'reintegro prepaga argentina', 'prepaga devuelve dinero', 'como recuperar gastos medicos prepaga'],
+    keywords: ['como pedir reintegro osde', 'como pedir reintegro swiss medical', 'reintegro osde plazo', 'presupuesto de reintegro swiss medical', 'reintegros prepaga', 'como pedir reintegro prepaga', 'reintegro consulta medica', 'plan con reintegros prepaga', 'reintegro prepaga argentina', 'prepaga devuelve dinero', 'como recuperar gastos medicos prepaga'],
     relacionadas: ['copago-en-prepagas-que-es', 'que-cubre-la-prepaga', 'como-reclamar-a-una-prepaga'],
     prepagasRelacionadas: ['osde', 'swiss-medical', 'omint'],
   },
@@ -1876,6 +1888,7 @@ export const guiasPreguntas: GuiaData[] = [
       conclusion: 'Estar embarazada no te impide contratar una prepaga: declaralo y elegí el plan por el sanatorio donde querés parir. Si te ponen trabas, la ley está de tu lado.',
     },
     faq: [
+      { q: '¿Quién paga la obra social durante la licencia por maternidad?', a: 'Durante la licencia, el ingreso lo paga ANSES con la Asignación por Maternidad. La relación laboral sigue vigente, así que conservás tu obra social (o tu prepaga, si derivás los aportes). Confirmá con tu empleador cómo se refleja en tu recibo.' },
       { q: '¿Me pueden rechazar en una prepaga por estar embarazada?', a: 'No. La Ley 26.682 dice que las preexistencias no pueden ser criterio de rechazo de admisión, y hay fallos que dicen que el embarazo no es una enfermedad preexistente.' },
       { q: '¿Tengo que declarar el embarazo?', a: 'Sí, en la declaración jurada de salud. Ocultarlo es lo que después puede generar conflictos con la prepaga.' },
       { q: '¿Me pueden cobrar más por estar embarazada?', a: 'La ley permite valores diferenciales autorizados para preexistencias, y es lo que algunas prepagas invocan. La Justicia tiene fallos que dicen que el embarazo no es una preexistencia: pedí que te lo justifiquen por escrito.' },
