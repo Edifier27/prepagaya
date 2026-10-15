@@ -567,7 +567,7 @@ export const coberturas: CoberturaData[] = [
     intro: 'Si viajás seguido, la cobertura en el exterior puede ahorrarte un seguro de viaje aparte. No todos los planes la tienen y el alcance cambia mucho: algunos cubren solo países limítrofes y otros, todo el mundo. Acá está plan por plan según lo que publica cada prepaga.',
     queEstableceLaLey: 'La ley no obliga a las prepagas a cubrir atención médica fuera del país: el Programa Médico Obligatorio es la cobertura mínima dentro de Argentina. La cobertura en el exterior (asistencia al viajero) es un beneficio de cada plan, con sus propios topes y condiciones.',
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'Según su comparativo oficial de julio 2026, Swiss Medical incluye cobertura en el exterior desde el SMG30 en adelante (SMG30, SMG40, SMG50, SMG60 y SMG70). El S1, el S2, el SMG02 y el SMG20 no la incluyen.', planSlug: 'smg30' },
+      { slug: 'swiss-medical', razon: 'Según su comparativo oficial de julio 2026, Swiss Medical incluye cobertura en el exterior desde el SMG30 en adelante (SMG30, SMG40, SMG50, SMG60 y SMG70). El S1, el S2, el SMG02 y el SMG20 no la incluyen. La asistencia la opera Universal Assistance, con quien Swiss Medical tiene una alianza desde julio de 2023 (los afiliados también tienen descuentos para contratar planes de Universal Assistance).', planSlug: 'smg30' },
       { slug: 'avalian', razon: 'Según el cotizador oficial de Avalian, el plan Integral cubre Argentina y países limítrofes, y los planes Superior y Selecta tienen cobertura internacional.', planSlug: 'as300' },
       { slug: 'premedic', razon: 'Según sus fichas oficiales, los planes 200, 300, 400 y 500 de Premedic tienen cobertura nacional y en países limítrofes.', planSlug: 'plan-300' },
     ],
@@ -584,6 +584,10 @@ export const coberturas: CoberturaData[] = [
       {
         q: '¿La prepaga me cubre si viajo al exterior?',
         a: 'Depende del plan. La ley no obliga a cubrir fuera del país, pero muchos planes incluyen asistencia al viajero: por ejemplo, Swiss Medical desde el SMG30, Avalian Superior y Selecta (internacional) y Premedic 200 a 500 (países limítrofes), según sus fichas oficiales.',
+      },
+      {
+        q: '¿Qué empresa de asistencia al viajero usa Swiss Medical?',
+        a: 'Universal Assistance: Swiss Medical tiene una alianza con esa empresa desde julio de 2023, y Universal Assistance tiene una página para afiliados de Swiss Medical con descuentos para contratar sus planes de asistencia. Confirmá con Swiss Medical qué incluye tu plan antes de viajar.',
       },
       {
         q: '¿Qué prepaga cubre en Uruguay, Brasil o Chile?',
