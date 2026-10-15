@@ -371,7 +371,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
       a: `Según el cuadro tarifario que ${prep.nombre} declaró ante la Superintendencia de Servicios de Salud, aumenta ${pct(aumento.dato.mediana)} en ${aumento.mes.label.toLowerCase()}${aumentoRango}. El promedio del mercado ese mes es ${pct(aumento.mes.promedio)}.${aumentoAnterior ? ` En ${aumentoAnterior.mes.label.toLowerCase()} había aumentado ${pct(aumentoAnterior.dato.mediana)}.` : ''}`,
     }] : []),
     ...(conv?.codigoAfip?.codigos.length ? [{
-      q: `¿Cuál es el código de obra social de ${prep.nombre} para AFIP/ARCA?`,
+      q: `¿Cuál es el código de obra social de ${prep.nombre} para ARCA?`,
       a: `${conv.codigoAfip.codigos.map((c) => `${c.codigo}${c.nota ? ` (${c.nota})` : ''}`).join('; ')}. ${conv.codigoAfip.explicacion}`,
     }] : []),
     ...(conv?.pami?.respuesta ? [{
@@ -683,7 +683,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
               ...(getCartillaInfo(prep.slug) ? [{ href: `/cartillas/${prep.slug}`, label: 'Cartilla' }] : []),
               ...(totalSucursales(prep.slug) ? [{ href: '#sucursales', label: 'Sucursales' }] : []),
               ...(contacto ? [{ href: '#telefonos', label: 'Teléfonos' }] : []),
-              ...(conv?.codigoAfip?.codigos.length ? [{ href: '#convenios', label: 'Código AFIP' }] : []),
+              ...(conv?.codigoAfip?.codigos.length ? [{ href: '#convenios', label: 'Código ARCA' }] : []),
               { href: '#opiniones', label: 'Opiniones' },
               { href: '#preguntas', label: 'Preguntas' },
             ].map((x) => (
@@ -1335,7 +1335,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
           <div className="container max-w-5xl mx-auto space-y-8">
             {conv.codigoAfip && conv.codigoAfip.codigos.length > 0 && (
               <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-2">Código de obra social de {prep.nombre} para AFIP/ARCA</h2>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">Código de obra social de {prep.nombre} para ARCA</h2>
                 <p className="text-sm text-gray-600 max-w-3xl mb-4">{conv.codigoAfip.explicacion}</p>
                 <div className="flex flex-wrap gap-3">
                   {conv.codigoAfip.codigos.map((c) => (
