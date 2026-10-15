@@ -79,6 +79,7 @@ export const condiciones: CondicionData[] = [
       },
     ],
     coberturasRelacionadas: ['medicamentos', 'urgencias', 'optica'],
+    guiasRelacionadas: ['prepaga-cubre-ozempic'],
     keywords: ['mejor prepaga para diabéticos', 'prepaga diabetes tipo 1', 'prepaga diabetes tipo 2', 'cobertura insulina prepaga argentina', 'prepaga bomba insulina'],
   },
   {

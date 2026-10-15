@@ -1,4 +1,18 @@
 import type { Prepaga } from '@/types'
+import { preciosParaGrupo } from '@/lib/precios/motor'
+import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { formatPrecio } from '@/lib/utils'
+
+// "¿Cuánto cuesta una prepaga para mayores de 70?" (Search Console, 105
+// impresiones sin clics): el plan más barato a los 70 según el cuadro oficial.
+const masBarato70 = (() => {
+  const [clave, total] = Object.entries(preciosParaGrupo([70], 'caba')).sort((a, b) => a[1] - b[1])[0] ?? []
+  if (!clave) return null
+  const [ps, pl] = clave.split('/')
+  const prep = prepagas.find((p) => p.slug === ps)
+  const plan = prep?.planes.find((x) => x.slug === pl)
+  return prep && plan ? { prep: prep.nombre, plan: plan.nombre, total } : null
+})()
 
 export interface PerfilData {
   slug: string
@@ -79,6 +93,10 @@ export const perfiles: PerfilData[] = [
       { prepagaSlug: 'osde', planSlug: '310', razon: 'Amplia red obstétrica con cobertura completa del embarazo' },
     ],
     faq: [
+      {
+        q: '¿Puedo contratar una prepaga estando embarazada?',
+        a: 'Sí. La Ley 26.682 dice que las preexistencias no pueden ser motivo de rechazo, y hay fallos que dicen que el embarazo no es una enfermedad preexistente. Tenés que declararlo en la declaración jurada. En la guía "¿Puedo contratar una prepaga estando embarazada?" está el detalle.',
+      },
       {
         q: '¿Las prepagas tienen período de carencia para el parto?',
         a: 'La carencia estándar es de 2 meses desde la fecha de afiliación: para que el embarazo quede cubierto sin ningún cargo extra, la FUM (fecha de última menstruación) tiene que ser posterior a esos 2 meses. Si resulta que ya estabas embarazada sin saberlo al afiliarte (por ejemplo, de 1 mes), no se te niega la cobertura, pero tenés que abonar una carencia equivalente a 3 cuotas del plan. Lo que no se puede hacer es afiliarse declarando el embarazo ya confirmado — en ese caso, es poco probable que la afiliación se acepte.',
@@ -173,6 +191,10 @@ export const perfiles: PerfilData[] = [
       { prepagaSlug: 'osde', planSlug: '410', razon: 'Sin copago en consultas y con el mismo precio desde los 36 años' },
     ],
     faq: [
+      ...(masBarato70 ? [{
+        q: '¿Cuánto cuesta una prepaga para mayores de 70?',
+        a: `Según los cuadros tarifarios oficiales (${PRECIO_ACTUALIZADO.toLowerCase()}, CABA/AMBA, contratación directa), el plan más barato para una persona de 70 años es ${masBarato70.prep} ${masBarato70.plan}, a ${formatPrecio(masBarato70.total)} por mes. Más abajo están los precios a los 70 de cada prepaga.`,
+      }] : []),
       // La pregunta "¿Cuánto cuesta…?" se arma con los precios oficiales en la página
       {
         q: '¿Las prepagas pueden negarse a afiliar a adultos mayores?',

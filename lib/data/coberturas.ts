@@ -111,6 +111,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['psicologia', 'medicamentos', 'urgencias'],
+    guiasRelacionadas: ['contratar-prepaga-embarazada'],
     keywords: ['prepaga maternidad embarazo', 'qué cubre la prepaga en el embarazo', 'mejor prepaga para embarazadas', 'cobertura parto prepaga argentina', 'prepaga ecografías embarazo'],
   },
   {
@@ -273,7 +274,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['oncologia', 'psicologia', 'urgencias'],
-    guiasRelacionadas: ['reintegros-en-prepagas'],
+    guiasRelacionadas: ['prepaga-cubre-ozempic', 'reintegros-en-prepagas'],
     keywords: ['descuento medicamentos prepaga', 'prepaga farmacia argentina', 'cobertura medicación crónica prepaga', 'prepaga medicamentos diabetes', 'farmacia adherida prepaga'],
   },
   {
@@ -315,7 +316,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['medicamentos', 'oncologia', 'psicologia'],
-    guiasRelacionadas: ['urgencias-guardia-prepaga'],
+    guiasRelacionadas: ['medico-a-domicilio-prepaga', 'urgencias-guardia-prepaga'],
     keywords: ['urgencias emergencias prepaga', 'guardia 24hs prepaga', 'prepaga sin copago emergencias', 'ambulancia prepaga cobertura', 'emergencias interior del país prepaga'],
   },
   {
@@ -361,7 +362,7 @@ export const coberturas: CoberturaData[] = [
     titulo: 'Cobertura de kinesiología y rehabilitación en prepagas',
     metaDescripcion: 'Qué prepagas cubren kinesiología, fisioterapia y rehabilitación en Argentina. Sesiones por mes, fonoaudiología, terapia ocupacional y más.',
     intro: 'La kinesiología y rehabilitación son esenciales después de cirugías, accidentes o para tratamiento de enfermedades crónicas. El PMO incluye cobertura básica, pero las diferencias entre prepagas en cantidad de sesiones, acceso a especialidades y copago son muy grandes.',
-    queEstableceLaLey: 'El PMO cubre kinesiología, fisioterapia, fonoaudiología y terapia ocupacional cuando están indicadas médicamente. No hay un límite de sesiones establecido por ley mientras exista indicación médica. Las prepagas no pueden limitar arbitrariamente el número de sesiones.',
+    queEstableceLaLey: 'El PMO cubre kinesiología, fisioterapia, fonoaudiología y terapia ocupacional cuando están indicadas médicamente. El piso es de hasta 25 sesiones por año (Programa Médico Obligatorio, según el Ministerio de Justicia); muchos planes dan más. Con Certificado Único de Discapacidad, la rehabilitación entra en la Ley 24.901, al 100% y sin ese tope.',
     prepagasRecomendadas: [
       { slug: 'swiss-medical', razon: 'Swiss Medical tiene centros de rehabilitación propios con equipamiento de última generación. Cubre kinesiología, hidroterapia, fonoaudiología y terapia ocupacional. Los planes SMG20 en adelante tienen cobertura amplia con pocos requisitos de auditoría.', planSlug: 'smg20' },
       { slug: 'osde', razon: 'OSDE tiene la red de kinesiólogos adheridos más grande del país. Muy buena opción si querés elegir tu propio kinesiólogo. El Plan 310 cubre sesiones con copago razonable.', planSlug: '310' },
@@ -386,6 +387,7 @@ export const coberturas: CoberturaData[] = [
       },
     ],
     relacionadas: ['urgencias', 'odontologia', 'medicamentos'],
+    guiasRelacionadas: ['como-acceder-kinesiologia-prepaga'],
     keywords: ['prepaga que cubre kinesiología', 'cobertura rehabilitación prepaga', 'kinesiología sesiones prepaga', 'fonoaudiología prepaga argentina', 'fisioterapia cobertura prepaga'],
   },
   {

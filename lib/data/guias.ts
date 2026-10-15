@@ -2,6 +2,8 @@ import { topeCirugiaSmg50 } from '@/lib/data/topes-reintegro'
 import { escalaPorEdad, precioGrupo } from '@/lib/precios/motor'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio } from '@/lib/utils'
+import { contactos } from '@/lib/data/contactos'
+import { SWISS_S1_COPAGOS, SWISS_COPAGOS_VIGENCIA } from '@/lib/data/coseguros-os'
 
 // Precios de lista oficiales para las guías que dan números (3-oct-2026):
 // CABA y GBA, contratación directa, IVA incluido. Salen de los cuadros de la
@@ -290,7 +292,8 @@ export const guias: GuiaData[] = [
   },
   {
     slug: 'hijos-21-a-25-anos-obra-social',
-    titulo: 'Hijos de 21 a 25 años en la obra social: quiénes siguen cubiertos (2026)',
+    // Pregunta textual (15-oct-2026, Search Console: 'hasta que edad cubre la obra social a los hijos', 135 impresiones)
+    titulo: '¿Hasta qué edad cubre la obra social a los hijos? 21, 25 o sin límite (2026)',
     metaDescripcion: 'Según la Ley 23.660, los hijos solteros siguen en la obra social del padre o la madre hasta los 21 años, y hasta los 25 inclusive si estudian y están a su cargo. Qué pasa después y qué opciones hay.',
     tiempoLectura: 4,
     categoria: 'Trámites',
@@ -1221,6 +1224,7 @@ export const guias: GuiaData[] = [
         {
           titulo: 'Ambulancia y emergencias domiciliarias',
           cuerpo: 'La mayoría de los planes incluye emergencias médicas a domicilio con unidades propias o contratadas (OSDE tiene URG, Swiss su sistema SEM, y las demás trabajan con prestadores como Vittal o Emergencias). Guardá el número de emergencias de tu credencial en el teléfono de todos los integrantes de la familia hoy: en la urgencia real nadie busca el número. El servicio clasifica la llamada (emergencia, urgencia, visita) y despacha según gravedad; la emergencia con riesgo de vida no tiene costo adicional.',
+          cta: { texto: '¿Necesitás el número para pedir un médico a domicilio? Están los teléfonos oficiales de cada prepaga.', boton: 'Ver teléfonos de médico a domicilio', href: '/guias/medico-a-domicilio-prepaga' },
         },
         {
           titulo: 'Urgencias en otra ciudad o en el exterior',
@@ -1470,6 +1474,11 @@ export const guias: GuiaData[] = [
           cuerpo: 'Con CUD vigente, la cobertura incluye: medicación específica para la condición, rehabilitación (kinesiología, fonoaudiología, terapia ocupacional, psicopedagogía), transporte especial hacia los tratamientos, apoyo a la integración escolar, prótesis y órtesis, y en los casos que corresponda, centros de día o residenciales. Todo sin copago y sin límite de sesiones prefijado — el criterio es lo que indique el equipo tratante, no un tope administrativo.',
         },
         {
+          titulo: 'Si cobrás una pensión no contributiva: Incluir Salud',
+          cuerpo: 'Si sos titular de una pensión no contributiva (por ejemplo, por invalidez) y no tenés otra obra social, tu cobertura de salud es el Programa Federal Incluir Salud: atiende en la red pública de prestadores de tu provincia. La afiliación no es automática: se pide en forma gratuita y presencial.',
+          enlaces: [{ texto: 'Programa Incluir Salud (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/node/321532' }],
+        },
+        {
           titulo: 'Por qué esto es un tema de obra social, no de prepaga',
           cuerpo: 'La Ley 24.901 nombra a obras sociales, prepagas y al Estado como sujetos obligados. En la práctica, el circuito funciona de forma mucho más consistente en obras sociales: tienen áreas y prestadores especializados en discapacidad rodados desde hace décadas, mientras que en muchas prepagas la gestión de estas prestaciones es más lenta o directamente friccionada, más allá de lo que dice la letra de la ley. Si tenés CUD y estás evaluando dónde afiliarte, no asumas que cualquier prepaga te va a resolver esto igual que una obra social — conviene preguntar explícitamente por el área de discapacidad antes de decidir.',
         },
@@ -1703,6 +1712,184 @@ export const guias: GuiaData[] = [
     relacionadas: ['prepaga-sin-periodo-carencia'],
   },
 ]
+
+// ── Long tail de preguntas (15-oct-2026, keyword research "cómo / qué /
+// cuánto / puedo"): una guía por intención que no tenía página. Las que ya
+// tenían (SiRADIG, renuncia, reintegros, cambio en ARCA) se reforzaron en su
+// guía para no canibalizar. Cada una enlaza a la página comercial del tema.
+const PREPAGAS_DOMICILIO = ['swiss-medical', 'osde', 'galeno', 'medife', 'sancor-salud', 'omint', 'medicus', 'avalian', 'premedic']
+const lineaDomicilio = (slug: string) => {
+  const c = contactos[slug]
+  const p = prepagas.find((x) => x.slug === slug)
+  if (!c || !p) return null
+  const canales = c.canales.filter((x) => x.tipo === 'emergencias' || /domicilio/i.test(x.etiqueta))
+  return canales.length ? `${p.nombre}: ${canales.map((x) => `${x.etiqueta.replace(/^\S/, (ch) => ch.toLowerCase())} ${x.valor}${x.detalle ? ` (${x.detalle})` : ''}`).join('; ')}.` : null
+}
+const s1Domicilio = SWISS_S1_COPAGOS.find((x) => /domicilio/i.test(x.concepto))?.valor
+
+export const guiasPreguntas: GuiaData[] = [
+  {
+    slug: 'como-acceder-kinesiologia-prepaga',
+    titulo: '¿Cómo acceder a sesiones de kinesiología con tu prepaga u obra social? (sin pagar de más)',
+    metaDescripcion: 'Cuántas sesiones de kinesiología te cubre el PMO (25 por año), qué necesitás para pedirlas y cómo conseguir más sesiones sin pagarlas de tu bolsillo.',
+    tiempoLectura: 5,
+    categoria: 'Coberturas',
+    fechaActualizacion: '2026-10-15',
+    contenido: {
+      intro: 'Toda prepaga y obra social tiene que cubrirte kinesiología: el Programa Médico Obligatorio (PMO) incluye todas las prácticas kinesiológicas y fonoaudiológicas hasta 25 sesiones por año. Para usarlas necesitás una orden médica y, según tu plan, una autorización. Así se hace sin pagar de más.',
+      secciones: [
+        {
+          titulo: 'Cuántas sesiones te cubren por ley',
+          cuerpo: 'El piso es el del PMO: hasta 25 sesiones por año de prácticas kinesiológicas y fonoaudiológicas. Es un mínimo: muchos planes dan más sesiones o las cubren sin copago. Lo que cambia entre planes es cuántas sesiones extra te dan, si pagás copago por cada una y con qué kinesiólogos podés atenderte.',
+        },
+        {
+          titulo: 'El paso a paso para empezar',
+          cuerpo: 'Uno: pedile a tu médico (traumatólogo, clínico o el especialista que te trate) una orden con el diagnóstico y la cantidad de sesiones. Dos: buscá un kinesiólogo o centro de rehabilitación en la cartilla de tu plan. Tres: si tu prepaga lo pide, cargá la orden para autorizarla (en la app o la web) antes de la primera sesión. Cuatro: guardá las órdenes; cuando se terminan las sesiones autorizadas, tu médico puede indicar más.',
+          cta: { texto: 'Si vas a necesitar rehabilitación seguido, mirá qué prepagas tienen mejor cobertura de kinesiología.', boton: 'Ver cobertura de kinesiología por prepaga', href: '/coberturas/rehabilitacion' },
+        },
+        {
+          titulo: 'Cómo conseguir más de 25 sesiones',
+          cuerpo: 'Si tu tratamiento necesita más, el camino es el mismo: una nueva orden médica que justifique la continuidad. Muchos planes superiores ya incluyen más sesiones. Si tenés Certificado Único de Discapacidad (CUD), la rehabilitación entra en la Ley 24.901 y la cobertura es del 100%, sin el tope del PMO.',
+        },
+        {
+          titulo: 'Si te rechazan o te cobran de más',
+          cuerpo: 'Pedí la negativa por escrito. Las 25 sesiones del PMO no se pueden negar si tenés indicación médica. Reclamá primero a la prepaga y, si no responde, a la Superintendencia de Servicios de Salud.',
+          cta: { texto: '¿Tu plan te cobra copago en cada sesión? Compará planes sin copago con el precio oficial para tu edad.', boton: 'Ver planes sin copago', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Kinesiología tenés siempre: 25 sesiones por año como mínimo, con orden médica. Si la vas a usar seguido, lo que más pesa en tu bolsillo es el copago por sesión y la cartilla: ahí conviene comparar planes.',
+    },
+    faq: [
+      { q: '¿Cuántas sesiones de kinesiología cubre la prepaga?', a: 'Como mínimo 25 por año, que es lo que fija el Programa Médico Obligatorio para prácticas kinesiológicas y fonoaudiológicas. Muchos planes dan más.' },
+      { q: '¿Necesito orden médica para ir al kinesiólogo?', a: 'Sí. Para que la prepaga u obra social cubra las sesiones necesitás una orden médica con el diagnóstico y la cantidad de sesiones; algunas además piden autorizarla antes.' },
+      { q: '¿La kinesiología tiene copago?', a: 'Depende del plan: los planes con copago cobran un monto por sesión y los planes sin copago, no. Revisalo en la ficha de tu plan antes de empezar.' },
+      { q: '¿Si tengo CUD tengo más sesiones?', a: 'Sí. Con Certificado Único de Discapacidad la rehabilitación entra en la Ley 24.901, con cobertura del 100% y sin el tope de 25 sesiones del PMO.' },
+    ],
+    keywords: ['como acceder a kinesiologia', 'cuantas sesiones de kinesiologia cubre la prepaga', 'kinesiologia obra social sesiones', 'kinesiologia prepaga', 'kinesiologia pmo 25 sesiones', 'como pedir kinesiologia obra social'],
+    relacionadas: ['como-pedir-autorizacion-prepaga', 'discapacidad-obra-social-cobertura-100', 'reintegros-en-prepagas', 'que-cubre-la-prepaga'],
+    fuentes: [
+      { texto: 'Ministerio de Justicia — Ley simple: Programa Médico Obligatorio', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/programa-medico-obligatorio' },
+      { texto: 'Resolución 201/2002 del Ministerio de Salud (PMO)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/73649/res201-2002MS-anexoI.htm' },
+    ],
+  },
+  {
+    slug: 'medico-a-domicilio-prepaga',
+    titulo: 'Médico a domicilio: cómo pedirlo en tu prepaga (teléfonos oficiales 2026)',
+    metaDescripcion: 'Cómo pedir médico a domicilio en Swiss Medical, OSDE, Galeno, Medifé, Sancor Salud y más: los teléfonos oficiales de cada una y cuándo te cobran copago.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-15',
+    contenido: {
+      intro: 'Para pedir un médico a domicilio llamás al número de urgencias o de atención médica de tu prepaga: te preguntan los síntomas y, según la gravedad, te mandan un médico o una ambulancia. Acá están los teléfonos oficiales de cada una.',
+      secciones: [
+        {
+          titulo: 'Los teléfonos de cada prepaga',
+          cuerpo: PREPAGAS_DOMICILIO.map(lineaDomicilio).filter(Boolean).join(' ') + ' Números copiados de la web oficial de cada prepaga.',
+        },
+        {
+          titulo: 'Cómo es el pedido',
+          cuerpo: 'Tené a mano tu número de socio o DNI, la dirección exacta y los síntomas. Te van a hacer preguntas para saber qué tan urgente es: si es una emergencia con riesgo de vida, va una ambulancia; si no, un médico a domicilio. Si es grave, decilo de entrada.',
+        },
+        {
+          titulo: '¿Te cobran la visita?',
+          cuerpo: `Depende del plan. Los planes con copago cobran la visita a domicilio: por ejemplo, en el S1 de Swiss Medical es de ${s1Domicilio ?? 'un monto fijo'} según su folleto oficial (${SWISS_COPAGOS_VIGENCIA}). Los planes sin copago, como el SMG20 de Swiss Medical, la cubren sin cargo.`,
+          cta: { texto: 'Si pedís médico a domicilio seguido (por chicos o adultos mayores), un plan sin copago puede salirte más barato.', boton: 'Comparar planes sin copago', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Agendá hoy el número de urgencias de tu prepaga: cuando lo necesitás no es momento de buscarlo. Y si usás seguido el médico a domicilio, fijate cuánto te cobra tu plan por visita.',
+    },
+    faq: [
+      { q: '¿Cómo pido un médico a domicilio en mi prepaga?', a: 'Llamando al teléfono de urgencias o atención médica de tu prepaga. Te preguntan los síntomas y, según la gravedad, te mandan un médico o una ambulancia.' },
+      { q: '¿El médico a domicilio tiene costo?', a: 'En los planes con copago, sí: se cobra un monto por visita. En los planes sin copago, no.' },
+      { q: '¿Cuánto tarda en llegar el médico a domicilio?', a: 'Depende de la gravedad que informes y de la zona. Las emergencias con riesgo de vida tienen prioridad.' },
+    ],
+    keywords: ['como pedir medico a domicilio', 'medico a domicilio osde', 'medico a domicilio swiss medical', 'medico a domicilio galeno', 'medico a domicilio medife', 'telefono urgencias prepaga'],
+    relacionadas: ['urgencias-guardia-prepaga', 'copago-en-prepagas-que-es', 'como-pedir-autorizacion-prepaga'],
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'galeno'],
+  },
+  {
+    slug: 'prepaga-cubre-ozempic',
+    titulo: '¿La prepaga cubre Ozempic? Qué dice la ley para diabetes y para bajar de peso (2026)',
+    metaDescripcion: 'Si tenés diabetes, la Ley de Diabetes obliga a cubrir al 100% los medicamentos necesarios. Para bajar de peso, la semaglutida no está obligada. Qué hacer si te la niegan.',
+    tiempoLectura: 5,
+    categoria: 'Coberturas',
+    fechaActualizacion: '2026-10-15',
+    contenido: {
+      intro: 'Depende de para qué te lo indiquen. Si tenés diabetes, la ley obliga a obras sociales y prepagas a cubrir al 100% los medicamentos necesarios para tu tratamiento. Si es para bajar de peso, no hay una obligación expresa: es lo que más se discute y hay fallos en los dos sentidos.',
+      secciones: [
+        {
+          titulo: 'Si tenés diabetes: cobertura del 100%',
+          cuerpo: 'La Ley de Diabetes (Ley 23.753, actualizada por la Ley 26.914) obliga a cubrir el 100% de los medicamentos y reactivos necesarios para el tratamiento. Para acceder te piden el diagnóstico certificado y la receta. Las prepagas suelen pedir además estudios y la historia de tratamientos previos: presentá todo de entrada para evitar demoras.',
+        },
+        {
+          titulo: 'Si es para bajar de peso',
+          cuerpo: 'La semaglutida está aprobada en Argentina para la diabetes. Para tratar la obesidad sin diabetes, la cobertura no es obligatoria y muchas prepagas la rechazan. Hay casos en que la Justicia ordenó cubrirla a pacientes con obesidad, pero es caso por caso y con indicación médica fundada.',
+        },
+        {
+          titulo: 'Si te la niegan',
+          cuerpo: 'Pedí la negativa por escrito y guardá la receta, el diagnóstico y las facturas. Reclamá a la prepaga y, si no responde, a la Superintendencia de Servicios de Salud. En diabetes, la ley está de tu lado; en obesidad, conviene el asesoramiento de un abogado especializado.',
+          cta: { texto: 'Si tenés diabetes, mirá qué prepagas tienen mejor cobertura de medicamentos y programas de seguimiento.', boton: 'Ver prepagas para diabetes', href: '/condiciones/diabetes' },
+        },
+      ],
+      conclusion: 'Con diabetes, la cobertura del 100% es tu derecho: presentá diagnóstico y receta. Para bajar de peso, no está garantizada. En los dos casos, pedí siempre la respuesta por escrito.',
+    },
+    faq: [
+      { q: '¿La prepaga cubre Ozempic para la diabetes?', a: 'La Ley de Diabetes obliga a cubrir al 100% los medicamentos necesarios para el tratamiento de la diabetes, con diagnóstico y receta. Si te lo niegan, reclamá a la prepaga y a la Superintendencia de Servicios de Salud.' },
+      { q: '¿La prepaga cubre Ozempic para bajar de peso?', a: 'No es obligatorio: la semaglutida está aprobada para la diabetes. Hay fallos que ordenaron cubrirla en casos de obesidad, pero se decide caso por caso.' },
+      { q: '¿Qué necesito para que me cubran la semaglutida?', a: 'Diagnóstico de diabetes certificado y receta del médico. Muchas prepagas piden además estudios recientes y los tratamientos que probaste antes.' },
+    ],
+    keywords: ['prepaga cubre ozempic', 'que prepaga cubre ozempic', 'obra social cubre semaglutida', 'ozempic cobertura 100 diabetes', 'ozempic para bajar de peso prepaga', 'semaglutida cobertura'],
+    relacionadas: ['como-reclamar-a-una-prepaga', 'que-cubre-la-prepaga', 'prepaga-cubre-vasectomia-ligadura-cirugia-bariatrica'],
+    fuentes: [
+      { texto: 'Ministerio de Justicia — Ley simple: Diabetes', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/diabetes' },
+    ],
+  },
+  {
+    slug: 'contratar-prepaga-embarazada',
+    titulo: '¿Puedo contratar una prepaga estando embarazada? Lo que dice la ley (2026)',
+    metaDescripcion: 'Sí: la Ley 26.682 prohíbe rechazar a alguien por una preexistencia. Qué te pueden pedir, qué cubre el Plan Materno Infantil y cómo elegir plan si estás embarazada.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-15',
+    contenido: {
+      intro: 'Sí. La Ley de Medicina Prepaga (26.682) dice que las preexistencias no pueden ser motivo de rechazo: no te pueden negar la afiliación por estar embarazada. Lo que sí pasa es que te piden declararlo en la declaración jurada y, en algunos casos, la prepaga intenta cobrar un valor diferencial.',
+      secciones: [
+        {
+          titulo: 'Qué dice la ley',
+          cuerpo: 'La Ley 26.682 establece que las enfermedades preexistentes solo se determinan por la declaración jurada del usuario y no pueden ser criterio de rechazo de admisión. La Justicia, además, tiene fallos que dicen que el embarazo no es una enfermedad preexistente y que no se puede dar de baja a una afiliada por no haberlo declarado.',
+        },
+        {
+          titulo: 'Declaralo siempre',
+          cuerpo: 'En la declaración jurada de salud tenés que informar el embarazo. Ocultarlo es lo que después da lugar a conflictos. Declarado, la prepaga no te puede rechazar; si te quiere cobrar un valor diferencial, pedí que te lo justifique por escrito.',
+        },
+        {
+          titulo: 'Qué te cubre: el Plan Materno Infantil',
+          cuerpo: 'Por el Programa Médico Obligatorio está cubierto todo el embarazo y hasta el primer mes después del nacimiento; la atención del bebé se cubre hasta el año, con la medicación específica al 100%, las vacunas obligatorias y las leches especiales si hay indicación médica.',
+          cta: { texto: 'Lo que cambia entre prepagas es dónde parís: el sanatorio y la habitación. Compará planes con el sanatorio que querés.', boton: 'Ver prepagas para embarazadas', href: '/para/embarazadas' },
+        },
+        {
+          titulo: 'Si ya tenés obra social',
+          cuerpo: 'Si trabajás en relación de dependencia, podés derivar tus aportes a la prepaga con la opción de cambio y pagar solo la diferencia. Así sumás el sanatorio que querés sin pagar el plan entero.',
+          cta: { texto: 'Calculá cuánto pagarías de diferencia con tus aportes.', boton: 'Calcular con mis aportes', href: '/calculadora-aportes' },
+        },
+      ],
+      conclusion: 'Estar embarazada no te impide contratar una prepaga: declaralo y elegí el plan por el sanatorio donde querés parir. Si te ponen trabas, la ley está de tu lado.',
+    },
+    faq: [
+      { q: '¿Me pueden rechazar en una prepaga por estar embarazada?', a: 'No. La Ley 26.682 dice que las preexistencias no pueden ser criterio de rechazo de admisión, y hay fallos que dicen que el embarazo no es una enfermedad preexistente.' },
+      { q: '¿Tengo que declarar el embarazo?', a: 'Sí, en la declaración jurada de salud. Ocultarlo es lo que después puede generar conflictos con la prepaga.' },
+      { q: '¿Me pueden cobrar más por estar embarazada?', a: 'La ley permite valores diferenciales autorizados para preexistencias, y es lo que algunas prepagas invocan. La Justicia tiene fallos que dicen que el embarazo no es una preexistencia: pedí que te lo justifiquen por escrito.' },
+      { q: '¿Puedo cambiar de obra social estando embarazada?', a: 'Sí, la opción de cambio no tiene restricción por embarazo. El cambio se activa el primer día del mes siguiente a la confirmación.' },
+    ],
+    keywords: ['puedo contratar una prepaga estando embarazada', 'prepaga embarazada', 'se puede contratar prepaga estando embarazada', 'cambiar de prepaga estando embarazada', 'cambiar de obra social estando embarazada', 'embarazo preexistencia prepaga'],
+    relacionadas: ['opcion-de-cambio-obra-social', 'derivar-obra-social-a-prepaga', 'afiliar-recien-nacido-prepaga', 'prepaga-sin-periodo-carencia'],
+    fuentes: [
+      { texto: 'Ley 26.682 de Medicina Prepaga (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/norma.htm' },
+      { texto: 'Ministerio de Justicia — Ley simple: Programa Médico Obligatorio', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/programa-medico-obligatorio' },
+    ],
+  },
+]
+guias.push(...guiasPreguntas)
 
 export function getGuiaBySlug(slug: string): GuiaData | undefined {
   return guias.find((g) => g.slug === slug)

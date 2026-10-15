@@ -37,7 +37,8 @@ const sinPrecioOficial = prepagas.filter((p) => oficiales(p).length === 0)
 // las otras formas en que se busca. El precio "desde" sale de los datos.
 const PRECIO_MINIMO = rankingPrecio[0].planMinimo.precio
 export const metadata: Metadata = {
-  title: `Prepagas baratas y buenas: ranking ${PRECIO_ACTUALIZADO.toLowerCase()}`,
+  // Pregunta textual (15-oct-2026, Search Console: "cual es la prepaga mas barata" pos. 15)
+  title: `¿Cuál es la prepaga más barata? Baratas y buenas, ${PRECIO_ACTUALIZADO.toLowerCase()}`,
   description: `Las prepagas más baratas de Argentina por precio oficial, desde ${formatPrecio(PRECIO_MINIMO)}/mes, y cuáles son buenas y baratas: sanatorios del plan de entrada, copagos y opciones para jóvenes.`,
   alternates: { canonical: `${SITE_URL}/prepagas-economicas` },
   keywords: ['prepagas economicas', 'prepagas baratas', 'prepaga buena y barata', 'prepaga mas barata argentina', 'mejor prepaga precio calidad', 'prepagas economicas para jovenes', 'prepagas economicas caba'],
