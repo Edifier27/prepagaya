@@ -4,6 +4,7 @@ import { notFound, redirect } from 'next/navigation'
 import { AUMENTOS_OFICIALES, ultimoMesOficial, slugMesAumento, periodoDeSlugAumento } from '@/lib/data/aumentos'
 import { SITE_URL } from '@/lib/utils'
 import { CtaMedio } from '@/components/ui/CtaMedio'
+import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 
 // Archivo mensual de aumentos (14-oct-2026, keyword research: "aumento
@@ -142,6 +143,10 @@ export default async function AumentoMesPage({ params }: Props) {
             Fuente: <a href={AUMENTOS_OFICIALES.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline">{AUMENTOS_OFICIALES.fuente}</a>. Aumento de cada prepaga = mediana de la variación de todos sus planes, regiones y edades entre un mes y el anterior.
           </p>
         </div>
+      </section>
+
+      <section className="py-6 bg-white">
+        <div className="container max-w-3xl mx-auto"><AvisoAumento /></div>
       </section>
 
       <CtaMedio titulo="¿Te aumentó la prepaga? Mirá cuánto pagarías en otra" texto="Cotizá gratis y sin DNI: el precio oficial de cada plan para tu edad y zona, con 15% de descuento." />

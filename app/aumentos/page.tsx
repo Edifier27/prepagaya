@@ -4,6 +4,7 @@ import { aumentos2026, aumentoAcumulado, INFLACION_ACUMULADA_2026, AUMENTOS_OFIC
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
+import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 
 const acumulado = aumentoAcumulado()
@@ -223,6 +224,11 @@ export default function AumentosPage() {
           </div>
         </section>
       )}
+
+      {/* Te aviso el aumento (15-oct-2026) */}
+      <section className="py-8 bg-gray-50 border-b border-gray-100">
+        <div className="container max-w-4xl mx-auto"><AvisoAumento /></div>
+      </section>
 
       {/* Tabla mensual */}
       <section className="py-10 bg-white">

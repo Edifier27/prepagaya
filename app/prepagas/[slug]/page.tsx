@@ -28,6 +28,7 @@ import { sucursalesEnProvincia, totalSucursales, FUENTES_SUCURSALES } from '@/li
 import { provinciasSEO as PROVINCIAS_SEO_SUC } from '@/lib/data/zonas'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
+import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 
 interface Props {
@@ -719,6 +720,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 </Link>
               </div>
             </div>
+            {/* Te aviso el aumento (15-oct-2026) */}
+            <div className="mt-4"><AvisoAumento compacto prepagaInicial={prep.nombre} titulo={`¿Querés saber cuánto aumenta ${prep.nombre} el mes que viene?`} /></div>
           </div>
         </section>
       )}
