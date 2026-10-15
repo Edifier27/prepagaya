@@ -145,6 +145,11 @@
 "descripcion": "ASOCIACION MUTUAL DE TRABAJADORES PORTUARIOS DE LA REPUBLICA ARGENTINA"
 },
 {
+"rnemp": 314011,
+"nombre_comercial": "ASOCIACION MUTUAL DOC ( EX ASOCIACION MUTUAL EMPLEADOS Y FUNCIONARIOS DEL GRUPO CORDOBA SALUD)",
+"descripcion": "ASOCIACION MUTUAL DOC ( EX ASOCIACION MUTUAL EMPLEADOS Y FUNCIONARIOS DEL GRUPO CORDOBA SALUD)"
+},
+{
 "rnemp": 318457,
 "nombre_comercial": "ASOCIACION MUTUAL FRANCO ANDINA REGIONAL MENDOZA",
 "descripcion": "ASOCIACION MUTUAL FRANCO ANDINA REGIONALMENDOZA"
@@ -325,14 +330,14 @@
 "descripcion": "EMECA"
 },
 {
-"rnemp": 113359,
-"nombre_comercial": "EMERGENCIAS SALUD",
-"descripcion": "EMERGENCIA MEDICA INTEGRAL S.A."
-},
-{
 "rnemp": 112431,
 "nombre_comercial": "EMERGENCIAS SALUD",
 "descripcion": "INTERNATIONAL HEALTH SERVICES ARGENTINA S.A"
+},
+{
+"rnemp": 113359,
+"nombre_comercial": "EMERGENCIAS SALUD",
+"descripcion": "EMERGENCIA MEDICA INTEGRAL S.A."
 },
 {
 "rnemp": 117115,
@@ -358,6 +363,11 @@
 "rnemp": 520588,
 "nombre_comercial": "FUNDACION CIRCULO MEDICO ZONA SUR",
 "descripcion": "FUNDACION CIRCULO MEDICO ZONA SUR"
+},
+{
+"rnemp": 513074,
+"nombre_comercial": "FUNDACIÓN MÉDICA DE MAR DEL PLATA",
+"descripcion": "FUNDACION MEDICA DE MAR DEL PLATA"
 },
 {
 "rnemp": 112851,
@@ -585,6 +595,16 @@
 "descripcion": "MUTUAL DE INTEGRANTES DEL PODER JUDICIAL"
 },
 {
+"rnemp": 315977,
+"nombre_comercial": "MUTUAL SAVIO",
+"descripcion": "MUTUAL SIDERURGICA GENERAL SAVIO"
+},
+{
+"rnemp": 316291,
+"nombre_comercial": "MUTUALTAX PLAN DE SALUD",
+"descripcion": "Asociacion Mutual Mutualtax"
+},
+{
 "rnemp": 115843,
 "nombre_comercial": "NATIVUS SRL",
 "descripcion": "NATIVUS SRL"
@@ -618,6 +638,11 @@
 "rnemp": 614173,
 "nombre_comercial": "OS APM",
 "descripcion": "OBRA SOCIAL DE AGENTES DE PROPAGANDA MEDICA DE LA REPUBLICA ARGENTINA"
+},
+{
+"rnemp": 316819,
+"nombre_comercial": "OSACOM",
+"descripcion": "ASOCIACION MUTUAL DE LOS OBREROS CATOLICOS PADRE FEDERICO GROTE"
 },
 {
 "rnemp": 610034,
@@ -715,6 +740,11 @@
 "descripcion": "OBRA SOCIAL DE LA ACTIVIDAD DE SEGUROS, REASEGUROS, CAPITALIZACION Y AHORRO Y PRESTAMO PARA LA VIVIENDA"
 },
 {
+"rnemp": 813383,
+"nombre_comercial": "PARAMEDIC",
+"descripcion": "AGRUPACION DE COLABORACION GRUPO PARAMEDIC"
+},
+{
 "rnemp": 310934,
 "nombre_comercial": "PM PROGRAMAS MEDICOS",
 "descripcion": "PROGRAMAS MEDICOS SOCIEDAD ARGENTINA DE CONSULTORIA MUTUAL"
@@ -768,6 +798,11 @@
 "rnemp": 117757,
 "nombre_comercial": "S/D",
 "descripcion": "EMERGENCIAS DEL SUR S.R.L."
+},
+{
+"rnemp": 116608,
+"nombre_comercial": "S/D",
+"descripcion": "FISHERTON SALUD S.R.L."
 },
 {
 "rnemp": 316338,
@@ -825,6 +860,11 @@
 "descripcion": "OBRA SOCIAL DEL PERSONAL DE DIRECCION DE LA INDUSTRIA CERVECERA Y MALTERA"
 },
 {
+"rnemp": 114055,
+"nombre_comercial": "SERVICIOS EMSYS S.A.",
+"descripcion": "SERVICIOS EMSYS S.A."
+},
+{
 "rnemp": 120160,
 "nombre_comercial": "SERVIRED",
 "descripcion": "ADMINISTRACION RECURSOS PARA SALUD.S.A"
@@ -880,6 +920,11 @@
 "descripcion": "SUM S.A."
 },
 {
+"rnemp": 117887,
+"nombre_comercial": "SUMA SALUD SISTEMA MEDICO PRIVADO",
+"descripcion": "UNION A.F. MENDOZA SALUD SA"
+},
+{
 "rnemp": 114567,
 "nombre_comercial": "SUME SALUD",
 "descripcion": "CALIDAD MEDICA S.A."
@@ -915,6 +960,11 @@
 "descripcion": "MUTUAL MEDICA CONCORDIA"
 },
 {
+"rnemp": 315922,
+"nombre_comercial": "UNION OBRERA ASOCIACION DE SOCORROS MUTUOS",
+"descripcion": "UNION OBRERA ASOCIACION DE SOCORROS MUTUOS"
+},
+{
 "rnemp": 610195,
 "nombre_comercial": "UNION PERSONAL",
 "descripcion": "OBRA SOCIAL UNION PERSONAL DE LA UNION PERSONAL CIVIL DE LA NACION"
@@ -935,14 +985,14 @@
 "descripcion": "VITA`S S.A."
 },
 {
-"rnemp": 112981,
-"nombre_comercial": "VITTAL",
-"descripcion": "MPE S.A."
-},
-{
 "rnemp": 113052,
 "nombre_comercial": "VITTAL",
 "descripcion": "SOCORRO MEDICO PRIVADO S.A."
+},
+{
+"rnemp": 112981,
+"nombre_comercial": "VITTAL",
+"descripcion": "MPE S.A."
 },
 {
 "rnemp": 110183,
@@ -960,18 +1010,28 @@
 "descripcion": "OBRA SOCIAL DE DIRECCION OSDO                                                                                                                                                                                                                             "
 },
 {
+"rnemp": 620745,
+"nombre_comercial": null,
+"descripcion": "OBRA SOCIAL DE COMISARIOS  NAVALES                                                                                                                                                                                                                        "
+},
+{
 "rnemp": 120771,
 "nombre_comercial": null,
 "descripcion": "CARE SALUD S.A.                                                                                                                                                                                                                                           "
 },
 {
+"rnemp": 118521,
+"nombre_comercial": null,
+"descripcion": "ANDESALUD S.A.                                                                                                                                                                                                                                            "
+},
+{
+"rnemp": 118538,
+"nombre_comercial": null,
+"descripcion": "BONMED S.A.                                                                                                                                                                                                                                               "
+},
+{
 "rnemp": 118514,
 "nombre_comercial": null,
 "descripcion": "SANITAS SALUD S.R.L.                                                                                                                                                                                                                                      "
-},
-{
-"rnemp": 620745,
-"nombre_comercial": null,
-"descripcion": "OBRA SOCIAL DE COMISARIOS  NAVALES                                                                                                                                                                                                                        "
 }
 ]

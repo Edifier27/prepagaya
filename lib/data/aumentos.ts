@@ -69,6 +69,9 @@ export const AUMENTOS_OFICIALES = aumentosOficialesJson as unknown as {
 }
 
 for (const [periodo, m] of Object.entries(AUMENTOS_OFICIALES.meses)) {
+  // La serie es la del año 2026 (tabla "mes a mes" y acumulado del año): los
+  // meses de 2025 del archivo oficial tienen su página en /aumentos/[mes].
+  if (!periodo.startsWith('2026')) continue
   const mes = `${periodo.slice(0, 4)}-${periodo.slice(4)}`
   const ranking = Object.values(m.prepagas)
   const nota = `Dato oficial: promedio de ${ranking.length} prepagas según sus cuadros tarifarios ante la Superintendencia de Servicios de Salud. Rango: ${ranking[0].mediana.toLocaleString('es-AR')}% (${ranking[0].nombre}) a ${ranking[ranking.length - 1].mediana.toLocaleString('es-AR')}% (${ranking[ranking.length - 1].nombre}).`

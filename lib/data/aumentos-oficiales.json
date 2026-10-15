@@ -2,8 +2,1806 @@
   "fuente": "Superintendencia de Servicios de Salud — cuadros tarifarios (Res. 645/2025)",
   "fuenteUrl": "https://cuadrostarifarios.sssalud.gob.ar/",
   "metodo": "Aumento de cada fila (plan, región, rango de edad y modalidad) entre dos períodos consecutivos; por prepaga se informa la mediana, el mínimo y el máximo. El promedio del mes es el promedio simple de las medianas de las prepagas que declararon.",
-  "generado": "2026-09-23",
+  "generado": "2026-10-15",
   "meses": {
+    "202509": {
+      "label": "Septiembre 2025",
+      "promedio": 1.94,
+      "prepagas": {
+        "medicus": {
+          "nombre": "Medicus",
+          "mediana": 1.68,
+          "minimo": 1.67,
+          "maximo": 1.68,
+          "declaradas": [
+            1.68
+          ],
+          "filas": 308
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 1.8,
+          "minimo": 1.8,
+          "maximo": 1.8,
+          "declaradas": [
+            1.8
+          ],
+          "filas": 216
+        },
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 1.85,
+          "minimo": 1.85,
+          "maximo": 1.85,
+          "declaradas": [
+            1.85
+          ],
+          "filas": 80
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 616
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 164
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 4.44,
+          "declaradas": [
+            1.9,
+            2.8
+          ],
+          "filas": 1354
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 12.04,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 71
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 240
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 1.9,
+          "minimo": 1.35,
+          "maximo": 2.2,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 118
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 2.0,
+          "minimo": 2.0,
+          "maximo": 2.0,
+          "declaradas": [
+            2.0
+          ],
+          "filas": 707
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.2,
+          "minimo": 2.2,
+          "maximo": 2.2,
+          "declaradas": [
+            2.2
+          ],
+          "filas": 10
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 2.4,
+          "minimo": 1.9,
+          "maximo": 2.4,
+          "declaradas": [
+            1.9,
+            2.4
+          ],
+          "filas": 84
+        }
+      }
+    },
+    "202510": {
+      "label": "Octubre 2025",
+      "promedio": 1.87,
+      "prepagas": {
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 1.1,
+          "minimo": 0.0,
+          "maximo": 2.2,
+          "declaradas": [
+            2.2
+          ],
+          "filas": 10
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 1.7,
+          "minimo": 1.7,
+          "maximo": 2.7,
+          "declaradas": [
+            1.7,
+            2.7
+          ],
+          "filas": 1615
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 1.85,
+          "minimo": 1.85,
+          "maximo": 2.3,
+          "declaradas": [
+            1.85,
+            2.3
+          ],
+          "filas": 63
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 616
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 140
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 216
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 98.18,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 118
+        },
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 1.9,
+          "minimo": -66.66,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 80
+        },
+        "medicus": {
+          "nombre": "Medicus",
+          "mediana": 1.92,
+          "minimo": 1.92,
+          "maximo": 1.92,
+          "declaradas": [
+            1.92
+          ],
+          "filas": 308
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 1.95,
+          "minimo": 0.84,
+          "maximo": 7.05,
+          "declaradas": [
+            1.85,
+            1.95
+          ],
+          "filas": 72
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 2.0,
+          "minimo": 2.0,
+          "maximo": 2.0,
+          "declaradas": [
+            2.0
+          ],
+          "filas": 707
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.4,
+          "minimo": 1.9,
+          "maximo": 3.89,
+          "declaradas": [
+            1.9,
+            2.4
+          ],
+          "filas": 72
+        }
+      }
+    },
+    "202511": {
+      "label": "Noviembre 2025",
+      "promedio": 2.15,
+      "prepagas": {
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 1.03,
+          "minimo": -28.77,
+          "maximo": 212.05,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 80
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 616
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 3.1,
+          "declaradas": [
+            2.1,
+            3.1
+          ],
+          "filas": 1615
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 238.41,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 216
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 2.1,
+          "minimo": -47.85,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 72
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 10
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 704
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.2,
+          "minimo": -9.68,
+          "maximo": 2.2,
+          "declaradas": [
+            2.2
+          ],
+          "filas": 72
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 270
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 2.4,
+          "minimo": 2.4,
+          "maximo": 2.4,
+          "declaradas": [
+            2.4
+          ],
+          "filas": 30
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 2.5,
+          "minimo": -70.15,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 140
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 2.85,
+          "minimo": 2.1,
+          "maximo": 2.85,
+          "declaradas": [
+            2.1,
+            2.85
+          ],
+          "filas": 132
+        }
+      }
+    },
+    "202512": {
+      "label": "Diciembre 2025",
+      "promedio": 2.37,
+      "prepagas": {
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 616
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 206.89,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 216
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 2.3,
+          "minimo": 2.03,
+          "maximo": 3.3,
+          "declaradas": [
+            2.3,
+            3.3
+          ],
+          "filas": 1549
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 216
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 15.75,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 72
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 270
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 116
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 10
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 704
+        },
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 80
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 2.5,
+          "minimo": 2.4,
+          "maximo": 2.5,
+          "declaradas": [
+            2.4,
+            2.5
+          ],
+          "filas": 78
+        },
+        "premedic": {
+          "nombre": "Premedic",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 249
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 2.85,
+          "minimo": 2.3,
+          "maximo": 2.85,
+          "declaradas": [
+            2.3,
+            2.85
+          ],
+          "filas": 132
+        }
+      }
+    },
+    "202601": {
+      "label": "Enero 2026",
+      "promedio": 2.55,
+      "prepagas": {
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 2.4,
+          "minimo": 2.2,
+          "maximo": 2.7,
+          "declaradas": [
+            2.2,
+            2.4,
+            2.7
+          ],
+          "filas": 131
+        },
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 2.45,
+          "minimo": 2.45,
+          "maximo": 2.45,
+          "declaradas": [
+            2.45
+          ],
+          "filas": 80
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 616
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 240
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 2.5,
+          "minimo": 2.42,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 1723
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 216
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 72
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 270
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.7,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 114
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 10
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 2.5,
+          "minimo": 2.5,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 694
+        },
+        "premedic": {
+          "nombre": "Premedic",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 250
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 2.9,
+          "minimo": 2.5,
+          "maximo": 2.9,
+          "declaradas": [
+            2.5,
+            2.9
+          ],
+          "filas": 132
+        }
+      }
+    },
+    "202602": {
+      "label": "Febrero 2026",
+      "promedio": 2.85,
+      "prepagas": {
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 616
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 2.8,
+          "minimo": 2.4,
+          "maximo": 2.9,
+          "declaradas": [
+            2.4,
+            2.8,
+            2.9
+          ],
+          "filas": 103
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 240
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 1612
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 216
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 71
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 270
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 2.8,
+          "minimo": 2.3,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 118
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 10
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 698
+        },
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 2.8,
+          "declaradas": [
+            2.8
+          ],
+          "filas": 80
+        },
+        "premedic": {
+          "nombre": "Premedic",
+          "mediana": 3.0,
+          "minimo": 3.0,
+          "maximo": 3.0,
+          "declaradas": [
+            3.0
+          ],
+          "filas": 300
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 3.3,
+          "minimo": 2.8,
+          "maximo": 3.3,
+          "declaradas": [
+            2.8,
+            3.3
+          ],
+          "filas": 132
+        }
+      }
+    },
+    "202603": {
+      "label": "Marzo 2026",
+      "promedio": 2.99,
+      "prepagas": {
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 2.8,
+          "minimo": 2.8,
+          "maximo": 3.0,
+          "declaradas": [
+            2.8,
+            2.9,
+            3.0
+          ],
+          "filas": 103
+        },
+        "medicus": {
+          "nombre": "Medicus",
+          "mediana": 2.88,
+          "minimo": 2.87,
+          "maximo": 2.88,
+          "declaradas": [
+            2.88
+          ],
+          "filas": 308
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 616
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 3.9,
+          "declaradas": [
+            2.9,
+            3.9
+          ],
+          "filas": 1723
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 2.9,
+          "minimo": -40.66,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 216
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 27.13,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 71
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 270
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 118
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 10
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 698
+        },
+        "premedic": {
+          "nombre": "Premedic",
+          "mediana": 3.0,
+          "minimo": 3.0,
+          "maximo": 3.0,
+          "declaradas": [
+            3.0
+          ],
+          "filas": 300
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 3.2,
+          "minimo": 3.2,
+          "maximo": 3.2,
+          "declaradas": [
+            3.2
+          ],
+          "filas": 240
+        },
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 3.95,
+          "minimo": 2.85,
+          "maximo": 47.43,
+          "declaradas": [
+            2.85
+          ],
+          "filas": 70
+        }
+      }
+    },
+    "202604": {
+      "label": "Abril 2026",
+      "promedio": 2.97,
+      "prepagas": {
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.7,
+          "minimo": 2.7,
+          "maximo": 2.7,
+          "declaradas": [
+            2.7
+          ],
+          "filas": 10
+        },
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 2.87,
+          "minimo": 2.87,
+          "maximo": 2.87,
+          "declaradas": [
+            2.87
+          ],
+          "filas": 80
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 616
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 240
+        },
+        "premedic": {
+          "nombre": "Premedic",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 300
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 2484
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.9,
+          "minimo": -16.71,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 72
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 270
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 118
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 2.95,
+          "minimo": 2.95,
+          "maximo": 3.95,
+          "declaradas": [
+            2.95,
+            3.95
+          ],
+          "filas": 1729
+        },
+        "medicus": {
+          "nombre": "Medicus",
+          "mediana": 2.98,
+          "minimo": 2.97,
+          "maximo": 2.98,
+          "declaradas": [
+            2.97
+          ],
+          "filas": 308
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 3.0,
+          "minimo": 2.8,
+          "maximo": 3.4,
+          "declaradas": [
+            2.8,
+            2.9,
+            3.0,
+            3.4
+          ],
+          "filas": 131
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 3.85,
+          "minimo": 3.85,
+          "maximo": 3.85,
+          "declaradas": [
+            3.85
+          ],
+          "filas": 698
+        }
+      }
+    },
+    "202605": {
+      "label": "Mayo 2026",
+      "promedio": 3.42,
+      "prepagas": {
+        "medicus": {
+          "nombre": "Medicus",
+          "mediana": 2.97,
+          "minimo": 2.97,
+          "maximo": 2.98,
+          "declaradas": [
+            2.97
+          ],
+          "filas": 308
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 3.1,
+          "minimo": 3.1,
+          "maximo": 3.1,
+          "declaradas": [
+            3.1
+          ],
+          "filas": 10
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 3.2,
+          "minimo": 3.2,
+          "maximo": 25.76,
+          "declaradas": [
+            3.2
+          ],
+          "filas": 72
+        },
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 3.3,
+          "minimo": 3.3,
+          "maximo": 3.3,
+          "declaradas": [
+            3.3
+          ],
+          "filas": 80
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 3.4,
+          "minimo": 3.4,
+          "maximo": 3.4,
+          "declaradas": [
+            3.4
+          ],
+          "filas": 616
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 3.4,
+          "minimo": 2.9,
+          "maximo": 3.5,
+          "declaradas": [
+            2.9,
+            3.3,
+            3.4,
+            3.5
+          ],
+          "filas": 131
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 3.4,
+          "minimo": 3.4,
+          "maximo": 3.4,
+          "declaradas": [
+            3.4
+          ],
+          "filas": 240
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 3.4,
+          "minimo": 3.4,
+          "maximo": 4.4,
+          "declaradas": [
+            3.4,
+            4.4
+          ],
+          "filas": 1729
+        },
+        "premedic": {
+          "nombre": "Premedic",
+          "mediana": 3.4,
+          "minimo": 3.4,
+          "maximo": 3.4,
+          "declaradas": [
+            3.4
+          ],
+          "filas": 300
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 3.4,
+          "minimo": -17.28,
+          "maximo": 3.4,
+          "declaradas": [
+            3.4
+          ],
+          "filas": 2484
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 3.4,
+          "minimo": 3.4,
+          "maximo": 3.4,
+          "declaradas": [
+            3.4
+          ],
+          "filas": 270
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 3.4,
+          "minimo": 3.4,
+          "maximo": 3.4,
+          "declaradas": [
+            3.4
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 3.4,
+          "minimo": 3.4,
+          "maximo": 3.4,
+          "declaradas": [
+            3.4
+          ],
+          "filas": 118
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 3.9,
+          "minimo": 3.9,
+          "maximo": 3.9,
+          "declaradas": [
+            3.9
+          ],
+          "filas": 312
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 4.25,
+          "minimo": 4.25,
+          "maximo": 15.2,
+          "declaradas": [
+            4.25,
+            5.25
+          ],
+          "filas": 679
+        }
+      }
+    },
+    "202606": {
+      "label": "Junio 2026",
+      "promedio": 2.76,
+      "prepagas": {
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 2.55,
+          "minimo": 2.55,
+          "maximo": 2.55,
+          "declaradas": [
+            2.55
+          ],
+          "filas": 80
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 2.6,
+          "declaradas": [
+            2.6
+          ],
+          "filas": 616
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 3.5,
+          "declaradas": [
+            2.6,
+            3.3,
+            3.5
+          ],
+          "filas": 131
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 2.6,
+          "declaradas": [
+            2.6
+          ],
+          "filas": 240
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 3.6,
+          "declaradas": [
+            2.6,
+            3.6
+          ],
+          "filas": 1729
+        },
+        "premedic": {
+          "nombre": "Premedic",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 2.6,
+          "declaradas": [
+            2.6
+          ],
+          "filas": 300
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 77.93,
+          "declaradas": [
+            2.6
+          ],
+          "filas": 2484
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 2.6,
+          "declaradas": [
+            2.6
+          ],
+          "filas": 71
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 2.8,
+          "declaradas": [
+            2.6,
+            2.8
+          ],
+          "filas": 270
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 2.6,
+          "declaradas": [
+            2.6
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 2.6,
+          "minimo": 1.81,
+          "maximo": 2.6,
+          "declaradas": [
+            2.6
+          ],
+          "filas": 118
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 10
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 3.15,
+          "minimo": 2.9,
+          "maximo": 3.4,
+          "declaradas": [
+            2.9,
+            3.4
+          ],
+          "filas": 312
+        },
+        "medicus": {
+          "nombre": "Medicus",
+          "mediana": 3.4,
+          "minimo": 3.4,
+          "maximo": 3.4,
+          "declaradas": [
+            3.4
+          ],
+          "filas": 308
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 3.45,
+          "minimo": 3.45,
+          "maximo": 4.45,
+          "declaradas": [
+            3.45,
+            4.45
+          ],
+          "filas": 683
+        }
+      }
+    },
+    "202607": {
+      "label": "Julio 2026",
+      "promedio": 2.32,
+      "prepagas": {
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 2.0,
+          "minimo": 2.0,
+          "maximo": 2.0,
+          "declaradas": [
+            2.0
+          ],
+          "filas": 80
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 868
+        },
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 240
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 3.1,
+          "declaradas": [
+            2.1,
+            3.1
+          ],
+          "filas": 1729
+        },
+        "premedic": {
+          "nombre": "Premedic",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 300
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 6.3,
+          "declaradas": [
+            2.1,
+            3.3,
+            5.9,
+            6.3
+          ],
+          "filas": 2484
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 16
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 118
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.6,
+          "declaradas": [
+            2.3,
+            2.6
+          ],
+          "filas": 78
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.3,
+          "minimo": 2.1,
+          "maximo": 2.3,
+          "declaradas": [
+            2.1,
+            2.3
+          ],
+          "filas": 270
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 10
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.5,
+          "minimo": 2.34,
+          "maximo": 2.5,
+          "declaradas": [
+            2.5
+          ],
+          "filas": 72
+        },
+        "medicus": {
+          "nombre": "Medicus",
+          "mediana": 2.79,
+          "minimo": 2.79,
+          "maximo": 2.79,
+          "declaradas": [
+            2.79
+          ],
+          "filas": 308
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 2.9,
+          "minimo": 2.9,
+          "maximo": 2.9,
+          "declaradas": [
+            2.9
+          ],
+          "filas": 360
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 2.95,
+          "minimo": 2.95,
+          "maximo": 3.95,
+          "declaradas": [
+            2.95,
+            3.95
+          ],
+          "filas": 683
+        }
+      }
+    },
+    "202608": {
+      "label": "Agosto 2026",
+      "promedio": 2.19,
+      "prepagas": {
+        "avalian": {
+          "nombre": "Avalian",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 240
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 2.9,
+          "declaradas": [
+            1.9,
+            2.9
+          ],
+          "filas": 1729
+        },
+        "premedic": {
+          "nombre": "Premedic",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 300
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 118
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 10
+        },
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 80
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.0,
+          "minimo": 1.8,
+          "maximo": 2.0,
+          "declaradas": [
+            1.8,
+            2.0
+          ],
+          "filas": 868
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 2.1,
+          "minimo": 2.1,
+          "maximo": 2.1,
+          "declaradas": [
+            2.1
+          ],
+          "filas": 98
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 270
+        },
+        "medife": {
+          "nombre": "Medifé",
+          "mediana": 2.35,
+          "minimo": 2.35,
+          "maximo": 2.35,
+          "declaradas": [
+            2.35
+          ],
+          "filas": 2484
+        },
+        "hominis": {
+          "nombre": "Hominis",
+          "mediana": 2.46,
+          "minimo": 2.46,
+          "maximo": 2.46,
+          "declaradas": [
+            2.46
+          ],
+          "filas": 16
+        },
+        "galeno": {
+          "nombre": "Galeno",
+          "mediana": 2.6,
+          "minimo": 2.6,
+          "maximo": 2.6,
+          "declaradas": [
+            2.6
+          ],
+          "filas": 72
+        },
+        "cemic": {
+          "nombre": "CEMIC",
+          "mediana": 2.7,
+          "minimo": 2.7,
+          "maximo": 3.7,
+          "declaradas": [
+            2.7,
+            3.7
+          ],
+          "filas": 683
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 2.75,
+          "minimo": 2.6,
+          "maximo": 2.9,
+          "declaradas": [
+            2.6,
+            2.9
+          ],
+          "filas": 360
+        }
+      }
+    },
     "202609": {
       "label": "Septiembre 2026",
       "promedio": 2.37,

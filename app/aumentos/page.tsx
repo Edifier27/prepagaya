@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { aumentos2026, aumentoAcumulado, INFLACION_ACUMULADA_2026, AUMENTOS_OFICIALES, ultimoMesOficial, mesesArchivoAumentos } from '@/lib/data/aumentos'
+import { aumentos2026, aumentoAcumulado, AUMENTOS_OFICIALES, ultimoMesOficial, mesesArchivoAumentos } from '@/lib/data/aumentos'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
@@ -43,7 +43,9 @@ const faqs = [
   },
   {
     q: '¿Cuánto acumulan los aumentos de prepagas en 2026?',
-    a: `Los aumentos acumulan ${acumulado.toLocaleString('es-AR')}% en lo que va de 2026, contra una inflación acumulada de aproximadamente ${INFLACION_ACUMULADA_2026}% en el mismo período.`,
+    // Sin comparar contra la inflación (15-oct-2026): el dato de inflación
+    // cubría otro período (ene-jul) y la comparación confundía.
+    a: `Entre enero y ${ultimoConfirmado.label.split(' ')[0].toLowerCase()} de 2026 los aumentos de prepagas acumulan ${acumulado.toLocaleString('es-AR')}%, según los cuadros tarifarios oficiales de la Superintendencia de Servicios de Salud (promedio del mercado, mes a mes).`,
   },
   {
     q: '¿Cómo se calculan los aumentos de las prepagas?',
@@ -162,7 +164,7 @@ export default function AumentosPage() {
             </div>
             <div className="bg-white rounded-2xl border border-gray-200 p-5 text-center shadow-sm">
               <div className="text-3xl font-black text-gray-900">{acumulado.toLocaleString('es-AR')}%</div>
-              <div className="text-xs text-gray-500 mt-1">Acumulado 2026 (vs. {INFLACION_ACUMULADA_2026}% de inflación)</div>
+              <div className="text-xs text-gray-500 mt-1">Acumulado 2026 (enero a {ultimoConfirmado.label.split(' ')[0].toLowerCase()}, dato oficial)</div>
             </div>
             {proyeccion && (
               <div className="bg-white rounded-2xl border border-dashed border-gray-300 p-5 text-center shadow-sm">
