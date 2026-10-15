@@ -587,10 +587,11 @@ export const coberturas: CoberturaData[] = [
       },
       // Empresas de asistencia: Swiss Medical con fuente (alianza con Universal
       // Assistance desde julio 2023); OSDE, Sancor Salud, Medifé y Medicus
-      // confirmadas por Darío como asesor (15-oct-2026).
+      // confirmadas por Darío como asesor (15-oct-2026), igual que el alcance
+      // mundial de Universal Assistance con Europa como destino más caro.
       {
         q: '¿Qué empresa de asistencia al viajero usa cada prepaga?',
-        a: 'Swiss Medical, OSDE, Sancor Salud y Medifé trabajan con Universal Assistance (Swiss Medical tiene una alianza con esa empresa desde julio de 2023). Medicus trabaja con Pax Assistance. Qué incluye cada plan (países, topes y días) cambia según el plan: confirmalo antes de viajar.',
+        a: 'Swiss Medical, OSDE, Sancor Salud y Medifé trabajan con Universal Assistance (Swiss Medical tiene una alianza con esa empresa desde julio de 2023). Universal Assistance da cobertura en todo el mundo, incluida Europa, que es el destino donde la asistencia tiene el costo más alto. Medicus trabaja con Pax Assistance. Qué incluye cada plan (países, topes y días) cambia según el plan: confirmalo antes de viajar.',
       },
       {
         q: '¿Qué prepaga cubre en Uruguay, Brasil o Chile?',
