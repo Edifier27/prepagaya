@@ -4,6 +4,29 @@ Listas que pasó Darío el 17-oct-2026: Swiss Medical, Sancor Salud, OSDE, "prep
 
 Este archivo se va completando con las listas que lleguen. Regla de siempre: nada inventado; cada página o dato nuevo necesita fuente oficial.
 
+## Datos reales de Search Console (17-oct-2026)
+
+Chrome quedó conectado y se leyó Search Console (dominio `prepagaya.com.ar`, 8-sep a 14-oct-2026; antes de esa fecha casi no hay impresiones). Filtro "la consulta contiene":
+
+| Marca | Consultas | Impresiones | Clics | CTR | Pos. |
+|---|---|---|---|---|---|
+| Swiss Medical | 654 | 22.085 | 190 | 0,86 % | 8,3 |
+| OSDE | 1.000 (tope de la tabla) | 47.219 | 179 | 0,38 % | — |
+| Sancor | 598 | 21.134 | 103 | 0,49 % | — |
+
+**Swiss Medical por tema** (impresiones / clics / posición): ciudad 7.362 / 38 / 8,1 · cartilla 6.648 / 83 / 8,0 · planes 3.522 / 49 / 8,4 · precio 1.057 / 5 / 9,5 · guardia 754 / 4 / 10,8 · comparar 423 / 4 / 8,3 · hospital 361 / 6 / 7,1 · viajero 276 / 5 / 9,6 · óptica 252 / 4 / 9,6 · código 204 / 2 / 8,1 · odontología 91 / 1 / 5,9 · estética 89 / 0 / 7,6.
+
+**Lo que dicen los datos**
+
+1. **La posición manda, no el título.** Con posición 5 o mejor el CTR es de 3 % a 28 % ("osde flux vs osde 210" 9 clics de 278 en pos. 4,7; "osde 210 vs flux" 4 de 20 en pos. 2,8; "sancor salud corrientes" 9 de 266 en pos. 3,9; "swiss medical smg40" 2 de 7 en pos. 2,4). Con posición 9 o peor, por debajo de 1 %.
+2. **Las consultas "cabeza" no se mueven con títulos.** `/cartillas/osde` tiene 9.924 impresiones y 4 clics para "osde cartilla" en pos. 6,2, aunque el título ya se acortó el 11-oct. En Google, esa búsqueda trae avisos pagos, el sitio oficial con enlaces, la Visión general de IA y recién después los resultados orgánicos; la posición 6 queda muy abajo. Lo que sí da clics son las variantes con plan, zona o "online / 2026": "cartilla online swiss medical" 8,5 %, "plan smg02 swiss medical cartilla" 5,4 %, "cartilla de swiss medical 2026" 3,6 %.
+3. **Comparativas de planes:** son las páginas con mejor CTR. Las de marca contra marca ("qué es mejor OSDE o Swiss Medical", unas 330 impresiones, 3 clics, pos. 8-9) necesitan subir de posición; el título ya tiene la pregunta.
+4. **Guardias de Swiss Medical:** 754 impresiones en pos. 10,8 y las responden las cartillas por zona (`/cartillas/swiss-medical/caba`: 650 impresiones, pos. 10,5). La cartilla de Swiss no tiene guardia por especialidad (ginecológica, traumatológica…): trae guardia por plan y especialidades de consultorio, así que esas búsquedas no se pueden responder con precisión sin otra fuente.
+5. **Zonas sin página propia con impresiones:** "sancor salud morón" (353, pos. 12,9) y "caballito" (257, pos. 11,8) caen en las zonas CABA y GBA Oeste.
+6. **Sancor es el que peor posiciona** (la mayoría en 9 a 13); "sancor salud cartilla" está en pos. 15,2.
+
+**Conclusión:** ganar clics depende de subir posiciones (enlaces desde medios y alianzas, enlazado interno y contenido más profundo en las páginas que ya están en 8 a 12), no de reescribir más títulos. La ola 2 de títulos queda como estaba planeada (31-oct, después de medir la ola 1).
+
 ## Qué se descarta
 
 - **Trabajo:** empleos, rrhh, jobs, bolsa de trabajo, trabaja con nosotros, vacantes, enviar cv.
