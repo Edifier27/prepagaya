@@ -1895,9 +1895,65 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Puedo cambiar de obra social estando embarazada?', a: 'Sí, la opción de cambio no tiene restricción por embarazo. El cambio se activa el primer día del mes siguiente a la confirmación.' },
     ],
     keywords: ['puedo contratar una prepaga estando embarazada', 'prepaga embarazada', 'se puede contratar prepaga estando embarazada', 'cambiar de prepaga estando embarazada', 'cambiar de obra social estando embarazada', 'embarazo preexistencia prepaga'],
-    relacionadas: ['opcion-de-cambio-obra-social', 'derivar-obra-social-a-prepaga', 'afiliar-recien-nacido-prepaga', 'prepaga-sin-periodo-carencia'],
+    relacionadas: ['plan-materno-infantil', 'opcion-de-cambio-obra-social', 'derivar-obra-social-a-prepaga', 'afiliar-recien-nacido-prepaga', 'prepaga-sin-periodo-carencia'],
     fuentes: [
       { texto: 'Ley 26.682 de Medicina Prepaga (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/norma.htm' },
+      { texto: 'Ministerio de Justicia — Ley simple: Programa Médico Obligatorio', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/programa-medico-obligatorio' },
+    ],
+  },
+  // 17-oct-2026: el Plan Materno Infantil tiene 371 búsquedas en la lista de
+  // keywords de Darío (por obra social y por prepaga) y no había página propia.
+  // Alcance confirmado por Darío (asesor): el PMI cubre hasta el año de vida del
+  // bebé, con leches medicamentosas al 100 % con indicación médica, y la
+  // cobertura sigue con la nueva prepaga si se cambia dentro del primer año.
+  {
+    slug: 'plan-materno-infantil',
+    titulo: 'Plan Materno Infantil (PMI): qué cubre, hasta cuándo y cómo activarlo (2026)',
+    metaDescripcion: 'El PMI cubre el embarazo, el parto y al bebé hasta el año, con la medicación específica y las leches medicamentosas al 100 %. Qué incluye, cómo activarlo y qué pasa si cambiás de prepaga.',
+    tiempoLectura: 5,
+    categoria: 'Cobertura',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'El Plan Materno Infantil (PMI) es parte del Programa Médico Obligatorio: toda obra social y prepaga tiene que dar esta cobertura, sin importar el plan que tengas. Cubre el embarazo, el parto y al bebé durante su primer año de vida, y la medicación específica sale al 100 %. Acá está lo que más se busca: qué incluye, hasta cuándo dura, cómo se activa y qué pasa con la leche y con un cambio de prepaga.',
+      secciones: [
+        {
+          titulo: 'Qué es el Plan Materno Infantil',
+          cuerpo: 'Es la cobertura mínima obligatoria para la madre durante el embarazo y el parto, y para el bebé durante su primer año. Está dentro del Programa Médico Obligatorio (PMO): no es un plan que se contrate aparte ni un beneficio de una marca en particular. OSDE, Swiss Medical, Sancor Salud, Galeno, Omint y cualquier otra prepaga u obra social lo tienen que cubrir; lo que cambia de una a otra es la red de sanatorios, la habitación y los servicios que suman por encima del mínimo.',
+          enlaces: [{ texto: 'Ministerio de Justicia — Programa Médico Obligatorio', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/programa-medico-obligatorio' }],
+        },
+        {
+          titulo: 'Qué cubre',
+          cuerpo: 'Durante el embarazo: controles, estudios y medicación relacionada, sin coseguros. El parto: la atención y la internación. Después del nacimiento: la atención del bebé hasta que cumple un año, con la medicación específica al 100 %, las vacunas del calendario obligatorio y los controles de salud. Las leches medicamentosas también se cubren al 100 % cuando hay indicación médica expresa; la leche de fórmula común no se cubre sin esa indicación, porque el sistema busca estimular la lactancia materna.',
+        },
+        {
+          titulo: 'Hasta cuándo dura',
+          cuerpo: 'Hasta el año de vida del bebé. Es el dato que más confusión genera: el PMI no se extiende a los 3 años. Después del primer año, lo que cubre la prepaga depende de cada prestación y de tu plan, y la leche medicamentosa con indicación médica tiene su propia normativa: pedí siempre la indicación por escrito del pediatra.',
+        },
+        {
+          titulo: 'Cómo se activa',
+          cuerpo: 'Se pide a la prepaga u obra social, no se activa solo. Lo habitual es presentar el certificado médico de embarazo para el alta del PMI y, cuando nace el bebé, los datos del recién nacido para incorporarlo al plan. Cada empresa tiene su canal (autogestión, app o atención al socio), así que el primer paso es llamar o escribir y pedir "el alta del Plan Materno Infantil". Si te dicen que no existe, es un error: es una obligación del PMO.',
+          cta: { texto: 'Si todavía no tenés cobertura, compará qué sanatorio y qué habitación te da cada plan antes del parto.', boton: 'Ver prepagas para embarazadas', href: '/para/embarazadas' },
+        },
+        {
+          titulo: 'Si cambiás de prepaga durante el primer año',
+          cuerpo: 'La obligación del PMI la tiene la prepaga u obra social que te cubre en ese momento. Si el bebé tiene 6 meses y te pasás a otra, la nueva cobertura tiene que seguir dando el PMI hasta que cumpla el año. Conviene pedir el alta del PMI en el mismo trámite del cambio y llevar la indicación médica de la leche, si la tiene, para que no haya cortes.',
+        },
+      ],
+      conclusion: 'El Plan Materno Infantil es un derecho que no depende de la marca ni del plan: embarazo, parto y bebé hasta el año, con la medicación específica y las leches medicamentosas al 100 %. Pedí el alta en cuanto sepas del embarazo y guardá todo por escrito. La diferencia entre prepagas está en el sanatorio y la habitación donde parís.',
+    },
+    faq: [
+      { q: '¿Qué cubre el Plan Materno Infantil?', a: 'El embarazo, el parto y la atención del bebé hasta el año de vida. La medicación específica va al 100 % y sin coseguros, igual que las vacunas obligatorias y los controles. Las leches medicamentosas, con indicación médica expresa.' },
+      { q: '¿Hasta qué edad cubre el Plan Materno Infantil?', a: 'Hasta que el bebé cumple un año. No llega a los 3 años: después del primer año, la cobertura depende de cada prestación y de tu plan.' },
+      { q: '¿El Plan Materno Infantil cubre la leche?', a: 'Cubre al 100 % las leches medicamentosas cuando hay indicación médica expresa. La leche de fórmula sin indicación médica no se cubre, porque la norma prioriza la lactancia materna.' },
+      { q: '¿Cómo activo el Plan Materno Infantil en mi prepaga?', a: 'Pidiendo el alta del PMI a tu prepaga u obra social, con el certificado médico de embarazo; después se incorpora al bebé con los datos del nacimiento. Cada una tiene su canal de atención.' },
+      { q: '¿Qué pasa con el PMI si me paso a otra prepaga?', a: 'La cobertura sigue con la nueva: si el bebé tiene 6 meses, la nueva prepaga tiene que cubrirlo hasta el año. Pedí el alta del PMI en el mismo trámite del cambio.' },
+      { q: '¿Es lo mismo en todas las prepagas y obras sociales?', a: 'El mínimo sí, porque lo fija el PMO. Lo que cambia es la red de sanatorios, el tipo de habitación y los beneficios que cada empresa suma por encima del mínimo.' },
+      { q: '¿Tengo que pagar coseguro por el PMI?', a: 'No. Las prestaciones del Plan Materno Infantil se cubren sin coseguros ni copagos.' },
+    ],
+    keywords: ['plan materno infantil', 'que cubre el plan materno infantil', 'plan materno infantil hasta que edad cubre', 'plan materno infantil leche', 'como activar el plan materno infantil', 'plan materno infantil prepagas', 'plan materno infantil osde', 'plan materno infantil swiss medical', 'plan materno infantil sancor salud', 'pmi plan materno infantil'],
+    relacionadas: ['contratar-prepaga-embarazada', 'afiliar-recien-nacido-prepaga', 'como-cambiar-de-prepaga', 'que-cubre-la-prepaga'],
+    prepagasRelacionadas: ['osde', 'swiss-medical', 'sancor-salud'],
+    fuentes: [
       { texto: 'Ministerio de Justicia — Ley simple: Programa Médico Obligatorio', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/programa-medico-obligatorio' },
     ],
   },

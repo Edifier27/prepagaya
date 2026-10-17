@@ -80,6 +80,14 @@ const ES_OBRA_SOCIAL_O_PREPAGA: Record<string, string> = {
 // direcciones. Solo tiene sentido para estas dos marcas puntuales, por eso
 // es un mapa aparte y no una regla genérica como ES_OBRA_SOCIAL_O_PREPAGA.
 const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
+  // 17-oct-2026, keyword research de Darío ("apto físico swiss medical", "apto
+  // físico en el día") y OK de Darío para publicarlo (antes, 2-oct, no se
+  // publicaba). Dato de Darío (asesor): el chequeo médico deportivo se hace en
+  // el Centro Deragopyan, dentro de la cobertura desde el SMG02.
+  'swiss-medical': [{
+    q: '¿Swiss Medical cubre el apto físico?',
+    a: 'Sí. Los afiliados pueden hacerse el chequeo médico deportivo (apto físico) en el Centro Deragopyan, dentro de la cobertura de los planes desde el SMG02, el SMG20 incluido. No hace falta contratar un plan especial. Pedí el turno al 0810-333-8876 o con tu asesor.',
+  }],
   'prevencion-salud': [{
     q: '¿Prevención Salud es lo mismo que Sancor Salud?',
     a: 'No, son dos empresas distintas y sin relación societaria, aunque comparten parte del nombre y se confunden seguido. Prevención Salud es la empresa de medicina prepaga del Grupo Sancor Seguros (una aseguradora). Sancor Salud es una mutual de medicina prepaga independiente, con conducción propia y sin vínculo con el Grupo Sancor Seguros.',
