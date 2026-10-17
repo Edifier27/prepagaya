@@ -2197,7 +2197,7 @@ export const guiasPreguntas: GuiaData[] = [
     categoria: 'Trámites',
     fechaActualizacion: '2026-10-17',
     contenido: {
-      intro: 'Sancor Salud tiene un botón de baja en su web oficial (sancorsalud.com.ar/baja): se completa con el documento del titular y el número de asociado y se inicia la solicitud online. Es el camino más simple y deja constancia. Acá van los pasos, qué datos tener a mano y qué cuidar para que no te sigan cobrando.',
+      intro: 'Sancor Salud (Asociación Mutual SanCor Salud) tiene un botón de baja en su web oficial (sancorsalud.com.ar/baja): se completa con el documento del titular y el número de asociado y se inicia la solicitud online, sin iniciar sesión. Sus condiciones generales de ingreso dicen además que la renuncia o rescisión debe formularse por escrito al domicilio legal de la Mutual (25 de Mayo 201, Sunchales, Santa Fe), y que también puede hacerse en los términos de la Res. 271/2020 sobre el botón de baja. El botón es el camino más simple y deja constancia.',
       secciones: [
         {
           titulo: 'Paso a paso',
@@ -2209,9 +2209,9 @@ export const guiasPreguntas: GuiaData[] = [
           cuerpo: 'Una captura de pantalla o el comprobante de la solicitud, con la fecha y el número de trámite si te lo dan, y cualquier confirmación que recibas. Es lo que te va a servir si la baja no se refleja en la facturación. Antes de la baja, revisá que no haya cuotas pendientes y cómo estás pagando: si usás débito automático, controlá que se corte al mes siguiente.',
         },
         {
-          titulo: 'Qué dicen las condiciones de contratación',
-          cuerpo: 'Sancor Salud publica en su web la sección "Contrato de adhesión" con las condiciones de contratación. Leelas antes de pedir la baja, sobre todo si tenés cuotas por pagar o un grupo familiar a cargo, y confirmá con Sancor desde qué fecha rige la baja para no pagar de más.',
-          enlaces: [{ texto: 'Sancor Salud — Contrato de adhesión y reglamento', url: 'https://www.sancorsalud.com.ar/contrato-de-adhesion' }],
+          titulo: 'Qué dicen las condiciones generales de ingreso',
+          cuerpo: 'Las "Condiciones generales para ingresos" que Sancor Salud publica dicen que, en caso de renuncia o rescisión, esta debe formularse por escrito al domicilio legal de la Asociación Mutual SanCor Salud (25 de Mayo 201, Sunchales, Santa Fe), pudiendo hacerse en los términos de la Res. 271/2020 sobre el botón de baja. También aclaran que, en los casos en que se aplica el artículo 10 de la Ley 26.682 (preexistencias), el asociado paga por mes anticipado la cuota social y el arancel de servicios, con el diferencial que corresponda, desde el ingreso y hasta la exclusión o renuncia. El texto no fija una fecha de efecto ni un plazo de preaviso: pedí por escrito desde cuándo rige tu baja. Si adheriste a los subsidios complementarios (SUPRA, S.U.F., Vida Plus), revisá sus condiciones en la web.',
+          enlaces: [{ texto: 'Sancor Salud — Contrato de adhesión y condiciones', url: 'https://www.sancorsalud.com.ar/contrato-de-adhesion' }],
         },
         {
           titulo: 'Si te siguen cobrando',
@@ -2235,6 +2235,8 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Cómo doy de baja Sancor Salud?', a: 'Desde el formulario de baja de su web oficial: se completan tipo y número de documento del titular y el número de asociado, y se inicia la solicitud.' },
       { q: '¿Qué datos necesito para la baja de Sancor Salud?', a: 'El tipo y número de documento del titular y su número de asociado, que figura en la credencial y en la factura.' },
       { q: '¿Quién puede pedir la baja?', a: 'El titular del plan: el formulario pide sus datos y su número de asociado.' },
+      { q: '¿Se puede pedir la baja de Sancor Salud por escrito?', a: 'Sí: según sus condiciones generales de ingreso, la renuncia o rescisión se formula por escrito al domicilio legal de la Asociación Mutual SanCor Salud (25 de Mayo 201, Sunchales, Santa Fe), o por el botón de baja de su web.' },
+      { q: '¿Necesito iniciar sesión para pedir la baja de Sancor Salud?', a: 'No: el formulario de sancorsalud.com.ar/baja pide el documento del titular y el número de asociado, sin iniciar sesión.' },
       { q: '¿Dónde están las condiciones de contratación?', a: 'En la sección "Contrato de adhesión" de la web de Sancor Salud.' },
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con el comprobante y, si no lo resuelven, ante la Superintendencia de Servicios de Salud.' },
       { q: '¿Pierdo la antigüedad si me doy de baja?', a: 'Si volvés a asociarte más tarde, empezás de cero. Si querés cambiar de plan o de prepaga, hacelo sin dejar un hueco de cobertura.' },
@@ -2244,7 +2246,8 @@ export const guiasPreguntas: GuiaData[] = [
     prepagasRelacionadas: ['sancor-salud'],
     fuentes: [
       { texto: 'Sancor Salud — Solicitud de baja (web oficial)', url: 'https://www.sancorsalud.com.ar/baja' },
-      { texto: 'Sancor Salud — Contrato de adhesión', url: 'https://www.sancorsalud.com.ar/contrato-de-adhesion' },
+      { texto: 'Sancor Salud — Contrato de adhesión (Condiciones generales para ingresos)', url: 'https://www.sancorsalud.com.ar/contrato-de-adhesion' },
+      { texto: 'Resolución 271/2020 (botón de baja) — Secretaría de Comercio Interior', url: 'https://www.boletinoficial.gob.ar/detalleAviso/primera/234663/20200908' },
     ],
   },
   // 17-oct-2026: bajas por marca, leídas de las páginas oficiales de cada
@@ -2556,7 +2559,7 @@ export const guiasPreguntas: GuiaData[] = [
         },
         {
           titulo: 'Paso 1: dejá constancia del pedido',
-          cuerpo: 'Pedí la baja por el canal oficial de tu prepaga (botón de baja, portal de asociados, mail o atención telefónica) y guardá la prueba: captura con fecha, número de gestión, mail enviado y respuesta. Si no conocés el canal, mirá la guía de tu prepaga: Swiss Medical, OSDE, Sancor Salud, Galeno, Medifé, Omint y Medicus ya tienen el paso a paso. Pagá las cuotas hasta la fecha efectiva de la baja para no dar pie a una deuda, y reclamá después lo que te cobren de más.',
+          cuerpo: 'Pedí la baja por el canal oficial de tu prepaga (botón de baja, portal de asociados, mail o atención telefónica) y guardá la prueba: captura con fecha, número de gestión, mail enviado y respuesta. Si no conocés el canal, mirá la guía de tu prepaga: Swiss Medical, OSDE, Sancor Salud, Galeno, Medifé, Omint y Medicus ya tienen el paso a paso. Pagá las cuotas hasta la fecha efectiva de la baja para no dar pie a una deuda, y reclamá después lo que te cobren de más. Un dato útil: según la Res. 271/2020, quien usa el botón de baja no puede ser obligado a registrarse ni a hacer otro trámite; si el portal de tu prepaga te exige iniciar sesión y no podés ingresar, dejá captura del problema, pedí la baja por escrito y reclamá.',
         },
         {
           titulo: 'Paso 2: carta documento',
@@ -3371,7 +3374,7 @@ export const guiasPreguntas: GuiaData[] = [
         },
         {
           titulo: 'Qué dice la ley: 30 días, sin multa, una vez por año',
-          cuerpo: 'Ley 26.682, artículo 9: los usuarios pueden rescindir el contrato en cualquier momento, sin limitación y sin penalidad, notificando fehacientemente con treinta días de anticipación. El decreto reglamentario 1993/2011 agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que cancelés antes lo que debas. La prepaga, en cambio, solo puede rescindir por falta de pago de tres cuotas consecutivas (con intimación de diez días hábiles) o por declaración jurada falseada. Desde 2019, además, las prepagas deben mostrar un botón de baja en su web (Res. SC 316/2018 y Disp. 472/2019), y si contrataste a distancia podés rescindir por el mismo medio, con constancia fehaciente en 72 horas (Ley 24.240, art. 10 ter).',
+          cuerpo: 'Ley 26.682, artículo 9: los usuarios pueden rescindir el contrato en cualquier momento, sin limitación y sin penalidad, notificando fehacientemente con treinta días de anticipación. El decreto reglamentario 1993/2011 agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que cancelés antes lo que debas. La prepaga, en cambio, solo puede rescindir por falta de pago de tres cuotas consecutivas (con intimación de diez días hábiles) o por declaración jurada falseada. Desde 2019, además, las prepagas deben mostrar un botón de baja en su web (Res. SC 316/2018 y Disp. 472/2019); la Res. 271/2020 agrega que debe verse "a simple vista y en el primer acceso" y que, al usarlo, el proveedor no puede requerir al consumidor registración previa ni ningún otro trámite. Si contrataste a distancia podés rescindir por el mismo medio, con constancia fehaciente en 72 horas (Ley 24.240, art. 10 ter).',
           enlaces: [
             { texto: 'Ley 26.682 (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
             { texto: 'Decreto 1993/2011 (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
@@ -3406,7 +3409,7 @@ export const guiasPreguntas: GuiaData[] = [
         },
         {
           titulo: 'Cómo verificamos esta guía',
-          cuerpo: 'El 17 de octubre de 2026 leímos las páginas oficiales de baja de cada prepaga de la tabla, la Ley 26.682, el Decreto 1993/2011, la Ley 24.240, las páginas de ARCA y de la SSSalud y la normativa citada, y pusimos el enlace en cada guía. No enviamos ningún formulario: varios portales piden iniciar sesión y no pudimos ver los pasos de adentro. Del reglamento de Sancor Salud no pudimos leer las cláusulas de baja, y Accord Salud no publica el trámite en un formato legible. Esta guía es información general, no asesoramiento legal individual: ante un caso con deuda, tratamientos en curso o un reclamo ya iniciado, consultá a un abogado de consumo.',
+          cuerpo: 'El 17 de octubre de 2026 leímos las páginas oficiales de baja de cada prepaga de la tabla, la Ley 26.682, el Decreto 1993/2011, la Ley 24.240, las páginas de ARCA y de la SSSalud y la normativa citada, y pusimos el enlace en cada guía. No enviamos ningún formulario: varios portales piden iniciar sesión y no pudimos ver los pasos de adentro. De Sancor Salud solo pudimos leer sus condiciones generales de ingreso (no su reglamento de servicios), y Accord Salud no publica el trámite en un formato legible. Esta guía es información general, no asesoramiento legal individual: ante un caso con deuda, tratamientos en curso o un reclamo ya iniciado, consultá a un abogado de consumo.',
         },
       ],
       conclusion: 'Para dar de baja una prepaga: titular, botón de baja o aviso fehaciente con 30 días, sin multa y sin que puedan condicionarla a una deuda. Para una obra social: opción de cambio, cese laboral o baja del monotributo. Guardá siempre la constancia, pedí la fecha de efecto por escrito y tené la nueva cobertura confirmada antes.',
@@ -3426,7 +3429,7 @@ export const guiasPreguntas: GuiaData[] = [
       filas: [
         { celdas: ['Swiss Medical', 'El titular, de forma fehaciente (reglamento público)', 'Hasta el día 5: rige desde el último día del mes anterior; después, desde el último día del mes en curso'], slug: 'como-dar-de-baja-swiss-medical' },
         { celdas: ['OSDE', 'Web: Gestiones online > Mi afiliación > Solicitud de baja (con cuenta)', 'Vale desde el día del trámite o una fecha futura; no hay bajas retroactivas'], slug: 'como-dar-de-baja-osde' },
-        { celdas: ['Sancor Salud', 'Formulario de baja en su web (documento del titular y N.º de asociado)', 'No pudimos leer su reglamento: confirmá la fecha de efecto por escrito'], slug: 'como-dar-de-baja-sancor-salud' },
+        { celdas: ['Sancor Salud', 'Formulario de baja en su web, sin iniciar sesión (documento del titular y N.º de asociado), o por escrito a su domicilio legal', 'No fija fecha de efecto en el texto publicado: pedila por escrito'], slug: 'como-dar-de-baja-sancor-salud' },
         { celdas: ['Galeno', '"Solicitud de Baja" en la web (con tu usuario) o en una sucursal', 'Titular y socio privado; alcanza a todo el grupo familiar'], slug: 'como-dar-de-baja-galeno' },
         { celdas: ['Medifé', 'Formulario de baja en el portal de asociados (Mi Cuenta)', 'Formulario de arrepentimiento para planes de hasta 10 días'], slug: 'como-dar-de-baja-medife' },
         { celdas: ['Omint', '"Botón de baja de servicios" (Autogestión)', 'Hay un botón de arrepentimiento aparte'], slug: 'como-dar-de-baja-omint' },
