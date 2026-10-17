@@ -82,7 +82,17 @@ const ES_OBRA_SOCIAL_O_PREPAGA: Record<string, string> = {
 const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
   'prevencion-salud': [{
     q: '¿Prevención Salud es lo mismo que Sancor Salud?',
-    a: 'No, son dos empresas distintas y sin relación societaria, aunque comparten parte del nombre y se confunden seguido. Prevención Salud es la empresa de medicina prepaga del Grupo Sancor Seguros (una aseguradora). Sancor Salud es una mutual de medicina prepaga independiente, con más de 60 años de trayectoria propia y sin vínculo con el Grupo Sancor Seguros.',
+    a: 'No, son dos empresas distintas y sin relación societaria, aunque comparten parte del nombre y se confunden seguido. Prevención Salud es la empresa de medicina prepaga del Grupo Sancor Seguros (una aseguradora). Sancor Salud es una mutual de medicina prepaga independiente, con conducción propia y sin vínculo con el Grupo Sancor Seguros.',
+  }],
+  // 17-oct-2026, keyword research de Darío ("sancor salud es lo mismo que sancor
+  // seguros / prevencion salud"). Fuente: InfoNegocios, 4-ago-2026 ("¿Quién es
+  // quién? Sancor Seguros y Sancor Salud"): Sancor Salud es la Asociación Mutual
+  // Sancor Salud, no integra el Grupo Sancor Seguros y funciona de manera
+  // autónoma; la prepaga del grupo es Prevención Salud; ambas nacieron en
+  // Sunchales. No se afirma nada sobre la cooperativa láctea (la nota no la trata).
+  'sancor-salud': [{
+    q: '¿Sancor Salud es lo mismo que Sancor Seguros o Prevención Salud?',
+    a: 'No. Sancor Salud es la Asociación Mutual Sancor Salud, una mutual de medicina prepaga independiente: no integra el Grupo Sancor Seguros y funciona de manera autónoma. La prepaga de ese grupo asegurador es Prevención Salud. Sancor Seguros y Sancor Salud nacieron en Sunchales (Santa Fe) y comparten parte del nombre, pero son organizaciones distintas.',
   }],
 }
 
