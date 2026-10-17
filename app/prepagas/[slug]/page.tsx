@@ -94,6 +94,13 @@ const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
     q: '¿Sancor Salud es lo mismo que Sancor Seguros o Prevención Salud?',
     a: 'No. Sancor Salud es la Asociación Mutual Sancor Salud, una mutual de medicina prepaga independiente: no integra el Grupo Sancor Seguros y funciona de manera autónoma. La prepaga de ese grupo asegurador es Prevención Salud. Sancor Seguros y Sancor Salud nacieron en Sunchales (Santa Fe) y comparten parte del nombre, pero son organizaciones distintas.',
   }],
+  // 17-oct-2026, keyword research de Darío ("avalian y aca salud es lo mismo").
+  // El registro de la SSSalud la lista como "Avalian Cobertura Médica Integral
+  // (ex ACA Salud)", razón social Avalian Salud y Bienestar Cooperativa Limitada.
+  avalian: [{
+    q: '¿Avalian es lo mismo que ACA Salud?',
+    a: 'Sí. ACA Salud pasó a llamarse Avalian en 2020: es la misma empresa de medicina prepaga con otro nombre. En el registro de la Superintendencia de Servicios de Salud figura como «Avalian Cobertura Médica Integral (ex ACA Salud)», con razón social Avalian Salud y Bienestar Cooperativa Limitada (código 9-0310-1), y forma parte de un grupo asociativo integrado por la Asociación de Cooperativas Argentinas (ACA), el Grupo Asegurador La Segunda y Coovaeco.',
+  }],
 }
 
 function tituloFicha(prep: Prepaga) {
