@@ -89,6 +89,16 @@ export default async function GuiaPage({ params }: Props) {
         { '@type': 'ListItem', position: 3, name: guia.titulo },
       ],
     },
+    ...(guia.pasos
+      ? [{
+          '@context': 'https://schema.org',
+          '@type': 'HowTo',
+          name: guia.titulo,
+          description: guia.metaDescripcion,
+          inLanguage: 'es-AR',
+          step: guia.pasos.map((p, i) => ({ '@type': 'HowToStep', position: i + 1, name: p.nombre, text: p.texto })),
+        }]
+      : []),
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -151,6 +161,52 @@ export default async function GuiaPage({ params }: Props) {
         <div className="bg-red-50 border-l-4 border-[#E8002D] rounded-r-xl p-5 mb-8">
           <p className="text-gray-800 leading-relaxed">{marcarTerminos(enlazarPrepagas(guia.contenido.intro, vistas), vistosGlosario)}</p>
         </div>
+
+        {/* Tabla propia y pasos (pilar de bajas, 17-oct-2026). Van arriba, junto a
+            la respuesta: son lo que más cita un buscador de IA y lo que más
+            usa quien llega con prisa. */}
+        {guia.tabla && (
+          <div className="mb-8">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">{guia.tabla.titulo}</h2>
+            <div className="overflow-x-auto rounded-xl border border-gray-200">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-gray-50 text-gray-600">
+                  <tr>
+                    {guia.tabla.columnas.map((c) => (
+                      <th key={c} scope="col" className="px-4 py-3 font-semibold whitespace-nowrap">{c}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {guia.tabla.filas.map((f) => (
+                    <tr key={f.celdas[0]} className="align-top">
+                      {f.celdas.map((celda, i) => (
+                        <td key={i} className={`px-4 py-3 ${i === 0 ? 'font-semibold text-gray-900 whitespace-nowrap' : 'text-gray-600'}`}>
+                          {i === 0 && f.slug ? (
+                            <Link href={`/guias/${f.slug}`} className="text-[#E8002D] hover:underline">{celda}</Link>
+                          ) : celda}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {guia.tabla.nota && <p className="text-xs text-gray-400 mt-2 leading-relaxed">{guia.tabla.nota}</p>}
+          </div>
+        )}
+        {guia.pasos && (
+          <div className="mb-8 bg-white border border-gray-200 rounded-2xl p-5">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">Los pasos, en resumen</h2>
+            <ol className="space-y-3 list-decimal list-inside">
+              {guia.pasos.map((p) => (
+                <li key={p.nombre} className="text-sm text-gray-600 leading-relaxed">
+                  <span className="font-semibold text-gray-900">{p.nombre}. </span>{p.texto}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
 
         {/* Buscador "¿Qué me cubre la prepaga?" (27-sep-2026): vive en esta
             guía para que la búsqueda "qué cubre la prepaga" tenga una sola

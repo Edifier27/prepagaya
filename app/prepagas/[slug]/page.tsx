@@ -90,7 +90,9 @@ const BAJA_ESPECIFICA: Record<string, string> = {
   'prevencion-salud': 'Prevención Salud tiene "Solicitud de baja" en el pie de su web, que lleva a la Autogestión de afiliados (se inicia sesión). Para altas de hasta 10 días hay un formulario de arrepentimiento que solo puede pedir el titular. Paso a paso en la guía "Cómo dar de baja Prevención Salud".',
   hominis: 'Hominis tiene "Solicitud de baja" en Información útil (con inicio de sesión en Mi Hominis): hay que ser titular del grupo y la baja implica a todos los integrantes, salvo una baja parcial indicando el DNI. Paso a paso en la guía "Cómo dar de baja Hominis".',
   'hospital-italiano': 'El Plan de Salud del Hospital Italiano tiene en su web la página "¿Cómo cancelar mi afiliación?": el formulario permite solicitar la baja en cualquier momento. Paso a paso en la guía "Cómo dar de baja el Plan de Salud del Hospital Italiano".',
-  avalian: 'Avalian tiene los accesos "Bajas" y "Trámite de arrepentimiento" en el pie de su web, que llevan a la Autogestión de afiliados (online.avalian.com). Atención telefónica: 0810-222-72583. Paso a paso en la guía "Cómo dar de baja Avalian".',
+  avalian: 'La baja la pide el titular, por escrito o con el "Botón de baja" de la web de Avalian (Autogestión de afiliados). Según su reglamento, rige al último día del mes si la tramitás hasta el día 10 (o el hábil posterior); hasta entonces se siguen pagando las cuotas. Si te vas del país más de 90 días, existe la baja transitoria al 25% de la cuota. Paso a paso en la guía "Cómo dar de baja Avalian".',
+  cemic: 'La página de afiliados de CEMIC publica el trámite por fallecimiento del titular (certificado de defunción a consultasafiliados@cemic.edu.ar) y los traspasos de obra social, pero no un formulario de baja voluntaria ni un plazo de preaviso. Para una baja común, pedila por escrito por sus canales de afiliados y guardá la constancia. Paso a paso en la guía "Cómo dar de baja CEMIC".',
+  premedic: 'Premedic tiene un formulario de "Solicitud de baja" para asociados activos: solo lo puede hacer el titular, permite baja total o parcial y después Premedic se pone en contacto. Atención: 0810-222-5522 (lunes a viernes de 10 a 18). Paso a paso en la guía "Cómo dar de baja Premedic".',
   'sancor-salud': 'Sancor Salud tiene un formulario de baja en su web oficial: pide el tipo y número de documento del titular y su número de asociado, y desde ahí se inicia la solicitud. Guardá el comprobante y controlá la factura del mes siguiente. Paso a paso en la guía "Cómo dar de baja Sancor Salud".',
 }
 
@@ -265,7 +267,7 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
     }] : []),
     // Keyword research 14-oct-2026: "[prepaga] para jubilados / mayores de
     // 65", "[prepaga] dar de baja". Precio del cuadro oficial; la baja, con
-    // lo verificado en la guía /guias/baja-de-prepaga-proceso.
+    // lo verificado en la guía /guias/como-dar-de-baja-prepaga-u-obra-social.
     ...(() => {
       const e = comp.entrada.oficial ? escalaPorEdad(prep.slug, comp.entrada.plan.slug, 'caba') : null
       const p65 = e?.rangos.find((x) => x.desde <= 65 && 65 <= x.hasta)?.precio

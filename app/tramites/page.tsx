@@ -48,7 +48,7 @@ const GRUPOS: TramiteGrupo[] = [
   {
     titulo: 'Dar de baja',
     descripcion: 'Cómo pedir la baja de tu prepaga por el botón online, qué plazos respetar y cómo evitar que te sigan facturando.',
-    slugs: ['baja-de-prepaga-proceso', 'como-reclamar-a-una-prepaga'],
+    slugs: ['como-dar-de-baja-prepaga-u-obra-social', 'como-reclamar-a-una-prepaga'],
   },
   {
     titulo: 'Casos particulares',

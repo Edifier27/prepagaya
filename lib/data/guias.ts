@@ -60,6 +60,10 @@ export interface GuiaData {
   prepagasRelacionadas?: string[] // slugs de prepagas
   fuentes?: GuiaEnlace[] // fuentes oficiales (se listan al pie y van a isBasedOn)
   captarBaja?: boolean // muestra el formulario de contacto de "bajas" (17-oct-2026)
+  // Tabla comparativa y pasos (pilar de bajas, 17-oct-2026): datos propios,
+  // fáciles de citar por buscadores de IA; los pasos generan el JSON-LD HowTo.
+  tabla?: { titulo: string; columnas: string[]; filas: { celdas: string[]; slug?: string }[]; nota?: string }
+  pasos?: { nombre: string; texto: string }[]
 }
 
 export const guias: GuiaData[] = [
@@ -484,7 +488,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['como cambiar de prepaga', 'cambiar de prepaga argentina', 'baja prepaga alta nueva', 'carencia cambio de prepaga'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-sin-periodo-carencia', 'como-afiliarse-prepaga-requisitos'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-sin-periodo-carencia', 'como-afiliarse-prepaga-requisitos'],
     prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud'],
   },
   {
@@ -758,7 +762,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['como reclamar a una prepaga', 'denuncia sssalud prepaga', 'prepaga me niega cobertura que hacer', 'amparo salud prepaga', 'como reclamar prepaga argentina', 'prepaga nego prestacion que hacer', 'superintendencia servicios salud reclamo', 'derechos afiliados prepaga'],
-    relacionadas: ['que-cubre-la-prepaga', 'baja-de-prepaga-proceso', 'como-pedir-autorizacion-prepaga'],
+    relacionadas: ['que-cubre-la-prepaga', 'como-dar-de-baja-prepaga-u-obra-social', 'como-pedir-autorizacion-prepaga'],
     fuentes: [
       { texto: 'Argentina.gob.ar — Denuncia por problemáticas de cobertura prestacional', url: 'https://www.argentina.gob.ar/servicio/denuncia-por-problematicas-de-cobertura-prestacional' },
       { texto: 'Superintendencia de Servicios de Salud — Usuarios: denuncias', url: 'https://www.argentina.gob.ar/sssalud/usuarios' },
@@ -1063,65 +1067,6 @@ export const guias: GuiaData[] = [
       { texto: 'Decreto 1993/2011, reglamentación de la Ley 26.682 (texto actualizado) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/190000-194999/190606/texact.htm' },
       { texto: 'Ley simple: Medicina prepaga — Ministerio de Justicia', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/medicina-prepaga' },
     ],
-  },
-  {
-    slug: 'baja-de-prepaga-proceso',
-    captarBaja: true,
-    titulo: 'Cómo darse de baja de una prepaga: proceso completo 2026',
-    metaDescripcion: 'Pasos para dar de baja tu prepaga en Argentina: plazos, documentación, carta documento y cómo evitar que te sigan cobrando. Guía actualizada.',
-    tiempoLectura: 6,
-    categoria: 'Trámites',
-    fechaActualizacion: '2026-10-17',
-    contenido: {
-      intro: 'Darte de baja de una prepaga es un derecho: no hay permanencia mínima ni multa (el artículo 9 de la Ley 26.682 lo dice expresamente), y desde 2019 las prepagas tienen que ofrecer en su web un botón de baja. Lo que sí pide la ley es que notifiques de forma fehaciente con 30 días de anticipación. El problema real no es la baja en sí, sino los cobros posteriores mal aplicados. Así se hace bien.',
-      secciones: [
-        {
-          titulo: 'Qué dice la ley',
-          cuerpo: 'Ley 26.682, artículo 9: los usuarios pueden rescindir el contrato en cualquier momento, sin limitación y sin penalidad alguna, notificando fehacientemente con treinta días de anticipación. El decreto reglamentario (1993/2011) agrega dos cosas: la facultad de rescindir se puede ejercer una sola vez por año, y la prepaga no puede condicionarla a que antes canceles lo que debas (la deuda no desaparece, pero no puede frenar tu baja). La prepaga, en cambio, solo puede rescindir por falta de pago de tres cuotas consecutivas o por declaración jurada falseada.',
-          enlaces: [
-            { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
-            { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
-          ],
-        },
-        {
-          titulo: 'El botón de baja: tu vía rápida',
-          cuerpo: 'La Resolución 316/2018 de la Secretaría de Comercio obliga a ciertos proveedores a mostrar un enlace de baja en su web, y la Disposición 472/2019 de Defensa del Consumidor sumó a la medicina prepaga (rige desde agosto de 2019). Cada prepaga lo ubica a su manera, y varias lo conectan con tu sesión de afiliado. Guardá la constancia con fecha: es tu prueba ante cualquier cobro posterior.',
-        },
-        {
-          titulo: 'El timing para no pagar de más',
-          cuerpo: 'Cada prepaga fija desde cuándo rige la baja: OSDE dice que vale desde el día del trámite o una fecha futura; Swiss Medical tiene un corte el día 5 de cada mes. Preguntá siempre la fecha de vigencia y pedila con anticipación: por la ley, el preaviso es de 30 días. Si tenés débito automático, avisá también a tu banco o tarjeta una vez que tengas la constancia de baja.',
-        },
-        {
-          titulo: 'Deudas, retenciones y las trampas clásicas',
-          cuerpo: 'La prepaga puede reclamarte las cuotas que realmente debas hasta la fecha de baja, pero la baja y la deuda van por carriles separados: según el decreto, no puede condicionar tu baja al pago previo. Si después de la baja te siguen debitando, reclamá primero a la empresa con tu constancia y, si no lo resuelve, ante Defensa del Consumidor o la Superintendencia de Servicios de Salud.',
-        },
-        {
-          titulo: 'Antes de la baja total: pensá el costo de la antigüedad',
-          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad. Esa antigüedad cuenta: la ley prohíbe aplicar el aumento por edad a los mayores de 65 con más de diez años de antigüedad, y los cambios de plan dentro de la misma prepaga no la interrumpen. OSDE, por ejemplo, avisa que si volvés a afiliarte pasados 60 días de la baja, te piden los mismos requisitos que a un socio nuevo. Si el motivo es económico, evaluá primero bajar de plan o pasarte a otra prepaga sin hueco de cobertura.',
-        },
-      ],
-      conclusion: 'La baja es un derecho sin multa: pedila por escrito o por el botón de baja, con 30 días de anticipación, guardá la constancia y avisá a tu banco si tenés débito automático. Y antes de ejecutarla, asegurate de que la baja total sea realmente tu mejor opción frente a bajar de plan o cambiar de empresa sin cortar la continuidad.',
-    },
-    faq: [
-      {
-        q: '¿Pueden negarme la baja si debo cuotas?',
-        a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede condicionar tu baja a la cancelación previa de lo adeudado. La deuda sigue existiendo y te la pueden reclamar, pero no pueden frenar la baja.',
-      },
-      {
-        q: '¿Tengo que dar explicaciones o preaviso para darme de baja?',
-        a: 'No tenés que justificar motivos, pero la ley sí pide notificar de forma fehaciente con 30 días de anticipación (Ley 26.682, art. 9). La "llamada de retención" es una gestión comercial que podés cortar cuando quieras.',
-      },
-      {
-        q: '¿Puedo darme de baja las veces que quiera?',
-        a: 'El decreto reglamentario establece que la facultad de rescindir se puede ejercer solamente una vez por año.',
-      },
-      {
-        q: '¿Qué hago si me siguen cobrando después de la baja?',
-        a: 'Reclamá a la empresa adjuntando tu constancia de baja y pedí la devolución. Si no responden en unos días, desconocé el débito ante tu banco o tarjeta y denunciá en Defensa del Consumidor. Los importes cobrados sin causa se devuelven.',
-      },
-    ],
-    keywords: ['baja de prepaga', 'boton de baja prepaga', 'como darse de baja prepaga', 'me siguen cobrando prepaga baja'],
-    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga', 'baja-obra-social-monotributo', 'como-dar-de-baja-swiss-medical', 'como-dar-de-baja-osde', 'como-dar-de-baja-sancor-salud', 'como-dar-de-baja-galeno', 'como-dar-de-baja-medife', 'como-dar-de-baja-omint', 'como-dar-de-baja-medicus', 'como-dar-de-baja-prevencion-salud', 'como-dar-de-baja-avalian', 'como-dar-de-baja-hominis', 'como-dar-de-baja-hospital-italiano', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga'],
   },
   {
     slug: 'cuota-prepaga-aumento-inflacion',
@@ -2235,7 +2180,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con el comprobante de la baja y, si no lo corrigen, ante la Superintendencia de Servicios de Salud.' },
     ],
     keywords: ['como dar de baja swiss medical', 'dar de baja swiss medical', 'baja swiss medical', 'swiss medical baja de servicio', 'swiss medical bajas', 'swiss medical como dar de baja', 'renuncia swiss medical', 'baja swiss medical por fallecimiento', 'swiss medical baja grupo familiar', 'swiss medical hijos 30 años'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['swiss-medical'],
     fuentes: [
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
@@ -2295,7 +2240,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Pierdo la antigüedad si me doy de baja?', a: 'Si volvés a asociarte más tarde, empezás de cero. Si querés cambiar de plan o de prepaga, hacelo sin dejar un hueco de cobertura.' },
     ],
     keywords: ['como dar de baja sancor salud', 'dar de baja sancor salud', 'baja sancor salud', 'sancor salud baja', 'sancor salud dar de baja', 'solicitud de baja sancor salud', 'sancor salud boton de baja', 'baja de servicio sancor salud', 'sancor salud baja de obra social', 'baja sancor salud telefono'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['sancor-salud'],
     fuentes: [
       { texto: 'Sancor Salud — Solicitud de baja (web oficial)', url: 'https://www.sancorsalud.com.ar/baja' },
@@ -2354,7 +2299,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
     ],
     keywords: ['como dar de baja osde', 'dar de baja osde', 'baja osde', 'osde baja de servicio', 'como darme de baja de osde', 'osde dar de baja', 'osde baja monotributo', 'osde baja por empresa', 'osde baja online', 'solicitud de baja osde'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['osde'],
     fuentes: [
       { texto: 'OSDE — Bajas (información al socio)', url: 'https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura/bajas' },
@@ -2409,7 +2354,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja galeno', 'dar de baja galeno', 'baja galeno', 'galeno solicitud de baja', 'galeno dar de baja', 'como darse de baja de galeno', 'galeno baja de servicio', 'baja de galeno online', 'galeno baja sucursal', 'galeno boton de baja'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['galeno'],
     fuentes: [
       { texto: 'Galeno — sitio oficial (Solicitud de Baja)', url: 'https://www.galeno.com.ar/' },
@@ -2464,7 +2409,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja medife', 'dar de baja medife', 'baja medife', 'medife baja de servicio', 'medife formulario de baja', 'medife arrepentimiento', 'como darse de baja de medife', 'medife dar de baja', 'medife baja online', 'baja de medife telefono'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['medife'],
     fuentes: [
       { texto: 'Medifé — Formulario de baja (portal de asociados)', url: 'https://medife.com.ar/portal/baja-servicio' },
@@ -2519,7 +2464,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu comprobante y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja omint', 'dar de baja omint', 'baja omint', 'omint baja de servicio', 'omint boton de baja', 'omint dar de baja', 'como darse de baja de omint', 'omint baja online', 'omint autogestion baja', 'baja de omint telefono'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['omint'],
     fuentes: [
       { texto: 'Omint — Botón de baja de servicios (Autogestión)', url: 'https://autogestion.omint.com.ar/inicio/solicitar-baja' },
@@ -2575,7 +2520,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja medicus', 'dar de baja medicus', 'baja medicus', 'medicus baja de servicio', 'medicus intencion de baja', 'medicus boton de arrepentimiento', 'como darse de baja de medicus', 'medicus dar de baja', 'medicus baja telefono', 'baja de medicus mail'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['medicus'],
     fuentes: [
       { texto: 'Medicus — Preguntas frecuentes: Baja del servicio', url: 'https://medicus.com.ar/categoria-preguntas/baja-del-servicio' },
@@ -2649,7 +2594,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. Según el decreto reglamentario, no puede supeditarse la rescisión del usuario a la previa cancelación de lo adeudado. La deuda sigue existiendo y la prepaga puede reclamarla por las vías correspondientes.' },
     ],
     keywords: ['prepaga no me da la baja', 'no me quieren dar de baja prepaga', 'no me dan la baja de la prepaga', 'reclamo baja prepaga', 'baja prepaga superintendencia', 'dar de baja prepaga ley', 'baja de prepaga ley', 'prepaga no deja darse de baja', 'que hacer si la prepaga no me da la baja', 'denuncia prepaga baja'],
-    relacionadas: ['carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'baja-de-prepaga-proceso', 'como-reclamar-a-una-prepaga', 'como-cambiar-de-prepaga'],
+    relacionadas: ['carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'como-dar-de-baja-prepaga-u-obra-social', 'como-reclamar-a-una-prepaga', 'como-cambiar-de-prepaga'],
     fuentes: [
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
       { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
@@ -2699,7 +2644,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Puedo mandarla si debo cuotas?', a: 'Sí. El decreto reglamentario dice que la baja no puede condicionarse a pagar antes lo adeudado. La deuda sigue existiendo y la prepaga puede reclamarla.' },
     ],
     keywords: ['carta documento baja prepaga', 'modelo carta documento baja prepaga', 'carta documento para dar de baja la prepaga', 'carta de baja prepaga', 'modelo carta baja medicina prepaga', 'carta documento baja obra social prepaga', 'texto carta documento baja prepaga', 'como redactar carta documento prepaga'],
-    relacionadas: ['prepaga-no-me-da-la-baja', 'prepaga-sigue-cobrando-despues-de-la-baja', 'baja-de-prepaga-proceso', 'dar-de-baja-prepaga-con-deuda', 'como-reclamar-a-una-prepaga'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-dar-de-baja-prepaga-u-obra-social', 'dar-de-baja-prepaga-con-deuda', 'como-reclamar-a-una-prepaga'],
     fuentes: [
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
       { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
@@ -2758,7 +2703,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Me corresponde la devolución de lo cobrado de más?', a: 'Si el cobro es posterior a la fecha efectiva de la baja, sí: el artículo 10 bis de la Ley 24.240 prevé la restitución de lo pagado cuando el proveedor incumple.' },
     ],
     keywords: ['prepaga me sigue cobrando despues de la baja', 'me siguen cobrando la prepaga', 'cobro despues de dar de baja prepaga', 'reversion debito automatico prepaga', 'stop debit prepaga', 'devolucion cuotas prepaga baja', 'me cobraron la prepaga despues de la baja', 'reclamo cobro indebido prepaga'],
-    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'baja-de-prepaga-proceso', 'como-reclamar-a-una-prepaga', 'dar-de-baja-prepaga-con-deuda'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'como-dar-de-baja-prepaga-u-obra-social', 'como-reclamar-a-una-prepaga', 'dar-de-baja-prepaga-con-deuda'],
     fuentes: [
       { texto: 'BCRA — Débito directo', url: 'https://www.bcra.gob.ar/debito-directo/' },
       { texto: 'Ley 24.240 de Defensa del Consumidor (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/638/texact.htm' },
@@ -2811,7 +2756,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Puedo asociarme a otra prepaga si tengo deuda con la anterior?', a: 'La normativa no lo impide, pero conviene ordenar la deuda para evitar reclamos posteriores.' },
     ],
     keywords: ['dar de baja prepaga con deuda', 'puedo dar de baja una prepaga con deuda', 'se puede dar de baja una prepaga con deuda', 'baja prepaga deuda', 'prepaga no da la baja por deuda', 'baja obra social con deuda', 'libre deuda prepaga'],
-    relacionadas: ['prepaga-no-me-da-la-baja', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'carta-documento-baja-prepaga-modelo', 'baja-de-prepaga-proceso', 'como-reclamar-a-una-prepaga'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'carta-documento-baja-prepaga-modelo', 'como-dar-de-baja-prepaga-u-obra-social', 'como-reclamar-a-una-prepaga'],
     fuentes: [
       { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
@@ -2858,7 +2803,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si necesito atención urgente y me dieron de baja?', a: 'Consultá cuanto antes con un abogado: en tratamientos en curso, la vía suele ser un amparo de salud. Mientras tanto, la urgencia se atiende en guardias.' },
     ],
     keywords: ['prepaga me dio de baja por falta de pago', 'me dieron de baja de la prepaga', 'baja de prepaga por falta de pago', 'prepaga me dio de baja por preexistencia', 'baja por declaracion jurada prepaga', 'reincorporacion prepaga', 'prepaga rescinde contrato', 'baja de obra social por falta de pago'],
-    relacionadas: ['dar-de-baja-prepaga-con-deuda', 'prepaga-no-me-da-la-baja', 'como-reclamar-a-una-prepaga', 'baja-de-prepaga-proceso'],
+    relacionadas: ['dar-de-baja-prepaga-con-deuda', 'prepaga-no-me-da-la-baja', 'como-reclamar-a-una-prepaga', 'como-dar-de-baja-prepaga-u-obra-social'],
     fuentes: [
       { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
@@ -2883,7 +2828,7 @@ export const guiasPreguntas: GuiaData[] = [
         },
         {
           titulo: 'Qué dicen los reglamentos de las prepagas',
-          cuerpo: 'Swiss Medical, por ejemplo, establece que la renuncia o muerte del titular resuelve la asociación de todo el grupo y que, para conservar la antigüedad, los integrantes que quieran seguir deben concurrir a las oficinas dentro de los 30 días del hecho para formar un nuevo grupo, abonando las cuotas desde ese momento. Es una cláusula distinta del plazo de dos meses sin pago del decreto: ante la duda, pedí por escrito a la prepaga cómo aplican ambos plazos y cuál es la fecha de efecto.',
+          cuerpo: 'Swiss Medical, por ejemplo, establece que la renuncia o muerte del titular resuelve la asociación de todo el grupo y que, para conservar la antigüedad, los integrantes que quieran seguir deben concurrir a las oficinas dentro de los 30 días del hecho para formar un nuevo grupo, abonando las cuotas desde ese momento. Es una cláusula distinta del plazo de dos meses sin pago del decreto: ante la duda, pedí por escrito a la prepaga cómo aplican ambos plazos y cuál es la fecha de efecto. Avalian, en cambio, prevé en su reglamento que el grupo familiar primario conserve la cobertura del PMO durante los tres primeros meses posteriores al deceso. CEMIC indica enviar el certificado de defunción a consultasafiliados@cemic.edu.ar y que otro integrante asuma la titularidad con un nuevo contrato.',
         },
         {
           titulo: 'Qué trámite hacer',
@@ -2905,7 +2850,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué documentación piden?', a: 'Habitualmente el acta de defunción y la documentación que acredite el vínculo. Consultá con tu prepaga.' },
     ],
     keywords: ['fallecimiento titular prepaga', 'muerte del titular prepaga cobertura familia', 'que pasa con la prepaga si muere el titular', 'baja prepaga fallecimiento', 'prepaga fallecimiento titular dos meses', 'viuda prepaga cobertura', 'continuidad prepaga fallecimiento'],
-    relacionadas: ['baja-de-prepaga-proceso', 'como-dar-de-baja-swiss-medical', 'como-cambiar-de-prepaga', 'prepaga-no-me-da-la-baja'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'como-dar-de-baja-swiss-medical', 'como-cambiar-de-prepaga', 'prepaga-no-me-da-la-baja'],
     fuentes: [
       { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
@@ -2951,7 +2896,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si ya pasaron los 10 días?', a: 'Pedí la baja común: la Ley 26.682 permite rescindir sin penalidad, con aviso fehaciente de 30 días.' },
     ],
     keywords: ['arrepentimiento prepaga', 'boton de arrepentimiento prepaga', 'arrepentirme de contratar prepaga', 'cancelar prepaga 10 dias', 'arrepentimiento medicina prepaga', 'revocar contratacion prepaga', 'articulo 34 ley 24240 prepaga'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'como-dar-de-baja-medicus', 'como-dar-de-baja-medife', 'como-dar-de-baja-omint'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'como-dar-de-baja-medicus', 'como-dar-de-baja-medife', 'como-dar-de-baja-omint'],
     fuentes: [
       { texto: 'Ley 24.240 de Defensa del Consumidor (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/638/texact.htm' },
       { texto: 'Medifé — Solicitar la baja del plan contratado', url: 'https://www.medife.com.ar/formulario-de-arrepentimiento' },
@@ -2968,7 +2913,7 @@ export const guiasPreguntas: GuiaData[] = [
     fechaActualizacion: '2026-10-17',
     captarBaja: true,
     contenido: {
-      intro: 'Al dar de baja la prepaga, la cobertura termina en la fecha en que la baja se hace efectiva: no hay un período de gracia general. Esa fecha la fija cada prepaga: OSDE, por ejemplo, la hace valer desde el día del trámite o una fecha futura, y Swiss Medical la computa según el día 5 del mes. La única extensión que prevé el decreto 1993/2011 es de dos meses de cobertura del PMO para el grupo familiar primario tras el fallecimiento del titular. Por eso conviene tener la nueva cobertura confirmada antes de pedir la baja.',
+      intro: 'Al dar de baja la prepaga, la cobertura termina en la fecha en que la baja se hace efectiva: no hay un período de gracia general. Esa fecha la fija cada prepaga: OSDE, por ejemplo, la hace valer desde el día del trámite o una fecha futura, y Swiss Medical la computa según el día 5 del mes y Avalian al último día del mes si la pedís hasta el día 10. La única extensión que prevé el decreto 1993/2011 es de dos meses de cobertura del PMO para el grupo familiar primario tras el fallecimiento del titular. Por eso conviene tener la nueva cobertura confirmada antes de pedir la baja.',
       secciones: [
         {
           titulo: 'La fecha de efecto es la que manda',
@@ -2998,7 +2943,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago para no quedarme sin cobertura entre dos prepagas?', a: 'Confirmá la nueva cobertura antes de pedir la baja y coordiná que arranque el día siguiente al fin de la anterior.' },
     ],
     keywords: ['si doy de baja la prepaga cuanto tiempo me cubre', 'hasta cuando tengo cobertura despues de la baja prepaga', 'cobertura despues de baja prepaga', 'cuanto tarda la baja de la prepaga', 'baja prepaga fecha efecto', 'baja prepaga retroactiva', 'cobertura tras baja obra social'],
-    relacionadas: ['baja-de-prepaga-proceso', 'baja-prepaga-fallecimiento-titular', 'como-cambiar-de-prepaga', 'prepaga-no-me-da-la-baja', 'prepaga-sin-periodo-carencia'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'baja-prepaga-fallecimiento-titular', 'como-cambiar-de-prepaga', 'prepaga-no-me-da-la-baja', 'prepaga-sin-periodo-carencia'],
     fuentes: [
       { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
@@ -3056,7 +3001,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja prevencion salud', 'dar de baja prevencion salud', 'baja prevencion salud', 'prevencion salud solicitud de baja', 'prevencion salud arrepentimiento', 'como darme de baja de prevencion salud', 'prevencion salud baja online', 'prevencion salud dar de baja prepaga', 'baja de prevencion salud telefono'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'arrepentimiento-prepaga-10-dias', 'como-cambiar-de-prepaga'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'arrepentimiento-prepaga-10-dias', 'como-cambiar-de-prepaga'],
     prepagasRelacionadas: ['prevencion-salud'],
     fuentes: [
       { texto: 'Prevención Salud — sitio oficial', url: 'https://www.prevencionsalud.com.ar/' },
@@ -3111,7 +3056,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja hominis', 'dar de baja hominis', 'baja hominis', 'hominis solicitud de baja', 'como darme de baja de hominis', 'dar de baja obra social hominis', 'hominis baja online', 'hominis baja telefono'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga'],
     prepagasRelacionadas: ['hominis'],
     fuentes: [
       { texto: 'Hominis — Solicitud de baja', url: 'https://www.hominis.com.ar/mi-hominis/mh-baja-del-servicio.php' },
@@ -3160,7 +3105,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja hospital italiano', 'dar de baja prepaga hospital italiano', 'baja plan de salud hospital italiano', 'hospital italiano baja de afiliacion', 'dar de baja obra social hospital italiano', 'hospital italiano cancelar afiliacion', 'hospital italiano boton de arrepentimiento'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga'],
     prepagasRelacionadas: ['hospital-italiano'],
     fuentes: [
       { texto: 'Hospital Italiano — ¿Cómo cancelar mi afiliación?', url: 'https://www.hospitalitaliano.org.ar/hiba/es/arrepentimiento' },
@@ -3170,63 +3115,68 @@ export const guiasPreguntas: GuiaData[] = [
   },
   {
     slug: 'como-dar-de-baja-avalian',
-    titulo: 'Cómo dar de baja Avalian: "Bajas" en la Autogestión y teléfono oficial',
-    metaDescripcion: 'Avalian tiene enlaces de "Bajas" y "Trámite de arrepentimiento" en su web, que llevan a la Autogestión (online.avalian.com). Cómo entrar, teléfono oficial y qué dice la ley.',
-    tiempoLectura: 4,
+    titulo: 'Cómo dar de baja Avalian: Botón de baja, fecha de efecto (día 10), baja transitoria y reglamento',
+    metaDescripcion: 'Avalian: la baja la pide el titular por escrito o con el "Botón de baja". Rige al último día del mes si la pedís hasta el día 10. Además: baja transitoria, bajas parciales y fallecimiento del titular.',
+    tiempoLectura: 6,
     categoria: 'Trámites',
     fechaActualizacion: '2026-10-17',
     captarBaja: true,
     contenido: {
-      intro: 'Avalian publica en el pie de su web dos accesos: "Bajas" y "Trámite de arrepentimiento". Ambos llevan a la Autogestión de afiliados (online.avalian.com), donde se ingresa con tu cuenta (o con Google) y, si no tenés, se puede crear una. La atención telefónica oficial es el 0810-222-72583 (SALUD).',
+      intro: 'Según el Reglamento general de servicios y contratación de Avalian (v02), la baja solo puede pedirla el titular de la cuenta, por escrito o con el "Botón de baja" de su web, completando el formulario. La baja se computa al último día del mes en que se solicita, siempre que se tramite hasta el día 10 (o el hábil posterior). Hasta entonces seguís obligado a pagar las cuotas, con intereses. El reglamento también prevé la baja transitoria para quien se va del país más de 90 días.',
       secciones: [
         {
           titulo: 'Paso a paso',
-          cuerpo: '1) Entrá a avalian.com y buscá "Bajas" en Información útil, al pie de la página. 2) Ingresá a la Autogestión con tu usuario y contraseña, o con Google; si no tenés cuenta, "Crear cuenta". 3) Seguí el trámite de baja y guardá la constancia con la fecha.',
+          cuerpo: '1) Entrá a avalian.com y buscá "Bajas" en Información útil, al pie de la página; te lleva a la Autogestión de afiliados (online.avalian.com), donde se ingresa con tu cuenta o con Google. 2) Completá el formulario de baja (también podés presentarlo por escrito). 3) Guardá la constancia con la fecha. La atención telefónica oficial es el 0810-222-72583 (SALUD).',
           enlaces: [{ texto: 'Avalian — Autogestión de afiliados', url: 'https://online.avalian.com/' }],
         },
         {
-          titulo: 'Arrepentimiento',
-          cuerpo: 'El enlace "Trámite de arrepentimiento" conduce al mismo portal. Está pensado para quien recién se asoció: la Ley 24.240 (art. 34) da diez días corridos para revocar la aceptación en contrataciones a distancia y esa facultad no puede renunciarse.',
+          titulo: 'Qué dice el reglamento sobre la baja',
+          cuerpo: 'Punto 5.2: el titular puede rescindir en cualquier momento, sin limitación y sin penalidad, notificando fehacientemente con treinta días de anticipación, y el derecho se puede ejercer solamente una vez por año. Punto 5.3: la baja se computa al último día del mes en que se solicite, siempre que se tramite hasta el día diez (o el hábil posterior). Punto 5.4: si hay deudas con Avalian u otros prestadores, la baja no las extingue y Avalian se reserva el derecho de reclamarlas judicialmente. Punto 7.3: hay que reintegrar las credenciales de todo el grupo familiar.',
         },
         {
-          titulo: 'Teléfono',
-          cuerpo: 'La atención telefónica oficial de Avalian es 0810-222-72583 (SALUD). Si pedís la baja por teléfono, pedí número de gestión y confirmación escrita.',
+          titulo: 'Qué pasa con tu grupo familiar',
+          cuerpo: 'La baja del titular implica la de su grupo. Los integrantes que quieran seguir en Avalian y mantener la antigüedad tienen que concurrir a las oficinas dentro de los 30 días de la solicitud para formar un nuevo grupo y pagar las cuotas desde la baja (puntos 2.2.A y 5.5). Las bajas parciales que desbalanceen el cálculo de riesgo de la cuenta pueden implicar un nuevo contrato, con modalidades que fija Avalian.',
+        },
+        {
+          titulo: 'Baja transitoria: asociado ausente',
+          cuerpo: 'Si te vas del país por más de 90 días, el reglamento permite pedir la condición de "asociado ausente" (punto 5.6): el servicio se suspende temporalmente, pagás el 25% de la cuota para mantener la antigüedad, solo una vez por año calendario de vigencia del plan, y rige para todo el grupo familiar, no de manera individual. Al volver, hay que acreditar el lugar y el tiempo de permanencia en el exterior. Es una alternativa a la baja si no querés perder la antigüedad.',
+        },
+        {
+          titulo: 'Fallecimiento del titular y reincorporación',
+          cuerpo: 'El reglamento dice que el fallecimiento del titular no implica la caducidad de los derechos del grupo, y que el grupo familiar primario cuenta con la cobertura del PMO durante los tres primeros meses posteriores al deceso (punto 6). Si pedís la reincorporación tras una baja por deuda, Avalian puede rechazarla aunque canceles el saldo, y si la acepta tenés que pagar lo adeudado con intereses y las cuotas entre la baja y el alta para mantener la antigüedad.',
         },
         {
           titulo: 'Antes de bajarte',
-          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico de Avalian, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero salvo que mantengas la continuidad en los plazos que fija el reglamento. Si el motivo es el precio, consultá primero un plan más económico de Avalian o, si te vas del país, la baja transitoria; o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
           cta: { texto: 'Compará el precio oficial de los planes de Avalian con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
         },
         {
           titulo: 'Qué dice la ley (vale para todas las prepagas)',
-          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas: la baja y la deuda van por carriles separados, como dice el propio reglamento de Avalian. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
           enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
         },
       ],
-      conclusion: 'Avalian: baja desde el acceso "Bajas" de su web (Autogestión) o por el 0810-222-72583. Guardá la constancia y coordiná la fecha de efecto con tu nueva cobertura.',
+      conclusion: 'Avalian: la baja la pide el titular, por escrito o con el Botón de baja; rige al último día del mes si la pedís hasta el día 10, y mientras tanto se siguen pagando las cuotas. Alternativa si te vas del país: baja transitoria al 25% de la cuota.',
     },
     faq: [
-      { q: '¿Cómo doy de baja Avalian?', a: 'Desde el acceso "Bajas" del pie de la web de Avalian, que lleva a la Autogestión de afiliados (online.avalian.com).' },
-      { q: '¿Necesito cuenta para la baja de Avalian?', a: 'Sí, la Autogestión pide ingresar con tu cuenta o con Google. Si no tenés, permite crearla.' },
+      { q: '¿Cómo doy de baja Avalian?', a: 'El titular la pide por escrito o con el "Botón de baja" de la web de Avalian (Autogestión de afiliados), completando el formulario correspondiente.' },
+      { q: '¿Hasta qué día tengo que pedir la baja de Avalian?', a: 'Hasta el día 10 de cada mes (o el hábil posterior): en ese caso la baja se computa al último día del mes en que se solicita.' },
+      { q: '¿Tengo que pagar la cuota mientras tramito la baja?', a: 'Según el reglamento, hasta que se cumplan los requisitos de la baja el asociado está obligado a pagar las cuotas, con sus intereses.' },
+      { q: '¿Qué es la baja transitoria de Avalian?', a: 'Si te ausentás del país más de 90 días, podés pedir la condición de asociado ausente: el servicio se suspende, pagás el 25% de la cuota y mantenés la antigüedad. Se puede usar una vez por año calendario y vale para todo el grupo.' },
+      { q: '¿Qué pasa con la cobertura si fallece el titular?', a: 'El grupo familiar primario conserva la cobertura del PMO durante los tres primeros meses posteriores al deceso, según el reglamento de Avalian.' },
       { q: '¿Cuál es el teléfono de Avalian?', a: '0810-222-72583 (SALUD), la atención telefónica oficial.' },
-      { q: '¿Avalian tiene botón de arrepentimiento?', a: 'Sí: "Trámite de arrepentimiento", en el pie de su web, que lleva a la misma Autogestión.' },
       { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
-      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
-    keywords: ['como dar de baja avalian', 'dar de baja avalian', 'baja avalian', 'avalian bajas', 'como darme de baja de avalian', 'dar de baja prepaga avalian', 'avalian arrepentimiento', 'baja de obra social avalian', 'avalian baja telefono'],
-    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'arrepentimiento-prepaga-10-dias', 'como-cambiar-de-prepaga'],
+    keywords: ['como dar de baja avalian', 'dar de baja avalian', 'baja avalian', 'avalian bajas', 'como darme de baja de avalian', 'dar de baja prepaga avalian', 'avalian boton de baja', 'baja de obra social avalian', 'avalian baja telefono', 'avalian asociado ausente', 'avalian baja transitoria'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'arrepentimiento-prepaga-10-dias', 'como-cambiar-de-prepaga'],
     prepagasRelacionadas: ['avalian'],
     fuentes: [
-      { texto: 'Avalian — sitio oficial', url: 'https://www.avalian.com/' },
+      { texto: 'Avalian — Reglamento general de servicios y contratación (v02)', url: 'https://avalian.com/' },
       { texto: 'Avalian — Autogestión de afiliados', url: 'https://online.avalian.com/' },
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
       { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
     ],
   },
-  // 17-oct-2026: "baja de obra social" (monotributo) es el grupo de búsqueda más
-  // grande de bajas (autocompletado: monotributo, afip/arca, anses, por falta de
-  // pago). Fuentes: ayuda de ARCA (obra social y baja del monotributo),
-  // argentina.gob.ar (modificar adherentes) y SSSalud (opción de cambio).
   {
     slug: 'baja-obra-social-monotributo',
     titulo: 'Cómo dar de baja la obra social del monotributo: adherentes, cambio y baja del monotributo',
@@ -3278,12 +3228,241 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Cómo quito a un adherente de la obra social del monotributo?', a: 'Desde el portal del Monotributo en ARCA, en Modificación de datos > Obra Social. Se genera el Formulario 184 como comprobante.' },
     ],
     keywords: ['baja de obra social monotributo', 'como dar de baja la obra social del monotributo', 'baja de obra social monotributo afip', 'baja de obra social arca', 'dar de baja adherente obra social monotributo', 'baja adherente obra social monotributo', 'baja de obra social en monotributo', 'dar de baja obra social monotributo afip', 'quiero dar de baja la obra social del monotributo'],
-    relacionadas: ['opcion-de-cambio-obra-social', 'unificar-aportes-obra-social', 'derivar-obra-social-a-prepaga', 'baja-de-prepaga-proceso', 'sin-trabajo-obra-social', 'que-obra-social-tengo-codem'],
+    relacionadas: ['opcion-de-cambio-obra-social', 'unificar-aportes-obra-social', 'derivar-obra-social-a-prepaga', 'como-dar-de-baja-prepaga-u-obra-social', 'sin-trabajo-obra-social', 'que-obra-social-tengo-codem'],
     fuentes: [
       { texto: 'ARCA — Obra social en el monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/obra-social.asp' },
       { texto: 'ARCA — Baja del monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/baja.asp' },
       { texto: 'argentina.gob.ar — Modificar datos en el monotributo', url: 'https://www.argentina.gob.ar/modificar-datos-en-el-monotributo' },
       { texto: 'SSSalud — Opción de cambio para monotributistas', url: 'https://www.argentina.gob.ar/sssalud/usuarios/cambio-obra-sociales/monotributistas' },
+    ],
+  },
+  // 17-oct-2026: CEMIC. La página oficial (cemic.edu.ar/mi-cemic.php) solo
+  // describe la baja por fallecimiento y los traspasos; no publica un
+  // procedimiento de baja voluntaria ni preaviso. La guía lo dice así.
+  {
+    slug: 'como-dar-de-baja-cemic',
+    titulo: 'Cómo dar de baja CEMIC: fallecimiento del titular, traspasos y baja voluntaria',
+    metaDescripcion: 'CEMIC publica el trámite por fallecimiento (certificado de defunción por mail) y los traspasos de obra social, pero no un formulario de baja voluntaria. Canales oficiales y cómo dejar constancia.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'La página oficial de afiliados de CEMIC explica la baja por fallecimiento (se envía el certificado de defunción a consultasafiliados@cemic.edu.ar) y los traspasos de obra social (se hacen online), pero no publica un formulario ni un procedimiento de baja voluntaria ni un plazo de preaviso. Para una baja común, usá los canales oficiales de afiliados y dejá constancia por escrito; si no te dan respuesta, la ley te permite notificar por carta documento.',
+      secciones: [
+        {
+          titulo: 'Baja por fallecimiento del titular',
+          cuerpo: 'CEMIC indica enviar el certificado de defunción al mail consultasafiliados@cemic.edu.ar. Si fallece el titular, la titularidad la asume otro afiliado integrante del mismo grupo, que firma un nuevo contrato de forma presencial en la oficina de Av. Las Heras 2900, en días hábiles de 9 a 18. Recordá que el decreto 1993/2011 mantiene la cobertura del PMO del grupo familiar primario durante dos meses desde el fallecimiento, sin pagar.',
+          enlaces: [{ texto: 'CEMIC — Mi CEMIC (afiliados)', url: 'https://cemic.edu.ar/mi-cemic.php' }],
+        },
+        {
+          titulo: 'Baja voluntaria: canales oficiales',
+          cuerpo: 'La página de afiliados no describe un trámite de baja voluntaria. Los canales que CEMIC publica para consultas de afiliados son: consultasafiliados@cemic.edu.ar, WhatsApp 11 2160-4545 y la atención administrativa de Av. Las Heras 2900 (teléfono 5299-1000, días hábiles de 9 a 18). Pedí la baja por escrito (mail o presencial con copia sellada), indicá nombre, DNI y número de afiliado, y guardá la respuesta con fecha.',
+        },
+        {
+          titulo: 'Traspaso a otra obra social',
+          cuerpo: 'Si tu aporte va a CEMIC por relación de dependencia y querés cambiar, CEMIC dice que los traspasos se hacen online y que para el recupero de aportes se necesita la constancia de la Superintendencia de la opción de cambio. El paso a paso de esa opción está en la guía de cambio de obra social.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero otro plan de CEMIC, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de CEMIC con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si CEMIC no te da la baja, mandá una carta documento y reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'CEMIC publica el trámite por fallecimiento y los traspasos, pero no un procedimiento de baja voluntaria: pedila por escrito por sus canales de afiliados y, si hace falta, por carta documento. Guardá siempre la constancia.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja CEMIC por fallecimiento del titular?', a: 'Enviando el certificado de defunción a consultasafiliados@cemic.edu.ar. Otro integrante del grupo puede asumir la titularidad firmando un nuevo contrato en Av. Las Heras 2900.' },
+      { q: '¿CEMIC tiene un formulario de baja online?', a: 'Su página de afiliados no publica un formulario de baja. Los canales de consulta son el mail consultasafiliados@cemic.edu.ar, el WhatsApp 11 2160-4545 y la atención en Av. Las Heras 2900.' },
+      { q: '¿CEMIC publica un plazo de preaviso para la baja?', a: 'No en su página de afiliados. La Ley 26.682 (art. 9) fija 30 días de preaviso fehaciente para rescindir sin penalidad.' },
+      { q: '¿Cómo hago un traspaso de obra social en CEMIC?', a: 'CEMIC indica que los traspasos se efectúan online y que se necesita la constancia de la Superintendencia de la opción de cambio para recuperar aportes.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+    ],
+    keywords: ['como dar de baja cemic', 'dar de baja cemic', 'baja cemic', 'cemic baja de afiliado', 'cemic fallecimiento titular', 'cemic traspaso obra social', 'como darme de baja de cemic', 'cemic dar de baja plan medico'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'baja-prepaga-fallecimiento-titular', 'opcion-de-cambio-obra-social', 'como-cambiar-de-prepaga'],
+    prepagasRelacionadas: ['cemic'],
+    fuentes: [
+      { texto: 'CEMIC — Mi CEMIC (afiliados)', url: 'https://cemic.edu.ar/mi-cemic.php' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  // Premedic: el link lo pasó Darío (web.grupopremedic.com.ar/solicitud-de-baja).
+  {
+    slug: 'como-dar-de-baja-premedic',
+    titulo: 'Cómo dar de baja Premedic: solicitud de baja online, baja total o parcial y teléfonos',
+    metaDescripcion: 'Premedic tiene un formulario de solicitud de baja para asociados activos: solo lo puede hacer el titular, permite baja total o parcial y te contactan después. Qué pide, contactos y qué guardar.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Premedic tiene una página de "Solicitud de baja": es de uso exclusivo para asociados activos, solo puede hacerla el titular del plan, y permite elegir entre baja total o parcial. Después de enviarla, Premedic indica que se pondrá en contacto lo más pronto posible para continuar el trámite, sin informar un plazo concreto.',
+      secciones: [
+        {
+          titulo: 'Paso a paso',
+          cuerpo: '1) Entrá al formulario de solicitud de baja de Premedic (Grupo Premedic). 2) Completá tu plan (C-100, 200, 300, 400, 500, Por aportes, AMBA, Básico, Bronce, Plata o Simple), tus datos de contacto, la sucursal más próxima, el tipo de baja (parcial o total), el horario de contacto preferido (de 10 a 18) y el motivo. 3) Enviá el formulario y guardá la captura con la fecha. 4) Esperá el contacto de Premedic y pedí confirmación escrita de la baja.',
+          enlaces: [{ texto: 'Premedic — Solicitud de baja', url: 'https://web.grupopremedic.com.ar/solicitud-de-baja' }],
+        },
+        {
+          titulo: 'Baja total o parcial',
+          cuerpo: 'El formulario ofrece baja "Total" o "Parcial". La parcial es para dar de baja a algunos integrantes del grupo sin cerrar el plan; la total cierra el contrato. Si elegís la parcial, tené a mano los datos de las personas.',
+        },
+        {
+          titulo: 'Motivo de la baja',
+          cuerpo: 'El motivo se elige de una lista: problemas económicos, cambio de cobertura médica, viaje al exterior o interior, fallecimiento, disconformidad u otro. Si elegís disconformidad, te pregunta el tipo (asesoramiento comercial, prestadores de cartilla, copagos excedentes, cartilla médica, atención telefónica, entre otros). Elegir "problemas económicos" suele disparar una oferta de plan más barato: podés escucharla, pero no te obliga a nada.',
+        },
+        {
+          titulo: 'Otros canales',
+          cuerpo: 'Premedic publica la atención presencial en sus sucursales, el WhatsApp 15-2264-7285 y el teléfono 0810-222-5522, de lunes a viernes de 10 a 18. La página no detalla documentación ni un plazo máximo de resolución: pedí por escrito la fecha en que se hace efectiva la baja.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico de Premedic, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de Premedic con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si el formulario no te lleva a una respuesta, mandá una carta documento y reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'Premedic: formulario de solicitud de baja (titular, asociado activo, baja total o parcial) y después te contactan. Guardá la captura del envío, pedí confirmación escrita y coordiná la fecha con tu nueva cobertura.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja Premedic?', a: 'Desde el formulario "Solicitud de baja" de Premedic, solo para asociados activos y hecho por el titular del plan. Después, Premedic se pone en contacto para continuar el trámite.' },
+      { q: '¿Quién puede pedir la baja de Premedic?', a: 'El titular del plan, siempre que sea asociado activo.' },
+      { q: '¿Se puede dar de baja solo a una persona del grupo?', a: 'Sí: el formulario permite elegir entre baja parcial y baja total.' },
+      { q: '¿A qué teléfono llamo?', a: 'Premedic publica el 0810-222-5522, de lunes a viernes de 10 a 18, y el WhatsApp 15-2264-7285.' },
+      { q: '¿Cuánto tarda la baja de Premedic?', a: 'La página no informa un plazo: dice que se contactarán lo más pronto posible. Pedí por escrito la fecha en que se hace efectiva.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+    ],
+    keywords: ['como dar de baja premedic', 'dar de baja premedic', 'baja premedic', 'premedic solicitud de baja', 'dar de baja obra social premedic', 'como darme de baja de premedic', 'premedic baja online', 'premedic baja telefono', 'grupo premedic baja'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga'],
+    prepagasRelacionadas: ['premedic'],
+    fuentes: [
+      { texto: 'Premedic — Solicitud de baja', url: 'https://web.grupopremedic.com.ar/solicitud-de-baja' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  // PILAR DE BAJAS (17-oct-2026, pedido de Darío): reemplaza a
+  // "baja-de-prepaga-proceso" (redirección 301 en next.config.ts). Análisis de
+  // palabras clave en docs/seo/bajas-pilar-keywords-2026-10.md.
+  {
+    slug: 'como-dar-de-baja-prepaga-u-obra-social',
+    titulo: 'Cómo dar de baja la prepaga o la obra social: guía completa 2026 (por prepaga y con la ley)',
+    metaDescripcion: 'Cómo dar de baja tu prepaga u obra social: la ley (30 días de preaviso, sin multa), tabla con el trámite oficial de 13 prepagas, monotributo, jubilados y qué hacer si no te dan la baja.',
+    tiempoLectura: 10,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Dar de baja una prepaga es un derecho sin multa: la Ley 26.682 (art. 9) te permite rescindir en cualquier momento, notificando de forma fehaciente con 30 días de anticipación, y solo una vez por año. Lo pide el titular, por el botón de baja de la web de la prepaga o por escrito. Una obra social, en cambio, no se "da de baja": se cambia con la opción de cambio en Mi SSSalud, se deja al terminar el trabajo o se pierde al darte de baja del monotributo. Antes de pedir la baja, tené la nueva cobertura confirmada.',
+      secciones: [
+        {
+          titulo: '¿Prepaga u obra social? La diferencia, en 30 segundos',
+          cuerpo: 'La prepaga es un contrato privado: lo rescindís con un aviso. La obra social (Agente del Seguro de Salud) llega por tu trabajo en relación de dependencia o por el monotributo y se financia con aportes obligatorios: no hay una "baja" separada, sino que cambiás de agente con la opción de cambio, o dejás de aportar cuando termina la relación laboral o dejás el monotributo. Mucha gente busca "obra social prepaga" para referirse a lo mismo: si pagás una cuota a una empresa privada, el trámite es el de la prepaga (tabla de arriba).',
+        },
+        {
+          titulo: 'Qué dice la ley: 30 días, sin multa, una vez por año',
+          cuerpo: 'Ley 26.682, artículo 9: los usuarios pueden rescindir el contrato en cualquier momento, sin limitación y sin penalidad, notificando fehacientemente con treinta días de anticipación. El decreto reglamentario 1993/2011 agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que cancelés antes lo que debas. La prepaga, en cambio, solo puede rescindir por falta de pago de tres cuotas consecutivas (con intimación de diez días hábiles) o por declaración jurada falseada. Desde 2019, además, las prepagas deben mostrar un botón de baja en su web (Res. SC 316/2018 y Disp. 472/2019), y si contrataste a distancia podés rescindir por el mismo medio, con constancia fehaciente en 72 horas (Ley 24.240, art. 10 ter).',
+          enlaces: [
+            { texto: 'Ley 26.682 (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+            { texto: 'Decreto 1993/2011 (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+          ],
+        },
+        {
+          titulo: '¿Se puede dar de baja antes del año?',
+          cuerpo: 'Prepaga: sí. No hay permanencia mínima: la ley permite rescindir en cualquier momento y solo limita a una vez por año el ejercicio de ese derecho. Obra social: no tan libre. Tras una opción de cambio, la SSSalud exige permanecer 12 meses en el agente elegido (Resolución 201/2024); la norma aclara que esa permanencia no rige para quien elige una prepaga registrada. Confirmá en la web de la Superintendencia si tu caso entra, porque las reglas del cambio se ajustaron varias veces desde 2023.',
+          enlaces: [{ texto: 'Resolución 201/2024 de la SSSalud', url: 'https://www.argentina.gob.ar/normativa/nacional/norma-396980/texto' }],
+        },
+        {
+          titulo: 'Cuándo rige la baja y cuánto hay que pagar',
+          cuerpo: 'La ley habla de 30 días de preaviso, pero cada prepaga fija su fecha de efecto: en OSDE vale desde el día del trámite o una fecha futura (sin bajas retroactivas); en Swiss Medical, si la pedís hasta el día 5 rige desde el último día del mes anterior; en Avalian, si la pedís hasta el día 10 rige al último día del mes. Pedí siempre por escrito la fecha exacta, pagá hasta esa fecha y controlá que se corte el débito. Si te cobran de más, mirá la guía de cobros posteriores a la baja.',
+        },
+        {
+          titulo: 'Obra social: relación de dependencia, monotributo y jubilados',
+          cuerpo: 'Relación de dependencia: los aportes se descuentan del sueldo; para cambiar de agente el titular hace la opción de cambio online en Mi SSSalud (una vez al año, permanencia mínima de un año, rige el primer día del mes siguiente). Si terminás el trabajo, los aportes cesan y la obra social puede seguir cubriéndote un tiempo, según el tiempo trabajado: la guía "Sin trabajo, ¿qué pasa con la obra social?" lo explica. Monotributo: el aporte va dentro de la cuota; para dejarlo, cambiás con la opción de cambio, quitás adherentes desde Modificación de datos o te das de baja del monotributo (ver la guía específica). Jubilados y pensionados: el cambio se hace en ARCA o en la UDAI más cercana, una vez por año, y rige desde el primer día del tercer mes siguiente. ANSES no tramita bajas de obra social: CODEM solo sirve para consultar cuál tenés.',
+          enlaces: [{ texto: 'SSSalud — Cambio de obra social para jubilados y pensionados', url: 'https://www.argentina.gob.ar/sssalud/usuarios/cambio-obra-sociales/jubilados-pensionados' }],
+        },
+        {
+          titulo: 'Dar de baja a un familiar (baja parcial)',
+          cuerpo: 'En una prepaga, la baja del titular implica la de todo el grupo (Swiss Medical, OSDE, Galeno y Hominis lo aclaran); para sacar solo a un integrante, el titular pide una baja parcial: Hominis y Premedic la ofrecen en su formulario (con el DNI de la persona) y Avalian advierte que algunas bajas parciales pueden implicar un nuevo contrato. Los integrantes que quieran seguir tras la baja del titular tienen 30 días para formar un nuevo grupo y conservar la antigüedad (Swiss Medical y Avalian). En el monotributo, los adherentes se quitan desde Modificación de datos.',
+        },
+        {
+          titulo: 'Si no te dan la baja, te siguen cobrando o te dieron de baja a vos',
+          cuerpo: 'Si la prepaga demora o rechaza el pedido: constancia, carta documento, reclamo ante la Superintendencia de Servicios de Salud y Defensa del Consumidor, y la Justicia si hace falta (guía "La prepaga no me da la baja" y "Modelo de carta documento"). Si te siguen cobrando: stop debit y reversión del débito dentro de los 30 días. Si debés cuotas: la baja no puede condicionarse al pago, pero la deuda sigue. Si te dieron de baja por falta de pago o por declaración jurada: la prepaga debe haberte intimado diez días hábiles o acreditar tu mala fe.',
+        },
+        {
+          titulo: 'Antes de bajarte: no pierdas tu antigüedad',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias. La ley prohíbe el aumento por edad a los mayores de 65 con más de diez años de antigüedad, y los cambios de plan dentro de la misma prepaga no la interrumpen. Si el motivo es el precio, evaluá bajar de plan, la baja transitoria (Avalian la ofrece si te vas del país más de 90 días) o pasarte a otra prepaga sin dejar un hueco. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá: dejás tus datos y un asesor oficial te contacta.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas antes de pedir la baja.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Cómo verificamos esta guía',
+          cuerpo: 'El 17 de octubre de 2026 leímos las páginas oficiales de baja de cada prepaga de la tabla, la Ley 26.682, el Decreto 1993/2011, la Ley 24.240, las páginas de ARCA y de la SSSalud y la normativa citada, y pusimos el enlace en cada guía. No enviamos ningún formulario: varios portales piden iniciar sesión y no pudimos ver los pasos de adentro. Del reglamento de Sancor Salud no pudimos leer las cláusulas de baja, y Accord Salud no publica el trámite en un formato legible. Esta guía es información general, no asesoramiento legal individual: ante un caso con deuda, tratamientos en curso o un reclamo ya iniciado, consultá a un abogado de consumo.',
+        },
+      ],
+      conclusion: 'Para dar de baja una prepaga: titular, botón de baja o aviso fehaciente con 30 días, sin multa y sin que puedan condicionarla a una deuda. Para una obra social: opción de cambio, cese laboral o baja del monotributo. Guardá siempre la constancia, pedí la fecha de efecto por escrito y tené la nueva cobertura confirmada antes.',
+    },
+    pasos: [
+      { nombre: 'Confirmá si lo tuyo es prepaga u obra social', texto: 'Si pagás una cuota a una empresa privada, es prepaga y se rescinde. Si la cobertura viene por tu trabajo o por el monotributo, es obra social y se cambia con la opción de cambio, el cese laboral o la baja del monotributo.' },
+      { nombre: 'Verificá que sos el titular', texto: 'La baja la pide el titular del plan: la baja del titular implica la de todo el grupo familiar, salvo una baja parcial.' },
+      { nombre: 'Elegí el canal oficial', texto: 'Usá el botón de baja o el formulario de tu prepaga (ver la tabla), o escribí por un medio fehaciente como la carta documento.' },
+      { nombre: 'Pedí por escrito la fecha de efecto', texto: 'La ley fija un preaviso de 30 días; cada prepaga tiene su corte (por ejemplo, el día 5 en Swiss Medical y el día 10 en Avalian). Pagá hasta esa fecha.' },
+      { nombre: 'Guardá la constancia', texto: 'Captura, número de gestión, mail enviado y respuesta, o copia de la carta documento con el acuse de recibo.' },
+      { nombre: 'Controlá el débito y la factura siguientes', texto: 'Si te cobran de más, pedí el stop debit y la reversión dentro de los 30 días y reclamá por escrito.' },
+      { nombre: 'Si no te la dan, escalá', texto: 'Carta documento, reclamo ante la Superintendencia de Servicios de Salud, reclamo en Defensa del Consumidor y, si hace falta, la Justicia.' },
+    ],
+    tabla: {
+      titulo: 'Cómo se pide la baja en 13 prepagas (verificado el 17 de octubre de 2026)',
+      columnas: ['Prepaga', 'Cómo se pide', 'Dato clave'],
+      filas: [
+        { celdas: ['Swiss Medical', 'El titular, de forma fehaciente (reglamento público)', 'Hasta el día 5: rige desde el último día del mes anterior; después, desde el último día del mes en curso'], slug: 'como-dar-de-baja-swiss-medical' },
+        { celdas: ['OSDE', 'Web: Gestiones online > Mi afiliación > Solicitud de baja (con cuenta)', 'Vale desde el día del trámite o una fecha futura; no hay bajas retroactivas'], slug: 'como-dar-de-baja-osde' },
+        { celdas: ['Sancor Salud', 'Formulario de baja en su web (documento del titular y N.º de asociado)', 'No pudimos leer su reglamento: confirmá la fecha de efecto por escrito'], slug: 'como-dar-de-baja-sancor-salud' },
+        { celdas: ['Galeno', '"Solicitud de Baja" en la web (con tu usuario) o en una sucursal', 'Titular y socio privado; alcanza a todo el grupo familiar'], slug: 'como-dar-de-baja-galeno' },
+        { celdas: ['Medifé', 'Formulario de baja en el portal de asociados (Mi Cuenta)', 'Formulario de arrepentimiento para planes de hasta 10 días'], slug: 'como-dar-de-baja-medife' },
+        { celdas: ['Omint', '"Botón de baja de servicios" (Autogestión)', 'Hay un botón de arrepentimiento aparte'], slug: 'como-dar-de-baja-omint' },
+        { celdas: ['Medicus', 'Mail con asunto "Intención de baja", 0800-333-7624 o agencia', 'Botón de arrepentimiento: 10 días corridos'], slug: 'como-dar-de-baja-medicus' },
+        { celdas: ['Prevención Salud', '"Solicitud de baja" en Autogestión de afiliados', 'Arrepentimiento para altas de hasta 10 días'], slug: 'como-dar-de-baja-prevencion-salud' },
+        { celdas: ['Hominis', '"Solicitud de baja" en Mi Hominis', 'Titular del grupo; baja total o parcial (con DNI)'], slug: 'como-dar-de-baja-hominis' },
+        { celdas: ['Hospital Italiano', 'Formulario de "¿Cómo cancelar mi afiliación?"', 'Según su página, se puede pedir en cualquier momento'], slug: 'como-dar-de-baja-hospital-italiano' },
+        { celdas: ['Avalian', '"Botón de baja" (Autogestión) o por escrito', 'Rige al último día del mes si la pedís hasta el día 10; baja transitoria al 25%'], slug: 'como-dar-de-baja-avalian' },
+        { celdas: ['CEMIC', 'Mail a consultasafiliados@cemic.edu.ar o atención en Av. Las Heras 2900', 'No publica formulario ni preaviso; fallecimiento: certificado de defunción por mail'], slug: 'como-dar-de-baja-cemic' },
+        { celdas: ['Premedic', 'Formulario "Solicitud de baja" (titular, asociado activo)', 'Baja total o parcial; después te contactan'], slug: 'como-dar-de-baja-premedic' },
+      ],
+      nota: 'Fuente: la web oficial de cada prepaga, leída el 17 de octubre de 2026 sin enviar formularios. Los portales con inicio de sesión no permiten ver los pasos internos.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja mi prepaga?', a: 'La pide el titular, por el botón o formulario de baja de la web de la prepaga o por escrito, notificando de forma fehaciente con 30 días de anticipación (Ley 26.682, art. 9). Cada prepaga tiene su canal y su fecha de corte: están en la tabla de esta guía.' },
+      { q: '¿Cómo doy de baja mi obra social?', a: 'Una obra social no se da de baja: se cambia con la opción de cambio en Mi SSSalud (una vez al año), se deja al terminar la relación laboral o se pierde al darte de baja del monotributo. ANSES no tramita bajas de obra social; CODEM solo permite consultar cuál tenés.' },
+      { q: '¿Se puede dar de baja la prepaga antes del año?', a: 'Sí. No hay permanencia mínima: la ley permite rescindir en cualquier momento, sin penalidad, y solo limita a una vez por año el ejercicio de ese derecho. La permanencia de 12 meses de la SSSalud se refiere a las obras sociales (Agentes del Seguro) tras una opción de cambio.' },
+      { q: '¿Cuánto tarda en hacerse efectiva la baja?', a: 'Depende de la prepaga: la ley prevé 30 días de preaviso, pero OSDE la hace valer desde el día del trámite, Swiss Medical tiene un corte el día 5 y Avalian el día 10. Pedí la fecha por escrito.' },
+      { q: '¿Puedo darme de baja si debo cuotas?', a: 'Sí: el decreto 1993/2011 dice que no puede supeditarse la rescisión del usuario a la previa cancelación de lo adeudado. La deuda sigue existiendo y la prepaga puede reclamarla.' },
+      { q: '¿Quién puede pedir la baja?', a: 'Solo el titular del plan. La baja del titular incluye a todo el grupo familiar; para sacar solo a un integrante se pide una baja parcial.' },
+      { q: '¿Puedo pedir la baja por WhatsApp o por mail?', a: 'Algunas prepagas aceptan mail o WhatsApp (por ejemplo Medicus por mail con asunto "Intención de baja"). Para tener una prueba indiscutible de la fecha, la forma más sólida es la carta documento.' },
+      { q: '¿Qué hago si la prepaga no me da la baja?', a: 'Dejá constancia, mandá una carta documento y reclamá ante la Superintendencia de Servicios de Salud y Defensa del Consumidor (Ventanilla Federal Única). El COPREC ya no existe: fue disuelto por el Decreto 55/2025.' },
+      { q: '¿Qué pasa con mi familia si me doy de baja?', a: 'La baja del titular implica la de todo el grupo. Los integrantes que quieran seguir tienen, en Swiss Medical y Avalian, 30 días para formar un nuevo grupo y conservar la antigüedad.' },
+      { q: '¿Hasta cuándo tengo cobertura si pido la baja?', a: 'Hasta la fecha en que la baja se hace efectiva, según la prepaga. La única extensión que prevé el decreto es de dos meses de PMO para el grupo familiar tras el fallecimiento del titular (Avalian prevé tres).' },
+    ],
+    keywords: ['como dar de baja mi prepaga', 'dar de baja mi prepaga', 'dar de baja mi obra social', 'como dar de baja mi obra social', 'como dar de baja la prepaga', 'como darme de baja de la prepaga', 'baja de prepaga', 'baja de obra social', 'dar de baja prepaga antes del año', 'cuando puedo dar de baja la prepaga', 'puedo dar de baja mi prepaga', 'dar de baja mi obra social prepaga', 'boton de baja prepaga', 'baja de prepaga ley'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'baja-prepaga-fallecimiento-titular', 'arrepentimiento-prepaga-10-dias', 'hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga', 'baja-obra-social-monotributo', 'opcion-de-cambio-obra-social', 'sin-trabajo-obra-social', 'que-obra-social-tengo-codem', 'como-cambiar-de-prepaga'],
+    fuentes: [
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+      { texto: 'Ley 24.240 de Defensa del Consumidor (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/638/texact.htm' },
+      { texto: 'Resolución 201/2024 de la SSSalud (permanencia en el Agente del Seguro)', url: 'https://www.argentina.gob.ar/normativa/nacional/norma-396980/texto' },
+      { texto: 'SSSalud — Opción de cambio para jubilados y pensionados', url: 'https://www.argentina.gob.ar/sssalud/usuarios/cambio-obra-sociales/jubilados-pensionados' },
+      { texto: 'SSSalud — Opción de cambio para trabajadores bajo convenio', url: 'https://www.argentina.gob.ar/sssalud/usuarios/cambio-obra-sociales/sindicales' },
+      { texto: 'SSSalud — Consultas y reclamos', url: 'https://www.argentina.gob.ar/sssalud/consultas-la-superintendencia-de-servicios-de-salud' },
+      { texto: 'Defensa del Consumidor — Iniciar un reclamo', url: 'https://www.argentina.gob.ar/servicio/iniciar-un-reclamo-ante-defensa-del-consumidor' },
     ],
   },
 ]

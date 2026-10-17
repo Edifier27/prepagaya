@@ -57,6 +57,7 @@ export function GET() {
     '',
     '## Bajas de prepagas: trámite, derechos y reclamos',
     '- Base legal: Ley 26.682 art. 9 (rescisión sin penalidad con 30 días de preaviso fehaciente), Decreto 1993/2011 (una vez por año; no se puede condicionar a pagar una deuda), Ley 24.240 y botón de baja (Res. SC 316/2018, Disp. 472/2019).',
+    `- [Cómo dar de baja la prepaga o la obra social: guía completa con tabla de 13 prepagas](${SITE_URL}/guias/como-dar-de-baja-prepaga-u-obra-social)`,
     `- [La prepaga no me da la baja: qué hacer](${SITE_URL}/guias/prepaga-no-me-da-la-baja)`,
     `- [Modelo de carta documento de baja](${SITE_URL}/guias/carta-documento-baja-prepaga-modelo)`,
     `- [Me siguen cobrando después de la baja](${SITE_URL}/guias/prepaga-sigue-cobrando-despues-de-la-baja)`,
@@ -66,8 +67,7 @@ export function GET() {
     `- [Arrepentimiento (10 días)](${SITE_URL}/guias/arrepentimiento-prepaga-10-dias)`,
     `- [Hasta cuándo hay cobertura tras la baja](${SITE_URL}/guias/hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga)`,
     `- [Cómo dar de baja la obra social del monotributo](${SITE_URL}/guias/baja-obra-social-monotributo)`,
-    `- [Cómo darse de baja de una prepaga (guía general)](${SITE_URL}/guias/baja-de-prepaga-proceso)`,
-    ...['swiss-medical:Swiss Medical', 'osde:OSDE', 'sancor-salud:Sancor Salud', 'galeno:Galeno', 'medife:Medifé', 'omint:Omint', 'medicus:Medicus', 'prevencion-salud:Prevención Salud', 'avalian:Avalian', 'hominis:Hominis', 'hospital-italiano:Hospital Italiano'].map((x) => {
+    ...['swiss-medical:Swiss Medical', 'osde:OSDE', 'sancor-salud:Sancor Salud', 'galeno:Galeno', 'medife:Medifé', 'omint:Omint', 'medicus:Medicus', 'prevencion-salud:Prevención Salud', 'avalian:Avalian', 'hominis:Hominis', 'hospital-italiano:Hospital Italiano', 'cemic:CEMIC', 'premedic:Premedic'].map((x) => {
       const [slug, nombre] = x.split(':')
       return `- [Cómo dar de baja ${nombre}](${SITE_URL}/guias/como-dar-de-baja-${slug})`
     }),

@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
       { source: "/prepagas/hospital-italiano/plan-:x(a|b|c)", destination: "/prepagas/hospital-italiano", permanent: true },
       { source: "/prepagas/buenos-aires/:loc(la-plata|mar-del-plata|bahia-blanca|tandil|azul)/hospital-italiano", destination: "/prepagas/hospital-italiano", permanent: true },
       { source: "/cambios/omint-a-osde", destination: "/comparativas/omint-vs-osde", permanent: true },
+      // Guía general de bajas unificada en el pilar (17-oct-2026)
+      { source: "/guias/baja-de-prepaga-proceso", destination: "/guias/como-dar-de-baja-prepaga-u-obra-social", permanent: true },
       { source: "/guias/prepagas-precios-actualizados", destination: "/precios", permanent: true },
       { source: "/guias/prepagas-monotributistas", destination: "/para/monotributistas", permanent: true },
       { source: "/guias/prepagaya-devolucion-aportes", destination: "/guias/derivar-obra-social-a-prepaga", permanent: true },
