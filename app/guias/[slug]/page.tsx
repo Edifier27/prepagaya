@@ -13,6 +13,7 @@ import { QueCubreSeccion } from '@/components/herramientas/QueCubreSeccion'
 import { marcarTerminos } from '@/components/glosario/marcarTerminos'
 import { GlosarioDePagina } from '@/components/glosario/GlosarioDePagina'
 import { ldJson } from '@/lib/jsonld'
+import { LeadFormInline } from '@/components/ui/LeadFormInline'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -225,6 +226,20 @@ export default async function GuiaPage({ params }: Props) {
             <p className="text-gray-600 leading-relaxed">{marcarTerminos(enlazarPrepagas(guia.contenido.conclusion, vistas), vistosGlosario)}</p>
           </div>
           <PlanesMencionados vistas={vistas} />
+
+          {/* Guías de bajas (17-oct-2026, pedido de Darío): quien busca darse de
+              baja necesita otra cobertura. Se ofrece gestionarla sin prometer
+              nada que la página no cumpla; el contacto llega marcado como
+              "guia-baja" y con la página de origen. */}
+          {guia.captarBaja && (
+            <div className="rounded-2xl border border-red-100 bg-red-50 p-5 md:p-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-1">¿Todavía no resolviste tu nueva cobertura?</h2>
+              <p className="text-sm text-gray-700 leading-relaxed mb-4">
+                Antes de pedir la baja, conviene tener la nueva prepaga u obra social confirmada para no quedarte sin cobertura ni un día. Dejá tus datos y un asesor oficial te contacta para cotizar y gestionarla.
+              </p>
+              <LeadFormInline fuente="guia-baja" titulo="Quiero gestionar mi nueva cobertura" />
+            </div>
+          )}
 
           {guia.fuentes && (
             <p className="text-xs text-gray-400 leading-relaxed">

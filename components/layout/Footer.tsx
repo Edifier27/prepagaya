@@ -40,6 +40,9 @@ const obrasSocialesLinks = [
 
 const guiaLinks: { slug: string; label: string; href?: string }[] = [
   { slug: 'como-cambiar-de-prepaga', label: 'Cómo cambiar de prepaga' },
+  // 17-oct-2026: bajas (Darío: punto estratégico)
+  { slug: 'baja-de-prepaga-proceso', label: 'Cómo darse de baja' },
+  { slug: 'prepaga-no-me-da-la-baja', label: 'La prepaga no me da la baja' },
   { slug: 'obra-social-vs-prepaga', label: 'Obra social vs prepaga' },
   { slug: 'discapacidad-obra-social-cobertura-100', label: 'Discapacidad y CUD' },
   { slug: 'prepagas-economicas', label: 'Prepagas económicas', href: '/prepagas-economicas' },

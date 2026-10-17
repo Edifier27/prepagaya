@@ -59,6 +59,7 @@ export interface GuiaData {
   relacionadas: string[] // slugs de otras guías
   prepagasRelacionadas?: string[] // slugs de prepagas
   fuentes?: GuiaEnlace[] // fuentes oficiales (se listan al pie y van a isBasedOn)
+  captarBaja?: boolean // muestra el formulario de contacto de "bajas" (17-oct-2026)
 }
 
 export const guias: GuiaData[] = [
@@ -1065,6 +1066,7 @@ export const guias: GuiaData[] = [
   },
   {
     slug: 'baja-de-prepaga-proceso',
+    captarBaja: true,
     titulo: 'Cómo darse de baja de una prepaga: proceso completo 2026',
     metaDescripcion: 'Pasos para dar de baja tu prepaga en Argentina: plazos, documentación, carta documento y cómo evitar que te sigan cobrando. Guía actualizada.',
     tiempoLectura: 6,
@@ -1119,7 +1121,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['baja de prepaga', 'boton de baja prepaga', 'como darse de baja prepaga', 'me siguen cobrando prepaga baja'],
-    relacionadas: ['como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-aumento-inflacion', 'como-dar-de-baja-swiss-medical', 'como-dar-de-baja-osde', 'como-dar-de-baja-sancor-salud', 'como-dar-de-baja-galeno', 'como-dar-de-baja-medife', 'como-dar-de-baja-omint', 'como-dar-de-baja-medicus'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga', 'como-dar-de-baja-swiss-medical', 'como-dar-de-baja-osde', 'como-dar-de-baja-sancor-salud', 'como-dar-de-baja-galeno', 'como-dar-de-baja-medife', 'como-dar-de-baja-omint', 'como-dar-de-baja-medicus', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga'],
   },
   {
     slug: 'cuota-prepaga-aumento-inflacion',
@@ -2185,6 +2187,7 @@ export const guiasPreguntas: GuiaData[] = [
   // Contratación de Swiss Medical, público en su web (cláusulas 1.3, 6 y 7).
   {
     slug: 'como-dar-de-baja-swiss-medical',
+    captarBaja: true,
     titulo: 'Cómo dar de baja Swiss Medical: pasos, fecha límite del día 5 y qué pasa con tu familia',
     metaDescripcion: 'La baja de Swiss Medical la hace el titular, de forma fehaciente. Hasta el día 5 del mes es retroactiva al mes anterior. Pasos, qué pasa con el grupo familiar y cómo mantener tu antigüedad.',
     tiempoLectura: 5,
@@ -2232,7 +2235,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con el comprobante de la baja y, si no lo corrigen, ante la Superintendencia de Servicios de Salud.' },
     ],
     keywords: ['como dar de baja swiss medical', 'dar de baja swiss medical', 'baja swiss medical', 'swiss medical baja de servicio', 'swiss medical bajas', 'swiss medical como dar de baja', 'renuncia swiss medical', 'baja swiss medical por fallecimiento', 'swiss medical baja grupo familiar', 'swiss medical hijos 30 años'],
-    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['swiss-medical'],
     fuentes: [
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
@@ -2242,6 +2245,7 @@ export const guiasPreguntas: GuiaData[] = [
   // que pide tipo y número de documento del titular y número de asociado.
   {
     slug: 'como-dar-de-baja-sancor-salud',
+    captarBaja: true,
     titulo: 'Cómo dar de baja Sancor Salud: el botón de baja online, qué datos pide y qué guardar',
     metaDescripcion: 'Sancor Salud tiene un formulario de baja en su web: pide documento del titular y número de asociado. Paso a paso, qué guardar como constancia y cómo reclamar si te siguen cobrando.',
     tiempoLectura: 4,
@@ -2291,7 +2295,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Pierdo la antigüedad si me doy de baja?', a: 'Si volvés a asociarte más tarde, empezás de cero. Si querés cambiar de plan o de prepaga, hacelo sin dejar un hueco de cobertura.' },
     ],
     keywords: ['como dar de baja sancor salud', 'dar de baja sancor salud', 'baja sancor salud', 'sancor salud baja', 'sancor salud dar de baja', 'solicitud de baja sancor salud', 'sancor salud boton de baja', 'baja de servicio sancor salud', 'sancor salud baja de obra social', 'baja sancor salud telefono'],
-    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['sancor-salud'],
     fuentes: [
       { texto: 'Sancor Salud — Solicitud de baja (web oficial)', url: 'https://www.sancorsalud.com.ar/baja' },
@@ -2303,6 +2307,7 @@ export const guiasPreguntas: GuiaData[] = [
   // Decreto 1993/2011 art. 9, Res. SC 316/2018 y Disp. DNDCyAC 472/2019.
   {
     slug: 'como-dar-de-baja-osde',
+    captarBaja: true,
     titulo: 'Cómo dar de baja OSDE: pasos online, documentación y qué pasa si volvés',
     metaDescripcion: 'La baja de OSDE la pide el titular desde Gestiones online. No hay bajas retroactivas, la baja alcanza a todo el grupo familiar y si volvés pasados 60 días entrás como socio nuevo.',
     tiempoLectura: 5,
@@ -2349,7 +2354,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
     ],
     keywords: ['como dar de baja osde', 'dar de baja osde', 'baja osde', 'osde baja de servicio', 'como darme de baja de osde', 'osde dar de baja', 'osde baja monotributo', 'osde baja por empresa', 'osde baja online', 'solicitud de baja osde'],
-    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['osde'],
     fuentes: [
       { texto: 'OSDE — Bajas (información al socio)', url: 'https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura/bajas' },
@@ -2360,6 +2365,7 @@ export const guiasPreguntas: GuiaData[] = [
   },
   {
     slug: 'como-dar-de-baja-galeno',
+    captarBaja: true,
     titulo: 'Cómo dar de baja Galeno: solicitud online, requisitos y sucursales',
     metaDescripcion: 'Galeno tiene "Solicitud de Baja" en su web: ingresás con tu usuario, tenés que ser el titular y socio privado, y la baja alcanza a todo el grupo familiar. También podés ir a una sucursal.',
     tiempoLectura: 4,
@@ -2403,7 +2409,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja galeno', 'dar de baja galeno', 'baja galeno', 'galeno solicitud de baja', 'galeno dar de baja', 'como darse de baja de galeno', 'galeno baja de servicio', 'baja de galeno online', 'galeno baja sucursal', 'galeno boton de baja'],
-    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['galeno'],
     fuentes: [
       { texto: 'Galeno — sitio oficial (Solicitud de Baja)', url: 'https://www.galeno.com.ar/' },
@@ -2413,6 +2419,7 @@ export const guiasPreguntas: GuiaData[] = [
   },
   {
     slug: 'como-dar-de-baja-medife',
+    captarBaja: true,
     titulo: 'Cómo dar de baja Medifé: formulario de baja, arrepentimiento y Mi Cuenta',
     metaDescripcion: 'Medifé tiene un formulario de baja en su portal de asociados y un formulario de arrepentimiento para planes nuevos (hasta 10 días). Cuál usar, qué datos pide y qué guardar.',
     tiempoLectura: 4,
@@ -2457,7 +2464,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja medife', 'dar de baja medife', 'baja medife', 'medife baja de servicio', 'medife formulario de baja', 'medife arrepentimiento', 'como darse de baja de medife', 'medife dar de baja', 'medife baja online', 'baja de medife telefono'],
-    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['medife'],
     fuentes: [
       { texto: 'Medifé — Formulario de baja (portal de asociados)', url: 'https://medife.com.ar/portal/baja-servicio' },
@@ -2468,6 +2475,7 @@ export const guiasPreguntas: GuiaData[] = [
   },
   {
     slug: 'como-dar-de-baja-omint',
+    captarBaja: true,
     titulo: 'Cómo dar de baja Omint: el botón de baja de Autogestión y qué conviene tener a mano',
     metaDescripcion: 'Omint tiene un "Botón de baja de servicios" en su web que te lleva a Autogestión (documento, usuario y contraseña). Paso a paso, canales de atención y qué guardar como constancia.',
     tiempoLectura: 4,
@@ -2511,7 +2519,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu comprobante y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja omint', 'dar de baja omint', 'baja omint', 'omint baja de servicio', 'omint boton de baja', 'omint dar de baja', 'como darse de baja de omint', 'omint baja online', 'omint autogestion baja', 'baja de omint telefono'],
-    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['omint'],
     fuentes: [
       { texto: 'Omint — Botón de baja de servicios (Autogestión)', url: 'https://autogestion.omint.com.ar/inicio/solicitar-baja' },
@@ -2522,6 +2530,7 @@ export const guiasPreguntas: GuiaData[] = [
   },
   {
     slug: 'como-dar-de-baja-medicus',
+    captarBaja: true,
     titulo: 'Cómo dar de baja Medicus: mail, 0800, agencias y el botón de arrepentimiento',
     metaDescripcion: 'Medicus indica en sus preguntas frecuentes cómo dar de baja: mail con asunto "Intención de baja", 0800-333-7624 o agencias administrativas. Pasos, excepciones y el botón de arrepentimiento (10 días).',
     tiempoLectura: 4,
@@ -2566,13 +2575,435 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
     ],
     keywords: ['como dar de baja medicus', 'dar de baja medicus', 'baja medicus', 'medicus baja de servicio', 'medicus intencion de baja', 'medicus boton de arrepentimiento', 'como darse de baja de medicus', 'medicus dar de baja', 'medicus baja telefono', 'baja de medicus mail'],
-    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['medicus'],
     fuentes: [
       { texto: 'Medicus — Preguntas frecuentes: Baja del servicio', url: 'https://medicus.com.ar/categoria-preguntas/baja-del-servicio' },
       { texto: 'Medicus — Botón de arrepentimiento', url: 'https://medicus.com.ar/arrepentimiento' },
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
       { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  // 17-oct-2026, Darío: contenido jurídico/administrativo para quien tiene
+  // problemas con la baja (reclamos), pensado también para respuestas de IA
+  // (respuesta directa al inicio, pasos numerados, fuentes oficiales y fecha).
+  // Fuentes leídas: Ley 26.682 art. 9; Decreto 1993/2011 arts. 9 y 13; Ley
+  // 24.240 arts. 10 bis, 10 ter, 34, 40 bis, 52 bis, 53; BCRA débito directo;
+  // formulario de consultas de la SSSalud; Ventanilla Federal Única.
+  {
+    slug: 'prepaga-no-me-da-la-baja',
+    titulo: 'La prepaga no me da la baja: qué hacer paso a paso (ley y reclamos)',
+    metaDescripcion: 'Si tu prepaga demora, rechaza o te hace dar vueltas con la baja: qué dice la ley, cómo dejar constancia, carta documento y reclamo ante la Superintendencia y Defensa del Consumidor.',
+    tiempoLectura: 7,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Si tu prepaga no te da la baja, la ley está de tu lado: el artículo 9 de la Ley 26.682 te permite rescindir el contrato en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación, y el decreto reglamentario aclara que no pueden condicionar la baja a que antes pagues lo que debas. El camino, en orden: 1) dejar constancia del pedido, 2) intimar por carta documento, 3) reclamar ante la Superintendencia de Servicios de Salud, 4) reclamar ante Defensa del Consumidor y 5) la Justicia, si hace falta.',
+      secciones: [
+        {
+          titulo: 'Qué pueden y qué no pueden hacer con tu baja',
+          cuerpo: 'Pueden: pedir que el aviso sea fehaciente, cobrarte las cuotas realmente adeudadas hasta la fecha en que la baja se haga efectiva, y ofrecerte retenciones comerciales (que podés rechazar). No pueden: aplicarte una multa o permanencia mínima (la ley dice "sin penalidad"), condicionar tu baja al pago previo de una deuda (artículo 9 del decreto 1993/2011), ni hacerte ir a una sucursal si contrataste por teléfono o por internet: el artículo 10 ter de la Ley 24.240 permite rescindir por el mismo medio de la contratación y obliga a la empresa a enviarte, sin cargo, una constancia fehaciente dentro de las 72 horas de recibir el pedido.',
+          enlaces: [
+            { texto: 'Ley 26.682 (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+            { texto: 'Decreto 1993/2011 (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+          ],
+        },
+        {
+          titulo: 'Paso 1: dejá constancia del pedido',
+          cuerpo: 'Pedí la baja por el canal oficial de tu prepaga (botón de baja, portal de asociados, mail o atención telefónica) y guardá la prueba: captura con fecha, número de gestión, mail enviado y respuesta. Si no conocés el canal, mirá la guía de tu prepaga: Swiss Medical, OSDE, Sancor Salud, Galeno, Medifé, Omint y Medicus ya tienen el paso a paso. Pagá las cuotas hasta la fecha efectiva de la baja para no dar pie a una deuda, y reclamá después lo que te cobren de más.',
+        },
+        {
+          titulo: 'Paso 2: carta documento',
+          cuerpo: 'Si en unos días no te dan una confirmación escrita o te la niegan, mandá una carta documento al domicilio legal de la prepaga. Es la forma más sólida de notificar de manera fehaciente y fija la fecha desde la que corren los 30 días del preaviso. En la carta pedí: la baja del plan y de todo el grupo familiar, el cese de la facturación y de los débitos, y la constancia escrita de la baja. Tenés un modelo con el texto para copiar en la guía "Modelo de carta documento para dar de baja la prepaga".',
+        },
+        {
+          titulo: 'Paso 3: reclamo ante la Superintendencia de Servicios de Salud',
+          cuerpo: 'La Superintendencia (SSSalud) controla a las prepagas. Desde su Centro de Atención Virtual podés presentar una consulta o reclamo online con tu CUIL, tu correo y la descripción del problema: el formulario ofrece la opción "Afiliaciones" como tipo de problema, y pide la prepaga y cómo accedés a ella (por ejemplo, socio directo de prepaga). Adjuntá la carta documento, las capturas y la factura. También podés llamar al 0800-222-SALUD (72583).',
+          enlaces: [{ texto: 'SSSalud — Consultas y reclamos', url: 'https://www.argentina.gob.ar/sssalud/consultas-la-superintendencia-de-servicios-de-salud' }],
+        },
+        {
+          titulo: 'Paso 4: reclamo en Defensa del Consumidor',
+          cuerpo: 'En paralelo podés iniciar un reclamo gratuito en la Ventanilla Federal Única de Defensa del Consumidor: cargás tus datos (DNI, contacto), los de la prepaga y el detalle del problema, y recibís por mail un número de reclamo; el organismo lo deriva a la autoridad que corresponde y te contacta. Ojo: algunas guías viejas hablan del COPREC (conciliación previa), pero ese servicio fue disuelto por el Decreto 55/2025 en febrero de 2025.',
+          enlaces: [{ texto: 'Iniciar un reclamo ante Defensa del Consumidor', url: 'https://www.argentina.gob.ar/servicio/iniciar-un-reclamo-ante-defensa-del-consumidor' }],
+        },
+        {
+          titulo: 'Paso 5: la Justicia',
+          cuerpo: 'Si la prepaga sigue sin cumplir, queda la vía judicial. La Ley 24.240 prevé el beneficio de justicia gratuita para las acciones individuales de consumo (artículo 53), el reclamo del daño directo (artículo 40 bis) y, según el caso, la multa civil o daño punitivo contra el proveedor incumplidor (artículo 52 bis). Para evaluar si te conviene, consultá a un abogado de consumo o a la Defensoría del Consumidor de tu jurisdicción. Esta guía es información general y no reemplaza el asesoramiento de un profesional.',
+        },
+        {
+          titulo: 'Mientras resolvés la baja, no te quedes sin cobertura',
+          cuerpo: 'El error más común es pedir la baja antes de tener la nueva cobertura confirmada. Primero cotizá y confirmá la nueva prepaga u obra social, después pedí la baja con la fecha de efecto coordinada para que no quede un hueco. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá: dejás tus datos y un asesor oficial te contacta.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas antes de decidir.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Con la ley 26.682 de tu lado: sin multa, sin condicionar la baja a una deuda y con 30 días de preaviso. Dejá todo por escrito, mandá carta documento si no avanzan, y escalá a la Superintendencia y a Defensa del Consumidor. Y coordiná la baja con tu nueva cobertura para no quedar sin cobertura ni un día.',
+    },
+    faq: [
+      { q: '¿Pueden negarme la baja de la prepaga?', a: 'No. La Ley 26.682 (art. 9) te permite rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. Sí pueden exigir que el pedido sea fehaciente y cobrarte lo efectivamente adeudado.' },
+      { q: '¿Qué hago si la prepaga no me responde la solicitud de baja?', a: 'Mandá una carta documento al domicilio legal de la prepaga pidiendo la baja y el cese de los cobros, y reclamá en paralelo ante la Superintendencia de Servicios de Salud y Defensa del Consumidor.' },
+      { q: '¿La prepaga puede obligarme a ir a una sucursal para darme de baja?', a: 'Si contrataste por teléfono o por medios electrónicos, el artículo 10 ter de la Ley 24.240 te permite rescindir por el mismo medio, y la empresa debe enviarte una constancia fehaciente dentro de las 72 horas de recibido el pedido.' },
+      { q: '¿Dónde reclamo si la prepaga no me da la baja?', a: 'Ante la Superintendencia de Servicios de Salud (formulario de consultas, opción "Afiliaciones", o 0800-222-72583) y ante Defensa del Consumidor, por la Ventanilla Federal Única, que es gratuita.' },
+      { q: '¿El COPREC sigue funcionando?', a: 'No. El Decreto 55/2025 disolvió el Servicio de Conciliación Previa en las Relaciones de Consumo (COPREC) en febrero de 2025. Los reclamos se inician en Defensa del Consumidor.' },
+      { q: '¿Cuántas veces puedo rescindir la prepaga?', a: 'El decreto reglamentario de la Ley 26.682 establece que la facultad de rescindir puede ejercerse solamente una vez por año.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. Según el decreto reglamentario, no puede supeditarse la rescisión del usuario a la previa cancelación de lo adeudado. La deuda sigue existiendo y la prepaga puede reclamarla por las vías correspondientes.' },
+    ],
+    keywords: ['prepaga no me da la baja', 'no me quieren dar de baja prepaga', 'no me dan la baja de la prepaga', 'reclamo baja prepaga', 'baja prepaga superintendencia', 'dar de baja prepaga ley', 'baja de prepaga ley', 'prepaga no deja darse de baja', 'que hacer si la prepaga no me da la baja', 'denuncia prepaga baja'],
+    relacionadas: ['carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'baja-de-prepaga-proceso', 'como-reclamar-a-una-prepaga', 'como-cambiar-de-prepaga'],
+    fuentes: [
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+      { texto: 'Ley 24.240 de Defensa del Consumidor (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/638/texact.htm' },
+      { texto: 'SSSalud — Consultas', url: 'https://www.argentina.gob.ar/sssalud/consultas-la-superintendencia-de-servicios-de-salud' },
+      { texto: 'Defensa del Consumidor — Iniciar un reclamo', url: 'https://www.argentina.gob.ar/servicio/iniciar-un-reclamo-ante-defensa-del-consumidor' },
+      { texto: 'Decreto 55/2025 (disolución del COPREC)', url: 'https://www.argentina.gob.ar/normativa/nacional/norma-409013/texto' },
+    ],
+  },
+  {
+    slug: 'carta-documento-baja-prepaga-modelo',
+    titulo: 'Modelo de carta documento para dar de baja la prepaga (texto para copiar)',
+    metaDescripcion: 'Texto listo para copiar de carta documento de baja de prepaga, con el artículo 9 de la Ley 26.682, qué pedir, a dónde enviarla y qué guardar. Para usar cuando la prepaga no da la baja.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'La carta documento es la forma más sólida de notificar la baja de la prepaga de manera fehaciente, que es lo que pide el artículo 9 de la Ley 26.682. Abajo tenés un modelo para copiar y completar: se envía por Correo, en original y copia, al domicilio legal de la prepaga, y los 30 días de preaviso corren desde que la reciben.',
+      secciones: [
+        {
+          titulo: 'Texto modelo para copiar',
+          cuerpo: 'Completá lo que está entre corchetes. Texto: "Por la presente, en mi carácter de titular del plan [nombre del plan], asociado/a N.º [número de asociado], DNI [número], comunico mi decisión de rescindir el contrato de medicina prepaga, en los términos del artículo 9 de la Ley 26.682, con efecto a los treinta (30) días corridos de la recepción de la presente. La rescisión comprende a todos los integrantes de mi grupo familiar. Solicito: 1) constancia escrita de la baja y de su fecha de efecto; 2) el cese de toda facturación y de todo débito a partir de esa fecha, y la baja de mi adhesión al débito automático; 3) el estado de cuenta actualizado y el libre deuda correspondiente. Dejo constancia de que, conforme el decreto reglamentario 1993/2011, la rescisión no puede condicionarse a la cancelación previa de sumas adeudadas. Queda Ud. debidamente notificado/a."',
+        },
+        {
+          titulo: 'A dónde y cómo enviarla',
+          cuerpo: 'Se envía por Correo Argentino como carta documento, en original y copia, al domicilio legal de la prepaga: figura en el contrato de adhesión, en la factura o en su web. Pedí el aviso de recepción y guardá la copia sellada y el comprobante de envío: son tu prueba de la fecha. Si tenés contrato a nombre de una empresa o la baja la gestiona un empleador, ajustá el texto con ayuda de un profesional.',
+        },
+        {
+          titulo: 'Qué hacer después',
+          cuerpo: 'Seguí pagando hasta la fecha de efecto, controlá que se corte el débito y no uses servicios después de esa fecha. Si te siguen cobrando, reclamá la devolución con la carta y el acuse; si la prepaga no responde, el siguiente paso es la Superintendencia de Servicios de Salud y Defensa del Consumidor. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá antes de que se cumpla el plazo, así no queda un hueco.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas antes de que se cumpla el plazo.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Esto no reemplaza a un abogado',
+          cuerpo: 'El modelo es un texto general basado en la Ley 26.682 y su decreto reglamentario. Si tu caso tiene particularidades (deuda, cobertura por empresa, tratamientos en curso o un reclamo ya iniciado), conviene que lo revise un abogado de consumo o la Defensoría del Consumidor de tu jurisdicción.',
+        },
+      ],
+      conclusion: 'La carta documento fija la fecha, deja prueba y habilita los reclamos posteriores. Usá el modelo, enviala al domicilio legal con acuse de recibo, y coordiná la fecha de efecto con tu nueva cobertura.',
+    },
+    faq: [
+      { q: '¿Qué es una carta documento de baja de prepaga?', a: 'Es una notificación fehaciente enviada por Correo, en original y copia, con la que el titular comunica a la prepaga que rescinde el contrato. La Ley 26.682 exige que la rescisión se notifique de forma fehaciente con 30 días de anticipación.' },
+      { q: '¿Cuántos días de preaviso tengo que dar?', a: 'Treinta días, según el artículo 9 de la Ley 26.682. Cada prepaga puede aplicar su propia fecha de efecto, por ejemplo OSDE da la baja desde el día del trámite.' },
+      { q: '¿La carta documento es obligatoria?', a: 'No. Podés usar el botón de baja o el canal que ofrezca tu prepaga. La carta documento es la mejor prueba cuando la prepaga demora, rechaza el pedido o no te da constancia.' },
+      { q: '¿A qué domicilio la envío?', a: 'Al domicilio legal de la prepaga, que figura en el contrato de adhesión, en la factura o en su sitio web.' },
+      { q: '¿Qué tengo que pedir en la carta?', a: 'La baja de todo el grupo familiar, la constancia escrita de la fecha de efecto, el cese de facturación y débitos, y el estado de cuenta o libre deuda.' },
+      { q: '¿Puedo mandarla si debo cuotas?', a: 'Sí. El decreto reglamentario dice que la baja no puede condicionarse a pagar antes lo adeudado. La deuda sigue existiendo y la prepaga puede reclamarla.' },
+    ],
+    keywords: ['carta documento baja prepaga', 'modelo carta documento baja prepaga', 'carta documento para dar de baja la prepaga', 'carta de baja prepaga', 'modelo carta baja medicina prepaga', 'carta documento baja obra social prepaga', 'texto carta documento baja prepaga', 'como redactar carta documento prepaga'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'prepaga-sigue-cobrando-despues-de-la-baja', 'baja-de-prepaga-proceso', 'dar-de-baja-prepaga-con-deuda', 'como-reclamar-a-una-prepaga'],
+    fuentes: [
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  {
+    slug: 'prepaga-sigue-cobrando-despues-de-la-baja',
+    titulo: 'La prepaga me sigue cobrando después de la baja: cómo frenar el débito y recuperar la plata',
+    metaDescripcion: 'Si la prepaga te sigue cobrando después de la baja: comparar fechas, reclamo escrito, stop debit y reversión del débito (30 días), Superintendencia y Defensa del Consumidor.',
+    tiempoLectura: 6,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Si la prepaga te sigue cobrando después de la baja, actuá rápido: según el Banco Central, un débito directo se puede pedir revertir dentro de los 30 días corridos desde la fecha en que se hizo, ante la empresa o el banco donde tenés la cuenta, y el próximo débito se puede frenar (stop debit) hasta 24 horas antes del primer vencimiento. En paralelo, reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud y Defensa del Consumidor.',
+      secciones: [
+        {
+          titulo: 'Primero, confirmá que el cobro sea indebido',
+          cuerpo: 'Revisá la fecha en que tu baja se hizo efectiva. Cada prepaga fija la suya (OSDE desde el día del trámite o una fecha futura; Swiss Medical retroactiva al último día del mes anterior si pedís la baja hasta el día 5) y la ley habla de 30 días de preaviso. Si el cobro corresponde a una cuota anterior a esa fecha, es válido; si es posterior, es indebido. Armá una línea de tiempo con la constancia de baja, la factura y el movimiento bancario.',
+        },
+        {
+          titulo: 'Frená el próximo débito (stop debit)',
+          cuerpo: 'Según el BCRA, para un monto que no estás de acuerdo en pagar podés pedir que se cancele ese débito específico hasta 24 horas antes del primer vencimiento de la factura, ante tu banco o la empresa. Pedirlo frena ese monto, pero no cancela la adhesión: para eso, pedí por escrito a la prepaga y a tu banco la baja de la adhesión al débito automático.',
+          enlaces: [{ texto: 'BCRA — Débito directo', url: 'https://www.bcra.gob.ar/debito-directo/' }],
+        },
+        {
+          titulo: 'Pedí la reversión del débito ya cobrado',
+          cuerpo: 'Según el BCRA, dentro de los 30 días corridos desde la fecha del débito podés pedir la reversión (devolución) del monto, ante la empresa del servicio o en el banco donde está tu cuenta. Es el plazo que más se pierde: pedilo cuanto antes. Si pagás con tarjeta, consultá con el emisor cómo impugnar el consumo y en qué plazo.',
+        },
+        {
+          titulo: 'Reclamo escrito a la prepaga',
+          cuerpo: 'Mandá un mail o carta documento con la constancia de baja, el comprobante del cobro indebido y el pedido de devolución y de cese de los débitos. La Ley 24.240 (art. 10 bis, inciso c) te permite rescindir con derecho a la restitución de lo pagado cuando el proveedor incumple, y el artículo 10 ter obliga a la empresa a enviarte una constancia fehaciente de la baja pedida a distancia dentro de las 72 horas de recibido el pedido.',
+        },
+        {
+          titulo: 'Si no devuelven: Superintendencia y Defensa del Consumidor',
+          cuerpo: 'Presentá la consulta o reclamo online ante la Superintendencia de Servicios de Salud (opción "Afiliaciones") y un reclamo gratuito en la Ventanilla Federal Única de Defensa del Consumidor, adjuntando constancia de baja, cartas, facturas y movimientos. Si el monto o el daño lo justifica, la vía judicial está abierta, con beneficio de justicia gratuita para las acciones individuales de consumo.',
+          enlaces: [
+            { texto: 'SSSalud — Consultas y reclamos', url: 'https://www.argentina.gob.ar/sssalud/consultas-la-superintendencia-de-servicios-de-salud' },
+            { texto: 'Defensa del Consumidor — Iniciar un reclamo', url: 'https://www.argentina.gob.ar/servicio/iniciar-un-reclamo-ante-defensa-del-consumidor' },
+          ],
+        },
+        {
+          titulo: 'Y si ya estás en otra prepaga',
+          cuerpo: 'Si el cobro duplicado aparece porque se superpusieron dos coberturas, la nueva prepaga no tiene responsabilidad: reclamá solo a la anterior. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá y coordinar las fechas para no pagar dos veces ni quedarte sin cobertura.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas antes de decidir.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Cobro posterior a la baja: confirmá la fecha efectiva, frená el próximo débito, pedí la reversión dentro de los 30 días, reclamá por escrito y escalá a la Superintendencia y a Defensa del Consumidor. Todo con constancia.',
+    },
+    faq: [
+      { q: '¿Cuántos días tengo para pedir la reversión de un débito automático?', a: 'Según el BCRA, 30 días corridos desde la fecha del débito, ante la empresa del servicio o el banco donde tenés la cuenta.' },
+      { q: '¿Hasta cuándo puedo frenar el débito de la prepaga?', a: 'Según el BCRA, el stop debit de un monto específico se puede pedir hasta 24 horas antes del primer vencimiento de la factura, en tu banco o en la empresa.' },
+      { q: '¿Puedo reclamar si me cobraron después de la baja?', a: 'Sí. Reclamá por escrito con la constancia de baja y, si no devuelven, ante la Superintendencia de Servicios de Salud y Defensa del Consumidor.' },
+      { q: '¿Cómo doy de baja el débito automático de la prepaga?', a: 'Pedilo por escrito a la prepaga y a tu banco. El stop debit del BCRA frena un monto puntual pero no cancela la adhesión.' },
+      { q: '¿Qué prueba necesito para reclamar?', a: 'La constancia de la baja con fecha (botón, mail, número de gestión o carta documento), la factura y el comprobante del débito.' },
+      { q: '¿Me corresponde la devolución de lo cobrado de más?', a: 'Si el cobro es posterior a la fecha efectiva de la baja, sí: el artículo 10 bis de la Ley 24.240 prevé la restitución de lo pagado cuando el proveedor incumple.' },
+    ],
+    keywords: ['prepaga me sigue cobrando despues de la baja', 'me siguen cobrando la prepaga', 'cobro despues de dar de baja prepaga', 'reversion debito automatico prepaga', 'stop debit prepaga', 'devolucion cuotas prepaga baja', 'me cobraron la prepaga despues de la baja', 'reclamo cobro indebido prepaga'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'baja-de-prepaga-proceso', 'como-reclamar-a-una-prepaga', 'dar-de-baja-prepaga-con-deuda'],
+    fuentes: [
+      { texto: 'BCRA — Débito directo', url: 'https://www.bcra.gob.ar/debito-directo/' },
+      { texto: 'Ley 24.240 de Defensa del Consumidor (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/638/texact.htm' },
+      { texto: 'SSSalud — Consultas', url: 'https://www.argentina.gob.ar/sssalud/consultas-la-superintendencia-de-servicios-de-salud' },
+      { texto: 'Defensa del Consumidor — Iniciar un reclamo', url: 'https://www.argentina.gob.ar/servicio/iniciar-un-reclamo-ante-defensa-del-consumidor' },
+    ],
+  },
+  {
+    slug: 'dar-de-baja-prepaga-con-deuda',
+    titulo: '¿Se puede dar de baja la prepaga con deuda? Qué dice la ley',
+    metaDescripcion: 'Sí: el decreto reglamentario de la Ley 26.682 dice que la baja no puede condicionarse al pago previo de lo adeudado. Qué pasa con la deuda, qué pueden reclamar y cómo ordenarla.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Sí, se puede dar de baja la prepaga con deuda: el decreto reglamentario de la Ley 26.682 establece que no puede supeditarse el ejercicio de la facultad de rescisión del usuario a la previa cancelación de las sumas adeudadas. La baja y la deuda van por carriles separados: la prepaga tiene que procesar tu baja y, si corresponde, reclamarte lo que debas por las vías legales.',
+      secciones: [
+        {
+          titulo: 'Qué dice la norma',
+          cuerpo: 'Decreto 1993/2011, artículo 9: el usuario puede rescindir en cualquier momento sin limitación y sin penalidad (una vez por año), y "no podrá supeditarse" ese derecho a la previa cancelación de lo adeudado a la entidad. Es la regla general: si una prepaga te dice que no te da la baja hasta que pagues, está yendo contra el decreto. Algunos reglamentos propios piden saldar la deuda al renunciar, pero esa exigencia no puede usarse para frenar tu baja.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+        {
+          titulo: 'Qué pasa con la deuda',
+          cuerpo: 'La deuda sigue existiendo: la prepaga puede reclamarte las cuotas realmente adeudadas hasta la fecha en que la baja se hizo efectiva, primero por carta o mail y, si no pagás, por la vía judicial. Antes de pagar, pedí por escrito el detalle: qué cuotas, qué período y qué conceptos (excedentes, intereses). Revisá que no incluyan cuotas posteriores a la fecha de efecto de la baja.',
+        },
+        {
+          titulo: 'Cómo ordenarla',
+          cuerpo: '1) Pedí el estado de cuenta por escrito. 2) Pagá lo que sea correcto o proponé un plan de pagos por escrito. 3) Pedí el libre deuda cuando termines. 4) Si el monto te parece incorrecto, pagá lo que no discutas y reclamá el resto con la constancia. Mientras tanto, mantené la baja pedida con carta documento si hace falta, para que la fecha de efecto no quede en duda.',
+        },
+        {
+          titulo: 'Si la prepaga te da de baja a vos por deuda',
+          cuerpo: 'La prepaga solo puede resolver el contrato por falta de pago de tres cuotas íntegras y consecutivas, y debe intimarte a regularizar en diez días hábiles. Si no cumplió esos pasos, la guía "La prepaga me dio de baja por falta de pago" explica cómo reclamar.',
+        },
+        {
+          titulo: 'Y si querés pasarte a otra prepaga',
+          cuerpo: 'La deuda con la prepaga anterior no impide que te asocies a otra, aunque conviene ordenarla para evitar reclamos. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá: dejás tus datos y un asesor oficial te contacta.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas antes de decidir.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'La baja de la prepaga no puede frenarse por una deuda, pero la deuda no se borra. Pedí estado de cuenta, resolvé lo que corresponda y dejá la baja por escrito con fecha.',
+    },
+    faq: [
+      { q: '¿Puedo dar de baja la prepaga si debo cuotas?', a: 'Sí. El decreto 1993/2011 dice que no puede supeditarse la rescisión del usuario a la previa cancelación de lo adeudado. La deuda sigue siendo exigible.' },
+      { q: '¿La prepaga puede cobrarme la deuda después de la baja?', a: 'Sí, las cuotas realmente adeudadas hasta la fecha efectiva de la baja pueden reclamarse por las vías legales.' },
+      { q: '¿Qué pasa si la prepaga dice que no me da la baja hasta que pague?', a: 'Dejá el pedido por escrito, mandá carta documento citando el decreto y reclamá ante la Superintendencia de Servicios de Salud y Defensa del Consumidor.' },
+      { q: '¿Cómo pido el libre deuda?', a: 'Por escrito a la prepaga una vez cancelado el saldo, pidiendo la constancia de que no registrás deuda ni cuotas pendientes.' },
+      { q: '¿Qué pasa si debo tres cuotas?', a: 'La prepaga puede rescindir el contrato por falta de pago de tres cuotas íntegras y consecutivas, pero antes debe intimarte a regularizar en diez días hábiles.' },
+      { q: '¿Puedo asociarme a otra prepaga si tengo deuda con la anterior?', a: 'La normativa no lo impide, pero conviene ordenar la deuda para evitar reclamos posteriores.' },
+    ],
+    keywords: ['dar de baja prepaga con deuda', 'puedo dar de baja una prepaga con deuda', 'se puede dar de baja una prepaga con deuda', 'baja prepaga deuda', 'prepaga no da la baja por deuda', 'baja obra social con deuda', 'libre deuda prepaga'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'carta-documento-baja-prepaga-modelo', 'baja-de-prepaga-proceso', 'como-reclamar-a-una-prepaga'],
+    fuentes: [
+      { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+    ],
+  },
+  {
+    slug: 'prepaga-me-dio-de-baja-por-falta-de-pago',
+    titulo: 'La prepaga me dio de baja por falta de pago o por declaración jurada: qué hacer',
+    metaDescripcion: 'La prepaga solo puede rescindir por tres cuotas impagas consecutivas (con intimación de 10 días hábiles) o por declaración jurada falseada con mala fe. Cómo reclamar si la baja fue ilegítima.',
+    tiempoLectura: 6,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'La prepaga solo puede darte de baja por dos motivos: falta de pago de tres cuotas íntegras y consecutivas, o declaración jurada falseada (Ley 26.682, art. 9). En el primer caso, antes debe notificarte la mora e intimarte a regularizar en diez días hábiles; en el segundo, debe poder demostrar que obraste de mala fe, y si no lo acredita la baja es ilegítima. Si te dieron de baja sin cumplir estos pasos, podés reclamar la reincorporación.',
+      secciones: [
+        {
+          titulo: 'Baja por falta de pago: lo que tiene que cumplir la prepaga',
+          cuerpo: 'Según el decreto 1993/2011 (art. 9), la prepaga solo puede resolver el contrato por falta de pago de tres cuotas íntegras y consecutivas. Debe notificarte de inmediato la constitución en mora e intimarte, de forma fehaciente, a regularizar el pago íntegro en un plazo de diez días hábiles. Si no hubo esa intimación, o no esperó los diez días hábiles, la baja es discutible.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+        {
+          titulo: 'Baja por declaración jurada falseada',
+          cuerpo: 'La prepaga puede rescindir si falseaste la declaración jurada de salud, pero el decreto exige que acredite que no obraste de buena fe, y aclara que la falta de acreditación de la mala fe determina la ilegitimidad de la resolución. Una omisión sin mala fe no alcanza. Si te dieron de baja por una enfermedad preexistente, pedí por escrito el motivo y la prueba en que se basan.',
+        },
+        {
+          titulo: 'Qué hacer si te dieron de baja',
+          cuerpo: '1) Pedí por escrito el motivo exacto de la baja y copia de las intimaciones. 2) Si se trata de deuda y querés seguir, regularizá y pedí la reincorporación por escrito. 3) Si la baja fue ilegítima, reclamá ante la Superintendencia de Servicios de Salud, opción "Afiliaciones", y ante Defensa del Consumidor. 4) Evaluá con un abogado una acción judicial si necesitás cobertura urgente (tratamientos en curso): en esos casos la vía suele ser un amparo de salud.',
+          enlaces: [{ texto: 'SSSalud — Consultas y reclamos', url: 'https://www.argentina.gob.ar/sssalud/consultas-la-superintendencia-de-servicios-de-salud' }],
+        },
+        {
+          titulo: 'Para no quedar sin cobertura',
+          cuerpo: 'Si la baja ya se produjo y no vas a poder revertirla rápido, conviene conseguir una nueva cobertura cuanto antes: en una nueva prepaga vas a tener que completar la declaración jurada de salud y es posible que apliquen carencias. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá: dejás tus datos y un asesor oficial te contacta.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'La prepaga solo puede darte de baja por tres cuotas impagas (con intimación de diez días hábiles) o por declaración jurada falseada con mala fe acreditada. Si no cumplió esos pasos, reclamá por escrito, ante la Superintendencia y en Defensa del Consumidor, y no te quedes sin cobertura.',
+    },
+    faq: [
+      { q: '¿Cuándo puede una prepaga darme de baja?', a: 'Solo por falta de pago de tres cuotas íntegras y consecutivas o por declaración jurada falseada (Ley 26.682, art. 9).' },
+      { q: '¿Tiene que avisarme antes de darme de baja por deuda?', a: 'Sí. Debe notificarte la mora e intimarte a regularizar el pago íntegro en diez días hábiles antes de resolver el contrato (decreto 1993/2011, art. 9).' },
+      { q: '¿Me pueden dar de baja por una enfermedad preexistente?', a: 'Solo si falseaste la declaración jurada y la prepaga acredita que no obraste de buena fe. Si no lo acredita, la resolución es ilegítima.' },
+      { q: '¿Cómo reclamo si me dieron de baja sin intimarme?', a: 'Pedí por escrito el motivo y las intimaciones, y reclamá ante la Superintendencia de Servicios de Salud (opción Afiliaciones) y Defensa del Consumidor.' },
+      { q: '¿Qué hago si necesito atención urgente y me dieron de baja?', a: 'Consultá cuanto antes con un abogado: en tratamientos en curso, la vía suele ser un amparo de salud. Mientras tanto, la urgencia se atiende en guardias.' },
+    ],
+    keywords: ['prepaga me dio de baja por falta de pago', 'me dieron de baja de la prepaga', 'baja de prepaga por falta de pago', 'prepaga me dio de baja por preexistencia', 'baja por declaracion jurada prepaga', 'reincorporacion prepaga', 'prepaga rescinde contrato', 'baja de obra social por falta de pago'],
+    relacionadas: ['dar-de-baja-prepaga-con-deuda', 'prepaga-no-me-da-la-baja', 'como-reclamar-a-una-prepaga', 'baja-de-prepaga-proceso'],
+    fuentes: [
+      { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'SSSalud — Consultas', url: 'https://www.argentina.gob.ar/sssalud/consultas-la-superintendencia-de-servicios-de-salud' },
+    ],
+  },
+  {
+    slug: 'baja-prepaga-fallecimiento-titular',
+    titulo: 'Fallecimiento del titular de la prepaga: qué pasa con la cobertura de la familia',
+    metaDescripcion: 'Si fallece el titular de la prepaga, el grupo familiar primario conserva la cobertura del PMO durante dos meses sin pagar. Después, alguien debe constituirse como titular. Plazos y trámite.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Si fallece el titular de la prepaga, el grupo familiar primario mantiene la cobertura del Programa Médico Obligatorio (PMO) durante dos meses desde el fallecimiento, sin obligación de pagar (decreto 1993/2011, art. 13). Pasado ese plazo, un integrante del grupo que quiera seguir tiene que constituirse como titular del plan. Los reglamentos de cada prepaga pueden fijar plazos propios para conservar la antigüedad: conviene hacer el trámite cuanto antes.',
+      secciones: [
+        {
+          titulo: 'Qué dice la normativa',
+          cuerpo: 'El decreto 1993/2011, artículo 13, establece que, tras la muerte del titular, las entidades deben mantener la cobertura del PMO para el grupo familiar primario durante dos meses desde el fallecimiento, sin obligación de efectuar pago alguno. Después, quien quiera continuar debe constituirse como titular del plan.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+        {
+          titulo: 'Qué dicen los reglamentos de las prepagas',
+          cuerpo: 'Swiss Medical, por ejemplo, establece que la renuncia o muerte del titular resuelve la asociación de todo el grupo y que, para conservar la antigüedad, los integrantes que quieran seguir deben concurrir a las oficinas dentro de los 30 días del hecho para formar un nuevo grupo, abonando las cuotas desde ese momento. Es una cláusula distinta del plazo de dos meses sin pago del decreto: ante la duda, pedí por escrito a la prepaga cómo aplican ambos plazos y cuál es la fecha de efecto.',
+        },
+        {
+          titulo: 'Qué trámite hacer',
+          cuerpo: '1) Avisá el fallecimiento a la prepaga por escrito y pedí por escrito cómo sigue la cobertura. 2) Reuní el acta de defunción y la documentación que pidan para acreditar el vínculo. 3) Decidí quién será el nuevo titular y pedí la continuidad de la antigüedad. 4) Si preferís cambiar de prepaga, hacelo sin dejar un hueco de cobertura: coordiná la fecha de la nueva con el fin de los dos meses.',
+        },
+        {
+          titulo: 'Si querés evaluar otra cobertura',
+          cuerpo: 'Muchas familias aprovechan el plazo para comparar precios y coberturas. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá: dejás tus datos y un asesor oficial te contacta.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Tras el fallecimiento del titular, la familia tiene dos meses de cobertura del PMO sin pagar. Avisá por escrito, pedí cómo se aplica el plazo y decidí rápido quién se constituye como titular o si cambian de prepaga.',
+    },
+    faq: [
+      { q: '¿Qué pasa con la prepaga si fallece el titular?', a: 'El grupo familiar primario conserva la cobertura del PMO durante dos meses desde el fallecimiento, sin obligación de pagar. Después, un integrante debe constituirse como titular.' },
+      { q: '¿Tengo que pagar la cuota durante esos dos meses?', a: 'Según el decreto 1993/2011 (art. 13), no: la cobertura del PMO se mantiene sin obligación de efectuar pago alguno durante dos meses.' },
+      { q: '¿Quién puede seguir como titular?', a: 'Un integrante del grupo familiar primario que quiera continuar y se constituya como titular del plan.' },
+      { q: '¿Se pierde la antigüedad?', a: 'Depende del reglamento de la prepaga: Swiss Medical, por ejemplo, la conserva si el grupo se reconstituye dentro de los 30 días. Pedí la respuesta por escrito.' },
+      { q: '¿Qué documentación piden?', a: 'Habitualmente el acta de defunción y la documentación que acredite el vínculo. Consultá con tu prepaga.' },
+    ],
+    keywords: ['fallecimiento titular prepaga', 'muerte del titular prepaga cobertura familia', 'que pasa con la prepaga si muere el titular', 'baja prepaga fallecimiento', 'prepaga fallecimiento titular dos meses', 'viuda prepaga cobertura', 'continuidad prepaga fallecimiento'],
+    relacionadas: ['baja-de-prepaga-proceso', 'como-dar-de-baja-swiss-medical', 'como-cambiar-de-prepaga', 'prepaga-no-me-da-la-baja'],
+    fuentes: [
+      { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+      { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
+    ],
+  },
+  {
+    slug: 'arrepentimiento-prepaga-10-dias',
+    titulo: 'Arrepentimiento de la prepaga: cómo cancelar en 10 días (artículo 34 de la Ley 24.240)',
+    metaDescripcion: 'El consumidor puede revocar la aceptación durante 10 días corridos (art. 34, Ley 24.240) en contrataciones a distancia. Qué dicen Medifé, Omint y Medicus sobre su botón de arrepentimiento.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Si acabás de contratar una prepaga y te arrepentiste, el artículo 34 de la Ley 24.240 te da 10 días corridos para revocar la aceptación, y esa facultad no puede ser dispensada ni renunciada. El plazo corre desde que se celebra el contrato. En las prepagas se canaliza con un "botón de arrepentimiento" en la web: Medifé, Omint y Medicus tienen uno.',
+      secciones: [
+        {
+          titulo: 'Qué dice el artículo 34',
+          cuerpo: 'La Ley 24.240 prevé que, en las contrataciones a distancia o fuera del local del proveedor, el consumidor tiene derecho a revocar la aceptación durante el plazo de diez días corridos, contados desde que se celebra el contrato, y que esa facultad no puede ser dispensada ni renunciada. Es distinto de la baja de la prepaga (artículo 9 de la Ley 26.682): el arrepentimiento es para los primeros días y no tiene costo de salida.',
+          enlaces: [{ texto: 'Ley 24.240 (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/638/texact.htm' }],
+        },
+        {
+          titulo: 'Qué dicen las prepagas',
+          cuerpo: 'Medifé: el formulario de arrepentimiento es de uso exclusivo para asociados que aún no están activos o cuyo plan no supera los 10 días de vigencia; si tu cuenta ya está activa, la baja se pide en Mi Cuenta. Medicus: el botón es para quien no está activo y está dentro de los 10 días corridos de la contratación; debe pedirlo el titular y, si ya usaste servicios, se facturan los días utilizados. Omint: tiene un "Botón de arrepentimiento" separado del de baja de servicios.',
+        },
+        {
+          titulo: 'Cómo hacerlo bien',
+          cuerpo: '1) Contá los 10 días corridos desde el día en que contrataste (no desde la primera factura). 2) Usá el botón de arrepentimiento de la prepaga o, si no lo hay, mandá un mail o carta documento. 3) Guardá la constancia. 4) No uses servicios mientras tanto si querés evitar cobros por días utilizados. 5) Si ya te cobraron, pedí la devolución.',
+        },
+        {
+          titulo: 'Si ya pasaron los 10 días',
+          cuerpo: 'Si ya pasaron los 10 días, el camino es la baja común: rescisión sin penalidad con 30 días de preaviso (Ley 26.682, art. 9). Mirá la guía de tu prepaga para el paso a paso.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Tenés 10 días corridos para arrepentirte de una contratación a distancia. Pedilo por el botón de arrepentimiento de la prepaga y guardá la constancia. Pasado ese plazo, aplica la baja con 30 días de preaviso.',
+    },
+    faq: [
+      { q: '¿Cuántos días tengo para arrepentirme de contratar una prepaga?', a: 'Diez días corridos desde que se celebra el contrato, según el artículo 34 de la Ley 24.240.' },
+      { q: '¿Se puede renunciar al derecho de arrepentimiento?', a: 'No: la ley dice que esa facultad no puede ser dispensada ni renunciada.' },
+      { q: '¿Tiene costo arrepentirse?', a: 'No debería. Pero Medicus informa que, si usaste servicios, se facturan los días utilizados.' },
+      { q: '¿Dónde está el botón de arrepentimiento?', a: 'En la web de la prepaga: Medifé, Omint y Medicus tienen uno. En Medicus está en el pie de la página (medicus.com.ar/arrepentimiento).' },
+      { q: '¿Qué hago si ya pasaron los 10 días?', a: 'Pedí la baja común: la Ley 26.682 permite rescindir sin penalidad, con aviso fehaciente de 30 días.' },
+    ],
+    keywords: ['arrepentimiento prepaga', 'boton de arrepentimiento prepaga', 'arrepentirme de contratar prepaga', 'cancelar prepaga 10 dias', 'arrepentimiento medicina prepaga', 'revocar contratacion prepaga', 'articulo 34 ley 24240 prepaga'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'como-dar-de-baja-medicus', 'como-dar-de-baja-medife', 'como-dar-de-baja-omint'],
+    fuentes: [
+      { texto: 'Ley 24.240 de Defensa del Consumidor (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/638/texact.htm' },
+      { texto: 'Medifé — Solicitar la baja del plan contratado', url: 'https://www.medife.com.ar/formulario-de-arrepentimiento' },
+      { texto: 'Medicus — Botón de arrepentimiento', url: 'https://medicus.com.ar/arrepentimiento' },
+      { texto: 'Omint — sitio oficial', url: 'https://www.omint.com.ar/PlanDeSalud/' },
+    ],
+  },
+  {
+    slug: 'hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga',
+    titulo: 'Si doy de baja la prepaga, ¿hasta cuándo tengo cobertura?',
+    metaDescripcion: 'La cobertura termina en la fecha en que se hace efectiva la baja (cada prepaga fija la suya). Excepción: tras el fallecimiento del titular hay dos meses de PMO. Cómo evitar quedarte sin cobertura.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Al dar de baja la prepaga, la cobertura termina en la fecha en que la baja se hace efectiva: no hay un período de gracia general. Esa fecha la fija cada prepaga: OSDE, por ejemplo, la hace valer desde el día del trámite o una fecha futura, y Swiss Medical la computa según el día 5 del mes. La única extensión que prevé el decreto 1993/2011 es de dos meses de cobertura del PMO para el grupo familiar primario tras el fallecimiento del titular. Por eso conviene tener la nueva cobertura confirmada antes de pedir la baja.',
+      secciones: [
+        {
+          titulo: 'La fecha de efecto es la que manda',
+          cuerpo: 'La cobertura rige hasta la fecha de efecto de la baja. Pedí por escrito la fecha exacta y planificá tus consultas, estudios o tratamientos antes de esa fecha. Con la ley en la mano, el preaviso es de 30 días (Ley 26.682, art. 9); algunas prepagas dan la baja en una fecha anterior si así lo establece su reglamento: lo que importa es tenerla por escrito.',
+        },
+        {
+          titulo: 'Tratamientos en curso e internaciones',
+          cuerpo: 'El decreto reglamentario no establece una continuidad automática de los tratamientos tras la baja del usuario. Si estás en un tratamiento o tenés una cirugía o internación programada, coordiná con tu prepaga y con tu médico antes de pedir la baja, y consultá con un abogado si la continuidad es crítica. Las urgencias y emergencias se atienden en guardias, pero la cobertura formal ya no existe luego de la fecha efectiva.',
+        },
+        {
+          titulo: 'Cuándo hay extensión: fallecimiento del titular',
+          cuerpo: 'El decreto 1993/2011 (art. 13) establece que, tras el fallecimiento del titular, el grupo familiar primario mantiene la cobertura del PMO durante dos meses sin pagar. Es la única extensión que prevé la norma. Mirá la guía específica para los pasos.',
+        },
+        {
+          titulo: 'Cómo evitar quedarte sin cobertura',
+          cuerpo: '1) Cotizá y confirmá la nueva cobertura antes de pedir la baja. 2) Coordiná que la nueva rija desde el día siguiente al fin de la anterior. 3) Pedí la baja con la fecha de efecto exacta por escrito. 4) Tené en cuenta que en la nueva prepaga vas a completar una declaración jurada y puede haber carencias. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá: dejás tus datos y un asesor oficial te contacta.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Cobertura hasta la fecha efectiva de la baja y nada más (salvo los dos meses de PMO por fallecimiento del titular). Confirmá la fecha por escrito y organizá tu nueva cobertura antes.',
+    },
+    faq: [
+      { q: '¿Hasta cuándo tengo cobertura si doy de baja la prepaga?', a: 'Hasta la fecha en que la baja se hace efectiva. No hay un período de gracia general: cada prepaga fija su fecha de efecto y la ley establece un preaviso de 30 días.' },
+      { q: '¿Me cubren un tratamiento en curso después de la baja?', a: 'El decreto reglamentario no prevé continuidad automática. Coordiná con la prepaga y tu médico antes de pedir la baja, y consultá a un abogado si es crítico.' },
+      { q: '¿Cuánto tiempo cubre la prepaga si fallece el titular?', a: 'El grupo familiar primario mantiene la cobertura del PMO durante dos meses desde el fallecimiento, sin pagar (decreto 1993/2011, art. 13).' },
+      { q: '¿Puedo usar la prepaga el mes que pagué si pedí la baja?', a: 'Depende de la fecha de efecto: pedila por escrito. Con Swiss Medical, por ejemplo, la baja pedida hasta el día 5 se computa desde el último día del mes anterior.' },
+      { q: '¿Qué hago para no quedarme sin cobertura entre dos prepagas?', a: 'Confirmá la nueva cobertura antes de pedir la baja y coordiná que arranque el día siguiente al fin de la anterior.' },
+    ],
+    keywords: ['si doy de baja la prepaga cuanto tiempo me cubre', 'hasta cuando tengo cobertura despues de la baja prepaga', 'cobertura despues de baja prepaga', 'cuanto tarda la baja de la prepaga', 'baja prepaga fecha efecto', 'baja prepaga retroactiva', 'cobertura tras baja obra social'],
+    relacionadas: ['baja-de-prepaga-proceso', 'baja-prepaga-fallecimiento-titular', 'como-cambiar-de-prepaga', 'prepaga-no-me-da-la-baja', 'prepaga-sin-periodo-carencia'],
+    fuentes: [
+      { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'OSDE — Bajas (información al socio)', url: 'https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura/bajas' },
+      { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
     ],
   },
 ]

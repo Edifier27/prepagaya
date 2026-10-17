@@ -8,9 +8,11 @@ interface Props {
   prepagaNombre?: string
   titulo?: string
   className?: string
+  // Origen del contacto cuando no es una prepaga (ej.: 'guia-baja').
+  fuente?: string
 }
 
-export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props) {
+export function LeadFormInline({ prepagaNombre, titulo, className = '', fuente: fuenteProp }: Props) {
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
   const [email, setEmail] = useState('')
@@ -20,7 +22,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
     e.preventDefault()
     if (!nombre.trim() || !celular.trim() || !email.trim()) return
     setStatus('loading')
-    const fuente = prepagaNombre ? `sidebar-${prepagaNombre.toLowerCase().replace(/\s+/g, '-')}` : 'sidebar-inline'
+    const fuente = fuenteProp ?? (prepagaNombre ? `sidebar-${prepagaNombre.toLowerCase().replace(/\s+/g, '-')}` : 'sidebar-inline')
     try {
       const res = await fetch('/api/leads', {
         method: 'POST',
@@ -31,6 +33,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '' }: Props)
           email: email.trim(),
           fuente,
           prepaga_interes: prepagaNombre ?? '',
+          pagina: window.location.pathname,
           fecha: new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }),
         }),
       })

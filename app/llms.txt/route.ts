@@ -55,6 +55,22 @@ export function GET() {
     `- [Obra social para empleados fuera de convenio](${SITE_URL}/empresas/empleados-fuera-de-convenio)`,
     `- [Todos los trámites](${SITE_URL}/tramites)`,
     '',
+    '## Bajas de prepagas: trámite, derechos y reclamos',
+    '- Base legal: Ley 26.682 art. 9 (rescisión sin penalidad con 30 días de preaviso fehaciente), Decreto 1993/2011 (una vez por año; no se puede condicionar a pagar una deuda), Ley 24.240 y botón de baja (Res. SC 316/2018, Disp. 472/2019).',
+    `- [La prepaga no me da la baja: qué hacer](${SITE_URL}/guias/prepaga-no-me-da-la-baja)`,
+    `- [Modelo de carta documento de baja](${SITE_URL}/guias/carta-documento-baja-prepaga-modelo)`,
+    `- [Me siguen cobrando después de la baja](${SITE_URL}/guias/prepaga-sigue-cobrando-despues-de-la-baja)`,
+    `- [Dar de baja con deuda](${SITE_URL}/guias/dar-de-baja-prepaga-con-deuda)`,
+    `- [Me dieron de baja por falta de pago](${SITE_URL}/guias/prepaga-me-dio-de-baja-por-falta-de-pago)`,
+    `- [Fallecimiento del titular](${SITE_URL}/guias/baja-prepaga-fallecimiento-titular)`,
+    `- [Arrepentimiento (10 días)](${SITE_URL}/guias/arrepentimiento-prepaga-10-dias)`,
+    `- [Hasta cuándo hay cobertura tras la baja](${SITE_URL}/guias/hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga)`,
+    `- [Cómo darse de baja de una prepaga (guía general)](${SITE_URL}/guias/baja-de-prepaga-proceso)`,
+    ...['swiss-medical:Swiss Medical', 'osde:OSDE', 'sancor-salud:Sancor Salud', 'galeno:Galeno', 'medife:Medifé', 'omint:Omint', 'medicus:Medicus'].map((x) => {
+      const [slug, nombre] = x.split(':')
+      return `- [Cómo dar de baja ${nombre}](${SITE_URL}/guias/como-dar-de-baja-${slug})`
+    }),
+    '',
     '## Obras sociales',
     `- [PAMI: teléfono 138, medicamentos y afiliación](${SITE_URL}/obras-sociales/pami)`,
     `- [IOMA: obra social de la provincia de Buenos Aires](${SITE_URL}/obras-sociales/ioma)`,
