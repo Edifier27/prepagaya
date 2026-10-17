@@ -339,6 +339,20 @@ export const comparativas: Comparativa[] = [
     ganadorSatisfaccion: 'premedic',
     veredicto: 'Son opciones para necesidades distintas. Premedic tiene el precio de lista más bajo del mercado según los cuadros oficiales y red odontológica propia (Smile Group), pero todos sus planes tienen copago y su cartilla se concentra en AMBA y algunas provincias. Avalian informa más de 100.000 prestadores en todo el país, incluye telemedicina 24hs en todos los planes y tiene planes sin copago desde el Superior AS300. Si vivís en AMBA y el precio es lo primero, Premedic. Si estás en el interior o querés un plan sin copago, Avalian.',
   },
+  // 17-oct-2026, keyword research de Darío ("sancor salud vs prevencion salud",
+  // "es mejor sancor salud o prevencion salud", "son lo mismo"): búsquedas donde
+  // el sitio todavía no aparecía. Los datos salen de las fichas de las dos
+  // marcas; la relación entre ellas, de InfoNegocios (4-ago-2026).
+  {
+    slug: 'sancor-salud-vs-prevencion-salud',
+    prepaga1Slug: 'sancor-salud',
+    prepaga2Slug: 'prevencion-salud',
+    titulo: 'Sancor Salud vs Prevención Salud: ¿son lo mismo? 2026',
+    descripcion: 'Sancor Salud y Prevención Salud no son la misma empresa. Comparamos red, centro propio, cobertura en el interior, precio por edad y planes.',
+    ganadorRed: 'sancor-salud',
+    ganadorSatisfaccion: 'sancor-salud',
+    veredicto: 'No son lo mismo: Sancor Salud es una mutual independiente y Prevención Salud es la prepaga del Grupo Sancor Seguros. Sancor Salud informa más de 200.000 prestadores y tiene un centro médico propio (Vitus, en Córdoba), con fuerte presencia en el interior; Prevención Salud no tiene sanatorios propios y declara cobertura en 23 provincias. En precio, Prevención declara un único valor de 0 a 55 años y los cuadros oficiales de la SSSalud muestran el precio de cada plan de las dos: compará los de tu edad en el cotizador antes de decidir.',
+  },
 ]
 
 export function getComparativaBySlug(slug: string): Comparativa | undefined {
