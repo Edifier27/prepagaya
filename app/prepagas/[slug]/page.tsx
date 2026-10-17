@@ -251,6 +251,14 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
         a: `El plan más económico de ${prep.nombre}, el ${comp.entrada.plan.nombre}, sale ${formatPrecio(p65)} por mes para una persona de 65 años según el cuadro tarifario oficial (${PRECIO_ACTUALIZADO.toLowerCase()}, contratación directa, IVA incluido). Si tenés 10 años de antigüedad continua en la prepaga, la ley no permite aumentarte por edad después de los 65.`,
       }] : []
     })(),
+    // 17-oct-2026, keyword research de Darío (Swiss, OSDE, Sancor, Omint,
+    // Medicus… "[prepaga] teléfono / 0800 / whatsapp / turnos" es lo más
+    // buscado de cada lista). Solo los canales que la propia prepaga publica
+    // (lib/data/contactos.ts, copiados de su web oficial).
+    ...(contactos[prep.slug]?.canales.length ? [{
+      q: `¿Cuál es el teléfono, el 0800 y el WhatsApp de ${prep.nombre}?`,
+      a: `${contactos[prep.slug].canales.map((c) => `${c.etiqueta}: ${c.valor}${c.detalle ? ` (${c.detalle})` : ''}`).join('. ')}. Son los canales que ${prep.nombre} publica en su web oficial (verificados el ${CONTACTOS_VERIFICADOS}); para cotizar, el asesor oficial te lo resuelve en ${TIEMPO_RESPUESTA}.`,
+    }] : []),
     {
       q: `¿Cómo dar de baja ${prep.nombre}?`,
       a: `Con el botón de baja que ${prep.nombre} tiene que ofrecer en su web, tan accesible como el alta: no hay permanencia mínima ni multa. Pedila antes del cierre de facturación (entre el 20 y el 25) para que no se genere la cuota siguiente y guardá la constancia. Antes de darte de baja, pensá en la antigüedad: bajar de plan o pasarte a otra prepaga sin hueco de cobertura la conserva.`,
