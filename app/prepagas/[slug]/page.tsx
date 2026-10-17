@@ -82,6 +82,11 @@ const ES_OBRA_SOCIAL_O_PREPAGA: Record<string, string> = {
 // Baja con el procedimiento propio de cada marca (guías /guias/como-dar-de-baja-*).
 const BAJA_ESPECIFICA: Record<string, string> = {
   'swiss-medical': 'La baja la pide el titular, en forma fehaciente, devolviendo las credenciales de todo el grupo y cancelando la deuda pendiente (Reglamento General de Contratación de Swiss Medical). Si la pedís hasta el día 5 del mes, rige desde el último día del mes anterior; después del día 5, desde el último día del mes en curso. Si alguien de la familia quiere seguir, tiene 30 días para formar un nuevo grupo y conservar la antigüedad. Paso a paso en la guía "Cómo dar de baja Swiss Medical".',
+  osde: 'La baja la pide el titular desde la web de OSDE con su cuenta (Gestiones online > Mi afiliación > Solicitud de baja) y rige desde el día del trámite o una fecha futura: no se aceptan bajas retroactivas. La baja del titular incluye a todo el grupo familiar. Si volvés pasados 60 días, OSDE te pide los mismos requisitos que a un socio nuevo. Paso a paso en la guía "Cómo dar de baja OSDE".',
+  galeno: 'Galeno tiene "Solicitud de Baja" en su web: se ingresa con tu usuario, tenés que ser el titular y socio privado (no corporativo), y la baja alcanza a todo el grupo familiar. Otra forma es ir a la sucursal más cercana. Paso a paso en la guía "Cómo dar de baja Galeno".',
+  medife: 'Medifé tiene un "Formulario de baja" en su portal de asociados (Mi Cuenta), con inicio de sesión. Para planes nuevos aún no activos o de hasta 10 días de vigencia hay un formulario de arrepentimiento. Paso a paso en la guía "Cómo dar de baja Medifé".',
+  omint: 'Omint tiene un "Botón de baja de servicios" en su web que lleva a Autogestión (documento, usuario y contraseña). Aparte hay un botón de arrepentimiento para quien recién se asoció. Paso a paso en la guía "Cómo dar de baja Omint".',
+  medicus: 'Según las preguntas frecuentes de Medicus, la baja se pide por mail a contactenos@medicus.com.ar (asunto "Intención de baja"), por el 0800-333-7624 o en una agencia administrativa. Para planes recién contratados hay un botón de arrepentimiento de 10 días corridos. Paso a paso en la guía "Cómo dar de baja Medicus".',
   'sancor-salud': 'Sancor Salud tiene un formulario de baja en su web oficial: pide el tipo y número de documento del titular y su número de asociado, y desde ahí se inicia la solicitud. Guardá el comprobante y controlá la factura del mes siguiente. Paso a paso en la guía "Cómo dar de baja Sancor Salud".',
 }
 
@@ -275,7 +280,7 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
     }] : []),
     {
       q: `¿Cómo dar de baja ${prep.nombre}?`,
-      a: BAJA_ESPECIFICA[prep.slug] ?? `Con el botón de baja que ${prep.nombre} tiene que ofrecer en su web, tan accesible como el alta: no hay permanencia mínima ni multa. Pedila antes del cierre de facturación (entre el 20 y el 25) para que no se genere la cuota siguiente y guardá la constancia. Antes de darte de baja, pensá en la antigüedad: bajar de plan o pasarte a otra prepaga sin hueco de cobertura la conserva.`,
+      a: BAJA_ESPECIFICA[prep.slug] ?? `Desde el botón de baja que ${prep.nombre} tiene que ofrecer en su web (Resolución 316/2018 y Disposición 472/2019). La Ley 26.682 (art. 9) te permite rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación; el decreto reglamentario aclara que no pueden condicionar tu baja al pago previo de deudas. Guardá la constancia. Antes de darte de baja, pensá en la antigüedad: bajar de plan o pasarte a otra prepaga sin hueco de cobertura la conserva.`,
     },
   ]
 }

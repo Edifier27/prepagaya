@@ -1069,37 +1069,49 @@ export const guias: GuiaData[] = [
     metaDescripcion: 'Pasos para dar de baja tu prepaga en Argentina: plazos, documentación, carta documento y cómo evitar que te sigan cobrando. Guía actualizada.',
     tiempoLectura: 6,
     categoria: 'Trámites',
-    fechaActualizacion: '2026-07-14',
+    fechaActualizacion: '2026-10-17',
     contenido: {
-      intro: 'Darte de baja de una prepaga es un derecho sin condiciones: no hay permanencia mínima, no hay multa y no pueden exigirte que vayas a una sucursal a "conversarlo". Desde la regulación del botón de baja, el trámite es online y debe resolverse rápido. El problema real no es la baja en sí, sino los cobros posteriores mal aplicados. Así se hace bien.',
+      intro: 'Darte de baja de una prepaga es un derecho: no hay permanencia mínima ni multa (el artículo 9 de la Ley 26.682 lo dice expresamente), y desde 2019 las prepagas tienen que ofrecer en su web un botón de baja. Lo que sí pide la ley es que notifiques de forma fehaciente con 30 días de anticipación. El problema real no es la baja en sí, sino los cobros posteriores mal aplicados. Así se hace bien.',
       secciones: [
         {
-          titulo: 'El botón de baja: tu vía rápida legal',
-          cuerpo: 'Todas las empresas están obligadas a ofrecer en su web un mecanismo de baja tan accesible como el de alta: el "botón de baja" de la normativa de defensa del consumidor. Lo encontrás en el sitio de tu prepaga (generalmente en el pie de página o en tu portal de afiliado). Al usarlo, la empresa debe procesar la solicitud sin requisitos adicionales y enviarte constancia. Guardá esa constancia con fecha: es tu prueba ante cualquier cobro posterior.',
+          titulo: 'Qué dice la ley',
+          cuerpo: 'Ley 26.682, artículo 9: los usuarios pueden rescindir el contrato en cualquier momento, sin limitación y sin penalidad alguna, notificando fehacientemente con treinta días de anticipación. El decreto reglamentario (1993/2011) agrega dos cosas: la facultad de rescindir se puede ejercer una sola vez por año, y la prepaga no puede condicionarla a que antes canceles lo que debas (la deuda no desaparece, pero no puede frenar tu baja). La prepaga, en cambio, solo puede rescindir por falta de pago de tres cuotas consecutivas o por declaración jurada falseada.',
+          enlaces: [
+            { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+            { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+          ],
         },
         {
-          titulo: 'El timing correcto para no pagar de más',
-          cuerpo: 'Las prepagas facturan mes adelantado y cierran facturación entre el 20 y el 25. Pedí la baja antes de ese cierre para que no se genere la cuota del mes siguiente. La baja rige desde la fecha que indiques o desde la solicitud; la empresa no puede "estirarla" 30 o 60 días para facturarte más. Si tenés débito automático, avisá también a tu banco o tarjeta después de la constancia de baja: es la doble llave contra cobros fantasma.',
+          titulo: 'El botón de baja: tu vía rápida',
+          cuerpo: 'La Resolución 316/2018 de la Secretaría de Comercio obliga a ciertos proveedores a mostrar un enlace de baja en su web, y la Disposición 472/2019 de Defensa del Consumidor sumó a la medicina prepaga (rige desde agosto de 2019). Cada prepaga lo ubica a su manera, y varias lo conectan con tu sesión de afiliado. Guardá la constancia con fecha: es tu prueba ante cualquier cobro posterior.',
+        },
+        {
+          titulo: 'El timing para no pagar de más',
+          cuerpo: 'Cada prepaga fija desde cuándo rige la baja: OSDE dice que vale desde el día del trámite o una fecha futura; Swiss Medical tiene un corte el día 5 de cada mes. Preguntá siempre la fecha de vigencia y pedila con anticipación: por la ley, el preaviso es de 30 días. Si tenés débito automático, avisá también a tu banco o tarjeta una vez que tengas la constancia de baja.',
         },
         {
           titulo: 'Deudas, retenciones y las trampas clásicas',
-          cuerpo: 'La empresa puede reclamarte cuotas efectivamente adeudadas hasta la fecha de baja, pero no puede condicionar la baja al pago: son cosas independientes. Tampoco puede retener tu baja "hasta devolver la credencial" ni exigirte un preaviso que no esté en la ley. Si después de la baja te siguen debitando, reclamá primero a la empresa con tu constancia, y si no devuelven, denunciá en Defensa del Consumidor: los cobros post-baja se recuperan con intereses.',
+          cuerpo: 'La prepaga puede reclamarte las cuotas que realmente debas hasta la fecha de baja, pero la baja y la deuda van por carriles separados: según el decreto, no puede condicionar tu baja al pago previo. Si después de la baja te siguen debitando, reclamá primero a la empresa con tu constancia y, si no lo resuelve, ante Defensa del Consumidor o la Superintendencia de Servicios de Salud.',
         },
         {
           titulo: 'Antes de la baja total: pensá el costo de la antigüedad',
-          cuerpo: 'La baja borra tu antigüedad, que es valiosa: protege contra aumentos por edad después de los 65 (con 10 años de continuidad) y levanta carencias superadoras. Si el motivo es económico, evaluá primero bajar de plan dentro de la misma empresa (conserva la antigüedad) o pasarte a otra prepaga sin hueco de cobertura (la continuidad acreditable también te sirve en la nueva). La baja "a la nada" conviene solo si vas a estar cubierto por otra vía.',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad. Esa antigüedad cuenta: la ley prohíbe aplicar el aumento por edad a los mayores de 65 con más de diez años de antigüedad, y los cambios de plan dentro de la misma prepaga no la interrumpen. OSDE, por ejemplo, avisa que si volvés a afiliarte pasados 60 días de la baja, te piden los mismos requisitos que a un socio nuevo. Si el motivo es económico, evaluá primero bajar de plan o pasarte a otra prepaga sin hueco de cobertura.',
         },
       ],
-      conclusion: 'La baja es simple si usás el canal correcto: botón de baja online, antes del cierre de facturación, constancia guardada y débito automático notificado. No pueden retenerte, multarte ni condicionarte. Y antes de ejecutarla, asegurate de que la baja total sea realmente tu mejor opción frente a bajar de plan o cambiar de empresa sin cortar continuidad.',
+      conclusion: 'La baja es un derecho sin multa: pedila por escrito o por el botón de baja, con 30 días de anticipación, guardá la constancia y avisá a tu banco si tenés débito automático. Y antes de ejecutarla, asegurate de que la baja total sea realmente tu mejor opción frente a bajar de plan o cambiar de empresa sin cortar la continuidad.',
     },
     faq: [
       {
         q: '¿Pueden negarme la baja si debo cuotas?',
-        a: 'No. La baja y la deuda son independientes: deben procesar tu baja y luego reclamarte lo adeudado por las vías normales. Condicionar la baja al pago previo es una práctica abusiva denunciable.',
+        a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede condicionar tu baja a la cancelación previa de lo adeudado. La deuda sigue existiendo y te la pueden reclamar, pero no pueden frenar la baja.',
       },
       {
         q: '¿Tengo que dar explicaciones o preaviso para darme de baja?',
-        a: 'No. Es un derecho incondicionado: no necesitás justificar motivos ni dar preavisos más allá de solicitar la baja por un canal fehaciente. La "llamada de retención" es una gestión comercial que podés cortar cuando quieras.',
+        a: 'No tenés que justificar motivos, pero la ley sí pide notificar de forma fehaciente con 30 días de anticipación (Ley 26.682, art. 9). La "llamada de retención" es una gestión comercial que podés cortar cuando quieras.',
+      },
+      {
+        q: '¿Puedo darme de baja las veces que quiera?',
+        a: 'El decreto reglamentario establece que la facultad de rescindir se puede ejercer solamente una vez por año.',
       },
       {
         q: '¿Qué hago si me siguen cobrando después de la baja?',
@@ -1107,7 +1119,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['baja de prepaga', 'boton de baja prepaga', 'como darse de baja prepaga', 'me siguen cobrando prepaga baja'],
-    relacionadas: ['como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-aumento-inflacion'],
+    relacionadas: ['como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-aumento-inflacion', 'como-dar-de-baja-swiss-medical', 'como-dar-de-baja-osde', 'como-dar-de-baja-sancor-salud', 'como-dar-de-baja-galeno', 'como-dar-de-baja-medife', 'como-dar-de-baja-omint', 'como-dar-de-baja-medicus'],
   },
   {
     slug: 'cuota-prepaga-aumento-inflacion',
@@ -2199,6 +2211,11 @@ export const guiasPreguntas: GuiaData[] = [
           cuerpo: 'La renuncia o la muerte del titular termina la asociación de todo el grupo familiar (cláusula 6.1.1). Si algún integrante quiere seguir en Swiss, para conservar la antigüedad tiene que ir a las oficinas dentro de los 30 días de la baja y formar un nuevo grupo, pagando las cuotas desde el momento de la renuncia o la muerte (cláusula 6.1.4). Lo mismo rige para un integrante al que el titular da de baja (cláusula 7.1.2). Los hijos solteros se dan de baja solos al cumplir 30 años y tienen 30 días para asociarse por su cuenta y no perder la antigüedad (cláusula 1.3.1).',
         },
         {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. En Swiss, el reglamento pide además cancelar la deuda al renunciar: la deuda no desaparece, pero la ley no permite usarla para frenar la baja. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+        {
           titulo: 'Antes de bajarte: la antigüedad vale',
           cuerpo: 'Si te das de baja y volvés a asociarte más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo (el propio reglamento condiciona conservarla a asociarse dentro de los 30 días). Si el motivo es el precio, mirá primero bajar de plan dentro de Swiss, y si querés cambiar de empresa, hacelo sin dejar un hueco de cobertura.',
           cta: { texto: 'Compará el precio oficial de otros planes y prepagas antes de decidir.', boton: 'Comparar prepagas', href: '/comparador' },
@@ -2253,6 +2270,11 @@ export const guiasPreguntas: GuiaData[] = [
           cta: { texto: 'Paso a paso para reclamar a una prepaga u obra social.', boton: 'Cómo reclamar', href: '/guias/como-reclamar-a-una-prepaga' },
         },
         {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+        {
           titulo: 'Antes de bajarte: la antigüedad vale',
           cuerpo: 'Si te das de baja y después querés volver, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, pedí primero cambiar a un plan más económico de Sancor Salud, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
           cta: { texto: 'Compará el precio oficial de los planes de Sancor Salud con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
@@ -2274,6 +2296,283 @@ export const guiasPreguntas: GuiaData[] = [
     fuentes: [
       { texto: 'Sancor Salud — Solicitud de baja (web oficial)', url: 'https://www.sancorsalud.com.ar/baja' },
       { texto: 'Sancor Salud — Contrato de adhesión', url: 'https://www.sancorsalud.com.ar/contrato-de-adhesion' },
+    ],
+  },
+  // 17-oct-2026: bajas por marca, leídas de las páginas oficiales de cada
+  // prepaga (sin enviar ningún formulario). Marco legal: Ley 26.682 art. 9,
+  // Decreto 1993/2011 art. 9, Res. SC 316/2018 y Disp. DNDCyAC 472/2019.
+  {
+    slug: 'como-dar-de-baja-osde',
+    titulo: 'Cómo dar de baja OSDE: pasos online, documentación y qué pasa si volvés',
+    metaDescripcion: 'La baja de OSDE la pide el titular desde Gestiones online. No hay bajas retroactivas, la baja alcanza a todo el grupo familiar y si volvés pasados 60 días entrás como socio nuevo.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Para dar de baja OSDE, el titular entra a la web de OSDE con su cuenta y usa Gestiones online > Mi afiliación > Solicitud de baja (en la home también hay un acceso "Baja de servicio", en Información adicional). La baja rige desde el día en que hacés el trámite o desde una fecha futura: OSDE aclara que no acepta bajas retroactivas. Lo que cambia es la documentación según seas socio directo, monotributista o por empresa.',
+      secciones: [
+        {
+          titulo: 'Paso a paso para socios directos y monotributistas',
+          cuerpo: '1) Ingresá a osde.com.ar con tu cuenta (te pide email y contraseña). 2) Andá a Gestiones online > Mi afiliación > Solicitud de baja, o al acceso "Baja de servicio" del pie de la home. 3) Seguí el trámite: empieza eligiendo qué integrante da de baja. 4) Guardá la constancia. Solo el titular de la afiliación puede pedirla, y la baja del titular implica la de todo el grupo familiar.',
+          enlaces: [
+            { texto: 'OSDE — Bajas (información al socio)', url: 'https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura/bajas' },
+            { texto: 'OSDE — ¿Cómo darme de baja de OSDE?', url: 'https://www.osde.com.ar/novedades/como-darme-de-baja-de-osde-' },
+          ],
+        },
+        {
+          titulo: 'Qué documentación piden',
+          cuerpo: 'Si sos monotributista y dejaste de serlo en AFIP, tenés que presentar el Formulario 183; si te pasaste a otra obra social, una copia del traspaso. Si sos socio por empresa, en la mayoría de los casos piden el certificado de cambio de obra social o, si terminó la relación laboral, el telegrama de renuncia o despido. En esos casos la vigencia es la fecha del traspaso o la que figure en la documentación del cese. En los planes Flux, la baja rige desde el último día del mes de la solicitud.',
+        },
+        {
+          titulo: 'Si te asociaste por una empresa',
+          cuerpo: 'Si pagás la diferencia entre tus aportes y el costo del plan, podés pedir la baja por la web, igual que un socio directo. Si tu empleador cubre el costo total, el trámite lo gestiona la empresa con su asesor comercial de OSDE o en cualquier oficina.',
+        },
+        {
+          titulo: 'Qué pasa si querés volver',
+          cuerpo: 'OSDE avisa que si volvés a afiliarte pasados más de 60 días desde la baja, tenés que cumplir los mismos requisitos que un socio nuevo. Y si al reingresar tenés más de 55 años, según OSDE pagarás cuota Senior al cumplir 65 (Ley 26.682). Por eso conviene pensar antes si no te sirve más bajar de plan o pasarte a otra prepaga sin dejar un hueco.',
+          cta: { texto: 'Compará el precio oficial de otros planes y prepagas antes de decidir.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud. Para consultas del trámite, OSDE publica atención al socio en el 0810-555-6733 (lunes a viernes de 9 a 20).',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'La baja de OSDE la pide el titular desde la web con su cuenta, rige desde el día del trámite o una fecha futura, alcanza a todo el grupo y, si volvés pasados 60 días, entrás como socio nuevo. Guardá la constancia y revisá la siguiente factura.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja OSDE por internet?', a: 'El titular entra a osde.com.ar con su cuenta y usa Gestiones online > Mi afiliación > Solicitud de baja, o el acceso "Baja de servicio" del pie de la home.' },
+      { q: '¿Desde cuándo rige la baja de OSDE?', a: 'Desde el día en que hacés el trámite o una fecha futura. OSDE aclara que no se aceptan bajas retroactivas. En planes por empresa, rige desde la fecha del traspaso o del cese laboral.' },
+      { q: '¿Quién puede pedir la baja?', a: 'Solo el titular de la afiliación. La baja del titular incluye a todo el grupo familiar.' },
+      { q: '¿Qué documentación piden?', a: 'Monotributistas: Formulario 183 si se dieron de baja en AFIP, o copia del traspaso si cambiaron de obra social. Socios por empresa: certificado de cambio de obra social o telegrama de renuncia o despido.' },
+      { q: '¿Qué pasa si vuelvo a OSDE después de la baja?', a: 'Si pasaron más de 60 días, OSDE te pide los mismos requisitos que a un socio nuevo. Si reingresás con más de 55 años, según OSDE pagarás cuota Senior al cumplir 65.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+    ],
+    keywords: ['como dar de baja osde', 'dar de baja osde', 'baja osde', 'osde baja de servicio', 'como darme de baja de osde', 'osde dar de baja', 'osde baja monotributo', 'osde baja por empresa', 'osde baja online', 'solicitud de baja osde'],
+    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    prepagasRelacionadas: ['osde'],
+    fuentes: [
+      { texto: 'OSDE — Bajas (información al socio)', url: 'https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura/bajas' },
+      { texto: 'OSDE — ¿Cómo darme de baja de OSDE?', url: 'https://www.osde.com.ar/novedades/como-darme-de-baja-de-osde-' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  {
+    slug: 'como-dar-de-baja-galeno',
+    titulo: 'Cómo dar de baja Galeno: solicitud online, requisitos y sucursales',
+    metaDescripcion: 'Galeno tiene "Solicitud de Baja" en su web: ingresás con tu usuario, tenés que ser el titular y socio privado, y la baja alcanza a todo el grupo familiar. También podés ir a una sucursal.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Galeno tiene un acceso "Solicitud de Baja" en la home de su web. Para usarlo hay que ingresar con tu usuario de Galeno, ser el titular del plan y ser socio privado (no corporativo). La baja alcanza a todo el grupo familiar y termina la cobertura médica. La otra vía oficial es ir a la sucursal más cercana.',
+      secciones: [
+        {
+          titulo: 'Paso a paso online',
+          cuerpo: '1) Entrá a galeno.com.ar y tocá "Solicitud de Baja" en la home. 2) Leé el aviso: te pide ingresar con tu usuario de la web de Galeno. 3) Tocá "Empezar la solicitud" y seguí los pasos. 4) Guardá la constancia con la fecha. Si no tenés usuario, creá primero tu cuenta de socio.',
+          enlaces: [{ texto: 'Galeno — sitio oficial (acceso "Solicitud de Baja")', url: 'https://www.galeno.com.ar/' }],
+        },
+        {
+          titulo: 'Requisitos que informa Galeno',
+          cuerpo: 'Ser el titular del plan. Ser socio privado (no corporativo): si tu plan viene por empresa, la baja la gestiona la empresa. Y tener en cuenta que la solicitud aplica a todos los integrantes del grupo familiar y contempla la finalización de la cobertura médica: no se puede dar de baja solo a uno desde este trámite.',
+        },
+        {
+          titulo: 'Otra forma: sucursal',
+          cuerpo: 'Galeno aclara que otra forma de solicitar la baja es concurrir a la sucursal más cercana. Llevá tu DNI y tu credencial, y pedí una constancia escrita con sello y fecha. El WhatsApp de atención al cliente (11 6163-0000) funciona con número de socio y DNI y sirve para consultar el estado.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico de Galeno, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de Galeno con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'Para dar de baja Galeno: titular y socio privado, con tu usuario desde "Solicitud de Baja" o en una sucursal. La baja termina la cobertura de todo el grupo familiar. Guardá la constancia y revisá la próxima factura.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja Galeno?', a: 'Desde el acceso "Solicitud de Baja" de la web de Galeno, ingresando con tu usuario, o yendo a la sucursal más cercana.' },
+      { q: '¿Quién puede pedir la baja de Galeno?', a: 'El titular del plan, siempre que sea socio privado (no corporativo).' },
+      { q: '¿La baja de Galeno incluye a mi familia?', a: 'Sí. Galeno aclara que la solicitud aplica a todos los integrantes del grupo familiar y contempla la finalización de la cobertura médica.' },
+      { q: '¿Necesito usuario para la baja online?', a: 'Sí, la web de Galeno pide ingresar con tu usuario de socio para iniciar la solicitud.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
+    ],
+    keywords: ['como dar de baja galeno', 'dar de baja galeno', 'baja galeno', 'galeno solicitud de baja', 'galeno dar de baja', 'como darse de baja de galeno', 'galeno baja de servicio', 'baja de galeno online', 'galeno baja sucursal', 'galeno boton de baja'],
+    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    prepagasRelacionadas: ['galeno'],
+    fuentes: [
+      { texto: 'Galeno — sitio oficial (Solicitud de Baja)', url: 'https://www.galeno.com.ar/' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  {
+    slug: 'como-dar-de-baja-medife',
+    titulo: 'Cómo dar de baja Medifé: formulario de baja, arrepentimiento y Mi Cuenta',
+    metaDescripcion: 'Medifé tiene un formulario de baja en su portal de asociados y un formulario de arrepentimiento para planes nuevos (hasta 10 días). Cuál usar, qué datos pide y qué guardar.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Medifé tiene dos caminos oficiales. Si ya sos asociado activo, la baja se pide desde el "Formulario de baja" del portal de asociados (Mi Cuenta), que pide iniciar sesión con tu documento y contraseña. Si recién contrataste y el plan todavía no está activo o su vigencia no supera los 10 días, existe un formulario de arrepentimiento.',
+      secciones: [
+        {
+          titulo: 'Asociado activo: Formulario de baja',
+          cuerpo: '1) Entrá a medife.com.ar y buscá "Formulario de baja" en el pie de la página (sección Asociados). 2) Iniciá sesión en el portal: tipo y número de documento y contraseña, o con tu email, Google o Apple. 3) Seguí el trámite y guardá la constancia. Si no tenés cuenta, el portal te invita a registrarte.',
+          enlaces: [{ texto: 'Medifé — Formulario de baja (portal de asociados)', url: 'https://medife.com.ar/portal/baja-servicio' }],
+        },
+        {
+          titulo: 'Plan nuevo (hasta 10 días): formulario de arrepentimiento',
+          cuerpo: 'Medifé aclara que ese formulario es de uso exclusivo para asociados que aún no están activos o cuyo plan no supera los 10 días de vigencia. Pide nombre, tipo y número de documento, email, celular, provincia, localidad y el motivo. Si tu cuenta ya está activa, la propia página indica que por seguridad la baja se solicita ingresando a Mi Cuenta.',
+          enlaces: [{ texto: 'Medifé — Solicitar la baja del plan contratado', url: 'https://www.medife.com.ar/formulario-de-arrepentimiento' }],
+        },
+        {
+          titulo: 'Teléfono y constancia',
+          cuerpo: 'El Centro de atención al cliente de Medifé es 0800-333-2700, todos los días las 24 horas, y el WhatsApp es 11 2242-0091 (de 8 a 22). Pedí siempre una constancia por escrito de la fecha de tu solicitud: es lo que necesitás si después te siguen facturando.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico de Medifé, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de Medifé con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'Medifé: asociado activo, baja desde Mi Cuenta con el Formulario de baja; plan nuevo de hasta 10 días, formulario de arrepentimiento. Guardá la constancia y controlá la próxima factura.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja Medifé?', a: 'Desde el "Formulario de baja" del portal de asociados de Medifé (Mi Cuenta), iniciando sesión con tu documento y contraseña.' },
+      { q: '¿Para qué sirve el formulario de arrepentimiento de Medifé?', a: 'Es para asociados que aún no están activos o cuyo plan no supera los 10 días de vigencia. Si tu cuenta ya está activa, se pide desde Mi Cuenta.' },
+      { q: '¿Qué datos pide el formulario de arrepentimiento?', a: 'Apellido y nombre, tipo y número de documento, email, celular, provincia, localidad y el motivo.' },
+      { q: '¿Hay teléfono para consultas de la baja?', a: 'La atención al cliente de Medifé es 0800-333-2700 (las 24 horas, todos los días).' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
+    ],
+    keywords: ['como dar de baja medife', 'dar de baja medife', 'baja medife', 'medife baja de servicio', 'medife formulario de baja', 'medife arrepentimiento', 'como darse de baja de medife', 'medife dar de baja', 'medife baja online', 'baja de medife telefono'],
+    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    prepagasRelacionadas: ['medife'],
+    fuentes: [
+      { texto: 'Medifé — Formulario de baja (portal de asociados)', url: 'https://medife.com.ar/portal/baja-servicio' },
+      { texto: 'Medifé — Solicitar la baja del plan contratado', url: 'https://www.medife.com.ar/formulario-de-arrepentimiento' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  {
+    slug: 'como-dar-de-baja-omint',
+    titulo: 'Cómo dar de baja Omint: el botón de baja de Autogestión y qué conviene tener a mano',
+    metaDescripcion: 'Omint tiene un "Botón de baja de servicios" en su web que te lleva a Autogestión (documento, usuario y contraseña). Paso a paso, canales de atención y qué guardar como constancia.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Omint publica en su web un "Botón de baja de servicios" que lleva al portal de Autogestión, donde ingresás con tu documento, usuario y contraseña. Es la vía online oficial. Si no tenés cuenta, el mismo portal te permite crearla. Para consultas del trámite, Omint tiene atención telefónica y WhatsApp.',
+      secciones: [
+        {
+          titulo: 'Paso a paso',
+          cuerpo: '1) Entrá a omint.com.ar y buscá "Botón de baja de servicios" en la sección Legales del pie de la página. 2) Ingresá a Autogestión con tu documento, usuario y contraseña (si olvidaste el acceso, el portal tiene el enlace para recuperarlo; si no tenés cuenta, "Creá tu cuenta ahora"). 3) Seguí el trámite de solicitud de baja. 4) Guardá el comprobante con la fecha.',
+          enlaces: [{ texto: 'Omint — Botón de baja de servicios (Autogestión)', url: 'https://autogestion.omint.com.ar/inicio/solicitar-baja' }],
+        },
+        {
+          titulo: 'Arrepentimiento: un botón aparte',
+          cuerpo: 'Omint tiene además un "Botón de arrepentimiento", separado del de baja, pensado para quien se acaba de asociar y quiere desistir. Si ya estás asociado desde hace tiempo, el camino es el botón de baja de servicios.',
+        },
+        {
+          titulo: 'Canales de atención',
+          cuerpo: 'Atención al socio: (011) 4808-2090 o 0810-999-3876, de lunes a viernes de 8 a 20. WhatsApp: 11 6434-8039, de lunes a viernes de 9 a 17. Son los canales que Omint publica en su sitio. Si pedís la baja por teléfono o WhatsApp, pedí número de gestión y confirmación escrita.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico de Omint, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de Omint con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'Para dar de baja Omint usá el "Botón de baja de servicios" desde Autogestión y guardá el comprobante. Si algo no funciona, atención al socio por teléfono o WhatsApp, siempre pidiendo confirmación escrita.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja Omint?', a: 'Desde el "Botón de baja de servicios" de la web de Omint, que lleva a Autogestión, donde ingresás con documento, usuario y contraseña.' },
+      { q: '¿Necesito cuenta en Autogestión para la baja?', a: 'Sí, el portal pide documento, usuario y contraseña. Si no tenés cuenta, permite crearla.' },
+      { q: '¿Cuál es la diferencia entre el botón de baja y el de arrepentimiento?', a: 'Son dos botones separados en la web de Omint. El de arrepentimiento es para quien recién se asoció y quiere desistir; el de baja de servicios es para dar de baja el servicio contratado.' },
+      { q: '¿A qué teléfono llamo por la baja de Omint?', a: 'Atención al socio: (011) 4808-2090 o 0810-999-3876, de lunes a viernes de 8 a 20.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu comprobante y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
+    ],
+    keywords: ['como dar de baja omint', 'dar de baja omint', 'baja omint', 'omint baja de servicio', 'omint boton de baja', 'omint dar de baja', 'como darse de baja de omint', 'omint baja online', 'omint autogestion baja', 'baja de omint telefono'],
+    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    prepagasRelacionadas: ['omint'],
+    fuentes: [
+      { texto: 'Omint — Botón de baja de servicios (Autogestión)', url: 'https://autogestion.omint.com.ar/inicio/solicitar-baja' },
+      { texto: 'Omint — Canales de atención', url: 'https://www.omint.com.ar/PlanDeSalud/CanalesAtencion' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  {
+    slug: 'como-dar-de-baja-medicus',
+    titulo: 'Cómo dar de baja Medicus: mail, 0800, agencias y el botón de arrepentimiento',
+    metaDescripcion: 'Medicus indica en sus preguntas frecuentes cómo dar de baja: mail con asunto "Intención de baja", 0800-333-7624 o agencias administrativas. Pasos, excepciones y el botón de arrepentimiento (10 días).',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Según las preguntas frecuentes oficiales de Medicus, la baja se solicita escribiendo a contactenos@medicus.com.ar (con el asunto "Intención de baja"), llamando al 0800-333-7624 de lunes a viernes de 8 a 20, o yendo a una agencia administrativa. Aparte, para quien recién contrató, la web tiene un botón de arrepentimiento con plazo de 10 días corridos.',
+      secciones: [
+        {
+          titulo: 'Los canales oficiales de baja',
+          cuerpo: '1) Mail a contactenos@medicus.com.ar con asunto "Intención de baja". Incluí nombre completo, DNI y número de asociado. 2) Teléfono 0800-333-7624, de lunes a viernes de 8 a 20. 3) En una agencia administrativa de Medicus. Ojo: Medicus aclara que en Alvear, Canning, Córdoba, La Plata, Mar del Plata y Morón solo hay representaciones comerciales, que no tramitan la baja.',
+          enlaces: [{ texto: 'Medicus — Preguntas frecuentes: Baja del servicio', url: 'https://medicus.com.ar/categoria-preguntas/baja-del-servicio' }],
+        },
+        {
+          titulo: 'Botón de arrepentimiento (10 días)',
+          cuerpo: 'Para quien aún no está activo y está dentro de los diez días corridos posteriores a la contratación. Debe pedirlo el titular del plan elegido, y cancela el ingreso de todos los integrantes listados. Si ya usaste servicios, la cobertura termina en esa fecha y se facturan los días utilizados. Pasado el plazo, la propia página indica que la baja se gestiona desde Mi Medicus (app.medicus.com.ar).',
+          enlaces: [{ texto: 'Medicus — Botón de arrepentimiento', url: 'https://medicus.com.ar/arrepentimiento' }],
+        },
+        {
+          titulo: 'Qué guardar',
+          cuerpo: 'Si pedís la baja por mail, guardá el mensaje enviado con fecha y la respuesta de Medicus. Si llamás, anotá el número de gestión. Controlá que la siguiente factura no incluya cuotas posteriores a la fecha de tu pedido. El WhatsApp de atención al cliente (11 5094-1119) sirve para consultar el estado.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico de Medicus, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de Medicus con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Un mail o un llamado deja constancia, pero si querés una notificación indiscutible, usá carta documento. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'Para dar de baja Medicus: mail con asunto "Intención de baja", 0800-333-7624 o agencia administrativa, guardando siempre la constancia. Si recién contrataste, tenés 10 días corridos para el botón de arrepentimiento.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja Medicus?', a: 'Escribiendo a contactenos@medicus.com.ar con el asunto "Intención de baja", llamando al 0800-333-7624 (lunes a viernes de 8 a 20) o en una agencia administrativa, según las preguntas frecuentes de Medicus.' },
+      { q: '¿Medicus tiene botón de baja online?', a: 'En su web figura un botón de arrepentimiento para quien recién contrató (10 días corridos). Para el resto, las preguntas frecuentes indican mail, 0800 o agencias, y la página de arrepentimiento menciona Mi Medicus.' },
+      { q: '¿Qué agencias de Medicus no tramitan bajas?', a: 'Alvear, Canning, Córdoba, La Plata, Mar del Plata y Morón: según Medicus, allí hay solo representaciones comerciales.' },
+      { q: '¿Cuánto tiempo tengo para el botón de arrepentimiento de Medicus?', a: 'Diez días corridos desde la contratación, si todavía no estás activo. Pasado ese plazo, la baja se tramita por los canales habituales.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
+    ],
+    keywords: ['como dar de baja medicus', 'dar de baja medicus', 'baja medicus', 'medicus baja de servicio', 'medicus intencion de baja', 'medicus boton de arrepentimiento', 'como darse de baja de medicus', 'medicus dar de baja', 'medicus baja telefono', 'baja de medicus mail'],
+    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    prepagasRelacionadas: ['medicus'],
+    fuentes: [
+      { texto: 'Medicus — Preguntas frecuentes: Baja del servicio', url: 'https://medicus.com.ar/categoria-preguntas/baja-del-servicio' },
+      { texto: 'Medicus — Botón de arrepentimiento', url: 'https://medicus.com.ar/arrepentimiento' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
     ],
   },
 ]
