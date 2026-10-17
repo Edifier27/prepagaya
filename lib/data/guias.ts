@@ -1957,6 +1957,57 @@ export const guiasPreguntas: GuiaData[] = [
       { texto: 'Ministerio de Justicia — Ley simple: Programa Médico Obligatorio', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/programa-medico-obligatorio' },
     ],
   },
+  // 17-oct-2026: la Ley de Diabetes se repite en las listas de keywords de
+  // Medicus, Omint, Prevención, Unión Personal y Swiss ("formulario diabetes",
+  // "empadronamiento diabetes"). Norma: Ley 26.914 (art. 5), Res. 1156/2014
+  // (Anexo II, Normas de Provisión) y Res. 2820/2022 (sensores flash), según
+  // los textos citados en fallos y notas jurídicas.
+  {
+    slug: 'ley-de-diabetes-cobertura-prepaga',
+    titulo: 'Ley de Diabetes: qué cubre tu prepaga u obra social al 100 % y cómo pedirlo (2026)',
+    metaDescripcion: 'La Ley 26.914 obliga a prepagas y obras sociales a cubrir al 100 % los medicamentos y las tiras reactivas de la diabetes. Qué incluye, qué documentación piden y cómo reclamar si la niegan.',
+    tiempoLectura: 5,
+    categoria: 'Cobertura',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Si tenés diabetes, tu prepaga u obra social está obligada por ley a cubrirte al 100 % los medicamentos y las tiras reactivas para el autocontrol, en las cantidades que indique tu médico. No depende del plan que tengas ni de la marca. Lo que sí cambia es el trámite: casi todas piden una documentación específica y la renovación es periódica.',
+      secciones: [
+        {
+          titulo: 'Qué dice la ley',
+          cuerpo: 'La Ley Nacional de Diabetes (26.914) amplió la ley 23.753 de 1989. Su artículo 5 establece la cobertura del 100 % de los medicamentos y de los reactivos de diagnóstico para el autocontrol, según la prescripción médica. Aplica a las obras sociales y también a las empresas de medicina prepaga: la Justicia las equiparó en sus obligaciones. Qué se entrega y en qué cantidades lo definen las Normas de Provisión de Medicamentos e Insumos para Personas con Diabetes (Resolución 1156/2014 del Ministerio de Salud, Anexo II), parte del Programa Médico Obligatorio.',
+        },
+        {
+          titulo: 'Qué incluye',
+          cuerpo: 'Los medicamentos para tratar la diabetes (insulinas y antidiabéticos orales), las tiras reactivas y los insumos de autocontrol, según las Normas de Provisión vigentes. La Resolución 2820/2022 actualizó el listado e incorporó la cobertura al 100 % de los sensores de monitoreo continuo de glucosa tipo flash. Las cantidades tienen tope: lo que fija la norma para tu situación clínica, no lo que pida una persona sin indicación médica.',
+        },
+        {
+          titulo: 'Qué te piden para empezar',
+          cuerpo: 'Cada prepaga tiene su formulario, pero el pedido casi siempre incluye: el certificado que acredita que tenés diabetes (una declaración jurada firmada por tu médico y por vos, que se renueva cada seis meses), la receta con los medicamentos e insumos y sus cantidades, los análisis de laboratorio (hemoglobina glicosilada, glucemia, perfil lipídico, función renal) y un resumen de tu historia clínica. Si pedís un sensor de glucosa, suelen sumar un informe de tus mediciones de los últimos meses. Pedí el formulario en tu prepaga: muchas lo publican en su web.',
+          cta: { texto: 'Si estás eligiendo prepaga, mirá cómo manejan la diabetes las que más se consultan.', boton: 'Ver prepagas para diabéticos', href: '/condiciones/diabetes' },
+        },
+        {
+          titulo: 'Qué hacer si te lo niegan o te lo demoran',
+          cuerpo: 'Pedí la negativa por escrito, con el motivo. La ley es clara en el 100 % de medicamentos y reactivos con prescripción, así que una negativa genérica no alcanza. Reclamá por los canales de la empresa, después ante la Superintendencia de Servicios de Salud y, si hace falta, con un amparo: la Justicia viene ordenando coberturas de sensores y medicación.',
+          cta: { texto: 'Paso a paso para reclamar a una prepaga u obra social.', boton: 'Cómo reclamar', href: '/guias/como-reclamar-a-una-prepaga' },
+        },
+      ],
+      conclusion: 'La cobertura de la diabetes al 100 % es un derecho que rige para toda prepaga y obra social. Lo único que tenés que hacer es reunir la documentación, renovar el certificado cada seis meses y exigir la negativa por escrito si te la niegan.',
+    },
+    faq: [
+      { q: '¿La prepaga está obligada a cubrir la diabetes al 100 %?', a: 'Sí. La Ley 26.914 establece la cobertura total de los medicamentos y de los reactivos de autocontrol, según la prescripción médica, y alcanza a obras sociales y prepagas.' },
+      { q: '¿Qué cubre la Ley de Diabetes?', a: 'Los medicamentos para la diabetes, las tiras reactivas y los insumos de autocontrol que fijan las Normas de Provisión, y desde la Resolución 2820/2022 también los sensores de monitoreo continuo de glucosa tipo flash.' },
+      { q: '¿Cada cuánto hay que renovar el certificado de diabetes?', a: 'Las prepagas lo piden en forma semestral, y también cuando cambia la dosis o la medicación. Es una declaración jurada firmada por el médico y por el paciente.' },
+      { q: '¿Qué documentación piden para dar la cobertura?', a: 'Certificado de diabetes firmado, receta con medicamentos e insumos y cantidades, laboratorio actualizado y resumen de historia clínica. Cada prepaga tiene su formulario.' },
+      { q: '¿La cobertura incluye los sensores de glucosa?', a: 'Los sensores tipo flash están incluidos desde la Resolución 2820/2022. Suelen pedir informes de automonitoreo y la indicación del especialista.' },
+      { q: '¿Qué hago si me niegan los medicamentos o las tiras?', a: 'Pedí la negativa por escrito, reclamá en la empresa y después ante la Superintendencia de Servicios de Salud. Si hace falta, la Justicia viene concediendo amparos por medicación y sensores.' },
+    ],
+    keywords: ['ley de diabetes', 'ley de diabetes cobertura prepaga', 'ley 26914', 'cobertura diabetes 100 prepaga', 'formulario diabetes prepaga', 'empadronamiento diabetes', 'tiras reactivas cobertura', 'insulina cobertura obra social', 'sensor de glucosa cobertura prepaga', 'diabetes prepaga'],
+    relacionadas: ['que-cubre-la-prepaga', 'como-reclamar-a-una-prepaga', 'como-pedir-autorizacion-prepaga', 'prepaga-cubre-ozempic'],
+    fuentes: [
+      { texto: 'Superintendencia de Servicios de Salud', url: 'https://www.argentina.gob.ar/sssalud' },
+      { texto: 'Ministerio de Justicia — Ley simple: Programa Médico Obligatorio', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/programa-medico-obligatorio' },
+    ],
+  },
 ]
 guias.push(...guiasPreguntas)
 
