@@ -45,6 +45,14 @@ const guiaLinks: { slug: string; label: string; href?: string }[] = [
   { slug: 'prepagas-economicas', label: 'Prepagas económicas', href: '/prepagas-economicas' },
   { slug: 'que-cubre-la-prepaga', label: 'Qué cubre la prepaga' },
   { slug: 'cuota-prepaga-por-edad', label: 'Cuota por edad' },
+  // 17-oct-2026, Search Console (17-sep a 14-oct): estas guías ya están en
+  // posición 5-8 con 1.700 a 4.500 impresiones cada una y no tenían enlace
+  // desde el pie, que se ve en todas las páginas.
+  { slug: 'que-obra-social-tengo-codem', label: '¿Qué obra social tengo?' },
+  { slug: 'opcion-de-cambio-obra-social', label: 'Cambiar de obra social' },
+  { slug: 'unificar-aportes-obra-social', label: 'Unificar aportes' },
+  { slug: 'hijos-21-a-25-anos-obra-social', label: 'Hijos: hasta qué edad cubre' },
+  { slug: 'osde-plan-flux-que-es', label: 'OSDE Plan Flux: qué es', href: '/blog/osde-plan-flux-que-es' },
 ]
 
 // ── SVG Icons ──────────────────────────────────────────────────────────────────
@@ -111,6 +119,12 @@ const osSindicales = [
   { slug: 'osba-bancarios', nombre: 'OSBA (Bancarios)' },
   { slug: 'osdop', nombre: 'OSDOP (Docentes)' },
   { slug: 'osuthgra', nombre: 'OSUTHGRA (Gastronómicos)' },
+  // Search Console (17-oct-2026): páginas con 1.300 a 3.400 impresiones en
+  // posición 7-10 que no tenían enlace desde el pie.
+  { slug: 'ospm', nombre: 'OSPM (Maestranza)' },
+  { slug: 'osim', nombre: 'OSIM (Dirección Metalúrgica)' },
+  { slug: 'osmedica', nombre: 'OSMEDICA (Médicos de CABA)' },
+  { slug: 'osfatlyf', nombre: 'OSFATLYF (Luz y Fuerza)' },
 ]
 
 const osProvinciales = [
