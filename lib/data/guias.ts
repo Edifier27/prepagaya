@@ -1424,7 +1424,7 @@ export const guias: GuiaData[] = [
       secciones: [
         {
           titulo: 'Los primeros 3 meses: seguís cubierto por ley',
-          cuerpo: 'Si trabajaste en relación de dependencia al menos 6 meses, conservás tu obra social (y la de tu grupo familiar) durante los 3 meses posteriores al fin del contrato, sin hacer ningún trámite y sin pagar nada. Aplica tanto para despido como para renuncia. Este período es tu ventana para decidir con calma qué viene después — no la desperdicies esperando al día 89.',
+          cuerpo: 'Si trabajaste en relación de dependencia de forma continuada más de 3 meses, conservás tu obra social (y la de tu grupo familiar) durante los 3 meses posteriores al fin del contrato, sin hacer ningún trámite y sin pagar aportes (artículo 10, inciso a, de la Ley 23.660). Aplica tanto para despido como para renuncia. Este período es tu ventana para decidir con calma qué viene después — no la desperdicies esperando al día 89.',
         },
         {
           titulo: 'Si te despidieron sin causa: el seguro de desempleo extiende la cobertura',
@@ -1448,7 +1448,7 @@ export const guias: GuiaData[] = [
     faq: [
       {
         q: '¿Cuánto tiempo conservo la obra social después de renunciar?',
-        a: 'Tres meses desde el fin del contrato, igual que en un despido, siempre que hayas estado al menos 6 meses en relación de dependencia. Cubre también a tu grupo familiar y no requiere trámite.',
+        a: 'Tres meses desde el fin del contrato, igual que en un despido, siempre que hayas trabajado en forma continuada más de 3 meses en relación de dependencia (Ley 23.660, art. 10). Cubre también a tu grupo familiar y no requiere trámite.',
       },
       {
         q: '¿El seguro de desempleo incluye obra social?',
@@ -2006,6 +2006,166 @@ export const guiasPreguntas: GuiaData[] = [
     fuentes: [
       { texto: 'Superintendencia de Servicios de Salud', url: 'https://www.argentina.gob.ar/sssalud' },
       { texto: 'Ministerio de Justicia — Ley simple: Programa Médico Obligatorio', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/programa-medico-obligatorio' },
+    ],
+  },
+  // 17-oct-2026: "receta digital / por WhatsApp" y "cuánto duran las recetas y
+  // órdenes" aparecen en las listas de keywords de casi todas las marcas.
+  // Fuentes: notas oficiales de argentina.gob.ar sobre el Decreto 98/2023 (Ley
+  // 27.553) y la Resolución 2214/2025 del Ministerio de Salud.
+  {
+    slug: 'recetas-electronicas-ordenes-medicas-prepaga',
+    titulo: 'Recetas electrónicas y órdenes médicas: qué valen hoy, cuánto duran y qué hacer (2026)',
+    metaDescripcion: 'La receta de medicamentos es electrónica desde 2025: una foto o un WhatsApp no valen. Cuánto dura una receta (30 y 90 días), cuándo sigue valiendo el papel y qué pasa con las órdenes de estudios.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Desde enero de 2025 la receta de medicamentos tiene que ser electrónica, y desde la Resolución 2214/2025 lo mismo rige para las órdenes de estudios y prácticas. Una foto de la receta o una captura enviada por WhatsApp ya no es una receta válida. Esto es lo que necesitás saber: qué vale, cuánto dura y qué hacer si te piden papel.',
+      secciones: [
+        {
+          titulo: 'Qué cambió',
+          cuerpo: 'La Ley 27.553 permite recetar y dispensar medicamentos con firma electrónica o digital, y el Decreto 98/2023 la reglamentó. Desde el 1 de enero de 2025 la receta electrónica es obligatoria para los medicamentos. La Resolución 2214/2025 del Ministerio de Salud la extendió a los medicamentos de prescripción restringida, los estudios, las prácticas, los procedimientos y los dispositivos médicos: todas las órdenes médicas deben emitirse de forma electrónica, desde plataformas registradas. Rige igual para quien tiene obra social, prepaga o cobertura estatal.',
+          enlaces: [{ texto: 'Argentina.gob.ar — Resolución 2214/2025', url: 'https://www.argentina.gob.ar/node/473332' }],
+        },
+        {
+          titulo: 'Cuánto dura una receta',
+          cuerpo: 'Según el Decreto 98/2023, la receta electrónica de un medicamento vale 30 días y las demás prescripciones, 60 días, salvo que otra norma diga otra cosa. Para los tratamientos crónicos se pueden extender recetas por períodos de hasta 90 días (Resolución 27/2022 del Ministerio de Salud). Cuenta desde la fecha de emisión: si pasó el plazo, pedí una nueva a tu médico.',
+          enlaces: [{ texto: 'Argentina.gob.ar — Decreto 98/2023', url: 'https://www.argentina.gob.ar/node/362409' }],
+        },
+        {
+          titulo: 'Qué no vale',
+          cuerpo: 'La foto de una receta en papel, una captura de pantalla o un mail no son recetas electrónicas ni digitales. Esas modalidades se habilitaron durante la pandemia y dejaron de valer a fines de 2022, con excepciones hasta el 28 de febrero de 2023. Si tu médico te manda la receta por WhatsApp, pedile que la emita desde una plataforma habilitada.',
+        },
+        {
+          titulo: 'Cuándo sigue valiendo el papel',
+          cuerpo: 'La Resolución 2214/2025 aclara que la receta en papel sigue vigente donde no sea posible implementar la electrónica, por ejemplo en localidades alejadas o con problemas de conectividad. Fuera de esos casos, lo que debería pasar es que el médico la emita en forma electrónica. Si una farmacia o una prepaga te rechaza una receta, pedí el motivo por escrito.',
+        },
+        {
+          titulo: 'Cómo funciona',
+          cuerpo: 'Cada paciente se identifica con su CUIL y cada receta tiene una Clave Única de Identificación de Receta (CUIR). Las recetas de medicamentos restringidos se conservan digitalmente al menos tres años. Para las órdenes de estudios, cuánto tiempo podés demorar en usarlas depende de cada prepaga: preguntalo antes de que se te venza.',
+          cta: { texto: 'Si necesitás una autorización o un reintegro, acá está el paso a paso.', boton: 'Cómo pedir autorización', href: '/guias/como-pedir-autorizacion-prepaga' },
+        },
+      ],
+      conclusion: 'La receta de medicamentos es electrónica desde 2025 y las órdenes de estudios, desde la Resolución 2214/2025. Una foto o un WhatsApp no alcanzan; el papel queda solo para los lugares donde no se puede. Mirá la fecha de emisión: una receta dura 30 días, y hasta 90 si es de un tratamiento crónico.',
+    },
+    faq: [
+      { q: '¿Sirve la foto de la receta por WhatsApp?', a: 'No. La foto de una receta en papel, una captura o un mail no son recetas electrónicas ni digitales. Pedile a tu médico que la emita desde una plataforma habilitada.' },
+      { q: '¿Cuánto dura una receta electrónica?', a: 'Treinta días para los medicamentos y 60 días para otras prescripciones, según el Decreto 98/2023. Los tratamientos crónicos pueden tener recetas de hasta 90 días.' },
+      { q: '¿Siguen valiendo las recetas en papel?', a: 'Solo donde no se pueda implementar la receta electrónica, por ejemplo en localidades alejadas o con mala conectividad, según la Resolución 2214/2025. En el resto, la receta tiene que ser electrónica.' },
+      { q: '¿Las órdenes de estudios también tienen que ser electrónicas?', a: 'Sí. La Resolución 2214/2025 extendió la obligación a estudios, prácticas, procedimientos y dispositivos médicos.' },
+      { q: '¿Rige también para obras sociales y prepagas?', a: 'Sí, rige sin importar si el paciente tiene cobertura estatal, sindical o privada.' },
+      { q: '¿Cuánto tiempo tengo para usar una orden de estudios?', a: 'Lo define cada prepaga u obra social. Consultalo en tu app o con atención al socio antes de que venza.' },
+    ],
+    keywords: ['recetas electronicas', 'receta digital', 'receta por whatsapp', 'cuanto dura una receta', 'cuanto duran las ordenes', 'cuanto duran las recetas', 'ley 27553', 'receta electronica obligatoria', 'ordenes medicas electronicas', 'recetas electronicas prepaga'],
+    relacionadas: ['como-pedir-autorizacion-prepaga', 'que-cubre-la-prepaga', 'ley-de-diabetes-cobertura-prepaga', 'como-reclamar-a-una-prepaga'],
+    fuentes: [
+      { texto: 'Argentina.gob.ar — Decreto 98/2023: Recetas electrónicas y digitales', url: 'https://www.argentina.gob.ar/node/362409' },
+      { texto: 'Argentina.gob.ar — Resolución 2214/2025: receta electrónica para todas las indicaciones', url: 'https://www.argentina.gob.ar/node/473332' },
+    ],
+  },
+  // 17-oct-2026: "formulario 310 enfermedades crónicas" aparece en las listas de
+  // Swiss, Unión Personal y Omint. Texto verificado en la Resolución 310/2004
+  // (B.O. 15/04/2004), art. 2: apartado 7 del Anexo I de la Res. 201/2002.
+  {
+    slug: 'medicacion-cronica-70-resolucion-310-2004',
+    titulo: 'Medicación crónica: la Resolución 310/2004, el 70 % de cobertura y el formulario de crónicos',
+    metaDescripcion: 'Los remedios para enfermedades crónicas tienen 70 % de cobertura (40 % los de uso habitual) según la Resolución 310/2004. Cómo se calcula, qué medicamentos entran y cómo pedir el formulario.',
+    tiempoLectura: 6,
+    categoria: 'Cobertura',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Si tomás medicación todos los meses (presión, colesterol, tiroides, epilepsia, glaucoma…), tu prepaga u obra social te tiene que cubrir una parte por ley. La norma que lo establece es la Resolución 310/2004 del Ministerio de Salud, que fijó el 70 % para los medicamentos de patologías crónicas prevalentes y el 40 % para los de uso habitual. Acá va cómo se calcula y qué trámite te piden.',
+      secciones: [
+        {
+          titulo: 'Qué dice la Resolución 310/2004',
+          cuerpo: 'El artículo 2 reescribió el apartado 7 del Anexo I de la Resolución 201/2002 (el PMO). Los medicamentos de uso ambulatorio que figuran en el Anexo III tienen un 40 % a cargo del agente del seguro de salud cuando son de uso habitual y un 70 % cuando son para patologías crónicas prevalentes, es decir, las que requieren el empleo de fármacos de modo permanente o recurrente. Los medicamentos suministrados durante la internación tienen cobertura del 100 %.',
+          enlaces: [{ texto: 'Resolución 310/2004 (texto oficial, PDF)', url: 'https://www.argentina.gob.ar/sites/default/files/resolucion_310_2004.pdf' }],
+        },
+        {
+          titulo: 'El porcentaje se calcula sobre un precio de referencia',
+          cuerpo: 'La cobertura no se aplica sobre lo que cuesta en la farmacia, sino sobre un precio de referencia de monto fijo que fija el Ministerio (Anexo IV), por forma farmacéutica, concentración y presentación. Por eso, si el remedio sale más caro que el precio de referencia, el descuento real que ves en el mostrador puede ser menor al 70 %. La resolución también prevé que los medicamentos de alternativa terapéutica (Anexo V) los resuelva la auditoría médica de cada prepaga.',
+        },
+        {
+          titulo: 'Qué medicamentos entran',
+          cuerpo: 'Los del Formulario Terapéutico de los Anexos III y IV. En el listado de 2004 figuraban con 70 % medicamentos como atorvastatina, captopril, clopidogrel, glimepirida, gabapentina y latanoprost, y con 40 % los de uso habitual como alprazolam, cetirizina o celecoxib. El Ministerio actualizó listados y precios después, así que la lista vigente la tiene tu prepaga: pedila antes de comprar. Algunos medicamentos tienen 100 %: insulina, anticonceptivos de la Ley 25.673, drogas para la tuberculosis, la medicación de soporte de la quimioterapia y los de los programas especiales.',
+        },
+        {
+          titulo: 'Cómo se pide: el formulario de crónicos',
+          cuerpo: 'Para el 70 %, la prepaga te pide acreditar que tenés la patología crónica: un formulario con el diagnóstico firmado por tu médico (muchas lo llaman "formulario de crónicos" o "formulario 310") y la receta con la medicación. Cada prepaga tiene su formulario y define cada cuánto hay que renovarlo: pedilo en tu app o en atención al socio. Si la medicación tiene una norma propia, como la insulina para la diabetes, se aplica esa.',
+          cta: { texto: 'Ver cómo cubre el costo mensual de medicación cada prepaga.', boton: 'Ver qué cubre la prepaga', href: '/guias/que-cubre-la-prepaga' },
+        },
+        {
+          titulo: 'Si te dan el 40 % en un remedio crónico',
+          cuerpo: 'Preguntá por qué: si el medicamento está en el listado de crónicos y tenés el formulario aprobado, te corresponde el 70 %. Pedí la negativa por escrito y reclamá; la Justicia viene aplicando el 70 % a las prepagas en casos de patologías crónicas.',
+        },
+      ],
+      conclusion: 'La Resolución 310/2004 garantiza el 70 % de los medicamentos de enfermedades crónicas prevalentes y el 40 % de los de uso habitual, calculado sobre un precio de referencia. Pedí el formulario de crónicos, verificá en el listado de tu prepaga y guardá siempre las negativas por escrito.',
+    },
+    faq: [
+      { q: '¿Qué es la Resolución 310/2004?', a: 'Una resolución del Ministerio de Salud (B.O. 15/04/2004) que modificó el PMO: fijó el 40 % de cobertura para los medicamentos de uso habitual y el 70 % para los de patologías crónicas prevalentes, sobre un precio de referencia.' },
+      { q: '¿Qué porcentaje cubre la prepaga en los medicamentos crónicos?', a: 'El 70 % del precio de referencia para los medicamentos de patologías crónicas prevalentes del Formulario Terapéutico; algunos, como la insulina, tienen 100 %.' },
+      { q: '¿Qué es el formulario 310?', a: 'Es el formulario de crónicos que muchas prepagas piden para acceder al 70 %: un diagnóstico firmado por el médico. Cada empresa tiene su modelo.' },
+      { q: '¿Por qué pago más del 30 % en la farmacia?', a: 'Porque el porcentaje se aplica sobre un precio de referencia de monto fijo, no sobre el precio de venta. Si el remedio cuesta más que la referencia, la diferencia la pagás vos.' },
+      { q: '¿Qué medicamentos cubren al 100 %?', a: 'Entre otros, la insulina, los anticonceptivos de la Ley 25.673, las drogas para la tuberculosis, la medicación de soporte de la quimioterapia y los de la internación.' },
+      { q: '¿Rige para las prepagas o solo para las obras sociales?', a: 'Rige para los agentes del seguro de salud y, por las normas del PMO, también para las prepagas; la Justicia las equipara en estas obligaciones.' },
+    ],
+    keywords: ['resolucion 310 2004', 'formulario 310', 'ley de cronicos', 'medicacion cronica prepaga', 'cobertura 70 medicamentos', 'medicamentos cronicos obra social', 'medicamentos al 70', 'situacion terapeutica cronicos', 'formulario enfermedades cronicas', 'cuanto cubre la prepaga en medicamentos'],
+    relacionadas: ['que-cubre-la-prepaga', 'ley-de-diabetes-cobertura-prepaga', 'como-reclamar-a-una-prepaga', 'recetas-electronicas-ordenes-medicas-prepaga'],
+    fuentes: [
+      { texto: 'Resolución 310/2004 del Ministerio de Salud (texto oficial)', url: 'https://www.argentina.gob.ar/sites/default/files/resolucion_310_2004.pdf' },
+      { texto: 'Ministerio de Justicia — Ley simple: Programa Médico Obligatorio', url: 'https://www.argentina.gob.ar/justicia/derechofacil/leysimple/programa-medico-obligatorio' },
+    ],
+  },
+  // 17-oct-2026: "formulario anticonceptivos" y "empadronamiento anticonceptivos"
+  // en las listas de OSDE, Sancor y Prevención. Norma verificada: Ley 25.673 y
+  // Resolución 310/2004 (art. 1 y art. 2, apartado 7.3). Métodos incorporados
+  // después, según Chequeado.
+  {
+    slug: 'anticonceptivos-cobertura-100-prepaga',
+    titulo: 'Anticonceptivos: la prepaga u obra social tiene que cubrirlos al 100 % (cómo pedirlos)',
+    metaDescripcion: 'Por la Ley 25.673 y el PMO, prepagas y obras sociales cubren anticonceptivos al 100 % y sin coseguro. Qué métodos incluye, cómo pedirlos y qué hacer si te los niegan.',
+    tiempoLectura: 4,
+    categoria: 'Cobertura',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'La cobertura de anticonceptivos es un derecho que rige para todas las prepagas y obras sociales, sin importar el plan: por la Ley 25.673 de Salud Sexual y Procreación Responsable y el Programa Médico Obligatorio, se cubren al 100 % y sin coseguro. Lo que cambia entre empresas es el trámite.',
+      secciones: [
+        {
+          titulo: 'Qué dice la norma',
+          cuerpo: 'La Resolución 310/2004 del Ministerio de Salud incorporó el Programa de Salud Sexual y Procreación Responsable (Ley 25.673) al PMO "sin coseguro a cargo de los beneficiarios" y estableció la cobertura al 100 % de los medicamentos de uso anticonceptivo comprendidos en esa norma, a cargo del agente del seguro de salud. Aplica a obras sociales y, por el PMO, también a las prepagas.',
+          enlaces: [{ texto: 'Resolución 310/2004 (texto oficial, PDF)', url: 'https://www.argentina.gob.ar/sites/default/files/resolucion_310_2004.pdf' }],
+        },
+        {
+          titulo: 'Qué métodos incluye',
+          cuerpo: 'La resolución menciona los anticonceptivos intrauterinos de cobre, los condones con o sin espermicidas, los diafragmas y los espermicidas, con cobertura del 100 %, además de los anticonceptivos incluidos en el Formulario Terapéutico. Después se fueron sumando otros métodos al PMO: el dispositivo intrauterino hormonal (para ciertas indicaciones) y el implante subdérmico, también al 100 %, y están garantizados la anticoncepción de emergencia y la anticoncepción quirúrgica (ligadura tubaria y vasectomía).',
+          enlaces: [{ texto: 'Chequeado — cómo pedir anticonceptivos a tu prepaga u obra social', url: 'https://chequeado.com/el-explicador/salud-sexual-como-pedir-preservativos-gratis-a-tu-prepaga-u-obra-social/' }],
+        },
+        {
+          titulo: 'Cómo se piden',
+          cuerpo: 'En general se retiran en la farmacia con la receta médica, o se reintegran, según cómo trabaje tu empresa. Algunas prepagas piden hacer un registro previo ("empadronamiento") o completar un formulario una vez: pedilo en la app o en atención al socio. Para la píldora y los métodos de uso periódico, preguntá si te dan la cantidad de varios meses por vez. Si te cobran un copago o un porcentaje, no corresponde: es una prestación sin coseguro.',
+          cta: { texto: 'Si querés comparar qué incluye cada plan además de lo obligatorio, mirá las prepagas.', boton: 'Ver prepagas', href: '/prepagas' },
+        },
+        {
+          titulo: 'Si te lo niegan',
+          cuerpo: 'Pedí la negativa por escrito, con el motivo. La cobertura al 100 % no depende del plan. Reclamá en la empresa y, si no responden, en la Superintendencia de Servicios de Salud.',
+          cta: { texto: 'Paso a paso para reclamar a una prepaga u obra social.', boton: 'Cómo reclamar', href: '/guias/como-reclamar-a-una-prepaga' },
+        },
+      ],
+      conclusion: 'Los anticonceptivos tienen cobertura del 100 % y sin coseguro en cualquier prepaga u obra social. Presentá la receta, completá el registro si te lo piden y reclamá por escrito si te cobran o te los niegan.',
+    },
+    faq: [
+      { q: '¿La prepaga cubre los anticonceptivos?', a: 'Sí. La Ley 25.673 y el PMO obligan a prepagas y obras sociales a cubrirlos al 100 % y sin coseguro.' },
+      { q: '¿Qué métodos están cubiertos al 100 %?', a: 'Según la Resolución 310/2004, los DIU de cobre, los condones, los diafragmas, los espermicidas y los anticonceptivos del formulario terapéutico; después se sumaron el DIU hormonal en ciertos casos y el implante subdérmico.' },
+      { q: '¿Tengo que empadronarme para recibirlos?', a: 'Algunas prepagas piden un registro o formulario previo. No es un requisito de la ley, pero puede ser el trámite de tu empresa: consultalo en atención al socio.' },
+      { q: '¿Me pueden cobrar copago por los anticonceptivos?', a: 'No. Es una prestación sin coseguro a cargo del beneficiario.' },
+      { q: '¿La vasectomía y la ligadura están cubiertas?', a: 'Sí: la anticoncepción quirúrgica (ligadura tubaria y vasectomía) está garantizada por el PMO.' },
+      { q: '¿Qué hago si me los niegan?', a: 'Pedí la negativa por escrito, reclamá en la empresa y, si no responden, ante la Superintendencia de Servicios de Salud.' },
+    ],
+    keywords: ['anticonceptivos prepaga', 'anticonceptivos cobertura 100', 'ley 25673', 'anticonceptivos obra social', 'formulario anticonceptivos', 'empadronamiento anticonceptivos', 'dispositivo intrauterino cobertura', 'preservativos gratis prepaga', 'implante subdermico cobertura', 'vasectomia cobertura prepaga'],
+    relacionadas: ['que-cubre-la-prepaga', 'como-reclamar-a-una-prepaga', 'medicacion-cronica-70-resolucion-310-2004', 'plan-materno-infantil'],
+    fuentes: [
+      { texto: 'Resolución 310/2004 del Ministerio de Salud (texto oficial)', url: 'https://www.argentina.gob.ar/sites/default/files/resolucion_310_2004.pdf' },
+      { texto: 'Chequeado — Salud sexual: cómo pedir preservativos gratis a tu prepaga u obra social', url: 'https://chequeado.com/el-explicador/salud-sexual-como-pedir-preservativos-gratis-a-tu-prepaga-u-obra-social/' },
     ],
   },
 ]
