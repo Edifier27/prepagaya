@@ -79,6 +79,12 @@ const ES_OBRA_SOCIAL_O_PREPAGA: Record<string, string> = {
 // research de Darío): confusión real y con volumen propio, van en las dos
 // direcciones. Solo tiene sentido para estas dos marcas puntuales, por eso
 // es un mapa aparte y no una regla genérica como ES_OBRA_SOCIAL_O_PREPAGA.
+// Baja con el procedimiento propio de cada marca (guías /guias/como-dar-de-baja-*).
+const BAJA_ESPECIFICA: Record<string, string> = {
+  'swiss-medical': 'La baja la pide el titular, en forma fehaciente, devolviendo las credenciales de todo el grupo y cancelando la deuda pendiente (Reglamento General de Contratación de Swiss Medical). Si la pedís hasta el día 5 del mes, rige desde el último día del mes anterior; después del día 5, desde el último día del mes en curso. Si alguien de la familia quiere seguir, tiene 30 días para formar un nuevo grupo y conservar la antigüedad. Paso a paso en la guía "Cómo dar de baja Swiss Medical".',
+  'sancor-salud': 'Sancor Salud tiene un formulario de baja en su web oficial: pide el tipo y número de documento del titular y su número de asociado, y desde ahí se inicia la solicitud. Guardá el comprobante y controlá la factura del mes siguiente. Paso a paso en la guía "Cómo dar de baja Sancor Salud".',
+}
+
 const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
   // 17-oct-2026, keyword research de Darío ("apto físico swiss medical", "apto
   // físico en el día") y OK de Darío para publicarlo (antes, 2-oct, no se
@@ -269,7 +275,7 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
     }] : []),
     {
       q: `¿Cómo dar de baja ${prep.nombre}?`,
-      a: `Con el botón de baja que ${prep.nombre} tiene que ofrecer en su web, tan accesible como el alta: no hay permanencia mínima ni multa. Pedila antes del cierre de facturación (entre el 20 y el 25) para que no se genere la cuota siguiente y guardá la constancia. Antes de darte de baja, pensá en la antigüedad: bajar de plan o pasarte a otra prepaga sin hueco de cobertura la conserva.`,
+      a: BAJA_ESPECIFICA[prep.slug] ?? `Con el botón de baja que ${prep.nombre} tiene que ofrecer en su web, tan accesible como el alta: no hay permanencia mínima ni multa. Pedila antes del cierre de facturación (entre el 20 y el 25) para que no se genere la cuota siguiente y guardá la constancia. Antes de darte de baja, pensá en la antigüedad: bajar de plan o pasarte a otra prepaga sin hueco de cobertura la conserva.`,
     },
   ]
 }

@@ -2168,6 +2168,114 @@ export const guiasPreguntas: GuiaData[] = [
       { texto: 'Chequeado — Salud sexual: cómo pedir preservativos gratis a tu prepaga u obra social', url: 'https://chequeado.com/el-explicador/salud-sexual-como-pedir-preservativos-gratis-a-tu-prepaga-u-obra-social/' },
     ],
   },
+  // 17-oct-2026, Darío: "bajas" es un punto estratégico (dar de baja Swiss /
+  // Sancor aparece en todas las listas). Fuente: Reglamento General de
+  // Contratación de Swiss Medical, público en su web (cláusulas 1.3, 6 y 7).
+  {
+    slug: 'como-dar-de-baja-swiss-medical',
+    titulo: 'Cómo dar de baja Swiss Medical: pasos, fecha límite del día 5 y qué pasa con tu familia',
+    metaDescripcion: 'La baja de Swiss Medical la hace el titular, de forma fehaciente. Hasta el día 5 del mes es retroactiva al mes anterior. Pasos, qué pasa con el grupo familiar y cómo mantener tu antigüedad.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Para dar de baja Swiss Medical, el que tiene que pedirla es el titular del plan, en forma fehaciente, devolviendo las credenciales y poniéndose al día con la deuda. La fecha importa: si la pedís hasta el día 5 del mes, rige desde el último día del mes anterior; si la pedís después, desde el último día del mes en curso. Todo esto sale del Reglamento General de Contratación que Swiss publica en su web.',
+      secciones: [
+        {
+          titulo: 'Quién puede pedirla y cómo',
+          cuerpo: 'El reglamento dice que la renuncia debe ser formulada por el titular en forma fehaciente, es decir, es decir, de una manera que deje constancia de la fecha y de quién la pidió. El reglamento no detalla el canal: consultá en tu app o en el 0810 de Swiss cuál te habilitan, o usá carta documento si querés una prueba indiscutible. Guardá el comprobante, el número de trámite o la copia de la carta documento: es la prueba de la fecha en que la pediste.',
+          enlaces: [{ texto: 'Reglamento General de Contratación de Swiss Medical (PDF oficial)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' }],
+        },
+        {
+          titulo: 'El día 5: desde cuándo rige la baja',
+          cuerpo: 'Según el reglamento (cláusula 6.1.2), la renuncia presentada hasta el 5.º día del mes es retroactiva al último día del mes anterior, y la presentada después del día 5 se computa desde el último día del mes en curso. Si querés evitar pagar el mes entero, pedila antes del día 5.',
+        },
+        {
+          titulo: 'Qué tenés que hacer antes',
+          cuerpo: 'Restituir tu credencial y las de todo el grupo familiar, y cancelar la deuda pendiente: cuotas y excedentes de topes, si los hubiera. La baja no borra las deudas: si existían, siguen siendo exigibles aunque te hayas dado de baja (cláusula 6.1.3).',
+        },
+        {
+          titulo: 'Qué pasa con tu grupo familiar',
+          cuerpo: 'La renuncia o la muerte del titular termina la asociación de todo el grupo familiar (cláusula 6.1.1). Si algún integrante quiere seguir en Swiss, para conservar la antigüedad tiene que ir a las oficinas dentro de los 30 días de la baja y formar un nuevo grupo, pagando las cuotas desde el momento de la renuncia o la muerte (cláusula 6.1.4). Lo mismo rige para un integrante al que el titular da de baja (cláusula 7.1.2). Los hijos solteros se dan de baja solos al cumplir 30 años y tienen 30 días para asociarse por su cuenta y no perder la antigüedad (cláusula 1.3.1).',
+        },
+        {
+          titulo: 'Antes de bajarte: la antigüedad vale',
+          cuerpo: 'Si te das de baja y volvés a asociarte más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo (el propio reglamento condiciona conservarla a asociarse dentro de los 30 días). Si el motivo es el precio, mirá primero bajar de plan dentro de Swiss, y si querés cambiar de empresa, hacelo sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de otros planes y prepagas antes de decidir.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Para dar de baja Swiss Medical: la pide el titular, en forma fehaciente, hasta el día 5 si querés que rija desde el mes anterior, devolviendo credenciales y cancelando la deuda. Si alguien de la familia quiere seguir, tiene 30 días para conservar la antigüedad.',
+    },
+    faq: [
+      { q: '¿Quién puede dar de baja Swiss Medical?', a: 'El titular del plan, en forma fehaciente. El reglamento establece que la renuncia debe ser formulada por el titular.' },
+      { q: '¿Hasta qué día tengo que pedir la baja para no pagar el mes?', a: 'Hasta el día 5: la baja pedida hasta el 5.º día del mes es retroactiva al último día del mes anterior. Después del día 5 rige desde el último día del mes en curso.' },
+      { q: '¿Qué pasa con mi familia si me doy de baja?', a: 'La baja del titular termina la asociación de todo el grupo familiar. Quien quiera seguir y mantener la antigüedad tiene 30 días para formar un nuevo grupo en Swiss.' },
+      { q: '¿Puedo darme de baja si debo cuotas?', a: 'Tenés que cancelar la deuda pendiente (cuotas y excedentes de topes) al renunciar, según el reglamento. La baja no extingue la deuda.' },
+      { q: '¿Tengo que devolver la credencial?', a: 'Sí, el reglamento pide restituir las credenciales del titular y de todo el grupo familiar al renunciar.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con el comprobante de la baja y, si no lo corrigen, ante la Superintendencia de Servicios de Salud.' },
+    ],
+    keywords: ['como dar de baja swiss medical', 'dar de baja swiss medical', 'baja swiss medical', 'swiss medical baja de servicio', 'swiss medical bajas', 'swiss medical como dar de baja', 'renuncia swiss medical', 'baja swiss medical por fallecimiento', 'swiss medical baja grupo familiar', 'swiss medical hijos 30 años'],
+    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    prepagasRelacionadas: ['swiss-medical'],
+    fuentes: [
+      { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
+    ],
+  },
+  // Sancor Salud publica un formulario de baja online (sancorsalud.com.ar/baja)
+  // que pide tipo y número de documento del titular y número de asociado.
+  {
+    slug: 'como-dar-de-baja-sancor-salud',
+    titulo: 'Cómo dar de baja Sancor Salud: el botón de baja online, qué datos pide y qué guardar',
+    metaDescripcion: 'Sancor Salud tiene un formulario de baja en su web: pide documento del titular y número de asociado. Paso a paso, qué guardar como constancia y cómo reclamar si te siguen cobrando.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Sancor Salud tiene un botón de baja en su web oficial (sancorsalud.com.ar/baja): se completa con el documento del titular y el número de asociado y se inicia la solicitud online. Es el camino más simple y deja constancia. Acá van los pasos, qué datos tener a mano y qué cuidar para que no te sigan cobrando.',
+      secciones: [
+        {
+          titulo: 'Paso a paso',
+          cuerpo: '1) Entrá a la página oficial de baja de Sancor Salud ("Botón de baja de servicio", en el pie de su web). 2) Elegí el tipo de documento y escribí el número del titular. 3) Ingresá el número de asociado del titular, que figura en la credencial y en la factura. 4) Tocá "Iniciar baja" y seguí las instrucciones que te muestre. La solicitud de baja es del titular del plan.',
+          enlaces: [{ texto: 'Sancor Salud — Solicitud de baja (página oficial)', url: 'https://www.sancorsalud.com.ar/baja' }],
+        },
+        {
+          titulo: 'Qué guardar',
+          cuerpo: 'Una captura de pantalla o el comprobante de la solicitud, con la fecha y el número de trámite si te lo dan, y cualquier confirmación que recibas. Es lo que te va a servir si la baja no se refleja en la facturación. Antes de la baja, revisá que no haya cuotas pendientes y cómo estás pagando: si usás débito automático, controlá que se corte al mes siguiente.',
+        },
+        {
+          titulo: 'Qué dicen las condiciones de contratación',
+          cuerpo: 'Sancor Salud publica en su web la sección "Contrato de adhesión" con las condiciones de contratación. Leelas antes de pedir la baja, sobre todo si tenés cuotas por pagar o un grupo familiar a cargo, y confirmá con Sancor desde qué fecha rige la baja para no pagar de más.',
+          enlaces: [{ texto: 'Sancor Salud — Contrato de adhesión y reglamento', url: 'https://www.sancorsalud.com.ar/contrato-de-adhesion' }],
+        },
+        {
+          titulo: 'Si te siguen cobrando',
+          cuerpo: 'Reclamá por escrito, adjuntando el comprobante de la baja, y pedí la devolución de lo cobrado de más. Si no lo resuelven, hacé el reclamo ante la Superintendencia de Servicios de Salud: es gratuito y no necesita abogado.',
+          cta: { texto: 'Paso a paso para reclamar a una prepaga u obra social.', boton: 'Cómo reclamar', href: '/guias/como-reclamar-a-una-prepaga' },
+        },
+        {
+          titulo: 'Antes de bajarte: la antigüedad vale',
+          cuerpo: 'Si te das de baja y después querés volver, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, pedí primero cambiar a un plan más económico de Sancor Salud, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de Sancor Salud con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Para dar de baja Sancor Salud usá el botón de baja de su web, con el documento y el número de asociado del titular, y guardá el comprobante. Controlá la factura del mes siguiente y reclamá por escrito si te cobran de más.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja Sancor Salud?', a: 'Desde el formulario de baja de su web oficial: se completan tipo y número de documento del titular y el número de asociado, y se inicia la solicitud.' },
+      { q: '¿Qué datos necesito para la baja de Sancor Salud?', a: 'El tipo y número de documento del titular y su número de asociado, que figura en la credencial y en la factura.' },
+      { q: '¿Quién puede pedir la baja?', a: 'El titular del plan: el formulario pide sus datos y su número de asociado.' },
+      { q: '¿Dónde están las condiciones de contratación?', a: 'En la sección "Contrato de adhesión" de la web de Sancor Salud.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con el comprobante y, si no lo resuelven, ante la Superintendencia de Servicios de Salud.' },
+      { q: '¿Pierdo la antigüedad si me doy de baja?', a: 'Si volvés a asociarte más tarde, empezás de cero. Si querés cambiar de plan o de prepaga, hacelo sin dejar un hueco de cobertura.' },
+    ],
+    keywords: ['como dar de baja sancor salud', 'dar de baja sancor salud', 'baja sancor salud', 'sancor salud baja', 'sancor salud dar de baja', 'solicitud de baja sancor salud', 'sancor salud boton de baja', 'baja de servicio sancor salud', 'sancor salud baja de obra social', 'baja sancor salud telefono'],
+    relacionadas: ['baja-de-prepaga-proceso', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    prepagasRelacionadas: ['sancor-salud'],
+    fuentes: [
+      { texto: 'Sancor Salud — Solicitud de baja (web oficial)', url: 'https://www.sancorsalud.com.ar/baja' },
+      { texto: 'Sancor Salud — Contrato de adhesión', url: 'https://www.sancorsalud.com.ar/contrato-de-adhesion' },
+    ],
+  },
 ]
 guias.push(...guiasPreguntas)
 
