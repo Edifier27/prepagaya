@@ -137,7 +137,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['cambiar de obra social', 'como cambiar de obra social', 'opcion de cambio obra social', 'cambio de obra social online', 'cuanto tarda el cambio de obra social', 'cada cuanto se puede cambiar de obra social', 'opcion de cambio sssalud', 'cambiar obra social clave fiscal'],
-    relacionadas: ['derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'unificar-aportes-obra-social', 'obra-social-vs-prepaga'],
+    relacionadas: ['derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'unificar-aportes-obra-social', 'obra-social-vs-prepaga', 'baja-obra-social-monotributo'],
     fuentes: [
       { texto: 'Argentina.gob.ar — Realizar opción de cambio: libre elección de agentes del seguro', url: 'https://www.argentina.gob.ar/servicio/realizar-opcion-de-cambio-libre-eleccion-de-agentes-del-seguro' },
       { texto: 'Superintendencia de Servicios de Salud — Usuarios', url: 'https://www.argentina.gob.ar/sssalud/usuarios' },
@@ -209,7 +209,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['unificacion de aportes', 'unificar aportes obra social', 'unificar aportes con mi pareja', 'unificacion de aportes conyuge', 'unificacion de aportes concubino', 'unificacion de aportes sssalud', 'unificar aportes prepaga', 'desunificacion de aportes'],
-    relacionadas: ['opcion-de-cambio-obra-social', 'divorcio-obra-social', 'derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem'],
+    relacionadas: ['opcion-de-cambio-obra-social', 'divorcio-obra-social', 'derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'baja-obra-social-monotributo'],
     fuentes: [
       { texto: 'Argentina.gob.ar — Solicitar unificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes' },
       { texto: 'Argentina.gob.ar — Solicitar unificación de aportes de jubilados', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes-de-jubilados' },
@@ -1121,7 +1121,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['baja de prepaga', 'boton de baja prepaga', 'como darse de baja prepaga', 'me siguen cobrando prepaga baja'],
-    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga', 'como-dar-de-baja-swiss-medical', 'como-dar-de-baja-osde', 'como-dar-de-baja-sancor-salud', 'como-dar-de-baja-galeno', 'como-dar-de-baja-medife', 'como-dar-de-baja-omint', 'como-dar-de-baja-medicus', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga', 'baja-obra-social-monotributo', 'como-dar-de-baja-swiss-medical', 'como-dar-de-baja-osde', 'como-dar-de-baja-sancor-salud', 'como-dar-de-baja-galeno', 'como-dar-de-baja-medife', 'como-dar-de-baja-omint', 'como-dar-de-baja-medicus', 'como-dar-de-baja-prevencion-salud', 'como-dar-de-baja-avalian', 'como-dar-de-baja-hominis', 'como-dar-de-baja-hospital-italiano', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga'],
   },
   {
     slug: 'cuota-prepaga-aumento-inflacion',
@@ -1478,7 +1478,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['me quede sin trabajo obra social', 'cuanto dura la obra social despues del despido', 'obra social despues de renunciar', 'cobertura medica sin trabajo', 'prepaga desempleado'],
-    relacionadas: ['que-obra-social-tengo-codem', 'obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'derivar-obra-social-a-prepaga', 'prepaga-corporativa-vs-particular'],
+    relacionadas: ['que-obra-social-tengo-codem', 'obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'derivar-obra-social-a-prepaga', 'prepaga-corporativa-vs-particular', 'baja-obra-social-monotributo'],
     prepagasRelacionadas: ['sancor-salud', 'medife', 'prevencion-salud'],
   },
   {
@@ -3004,6 +3004,286 @@ export const guiasPreguntas: GuiaData[] = [
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
       { texto: 'OSDE — Bajas (información al socio)', url: 'https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura/bajas' },
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
+    ],
+  },
+  // 17-oct-2026: bajas de Prevención Salud, Hominis, Hospital Italiano y Avalian,
+  // leídas de sus webs oficiales (sin enviar formularios). Accord Salud,
+  // CEMIC y Premedic quedan pendientes: sus páginas de baja no se pudieron
+  // leer (imagen, sin datos publicados o sin acceso).
+  {
+    slug: 'como-dar-de-baja-prevencion-salud',
+    titulo: 'Cómo dar de baja Prevención Salud: solicitud de baja online y arrepentimiento',
+    metaDescripcion: 'Prevención Salud tiene "Solicitud de baja" en su Autogestión de afiliados y un formulario de arrepentimiento para altas de hasta 10 días. Pasos, datos que pide y qué guardar.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Prevención Salud ofrece dos caminos oficiales. Para una baja común, el pie de su web tiene "Solicitud de baja", que lleva a la Autogestión de afiliados (se ingresa con tu correo y contraseña, o con Google, Apple o Microsoft). Para quien se acaba de asociar, hay un "Formulario de arrepentimiento" que sirve si el alta fue en los últimos 10 días y lo pide el titular.',
+      secciones: [
+        {
+          titulo: 'Baja común: Autogestión de afiliados',
+          cuerpo: '1) Entrá a prevencionsalud.com.ar y buscá "Solicitud de baja" en el pie de la página. 2) Iniciá sesión en Autogestión Afiliados con tu correo electrónico (o con Google, Apple o Microsoft). Si no tenés cuenta, el portal te permite registrarte. 3) Seguí el trámite y guardá la constancia con la fecha.',
+          enlaces: [{ texto: 'Prevención Salud — Autogestión de afiliados (solicitud de baja)', url: 'https://autogestionafiliados.prevencionsalud.com.ar/unsubscribe' }],
+        },
+        {
+          titulo: 'Arrepentimiento: alta de hasta 10 días',
+          cuerpo: 'El "Formulario de arrepentimiento del servicio de medicina prepaga" aclara que, para cancelar una solicitud, hay que ser titular del plan y haber solicitado el alta dentro de los últimos 10 días. Cancelar la solicitud interrumpe el ingreso como afiliados de todos los integrantes del grupo familiar declarados y la cobertura médico-asistencial. El formulario pide apellido, nombre, tipo y número de documento, fecha de nacimiento, teléfono, correo, el plan contratado y si usaste la cobertura.',
+        },
+        {
+          titulo: 'Consultas',
+          cuerpo: 'Prevención Salud publica el 0810-888-0010 (lunes a viernes de 8 a 20) para consultas generales. Si pedís la baja por teléfono, pedí número de gestión y una confirmación escrita.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico de Prevención Salud, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de Prevención Salud con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'Prevención Salud: baja desde Autogestión de afiliados, o formulario de arrepentimiento si el alta fue en los últimos 10 días. Guardá la constancia y revisá la próxima factura.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja Prevención Salud?', a: 'Desde "Solicitud de baja" en el pie de la web de Prevención Salud, que lleva a la Autogestión de afiliados, donde iniciás sesión con tu correo electrónico.' },
+      { q: '¿Qué es el formulario de arrepentimiento de Prevención Salud?', a: 'Sirve para cancelar una solicitud de alta hecha en los últimos 10 días. Tiene que pedirlo el titular y cancela el ingreso de todo el grupo familiar declarado.' },
+      { q: '¿Necesito cuenta para pedir la baja?', a: 'Sí, la Autogestión de afiliados pide iniciar sesión (correo electrónico, o Google, Apple o Microsoft). Si no tenés cuenta, permite registrarte.' },
+      { q: '¿A qué teléfono consulto por la baja?', a: 'Prevención Salud publica el 0810-888-0010 para consultas generales, de lunes a viernes de 8 a 20.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
+    ],
+    keywords: ['como dar de baja prevencion salud', 'dar de baja prevencion salud', 'baja prevencion salud', 'prevencion salud solicitud de baja', 'prevencion salud arrepentimiento', 'como darme de baja de prevencion salud', 'prevencion salud baja online', 'prevencion salud dar de baja prepaga', 'baja de prevencion salud telefono'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'arrepentimiento-prepaga-10-dias', 'como-cambiar-de-prepaga'],
+    prepagasRelacionadas: ['prevencion-salud'],
+    fuentes: [
+      { texto: 'Prevención Salud — sitio oficial', url: 'https://www.prevencionsalud.com.ar/' },
+      { texto: 'Prevención Salud — Autogestión de afiliados', url: 'https://autogestionafiliados.prevencionsalud.com.ar/unsubscribe' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  {
+    slug: 'como-dar-de-baja-hominis',
+    titulo: 'Cómo dar de baja Hominis: solicitud de baja online, requisitos y baja parcial',
+    metaDescripcion: 'Hominis tiene "Solicitud de baja" en su web (con inicio de sesión): hay que ser titular del grupo, la baja alcanza a todos los integrantes y se puede pedir una baja parcial. Pasos y contactos.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Hominis tiene una página de "Solicitud de baja" dentro de Información útil: pide iniciar sesión en Mi Hominis, y sus requisitos indispensables son ser el titular del grupo y tener en cuenta que la solicitud implica la rescisión del servicio para todos los integrantes del grupo familiar. Si la baja es parcial, hay que indicar nombre, apellido y DNI de quien se da de baja.',
+      secciones: [
+        {
+          titulo: 'Paso a paso',
+          cuerpo: '1) Entrá a hominis.com.ar y buscá "Solicitud de baja" en Información útil. 2) Tocá "Iniciar sesión" con tu cuenta de Mi Hominis. 3) Completá la solicitud y guardá la constancia con la fecha.',
+          enlaces: [{ texto: 'Hominis — Solicitud de baja', url: 'https://www.hominis.com.ar/mi-hominis/mh-baja-del-servicio.php' }],
+        },
+        {
+          titulo: 'Requisitos que informa Hominis',
+          cuerpo: 'Ser titular del grupo. La solicitud de baja implica la rescisión del servicio para todos los integrantes del grupo familiar y la finalización de las prestaciones médico-asistenciales. Si la baja es parcial (solo uno o más integrantes), hay que consignar claramente nombre y apellido del integrante con su número de DNI.',
+        },
+        {
+          titulo: 'Contactos publicados',
+          cuerpo: 'Hominis publica un contacto específico para "Mora / Bajas / Cambios de plan": WhatsApp +54 9 11 2838-1649. Atención al socio: 0810-999-1950. En la web también figura el Reglamento y Condiciones Generales de Contratación como descarga: leelo antes de pedir la baja, sobre todo si debés cuotas o tenés un grupo familiar.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico de Hominis, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de Hominis con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'Hominis: baja desde "Solicitud de baja" con tu cuenta de Mi Hominis, siendo titular del grupo; implica a todo el grupo, salvo que pidas una baja parcial indicando DNI. Guardá la constancia.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja Hominis?', a: 'Desde "Solicitud de baja" en la sección Información útil de la web de Hominis, iniciando sesión en Mi Hominis.' },
+      { q: '¿Quién puede pedir la baja de Hominis?', a: 'El titular del grupo.' },
+      { q: '¿La baja incluye a toda mi familia?', a: 'Sí: implica la rescisión para todos los integrantes del grupo familiar. Si querés una baja parcial, hay que indicar nombre, apellido y DNI de quien se da de baja.' },
+      { q: '¿Hay un WhatsApp para bajas?', a: 'Hominis publica el +54 9 11 2838-1649 para "Mora / Bajas / Cambios de plan".' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
+    ],
+    keywords: ['como dar de baja hominis', 'dar de baja hominis', 'baja hominis', 'hominis solicitud de baja', 'como darme de baja de hominis', 'dar de baja obra social hominis', 'hominis baja online', 'hominis baja telefono'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga'],
+    prepagasRelacionadas: ['hominis'],
+    fuentes: [
+      { texto: 'Hominis — Solicitud de baja', url: 'https://www.hominis.com.ar/mi-hominis/mh-baja-del-servicio.php' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  {
+    slug: 'como-dar-de-baja-hospital-italiano',
+    titulo: 'Cómo dar de baja el Plan de Salud del Hospital Italiano: el formulario "¿Cómo cancelar mi afiliación?"',
+    metaDescripcion: 'El Hospital Italiano tiene en su web el formulario para cancelar la afiliación al Plan de Salud, que puede usarse en cualquier momento. Dónde está, qué conviene guardar y qué dice la ley.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'El Plan de Salud del Hospital Italiano publica una página "¿Cómo cancelar mi afiliación?" que dice que, a través de su formulario y en cualquier momento, los afiliados pueden solicitar la baja del servicio. El acceso es el botón que figura al pie de esa página. Es el camino oficial online; si el formulario no te responde, la ley te permite notificar por carta documento.',
+      secciones: [
+        {
+          titulo: 'Paso a paso',
+          cuerpo: '1) Entrá a la página "¿Cómo cancelar mi afiliación?" del Plan de Salud del Hospital Italiano. 2) Abrí el formulario desde el botón de la página y completá tus datos. 3) Guardá la constancia con la fecha (captura, número de gestión o mail de confirmación).',
+          enlaces: [{ texto: 'Hospital Italiano — ¿Cómo cancelar mi afiliación?', url: 'https://www.hospitalitaliano.org.ar/hiba/es/arrepentimiento' }],
+        },
+        {
+          titulo: 'Qué conviene saber',
+          cuerpo: 'La propia página cita la Res. 271/2020 como base del formulario y aclara que sirve en cualquier momento. Su Portal de pacientes también está disponible para otras gestiones. En la página no figuran los plazos de vigencia ni la documentación: pedí por escrito la fecha en que se hace efectiva la baja y guardá todo lo que te respondan.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico del Plan de Salud, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial del Plan de Salud del Hospital Italiano con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'Plan de Salud del Hospital Italiano: baja desde el formulario de la página "¿Cómo cancelar mi afiliación?", en cualquier momento. Guardá la constancia y pedí la fecha de efecto por escrito.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja el Plan de Salud del Hospital Italiano?', a: 'Desde el formulario de la página "¿Cómo cancelar mi afiliación?" del Plan de Salud, que según la página puede usarse en cualquier momento.' },
+      { q: '¿Qué resolución cita el Hospital Italiano para la baja?', a: 'La página indica "Res 271/2020".' },
+      { q: '¿Qué hago si el formulario no funciona?', a: 'Notificá por carta documento al domicilio legal y reclamá ante la Superintendencia de Servicios de Salud. La ley exige aviso fehaciente con 30 días de anticipación.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
+    ],
+    keywords: ['como dar de baja hospital italiano', 'dar de baja prepaga hospital italiano', 'baja plan de salud hospital italiano', 'hospital italiano baja de afiliacion', 'dar de baja obra social hospital italiano', 'hospital italiano cancelar afiliacion', 'hospital italiano boton de arrepentimiento'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga'],
+    prepagasRelacionadas: ['hospital-italiano'],
+    fuentes: [
+      { texto: 'Hospital Italiano — ¿Cómo cancelar mi afiliación?', url: 'https://www.hospitalitaliano.org.ar/hiba/es/arrepentimiento' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  {
+    slug: 'como-dar-de-baja-avalian',
+    titulo: 'Cómo dar de baja Avalian: "Bajas" en la Autogestión y teléfono oficial',
+    metaDescripcion: 'Avalian tiene enlaces de "Bajas" y "Trámite de arrepentimiento" en su web, que llevan a la Autogestión (online.avalian.com). Cómo entrar, teléfono oficial y qué dice la ley.',
+    tiempoLectura: 4,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'Avalian publica en el pie de su web dos accesos: "Bajas" y "Trámite de arrepentimiento". Ambos llevan a la Autogestión de afiliados (online.avalian.com), donde se ingresa con tu cuenta (o con Google) y, si no tenés, se puede crear una. La atención telefónica oficial es el 0810-222-72583 (SALUD).',
+      secciones: [
+        {
+          titulo: 'Paso a paso',
+          cuerpo: '1) Entrá a avalian.com y buscá "Bajas" en Información útil, al pie de la página. 2) Ingresá a la Autogestión con tu usuario y contraseña, o con Google; si no tenés cuenta, "Crear cuenta". 3) Seguí el trámite de baja y guardá la constancia con la fecha.',
+          enlaces: [{ texto: 'Avalian — Autogestión de afiliados', url: 'https://online.avalian.com/' }],
+        },
+        {
+          titulo: 'Arrepentimiento',
+          cuerpo: 'El enlace "Trámite de arrepentimiento" conduce al mismo portal. Está pensado para quien recién se asoció: la Ley 24.240 (art. 34) da diez días corridos para revocar la aceptación en contrataciones a distancia y esa facultad no puede renunciarse.',
+        },
+        {
+          titulo: 'Teléfono',
+          cuerpo: 'La atención telefónica oficial de Avalian es 0810-222-72583 (SALUD). Si pedís la baja por teléfono, pedí número de gestión y confirmación escrita.',
+        },
+        {
+          titulo: 'Antes de bajarte',
+          cuerpo: 'Si te das de baja y volvés más tarde, empezás de cero: se pierde la antigüedad y pueden aplicar carencias de nuevo. Si el motivo es el precio, consultá primero un plan más económico de Avalian, o compará otra prepaga y pasate sin dejar un hueco de cobertura.',
+          cta: { texto: 'Compará el precio oficial de los planes de Avalian con otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+        {
+          titulo: 'Qué dice la ley (vale para todas las prepagas)',
+          cuerpo: 'Ley 26.682, artículo 9: podés rescindir en cualquier momento, sin penalidad, notificando de forma fehaciente con 30 días de anticipación. El decreto reglamentario agrega que solo se puede ejercer una vez por año y que la prepaga no puede condicionar tu baja a que canceles antes lo que debas. Si algo del trámite te parece contrario a esto, reclamá ante la Superintendencia de Servicios de Salud.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+      ],
+      conclusion: 'Avalian: baja desde el acceso "Bajas" de su web (Autogestión) o por el 0810-222-72583. Guardá la constancia y coordiná la fecha de efecto con tu nueva cobertura.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja Avalian?', a: 'Desde el acceso "Bajas" del pie de la web de Avalian, que lleva a la Autogestión de afiliados (online.avalian.com).' },
+      { q: '¿Necesito cuenta para la baja de Avalian?', a: 'Sí, la Autogestión pide ingresar con tu cuenta o con Google. Si no tenés, permite crearla.' },
+      { q: '¿Cuál es el teléfono de Avalian?', a: '0810-222-72583 (SALUD), la atención telefónica oficial.' },
+      { q: '¿Avalian tiene botón de arrepentimiento?', a: 'Sí: "Trámite de arrepentimiento", en el pie de su web, que lleva a la misma Autogestión.' },
+      { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
+      { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con tu constancia y, si no lo resuelven, ante la Superintendencia de Servicios de Salud o Defensa del Consumidor.' },
+    ],
+    keywords: ['como dar de baja avalian', 'dar de baja avalian', 'baja avalian', 'avalian bajas', 'como darme de baja de avalian', 'dar de baja prepaga avalian', 'avalian arrepentimiento', 'baja de obra social avalian', 'avalian baja telefono'],
+    relacionadas: ['baja-de-prepaga-proceso', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'arrepentimiento-prepaga-10-dias', 'como-cambiar-de-prepaga'],
+    prepagasRelacionadas: ['avalian'],
+    fuentes: [
+      { texto: 'Avalian — sitio oficial', url: 'https://www.avalian.com/' },
+      { texto: 'Avalian — Autogestión de afiliados', url: 'https://online.avalian.com/' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  // 17-oct-2026: "baja de obra social" (monotributo) es el grupo de búsqueda más
+  // grande de bajas (autocompletado: monotributo, afip/arca, anses, por falta de
+  // pago). Fuentes: ayuda de ARCA (obra social y baja del monotributo),
+  // argentina.gob.ar (modificar adherentes) y SSSalud (opción de cambio).
+  {
+    slug: 'baja-obra-social-monotributo',
+    titulo: 'Cómo dar de baja la obra social del monotributo: adherentes, cambio y baja del monotributo',
+    metaDescripcion: 'En el monotributo no hay una "baja de obra social" separada: el aporte va dentro de la cuota. Qué hacer para quitar adherentes, cambiar de obra social (Mi SSSalud) o dejar el monotributo (ARCA).',
+    tiempoLectura: 6,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-17',
+    captarBaja: true,
+    contenido: {
+      intro: 'En el monotributo no existe una "baja de obra social" por separado: según ARCA, el aporte a la obra social está incluido en la cuota mensual. Para dejar de tener esa obra social hay tres caminos: 1) cambiar de obra social con la opción de cambio en Mi SSSalud (una vez al año, rige desde el primer día del mes siguiente); 2) quitar a un familiar adherente desde Modificación de datos en el portal del Monotributo; 3) darte de baja del monotributo (en ese caso dejás de aportar a la obra social y a la jubilación).',
+      secciones: [
+        {
+          titulo: 'Camino 1: cambiar de obra social (o pasarte a una prepaga)',
+          cuerpo: 'Es el camino habitual si querés otra cobertura sin dejar el monotributo. Según la ARCA y la SSSalud, el trámite se hace por internet con clave fiscal nivel 3 en Mi SSSalud ("Nueva opción"), se puede hacer una vez al año y obliga a permanecer como mínimo un año en la obra social elegida; se hace efectivo el primer día del mes siguiente a la confirmación y mientras tanto la obra social de origen debe seguir cubriéndote. Los monotributistas solo pueden elegir agentes del seguro que aceptan monotributistas.',
+          enlaces: [
+            { texto: 'ARCA — Obra social en el monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/obra-social.asp' },
+            { texto: 'SSSalud — Opción de cambio para monotributistas', url: 'https://www.argentina.gob.ar/sssalud/usuarios/cambio-obra-sociales/monotributistas' },
+          ],
+        },
+        {
+          titulo: 'Camino 2: quitar a un familiar adherente',
+          cuerpo: 'Si lo que querés es dar de baja a un adherente (cónyuge, hijo), se hace desde el servicio del Monotributo en ARCA: Modificación de datos > Obra Social, donde figura el listado de los familiares incorporados. Cada adherente tiene un aporte adicional, y la modificación genera el Formulario 184 como comprobante. Según la ayuda de ARCA, el aporte del grupo familiar primario debe pagarse hasta el mes en que hacés la modificación.',
+          enlaces: [{ texto: 'argentina.gob.ar — Modificar el número de adherentes', url: 'https://www.argentina.gob.ar/modificar-datos-en-el-monotributo' }],
+        },
+        {
+          titulo: 'Camino 3: darte de baja del monotributo',
+          cuerpo: 'Podés darte de baja en cualquier momento desde el portal del Monotributo > Modificación y baja > "Darse de baja del Monotributo", indicando el motivo y confirmando. Según ARCA, el mes en que pedís la baja debe quedar pago para no generar deuda, la baja se hace efectiva al mes siguiente y, si aportabas a jubilación y obra social con el monotributo, vas a dejar de hacerlo. Dejar el monotributo significa perder la obra social: antes de hacerlo, asegurate de tener otra cobertura (por ejemplo, otra actividad en relación de dependencia o una prepaga).',
+          enlaces: [{ texto: 'ARCA — Baja del monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/baja.asp' }],
+        },
+        {
+          titulo: 'Si estás en el Monotributo Social',
+          cuerpo: 'El trámite es distinto: la inscripción, modificación o renuncia se hace por Trámites a Distancia (TAD, con clave fiscal nivel 3) o en persona, con turno en ANSES. El cambio de plan de salud, en ese caso, también se hace por la opción de cambio de la SSSalud.',
+          enlaces: [{ texto: 'argentina.gob.ar — Modificar datos o darme de baja del monotributo', url: 'https://www.argentina.gob.ar/servicio/como-modifico-datos-o-me-doy-de-baja-del-monotributo' }],
+        },
+        {
+          titulo: 'Para no quedarte sin cobertura',
+          cuerpo: 'Si lo que querés es una prepaga, conviene elegirla antes de pedir el cambio. Con monotributo se puede derivar el aporte a una prepaga y pagar la diferencia. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá: dejás tus datos y un asesor oficial te contacta.',
+          cta: { texto: 'Compará el precio oficial de las prepagas para monotributistas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'En el monotributo, "dar de baja la obra social" es cambiarla por la opción de cambio (una vez al año), quitar adherentes desde Modificación de datos, o dejar el monotributo (y con él los aportes). Elegí tu nueva cobertura antes de mover nada.',
+    },
+    faq: [
+      { q: '¿Cómo doy de baja la obra social del monotributo?', a: 'No hay una baja separada: el aporte está incluido en la cuota. Podés cambiar de obra social con la opción de cambio en Mi SSSalud, quitar adherentes desde Modificación de datos del Monotributo, o darte de baja del monotributo.' },
+      { q: '¿Cuántas veces puedo cambiar de obra social siendo monotributista?', a: 'Una vez al año, y hay que permanecer como mínimo un año en la obra social elegida, según la SSSalud.' },
+      { q: '¿Desde cuándo rige el cambio de obra social?', a: 'Desde el primer día del mes siguiente a la confirmación; mientras tanto, la obra social de origen debe seguir cubriéndote.' },
+      { q: '¿Qué pasa con mi obra social si me doy de baja del monotributo?', a: 'Según ARCA, los aportes a jubilación y obra social que hacías con el monotributo finalizan cuando la baja se hace efectiva.' },
+      { q: '¿Tengo que pagar el mes en que pido la baja del monotributo?', a: 'Sí: ARCA indica que el mes en que solicitás la baja debe quedar pago, y la baja se hace efectiva el mes siguiente.' },
+      { q: '¿Cómo quito a un adherente de la obra social del monotributo?', a: 'Desde el portal del Monotributo en ARCA, en Modificación de datos > Obra Social. Se genera el Formulario 184 como comprobante.' },
+    ],
+    keywords: ['baja de obra social monotributo', 'como dar de baja la obra social del monotributo', 'baja de obra social monotributo afip', 'baja de obra social arca', 'dar de baja adherente obra social monotributo', 'baja adherente obra social monotributo', 'baja de obra social en monotributo', 'dar de baja obra social monotributo afip', 'quiero dar de baja la obra social del monotributo'],
+    relacionadas: ['opcion-de-cambio-obra-social', 'unificar-aportes-obra-social', 'derivar-obra-social-a-prepaga', 'baja-de-prepaga-proceso', 'sin-trabajo-obra-social', 'que-obra-social-tengo-codem'],
+    fuentes: [
+      { texto: 'ARCA — Obra social en el monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/obra-social.asp' },
+      { texto: 'ARCA — Baja del monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/baja.asp' },
+      { texto: 'argentina.gob.ar — Modificar datos en el monotributo', url: 'https://www.argentina.gob.ar/modificar-datos-en-el-monotributo' },
+      { texto: 'SSSalud — Opción de cambio para monotributistas', url: 'https://www.argentina.gob.ar/sssalud/usuarios/cambio-obra-sociales/monotributistas' },
     ],
   },
 ]

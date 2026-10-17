@@ -65,8 +65,9 @@ export function GET() {
     `- [Fallecimiento del titular](${SITE_URL}/guias/baja-prepaga-fallecimiento-titular)`,
     `- [Arrepentimiento (10 días)](${SITE_URL}/guias/arrepentimiento-prepaga-10-dias)`,
     `- [Hasta cuándo hay cobertura tras la baja](${SITE_URL}/guias/hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga)`,
+    `- [Cómo dar de baja la obra social del monotributo](${SITE_URL}/guias/baja-obra-social-monotributo)`,
     `- [Cómo darse de baja de una prepaga (guía general)](${SITE_URL}/guias/baja-de-prepaga-proceso)`,
-    ...['swiss-medical:Swiss Medical', 'osde:OSDE', 'sancor-salud:Sancor Salud', 'galeno:Galeno', 'medife:Medifé', 'omint:Omint', 'medicus:Medicus'].map((x) => {
+    ...['swiss-medical:Swiss Medical', 'osde:OSDE', 'sancor-salud:Sancor Salud', 'galeno:Galeno', 'medife:Medifé', 'omint:Omint', 'medicus:Medicus', 'prevencion-salud:Prevención Salud', 'avalian:Avalian', 'hominis:Hominis', 'hospital-italiano:Hospital Italiano'].map((x) => {
       const [slug, nombre] = x.split(':')
       return `- [Cómo dar de baja ${nombre}](${SITE_URL}/guias/como-dar-de-baja-${slug})`
     }),
