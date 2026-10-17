@@ -27,6 +27,22 @@ Chrome quedó conectado y se leyó Search Console (dominio `prepagaya.com.ar`, 8
 
 **Conclusión:** ganar clics depende de subir posiciones (enlaces desde medios y alianzas, enlazado interno y contenido más profundo en las páginas que ya están en 8 a 12), no de reescribir más títulos. La ola 2 de títulos queda como estaba planeada (31-oct, después de medir la ola 1).
 
+## Listas del 17-oct (segunda tanda) cruzadas con Search Console
+
+Ventana 17-sep a 14-oct. "Impresiones" de las consultas que contienen la palabra.
+
+| Lista | Impresiones | Clics | Lectura |
+|---|---|---|---|
+| Medicus | 3.061 | 11 | "medicus" solo 958 en pos. 6,5; el resto son ciudades. Precio "a cotizar". Hay Medicus vs OSDE; falta Medicus vs Swiss Medical (10 impresiones, no urge). |
+| Prevención Salud | 12.806 | 17 | "prevencion salud" 5.662 impresiones, 3 clics, pos. 5,8 (la consulta cabeza no se mueve con títulos). Las consultas de comparación con Sancor ("vs", "es lo mismo", "cuál es mejor") no tenían impresiones: **se creó `/comparativas/sancor-salud-vs-prevencion-salud` (f3018f5)**. |
+| Omint | 1.240 | 11 | Solo ciudades y "omint" (154, pos. 2,5). Los códigos 4500/6500/8500 suman 40 impresiones. Sin fuente oficial de código ↔ plan no se publica. |
+| CEMIC | 2.311 | 19 | Casi todo es hospital (turnos, portal). Lo nuestro: "obras sociales que atiende" (66, pos. 13,5), planes y precios, cartilla. |
+| Hospital Italiano | 4.571 | 23 | "plan de salud hospital italiano" y variantes suman ~1.800 impresiones en pos. 8 a 15. |
+| "derivar" | 19 | 0 | Las páginas `/derivar-aportes/[prepaga]` salieron el 14-15 oct y Google todavía no las posiciona. Volver a medir el 31-oct. |
+| IOMA, PAMI, monotributo + prepaga, CUD | — | — | Sin cruce todavía (listas de la tercera tanda). |
+
+**Plan Materno Infantil (371 consultas en la lista).** Es la idea de artículo con más demanda y todavía no hay página propia (solo el término en el glosario y la guía de embarazo). **Bloqueado por fuentes que se contradicen:** los textos oficiales encontrados hablan de niños "hasta los tres años" (Ley 27.611 y una resolución de la SSSalud), mientras la web de la Presidencia y otras guías hablan de "hasta el año"; y el porcentaje de los medicamentos ambulatorios no relacionados aparece como 40 % en un documento y 100 % en otro. No se publica hasta leer la norma vigente en el Boletín Oficial / InfoLEG.
+
 ## Qué se descarta
 
 - **Trabajo:** empleos, rrhh, jobs, bolsa de trabajo, trabaja con nosotros, vacantes, enviar cv.
