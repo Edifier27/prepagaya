@@ -1038,6 +1038,8 @@ export const obrasSociales: ObraSocialData[] = [
       { q: '¿Desde cuándo existe OSECAC?', a: 'Desde 1964: nació como I.M.M.A. (Instituto Médico Mercantil Argentina).' },
       { q: '¿Puedo pasar de OSECAC a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },
       { q: '¿Dónde queda la delegación de OSECAC más cercana?', a: 'OSECAC tiene delegaciones, agencias, sub-agencias y corresponsalías en todo el país. Buscá la tuya por provincia o localidad en el listado de delegaciones de esta misma página.' },
+      // 17-oct-2026, keyword research de Darío ("osecac y sec es lo mismo", "sindicato osecac")
+      { q: '¿OSECAC es lo mismo que el SEC o el sindicato de Comercio?', a: 'No. El SEC es el sindicato de los empleados de comercio y OSECAC es la obra social: figura en el registro de la Superintendencia de Servicios de Salud como «Obra Social de los Empleados de Comercio y Actividades Civiles» (código 1-2620-5). Para afiliarte, sacar un turno o hacer la opción de cambio, el trámite es con la obra social.' },
     ],
     keywords: ['osecac', 'osecac telefono', 'osecac turnos', 'osecac cartilla', 'osecac guardias', 'osecac farmacias', 'osecac delegaciones', 'osecac delegaciones por provincia', 'obra social empleados de comercio'],
   },

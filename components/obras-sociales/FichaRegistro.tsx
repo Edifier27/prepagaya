@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
-import type { FichaRegistro as Ficha } from '@/lib/data/fichas-registro'
-import { codigoSeisDigitos, nombreLegible, REGISTRO_VERIFICADO, type EntidadRegistro } from '@/lib/data/registro-sssalud'
+import { FICHAS_REGISTRO, type FichaRegistro as Ficha } from '@/lib/data/fichas-registro'
+import { codigoSeisDigitos, entidadesRegistro, nombreLegible, REGISTRO_VERIFICADO, type EntidadRegistro } from '@/lib/data/registro-sssalud'
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/components/obras-sociales/PasateConTusAportes'
 import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
@@ -12,9 +12,26 @@ import { ldJson } from '@/lib/jsonld'
 // fichas-registro.ts). Todo lo que dice sale del registro o del nombre
 // oficial; lo demás es cómo se hacen los trámites, que vale para todas.
 
+// "¿OSUOMRA es lo mismo que UOM?" / "¿OSMATA es lo mismo que SMATA?"
+// (17-oct-2026, keyword research de Darío: "osuomra y uom es lo mismo",
+// "osmata es lo mismo que smata"). Solo para las fichas cuyo nombre corto trae
+// la sigla del sindicato entre paréntesis (OSUOMRA (UOM), OSMATA (SMATA),
+// OSPEDYC (UTEDyC), OSPIL (ATILRA)); el nombre sale del registro de la SSSalud.
+function faqSindicato(f: Ficha, e: EntidadRegistro): { q: string; a: string }[] {
+  const m = f.nombreCorto.match(/^(OS[A-Z]+) \(([A-Z]{3,}[A-Za-z]*)\)$/)
+  if (!m) return []
+  const [, sigla, gremio] = m
+  const oficial = nombreLegible(e.nombre).replace(/^\S{2,15} - /, '')
+  return [{
+    q: `¿${sigla} es lo mismo que ${gremio}?`,
+    a: `No. ${gremio} es la sigla del sindicato y ${sigla} es la obra social: una entidad aparte, inscripta en el registro de la Superintendencia de Servicios de Salud como «${oficial}» (código ${e.codigo}). Mucha gente las nombra como si fueran una sola, pero para afiliarte a la obra social, sacar un turno o hacer la opción de cambio el trámite es con la obra social.`,
+  }]
+}
+
 export function faqsFichaRegistro(f: Ficha, e: EntidadRegistro) {
   const codigo = codigoSeisDigitos(e.codigo!)
   return [
+    ...faqSindicato(f, e),
     { q: `¿Cuál es el código de ${f.nombreCorto}?`, a: `${codigo} (RNAS ${e.codigo}). Es el número con el que figura en el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud: el que carga tu empleador en tu alta y el que se usa en la opción de cambio.` },
     ...(f.canales?.length ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `${f.canales.map((c) => `${c.etiqueta}: ${c.valor}${c.detalle ? ` (${c.detalle})` : ''}`).join('. ')}. Son los canales que publica ${f.nombreCorto} en su web oficial.` }] : []),
     ...(!f.canales?.length && e.telefono ? [{ q: `¿Cuál es el teléfono de ${f.nombreCorto}?`, a: `El teléfono de la sede que figura en el registro de la Superintendencia de Servicios de Salud es ${e.telefono}${e.domicilio ? ` (${e.domicilio}${e.localidadSede ? `, ${e.localidadSede}` : ''})` : ''}. Para turnos y autorizaciones, consultá los canales de tu delegación${e.web ? ` en ${e.web.replace(/^https?:\/\//, '')}` : ''}.` }] : []),
@@ -32,6 +49,14 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
   const cartilla = getCartillaSindical(f.slug)
   const cartillaTot = cartilla ? totales(cartilla) : null
   const fecha = new Date(`${REGISTRO_VERIFICADO}T12:00:00`).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
+  // Otras entidades del registro con la misma sigla (hoy: las tres OSPM)
+  const sigla = e.nombre.match(/^(\S{2,15}) - /)?.[1] ?? null
+  const mismaSigla = sigla
+    ? entidadesRegistro
+        .filter((o) => o.slug !== e.slug && o.codigo && o.nombre.startsWith(`${sigla} - `))
+        .map((o) => ({ slug: o.slug, codigo: o.codigo!, nombreLegible: nombreLegible(o.nombre).replace(/^\S+ - /, '') }))
+    : []
+  const fichasConPagina = new Set(FICHAS_REGISTRO.map((x) => x.slug))
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -99,6 +124,22 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
           <p className="text-xs text-gray-500 mt-3">
             Razón social: {e.razonSocial}. Fuente: <a href={e.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline">Registro Nacional de Agentes del Seguro de la SSSalud</a>, datos verificados el {fecha}.
           </p>
+          {mismaSigla.length > 0 && (
+            <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+              <p className="font-semibold">¿Buscás otra obra social con la sigla {sigla}?</p>
+              <p className="mt-1">En el registro de la Superintendencia hay {mismaSigla.length + 1} entidades con esa sigla. Esta es {nombreLegible(e.nombre).replace(/^\S+ - /, '')} (código {e.codigo}). Las otras:</p>
+              <ul className="mt-2 space-y-1">
+                {mismaSigla.map((o) => (
+                  <li key={o.slug}>
+                    {fichasConPagina.has(o.slug)
+                      ? <Link href={`/obras-sociales/${o.slug}`} className="font-semibold underline">{o.nombreLegible}</Link>
+                      : <span className="font-semibold">{o.nombreLegible}</span>}{' '}
+                    <span className="text-amber-800">(código {o.codigo})</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <AportesCta osNombre={f.nombreCorto} osSlug={f.slug} />
         </div>
       </section>

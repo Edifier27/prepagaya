@@ -59,6 +59,11 @@ export const FICHAS_REGISTRO: FichaRegistro[] = [
   { slug: 'ase', nombreCorto: 'ASE (Acción Social de Empresarios)', actividad: 'el personal de dirección de empresas', keywords: ['ase obra social', 'ase accion social de empresarios', 'ase telefono'] },
   { slug: 'osperyh', nombreCorto: 'OSPERYH (Encargados de Edificios)', actividad: 'el personal de edificios de renta y propiedad horizontal de CABA y el Gran Buenos Aires', keywords: ['osperyh', 'obra social encargados de edificio', 'osperyh telefono'] },
   { slug: 'ospm', nombreCorto: 'OSPM (Maestranza)', actividad: 'el personal de maestranza', keywords: ['ospm', 'obra social maestranza', 'ospm telefono'] },
+  // Otras dos obras sociales del registro con la misma sigla OSPM (17-oct-2026,
+  // keyword research: "ospm mosaista", "ospm maritimos"): la ficha de
+  // Maestranza recibía esas búsquedas sin poder contestarlas.
+  { slug: 'os-del-personal-maritimo', nombreCorto: 'OSPM (Personal Marítimo)', actividad: 'el personal marítimo', keywords: ['ospm maritimo', 'ospm personal maritimo', 'obra social personal maritimo'] },
+  { slug: 'os-del-personal-mosaista', nombreCorto: 'OSPM (Mosaístas)', actividad: 'el personal mosaísta', keywords: ['ospm mosaista', 'ospm personal mosaista', 'obra social personal mosaista'] },
   { slug: 'osctc', nombreCorto: 'OSCTC (Colectiveros)', actividad: 'los conductores de transporte colectivo de pasajeros', keywords: ['osctc', 'obra social colectiveros', 'osctc telefono'] },
   { slug: 'osypf', nombreCorto: 'OSYPF', actividad: 'el personal de YPF', keywords: ['osypf', 'obra social ypf', 'osypf telefono'], fuenteCanales: 'https://ypfos.com/contacto.html', canales: [{ etiqueta: 'Atención telefónica (OSDE)', valor: '0810-555-6733 / 0800-555-6733', detalle: 'Los planes YPFOS los administra OSDE' }, { etiqueta: 'WhatsApp (OSDE)', valor: '011 4872-9000' }, { etiqueta: 'Emergencias (OSDE)', valor: '0810-666-1111' }] },
   { slug: 'ostep', nombreCorto: 'OSTEP (Educación Privada)', actividad: 'los trabajadores de la educación privada', keywords: ['ostep', 'obra social educacion privada', 'ostep telefono'] },
