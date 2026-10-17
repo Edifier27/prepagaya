@@ -30,6 +30,8 @@ import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
+import { ComparaPlanesHero } from '@/components/prepagas/ComparaPlanesHero'
+import { elegir, anioPrecios, nombreCortoPrepaga, MAX_DESCRIPCION } from '@/lib/seo/titulos'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -82,6 +84,29 @@ const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
     q: '¿Prevención Salud es lo mismo que Sancor Salud?',
     a: 'No, son dos empresas distintas y sin relación societaria, aunque comparten parte del nombre y se confunden seguido. Prevención Salud es la empresa de medicina prepaga del Grupo Sancor Seguros (una aseguradora). Sancor Salud es una mutual de medicina prepaga independiente, con más de 60 años de trayectoria propia y sin vínculo con el Grupo Sancor Seguros.',
   }],
+}
+
+function tituloFicha(prep: Prepaga) {
+  const n = nombreCortoPrepaga(prep.nombre)
+  const N = prep.planes.length
+  const y = anioPrecios()
+  return Number.isFinite(precioDesde(prep))
+    ? elegir([`${n} ${y}: compará sus ${N} planes y precios en 1 minuto`, `${n} ${y}: compará sus ${N} planes y precios en 1 min`, `${n}: compará sus ${N} planes y precios en 1 min`])
+    : elegir([`${n} ${y}: sus ${N} planes comparados, cotizá en 1 minuto`, `${n}: sus ${N} planes comparados, cotizá en 1 minuto`, `${n}: sus ${N} planes, cotizá en 1 minuto`])
+}
+
+function descripcionFicha(prep: Prepaga, desde: number) {
+  const N = prep.planes.length
+  const mes = PRECIO_ACTUALIZADO.toLowerCase()
+  return Number.isFinite(desde)
+    ? elegir([
+        `Los ${N} planes de ${prep.nombre} lado a lado: desde ${formatPrecio(desde)}/mes (precio oficial SSSalud, ${mes}), copago y cartilla. Tu precio con 15% OFF, sin DNI.`,
+        `Los ${N} planes de ${prep.nombre} lado a lado: desde ${formatPrecio(desde)}/mes (oficial SSSalud, ${mes}). Tu precio con 15% OFF, sin DNI.`,
+      ], MAX_DESCRIPCION)
+    : elegir([
+        `Los ${N} planes de ${prep.nombre} lado a lado: coberturas, copago y cartilla. No publica lista oficial de precios: cotizá gratis para tu edad y zona, sin DNI.`,
+        `Los ${N} planes de ${prep.nombre} lado a lado. Sin lista oficial de precios: cotizá gratis para tu edad y zona, sin DNI.`,
+      ], MAX_DESCRIPCION)
 }
 
 function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstrella: Plan, comp: DatosComparacion) {
@@ -297,9 +322,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // ni una sola vez. Se saca el monto del título (ya está en la
     // descripción) para poder sumar "precios" sin superar ~60 caracteres.
     // absolute: sin el sufijo "| PrepagaYa", para que entre completo en Google.
-    title: { absolute: `${prep.nombre}: planes, precios y cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()}` },
-    // Descripción ≤ ~160 caracteres (antes ~185 y Google cortaba el "Cotizá gratis")
-    description: `¿Cuánto sale ${prep.nombre}? ${Number.isFinite(precioMinTitulo) ? `Planes desde ${formatPrecio(precioMinTitulo)}/mes` : 'Precio a cotizar según tu edad y zona'} en ${PRECIO_ACTUALIZADO.toLowerCase()}${prep.planes.some((pl) => pl.fuentePrecio === 'sssalud') ? ' (precio oficial SSSalud)' : ''}. Precio por edad, cartilla${contactos[prep.slug] ? ', teléfonos' : ''} y opiniones. Cotizá gratis.`,
+    // Ola 1 de CTR (17-oct-2026): "compará sus N planes en 1 minuto". Las
+    // páginas de comparación tienen el triple de CTR (Search Console) y la
+    // promesa se cumple arriba de la ficha (ComparaPlanesHero). Sin precio
+    // oficial no se promete "precios" (lib/seo/titulos.ts).
+    title: { absolute: tituloFicha(prep) },
+    description: descripcionFicha(prep, precioMinTitulo),
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} planes`,
@@ -531,23 +559,13 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   {/* "Precios" en el H1 (auditoría SEO 24-sep-2026): el título
                       ya dice "cuánto sale"; así la ficha cubre también
                       "[prepaga] precios", la otra forma de la búsqueda. */}
-                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{prep.nombre}: planes y precios</h1>
+                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{prep.nombre}: {Number.isFinite(precioMin) ? 'compará sus planes y precios' : 'compará sus planes'}</h1>
                 </div>
               </div>
 
-              {/* Respuesta directa a "[prepaga] planes precios 2026" (26-sep-2026) */}
-              <p className="text-sm text-gray-700 leading-relaxed mb-3">
-                {prep.planes.length === 1 ? 'Plan' : `${prep.planes.length} planes`}:{' '}
-                {prep.planes.map((pl, i) => (
-                  <span key={pl.slug}>
-                    {i > 0 && ', '}
-                    <Link href={`/prepagas/${slug}/${pl.slug}`} className="font-medium text-gray-900 hover:text-[#E8002D] hover:underline">{pl.nombre.replace(/^Plan /, '')}</Link>
-                  </span>
-                ))}
-                {Number.isFinite(precioMin)
-                  ? <>. Precio de lista desde {formatPrecio(precioMin)} por mes (30 años, {PRECIO_ACTUALIZADO.toLowerCase()}).</>
-                  : <>. Sin lista de precios oficial: el precio se cotiza según tu edad y zona.</>}
-              </p>
+              {/* Respuesta directa a "[prepaga] planes precios 2026" (26-sep-2026),
+                  ahora como mini comparación con los planes y su precio (17-oct-2026) */}
+              <ComparaPlanesHero prep={prep} />
 
               {/* Rating: solo el de las reseñas reales del sitio (las mismas del
                   rich snippet). Antes mostraba "4,2 (1.243 opiniones)" fijo,

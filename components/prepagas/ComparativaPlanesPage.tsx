@@ -6,15 +6,31 @@ import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
+import { elegir, mesCorto, codigoCorto, nombreCortoPrepaga, MAX_DESCRIPCION } from '@/lib/seo/titulos'
 import { TablaDiferenciasPlanes, type FilaDiferencia } from '@/components/prepagas/TablaDiferenciasPlanes'
 
 type Plan = Prepaga['planes'][number]
 
 export function comparativaPlanesMetadata(comp: ComparativaPlanes, prep: Prepaga, plan1: Plan, plan2: Plan): Metadata {
   return {
-    title: `${prep.nombre} ${plan1.nombre} vs ${plan2.nombre}: Precios y Diferencias — ${PRECIO_ACTUALIZADO}`,
-    // Solo los montos con fuente oficial (13-oct-2026)
-    description: `${comp.descripcion}${[plan1, plan2].filter((p) => Number.isFinite(p.precio)).map((p) => ` ${p.nombre}: ${formatPrecio(p.precio)}/mes.`).join('')}`,
+    // Ola 1 de CTR (17-oct-2026): ≤60 caracteres y "qué suma" (el bloque
+    // verde de la página). Solo montos con fuente oficial (13-oct-2026).
+    ...(() => {
+      const [c1, c2] = [codigoCorto(plan1.nombre), codigoCorto(plan2.nombre)]
+      const marca = nombreCortoPrepaga(prep.nombre)
+      const conPrecio = [plan1, plan2].every((p) => Number.isFinite(p.precio))
+      const sup = conPrecio ? (plan2.precio >= plan1.precio ? c2 : c1) : null
+      const queSuma = sup ? `qué suma el ${sup}` : 'qué suma cada uno'
+      const precios = [plan1, plan2].filter((p) => Number.isFinite(p.precio)).map((p) => `${codigoCorto(p.nombre)} ${formatPrecio(p.precio)}/mes`).join(' y ')
+      return {
+        title: elegir([`${marca} ${c1} vs ${c2}: precio y ${queSuma} (${mesCorto()})`, `${marca} ${c1} vs ${c2}: precio y ${queSuma}`, `${marca} ${c1} vs ${c2}: ${queSuma}`]),
+        description: elegir([
+          `${c1} vs ${c2} de ${prep.nombre}${precios ? `: ${precios} (precio oficial, ${PRECIO_ACTUALIZADO.toLowerCase()})` : ''}. ${queSuma.replace(/^q/, 'Q')} en cobertura, copago y cartilla.`,
+          `${c1} vs ${c2} de ${prep.nombre}${precios ? `: ${precios}` : ''}. ${queSuma.replace(/^q/, 'Q')} en cobertura, copago y cartilla.`,
+          comp.descripcion,
+        ], MAX_DESCRIPCION),
+      }
+    })(),
     alternates: { canonical: `${SITE_URL}/prepagas/${prep.slug}/${comp.slug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} ${plan1.nombre.toLowerCase()} vs ${plan2.nombre.toLowerCase()}`,

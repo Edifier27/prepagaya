@@ -260,7 +260,8 @@ function comparativaAuto(slug: string, planSlug: string) {
     prepagaSlug: prep.slug,
     plan1Slug: plan1.slug,
     plan2Slug: plan2.slug,
-    titulo: `${prep.nombre} ${cod1} vs ${cod2}: diferencias y cuál conviene`,
+    // H1 alineado con el título de Google (17-oct-2026)
+    titulo: `${prep.nombre} ${cod1} vs ${cod2}: precio y qué suma el ${plan2.precio >= plan1.precio ? cod2 : cod1}`,
     descripcion: `Diferencias entre el ${cod1} y el ${cod2} de ${prep.nombre}: precio por edad según la lista oficial, copago, cartilla y coberturas.`,
     respuestaCorta: `A los 30 años, el ${cod2} cuesta ${formatPrecio(Math.abs(d30))} ${d30 >= 0 ? 'más' : 'menos'} por mes que el ${cod1} (lista oficial de ${PRECIO_ACTUALIZADO.toLowerCase()}, ${region}).${textoCambios.length ? ` Lo que cambia: ${textoCambios.join('; ')}.` : ' Según los datos oficiales que relevamos, el resto de la cobertura es igual.'}`,
     veredicto: `Conviene el ${cod1} si buscás la cuota más baja de los dos${plan1.copago && !plan2.copago ? ' y vas poco al médico, porque tiene copago en consultas' : ''}. Conviene el ${cod2} si ${cambios.length ? `te importa lo que suma (${cambios.slice(0, 3).map((f) => f.label.toLowerCase()).join(', ')})` : 'preferís el plan superior'} y la diferencia de ${formatPrecio(Math.abs(d30))} por mes te cierra. Si trabajás en relación de dependencia, tus aportes pueden cubrir parte de la cuota o toda: cotizalo para ver tu número exacto.`,
