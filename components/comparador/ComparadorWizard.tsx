@@ -305,7 +305,7 @@ interface SituacionDef {
 
 const SITUACIONES: SituacionDef[] = [
   { id: 'particular',             label: 'Particular',              desc: 'Pagás la cuota completa de tu bolsillo', badge: '15% OFF' },
-  { id: 'relacion-dependencia',   label: 'Relación de dependencia', desc: 'Tenés recibo de sueldo — te descontamos el aporte', badge: 'Hasta 24% OFF + aporte' },
+  { id: 'relacion-dependencia',   label: 'Relación de dependencia', desc: 'Tenés recibo de sueldo — te descontamos el aporte', badge: '15% OFF + aporte' },
   { id: 'monotributo',            label: 'Monotributista',          desc: 'Facturás como monotributista', badge: '25% OFF' },
   { id: 'responsable-inscripto',  label: 'Responsable Inscripto',   desc: 'Facturás con IVA discriminado', badge: '15% OFF' },
 ]
@@ -743,6 +743,9 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   const [situacion, setSituacion] = useState<SituacionLaboral>('particular')
   const [sueldoBruto, setSueldoBruto] = useState('')
   const descuentoRate = DESCUENTO_POR_SITUACION[situacion]
+  // Lo que se MUESTRA (Darío, 18-oct-2026): con aportes el descuento es 15%;
+  // que no paguen IVA es otra cosa. El cálculo sigue usando descuentoRate.
+  const descuentoMostrado = situacion === 'relacion-dependencia' ? 0.15 : descuentoRate
   const aporteMensual = useMemo(() => {
     if (situacion !== 'relacion-dependencia') return 0
     return Math.round((parseFloat(sueldoBruto) || 0) * APORTE_PORCENTAJE)
@@ -1267,7 +1270,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
             {!showPopup ? `Planes disponibles en ${provinciaNombre}` : 'Tu comparación está lista'}
           </h2>
-          {!showPopup && <div className="max-w-xl mx-auto mt-3"><MensajePerfil personas={personas} descuento={descuentoRate} /></div>}
+          {!showPopup && <div className="max-w-xl mx-auto mt-3"><MensajePerfil personas={personas} descuento={descuentoMostrado} /></div>}
           {!showPopup && countdown > 0 && (
             <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-800 text-sm font-semibold px-4 py-2 rounded-full">
               <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
@@ -1345,7 +1348,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 <div className="text-center mb-5">
                   <p className="text-sm text-gray-500">Para {personas.length === 1 ? 'vos' : `tu grupo de ${personas.length}`} en {provinciaNombre}, planes desde</p>
                   <p className="text-3xl font-black text-gray-900 tabular-nums mt-0.5">{formatPrecio(precioDesdePreview)}<span className="text-base font-bold text-gray-500">/mes</span></p>
-                  <p className="text-xs font-semibold text-[#00875A] mt-1">con {Math.round(descuentoRate * 100)}% OFF · {allResultados.length} planes</p>
+                  <p className="text-xs font-semibold text-[#00875A] mt-1">con {Math.round(descuentoMostrado * 100)}% OFF · {allResultados.length} planes</p>
                   <p className="text-sm text-gray-500 mt-3">Dejá tus datos para ver el precio de cada plan</p>
                 </div>
               ) : (
@@ -1476,7 +1479,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
             )}
           </div>
           <div className="flex-shrink-0 rounded-xl bg-white text-[#E8002D] px-3 py-1.5 text-center leading-tight shadow-sm">
-            <div className="text-base sm:text-lg font-black">{Math.round(descuentoRate * 100)}% OFF</div>
+            <div className="text-base sm:text-lg font-black">{Math.round(descuentoMostrado * 100)}% OFF</div>
             <div className="text-[10px] font-semibold text-gray-500">{aporteMensual > 0 ? '+ tu aporte' : 'por 12 meses'}</div>
           </div>
         </div>
@@ -2159,7 +2162,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                           )}
                           <PrecioBloqueado texto={<>{formatPrecio(precioFinal(res.precioDesc))}<span className="text-xs font-medium text-gray-400">/mes*</span></>} />
                         </div>
-                        <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoRate * 100)}% OFF</div>
+                        <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoMostrado * 100)}% OFF</div>
                       </button>
                       {isAccedido && planAccedidoStatus === 'success' ? (
                         <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center max-w-[160px]">
@@ -2192,7 +2195,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           </div>
           {resultadosFiltrados.length > 0 && (
             <p className="text-[11px] text-gray-400 leading-snug -mt-5 mb-6">
-              *Estimado sobre precios de lista, con el {Math.round(descuentoRate * 100)}% de descuento aplicado. El valor final lo confirma un asesor, que en el asesoramiento puede conseguirte más descuento.
+              *Estimado sobre precios de lista, con el {Math.round(descuentoMostrado * 100)}% de descuento aplicado. El valor final lo confirma un asesor, que en el asesoramiento puede conseguirte más descuento.
             </p>
           )}
           {!verTodos && sortBy === 'relevancia' && resultadosFiltrados.length > RECOMENDADOS_VISIBLES && (
