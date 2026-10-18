@@ -542,14 +542,18 @@ function SituacionFiltro({ situacion, setSituacion, sueldoBruto, setSueldoBruto 
         const on = situacion === s.id
         return (
           <div key={s.id}>
-            <label className="flex items-center gap-2.5 cursor-pointer group" onClick={() => setSituacion(s.id)}>
-              <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all flex-shrink-0 ${
+            <label className="flex items-start gap-2.5 cursor-pointer group" onClick={() => setSituacion(s.id)}>
+              <div className={`mt-0.5 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all flex-shrink-0 ${
                 on ? 'border-[#E8002D]' : 'border-gray-300 group-hover:border-[#E8002D]'
               }`}>
                 {on && <div className="w-2 h-2 rounded-full bg-[#E8002D]" />}
               </div>
-              <span className={`text-sm font-medium transition-colors flex-1 ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{s.label}</span>
-              <span className="text-[9px] font-bold text-[#00875A] bg-green-50 border border-green-200 px-1.5 py-0.5 rounded-full flex-shrink-0 text-right leading-tight">{s.badge}</span>
+              {/* La etiqueta del descuento va debajo del nombre (18-oct-2026): en
+                  la columna de filtros no entraban en una línea y se salía de la caja */}
+              <span className="flex-1 min-w-0">
+                <span className={`block text-sm font-medium leading-tight transition-colors ${on ? 'text-[#E8002D]' : 'text-gray-600 group-hover:text-gray-900'}`}>{s.label}</span>
+                <span className="mt-1 inline-block text-[10px] font-bold text-[#00875A] bg-green-50 border border-green-200 px-1.5 py-0.5 rounded-full leading-tight">{s.badge}</span>
+              </span>
             </label>
 
             {s.id === 'relacion-dependencia' && on && (
@@ -1447,16 +1451,29 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           "Cotización para {nombre}" siga a la persona al bajar, en vez de
           desaparecer al scrollear). En mobile no es sticky: ahí la versión
           compacta (nombre · edad · zona) vive al lado del botón de Filtros. */}
-      <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-5 text-white mb-6 lg:sticky lg:top-4 lg:z-40 lg:shadow-lg">
+      {/* lg:top-20 (18-oct-2026): con top-4 quedaba tapado por el menú del sitio,
+          que también es sticky y mide 64 px */}
+      <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-5 text-white mb-6 lg:sticky lg:top-20 lg:z-40 lg:shadow-lg">
         {/* Más simple (Darío, 4-oct-2026: "mucha información, desordenada"):
             saludo + título, el descuento en una píldora y una sola línea con
             el grupo y la zona, que se edita con un toque. */}
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <div className="text-red-100 text-xs">Hola{nombre.trim() ? `, ${nombre.trim().split(/\s+/)[0].replace(/^./, (c) => c.toUpperCase())}` : ''}</div>
-            <div className="font-bold text-lg sm:text-xl leading-tight">
-              Tus mejores planes{personas.length > 1 ? ' para tu grupo' : ''}
-            </div>
+            {/* El nombre grande y "Tus mejores planes" como subtítulo (Darío, 18-oct-2026) */}
+            {nombre.trim() ? (
+              <>
+                <div className="font-black text-2xl sm:text-3xl leading-tight truncate">
+                  Hola, {nombre.trim().split(/\s+/)[0].toLowerCase().replace(/^./, (c) => c.toUpperCase())}
+                </div>
+                <div className="text-red-100 text-sm sm:text-base font-semibold mt-0.5">
+                  Tus mejores planes{personas.length > 1 ? ' para tu grupo' : ''}
+                </div>
+              </>
+            ) : (
+              <div className="font-black text-2xl sm:text-3xl leading-tight">
+                Tus mejores planes{personas.length > 1 ? ' para tu grupo' : ''}
+              </div>
+            )}
           </div>
           <div className="flex-shrink-0 rounded-xl bg-white text-[#E8002D] px-3 py-1.5 text-center leading-tight shadow-sm">
             <div className="text-base sm:text-lg font-black">{Math.round(descuentoRate * 100)}% OFF</div>
