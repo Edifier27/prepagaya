@@ -1,0 +1,5385 @@
+{
+ "descargado": "2026-10-18",
+ "fuente": "https://www.osecac.org.ar/Centros",
+ "provincias": {
+  "Buenos Aires": [
+   {
+    "id": "33874",
+    "nombre": "ALTE BROWN - Espora 4070 (B)",
+    "direccion": "Avenida Tomás Espora 4070, Almirante Brown, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "",
+    "lat": -34.8346661,
+    "lon": -58.38459390000003,
+    "especialidades": {
+     "Generales": [
+      "Radiología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Fonoaudiología (sesiones)",
+      "Oftalmología",
+      "Jefe de Día",
+      "Audiometría - Logoaudio",
+      "Otoemisiones acústicas",
+      "Recien nacido normal",
+      "Médico orientador",
+      "Neuro desarrollo",
+      "Fonoaudiología (Discapacidad)",
+      "Fonoaudiología (Cuidados Domiciliarios)"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Espirometría",
+      "Kinesiología",
+      "Neumonología",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Planificación familiar",
+      "Nutrición",
+      "Oftalmología - ARM",
+      "Traumatología - Curación rodilla"
+     ]
+    }
+   },
+   {
+    "id": "558",
+    "nombre": "APRESA - ADROGUE- H. Irigoyen 12837",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "104407",
+    "nombre": "APRESA - ANEXO BERAZATEGUI - Calle 11 n° 4821",
+    "direccion": "Calle 11 4821, B1884 Berazategui, Provincia de Buenos Aires",
+    "telefono": "",
+    "horario": "",
+    "lat": -34.75857899947332,
+    "lon": -58.21131357580599,
+    "especialidades": {}
+   },
+   {
+    "id": "33109",
+    "nombre": "APRESA - AVELLANEDA - Ameghino 563",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33824",
+    "nombre": "APRESA - PACHECO - Hipólito Yrigoyen 241",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30001",
+    "nombre": "APRESA - SAN ISIDRO - Centenario 629",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "67406",
+    "nombre": "APRESA-BERAZATEGUI -Calle 11 n° 4832 e/ 148-149",
+    "direccion": "Calle 11 4832, B1884 Berazategui, Provincia de Buenos Aires",
+    "telefono": "",
+    "horario": "",
+    "lat": -34.75818529549582,
+    "lon": -58.21140118428285,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Anticoagulados",
+      "Holter"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Fonoaudiología (sesiones)",
+      "Neumonología",
+      "Otorrinolaringología",
+      "Nutricion",
+      "Espirometría",
+      "Fonoaudiologia - 1º consulta",
+      "Recien nacido normal",
+      "Médico orientador"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Electrocardiograma",
+      "Ergometría",
+      "Hematología",
+      "Infectología",
+      "Kinesiología",
+      "Neurología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Fisiatría",
+      "Jefe de día",
+      "Nutrición",
+      "Riesgo quirúrgico",
+      "Traumatología de cadera y rodilla"
+     ]
+    }
+   },
+   {
+    "id": "41343",
+    "nombre": "AVELLA - Maipu 278 (B)",
+    "direccion": "Maipú 278, Avellaneda, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier 8 a 20",
+    "lat": -34.6607714,
+    "lon": -58.37230109999996,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Radiología",
+      "Anticoagulados",
+      "Cirugía reparadora (práctica)"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica médica",
+      "Dermatología",
+      "Endocrinología",
+      "Fonoaudiología (sesiones)",
+      "Gastroenterología",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Oftalmología",
+      "Traumatología",
+      "Jefe de Día",
+      "Nutricion",
+      "Ecografista",
+      "Fonoaudiologia - 1º consulta",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Endocrinología",
+      "Ergometría",
+      "Espirometría",
+      "Hematología",
+      "Holter",
+      "Infectología",
+      "Kinesiología",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Obstetricia",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Proctología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Cirugía Maxilofacial",
+      "Fisiatría",
+      "Jefe de día",
+      "Oftalmología campo visual",
+      "Planificación familiar",
+      "Urodinamia",
+      "Nutrición",
+      "Cons.para Dejar de Fumar",
+      "Electromiografía",
+      "Traumatología de cadera y rodilla",
+      "Jefe de Día - Recetas",
+      "Dermatología - Jefe de día",
+      "Dermatologia (prácticas)"
+     ]
+    }
+   },
+   {
+    "id": "41635",
+    "nombre": "BOULOGNE- Bernardo de Irigoyen 177 (B)",
+    "direccion": "Bernardo de Irigoyen 177, Boulogne, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 9 a 19",
+    "lat": -34.5087817,
+    "lon": -58.56750740000001,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Fonoaudiología (sesiones)",
+      "Oftalmología",
+      "Otoemisiones acústicas"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Dermatología",
+      "Ergometría",
+      "Obstetricia",
+      "Traumatología",
+      "Obstetricia (a termino)"
+     ]
+    }
+   },
+   {
+    "id": "113859",
+    "nombre": "C.Ex - SAN VICENTE - Belgrano 305/309",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "42926",
+    "nombre": "C.Ex - SEC ADROGUE (ESPORA 953)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "57326",
+    "nombre": "Deleg - MERCEDES - Calle 22 Nº 830",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "57327",
+    "nombre": "Deleg - MERCEDES - Calle 22 Nº 830",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33111",
+    "nombre": "F.VARELA - Alte.Brown 41 (B)",
+    "direccion": "Almirante Guillermo Brown 41, Florencio Varela, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "",
+    "lat": -34.80452289999999,
+    "lon": -58.27140929999996,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Nutricion"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Ecografista",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Urología",
+      "Planificación familiar",
+      "Nutrición"
+     ]
+    }
+   },
+   {
+    "id": "559",
+    "nombre": "LA PLATA - Diagonal 80 N° 873 (B)",
+    "direccion": "Diagonal 80 873, La Plata, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 8 a 16",
+    "lat": -34.9096104,
+    "lon": -57.94887619999997,
+    "especialidades": {
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica médica",
+      "Dermatología",
+      "Nefrología",
+      "Neurología",
+      "Oftalmología",
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Endocrinología",
+      "Espirometría",
+      "Infectología",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Oncología",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Fisiatría",
+      "Jefe de día",
+      "Cirugía ginecológica",
+      "Nutrición",
+      "Oftalmología - ARM"
+     ]
+    }
+   },
+   {
+    "id": "33110",
+    "nombre": "LANUS - D.V.Iberlucea 3263 (B)",
+    "direccion": "Enrique de Valle Iberlucea 3263, Lanús Oeste, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 8 a 20",
+    "lat": -34.7110315,
+    "lon": -58.393720099999996,
+    "especialidades": {
+     "Generales": [
+      "Cirugía reparadora",
+      "Cirugía reparadora (práctica)"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Cirugía general",
+      "Clínica adolescente",
+      "Clínica médica",
+      "Dermatología",
+      "Kinesiología",
+      "Neumonología",
+      "Neurología",
+      "Otorrinolaringología",
+      "Jefe de Día",
+      "Nutrición y diabetes",
+      "Recien nacido alto riesgo",
+      "Recien nacido normal",
+      "Médico orientador",
+      "Prunape"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Endocrinología",
+      "Espirometría",
+      "Flebología",
+      "Hematología",
+      "Infectología",
+      "Nefrología",
+      "Neumonología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Proctología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Fisiatría",
+      "Jefe de día",
+      "Alergista",
+      "Planificación familiar",
+      "Urodinamia",
+      "Nutrición",
+      "Dermatología - Jefe de día",
+      "Urología - Post Quirúrgico"
+     ]
+    }
+   },
+   {
+    "id": "30003",
+    "nombre": "MUNRO - José Hernandez 4369 (B)",
+    "direccion": "José Hernández 4369, Munro, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 8 a 19",
+    "lat": -34.5279139,
+    "lon": -58.521657000000005,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Dermatología",
+      "Endocrinología",
+      "Nutricion",
+      "Audiometría - Logoaudio",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Dermatología",
+      "Ecografista",
+      "Diabetes",
+      "Oftalmología",
+      "Traumatología",
+      "Urología",
+      "Fisiatría",
+      "Jefe de día",
+      "Ecodoppler cardíacos",
+      "Nutrición",
+      "Ecografista - Ginecológica y transvaginal"
+     ]
+    }
+   },
+   {
+    "id": "42079",
+    "nombre": "IOFA San Isidro Oftalmo - IOFA -S isidro-Colec.Panarican 2611",
+    "direccion": "Colectora Panamericana 2611, Boulogne, Buenos Aires",
+    "telefono": "01147089215",
+    "horario": "",
+    "lat": -34.498316,
+    "lon": -58.54941650000001,
+    "especialidades": {
+     "Adultos": [
+      "Oftalmología",
+      "Oftalmología alta complejidad",
+      "Oftalmología - glaucoma",
+      "Oftalmología - Cataratas",
+      "Oftalmología - Jefe de Dia",
+      "Oftalmología - Guardia"
+     ]
+    }
+   },
+   {
+    "id": "30022",
+    "nombre": "Oftalmo - SOLPA - LANUS - D.V.Iberlucea 3256",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "35985",
+    "nombre": "Oftalmo - SOLPA - Moron - Brown 593 5C",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "44719",
+    "nombre": "Oftalmo - SOLPA - HURLINGHAM - Salazar 1427 Oftalmo - SOLPA -HURLINGHAM-Salazar 1427 (P 0-12)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "45193",
+    "nombre": "PACHECO - Buenos Aires 653 (B)",
+    "direccion": "Buenos Aires 653, General Pacheco",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 8 a 19",
+    "lat": -34.4574651,
+    "lon": -58.6321203,
+    "especialidades": {
+     "Generales": [
+      "Radiología"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica médica",
+      "Dermatología",
+      "Fonoaudiología (sesiones)",
+      "Nutricion",
+      "Audiometría - Logoaudio",
+      "Ecodoppler cardíacos"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Ergometría",
+      "Mamografías",
+      "Obstetricia",
+      "Proctología",
+      "Traumatología",
+      "Urología",
+      "Fisiatría",
+      "Jefe de día",
+      "Planificación familiar",
+      "Monitoreo fetal",
+      "Nutrición",
+      "Curso preparto",
+      "Obstetricia (a termino)",
+      "Ecografista (Mamarias)",
+      "Ecografista - Ginecológica y transvaginal",
+      "Cultivo de flujo (SGB)"
+     ]
+    }
+   },
+   {
+    "id": "44820",
+    "nombre": "Poli - ANEXO MORON - G.Silva 957",
+    "direccion": "Int. Norberto García Silva 957, Morón, Buenos Aires",
+    "telefono": "0114483488",
+    "horario": "Lun a Vier de 8.30 a 15.30 y Sab de 16 a 19.30",
+    "lat": -34.6537371,
+    "lon": -58.62212869999996,
+    "especialidades": {
+     "Generales": [
+      "Tomografía",
+      "Resonancia Mágnetica Nuclear"
+     ],
+     "Pedriátricas": [
+      "Ecografista"
+     ],
+     "Adultos": [
+      "Ecografista",
+      "Ecodoppler",
+      "Ecocardiogramas",
+      "Biopsia bajo control ecográfico"
+     ]
+    }
+   },
+   {
+    "id": "45273",
+    "nombre": "Poli - ANEXO MORON1 - G.Silva 750 (B)",
+    "direccion": "Int. Norberto García Silva 750, Morón, Buenos Aires",
+    "telefono": "01146292264",
+    "horario": "",
+    "lat": -34.6539557,
+    "lon": -58.619188699999995,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Oftalmología",
+      "Jefe de Día",
+      "Jefe de Día - Recetas"
+     ],
+     "Adultos": [
+      "Electrocardiograma",
+      "Kinesiología",
+      "Oftalmología",
+      "Fisiatría",
+      "Oftalmología - Cataratas"
+     ]
+    }
+   },
+   {
+    "id": "37032",
+    "nombre": "Poli - CASEROS - Mariano Moreno 4930 (B)",
+    "direccion": "Mariano Moreno 4930, Caseros, Buenos Aires",
+    "telefono": "01147342492",
+    "horario": "Lunes, Miércoles y Viernes de 13 a 19 hs.Martes 15 a 19 hs.",
+    "lat": -34.6078799,
+    "lon": -58.56634789999998,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Ecografía"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Jefe de Día",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Holter",
+      "Diabetes",
+      "Obstetricia",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Fisiatría",
+      "Jefe de día",
+      "Planificación familiar",
+      "Monitoreo fetal",
+      "Nutrición",
+      "Riesgo quirúrgico",
+      "Diabetes (planillas insulina)",
+      "Jefe de Día - Recetas",
+      "Cultivo de flujo (SGB)"
+     ]
+    }
+   },
+   {
+    "id": "37034",
+    "nombre": "Poli - ESCOBAR - Asborno 499 (B)",
+    "direccion": "Asborno 499, Belén de Escobar",
+    "telefono": "03484428840",
+    "horario": "Lun a Vier 9 a 19",
+    "lat": -34.34760970000001,
+    "lon": -58.79304760000002,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Neurología",
+      "Traumatología",
+      "Fisiatría",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   },
+   {
+    "id": "44149",
+    "nombre": "Poli - Ezeiza - Salvadores 651 Ezeiza",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "113858",
+    "nombre": "Poli - GUERNICA - Calle 101 Nº 49",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "37033",
+    "nombre": "Poli - HURLINGHAM - Vergara 2675 (B)",
+    "direccion": "Avenida Gobernador Vergara 2675, Hurlingham, Buenos Aires",
+    "telefono": "01144507296",
+    "horario": "Lunes de 14 a 19 hs. Jueves de 9 a 14 hs.",
+    "lat": -34.6109718,
+    "lon": -58.634727399999974,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Obstetricia",
+      "Traumatología",
+      "Alergista",
+      "Monitoreo fetal",
+      "Nutrición",
+      "Curso preparto",
+      "Jefe de Día - Recetas",
+      "Cultivo de flujo (SGB)"
+     ]
+    }
+   },
+   {
+    "id": "37035",
+    "nombre": "Poli - JOSE C. PAZ - Pueyrredon 1530 (B)",
+    "direccion": "Pueyrredón 1530, José C. Paz, Buenos Aires",
+    "telefono": "2320439927",
+    "horario": "Lun a Vier de 8 a 17",
+    "lat": -34.5230558,
+    "lon": -58.74464899999998,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Fonoaudiología (sesiones)",
+      "Nutricion",
+      "Fonoaudiologia - 1º consulta",
+      "Recien nacido normal",
+      "Jefe de Día - Recetas"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Obstetricia",
+      "Traumatología",
+      "Jefe de día",
+      "Nutrición",
+      "Riesgo quirúrgico",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   },
+   {
+    "id": "102446",
+    "nombre": "Poli - LA PLATA - Ctro de Rehab - Calle 27 N° 1270",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30024",
+    "nombre": "Poli - LAFERRERE - Andrade 6035 (B)",
+    "direccion": "Olegario Victor Andrade 6035, Laferrere, Buenos Aires",
+    "telefono": "01146269395",
+    "horario": "Lunes a Viernes 9 a 17 hs.",
+    "lat": -34.749694,
+    "lon": -58.58742960000001,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Jefe de Día",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Dermatología",
+      "Electrocardiograma",
+      "Neumonología",
+      "Oftalmología",
+      "Traumatología",
+      "Nutrición",
+      "Oftalmología - ARM",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   },
+   {
+    "id": "723",
+    "nombre": "Poli - LOMAS de ZAMORA - Italia 170 (B)",
+    "direccion": "Italia 170, Lomas de Zamora, Buenos Aires",
+    "telefono": "01142390050",
+    "horario": "Todos los dias, 24 hs",
+    "lat": -34.7626428,
+    "lon": -58.401270899999986,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Alergista",
+      "Fonoaudiología",
+      "Audiometría - Logoaudio",
+      "Otorrinolaringología",
+      "Nutrición",
+      "Fonoaudiología (1ºConsulta)"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica médica",
+      "Neumonología",
+      "Neurología",
+      "Otorrinolaringología",
+      "Jefe de Día",
+      "Endocrinología y ginecología infantil",
+      "Nutrición y diabetes",
+      "Nutricion",
+      "Ecodoppler cardíacos",
+      "Otoemisiones acústicas",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Endocrinología",
+      "Flebología",
+      "Hematología",
+      "Holter",
+      "Infectología",
+      "Nefrología",
+      "Neurología",
+      "Diabetes",
+      "Oftalmología",
+      "Oncología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Hepatología",
+      "Jefe de día",
+      "Ecocardiogramas",
+      "Oftalmología - Curva de Presión",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   },
+   {
+    "id": "36120",
+    "nombre": "Poli - LOMAS DEL MIRADOR - Av.S.Martín 2335 (B)",
+    "direccion": "Avenida General San Martín 2335, Lomas del Mirador, Buenos Aires",
+    "telefono": "01144840036",
+    "horario": "",
+    "lat": -34.6609351,
+    "lon": -58.54268079999997,
+    "especialidades": {
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica médica",
+      "Traumatología",
+      "Audiometría - Logoaudio",
+      "Otoemisiones acústicas"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Ergometría",
+      "Flebología",
+      "Fonoaudiología",
+      "Neurología",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Planificación familiar",
+      "Nutrición",
+      "Oftalmología - ARM",
+      "Audiometría - Logoaudio",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   },
+   {
+    "id": "100982",
+    "nombre": "Poli - LUJAN - Alsina 1148",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33801",
+    "nombre": "Poli - MAR DEL PLATA - Belgrano 3355 (B)",
+    "direccion": "Belgrano 3355, Mar del Plata, Buenos Aires",
+    "telefono": "0223 473-9213",
+    "horario": "",
+    "lat": -37.9970984,
+    "lon": -57.55578439999999,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Radiología",
+      "Fonoaudiología",
+      "Kinesiología respiratoria",
+      "Fonoaudiología (1ºConsulta)",
+      "Cirugía Ambulatoria"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica médica",
+      "Dermatología",
+      "Kinesiología",
+      "Otorrinolaringología",
+      "Jefe de Día",
+      "Nutricion",
+      "Terapia ocupacional",
+      "Ecografista",
+      "Cirugía otorrinolaringología",
+      "Otoemisiones acústicas",
+      "Recien nacido normal",
+      "Ginecología Infantojuvenil"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Endocrinología",
+      "Ergometría",
+      "Fonoaudiología",
+      "Holter",
+      "Kinesiología",
+      "Mamografías",
+      "Neurología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Oncología",
+      "Otorrinolaringología",
+      "Proctología",
+      "Traumatología",
+      "Jefe de día",
+      "Cirugía ginecológica",
+      "Cirugía Otorrinolaringología",
+      "Ecodoppler cardíacos",
+      "Planificación familiar",
+      "Nutrición",
+      "Curso preparto",
+      "Terapia ocupacional",
+      "Ecografista (Mamarias)",
+      "Ecografista (Músc-esquéletico)",
+      "Ecodoppler Central",
+      "Clínica médica - Cirugía Bariátrica",
+      "Nutricion - Cirugía Bariátrica",
+      "Traumatología - Jefe de dia",
+      "Ecografista - Jefe de día",
+      "Jefe de Día - Recetas",
+      "Ecografista - Ginecológica y transvaginal",
+      "Dermatología - Jefe de día",
+      "Ginecología - Jefe de día",
+      "Neurología - Jefe de día",
+      "Cardiología - Jefe de día",
+      "Otorrinolaringología - Jefe de día",
+      "Dermatologia (prácticas)",
+      "Medicina reproductiva - Tratamiento"
+     ]
+    }
+   },
+   {
+    "id": "33802",
+    "nombre": "Poli - MAR DEL PLATA -MONOLITO 9 de Julio 5670 (B)",
+    "direccion": "9 de Julio 5670, Mar del Plata, Buenos Aires",
+    "telefono": "02234744981",
+    "horario": "",
+    "lat": -37.9814192,
+    "lon": -57.57580059999998,
+    "especialidades": {
+     "Adultos": [
+      "Clínica Médica"
+     ]
+    }
+   },
+   {
+    "id": "33803",
+    "nombre": "Poli - MAR DEL PLATA – PUERTO - Cerrito 180 (B)",
+    "direccion": "Cerrito 180, Mar del Plata, Buenos Aires",
+    "telefono": "0223480672",
+    "horario": "",
+    "lat": -38.0322651,
+    "lon": -57.556792400000006,
+    "especialidades": {
+     "Generales": [
+      "Fonoaudiología",
+      "Fonoaudiología (1ºConsulta)"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología"
+     ]
+    }
+   },
+   {
+    "id": "41239",
+    "nombre": "Poli - MARCOS PAZ - C.Pellegrini 81 (B)",
+    "direccion": "Carlos Pellegrini 81, Marcos Paz, Buenos Aires",
+    "telefono": "2204774752",
+    "horario": "",
+    "lat": -34.78338,
+    "lon": -58.83873030000001,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Electrocardiograma"
+     ]
+    }
+   },
+   {
+    "id": "43726",
+    "nombre": "Poli - MERCADO CTRAL - Circunvalación y del Fruto Poli - MERCADO CTRAL - Circunvalación y Fruto (B)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30025",
+    "nombre": "Poli - MERLO - Sarandí 729 PB (B)",
+    "direccion": "Sarandí 729, Merlo, Buenos Aires",
+    "telefono": "02204861997",
+    "horario": "Lunes a Viernes 9 a 17 hs.",
+    "lat": -34.6659709,
+    "lon": -58.725953000000004,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Dermatología",
+      "Fonoaudiología (sesiones)",
+      "Jefe de Día",
+      "Fonoaudiologia - 1º consulta"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Holter",
+      "Neurología",
+      "Diabetes",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Nutrición"
+     ]
+    }
+   },
+   {
+    "id": "33807",
+    "nombre": "Poli - MONTE GRANDE - E.Sta.Marina 226 (B)",
+    "direccion": "Av. Enrique Santamarina 226, Monte Grande, Buenos Aires",
+    "telefono": "011-4296-2334",
+    "horario": "Lunes a Viernes de 8 a 16 hs.",
+    "lat": -34.8208685,
+    "lon": -58.4687811,
+    "especialidades": {
+     "Generales": [
+      "Alergista",
+      "Otorrinolaringología",
+      "Nutrición"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Hematología",
+      "Nefrología",
+      "Neurología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología"
+     ]
+    }
+   },
+   {
+    "id": "30018",
+    "nombre": "Poli - MORENO - Belgrano 159",
+    "direccion": "Gral. Manuel Belgrano 152, Moreno, Buenos Aires",
+    "telefono": "0237-4661896.",
+    "horario": "Lunes a Viernes 9 a 17 hs.",
+    "lat": -34.6488258,
+    "lon": -58.78836480000001,
+    "especialidades": {
+     "Generales": [
+      "Radiología"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica médica",
+      "Fonoaudiología (sesiones)",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Jefe de Día",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Endocrinología",
+      "Diabetes",
+      "Oftalmología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Alergista",
+      "Nutrición",
+      "Oftalmología - ARM",
+      "Riesgo quirúrgico"
+     ]
+    }
+   },
+   {
+    "id": "38550",
+    "nombre": "Poli - MORON - G.Silva 740",
+    "direccion": "Int. Norberto García Silva 740, Moron, Buenos Aires",
+    "telefono": "01146292264",
+    "horario": "Lun a Vier 8 a 18",
+    "lat": -34.653954,
+    "lon": -58.61903589999997,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Radiología",
+      "Anticoagulados",
+      "Cirugía reparadora"
+     ],
+     "Pedriátricas": [
+      "Audiometría - Logoaudio",
+      "Otoemisiones acústicas"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Endocrinología",
+      "Ergometría",
+      "Espirometría",
+      "Flebología",
+      "Hematología",
+      "Holter",
+      "Infectología",
+      "Mamografías",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Oncología",
+      "Otorrinolaringología",
+      "Proctología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Alergista",
+      "Ecodoppler",
+      "Ecodoppler cardíacos",
+      "Ecocardiogramas",
+      "Planificación familiar",
+      "Nutrición",
+      "Riesgo quirúrgico",
+      "Traumatología - Columna",
+      "Audiometría - Logoaudio",
+      "Electroencefalograma",
+      "Electromiografía",
+      "Potenciales evocados",
+      "Urología - Flujometria",
+      "Rectosigmoideoscopia",
+      "Jefe de Día - Recetas",
+      "Test alergia (iodo)",
+      "Traumato - Pre-quirúrgico",
+      "Dermatologia (prácticas)",
+      "Traumato - Post Quirúrgico",
+      "Traumato - Coordinación",
+      "Medicina reproductiva - Admisión"
+     ]
+    }
+   },
+   {
+    "id": "30021",
+    "nombre": "Poli - MORON - G.Silva 957",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "35776",
+    "nombre": "Poli - MORON 2 - G.Silva 943",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33830",
+    "nombre": "Poli - PILAR - Belgrano 374 (B)",
+    "direccion": "Belgrano 374, Pilar, Buenos Aires",
+    "telefono": "02304424604",
+    "horario": "",
+    "lat": -34.4554146,
+    "lon": -58.9141042,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica adolescente",
+      "Clínica médica",
+      "Dermatología",
+      "Nutricion",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Neurología",
+      "Oftalmología",
+      "Traumatología",
+      "Alergista",
+      "Oftalmología - OBI",
+      "Nutrición",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   },
+   {
+    "id": "30027",
+    "nombre": "Poli - RAMOS MEJIA - Rosales 261 (B)",
+    "direccion": "Rosales 261, Ramos Mejía, Buenos Aires",
+    "telefono": "Tel: 4464-2292/ 5060",
+    "horario": "Lunes a Viernes 9 a 17 hs.",
+    "lat": -34.6434591,
+    "lon": -58.56618950000001,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Anticoagulados"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Endocrinología",
+      "Flebología",
+      "Fonoaudiología",
+      "Hematología",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Jefe de día",
+      "Riesgo quirúrgico",
+      "Jefe de Día - Recetas",
+      "Dermatologia (prácticas)"
+     ]
+    }
+   },
+   {
+    "id": "68370",
+    "nombre": "Poli - SAN JUSTO - Hipólito Yrigoyen 2731 Poli - SAN JUSTO - Hipolito Yrigoyen 2731 (B)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30008",
+    "nombre": "Poli - SAN JUSTO - Salta 2264 (B)",
+    "direccion": "Salta 2264, San Justo, Buenos Aires",
+    "telefono": "01144840666",
+    "horario": "a Viernes 9 a 17 hs..",
+    "lat": -34.6751097,
+    "lon": -58.56118630000003,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Radiología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Oftalmología",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Endocrinología",
+      "Ergometría",
+      "Espirometría",
+      "Holter",
+      "Mamografías",
+      "Neumonología",
+      "Neurología",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Alergista",
+      "Planificación familiar",
+      "Nutrición",
+      "Riesgo quirúrgico",
+      "Urología - Flujometria",
+      "Jefe de Día - Recetas",
+      "Test alergia (iodo)",
+      "Traumato - Pre-quirúrgico",
+      "Traumato - Coordinación",
+      "Traumato - Onicocriptosis",
+      "Onicocriptosis (prácticas)"
+     ]
+    }
+   },
+   {
+    "id": "30006",
+    "nombre": "Poli - SAN MARTIN - Calle 99 N° 1960 (ex Roca 72)",
+    "direccion": "Calle 99 1960, San Martin, Buenos Aires",
+    "telefono": "01147557360",
+    "horario": "Lunes a Viernes de 9 a 19 hs.",
+    "lat": -34.5809069,
+    "lon": -58.540234,
+    "especialidades": {
+     "Generales": [
+      "Cirugía reparadora",
+      "Ecografía"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Cirugía general",
+      "Clínica médica",
+      "Dermatología",
+      "Neumonología",
+      "Oftalmología",
+      "Traumatología",
+      "Jefe de Día",
+      "Nutricion",
+      "Cirugía otorrinolaringología",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Endocrinología",
+      "Hematología",
+      "Kinesiología",
+      "Neurología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Vascular periférico",
+      "Fisiatría",
+      "Jefe de día",
+      "Alergista",
+      "Cirugía Otorrinolaringología",
+      "Ecodoppler",
+      "Ecodoppler cardíacos",
+      "Ecocardiogramas",
+      "Planificación familiar",
+      "Monitoreo fetal",
+      "Cirugía mamaria",
+      "Oftalmología - OBI",
+      "Nutrición",
+      "Curso preparto",
+      "Obstetricia (a termino)",
+      "Oftalmología - Curva de Presión",
+      "Riesgo quirúrgico",
+      "Traumatología - Rodilla",
+      "Traumatología - Cadera",
+      "Electroencefalograma",
+      "Diabetes (planillas insulina)",
+      "Jefe de Día - Recetas",
+      "Cultivo de flujo (SGB)",
+      "Obstetricia - Pap y colpo",
+      "Dermatologia (prácticas)",
+      "Traumato - Post Quirúrgico"
+     ]
+    }
+   },
+   {
+    "id": "37031",
+    "nombre": "Poli - SAN MIGUEL - Sarmiento 1169 (B)",
+    "direccion": "Domingo Faustino Sarmiento 1169, San Miguel, Buenos Aires",
+    "telefono": "01146677826",
+    "horario": "Lunes a Viernes de 9 a 19 hs.",
+    "lat": -34.54648669754989,
+    "lon": -58.70810560262468,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Cirugía reparadora",
+      "Fonoaudiología (1ºConsulta)"
+     ],
+     "Pedriátricas": [
+      "Cirugía general",
+      "Clínica médica",
+      "Neumonología",
+      "Traumatología",
+      "Jefe de Día",
+      "Nutricion",
+      "Espirometría",
+      "Otoemisiones acústicas",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Fonoaudiología",
+      "Holter",
+      "Kinesiología",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Oftalmología",
+      "Traumatología",
+      "Urología",
+      "Vascular periférico",
+      "Jefe de día",
+      "Alergista",
+      "Ecodoppler cardíacos",
+      "Ecocardiogramas",
+      "Nutrición",
+      "Riesgo quirúrgico",
+      "Electroencefalograma",
+      "Jefe de Día - Recetas",
+      "Ecografista - Ginecológica y transvaginal",
+      "Diabetes y embarazo",
+      "Obstetricia - Pap y colpo",
+      "Dermatologia (prácticas)",
+      "Traumato - Coordinación",
+      "Cirugía general - Post quirúrgico",
+      "Riesgo Cardiológico - Embarazo"
+     ]
+    }
+   },
+   {
+    "id": "33825",
+    "nombre": "Poli - SAN NICOLAS - 25 de Mayo 90 (B)",
+    "direccion": "25 de Mayo 90, San Nicolás de Los Arroyos, Buenos Aires",
+    "telefono": "0336-4426200/4436255",
+    "horario": "Lunes a Viernes: 09:00 a 17:00, Sábados: 09:00 a 12:00",
+    "lat": -33.3435797,
+    "lon": -60.19951200000003,
+    "especialidades": {
+     "Generales": [
+      "Odontología general"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Odontología pediatrica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Fonoaudiología",
+      "Kinesiología",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Ecodoppler",
+      "Ecodoppler cardíacos",
+      "Monitoreo fetal",
+      "Nutrición",
+      "Cuidados Paliativos",
+      "Tocoginecología"
+     ]
+    }
+   },
+   {
+    "id": "76018",
+    "nombre": "Poli - SAN PEDRO - Pellegrini 472 (B)",
+    "direccion": "Carlos Pellegrini 472, San Pedro, Buenos Aires",
+    "telefono": "03329425443",
+    "horario": "",
+    "lat": -33.6769345,
+    "lon": -59.663253199999986,
+    "especialidades": {
+     "Adultos": [
+      "Clínica Médica"
+     ]
+    }
+   },
+   {
+    "id": "42864",
+    "nombre": "Poli - Sindicales - Alte Brown (B)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "59138",
+    "nombre": "Poli - TANDIL - San Martin 250 (B)",
+    "direccion": "San Martín 250, Tandil, Buenos Aires",
+    "telefono": "02494437479",
+    "horario": "",
+    "lat": -37.3280505,
+    "lon": -59.14157469999998,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Fonoaudiología",
+      "Terapia ocupacional"
+     ],
+     "Pedriátricas": [
+      "Cirugía general",
+      "Clínica médica",
+      "Neumonología",
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Endocrinología",
+      "Ergometría",
+      "Flebología",
+      "Hematología",
+      "Infectología",
+      "Kinesiología",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Ecodoppler",
+      "Nutrición"
+     ]
+    }
+   },
+   {
+    "id": "69629",
+    "nombre": "Poli - VILLA MADERO - Primera Junta 19 (B)",
+    "direccion": "Primera Junta 19, Villa Madero, Buenos Aires",
+    "telefono": "01144420287",
+    "horario": "",
+    "lat": -34.6967722,
+    "lon": -58.50767640000004,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Electrocardiograma",
+      "Traumatología"
+     ]
+    }
+   },
+   {
+    "id": "33866",
+    "nombre": "Poli - VILLA MITRE - Remedios de Escalada 278 (B)",
+    "direccion": "Remedios de Escalada 278, Bahía Blanca",
+    "telefono": "02914819845",
+    "horario": "Lun a Vier de 8 a 17 hs",
+    "lat": -38.7310083,
+    "lon": -62.2446605,
+    "especialidades": {
+     "Generales": [
+      "Odontología general"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Neurología",
+      "Traumatología",
+      "Endocrinología - Diabetes"
+     ]
+    }
+   },
+   {
+    "id": "73379",
+    "nombre": "Poli - VIRREY DEL PINO - Juan M. de Rosas 19603",
+    "direccion": "Brigadier General Juan Manuel de Rosas 19603, Virrey del Pino, Buenos Aires",
+    "telefono": "02202447661",
+    "horario": "Lunes a Viernes 9 a 17 hs.",
+    "lat": -34.8085633,
+    "lon": -58.63509149999999,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Electrocardiograma",
+      "Neumonología",
+      "Oftalmología",
+      "Traumatología"
+     ]
+    }
+   },
+   {
+    "id": "56052",
+    "nombre": "Poli - ZARATE- Lavalle 62",
+    "direccion": "Avenida General Lavalle 62, Zárate, Buenos Aires",
+    "telefono": "3487434454",
+    "horario": "",
+    "lat": -34.09806349999999,
+    "lon": -59.02833399999997,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Dermatología",
+      "Neurología",
+      "Traumatología",
+      "Nutrición"
+     ]
+    }
+   },
+   {
+    "id": "68369",
+    "nombre": "Poli -SAN JUSTO - Hipolito Yrigoyen 2731 Poli -SAN JUSTO - Hipolito Yrigoyen 2731 (B)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30010",
+    "nombre": "QUILMES - Mitre 976 (B)",
+    "direccion": "Avenida Mitre 976, Quilmes, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Sab de 8 a 20",
+    "lat": -34.7266097,
+    "lon": -58.250185499999986,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Anticoagulados"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Cirugía general",
+      "Clínica médica",
+      "Fonoaudiología (sesiones)",
+      "Gastroenterología",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Oftalmología",
+      "Traumatología",
+      "Jefe de Día",
+      "Nutricion",
+      "Recien nacido alto riesgo",
+      "Fonoaudiologia - 1º consulta",
+      "Ecodoppler cardíacos",
+      "Otoemisiones acústicas",
+      "Cardiología- Apto Físico",
+      "Recien nacido normal",
+      "Médico orientador",
+      "Fonoaudiología - Pac. neurológicos"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Hematología",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Oncología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Vascular periférico",
+      "Fisiatría",
+      "Jefe de día",
+      "Cirugía Otorrinolaringología",
+      "Planificación familiar",
+      "Urodinamia",
+      "Oftalmología - OBI",
+      "Nutrición",
+      "Riesgo quirúrgico",
+      "Ecografista (Obstetricia)",
+      "Traumatología - Rodilla",
+      "Traumatología - Curación rodilla",
+      "Dermatología - Jefe de día",
+      "Traumato - Post Quirúrgico",
+      "Urología - Post Quirúrgico",
+      "Traumatología - Miembro superior",
+      "Traumato - Curaciones en miembro superior"
+     ]
+    }
+   },
+   {
+    "id": "38166",
+    "nombre": "SAN FCO SOLANO - Calle 843 Nº 2445 (B)",
+    "direccion": "Calle 843 no 2445, San francisco Solano, Buenos Aires",
+    "telefono": "01142124462",
+    "horario": "Lu a Vi de 9 a 16:30 hs",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Fonoaudiología (sesiones)",
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Traumatología"
+     ]
+    }
+   },
+   {
+    "id": "30002",
+    "nombre": "SAN FERNANDO - Lavalle 599",
+    "direccion": "Lavalle 599, San Fernando, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lunes a Viernes de 9 a 17 hs.",
+    "lat": -34.422042,
+    "lon": -58.582781899999986,
+    "especialidades": {
+     "Generales": [
+      "Presurometría"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Neumonología",
+      "Oftalmología",
+      "Nutricion"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Dermatología",
+      "Ecografista",
+      "Holter",
+      "Diabetes",
+      "Oftalmología",
+      "Urología",
+      "Fisiatría",
+      "Jefe de día",
+      "Ecodoppler cardíacos",
+      "Ecocardiogramas",
+      "Nutrición",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   },
+   {
+    "id": "74262",
+    "nombre": "SAN ISIDRO - Centenario 50 (B)",
+    "direccion": "Av. Centenario 50, San Isidro, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 8 a 20 y Sab 8 a 12:15",
+    "lat": -34.4740302,
+    "lon": -58.512920099999974,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Tomografía"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Cirugía general",
+      "Clínica adolescente",
+      "Clínica médica",
+      "Dermatología",
+      "Endocrinología",
+      "Fonoaudiología (sesiones)",
+      "Gastroenterología",
+      "Neumonología",
+      "Neurología",
+      "Oftalmología",
+      "Traumatología",
+      "Jefe de Día",
+      "Nutricion",
+      "Ecografista",
+      "Espirometría",
+      "Hepatología",
+      "Fonoaudiologia - 1º consulta",
+      "Audiometría - Logoaudio",
+      "Ecodoppler cardíacos",
+      "Recien nacido normal",
+      "Prunape"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Endocrinología",
+      "Espirometría",
+      "Flebología",
+      "Hematología",
+      "Infectología",
+      "Mamografías",
+      "Neumonología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Reumatología",
+      "Urología",
+      "Jefe de día",
+      "Alergista",
+      "Oftalmología alta complejidad",
+      "Traumatología - pie diabético",
+      "Ecodoppler",
+      "Planificación familiar",
+      "Nutrición",
+      "Oftalmología - Estrabismo",
+      "Oftalmología - Cataratas",
+      "Riesgo quirúrgico",
+      "Ecografista (Mamarias)",
+      "Traumatología de cadera y rodilla",
+      "Ecografista - Ginecológica y transvaginal",
+      "Traumatología - Pierna y pie"
+     ]
+    }
+   },
+   {
+    "id": "44989",
+    "nombre": "SAPSA - ADROGUE - Bouchard 1068",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "74298",
+    "nombre": "SAPSA - ADROGUE - Castelli 1015 (B)",
+    "direccion": "Juan José Castelli 1015, Adrogué, Buenos Aires",
+    "telefono": "01142934444",
+    "horario": "Lunes a Viernes de 8 a 16 hs.",
+    "lat": -34.8015484,
+    "lon": -58.38760530000002,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica",
+      "Jefe de Día"
+     ]
+    }
+   },
+   {
+    "id": "33805",
+    "nombre": "SAPSA - ADROGUE - Espora 1345",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "35979",
+    "nombre": "SAPSA - ADROGUE - H Irigoyen 12837",
+    "direccion": "Avenida Hipólito Yrigoyen 12837, Adrogué, Buenos Aires",
+    "telefono": "01142931559",
+    "horario": "",
+    "lat": -34.8037153,
+    "lon": -58.40585999999996,
+    "especialidades": {}
+   },
+   {
+    "id": "38167",
+    "nombre": "SAPSA - ANEXO SAN ISIDRO - Centenario 681",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "35943",
+    "nombre": "SAPSA - API SAN MIGUEL - Sarmiento 1334 SAPSA - API SAN MIGUEL - Sarmiento 1334 (B)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30009",
+    "nombre": "SAPSA - AVELLANEDA - Hipólito Irigoyen 670",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30012",
+    "nombre": "SAPSA - BANFIELD - Alsina 761",
+    "direccion": "Alsina 761, Banfield, Buenos Aires",
+    "telefono": "01142423333",
+    "horario": "Lun a Vier de 8 a 20",
+    "lat": -34.7451288,
+    "lon": -58.39372270000001,
+    "especialidades": {
+     "Pedriátricas": [
+      "Cardiología"
+     ]
+    }
+   },
+   {
+    "id": "42927",
+    "nombre": "SAPSA - CAMINAR H YRIGOYEN 412 - M GRANDE",
+    "direccion": "Hipólito Yrigoyen 412, Monte Grande, Buenos Aires",
+    "telefono": "01142815505",
+    "horario": "Lun a Vier de 8 a 20. Tunos de Lun a Vier de 14 a 19",
+    "lat": -34.8135076,
+    "lon": -58.46314129999996,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica"
+     ]
+    }
+   },
+   {
+    "id": "36668",
+    "nombre": "SAPSA - ITUZAINGO - Juncal 170",
+    "direccion": "Juncal 170, Ituzaingó, Buenos Aires",
+    "telefono": "01146243847",
+    "horario": "",
+    "lat": -34.6577189,
+    "lon": -58.66516079999997,
+    "especialidades": {
+     "Pedriátricas": [
+      "Traumatología",
+      "Traumato neuro-ortopedia"
+     ]
+    }
+   },
+   {
+    "id": "35893",
+    "nombre": "SAPSA - LANUS - Sitio de Montevideo 15 1A",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33124",
+    "nombre": "SAPSA - LANUS - Gob Irigoyen 163 1º A",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "35879",
+    "nombre": "SAPSA - LANUS - Ohiggins 1656",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33867",
+    "nombre": "SAPSA - LOMAS - Acevedo 331",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33826",
+    "nombre": "SAPSA - LOMAS - Paso 625",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33873",
+    "nombre": "SAPSA - LOMAS - Sarmiento 250",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "36002",
+    "nombre": "SAPSA - Lomas -M. Castro 415",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "42834",
+    "nombre": "SAPSA - LOMAS DE ZAMORA - Alem 517",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30011",
+    "nombre": "SAPSA - LOMAS DE ZAMORA - M.Castro 430",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30020",
+    "nombre": "SAPSA - MERLO - Colón 587",
+    "direccion": "Colón 587, Merlo, Buenos Aires",
+    "telefono": "02204840175",
+    "horario": "Lun a Vier de 14 a 17",
+    "lat": -34.6669209,
+    "lon": -58.723164499999996,
+    "especialidades": {
+     "Pedriátricas": [
+      "Traumatología"
+     ]
+    }
+   },
+   {
+    "id": "33679",
+    "nombre": "SAPSA - MONTE GRANDE - Arana 127",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30019",
+    "nombre": "SAPSA - MORENO - Intendente Pagano 655",
+    "direccion": "Avenida Intendente Pagano 655, Moreno, Buenos Aires",
+    "telefono": "02374637999",
+    "horario": "",
+    "lat": -34.6444567,
+    "lon": -58.787397899999974,
+    "especialidades": {
+     "Pedriátricas": [
+      "Traumatología"
+     ]
+    }
+   },
+   {
+    "id": "42835",
+    "nombre": "SAPSA - MORON - Buen Viaje 545",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30007",
+    "nombre": "SAPSA - MORON - INPROSAL - Buen Viaje 545",
+    "direccion": "Nuestra Señora de Buen Viaje 545, Morón, Buenos Aires",
+    "telefono": "01146284333",
+    "horario": "Lun a Vier 14 a 17",
+    "lat": -34.6517562,
+    "lon": -58.6167868,
+    "especialidades": {}
+   },
+   {
+    "id": "33870",
+    "nombre": "SAPSA - MORON - Machado 712 - 1º piso",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33877",
+    "nombre": "SAPSA - MORON - SAN MARTIN 599",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "30029",
+    "nombre": "SAPSA - QUILMES SAPSA - QUILMES - Alsina 123 - dpto 8° C",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "44958",
+    "nombre": "SAPSA - QUILMES - Hipolito Irigoyen 588 Dpto 1 C",
+    "direccion": "Hipólito Yrigoyen 588 1ºC, Quilmes, Buenos Aires",
+    "telefono": "386942243619",
+    "horario": "",
+    "lat": -34.7233091,
+    "lon": -58.260199899999975,
+    "especialidades": {
+     "Pedriátricas": [
+      "Otorrinolaringología"
+     ]
+    }
+   },
+   {
+    "id": "36669",
+    "nombre": "SAPSA - RAMOS MEJIA - Espora 76",
+    "direccion": "Espora 76, Ramos Mejía, Buenos Aires",
+    "telefono": "01144647447",
+    "horario": "Lun a Vier de 8 a 19",
+    "lat": -34.6442109,
+    "lon": -58.562853099999984,
+    "especialidades": {
+     "Pedriátricas": [
+      "Traumatología"
+     ]
+    }
+   },
+   {
+    "id": "36662",
+    "nombre": "SAPSA - REMEDIOS DE ESCALADA - Hip.Irigoyen 6041",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "35811",
+    "nombre": "SAPSA - S.JUSTO - Monseñor Marcon 3035",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33120",
+    "nombre": "SAPSA - SAN MARTIN - Caseros 2191 - 1º 1",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "42836",
+    "nombre": "SAPSA - SAN MIGUEL - Balbin 921 (ex mitre)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "43783",
+    "nombre": "SAPSA - SANAT. URQUIZA QUILMES - Peron 1068",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "42837",
+    "nombre": "SAPSA - VTE LOPEZ - San Martin 3026",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "90601",
+    "nombre": "SESAM (Atención Adultos)",
+    "direccion": "Juncal 2336 - CABA",
+    "telefono": "(+54) 11 4019-7700",
+    "horario": "",
+    "lat": -34.591752076453325,
+    "lon": -58.400300544917236,
+    "especialidades": {
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "90701",
+    "nombre": "SESAM (Atención Infanto - Juvenil)",
+    "direccion": "Avenida Medrano 291 - CABA",
+    "telefono": "(+54) 11 4019-0700",
+    "horario": "",
+    "lat": -34.60719424211277,
+    "lon": -58.42125424576007,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ]
+    }
+   },
+   {
+    "id": "60686",
+    "nombre": "VICENTE LOPEZ - Arenales 1569 (B)",
+    "direccion": "Arenales 1569, Vicente López, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "",
+    "lat": -34.5234071,
+    "lon": -58.48553149999998,
+    "especialidades": {
+     "Generales": [
+      "Radiología"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica médica",
+      "Dermatología",
+      "Gastroenterología",
+      "Neumonología",
+      "Espirometría",
+      "Ecodoppler cardíacos"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Endocrinología",
+      "Kinesiología",
+      "Neumonología",
+      "Diabetes",
+      "Obstetricia",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Fisiatría",
+      "Cirugía Proctológica",
+      "Ecodoppler obstétrico",
+      "Monitoreo fetal",
+      "Nutrición",
+      "Curso preparto",
+      "Obstetricia (a termino)",
+      "Riesgo quirúrgico",
+      "Ecografista (Obstetricia)",
+      "Cultivo de flujo (SGB)",
+      "Obstetricia - Pap y colpo"
+     ]
+    }
+   },
+   {
+    "id": "42095",
+    "nombre": "VIRREYES - Av. Avellaneda 3785 (B)",
+    "direccion": "Av. Nicolás Avellaneda 3785, Virreyes, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 8 a 20 y Sab de 8 a 12",
+    "lat": -34.4610996,
+    "lon": -58.57361980000002,
+    "especialidades": {
+     "Generales": [
+      "Radiología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Fonoaudiología (sesiones)",
+      "Audiometría - Logoaudio"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Obstetricia",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Fisiatría",
+      "Planificación familiar",
+      "Obstetricia (a termino)"
+     ]
+    }
+   }
+  ],
+  "Capital Federal": [
+   {
+    "id": "137825",
+    "nombre": "ANEXO 1ºP - SANATORIO SAGRADO CORAZON - Mitre 2139",
+    "direccion": "Bartolomé Mitre 2139, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "",
+    "horario": "",
+    "lat": -34.60790192373862,
+    "lon": -58.39696921611612,
+    "especialidades": {}
+   },
+   {
+    "id": "126485",
+    "nombre": "ANEXO I - SANATORIO SAGRADO CORAZON - Mitre 2139",
+    "direccion": "Bartolomé Mitre 2139, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "",
+    "horario": "",
+    "lat": -34.60790192373862,
+    "lon": -58.39696921611612,
+    "especialidades": {
+     "Generales": [
+      "Consulta del quemado",
+      "Cirugía reparadora"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Cirugía general",
+      "Cirugía Maxilofacial",
+      "Cirugía ginecológica",
+      "Cirugía urológica",
+      "Cirugia de tórax",
+      "Cirugía ginecológica (oncología)",
+      "Neurocirugía",
+      "Urología - 2º opinión",
+      "Cirugía de uretra",
+      "Cirugía - Urología (Litiasis)",
+      "Ginecología - Histeroscopías",
+      "Cirugia de oído",
+      "Cirugia de nariz",
+      "Cirugía amígdalas/cuerdas vocales",
+      "Cirugía coloproctológica",
+      "Fibroscopia de cuerdas vocales",
+      "Cirugia Oído - Post quirúrgico",
+      "Cirugía urológica (Post QX)"
+     ]
+    }
+   },
+   {
+    "id": "124774",
+    "nombre": "Atención Virtual",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Adultos": [
+      "Clínica Médica"
+     ]
+    }
+   },
+   {
+    "id": "71006",
+    "nombre": "SUR -GERENCIA MEDICA AUDITORIA GERENCIA MEDICA",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "71005",
+    "nombre": "SUR -DEPARTAMENTO. P.A.C. AUDITORIA JEFATURA TRASPLANTE",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "71007",
+    "nombre": "SUR -WILLIAM OSLER AC AUDITORIA WILLIAM OSLER AC",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "33116",
+    "nombre": "C.Ex - Anticoagulado-Hemat - Ciud.de la Paz 810",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "55578",
+    "nombre": "Central Autorizaciones - Rivadavia 611 -Capital",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "138689",
+    "nombre": "Centro de la Mujer - Tte. Gral. Peron 3615",
+    "direccion": "Tte. Gral. Juan Domingo Perón 3615",
+    "telefono": "",
+    "horario": "",
+    "lat": -34.606435799021654,
+    "lon": -58.41754797378713,
+    "especialidades": {}
+   },
+   {
+    "id": "127286",
+    "nombre": "COE-Telemedicina",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "563",
+    "nombre": "CONGRESO - H.Irigoyen 1620 (B)",
+    "direccion": "Hipólito Yrigoyen 1620, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier 8 a 21 y Sab 9 a 12",
+    "lat": -34.6101254,
+    "lon": -58.3893085,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Cirugía reparadora",
+      "Ecografía"
+     ],
+     "Pedriátricas": [
+      "Ecografista"
+     ],
+     "Adultos": [
+      "Ecografista",
+      "Electrocardiograma",
+      "Urología",
+      "Est. Contrastados",
+      "Riesgo quirúrgico",
+      "Ecografista (Músc-esquéletico)",
+      "Ecografista (Transplante SSC)"
+     ]
+    }
+   },
+   {
+    "id": "90306",
+    "nombre": "COOLDENT - MOLDES 1799, CAPITAL FEDERAL",
+    "direccion": "MOLDES 1799, CAPITAL FEDERAL",
+    "telefono": "0810-444-0245",
+    "horario": "LUNES A SABADOS DE 8 A 20 HS / Whatsapp: 11 62112303",
+    "lat": -34.566556,
+    "lon": -58.456909,
+    "especialidades": {
+     "Generales": [
+      "Odontología general"
+     ]
+    }
+   },
+   {
+    "id": "127287",
+    "nombre": "DERMATOLOGIA CABA",
+    "direccion": "Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "180493",
+    "nombre": "FARMACIA B FARMA 2 - BME Mitre 1983",
+    "direccion": "Bartolomé Mitre 1983, C1039AAC Cdad. Autónoma de Buenos Aires",
+    "telefono": "",
+    "horario": "",
+    "lat": -34.60785876394724,
+    "lon": -58.39468770465026,
+    "especialidades": {}
+   },
+   {
+    "id": "564",
+    "nombre": "FLORES - Bacacay 2357 (B)",
+    "direccion": "Bacacay 2357, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "L a V de 8 a 20hs y Sab de 8 a 16hs",
+    "lat": -34.6262339,
+    "lon": -58.4630755,
+    "especialidades": {
+     "Generales": [
+      "Radiología"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica médica",
+      "Dermatología",
+      "Neumonología",
+      "Jefe de Día",
+      "Recien nacido normal"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Fonoaudiología",
+      "Kinesiología",
+      "Jefe de día",
+      "Ecodoppler cardíacos",
+      "Terapia ocupacional",
+      "Ecografista (Mamarias)",
+      "Cons.para Dejar de Fumar",
+      "Fisiatría - Planta",
+      "Fisiatría - Dolor espalda",
+      "Ginecología - Jefe de día",
+      "Drenaje linfatico manual",
+      "Traumato - AM",
+      "Pre-diálisis"
+     ]
+    }
+   },
+   {
+    "id": "84412",
+    "nombre": "GMS - Rivadavia 611",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "124829",
+    "nombre": "Hotel De Las Provincias HOTEL DE LAS PROVINCIAS - Bme. Mitre 2135",
+    "direccion": "Bartolomé Mitre 2135, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "",
+    "horario": "",
+    "lat": -34.60801219469815,
+    "lon": -58.39696100452488,
+    "especialidades": {
+     "Adultos": [
+      "Traumatología"
+     ]
+    }
+   },
+   {
+    "id": "38430",
+    "nombre": "JONAS SALK - Tte. Gral. Peron 2354 (B)",
+    "direccion": "Teniente General Juan Domingo Perón 2354, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier 8 a 21 y Sab 8 a 16",
+    "lat": -34.6073756,
+    "lon": -58.3999832,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Radiología"
+     ],
+     "Pedriátricas": [
+      "Otorrinolaringología",
+      "Ecografista",
+      "Ecodoppler cardíacos"
+     ],
+     "Adultos": [
+      "Gastroenterología",
+      "Cardiología",
+      "Ecografista",
+      "Endocrinología",
+      "Ergometría",
+      "Holter",
+      "Kinesiología",
+      "Mamografías",
+      "Nefrología",
+      "Neurología",
+      "Diabetes",
+      "Obstetricia",
+      "Otorrinolaringología",
+      "Proctología",
+      "Traumatología",
+      "Urología",
+      "Vascular periférico",
+      "Est. Contrastados",
+      "Alergista",
+      "Traumatología - pie diabético",
+      "Ecodoppler obstétrico",
+      "Ecodoppler",
+      "Ecodoppler cardíacos",
+      "Monitoreo fetal",
+      "Endoscopias",
+      "Intervencionismo prenatal",
+      "Biopsia bajo control ecográfico",
+      "Intervencionismo mamario",
+      "Riesgo quirúrgico",
+      "Neurología (2º opinión)",
+      "Ecografista (Mamarias)",
+      "Ecografista (Obstetricia)",
+      "Electrofisiología",
+      "Admisión rehablitación cardiovascular",
+      "Rehabilitación cardiovascular",
+      "Gastroenterología - 2ºopinión",
+      "Diabetes y embarazo",
+      "Cardiopatías congénitas",
+      "Traumatología - Pierna y pie",
+      "Endocrinologia (2ºopinion)",
+      "Mamografías (Marcación)",
+      "Valvulopatía",
+      "Control post PVC",
+      "Cicatrixación avanzada de heridas",
+      "Traumato - Curaciones en miembro superior",
+      "Insuficiencia cardíaca avanzada/HTP",
+      "Control marcapaso",
+      "Nefrología (2ºOpinión)",
+      "Mamografías (B0)",
+      "Medicina reproductiva - Admisión",
+      "Medicina reproductiva - Tratamiento",
+      "Medicina reproductiva - Andrología",
+      "Diabetes - Nutrición",
+      "Asesoramiento genético - Resultados",
+      "Angioplastías periféricas - SSC"
+     ]
+    }
+   },
+   {
+    "id": "66587",
+    "nombre": "JONAS SALK SARANDI - Sarandi 927 (B)",
+    "direccion": "Sarandí 927, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 8 a 21 y Sab de 8 a 16 hs",
+    "lat": -34.6198035,
+    "lon": -58.394519,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Resonancia Mágnetica Nuclear"
+     ],
+     "Pedriátricas": [
+      "Alergista",
+      "Cardiología",
+      "Cirugía general",
+      "Clínica médica",
+      "Dermatología",
+      "Endocrinología",
+      "Gastroenterología",
+      "Hematología",
+      "Kinesiología",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Traumatología",
+      "Urología",
+      "Neurocirugía",
+      "Traumato neuro-ortopedia",
+      "Ergometría",
+      "Espirometría",
+      "Cirugía reparadora",
+      "Cirugía otorrinolaringología",
+      "Ecodoppler cardíacos",
+      "Oncología",
+      "Pacientes complejos",
+      "Traumatología - Columna",
+      "Traumatología - Rodilla",
+      "Hematología - 2 opinión",
+      "Fimosis",
+      "Inmunología"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Ergometría",
+      "Espirometría",
+      "Hematología",
+      "Holter",
+      "Infectología",
+      "Kinesiología",
+      "Neumonología",
+      "Reumatología",
+      "Traumatología",
+      "Hepatología",
+      "Ecodoppler",
+      "Biopsia médula ósea",
+      "Nutrición",
+      "Test de caminata",
+      "Riesgo quirúrgico",
+      "Capilaroscopia",
+      "Traumatología - Cadera",
+      "Traumatología - Columna",
+      "Nutrición - Talleres cirugía bariátrica",
+      "Dermatología - Ulceras Queloides",
+      "Traumatología - Curación rodilla",
+      "Traumatología de cadera y rodilla",
+      "Traumatología- Cirugía oncológica",
+      "Cirugía de esófago",
+      "Traumatología - Miembro superior",
+      "Ecodoppler (con ejercicio)",
+      "Dolor (Intervención Patología Espinal)"
+     ]
+    }
+   },
+   {
+    "id": "35991",
+    "nombre": "LACROZE - Av.F.Lacroze 3830 (B)",
+    "direccion": "Avenida Federico Lacroze 3830, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 8 a 21 y Sab 8 a 12",
+    "lat": -34.5836288,
+    "lon": -58.4529264,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Radiología"
+     ],
+     "Pedriátricas": [
+      "Clínica adolescente",
+      "Clínica médica",
+      "Dermatología",
+      "Endocrinología",
+      "Gastroenterología",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Traumatología",
+      "Urología",
+      "Jefe de Día",
+      "Neurocirugía",
+      "Traumatología oncologicos",
+      "Nutrición y diabetes",
+      "Nutricion",
+      "Ecografista",
+      "Ginecología Infantojuvenil",
+      "Neuro desarrollo",
+      "Test ADOS"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Ergometría",
+      "Hematología",
+      "Holter",
+      "Kinesiología",
+      "Mamografías",
+      "Diabetes",
+      "Otorrinolaringología",
+      "Proctología",
+      "Ecodoppler obstétrico",
+      "Ecodoppler cardíacos",
+      "Riesgo quirúrgico",
+      "Ecografista (Mamarias)",
+      "Ecografista (Obstetricia)",
+      "Asesoramiento Lig.tubaria",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   },
+   {
+    "id": "33108",
+    "nombre": "Odonto - ADROGUE S.E.C. - Espora 953",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "35931",
+    "nombre": "Odonto - AOF - Independencia 1687 (B) Constitucion",
+    "direccion": "Av. Independencia 1687, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "01143841088",
+    "horario": "Lunes a Viernes 8 a 20 Sabado 8 a 14 hs / Whatsapp (Turnos): 11-4074-2176",
+    "lat": -34.6180321,
+    "lon": -58.3901519,
+    "especialidades": {
+     "Generales": [
+      "Odontología general"
+     ],
+     "Pedriátricas": [
+      "Odontología pediatrica"
+     ]
+    }
+   },
+   {
+    "id": "72769",
+    "nombre": "Odonto - FLORES - Membrillar 74 - 4º Of 410",
+    "direccion": "Membrillar 74, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "7139-2889",
+    "horario": "Lunes a Viernes de 10 a 18 hs.",
+    "lat": -34.6291204,
+    "lon": -58.4608101,
+    "especialidades": {
+     "Generales": [
+      "Odontología general"
+     ]
+    }
+   },
+   {
+    "id": "45046",
+    "nombre": "Odonto - IOBA -Av. Cabildo 4190 Piso1º CABA (B)",
+    "direccion": "Av. Cabildo 4190, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "08108880202",
+    "horario": "Lun a Sab de 9 a 17",
+    "lat": -34.545419,
+    "lon": -58.4709625,
+    "especialidades": {
+     "Generales": [
+      "Odontología general"
+     ]
+    }
+   },
+   {
+    "id": "112996",
+    "nombre": "Odonto - KOOLDENT - Moldes 1799 -Belgrano",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "35928",
+    "nombre": "ODONTO - ODAR - SUIPACHA 556 (B) -MONSERRAT",
+    "direccion": "Suipacha 556, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "11 4324 4000 / Whatsapp: 11 6755113",
+    "horario": "Lunes a Viernes de 8.00 a 19.00 hs. - sábados de 8 a 13:30hs",
+    "lat": -34.6004201,
+    "lon": -58.796595,
+    "especialidades": {
+     "Generales": [
+      "Odontología general"
+     ],
+     "Pedriátricas": [
+      "Odontología pediatrica"
+     ]
+    }
+   },
+   {
+    "id": "33869",
+    "nombre": "IOFA Mitre Oftalmo - IOFA -Bme. Mitre 1242/48 (B)",
+    "direccion": "Bartolomé Mitre 1242, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "0810-999-0101",
+    "horario": "",
+    "lat": -34.6086044,
+    "lon": -58.3862999,
+    "especialidades": {
+     "Pedriátricas": [
+      "Oftalmología",
+      "Oftalmología - Control prematuros"
+     ],
+     "Adultos": [
+      "Oftalmología",
+      "Oftalmología cirugía",
+      "Oft. Cirugía por desprendimiento de retina",
+      "Oft. Ecografia Ecometría",
+      "Oft. Cirugía de Cornea",
+      "Oftalmología - glaucoma",
+      "Oftalmología LASER",
+      "Oftalmología - Estrabismo",
+      "Oftalmología - Cataratas",
+      "Oftalmología - Retina",
+      "Oftalmología - Uveitis",
+      "Oftalmología - Neuro",
+      "Oftalmología - Jefe de Dia",
+      "Oftalmología - Guardia",
+      "Oftalmología - Curva de Presión",
+      "Oft. Programación cirugía",
+      "Oftalmología - Paquimetría",
+      "Ofttalmología - Alta quirúrgica",
+      "Oftalmología - Oculoplastia",
+      "Oft. Cirugía Refractiva",
+      "Oft. YAG Laser",
+      "Oft. Cornea",
+      "Oftalmología - Clínica Médica",
+      "Oftalmología - Cirugía glaucoma",
+      "Oftalmología - Intravitrea",
+      "Oftalmo - Cataratas (2°opinión)"
+     ]
+    }
+   },
+   {
+    "id": "70179",
+    "nombre": "Oftalmo - SOLPA - Valle 731",
+    "direccion": "Valle 731, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "0810-999-0101",
+    "horario": "",
+    "lat": -34.6247537,
+    "lon": -58.4383627,
+    "especialidades": {
+     "Adultos": [
+      "Oftalmología campo visual",
+      "Oftalmolgía - RFG"
+     ]
+    }
+   },
+   {
+    "id": "30015",
+    "nombre": "Oftalmo - SOLPA -M.T.de Alvear 2263 (P 0-12-A esp)",
+    "direccion": "Marcelo T. de Alvear 2263, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "0810-999-0101",
+    "horario": "Lun a Vier de 8 a 20",
+    "lat": -34.5968542,
+    "lon": -58.3997455,
+    "especialidades": {
+     "Pedriátricas": [
+      "Oftalmología"
+     ],
+     "Adultos": [
+      "Oftalmología - glaucoma",
+      "Oft. Cirugía de parpado",
+      "Oftalmología - ARM",
+      "Oftalmología - Cataratas",
+      "Oftalmología - Curva de Presión",
+      "Oftalmología - Paquimetría"
+     ]
+    }
+   },
+   {
+    "id": "30016",
+    "nombre": "Oftalmo - SOLPA -Paysandú 1608",
+    "direccion": "Paysandú 1608, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "0810-999-0101",
+    "horario": "",
+    "lat": -34.6059583,
+    "lon": -58.4574443,
+    "especialidades": {
+     "Pedriátricas": [
+      "Oftalmología alta complejidad"
+     ],
+     "Adultos": [
+      "Oft. Ecografia Ecometría",
+      "Oft. Cirugía de Cornea",
+      "Oftalmología - OBI",
+      "Oftalmología - Retina"
+     ]
+    }
+   },
+   {
+    "id": "562",
+    "nombre": "ONCE - Larrea 244 (B)",
+    "direccion": "Larrea 244, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "08109990101",
+    "horario": "Lun a Vier de 8 a 20 hs y Sab de 8 a 12hs",
+    "lat": -34.6069541,
+    "lon": -58.402025,
+    "especialidades": {
+     "Generales": [
+      "Anticoagulados"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Electrocardiograma",
+      "Urología",
+      "Jefe de día",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   },
+   {
+    "id": "45604",
+    "nombre": "Osecac Central - Moreno 648",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "127288",
+    "nombre": "OTORRINO CABA",
+    "direccion": "Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "90500",
+    "nombre": "PSICOLOGÍA VIRTUAL",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "44759",
+    "nombre": "SANATORIO SAGRADO CORAZON - Mitre 1955 (B)",
+    "direccion": "Bartolomé Mitre 1955, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "01152385300",
+    "horario": "",
+    "lat": -34.6081184,
+    "lon": -58.3942825,
+    "especialidades": {
+     "Pedriátricas": [
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Jefe de día",
+      "Ecodoppler obstétrico",
+      "Ecodoppler",
+      "Traumatología - Jefe de dia",
+      "AnexoSSC P.U.R.A",
+      "Trasplante hepático"
+     ]
+    }
+   },
+   {
+    "id": "59263",
+    "nombre": "SAPSA - BALCARCE - Balcarce 261",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "35993",
+    "nombre": "SAPSA - Centro Gallego - Av Belgrano 2199",
+    "direccion": "Av. Belgrano 2199, Ciudad Autónoma de Buenos Aires, Buenos Aires",
+    "telefono": "01141271000",
+    "horario": "Todos los dias, las 24 hs",
+    "lat": -34.6141908,
+    "lon": -58.39746960000002,
+    "especialidades": {}
+   },
+   {
+    "id": "59264",
+    "nombre": "SAPSA -no usar- Balcarce 261",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "90600",
+    "nombre": "SESAM (Atención Adultos)",
+    "direccion": "Juncal 2336 - CABA",
+    "telefono": "(+54) 11 4019-7700",
+    "horario": "",
+    "lat": -34.591752076453325,
+    "lon": -58.400300544917236,
+    "especialidades": {
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "90700",
+    "nombre": "SESAM (Atención Infanto - Juvenil)",
+    "direccion": "Avenida Medrano 291 - CABA",
+    "telefono": "(+54) 11 4019-0700",
+    "horario": "",
+    "lat": -34.60719424211277,
+    "lon": -58.42125424576007,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ]
+    }
+   },
+   {
+    "id": "124773",
+    "nombre": "SESAM (Virtual)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Adultos": [
+      "Psicología Virtual"
+     ]
+    }
+   },
+   {
+    "id": "173804",
+    "nombre": "SESAM (Virtual)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   }
+  ],
+  "Catamarca": [
+   {
+    "id": "90800",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "37025",
+    "nombre": "Poli - CATAMARCA - Rojas 923",
+    "direccion": "Ricardo Rojas 923, San Fernando del Valle de Catamarca, Catamarca",
+    "telefono": "03834452514",
+    "horario": "",
+    "lat": -28.4984271,
+    "lon": -65.78518400000002,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Oftalmología",
+      "Ecografía",
+      "Dermatología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Endocrinología"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Endocrinología",
+      "Kinesiología",
+      "Neumonología",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Alergista",
+      "Planificación familiar",
+      "Nutrición"
+     ]
+    }
+   }
+  ],
+  "Chaco": [
+   {
+    "id": "90803",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   }
+  ],
+  "Chubut": [
+   {
+    "id": "90804",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "35520",
+    "nombre": "Poli - COMODORO RIVADAVIA - Btme.Mitre 602 (B)",
+    "direccion": "Bartolomé Mitre 602, Comodoro Rivadavia, Chubut",
+    "telefono": "2974472180",
+    "horario": "",
+    "lat": -45.8643829,
+    "lon": -67.4830359,
+    "especialidades": {
+     "Generales": [
+      "Odontología general",
+      "Cirugía reparadora"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Otorrinolaringología",
+      "Odontología pediatrica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Ecografista",
+      "Flebología",
+      "Hematología",
+      "Kinesiología",
+      "Mamografías",
+      "Neurología",
+      "Traumatología",
+      "Ecodoppler cardíacos",
+      "Nutrición",
+      "Ecografista (Obstetricia)"
+     ]
+    }
+   },
+   {
+    "id": "38142",
+    "nombre": "Poli - PTO. MADRYN (B)",
+    "direccion": "Fuerte San José 363, Puerto Madryn, Chubut",
+    "telefono": "02804472423",
+    "horario": "",
+    "lat": -42.7666835,
+    "lon": -65.0482016,
+    "especialidades": {
+     "Generales": [
+      "Odontología general"
+     ]
+    }
+   },
+   {
+    "id": "33114",
+    "nombre": "Poli - TRELEW - Edison 348 (B)",
+    "direccion": "Edison 348, Trelew, Chubut",
+    "telefono": "02804420581",
+    "horario": "Atención con turnos, de 8 a 20hs.",
+    "lat": -43.2558943,
+    "lon": -65.3179968,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Odontología general",
+      "Ecografía"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Fonoaudiología (sesiones)"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Endocrinología",
+      "Kinesiología",
+      "Neumonología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Nutrición",
+      "Jefe de Día - Recetas"
+     ]
+    }
+   }
+  ],
+  "Cordoba": [
+   {
+    "id": "90801",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "74378",
+    "nombre": "Clin. Sanagec - Cordoba - Capital - Bv. Guzman 65",
+    "direccion": "Boulevard Guzmán 65, Córdoba",
+    "telefono": "03514222042",
+    "horario": "Lun a Vier 8 a 20",
+    "lat": -31.41754659999999,
+    "lon": -64.1763646,
+    "especialidades": {
+     "Generales": [
+      "Cirugía reparadora"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Cardiología",
+      "Cirugía general",
+      "Flebología",
+      "Infectología",
+      "Neurología",
+      "Obstetricia",
+      "Jefe de día",
+      "Traumatología - Jefe de dia",
+      "Ginecología - Jefe de día"
+     ]
+    }
+   },
+   {
+    "id": "59549",
+    "nombre": "Poli - CORDOBA - AGEC- Juan B. Justo 3651 (B)",
+    "direccion": "Av. Juan B. Justo 3651, Córdoba",
+    "telefono": "03514721654",
+    "horario": "",
+    "lat": -31.3573087,
+    "lon": -64.1759932,
+    "especialidades": {
+     "Generales": [
+      "Rehabilitación del lenguaje"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Flebología",
+      "Kinesiología",
+      "Diabetes",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Alergista",
+      "Planificación familiar",
+      "Nutrición",
+      "Test de alergia"
+     ]
+    }
+   },
+   {
+    "id": "42208",
+    "nombre": "Poli - CORDOBA - Capital - Bv. Guzman 49 (B)",
+    "direccion": "Boulevard Guzmán 49, Córdoba",
+    "telefono": "03514222042",
+    "horario": "",
+    "lat": -31.4177593,
+    "lon": -64.17634939999999,
+    "especialidades": {
+     "Generales": [
+      "Cirugía reparadora",
+      "Rehabilitación del lenguaje",
+      "Espirometría"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Cirugía general",
+      "Clínica médica",
+      "Endocrinología",
+      "Gastroenterología",
+      "Nefrología",
+      "Neonatología",
+      "Neumonología",
+      "Neurología",
+      "Oftalmología",
+      "Urología",
+      "Jefe de Día",
+      "Neurocirugía",
+      "Genetica",
+      "Infectología",
+      "Nutricion",
+      "Fonoaudiologia - 1º consulta",
+      "Ecodoppler cardíacos",
+      "Cirugía cardiovascular",
+      "Electroencefalograma",
+      "P.U.R.A"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Electrocardiograma",
+      "Ergometría",
+      "Flebología",
+      "Hematología",
+      "Holter",
+      "Infectología",
+      "Kinesiología",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Alergista",
+      "Cirugía ginecológica",
+      "Cirugia de tórax",
+      "Urodinamia",
+      "Endoscopias",
+      "Endocrinología - Diabetes",
+      "Nutrición",
+      "Curso preparto",
+      "Cirugía cabeza y cuello",
+      "Test de caminata",
+      "Neurocirugía",
+      "Cirugía Bariátrica",
+      "Fibrolaringoscopia",
+      "Traumatología - Rodilla",
+      "Traumatología - Columna",
+      "Cirugia dermatológica (Práctica)",
+      "Cuidados Paliativos",
+      "Oncohematología",
+      "Hemostasia y trombofilia",
+      "Electroencefalograma",
+      "Urología - Flujometria",
+      "Obstetricia - Puerperio",
+      "Obstetricia - 1ºVez",
+      "Traumatología - Pierna y pie",
+      "Traumatología - Miembro superior",
+      "Control marcapaso",
+      "Pre Quirúrgico",
+      "Test de alergia",
+      "Obstetricia - Alto Riesgo",
+      "Pre Concepción - Alto Riesgo",
+      "Electroencefalograma bajo sueño"
+     ]
+    }
+   },
+   {
+    "id": "33806",
+    "nombre": "Poli - CORDOBA - Capital - Sabattini 4467",
+    "direccion": "Av. Gdor. Amadeo Sabattini 4467, Córdoba",
+    "telefono": "03514567938",
+    "horario": "",
+    "lat": -31.4367305,
+    "lon": -64.12927489999998,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Kinesiología"
+     ]
+    }
+   },
+   {
+    "id": "33809",
+    "nombre": "Poli - CORDOBA - Co.las Rosas- Av.Nuñez 3804 (B)",
+    "direccion": "Av. Rafael Núñez 3804, Córdoba",
+    "telefono": "03514810692",
+    "horario": "",
+    "lat": -31.3732121,
+    "lon": -64.22889659999998,
+    "especialidades": {
+     "Generales": [
+      "Cirugía reparadora",
+      "Traumatología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Endocrinología",
+      "Flebología",
+      "Kinesiología",
+      "Neurología",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Nutrición",
+      "Riesgo quirúrgico"
+     ]
+    }
+   },
+   {
+    "id": "87377",
+    "nombre": "Poli - CORDOBA - Villa Allende - 9 de Julio 235",
+    "direccion": "9 de Julio 2351, Córdoba",
+    "telefono": "03543436376",
+    "horario": "",
+    "lat": -31.40582989999999,
+    "lon": -64.21371249999999,
+    "especialidades": {
+     "Generales": [
+      "Médico de familia",
+      "Ginecología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ]
+    }
+   },
+   {
+    "id": "33829",
+    "nombre": "Poli - RIO CUARTO - Sobremonte 1244 (B)",
+    "direccion": "Sobremonte 1244, Río Cuarto, Córdoba",
+    "telefono": "03584632009",
+    "horario": "",
+    "lat": -33.1291111,
+    "lon": -64.35018309999998,
+    "especialidades": {
+     "Generales": [
+      "Medicina general"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Gastroenterología",
+      "Kinesiología",
+      "Nutricion",
+      "Fisiatría"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Ecografista",
+      "Endocrinología",
+      "Kinesiología",
+      "Mamografías",
+      "Neurología",
+      "Diabetes",
+      "Oftalmología",
+      "Oncología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Nutrición"
+     ]
+    }
+   },
+   {
+    "id": "76944",
+    "nombre": "Poli - SAN FRANCISCO - Iturraspe 1171",
+    "direccion": "Iturraspe 1171, San Francisco, Córdoba",
+    "telefono": "3564422449",
+    "horario": "",
+    "lat": -31.4296303,
+    "lon": -62.07905240000002,
+    "especialidades": {
+     "Generales": [
+      "Oftalmología",
+      "Médico de familia",
+      "Medicina general",
+      "Dermatología",
+      "Alergista",
+      "Ginecología",
+      "Nutrición",
+      "Traumatología",
+      "Kinesiología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Cardiología"
+     ]
+    }
+   }
+  ],
+  "Corrientes": [
+   {
+    "id": "90802",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "33871",
+    "nombre": "Poli - CORRIENTES - Jujuy 1050 (B)",
+    "direccion": "Jujuy 1050, Corrientes",
+    "telefono": "03794423999",
+    "horario": "",
+    "lat": -27.470085,
+    "lon": -58.828306,
+    "especialidades": {
+     "Generales": [
+      "Ecografía"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Hematología",
+      "Kinesiología",
+      "Neumonología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Ecodoppler cardíacos",
+      "Ecocardiogramas",
+      "Nutrición",
+      "Cirugía ginecológica (oncología)",
+      "Biopsia bajo control ecográfico",
+      "Cirugía uroginecológica",
+      "Oncología clínica",
+      "Cuidados Paliativos",
+      "Fisiatría - Rehabilitación",
+      "Oftalmología - Clínica Médica"
+     ]
+    }
+   }
+  ],
+  "Entre Rios": [
+   {
+    "id": "90805",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "43732",
+    "nombre": "Poli - CONCORDIA - Damian P. Garat 806 (B)",
+    "direccion": "Damián P Garat 806, Concordia, Entre Ríos",
+    "telefono": "03454225926",
+    "horario": "",
+    "lat": -31.3950258,
+    "lon": -58.01080939999997,
+    "especialidades": {
+     "Generales": [
+      "Endocrinologia"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Fonoaudiología (sesiones)",
+      "Kinesiología",
+      "Neumonología",
+      "Jefe de Día",
+      "Infectología"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Dermatología",
+      "Kinesiología",
+      "Diabetes",
+      "Oftalmología",
+      "Oncología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Nutrición"
+     ]
+    }
+   },
+   {
+    "id": "33808",
+    "nombre": "Poli - PARANA - Ernesto Bavio 333 (B)",
+    "direccion": "Ernesto Bavio 333, Paraná, Entre Ríos",
+    "telefono": "0343 4 225300",
+    "horario": "",
+    "lat": -31.7335762,
+    "lon": -60.53628650000002,
+    "especialidades": {
+     "Generales": [
+      "Cirugía reparadora",
+      "Alergista"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Cirugía general",
+      "Clínica médica",
+      "Gastroenterología",
+      "Otorrinolaringología",
+      "Urología",
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Endocrinología",
+      "Ergometría",
+      "Holter",
+      "Kinesiología",
+      "Nefrología",
+      "Neumonología",
+      "Diabetes",
+      "Oftalmología",
+      "Oncología",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Cirugía Maxilofacial",
+      "Jefe de día",
+      "Cirugía Otorrinolaringología",
+      "Nutrición",
+      "Riesgo quirúrgico"
+     ]
+    }
+   }
+  ],
+  "Formosa": [
+   {
+    "id": "90806",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "37026",
+    "nombre": "Poli - FORMOSA - Moreno 1151",
+    "direccion": "Moreno 1151, Formosa",
+    "telefono": "3704437739",
+    "horario": "",
+    "lat": -26.1867804,
+    "lon": -58.166039599999976,
+    "especialidades": {
+     "Generales": [
+      "Médico de familia",
+      "Medicina general",
+      "Nutrición"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Kinesiología",
+      "Neumonología",
+      "Diabetes",
+      "Oftalmología",
+      "Oncología",
+      "Otorrinolaringología",
+      "Jefe de día",
+      "Ecodoppler cardíacos",
+      "Ecocardiogramas"
+     ]
+    }
+   }
+  ],
+  "Jujuy": [
+   {
+    "id": "90807",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   }
+  ],
+  "La Pampa": [
+   {
+    "id": "90808",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   }
+  ],
+  "La Rioja": [
+   {
+    "id": "90809",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "36492",
+    "nombre": "Poli - LA RIOJA - 8 de Diciembre - 346",
+    "direccion": "8 de Diciembre 346, La Rioja",
+    "telefono": "03822436986",
+    "horario": "",
+    "lat": -29.40834539999999,
+    "lon": -66.8535865,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Odontología general",
+      "Ecografía"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Odontología pediatrica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Endocrinología",
+      "Kinesiología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Jefe de día",
+      "Nutrición",
+      "Ginecología - Patología vulvar"
+     ]
+    }
+   }
+  ],
+  "Mendoza": [
+   {
+    "id": "90810",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "38530",
+    "nombre": "Poli - MENDOZA - Capital - Av. San Martin 53 (B)",
+    "direccion": "Av. San Martín 53, Mendoza",
+    "telefono": "02614242086",
+    "horario": "",
+    "lat": -32.8661339,
+    "lon": -68.83275900000001,
+    "especialidades": {
+     "Generales": [
+      "Médico de familia",
+      "Fonoaudiología"
+     ],
+     "Pedriátricas": [
+      "Alergista",
+      "Cardiología",
+      "Cirugía general",
+      "Clínica médica",
+      "Endocrinología",
+      "Neumonología",
+      "Neurología",
+      "Traumatología",
+      "Jefe de Día",
+      "Ginecología Infantojuvenil"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Endocrinología",
+      "Flebología",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Alergista",
+      "Cirugía ginecológica",
+      "Cirugía mamaria",
+      "Nutrición",
+      "Neurocirugía",
+      "Cirugia dermatológica"
+     ]
+    }
+   },
+   {
+    "id": "36003",
+    "nombre": "Poli - MENDOZA - San Rafael - Olascoaga 96 (B)",
+    "direccion": "Olascoaga 96, San Rafael, Mendoza",
+    "telefono": "2604429397",
+    "horario": "",
+    "lat": -34.6156107,
+    "lon": -68.32836299999997,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Odontología general",
+      "Ecografía",
+      "Cirugía Ambulatoria"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Electrocardiograma",
+      "Endocrinología",
+      "Flebología",
+      "Fonoaudiología",
+      "Kinesiología",
+      "Neumonología",
+      "Diabetes",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Nutrición"
+     ]
+    }
+   },
+   {
+    "id": "68127",
+    "nombre": "Poli - MENDOZA - Santa Maria - J. Moreno 1538 (B)",
+    "direccion": "Moreno 1538, Mendoza",
+    "telefono": "026142421107",
+    "horario": "",
+    "lat": -32.8856049,
+    "lon": -68.83272099999999,
+    "especialidades": {
+     "Generales": [
+      "Médico de familia",
+      "Fonoaudiología"
+     ],
+     "Pedriátricas": [
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Jefe de día"
+     ]
+    }
+   }
+  ],
+  "Misiones": [
+   {
+    "id": "90811",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "33820",
+    "nombre": "Poli - OBERA - Gdor.Barreiro 1280 (B)",
+    "direccion": "Gdor. Barreiro 1280, Oberá, Misiónes",
+    "telefono": "03755407474",
+    "horario": "",
+    "lat": -27.4860785,
+    "lon": -55.12650099999996,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cirugía general",
+      "Diabetes",
+      "Nutrición"
+     ]
+    }
+   },
+   {
+    "id": "45186",
+    "nombre": "Poli - POSADAS - Junín 1318 (B)",
+    "direccion": "Junín 1318, Posadas, Misiónes",
+    "telefono": "03764429574",
+    "horario": "",
+    "lat": -27.3620697,
+    "lon": -55.897217299999966,
+    "especialidades": {
+     "Generales": [
+      "Nutrición",
+      "Traumatología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Traumatología",
+      "Ecografista"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Jefe de día"
+     ]
+    }
+   },
+   {
+    "id": "33811",
+    "nombre": "Poli - POSADAS - Junín 2459 Poli - POSADAS - Junín 2459 (B)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   }
+  ],
+  "Neuquen": [
+   {
+    "id": "90812",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "60347",
+    "nombre": "Poli - NEUQUEN - ERNESTO BEHM -P Moreno 650 (B)",
+    "direccion": "PERITO MORENO 650 , Neuquén, Neuquén",
+    "telefono": "02994493510",
+    "horario": "",
+    "lat": -38.9582032,
+    "lon": -68.0521696,
+    "especialidades": {
+     "Generales": [
+      "Oftalmología",
+      "Medicina general",
+      "Dermatología",
+      "Alergista",
+      "Ginecología",
+      "Otorrinolaringología",
+      "Nutrición",
+      "Traumatología"
+     ],
+     "Pedriátricas": [
+      "Cirugía general",
+      "Clínica médica",
+      "Jefe de Día",
+      "Otoemisiones acústicas",
+      "Pacientes complejos"
+     ],
+     "Adultos": [
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Ecografista",
+      "Ergometría",
+      "Flebología",
+      "Kinesiología",
+      "Mamografías",
+      "Neumonología",
+      "Reumatología",
+      "Jefe de día",
+      "Ecodoppler",
+      "Mastología",
+      "Endocrinología - Diabetes",
+      "Electroencefalograma"
+     ]
+    }
+   }
+  ],
+  "Rio Negro": [
+   {
+    "id": "90813",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "33121",
+    "nombre": "Poli - CIPOLLETTI - 9 de Julio 142 (B)",
+    "direccion": "9 de Julio 142, Cipolletti, Río Negro",
+    "telefono": "02944781857",
+    "horario": "",
+    "lat": -38.9361929,
+    "lon": -67.99897599999997,
+    "especialidades": {
+     "Generales": [
+      "Audiometría - Logoaudio",
+      "Traumatología",
+      "Cardiología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cirugía general",
+      "Dermatología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Alergista",
+      "Endocrinología - Diabetes",
+      "Traumatología - Columna"
+     ]
+    }
+   },
+   {
+    "id": "68376",
+    "nombre": "Poli - GRAL. ROCA - Misiones 1570 (B)",
+    "direccion": "Misiones 1570, General Roca, Río Negro",
+    "telefono": "2984424989",
+    "horario": "",
+    "lat": -39.0261636,
+    "lon": -67.5838013,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Medicina general",
+      "Ecografía",
+      "Dermatología",
+      "Fonoaudiología",
+      "Kinesiología"
+     ],
+     "Pedriátricas": [
+      "Cirugía general",
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Endocrinología",
+      "Obstetricia",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Nutrición"
+     ]
+    }
+   },
+   {
+    "id": "33122",
+    "nombre": "Poli - GRAL. ROCA - Tucumán 1561 (B)",
+    "direccion": "Tucumán 1561, General Roca, Río Negro",
+    "telefono": "02941421519",
+    "horario": "",
+    "lat": -39.0270037,
+    "lon": -67.5868342,
+    "especialidades": {
+     "Generales": [
+      "Medicina general",
+      "Dermatología",
+      "Fonoaudiología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Cardiología"
+     ]
+    }
+   }
+  ],
+  "Salta": [
+   {
+    "id": "90814",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   }
+  ],
+  "San Juan": [
+   {
+    "id": "90815",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "33112",
+    "nombre": "Poli - SAN JUAN - Mendoza Sur 922 (B)",
+    "direccion": "Mendoza Sur 922, Rivadavia, San Juan",
+    "telefono": "(0264) 421-5542",
+    "horario": "9 a 21 (Guardia traumatológica)",
+    "lat": -31.5453874,
+    "lon": -68.5249852,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Médico de familia",
+      "Ecografía",
+      "Cirugía cabeza y cuello"
+     ],
+     "Pedriátricas": [
+      "Cirugía general",
+      "Jefe de Día",
+      "Ecografista"
+     ],
+     "Adultos": [
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Electrocardiograma",
+      "Ergometría",
+      "Flebología",
+      "Mamografías",
+      "Obstetricia",
+      "Patología cervical",
+      "Urología",
+      "Jefe de día",
+      "Ecocardiogramas",
+      "Ecografista (Obstetricia)",
+      "Cirugia dermatológica (Práctica)",
+      "Tocoginecología"
+     ]
+    }
+   },
+   {
+    "id": "33113",
+    "nombre": "Poli - SAN JUAN S.E.C - Gral.Acha 65 Sur Poli - SAN JUAN S.E.C - Gral.Acha 65 Sur (B)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   }
+  ],
+  "San Luis": [
+   {
+    "id": "90816",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "36551",
+    "nombre": "Poli - VILLA MERCEDES -S.Martin 735 (B)",
+    "direccion": "San Martín 735, Villa Mercedes, San Luis",
+    "telefono": "02657421297",
+    "horario": "",
+    "lat": -33.6802494,
+    "lon": -65.46117449999997,
+    "especialidades": {
+     "Generales": [
+      "Endocrinologia"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Fonoaudiología",
+      "Otorrinolaringología",
+      "Patología cervical",
+      "Traumatología",
+      "Nutrición"
+     ]
+    }
+   }
+  ],
+  "Santa Cruz": [
+   {
+    "id": "90817",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "35746",
+    "nombre": "Poli - RIO GALLEGOS - Don Bosco 465 (B)",
+    "direccion": "Don Bosco 465, Río Gallegos, Santa Cruz",
+    "telefono": "02966427068",
+    "horario": "",
+    "lat": -51.625651,
+    "lon": -69.20944329999998,
+    "especialidades": {
+     "Generales": [
+      "Odontología general",
+      "Fonoaudiología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Odontología pediatrica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Cardiología",
+      "Kinesiología",
+      "Jefe de día",
+      "Nutrición",
+      "Clínica - Embarazo patológico"
+     ]
+    }
+   }
+  ],
+  "Santa Fe": [
+   {
+    "id": "90818",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "83756",
+    "nombre": "Poli - ROSARIO - Corrientes 430",
+    "direccion": "Corrientes 430, Rosario, Santa Fe",
+    "telefono": "03414496412",
+    "horario": "Lun a Vier de 8 a 22",
+    "lat": -32.9414379,
+    "lon": -60.641275500000006,
+    "especialidades": {
+     "Generales": [
+      "Cirugía reparadora",
+      "Medicina general",
+      "Fonoaudiología",
+      "Audiometría - Logoaudio"
+     ],
+     "Pedriátricas": [
+      "Alergista",
+      "Cirugía general",
+      "Clínica médica",
+      "Dermatología",
+      "Endocrinología",
+      "Neumonología",
+      "Neurología",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Traumatología",
+      "Urología",
+      "Jefe de Día",
+      "Nutricion",
+      "Fisiatría",
+      "Cirugía otorrinolaringología",
+      "Otoemisiones acústicas",
+      "Kinesiología respiratoria",
+      "Dermatología (prácticas)",
+      "Ginecología Infantojuvenil",
+      "Traumatología - Columna"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Endocrinología",
+      "Flebología",
+      "Hematología",
+      "Infectología",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Obstetricia",
+      "Oftalmología",
+      "Oncología",
+      "Otorrinolaringología",
+      "Proctología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Cirugía Maxilofacial",
+      "Fisiatría",
+      "Jefe de día",
+      "Alergista",
+      "Cirugía ginecológica",
+      "Cirugía urológica",
+      "Cirugía Otorrinolaringología",
+      "Cirugia de tórax",
+      "Nutrición",
+      "Cirugía cabeza y cuello",
+      "Neurocirugía",
+      "Riesgo quirúrgico",
+      "Neurología (2º opinión)",
+      "Cirugía uroginecológica",
+      "Traumatología - Cadera",
+      "Traumatología - Columna",
+      "Nutrición - Transtornos alimenticios",
+      "Cirugia dermatológica",
+      "Fisiatría - Rehabilitación",
+      "Jefe de Día - Recetas",
+      "Traumatología - Artroscopia",
+      "Traumatología - Pierna y pie",
+      "Obesidad - Nutrición",
+      "Traumatología - Miembro superior",
+      "Cirugía Vascular Periférica",
+      "Control marcapaso",
+      "Dolor (Intervención Patología Espinal)",
+      "Patología espinal - Cirugía",
+      "Cardiología - 2º Opinión"
+     ]
+    }
+   },
+   {
+    "id": "65274",
+    "nombre": "Poli - ROSARIO - SAN LORENZO - G. López 1190 (B)",
+    "direccion": "Gral. López 1190, Villa Gdor. Galvez, Santa Fe",
+    "telefono": "03476432823",
+    "horario": "",
+    "lat": -33.01738450000001,
+    "lon": -60.63022269999999,
+    "especialidades": {
+     "Generales": [
+      "Medicina general"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Ginecología"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Neurología",
+      "Traumatología",
+      "Tocoginecología",
+      "Cirugía Vascular Periférica"
+     ]
+    }
+   },
+   {
+    "id": "33810",
+    "nombre": "Poli - SANTA FE - Med.Fam.Mercantil - (B)",
+    "direccion": "",
+    "telefono": "03492506700",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Radiología",
+      "Odontología general",
+      "Audiometría - Logoaudio"
+     ],
+     "Pedriátricas": [
+      "Clínica médica",
+      "Oftalmología"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Ecografista",
+      "Flebología",
+      "Fonoaudiología",
+      "Hematología",
+      "Infectología",
+      "Kinesiología",
+      "Neumonología",
+      "Neurología",
+      "Oncología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Ecocardiogramas",
+      "Nutrición",
+      "Oftalmología - Clínica Médica",
+      "Pre Quirúrgico"
+     ]
+    }
+   },
+   {
+    "id": "78204",
+    "nombre": "Poli - SANTA FE - S.Carlos Borromeo - R.S.Peña 148",
+    "direccion": "Roque Sáenz Peña 148, Santa Fe",
+    "telefono": "03493422010",
+    "horario": "",
+    "lat": -31.6480357,
+    "lon": -60.727451,
+    "especialidades": {
+     "Generales": [
+      "Traumatología"
+     ],
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Neurología",
+      "Otorrinolaringología",
+      "Urología",
+      "Alergista"
+     ]
+    }
+   },
+   {
+    "id": "36693",
+    "nombre": "Poli - SANTA FE ASISMED -Primera Junta 3440",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "36677",
+    "nombre": "Poli - SANTA FE CENTRO - San Martin 2871 (B)",
+    "direccion": "San Martín 2871, Santa Fe",
+    "telefono": "03424521077",
+    "horario": "",
+    "lat": -31.6425596,
+    "lon": -60.70545440000001,
+    "especialidades": {
+     "Generales": [
+      "Cirugía reparadora",
+      "Ecografía",
+      "Fonoaudiología",
+      "Ginecología",
+      "Traumatología",
+      "Kinesiología"
+     ],
+     "Pedriátricas": [
+      "Cardiología",
+      "Clínica adolescente",
+      "Clínica médica",
+      "Cardio - Pre Quirúrgico"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Gastroenterología",
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Dermatología",
+      "Neumonología",
+      "Neurología",
+      "Diabetes",
+      "Oftalmología",
+      "Otorrinolaringología",
+      "Reumatología",
+      "Traumatología",
+      "Urología",
+      "Jefe de día",
+      "Ecodoppler",
+      "Ecocardiogramas",
+      "Nutrición",
+      "Curso preparto",
+      "Terapia ocupacional",
+      "Traumatología - Rodilla"
+     ]
+    }
+   },
+   {
+    "id": "33832",
+    "nombre": "Poli - SANTA FE NORTE - (B)",
+    "direccion": "Cnel Loza y Av Blas Parera, Santa fé",
+    "telefono": "03424884118",
+    "horario": "",
+    "lat": -31.5676609,
+    "lon": -60.7304339,
+    "especialidades": {}
+   }
+  ],
+  "Santiago Del Estero": [
+   {
+    "id": "90819",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "38854",
+    "nombre": "Poli - SANTIAGO DEL ESTERO - Mitre 135",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   }
+  ],
+  "Tierra Del Fuego": [
+   {
+    "id": "90821",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "81362",
+    "nombre": "Poli - CEDMA - 11 de Julio 759",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "79379",
+    "nombre": "Poli - USHUAIA - Del Tolkeyen 1190",
+    "direccion": "Del Tolkeyen 1190, Ushuaia, Tierra del Fuego",
+    "telefono": "02901422449",
+    "horario": "",
+    "lat": -54.8335009,
+    "lon": -68.34653449999996,
+    "especialidades": {
+     "Pedriátricas": [
+      "Clínica médica"
+     ],
+     "Adultos": [
+      "Clínica Médica",
+      "Cirugía general",
+      "Electrocardiograma",
+      "Obstetricia",
+      "Reumatología",
+      "Nutrición"
+     ]
+    }
+   }
+  ],
+  "Tucuman": [
+   {
+    "id": "90820",
+    "nombre": "Call Center SESAM (Interior del País)",
+    "direccion": "",
+    "telefono": "0810-112-3923",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Pedriátricas": [
+      "Psicología",
+      "Psiquiatría"
+     ],
+     "Adultos": [
+      "Psiquiatría",
+      "Psicología"
+     ]
+    }
+   },
+   {
+    "id": "43871",
+    "nombre": "Poli - OSECAC TUCUMAN- Congreso 245 (B)",
+    "direccion": "Congreso 245, San Miguel de Tucumán, Tucumán",
+    "telefono": "03814214742",
+    "horario": "",
+    "lat": -26.834621,
+    "lon": -65.20418699999999,
+    "especialidades": {
+     "Generales": [
+      "Presurometría",
+      "Radiología",
+      "Cirugía reparadora",
+      "Médico de familia",
+      "Dermatología",
+      "Cardiología",
+      "Dermatología (prácticas)",
+      "Holter"
+     ],
+     "Pedriátricas": [
+      "Cirugía general",
+      "Endocrinología",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Traumatología",
+      "Urología",
+      "Jefe de Día",
+      "Kinesiología respiratoria"
+     ],
+     "Adultos": [
+      "Gastroenterología",
+      "Cardiología",
+      "Cirugía general",
+      "Endocrinología",
+      "Espirometría",
+      "Flebología",
+      "Infectología",
+      "Mamografías",
+      "Nefrología",
+      "Neumonología",
+      "Neurología",
+      "Proctología",
+      "Reumatología",
+      "Traumatología",
+      "Hepatología",
+      "Jefe de día",
+      "Cirugia de tórax",
+      "Endocrinología - Diabetes",
+      "Cirugía cabeza y cuello",
+      "Cirugía oncológica",
+      "Otorrinolaringología - Jefe de día",
+      "Traumatología - Miembro superior"
+     ]
+    }
+   },
+   {
+    "id": "45447",
+    "nombre": "Poli - TUCUMAN- BANDA RIO SALI - S.Martin 268",
+    "direccion": "San Martín 268, Tucumán",
+    "telefono": "03814262712",
+    "horario": "",
+    "lat": -26.8303887,
+    "lon": -65.20093120000001,
+    "especialidades": {
+     "Generales": [
+      "Médico de familia"
+     ],
+     "Pedriátricas": [
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Ginecología",
+      "Cardiología",
+      "Jefe de día",
+      "Endocrinología - Diabetes"
+     ]
+    }
+   },
+   {
+    "id": "77130",
+    "nombre": "Poli - TUCUMAN- CONCEPCION - Manuela Pedraza 520",
+    "direccion": "Manuela Pedraza 520, Tucumán",
+    "telefono": "03865421716",
+    "horario": "",
+    "lat": -26.852253,
+    "lon": -65.21028539999998,
+    "especialidades": {
+     "Generales": [
+      "Dermatología",
+      "Fonoaudiología"
+     ],
+     "Pedriátricas": [
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Ginecología",
+      "Cardiología",
+      "Cirugía general",
+      "Neumonología",
+      "Jefe de día"
+     ]
+    }
+   },
+   {
+    "id": "102671",
+    "nombre": "Poli - TUCUMAN- Congreso 770 (B)",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "89500",
+    "nombre": "Poli - TUCUMAN- FAMAILLA - Calle Pasaje Centenario",
+    "direccion": "",
+    "telefono": "03863-466929",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {
+     "Generales": [
+      "Fonoaudiología",
+      "Cardiología"
+     ],
+     "Pedriátricas": [
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Ginecología",
+      "Traumatología",
+      "Jefe de día"
+     ]
+    }
+   },
+   {
+    "id": "45442",
+    "nombre": "Poli - TUCUMAN- Junin 405",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "60837",
+    "nombre": "Poli - TUCUMAN- LAS HERAS- La Heras 53",
+    "direccion": "Pasage las Heras 53, San Miguel de Tucumán",
+    "telefono": "03814220905",
+    "horario": "",
+    "lat": -26.8324751,
+    "lon": -65.202046,
+    "especialidades": {
+     "Generales": [
+      "Ecografía",
+      "Fonoaudiología",
+      "Nutrición"
+     ],
+     "Adultos": [
+      "Ginecología",
+      "Obstetricia",
+      "Patología cervical",
+      "Urología",
+      "Ecodoppler",
+      "Ecodoppler cardíacos",
+      "Planificación familiar"
+     ]
+    }
+   },
+   {
+    "id": "45446",
+    "nombre": "Poli - TUCUMAN- LULES - Matienzo 231",
+    "direccion": "Matienzo 231, Tucumán",
+    "telefono": "03814812051",
+    "horario": "",
+    "lat": -26.82929,
+    "lon": -65.2285278,
+    "especialidades": {
+     "Generales": [
+      "Dermatología",
+      "Fonoaudiología",
+      "Nutrición"
+     ],
+     "Pedriátricas": [
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Ginecología",
+      "Cardiología",
+      "Endocrinología",
+      "Neumonología",
+      "Traumatología",
+      "Jefe de día"
+     ]
+    }
+   },
+   {
+    "id": "45448",
+    "nombre": "Poli - TUCUMAN- MONTEROS - Rivadavia 362",
+    "direccion": "",
+    "telefono": "",
+    "horario": "",
+    "lat": null,
+    "lon": null,
+    "especialidades": {}
+   },
+   {
+    "id": "75201",
+    "nombre": "Poli - TUCUMAN- TAFI VIEJO - Mitre 137",
+    "direccion": "Avenida Mitre 137, Tucumán",
+    "telefono": "03814610200",
+    "horario": "",
+    "lat": -26.8262596,
+    "lon": -65.2181536,
+    "especialidades": {
+     "Generales": [
+      "Medicina general"
+     ],
+     "Adultos": [
+      "Ginecología",
+      "Jefe de día"
+     ]
+    }
+   },
+   {
+    "id": "45445",
+    "nombre": "Poli - TUCUMAN- YERBA BUENA - S.Lorenzo 50",
+    "direccion": "San Lorenzo 50, Yerba Buena, Tucumán",
+    "telefono": "03814252254",
+    "horario": "",
+    "lat": -26.813906,
+    "lon": -65.29369500000001,
+    "especialidades": {
+     "Generales": [
+      "Dermatología",
+      "Fonoaudiología",
+      "Cardiología"
+     ],
+     "Pedriátricas": [
+      "Endocrinología",
+      "Jefe de Día"
+     ],
+     "Adultos": [
+      "Gastroenterología",
+      "Ginecología",
+      "Cirugía general",
+      "Neumonología",
+      "Jefe de día",
+      "Endocrinología - Diabetes",
+      "Dermatología - Jefe de día"
+     ]
+    }
+   }
+  ]
+ }
+}

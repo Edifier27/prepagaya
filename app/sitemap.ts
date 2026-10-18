@@ -16,6 +16,7 @@ import { REGISTRO_VERIFICADO } from '@/lib/data/registro-sssalud'
 import { cartillasInfo } from '@/lib/data/cartillas'
 import { CARTILLAS, combinacionesPlanZona, fechaCartillaISO, indiceZonas, slugPlan } from '@/lib/data/cartilla-zonas'
 import { CARTILLAS_SINDICALES, provinciasConPagina } from '@/lib/data/sindicales-cartillas'
+import { DESCARGADO_CENTROS_OSECAC } from '@/lib/data/osecac-centros'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { provinciasSEO, prepagaEnLocalidad } from '@/lib/data/zonas'
 import { mesesArchivoAumentos } from '@/lib/data/aumentos'
@@ -289,7 +290,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: CONTENT_UPDATE,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
-    })),    // Cartillas oficiales de sindicales (Anexo III, Res. SSSalud 2165/21)
+    })),    // Cartilla de OSECAC: centros de atención del buscador oficial (18-oct-2026)
+    { url: `${BASE}/obras-sociales/osecac/cartilla`, lastModified: DESCARGADO_CENTROS_OSECAC, changeFrequency: 'monthly' as const, priority: 0.8 },
+    // Cartillas oficiales de sindicales (Anexo III, Res. SSSalud 2165/21)
     ...Object.values(CARTILLAS_SINDICALES).flatMap((c) => [
       { url: `${BASE}/obras-sociales/${c.slug}/cartilla`, lastModified: c.descargado, changeFrequency: 'monthly' as const, priority: 0.75 },
       ...provinciasConPagina(c).map((p) => ({

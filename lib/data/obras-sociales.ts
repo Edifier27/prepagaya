@@ -1034,6 +1034,7 @@ export const obrasSociales: ObraSocialData[] = [
     ganchoConversion: '¿No conseguís turno en OSECAC? Derivá tus aportes a una prepaga, mejorá tu cobertura y conseguí turnos más rápido.',
     faq: [
       { q: '¿Cuál es el teléfono de OSECAC?', a: 'Emergencias 0810-333-0004; beneficiarios 0800-666-0400; turnos 0810-999-0101; reclamos 0800-666-0445.' },
+      { q: '¿Dónde veo la cartilla de OSECAC?', a: 'OSECAC no publica una cartilla única para descargar: su web ofrece buscadores. El de centros de atención es público (por provincia, localidad y especialidad) y las guardias y los turnos piden ingresar con usuario. Reunimos los centros del buscador oficial, con dirección, teléfono y especialidades, en la cartilla de OSECAC de esta página.' },
       { q: '¿Cómo saco turno en OSECAC?', a: 'Por teléfono al 0810-999-0101 (con el DNI del paciente a mano) o de forma online con tu usuario web o la app Mi OSECAC.' },
       { q: '¿Desde cuándo existe OSECAC?', a: 'Desde 1964: nació como I.M.M.A. (Instituto Médico Mercantil Argentina).' },
       { q: '¿Puedo pasar de OSECAC a una prepaga?', a: 'Sí: si trabajás en relación de dependencia podés derivar tus aportes a una prepaga, una vez por año. Te cotizamos gratis.' },

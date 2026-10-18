@@ -21,6 +21,7 @@ import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/component
 import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
 import { CARTILLAS_SINDICALES, getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
 import { ldJson } from '@/lib/jsonld'
+import { totalCentros } from '@/lib/data/osecac-centros'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -316,6 +317,19 @@ export default async function ObraSocialPage({ params }: Props) {
                 <Link key={p.slug} href={`/obras-sociales/${os.slug}/cartilla/${p.slug}`} className="text-sm px-3 py-1.5 rounded-full border border-gray-200 hover:border-[#E8002D] text-gray-700">{p.nombre}</Link>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* Cartilla de OSECAC (18-oct-2026): centros de atención del buscador oficial */}
+      {os.slug === 'osecac' && (
+        <section id="cartilla" className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Cartilla de OSECAC</h2>
+            <p className="text-sm text-gray-600 mb-5 max-w-3xl">
+              OSECAC no publica una cartilla única: ofrece buscadores. Reunimos los {totalCentros()} centros de atención que muestra su buscador oficial sin ingresar, con dirección, teléfono, horario y especialidades, más salud mental y farmacias.
+            </p>
+            <Link href="/obras-sociales/osecac/cartilla" className="inline-block text-sm px-4 py-2 rounded-full bg-[#E8002D] text-white font-semibold hover:bg-[#B8001F]">Ver la cartilla de OSECAC →</Link>
           </div>
         </section>
       )}
