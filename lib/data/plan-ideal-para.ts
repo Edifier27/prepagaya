@@ -14,7 +14,7 @@ export const planIdealPara: Record<string, string> = {
   'osde-310':  'El más equilibrado de OSDE. Sin copago, con Hospital Italiano, Hospital Alemán y médico a domicilio incluido.',
   'osde-410':  'Ideal para familias: habitación individual en internación, implantes dentales y ortodoncia sin límite de edad.',
   'osde-510':  'Sin límites. Para quien necesita lo mejor del sistema de salud privado argentino con suite y cobertura internacional.',
-  'osde-flux': 'Exclusivo 18–35 años. Ideal si priorizás salud mental — psicología ilimitada y anticonceptivos al 100% sin copago.',
+  'osde-flux': 'Plan joven, pensado para 18–35 años. Ideal si priorizás salud mental: psicología sin tope de sesiones y consultas sin copago.',
 
   // CEMIC
   'cemic-plan-basico':     'Ideal para quienes se atienden en CABA o GBA y valoran la atención integrada en los hospitales propios CEMIC.',

@@ -611,7 +611,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['que cubre la prepaga', 'que cubre una prepaga', 'que no cubre la prepaga', 'la prepaga cubre', 'buscador de coberturas prepaga', 'prepaga me niega cobertura'],
-    relacionadas: ['como-reclamar-a-una-prepaga', 'copago-en-prepagas-que-es', 'reintegros-en-prepagas'],
+    relacionadas: ['como-reclamar-a-una-prepaga', 'copago-en-prepagas-que-es', 'reintegros-en-prepagas', 'prepaga-para-mascotas'],
     fuentes: [
       { texto: 'PMO: Resolución 201/2002 del Ministerio de Salud, Anexo I — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/73649/res201-2002MS-anexoI.htm' },
       { texto: 'Resolución 310/2004 (medicamentos) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/90000-94999/94218/norma.htm' },
@@ -1775,8 +1775,77 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Cuánto tarda en llegar el médico a domicilio?', a: 'Depende de la gravedad que informes y de la zona. Las emergencias con riesgo de vida tienen prioridad.' },
     ],
     keywords: ['como pedir medico a domicilio', 'medico a domicilio osde', 'medico a domicilio swiss medical', 'medico a domicilio galeno', 'medico a domicilio medife', 'telefono urgencias prepaga'],
-    relacionadas: ['urgencias-guardia-prepaga', 'copago-en-prepagas-que-es', 'como-pedir-autorizacion-prepaga'],
+    relacionadas: ['urgencias-guardia-prepaga', 'copago-en-prepagas-que-es', 'como-pedir-autorizacion-prepaga', 'prepaga-para-mascotas'],
     prepagasRelacionadas: ['swiss-medical', 'osde', 'galeno'],
+  },
+  {
+    // 18-oct-2026: "seguro para mascotas" 390/mes (+50 %), "prepaga para mascotas" 170 (+50 %),
+    // "seguro veterinario" 110 (+100 %) en el Planificador de Google Ads. El único dato oficial
+    // verificado es el de Premedic (web.grupopremedic.com.ar); Omint Mascotas va con fuente de prensa.
+    slug: 'prepaga-para-mascotas',
+    titulo: 'Prepaga para mascotas: qué incluye Premedic y qué otras opciones hay (2026)',
+    metaDescripcion: 'Premedic incluye atención veterinaria (Amar Mascotas) en todos sus planes sin costo extra: qué cubre, en qué zonas y qué descuentos tiene. Y qué pasa con Omint Mascotas y el seguro veterinario.',
+    tiempoLectura: 4,
+    categoria: 'Cobertura',
+    fechaActualizacion: '2026-10-18',
+    contenido: {
+      intro: 'Una prepaga de salud humana no suele cubrir a tu perro o gato dentro del plan, pero algunas ofrecen atención veterinaria como beneficio o como servicio aparte. El caso más claro que encontramos en fuentes oficiales es Premedic: su servicio Amar Mascotas está incluido en todos sus planes, sin costo adicional. Omint lanzó un producto aparte, Omint Mascotas, y además existen los seguros veterinarios, que son otra cosa.',
+      secciones: [
+        {
+          titulo: 'Premedic: Amar Mascotas, incluido en todos los planes',
+          cuerpo: 'Según la web oficial de Premedic, Amar Mascotas viene incluido en todos los planes, sin costo adicional. Incluye consultas, vacunación y estudios a domicilio, videollamada con un veterinario, asesoramiento, seguimiento de la mascota e historia clínica digital, además de descuentos en servicios adicionales como especialidades y estudios. Se pide desde la app Premedic Móvil, en la sección "Servicios". En una novedad del 31 de julio de 2026, Premedic detalla "consulta y vacunación o 2 consultas sin cargo" a domicilio; y aclara que el alcance de las consultas y los servicios depende de lo que incluya tu plan.',
+          enlaces: [{ texto: 'Premedic — Amar Mascotas (veterinaria a domicilio)', url: 'https://web.grupopremedic.com.ar/novedades/cuidamos-a-tu-mascota-sin-moverte-de-tu-casa-yro6x' }],
+        },
+        {
+          titulo: 'En qué zonas funciona',
+          cuerpo: 'La atención veterinaria a domicilio es para afiliados del AMBA; para el resto del país hay consultas virtuales, según Premedic. La web oficial también indica disponibilidad en Mendoza y Córdoba. El 10 de septiembre de 2026 Premedic amplió la cobertura a domicilio a más zonas: CABA, localidades de la zona norte, oeste y sur del Gran Buenos Aires, La Plata y, en Mendoza, Capital, Guaymallén, Luján de Cuyo, Las Heras, Godoy Cruz y Maipú. Si vivís fuera de esas zonas, chequeá cuál te corresponde antes de contratar.',
+          enlaces: [{ texto: 'Premedic — nuevas zonas de atención veterinaria a domicilio', url: 'https://web.grupopremedic.com.ar/novedades/amar-mascotas-amplia-su-cobertura-de-atencion-veterinaria-a-domicilio' }],
+        },
+        {
+          titulo: 'Descuentos para afiliados con Amar Mascotas',
+          cuerpo: 'El 18 de agosto de 2026 Premedic informó descuentos para afiliados del AMBA: 20 % en medicamentos, 10 % en alimentos y accesorios (con envío a domicilio y pago en 3 cuotas sin interés) y 10 % en paseadores y cuidadores. La página no indica vencimiento ni topes de uso, así que conviene confirmarlos con Premedic.',
+          enlaces: [{ texto: 'Premedic — descuentos y beneficios con Amar Mascotas', url: 'https://web.grupopremedic.com.ar/novedades/nuevo-descuentos-y-beneficios-con-amar-mascotas' }],
+        },
+        {
+          titulo: 'Clínica veterinaria virtual de Premedic Bienestar',
+          cuerpo: 'Desde enero de 2026 la app Premedic Bienestar tiene una clínica veterinaria virtual: asesoramiento profesional sin costo y con consultas ilimitadas sobre cuidados, prevención, alimentación y comportamiento. La publicación no aclara si hay que ser afiliado para usarla.',
+          enlaces: [{ texto: 'Premedic — clínica veterinaria virtual', url: 'https://web.grupopremedic.com.ar/novedades/nueva-servicio-clinica-veterinaria' }],
+        },
+        {
+          titulo: 'Omint Mascotas: un producto aparte',
+          cuerpo: 'Según la prensa (no lo verificamos en la web de Omint), Grupo Omint presentó en 2026 Omint Mascotas, una cobertura veterinaria para perros y gatos con cinco planes para el AMBA, sobre la red de OSPAN: más de 100 veterinarias, más de 200 profesionales y siete guardias de 24 horas. En una primera etapa está disponible para socios de Omint y nuevos afiliados del AMBA, con valores preferenciales. No encontramos precios publicados: consultalos con Omint.',
+          enlaces: [{ texto: 'Mercado — Grupo Omint presentó Omint Mascotas', url: 'https://mercado.com.ar/negocios/grupo-omint-presento-omint-mascotas-cobertura-veterinaria-con-cinco-planes-para-amba' }],
+        },
+        {
+          titulo: 'Seguro veterinario: no es lo mismo que una prepaga',
+          cuerpo: 'El seguro para mascotas es un producto de una aseguradora, no de una prepaga: tiene su propia póliza, con sumas aseguradas, exclusiones y períodos de espera. Antes de contratarlo mirá qué cubre (accidentes, enfermedades, cirugías, internación), qué excluye y si tiene tope por evento. Con una prepaga que ya incluye veterinaria, como Premedic, la atención básica ya está resuelta, y el seguro solo suma si buscás cubrir cirugías o internaciones de alto costo.',
+        },
+        {
+          titulo: 'Qué mirar antes de elegir una prepaga por la mascota',
+          cuerpo: 'La mascota es un beneficio extra: lo central sigue siendo la cobertura de las personas. Primero elegí el plan según tu cartilla, tu zona y tu presupuesto; después revisá si el beneficio veterinario llega a donde vivís, cuántas consultas incluye y qué descuentos tiene. Si dos planes te sirven igual, el que incluye veterinaria sin costo extra te ahorra la visita al veterinario de rutina.',
+          cta: { texto: 'Compará planes con precios oficiales y mirá cuáles te convienen por zona y edad.', boton: 'Comparar planes', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Hoy la opción más concreta y verificable es Premedic, que incluye Amar Mascotas en todos sus planes sin costo extra, con atención a domicilio en AMBA y Mendoza y consultas virtuales en el resto del país. Omint tiene un producto aparte para el AMBA, y el seguro veterinario es otra alternativa para gastos grandes. Antes de contratar, confirmá con la prepaga la zona, los límites y las condiciones.',
+    },
+    faq: [
+      { q: '¿Hay prepagas que cubran a las mascotas?', a: 'Algunas ofrecen atención veterinaria como beneficio o servicio aparte. Premedic incluye Amar Mascotas en todos sus planes, sin costo adicional, según su web oficial. Omint tiene un producto aparte, Omint Mascotas, para el AMBA.' },
+      { q: '¿Premedic cubre a mi perro o gato?', a: 'Premedic incluye el servicio Amar Mascotas en todos sus planes: consultas, vacunación y estudios a domicilio, videollamada con veterinario y seguimiento, más descuentos en servicios adicionales. El alcance de las consultas depende del plan, así que confirmalo con Premedic.' },
+      { q: '¿La atención veterinaria de Premedic cuesta algo extra?', a: 'Según Premedic, Amar Mascotas está incluido en todos los planes sin costo adicional. Los servicios fuera de lo incluido, como especialidades y estudios, tienen descuentos.' },
+      { q: '¿En qué zonas atiende Amar Mascotas?', a: 'A domicilio, en el AMBA y en zonas de Mendoza (la última ampliación es del 10 de septiembre de 2026); para el resto del país hay consultas virtuales. Premedic indicó que trabaja para sumar localidades.' },
+      { q: '¿Cuánto cuesta Omint Mascotas?', a: 'No encontramos precios publicados. Según la prensa, tiene cinco planes para el AMBA y valores preferenciales de contratación en una primera etapa para socios y nuevos afiliados de Omint. Consultalo con Omint.' },
+      { q: '¿Es lo mismo una prepaga con veterinaria que un seguro para mascotas?', a: 'No. La prepaga ofrece la veterinaria como beneficio o servicio asociado a tu cobertura de salud; el seguro es un producto de una aseguradora, con póliza, exclusiones y topes propios.' },
+    ],
+    keywords: ['prepaga para mascotas', 'prepaga para perros', 'prepagas que cubren mascotas', 'plan de salud para mascotas', 'seguro veterinario', 'seguro para mascotas', 'amar mascotas premedic', 'omint mascotas'],
+    relacionadas: ['que-cubre-la-prepaga', 'medico-a-domicilio-prepaga', 'obra-social-vs-prepaga'],
+    prepagasRelacionadas: ['premedic', 'omint'],
+    fuentes: [
+      { texto: 'Premedic — Amar Mascotas, veterinaria a domicilio (31-jul-2026)', url: 'https://web.grupopremedic.com.ar/novedades/cuidamos-a-tu-mascota-sin-moverte-de-tu-casa-yro6x' },
+      { texto: 'Premedic — Amar Mascotas amplía su cobertura (10-sep-2026)', url: 'https://web.grupopremedic.com.ar/novedades/amar-mascotas-amplia-su-cobertura-de-atencion-veterinaria-a-domicilio' },
+      { texto: 'Premedic — Descuentos y beneficios con Amar Mascotas (18-ago-2026)', url: 'https://web.grupopremedic.com.ar/novedades/nuevo-descuentos-y-beneficios-con-amar-mascotas' },
+      { texto: 'Premedic — Clínica veterinaria virtual (14-ene-2026)', url: 'https://web.grupopremedic.com.ar/novedades/nueva-servicio-clinica-veterinaria' },
+      { texto: 'Mercado — Grupo Omint presentó Omint Mascotas (1-jun-2026)', url: 'https://mercado.com.ar/negocios/grupo-omint-presento-omint-mascotas-cobertura-veterinaria-con-cinco-planes-para-amba' },
+    ],
   },
   {
     slug: 'prepaga-cubre-ozempic',

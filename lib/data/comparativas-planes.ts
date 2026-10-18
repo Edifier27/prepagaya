@@ -25,8 +25,8 @@ export const comparativasPlanes: ComparativaPlanes[] = [
     descripcion: 'Comparamos el Plan Flux y el Plan 210 de OSDE en precio, copago y cobertura para saber cuál elegir según tu edad.',
     // 13-oct-2026: sin afirmaciones de precio del Flux — no figura en la lista
     // oficial de OSDE ante la SSSalud ni OSDE lo publica.
-    respuestaCorta: 'Si tenés entre 18 y 35 años, el Flux suma psicología ilimitada, anticonceptivos al 100% y asistencia al viajero. Su precio no figura en la lista oficial, así que conviene cotizarlo junto al 210. Si tenés 36 años o más, no podés elegir Flux: el 210 queda como la puerta de entrada a OSDE.',
-    veredicto: 'No es una comparación de "mejor vs peor" sino de elegibilidad por edad. El Flux es exclusivo para socios de 18 a 35 años y, dentro de ese rango, frente al 210 agrega psicología ilimitada, anticonceptivos al 100% y asistencia al viajero en países limítrofes. El precio del Flux no está en la lista oficial: cotizá los dos para tu edad y compará. El Plan 210 es la única puerta de entrada a OSDE para quienes ya pasaron los 35 años (o para grupos familiares con integrantes fuera de ese rango, que no pueden anotarse todos en Flux).',
+    respuestaCorta: 'El Flux es el plan joven de OSDE (pensado para 18 a 35 años). Según su página oficial suma psicología sin tope de sesiones, consultas médicas sin copago, ortodoncia, lentes y kinesiología, y asistencia al viajero en países limítrofes. Los anticonceptivos al 100% no son una diferencia: OSDE los cubre así en todos los planes. Su precio no figura en la lista oficial, así que conviene cotizarlo junto al 210.',
+    veredicto: 'No es una comparación de "mejor vs peor" sino de a quién apunta cada plan. OSDE diseñó el Flux para personas de 18 a 35 años: su página oficial destaca psicología sin tope de sesiones, consultas sin copago, ortodoncia, placa de descanso, lentes recetados, kinesiología, chequeo anual, asistencia al viajero en países limítrofes y reintegros sin tope por factura. Según la prensa puede contratarlo cualquier edad, pero varios beneficios son solo para quienes tienen entre 18 y 35 años; la web oficial no fija una edad máxima, así que confirmalo al cotizar. El precio del Flux no está en la lista oficial: cotizá los dos para tu edad y compará. El 210 sí tiene precio oficial y sin límite de edad.',
     faqExtra: [
       {
         q: '¿Cuánto cuesta el Plan Flux comparado con el 210?',
@@ -34,11 +34,11 @@ export const comparativasPlanes: ComparativaPlanes[] = [
       },
       {
         q: '¿Puedo pasar del Plan Flux al 210 cuando cumpla 36 años?',
-        a: 'Sí, es el camino habitual: al superar el límite de edad del Flux, OSDE reubica al afiliado en un plan sin restricción etaria como el 210 (o uno superior, según lo que quieras pagar). Consultalo con un asesor antes de que se acerque la fecha para planificar el cambio de cuota.',
+        a: 'OSDE no publica qué pasa con el Flux al cumplir 36 años. Lo que sí está en sus condiciones oficiales: la membresía de un año (SportClub, Vetify o Puramente) aplica a mayores de edad hasta 35 años y se mantiene mientras sigas siendo socio activo del plan. Antes de que se acerque esa fecha, consultá con OSDE o con un asesor si seguís en Flux o te pasan a otro plan, y cómo cambia la cuota.',
       },
       {
         q: '¿El Plan Flux cubre lo mismo que el 210 en internación y urgencias?',
-        a: 'Sí, ambos acceden a la misma red de OSDE (más de 125.000 prestadores, según OSDE) y a la cobertura base de internación y urgencias de OSDE. La diferencia está en los adicionales (psicología ilimitada, anticonceptivos 100%, asistencia al viajero en el Flux).',
+        a: 'Ambos acceden a la red de OSDE (más de 125.000 prestadores, según OSDE). La diferencia que destaca OSDE en el Flux está en los adicionales: psicología sin tope de sesiones, consultas sin copago, asistencia al viajero en países limítrofes y los beneficios para jóvenes. Para internación y urgencias comparalos en el detalle de cada plan.',
       },
     ],
   },

@@ -126,6 +126,22 @@ const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
     q: '¿Avalian es lo mismo que ACA Salud?',
     a: 'Sí. ACA Salud pasó a llamarse Avalian en 2020: es la misma empresa de medicina prepaga con otro nombre. En el registro de la Superintendencia de Servicios de Salud figura como «Avalian Cobertura Médica Integral (ex ACA Salud)», con razón social Avalian Salud y Bienestar Cooperativa Limitada (código 9-0310-1), y forma parte de un grupo asociativo integrado por la Asociación de Cooperativas Argentinas (ACA), el Grupo Asegurador La Segunda y Coovaeco.',
   }],
+  // 18-oct-2026, Flux (+1.614 % en búsquedas). Fuentes: osde.com.ar/planes/flux y
+  // sus términos (membresía: "mayores de edad y hasta los 35 años"); Cadena 3,
+  // 6-oct-2025 (disponible para todas las edades, beneficios exclusivos 18-35).
+  osde: [{
+    q: '¿El Plan Flux de OSDE es solo para menores de 35 años?',
+    a: 'OSDE lo presenta como su plan joven y lo diseñó para personas de 18 a 35 años, pero su página oficial no fija una edad máxima para contratarlo. Según la prensa (Cadena 3, octubre de 2025) está disponible para todas las edades, y algunos beneficios son solo para quienes tienen entre 18 y 35 años: ortodoncia, placa miorrelajante, óptica superadora y un beneficio a elección. En las condiciones oficiales, la membresía sin cargo por un año (SportClub Online, Vetify o Puramente) aplica a mayores de edad hasta 35 años. Confirmá la edad y los beneficios al cotizar.',
+  }, {
+    q: '¿Qué incluye el Plan Flux de OSDE?',
+    a: 'Según la página oficial de OSDE: consultas médicas sin copago, virtuales o presenciales; psicología sin tope de sesiones; ortodoncia, placa de descanso, lentes recetados y kinesiología; anticonceptivos al 100% (con empadronamiento, en farmacias adheridas); asistencia al viajero sin cargo en países limítrofes; chequeo anual de salud; reintegros sin tope por factura; y una membresía de un año a elección. Los beneficios están sujetos a vigencia, disponibilidad, cupos y condiciones. El precio no figura: se cotiza.',
+  }],
+  // 18-oct-2026, "prepaga para mascotas" 170/mes (+50 %) en el Planificador de Google Ads.
+  // Fuente oficial: web.grupopremedic.com.ar (novedades del 31-jul, 18-ago y 10-sep-2026).
+  premedic: [{
+    q: '¿Premedic cubre a mi mascota?',
+    a: 'Premedic incluye el servicio Amar Mascotas en todos sus planes, sin costo adicional, según su web oficial: consultas, vacunación y estudios a domicilio, videollamada con veterinario, seguimiento de la mascota e historia clínica digital, con descuentos en servicios adicionales. La atención a domicilio es para el AMBA y zonas de Mendoza; en el resto del país hay consultas virtuales. Se pide desde la app Premedic Móvil, en "Servicios". El alcance de las consultas depende de tu plan: confirmalo con Premedic.',
+  }],
 }
 
 function tituloFicha(prep: Prepaga) {

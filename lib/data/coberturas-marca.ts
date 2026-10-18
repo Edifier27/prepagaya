@@ -631,6 +631,12 @@ const osdeFuente = (tema: string, slug: string): FuenteCobertura => ({
   url: `${OSDE_URL}/${slug}`,
 })
 
+// 18-oct-2026: la página oficial del plan Flux (osde.com.ar/planes/flux) lista, como
+// cobertura diferencial, ortodoncia, placa de descanso, lentes recetados y kinesiología.
+// No da edades ni topes (están en los términos del plan), así que van sin cifras.
+const FLUX_FUENTE: FuenteCobertura = { nombre: 'OSDE, página oficial del plan Flux', fecha: 'octubre 2026', url: 'https://www.osde.com.ar/planes/flux' }
+const OS_FLUX = (detalle: string): PlanCobertura => OS('Flux', ['flux'], true, detalle)
+
 const OS = (plan: string, planSlugs: string[], incluido: boolean, detalle?: string, sinDato = false): PlanCobertura => ({ plan, planSlugs, incluido, detalle, sinDato })
 const OS_SIN = (plan: string, planSlugs: string[] = []): PlanCobertura => OS(plan, planSlugs, false, undefined, true)
 
@@ -651,13 +657,14 @@ const osde: CoberturaMarca[] = [
       OS('410', ['410'], true, 'Un tratamiento de por vida'),
       OS('450', [], true, 'Un tratamiento de por vida'),
       OS('510', ['510'], true, 'Un tratamiento de por vida'),
-      OS_SIN('Flux', ['flux']),
+      OS_FLUX('Ortodoncia y placa de descanso entre sus beneficios; condiciones en los términos del plan'),
     ],
     detalles: [
+      { texto: 'El plan Flux incluye ortodoncia y placa de descanso como cobertura diferencial, según su página oficial; la edad y las condiciones figuran en los términos del plan.', fuente: 'Página oficial del plan Flux' },
       { texto: 'El tratamiento incluye los ajustes y la aparatología necesaria, con profesionales de la cartilla.', fuente: 'Servicios y cobertura – Ortodoncia y ortopedia funcional' },
       { texto: 'Si el tratamiento se interrumpe más de cuatro meses, la nueva etapa queda a cargo del socio.', fuente: 'Servicios y cobertura – Ortodoncia y ortopedia funcional' },
     ],
-    fuentes: [osdeFuente('Ortodoncia y ortopedia funcional', 'ortodoncia-y-ortopedia-funcional')],
+    fuentes: [osdeFuente('Ortodoncia y ortopedia funcional', 'ortodoncia-y-ortopedia-funcional'), FLUX_FUENTE],
     planCta: '210',
   },
   {
@@ -676,14 +683,15 @@ const osde: CoberturaMarca[] = [
       OS('410', ['410'], true, '1 par de anteojos o lentes de contacto cada 2 años'),
       OS('450', [], true, '1 par de anteojos o lentes de contacto cada 2 años'),
       OS('510', ['510'], true, '1 par de anteojos o lentes de contacto cada 2 años'),
-      OS_SIN('Flux', ['flux']),
+      OS_FLUX('Lentes recetados entre sus beneficios; condiciones en los términos del plan'),
     ],
     detalles: [
+      { texto: 'El plan Flux incluye lentes recetados como cobertura diferencial, según su página oficial; no informa cantidad ni frecuencia.', fuente: 'Página oficial del plan Flux' },
       { texto: 'Anteojos con cristales orgánicos, minerales blancos con tratamiento antirreflejo u otro material; esféricos hasta ±6 dioptrías, esferocilíndricos hasta ±4 (esf) ±2 (cil) y cilíndricos hasta ±2. Excluye bifocales y multifocales.', fuente: 'Servicios y cobertura – Óptica' },
       { texto: 'Lentes de contacto flexibles o blandas esféricas, independientemente de las dioptrías; excluye tóricas y descartables.', fuente: 'Servicios y cobertura – Óptica' },
       { texto: 'La cirugía refractiva tiene cobertura del 100% con profesionales de cartilla y autorización previa.', fuente: 'Servicios y cobertura – Cirugías' },
     ],
-    fuentes: [osdeFuente('Óptica', 'optica'), osdeFuente('Cirugías', 'cirugias')],
+    fuentes: [osdeFuente('Óptica', 'optica'), osdeFuente('Cirugías', 'cirugias'), FLUX_FUENTE],
     planCta: '410',
   },
   {

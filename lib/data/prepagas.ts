@@ -180,7 +180,7 @@ export const prepagas: Prepaga[] = [
     logo: '/logos/osde.png',
     colorPrimario: '#003087',
     descripcion:
-      'OSDE informa más de 125.000 prestadores en todo el país y más de 1.000 descuentos para sus socios. Cartilla Inteligente con IA para orientar al paciente. Plan Flux para jóvenes 18-35 con psicología ilimitada.',
+      'OSDE informa más de 125.000 prestadores en todo el país y más de 1.000 descuentos para sus socios. Cartilla Inteligente con IA para orientar al paciente. Plan Flux, el plan joven, con psicología sin tope de sesiones.',
     satisfaccion: 84,
     calidadCartilla: 5,
     profesionales: 125000,
@@ -190,7 +190,7 @@ export const prepagas: Prepaga[] = [
       'Más de 125.000 prestadores en todo el país (según OSDE)',
       '380+ centros de atención en todo el país',
       'Cartilla Inteligente con IA para encontrar el especialista',
-      'Plan Flux para jóvenes con psicología ilimitada',
+      'Plan Flux, el plan joven, con psicología sin tope de sesiones',
       '50+ años de trayectoria — la más reconocida del mercado',
     ],
     contras: [
@@ -254,8 +254,8 @@ export const prepagas: Prepaga[] = [
         slug: 'flux',
         nombre: 'Plan Flux',
         precio: 198500,
-        descripcion: 'Plan exclusivo para jóvenes de 18 a 35 años. Psicología ilimitada sin copago, anticonceptivos al 100%, asistencia al viajero gratuita en países limítrofes y toda la red de OSDE.',
-        cobertura: ['Psicología ilimitada', 'Anticonceptivos 100%', 'Urgencias', 'Consultas', 'Maternidad', 'Asistencia al viajero', 'Salud mental'],
+        descripcion: 'El plan joven de OSDE (pensado para 18 a 35 años). Consultas médicas sin copago, psicología sin tope de sesiones, ortodoncia, lentes y kinesiología, asistencia al viajero sin cargo en países limítrofes y reintegros sin tope por factura. Toda la red de OSDE.',
+        cobertura: ['Psicología sin tope de sesiones', 'Consultas sin copago', 'Ortodoncia y placa de descanso', 'Lentes recetados', 'Kinesiología', 'Anticonceptivos 100%', 'Asistencia al viajero', 'Chequeo anual', 'Reintegros sin tope por factura'],
         copago: false,
         redAbierta: true,
       },
