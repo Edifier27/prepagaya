@@ -72,6 +72,9 @@ export function GET() {
       return `- [Cómo dar de baja ${nombre}](${SITE_URL}/guias/como-dar-de-baja-${slug})`
     }),
     '',
+    '## Cobertura de Swiss Medical',
+    `- [Swiss Medical: carencias, preexistencias y declaración jurada](${SITE_URL}/guias/swiss-medical-carencias-preexistencias-declaracion-jurada)`,
+    '',
     '## Obras sociales',
     `- [PAMI: teléfono 138, medicamentos y afiliación](${SITE_URL}/obras-sociales/pami)`,
     `- [IOMA: obra social de la provincia de Buenos Aires](${SITE_URL}/obras-sociales/ioma)`,

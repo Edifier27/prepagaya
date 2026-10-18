@@ -464,7 +464,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'El timing de la baja: evitá pagar dos cuotas',
-          cuerpo: 'Las prepagas facturan por mes adelantado. Pedí la baja de la anterior antes del cierre de facturación (generalmente entre el 20 y el 25 de cada mes) para que no te generen la cuota del mes siguiente. La baja se puede pedir online: desde 2021 todas las empresas están obligadas a ofrecer un "botón de baja" en su web, y no pueden exigirte que vayas a una sucursal ni retenerte con llamados.',
+          cuerpo: 'Pedí la baja de la anterior coordinando la fecha de efecto con el alta de la nueva. La ley prevé un aviso fehaciente con 30 días de anticipación y cada prepaga tiene su fecha de corte: por ejemplo, en Swiss Medical el día 5 de cada mes, en Avalian el día 10, y en OSDE la baja rige desde el día del trámite. La baja se puede pedir online: desde 2019 las prepagas deben ofrecer un "botón de baja" en su web, y si contrataste a distancia podés rescindir por el mismo medio. Mirá la guía de baja de tu prepaga para el paso a paso.',
         },
         {
           titulo: 'Documentación que te van a pedir',
@@ -2180,7 +2180,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con el comprobante de la baja y, si no lo corrigen, ante la Superintendencia de Servicios de Salud.' },
     ],
     keywords: ['como dar de baja swiss medical', 'dar de baja swiss medical', 'baja swiss medical', 'swiss medical baja de servicio', 'swiss medical bajas', 'swiss medical como dar de baja', 'renuncia swiss medical', 'baja swiss medical por fallecimiento', 'swiss medical baja grupo familiar', 'swiss medical hijos 30 años'],
-    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad', 'swiss-medical-carencias-preexistencias-declaracion-jurada'],
     prepagasRelacionadas: ['swiss-medical'],
     fuentes: [
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
@@ -2877,7 +2877,7 @@ export const guiasPreguntas: GuiaData[] = [
         },
         {
           titulo: 'Qué dicen las prepagas',
-          cuerpo: 'Medifé: el formulario de arrepentimiento es de uso exclusivo para asociados que aún no están activos o cuyo plan no supera los 10 días de vigencia; si tu cuenta ya está activa, la baja se pide en Mi Cuenta. Medicus: el botón es para quien no está activo y está dentro de los 10 días corridos de la contratación; debe pedirlo el titular y, si ya usaste servicios, se facturan los días utilizados. Omint: tiene un "Botón de arrepentimiento" separado del de baja de servicios.',
+          cuerpo: 'Swiss Medical: su reglamento reconoce el derecho de revocar dentro de los 10 días conforme el artículo 34 de la Ley 24.240 (cláusula 1.5.2). Medifé: el formulario de arrepentimiento es de uso exclusivo para asociados que aún no están activos o cuyo plan no supera los 10 días de vigencia; si tu cuenta ya está activa, la baja se pide en Mi Cuenta. Medicus: el botón es para quien no está activo y está dentro de los 10 días corridos de la contratación; debe pedirlo el titular y, si ya usaste servicios, se facturan los días utilizados. Omint: tiene un "Botón de arrepentimiento" separado del de baja de servicios.',
         },
         {
           titulo: 'Cómo hacerlo bien',
@@ -3466,6 +3466,68 @@ export const guiasPreguntas: GuiaData[] = [
       { texto: 'SSSalud — Opción de cambio para trabajadores bajo convenio', url: 'https://www.argentina.gob.ar/sssalud/usuarios/cambio-obra-sociales/sindicales' },
       { texto: 'SSSalud — Consultas y reclamos', url: 'https://www.argentina.gob.ar/sssalud/consultas-la-superintendencia-de-servicios-de-salud' },
       { texto: 'Defensa del Consumidor — Iniciar un reclamo', url: 'https://www.argentina.gob.ar/servicio/iniciar-un-reclamo-ante-defensa-del-consumidor' },
+    ],
+  },
+  // 17-oct-2026, Bloque B (Swiss): carencias, preexistencias y declaración
+  // jurada. Fuente: Reglamento General de Contratación de Swiss Medical
+  // (cláusulas 1.4, 1.5, 12.1 y 12.3) cruzado con la Ley 26.682 (art. 10) y el
+  // Decreto 1993/2011 (art. 9).
+  {
+    slug: 'swiss-medical-carencias-preexistencias-declaracion-jurada',
+    titulo: 'Swiss Medical: carencias, preexistencias y declaración jurada (qué dice su reglamento y qué dice la ley)',
+    metaDescripcion: 'Qué dice el reglamento de Swiss Medical sobre carencias, preexistencias y declaración jurada, y qué establece la Ley 26.682: sin carencia en el PMO, preexistencias solo por declaración jurada y baja solo con mala fe acreditada.',
+    tiempoLectura: 7,
+    categoria: 'Coberturas',
+    fechaActualizacion: '2026-10-17',
+    contenido: {
+      intro: 'Según el Reglamento General de Contratación de Swiss Medical, la carencia es el lapso entre el ingreso al plan y el momento en que empiezan a regir los beneficios, con plazos que fija el anexo de cada plan; durante ese lapso podés usar cualquier servicio pagando aranceles o, en las prestaciones obligatorias, los prestadores exclusivos del PMO. La Ley 26.682 (art. 10) agrega que los contratos no pueden incluir carencias para las prestaciones del PMO y que las preexistencias solo pueden surgir de la declaración jurada del usuario y no pueden ser motivo de rechazo del ingreso.',
+      secciones: [
+        {
+          titulo: 'Qué es la carencia según Swiss Medical',
+          cuerpo: 'El reglamento la define como el lapso entre el ingreso del asociado al plan y el momento en que empiezan a regir los beneficios, detallados en el anexo de condiciones de cada plan (cláusula 12.1). Durante ese período se puede usar cualquier servicio abonando los aranceles, o en prestaciones obligatorias, los prestadores exclusivos para la atención del PMO. Los plazos concretos (por ejemplo para partos, cirugías o tratamientos no incluidos en el PMO) no figuran en el reglamento general: están en el anexo del plan, que conviene pedir por escrito antes de contratar.',
+          enlaces: [{ texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' }],
+        },
+        {
+          titulo: 'Qué dice la ley sobre las carencias',
+          cuerpo: 'Ley 26.682, artículo 10: los contratos "no pueden incluir períodos de carencia o espera para todas aquellas prestaciones que se encuentran incluidas en el Programa Médico Obligatorio". Para otras modalidades, los períodos de carencia deben estar explicitados en el contrato y aprobados por la Autoridad de Aplicación. En la práctica: lo que está en el PMO no puede quedar sujeto a espera; lo que cubre un plan por encima del PMO sí puede tener carencia si figura en el contrato aprobado.',
+          enlaces: [{ texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' }],
+        },
+        {
+          titulo: 'Preexistencias: qué pide Swiss y qué permite la ley',
+          cuerpo: 'Swiss Medical exige completar la solicitud de ingreso y una declaración jurada sobre enfermedades preexistentes, patologías secuelares, cirugías y tratamientos, indicando los profesionales consultados en los últimos 12 meses (cláusula 1.4.1). Según el reglamento, las preexistencias informadas no tienen cobertura salvo que Swiss las acepte expresamente en las condiciones que fije (cláusula 12.3.3). La ley, por su parte, dice que las preexistencias solo pueden establecerse a partir de la declaración jurada, que no pueden ser criterio de rechazo de admisión y que la Autoridad de Aplicación puede autorizar valores diferenciales justificados. Si tenés una preexistencia, pedí por escrito, antes de firmar, qué se excluye y si hay una cuota diferencial.',
+        },
+        {
+          titulo: 'Declaración jurada: sé exacto y completo',
+          cuerpo: 'El reglamento considera la veracidad de la declaración jurada una condición esencial y dice que cualquier inexactitud habilita a Swiss a resolver el contrato (cláusulas 1.4.2 y 12.3.5); también prevé una Junta Médica de tres profesionales para determinar una preexistencia no declarada (cláusula 12.3.6). Pero el decreto reglamentario de la ley es más exigente con la prepaga: para resolver por declaración jurada falsa debe acreditar que el usuario no obró de buena fe, y la falta de acreditación de mala fe determina la ilegitimidad de la resolución. Por eso conviene declarar todo, aunque te parezca irrelevante, y guardar una copia de lo que firmaste.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+        {
+          titulo: 'Si te piden revisar tu historia clínica',
+          cuerpo: 'Al firmar la declaración jurada autorizás a Swiss a pedir información a los médicos que te trataron y relevás el secreto profesional respecto de ellos (cláusula 1.4.3). Si te convocan a una Junta Médica, el reglamento te permite concurrir con un profesional de tu elección, a tu cargo, y los estudios que la Junta ordene corren por cuenta de Swiss (cláusula 12.3.6). No respondas con apuro: pedí todo por escrito y, si hay riesgo de perder la cobertura, consultá a un abogado de consumo.',
+        },
+        {
+          titulo: 'Arrepentirte después de contratar',
+          cuerpo: 'Una vez perfeccionado el contrato, el reglamento de Swiss reconoce el derecho a revocarlo dentro de los 10 días conforme el artículo 34 de la Ley 24.240 (cláusula 1.5.2). Si ya pasó ese plazo, rige la baja común con 30 días de preaviso. Si querés comparar con otras prepagas antes de decidir, podés hacerlo sin costo.',
+          cta: { texto: 'Compará el precio oficial de Swiss Medical con otras prepagas y consultá por tus preexistencias antes de contratar.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'En Swiss Medical, los plazos de carencia están en el anexo de cada plan y, por ley, no pueden aplicarse a las prestaciones del PMO. Las preexistencias salen de tu declaración jurada: declará todo, pedí por escrito qué queda excluido y recordá que, para darte de baja por declaración jurada, la prepaga debe acreditar tu mala fe.',
+    },
+    faq: [
+      { q: '¿Qué es la carencia en Swiss Medical?', a: 'Según su reglamento, es el lapso entre el ingreso al plan y el momento en que empiezan a regir los beneficios, con plazos que fija el anexo de cada plan. Durante ese lapso se puede usar cualquier servicio pagando aranceles, o las prestaciones del PMO con los prestadores exclusivos.' },
+      { q: '¿Las prestaciones del PMO pueden tener carencia?', a: 'No. La Ley 26.682 (art. 10) dice que los contratos no pueden incluir períodos de carencia o espera para las prestaciones incluidas en el PMO. Para otras modalidades, la carencia debe estar explicitada en el contrato y aprobada por la Autoridad de Aplicación.' },
+      { q: '¿Dónde veo los plazos de carencia de mi plan de Swiss Medical?', a: 'En el anexo de condiciones particulares de tu plan, que complementa el Reglamento General de Contratación. Pedilo por escrito antes de contratar.' },
+      { q: '¿Swiss Medical puede rechazar mi ingreso por una preexistencia?', a: 'La Ley 26.682 establece que las preexistencias no pueden ser criterio de rechazo de admisión y solo pueden surgir de la declaración jurada; la Autoridad de Aplicación puede autorizar valores diferenciales justificados.' },
+      { q: '¿Qué pasa si no declaro una enfermedad?', a: 'El reglamento de Swiss prevé resolver el contrato y convocar una Junta Médica. Según el decreto 1993/2011, la prepaga debe acreditar que no obraste de buena fe; si no lo acredita, la resolución es ilegítima.' },
+      { q: '¿Puedo arrepentirme de contratar Swiss Medical?', a: 'Sí: el reglamento reconoce la revocación dentro de los 10 días, conforme el artículo 34 de la Ley 24.240.' },
+    ],
+    keywords: ['swiss medical carencias', 'carencia swiss medical', 'swiss medical preexistencias', 'swiss medical declaracion jurada', 'swiss medical enfermedades preexistentes', 'swiss medical periodo de carencia parto', 'swiss medical carencia cirugia', 'swiss medical reglamento', 'swiss medical junta medica'],
+    relacionadas: ['prepaga-sin-periodo-carencia', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'arrepentimiento-prepaga-10-dias', 'como-dar-de-baja-swiss-medical', 'reintegros-en-prepagas', 'que-cubre-la-prepaga'],
+    prepagasRelacionadas: ['swiss-medical'],
+    fuentes: [
+      { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+      { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
     ],
   },
 ]

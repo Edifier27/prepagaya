@@ -14,6 +14,7 @@ import { marcarTerminos } from '@/components/glosario/marcarTerminos'
 import { GlosarioDePagina } from '@/components/glosario/GlosarioDePagina'
 import { ldJson } from '@/lib/jsonld'
 import { LeadFormInline } from '@/components/ui/LeadFormInline'
+import { getCambiosPorOrigen } from '@/lib/data/cambios'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -60,6 +61,10 @@ export default async function GuiaPage({ params }: Props) {
   const prepagasRelacionadas = (guia.prepagasRelacionadas ?? [])
     .map((s) => prepagas.find((p) => p.slug === s))
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
+
+  // Guías de baja de una prepaga: se ofrecen las comparaciones de cambio que
+  // ya existen desde esa prepaga (17-oct-2026).
+  const cambiosDeOrigen = guia.captarBaja && prepagasRelacionadas[0] ? getCambiosPorOrigen(prepagasRelacionadas[0].slug) : []
 
   const guiasRelacionadas = guia.relacionadas
     .map((s) => guias.find((g) => g.slug === s))
@@ -287,6 +292,23 @@ export default async function GuiaPage({ params }: Props) {
               baja necesita otra cobertura. Se ofrece gestionarla sin prometer
               nada que la página no cumpla; el contacto llega marcado como
               "guia-baja" y con la página de origen. */}
+          {guia.captarBaja && cambiosDeOrigen.length > 0 && (
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-6">
+              <h2 className="text-lg font-bold text-gray-900 mb-1">¿Pensás cambiarte desde {prepagasRelacionadas[0].nombre}?</h2>
+              <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                Antes de dar la baja, mirá cómo queda la comparación con otras prepagas: precio, red de sanatorios y cuándo no conviene cambiar.
+              </p>
+              <ul className="space-y-2">
+                {cambiosDeOrigen.map((c) => (
+                  <li key={c.slug}>
+                    <Link href={`/cambios/${c.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">
+                      De {c.origenNombre} a {c.destinoNombre}: ¿conviene cambiarse? →
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {guia.captarBaja && (
             <div className="rounded-2xl border border-red-100 bg-red-50 p-5 md:p-6">
               <h2 className="text-lg font-bold text-gray-900 mb-1">¿Todavía no resolviste tu nueva cobertura?</h2>

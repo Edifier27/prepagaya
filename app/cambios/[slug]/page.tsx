@@ -78,7 +78,7 @@ export default async function CambioPage({ params }: Props) {
     },
     {
       q: `¿Cómo hago el cambio de ${c.origenNombre} a ${c.destinoNombre}?`,
-      a: `Primero contratá ${c.destinoNombre} y confirmá la fecha de alta, después pedí la baja de ${c.origenNombre} antes del cierre de facturación del mes. Así no quedás sin cobertura ni pagás dos cuotas el mismo mes. El trámite completo lleva unas dos semanas.`,
+      a: `Primero contratá ${c.destinoNombre} y confirmá la fecha de alta, después pedí la baja de ${c.origenNombre} coordinando la fecha de efecto con el alta (la ley prevé un aviso fehaciente con 30 días y cada prepaga tiene su fecha de corte). Así no quedás sin cobertura ni pagás dos cuotas el mismo mes.`,
     },
     ...c.faqExtra,
   ]
@@ -273,11 +273,17 @@ export default async function CambioPage({ params }: Props) {
             <h2 className="text-lg font-bold text-gray-900 mb-2">¿Ya decidiste? Así se hace el cambio</h2>
             <p className="text-sm text-gray-600 leading-relaxed mb-3">
               Primero contratás {destino.nombre} y esperás la confirmación de alta con fecha de inicio. Recién con esa fecha
-              confirmada, pedís la baja de {origen.nombre} antes del cierre de facturación del mes para no pagar dos cuotas.
+              confirmada, pedís la baja de {origen.nombre}: la ley prevé un aviso fehaciente con 30 días de anticipación y cada
+              prepaga tiene su fecha de corte, así que coordiná las fechas para no pagar dos cuotas ni quedarte sin cobertura.
             </p>
-            <Link href="/guias/como-cambiar-de-prepaga" className="text-sm font-semibold text-[#E8002D] hover:underline">
-              Ver la guía completa paso a paso →
-            </Link>
+            <div className="flex flex-wrap gap-x-5 gap-y-2">
+              <Link href={`/guias/como-dar-de-baja-${origen.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">
+                Cómo dar de baja {origen.nombre} →
+              </Link>
+              <Link href="/guias/como-cambiar-de-prepaga" className="text-sm font-semibold text-[#E8002D] hover:underline">
+                Ver la guía completa paso a paso →
+              </Link>
+            </div>
           </div>
 
           {/* FAQ */}
