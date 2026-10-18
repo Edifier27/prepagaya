@@ -22,6 +22,7 @@ import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { EnOtrasCartillas } from '@/components/cartillas/EnOtrasCartillas'
 import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 import { centrosEnOtrasCartillas } from '@/lib/data/cartilla-zonas/cruce'
+import { enlacePlanesDeLaZona } from '@/lib/seo/enlace-cartilla-localidad'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { ldJson } from '@/lib/jsonld'
 
@@ -322,6 +323,7 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
     const int = z.centros.filter((ce) => ce.internacion.length > 0)
   const planes = planesDeZona(c, z)
   const enOtras = centrosEnOtrasCartillas(c.prepagaSlug, z.slug)
+  const planesLocal = enlacePlanesDeLaZona(c.prepagaSlug, c.prepagaNombre, z.slug)
 
   return (
     <>
@@ -361,9 +363,14 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
               Buscar en otra zona
             </Link>
           </div>
-          <Link href={`/prepagas/${c.prepagaSlug}`} className="inline-block mt-3 text-sm font-semibold text-gray-500 hover:text-[#E8002D] transition-colors">
-            Ver planes y precios de {c.prepagaNombre} →
+          <Link href={planesLocal?.href ?? `/prepagas/${c.prepagaSlug}`} className="inline-block mt-3 text-sm font-semibold text-gray-500 hover:text-[#E8002D] transition-colors">
+            {planesLocal ? planesLocal.texto : `Ver planes y precios de ${c.prepagaNombre}`} →
           </Link>
+          {planesLocal && (
+            <Link href={`/prepagas/${c.prepagaSlug}`} className="inline-block mt-3 ml-4 text-sm text-gray-400 hover:text-[#E8002D] transition-colors">
+              Todos los planes de {c.prepagaNombre}
+            </Link>
+          )}
           {planes.length > 1 && (
             <div className="mt-6">
               <div className="text-xs font-semibold text-gray-500 mb-2">Filtrar por plan:</div>
