@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { CalculadoraMonotributo } from '@/components/herramientas/CalculadoraMonotributo'
 import { urlFichaEntidad } from '@/lib/data/fichas-registro'
 import { codigoSeisDigitos } from '@/lib/data/registro-sssalud'
+import { FiltroListaMonotributo } from '@/components/obras-sociales/FiltroListaMonotributo'
 import {
   APORTE_OS_MAXIMO, APORTE_OS_MINIMO, CATEGORIAS_MONOTRIBUTO, FUENTE_CATEGORIAS, FUENTE_OS_MONOTRIBUTO,
   MONOTRIBUTO_GENERADO, OS_MONOTRIBUTO, VIGENCIA_CATEGORIAS, formatoPesos,
@@ -22,6 +23,10 @@ const letrasMinimo = CATEGORIAS_MONOTRIBUTO.filter((c) => c.obraSocial === APORT
 const letrasMaximo = CATEGORIAS_MONOTRIBUTO.filter((c) => c.obraSocial === APORTE_OS_MAXIMO).map((c) => c.letra)
 const rango = (l: string[]) => (l.length === 1 ? `categoría ${l[0]}` : `categorías ${l[0]} a ${l[l.length - 1]}`)
 const fechaDatos = new Date(`${MONOTRIBUTO_GENERADO}T12:00:00`).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
+// 18-oct-2026: "obra social monotributo" (8.100 búsquedas/mes) y "obras sociales
+// para monotributistas" (5.400) son lo más buscado del tema (Planificador de
+// Google Ads); la página salía en posición 12-14. Se suman buscador de la lista,
+// preguntas nuevas y el Monotributo Social (fuente: argentina.gob.ar).
 
 export const metadata: Metadata = {
   title: 'Obras sociales para monotributistas 2026: lista oficial y cuánto pagás',
@@ -57,6 +62,18 @@ const faqs = [
   {
     q: '¿Cómo cambio de obra social siendo monotributista?',
     a: 'Con la opción de cambio, online en la web de la Superintendencia de Servicios de Salud, con tu clave fiscal nivel 3. Los monotributistas solo pueden elegir entre las entidades que aceptan monotributistas. Se puede hacer una vez cada 365 días y rige desde el primer día del mes siguiente.',
+  },
+  {
+    q: '¿Cuál es la mejor obra social para monotributistas?',
+    a: 'No hay una mejor para todos: depende de tu provincia y de los sanatorios que quieras usar. Con el listado de esta página elegís entre las que aceptan monotributo y tienen sede o prestadores cerca tuyo; después pedile a cada una su cartilla y sus coseguros antes de decidir, y fijate que esté habilitada para la opción de cambio. Si necesitás una cartilla más amplia, otra salida es usar ese aporte en una prepaga.',
+  },
+  {
+    q: '¿Qué pasa con el Monotributo Social y la obra social?',
+    a: 'El Monotributo Social incluye cobertura de obra social para el titular y su grupo familiar (cónyuge, convivientes, hijos y personas con guarda legal). Según argentina.gob.ar, el titular paga el 50% del componente de obra social y el otro 50% lo subsidia el Ministerio de Capital Humano; cada familiar que se suma tiene un costo adicional. Después de tres meses de pagos consecutivos hay que afiliarse a la obra social elegida. Los importes se actualizan cada semestre: confirmalos en argentina.gob.ar.',
+  },
+  {
+    q: '¿Cómo sé qué obra social tengo si soy monotributista?',
+    a: 'La Superintendencia de Servicios de Salud tiene una consulta de obra social para monotributistas con tu CUIL. También podés verla con tu DNI o CUIL en nuestra guía y sacar el CODEM.',
   },
   {
     q: '¿Puedo tener una prepaga siendo monotributista?',
@@ -165,8 +182,9 @@ export default function ObrasSocialesMonotributoPage() {
           <p className="text-sm text-gray-600 mb-4">
             Listado de la Superintendencia de Servicios de Salud, consultado el {fechaDatos}. Son las únicas que podés elegir con la opción de cambio si sos monotributista.
           </p>
+          <FiltroListaMonotributo total={N} />
           <div className="overflow-x-auto rounded-xl border border-gray-200">
-            <table className="w-full text-sm">
+            <table id="lista-os-monotributo" className="w-full text-sm">
               <thead className="bg-gray-50 text-left text-xs text-gray-500">
                 <tr>
                   <th className="px-3 py-2 font-semibold">Obra social</th>
@@ -176,7 +194,7 @@ export default function ObrasSocialesMonotributoPage() {
               </thead>
               <tbody>
                 {OS_MONOTRIBUTO.map((o) => (
-                  <tr key={o.codigo} className="border-t border-gray-100 align-top">
+                  <tr key={o.codigo} data-q={`${o.nombre} ${codigoSeisDigitos(o.codigo)} ${o.codigo} ${o.localidad ?? ''}`} className="border-t border-gray-100 align-top">
                     <td className="px-3 py-2">
                       {o.entidad ? (
                         <Link href={urlFichaEntidad(o.entidad)} className="font-medium text-gray-900 hover:text-[#E8002D]">{o.nombre}</Link>
