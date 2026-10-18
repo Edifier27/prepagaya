@@ -802,7 +802,75 @@ const osde: CoberturaMarca[] = [
   },
 ]
 
-export const coberturasMarca: CoberturaMarca[] = [...swiss, ...avalian, ...premedic, ...osde]
+// ─── Galeno y Medifé: cirugía estética ──────────────────────────────────────
+// 18-oct-2026 (listas de keywords de Darío: "que plan de … cubre cirugía
+// estética", la plantilla de cobertura que más convierte: 4 leads con 13 clics).
+// Fuente: la ficha de cada plan en galeno.com.ar y medife.com.ar, consultada el
+// 18-oct-2026. Donde la ficha del plan no la menciona va "sin dato": no se
+// afirma que no la cubra. No se publican montos de tope: Galeno no los informa
+// en la ficha y Medifé indica "con tope y límite" sin cifra.
+const GA = (plan: string, planSlugs: string[], incluido: boolean, detalle?: string, sinDato = false): PlanCobertura => ({ plan, planSlugs, incluido, detalle, sinDato })
+const galenoFicha = (plan: string): FuenteCobertura => ({ nombre: `Galeno, ficha del Plan ${plan}`, fecha: 'octubre 2026', url: `https://www.galeno.com.ar/planes/${plan}/` })
+
+const galeno: CoberturaMarca[] = [
+  {
+    tema: 'cirugia-estetica',
+    temaNombre: 'Cirugía estética',
+    prepagaSlug: 'galeno',
+    prepagaNombre: 'Galeno',
+    pregunta: '¿Galeno cubre cirugía estética?',
+    title: '¿Galeno cubre cirugía estética? Oro 440 y Oro 550 (2026)',
+    description: 'Cirugía estética en Galeno: cobertura del 100% en el Plan Oro 440 (una cada 3 años) y en el Oro 550 (una cada 2 años), según sus fichas oficiales.',
+    keywords: ['galeno cubre cirugia estetica', 'galeno cirugia estetica', 'galeno 440 cirugia estetica', 'galeno 550 cirugia estetica', 'plan galeno cirugia estetica'],
+    respuesta: 'Sí, en los planes Oro 440 y Oro 550. Según las fichas oficiales de Galeno, el 440 la cubre al 100% una vez cada 3 años y el 550, al 100% una vez cada 2 años. Las fichas de los otros planes que consultamos no la mencionan.',
+    planes: [
+      GA('Azul 200', ['azul-200'], false, undefined, true),
+      GA('Azul 220', ['azul-220'], false, undefined, true),
+      GA('Plata 300', ['plata-300'], false, undefined, true),
+      GA('Plata 330', ['plata-330'], false, undefined, true),
+      GA('Oro 400', ['oro-400'], false, undefined, true),
+      GA('Oro 440', ['oro-440'], true, 'Cobertura 100%, una cada 3 años'),
+      GA('Oro 550', ['oro-550'], true, 'Cobertura 100%, una cada 2 años'),
+    ],
+    detalles: [
+      { texto: 'Las fichas públicas de Galeno solo informan el porcentaje (100%) y la frecuencia. No indican tope en pesos, antigüedad mínima ni qué cirugías entran: confirmalo con Galeno antes de operarte.', fuente: 'Fichas de los planes 440 y 550' },
+      { texto: 'Los planes 200, 220, 300, 330 y 400 no mencionan la cirugía estética en su ficha (el 200 y el 220 sí citan cirugía refractiva, que es otra prestación).', fuente: 'Fichas de los planes 200, 220, 300, 330 y 400' },
+    ],
+    fuentes: [galenoFicha('440'), galenoFicha('550')],
+    planCta: 'oro-440',
+  },
+]
+
+const medifeFicha = (plan: string, slug: string): FuenteCobertura => ({ nombre: `Medifé, ficha del Plan ${plan}`, fecha: 'octubre 2026', url: `https://www.medife.com.ar/planes/${slug}` })
+
+const medife: CoberturaMarca[] = [
+  {
+    tema: 'cirugia-estetica',
+    temaNombre: 'Cirugía estética',
+    prepagaSlug: 'medife',
+    prepagaNombre: 'Medifé',
+    pregunta: '¿Medifé cubre cirugía estética?',
+    title: '¿Medifé cubre cirugía estética? Platinum y Oro (2026)',
+    description: 'Cirugía estética en Medifé: el Platinum la cubre una cada 3 años con 1 año de permanencia y el Oro, una cada 4 años con 2 años de permanencia. Datos oficiales.',
+    keywords: ['medife cubre cirugia estetica', 'medife cirugia estetica', 'medife platinum cirugia estetica', 'medife oro cirugia estetica'],
+    respuesta: 'Sí, en los planes Platinum y Oro y con condiciones. Según sus fichas oficiales, el Platinum la incluye con 1 año de permanencia en el plan y una cada 3 años aniversario; el Oro, con 2 años de permanencia y una cada 4 años aniversarios. En los dos es con tope y límite, y en prestadores seleccionados de la cartilla.',
+    planes: [
+      GA('Bronce Classic', ['bronce'], false, undefined, true),
+      GA('Plata', ['plata'], false, undefined, true),
+      GA('Medifé+', ['medife-plus'], false, undefined, true),
+      GA('Oro', ['oro'], true, '2 años de permanencia, una cada 4 años aniversarios'),
+      GA('Platinum', ['platinum'], true, '1 año de permanencia, una cada 3 años aniversario'),
+    ],
+    detalles: [
+      { texto: 'En los dos planes la cobertura es "con tope y con límite" y rige en prestadores seleccionados de cartilla; la ficha remite al Centro de Servicios al Cliente para consultar el monto.', fuente: 'Fichas de los planes Platinum y Oro' },
+      { texto: 'La ficha no publica el tope en pesos. Los planes Bronce Classic, Plata y Medifé+ no la mencionan.', fuente: 'Fichas de los planes Bronce Classic, Plata y Medifé+' },
+    ],
+    fuentes: [medifeFicha('Platinum', 'platinum'), medifeFicha('Oro', 'oro')],
+    planCta: 'platinum',
+  },
+]
+
+export const coberturasMarca: CoberturaMarca[] = [...swiss, ...avalian, ...premedic, ...osde, ...galeno, ...medife]
 
 export function getCoberturaMarca(tema: string, prepagaSlug: string): CoberturaMarca | undefined {
   return coberturasMarca.find((c) => c.tema === tema && c.prepagaSlug === prepagaSlug)

@@ -482,8 +482,8 @@ export const coberturas: CoberturaData[] = [
     nombre: 'Cirugía estética',
     emoji: '💉',
     titulo: '¿Qué prepaga cubre cirugía estética? Planes, topes y carencias (2026)',
-    metaDescripcion: 'Qué prepagas cubren cirugía estética según sus datos oficiales: OSDE 410, 450 y 510, Swiss Medical SMG50 a SMG70 y Avalian Selecta. Cada cuánto, tope y carencia.',
-    intro: 'La cirugía estética no está en el Programa Médico Obligatorio: solo la cubren algunos planes altos, y cada prepaga pone sus reglas. Según sus datos oficiales, OSDE la bonifica en el 410 (una cada 3 años), el 450 (una cada 2) y el 510 (una por año); Swiss Medical la incluye en el SMG50, el SMG60 y el SMG70 (una por año), y Avalian, en el plan Selecta. Acá está cómo funciona el reintegro, desde cuándo la podés usar y por qué no hay que confundirla con la cirugía reconstructiva, que es obligatoria.',
+    metaDescripcion: 'Qué prepagas cubren cirugía estética según sus datos oficiales: OSDE, Swiss Medical, Galeno, Medifé y Avalian. Qué plan, cada cuánto, tope y carencia.',
+    intro: 'La cirugía estética no está en el Programa Médico Obligatorio: solo la cubren algunos planes altos, y cada prepaga pone sus reglas. Según sus datos oficiales, OSDE la bonifica en el 410 (una cada 3 años), el 450 (una cada 2) y el 510 (una por año); Swiss Medical la incluye en el SMG50, el SMG60 y el SMG70 (una por año); Galeno, en el Oro 440 (una cada 3 años) y el Oro 550 (una cada 2); Medifé, en el Platinum (una cada 3 años) y el Oro (una cada 4), y Avalian, en el plan Selecta. Acá está cómo funciona el reintegro, desde cuándo la podés usar y por qué no hay que confundirla con la cirugía reconstructiva, que es obligatoria.',
     tituloLey: 'Lo que dice la ley',
     queEstableceLaLey: 'La cirugía estética no está en el PMO: es una prestación superadora, y por eso la prepaga puede ponerle una carencia, que no puede superar los 12 meses corridos desde el comienzo del contrato (Decreto 1993/2011, artículo 10). Distinta es la cirugía reconstructiva después de una mastectomía: la Ley 26.872 obliga a las obras sociales y a las prepagas a cubrirla, "así como la provisión de las prótesis necesarias", en cualquier plan.',
     secciones: [
@@ -510,6 +510,8 @@ export const coberturas: CoberturaData[] = [
       { slug: 'swiss-medical', razon: `El SMG50 incluye una cirugía estética por año para el titular o su cónyuge, con las prótesis incluidas y un tope de reintegro que ${topeCirugiaSmg50}. El SMG60 y el SMG70 también la incluyen, una por año. En la práctica, se habilita a los 12 meses de antigüedad.`, planSlug: 'smg50' },
       { slug: 'osde', razon: 'OSDE la bonifica para cada integrante del grupo familiar: una cada 3 años calendario en el 410, una cada 2 años en el 450 y una por año en el 510.', planSlug: '410' },
       { slug: 'avalian', razon: 'Avalian la incluye solo en el plan Selecta (AS400 y AS500). Integral y Superior no la incluyen.', planSlug: 'as400' },
+      { slug: 'galeno', razon: 'Según sus fichas oficiales, el Plan Oro 440 la cubre al 100% una vez cada 3 años y el Oro 550, al 100% una vez cada 2 años. Las fichas no informan tope en pesos ni antigüedad mínima.', planSlug: 'oro-440' },
+      { slug: 'medife', razon: 'El Platinum la incluye con 1 año de permanencia y una cada 3 años aniversario; el Oro, con 2 años de permanencia y una cada 4. Con tope y límite, en prestadores seleccionados de cartilla.', planSlug: 'platinum' },
     ],
     prepagasRestrictivas: [],
     quePreguntar: [
@@ -523,7 +525,11 @@ export const coberturas: CoberturaData[] = [
     faq: [
       {
         q: '¿Qué prepaga cubre cirugía estética?',
-        a: 'Según sus datos oficiales: OSDE en el 410 (una cada 3 años), el 450 (una cada 2) y el 510 (una por año), para cada integrante del grupo familiar; Swiss Medical en el SMG50, el SMG60 y el SMG70 (una por año), y Avalian en el plan Selecta (AS400 y AS500). Los planes de entrada no la incluyen.',
+        a: 'Según sus datos oficiales: OSDE en el 410 (una cada 3 años), el 450 (una cada 2) y el 510 (una por año), para cada integrante del grupo familiar; Swiss Medical en el SMG50, el SMG60 y el SMG70 (una por año); Galeno en el Oro 440 (una cada 3 años) y el Oro 550 (una cada 2); Medifé en el Platinum (una cada 3 años, con 1 año de permanencia) y el Oro (una cada 4, con 2 años de permanencia), y Avalian en el plan Selecta (AS400 y AS500). Los planes de entrada no la incluyen.',
+      },
+      {
+        q: '¿Sancor Salud cubre cirugía estética?',
+        a: 'No encontramos ningún plan de Sancor Salud que la incluya en los documentos que consultamos. Su Reglamento General (cláusula 9, Exclusiones) deja afuera las internaciones para tratamientos de adelgazamiento o rejuvenecimiento y no la menciona como prestación. Si pensás operarte, pedile a Sancor Salud la respuesta por escrito para tu plan.',
       },
       {
         q: '¿La prepaga cubre la cirugía estética desde que me afilio?',
@@ -548,14 +554,17 @@ export const coberturas: CoberturaData[] = [
     ],
     relacionadas: ['cirugia-bariatrica', 'odontologia'],
     guiasRelacionadas: ['prepaga-sin-periodo-carencia', 'reintegros-en-prepagas', 'como-reclamar-a-una-prepaga'],
-    keywords: ['que prepaga cubre cirugia estetica', 'prepaga cirugia estetica', 'prepaga que cubre cirugia estetica', 'cirugia estetica prepaga carencia', 'cirugia estetica por prepaga reintegro', 'osde cirugia estetica', 'swiss medical cirugia estetica', 'prepaga cubre protesis mamarias', 'reconstruccion mamaria prepaga'],
+    keywords: ['que prepaga cubre cirugia estetica', 'prepaga cirugia estetica', 'prepaga que cubre cirugia estetica', 'cirugia estetica prepaga carencia', 'cirugia estetica por prepaga reintegro', 'osde cirugia estetica', 'swiss medical cirugia estetica', 'galeno cirugia estetica', 'medife cirugia estetica', 'sancor salud cirugia estetica', 'prepaga cubre protesis mamarias', 'reconstruccion mamaria prepaga'],
     fuentes: [
       { texto: 'Decreto 1993/2011, reglamentación de la Ley 26.682 (texto actualizado) — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/190000-194999/190606/texact.htm' },
       { texto: 'Ley 26.872: cirugía reconstructiva después de una mastectomía — Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/215000-219999/218211/norma.htm' },
       { texto: 'OSDE, Servicios y cobertura – Cirugías', url: 'https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura/cirugias' },
       { texto: 'Avalian, planes publicados en su cotizador online', url: 'https://compraonline.avalian.com/cotizacion' },
+      { texto: 'Galeno, fichas de los planes 440 y 550 (consultadas el 18-oct-2026)', url: 'https://www.galeno.com.ar/planes/440/' },
+      { texto: 'Medifé, fichas de los planes Platinum y Oro (consultadas el 18-oct-2026)', url: 'https://medife.com.ar/planes/platinum' },
+      { texto: 'Sancor Salud, Reglamento General de Servicios y Contratación (AMSS), cláusula 9 – Exclusiones', url: 'https://repo.sancorsalud.com.ar/webgen/assets/pdf/contrato%20adhesion.pdf' },
     ],
-    fechaActualizacion: '2026-09-27',
+    fechaActualizacion: '2026-10-18',
   },
   // 14-oct-2026 (keyword research: 149 búsquedas de "cobertura en el
   // exterior", "asistencia al viajero", "osde 210 cobertura en Uruguay"…).

@@ -27,7 +27,11 @@ export function ordenPlanes(prep: Prepaga): Plan[] {
 // sin eso la página sería solo precio y no se puede decir qué cambia.
 // Hoy: Swiss Medical, OSDE, Avalian y Premedic.
 function conFicha(prepSlug: string, planSlug: string) {
-  return coberturasMarca.some((c) => c.prepagaSlug === prepSlug && c.planes.some((f) => f.planSlugs.includes(planSlug)))
+  const fichas = coberturasMarca.filter((c) => c.prepagaSlug === prepSlug)
+  // Solo marcas con fichas oficiales de varios temas: Galeno y Medifé tienen
+  // solo cirugía estética (18-oct-2026) y su comparativa sería casi solo precio.
+  if (new Set(fichas.map((c) => c.tema)).size < 3) return false
+  return fichas.some((c) => c.planes.some((f) => f.planSlugs.includes(planSlug)))
 }
 
 export function paresComparativaAuto(): { prep: Prepaga; plan1: Plan; plan2: Plan; slug: string }[] {
