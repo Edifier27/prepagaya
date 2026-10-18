@@ -353,6 +353,19 @@ export const comparativas: Comparativa[] = [
     ganadorSatisfaccion: 'sancor-salud',
     veredicto: 'No son lo mismo: Sancor Salud es una mutual independiente y Prevención Salud es la prepaga del Grupo Sancor Seguros. Sancor Salud informa más de 200.000 prestadores y tiene un centro médico propio (Vitus, en Córdoba), con fuerte presencia en el interior; Prevención Salud no tiene sanatorios propios y declara cobertura en 23 provincias. En precio, Prevención declara un único valor de 0 a 55 años y los cuadros oficiales de la SSSalud muestran el precio de cada plan de las dos: compará los de tu edad en el cotizador antes de decidir.',
   },
+  // 18-oct-2026, plan de contenido (B6, Swiss): faltaba "Medicus vs Swiss
+  // Medical". Datos de las fichas de las dos marcas; el precio no se compara
+  // porque los cuadros de la SSSalud que usa el sitio no incluyen a Medicus.
+  {
+    slug: 'medicus-vs-swiss-medical',
+    prepaga1Slug: 'medicus',
+    prepaga2Slug: 'swiss-medical',
+    titulo: 'Medicus vs Swiss Medical: ¿cuál conviene? 2026',
+    descripcion: 'Medicus (11 centros médicos propios) contra Swiss Medical (9 sanatorios propios y cobertura nacional): red, centros propios, planes sin copago y dónde conviene cada una.',
+    ganadorRed: 'swiss-medical',
+    ganadorSatisfaccion: 'swiss-medical',
+    veredicto: 'Tienen modelos distintos. Medicus tiene 11 centros médicos propios en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche, y acceso a sanatorios como Mater Dei, el Hospital Alemán, Otamendi, Favaloro y CEMIC, pero no tiene cobertura nacional. Swiss Medical tiene 9 sanatorios propios, más de 30 SMG Center en AMBA, cobertura nacional y planes sin copago desde el SMG20. En nuestras fichas, Swiss figura con mayor satisfacción y mejor cartilla. El precio no lo comparamos acá: los cuadros oficiales de la Superintendencia que usa el sitio incluyen a Swiss Medical pero no a Medicus, así que pedí cotización de los dos para tu edad. Si vivís cerca de un centro Medicus y valorás su atención integrada, Medicus. Si necesitás cobertura en todo el país o en AMBA con sanatorios propios, Swiss Medical.',
+  },
 ]
 
 export function getComparativaBySlug(slug: string): Comparativa | undefined {
