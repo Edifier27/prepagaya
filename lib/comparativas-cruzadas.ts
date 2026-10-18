@@ -21,6 +21,9 @@ export interface ParCruzado {
 export const PARES_CRUZADOS: ParCruzado[] = [
   { slug: 'swiss-medical-smg20-vs-osde-310', a: ['swiss-medical', 'smg20'], b: ['osde', '310'] },
   { slug: 'swiss-medical-smg02-vs-osde-210', a: ['swiss-medical', 'smg02'], b: ['osde', '210'] },
+  // "swiss medical smg20 vs osde 210" (Search Console, 18-oct-2026): el par
+  // más buscado entre el plan de entrada de OSDE y el SMG20
+  { slug: 'swiss-medical-smg20-vs-osde-210', a: ['swiss-medical', 'smg20'], b: ['osde', '210'] },
   { slug: 'swiss-medical-smg30-vs-osde-410', a: ['swiss-medical', 'smg30'], b: ['osde', '410'] },
   { slug: 'swiss-medical-smg20-vs-sancor-salud-plan-3000', a: ['swiss-medical', 'smg20'], b: ['sancor-salud', 'plan-3000'] },
 ]
