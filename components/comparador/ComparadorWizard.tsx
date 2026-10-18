@@ -20,6 +20,7 @@ import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { leerZonaGeoDeCookie } from '@/lib/geo-zonas'
 import { OPCIONES_PREPAGA_ACTUAL } from '@/lib/data/sondeo'
+import type { SumaPlan } from '@/lib/planes-suma'
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
@@ -602,9 +603,11 @@ interface WizardProps {
   initialProvincia?: string
   /** Prepaga y plan que la persona estaba mirando (barra "Cotizá X", 3-oct-2026) */
   origen?: OrigenCotizacion
+  /** Qué suma cada plan frente al anterior de su prepaga (lib/planes-suma.ts, calculado en el servidor) */
+  sumas?: Record<string, SumaPlan>
 }
 
-export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, origen }: WizardProps) {
+export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, origen, sumas }: WizardProps) {
   const zonaPrepagas = useMemo(() => armarZonaPrepagas(zonasSEO), [zonasSEO])
   const router = useRouter()
   const pathname = usePathname()
@@ -2098,6 +2101,20 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                           <span className={`text-gray-600 ${grande ? 'text-base font-semibold' : 'text-sm'}`}>{res.plan.nombre}</span>
                         </div>
                         <p className={grande ? 'text-sm text-gray-500 mt-1 leading-relaxed' : 'text-xs text-gray-400 mt-0.5 line-clamp-1'}>{res.plan.descripcion}</p>
+                        {/* Lo que suma frente al plan anterior (Darío, 18-oct-2026): resaltado */}
+                        {sumas?.[`${res.prepaga.slug}/${res.plan.slug}`] && (() => {
+                          const sm = sumas[`${res.prepaga.slug}/${res.plan.slug}`]
+                          return (
+                            <div className="mt-1.5 flex flex-wrap items-center gap-1">
+                              <span className="text-[10px] font-semibold text-emerald-700">Suma frente al {sm.anterior}:</span>
+                              {sm.suma.map((x) => (
+                                <span key={x.nombre} title={x.detalle} className="max-w-full truncate text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-full px-1.5 py-0.5">
+                                  + {x.nombre}{x.detalle && x.detalle.length <= 28 ? ` · ${x.detalle.toLowerCase()}` : ''}
+                                </span>
+                              ))}
+                            </div>
+                          )
+                        })()}
                       </div>
                       <label className="flex items-center gap-1 cursor-pointer select-none flex-shrink-0 pt-0.5">
                         <input
@@ -2268,9 +2285,12 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
         // Entre los planes que el usuario eligió comparar, destacamos el de mejor
         // score (mismo criterio que ordena los resultados) para que la persona
         // tenga una recomendación clara además de la comparación cruda.
-        const mejor = seleccionados.length > 1
-          ? seleccionados.reduce((best, r) => (r.score > best.score ? r : best), seleccionados[0])
-          : null
+        // "Mejor costo-beneficio" (Darío, 18-oct-2026): Swiss Medical cuando
+        // está entre los elegidos (prioridad comercial); si no, el de mejor score.
+        const porScore = (lista: Resultado[]) => lista.reduce((best, r) => (r.score > best.score ? r : best), lista[0])
+        const swiss = seleccionados.filter((r) => r.prepaga.slug === 'swiss-medical')
+        const mejor = seleccionados.length > 1 ? (swiss.length ? porScore(swiss) : porScore(seleccionados)) : null
+        const masBarato = [...seleccionados].filter((r) => Number.isFinite(r.precioGrupal)).sort((a, b) => a.precioGrupal - b.precioGrupal)[0]
         const mejorKey = mejor ? `${mejor.prepaga.slug}-${mejor.plan.slug}` : null
         const celda = (r: Resultado) => `${r.prepaga.slug}-${r.plan.slug}` === mejorKey ? 'bg-red-50/60' : ''
         return (
@@ -2289,6 +2309,22 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 </button>
               </div>
               <div className="overflow-auto p-6">
+                {mejor && (
+                  <div className="mb-5 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="rounded-xl border border-red-100 bg-red-50 p-3">
+                      <div className="text-[10px] font-bold uppercase tracking-wide text-[#E8002D]">Mejor costo-beneficio</div>
+                      <div className="font-bold text-gray-900">{mejor.prepaga.nombre} {mejor.plan.nombre}</div>
+                      <div className="text-xs text-gray-600 mt-0.5">Nuestra recomendación entre los que elegiste.</div>
+                    </div>
+                    {masBarato && masBarato !== mejor && (
+                      <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-3">
+                        <div className="text-[10px] font-bold uppercase tracking-wide text-emerald-700">Si buscás pagar menos</div>
+                        <div className="font-bold text-gray-900">{masBarato.prepaga.nombre} {masBarato.plan.nombre}</div>
+                        <div className="text-xs text-gray-600 mt-0.5">Es el más económico de los que elegiste.</div>
+                      </div>
+                    )}
+                  </div>
+                )}
                 <table className="w-full text-sm border-collapse">
                   <thead>
                     <tr>
@@ -2301,7 +2337,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                             {esMejor && (
                               <div className="text-[10px] font-bold text-[#E8002D] uppercase tracking-wide mb-1 flex items-center gap-1">
                                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                Recomendado
+                                Mejor costo-beneficio
                               </div>
                             )}
                             <div className="font-bold text-gray-900">{r.prepaga.nombre}</div>
@@ -2321,7 +2357,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                       ))}
                     </tr>
                     <tr className="border-t border-gray-100">
-                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Nivel de precio</td>
+                      <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Nivel de precio<span className="block font-normal text-[10px] text-gray-400">lista a los 30 años vs. el mercado</span></td>
                       {seleccionados.map((r) => (
                         <td key={`${r.prepaga.slug}-${r.plan.slug}-precio`} className={`py-3 px-3 ${celda(r)}`}>
                           <NivelPrecioBadge nivel={nivelPrecio(r.plan.precio)} />

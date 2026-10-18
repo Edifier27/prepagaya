@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
+import { sumasPorPlan } from '@/lib/planes-suma'
 import { prepagasEnSitioPorZona } from '@/lib/data/zonas'
 import { PRECIO_ACTUALIZADO, prepagas } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
@@ -147,6 +148,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
           initialZona={zona}
           initialProvincia={provincia}
           origen={origen}
+          sumas={sumasPorPlan()}
         />
       </section>
 
