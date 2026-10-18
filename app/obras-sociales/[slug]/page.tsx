@@ -22,6 +22,7 @@ import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSo
 import { CARTILLAS_SINDICALES, getCartillaSindical, provinciasConPagina, totales } from '@/lib/data/sindicales-cartillas'
 import { ldJson } from '@/lib/jsonld'
 import { totalCentros } from '@/lib/data/osecac-centros'
+import { tieneComplementaria, urlComplementaria } from '@/lib/data/prepaga-complementaria'
 
 // Mapea el slug de obra social al slug de prepaga cuando la misma marca
 // opera de las dos formas (la mayoría comparte slug; estas son las excepciones).
@@ -440,11 +441,44 @@ export default async function ObraSocialPage({ params }: Props) {
                   Otras obras sociales en {provinciaMatch.nombre} →
                 </Link>
               </div>
+              {/* Página propia "prepaga para afiliados a X" (18-oct-2026) */}
+              {tieneComplementaria(os.slug) ? (
+                <Link
+                  href={urlComplementaria(os.slug)}
+                  className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors"
+                >
+                  Prepaga además de {os.nombre} →
+                </Link>
+              ) : (
+                <Link
+                  href={`/prepagas/${provinciaMatch.slug}`}
+                  className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] font-bold rounded-xl text-sm transition-colors"
+                >
+                  Ver prepagas en {provinciaMatch.nombre} →
+                </Link>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Obras sociales sin hub provincial (OSFA, IPROSS): mismo llamado a la
+          página "prepaga para afiliados a X" (18-oct-2026) */}
+      {!provinciaMatch && tieneComplementaria(os.slug) && (
+        <section className="py-10 bg-gray-50 border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl border border-gray-200 p-6 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
+              <div>
+                <h2 className="text-lg font-bold text-gray-900 mb-1">¿Querés una prepaga además de {os.nombre}?</h2>
+                <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
+                  Tus aportes a {os.nombre} no se pueden pasar a una prepaga, pero podés contratar una aparte y quedarte con las dos. Mirá cuánto cuesta y qué prepagas tienen buena red.
+                </p>
+              </div>
               <Link
-                href={`/prepagas/${provinciaMatch.slug}`}
-                className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] font-bold rounded-xl text-sm transition-colors"
+                href={urlComplementaria(os.slug)}
+                className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors"
               >
-                Ver prepagas en {provinciaMatch.nombre} →
+                Prepaga además de {os.nombre} →
               </Link>
             </div>
           </div>

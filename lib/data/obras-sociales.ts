@@ -5,7 +5,7 @@ import { formatPrecio } from '@/lib/utils'
 // del mes). Reemplaza precios de monotributo fijos que habían quedado viejos
 // o sin fuente (auditoría 24-sep-2026: OSDE "$45.000", Galeno "$95.000",
 // Medifé "$85.000", cuando el oficial arranca en más del doble).
-function planDesde(prepagaSlug: string) {
+export function planDesde(prepagaSlug: string) {
   const p = prepagas.find((x) => x.slug === prepagaSlug)
   if (!p) return null
   // Plan del cuadro oficial y sin tope de edad (el Flux de OSDE, por ejemplo,
