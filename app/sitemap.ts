@@ -25,6 +25,7 @@ import { sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
 import { paresComparativaAuto } from '@/lib/comparativas-auto'
 import { PARES_CRUZADOS } from '@/lib/comparativas-cruzadas'
 import { cambiosRecomendados } from '@/lib/data/cambios'
+import { OS_COMPLEMENTARIA, URL_HUB_COMPLEMENTARIA, urlComplementaria } from '@/lib/data/prepaga-complementaria'
 import { PRECIOS_UPDATE, CONTENT_UPDATE } from '@/lib/utils'
 
 const BASE = 'https://www.prepagaya.com.ar'
@@ -55,6 +56,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/obras-sociales/mejores`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/obras-sociales/coseguros`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/obras-sociales/obra-social-de-cada-prepaga`, lastModified: '2026-10-01', changeFrequency: 'monthly', priority: 0.8 },
+    // Prepaga para afiliados a obras sociales provinciales (18-oct-2026)
+    { url: `${BASE}${URL_HUB_COMPLEMENTARIA}`, lastModified: '2026-10-18', changeFrequency: 'monthly', priority: 0.85 },
+    ...OS_COMPLEMENTARIA.map((s) => ({ url: `${BASE}${urlComplementaria(s)}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.8 })),
     { url: `${BASE}/sobre-nosotros`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/metodologia`, lastModified: CONTENT_UPDATE, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/prepaga-por-presupuesto`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.80 },

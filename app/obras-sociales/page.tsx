@@ -195,11 +195,12 @@ export default function ObrasSocialesHubPage() {
 
         {/* Guías genéricas con datos oficiales (1-oct-2026) */}
         <section>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {[
               { href: '/obras-sociales/mejores', t: 'Mejores obras sociales 2026', d: 'Ranking por tamaño de su cartilla oficial, coseguros y monotributo.' },
               { href: '/obras-sociales/coseguros', t: 'Coseguros de obras sociales', d: 'Cuánto cobra cada una por consulta y visita a domicilio.' },
               { href: '/obras-sociales/obra-social-de-cada-prepaga', t: 'La obra social de cada prepaga', d: 'El código de Swiss Medical, OSDE, Sancor y más para pasar tus aportes.' },
+              { href: '/obras-sociales/prepaga-complementaria', t: 'Prepaga complementaria para provinciales', d: 'No podés pasar los aportes, pero sí sumar una prepaga aparte.' },
             ].map((x) => (
               <Link key={x.href} href={x.href} className="rounded-xl border-2 border-[#E8002D]/15 bg-white p-4 hover:border-[#E8002D] transition-colors">
                 <div className="font-bold text-gray-900 text-sm">{x.t} →</div>

@@ -81,6 +81,8 @@ export function GET() {
     '## Obras sociales',
     `- [PAMI: teléfono 138, medicamentos y afiliación](${SITE_URL}/obras-sociales/pami)`,
     `- [IOMA: obra social de la provincia de Buenos Aires](${SITE_URL}/obras-sociales/ioma)`,
+    `- [Prepaga para afiliados a IOMA](${SITE_URL}/obras-sociales/ioma/prepaga)`,
+    `- [Prepaga complementaria para obras sociales provinciales](${SITE_URL}/obras-sociales/prepaga-complementaria)`,
     `- [OSECAC: teléfonos, turnos y guardias](${SITE_URL}/obras-sociales/osecac)`,
     `- [OSPe (Obra Social de Petroleros)](${SITE_URL}/obras-sociales/ospe)`,
     `- [OSPRERA (trabajadores rurales)](${SITE_URL}/obras-sociales/osprera)`,
