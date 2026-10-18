@@ -138,10 +138,14 @@ export default async function ObraSocialPage({ params }: Props) {
   // intención de búsqueda y bloque para pasarse a Swiss Medical (1-oct-2026)
   const conversion = os.tipo === 'sindical' && !!registro?.codigo
   const datosGuia = { osNombre: os.nombre, osSlug: os.slug, codigo: registro?.codigo, conCartilla: !!cartilla }
-  const preguntasOs = new Set(os.faq.map((f) => f.q))
+  // "¿Puedo tener X y una prepaga?" vive en /obras-sociales/[slug]/prepaga
+  // (18-oct-2026): se saca de la ficha para que no compitan por la misma
+  // consulta. La ficha queda para la marca (teléfono, cartilla, credencial).
+  const faqOs = tieneComplementaria(os.slug) ? os.faq.filter((f) => !/y una prepaga/i.test(f.q)) : os.faq
+  const preguntasOs = new Set(faqOs.map((f) => f.q))
   const faqCos = faqCoseguros(os.nombre, os.slug)
   const faqsExtra = conversion ? [...(faqCos ? [faqCos] : []), ...faqsGuia(datosGuia), faqPasarseASwiss(os.nombre)].filter((f) => !preguntasOs.has(f.q)) : []
-  const faq = [...os.faq, ...(faqCartilla ? [faqCartilla] : []), ...faqsExtra, ...(faqCodigo ? [faqCodigo] : [])]
+  const faq = [...faqOs, ...(faqCartilla ? [faqCartilla] : []), ...faqsExtra, ...(faqCodigo ? [faqCodigo] : [])]
 
   // La obra social como entidad (1-oct-2026): nombre legal, código RNAS, sede,
   // teléfono y web oficial, para que buscadores e IA la identifiquen.

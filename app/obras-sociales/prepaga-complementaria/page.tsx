@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: TITULO_HUB,
   description,
   alternates: { canonical: `${SITE_URL}${URL_HUB_COMPLEMENTARIA}` },
-  keywords: ['prepaga complementaria', 'complementar obra social con prepaga', 'obra social provincial y prepaga', 'tener obra social y prepaga', 'prepaga para empleados publicos', 'prepaga para docentes', 'prepaga complementaria ioma'],
+  keywords: ['prepaga complementaria', 'obra social provincial y prepaga', 'prepaga para empleados publicos', 'prepaga para docentes'],
   openGraph: { title: TITULO_HUB, description, type: 'article', images: [OG_IMAGE] },
 }
 

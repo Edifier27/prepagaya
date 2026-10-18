@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { tieneComplementaria, urlComplementaria } from '@/lib/data/prepaga-complementaria'
 import { notFound } from 'next/navigation'
 import { informeProvincia } from '@/lib/prensa/sueldo-prepaga'
 import { provinciasSEO, type ProvinciaSEO } from '@/lib/data/zonas'
@@ -58,7 +59,9 @@ function faqsProvincia(prov: ProvinciaSEO, conSede: EntidadRegistro[], marcas: {
       q: `¿Qué obras sociales tienen sede en ${prov.nombre}?`,
       a: `Según el Registro Nacional de Agentes del Seguro de la Superintendencia de Servicios de Salud, ${conSede.length === 1 ? 'tiene sede' : `tienen sede ${conSede.length} obras sociales`} en ${prov.nombre}: ${conSede.slice(0, 8).map((e) => nombreLegible(e.nombre)).join('; ')}${conSede.length > 8 ? ', entre otras' : ''}. Además, las obras sociales nacionales grandes atienden con delegaciones en todo el país.`,
     }] : []),
-    ...(osp ? [{
+    // Si hay página propia de "prepaga para afiliados a X", la pregunta vive
+    // ahí (18-oct-2026, evitar canibalización) y acá queda solo el enlace.
+    ...(osp && !(osp.slug && tieneComplementaria(osp.slug)) ? [{
       q: `¿Puedo tener ${osp.sigla} y una prepaga?`,
       a: `Sí. ${osp.sigla} es obligatoria para los empleados públicos ${prov.slug === 'caba' ? 'de la Ciudad' : 'de la provincia'} y no se puede derivar, pero podés contratar una prepaga aparte para tener otra cartilla. Si además tenés un trabajo en el sector privado, esos aportes sí pueden ir a una prepaga.`,
     }] : []),
@@ -184,6 +187,9 @@ export default async function ObrasSocialesProvinciaPage({ params }: Props) {
               <h2 className="text-xl font-bold text-gray-900 mt-10 mb-2">La obra social provincial: {osp.sigla}</h2>
               <p className="text-sm text-gray-700 leading-relaxed">{osp.nombre}. {osp.nota}</p>
               {osp.slug && <Link href={`/obras-sociales/${osp.slug}`} className="inline-block mt-2 text-sm font-semibold text-[#E8002D] hover:underline">Ficha completa de {osp.sigla} →</Link>}
+              {osp.slug && tieneComplementaria(osp.slug) && (
+                <Link href={urlComplementaria(osp.slug)} className="inline-block mt-2 ml-4 text-sm font-semibold text-[#E8002D] hover:underline">Prepaga para afiliados a {osp.sigla} →</Link>
+              )}
             </>
           )}
 

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { tieneComplementaria, urlComplementaria } from '@/lib/data/prepaga-complementaria'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
 import type { ProvinciaSEO } from '@/lib/data/zonas'
@@ -209,9 +210,16 @@ export function ProvinciaHubPage({ prov }: { prov: ProvinciaSEO }) {
                 <Link href={`/obras-sociales/provincia/${prov.slug}`} className="text-sm font-semibold text-[#E8002D] hover:underline">
                   Obras sociales en {prov.nombre} →
                 </Link>
-                <Link href={`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`} className="text-sm font-semibold text-gray-500 hover:text-[#E8002D] hover:underline">
-                  Comparar prepagas para complementar →
-                </Link>
+                {/* Página propia "prepaga para afiliados a X" (18-oct-2026) */}
+                {prov.obraSocialProvincial.slug && tieneComplementaria(prov.obraSocialProvincial.slug) ? (
+                  <Link href={urlComplementaria(prov.obraSocialProvincial.slug)} className="text-sm font-semibold text-[#E8002D] hover:underline">
+                    Prepaga para afiliados a {prov.obraSocialProvincial.sigla} →
+                  </Link>
+                ) : (
+                  <Link href={`/comparador?zona=${prov.zonaKey}&provincia=${encodeURIComponent(prov.nombre)}`} className="text-sm font-semibold text-gray-500 hover:text-[#E8002D] hover:underline">
+                    Comparar prepagas para complementar →
+                  </Link>
+                )}
               </div>
             </div>
           </section>

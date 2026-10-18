@@ -338,7 +338,7 @@ export function PaginaPrepagaComplementaria({ d }: { d: DatosComplementaria }) {
 
 // ── Hub /obras-sociales/prepaga-complementaria ──────────────────────────────
 
-export const TITULO_HUB = 'Prepaga complementaria: si tenés IOMA, APROSS u otra obra social provincial'
+export const TITULO_HUB = 'Prepaga complementaria para obras sociales provinciales: cómo funciona y cuánto cuesta'
 
 export const FAQ_HUB = [
   {
