@@ -73,6 +73,7 @@ export function GET() {
     }),
     '',
     '## Cobertura de Swiss Medical',
+    `- [Swiss Medical: mora, suspensión y baja por falta de pago](${SITE_URL}/guias/swiss-medical-mora-suspension-baja-por-falta-de-pago)`,
     `- [Swiss Medical: carencias, preexistencias y declaración jurada](${SITE_URL}/guias/swiss-medical-carencias-preexistencias-declaracion-jurada)`,
     '',
     '## Obras sociales',

@@ -2180,7 +2180,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con el comprobante de la baja y, si no lo corrigen, ante la Superintendencia de Servicios de Salud.' },
     ],
     keywords: ['como dar de baja swiss medical', 'dar de baja swiss medical', 'baja swiss medical', 'swiss medical baja de servicio', 'swiss medical bajas', 'swiss medical como dar de baja', 'renuncia swiss medical', 'baja swiss medical por fallecimiento', 'swiss medical baja grupo familiar', 'swiss medical hijos 30 años'],
-    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad', 'swiss-medical-carencias-preexistencias-declaracion-jurada'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad', 'swiss-medical-carencias-preexistencias-declaracion-jurada', 'swiss-medical-mora-suspension-baja-por-falta-de-pago'],
     prepagasRelacionadas: ['swiss-medical'],
     fuentes: [
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
@@ -2806,7 +2806,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si necesito atención urgente y me dieron de baja?', a: 'Consultá cuanto antes con un abogado: en tratamientos en curso, la vía suele ser un amparo de salud. Mientras tanto, la urgencia se atiende en guardias.' },
     ],
     keywords: ['prepaga me dio de baja por falta de pago', 'me dieron de baja de la prepaga', 'baja de prepaga por falta de pago', 'prepaga me dio de baja por preexistencia', 'baja por declaracion jurada prepaga', 'reincorporacion prepaga', 'prepaga rescinde contrato', 'baja de obra social por falta de pago'],
-    relacionadas: ['dar-de-baja-prepaga-con-deuda', 'prepaga-no-me-da-la-baja', 'como-reclamar-a-una-prepaga', 'como-dar-de-baja-prepaga-u-obra-social'],
+    relacionadas: ['dar-de-baja-prepaga-con-deuda', 'prepaga-no-me-da-la-baja', 'como-reclamar-a-una-prepaga', 'como-dar-de-baja-prepaga-u-obra-social', 'swiss-medical-mora-suspension-baja-por-falta-de-pago'],
     fuentes: [
       { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
@@ -3522,12 +3522,70 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Puedo arrepentirme de contratar Swiss Medical?', a: 'Sí: el reglamento reconoce la revocación dentro de los 10 días, conforme el artículo 34 de la Ley 24.240.' },
     ],
     keywords: ['swiss medical carencias', 'carencia swiss medical', 'swiss medical preexistencias', 'swiss medical declaracion jurada', 'swiss medical enfermedades preexistentes', 'swiss medical periodo de carencia parto', 'swiss medical carencia cirugia', 'swiss medical reglamento', 'swiss medical junta medica'],
-    relacionadas: ['prepaga-sin-periodo-carencia', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'arrepentimiento-prepaga-10-dias', 'como-dar-de-baja-swiss-medical', 'reintegros-en-prepagas', 'que-cubre-la-prepaga'],
+    relacionadas: ['prepaga-sin-periodo-carencia', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'arrepentimiento-prepaga-10-dias', 'como-dar-de-baja-swiss-medical', 'reintegros-en-prepagas', 'que-cubre-la-prepaga', 'swiss-medical-mora-suspension-baja-por-falta-de-pago'],
     prepagasRelacionadas: ['swiss-medical'],
     fuentes: [
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
       { texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+    ],
+  },
+  // 18-oct-2026: Swiss Medical, mora y baja por falta de pago. Reglamento de
+  // Swiss (cláusulas 2.1, 2.2, 5.1 y 6) contrastado con el Decreto 1993/2011
+  // (art. 9, punto 2.a). Se informa lo que dice cada texto; no se afirma cuál
+  // prevalece en un caso concreto.
+  {
+    slug: 'swiss-medical-mora-suspension-baja-por-falta-de-pago',
+    titulo: 'Swiss Medical: mora, suspensión de servicios y baja por falta de pago (reglamento y ley)',
+    metaDescripcion: 'Qué dice el reglamento de Swiss Medical sobre mora, intereses, suspensión y baja por falta de pago (3 cuotas), y qué exige el decreto 1993/2011: intimación de 10 días hábiles. Cómo regularizar y reclamar.',
+    tiempoLectura: 6,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-18',
+    captarBaja: true,
+    contenido: {
+      intro: 'El reglamento de Swiss Medical define la mora como la falta de pago de la cuota del mes en curso desde el "Primer Vencimiento", y prevé que tres cuotas impagas (consecutivas o alternadas) son causal de resolución del contrato "en forma automática y sin necesidad de interpelación". El decreto 1993/2011, que reglamenta la Ley 26.682, exige en cambio tres cuotas íntegras y consecutivas, la notificación inmediata de la mora y una intimación para regularizar en diez días hábiles antes de resolver. Si te dieron de baja o te suspendieron, conviene pedir por escrito el detalle y reclamar si no se cumplió ese procedimiento.',
+      secciones: [
+        {
+          titulo: 'Qué dice el reglamento de Swiss sobre la mora',
+          cuerpo: 'La cuota se paga por mes adelantado y se considera por mes calendario, sin proporcionarse por la fecha de alta o baja (cláusula 2.1). La mora comienza cuando no pagás la cuota del mes en curso al "Primer Vencimiento" del aviso; desde ahí Swiss puede aplicar un interés compensatorio y punitorio de una vez y media la tasa activa a 30 días del Banco de la Nación, más gastos administrativos o de rehabilitación (cláusula 2.2).',
+          enlaces: [{ texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' }],
+        },
+        {
+          titulo: 'Suspensión de servicios',
+          cuerpo: 'Según el reglamento, hasta el último día del primer mes impago se exige pagar la cuota vencida (con intereses y gastos) antes de cualquier prestación; si regularizás, la prestación se brinda sin cargo en los rubros que correspondan, y si no, las prestaciones se facturan a valores de paciente particular, sin derecho a reintegro posterior (cláusula 2.2.1). Swiss puede suspender los servicios al grupo familiar sin notificación previa: de inmediato para las prácticas que requieren autorización y, para las que no, al cumplirse el primer mes de mora (cláusula 5.1.1). La suspensión no genera indemnizaciones ni reintegros (cláusula 5.1.2).',
+        },
+        {
+          titulo: 'Baja por tres cuotas: reglamento vs decreto',
+          cuerpo: 'Reglamento de Swiss (cláusula 2.2.2): la falta de pago de tres cuotas consecutivas o alternadas es causal de resolución automática, sin interpelación, y la baja no extingue las deudas. Decreto 1993/2011 (art. 9, punto 2.a): la prepaga solo puede resolver por falta de pago de tres cuotas íntegras y consecutivas, debe notificar de inmediato la constitución en mora e intimar a regularizar el pago íntegro en diez días hábiles. Son textos distintos. Si te dieron de baja sin esa intimación, o por cuotas alternadas, pedí por escrito los avisos de mora y reclamá ante la Superintendencia; la jerarquía entre un reglamento y un decreto reglamentario es una cuestión que, en un caso concreto, conviene plantear con un abogado de consumo.',
+          enlaces: [{ texto: 'Decreto 1993/2011, texto actualizado', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' }],
+        },
+        {
+          titulo: 'Cómo regularizar y volver a usar la cobertura',
+          cuerpo: 'Si regularizás una mora, el reglamento pide presentar, junto con la credencial y el documento, el recibo de la cancelación de la deuda para demandar servicios durante los primeros 30 días posteriores (cláusula 2.2.3). Pagá con los intereses que te liquiden, guardá el comprobante y pedí por escrito que te confirmen la rehabilitación. Si te resolvieron el contrato, pedí por escrito la reincorporación: el reglamento no la regula en detalle, así que conviene dejar constancia de la fecha en que pagaste y de la respuesta.',
+        },
+        {
+          titulo: 'Si te dieron de baja y necesitás cobertura ya',
+          cuerpo: 'Si la baja por mora ya se produjo y no vas a poder revertirla rápido, conviene conseguir una nueva cobertura cuanto antes: en una nueva prepaga vas a completar la declaración jurada y es posible que apliquen carencias para lo que exceda el PMO. Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá: dejás tus datos y un asesor oficial te contacta.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Swiss Medical define la mora desde el primer vencimiento, puede suspender los servicios y prevé la baja por tres cuotas impagas; el decreto 1993/2011 exige tres cuotas consecutivas y una intimación de diez días hábiles. Pedí por escrito los avisos, regularizá con comprobante y reclamá si no se cumplió el procedimiento.',
+    },
+    faq: [
+      { q: '¿Cuándo entro en mora en Swiss Medical?', a: 'Cuando no pagás la cuota del mes en curso en la fecha del "Primer Vencimiento" del aviso. Desde ahí pueden aplicarse intereses y gastos administrativos (reglamento, cláusula 2.2).' },
+      { q: '¿Pueden suspenderme los servicios por mora?', a: 'El reglamento lo prevé, sin notificación previa: de inmediato para las prácticas que requieren autorización y al cumplirse el primer mes de mora para las demás (cláusula 5.1.1).' },
+      { q: '¿Cuántas cuotas impagas dan lugar a la baja?', a: 'El reglamento de Swiss habla de tres cuotas consecutivas o alternadas. El decreto 1993/2011 exige tres cuotas íntegras y consecutivas, con notificación de la mora y una intimación de diez días hábiles.' },
+      { q: '¿Tengo que pagar los intereses para volver a usar la cobertura?', a: 'Según el reglamento, para regularizar se paga la cuota vencida con intereses, gastos administrativos y de rehabilitación, y se presenta el recibo de cancelación en los primeros 30 días.' },
+      { q: '¿Qué hago si me dieron de baja sin avisarme?', a: 'Pedí por escrito el motivo y los avisos de mora, y reclamá ante la Superintendencia de Servicios de Salud y Defensa del Consumidor. Si necesitás cobertura urgente, consultá a un abogado de consumo.' },
+      { q: '¿La baja por falta de pago borra la deuda?', a: 'No: según el reglamento la baja no extingue las deudas con Swiss ni con otros prestadores, y se reserva el derecho a reclamarlas.' },
+    ],
+    keywords: ['swiss medical mora', 'swiss medical baja por falta de pago', 'swiss medical suspension de servicios', 'swiss medical no pagué la cuota', 'swiss medical deuda', 'swiss medical tres cuotas', 'swiss medical rehabilitacion', 'swiss medical me dieron de baja'],
+    relacionadas: ['prepaga-me-dio-de-baja-por-falta-de-pago', 'dar-de-baja-prepaga-con-deuda', 'como-dar-de-baja-swiss-medical', 'prepaga-no-me-da-la-baja', 'swiss-medical-carencias-preexistencias-declaracion-jurada', 'como-reclamar-a-una-prepaga'],
+    prepagasRelacionadas: ['swiss-medical'],
+    fuentes: [
+      { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
+      { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
+      { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
     ],
   },
 ]
