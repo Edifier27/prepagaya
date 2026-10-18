@@ -66,6 +66,8 @@ export function GET() {
     `- [Fallecimiento del titular](${SITE_URL}/guias/baja-prepaga-fallecimiento-titular)`,
     `- [Arrepentimiento (10 días)](${SITE_URL}/guias/arrepentimiento-prepaga-10-dias)`,
     `- [Hasta cuándo hay cobertura tras la baja](${SITE_URL}/guias/hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga)`,
+    `- [Baja de la prepaga con aportes derivados: nueva opción de cambio](${SITE_URL}/guias/baja-prepaga-con-aportes-derivados)`,
+    `- [Obra social que no uso: ¿se puede dar de baja?](${SITE_URL}/guias/obra-social-que-no-uso-se-puede-dar-de-baja)`,
     `- [Cómo dar de baja la obra social del monotributo](${SITE_URL}/guias/baja-obra-social-monotributo)`,
     ...['swiss-medical:Swiss Medical', 'osde:OSDE', 'sancor-salud:Sancor Salud', 'galeno:Galeno', 'medife:Medifé', 'omint:Omint', 'medicus:Medicus', 'prevencion-salud:Prevención Salud', 'avalian:Avalian', 'hominis:Hominis', 'hospital-italiano:Hospital Italiano', 'cemic:CEMIC', 'premedic:Premedic'].map((x) => {
       const [slug, nombre] = x.split(':')

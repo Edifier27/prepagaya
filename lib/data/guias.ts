@@ -141,7 +141,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['cambiar de obra social', 'como cambiar de obra social', 'opcion de cambio obra social', 'cambio de obra social online', 'cuanto tarda el cambio de obra social', 'cada cuanto se puede cambiar de obra social', 'opcion de cambio sssalud', 'cambiar obra social clave fiscal'],
-    relacionadas: ['derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'unificar-aportes-obra-social', 'obra-social-vs-prepaga', 'baja-obra-social-monotributo'],
+    relacionadas: ['derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'unificar-aportes-obra-social', 'obra-social-vs-prepaga', 'baja-obra-social-monotributo', 'obra-social-que-no-uso-se-puede-dar-de-baja'],
     fuentes: [
       { texto: 'Argentina.gob.ar — Realizar opción de cambio: libre elección de agentes del seguro', url: 'https://www.argentina.gob.ar/servicio/realizar-opcion-de-cambio-libre-eleccion-de-agentes-del-seguro' },
       { texto: 'Superintendencia de Servicios de Salud — Usuarios', url: 'https://www.argentina.gob.ar/sssalud/usuarios' },
@@ -213,7 +213,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['unificacion de aportes', 'unificar aportes obra social', 'unificar aportes con mi pareja', 'unificacion de aportes conyuge', 'unificacion de aportes concubino', 'unificacion de aportes sssalud', 'unificar aportes prepaga', 'desunificacion de aportes'],
-    relacionadas: ['opcion-de-cambio-obra-social', 'divorcio-obra-social', 'derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'baja-obra-social-monotributo'],
+    relacionadas: ['opcion-de-cambio-obra-social', 'divorcio-obra-social', 'derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem', 'baja-obra-social-monotributo', 'obra-social-que-no-uso-se-puede-dar-de-baja'],
     fuentes: [
       { texto: 'Argentina.gob.ar — Solicitar unificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes' },
       { texto: 'Argentina.gob.ar — Solicitar unificación de aportes de jubilados', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes-de-jubilados' },
@@ -983,7 +983,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['derivar aportes a prepaga', 'derivacion obra social prepaga', 'prepaga con aportes precio', 'plan deriva aporte', 'codigo obra social alta temprana', 'derivar aporte trabajo nuevo', 'como derivar obra social argentina', 'derivacion obra social paso a paso', 'cambiar obra social 2026', 'derivacion obra social online'],
-    relacionadas: ['que-obra-social-tengo-codem', 'obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'como-cambiar-de-prepaga', 'prepaga-corporativa-vs-particular'],
+    relacionadas: ['que-obra-social-tengo-codem', 'obra-social-vs-prepaga', 'prepagas-para-monotributistas', 'como-cambiar-de-prepaga', 'prepaga-corporativa-vs-particular', 'baja-prepaga-con-aportes-derivados'],
     prepagasRelacionadas: ['galeno', 'swiss-medical', 'medife'],
   },
   {
@@ -3231,7 +3231,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Cómo quito a un adherente de la obra social del monotributo?', a: 'Desde el portal del Monotributo en ARCA, en Modificación de datos > Obra Social. Se genera el Formulario 184 como comprobante.' },
     ],
     keywords: ['baja de obra social monotributo', 'como dar de baja la obra social del monotributo', 'baja de obra social monotributo afip', 'baja de obra social arca', 'dar de baja adherente obra social monotributo', 'baja adherente obra social monotributo', 'baja de obra social en monotributo', 'dar de baja obra social monotributo afip', 'quiero dar de baja la obra social del monotributo'],
-    relacionadas: ['opcion-de-cambio-obra-social', 'unificar-aportes-obra-social', 'derivar-obra-social-a-prepaga', 'como-dar-de-baja-prepaga-u-obra-social', 'sin-trabajo-obra-social', 'que-obra-social-tengo-codem'],
+    relacionadas: ['opcion-de-cambio-obra-social', 'unificar-aportes-obra-social', 'derivar-obra-social-a-prepaga', 'como-dar-de-baja-prepaga-u-obra-social', 'sin-trabajo-obra-social', 'que-obra-social-tengo-codem', 'obra-social-que-no-uso-se-puede-dar-de-baja'],
     fuentes: [
       { texto: 'ARCA — Obra social en el monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/obra-social.asp' },
       { texto: 'ARCA — Baja del monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/baja.asp' },
@@ -3391,7 +3391,7 @@ export const guiasPreguntas: GuiaData[] = [
         },
         {
           titulo: 'Obra social: relación de dependencia, monotributo y jubilados',
-          cuerpo: 'Relación de dependencia: los aportes se descuentan del sueldo; para cambiar de agente el titular hace la opción de cambio online en Mi SSSalud (una vez al año, permanencia mínima de un año, rige el primer día del mes siguiente). Si terminás el trabajo, los aportes cesan y la obra social puede seguir cubriéndote un tiempo, según el tiempo trabajado: la guía "Sin trabajo, ¿qué pasa con la obra social?" lo explica. Monotributo: el aporte va dentro de la cuota; para dejarlo, cambiás con la opción de cambio, quitás adherentes desde Modificación de datos o te das de baja del monotributo (ver la guía específica). Jubilados y pensionados: el cambio se hace en ARCA o en la UDAI más cercana, una vez por año, y rige desde el primer día del tercer mes siguiente. ANSES no tramita bajas de obra social: CODEM solo sirve para consultar cuál tenés.',
+          cuerpo: 'Relación de dependencia: los aportes se descuentan del sueldo; para cambiar de agente el titular hace la opción de cambio online en Mi SSSalud (una vez al año, permanencia mínima de un año, rige el primer día del mes siguiente). Si terminás el trabajo, los aportes cesan y la obra social puede seguir cubriéndote un tiempo, según el tiempo trabajado: la guía "Sin trabajo, ¿qué pasa con la obra social?" lo explica. Monotributo: el aporte va dentro de la cuota; para dejarlo, cambiás con la opción de cambio, quitás adherentes desde Modificación de datos o te das de baja del monotributo (ver la guía específica). Jubilados y pensionados: el cambio se hace en ARCA o en la UDAI más cercana, una vez por año, y rige desde el primer día del tercer mes siguiente. ANSES no tramita bajas de obra social: CODEM solo sirve para consultar cuál tenés. Si tus aportes van a una prepaga, darte de baja de ella no define adónde van: la Superintendencia indica hacer una nueva opción de cambio (mirá la guía sobre baja con aportes derivados).',
           enlaces: [{ texto: 'SSSalud — Cambio de obra social para jubilados y pensionados', url: 'https://www.argentina.gob.ar/sssalud/usuarios/cambio-obra-sociales/jubilados-pensionados' }],
         },
         {
@@ -3456,7 +3456,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Hasta cuándo tengo cobertura si pido la baja?', a: 'Hasta la fecha en que la baja se hace efectiva, según la prepaga. La única extensión que prevé el decreto es de dos meses de PMO para el grupo familiar tras el fallecimiento del titular (Avalian prevé tres).' },
     ],
     keywords: ['como dar de baja mi prepaga', 'dar de baja mi prepaga', 'dar de baja mi obra social', 'como dar de baja mi obra social', 'como dar de baja la prepaga', 'como darme de baja de la prepaga', 'baja de prepaga', 'baja de obra social', 'dar de baja prepaga antes del año', 'cuando puedo dar de baja la prepaga', 'puedo dar de baja mi prepaga', 'dar de baja mi obra social prepaga', 'boton de baja prepaga', 'baja de prepaga ley'],
-    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'baja-prepaga-fallecimiento-titular', 'arrepentimiento-prepaga-10-dias', 'hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga', 'baja-obra-social-monotributo', 'opcion-de-cambio-obra-social', 'sin-trabajo-obra-social', 'que-obra-social-tengo-codem', 'como-cambiar-de-prepaga'],
+    relacionadas: ['prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'dar-de-baja-prepaga-con-deuda', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'baja-prepaga-fallecimiento-titular', 'arrepentimiento-prepaga-10-dias', 'hasta-cuando-tengo-cobertura-despues-de-la-baja-prepaga', 'baja-obra-social-monotributo', 'opcion-de-cambio-obra-social', 'sin-trabajo-obra-social', 'que-obra-social-tengo-codem', 'como-cambiar-de-prepaga', 'baja-prepaga-con-aportes-derivados', 'obra-social-que-no-uso-se-puede-dar-de-baja'],
     fuentes: [
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
       { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
@@ -3586,6 +3586,124 @@ export const guiasPreguntas: GuiaData[] = [
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
       { texto: 'Decreto 1993/2011, texto actualizado (argentina.gob.ar)', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-1993-2011-190606/actualizacion' },
       { texto: 'Ley 26.682, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+    ],
+  },
+  // 18-oct-2026: aportes derivados y "obra social que no uso". Fuentes:
+  // argentina.gob.ar (fin de la triangulación, Res. 1/2025; "Realizar opción de
+  // cambio") y SSSalud. Hueco detectado en las guías de baja: qué pasa con los
+  // aportes cuando te das de baja de una prepaga a la que derivabas.
+  {
+    slug: 'baja-prepaga-con-aportes-derivados',
+    titulo: 'Si derivás tus aportes a una prepaga y te das de baja: qué pasa con los aportes (nueva opción de cambio)',
+    metaDescripcion: 'Si tus aportes van a una prepaga y querés darte de baja, la SSSalud indica hacer una nueva opción de cambio (Mi SSSalud). Pasos, cuándo rige, reglas de plazo y cómo no quedarte sin cobertura.',
+    tiempoLectura: 6,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-18',
+    captarBaja: true,
+    contenido: {
+      intro: 'Si derivás tus aportes a una prepaga, desde la Resolución 1/2025 (fin de la triangulación) esos aportes llegan directo a la prepaga que elegiste. Si querés darte de baja de esa prepaga, la Superintendencia indica que podés hacer una nueva Opción de Cambio y elegir cualquier entidad registrada, prepaga u obra social, y tus aportes pasan a esa nueva entidad. La opción se activa el primer día del mes siguiente a la confirmación y después tenés que contactar al nuevo agente para afiliarte: coordiná las fechas para no quedarte sin cobertura.',
+      secciones: [
+        {
+          titulo: 'Qué cambió con el fin de la triangulación',
+          cuerpo: 'Según la información oficial publicada el 4 de febrero de 2025, todos los aportes de los beneficiarios que "triangulaban" llegan ahora de manera directa a la prepaga elegida. Quien quería seguir en su prepaga no tenía que hacer ningún trámite, y quien quería volver a su obra social de origen tuvo 60 días para hacerlo en la web de la Superintendencia. Las prepagas, además, piden a los nuevos afiliados una declaración jurada de preexistencias.',
+          enlaces: [{ texto: 'argentina.gob.ar — Información para el beneficiario sobre el fin de la triangulación', url: 'https://www.argentina.gob.ar/noticias/informacion-para-el-beneficiario-sobre-el-fin-de-la-triangulacion' }],
+        },
+        {
+          titulo: 'Si te das de baja de la prepaga: nueva opción de cambio',
+          cuerpo: 'La información oficial aclara que quien deja la prepaga tiene la libertad de realizar una nueva Opción de Cambio y elegir otra entidad registrada, sea prepaga u obra social; los aportes pasan a la nueva entidad. No hay un trámite de "baja de aportes" aparte: lo que define adónde van tus aportes es la opción de cambio vigente. Qué pasa con los aportes entre la baja y la nueva opción no lo detalla la Superintendencia: preguntalo por escrito a la prepaga y a la Superintendencia antes de pedir la baja.',
+        },
+        {
+          titulo: 'Paso a paso de la nueva opción de cambio',
+          cuerpo: '1) Ingresá a Mi SSSalud con CUIT y clave fiscal de nivel 3 de ARCA. 2) Elegí "Nueva Opción" y completá el formulario. 3) Elegí la obra social o prepaga. 4) Anotá el número de trámite y confirmá los datos. 5) Te llega un correo y tenés 48 horas para confirmar el trámite desde el enlace. 6) Guardá el número de trámite y la fecha de vigencia que informa el sistema. 7) Contactá al nuevo agente para afiliarte: el cambio no te da cobertura automática. Es gratuito y en línea.',
+          enlaces: [{ texto: 'argentina.gob.ar — Realizar opción de cambio', url: 'https://www.argentina.gob.ar/servicio/realizar-opcion-de-cambio-libre-eleccion-de-agentes-del-seguro' }],
+        },
+        {
+          titulo: 'Reglas de plazo que conviene conocer',
+          cuerpo: 'Según la Superintendencia, todas las opciones se activan el primer día del mes siguiente de haberlas realizado y confirmado; la opción de cambio se puede ejercer solo una vez al año (cada 365 días) y, tras un cambio, hay que permanecer como mínimo un año en el agente elegido, salvo que se elija una prepaga registrada (Resolución 201/2024). Si ya hiciste una opción de cambio en los últimos 12 meses, consultá en Mi SSSalud o con la Superintendencia si podés hacer otra antes de dar la baja.',
+        },
+        {
+          titulo: 'Quiénes no pueden hacer la opción de cambio',
+          cuerpo: 'La página oficial excluye a quienes extinguieron su relación laboral, a quienes cobran menos de dos bases mínimas jubilatorias, a las trabajadoras en licencia por maternidad o excedencia y al personal de las Fuerzas Armadas, de Seguridad, del Servicio Penitenciario, del Poder Judicial, del Poder Legislativo y de obras sociales provinciales. Los monotributistas solo pueden elegir agentes que acepten monotributistas, y los jubilados hacen el cambio ante ANSES. Si estás en alguno de estos casos, consultá antes de pedir la baja.',
+        },
+        {
+          titulo: 'Cómo no quedarte sin cobertura',
+          cuerpo: 'Primero elegí la nueva entidad y hacé la opción de cambio; con la fecha de vigencia confirmada, pedí la baja de la prepaga actual para que coincida (la ley prevé 30 días de preaviso y cada prepaga tiene su fecha de corte). Si todavía no resolviste tu nueva cobertura, podés gestionarla desde acá: dejás tus datos y un asesor oficial te contacta para cotizar y gestionar el cambio y la derivación de aportes.',
+          cta: { texto: 'Compará el precio oficial de otras prepagas y calculá tus aportes antes de decidir.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Si derivás aportes a una prepaga, dar de baja la prepaga no alcanza: hacé una nueva opción de cambio en Mi SSSalud (rige el primer día del mes siguiente), contactá al nuevo agente y coordiná la baja con esa fecha. Confirmá por escrito qué pasa con tus aportes mientras tanto.',
+    },
+    faq: [
+      { q: '¿Qué pasa con mis aportes si me doy de baja de la prepaga?', a: 'La Superintendencia indica que podés hacer una nueva Opción de Cambio y elegir otra prepaga u obra social; los aportes pasan a la nueva entidad. Qué ocurre entre la baja y la nueva opción no lo detalla: preguntalo por escrito.' },
+      { q: '¿Cómo se hace la nueva opción de cambio?', a: 'En Mi SSSalud, con CUIT y clave fiscal nivel 3: "Nueva Opción", elegís la entidad, confirmás desde el correo dentro de las 48 horas y contactás al nuevo agente para afiliarte.' },
+      { q: '¿Cuándo empieza a regir la nueva opción de cambio?', a: 'El primer día del mes siguiente de haberla realizado y confirmado.' },
+      { q: '¿Cuántas veces puedo cambiar de obra social o prepaga?', a: 'Una vez al año (cada 365 días), y hay que permanecer como mínimo un año en el agente elegido, salvo que se elija una prepaga registrada (Res. 201/2024).' },
+      { q: '¿Con el fin de la triangulación tengo que hacer algo si sigo en mi prepaga?', a: 'No: los aportes llegan de manera directa a la prepaga elegida y no hay que hacer ningún trámite para continuar.' },
+      { q: '¿Puedo volver a mi obra social de origen?', a: 'Con la Resolución 1/2025 hubo un plazo de 60 días para hacerlo en la web de la Superintendencia. Hoy, la vía es una nueva opción de cambio.' },
+    ],
+    keywords: ['baja prepaga con aportes', 'dar de baja prepaga aportes derivados', 'que pasa con mis aportes si me doy de baja de la prepaga', 'derivacion de aportes baja prepaga', 'nueva opcion de cambio prepaga', 'fin de la triangulacion prepagas', 'volver a mi obra social desde prepaga', 'dejar la prepaga y volver a la obra social'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'derivar-obra-social-a-prepaga', 'opcion-de-cambio-obra-social', 'unificar-aportes-obra-social', 'como-cambiar-de-prepaga', 'obra-social-que-no-uso-se-puede-dar-de-baja'],
+    fuentes: [
+      { texto: 'argentina.gob.ar — Información para el beneficiario sobre el fin de la triangulación', url: 'https://www.argentina.gob.ar/noticias/informacion-para-el-beneficiario-sobre-el-fin-de-la-triangulacion' },
+      { texto: 'argentina.gob.ar — Realizar opción de cambio', url: 'https://www.argentina.gob.ar/servicio/realizar-opcion-de-cambio-libre-eleccion-de-agentes-del-seguro' },
+      { texto: 'Resolución 201/2024 de la SSSalud', url: 'https://www.argentina.gob.ar/normativa/nacional/norma-396980/texto' },
+    ],
+  },
+  {
+    slug: 'obra-social-que-no-uso-se-puede-dar-de-baja',
+    titulo: 'Obra social que no uso: ¿se puede dar de baja? Qué hacer con los aportes',
+    metaDescripcion: 'Si tu obra social llega por tu trabajo o el monotributo, no hay una baja: los aportes son obligatorios. Qué podés hacer: opción de cambio, derivar aportes a una prepaga, unificar aportes o dejar el monotributo.',
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-18',
+    captarBaja: true,
+    contenido: {
+      intro: 'Una obra social que te corresponde por tu trabajo en relación de dependencia o por el monotributo no se "da de baja": los aportes son obligatorios y están asociados a un agente del seguro. Lo que sí podés hacer es elegir adónde van: con la opción de cambio en Mi SSSalud pasás tus aportes a otra obra social o a una prepaga, una vez al año. Si lo que querés es dejar de aportar por completo, solo se logra dejando de tener ese vínculo: terminando la relación laboral o dándote de baja del monotributo.',
+      secciones: [
+        {
+          titulo: 'Por qué no hay una baja',
+          cuerpo: 'En relación de dependencia el aporte se descuenta del sueldo y en el monotributo va dentro de la cuota mensual (ARCA). La obra social es la que te corresponde según tu actividad o la que elegiste; "dar de baja" sin reemplazarla no existe como trámite. Cuando terminás un trabajo, los aportes cesan y, según el tiempo trabajado, la cobertura puede continuar un período; la guía "Sin trabajo, ¿qué pasa con la obra social?" lo explica.',
+        },
+        {
+          titulo: 'Si no la usás: elegí adónde van tus aportes',
+          cuerpo: 'Con la opción de cambio podés pasar tus aportes a otra obra social o a una prepaga registrada: es gratuito, en línea, con clave fiscal nivel 3, una vez al año, y rige el primer día del mes siguiente. Elegir una prepaga y derivar los aportes es la forma de usar lo que ya aportás en una cobertura que sí vas a usar, pagando la diferencia si el plan cuesta más que tu aporte. Tras elegir, hay que contactar al nuevo agente para afiliarte.',
+          enlaces: [{ texto: 'argentina.gob.ar — Realizar opción de cambio', url: 'https://www.argentina.gob.ar/servicio/realizar-opcion-de-cambio-libre-eleccion-de-agentes-del-seguro' }],
+        },
+        {
+          titulo: 'Si tenés dos aportes o dos obras sociales',
+          cuerpo: 'Si tenés dos empleos, o empleo y monotributo, podés pedir la unificación de aportes para concentrarlos en una sola obra social. El trámite está en la guía "Unificar aportes de obra social". Si lo que ves en tu CODEM no coincide con lo que esperás, la guía "¿Qué obra social tengo?" explica cómo leerlo.',
+          enlaces: [{ texto: 'argentina.gob.ar — Solicitar unificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes' }],
+        },
+        {
+          titulo: 'Si sos monotributista',
+          cuerpo: 'Podés cambiar de obra social con la opción de cambio (solo entre agentes que acepten monotributistas), quitar adherentes desde Modificación de datos o, si dejás la actividad, darte de baja del monotributo: en ese caso los aportes a obra social y jubilación finalizan cuando la baja se hace efectiva. Mirá la guía específica del monotributo.',
+        },
+        {
+          titulo: 'Quiénes no pueden hacer la opción de cambio',
+          cuerpo: 'Según la página oficial, no pueden hacerla quienes extinguieron su relación laboral, quienes cobran menos de dos bases mínimas jubilatorias, las trabajadoras en licencia por maternidad o excedencia, y el personal de las Fuerzas Armadas, de Seguridad, del Servicio Penitenciario, del Poder Judicial, del Poder Legislativo y de obras sociales provinciales. Los jubilados hacen el cambio ante ANSES.',
+        },
+        {
+          titulo: 'Para no quedarte con una cobertura que no usás',
+          cuerpo: 'Si querés pasar tus aportes a una prepaga que sí vas a usar, podés hacerlo desde acá: dejás tus datos y un asesor oficial te contacta para calcular tus aportes, cotizar y gestionar la derivación.',
+          cta: { texto: 'Calculá cuánto te queda por pagar derivando tus aportes.', boton: 'Comparar prepagas', href: '/comparador' },
+        },
+      ],
+      conclusion: 'Una obra social por aportes obligatorios no se da de baja: se cambia con la opción de cambio, se unifican los aportes si hay dos, o se dejan de aportar al terminar el empleo o al darte de baja del monotributo. Elegí adónde van tus aportes antes de cualquier trámite.',
+    },
+    faq: [
+      { q: '¿Se puede dar de baja una obra social que no uso?', a: 'No como trámite separado: los aportes por relación de dependencia o monotributo son obligatorios. Podés elegir otra obra social o una prepaga con la opción de cambio, o dejar de aportar al terminar el empleo o darte de baja del monotributo.' },
+      { q: '¿Puedo pasar mis aportes a una prepaga?', a: 'Sí, con la opción de cambio en Mi SSSalud (gratuita, una vez al año, con clave fiscal nivel 3). Rige el primer día del mes siguiente y después hay que contactar a la prepaga para afiliarte.' },
+      { q: '¿Qué hago si tengo dos obras sociales por dos trabajos?', a: 'Podés solicitar la unificación de aportes para concentrarlos en una sola obra social.' },
+      { q: '¿Qué pasa con mi obra social si renuncio?', a: 'Los aportes cesan. Según el tiempo trabajado, la cobertura puede continuar un período: mirá la guía sobre qué pasa con la obra social cuando te quedás sin trabajo.' },
+      { q: '¿Quiénes no pueden hacer la opción de cambio?', a: 'Quienes extinguieron su relación laboral, quienes cobran menos de dos bases mínimas jubilatorias, trabajadoras en licencia por maternidad o excedencia y personal de Fuerzas Armadas, de Seguridad, Servicio Penitenciario, Poder Judicial, Poder Legislativo y obras sociales provinciales.' },
+    ],
+    keywords: ['obra social que no uso', 'dar de baja obra social que no uso', 'como dar de baja una obra social que no uso', 'como dar de baja una obra social que no tengo', 'se puede dar de baja la obra social', 'dar de baja obra social relacion de dependencia', 'dejar de aportar a la obra social', 'tengo dos obras sociales', 'aportes obra social que no uso'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'baja-prepaga-con-aportes-derivados', 'opcion-de-cambio-obra-social', 'unificar-aportes-obra-social', 'baja-obra-social-monotributo', 'sin-trabajo-obra-social', 'derivar-obra-social-a-prepaga', 'que-obra-social-tengo-codem'],
+    fuentes: [
+      { texto: 'argentina.gob.ar — Realizar opción de cambio', url: 'https://www.argentina.gob.ar/servicio/realizar-opcion-de-cambio-libre-eleccion-de-agentes-del-seguro' },
+      { texto: 'argentina.gob.ar — Solicitar unificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-unificacion-de-aportes' },
+      { texto: 'ARCA — Obra social en el monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/obra-social.asp' },
+      { texto: 'ARCA — Baja del monotributo', url: 'https://www.afip.gob.ar/monotributo/ayuda/baja.asp' },
     ],
   },
 ]
