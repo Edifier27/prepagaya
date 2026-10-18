@@ -15,6 +15,7 @@ import { CoberturaIcon } from '@/components/ui/CategoryIcon'
 import { BlogTOC } from '@/components/blog/BlogTOC'
 import { RankingResumen } from '@/components/blog/RankingResumen'
 import { ldJson } from '@/lib/jsonld'
+import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -185,6 +186,9 @@ export default async function BlogPostPage({ params }: Props) {
                 <span aria-hidden>→</span>
               </Link>
             )}
+
+            {/* Promo de octubre 2026 (OSDE Flux + SportClub); se oculta sola el 1-nov */}
+            {post.slug === 'osde-plan-flux-que-es' && <PromoFluxSportClub origen="blog-flux" />}
 
             {/* Resumen citable para posts de ranking/listicle (GEO,
                 17-sep-2026): pros/contras/precio por prepaga, armado con

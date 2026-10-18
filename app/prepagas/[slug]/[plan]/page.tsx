@@ -25,6 +25,7 @@ import { CarruselPlanes, type TarjetaPlan } from '@/components/prepagas/Carrusel
 import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
 import { TablaDiferenciasPlanes } from '@/components/prepagas/TablaDiferenciasPlanes'
+import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
 
 interface Props {
   params: Promise<{ slug: string; plan: string }>
@@ -740,6 +741,9 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
             </div>
           </div>
+
+          {/* Promo de octubre 2026 (OSDE Flux + SportClub); se oculta sola el 1-nov */}
+          {prep.slug === 'osde' && plan.slug === 'flux' && <PromoFluxSportClub origen="ficha-plan-flux" />}
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-4">

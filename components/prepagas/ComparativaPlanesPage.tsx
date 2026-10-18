@@ -8,6 +8,7 @@ import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
 import { elegir, mesCorto, codigoCorto, nombreCortoPrepaga, MAX_DESCRIPCION } from '@/lib/seo/titulos'
 import { TablaDiferenciasPlanes, type FilaDiferencia } from '@/components/prepagas/TablaDiferenciasPlanes'
+import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
 
 type Plan = Prepaga['planes'][number]
 
@@ -159,6 +160,11 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
           </div>
         </div>
       </section>
+
+      {/* Promo de octubre 2026 (OSDE Flux + SportClub); se oculta sola el 1-nov */}
+      {prep.slug === 'osde' && (plan1.slug === 'flux' || plan2.slug === 'flux') && (
+        <div className="container max-w-3xl mx-auto"><PromoFluxSportClub origen="comparativa-flux" /></div>
+      )}
 
       {/* Tabla comparativa */}
       <section className="py-10 bg-white">
