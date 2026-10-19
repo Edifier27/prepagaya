@@ -110,8 +110,8 @@ const ZONAS_AMBA = ['caba', 'buenos-aires']
 const INTERIOR_PARTNERS = ['avalian', 'sancor-salud']
 // Con el orden por relevancia se muestran primero estos planes recomendados;
 // el resto queda detrás de "Ver más planes" (demasiadas opciones frenan la
-// decisión).
-const RECOMENDADOS_VISIBLES = 4
+// decisión). 5 desde el 18-oct-2026: Swiss, OSDE, Sancor, Avalian y Premedic.
+const RECOMENDADOS_VISIBLES = 5
 
 // Las zonas con dataset SEO local verificado (lib/data/zonas.ts) pisan el
 // mapping manual: fuente única para páginas de zona y cotizador. Llegan por
@@ -176,12 +176,12 @@ function detalleCob(id: CobId, plan: Plan): string {
 }
 
 // Orden "mechado" del ranking por relevancia: arriba va un plan de cada
-// prepaga prioritaria en orden (Swiss Medical, Avalian, Sancor Salud y OSDE —
-// Darío, 18-oct-2026, antes iba Premedic en el lugar de OSDE; si alguna no está
-// en la zona se saltea); del resto en adelante se intercalan marcas (nunca dos
-// cards seguidas de la misma prepaga mientras haya alternativa). Los
-// ordenamientos por precio no se alteran.
-const PRIORIDAD_COMPARADOR = ['swiss-medical', 'avalian', 'sancor-salud', 'osde']
+// prepaga prioritaria en orden (Darío, 18-oct-2026: "Swiss Medical, OSDE,
+// Sancor Salud, Avalian y luego Premedic"; si alguna no está en la zona se
+// saltea); del resto en adelante se intercalan marcas (nunca dos cards
+// seguidas de la misma prepaga mientras haya alternativa). Los ordenamientos
+// por precio no se alteran.
+const PRIORIDAD_COMPARADOR = ['swiss-medical', 'osde', 'sancor-salud', 'avalian', 'premedic']
 
 // Orden del filtro de prepaga (sidebar/bottom sheet): Swiss Medical y OSDE
 // siempre arriba (pedido de Darío, 17-sep-2026), el resto alfabético debajo.
@@ -195,7 +195,14 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
     if (i >= 0) out.push(...pool.splice(i, 1))
   }
   for (const slug of PRIORIDAD_COMPARADOR) {
-    if (slug !== 'swiss-medical' && out[0]) {
+    if (slug === 'premedic') {
+      // "Mejor plan económico": el plan de Premedic más barato para el grupo
+      const cand = pool.filter((r) => r.prepaga.slug === slug)
+      if (cand.length) {
+        const barato = cand.reduce((m, r) => (r.precioGrupal < m.precioGrupal ? r : m))
+        take((r) => r === barato)
+      }
+    } else if (slug !== 'swiss-medical' && out[0]) {
       // Plan comparable al primero (el de Swiss): el de precio más cercano,
       // para no mostrar un AS400 de $780.000 al lado de un SMG20 (23-sep-2026).
       const ref = out[0].precioGrupal
@@ -1263,7 +1270,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   // ── Step: Preview (3s + popup) ────────────────────────────────────────────────
 
   if (step === 'preview') {
-    const previewItems = allResultados.slice(0, 4)
+    const previewItems = allResultados.slice(0, RECOMENDADOS_VISIBLES)
     const precioDesdePreview = allResultados.length ? Math.min(...allResultados.map((r) => precioFinal(r.precioDesc))) : 0
     return (
       <div>
