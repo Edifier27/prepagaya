@@ -169,7 +169,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
               </span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
-              El comparador de prepagas y obras sociales más completo de Argentina. Precios actualizados, opiniones reales y comparativas independientes.
+              Comparamos planes, precios y cartillas de las prepagas de Argentina, con los cuadros tarifarios oficiales de la Superintendencia de Servicios de Salud.
             </p>
             <p className="text-xs text-gray-400 mt-4 leading-relaxed max-w-xs">
               Precios de referencia para persona de 30 años. Los precios finales varían según edad y zona geográfica.

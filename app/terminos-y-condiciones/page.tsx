@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const secciones = [
   {
     titulo: '1. Qué es PrepagaYa',
-    cuerpo: `${SITE_NAME} es un sitio independiente de comparación e información sobre prepagas y obras sociales en Argentina. No somos una prepaga, una obra social, ni una compañía de seguros: somos un intermediario informativo que te ayuda a comparar precios, coberturas y cartillas antes de contratar directamente con la empresa de tu elección.`,
+    cuerpo: `${SITE_NAME} es un sitio de comparación e información sobre prepagas y obras sociales en Argentina. No somos una prepaga, una obra social, ni una compañía de seguros: te ayudamos a comparar precios, coberturas y cartillas y, si querés, te acompañamos en la contratación con las prepagas con las que trabajamos (${PARTNERS_OFICIALES_TEXTO}), que son las que nos pagan por ese servicio. Vos pagás lo mismo que contratando directo.`,
   },
   {
     titulo: '2. Carácter orientativo de la información',

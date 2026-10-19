@@ -159,7 +159,7 @@ export default async function CiudadPage({ params }: Props) {
                 <div className="flex-1 min-w-0">
                   <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{prep.nombre}</div>
                   <div className="text-xs text-gray-500 mt-0.5">
-                    {prep.planes.length} planes · {prep.satisfaccion}% satisfacción
+                    {prep.planes.length} planes
                     {prep.caracteristicas.coberturaNacional ? ' · Cobertura nacional' : ''}
                   </div>
                 </div>

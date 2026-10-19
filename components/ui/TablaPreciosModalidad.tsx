@@ -110,18 +110,7 @@ export function TablaPreciosModalidad({ prepagas }: Props) {
                 </div>
               </div>
 
-              {/* Barra satisfacción */}
-              <div className="flex-1 min-w-0 hidden md:block">
-                <div className="flex items-center gap-2">
-                  <div className="flex-1 bg-gray-100 rounded-full h-1.5 max-w-[120px]">
-                    <div
-                      className="h-1.5 rounded-full bg-[#E8002D]"
-                      style={{ width: `${p.satisfaccion}%` }}
-                    />
-                  </div>
-                  <span className="text-xs text-gray-500 flex-shrink-0">{p.satisfaccion}% satisf.</span>
-                </div>
-              </div>
+              <div className="flex-1 min-w-0 hidden md:block" />
 
               {/* Profesionales */}
               <div className="w-20 flex-shrink-0 hidden lg:block text-right">

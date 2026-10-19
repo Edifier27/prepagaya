@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     q: '¿Cómo eligen a qué prepaga conviene cambiarse?',
-    a: 'Comparamos el plan sin copago y red abierta más representativo de cada empresa (el nivel de cobertura que la mayoría de la gente termina eligiendo) contra alternativas equivalentes, usando precios de lista reales para una persona de 30 años, calidad de cartilla, satisfacción declarada y cantidad de sanatorios propios. No usamos precios promocionales de ingreso.',
+    a: 'Comparamos el plan sin copago y red abierta más representativo de cada empresa (el nivel de cobertura que la mayoría de la gente termina eligiendo) contra alternativas equivalentes, usando precios de lista reales para una persona de 30 años, calidad de cartilla y cantidad de sanatorios propios. No usamos precios promocionales de ingreso.',
   },
   {
     q: '¿Por qué tantas recomendaciones apuntan a Swiss Medical?',
@@ -122,8 +122,8 @@ export default function CambiosPage() {
             <p className="text-sm text-gray-600 leading-relaxed mb-3">
               Para cada empresa, tomamos el plan sin copago y red abierta más elegido (el nivel de cobertura al que la mayoría
               termina migrando) y lo comparamos contra alternativas equivalentes en precio de lista real
-              ({PRECIO_ACTUALIZADO}, persona de 30 años, IVA incluido), calidad de cartilla, satisfacción declarada de
-              afiliados y cantidad de sanatorios propios.
+              ({PRECIO_ACTUALIZADO}, persona de 30 años, IVA incluido), calidad de cartilla y cantidad de sanatorios
+              propios.
             </p>
             <p className="text-sm text-gray-600 leading-relaxed">
               No recomendamos un cambio si no se sostiene con los números: por eso Medifé, que ya es una de las prepagas más

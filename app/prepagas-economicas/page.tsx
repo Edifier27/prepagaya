@@ -340,7 +340,7 @@ export default function PrepagasEconomicasPage() {
             → Tabla oficial de precios de todos los planes
           </Link>
           <Link href="/ranking" className="text-[#E8002D] font-semibold hover:underline">
-            → Ver el ranking general por satisfacción
+            → Ver el ranking general de prepagas
           </Link>
         </div>
 

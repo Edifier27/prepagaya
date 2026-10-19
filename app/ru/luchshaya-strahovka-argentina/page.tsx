@@ -20,7 +20,7 @@ function klinikSlovo(n: number): string {
 export const metadata: Metadata = {
   title: { absolute: `Лучшая медицинская страховка в Аргентине для иностранцев (${PRECIO_ACTUALIZADO_RU}) — ${SITE_NAME}` },
   description:
-    'Swiss Medical, OSDE, Sancor Salud или Premedic? Сравнение лучших prepaga для иностранцев в Аргентине — сеть клиник, рейтинг удовлетворённости и реальные цены.',
+    'Swiss Medical, OSDE, Sancor Salud или Premedic? Сравнение лучших prepaga для иностранцев в Аргентине — сеть клиник и реальные цены.',
   alternates: {
     canonical: `${SITE_URL}/ru/luchshaya-strahovka-argentina`,
     languages: {
@@ -153,7 +153,6 @@ export default function LuchshayaStrahovkaArgentinaPage() {
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-4 mt-4 pt-3 border-t border-gray-200 text-xs text-gray-500">
-                    <span><strong className="text-gray-700">{p.satisfaccion}%</strong> удовлетворённость клиентов</span>
                     <span><strong className="text-gray-700">{p.sanatoriosPropios}</strong> {klinikSlovo(p.sanatoriosPropios)}</span>
                     <span><strong className="text-gray-700">{p.caracteristicas.coberturaNacional ? 'По всей стране' : 'Региональное'}</strong> покрытие</span>
                   </div>

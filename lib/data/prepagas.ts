@@ -16,7 +16,7 @@ export const prepagas: Prepaga[] = [
     sanatoriosPropios: 9,
     pros: [
       '9 sanatorios propios (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas, Las Lomas)',
-      'Sport Plan: el único plan del mercado con reintegros por gimnasio, nutrición y kinesiología para quienes entrenan en serio',
+      'Sport Plan: reintegros por gimnasio, nutrición y kinesiología para quienes entrenan',
       'Guardia Ágil: reservá turno en guardia desde el celular',
       'Red nacional de profesionales y centros de diagnóstico',
       'Más de 30 SMG Center en AMBA y SMG Center en Neuquén',
@@ -24,7 +24,7 @@ export const prepagas: Prepaga[] = [
       // Altos de Salta figura en la cartilla oficial con internación y guardia desde SMG02.
       'En Salta: sucursal en España 943 y el Sanatorio Altos de Salta (Laprida 145) en cartilla desde el SMG02',
       'Dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú',
-      'Planes sin copago desde SMG20',
+      'Planes sin copago desde el SMG02',
     ],
     contras: [
       'Planes S/S1/S2 tienen copago y red más acotada',
@@ -576,7 +576,6 @@ export const prepagas: Prepaga[] = [
     sanatoriosPropios: 0,
     pros: [
       'La prepaga más económica del mercado',
-      'Alta satisfacción en relación al precio (82%)',
       'Smile Group: 7 centros odontológicos propios con hasta 50% off en implantes y ortodoncia',
       'Buena cobertura en CABA y GBA',
       'Atención personalizada',
@@ -823,13 +822,12 @@ export const prepagas: Prepaga[] = [
     logo: '/logos/medicus.png',
     colorPrimario: '#0057A8',
     descripcion:
-      'Medicus es una prepaga de alta prestación con 11 centros médicos propios en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche. Acceso a hospitales de primer nivel como Mater Dei, Hospital Alemán, Otamendi y Fundación Favaloro. 87% satisfacción — uno de los más altos del mercado. Consulta online y presencial.',
+      'Medicus es una prepaga de alta prestación con 11 centros médicos propios en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche. Acceso a hospitales de primer nivel como Mater Dei, Hospital Alemán, Otamendi y Fundación Favaloro. Consulta online y presencial.',
     satisfaccion: 87,
     calidadCartilla: 3,
     sanatoriosPropios: 11,
     pros: [
       '11 centros médicos propios (CABA, GBA, MDQ, Mendoza, Neuquén, Rosario)',
-      '87% satisfacción — uno de los más altos del mercado',
       'Red premium: Mater Dei, Hospital Alemán, Otamendi, Favaloro, CEMIC',
       'Plan Azul cubre cirugía estética + viaje a Europa (Schengen)',
       '40% descuento farmacias, 70% en enfermedades crónicas',
@@ -1110,7 +1108,6 @@ export const prepagas: Prepaga[] = [
       'Atención integrada en el Hospital Italiano de Buenos Aires (top 5 del país)',
       '6 centros ambulatorios propios en AMBA con historia clínica unificada',
       'Alta complejidad interna: trasplantes, oncología, neurología de primer nivel',
-      '81% satisfacción de afiliados — entre los más altos del mercado',
       'Medicina preventiva y gestión de crónicos incluidos',
     ],
     contras: [
@@ -1237,7 +1234,7 @@ export const prepagas: Prepaga[] = [
       'Cam Doctor (videoconsulta) incluida en todos los planes',
       'Atención personalizada y trámites ágiles',
       'Acceso a Sanatorio Finochietto y clínicas de primer nivel en AMBA',
-      '20+ años de trayectoria con 76% de satisfacción de afiliados',
+      '20+ años de trayectoria',
     ],
     contras: [
       'Cobertura limitada a AMBA y algunos municipios del Gran Buenos Aires',
@@ -1403,7 +1400,7 @@ export const prepagas: Prepaga[] = [
     sanatoriosPropios: 0,
     pros: [
       'Plan N incluye consultas SIN copago — poco común en planes base',
-      '60% de descuento en farmacias (el más alto del mercado)',
+      '60% de descuento en farmacias',
       'Odontología general completa desde el plan N',
       '6 centros médicos propios en AMBA (Congreso, Belgrano, Ramos Mejía, Pilar, Lomas de Zamora, Martínez)',
       'Cobertura nacional con casi 50 años de trayectoria',

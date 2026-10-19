@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   // Más corto y con "expats" (auditoría 13-oct-2026: 7.682 impresiones, CTR 0,17%)
   title: { absolute: `Best Health Insurance in Argentina for Expats (${PRECIO_ACTUALIZADO_EN})` },
   description:
-    'Swiss Medical, OSDE, Sancor Salud or Premedic? A side-by-side comparison of the top Argentine prepaga plans for expats — network size, satisfaction rating, and real 2026 prices.',
+    'Swiss Medical, OSDE, Sancor Salud or Premedic? A side-by-side comparison of the top Argentine prepaga plans for expats — network size, own hospitals and real 2026 prices.',
   alternates: {
     canonical: `${SITE_URL}/en/best-health-insurance-argentina`,
     languages: {
@@ -143,7 +143,6 @@ export default function BestHealthInsuranceArgentinaPage() {
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-4 mt-4 pt-3 border-t border-gray-200 text-xs text-gray-500">
-                    <span><strong className="text-gray-700">{p.satisfaccion}%</strong> member satisfaction</span>
                     <span><strong className="text-gray-700">{p.sanatoriosPropios}</strong> own hospitals</span>
                     <span><strong className="text-gray-700">{p.caracteristicas.coberturaNacional ? 'Nationwide' : 'Regional'}</strong> coverage</span>
                   </div>

@@ -219,7 +219,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
             <div className="flex flex-wrap justify-center gap-3">
               {[
                 { href: '/prepagas', label: 'Ver todas las prepagas' },
-                { href: '/ranking', label: 'Ranking por satisfacción' },
+                { href: '/ranking', label: 'Ranking de prepagas' },
                 { href: '/aumentos#ranking-estabilidad', label: '🏆 Quién aumenta menos' },
                 { href: '/comparativas/swiss-medical-vs-osde', label: 'Swiss Medical vs OSDE' },
                 { href: '/guias/como-cambiar-de-prepaga', label: 'Cómo cambiar de prepaga' },

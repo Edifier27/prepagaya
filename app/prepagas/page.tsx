@@ -65,7 +65,7 @@ function PrepagaCard({ p, destacado }: { p: Prepaga; destacado?: boolean }) {
           <NivelPrecioBadge nivel={nivelPrecio(planMasBarato.precio)} />
         </div>
         <div className="text-right">
-          <div className="text-xs text-[#00875A] font-semibold">{p.satisfaccion}% satisfacción</div>
+          <div className="text-xs text-gray-500 font-medium">{p.caracteristicas.coberturaNacional ? 'Cobertura nacional' : 'Cobertura regional'}</div>
           <div className="text-sm font-medium text-[#E8002D] group-hover:underline mt-1">
             Ver {p.planes.length} planes →
           </div>

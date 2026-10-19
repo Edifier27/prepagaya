@@ -5,7 +5,7 @@ import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Metodología — Cómo elaboramos nuestros rankings',
-  description: `Explicamos cómo calculamos nuestros rankings de prepagas en Argentina: fuentes de precios, factores de satisfacción, y criterios de evaluación. Transparencia total.`,
+  description: `Cómo armamos nuestros rankings de prepagas en Argentina: de dónde salen los precios, qué miramos para recomendar y cómo trabajamos con las prepagas.`,
   alternates: { canonical: `${SITE_URL}/metodologia` },
 }
 
@@ -14,7 +14,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: `Metodología de ${SITE_NAME}`,
-  description: 'Cómo elaboramos nuestros rankings de prepagas: fuentes de precios, factores de satisfacción y criterios de evaluación.',
+  description: 'Cómo armamos nuestros rankings de prepagas: de dónde salen los precios, qué miramos para recomendar y cómo trabajamos con las prepagas.',
   url: `${SITE_URL}/metodologia`,
   author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
   publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
@@ -22,19 +22,20 @@ const jsonLd = {
   inLanguage: 'es-AR',
 }
 
+// Auditoría 18-oct-2026: antes decía "5 factores con pesos" (35% satisfacción,
+// 25% precio-calidad…) que no se usaban en ningún lado. Ahora dice cómo se
+// arma de verdad cada ranking.
 const factores = [
-  { nombre: 'Satisfacción de afiliados', peso: '35%', descripcion: 'Encuestas internas de cada prepaga sobre sus propios afiliados, a las que accedemos como asesores que trabajamos con esas empresas. Donde no tenemos ese dato de una prepaga puntual, usamos una estimación conservadora y lo aclaramos.' },
-  { nombre: 'Relación precio-calidad', peso: '25%', descripcion: 'Comparamos el precio de cada plan contra la cobertura real que ofrece, la red de prestadores y la experiencia de atención.' },
-  { nombre: 'Amplitud de red', peso: '20%', descripcion: 'Cantidad de profesionales adheridos, cobertura geográfica, presencia de especialidades y disponibilidad de turnos en plazos razonables.' },
-  { nombre: 'Experiencia digital', peso: '10%', descripcion: 'Calidad de la app móvil, portal web para gestión de turnos y trámites, facilidad de autorización de estudios y prácticas.' },
-  { nombre: 'Transparencia', peso: '10%', descripcion: 'Claridad en la información de precios, facilidad para obtener la cartilla médica actualizada, y honestidad en los términos y condiciones.' },
+  { nombre: 'Experiencia de atención', descripcion: 'El orden de "Nuestro ranking" es la recomendación de nuestros asesores, por cómo responde cada prepaga en el día a día: autorizaciones, reintegros, trámites y atención. Es una opinión y la presentamos como tal.' },
+  { nombre: 'Cartilla en tu zona', descripcion: 'En los rankings por provincia miramos la cartilla local: sanatorios, centros propios y prestadores que cada prepaga informa en su cartilla oficial para esa provincia.' },
+  { nombre: 'Precio', descripcion: 'El ranking por precio no tiene opinión: sale del cuadro tarifario oficial que cada prepaga declara ante la Superintendencia de Servicios de Salud.' },
 ]
 
 const fuentes = [
-  { nombre: 'Superintendencia de Servicios de Salud (SSSalud)', descripcion: 'Fuente oficial para cuadros tarifarios. Accedemos mensualmente a los valores actualizados de todos los planes.' },
-  { nombre: 'Encuestas de satisfacción de cada prepaga', descripcion: 'Cada prepaga realiza su propia encuesta interna de satisfacción a sus afiliados. Como asesores, accedemos a esos resultados para las prepagas con las que trabajamos activamente. No es una encuesta propia de PrepagaYa ni cubre a todas las empresas del mercado por igual.' },
+  { nombre: 'Superintendencia de Servicios de Salud (SSSalud)', descripcion: 'Fuente oficial de los cuadros tarifarios. Los controlamos de forma automática los días 1 y 15 de cada mes.' },
+  { nombre: 'Fichas y webs oficiales de cada prepaga', descripcion: 'Lo que cubre cada plan (copagos, ortodoncia, reintegros, exterior) sale de las fichas oficiales de la prepaga. En las páginas de coberturas indicamos la fuente de cada dato.' },
   { nombre: 'Cartillas médicas oficiales', descripcion: 'Accedemos a las cartillas de prestadores de cada prepaga para verificar la amplitud real de la red.' },
-  { nombre: 'Reclamos ante SSSalud', descripcion: 'Monitoreamos el índice de reclamos ante el organismo regulador como indicador de calidad de servicio.' },
+  { nombre: 'Experiencia de nuestros asesores', descripcion: 'Más de 10 años cotizando y acompañando altas: de ahí sale la recomendación de "Nuestro ranking", que siempre aclaramos que es una opinión.' },
 ]
 
 export default function MetodologiaPage() {
@@ -77,17 +78,12 @@ export default function MetodologiaPage() {
       <section className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Cómo calculamos los rankings</h2>
         <p className="text-gray-600 mb-6">
-          Nuestros rankings combinan 5 factores con distintos pesos. No existe un único "mejor prepaga" para todos: la mejor depende de tu perfil, zona y necesidades.
+          No existe una única "mejor prepaga" para todos: la mejor depende de tu perfil, tu zona y lo que más vas a usar. Por eso separamos lo que es opinión de lo que sale de datos.
         </p>
         <div className="space-y-4">
           {factores.map((f) => (
             <div key={f.nombre} className="bg-white rounded-xl border border-gray-200 p-5">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-semibold text-gray-900">{f.nombre}</h3>
-                <span className="text-sm font-bold text-[#E8002D] bg-blue-50 px-3 py-1 rounded-full">
-                  Peso: {f.peso}
-                </span>
-              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">{f.nombre}</h3>
               <p className="text-sm text-gray-600">{f.descripcion}</p>
             </div>
           ))}
@@ -132,8 +128,8 @@ export default function MetodologiaPage() {
             <div className="text-sm text-gray-500">Actualización de precios</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-[#E8002D]">Según disponibilidad</div>
-            <div className="text-sm text-gray-500">Encuestas de satisfacción</div>
+            <div className="text-2xl font-bold text-[#E8002D]">Días 1 y 15</div>
+            <div className="text-sm text-gray-500">Control automático de cuadros oficiales</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-[#E8002D]">Continua</div>

@@ -185,7 +185,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
                     Eso no significa que {pz.nombre} tenga poca cobertura ahí: la prepaga tiene {fuerza.label.toLowerCase()} en toda la provincia de {prov.nombre}
                     {prepData.profesionales ? <>, con <strong>más de {prepData.profesionales.toLocaleString('es-AR')} prestadores</strong> según la prepaga</> : ''}
                     {prepData.sanatoriosPropios > 0 ? ` y ${prepData.sanatoriosPropios} sanatorio${prepData.sanatoriosPropios === 1 ? '' : 's'} propio${prepData.sanatoriosPropios === 1 ? '' : 's'}` : ''}
-                    {' '}y {prepData.satisfaccion}% de satisfacción entre afiliados. Cotizá gratis y te confirmamos la cartilla exacta para tu domicilio en {corto} antes de que decidas.
+                    . Cotizá gratis y te confirmamos la cartilla exacta para tu domicilio en {corto} antes de que decidas.
                   </p>
                 </div>
               </div>

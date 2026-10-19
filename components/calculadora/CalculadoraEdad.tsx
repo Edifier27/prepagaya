@@ -257,7 +257,7 @@ export function CalculadoraEdad() {
                     <PrepagaLogo slug={prepaga.slug} nombre={prepaga.nombre} colorPrimario={prepaga.colorPrimario} size="sm" />
                     <div className="min-w-0">
                       <Link href={`/prepagas/${prepaga.slug}`} className="font-bold text-gray-900 hover:text-[#E8002D] leading-tight">{prepaga.nombre}</Link>
-                      <div className="text-xs text-gray-500">{prepaga.satisfaccion}% satisfacción</div>
+                      <div className="text-xs text-gray-500">{prepaga.planes.length} planes</div>
                     </div>
                   </div>
                   <div className="rounded-xl bg-gray-50 px-3 py-2">

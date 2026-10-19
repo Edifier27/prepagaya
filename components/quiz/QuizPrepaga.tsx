@@ -253,7 +253,7 @@ export function QuizPrepaga(): React.ReactElement {
 
                   <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-gray-100">
                     <span className="text-xs text-gray-500 font-medium">
-                      {prepaga.satisfaccion}% satisfacción
+                      {prepaga.planes.length} planes
                     </span>
                     {prepaga.profesionales && (
                       <>

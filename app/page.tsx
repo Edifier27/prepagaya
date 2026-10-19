@@ -185,7 +185,7 @@ export default function HomePage(): React.ReactElement {
             <div className="hidden sm:flex flex-wrap items-center justify-center gap-5 mt-5 text-xs text-gray-500">
               <span className="flex items-center gap-1.5">
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-red-500"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
-                <strong className="text-gray-700">+8.400</strong> cotizaciones realizadas
+                <strong className="text-gray-700">{TOTAL_PLANES}</strong> planes comparados
               </span>
               <span className="flex items-center gap-1.5">
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-red-400"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
@@ -286,7 +286,7 @@ export default function HomePage(): React.ReactElement {
           </div>
 
           {/* Tarjetas del ranking (rediseño 4-oct-2026, Darío: "mismo tamaño,
-              mejor diseño"): logo, puesto, tier, satisfacción, planes y precio
+              mejor diseño"): logo, puesto, tier, cobertura, planes y precio
               desde (lista oficial), con un CTA claro a la ficha. */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {prepagasRanking.slice(0, 3).map((prep, i) => {
@@ -323,14 +323,12 @@ export default function HomePage(): React.ReactElement {
                       )}
                     </div>
 
-                    <div className="mt-1.5 sm:mt-3">
-                      <div className="flex items-baseline justify-between text-xs">
-                        <span className="text-gray-500">Satisfacción</span>
-                        <span className="font-bold text-gray-900 tabular-nums">{prep.satisfaccion}%</span>
-                      </div>
-                      <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden mt-1">
-                        <div className="h-full bg-gradient-to-r from-[#E8002D] to-[#FF4D6D] rounded-full" style={{ width: `${prep.satisfaccion}%` }} />
-                      </div>
+                    {/* Sin "% de satisfacción" (auditoría 18-oct-2026: no tenía
+                        fuente publicable): datos verificables de la prepaga */}
+                    <div className="mt-1.5 sm:mt-3 text-xs text-gray-500">
+                      {prep.caracteristicas.coberturaNacional ? 'Cobertura nacional' : 'Cobertura regional'}
+                      {' · '}
+                      {prep.sanatoriosPropios > 0 ? `${prep.sanatoriosPropios} sanatorios propios` : 'Red por convenio'}
                     </div>
 
                     <div className="hidden sm:grid grid-cols-2 gap-2 mt-4">
@@ -480,7 +478,7 @@ export default function HomePage(): React.ReactElement {
               {
                 icon: <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />,
                 title: 'Precios reales publicados',
-                desc: 'El único comparador con precios actualizados mes a mes. Sin sorpresas.',
+                desc: 'Precios de los cuadros oficiales de la Superintendencia, actualizados todos los meses.',
               },
               {
                 icon: <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />,

@@ -50,7 +50,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
     descripcion:
       'Córdoba es el segundo mercado de medicina privada del país y el que más competencia regional tiene: además de las prepagas nacionales, acá pesan fuerte las empresas nacidas en el interior como Avalian, Sancor Salud, Federada y la cordobesa Nobis. La provincia tiene una red sanatorial de primer nivel encabezada por el Hospital Privado Universitario, el Sanatorio Allende y la Clínica Universitaria Reina Fabiola, y una particularidad: la cobertura en el interior provincial (Río Cuarto, Villa María, San Francisco) puede ser muy distinta a la de capital, así que conviene verificar la cartilla de tu ciudad antes de decidir.',
     rankingIntro:
-      'Este ranking pondera la cartilla efectiva en la provincia de Córdoba (capital e interior), la red de sanatorios locales, el precio y la satisfacción de afiliados. Una prepaga grande a nivel nacional pero con pocos prestadores cordobeses no puede estar arriba.',
+      'Este ranking pondera la cartilla efectiva en la provincia de Córdoba (capital e interior), la red de sanatorios locales y el precio. Una prepaga grande a nivel nacional pero con pocos prestadores cordobeses no puede estar arriba.',
     prepagas: [
       {
         slug: 'swiss-medical', nombre: 'Swiss Medical', enSitio: true, fuerza: 'fuerte', verificado: true,
@@ -105,7 +105,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       {
         slug: 'medicus', nombre: 'Medicus', enSitio: true, fuerza: 'marginal', verificado: true,
         resumen: 'Sus centros médicos propios están en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche — en Córdoba no tiene sede propia, así que la atención es por cartilla de convenio. Igual cotiza para la provincia; conviene revisar qué sanatorios cordobeses incluye antes de contratar.',
-        cartillaLocal: ['Sin centro médico propio en Córdoba (atención por convenio)', 'Cobertura nacional declarada en todos sus planes', 'Uno de los niveles de satisfacción más altos del mercado (87%)'],
+        cartillaLocal: ['Sin centro médico propio en Córdoba (atención por convenio)', 'Cobertura nacional declarada en todos sus planes'],
       },
     ],
     localidades: [
@@ -138,10 +138,10 @@ export const provinciasSEO: ProvinciaSEO[] = [
       slug: 'apross',
     },
     faq: [
-      { q: '¿Cuál es la mejor prepaga en Córdoba?', a: 'Depende de dónde vivas y qué priorices. En Córdoba capital, Swiss Medical y OSDE tienen las cartillas premium más completas; Nobis (cordobesa) suma centros propios; y en el interior provincial las regionales como Sancor Salud, Federada y Avalian suelen tener mejor cartilla efectiva que las nacionales. Nuestro ranking pondera cartilla local, precio y satisfacción.' },
+      { q: '¿Cuál es la mejor prepaga en Córdoba?', a: 'Depende de dónde vivas y qué priorices. En Córdoba capital, Swiss Medical y OSDE tienen las cartillas premium más completas; Nobis (cordobesa) suma centros propios; y en el interior provincial las regionales como Sancor Salud, Federada y Avalian suelen tener mejor cartilla efectiva que las nacionales. Nuestro ranking pondera cartilla local y precio.' },
       { q: '¿Qué prepagas tienen cartilla en el interior de Córdoba?', a: 'Sancor Salud, Federada Salud, Avalian y Prevención Salud son las de mayor presencia en ciudades como Río Cuarto, Villa María y San Francisco. Las premium nacionales cubren el interior pero con redes más acotadas que en capital.' },
       { q: 'Tengo APROSS, ¿puedo contratar una prepaga igual?', a: 'Sí. APROSS es la obra social de los empleados públicos cordobeses y no se elige voluntariamente, pero podés contratar una prepaga en paralelo para acceder a cartilla privada. Muchos afiliados lo hacen para internación y especialistas.' },
-      { q: '¿Cuánto cuesta una prepaga en Córdoba?', a: 'Los precios de lista son los mismos que en el resto del país para la mayoría de las prepagas nacionales: van desde ~$150.000/mes para un adulto joven en planes de entrada hasta más de $450.000 en planes premium. Cotizá por edad y zona para ver el precio exacto con descuentos.' },
+      { q: '¿Cuánto cuesta una prepaga en Córdoba?', a: 'Depende de la prepaga, el plan y tu edad. Swiss Medical y OSDE declaran ante la Superintendencia una lista de precios para Córdoba o el interior distinta de la de CABA (en Swiss Medical, más baja), y Federada Salud tiene planes propios para Córdoba. En esta página ves el precio de lista oficial de cada prepaga para una persona de 30 años en Córdoba; cotizá con las edades de tu grupo y te pasamos el precio con descuentos.' },
       { q: '¿Cuál es la prepaga más barata en Córdoba?', a: 'Premedic es, en general, la opción más económica con cobertura declarada en Córdoba capital: su plan de entrada arranca bien por debajo del promedio del mercado. Sancor Salud y Avalian también tienen planes accesibles con buena cartilla local. Si sos joven y sano y buscás bajar la cuota, empezá comparando estas tres.' },
       { q: '¿Qué prepaga conviene si soy monotributista en Córdoba capital?', a: 'Como monotributista podés usar tus aportes de obra social para pagar parte de la cuota de una prepaga por derivación. En Córdoba, Sancor Salud, Avalian y Prevención Salud suelen tener los planes de entrada más convenientes para esa combinación; Premedic es la opción más barata si preferís pagar la cuota completa sin derivación. Cotizá con tu edad para ver el descuento real por aportes.' },
     ],
@@ -264,7 +264,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       {
         slug: 'medicus', nombre: 'Medicus', enSitio: true, fuerza: 'media', verificado: true,
         resumen: 'Es la otra premium con centro médico propio en Neuquén, algo que muy pocas prepagas ofrecen en la Patagonia. Junto a Swiss Medical, es la opción a comparar si el sector energético es tu perfil y buscás atención propia en capital.',
-        cartillaLocal: ['Centro médico propio en Neuquén capital', 'Uno de los niveles de satisfacción más altos del mercado (87%)'],
+        cartillaLocal: ['Centro médico propio en Neuquén capital'],
       },
       {
         slug: 'prevencion-salud', nombre: 'Prevención Salud', enSitio: true, fuerza: 'media', verificado: false,
@@ -307,7 +307,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       slug: 'issn',
     },
     faq: [
-      { q: '¿Cuál es la mejor prepaga en Neuquén?', a: 'Swiss Medical es la única premium con centro médico propio en la capital y OSDE tiene la red abierta más consolidada de la región. Sancor Salud, con cartilla provincial publicada, es la alternativa regional más equilibrada en precio. El ranking completo pondera cartilla local, precio y satisfacción.' },
+      { q: '¿Cuál es la mejor prepaga en Neuquén?', a: 'Swiss Medical es la única premium con centro médico propio en la capital y OSDE tiene la red abierta más consolidada de la región. Sancor Salud, con cartilla provincial publicada, es la alternativa regional más equilibrada en precio. El ranking completo pondera cartilla local y precio.' },
       { q: '¿Qué cobertura conviene si trabajo en Vaca Muerta?', a: 'La mayoría de los trabajadores petroleros ya tiene obra social de convenio (como OSPEPRI). Lo habitual es complementarla con una prepaga para el grupo familiar, priorizando cartilla en Neuquén capital y Añelo/Alto Valle, y urgencias 24 hs.' },
       { q: 'Tengo ISSN, ¿puedo contratar una prepaga?', a: 'Sí. El ISSN es la obra social de los empleados públicos neuquinos y no se elige voluntariamente, pero podés contratar una prepaga en paralelo para acceder a la red privada (Sanatorio San Carlos, Clínica Pasteur y derivaciones al Alto Valle).' },
       { q: '¿Las prepagas cubren derivaciones a Río Negro?', a: 'Las principales (Swiss Medical, OSDE, Sancor, Galeno) tienen cartilla en el corredor Neuquén–Cipolletti–General Roca, donde la red privada funciona de forma integrada. Verificá que tu plan incluya prestadores de ambas provincias: es el punto que más diferencia a los planes en esta zona.' },
@@ -372,7 +372,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       {
         slug: 'medicus', nombre: 'Medicus', enSitio: true, fuerza: 'media', verificado: true,
         resumen: 'Tiene uno de sus centros médicos propios en Rosario, algo que muy pocas prepagas premium pueden ofrecer fuera de Buenos Aires. Para quien vive en Rosario y busca atención de alta gama sin depender solo de cartilla de convenio, es una opción a comparar con Swiss Medical y OSDE.',
-        cartillaLocal: ['Centro médico propio en Rosario', 'Uno de los niveles de satisfacción más altos del mercado (87%)', 'Fuera de Rosario, cobertura por cartilla de convenio'],
+        cartillaLocal: ['Centro médico propio en Rosario', 'Fuera de Rosario, cobertura por cartilla de convenio'],
       },
     ],
     localidades: [
@@ -483,7 +483,7 @@ export const provinciasSEO: ProvinciaSEO[] = [
       slug: 'osep-mendoza',
     },
     faq: [
-      { q: '¿Cuál es la mejor prepaga en Mendoza?', a: 'OSDE tiene la red abierta más completa del Gran Mendoza y Swiss Medical compite en el mismo segmento premium. En relación precio/cartilla, Sancor Salud y Prevención son las alternativas regionales más equilibradas. El ranking completo pondera cartilla local, precio y satisfacción.' },
+      { q: '¿Cuál es la mejor prepaga en Mendoza?', a: 'OSDE tiene la red abierta más completa del Gran Mendoza y Swiss Medical compite en el mismo segmento premium. En relación precio/cartilla, Sancor Salud y Prevención son las alternativas regionales más equilibradas. El ranking completo pondera cartilla local y precio.' },
       { q: '¿Qué sanatorios privados hay en Mendoza?', a: 'Los principales son el Hospital Italiano de Mendoza, el Hospital Privado, la Clínica de Cuyo, la Clínica Santa María y el Sanatorio Fleming, concentrados en el Gran Mendoza. Qué cubra cada prepaga depende del plan: verificalo al cotizar.' },
       { q: 'Tengo OSEP, ¿puedo sumar una prepaga?', a: 'Sí. OSEP es la obra social provincial de los empleados públicos y no se elige voluntariamente, pero muchos afiliados contratan una prepaga en paralelo para acceder a la red privada sin las demoras y restricciones del sistema.' },
       { q: '¿Las prepagas cubren bien en San Rafael?', a: 'La cobertura del sur mendocino es más acotada que la del Gran Mendoza en todas las empresas. Antes de contratar, verificá qué prestadores locales incluye tu plan y cómo funciona la derivación a la capital para alta complejidad.' },
@@ -598,7 +598,7 @@ provinciasSEO.push(
         resumen: 'La red más grande del país tiene en CABA su plaza más profunda: acceso a Hospital Italiano, Hospital Alemán y Fundación Favaloro desde el plan 310.',
         cartillaLocal: ['Hospital Italiano de Buenos Aires (desde plan 310)', 'Hospital Alemán (desde plan 310)', 'Fundación Favaloro', 'Cartilla Inteligente con IA'] },
       { slug: 'medicus', nombre: 'Medicus', enSitio: true, fuerza: 'fuerte', verificado: true,
-        resumen: '11 centros médicos propios entre CABA y GBA, con acceso a Mater Dei, Hospital Alemán, Otamendi y Favaloro. El más alto índice de satisfacción del mercado (87%).',
+        resumen: '11 centros médicos propios entre CABA y GBA, con acceso a Mater Dei, Hospital Alemán, Otamendi y Favaloro.',
         cartillaLocal: ['11 centros médicos propios', 'Sanatorio Mater Dei', 'Sanatorio Otamendi', 'Hospital Alemán y Fundación Favaloro'] },
       { slug: 'omint', nombre: 'Omint', enSitio: true, fuerza: 'fuerte', verificado: true,
         resumen: 'Tres sanatorios propios de alta complejidad, los tres en la Ciudad: Bazterrica, Del Sol y Santa Isabel. Primera prepaga argentina con certificación ISO 9001.',
@@ -662,7 +662,7 @@ provinciasSEO.push(
       { q: '¿Cuál es la mejor prepaga en CABA?', a: 'En CABA casi todas las premium tienen sanatorios propios en la Ciudad: Swiss Medical, Omint, CEMIC, Medicus y el Plan Hospital Italiano lideran por infraestructura propia; OSDE por amplitud de red. La elección pasa más por precio, copago y qué sanatorio puntual te queda cerca que por falta de cobertura.' },
       { q: '¿Qué prepagas tienen sanatorio propio en CABA?', a: 'Swiss Medical (Suizo Argentina, Los Arcos, Agote), Omint (Bazterrica, Del Sol, Santa Isabel), CEMIC (Las Heras, Galván, Saavedra), Medicus (11 centros entre CABA y GBA), el Plan Hospital Italiano y Galeno (Trinidad Palermo y Mitre) son las que tienen infraestructura propia dentro de la Ciudad.' },
       { q: '¿Conviene una prepaga con sanatorio propio o con red de convenios?', a: 'El sanatorio propio suele dar turnos más rápidos y menos trabas de autorización, porque la prepaga y el sanatorio son la misma empresa. La red de convenios (como Premedic o Avalian) es más económica pero depende de acuerdos que pueden cambiar. Para uso frecuente, el sanatorio propio suele valer la diferencia.' },
-      { q: '¿Cuánto cuesta una prepaga en CABA?', a: 'El precio de lista es el mismo en todo el país: depende de la edad y el plan, no del barrio. Lo que sí cambia por zona es qué cartilla te queda cerca. Cotizá con tu edad real para ver el valor exacto.' },
+      { q: '¿Cuánto cuesta una prepaga en CABA?', a: 'Dentro de CABA el precio de lista no cambia por barrio: depende de la edad y el plan. Lo que sí cambia por zona es qué cartilla te queda cerca. Cotizá con tu edad real para ver el valor exacto.' },
       { q: '¿Qué cobertura privada hay en Caballito?', a: 'El Centro Médico Caballito del Hospital Alemán (más de 20 especialidades) es la referencia más fuerte del barrio, junto con el Sanatorio Antártida y la Clínica San Camilo. Para alta complejidad, la mayoría deriva a las sedes centrales de Recoleta o Palermo, a pocos minutos.' },
     ],
     fechaVerificacion: '2026-08-08',
@@ -687,8 +687,8 @@ provinciasSEO.push(
         resumen: 'La red más grande del país mantiene profundidad en el conurbano, con acceso al Hospital Universitario Austral (Pilar, Zona Norte) desde los planes superiores.',
         cartillaLocal: ['Hospital Universitario Austral, Pilar (desde plan 310)', 'Amplia red de convenios en los tres corredores del GBA'] },
       { slug: 'medicus', nombre: 'Medicus', enSitio: true, fuerza: 'media', verificado: true,
-        resumen: 'De sus 11 centros propios, varios están en GBA. 87% de satisfacción, el más alto del mercado.',
-        cartillaLocal: ['Centros médicos propios en el conurbano', '87% de satisfacción de afiliados'] },
+        resumen: 'De sus 11 centros propios, varios están en GBA.',
+        cartillaLocal: ['Centros médicos propios en el conurbano'] },
       { slug: 'sancor-salud', nombre: 'Sancor Salud', enSitio: true, fuerza: 'media', verificado: true,
         resumen: 'En el conurbano compite por red de convenios más que por infraestructura propia, pero tiene oficinas comerciales confirmadas en la costa atlántica: Mar del Plata (Av. Luro 3197) y Bahía Blanca (Sarmiento 1101), algo que varias nacionales premium no ofrecen fuera de GBA.',
         cartillaLocal: ['Oficina en Mar del Plata (Av. Luro 3197)', 'Oficina en Bahía Blanca (Sarmiento 1101)', 'Buena relación precio-calidad'] },

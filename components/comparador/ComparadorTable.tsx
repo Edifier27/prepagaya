@@ -25,7 +25,6 @@ function Check({ ok }: { ok: boolean }) {
 const FILAS = [
   { key: 'precio',           label: 'Nivel de precio' },
   { key: 'precioEstrella',   label: 'Plan estrella' },
-  { key: 'satisfaccion',     label: 'Satisfacción afiliados' },
   { key: 'profesionales',    label: 'Prestadores (dato oficial)' },
   { key: 'planes',           label: 'Cantidad de planes' },
   { key: 'sinCopago',        label: 'Plan sin copago disponible' },
@@ -44,7 +43,6 @@ interface FilaValor {
   precio: number
   precioEstrellaNombre: string
   precioEstrellaValor: number
-  satisfaccion: string
   calidadCartilla: string
   profesionales: string
   planes: string
@@ -69,7 +67,6 @@ function buildValores(slug: string): FilaValor | null {
     precio: precioMin,
     precioEstrellaNombre: planEstrella.nombre,
     precioEstrellaValor: planEstrella.precio,
-    satisfaccion: `${p.satisfaccion}%`,
     calidadCartilla: `${p.calidadCartilla}/5`,
     profesionales: p.profesionales ? `${p.profesionales.toLocaleString('es-AR')}+` : '—',
     planes: `${p.planes.length} planes`,
@@ -200,9 +197,7 @@ export function ComparadorTable() {
                           <NivelPrecioBadge nivel={nivelPrecio(vals.precioEstrellaValor)} />
                         </div>
                       ) : (
-                        <span className={`text-sm font-semibold ${
-                          fila.key === 'satisfaccion' ? 'text-[#00875A]' : 'text-gray-900'
-                        }`}>
+                        <span className="text-sm font-semibold text-gray-900">
                           {String(vals[fila.key as keyof FilaValor])}
                         </span>
                       )}

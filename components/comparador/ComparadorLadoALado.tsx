@@ -163,7 +163,6 @@ export function ComparadorLadoALado(): React.ReactElement {
   const ganadorPrecio: GanadorCol = canCompare ? cmpNum(precioA!, precioB!, false) : 0
   const ganadorCopago: GanadorCol = canCompare ? cmpBool(!planA!.copago, !planB!.copago) : 0
   const ganadorRed: GanadorCol = canCompare ? cmpBool(planA!.redAbierta, planB!.redAbierta) : 0
-  const ganadorSatisfaccion: GanadorCol = canCompare ? cmpNum(prepagaA!.satisfaccion, prepagaB!.satisfaccion) : 0
   const ganadorProfesionales: GanadorCol = canCompare && prepagaA!.profesionales && prepagaB!.profesionales ? cmpNum(prepagaA!.profesionales, prepagaB!.profesionales) : 0
 
   const allCoberturas = canCompare
@@ -297,17 +296,6 @@ export function ComparadorLadoALado(): React.ReactElement {
                 </CeldaValor>
                 <CeldaValor ganador={ganadorRed === 2}>
                   {planB!.redAbierta ? 'Red abierta' : 'Red cerrada'}
-                </CeldaValor>
-              </tr>
-
-              {/* Satisfaccion */}
-              <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                <td className="py-4 px-4 text-sm text-gray-600 font-medium">Satisfacción de afiliados</td>
-                <CeldaValor ganador={ganadorSatisfaccion === 1}>
-                  {prepagaA!.satisfaccion}%
-                </CeldaValor>
-                <CeldaValor ganador={ganadorSatisfaccion === 2}>
-                  {prepagaB!.satisfaccion}%
                 </CeldaValor>
               </tr>
 

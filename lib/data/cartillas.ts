@@ -153,7 +153,7 @@ export const cartillasInfo: CartillaInfo[] = [
   {
     slug: 'luis-pasteur',
     urlCartilla: 'https://www.oslpasteur.com.ar',
-    tip: 'Su diferencial no está en la cartilla sino en farmacia: 60% de descuento en medicamentos, el más alto del mercado.',
+    tip: 'Su diferencial no está en la cartilla sino en farmacia: 60% de descuento en medicamentos.',
     comoConsultar: [
       'Consultá el listado de prestadores en oslpasteur.com.ar o por el 0800-222-1331.',
       'Verificá la red de tu zona antes de contratar: es una obra social de estructura más chica.',

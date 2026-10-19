@@ -14,7 +14,7 @@ import { ldJson } from '@/lib/jsonld'
 // Rediseño 28-sep-2026 (UX + copy): respuesta directa arriba (GEO), ganadores
 // por categoría alineados con el posicionamiento de partners (Swiss mejor
 // prepaga, Premedic mejor precio, Sancor y Avalian para el interior), ranking
-// completo compacto, satisfacción en tabla, "desde $" con el plan más barato
+// completo compacto, tabla de precios, "desde $" con el plan más barato
 // real y aviso de transparencia (somos partner de algunas).
 
 const MES = PRECIO_ACTUALIZADO.toLowerCase()
@@ -58,7 +58,7 @@ const faqs = [
   },
   {
     q: '¿Cómo armamos este ranking?',
-    a: `El orden de "Nuestro ranking" es la recomendación de nuestros asesores, por la experiencia de atención de cada prepaga. Somos partner oficial de ${PARTNERS_OFICIALES_TEXTO}, y lo aclaramos para que lo tengas en cuenta. Por eso publicamos aparte el ranking por satisfacción declarada y el de precio, que salen de datos y no de nuestra opinión. Los precios son los de los cuadros tarifarios oficiales de la Superintendencia de Servicios de Salud.`,
+    a: `El orden de "Nuestro ranking" es la recomendación de nuestros asesores, por la experiencia de atención de cada prepaga. Somos partner oficial de ${PARTNERS_OFICIALES_TEXTO}, y lo aclaramos para que lo tengas en cuenta. Por eso publicamos aparte el ranking por precio, que sale de datos y no de nuestra opinión. Los precios son los de los cuadros tarifarios oficiales de la Superintendencia de Servicios de Salud.`,
   },
 ]
 
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   // "las 10 mejores prepagas de argentina" es como más se busca (11-oct-2026)
   // Pregunta textual (15-oct-2026, Search Console: "cual es la mejor prepaga de argentina" pos. 8 sin clics)
   title: { absolute: `¿Cuál es la mejor prepaga de Argentina? Ranking ${ANIO} con precios` },
-  description: `¿Cuál es la mejor prepaga? Ranking ${MES} por categoría: mejor en general, más económica y mejor cartilla, con precio oficial y satisfacción declarada.`,
+  description: `¿Cuál es la mejor prepaga? Ranking ${MES} por categoría: mejor en general, más económica y mejor cartilla, con el precio oficial de cada una.`,
   alternates: {
     canonical: `${SITE_URL}/ranking`,
     // Par recíproco de las versiones en inglés y ruso del ranking (las dos
@@ -97,7 +97,6 @@ const jsonLd = [
 ]
 
 export default function RankingPage() {
-  const porSatisfaccion = [...prepagas].sort((a, b) => b.satisfaccion - a.satisfaccion)
   const porPrecio = [...prepagas].sort((a, b) => precioDesde(a) - precioDesde(b))
 
   return (
@@ -177,7 +176,7 @@ export default function RankingPage() {
         <div className="container max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 mb-1">Nuestro ranking de las {ORDEN_RANKING.length} prepagas</h2>
           <p className="text-sm text-gray-500 mb-6 max-w-3xl">
-            El orden es la recomendación de nuestros asesores, por la experiencia de atención diaria con cada prepaga. Somos partner oficial de {PARTNERS_OFICIALES_TEXTO}: por eso, más abajo, publicamos también los rankings por satisfacción y por precio, que salen de datos.
+            El orden es la recomendación de nuestros asesores, por la experiencia de atención diaria con cada prepaga. Somos partner oficial de {PARTNERS_OFICIALES_TEXTO}: por eso, más abajo, publicamos también el ranking por precio, que sale del cuadro oficial.
           </p>
           <ol className="space-y-2.5">
             {ORDEN_RANKING.map((slug, i) => {
@@ -212,42 +211,10 @@ export default function RankingPage() {
 
       <CtaMedio titulo="¿Cuál de estas prepagas te conviene a vos?" texto="Cotizá gratis y sin DNI: precio exacto para tu edad y zona, con 15% de descuento online." />
 
-      {/* Datos: satisfacción y precio, en tablas compactas */}
+      {/* Datos: precio en tabla compacta. Sin la tabla de satisfacción
+          (auditoría 18-oct-2026: el dato no tenía fuente publicable) */}
       <section className="py-10 bg-white">
-        <div className="container max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-1">Ranking por satisfacción</h2>
-            <p className="text-xs text-gray-500 mb-4">
-              Satisfacción declarada en encuestas a afiliados.{' '}
-              <Link href="/metodologia" className="text-[#E8002D] font-semibold hover:underline">Cómo lo calculamos</Link>
-            </p>
-            <div className="overflow-x-auto rounded-xl border border-gray-200">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wide">
-                  <tr>
-                    <th className="px-3 py-2.5 font-semibold w-8">#</th>
-                    <th className="px-3 py-2.5 font-semibold">Prepaga</th>
-                    <th className="px-3 py-2.5 font-semibold text-right">Satisfacción</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {porSatisfaccion.map((p, i) => (
-                    <tr key={p.slug} className="hover:bg-gray-50">
-                      <td className="px-3 py-2.5 text-gray-400 tabular-nums">{i + 1}</td>
-                      <td className="px-3 py-2.5"><Link href={`/prepagas/${p.slug}`} className="font-semibold text-gray-900 hover:text-[#E8002D]">{p.nombre}</Link></td>
-                      <td className="px-3 py-2.5 text-right">
-                        <div className="inline-flex items-center gap-2">
-                          <span className="hidden sm:block w-20 h-1.5 rounded-full bg-gray-100 overflow-hidden"><span className="block h-full bg-[#00875A]" style={{ width: `${p.satisfaccion}%` }} /></span>
-                          <span className="font-bold text-[#00875A] tabular-nums">{p.satisfaccion}%</span>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
+        <div className="container max-w-3xl mx-auto">
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-1">Ranking por precio</h2>
             <p className="text-xs text-gray-500 mb-4">

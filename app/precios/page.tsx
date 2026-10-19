@@ -232,8 +232,6 @@ export default function PreciosPage(): React.ReactElement {
                           {p.nombre}
                         </Link>
                         <div className="flex items-center gap-2 mt-0.5">
-                          <span className="text-xs text-gray-400">{p.satisfaccion}% satisfacción</span>
-                          <span className="text-gray-300">·</span>
                           <span className="text-xs text-gray-400">{p.planes.length} planes</span>
                           {!p.caracteristicas.coberturaNacional && (
                             <>
@@ -379,7 +377,7 @@ export default function PreciosPage(): React.ReactElement {
               className="flex flex-col gap-1 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group"
             >
               <span className="text-sm font-bold text-gray-900 group-hover:text-[#E8002D]">Ranking de prepagas →</span>
-              <span className="text-xs text-gray-500">Las mejores por satisfacción</span>
+              <span className="text-xs text-gray-500">Por categoría, con el precio oficial</span>
             </Link>
           </div>
         </div>

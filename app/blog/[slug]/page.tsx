@@ -265,7 +265,7 @@ export default async function BlogPostPage({ params }: Props) {
                       >
                         <div>
                           <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors">{p.nombre}</div>
-                          <div className="text-xs text-gray-500 mt-0.5">{p.planes.length} planes · {p.satisfaccion}% satisfacción</div>
+                          <div className="text-xs text-gray-500 mt-0.5">{p.planes.length} planes</div>
                         </div>
                         <div className="text-right">
                           <div className="text-sm font-bold text-[#E8002D]">desde {formatPrecio(planBase.precio)}</div>

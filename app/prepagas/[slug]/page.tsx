@@ -317,10 +317,6 @@ function getPerfilesIdeales(prep: Prepaga, precioMin: number): { titulo: string;
     titulo: 'Familias que quieren sanatorios propios',
     desc: `${prep.sanatoriosPropios} centros de alta complejidad incluidos. Sin depender de convenios que pueden cambiar.`,
   })
-  if (prep.satisfaccion >= 80) items.push({
-    titulo: 'Quienes valoran atención sin burocracia',
-    desc: `${prep.satisfaccion}% de satisfacción entre afiliados. Autorizaciones ágiles y trámites simples.`,
-  })
   if (prep.caracteristicas.coberturaNacional && prep.sanatoriosPropios === 0) items.push({
     titulo: 'Personas en el interior del país',
     desc: 'Red de prestadores en todo el territorio. Una de las mejores opciones fuera de AMBA.',
@@ -609,13 +605,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full font-medium">
                       {PRECIO_ACTUALIZADO}
                     </span>
-                    <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                      prep.satisfaccion >= 80 ? 'bg-green-100 text-green-700' :
-                      prep.satisfaccion >= 75 ? 'bg-amber-100 text-amber-700' :
-                      'bg-gray-100 text-gray-600'
-                    }`}>
-                      {prep.satisfaccion}% satisfacción
-                    </span>
                     {isPartner && (
                       <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
                         ✓ {PARTNERS_TIER[slug] ? `Opción ${PARTNERS_TIER[slug]} de PrepagaYa` : 'Partner oficial de PrepagaYa'}
@@ -738,7 +727,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
             {[
               ...(prep.profesionales ? [{ label: 'Prestadores', value: `${(prep.profesionales / 1000).toFixed(0)}k+`, href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' }] : []),
               { label: 'Centros propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red convenio', href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' },
-              { label: 'Satisfacción', value: `${prep.satisfaccion}%`, href: '#opiniones' },
+              { label: 'Planes', value: String(prep.planes.length), href: '#planes' },
               ...(opiniones.cantidad > 0 ? [{ label: 'Opiniones de usuarios', value: String(opiniones.cantidad), href: '#opiniones' }] : []),
             ].map((s) => (
               // Clickeables (13-oct-2026, Clarity: clics muertos en "Satisfacción")
@@ -982,11 +971,14 @@ export default async function PrepagaSlugPage({ params }: Props) {
           .map((pv) => ({ pv, n: sucursalesEnProvincia(prep.slug, pv, PROVINCIAS_SEO_SUC).length }))
           .filter((x) => x.n > 0)
         if (!total || !porProv.length) return null
+        // Auditoría 18-oct-2026: el total es del país y las provincias son solo
+        // las que tienen página en el sitio (65 contra 49 en Swiss): se aclara.
+        const enProvincias = porProv.reduce((s, x) => s + x.n, 0)
         return (
           <section id="sucursales" className="py-10 bg-white border-t border-gray-100">
             <div className="container max-w-5xl mx-auto">
               <h2 className="text-xl font-bold text-gray-900 mb-1">Sucursales de {prep.nombre}</h2>
-              <p className="text-sm text-gray-600 mb-4">{total} sucursales y centros de atención en el país, según el buscador oficial de {prep.nombre}. Elegí tu provincia para ver direcciones y horarios:</p>
+              <p className="text-sm text-gray-600 mb-4">{total} sucursales y centros de atención en el país, según el buscador oficial de {prep.nombre}. Elegí tu provincia para ver direcciones y horarios{enProvincias < total ? ' (las de otras provincias están en el buscador oficial)' : ''}:</p>
               <ul className="flex flex-wrap gap-2">
                 {porProv.map(({ pv, n }) => (
                   <li key={pv.slug}>

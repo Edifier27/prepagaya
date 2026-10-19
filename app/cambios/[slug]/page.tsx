@@ -59,7 +59,6 @@ export default async function CambioPage({ params }: Props) {
     { label: 'Copago', origen: origenPlan?.copago ? 'Con copago' : 'Sin copago', destino: destinoPlan?.copago ? 'Con copago' : 'Sin copago' },
     { label: 'Red', origen: origenPlan?.redAbierta === false ? 'Cerrada' : 'Abierta', destino: destinoPlan?.redAbierta === false ? 'Cerrada' : 'Abierta' },
     { label: 'Calidad de cartilla', origen: `${origen.calidadCartilla}/5`, destino: `${destino.calidadCartilla}/5` },
-    { label: 'Satisfacción declarada', origen: `${origen.satisfaccion}%`, destino: `${destino.satisfaccion}%` },
     { label: 'Sanatorios propios', origen: String(origen.sanatoriosPropios), destino: String(destino.sanatoriosPropios) },
     // Prestadores: solo si las dos informan la cifra oficial (auditoría 24-sep-2026)
     ...(origen.profesionales && destino.profesionales ? [{ label: 'Prestadores (dato oficial)', origen: `${origen.profesionales.toLocaleString('es-AR')}+`, destino: `${destino.profesionales.toLocaleString('es-AR')}+` }] : []),
@@ -311,7 +310,7 @@ export default async function CambioPage({ params }: Props) {
                 className="flex items-center justify-between p-5 bg-white rounded-2xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
                 <div>
                   <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors">Ver el análisis completo {origen.nombre} vs {destino.nombre}</div>
-                  <div className="text-xs text-gray-400 mt-1">Precio, red, satisfacción y veredicto en detalle →</div>
+                  <div className="text-xs text-gray-400 mt-1">Precio, red y veredicto en detalle →</div>
                 </div>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-5 h-5 text-gray-300 group-hover:text-[#E8002D] flex-shrink-0">
                   <path d="M9 18l6-6-6-6"/>

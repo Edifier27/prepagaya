@@ -174,8 +174,8 @@ export const blogPosts: BlogPost[] = [
       intro: 'Premedic es consistentemente la prepaga más barata de Argentina. Su plan 200 a $107.044/mes llama la atención de miles de personas que buscan cobertura médica sin gastar una fortuna. ¿Pero qué tan buena es realmente?',
       secciones: [
         {
-          titulo: 'Lo bueno: precio y satisfacción',
-          cuerpo: 'Premedic tiene una satisfacción del 82% entre sus afiliados, lo que la ubica como una de las más valoradas en relación a su precio. Muchos afiliados destacan la atención personalizada, el trato humano y la accesibilidad de los trámites.',
+          titulo: 'Lo bueno: el precio',
+          cuerpo: 'Muchos afiliados destacan la atención personalizada, el trato humano y la accesibilidad de los trámites.',
         },
         {
           titulo: 'La cobertura es el PMO completo',
@@ -190,7 +190,7 @@ export const blogPosts: BlogPost[] = [
           cuerpo: 'Premedic es ideal para: jóvenes y adultos sanos en CABA/GBA que necesitan cobertura de urgencias y consultas básicas, monotributistas que buscan el menor costo posible, personas sin familia a cargo que no usan mucho el sistema. No es la mejor opción para quienes tienen enfermedades crónicas o necesitan especialidades frecuentes.',
         },
       ],
-      conclusion: 'Premedic sí vale la pena para el perfil correcto: joven, sano, CABA/GBA, que necesita cobertura de respaldo. Su 82% de satisfacción lo confirma. Pero si necesitás cobertura nacional, red amplia de especialistas o sanatorios de calidad, vale la pena invertir un poco más en Sancor o Medifé.',
+      conclusion: 'Premedic sí vale la pena para el perfil correcto: joven, sano, CABA/GBA, que necesita cobertura de respaldo. Pero si necesitás cobertura nacional, red amplia de especialistas o sanatorios de calidad, vale la pena invertir un poco más en Sancor o Medifé.',
     },
     prepagasRelacionadas: ['premedic', 'sancor-salud', 'medife'],
     keywords: ['premedic vale la pena', 'premedic prepaga opinion', 'premedic vs sancor', 'prepaga mas barata argentina vale'],
@@ -474,7 +474,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: 'Por encima de $380.000/mes: Medicus Plan Celeste',
-          cuerpo: 'El Plan Celeste de Medicus (precio a cotizar: Medicus no declara cuadro tarifario ante la SSSalud) tiene el 87% de satisfacción más alto del mercado, sin copago, acceso a 11 centros propios y a los mejores hospitales privados del país (Mater Dei, Alemán, Otamendi, Favaloro, CEMIC). Para quien puede pagar en esta franja, la calidad de atención de Medicus supera a OSDE 310 y Swiss Medical SMG20.',
+          cuerpo: 'El Plan Celeste de Medicus (precio a cotizar: Medicus no declara cuadro tarifario ante la SSSalud) es sin copago y da acceso a 11 centros propios y a hospitales privados de primer nivel (Mater Dei, Alemán, Otamendi, Favaloro, CEMIC). Para quien puede pagar en esta franja, la calidad de atención de Medicus supera a OSDE 310 y Swiss Medical SMG20.',
         },
         {
           titulo: 'El error más común al elegir por precio',

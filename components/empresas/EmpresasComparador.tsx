@@ -45,7 +45,7 @@ export function EmpresasComparador() {
               <PrepagaLogo slug={p.slug} nombre={p.nombre} colorPrimario={p.colorPrimario} size="md" />
               <div>
                 <div className="font-semibold text-white">{p.nombre}</div>
-                <div className="text-xs text-gray-500">{p.satisfaccion}% satisfacción</div>
+                <div className="text-xs text-gray-500">{p.planes.length} planes</div>
               </div>
             </div>
             <p className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-3">{p.descripcion}</p>

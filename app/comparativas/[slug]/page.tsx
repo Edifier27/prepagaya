@@ -77,7 +77,6 @@ export default async function ComparativaPage({ params }: Props) {
     // Sin ganador por red: las cifras anteriores no tenían fuente (auditoría 24-sep-2026)
     { label: 'Prestadores (dato oficial)', valor: (p) => (p.profesionales ? `${p.profesionales.toLocaleString('es-AR')}+` : 'Sin dato oficial') },
     { label: 'Sanatorios propios', valor: (p) => (p.sanatoriosPropios > 0 ? String(p.sanatoriosPropios) : 'Red por convenio') },
-    { label: 'Satisfacción de afiliados', valor: (p) => `${p.satisfaccion}%`, ganador: comp.ganadorSatisfaccion },
     { label: 'Cobertura nacional', valor: (p) => (p.caracteristicas.coberturaNacional ? 'Sí' : 'Limitada') },
     { label: 'Cantidad de planes', valor: (p) => String(p.planes.length) },
   ]
@@ -312,7 +311,7 @@ export default async function ComparativaPage({ params }: Props) {
                     <PrepagaLogo slug={p.slug} nombre={p.nombre} colorPrimario={p.colorPrimario} size="md" />
                     <div>
                       <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors">{p.nombre}</div>
-                      <div className="text-xs text-gray-400">{p.satisfaccion}% satisfacción · {p.planes.length} planes</div>
+                      <div className="text-xs text-gray-400">{p.planes.length} planes</div>
                     </div>
                   </div>
                   <p className="text-sm text-gray-600 leading-relaxed line-clamp-3 mb-4">{p.descripcion}</p>

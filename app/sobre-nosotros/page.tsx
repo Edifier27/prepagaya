@@ -5,7 +5,7 @@ import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Sobre Nosotros',
-  description: `Conocé quiénes somos en ${SITE_NAME}, cómo trabajamos y por qué somos el comparador de prepagas más confiable de Argentina.`,
+  description: `Conocé quiénes somos en ${SITE_NAME}, cómo trabajamos y de dónde salen los precios y coberturas que publicamos.`,
   alternates: { canonical: `${SITE_URL}/sobre-nosotros` },
 }
 
@@ -16,7 +16,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: `Sobre Nosotros — ${SITE_NAME}`,
-  description: `Quiénes somos en ${SITE_NAME}, cómo trabajamos y por qué somos el comparador de prepagas más confiable de Argentina.`,
+  description: `Quiénes somos en ${SITE_NAME}, cómo trabajamos y de dónde salen los precios y coberturas que publicamos.`,
   url: `${SITE_URL}/sobre-nosotros`,
   author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
   publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
@@ -32,12 +32,12 @@ const valores = [
   },
   {
     titulo: 'Datos verificados',
-    descripcion: 'Todos los precios que publicamos son verificados mensualmente contra los cuadros tarifarios oficiales de la Superintendencia de Servicios de Salud (SSSalud). Nunca publicamos precios desactualizados.',
+    descripcion: 'Los precios salen de los cuadros tarifarios oficiales que cada prepaga declara ante la Superintendencia de Servicios de Salud (SSSalud), y los controlamos de forma automática los días 1 y 15 de cada mes. Siempre aclaramos de qué mes son.',
     letters: 'VR', bg: 'bg-green-100', text: 'text-green-800',
   },
   {
-    titulo: 'Opiniones reales',
-    descripcion: 'Las reseñas en nuestro sitio son de afiliados verificados. Verificamos que quien opina sea o haya sido afiliado de la prepaga que evalúa, evitando opiniones falsas de cualquier parte.',
+    titulo: 'Opiniones moderadas',
+    descripcion: 'Las reseñas las dejan usuarios del sitio y las revisamos una por una antes de publicarlas. No publicamos opiniones inventadas ni pagadas.',
     letters: 'OP', bg: 'bg-purple-100', text: 'text-purple-800',
   },
   {
@@ -49,14 +49,14 @@ const valores = [
 
 const equipo = [
   {
-    nombre: 'Equipo Editorial',
-    rol: 'Contenidos y Análisis',
-    descripcion: 'Profesionales de la salud y periodismo especializados en el sistema de salud argentino, con más de 10 años de experiencia analizando el mercado de prepagas.',
+    nombre: 'Asesores',
+    rol: 'Cotización y contratación',
+    descripcion: 'Asesores con más de 10 años en el rubro: arman tu cotización, te explican las diferencias entre planes y te acompañan en el alta con la prepaga.',
   },
   {
     nombre: 'Equipo de Datos',
     rol: 'Precios y Coberturas',
-    descripcion: 'Analistas que rastrean y verifican mensualmente los cuadros tarifarios de la Superintendencia de Servicios de Salud y los planes de cada prepaga.',
+    descripcion: 'Seguimos los cuadros tarifarios de la Superintendencia de Servicios de Salud y las fichas oficiales de cada plan. En las páginas de coberturas indicamos la fuente de cada dato.',
   },
   {
     nombre: 'Equipo de Tecnología',
@@ -81,10 +81,10 @@ export default function SobreNosotrosPage() {
           </span>
         </div>
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          El comparador de prepagas más transparente de Argentina
+          Comparamos prepagas con datos oficiales
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Somos un equipo de profesionales comprometidos con ayudar a los argentinos a tomar la mejor decisión sobre su cobertura médica, con información objetiva, actualizada y sin intereses ocultos.
+          Somos un equipo de profesionales comprometidos con ayudar a los argentinos a tomar la mejor decisión sobre su cobertura médica, con información clara y actualizada. Y te contamos cómo trabajamos, para que sepas quién está del otro lado.
         </p>
       </div>
 
@@ -135,7 +135,7 @@ export default function SobreNosotrosPage() {
         <div>
           <h3 className="font-bold text-gray-900 mb-1">¿Cómo elaboramos nuestros rankings?</h3>
           <p className="text-sm text-gray-600">
-            Leé nuestra metodología detallada: cómo calculamos los rankings, qué factores consideramos y cómo verificamos los precios.
+            Leé nuestra metodología: de dónde salen los precios, qué miramos para recomendar una prepaga y cómo trabajamos con las prepagas.
           </p>
         </div>
         <Link

@@ -8,7 +8,7 @@ import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Comparativas de Prepagas 2026 — Swiss Medical vs OSDE y más',
-  description: 'Elegí dos prepagas y comparalas al instante: precio, red de prestadores, satisfacción y veredicto. Swiss Medical vs OSDE, Sancor vs OSDE y más.',
+  description: 'Elegí dos prepagas y comparalas al instante: precio, red de prestadores, coberturas y veredicto. Swiss Medical vs OSDE, Sancor vs OSDE y más.',
   alternates: { canonical: `${SITE_URL}/comparativas` },
 }
 
@@ -42,7 +42,7 @@ export default function ComparativasPage() {
             Comparar prepagas Argentina 2026
           </h1>
           <p className="text-gray-500 text-base max-w-xl">
-            Elegí dos prepagas y te mostramos la comparación al instante — precio, red, satisfacción y veredicto.
+            Elegí dos prepagas y te mostramos la comparación al instante — precio, red, coberturas y veredicto.
           </p>
         </div>
       </section>
@@ -102,7 +102,7 @@ export default function ComparativasPage() {
                   </div>
                   <p className="text-xs text-gray-500 line-clamp-2 mb-3">{c.descripcion}</p>
                   <div className="flex items-center justify-between text-xs text-gray-400 pt-3 border-t border-gray-100">
-                    <span>{p1.satisfaccion}% · {p2.satisfaccion}% satisf.</span>
+                    <span>Precio, cobertura y red</span>
                     <span className="text-[#E8002D] font-semibold group-hover:underline">Ver análisis →</span>
                   </div>
                 </Link>

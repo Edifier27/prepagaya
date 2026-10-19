@@ -181,7 +181,7 @@ export default async function CondicionPage({ params }: Props) {
                       <Link href={`/prepagas/${prep.slug}`} className="font-bold text-gray-900 hover:text-[#E8002D] transition-colors block leading-tight">
                         {prep.nombre}
                       </Link>
-                      <div className="text-xs text-gray-400">{prep.satisfaccion}% satisfacción</div>
+                      <div className="text-xs text-gray-400">{prep.planes.length} planes</div>
                     </div>
                   </div>
                   <div className="flex-1 min-w-0">

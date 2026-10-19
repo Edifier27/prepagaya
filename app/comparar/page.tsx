@@ -9,7 +9,7 @@ import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: 'Comparar Prepagas Lado a Lado: Tabla Comparativa 2026',
-  description: `Compará hasta 3 prepagas argentinas lado a lado: precio, coberturas, satisfacción y más de 12 características en una sola tabla. Actualizado ${PRECIO_ACTUALIZADO}.`,
+  description: `Compará hasta 3 prepagas argentinas lado a lado: precio, coberturas, red y más de 12 características en una sola tabla. Actualizado ${PRECIO_ACTUALIZADO}.`,
   alternates: { canonical: `${SITE_URL}/comparar` },
   keywords: [
     'comparar prepagas argentina 2026',
@@ -51,7 +51,7 @@ export default function CompararPage(): React.ReactElement {
             <span className="text-[#E8002D]"> lado a lado</span>
           </h1>
           <p className="text-gray-600 max-w-xl mx-auto">
-            Seleccioná hasta 3 prepagas y compará precio, coberturas, red y satisfacción de afiliados en una sola tabla.
+            Seleccioná hasta 3 prepagas y compará precio, coberturas y red en una sola tabla.
           </p>
         </div>
       </section>

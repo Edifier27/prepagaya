@@ -16,7 +16,7 @@ export function rankingZonaMetadata(prov: ProvinciaSEO): Metadata {
   const year = new Date().getFullYear()
   return {
     title: `Mejores prepagas en ${prov.nombre} (${year}): ranking y cartilla`,
-    description: `Ranking ${year} de prepagas en ${prov.nombre} según cartilla local y satisfacción — con prestadores como ${prov.prestadoresClave[0]}. Actualizado ${PRECIO_ACTUALIZADO.toLowerCase()}, cotización online sin DNI.`,
+    description: `Ranking ${year} de prepagas en ${prov.nombre} según cartilla local y precio — con prestadores como ${prov.prestadoresClave[0]}. Actualizado ${PRECIO_ACTUALIZADO.toLowerCase()}, cotización online sin DNI.`,
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/mejores-prepagas` },
     keywords: [
       `mejores prepagas ${prov.nombre.toLowerCase()}`,
@@ -66,7 +66,7 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
   ]
   const jsonLd = [
     jsonLdBreadcrumb(crumbs),
-    jsonLdArticle(`Mejores prepagas en ${prov.nombre}`, `Ranking de prepagas en ${prov.nombre} según cartilla local y satisfacción.`, `/prepagas/${prov.slug}/mejores-prepagas`),
+    jsonLdArticle(`Mejores prepagas en ${prov.nombre}`, `Ranking de prepagas en ${prov.nombre} según cartilla local y precio.`, `/prepagas/${prov.slug}/mejores-prepagas`),
     {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
@@ -174,9 +174,6 @@ export function RankingZonaPage({ prov }: { prov: ProvinciaSEO }) {
                             </>
                           ) : (
                             <div className="text-xs text-gray-400 max-w-[90px]">Precio sujeto a cotización</div>
-                          )}
-                          {prepData && (
-                            <div className="text-[10px] text-[#00875A] font-semibold mt-1">{prepData.satisfaccion}% satisf.</div>
                           )}
                         </div>
                       </div>
