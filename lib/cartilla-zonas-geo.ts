@@ -67,6 +67,12 @@ const SUBZONA_GBA: Record<string, string> = {
   'gba oeste': 'gba-zona-oeste',
 }
 
+// Provincias cuya capital tiene otro nombre en las cartillas (la provincia
+// de Tucumán sola caía en la zona de Aguilares, por localidad).
+const CAPITAL_CON_OTRO_NOMBRE: Record<string, string> = {
+  tucuman: 'san miguel de tucuman',
+}
+
 // Elige la zona de la cartilla que corresponde a la ubicación detectada por
 // IP (cookie de middleware.ts). Solo cruza geografía: nombre de la ciudad
 // contra el nombre de la zona o las localidades de las direcciones de la
@@ -86,9 +92,21 @@ export function zonaParaUbicacion(indice: ZonaCartillaIndice[], zona: ZonaDetect
   const ciudad = normalizarTexto(zona.label.replace(/\s*\(.*\)\s*$/, ''))
   const parentesis = normalizarTexto(zona.label.match(/\(([^)]*)\)\s*$/)?.[1] ?? '')
   if (ciudad) {
-    const porNombre = candidatas.find((z) => normalizarTexto(z.nombre) === ciudad)
-      ?? candidatas.find((z) => normalizarTexto(z.nombre).startsWith(`${ciudad} `))
-    if (porNombre) return porNombre.parte ?? porNombre.slug
+    // Variantes del nombre de la capital (18-oct-2026): "Mendoza capital" en
+    // las páginas por localidad es "Mendoza" en la cartilla de Swiss y
+    // "Ciudad de Mendoza" en la de OSDE; sin esto, "Swiss Medical en Mendoza
+    // capital" linkeaba la cartilla general y "OSDE en Mendoza" la de
+    // Guaymallén (por localidad), y las dos páginas competían en Google por
+    // "[prepaga] mendoza" sin enlazarse entre sí. Se prueban los nombres antes
+    // que las localidades; la variante exacta va primero, así que los
+    // matches que ya andaban no cambian.
+    const base = ciudad.replace(/ capital$/, '')
+    const variantes = [...new Set([ciudad, base, `ciudad de ${base}`, `${base} capital`, CAPITAL_CON_OTRO_NOMBRE[base]].filter(Boolean))]
+    for (const v of variantes) {
+      const porNombre = candidatas.find((z) => normalizarTexto(z.nombre) === v)
+        ?? candidatas.find((z) => normalizarTexto(z.nombre).startsWith(`${v} `))
+      if (porNombre) return porNombre.parte ?? porNombre.slug
+    }
     const porLocalidad = candidatas.find((z) => z.localidades.some((l) => normalizarTexto(l) === ciudad))
     if (porLocalidad) return porLocalidad.parte ?? porLocalidad.slug
   }
