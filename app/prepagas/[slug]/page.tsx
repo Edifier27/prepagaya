@@ -12,6 +12,7 @@ import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { compararPlanes, type ComparacionPlanes as DatosComparacion } from '@/lib/planes-comparacion'
 import { ComparacionPlanes } from '@/components/prepagas/ComparacionPlanes'
 import { CartillasSwiss, faqCartillasSwiss } from '@/components/prepagas/CartillasSwiss'
+import { LineasSwiss, faqLineasSwiss } from '@/components/prepagas/LineasSwiss'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -31,7 +32,7 @@ import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 import { ComparaPlanesHero } from '@/components/prepagas/ComparaPlanesHero'
-import { elegir, anioPrecios, nombreCortoPrepaga, MAX_DESCRIPCION } from '@/lib/seo/titulos'
+import { elegir, anioPrecios, nombreCortoPrepaga, codigoCorto, MAX_DESCRIPCION } from '@/lib/seo/titulos'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -167,6 +168,12 @@ function descripcionFicha(prep: Prepaga, desde: number) {
       ], MAX_DESCRIPCION)
 }
 
+// "Plan SMG02, SMG20 y SMG30" en vez de "Plan SMG02 y Plan SMG20 y Plan SMG30"
+const listaPlanes = (nombres: string[]) => {
+  const xs = nombres.map((n, i) => (i === 0 ? n : codigoCorto(n)))
+  return xs.length > 1 ? `${xs.slice(0, -1).join(', ')} y ${xs[xs.length - 1]}` : xs.join('')
+}
+
 function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstrella: Plan, comp: DatosComparacion) {
   const sinCopago = prep.planes.filter(p => !p.copago).map(p => p.nombre)
   const conCopago = prep.planes.filter(p => p.copago).map(p => p.nombre)
@@ -255,7 +262,7 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
     {
       q: `¿${prep.nombre} tiene copago en consultas?`,
       a: sinCopago.length > 0 && conCopago.length > 0
-        ? `Depende del plan. Los planes ${sinCopago.join(' y ')} no tienen copago. Los planes ${conCopago.join(' y ')} sí lo tienen.`
+        ? `Depende del plan. No tienen copago: ${listaPlanes(sinCopago)}. Sí lo tienen: ${listaPlanes(conCopago)}.`
         : sinCopago.length === prep.planes.length
           ? `Ninguno de los planes de ${prep.nombre} tiene copago en consultas médicas.`
           : `Todos los planes de ${prep.nombre} tienen copago en consultas.`,
@@ -453,7 +460,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const aumentoRango = aumento && aumento.dato.minimo !== aumento.dato.maximo
     ? ` (de ${pct(aumento.dato.minimo)} a ${pct(aumento.dato.maximo)} según el plan y la región)` : ''
   const faqCartillas = faqCartillasSwiss(prep)
+  const faqLineas = faqLineasSwiss(prep)
   const faqs = [
+    ...(faqLineas ? [faqLineas] : []),
     ...buildFAQs(prep, precioMin, precioMax, planEstrella, comparacion),
     ...(faqCartillas ? [faqCartillas] : []),
     ...(aumento ? [{
@@ -819,6 +828,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
               )
             )}
           </p>
+
+          <LineasSwiss prep={prep} />
 
           {/* Plan destacado — más grande */}
           <div className="relative bg-gradient-to-r from-[#fff5f5] to-white border-2 border-[#E8002D] rounded-2xl p-6 mb-4">
