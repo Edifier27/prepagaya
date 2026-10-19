@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
     await new Promise((r) => setTimeout(r, ESPERA_KOMMO_MS))
     try {
       const r = await procesarLeadsPendientesDeKommo()
-      if (r.procesados) console.log('[LEAD→KOMMO]', JSON.stringify(r))
+      console.log('[LEAD→KOMMO] envío programado:', JSON.stringify(r))
     } catch (err) {
       // Queda en la cola: lo manda el cron de respaldo
       console.error('[LEAD→KOMMO] no se pudo procesar ahora:', err)

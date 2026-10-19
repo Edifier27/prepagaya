@@ -29,5 +29,9 @@ export async function GET(req: NextRequest) {
 
   const r = await procesarLeadsPendientesDeKommo()
   const recordatorios = await avisarSeguimientosVencidos()
+  // Una línea por corrida (cada 30 min): sirve para ver en los logs de
+  // Vercel si el respaldo tuvo que levantar leads que el envío programado
+  // de /api/leads no mandó.
+  console.log('[CRON-KOMMO] respaldo:', JSON.stringify({ ...r, recordatorios }))
   return NextResponse.json({ ...r, recordatorios })
 }
