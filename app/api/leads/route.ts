@@ -88,7 +88,8 @@ export async function POST(req: NextRequest) {
   const fuenteMedida = /^[a-z-]{3,20}$/.test(origen) ? `${fuente} · ${origen}` : fuente
 
   await Promise.allSettled([
-    track('Lead enviado', { fuente: fuenteMedida.slice(0, 60), pagina: pagina || '(desconocida)', provincia: provincia ? provincia.slice(0, 40) : 'Sin especificar' }, { headers: req.headers }),
+    // Sin las pruebas (fuente "prueba-…"): no cuentan como contacto en los informes (informe 12–18 oct)
+    fuente.startsWith('prueba') ? Promise.resolve() : track('Lead enviado', { fuente: fuenteMedida.slice(0, 60), pagina: pagina || '(desconocida)', provincia: provincia ? provincia.slice(0, 40) : 'Sin especificar' }, { headers: req.headers }),
     guardarLead({ nombre, celular, email, prepaga, provincia, edades: personas, fuente, pais: pais || undefined, zonaDetectada, situacionLaboral, presupuesto, prepagaActual, preferencias }),
     avisarLeadPorTelegram(textoAlertaLead({
       nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommoLink: '',

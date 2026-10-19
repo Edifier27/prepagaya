@@ -151,6 +151,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
           initialProvincia={provincia}
           origen={origen}
           sumas={sumasPorPlan()}
+          desde={desde && /^[a-z-]{3,20}$/.test(desde) ? desde : undefined}
         />
       </section>
 

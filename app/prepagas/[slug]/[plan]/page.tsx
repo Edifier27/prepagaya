@@ -26,6 +26,31 @@ import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
 import { TablaDiferenciasPlanes } from '@/components/prepagas/TablaDiferenciasPlanes'
 import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
+import { terminoPorSlug } from '@/lib/data/glosario'
+import { coberturas as coberturasGenerales } from '@/lib/data/coberturas'
+
+// Ítem de "¿Qué incluye el plan?" → tema de cobertura con página propia
+// (Clarity 12–18 oct: en SMG20 tocaban "Óptica", "Dental" y "Especialistas"
+// esperando el detalle y no pasaba nada). El orden importa: ortodoncia e
+// implantes antes que odontología.
+const TEMAS_COBERTURA: [RegExp, string][] = [
+  [/ortodoncia/, 'ortodoncia'],
+  [/implante/, 'implantes-dentales'],
+  [/odont|dental/, 'odontologia'],
+  [/óptic|optic|anteojo|lentes/, 'optica'],
+  [/psic|salud mental/, 'psicologia'],
+  [/matern|parto|embaraz/, 'maternidad'],
+  [/kinesio|rehabilit|fisiot/, 'rehabilitacion'],
+  [/farmac|medicament/, 'medicamentos'],
+  [/urgenc|emergenc|guardia/, 'urgencias'],
+  [/exterior|viajer|internacional/, 'exterior'],
+  [/estétic|estetic|plástic|plastic/, 'cirugia-estetica'],
+  [/oncol/, 'oncologia'],
+  [/fertil/, 'fertilidad'],
+  [/bariátr|bariatr/, 'cirugia-bariatrica'],
+  [/reintegro/, 'reintegros'],
+]
+const SLUGS_COBERTURA_GENERAL = new Set(coberturasGenerales.map((c) => c.slug))
 
 interface Props {
   params: Promise<{ slug: string; plan: string }>
@@ -745,18 +770,33 @@ export default async function PlanPage({ params, searchParams }: Props) {
           {/* Promo de octubre 2026 (OSDE Flux + SportClub); se oculta sola el 1-nov */}
           {prep.slug === 'osde' && plan.slug === 'flux' && <PromoFluxSportClub origen="ficha-plan-flux" />}
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className={`px-3 py-1.5 rounded-full text-sm font-semibold border ${
-              plan.copago ? 'bg-gray-50 text-gray-600 border-gray-200' : 'bg-green-50 text-green-700 border-green-200'
-            }`}>
-              {plan.copago ? '— Con copago en consultas' : '✓ Sin copago en consultas'}
-            </span>
-            <span className={`px-3 py-1.5 rounded-full text-sm font-semibold border ${
-              plan.redAbierta ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-gray-50 text-gray-600 border-gray-200'
-            }`}>
-              {plan.redAbierta ? '✓ Red abierta' : '— Red cerrada'}
-            </span>
+          {/* Tags: tocables (Clarity 12–18 oct: clics muertos en SMG20, SMG30,
+              OSDE 310 y Hospital Italiano — la pastilla parecía un botón y no
+              hacía nada). Ahora despliegan qué significa, con el texto del
+              glosario del sitio. */}
+          <div className="flex flex-wrap items-start gap-2 mb-4">
+            {[
+              { slug: 'copago', texto: plan.copago ? '— Con copago en consultas' : '✓ Sin copago en consultas',
+                color: plan.copago ? 'bg-gray-50 text-gray-600 border-gray-200' : 'bg-green-50 text-green-700 border-green-200' },
+              { slug: plan.redAbierta ? 'red-abierta' : 'red-cerrada', texto: plan.redAbierta ? '✓ Red abierta' : '— Red cerrada',
+                color: plan.redAbierta ? 'bg-blue-50 text-blue-700 border-blue-200' : 'bg-gray-50 text-gray-600 border-gray-200' },
+            ].map((t) => {
+              const def = terminoPorSlug(t.slug)
+              return (
+                <details key={t.slug} className="group basis-full sm:basis-auto">
+                  <summary className={`inline-flex items-center gap-1.5 list-none cursor-pointer px-3 py-1.5 rounded-full text-sm font-semibold border ${t.color} [&::-webkit-details-marker]:hidden`}>
+                    {t.texto}
+                    <span className="text-xs opacity-60 group-open:rotate-180 transition-transform" aria-hidden>▾</span>
+                  </summary>
+                  {def && (
+                    <p className="mt-2 max-w-md text-xs text-gray-600 leading-relaxed bg-white border border-gray-200 rounded-xl p-3">
+                      {def.definicion}{' '}
+                      <Link href={`/glosario#${def.slug}`} className="font-semibold text-[#E8002D] hover:underline">Ver en el glosario</Link>
+                    </p>
+                  )}
+                </details>
+              )
+            })}
           </div>
 
           <p className="text-gray-600 text-sm leading-relaxed mb-5">{plan.descripcion}</p>
@@ -794,14 +834,37 @@ export default async function PlanPage({ params, searchParams }: Props) {
             <h2 className="text-xl font-bold text-gray-900">¿Qué incluye el {plan.nombre}?</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {plan.cobertura.map((c) => (
-              <div key={c} className="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 shadow-sm">
+            {plan.cobertura.map((c) => {
+              // A la página de ese tema en esta prepaga si existe; si no, la general
+              // del tema; "Especialistas" / "Internación" → la cartilla del plan.
+              const t = c.toLowerCase()
+              const tema = TEMAS_COBERTURA.find(([re]) => re.test(t))?.[1]
+              const href = tema && coberturasMarca.some((x) => x.tema === tema && x.prepagaSlug === prep.slug)
+                ? `/coberturas/${tema}/${prep.slug}`
+                : tema && SLUGS_COBERTURA_GENERAL.has(tema)
+                  ? `/coberturas/${tema}`
+                  : /especialista|internaci|sanatorio|cartilla/.test(t) && cartillaPlanLink
+                    ? cartillaPlanLink.href
+                    : null
+              const check = (
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-green-500 flex-shrink-0">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                <span className="text-sm text-gray-700">{c}</span>
-              </div>
-            ))}
+              )
+              return href ? (
+                <Link key={c} href={href} className="group flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 shadow-sm hover:border-red-200 transition-colors">
+                  {check}
+                  <span className="text-sm text-gray-700 group-hover:text-[#E8002D]">{c}</span>
+                  <span className="ml-auto text-gray-300 group-hover:text-[#E8002D]" aria-hidden>›</span>
+                </Link>
+              ) : (
+                // Sin página a dónde ir: renglón simple, sin aspecto de tarjeta tocable
+                <div key={c} className="flex items-center gap-3 px-3 py-2">
+                  {check}
+                  <span className="text-sm text-gray-700">{c}</span>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>

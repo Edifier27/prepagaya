@@ -76,15 +76,21 @@ export function CartillaPlanTuZona({ prepagaSlug, prepagaNombre, planNombre, pla
   const pantallazo = resumen?.pantallazo ?? []
   // "Tandil (Interior de Buenos Aires)" → "Tandil"
   const ciudadDetectada = detectada?.replace(/\s*\(.*\)\s*$/, '') ?? null
+  // Cada tarjeta abre el mapa (Clarity, 18-oct-2026: la tarjeta con la
+  // dirección parecía tocable y no hacía nada; en el celular la gente toca la
+  // dirección esperando el mapa).
   const tarjeta = (c: CentroResumen) => (
-    <div key={c.nombre} className="bg-white rounded-xl border border-amber-200 p-4">
+    <a key={c.nombre} href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([c.nombre, c.ubicacion].filter(Boolean).join(', '))}`}
+      target="_blank" rel="noopener noreferrer"
+      className="block bg-white rounded-xl border border-amber-200 p-4 hover:border-amber-400 transition-colors">
       <div className="font-bold text-gray-900 text-sm">{c.nombre}</div>
       {c.ubicacion && <div className="text-xs text-gray-500 mt-0.5">{c.ubicacion}</div>}
-      <div className="flex flex-wrap gap-1.5 mt-2">
+      <div className="flex flex-wrap items-center gap-1.5 mt-2">
         {c.internacion && <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">Internación</span>}
         {c.guardia && <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">{labelGuardia}</span>}
+        <span className="ml-auto text-[11px] font-semibold text-[#E8002D]">Ver en el mapa ↗</span>
       </div>
-    </div>
+    </a>
   )
 
   return (
@@ -95,15 +101,18 @@ export function CartillaPlanTuZona({ prepagaSlug, prepagaNombre, planNombre, pla
           <h2 className="text-lg font-bold text-gray-900">
             {zonaNombre ? `Con el ${planNombre} en ${zonaNombre}` : `Con el ${planNombre} en tu zona`}
           </h2>
+          {/* Lleva al selector de zona de al lado (Clarity, OSDE 310: tocaban la
+              pastilla esperando poder cambiar la zona) */}
           {ciudadDetectada && (
-            <span className="inline-flex items-center gap-1.5 mt-2 text-xs font-bold text-[#E8002D] bg-white border border-red-100 rounded-full px-3 py-1 shadow-sm">
+            <label htmlFor="cartilla-plan-zona" className="inline-flex items-center gap-1.5 mt-2 text-xs font-bold text-[#E8002D] bg-white border border-red-100 rounded-full px-3 py-1 shadow-sm cursor-pointer">
               📍 Estás en {ciudadDetectada}
-            </span>
+            </label>
           )}
         </div>
         <label className="text-xs text-gray-500 flex items-center gap-2">
           {zonaSlug ? 'Cambiar zona' : 'Elegí tu zona'}
           <select
+            id="cartilla-plan-zona"
             value={zonaSlug}
             onChange={(e) => { setElegida(e.target.value); setVerTodos(false) }}
             className="text-sm border border-gray-200 rounded-lg px-2 py-1.5 bg-white max-w-[220px]"

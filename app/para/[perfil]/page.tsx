@@ -261,7 +261,7 @@ export default async function PerfilPage({ params }: Props) {
             <div className="text-white text-xs">El precio cambia según tu edad y situación laboral. Cotizá gratis en 2 minutos.</div>
           </div>
           <Link
-            href="/comparador"
+            href="/comparador?desde=perfil"
             className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors shadow-sm"
           >
             Cotizar mi precio →
@@ -379,7 +379,7 @@ export default async function PerfilPage({ params }: Props) {
             Compará precios reales de {PRECIO_ACTUALIZADO} para tu perfil. Gratis, sin DNI y sin compromiso.
           </p>
           <Link
-            href="/comparador"
+            href="/comparador?desde=perfil"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
           >
             Comparar prepagas gratis →

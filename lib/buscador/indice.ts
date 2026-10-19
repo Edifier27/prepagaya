@@ -14,6 +14,8 @@ import { FICHAS_REGISTRO } from '@/lib/data/fichas-registro'
 import { normalizarTexto } from '@/lib/cartilla-zonas-geo'
 import { preexistenciasDoc, NIVEL_DOC } from '@/lib/data/preexistencias-documentacion'
 import { prestacionesCobertura, NIVEL_COBERTURA } from '@/lib/data/que-cubre'
+import { PREPAGAS_DERIVAR } from '@/lib/data/convenios'
+import { CARTILLAS_SINDICALES, provinciasConPagina, nombreEspecialidad } from '@/lib/data/sindicales-cartillas'
 
 // Índice del buscador del sitio (24-sep-2026, idea de Darío: "que busque la
 // prepaga que quieras y le salte nuestra URL"). Se arma en el build y se
@@ -73,6 +75,28 @@ export function indiceBuscador(): EntradaBuscador[] {
       add(nombrePlan, `/prepagas/${p.slug}/${pl.slug}`, G('Planes'), pl.copago ? 'Con copago' : 'Sin copago', pl.slug)
     }
     if (CARTILLAS[p.slug]) add(`Cartilla de ${p.nombre}`, `/cartillas/${p.slug}`, G('Prepagas'), 'Sanatorios y guardias por zona', 'cartilla medica prestadores')
+  }
+
+  // Búsquedas sin resultado (informe 12–18 oct 2026): "osde clorinda",
+  // "aportes monotributo swiss medical", "psicología osseg", "osprera
+  // odontología". Las páginas existían pero el buscador no las tenía.
+  // Cartilla de cada prepaga por zona:
+  for (const c of Object.values(CARTILLAS)) {
+    for (const z of c.zonas) add(`Cartilla de ${c.prepagaNombre} en ${z.nombre}`, `/cartillas/${c.prepagaSlug}/${z.slug}`, G('Zonas'), 'Sanatorios y guardias', z.filial ?? '')
+  }
+  // Derivar aportes a cada prepaga (empleados y monotributistas)
+  for (const slug of PREPAGAS_DERIVAR) {
+    const p = prepagas.find((x) => x.slug === slug)
+    if (p) add(`Derivar aportes a ${p.nombre}`, `/derivar-aportes/${slug}`, G('Herramientas'), 'Código, pasos y cuánto pagás', 'aportes derivar derivacion monotributo monotributista recibo sueldo obra social')
+  }
+  // Cartillas de obras sociales sindicales, con las especialidades que figuran en la fuente oficial
+  for (const c of Object.values(CARTILLAS_SINDICALES)) {
+    const os = obrasSociales.find((o) => o.slug === c.slug)
+    const nombre = os?.nombre ?? c.slug.toUpperCase()
+    const esp = new Set<string>()
+    for (const pr of c.provincias) for (const [k, n] of Object.entries(pr.especialidades)) if (n > 0) esp.add(nombreEspecialidad(k))
+    add(`Cartilla de ${nombre}`, `/obras-sociales/${c.slug}/cartilla`, G('Obras sociales'), 'Prestadores por provincia (fuente oficial)', `cartilla prestadores ${[...esp].join(' ')}`)
+    for (const pr of provinciasConPagina(c)) add(`Cartilla de ${nombre} en ${pr.nombre}`, `/obras-sociales/${c.slug}/cartilla/${pr.slug}`, G('Obras sociales'), 'Prestadores (fuente oficial)', '')
   }
 
   // Sanatorios: primero las páginas propias; el resto, al buscador por

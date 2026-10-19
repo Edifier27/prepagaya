@@ -612,9 +612,11 @@ interface WizardProps {
   origen?: OrigenCotizacion
   /** Qué suma cada plan frente al anterior de su prepaga (lib/planes-suma.ts, calculado en el servidor) */
   sumas?: Record<string, SumaPlan>
+  /** ?desde= sin prepaga (ej. "ranking", "perfil"): solo para medir de qué página llegó el contacto (19-oct-2026) */
+  desde?: string
 }
 
-export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, origen, sumas }: WizardProps) {
+export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, origen, sumas, desde }: WizardProps) {
   const zonaPrepagas = useMemo(() => armarZonaPrepagas(zonasSEO), [zonasSEO])
   const router = useRouter()
   const pathname = usePathname()
@@ -1064,7 +1066,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
       presupuesto: 'calculado por edad',
       fecha: new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }),
       // Solo para medir en Vercel Analytics de dónde llegó (lo lee /api/leads)
-      ...(origen?.desde ? { origen: origen.desde } : {}),
+      ...((origen?.desde ?? desde) ? { origen: (origen?.desde ?? desde)! } : {}),
       ...extra,
     }
   }

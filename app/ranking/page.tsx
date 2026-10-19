@@ -118,7 +118,7 @@ export default function RankingPage() {
             <p className="text-gray-800 leading-relaxed">{respuesta}</p>
           </div>
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <Link href="/comparador" className="inline-flex items-center gap-2 px-5 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
+            <Link href="/comparador?desde=ranking" className="inline-flex items-center gap-2 px-5 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors">
               Cotizar la que más me conviene →
             </Link>
             <span className="text-xs text-gray-500">Gratis · te respondemos en {TIEMPO_RESPUESTA}</span>
@@ -157,7 +157,8 @@ export default function RankingPage() {
                     <div className="text-xs text-gray-500">Desde</div>
                     <div className="text-xl font-black text-gray-900 tabular-nums">{formatPrecio(precioDesde(p))}<span className="text-xs font-medium text-gray-400">/mes</span></div>
                   </div>
-                  <Link href="/comparador" className={`mt-3 block text-center text-sm font-bold rounded-xl px-3 py-2.5 transition-colors ${principal ? 'bg-[#E8002D] hover:bg-[#B8001F] text-white' : 'bg-gray-900 hover:bg-black text-white'}`}>
+                  {/* Al comparador ya filtrado por esa prepaga (19-oct-2026; antes el general) */}
+                  <Link href={`/comparador?prepaga=${p.slug}&desde=ranking`} className={`mt-3 block text-center text-sm font-bold rounded-xl px-3 py-2.5 transition-colors ${principal ? 'bg-[#E8002D] hover:bg-[#B8001F] text-white' : 'bg-gray-900 hover:bg-black text-white'}`}>
                     Cotizar {p.nombre}
                   </Link>
                   <Link href={`/prepagas/${p.slug}`} className="mt-2 text-center text-xs font-semibold text-gray-500 hover:text-[#E8002D]">
@@ -209,7 +210,7 @@ export default function RankingPage() {
         </div>
       </section>
 
-      <CtaMedio titulo="¿Cuál de estas prepagas te conviene a vos?" texto="Cotizá gratis y sin DNI: precio exacto para tu edad y zona, con 15% de descuento online." />
+      <CtaMedio href="/comparador?desde=ranking" titulo="¿Cuál de estas prepagas te conviene a vos?" texto="Cotizá gratis y sin DNI: precio exacto para tu edad y zona, con 15% de descuento online." />
 
       {/* Datos: precio en tabla compacta. Sin la tabla de satisfacción
           (auditoría 18-oct-2026: el dato no tenía fuente publicable) */}

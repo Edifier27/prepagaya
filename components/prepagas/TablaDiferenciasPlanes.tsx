@@ -40,7 +40,8 @@ export function TablaDiferenciasPlanes({ filas, nombreA, nombreB, hrefB, superio
           <ul className="space-y-1.5">
             {suma.map((f) => (
               <li key={f.label} className="flex items-start gap-2 text-sm text-gray-800">
-                <span className="mt-0.5 w-5 h-5 shrink-0 rounded-full bg-emerald-600 text-white text-xs font-black flex items-center justify-center" aria-hidden>+</span>
+                {/* Signo simple, sin círculo relleno: el círculo verde con "+" parecía un botón para desplegar (Clarity, 18-oct-2026) */}
+                <span className="mt-px w-4 shrink-0 text-emerald-700 text-base leading-5 font-black text-center" aria-hidden>+</span>
                 <span><strong>{f.label}:</strong> {(superior === 'a' ? f.a : f.b).replace(/^✓\s*/, '')}</span>
               </li>
             ))}
@@ -64,7 +65,7 @@ export function TablaDiferenciasPlanes({ filas, nombreA, nombreB, hrefB, superio
                 <th scope="row" className="text-left px-4 py-2 font-medium text-gray-600">{f.label}</th>
                 {(['a', 'b'] as const).map((col) => (
                   <td key={col} className={`px-4 py-2 ${celda(f, col)}`}>
-                    {f.mejora === col && <span className="mr-1 inline-flex w-4 h-4 rounded-full bg-emerald-600 text-white text-[10px] font-black items-center justify-center align-middle" aria-label="Suma">+</span>}
+                    {f.mejora === col && <span className="mr-1 text-emerald-700 font-black" aria-label="Suma">+</span>}
                     {f.mejora === col ? (col === 'a' ? f.a : f.b).replace(/^✓\s*/, '') : col === 'a' ? f.a : f.b}
                   </td>
                 ))}
