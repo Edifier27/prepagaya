@@ -7,7 +7,7 @@ import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, APORTE_DERIVABLE, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, DESTACADO_PARTNER, FUERA_DEL_COMPARADOR, APORTE_DERIVABLE, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 import dynamic from 'next/dynamic'
 // El modal de cartilla trae sanatorios, cartillas y zonas (~30 KB
@@ -38,24 +38,10 @@ const DESCUENTO_POR_SITUACION: Record<SituacionLaboral, number> = {
 // se descuenta directo de la cuota mostrada (APORTE_DERIVABLE, lib/utils).
 const APORTE_PORCENTAJE = APORTE_DERIVABLE
 
-// Precio "bloqueado": el número real sigue ahí (blureado, no reemplazado por
-// texto falso), con un candado al lado — pedido de Darío, 21-sep-2026, para
-// probar si ocultar el precio y forzar el paso de "Ver precio" mejora la
-// calidad de los leads. El texto sigue siendo accesible para lectores de
-// pantalla via aria-hidden en el span blureado + un texto alternativo.
-function PrecioBloqueado({ texto, size = 'lg' }: { texto: React.ReactNode; size?: 'lg' | 'sm' }) {
-  return (
-    <span className="relative inline-flex items-center gap-1.5">
-      <span aria-hidden className={`select-none blur-[5px] ${size === 'lg' ? 'text-xl font-black text-gray-900' : 'font-bold text-gray-900'}`}>
-        {texto}
-      </span>
-      <svg viewBox="0 0 20 20" fill="currentColor" className={`${size === 'lg' ? 'w-4 h-4' : 'w-3.5 h-3.5'} text-gray-400 flex-shrink-0`}>
-        <path fillRule="evenodd" d="M10 1a4 4 0 00-4 4v2H5a1 1 0 00-1 1v9a1 1 0 001 1h10a1 1 0 001-1V8a1 1 0 00-1-1h-1V5a4 4 0 00-4-4zm2 6V5a2 2 0 10-4 0v2h4z" clipRule="evenodd" />
-      </svg>
-      <span className="sr-only">Precio disponible al cotizar</span>
-    </span>
-  )
-}
+// Precio "bloqueado" (21-sep a 18-oct-2026): se probó ocultar el precio en
+// resultados detrás de "Ver precio". Se sacó (Darío, 18-oct-2026): el lead ya
+// entra antes de los resultados, así que ocultarlo solo sumaba fricción. Ahora
+// el precio se ve y "Quiero este plan" le avisa al asesor (handleAccederPlan).
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -172,11 +158,13 @@ function detalleCob(id: CobId, plan: Plan): string {
   return matches.length ? matches.join(' · ') : cob.generico
 }
 
-// Orden "mechado" del ranking por relevancia: arriba va el mejor plan de cada
-// partner prioritario en orden (Swiss Medical, Avalian, Premedic, Sancor Salud
-// — pedido de Darío, 22-sep-2026; si alguno no está en la zona se saltea); del
-// resto en adelante se intercalan marcas (nunca dos cards seguidas de la misma
-// prepaga mientras haya alternativa). Los ordenamientos por precio no se alteran.
+// Orden "mechado" del ranking por relevancia: arriba va un plan de cada
+// prepaga prioritaria en orden (Swiss Medical, Avalian, Sancor Salud y OSDE —
+// Darío, 18-oct-2026, antes iba Premedic en el lugar de OSDE; si alguna no está
+// en la zona se saltea); del resto en adelante se intercalan marcas (nunca dos
+// cards seguidas de la misma prepaga mientras haya alternativa). Los
+// ordenamientos por precio no se alteran.
+const PRIORIDAD_COMPARADOR = ['swiss-medical', 'avalian', 'sancor-salud', 'osde']
 
 // Orden del filtro de prepaga (sidebar/bottom sheet): Swiss Medical y OSDE
 // siempre arriba (pedido de Darío, 17-sep-2026), el resto alfabético debajo.
@@ -189,15 +177,8 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
     const i = pool.findIndex(pred)
     if (i >= 0) out.push(...pool.splice(i, 1))
   }
-  for (const slug of PRIORIDAD_PARTNERS) {
-    if (slug === 'premedic') {
-      // "Mejor plan económico": el plan de Premedic más barato para el grupo
-      const cand = pool.filter((r) => r.prepaga.slug === slug)
-      if (cand.length) {
-        const barato = cand.reduce((m, r) => (r.precioGrupal < m.precioGrupal ? r : m))
-        take((r) => r === barato)
-      }
-    } else if ((slug === 'avalian' || slug === 'sancor-salud') && out[0]) {
+  for (const slug of PRIORIDAD_COMPARADOR) {
+    if (slug !== 'swiss-medical' && out[0]) {
       // Plan comparable al primero (el de Swiss): el de precio más cercano,
       // para no mostrar un AS400 de $780.000 al lado de un SMG20 (23-sep-2026).
       const ref = out[0].precioGrupal
@@ -220,9 +201,11 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
 // SSSalud ({"prepaga/plan": total}, de /api/precios — escala etaria propia de
 // cada prepaga). Los planes sin cuadro oficial siguen con la estimación por
 // multiplicadores de calcGrupal (23-sep-2026).
-function calcResultados(personas: Persona[], zonaKey: string, descuento: number, oficiales: Record<string, number>, zonaPrepagas: Record<string, string[]>): Resultado[] {
+// `pedida`: la prepaga que la persona vino a cotizar (?prepaga=), que entra
+// aunque esté en FUERA_DEL_COMPARADOR.
+function calcResultados(personas: Persona[], zonaKey: string, descuento: number, oficiales: Record<string, number>, zonaPrepagas: Record<string, string[]>, pedida?: string): Resultado[] {
   const slugsZona = zonaPrepagas[zonaKey] ?? zonaPrepagas['otras']
-  const prepagasFiltradas = prepagas.filter((p) => slugsZona.includes(p.slug))
+  const prepagasFiltradas = prepagas.filter((p) => slugsZona.includes(p.slug) && (!FUERA_DEL_COMPARADOR.includes(p.slug) || p.slug === pedida))
   const out: Resultado[] = []
   // Planes con edad acotada (Sancor GEN 18-45, Avalian Plan Hoy 18-35): se
   // toma la persona de mayor edad del grupo como referencia del titular.
@@ -839,8 +822,8 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   }
 
   const allResultados = useMemo(() =>
-    (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas) : [],
-    [step, personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas]
+    (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas, origen?.prepaga) : [],
+    [step, personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas, origen?.prepaga]
   )
 
   // Prepagas presentes en los resultados de esta zona — la lista del filtro
@@ -1094,15 +1077,24 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     }
   }
 
-  function handleAccederPlan(res: Resultado) {
+  // "Quiero este plan" (18-oct-2026, Darío: mostrar los precios). El precio ya
+  // se ve; el botón le avisa al asesor qué plan eligió la persona: vuelve a
+  // /api/leads con el mismo celular y el plan se suma a los intereses del
+  // mismo lead (lib/db.ts guardarLead, ventana de 24 hs). En Vercel se mide
+  // aparte ("cotizacion-wizard · quiero-plan") para no inflar los leads nuevos.
+  async function handleAccederPlan(res: Resultado) {
     const planKey = `${res.prepaga.slug}-${res.plan.slug}`
     setPlanAccedido(planKey)
-    // Nombre y celular ya se mandaron por mail en el popup inicial (único
-    // envío por lead, para no gastar cupo de EmailJS) — acá no se manda un
-    // segundo mail ni se redirige a WhatsApp (pedido de Darío, 9-sep-2026: no
-    // quiere que el visitante le escriba directo, solo recibir el lead por
-    // mail y contactar él cuando quiera). Solo queda un "anotado" local.
-    setPlanAccedidoStatus('success')
+    setPlanAccedidoStatus('loading')
+    trackEvent('quiero_plan', { prepaga: res.prepaga.slug, plan: res.plan.slug })
+    if (modoPrueba) { setPlanAccedidoStatus('success'); return }
+    try {
+      const precio = Number.isFinite(res.precioGrupal) ? ` | $${precioFinal(res.precioDesc).toLocaleString('es-AR')}/mes con descuento` : ''
+      await sendEmail(buildPayload({ plan_elegido: `${res.prepaga.nombre} — ${res.plan.nombre}${precio} (eligió "Quiero este plan")`, origen: 'quiero-plan' }))
+      setPlanAccedidoStatus('success')
+    } catch {
+      setPlanAccedidoStatus('idle')
+    }
   }
 
   function toggleCob(id: CobId) {
@@ -1298,7 +1290,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                       Mejor opción
                     </div>
                   )}
-                  {i > 0 && DESTACADO_PARTNER[r.prepaga.slug] && previewItems.findIndex((x) => x.prepaga.slug === r.prepaga.slug) === i && (
+                  {i > 0 && DESTACADO_PARTNER[r.prepaga.slug] && !FUERA_DEL_COMPARADOR.includes(r.prepaga.slug) && previewItems.findIndex((x) => x.prepaga.slug === r.prepaga.slug) === i && (
                     <div className="inline-flex items-center gap-1 bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5">
                       <span className="text-amber-500">★</span> {DESTACADO_PARTNER[r.prepaga.slug]}
                     </div>
@@ -1445,6 +1437,8 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
       const key = `${r.prepaga.slug}-${r.plan.slug}`
       // "Mejor cobertura en el interior del país" no se muestra en CABA ni GBA.
       if (ZONAS_AMBA.includes(zonaKey) && INTERIOR_PARTNERS.includes(r.prepaga.slug)) continue
+      // Sin estrellita para las que solo entran porque la persona las pidió
+      if (FUERA_DEL_COMPARADOR.includes(r.prepaga.slug)) continue
       if (texto && r.prepaga.slug !== 'swiss-medical' && ![...destacados.keys()].some((k) => k.startsWith(`${r.prepaga.slug}-`))) destacados.set(key, texto)
     }
   }
@@ -2163,36 +2157,32 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                     )}
 
                     {/* Precio + botón en la misma fila */}
-                    <div className={`flex items-center justify-between gap-3 border-t border-gray-100 ${grande ? 'mt-4 pt-4' : 'mt-3 pt-3'}`}>
-                      {/* El precio con candado también pide la cotización (13-oct-2026,
-                          Clarity: la gente tocaba el precio, el "% OFF" y el "/mes"
-                          esperando verlo y no pasaba nada: clics muertos) */}
-                      <button
-                        type="button"
-                        onClick={() => { if (!(isAccedido && planAccedidoStatus !== 'idle')) handleAccederPlan(res) }}
-                        className="min-w-0 text-left cursor-pointer"
-                        aria-label={`Ver el precio de ${res.prepaga.nombre} ${res.plan.nombre}`}
-                      >
+                    <div className={`flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 ${grande ? 'mt-4 pt-4' : 'mt-3 pt-3'}`}>
+                      {/* Precio a la vista (18-oct-2026, Darío): antes con candado */}
+                      <div className="min-w-0 text-left">
                         <div className="flex items-baseline gap-1.5 flex-wrap">
-                          {res.precioGrupal > precioFinal(res.precioDesc) && (
-                            <span className="text-xs text-gray-400 line-through blur-[3px] select-none" aria-hidden>{formatPrecio(res.precioGrupal)}</span>
+                          {Number.isFinite(res.precioGrupal) && res.precioGrupal > precioFinal(res.precioDesc) && (
+                            <span className="text-xs text-gray-400 line-through">{formatPrecio(res.precioGrupal)}</span>
                           )}
-                          <PrecioBloqueado texto={<>{formatPrecio(precioFinal(res.precioDesc))}<span className="text-xs font-medium text-gray-400">/mes*</span></>} />
+                          <span className={`font-black text-gray-900 tabular-nums whitespace-nowrap ${grande ? 'text-2xl' : 'text-xl'}`}>
+                            {formatPrecio(precioFinal(res.precioDesc))}
+                            {Number.isFinite(res.precioGrupal) && <span className="text-xs font-medium text-gray-400">/mes*</span>}
+                          </span>
                         </div>
-                        <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoMostrado * 100)}% OFF</div>
-                      </button>
+                        <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''}{Number.isFinite(res.precioGrupal) ? ` · ${Math.round(descuentoMostrado * 100)}% OFF` : ''}</div>
+                      </div>
                       {isAccedido && planAccedidoStatus === 'success' ? (
-                        <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center max-w-[160px]">
-                          ¡Listo! En breve te enviamos la cotización
+                        <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center max-w-[170px]">
+                          ¡Listo! Un asesor te contacta por este plan
                         </div>
                       ) : (
                         <button onClick={() => handleAccederPlan(res)}
                           disabled={isAccedido && planAccedidoStatus === 'loading'}
-                          className={`flex-shrink-0 ${grande ? 'px-6 py-3 text-base' : 'px-4 py-2.5 text-sm'} bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-sm hover:shadow-md disabled:opacity-60 flex items-center justify-center gap-2 whitespace-nowrap`}>
+                          className={`flex-shrink-0 w-full sm:w-auto ${grande ? 'px-6 py-3 text-base' : 'px-4 py-2.5 text-sm'} bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-sm hover:shadow-md disabled:opacity-60 flex items-center justify-center gap-2 whitespace-nowrap`}>
                           {isAccedido && planAccedidoStatus === 'loading' ? (
                             <svg className="animate-spin w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                           ) : null}
-                          Ver precio →
+                          Quiero este plan →
                         </button>
                       )}
                     </div>
@@ -2352,7 +2342,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                       <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Precio aprox.</td>
                       {seleccionados.map((r) => (
                         <td key={`${r.prepaga.slug}-${r.plan.slug}-precioaprox`} className={`py-3 px-3 ${celda(r)}`}>
-                          <PrecioBloqueado size="sm" texto={<>{formatPrecio(precioFinal(r.precioDesc))}<span className="text-[10px] text-gray-400">/mes</span></>} />
+                          <span className="font-bold text-gray-900 tabular-nums">{formatPrecio(precioFinal(r.precioDesc))}{Number.isFinite(r.precioGrupal) && <span className="text-[10px] text-gray-400">/mes</span>}</span>
                         </td>
                       ))}
                     </tr>

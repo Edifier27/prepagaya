@@ -73,6 +73,12 @@ export const DESTACADO_PARTNER: Record<string, string> = {
 }
 export const PARTNERS_OFICIALES_SLUGS = [...PRIORIDAD_PARTNERS, 'osde']
 
+// Prepagas que el comparador no muestra (Darío, 18-oct-2026: "sacá Premedic,
+// que se muestren Avalian, Sancor y OSDE"). Solo aparecen si la persona llega
+// a cotizar esa prepaga en particular (botón "Cotizá Premedic" de su ficha,
+// /comparador?prepaga=premedic): ahí se cumple lo que prometió el botón.
+export const FUERA_DEL_COMPARADOR = ['premedic']
+
 // Tiempo de respuesta al lead: el lead entra a Kommo automáticamente a los
 // 3 minutos (dato de Darío, 23-sep-2026). Una sola constante para todo el copy.
 export const TIEMPO_RESPUESTA = '3 minutos'

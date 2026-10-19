@@ -4,7 +4,7 @@ import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { sumasPorPlan } from '@/lib/planes-suma'
 import { prepagasEnSitioPorZona } from '@/lib/data/zonas'
 import { PRECIO_ACTUALIZADO, prepagas } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA, FUERA_DEL_COMPARADOR } from '@/lib/utils'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
 import { ldJson } from '@/lib/jsonld'
 
@@ -19,7 +19,9 @@ export const metadata: Metadata = {
   keywords: ['cotizar prepaga', 'cotizar prepaga online', 'cotizador de prepagas', 'cotizacion prepaga', 'comparador de prepagas'],
 }
 
-const TOTAL_PLANES = prepagas.reduce((n, p) => n + p.planes.length, 0)
+// Las que el comparador muestra (sin FUERA_DEL_COMPARADOR, 18-oct-2026)
+const prepagasComparador = prepagas.filter((p) => !FUERA_DEL_COMPARADOR.includes(p.slug))
+const TOTAL_PLANES = prepagasComparador.reduce((n, p) => n + p.planes.length, 0)
 
 // FAQ de la página (SEO para "comparador de prepagas", 23-sep-2026): todo sale
 // de cómo funciona el comparador y de los datos del sitio, nada inventado.
@@ -30,7 +32,7 @@ const faqs = [
   },
   {
     q: '¿Qué prepagas compara?',
-    a: `Compara ${prepagas.length} prepagas y ${TOTAL_PLANES} planes: ${prepagas.map((p) => p.nombre).join(', ')}.`,
+    a: `Compara ${prepagasComparador.length} prepagas y ${TOTAL_PLANES} planes: ${prepagasComparador.map((p) => p.nombre).join(', ')}.`,
   },
   {
     q: '¿Usar el comparador tiene costo?',
@@ -120,7 +122,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
             <div className="hidden sm:flex flex-wrap items-center justify-center gap-6 mt-7 text-xs text-gray-500">
               <span className="flex items-center gap-2">
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-emerald-500"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
-                <strong className="text-gray-700">{prepagas.length} prepagas</strong> comparadas
+                <strong className="text-gray-700">{prepagasComparador.length} prepagas</strong> comparadas
               </span>
               <span className="flex items-center gap-2">
                 <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-blue-400"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
@@ -173,7 +175,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
               },
               {
                 titulo: `Más de ${Math.floor(TOTAL_PLANES / 10) * 10} planes comparados`,
-                texto: `${prepagas.length} prepagas con los precios oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()} que declaran ante la Superintendencia.`,
+                texto: `${prepagasComparador.length} prepagas con los precios oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()} que declaran ante la Superintendencia.`,
                 icono: <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />,
               },
             ].map((c) => (
