@@ -34,7 +34,14 @@ interface FilaExtra {
   enResumen: string
 }
 
-const LINEAS: Record<string, { lineas: Linea[]; extra?: FilaExtra }> = {
+interface ConfigLineas {
+  lineas: Linea[]
+  extra?: FilaExtra
+  /** Cómo se nombra cada plan cuando el nombre repite la línea ("Plan Integral AS200" → "AS200") */
+  codigo?: RegExp
+}
+
+const LINEAS: Record<string, ConfigLineas> = {
   'swiss-medical': {
     lineas: [
       { nombre: 'Con copago (económica)', enTexto: 'con copago', planes: ['s1', 's2'], distingue: 'Menor cuota a cambio de copagos en consultas y estudios. El S2 suma el Hospital Italiano y la Fundación Favaloro.' },
@@ -75,6 +82,36 @@ const LINEAS: Record<string, { lineas: Linea[]; extra?: FilaExtra }> = {
       { nombre: 'Línea GEN', enTexto: 'GEN', planes: ['plan-1000-gen', 'plan-1500-gen', 'plan-3000-gen', 'plan-3500-gen', 'plan-4000-gen', 'plan-4500-gen'], distingue: 'Para personas de 18 a 45 años: los planes de la línea Clásica con ortodoncia hasta los 45, psicoterapia sin coseguro y chequeo preventivo.' },
     ],
   },
+  // Avalian: las líneas son las de su web (Cerca, Integral, Hoy, Superior, Selecta)
+  avalian: {
+    codigo: /AS\d+H?/,
+    lineas: [
+      { nombre: 'Cerca', enTexto: 'Cerca', planes: ['as100'], distingue: 'Plan de entrada: cartilla seleccionada por cercanía y servicios digitales (credencial digital, e-doc y app). Consultas con copago.' },
+      { nombre: 'Integral', enTexto: 'Integral', planes: ['as204', 'as200'], distingue: 'Cobertura nacional con copago en consultas, 40% de descuento en farmacias y asistencia al viajero en Argentina y países limítrofes. El AS204 interna en habitación compartida; el AS200, en individual.' },
+      { nombre: 'Hoy (18 a 35 años)', enTexto: 'Hoy', planes: ['as200h'], distingue: 'La cobertura del Integral AS200 con los copagos de consultas bonificados los primeros 12 meses, por única vez.' },
+      { nombre: 'Superior', enTexto: 'Superior', planes: ['as300'], distingue: 'Consultas, consultas a domicilio y odontología sin copago, internación en habitación individual y asistencia al viajero internacional.' },
+      { nombre: 'Selecta', enTexto: 'Selecta', planes: ['as400', 'as500'], distingue: 'Red abierta con reintegros, sin copagos, cirugías estéticas y asistencia al viajero internacional. 50% de descuento en farmacias en el AS400 y 75% en el AS500.' },
+    ],
+  },
+  // Medifé y Premedic: un plan por escalón
+  medife: {
+    lineas: [
+      { nombre: 'Con copago', enTexto: 'con copago', planes: ['medife-plus'], distingue: 'Centro asistencial zonal, Sanatorio Finochietto y telemedicina (Cam Doctor).' },
+      { nombre: 'Entrada', enTexto: 'de entrada', planes: ['bronce'], distingue: 'Red nacional extensa y cobertura internacional en países limítrofes (Brasil incluido).' },
+      { nombre: 'Intermedio', enTexto: 'intermedio', planes: ['plata'], distingue: 'Sin copago, atención fuera de cartilla con reintegros, habitación individual en internación y prótesis dental.' },
+      { nombre: 'Superior', enTexto: 'superior', planes: ['oro'], distingue: 'Implantes dentales, ortodoncia hasta 18 años, cirugía estética desde los 2 años de antigüedad y reintegros más altos.' },
+      { nombre: 'Premium', enTexto: 'el más completo', planes: ['platinum'], distingue: 'Ortodoncia sin límite de edad, cirugía estética desde el primer año y cobertura internacional en Europa (Tratado Schengen).' },
+    ],
+  },
+  premedic: {
+    lineas: [
+      { nombre: 'Esencial', enTexto: 'esencial', planes: ['plan-c100'], distingue: 'El de menor cuota: consultas, estudios de rutina, habitación compartida, red odontológica propia y médico por videollamada.' },
+      { nombre: 'Básico', enTexto: 'básico', planes: ['plan-200'], distingue: 'Más especialidades y estudios que el C-100, centros médicos propios y médico a domicilio sin cargo.' },
+      { nombre: 'Intermedio', enTexto: 'intermedio', planes: ['plan-300'], distingue: 'Más prácticas cubiertas y atención en centros de primer nivel, con centros médicos propios y médico a domicilio sin cargo.' },
+      { nombre: 'Alto', enTexto: 'alto', planes: ['plan-400'], distingue: 'Internación en habitación individual en clínicas de alta calidad, más estudios y tratamientos y descuentos en implantes y ortodoncia.' },
+      { nombre: 'Completo', enTexto: 'el más completo', planes: ['plan-500'], distingue: 'Acceso preferencial a los sanatorios más prestigiosos, habitación individual y la cobertura y los reintegros más altos.' },
+    ],
+  },
 }
 
 const lista = (xs: string[]) => xs.length > 1 ? `${xs.slice(0, -1).join(', ')} y ${xs[xs.length - 1]}` : xs.join('')
@@ -91,19 +128,20 @@ function lineasDe(prep: Prepaga) {
     const red = planes.every((pl) => pl.redAbierta) ? 'Abierta' : planes.some((pl) => pl.redAbierta) ? 'Según plan' : 'Cerrada'
     return { ...l, planes, desde, copago, red }
   }).filter((l) => l.planes.length > 0)
-  return lineas.length > 0 ? { lineas, extra: cfg.extra } : null
+  const codigo = (nombre: string) => (cfg.codigo && nombre.match(cfg.codigo)?.[0]) || codigoCorto(nombre)
+  return lineas.length > 0 ? { lineas, extra: cfg.extra, codigo } : null
 }
 
 type Lineas = NonNullable<ReturnType<typeof lineasDe>>
 
-function resumen(prep: Prepaga, { lineas, extra }: Lineas) {
+function resumen(prep: Prepaga, { lineas, extra, codigo }: Lineas) {
   // Las líneas de un solo plan se nombran por el plan; las demás, por línea
   const unPlanPorLinea = lineas.every((l) => l.planes.length === 1)
   const tramo = (l: Lineas['lineas'][number]) => {
     const precio = Number.isFinite(l.desde) ? `${unPlanPorLinea ? '' : 'desde '}${formatPrecio(l.desde)}` : 'a cotizar'
     return unPlanPorLinea
-      ? `${codigoCorto(l.planes[0].nombre)} (${l.enTexto}, ${precio})`
-      : `${l.enTexto} (${lista(l.planes.map((pl) => codigoCorto(pl.nombre)))}, ${precio})`
+      ? `${codigo(l.planes[0].nombre)} (${l.enTexto}, ${precio})`
+      : `${l.enTexto} (${lista(l.planes.map((pl) => codigo(pl.nombre)))}, ${precio})`
   }
   const cuantos = unPlanPorLinea
     ? `${prep.nombre} tiene ${prep.planes.length} planes para particulares en ${PRECIO_ACTUALIZADO.toLowerCase()}: ${lista(lineas.map(tramo))}.`
@@ -121,7 +159,7 @@ export function faqLineasPlanes(prep: Prepaga): { q: string; a: string } | null 
 export function LineasPlanes({ prep }: { prep: Prepaga }) {
   const ls = lineasDe(prep)
   if (!ls) return null
-  const { lineas, extra } = ls
+  const { lineas, extra, codigo } = ls
   return (
     <div className="mb-6">
       <h3 className="text-base font-bold text-gray-900 mb-2">Los planes de {prep.nombre} por línea</h3>
@@ -146,7 +184,7 @@ export function LineasPlanes({ prep }: { prep: Prepaga }) {
                   {l.planes.map((pl, i) => (
                     <span key={pl.slug} className="whitespace-nowrap">
                       {i > 0 && ', '}
-                      <Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="font-semibold text-gray-900 hover:text-[#E8002D] hover:underline">{codigoCorto(pl.nombre)}</Link>
+                      <Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="font-semibold text-gray-900 hover:text-[#E8002D] hover:underline">{codigo(pl.nombre)}</Link>
                     </span>
                   ))}
                 </td>
