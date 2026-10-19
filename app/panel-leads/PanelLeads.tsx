@@ -245,10 +245,11 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
     guardarDestino({ tipo: 'alternar-mail', cuenta: cuentaAlternarBorrador, email })
   }, [emailAlternarBorrador, cuentaAlternarBorrador, guardarDestino])
   const ultimoId = useRef(leadsIniciales[0]?.id ?? 0)
-  // Ids de los leads que todavía no salieron (kommo_estado = 'Pendiente')
+  // Ids de los leads que todavía no salieron ('Pendiente', o 'Procesando'
+  // mientras se mandan — 19-oct-2026)
   const porEnviar = useRef<number[]>([])
   useEffect(() => {
-    porEnviar.current = leads.filter((l) => l.kommo_estado === 'Pendiente').map((l) => l.id)
+    porEnviar.current = leads.filter((l) => l.kommo_estado === 'Pendiente' || l.kommo_estado === 'Procesando').map((l) => l.id)
   }, [leads])
 
   const alternar = useCallback((clave: FiltroChip, valor: string) => {
@@ -320,9 +321,20 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
   // Polling: cada 20s pregunta si hay leads más nuevos que el último visto.
   // Si el usuario tiene la pestaña abierta, además de sumarlos a la lista
   // dispara una notificación local al toque (sin esperar el viaje del push).
+  // Solo con la pestaña a la vista (19-oct-2026): con el panel abierto de
+  // fondo todo el día, la consulta cada 20 s no dejaba apagarse nunca a la
+  // base y ayudó a agotar el cupo gratis del mes. Al volver a la pestaña se
+  // pone al día enseguida; los leads nuevos igual avisan por push.
   useEffect(() => {
-    const interval = setInterval(() => refrescar(true), POLL_MS)
-    return () => clearInterval(interval)
+    const interval = setInterval(() => {
+      if (document.visibilityState === 'visible') refrescar(true)
+    }, POLL_MS)
+    const alVolver = () => { if (document.visibilityState === 'visible') refrescar(true) }
+    document.addEventListener('visibilitychange', alVolver)
+    return () => {
+      clearInterval(interval)
+      document.removeEventListener('visibilitychange', alVolver)
+    }
   }, [refrescar])
 
   const activarAlertas = useCallback(async () => {
@@ -947,7 +959,8 @@ const CLASE_ENVIO: Record<Envio['tipo'], string> = {
 }
 function estadoEnvio(estado: string | null): Envio | null {
   if (!estado) return null
-  if (estado === 'Pendiente') return { tipo: 'pendiente', texto: 'Por enviar', detalle: 'Sale a los 3 minutos de la última actividad de la persona' }
+  if (estado === 'Pendiente') return { tipo: 'pendiente', texto: 'Por enviar', detalle: 'Sale al minuto y medio de la última actividad de la persona' }
+  if (estado === 'Procesando') return { tipo: 'pendiente', texto: 'Enviando…' }
   if (estado.startsWith('OK (CRM')) return { tipo: 'enviado', texto: 'Enviado al CRM' }
   if (estado.startsWith('OK')) return { tipo: 'enviado', texto: 'Enviado a Kommo' }
   if (estado.startsWith('Email directo')) return { tipo: 'enviado', texto: 'Enviado por mail', detalle: estado }

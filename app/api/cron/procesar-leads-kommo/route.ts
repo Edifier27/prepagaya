@@ -1,21 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { SITE_URL } from '@/lib/utils'
-import { buildKommoLink, crearLeadEnKommo, getDestinoLead, kommoLeadUrl, nombreCuenta, resolverDestino } from '@/lib/kommo'
-import { leadsPendientesDeKommo, marcarResultadoKommo, seguimientosVencidos, marcarSeguimientoAvisado } from '@/lib/db'
-import { avisarLeadPorPush } from '@/lib/push'
-import { mandarLeadPorEmail } from '@/lib/emailjs'
-import { mandarLeadACrmAsesor } from '@/lib/crm-asesor'
-import { devolverCupoMail, tomarCupoMail } from '@/lib/cupo-mail'
+import { procesarLeadsPendientesDeKommo, avisarSeguimientosVencidos } from '@/lib/procesar-leads-kommo'
 
 // Hasta 50 leads por corrida, cada uno con su propio llamado a Kommo — con
 // Vercel Pro el límite de duración sube bastante del default de Hobby, pero
 // igual le ponemos un techo explícito por las dudas.
 export const maxDuration = 60
 
-// Cron de Vercel (ver vercel.json — corre cada 1 minuto, requiere Vercel Pro
-// para esa granularidad) que manda a Kommo los leads que llevan 3+ minutos
-// sin actividad nueva de esa misma persona. Ver el porqué del delay en
-// lib/db.ts (guardarLead) — pedido de Darío, 22-sep-2026.
+// Cron de Vercel de respaldo (ver vercel.json — cada 30 minutos desde el
+// 19-oct-2026; antes cada minuto, y eso agotó el cupo gratis de la base).
+// El envío normal lo programa cada lead en app/api/leads, 3 minutos después;
+// este cron levanta los que hayan quedado (por ejemplo, si ese envío se
+// cortó) y manda los recordatorios de seguimiento del panel. La lógica está
+// en lib/procesar-leads-kommo.ts.
 //
 // Vercel firma sus propias invocaciones de cron con este header; si alguien
 // más le pega a esta URL sin el secreto, se rechaza. Sin CRON_SECRET
@@ -31,134 +27,7 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  const pendientes = await leadsPendientesDeKommo(3)
-  const destinoConfigurado = await getDestinoLead()
-  let ok = 0
-  let fallidos = 0
-
-  for (const lead of pendientes) {
-    const nombre = lead.nombre
-    const celular = lead.celular ?? ''
-    const email = lead.email ?? ''
-    const prepaga = lead.prepaga ?? ''
-    // Si la persona no pasó por el wizard (no dio su provincia a mano), usamos
-    // la zona aproximada por IP que ya se guarda para todos los formularios
-    // (lib/geo-zonas.ts vía app/api/leads/route.ts) — así a Kommo le llega una
-    // zona igual, sin haberle preguntado nada (pedido de Darío, 30-sep-2026).
-    const provincia = lead.provincia || lead.zona_detectada || ''
-    const edades = lead.edades ?? ''
-    const fuente = lead.fuente ?? 'web'
-    const fecha = new Date(lead.creado_en).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
-    const pais = lead.pais ?? undefined
-
-    // Cupo diario por mail (pedido de Darío, 14-oct-2026): los primeros 3 leads de cada día van a un mail aparte y
-    // en el panel quedan con su rótulo ("Dario B2"). Va antes del destino normal y no lo toca (ni avanza alternancias).
-    // Los datos de prueba del cupo (fuente "prueba-cupo-mail") van siempre al mail y no gastan lugar del día
-    const cupo = fuente.startsWith('prueba-cupo') ? await tomarCupoMail({ prueba: true }) : await tomarCupoMail()
-    if (cupo) {
-      try {
-        await mandarLeadPorEmail({
-          nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
-          kommo_link: '', kommo_label: '', duplicado_banner: '', to: cupo.email,
-        })
-        await marcarResultadoKommo(lead.id, `Cupo mail: ${cupo.rotulo}`, '')
-        ok++
-        continue
-      } catch (err) {
-        // Si no salió, el lead no se pierde: sigue al destino de siempre y el lugar del cupo se devuelve
-        await devolverCupoMail()
-        console.error('[CRON-KOMMO] no salió el mail del cupo, lead', lead.id, ':', err)
-      }
-    }
-
-    // Resuelto por lead, no antes del loop: los destinos "alternar-*" avanzan
-    // el reparto 1 a 1 en cada llamado (pedido de Darío, 30-sep-2026).
-    const destino = await resolverDestino(destinoConfigurado)
-
-    // Destino "Otro mail" (pedido de Darío, 29-sep-2026) o el lado "mail" de
-    // una alternancia: no toca Kommo para nada, va directo por EmailJS.
-    // Envuelto en try/catch (1-oct-2026): sin esto, una falla acá tiraba todo
-    // el cron abajo, y como leadsPendientesDeKommo() siempre trae primero el
-    // más viejo, el mismo lead trabado volvía a tirar el cron cada minuto sin
-    // dejar pasar nunca a los que venían después en la cola.
-    // Destino "CRM Asesor" (3-oct-2026, en prueba): va al CRM nuevo y no toca
-    // Kommo. Si el CRM falla, el lead no se pierde: sale por mail a Darío con
-    // el link para cargarlo en Kommo, igual que cuando falla Kommo.
-    if (destino.tipo === 'crm') {
-      const r = await mandarLeadACrmAsesor(lead, destino.cuenta)
-      const quien = destino.cuenta === 'gabriela' ? 'Gabriela' : 'Darío'
-      if (r.ok) {
-        await marcarResultadoKommo(lead.id, `OK (CRM ${quien})`, '')
-        ok++
-      } else {
-        await marcarResultadoKommo(lead.id, `Error CRM ${quien}: ${r.error ?? 'sin detalle'}`, '')
-        try {
-          const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
-          await mandarLeadPorEmail({
-            nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
-            kommo_link, kommo_label: 'Cargar en Kommo', duplicado_banner: '',
-          })
-        } catch (err) {
-          console.error('[CRON-KOMMO] tampoco salió el mail de respaldo, lead', lead.id, ':', err)
-        }
-        fallidos++
-        console.error('[CRON-KOMMO] no se pudo cargar en el CRM Asesor, lead', lead.id, ':', r.error)
-      }
-      continue
-    }
-
-    if (destino.tipo === 'email') {
-      try {
-        await mandarLeadPorEmail({
-          nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
-          kommo_link: '', kommo_label: '', duplicado_banner: '', to: destino.email,
-        })
-        await marcarResultadoKommo(lead.id, `Email directo a ${destino.email}`, '')
-        ok++
-      } catch (err) {
-        await marcarResultadoKommo(lead.id, `Error: ${err}`, '')
-        fallidos++
-        console.error('[CRON-KOMMO] error mandando email directo, lead', lead.id, ':', err)
-      }
-      continue
-    }
-
-    try {
-      const resultado = await crearLeadEnKommo({ nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, ts: String(Date.now()), pais }, destino)
-      if (resultado.ok && resultado.cuenta && resultado.leadId) {
-        const cuentaDisplay = nombreCuenta(resultado.cuenta)
-        const kommo_link = kommoLeadUrl(resultado.cuenta, resultado.leadId)
-        await marcarResultadoKommo(lead.id, `OK (${cuentaDisplay})${resultado.duplicado ? ' — ya era contacto' : ''}`, kommo_link)
-        ok++
-      } else {
-        const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
-        await marcarResultadoKommo(lead.id, `Error: ${resultado.error ?? 'sin detalle'}`, '')
-        await mandarLeadPorEmail({
-          nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
-          kommo_link, kommo_label: 'Cargar en Kommo', duplicado_banner: '',
-        })
-        fallidos++
-        console.error('[CRON-KOMMO] no se pudo cargar en Kommo, lead', lead.id, ':', resultado.error)
-      }
-    } catch (err) {
-      const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
-      await marcarResultadoKommo(lead.id, `Error: ${err}`, '')
-      await mandarLeadPorEmail({
-        nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
-        kommo_link, kommo_label: 'Cargar en Kommo', duplicado_banner: '',
-      })
-      fallidos++
-      console.error('[CRON-KOMMO] error cargando en Kommo, lead', lead.id, ':', err)
-    }
-  }
-
-  // Recordatorios de seguimiento del panel (23-sep-2026): se aprovecha este
-  // mismo cron de cada minuto en vez de sumar otro.
-  const vencidos = await seguimientosVencidos()
-  for (const l of vencidos) {
-    await avisarLeadPorPush('PrepagaYa — Seguimiento', `Volver a contactar a ${l.nombre}${l.notas ? ` · ${l.notas.slice(0, 80)}` : ''}`)
-    await marcarSeguimientoAvisado(l.id)
-  }
-
-  return NextResponse.json({ procesados: pendientes.length, ok, fallidos, recordatorios: vencidos.length })
+  const r = await procesarLeadsPendientesDeKommo()
+  const recordatorios = await avisarSeguimientosVencidos()
+  return NextResponse.json({ ...r, recordatorios })
 }

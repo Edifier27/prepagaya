@@ -1,11 +1,22 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse, after } from 'next/server'
 import { track } from '@vercel/analytics/server'
 import { avisarLeadPorTelegram, textoAlertaLead } from '@/lib/telegram'
 import { guardarLeadEnPlanilla } from '@/lib/sheets'
 import { guardarLead } from '@/lib/db'
+import { procesarLeadsPendientesDeKommo, MINUTOS_ESPERA_KOMMO } from '@/lib/procesar-leads-kommo'
 import { avisarLeadPorPush } from '@/lib/push'
 import { detectarZona } from '@/lib/geo-zonas'
 import { limpiarSituacionLaboral, limpiarPresupuesto, limpiarPrepagaActual, limpiarPreferencias } from '@/lib/data/sondeo'
+
+// Envío a Kommo programado por cada lead (19-oct-2026, en vez del cron de
+// cada minuto que agotó el cupo gratis de la base): después de responder,
+// esta misma función espera 1 minuto y medio (más un margen) y manda los que
+// ya cumplieron ese tiempo sin actividad (lib/procesar-leads-kommo.ts). Si la persona sigue
+// sumando intereses, su lead espera al último aviso; si este envío se corta,
+// lo levanta el cron de respaldo cada 30 minutos. maxDuration alcanza para
+// la espera más el envío (Vercel Pro).
+export const maxDuration = 300
+const ESPERA_KOMMO_MS = MINUTOS_ESPERA_KOMMO * 60_000 + 10_000
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -56,9 +67,8 @@ export async function POST(req: NextRequest) {
   console.log('[LEAD]', JSON.stringify({ nombre, email, celular, prepaga, provincia, personas, fuente, fecha }))
 
   // Kommo ya NO se llama acá — pedido de Darío, 22-sep-2026, con Vercel Pro
-  // activo: el lead entra "Pendiente" y lo procesa
-  // /api/cron/procesar-leads-kommo recién a los 3 minutos de la última
-  // actividad de esa persona, para no crear un contacto en Kommo por cada
+  // activo: el lead entra "Pendiente" y sale recién al minuto y medio de la
+  // última actividad de esa persona (ver el after() de abajo), para no crear un contacto en Kommo por cada
   // click de "elegir plan" y en cambio mandar uno solo ya consolidado con
   // todos los intereses (ver el apilado en lib/db.ts). Antes de eso, avisos
   // instantáneos igual — Telegram, push y la planilla no dependen de Kommo.
@@ -91,6 +101,17 @@ export async function POST(req: NextRequest) {
       fecha, nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommo: 'Pendiente',
     }),
   ])
+
+  after(async () => {
+    await new Promise((r) => setTimeout(r, ESPERA_KOMMO_MS))
+    try {
+      const r = await procesarLeadsPendientesDeKommo()
+      if (r.procesados) console.log('[LEAD→KOMMO]', JSON.stringify(r))
+    } catch (err) {
+      // Queda en la cola: lo manda el cron de respaldo
+      console.error('[LEAD→KOMMO] no se pudo procesar ahora:', err)
+    }
+  })
 
   return NextResponse.json({ ok: true })
 }

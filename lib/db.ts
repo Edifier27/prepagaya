@@ -11,7 +11,11 @@
 import type { FilaSondeo } from '@/lib/data/sondeo'
 import { neon } from '@neondatabase/serverless'
 
-const CONNECTION_STRING = process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? ''
+// BASE2_*: base puente (19-oct-2026). La base original agotó el cupo gratis
+// del mes (100 horas de cómputo de Neon, por el cron de cada minuto); si en
+// Vercel se conecta una base nueva con el prefijo BASE2, el sitio usa esa
+// hasta que se pase todo de vuelta. Sin BASE2, sigue la de siempre.
+const CONNECTION_STRING = process.env.BASE2_DATABASE_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? ''
 const DB_CONFIGURADA = Boolean(CONNECTION_STRING)
 
 const sql = DB_CONFIGURADA ? neon(CONNECTION_STRING) : null
@@ -21,8 +25,15 @@ let tablasListas: Promise<unknown> | null = null
 function asegurarTablas(): Promise<unknown> {
   if (!sql) return Promise.resolve()
   if (!tablasListas) {
-    tablasListas = Promise.all([
-      sql`
+    const db = sql
+    // En dos tandas (19-oct-2026): primero las tablas y después las columnas
+    // agregadas con el tiempo. Antes iba todo junto en un solo Promise.all y,
+    // en una base nueva, un ALTER podía llegar antes que el CREATE de su
+    // tabla. Si algo falla se reintenta en la próxima llamada, en vez de
+    // quedar guardado el error hasta que se reinicie el servidor.
+    tablasListas = (async () => {
+      await Promise.all([
+      db`
         CREATE TABLE IF NOT EXISTS leads (
           id SERIAL PRIMARY KEY,
           creado_en TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -41,38 +52,11 @@ function asegurarTablas(): Promise<unknown> {
           pais TEXT
         )
       `,
-      // ADD COLUMN IF NOT EXISTS para las tablas que ya existían en producción
-      // antes de sumar el apilado de leads repetidos (21-sep-2026) y los
-      // leads internacionales (22-sep-2026).
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS veces INTEGER NOT NULL DEFAULT 1`,
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS actualizado_en TIMESTAMPTZ`,
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS pais TEXT`,
-      // Borrado desde el panel (23-sep-2026): soft delete — la fila queda en la
-      // base con fecha de borrado, así un error se puede recuperar a mano.
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS eliminado_en TIMESTAMPTZ`,
-      // Mini CRM del panel (23-sep-2026): estado comercial, notas y fecha de
-      // seguimiento con aviso push (lo manda el cron de Kommo, cada minuto).
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS estado TEXT NOT NULL DEFAULT 'nuevo'`,
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notas TEXT`,
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS seguimiento_en TIMESTAMPTZ`,
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS seguimiento_avisado BOOLEAN NOT NULL DEFAULT false`,
-      // Zona detectada por IP al momento del lead, ej. "Banfield (GBA Sur)" —
-      // aproximada (23-sep-2026), para filtrar el panel por localidad/subzona.
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS zona_detectada TEXT`,
-      // Respuestas que la persona ya da en el cotizador y el quiz (24-sep-2026):
-      // situación laboral, presupuesto del quiz, prepaga actual (pregunta
-      // opcional después de enviar el lead) y preferencias (JSON: copago,
-      // coberturas, etc.). No se agrega ninguna pregunta antes del formulario.
-      // Alimentan el panel y el sondeo anónimo de /prensa/sondeo.
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS situacion_laboral TEXT`,
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS presupuesto TEXT`,
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS prepaga_actual TEXT`,
-      sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS preferencias TEXT`,
       // Reseñas de usuarios sobre las prepagas (23-sep-2026): se cargan desde la
       // ficha de cada prepaga y se publican recién cuando Darío las aprueba en
       // el panel. Alimentan el rich snippet de estrellas (reseñas propias del
       // sitio, como exige Google).
-      sql`
+      db`
         CREATE TABLE IF NOT EXISTS resenas (
           id SERIAL PRIMARY KEY,
           creado_en TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -87,7 +71,7 @@ function asegurarTablas(): Promise<unknown> {
           ip_hash TEXT
         )
       `,
-      sql`
+      db`
         CREATE TABLE IF NOT EXISTS push_subscriptions (
           id SERIAL PRIMARY KEY,
           endpoint TEXT UNIQUE NOT NULL,
@@ -100,14 +84,51 @@ function asegurarTablas(): Promise<unknown> {
       // Darío quiere poder cambiar él mismo desde el panel sin pedirme un
       // deploy — hoy solo la cuenta de Kommo que recibe los leads nuevos
       // (ver getConfig/setConfig y app/api/panel/config/route.ts).
-      sql`
+      db`
         CREATE TABLE IF NOT EXISTS config (
           clave TEXT PRIMARY KEY,
           valor TEXT NOT NULL,
           actualizado_en TIMESTAMPTZ NOT NULL DEFAULT now()
         )
       `,
-    ])
+      ])
+      await Promise.all([
+      // ADD COLUMN IF NOT EXISTS para las tablas que ya existían en producción
+      // antes de sumar el apilado de leads repetidos (21-sep-2026) y los
+      // leads internacionales (22-sep-2026).
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS veces INTEGER NOT NULL DEFAULT 1`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS actualizado_en TIMESTAMPTZ`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS pais TEXT`,
+      // Borrado desde el panel (23-sep-2026): soft delete — la fila queda en la
+      // base con fecha de borrado, así un error se puede recuperar a mano.
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS eliminado_en TIMESTAMPTZ`,
+      // Mini CRM del panel (23-sep-2026): estado comercial, notas y fecha de
+      // seguimiento con aviso push (lo manda el cron de Kommo, cada minuto).
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS estado TEXT NOT NULL DEFAULT 'nuevo'`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notas TEXT`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS seguimiento_en TIMESTAMPTZ`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS seguimiento_avisado BOOLEAN NOT NULL DEFAULT false`,
+      // Zona detectada por IP al momento del lead, ej. "Banfield (GBA Sur)" —
+      // aproximada (23-sep-2026), para filtrar el panel por localidad/subzona.
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS zona_detectada TEXT`,
+      // Respuestas que la persona ya da en el cotizador y el quiz (24-sep-2026):
+      // situación laboral, presupuesto del quiz, prepaga actual (pregunta
+      // opcional después de enviar el lead) y preferencias (JSON: copago,
+      // coberturas, etc.). No se agrega ninguna pregunta antes del formulario.
+      // Alimentan el panel y el sondeo anónimo de /prensa/sondeo.
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS situacion_laboral TEXT`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS presupuesto TEXT`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS prepaga_actual TEXT`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS preferencias TEXT`,
+      // Envío a Kommo sin el cron de cada minuto (19-oct-2026): cuándo se
+      // reservó el lead para mandarlo, así dos envíos simultáneos no lo
+      // duplican y uno que se cortó a la mitad se retoma.
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS kommo_reclamado_en TIMESTAMPTZ`,
+      ])
+    })().catch((err) => {
+      tablasListas = null
+      throw err
+    })
   }
   return tablasListas
 }
@@ -194,13 +215,12 @@ export function dbConfigurada(): boolean {
  * solo loguea.
  *
  * El envío a Kommo NO pasa por acá: todo lead nuevo entra con
- * kommo_estado = 'Pendiente' y lo procesa el cron de
- * /api/cron/procesar-leads-kommo recién 3 minutos después de la última
- * actividad de esa persona (pedido de Darío, 22-sep-2026, con Vercel Pro ya
- * activo) — así si alguien toca "elegir plan" en varias prepagas seguidas,
+ * kommo_estado = 'Pendiente' y sale recién un rato después de la última
+ * actividad de esa persona (pedido de Darío, 22-sep-2026; 1 minuto y medio
+ * desde el 19-oct-2026, ver lib/procesar-leads-kommo.ts) — así si alguien toca "elegir plan" en varias prepagas seguidas,
  * Kommo recibe un solo contacto con todos los intereses juntos, en vez de
  * uno por cada click. El "apilado" de acá abajo, al actualizar
- * actualizado_en en cada touch, extiende esa ventana de 3 minutos
+ * actualizado_en en cada touch, extiende esa ventana de espera
  * automáticamente — no hace falta tocar kommo_estado en el UPDATE.
  */
 export async function guardarLead(d: NuevoLead): Promise<void> {
@@ -315,23 +335,36 @@ export async function filasSondeo(desde: string): Promise<FilaSondeo[]> {
   }
 }
 
+export const KOMMO_PROCESANDO = 'Procesando'
+
 /**
- * Leads con kommo_estado = 'Pendiente' cuya última actividad tiene 3+
- * minutos — lo que procesa el cron cada 1 minuto. `minutos` es parametrizable
- * solo para poder testear con una ventana más corta sin tocar el código.
+ * Leads pendientes de mandar a Kommo sin actividad de esa persona hace
+ * `minutosEspera` (1,5 desde el 19-oct-2026), reservando cada uno en el
+ * mismo UPDATE. El envío lo disparan dos lados: cada lead programa el suyo
+ * (app/api/leads) y un cron de respaldo cada 30 minutos. Si dos corren a la vez, el UPDATE de Postgres deja que uno solo
+ * se quede con cada fila (el segundo vuelve a evaluar el WHERE y ya no
+ * cumple), así Kommo no recibe el lead duplicado. Un lead reservado hace
+ * más de 10 minutos (el envío se cortó a la mitad) vuelve a la cola.
  */
-export async function leadsPendientesDeKommo(minutosEspera = 3): Promise<LeadRow[]> {
+export async function reclamarLeadsPendientesDeKommo(minutosEspera = 3): Promise<LeadRow[]> {
   if (!sql) return []
   await asegurarTablas()
   const rows = await sql`
-    SELECT * FROM leads
-    WHERE kommo_estado = ${KOMMO_PENDIENTE}
-      AND eliminado_en IS NULL
-      AND COALESCE(actualizado_en, creado_en) <= now() - (${minutosEspera}::text || ' minutes')::interval
-    ORDER BY creado_en ASC
-    LIMIT 50
+    UPDATE leads SET kommo_estado = ${KOMMO_PROCESANDO}, kommo_reclamado_en = now()
+    WHERE id IN (
+      SELECT id FROM leads
+      WHERE eliminado_en IS NULL
+        AND COALESCE(actualizado_en, creado_en) <= now() - (${minutosEspera}::text || ' minutes')::interval
+        AND (kommo_estado = ${KOMMO_PENDIENTE}
+          OR (kommo_estado = ${KOMMO_PROCESANDO} AND kommo_reclamado_en < now() - interval '10 minutes'))
+      ORDER BY creado_en ASC
+      LIMIT 50
+    )
+      AND (kommo_estado = ${KOMMO_PENDIENTE}
+        OR (kommo_estado = ${KOMMO_PROCESANDO} AND kommo_reclamado_en < now() - interval '10 minutes'))
+    RETURNING *
   `
-  return rows as unknown as LeadRow[]
+  return (rows as unknown as LeadRow[]).sort((a, b) => new Date(a.creado_en).getTime() - new Date(b.creado_en).getTime())
 }
 
 /** Nunca tira: si falla, el cron de procesar-leads-kommo igual tiene que seguir con el resto de la cola. */
