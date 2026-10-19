@@ -145,10 +145,19 @@ const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
   }],
 }
 
+// Fichas cuyo título y H1 arrancan con "[prepaga] planes" (19-oct-2026, Darío):
+// "swiss medical planes" (6.600/mes) es la búsqueda transaccional de la marca;
+// "swiss medical teléfono" busca más, pero la hace quien ya está afiliado.
+// Solo Swiss por ahora, para no mezclarlo con la medición de la ola 1 de CTR.
+const TITULO_PLANES_PRIMERO = new Set(['swiss-medical'])
+
 function tituloFicha(prep: Prepaga) {
   const n = nombreCortoPrepaga(prep.nombre)
   const N = prep.planes.length
   const y = anioPrecios()
+  if (TITULO_PLANES_PRIMERO.has(prep.slug) && Number.isFinite(precioDesde(prep))) {
+    return elegir([`${n} planes y precios ${y}: compará los ${N} en 1 min`, `${n} planes y precios ${y}: compará los ${N}`, `${n} planes y precios ${y}`])
+  }
   return Number.isFinite(precioDesde(prep))
     ? elegir([`${n} ${y}: compará sus ${N} planes y precios en 1 minuto`, `${n} ${y}: compará sus ${N} planes y precios en 1 min`, `${n}: compará sus ${N} planes y precios en 1 min`])
     : elegir([`${n} ${y}: sus ${N} planes comparados, cotizá en 1 minuto`, `${n}: sus ${N} planes comparados, cotizá en 1 minuto`, `${n}: sus ${N} planes, cotizá en 1 minuto`])
@@ -623,7 +632,11 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   {/* "Precios" en el H1 (auditoría SEO 24-sep-2026): el título
                       ya dice "cuánto sale"; así la ficha cubre también
                       "[prepaga] precios", la otra forma de la búsqueda. */}
-                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{prep.nombre}: {Number.isFinite(precioMin) ? 'compará sus planes y precios' : 'compará sus planes'}</h1>
+                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+                    {TITULO_PLANES_PRIMERO.has(prep.slug) && Number.isFinite(precioMin)
+                      ? `${prep.nombre}: planes y precios de ${PRECIO_ACTUALIZADO.toLowerCase()}`
+                      : `${prep.nombre}: ${Number.isFinite(precioMin) ? 'compará sus planes y precios' : 'compará sus planes'}`}
+                  </h1>
                 </div>
               </div>
 
