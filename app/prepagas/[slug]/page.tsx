@@ -12,7 +12,7 @@ import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { compararPlanes, type ComparacionPlanes as DatosComparacion } from '@/lib/planes-comparacion'
 import { ComparacionPlanes } from '@/components/prepagas/ComparacionPlanes'
 import { CartillasSwiss, faqCartillasSwiss } from '@/components/prepagas/CartillasSwiss'
-import { LineasSwiss, faqLineasSwiss } from '@/components/prepagas/LineasSwiss'
+import { LineasPlanes, faqLineasPlanes } from '@/components/prepagas/LineasPlanes'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -145,22 +145,19 @@ const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
   }],
 }
 
-// Fichas cuyo título y H1 arrancan con "[prepaga] planes" (19-oct-2026, Darío):
-// "swiss medical planes" (6.600/mes) es la búsqueda transaccional de la marca;
-// "swiss medical teléfono" busca más, pero la hace quien ya está afiliado.
-// Solo Swiss por ahora, para no mezclarlo con la medición de la ola 1 de CTR.
-const TITULO_PLANES_PRIMERO = new Set(['swiss-medical'])
-
+// Título y H1 arrancan con "[prepaga] planes" (19-oct-2026, Darío): es la
+// búsqueda transaccional de cada marca ("osde planes" y "swiss medical planes"
+// 6.600/mes, "sancor salud planes" 2.900) y la ficha la perdía en la cabeza
+// (pos. 26,5 / 19,5 / sin aparecer, Search Console 8-22 sep) aunque ganaba las
+// largas ("osde planes precios 2026", pos. ~10). "teléfono" busca más, pero la
+// hace quien ya está afiliado. Se mantiene el gancho de la ola 1 ("en 1 min").
 function tituloFicha(prep: Prepaga) {
   const n = nombreCortoPrepaga(prep.nombre)
   const N = prep.planes.length
   const y = anioPrecios()
-  if (TITULO_PLANES_PRIMERO.has(prep.slug) && Number.isFinite(precioDesde(prep))) {
-    return elegir([`${n} planes y precios ${y}: compará los ${N} en 1 min`, `${n} planes y precios ${y}: compará los ${N}`, `${n} planes y precios ${y}`])
-  }
   return Number.isFinite(precioDesde(prep))
-    ? elegir([`${n} ${y}: compará sus ${N} planes y precios en 1 minuto`, `${n} ${y}: compará sus ${N} planes y precios en 1 min`, `${n}: compará sus ${N} planes y precios en 1 min`])
-    : elegir([`${n} ${y}: sus ${N} planes comparados, cotizá en 1 minuto`, `${n}: sus ${N} planes comparados, cotizá en 1 minuto`, `${n}: sus ${N} planes, cotizá en 1 minuto`])
+    ? elegir([`${n} planes y precios ${y}: compará los ${N} en 1 min`, `${n} planes y precios ${y}: compará los ${N}`, `${n} planes y precios ${y}`])
+    : elegir([`${n} planes ${y}: los ${N} comparados, cotizá en 1 minuto`, `${n} planes ${y}: los ${N} comparados, cotizá en 1 min`, `${n} planes ${y}: cotizá en 1 minuto`, `${n} planes ${y}`])
 }
 
 function descripcionFicha(prep: Prepaga, desde: number) {
@@ -469,7 +466,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const aumentoRango = aumento && aumento.dato.minimo !== aumento.dato.maximo
     ? ` (de ${pct(aumento.dato.minimo)} a ${pct(aumento.dato.maximo)} según el plan y la región)` : ''
   const faqCartillas = faqCartillasSwiss(prep)
-  const faqLineas = faqLineasSwiss(prep)
+  const faqLineas = faqLineasPlanes(prep)
   const faqs = [
     ...(faqLineas ? [faqLineas] : []),
     ...buildFAQs(prep, precioMin, precioMax, planEstrella, comparacion),
@@ -633,9 +630,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
                       ya dice "cuánto sale"; así la ficha cubre también
                       "[prepaga] precios", la otra forma de la búsqueda. */}
                   <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-                    {TITULO_PLANES_PRIMERO.has(prep.slug) && Number.isFinite(precioMin)
+                    {Number.isFinite(precioMin)
                       ? `${prep.nombre}: planes y precios de ${PRECIO_ACTUALIZADO.toLowerCase()}`
-                      : `${prep.nombre}: ${Number.isFinite(precioMin) ? 'compará sus planes y precios' : 'compará sus planes'}`}
+                      : `${prep.nombre}: compará sus planes`}
                   </h1>
                 </div>
               </div>
@@ -842,7 +839,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
             )}
           </p>
 
-          <LineasSwiss prep={prep} />
+          <LineasPlanes prep={prep} />
 
           {/* Plan destacado — más grande */}
           <div className="relative bg-gradient-to-r from-[#fff5f5] to-white border-2 border-[#E8002D] rounded-2xl p-6 mb-4">
