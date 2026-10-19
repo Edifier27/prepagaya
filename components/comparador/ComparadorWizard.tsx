@@ -741,10 +741,12 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
   // Modo enfocado: apenas se elige la zona y se avanza, se oculta el
   // header/footer/bottom-nav para que la cotización no tenga forma de
-  // distraerse ni salir del flujo a mitad de camino.
+  // distraerse ni salir del flujo a mitad de camino. En los resultados vuelve
+  // el menú (Darío, 18-oct-2026: "total ya dejó los datos"): con el lead ya
+  // capturado, el menú le da a dónde seguir dentro del sitio en vez de irse.
   const { setHideChrome } = useChromeVisibility()
   useEffect(() => {
-    setHideChrome(step !== 'zona')
+    setHideChrome(step !== 'zona' && step !== 'resultados')
   }, [step, setHideChrome])
   useEffect(() => () => setHideChrome(false), [setHideChrome])
 
