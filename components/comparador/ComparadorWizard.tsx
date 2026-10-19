@@ -38,10 +38,27 @@ const DESCUENTO_POR_SITUACION: Record<SituacionLaboral, number> = {
 // se descuenta directo de la cuota mostrada (APORTE_DERIVABLE, lib/utils).
 const APORTE_PORCENTAJE = APORTE_DERIVABLE
 
-// Precio "bloqueado" (21-sep a 18-oct-2026): se probó ocultar el precio en
-// resultados detrás de "Ver precio". Se sacó (Darío, 18-oct-2026): el lead ya
-// entra antes de los resultados, así que ocultarlo solo sumaba fricción. Ahora
-// el precio se ve y "Quiero este plan" le avisa al asesor (handleAccederPlan).
+// Precio "bloqueado": el número real sigue ahí (blureado, no reemplazado por
+// texto falso), con un candado al lado — pedido de Darío, 21-sep-2026, para
+// probar si ocultar el precio y forzar el paso de "Ver precio" mejora la
+// calidad de los leads. El texto sigue siendo accesible para lectores de
+// pantalla via aria-hidden en el span blureado + un texto alternativo.
+// 18-oct-2026: se mostró el precio unas horas y se volvió al candado (Darío:
+// las promociones no son iguales en todas las prepagas y el precio con el
+// mismo descuento para todas no es exacto). El botón dice "Consultar precios".
+function PrecioBloqueado({ texto, size = 'lg' }: { texto: React.ReactNode; size?: 'lg' | 'sm' }) {
+  return (
+    <span className="relative inline-flex items-center gap-1.5">
+      <span aria-hidden className={`select-none blur-[5px] ${size === 'lg' ? 'text-xl font-black text-gray-900' : 'font-bold text-gray-900'}`}>
+        {texto}
+      </span>
+      <svg viewBox="0 0 20 20" fill="currentColor" className={`${size === 'lg' ? 'w-4 h-4' : 'w-3.5 h-3.5'} text-gray-400 flex-shrink-0`}>
+        <path fillRule="evenodd" d="M10 1a4 4 0 00-4 4v2H5a1 1 0 00-1 1v9a1 1 0 001 1h10a1 1 0 001-1V8a1 1 0 00-1-1h-1V5a4 4 0 00-4-4zm2 6V5a2 2 0 10-4 0v2h4z" clipRule="evenodd" />
+      </svg>
+      <span className="sr-only">Precio disponible al cotizar</span>
+    </span>
+  )
+}
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -1077,24 +1094,15 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     }
   }
 
-  // "Quiero este plan" (18-oct-2026, Darío: mostrar los precios). El precio ya
-  // se ve; el botón le avisa al asesor qué plan eligió la persona: vuelve a
-  // /api/leads con el mismo celular y el plan se suma a los intereses del
-  // mismo lead (lib/db.ts guardarLead, ventana de 24 hs). En Vercel se mide
-  // aparte ("cotizacion-wizard · quiero-plan") para no inflar los leads nuevos.
-  async function handleAccederPlan(res: Resultado) {
+  function handleAccederPlan(res: Resultado) {
     const planKey = `${res.prepaga.slug}-${res.plan.slug}`
     setPlanAccedido(planKey)
-    setPlanAccedidoStatus('loading')
-    trackEvent('quiero_plan', { prepaga: res.prepaga.slug, plan: res.plan.slug })
-    if (modoPrueba) { setPlanAccedidoStatus('success'); return }
-    try {
-      const precio = Number.isFinite(res.precioGrupal) ? ` | $${precioFinal(res.precioDesc).toLocaleString('es-AR')}/mes con descuento` : ''
-      await sendEmail(buildPayload({ plan_elegido: `${res.prepaga.nombre} — ${res.plan.nombre}${precio} (eligió "Quiero este plan")`, origen: 'quiero-plan' }))
-      setPlanAccedidoStatus('success')
-    } catch {
-      setPlanAccedidoStatus('idle')
-    }
+    // Nombre y celular ya se mandaron por mail en el popup inicial (único
+    // envío por lead, para no gastar cupo de EmailJS) — acá no se manda un
+    // segundo mail ni se redirige a WhatsApp (pedido de Darío, 9-sep-2026: no
+    // quiere que el visitante le escriba directo, solo recibir el lead por
+    // mail y contactar él cuando quiera). Solo queda un "anotado" local.
+    setPlanAccedidoStatus('success')
   }
 
   function toggleCob(id: CobId) {
@@ -2158,22 +2166,26 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
                     {/* Precio + botón en la misma fila */}
                     <div className={`flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 ${grande ? 'mt-4 pt-4' : 'mt-3 pt-3'}`}>
-                      {/* Precio a la vista (18-oct-2026, Darío): antes con candado */}
-                      <div className="min-w-0 text-left">
+                      {/* El precio con candado también pide la cotización (13-oct-2026,
+                          Clarity: la gente tocaba el precio, el "% OFF" y el "/mes"
+                          esperando verlo y no pasaba nada: clics muertos) */}
+                      <button
+                        type="button"
+                        onClick={() => { if (!(isAccedido && planAccedidoStatus !== 'idle')) handleAccederPlan(res) }}
+                        className="min-w-0 text-left cursor-pointer"
+                        aria-label={`Consultar el precio de ${res.prepaga.nombre} ${res.plan.nombre}`}
+                      >
                         <div className="flex items-baseline gap-1.5 flex-wrap">
-                          {Number.isFinite(res.precioGrupal) && res.precioGrupal > precioFinal(res.precioDesc) && (
-                            <span className="text-xs text-gray-400 line-through">{formatPrecio(res.precioGrupal)}</span>
+                          {res.precioGrupal > precioFinal(res.precioDesc) && (
+                            <span className="text-xs text-gray-400 line-through blur-[3px] select-none" aria-hidden>{formatPrecio(res.precioGrupal)}</span>
                           )}
-                          <span className={`font-black text-gray-900 tabular-nums whitespace-nowrap ${grande ? 'text-2xl' : 'text-xl'}`}>
-                            {formatPrecio(precioFinal(res.precioDesc))}
-                            {Number.isFinite(res.precioGrupal) && <span className="text-xs font-medium text-gray-400">/mes*</span>}
-                          </span>
+                          <PrecioBloqueado texto={<>{formatPrecio(precioFinal(res.precioDesc))}<span className="text-xs font-medium text-gray-400">/mes*</span></>} />
                         </div>
-                        <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''}{Number.isFinite(res.precioGrupal) ? ` · ${Math.round(descuentoMostrado * 100)}% OFF` : ''}</div>
-                      </div>
+                        <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoMostrado * 100)}% OFF</div>
+                      </button>
                       {isAccedido && planAccedidoStatus === 'success' ? (
                         <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center max-w-[170px]">
-                          ¡Listo! Un asesor te contacta por este plan
+                          ¡Listo! En breve te enviamos la cotización
                         </div>
                       ) : (
                         <button onClick={() => handleAccederPlan(res)}
@@ -2182,7 +2194,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                           {isAccedido && planAccedidoStatus === 'loading' ? (
                             <svg className="animate-spin w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                           ) : null}
-                          Quiero este plan →
+                          Consultar precios
                         </button>
                       )}
                     </div>
@@ -2342,7 +2354,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                       <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Precio aprox.</td>
                       {seleccionados.map((r) => (
                         <td key={`${r.prepaga.slug}-${r.plan.slug}-precioaprox`} className={`py-3 px-3 ${celda(r)}`}>
-                          <span className="font-bold text-gray-900 tabular-nums">{formatPrecio(precioFinal(r.precioDesc))}{Number.isFinite(r.precioGrupal) && <span className="text-[10px] text-gray-400">/mes</span>}</span>
+                          <PrecioBloqueado size="sm" texto={<>{formatPrecio(precioFinal(r.precioDesc))}<span className="text-[10px] text-gray-400">/mes</span></>} />
                         </td>
                       ))}
                     </tr>
