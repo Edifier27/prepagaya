@@ -26,6 +26,7 @@ import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
 import { TablaDiferenciasPlanes } from '@/components/prepagas/TablaDiferenciasPlanes'
 import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
+import { ResumenPlan, faqResumenPlan } from '@/components/prepagas/ResumenPlan'
 import { terminoPorSlug } from '@/lib/data/glosario'
 import { coberturas as coberturasGenerales } from '@/lib/data/coberturas'
 
@@ -626,9 +627,21 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
   const perfilDelPlan = getPerfilDelPlan(plan)
   const seo = contenidoPlan(prep, plan)
+  // "¿Qué es el plan?" con forma citable por las IA (19-oct-2026, ver ResumenPlan)
+  const cartillaNombre = cartillaDePlan(cartillaDef, plan.slug)
+  const resumen = {
+    prep,
+    plan,
+    cartilla: cartillaNombre && !/^plan\b/i.test(cartillaNombre) && cartillaNombre !== codigoPlan(plan) ? cartillaNombre : undefined,
+    coberturas: seo?.coberturas ?? coberturasMarca
+      .filter((c) => c.prepagaSlug === prep.slug)
+      .flatMap((c) => c.planes.filter((f) => f.planSlugs.includes(plan.slug)).map((f) => ({ tema: c.tema, nombre: c.temaNombre, fila: f }))),
+    sanatoriosCaba: resumenCaba,
+    cartillaHref: cartillaPlanLink?.href,
+  }
   // Una sola pregunta de precio (25-sep-2026): si hay cuadro oficial por edad,
   // la de "precio a los 30 años" sobra.
-  const faqs = [...(seo?.faqs ?? []), ...buildPlanFAQs(plan, prep).filter((f) => !(seo?.escala && f.q.startsWith('¿Cuánto cuesta el')))]
+  const faqs = [faqResumenPlan(resumen), ...(seo?.faqs ?? []), ...buildPlanFAQs(plan, prep).filter((f) => !(seo?.escala && f.q.startsWith('¿Cuánto cuesta el')))]
   // "¿Qué incluye la cartilla de [prepaga] [plan]?" (29-sep-2026): es la
   // pregunta que Google muestra en "la gente también pregunta" para este tipo
   // de búsqueda — solo se agrega cuando hay cartilla oficial real para
@@ -803,6 +816,8 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
         </div>
       </section>
+
+      <ResumenPlan {...resumen} />
 
       {/* Para quién es este plan */}
       <section className="py-10 bg-white">
