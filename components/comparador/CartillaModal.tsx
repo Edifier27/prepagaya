@@ -2,9 +2,15 @@
 
 import Link from 'next/link'
 import { sanatoriosDePlan, REFERENCIA_POR_ZONA, REFERENCIA_GBA_SUBZONAS, SMG_CENTER_NOTA } from '@/lib/data/sanatorios'
-import { getZona, CARTILLAS, linkCartillaPlan, tieneCombinacion } from '@/lib/data/cartilla-zonas'
+import { useEffect, useState } from 'react'
+import type { ZonaCartilla } from '@/lib/data/cartilla-zonas'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import type { Plan, Prepaga } from '@/types'
+
+// Lo que devuelve /api/cartilla-zona/[prepaga]/[zona]
+type ZonaModal = ZonaCartilla & {
+  planes: { id: string; comparadorSlugs: string[]; href: string | null; conPaginaEnZona: boolean }[]
+}
 
 interface Props {
   prepaga: Prepaga
@@ -31,21 +37,34 @@ interface Props {
 export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, localidadSlug, onClose, onQuiero, quieroDisabled, quieroLabel }: Props) {
   // sanatoriosDePlan ya filtra por zona: todo lo que devuelve es local.
   const resultados = sanatoriosDePlan(prepaga.slug, plan.slug, zonaKey)
-  const zonaLocal = localidadSlug ? getZona(prepaga.slug, localidadSlug) : undefined
+  // La zona se pide a /api/cartilla-zona (estático, una respuesta por zona):
+  // antes se importaban todas las cartillas (1,1 MB) para mirar una sola
+  // (auditoría de velocidad 18-oct-2026).
+  const [zonaLocal, setZonaLocal] = useState<ZonaModal | undefined>(undefined)
+  const [cargandoZona, setCargandoZona] = useState(!!localidadSlug)
+  useEffect(() => {
+    if (!localidadSlug) return
+    let vivo = true
+    fetch(`/api/cartilla-zona/${prepaga.slug}/${localidadSlug}`)
+      .then((r) => (r.ok ? r.json() : undefined))
+      .then((z: ZonaModal | undefined) => { if (vivo) setZonaLocal(z) })
+      .catch(() => {})
+      .finally(() => { if (vivo) setCargandoZona(false) })
+    return () => { vivo = false }
+  }, [prepaga.slug, localidadSlug])
   // Centros de la cartilla oficial de esta localidad para este plan (4-oct-2026,
   // Darío: en Tandil decía "todavía no tenemos verificado" teniendo la
   // cartilla de la zona). Internación primero; si no hay, guardias.
-  const planCartilla = CARTILLAS[prepaga.slug]?.planes.find((x) => x.comparadorSlug === plan.slug || x.otrosComparadorSlugs?.includes(plan.slug))
+  const planCartilla = zonaLocal?.planes.find((x) => x.comparadorSlugs.includes(plan.slug))
   const conInternacion = zonaLocal && planCartilla ? zonaLocal.centros.filter((c) => c.internacion.includes(planCartilla.id)) : []
   const centrosZona = conInternacion.length
     ? conInternacion
     : zonaLocal && planCartilla ? zonaLocal.centros.filter((c) => c.guardia.includes(planCartilla.id)) : []
-  const linkPlan = linkCartillaPlan(prepaga.slug, plan.slug)
   // Página del plan en esa zona si existe; si no (el plan tiene todos los
   // centros de la zona), la cartilla de la zona, que marca los planes de cada centro.
   const hrefPlanZona = zonaLocal && localidadSlug
-    ? linkPlan && tieneCombinacion(prepaga.slug, linkPlan.href.split('/').pop()!, localidadSlug)
-      ? `${linkPlan.href}/${localidadSlug}`
+    ? planCartilla?.href && planCartilla.conPaginaEnZona
+      ? `${planCartilla.href}/${localidadSlug}`
       : `/cartillas/${prepaga.slug}/${localidadSlug}`
     : null
 
@@ -138,7 +157,15 @@ export function CartillaModal({ prepaga, plan, zonaKey, provinciaNombre, localid
             </div>
           )}
 
-          {resultados.length === 0 && centrosZona.length === 0 && (
+          {resultados.length === 0 && centrosZona.length === 0 && cargandoZona && (
+            <div className="mb-5 space-y-2.5" aria-busy="true">
+              <div className="h-4 w-48 rounded bg-gray-100 animate-pulse" />
+              <div className="h-14 rounded-xl bg-gray-50 border border-gray-100 animate-pulse" />
+              <div className="h-14 rounded-xl bg-gray-50 border border-gray-100 animate-pulse" />
+            </div>
+          )}
+
+          {resultados.length === 0 && centrosZona.length === 0 && !cargandoZona && (
             <div className="mb-5">
               <p className="text-sm text-gray-600 leading-relaxed mb-3">
                 Todavía no tenemos verificado qué sanatorios cubre puntualmente este plan. Esto es lo que incluye en general:

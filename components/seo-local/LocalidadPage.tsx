@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import type { LocalidadZona, ProvinciaSEO } from '@/lib/data/zonas'
+import { prepagaEnLocalidad, type LocalidadZona, type ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL } from '@/lib/utils'
 import { preciosDeZona, zonaDeLocalidad } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -106,7 +106,7 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
                   </div>
                 </>
               )
-              return pz.enSitio ? (
+              return prepagaEnLocalidad(pz, loc.slug) ? (
                 <Link key={pz.slug} href={`/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`}
                   className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
                   {inner}
@@ -118,6 +118,25 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
               )
             })}
           </div>
+          {/* Enlazado interno (auditoría 18-oct-2026): las prepagas fuera de
+              las 4 destacadas tenían un solo link de entrada (desde su página
+              provincial). Su padre natural es esta página de la localidad. */}
+          {(() => {
+            const resto = prov.prepagas.filter((pz) => !destacadas.includes(pz) && prepagaEnLocalidad(pz, loc.slug))
+            return resto.length > 0 && (
+              <div className="mt-5">
+                <div className="text-sm font-semibold text-gray-700 mb-2">Más prepagas en {corto}</div>
+                <div className="flex flex-wrap gap-2">
+                  {resto.map((pz) => (
+                    <Link key={pz.slug} href={`/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`}
+                      className="rounded-full border border-gray-200 px-3 py-1.5 text-sm text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">
+                      {pz.nombre}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )
+          })()}
           <div className="mt-4">
             <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="text-sm font-semibold text-[#E8002D] hover:underline">
               Ver el ranking completo de {prov.nombre} →

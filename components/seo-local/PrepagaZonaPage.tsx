@@ -5,7 +5,7 @@ import { SucursalesBloque } from './SucursalesBloque'
 import { sucursalesEnProvincia } from '@/lib/data/sucursales'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { provinciasSEO, type PrepagaZona, type ProvinciaSEO } from '@/lib/data/zonas'
+import { provinciasSEO, prepagaEnLocalidad, type PrepagaZona, type ProvinciaSEO } from '@/lib/data/zonas'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { preciosDeZona } from '@/lib/precios/zona'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -187,11 +187,14 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
         )}
 
         {/* Localidades: cruce prepaga × ciudad, para bajar de "en toda la provincia" a "en tu ciudad puntual" */}
-        {prov.localidades.length > 0 && (
+        {/* Solo las ciudades donde la página existe (mismo filtro que el
+            sitemap): antes linkeaba también las que redirigen, como Hospital
+            Italiano en La Plata o Mar del Plata (auditoría 18-oct-2026). */}
+        {prov.localidades.some((loc) => prepagaEnLocalidad(pz, loc.slug)) && (
           <section className="mb-10">
             <h2 className="text-lg font-bold text-gray-900 mb-4">{pz.nombre} en cada ciudad de {prov.nombre}</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-              {prov.localidades.map((loc) => (
+              {prov.localidades.filter((loc) => prepagaEnLocalidad(pz, loc.slug)).map((loc) => (
                 <Link key={loc.slug} href={`/prepagas/${prov.slug}/${loc.slug}/${pz.slug}`}
                   className="px-3 py-2.5 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:text-[#E8002D] transition-all text-sm text-gray-700 text-center truncate">
                   {loc.nombre.split(' (')[0]}

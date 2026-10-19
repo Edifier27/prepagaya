@@ -1043,7 +1043,9 @@ export function ciudadesDestacadas(prepagaSlug: string): { href: string; nombre:
   return CIUDADES_DESTACADAS.flatMap(([provSlug, locSlug]) => {
     const prov = provinciasSEO.find((p) => p.slug === provSlug)
     const loc = prov?.localidades.find((l) => l.slug === locSlug)
-    const llega = prov?.prepagas.some((pz) => pz.slug === prepagaSlug && pz.enSitio)
+    // Mismo filtro que el sitemap (auditoría 18-oct-2026: Hospital Italiano
+    // linkeaba Mar del Plata, La Plata y Bahía Blanca, que redirigen)
+    const llega = !!loc && !!prov?.prepagas.some((pz) => pz.slug === prepagaSlug && prepagaEnLocalidad(pz, loc.slug))
     return prov && loc && llega ? [{ href: `/prepagas/${prov.slug}/${loc.slug}/${prepagaSlug}`, nombre: loc.nombre }] : []
   })
 }

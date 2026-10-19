@@ -127,7 +127,7 @@ const osSindicales = [
   { slug: 'ospm', nombre: 'OSPM (Maestranza)' },
   { slug: 'osim', nombre: 'OSIM (Dirección Metalúrgica)' },
   { slug: 'osmedica', nombre: 'OSMEDICA (Médicos de CABA)' },
-  { slug: 'osfatlyf', nombre: 'OSFATLYF (Luz y Fuerza)' },
+  { slug: 'luz-y-fuerza', nombre: 'OSFATLYF (Luz y Fuerza)' },
 ]
 
 const osProvinciales = [
