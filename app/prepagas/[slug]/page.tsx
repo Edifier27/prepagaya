@@ -756,7 +756,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
               ...(getCartillaInfo(prep.slug) ? [{ href: `/cartillas/${prep.slug}`, label: 'Cartilla' }] : []),
               ...(totalSucursales(prep.slug) ? [{ href: '#sucursales', label: 'Sucursales' }] : []),
               ...(contacto ? [{ href: '#telefonos', label: 'Teléfonos' }] : []),
-              ...(conv?.codigoAfip?.codigos.length ? [{ href: '#convenios', label: 'Código AFIP' }] : []),
+              ...(conv?.codigoAfip?.codigos.length ? [{ href: '#convenios', label: 'Código ARCA' }] : []),
               { href: '#opiniones', label: 'Opiniones' },
               { href: '#preguntas', label: 'Preguntas' },
             ].map((x) => (
