@@ -34,9 +34,8 @@ function Tarjeta({ color, marca, titulo, precio, nota, pastillas }: {
           ))}
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 72px 40px' }}>
-        <div style={{ display: 'flex', fontSize: '30px', fontWeight: 800, color: '#E8002D' }}>prepagaya.com.ar</div>
-        <div style={{ display: 'flex', fontSize: '26px', color: '#6B7280' }}>Compará y cotizá en 1 minuto</div>
+      <div style={{ display: 'flex', alignItems: 'center', padding: '0 72px 40px' }}>
+        <div style={{ display: 'flex', fontSize: '30px', color: '#E8002D' }}>Compará y cotizá en 1 minuto</div>
       </div>
     </div>
   )
