@@ -12,8 +12,9 @@ import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { escalaPorEdad, preciosPorRegion, precioGrupo } from '@/lib/precios/motor'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
-import { linkCartillaPlan, CARTILLAS, type CartillaPrepaga } from '@/lib/data/cartilla-zonas'
+import { linkCartillaPlan, CARTILLAS } from '@/lib/data/cartilla-zonas'
 import { clavesRenombre, resumirZonaPlan } from '@/lib/cartilla-plan-resumen'
+import { cartillaDePlan, cartillaConNombre } from '@/lib/cartilla-plan-nombre'
 import { RankingZonaPage, rankingZonaMetadata } from '@/components/seo-local/RankingZonaPage'
 import { PrepagaZonaPage, prepagaZonaMetadata } from '@/components/seo-local/PrepagaZonaPage'
 import { LocalidadPage, localidadMetadata } from '@/components/seo-local/LocalidadPage'
@@ -27,6 +28,7 @@ import { ldJson } from '@/lib/jsonld'
 import { TablaDiferenciasPlanes } from '@/components/prepagas/TablaDiferenciasPlanes'
 import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
 import { ResumenPlan, faqResumenPlan } from '@/components/prepagas/ResumenPlan'
+import { OG_SIZE, urlOgPlan, altOgPlan } from '@/lib/og/datos'
 import { terminoPorSlug } from '@/lib/data/glosario'
 import { coberturas as coberturasGenerales } from '@/lib/data/coberturas'
 
@@ -108,12 +110,6 @@ function codigoPlan(plan: Plan) {
   return /\d/.test(corto) ? corto : plan.nombre
 }
 
-/** Nombre de la cartilla oficial de un plan: "Global", "Premium", "Plan 310" */
-function cartillaDePlan(c: CartillaPrepaga | undefined, planSlug: string): string | undefined {
-  const pc = c?.planes.find((x) => x.comparadorSlug === planSlug || x.otrosComparadorSlugs?.includes(planSlug))
-  if (!pc) return undefined
-  return pc.label.match(/\(([^)]+)\)$/)?.[1] ?? pc.label
-}
 
 function regionTexto(r: string) {
   if (/^(general|avalian)$/i.test(r)) return 'lista general'
@@ -508,25 +504,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const plan = prep?.planes.find((pl) => pl.slug === planSlug)
   if (!prep || !plan) return {}
   const escalaMeta = PREPAGAS_PLAN_SEO.includes(prep.slug) ? escalaPorEdad(prep.slug, plan.slug, 'caba') : null
+  // "Qué cubre" en vez de "Cartilla" (22-sep-2026): la cartilla del plan vive
+  // en /cartillas/[prepaga]/plan-x; acá se enlaza (ver cartillaPlanLink).
+  // Swiss: "Swiss Medical SMG20" (sin "Plan", es como se busca) + precio por edad
+  // "Cuánto sale" (23-sep-2026): misma intención que las fichas de prepaga.
+  // absolute: sin "| PrepagaYa", para que Google lo muestre completo.
+  const titulo = escalaMeta
+    // Precio en el título (11-oct-2026): las búsquedas "smg20 precio 2026",
+    // "osde 210 precio" tenían impresiones y 0 clics con el título sin monto
+    ? `${prep.nombre} ${codigoPlan(plan)}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`
+    : `${prep.nombre} ${plan.nombre}: cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()} y qué cubre`
+  const descripcion = escalaMeta
+    ? `Precio oficial del ${codigoPlan(plan)} de ${prep.nombre}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes hasta los ${escalaMeta.rangos[0].hasta} años. ${plan.copago ? 'Con copago' : 'Sin copago'}. Precio por edad, qué cubre y sanatorios. Cotizá con 15% OFF.`
+    : !Number.isFinite(plan.precio)
+      ? `${prep.nombre} ${plan.nombre}: qué cubre, ${plan.copago ? 'con copago' : 'sin copago'}, red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Sin lista de precios oficial: cotizalo gratis para tu edad y zona.`
+      : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}${plan.fuentePrecio === 'sssalud' ? ', lista oficial SSSalud' : ''}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`
+  const url = `${SITE_URL}/prepagas/${slug}/${planSlug}`
+  // Imagen del plan (20-oct-2026, lib/og/tarjeta.tsx). Con openGraph propio, el
+  // título al compartir deja de ser el genérico del layout.
+  const imagen = { url: urlOgPlan(prep.slug, plan.slug), ...OG_SIZE, alt: altOgPlan(prep, plan) }
   return {
-    // "Qué cubre" en vez de "Cartilla" (22-sep-2026): la cartilla del plan vive
-    // en /cartillas/[prepaga]/plan-x; acá se enlaza (ver cartillaPlanLink).
-    // Swiss: "Swiss Medical SMG20" (sin "Plan", es como se busca) + precio por edad
-    // "Cuánto sale" (23-sep-2026): misma intención que las fichas de prepaga.
-    // absolute: sin "| PrepagaYa", para que Google lo muestre completo.
-    title: {
-      absolute: escalaMeta
-        // Precio en el título (11-oct-2026): las búsquedas "smg20 precio 2026",
-        // "osde 210 precio" tenían impresiones y 0 clics con el título sin monto
-        ? `${prep.nombre} ${codigoPlan(plan)}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`
-        : `${prep.nombre} ${plan.nombre}: cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()} y qué cubre`,
-    },
-    description: escalaMeta
-      ? `Precio oficial del ${codigoPlan(plan)} de ${prep.nombre}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes hasta los ${escalaMeta.rangos[0].hasta} años. ${plan.copago ? 'Con copago' : 'Sin copago'}. Precio por edad, qué cubre y sanatorios. Cotizá con 15% OFF.`
-      : !Number.isFinite(plan.precio)
-        ? `${prep.nombre} ${plan.nombre}: qué cubre, ${plan.copago ? 'con copago' : 'sin copago'}, red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Sin lista de precios oficial: cotizalo gratis para tu edad y zona.`
-        : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}${plan.fuentePrecio === 'sssalud' ? ', lista oficial SSSalud' : ''}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`,
-    alternates: { canonical: `${SITE_URL}/prepagas/${slug}/${planSlug}` },
+    title: { absolute: titulo },
+    description: descripcion,
+    openGraph: { type: 'website', locale: 'es_AR', siteName: SITE_NAME, url, title: titulo, description: descripcion, images: [imagen] },
+    twitter: { card: 'summary_large_image', title: titulo, description: descripcion, images: [imagen.url] },
+    alternates: { canonical: url },
     keywords: [
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} precio`,
@@ -628,11 +630,10 @@ export default async function PlanPage({ params, searchParams }: Props) {
   const perfilDelPlan = getPerfilDelPlan(plan)
   const seo = contenidoPlan(prep, plan)
   // "¿Qué es el plan?" con forma citable por las IA (19-oct-2026, ver ResumenPlan)
-  const cartillaNombre = cartillaDePlan(cartillaDef, plan.slug)
   const resumen = {
     prep,
     plan,
-    cartilla: cartillaNombre && !/^plan\b/i.test(cartillaNombre) && cartillaNombre !== codigoPlan(plan) ? cartillaNombre : undefined,
+    cartilla: cartillaConNombre(prep.slug, plan),
     coberturas: seo?.coberturas ?? coberturasMarca
       .filter((c) => c.prepagaSlug === prep.slug)
       .flatMap((c) => c.planes.filter((f) => f.planSlugs.includes(plan.slug)).map((f) => ({ tema: c.tema, nombre: c.temaNombre, fila: f }))),
@@ -668,6 +669,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
       name: `${prep.nombre} ${plan.nombre}`,
       description: plan.descripcion,
       url: `${SITE_URL}/prepagas/${slug}/${planSlug}`,
+      image: urlOgPlan(prep.slug, plan.slug),
       provider: { '@type': 'Organization', name: prep.nombre },
       // Sin precio oficial no se declara oferta con monto
       ...(Number.isFinite(plan.precio) ? { offers: {

@@ -13,6 +13,7 @@ import { compararPlanes, type ComparacionPlanes as DatosComparacion } from '@/li
 import { ComparacionPlanes } from '@/components/prepagas/ComparacionPlanes'
 import { CartillasSwiss, faqCartillasSwiss } from '@/components/prepagas/CartillasSwiss'
 import { LineasPlanes, faqLineasPlanes } from '@/components/prepagas/LineasPlanes'
+import { OG_SIZE, urlOgPrepaga, altOgPrepaga } from '@/lib/og/datos'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
@@ -384,6 +385,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // genérico anterior no respondía la intención de búsqueda "precio" ni
   // "cartilla", que son las dos consultas de mayor volumen sin clics).
   const precioMinTitulo = precioDesde(prep)
+  const titulo = tituloFicha(prep)
+  const description = descripcionFicha(prep, precioMinTitulo)
+  const imagen = { url: urlOgPrepaga(prep.slug), ...OG_SIZE, alt: altOgPrepaga(prep) }
   return {
     // "Cartilla" salió del título (22-sep-2026): esa intención ahora la toma
     // /cartillas/[prepaga] con datos oficiales por zona; esta ficha apunta a
@@ -401,8 +405,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // páginas de comparación tienen el triple de CTR (Search Console) y la
     // promesa se cumple arriba de la ficha (ComparaPlanesHero). Sin precio
     // oficial no se promete "precios" (lib/seo/titulos.ts).
-    title: { absolute: tituloFicha(prep) },
-    description: descripcionFicha(prep, precioMinTitulo),
+    title: { absolute: titulo },
+    description,
+    // Vista previa propia (20-oct-2026): sin esto heredaba el título genérico
+    // del layout al compartir; la imagen sale de lib/og/tarjeta.tsx.
+    openGraph: { type: 'website', locale: 'es_AR', siteName: SITE_NAME, url: `${SITE_URL}/prepagas/${slug}`, title: titulo, description, images: [imagen] },
+    twitter: { card: 'summary_large_image', title: titulo, description, images: [imagen.url] },
     alternates: { canonical: `${SITE_URL}/prepagas/${slug}` },
     keywords: [
       `${prep.nombre.toLowerCase()} planes`,
@@ -536,6 +544,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
       name: `${prep.nombre} — Medicina Prepaga Argentina`,
       description: prep.descripcion,
       url: `${SITE_URL}/prepagas/${slug}`,
+      image: urlOgPrepaga(prep.slug),
       provider: { '@type': 'Organization', name: prep.nombre },
       // AggregateOffer con el rango real de precios de los planes — sin esto
       // Google no tiene forma de mostrar "desde $X" en el resultado de
