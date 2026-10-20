@@ -1,7 +1,9 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio } from '@/lib/utils'
 import type { ResumenZonaPlan } from '@/lib/cartilla-plan-resumen'
+import { OG_SIZE, rutaOgPlan, altOgPlan } from '@/lib/og/datos'
 import type { Prepaga } from '@/types'
 
 // "¿Qué es el [plan] de [prepaga]?" arriba de la página del plan (19-oct-2026).
@@ -86,6 +88,16 @@ export function ResumenPlan(props: Props) {
       <div className="container max-w-4xl mx-auto">
         <h2 className="text-xl font-bold text-gray-900 mb-2">¿Qué es el {plan.nombre} de {prep.nombre}?</h2>
         <p className="text-sm text-gray-700 leading-relaxed mb-5">{r.definicion}</p>
+        {/* Imagen del plan con sus datos (lib/og/tarjeta.tsx): miniatura en
+            Google y Google Imágenes ("plan smg20"). Ya viene en 1200x630. */}
+        <Image
+          src={rutaOgPlan(prep.slug, plan.slug)}
+          alt={altOgPlan(prep, plan)}
+          width={OG_SIZE.width}
+          height={OG_SIZE.height}
+          unoptimized
+          className="w-full max-w-md h-auto rounded-xl border border-gray-200 mb-5"
+        />
 
         <h3 className="text-base font-bold text-gray-900 mb-2">Cobertura y beneficios principales</h3>
         <ul className="list-disc pl-5 space-y-1.5 text-sm text-gray-700 mb-2">
