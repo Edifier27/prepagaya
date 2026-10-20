@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
       // declara Vita y Magna) y no tiene cobertura fuera de CABA y GBA.
       { source: "/prepagas/hospital-italiano/plan-:x(a|b|c)", destination: "/prepagas/hospital-italiano", permanent: true },
       { source: "/prepagas/buenos-aires/:loc(la-plata|mar-del-plata|bahia-blanca|tandil|azul)/hospital-italiano", destination: "/prepagas/hospital-italiano", permanent: true },
+      // Premedic (20-oct-2026): su cartilla oficial no tiene centros en La Plata
+      // ni en el interior bonaerense; la ciudad muestra las que sí cubren.
+      { source: "/prepagas/buenos-aires/:loc(la-plata|mar-del-plata|bahia-blanca|tandil|azul)/premedic", destination: "/prepagas/buenos-aires/:loc", permanent: true },
       { source: "/cambios/omint-a-osde", destination: "/comparativas/omint-vs-osde", permanent: true },
       // Guía general de bajas unificada en el pilar (17-oct-2026)
       { source: "/guias/baja-de-prepaga-proceso", destination: "/guias/como-dar-de-baja-prepaga-u-obra-social", permanent: true },

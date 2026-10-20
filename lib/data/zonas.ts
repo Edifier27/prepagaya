@@ -17,6 +17,10 @@ export interface PrepagaZona {
   soloLocalidades?: string[]
 }
 
+// Localidades de GBA en la provincia de Buenos Aires (sin La Plata ni el
+// interior): para las prepagas que solo cubren el AMBA.
+const LOCALIDADES_GBA = ['zona-norte', 'san-isidro', 'vicente-lopez', 'tigre-san-fernando', 'pilar', 'san-miguel', 'escobar', 'zona-sur', 'lomas-de-zamora', 'banfield', 'temperley', 'quilmes', 'berazategui', 'florencio-varela', 'adrogue', 'monte-grande', 'avellaneda-lanus', 'zona-oeste', 'moron', 'ramos-mejia-san-justo', 'isidro-casanova', 'ituzaingo-merlo']
+
 export interface LocalidadZona {
   slug: string
   nombre: string
@@ -701,7 +705,11 @@ provinciasSEO.push(
       { slug: 'prevencion-salud', nombre: 'Prevención Salud', enSitio: true, fuerza: 'media', verificado: false,
         resumen: 'Presencia en el interior bonaerense (Mar del Plata, Bahía Blanca) donde varias premium tienen menor densidad.',
         cartillaLocal: ['Presencia en el interior y la costa bonaerense'] },
+      // Solo GBA (20-oct-2026): su cartilla oficial (buscador de
+      // web.grupopremedic.com.ar, vigencia 22-sep-2026) tiene CABA, GBA
+      // Norte, Oeste y Sur, y ningún centro en La Plata ni en el interior.
       { slug: 'premedic', nombre: 'Premedic', enSitio: true, fuerza: 'media', verificado: true,
+        soloLocalidades: LOCALIDADES_GBA,
         resumen: 'Cobertura declarada en GBA desde su fundación, con el precio más accesible del mercado.',
         cartillaLocal: ['Cobertura en GBA desde el origen de la empresa', 'La más económica del mercado según nuestro relevamiento'] },
       { slug: 'cemic', nombre: 'CEMIC', enSitio: true, fuerza: 'marginal', verificado: true,
@@ -712,7 +720,7 @@ provinciasSEO.push(
         cartillaLocal: ['Sin sanatorios propios en el conurbano', 'Cobertura internacional en todos los planes'] },
       // Solo CABA y GBA (cuadro SSSalud: región Buenos Aires; sin cobertura en el interior)
       { slug: 'hospital-italiano', nombre: 'Plan de Salud Hospital Italiano', enSitio: true, fuerza: 'marginal', verificado: true,
-        soloLocalidades: ['zona-norte', 'san-isidro', 'vicente-lopez', 'tigre-san-fernando', 'pilar', 'san-miguel', 'escobar', 'zona-sur', 'lomas-de-zamora', 'banfield', 'temperley', 'quilmes', 'berazategui', 'florencio-varela', 'adrogue', 'monte-grande', 'avellaneda-lanus', 'zona-oeste', 'moron', 'ramos-mejia-san-justo', 'isidro-casanova', 'ituzaingo-merlo'],
+        soloLocalidades: LOCALIDADES_GBA,
         resumen: 'Sus centros ambulatorios propios se extienden por toda el AMBA, no solo CABA, así que buena parte del conurbano tiene acceso directo a la red del Hospital Italiano sin depender de convenios.',
         cartillaLocal: ['Centros ambulatorios propios en varios puntos del conurbano (AMBA)', 'Historia clínica unificada en toda la red', 'Internación en el Hospital Italiano de Buenos Aires'] },
       { slug: 'hominis', nombre: 'Hominis', enSitio: true, fuerza: 'marginal', verificado: false,

@@ -5,6 +5,7 @@ import { CARTILLAS } from '@/lib/data/cartilla-zonas'
 import { preciosParaGrupo } from '@/lib/precios/motor'
 import { sanatoriosAmba } from '@/lib/planes-comparacion'
 import { SITE_URL, formatPrecio } from '@/lib/utils'
+import { anioPrecios, elegir } from '@/lib/seo/titulos'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { Button } from '@/components/ui/Button'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
@@ -37,9 +38,14 @@ const sinPrecioOficial = prepagas.filter((p) => oficiales(p).length === 0)
 // las otras formas en que se busca. El precio "desde" sale de los datos.
 const PRECIO_MINIMO = rankingPrecio[0].planMinimo.precio
 export const metadata: Metadata = {
-  // Pregunta textual (15-oct-2026, Search Console: "cual es la prepaga mas barata" pos. 15)
-  title: `¿Cuál es la prepaga más barata? Baratas y buenas, ${PRECIO_ACTUALIZADO.toLowerCase()}`,
-  description: `Las prepagas más baratas de Argentina por precio oficial, desde ${formatPrecio(PRECIO_MINIMO)}/mes, y cuáles son buenas y baratas: sanatorios del plan de entrada, copagos y opciones para jóvenes.`,
+  // 20-oct-2026: "prepagas económicas" es la frase con volumen medido (Google
+  // Ads: 720/mes) y va primero; la pregunta "cuál es la prepaga más barata"
+  // (Search Console 15-oct, pos. 15) sigue en el título y en la descripción.
+  title: elegir([
+    `Prepagas económicas ${anioPrecios()}: la más barata, desde ${formatPrecio(PRECIO_MINIMO)}/mes`,
+    `Prepagas económicas ${anioPrecios()}: cuál es la más barata`,
+  ]),
+  description: `¿Cuál es la prepaga más barata? Ranking por precio oficial, desde ${formatPrecio(PRECIO_MINIMO)}/mes, y cuáles son buenas y baratas: sanatorios del plan de entrada, copagos y opciones para jóvenes.`,
   alternates: { canonical: `${SITE_URL}/prepagas-economicas` },
   keywords: ['prepagas economicas', 'prepagas baratas', 'prepaga buena y barata', 'prepaga mas barata argentina', 'mejor prepaga precio calidad', 'prepagas economicas para jovenes', 'prepagas economicas caba'],
 }
@@ -162,8 +168,9 @@ export default function PrepagasEconomicasPage() {
             Prepagas económicas: las más baratas y las buenas y baratas
           </h1>
           <p className="text-gray-600 max-w-2xl leading-relaxed">
-            Una prepaga no tiene por qué costar medio millón de pesos: hoy hay opciones desde{' '}
-            <strong>{formatPrecio(masBarata.planMinimo.precio)}/mes</strong> que cubren el PMO completo, el mismo piso legal que cubre el plan más caro del mercado. La diferencia está en la cartilla, los sanatorios y los copagos — no en la cobertura que exige la ley.
+            La prepaga más barata por precio oficial es{' '}
+            <strong>{masBarata.prep.nombre} {masBarata.planMinimo.nombre}</strong>, a{' '}
+            <strong>{formatPrecio(masBarata.planMinimo.precio)}/mes</strong> para una persona de 30 años en CABA y GBA ({PRECIO_ACTUALIZADO.toLowerCase()}, cuadro de la Superintendencia de Servicios de Salud). Todas cubren el PMO completo, el mismo piso legal que el plan más caro del mercado: la diferencia está en la cartilla, los sanatorios y los copagos, no en la cobertura que exige la ley.
           </p>
         </div>
       </section>

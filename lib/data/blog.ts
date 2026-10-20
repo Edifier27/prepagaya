@@ -235,6 +235,7 @@ export const blogPosts: BlogPost[] = [
       ],
       conclusion: 'PAMI cubre mucho más de lo que la mayoría de los afiliados conoce. El error más común es no aprovechar los descuentos en medicamentos o no usar el Médico de Cabecera. Informarse es la mejor manera de sacarle el máximo partido.',
     },
+    paginaPrincipal: { href: '/para/adultos-mayores', texto: 'Si querés sumar una prepaga: prepagas para jubilados y sus precios por edad' },
     keywords: ['pami que cubre 2026', 'beneficios pami jubilados', 'pami medicamentos gratis', 'pami turno medico'],
   },
   {
@@ -550,6 +551,7 @@ export const blogPosts: BlogPost[] = [
       ],
       conclusion: 'PAMI y una prepaga particular son totalmente compatibles. No hay que elegir: podés mantener PAMI (sobre todo por medicamentos) y sumar una prepaga particular para mejorar la calidad de atención en consultas e internación. Si el presupuesto es un tema, un plan complementario puede ser más conveniente que uno integral.',
     },
+    paginaPrincipal: { href: '/para/adultos-mayores', texto: 'Prepagas para jubilados: precios oficiales por edad y cuál conviene' },
     prepagasRelacionadas: ['swiss-medical'],
     keywords: ['tener pami y prepaga al mismo tiempo', 'pami y prepaga particular juntos', 'complementar pami con prepaga', 'jubilado prepaga particular pami'],
   },

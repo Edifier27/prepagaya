@@ -34,7 +34,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Títulos con dos partes ("Prepagas para monotributistas: cómo usar…"):
     // el año va pegado a la primera y no se suma el mes, para no pasar los
     // 70 caracteres
-    title: perf.titulo.includes(': ') ? perf.titulo.replace(': ', ' 2026: ') : `${perf.titulo} (${PRECIO_ACTUALIZADO})`,
+    title: perf.tituloSeo
+      ? { absolute: perf.tituloSeo }
+      : perf.titulo.includes(': ') ? perf.titulo.replace(': ', ' 2026: ') : `${perf.titulo} (${PRECIO_ACTUALIZADO})`,
     description: perf.metaDescripcion,
     alternates: {
       canonical: `${SITE_URL}/para/${perfil}`,

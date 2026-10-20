@@ -1,27 +1,72 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
-import { prepagaEnLocalidad, type LocalidadZona, type ProvinciaSEO } from '@/lib/data/zonas'
-import { SITE_URL } from '@/lib/utils'
+import { prepagaEnLocalidad, type LocalidadZona, type PrepagaZona, type ProvinciaSEO } from '@/lib/data/zonas'
+import { SITE_URL, formatPrecio } from '@/lib/utils'
 import { preciosDeZona, zonaDeLocalidad } from '@/lib/precios/zona'
+import { anioPrecios, elegir, MAX_DESCRIPCION } from '@/lib/seo/titulos'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { agruparPorZona, BreadcrumbBar, CtaCotizador, FaqSection, jsonLdArticle, jsonLdBreadcrumb, jsonLdFaq, nombreCorto } from './shared'
 import { ldJson } from '@/lib/jsonld'
 
+// Precio de lista de la prepaga en la localidad (30 años, el plan oficial más
+// barato). `regional` = la prepaga declara precio para esa región en el cuadro
+// de la SSSalud; si no, el número es el de CABA y no se muestra como precio
+// de la zona.
+function precioEnLocalidad(prov: ProvinciaSEO, loc: LocalidadZona, pz: PrepagaZona) {
+  const prep = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
+  if (!prep) return null
+  const zona = zonaDeLocalidad(prov, loc)
+  const r = preciosDeZona(prep, zona)
+  return r.desde ? { desde: r.desde, regional: Boolean(zona) && r.regional } : null
+}
+
+/** El precio "desde" más bajo entre las prepagas con precio oficial de la
+ *  región que cubren la localidad (null si ninguna lo declara, ej. La Plata). */
+function desdeEnLocalidad(prov: ProvinciaSEO, loc: LocalidadZona): number | null {
+  const precios = prov.prepagas
+    .filter((pz) => prepagaEnLocalidad(pz, loc.slug))
+    .flatMap((pz) => { const p = precioEnLocalidad(prov, loc, pz); return p?.regional ? [p.desde] : [] })
+  return precios.length ? Math.min(...precios) : null
+}
+
+// Las prepagas que cubren la localidad (las de soloLocalidades, ej. Premedic
+// u Hospital Italiano, solo donde tienen cartilla).
+const enLaLocalidad = (prov: ProvinciaSEO, loc: LocalidadZona) =>
+  prov.prepagas.filter((pz) => !pz.soloLocalidades || pz.soloLocalidades.includes(loc.slug))
+
 export function localidadMetadata(prov: ProvinciaSEO, loc: LocalidadZona): Metadata {
-  const year = new Date().getFullYear()
+  const anio = anioPrecios()
   const corto = nombreCorto(loc.nombre)
+  // 20-oct-2026: "prepagas en [ciudad]" es búsqueda de compra (Google Ads:
+  // Rosario 480/mes, Tucumán 210) y el título decía "cobertura", sin precio
+  // ni planes. Mismo criterio que las fichas: "planes y precios" + el "desde"
+  // oficial. Sin la provincia: los nombres de las localidades no se repiten.
+  const desde = desdeEnLocalidad(prov, loc)
+  const precio = desde ? formatPrecio(desde) : null
+  const n = enLaLocalidad(prov, loc).length
   return {
-    title: `Prepagas en ${corto}, ${prov.nombre}: cobertura ${year}`,
-    description: `Las prepagas con cartilla en ${loc.nombre}, ${prov.nombre}: qué prestadores locales cubren, planes actualizados ${PRECIO_ACTUALIZADO.toLowerCase()} y cotización online gratis.`,
+    title: elegir([
+      ...(precio ? [
+        `Prepagas en ${corto}: planes y precios ${anio}, desde ${precio}`,
+        `Prepagas en ${corto}: planes y precios desde ${precio}`,
+      ] : []),
+      `Prepagas en ${corto} ${anio}: planes y precios`,
+      `Prepagas en ${corto}: planes y precios`,
+    ]),
+    description: elegir([
+      `Prepagas en ${corto}, ${prov.nombre}: las ${n} con cobertura en la zona${precio ? `, desde ${precio}/mes` : ''}. Sus planes, los prestadores que cubren y cotización online gratis.`,
+      `Prepagas en ${corto}: las ${n} con cobertura en la zona${precio ? `, desde ${precio}/mes` : ''}. Planes, prestadores y cotización online gratis.`,
+    ], MAX_DESCRIPCION),
     alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${loc.slug}` },
-    keywords: [`prepagas en ${corto.toLowerCase()}`, `prepagas ${corto.toLowerCase()} ${prov.nombre.toLowerCase()}`, `medicina prepaga ${corto.toLowerCase()}`],
+    keywords: [`prepagas en ${corto.toLowerCase()}`, `prepagas ${corto.toLowerCase()} precios`, `prepagas ${corto.toLowerCase()} ${prov.nombre.toLowerCase()}`, `medicina prepaga ${corto.toLowerCase()}`],
   }
 }
 
 export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: LocalidadZona }) {
   const corto = nombreCorto(loc.nombre)
-  const destacadas = prov.prepagas.slice(0, 4)
+  const destacadas = enLaLocalidad(prov, loc).slice(0, 4)
+  const desde = desdeEnLocalidad(prov, loc)
   const grupoActual = agruparPorZona(prov.localidades).find((g) => g.items.some((l) => l.slug === loc.slug))
   const hermanas = (grupoActual?.items ?? prov.localidades).filter((l) => l.slug !== loc.slug)
   const tituloHermanas = grupoActual?.titulo ? `Otras localidades de ${grupoActual.titulo}` : `Otras ciudades de ${prov.nombre}`
@@ -57,13 +102,13 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson([
         jsonLdBreadcrumb(crumbs),
         jsonLdFaq(faq),
-        jsonLdArticle(`Prepagas en ${corto}, ${prov.nombre}`, `Las prepagas con cartilla en ${loc.nombre}, ${prov.nombre}.`, `/prepagas/${prov.slug}/${loc.slug}`),
+        jsonLdArticle(`Prepagas en ${corto}: planes y precios`, `Las prepagas con cartilla en ${loc.nombre}, ${prov.nombre}${desde ? `, desde ${formatPrecio(desde)} por mes` : ''}.`, `/prepagas/${prov.slug}/${loc.slug}`),
       ]) }} />
       <BreadcrumbBar crumbs={crumbs} />
 
       <div className="container py-10 max-w-4xl mx-auto">
         <header className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">Prepagas en {corto}, {prov.nombre}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">Prepagas en {corto}: planes y precios de {PRECIO_ACTUALIZADO.toLowerCase()}</h1>
           <p className="text-gray-600 leading-relaxed">{loc.descripcion}</p>
           <p className="text-xs text-gray-400 mt-3">Cobertura verificada al {new Date(prov.fechaVerificacion + 'T12:00:00').toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
         </header>
@@ -89,8 +134,7 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
           <h2 className="text-xl font-bold text-gray-900 mb-4">Prepagas destacadas en {prov.nombre}</h2>
           <div className="space-y-3">
             {destacadas.map((pz) => {
-              const prepData = pz.enSitio ? prepagas.find((p) => p.slug === pz.slug) : undefined
-              const precioMin = prepData ? preciosDeZona(prepData, zonaDeLocalidad(prov, loc)).desde : null
+              const precio = precioEnLocalidad(prov, loc, pz)
               const inner = (
                 <>
                   <div className="min-w-0">
@@ -98,8 +142,11 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
                     <div className="text-xs text-gray-500 mt-0.5 line-clamp-1">{pz.cartillaLocal[0]}</div>
                   </div>
                   <div className="text-right flex-shrink-0 ml-4">
-                    {precioMin ? (
-                      <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
+                    {precio ? (
+                      <>
+                        {precio.regional && <div className="text-sm font-bold text-gray-900 mb-1 tabular-nums">desde {formatPrecio(precio.desde)}</div>}
+                        <NivelPrecioBadge nivel={nivelPrecio(precio.desde)} />
+                      </>
                     ) : (
                       <div className="text-xs text-gray-400">Sujeto a cotización</div>
                     )}
@@ -137,6 +184,11 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
               </div>
             )
           })()}
+          {desde && (
+            <p className="text-xs text-gray-500 mt-3">
+              Precio por mes a los 30 años, del plan más económico de cada prepaga: lista oficial de la región en el cuadro tarifario de la Superintendencia de Servicios de Salud ({PRECIO_ACTUALIZADO.toLowerCase()}), contratación directa. Para tu edad y tu grupo, cotizá abajo.
+            </p>
+          )}
           <div className="mt-4">
             <Link href={`/prepagas/${prov.slug}/mejores-prepagas`} className="text-sm font-semibold text-[#E8002D] hover:underline">
               Ver el ranking completo de {prov.nombre} →
@@ -157,7 +209,7 @@ export function LocalidadPage({ prov, loc }: { prov: ProvinciaSEO; loc: Localida
                 <Link key={h.slug} href={`/prepagas/${prov.slug}/${h.slug}`}
                   className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group">
                   <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">Prepagas en {nombreCorto(h.nombre)}</div>
-                  <div className="text-xs text-gray-400 mt-1">Ver cobertura →</div>
+                  <div className="text-xs text-gray-400 mt-1">Planes y precios →</div>
                 </Link>
               ))}
             </div>

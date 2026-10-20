@@ -16,6 +16,15 @@ import { ldJson } from '@/lib/jsonld'
 import { LeadFormInline } from '@/components/ui/LeadFormInline'
 import { getCambiosPorOrigen } from '@/lib/data/cambios'
 
+// Guías que se consolidaron en otra página (redirigen con 308): las guías que
+// las tenían como relacionadas perdían el enlace (20-oct-2026). Se muestran
+// con la URL y el título nuevos.
+const RELACIONADAS_CONSOLIDADAS: Record<string, { href: string; titulo: string; categoria: string }> = {
+  'prepagas-economicas': { href: '/prepagas-economicas', titulo: 'Prepagas económicas: cuál es la más barata y cuáles son buenas', categoria: 'Precios' },
+  'prepaga-para-mayores-60': { href: '/para/adultos-mayores', titulo: 'Prepagas para jubilados y mayores de 60 y 70 años: precios por edad', categoria: 'Perfiles' },
+  'prepagas-para-monotributistas': { href: '/para/monotributistas', titulo: 'Prepagas para monotributistas: cómo usar el aporte y cuánto pagás', categoria: 'Perfiles' },
+}
+
 interface Props {
   params: Promise<{ slug: string }>
 }
@@ -67,7 +76,12 @@ export default async function GuiaPage({ params }: Props) {
   const cambiosDeOrigen = guia.captarBaja && prepagasRelacionadas[0] ? getCambiosPorOrigen(prepagasRelacionadas[0].slug) : []
 
   const guiasRelacionadas = guia.relacionadas
-    .map((s) => guias.find((g) => g.slug === s))
+    .map((s) => {
+      const g = guias.find((x) => x.slug === s)
+      if (g) return { key: g.slug, href: `/guias/${g.slug}`, titulo: g.titulo, categoria: g.categoria, pie: `${g.tiempoLectura} min →` }
+      const c = RELACIONADAS_CONSOLIDADAS[s]
+      return c ? { key: s, ...c, pie: 'Ver →' } : null
+    })
     .filter((g): g is NonNullable<typeof g> => Boolean(g))
 
   const jsonLd = [
@@ -437,8 +451,8 @@ export default async function GuiaPage({ params }: Props) {
             <div className="space-y-3">
               {guiasRelacionadas.map((g) => (
                 <Link
-                  key={g.slug}
-                  href={`/guias/${g.slug}`}
+                  key={g.key}
+                  href={g.href}
                   className="flex items-start gap-4 p-4 rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 transition-all group"
                 >
                   <Badge variant="gray" className="mt-0.5 flex-shrink-0">{g.categoria}</Badge>
@@ -446,7 +460,7 @@ export default async function GuiaPage({ params }: Props) {
                     <div className="font-medium text-gray-900 group-hover:text-[#E8002D] transition-colors leading-snug">
                       {g.titulo}
                     </div>
-                    <div className="text-xs text-gray-400 mt-1">{g.tiempoLectura} min →</div>
+                    <div className="text-xs text-gray-400 mt-1">{g.pie}</div>
                   </div>
                 </Link>
               ))}

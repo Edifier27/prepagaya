@@ -19,6 +19,8 @@ export interface PerfilData {
   nombre: string
   emoji: string
   titulo: string
+  /** Título para Google cuando el H1 pasa de 60 caracteres (ya lleva el año) */
+  tituloSeo?: string
   metaDescripcion: string
   descripcion: string
   necesidades: string[]
@@ -165,13 +167,16 @@ export const perfiles: PerfilData[] = [
   },
   {
     slug: 'adultos-mayores',
-    nombre: 'Adultos mayores',
+    nombre: 'Jubilados y mayores de 60',
     emoji: '👴',
     // Search Console (3-oct-2026): "cuanto cuesta una prepaga para mayores de
     // 70 años" y "prepaga para mayores de 60". La página muestra los precios
     // oficiales por edad (components/perfiles/PreciosMayores.tsx).
-    titulo: 'Prepagas para mayores de 60 y 70 años: precios y cuál conviene',
-    metaDescripcion: '¿Cuánto cuesta una prepaga para mayores de 60, 65 y 70 años? Precios oficiales de cada prepaga por edad, qué dice la ley (no te pueden rechazar por la edad) y cuál conviene. Cotizá gratis.',
+    // 20-oct-2026: suma "jubilados" (Google Ads: "prepagas para jubilados"
+    // 260/mes, +23 %). Es la misma intención: una sola URL, sin página aparte.
+    titulo: 'Prepagas para jubilados y mayores de 60 y 70 años: precios y cuál conviene',
+    tituloSeo: 'Prepagas para jubilados y mayores de 60 y 70: precios 2026',
+    metaDescripcion: '¿Cuánto cuesta una prepaga para jubilados y mayores de 60, 65 y 70? Precios oficiales por edad, qué dice la ley, PAMI y prepaga juntos, y cuál conviene.',
     descripcion: 'Después de los 60 la cuota pesa más y cada prepaga sube distinto con la edad: algunas dejan de aumentar mucho antes que otras. Acá tenés los precios oficiales por edad de cada una y lo que dice la ley para que elijas bien.',
     necesidades: [
       'Red de especialistas cerca de tu casa (cardiología, traumatología, neurología)',
@@ -217,7 +222,7 @@ export const perfiles: PerfilData[] = [
         a: 'Sí. Muchos jubilados mantienen PAMI y suman una prepaga para tener turnos más rápidos con especialistas e internación en sanatorios privados. Si querés cambiar de PAMI a otra obra social, los jubilados hacen la opción en ANSES. Te asesoramos sin cargo para ver qué te conviene según tu haber.',
       },
     ],
-    keywords: ['prepaga para mayores de 60', 'prepaga adultos mayores argentina', 'mejor prepaga jubilados', 'prepaga geriatrica argentina', 'prepaga complementaria pami', 'prepaga o pami jubilados'],
+    keywords: ['prepagas para jubilados', 'prepagas que aceptan jubilados', 'prepaga para mayores de 60', 'prepaga adultos mayores argentina', 'mejor prepaga jubilados', 'prepaga geriatrica argentina', 'prepaga complementaria pami', 'prepaga o pami jubilados'],
   },
   {
     slug: 'jovenes',

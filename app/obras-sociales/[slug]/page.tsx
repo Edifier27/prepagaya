@@ -431,6 +431,32 @@ export default async function ObraSocialPage({ params }: Props) {
 
       {conversion && <PasateConTusAportes osNombre={os.nombre} osSlug={os.slug} sanatoriosOs={cartillaTot?.internacion} />}
 
+      {/* PAMI → prepagas para jubilados (20-oct-2026): la ficha de PAMI no
+          enlazaba a la página de jubilados ni a la nota de PAMI y prepaga. */}
+      {os.slug === 'pami' && (
+        <section className="py-10 bg-gray-50 border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl border border-gray-200 p-6 flex flex-col sm:flex-row sm:items-center gap-5 justify-between">
+              <div>
+                <h2 className="text-lg font-bold text-gray-900 mb-1">¿Querés sumar una prepaga a PAMI?</h2>
+                <p className="text-sm text-gray-600 leading-relaxed max-w-xl">
+                  Se pueden tener las dos: PAMI sigue siendo tu obra social y la prepaga se contrata aparte, como particular. Ninguna prepaga puede rechazarte por la edad (Ley 26.682); lo que cambia es el precio.
+                </p>
+                <Link href="/blog/pami-y-prepaga-al-mismo-tiempo" className="inline-block mt-2 text-sm font-semibold text-gray-500 hover:text-[#E8002D] hover:underline">
+                  ¿Se puede tener PAMI y una prepaga al mismo tiempo? →
+                </Link>
+              </div>
+              <Link
+                href="/para/adultos-mayores"
+                className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm transition-colors"
+              >
+                Prepagas para jubilados →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Cross-link a la cobertura de prepagas de la provincia, cuando es la obra social provincial */}
       {provinciaMatch && (
         <section className="py-10 bg-gray-50 border-t border-gray-100">
