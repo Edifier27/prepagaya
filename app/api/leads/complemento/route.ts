@@ -16,6 +16,7 @@ export async function POST(req: NextRequest) {
   const email = String(body.email ?? '').trim()
   const celular = String(body.celular ?? '').trim()
   if (!email || !celular) return NextResponse.json({ error: 'Faltan datos' }, { status: 400 })
+  if (email.length > 150 || celular.length > 40) return NextResponse.json({ error: 'Datos inválidos' }, { status: 400 })
 
   const ok = await complementarLead({
     email,

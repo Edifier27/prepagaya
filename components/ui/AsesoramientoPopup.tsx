@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { trackLead } from '@/lib/analytics'
 import { TrustBadge } from './TrustBadge'
+import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
 interface Props {
   open: boolean
@@ -88,6 +89,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          ...datoTrampa(),
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
@@ -226,6 +228,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
                 <>
                   <h3 className="font-bold text-gray-900 text-sm mb-3">Ya casi — ¿a quién le mandamos la comparación?</h3>
                   <div className="space-y-3 mb-4">
+                    <CampoTrampa />
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">Nombre *</label>
                       <input

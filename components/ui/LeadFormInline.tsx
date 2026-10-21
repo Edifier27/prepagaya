@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { trackLead } from '@/lib/analytics'
 import { TrustBadge } from './TrustBadge'
+import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
 interface Props {
   prepagaNombre?: string
@@ -28,6 +29,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '', fuente: 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          ...datoTrampa(),
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: email.trim(),
@@ -71,6 +73,7 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '', fuente: 
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-3">
+        <CampoTrampa />
         <div>
           <input
             type="text"

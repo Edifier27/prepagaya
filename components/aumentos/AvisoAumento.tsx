@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { trackEvent, trackLead } from '@/lib/analytics'
 import { OPCIONES_PREPAGA_ACTUAL } from '@/lib/data/sondeo'
+import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
 // "Te aviso el aumento" (15-oct-2026): el aumento mensual es el momento en que
 // la gente piensa en cambiarse. Entra como un lead más (/api/leads, fuente
@@ -28,6 +29,7 @@ export function AvisoAumento({ prepagaInicial, titulo, compacto = false }: { pre
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          ...datoTrampa(),
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: `${celular.replace(/\D/g, '')}@sin-email.com`,
@@ -75,6 +77,7 @@ export function AvisoAumento({ prepagaInicial, titulo, compacto = false }: { pre
             {PREPAGAS.map((p) => <option key={p} value={p}>{p}</option>)}
           </select>
         </label>
+        <CampoTrampa />
         <label className="block">
           <span className="block text-xs font-semibold text-gray-600 mb-1">Nombre</span>
           <input value={nombre} onChange={(e) => setNombre(e.target.value)} autoComplete="given-name" placeholder="Tu nombre"

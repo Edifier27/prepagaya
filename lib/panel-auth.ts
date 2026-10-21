@@ -9,7 +9,7 @@
 import crypto from 'crypto'
 
 const PANEL_PASSWORD = process.env.PANEL_PASSWORD ?? ''
-const DURACION_MS = 1000 * 60 * 60 * 24 * 30 // 30 días
+const DURACION_MS = 1000 * 60 * 60 * 24 * 7 // 7 días (antes 30; auditoría 21-oct-2026)
 
 export const COOKIE_SESION = 'panel_session'
 

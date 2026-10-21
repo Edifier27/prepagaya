@@ -21,6 +21,7 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { leerZonaGeoDeCookie } from '@/lib/geo-zonas'
 import { OPCIONES_PREPAGA_ACTUAL } from '@/lib/data/sondeo'
 import type { SumaPlan } from '@/lib/planes-suma'
+import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
@@ -1082,7 +1083,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     const res = await fetch('/api/leads', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ ...payload, ...datoTrampa() }),
     })
     // fetch() no rechaza por status HTTP (solo por error de red): sin este
     // chequeo, un 400 de /api/leads (ej. email inválido) queda como
@@ -1370,6 +1371,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
               )}
 
               <div className="space-y-3 mb-5">
+                <CampoTrampa />
                 <div>
                   <label className="block text-xs font-semibold text-gray-600 mb-1">Nombre *</label>
                   <input id="lead-nombre" type="text" value={nombre} onChange={(e) => setNombre(e.target.value)}
