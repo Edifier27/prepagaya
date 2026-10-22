@@ -1,5 +1,4 @@
-import { SITE_URL } from '@/lib/utils'
-import { buildKommoLink, crearLeadEnKommo, getDestinoLead, kommoLeadUrl, nombreCuenta, resolverDestino } from '@/lib/kommo'
+import { getDestinoLead, resolverDestino } from '@/lib/kommo'
 import { reclamarLeadsPendientesDeKommo, marcarResultadoKommo, seguimientosVencidos, marcarSeguimientoAvisado } from '@/lib/db'
 import { avisarLeadPorPush } from '@/lib/push'
 import { mandarLeadPorEmail } from '@/lib/emailjs'
@@ -40,7 +39,6 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
     const edades = lead.edades ?? ''
     const fuente = lead.fuente ?? 'web'
     const fecha = new Date(lead.creado_en).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
-    const pais = lead.pais ?? undefined
 
     // Cupo diario por mail (pedido de Darío, 14-oct-2026): los primeros 3 leads de cada día van a un mail aparte y
     // en el panel quedan con su rótulo ("Dario B2"). Va antes del destino normal y no lo toca (ni avanza alternancias).
@@ -72,9 +70,9 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
     // el cron abajo, y como reclamarLeadsPendientesDeKommo() siempre trae primero el
     // más viejo, el mismo lead trabado volvía a tirar el cron cada minuto sin
     // dejar pasar nunca a los que venían después en la cola.
-    // Destino "CRM Asesor" (3-oct-2026, en prueba): va al CRM nuevo y no toca
-    // Kommo. Si el CRM falla, el lead no se pierde: sale por mail a Darío con
-    // el link para cargarlo en Kommo, igual que cuando falla Kommo.
+    // CRM Asesor: desde el 22-oct-2026 es el único destino además del mail (ya no
+    // se trabaja con Kommo; resolverDestino manda al CRM hasta los destinos viejos
+    // de Kommo). Si el CRM falla, el lead no se pierde: sale por mail a Darío.
     if (destino.tipo === 'crm') {
       const r = await mandarLeadACrmAsesor(lead, destino.cuenta)
       const quien = destino.cuenta === 'gabriela' ? 'Gabriela' : 'Darío'
@@ -84,10 +82,10 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
       } else {
         await marcarResultadoKommo(lead.id, `Error CRM ${quien}: ${r.error ?? 'sin detalle'}`, '')
         try {
-          const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
+          // Ya no se trabaja con Kommo (22-oct-2026): el mail de respaldo va sin link para cargarlo ahí
           await mandarLeadPorEmail({
             nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
-            kommo_link, kommo_label: 'Cargar en Kommo', duplicado_banner: '',
+            kommo_link: '', kommo_label: '', duplicado_banner: '',
           })
         } catch (err) {
           console.error('[CRON-KOMMO] tampoco salió el mail de respaldo, lead', lead.id, ':', err)
@@ -111,35 +109,6 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
         fallidos++
         console.error('[CRON-KOMMO] error mandando email directo, lead', lead.id, ':', err)
       }
-      continue
-    }
-
-    try {
-      const resultado = await crearLeadEnKommo({ nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, ts: String(Date.now()), pais }, destino)
-      if (resultado.ok && resultado.cuenta && resultado.leadId) {
-        const cuentaDisplay = nombreCuenta(resultado.cuenta)
-        const kommo_link = kommoLeadUrl(resultado.cuenta, resultado.leadId)
-        await marcarResultadoKommo(lead.id, `OK (${cuentaDisplay})${resultado.duplicado ? ' — ya era contacto' : ''}`, kommo_link)
-        ok++
-      } else {
-        const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
-        await marcarResultadoKommo(lead.id, `Error: ${resultado.error ?? 'sin detalle'}`, '')
-        await mandarLeadPorEmail({
-          nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
-          kommo_link, kommo_label: 'Cargar en Kommo', duplicado_banner: '',
-        })
-        fallidos++
-        console.error('[CRON-KOMMO] no se pudo cargar en Kommo, lead', lead.id, ':', resultado.error)
-      }
-    } catch (err) {
-      const kommo_link = buildKommoLink(SITE_URL, { nombre, celular, email, interes: prepaga, provincia, edades, fuente, fecha, pais })
-      await marcarResultadoKommo(lead.id, `Error: ${err}`, '')
-      await mandarLeadPorEmail({
-        nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
-        kommo_link, kommo_label: 'Cargar en Kommo', duplicado_banner: '',
-      })
-      fallidos++
-      console.error('[CRON-KOMMO] error cargando en Kommo, lead', lead.id, ':', err)
     }
   }
 

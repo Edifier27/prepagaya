@@ -158,8 +158,8 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
       .catch(() => {})
   }, [])
 
-  // A dónde van los leads nuevos (acceso directo, 29-sep-2026): cuenta de
-  // Kommo de Darío, de Gabriela, o un mail suelto por EmailJS. Se puede
+  // A dónde van los leads nuevos (acceso directo, 29-sep-2026): CRM de Darío,
+  // de Gabriela (o uno y uno), o un mail suelto por EmailJS (Kommo ya no, 22-oct-2026). Se puede
   // cambiar acá mismo, sin pedir un deploy.
   const [destino, setDestino] = useState<DestinoLead | null>(null)
   const [emailBorrador, setEmailBorrador] = useState('')
@@ -224,16 +224,6 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
       setGuardandoDestino(false)
     }
   }, [destino, guardandoDestino])
-  const elegirCuenta = useCallback((tipo: 'dario' | 'gabriela') => {
-    setMostrarInputEmail(false)
-    setMostrarAlternarMail(false)
-    guardarDestino({ tipo })
-  }, [guardarDestino])
-  const elegirAlternarCuentas = useCallback(() => {
-    setMostrarInputEmail(false)
-    setMostrarAlternarMail(false)
-    guardarDestino({ tipo: 'alternar-cuentas' })
-  }, [guardarDestino])
   const guardarEmailDestino = useCallback(() => {
     const email = emailBorrador.trim()
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return
@@ -498,23 +488,8 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
               <div className="flex items-center gap-1.5 flex-wrap">
                 <div
                   className="flex items-center gap-1 bg-gray-100 rounded-xl p-1"
-                  title="A dónde van los leads nuevos (sin contacto previo en Kommo)"
+                  title="A dónde van los leads nuevos: al CRM o a un mail (ya no se usa Kommo)"
                 >
-                  {(['dario', 'gabriela'] as const).map((tipo) => (
-                    <button
-                      key={tipo}
-                      onClick={() => elegirCuenta(tipo)}
-                      disabled={guardandoDestino}
-                      aria-pressed={destino.tipo === tipo}
-                      className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
-                        destino.tipo === tipo
-                          ? 'bg-[#E8002D] text-white shadow-sm'
-                          : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
-                      }`}
-                    >
-                      {tipo === 'dario' ? 'Darío' : 'Gaby'}
-                    </button>
-                  ))}
                   <button
                     onClick={() => { setMostrarInputEmail(true); setMostrarAlternarMail(false) }}
                     disabled={guardandoDestino}
@@ -528,23 +503,10 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
                     Otro mail
                   </button>
                   <button
-                    onClick={elegirAlternarCuentas}
-                    disabled={guardandoDestino}
-                    aria-pressed={destino.tipo === 'alternar-cuentas'}
-                    title="Un lead para Darío, el siguiente para Gaby, y así"
-                    className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
-                      destino.tipo === 'alternar-cuentas'
-                        ? 'bg-[#E8002D] text-white shadow-sm'
-                        : 'text-gray-500 hover:text-gray-800 hover:bg-gray-200'
-                    }`}
-                  >
-                    Uno y uno
-                  </button>
-                  <button
                     onClick={() => { setMostrarAlternarMail(true); setMostrarInputEmail(false) }}
                     disabled={guardandoDestino}
                     aria-pressed={destino.tipo === 'alternar-mail'}
-                    title="Un lead a la cuenta de Kommo elegida, el siguiente a un mail suelto"
+                    title="Un lead al CRM de la cuenta elegida, el siguiente a un mail suelto"
                     className={`text-xs font-bold rounded-lg px-3 py-1.5 transition-colors disabled:opacity-60 whitespace-nowrap ${
                       destino.tipo === 'alternar-mail'
                         ? 'bg-[#E8002D] text-white shadow-sm'
@@ -553,7 +515,7 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
                   >
                     Cuenta + mail
                   </button>
-                  {/* CRM Asesor (7-oct-2026): igual que con Kommo, a Darío, a Gabriela o uno y uno */}
+                  {/* CRM Asesor: a Darío, a Gabriela o uno y uno (desde el 22-oct-2026 ya no hay botones de Kommo) */}
                   {crmAsesorDisponible && (
                     <>
                       <span className="self-center text-[10px] font-bold uppercase tracking-wide text-[#0B6E5F] pl-2 pr-0.5">CRM</span>
@@ -566,7 +528,6 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
                           key={tipo}
                           onClick={() => {
                             if (destino.tipo === tipo) return
-                            if (!window.confirm(`¿Mandar los leads nuevos ${descripcion} en vez de a Kommo?`)) return
                             setMostrarInputEmail(false)
                             setMostrarAlternarMail(false)
                             guardarDestino({ tipo })
