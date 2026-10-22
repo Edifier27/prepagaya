@@ -37,7 +37,6 @@ const CLAVE_DESTINO_CUENTA_PAR = 'kommo_cuenta_default_cuenta_par'
 // Último lado usado de cada alternancia, para repartir 1 a 1 (pedido de
 // Darío, 30-sep-2026): "que nos lleguen a los dos, uno y uno" y "que le
 // llegue a uno a Kommo y al otro al mail".
-const CLAVE_ALTERNAR_CUENTAS_ULTIMO = 'kommo_alternar_cuentas_ultimo'
 const CLAVE_ALTERNAR_MAIL_ULTIMO = 'kommo_alternar_mail_ultimo'
 // Uno y uno en el CRM Asesor (7-oct-2026), aparte del de Kommo
 const CLAVE_ALTERNAR_CRM_ULTIMO = 'crm_alternar_ultimo'
@@ -59,7 +58,8 @@ export async function getDestinoLead(): Promise<DestinoLead> {
     const email = (await getConfig(CLAVE_DESTINO_EMAIL)) ?? ''
     return { tipo: 'email', email }
   }
-  if (tipo === 'alternar-cuentas') return { tipo: 'alternar-cuentas' }
+  // Destinos viejos de Kommo (ya no se usa, 22-oct-2026): se leen como su equivalente en el CRM
+  if (tipo === 'alternar-cuentas') return { tipo: 'crm-alternar' }
   // 'crm-asesor' era el destino único del 3-oct (iba al CRM de Darío)
   if (tipo === 'crm-asesor' || tipo === 'crm-dario') return { tipo: 'crm-dario' }
   if (tipo === 'crm-gabriela' || tipo === 'crm-alternar') return { tipo }
@@ -68,7 +68,7 @@ export async function getDestinoLead(): Promise<DestinoLead> {
     const cuenta = (await getConfig(CLAVE_DESTINO_CUENTA_PAR)) === 'gabriela' ? 'gabriela' : 'dario'
     return { tipo: 'alternar-mail', cuenta, email }
   }
-  return { tipo: tipo === 'gabriela' ? 'gabriela' : 'dario' }
+  return { tipo: tipo === 'gabriela' ? 'crm-gabriela' : 'crm-dario' }
 }
 
 export async function setDestinoLead(destino: DestinoLead): Promise<void> {
@@ -89,29 +89,25 @@ async function proximoLadoAlternado(clave: string, lados: readonly [string, stri
   return siguiente
 }
 
-export type DestinoResuelto = { tipo: 'dario' | 'gabriela' } | { tipo: 'email'; email: string } | { tipo: 'crm'; cuenta: 'dario' | 'gabriela' }
+export type DestinoResuelto = { tipo: 'email'; email: string } | { tipo: 'crm'; cuenta: 'dario' | 'gabriela' }
 
-/** Resuelve un destino "alternar-*" al destino real (Kommo o mail) que le
- *  toca a ESTE lead puntual. Los destinos fijos se devuelven tal cual.
- *  Llamar una sola vez por lead: cada llamado avanza la alternancia. */
+/** Resuelve el destino configurado al que le toca a ESTE lead puntual.
+ *  Desde el 22-oct-2026 ya no se trabaja con Kommo (Darío): los destinos viejos
+ *  de Kommo que hayan quedado guardados van al CRM de esa misma cuenta, así
+ *  ningún lead puede terminar en Kommo. Llamar una sola vez por lead: cada
+ *  llamado avanza la alternancia. */
 export async function resolverDestino(destino: DestinoLead): Promise<DestinoResuelto> {
-  if (destino.tipo === 'alternar-cuentas') {
-    const lado = await proximoLadoAlternado(CLAVE_ALTERNAR_CUENTAS_ULTIMO, ['dario', 'gabriela'])
-    return { tipo: lado as 'dario' | 'gabriela' }
-  }
-  if (destino.tipo === 'alternar-mail') {
-    const lado = await proximoLadoAlternado(CLAVE_ALTERNAR_MAIL_ULTIMO, ['cuenta', 'mail'])
-    return lado === 'cuenta' ? { tipo: destino.cuenta } : { tipo: 'email', email: destino.email }
-  }
-  if (destino.tipo === 'crm-alternar') {
+  if (destino.tipo === 'crm-alternar' || destino.tipo === 'alternar-cuentas') {
     const lado = await proximoLadoAlternado(CLAVE_ALTERNAR_CRM_ULTIMO, ['dario', 'gabriela'])
     return { tipo: 'crm', cuenta: lado as 'dario' | 'gabriela' }
   }
-  if (destino.tipo === 'crm-dario' || destino.tipo === 'crm-gabriela') {
-    return { tipo: 'crm', cuenta: destino.tipo === 'crm-gabriela' ? 'gabriela' : 'dario' }
+  if (destino.tipo === 'alternar-mail') {
+    const lado = await proximoLadoAlternado(CLAVE_ALTERNAR_MAIL_ULTIMO, ['cuenta', 'mail'])
+    return lado === 'cuenta' ? { tipo: 'crm', cuenta: destino.cuenta } : { tipo: 'email', email: destino.email }
   }
-  // Quedan los destinos fijos de Kommo o mail, que se devuelven tal cual
-  return destino as DestinoResuelto
+  if (destino.tipo === 'email') return destino
+  if (destino.tipo === 'crm-gabriela' || destino.tipo === 'gabriela') return { tipo: 'crm', cuenta: 'gabriela' }
+  return { tipo: 'crm', cuenta: 'dario' }
 }
 
 /** Celular listo para mandar a Kommo con "+" adelante: normalizado a
@@ -325,7 +321,7 @@ export async function crearLeadEnKommo(d: KommoLeadData, destinoResuelto?: Desti
   // siendo 'email' (esta función no debería llamarse en ese caso — ver
   // app/api/cron/procesar-leads-kommo, que rama antes).
   const destino = destinoResuelto ?? (await resolverDestino(await getDestinoLead()))
-  const cuenta = existente?.cuenta ?? (destino.tipo === 'dario' || destino.tipo === 'gabriela' ? destino.tipo : 'dario')
+  const cuenta = existente?.cuenta ?? (destino.tipo === 'crm' ? destino.cuenta : 'dario')
   const cfg = cuentaConfig(cuenta)
   if (!cfg.subdominio || !cfg.token) {
     return { ok: false, error: `Falta configurar Kommo para la cuenta de ${cfg.nombreDisplay} en el servidor.` }
