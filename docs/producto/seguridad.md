@@ -21,8 +21,13 @@ Controles agregados el 21-oct-2026 (auditoría). Hay partes en el código y part
    - Then: Rate Limit · Fixed Window · 600 segundos · 10 requests · por IP · al pasarse: Deny (o "Too Many Requests").
    - Save → Review Changes → Publish.
 2. **Límite para el login del panel.** Igual que la anterior, con Request Path · Equals · `/panel-leads` y Method · `POST`, 10 requests cada 900 segundos.
-3. **Vistas previas privadas.** Settings → Deployment Protection → Vercel Authentication → "Standard Protection". Hoy las URLs de prueba (`prepagaya-xxxx.vercel.app`) son públicas y usan la misma base.
-4. **Contraseña del panel.** Settings → Environment Variables → `PANEL_PASSWORD`: una frase larga (20 o más caracteres). Redeploy. Al cambiarla se cierran todas las sesiones abiertas.
+3. **Límite para las direcciones internas de datos** (anti-scraping, 23-oct-2026). Otra regla:
+   - If: Request Path · Starts with · `/api/`.
+   - Then: Rate Limit · Fixed Window · 60 segundos · 60 requests · por IP · Deny.
+   - Una persona usando el cotizador, las cartillas o el buscador hace pocos pedidos por minuto. Un programa que baja toda la tabla de precios o todas las cartillas pasa ese número enseguida.
+   - No afecta a Google ni a las IA, que leen las páginas, no estas direcciones.
+4. **Vistas previas privadas.** Settings → Deployment Protection → Vercel Authentication → "Standard Protection". Hoy las URLs de prueba (`prepagaya-xxxx.vercel.app`) son públicas y usan la misma base.
+5. **Contraseña del panel.** Settings → Environment Variables → `PANEL_PASSWORD`: una frase larga (20 o más caracteres). Redeploy. Al cambiarla se cierran todas las sesiones abiertas.
 
 ## Para probar el cupo de mail
 
