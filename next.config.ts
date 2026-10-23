@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withBotId } from "botid/next/config";
 import { CIUDADES_MIGRADAS } from "./lib/redirecciones-ciudades";
 
 const nextConfig: NextConfig = {
@@ -365,4 +366,5 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// withBotId: rutas propias para el detector de robots (instrumentation-client.ts)
+export default withBotId(nextConfig);

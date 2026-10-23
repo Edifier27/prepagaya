@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { esBot } from '@/lib/botid'
 import { preciosParaGrupo, FUENTE_PRECIOS, type Modalidad } from '@/lib/precios/motor'
 
 // Motor de precios oficial expuesto para el comparador (y reutilizable por
@@ -7,6 +8,12 @@ import { preciosParaGrupo, FUENTE_PRECIOS, type Modalidad } from '@/lib/precios/
 //   POST { zona: "caba", edades: [30, 32, 4], modalidad?: "directo" | "desregulado" }
 //   → { precios: { "swiss-medical/smg20": 123456, ... }, fuente }
 export async function POST(req: NextRequest) {
+  // Anti-scraping (23-oct-2026): solo navegadores de verdad. Ver
+  // instrumentation-client.ts. Los cotizadores toleran el error y usan el
+  // precio de referencia del plan.
+  if (await esBot()) {
+    return NextResponse.json({ error: 'Acceso denegado' }, { status: 403 })
+  }
   const body = await req.json().catch(() => null)
   const zona = String(body?.zona ?? '').trim()
   const edades = Array.isArray(body?.edades)
