@@ -7,6 +7,11 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 
+// Plan más barato con cuadro de la SSSalud (mismo criterio que /prepagas-economicas).
+const PRECIO_MINIMO_OFICIAL = Math.min(
+  ...prepagas.flatMap((p) => p.planes.filter((pl) => pl.fuentePrecio === 'sssalud').map((pl) => pl.precio)),
+)
+
 const acumulado = aumentoAcumulado()
 const ultimoConfirmado = [...aumentos2026].reverse().find((a) => !a.esProyeccion)!
 const proyeccion = aumentos2026.find((a) => a.esProyeccion)
@@ -447,7 +452,7 @@ export default function AumentosPage() {
             </Link>
             <Link href="/prepagas-economicas" className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
               <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">Las prepagas más económicas</div>
-              <div className="text-xs text-gray-400 mt-1">Desde $105.000/mes →</div>
+              <div className="text-xs text-gray-400 mt-1">Desde {formatPrecio(PRECIO_MINIMO_OFICIAL)}/mes →</div>
             </Link>
           </div>
         </div>
