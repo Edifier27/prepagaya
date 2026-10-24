@@ -24,7 +24,7 @@ export function middleware(request: NextRequest) {
     // `decodeURIComponent()` del lado del cliente (leerZonaGeoDeCookie) nunca
     // lograba des-codificarlo del todo — JSON.parse tiraba y devolvía null
     // siempre, para cualquier visitante, no solo por ciudad (bug real
-    // encontrado 20-sep-2026 con /api/debug-geo + un Set-Cookie de prueba).
+    // encontrado 20-sep-2026 con un endpoint de diagnóstico, ya borrado, + un Set-Cookie de prueba).
     response.cookies.set(COOKIE_ZONA_GEO, JSON.stringify(zona), {
       maxAge: 60 * 60 * 24, // 1 día — la IP puede cambiar (wifi/datos), no persistir de más
       path: '/',

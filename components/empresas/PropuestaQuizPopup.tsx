@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { trackLead } from '@/lib/analytics'
+import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
 const RANGOS_EMPLEADOS = ['2-5', '6-10', '11-25', '26-50', '+50']
 
@@ -139,6 +140,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          ...datoTrampa(),
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: email.trim(),
@@ -282,6 +284,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
               <p className="text-sm text-gray-500 mb-5">Un asesor arma la comparación con números reales para tu equipo.</p>
 
               <div className="grid grid-cols-1 gap-3 mb-4">
+                <CampoTrampa />
                 <div>
                   <label className="block text-xs font-semibold text-gray-400 mb-1.5">Nombre de la empresa *</label>
                   <input

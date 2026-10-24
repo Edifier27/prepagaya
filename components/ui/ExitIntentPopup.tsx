@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { trackLead } from '@/lib/analytics'
 import { TrustBadge } from './TrustBadge'
+import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
 const CUPON_CODE = 'PREPAGAYA15'
 const MINIMO_EN_SITIO = 60_000
@@ -77,6 +78,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          ...datoTrampa(),
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
@@ -142,6 +144,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
           ) : (
             <>
               <div className="space-y-3 mb-4">
+                <CampoTrampa />
                 <div>
                   <label className="block text-xs font-semibold text-gray-700 mb-1">Nombre *</label>
                   <input

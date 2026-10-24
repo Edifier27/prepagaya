@@ -6,7 +6,7 @@
 //
 // Los códigos de región son ISO 3166-2:AR, pero Vercel los manda SIN el
 // prefijo de país en x-vercel-ip-country-region (ej. "B", no "AR-B" —
-// confirmado con /api/debug-geo contra un visitante real en Tandil, que
+// confirmado con un endpoint de diagnóstico, ya borrado, contra un visitante real en Tandil, que
 // devolvió region: "B"). Se normaliza por las dudas de que algún edge
 // location mande el prefijo completo.
 // La subdivisión de partidos del GBA en Norte/Sur/Oeste es geografía pública

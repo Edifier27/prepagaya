@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
+import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
 interface Props {
   prepagaNombre: string
@@ -46,6 +47,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          ...datoTrampa(),
           nombre: nombre.trim(),
           celular: celular.trim(),
           email: email.trim() || `${celular.trim().replace(/\s/g, '')}@sin-email.com`,
@@ -128,6 +130,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                         </select>
                       </div>
                     )}
+                    <CampoTrampa />
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">Nombre *</label>
                       <input

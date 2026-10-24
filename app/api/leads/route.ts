@@ -7,6 +7,7 @@ import { procesarLeadsPendientesDeKommo, MINUTOS_ESPERA_KOMMO } from '@/lib/proc
 import { avisarLeadPorPush } from '@/lib/push'
 import { detectarZona } from '@/lib/geo-zonas'
 import { limpiarSituacionLaboral, limpiarPresupuesto, limpiarPrepagaActual, limpiarPreferencias } from '@/lib/data/sondeo'
+import { CAMPO_TRAMPA, campoDemasiadoLargo, celularPlausible, pruebaAutorizada } from '@/lib/leads-validacion'
 
 // Envío a Kommo programado por cada lead (19-oct-2026, en vez del cron de
 // cada minuto que agotó el cupo gratis de la base): después de responder,
@@ -23,6 +24,11 @@ function isValidEmail(email: string) {
 }
 
 export async function POST(req: NextRequest) {
+  // Un lead legítimo pesa ~2 KB (el cotizador manda los 5 planes mostrados)
+  if (Number(req.headers.get('content-length') ?? 0) > 20_000) {
+    return NextResponse.json({ error: 'Datos inválidos' }, { status: 413 })
+  }
+
   let body: Record<string, unknown>
 
   try {
@@ -57,6 +63,18 @@ export async function POST(req: NextRequest) {
   const preferencias = limpiarPreferencias(body.preferencias)
   const zonaDetectada = detectarZona(req.headers.get('x-vercel-ip-country-region'), req.headers.get('x-vercel-ip-city'))?.label
 
+  // Campo trampa completo o prueba sin el secreto: se responde "ok" para no
+  // darle pistas a un bot, pero el lead no se guarda ni se avisa a nadie.
+  if (String(body[CAMPO_TRAMPA] ?? '').trim() || (fuente.startsWith('prueba') && !pruebaAutorizada(req.headers.get('authorization')))) {
+    console.warn('[LEAD] descartado:', fuente.startsWith('prueba') ? 'prueba sin autorización' : 'campo trampa')
+    return NextResponse.json({ ok: true })
+  }
+
+  const largo = campoDemasiadoLargo({ nombre, email, celular, prepaga, fuente, fecha, provincia, personas, pais, origen: String(body.origen ?? '') })
+  if (largo || !celularPlausible(celular)) {
+    return NextResponse.json({ error: 'Datos inválidos' }, { status: 400 })
+  }
+
   if (!nombre || !email) {
     return NextResponse.json({ error: 'Nombre y email son requeridos' }, { status: 400 })
   }
@@ -64,7 +82,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Email inválido' }, { status: 400 })
   }
 
-  console.log('[LEAD]', JSON.stringify({ nombre, email, celular, prepaga, provincia, personas, fuente, fecha }))
+  // Sin nombre, email ni celular: los logs de Vercel se guardan días y no
+  // tienen que tener datos personales (auditoría 21-oct-2026).
+  console.log('[LEAD]', JSON.stringify({ fuente, provincia, prepaga: prepaga.slice(0, 80) }))
 
   // Kommo ya NO se llama acá — pedido de Darío, 22-sep-2026, con Vercel Pro
   // activo: el lead entra "Pendiente" y sale recién al minuto y medio de la

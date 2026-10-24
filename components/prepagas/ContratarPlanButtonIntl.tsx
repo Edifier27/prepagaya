@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { CODIGO_PAIS_INTL, formatearCelularInternacional } from '@/lib/utils'
 import { trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
+import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
 type Locale = 'us' | 'ru' | 'zh'
 
@@ -108,6 +109,7 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          ...datoTrampa(),
           nombre: nombre.trim(),
           celular: formatearCelularInternacional(codigoPais.prefijo, celular),
           email: email.trim(),
@@ -168,6 +170,7 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
               ) : (
                 <>
                   <div className="space-y-3 mb-4">
+                    <CampoTrampa />
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">{t.labelNombre} *</label>
                       <input
