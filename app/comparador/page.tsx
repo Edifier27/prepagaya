@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { cookies } from 'next/headers'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
+import { CotizadorV2 } from '@/components/comparador/CotizadorV2'
+import { VistoAB } from '@/components/comparador/VistoAB'
+import { COOKIE_AB } from '@/lib/cotizador-v2'
+import { sanatoriosV2 } from '@/lib/cotizador-v2-sanatorios'
 import { sumasPorPlan } from '@/lib/planes-suma'
 import { prepagasEnSitioPorZona } from '@/lib/data/zonas'
 import { PRECIO_ACTUALIZADO, prepagas } from '@/lib/data/prepagas'
@@ -64,11 +69,11 @@ const jsonLd = {
 }
 
 interface Props {
-  searchParams: Promise<{ zona?: string; provincia?: string; prepaga?: string; plan?: string; desde?: string }>
+  searchParams: Promise<{ zona?: string; provincia?: string; prepaga?: string; plan?: string; desde?: string; v?: string }>
 }
 
 export default async function ComparadorPage({ searchParams }: Props) {
-  const { zona, provincia, prepaga: prepagaParam, plan: planParam, desde } = await searchParams
+  const { zona, provincia, prepaga: prepagaParam, plan: planParam, desde, v } = await searchParams
   // Llegada desde la barra "Cotizá X" de una ficha o página de plan
   // (3-oct-2026): los resultados vienen filtrados por esa prepaga y el lead
   // dice qué plan estaba mirando. Solo slugs que existen.
@@ -83,6 +88,16 @@ export default async function ComparadorPage({ searchParams }: Props) {
         desde: desde && /^[a-z-]{3,20}$/.test(desde) ? desde : undefined,
       }
     : undefined
+
+  // Prueba 50/50 (24-oct-2026): con AB_COTIZADOR=ab, el grupo "b" del
+  // middleware ve el cotizador v2. ?v=b lo muestra siempre (vista previa).
+  // Las llegadas con zona, provincia o prepaga en la URL siguen con el actual,
+  // que ya arma esos recorridos. Se mide con el evento "Cotizador visto" y la
+  // fuente del lead (cotizador-v2 frente a la del actual).
+  const enPrueba = process.env.AB_COTIZADOR === 'ab'
+  const grupo = v === 'a' || v === 'b' ? v : enPrueba ? (await cookies()).get(COOKIE_AB)?.value : undefined
+  const desdeOk = desde && /^[a-z-]{3,20}$/.test(desde) ? desde : undefined
+  const versionB = grupo === 'b' && !origen && !zona && !provincia
 
   return (
     <>
@@ -145,14 +160,21 @@ export default async function ComparadorPage({ searchParams }: Props) {
             {origen.prepaga !== 'swiss-medical' ? ' y, para comparar, Swiss Medical' : ''}. Con tu zona y edades te mostramos el precio exacto.
           </p>
         )}
-        <ComparadorWizard
-          zonasSEO={prepagasEnSitioPorZona()}
-          initialZona={zona}
-          initialProvincia={provincia}
-          origen={origen}
-          sumas={sumasPorPlan()}
-          desde={desde && /^[a-z-]{3,20}$/.test(desde) ? desde : undefined}
-        />
+        {versionB ? (
+          <CotizadorV2 sanatorios={sanatoriosV2()} desde={desdeOk} />
+        ) : (
+          <>
+            {grupo === 'a' && <VistoAB />}
+            <ComparadorWizard
+              zonasSEO={prepagasEnSitioPorZona()}
+              initialZona={zona}
+              initialProvincia={provincia}
+              origen={origen}
+              sumas={sumasPorPlan()}
+              desde={desdeOk}
+            />
+          </>
+        )}
       </section>
 
       {/* Sin "Cotizar por prepaga" (Darío, 5-oct-2026): el comparador queda

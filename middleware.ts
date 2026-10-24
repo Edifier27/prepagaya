@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { detectarZona, COOKIE_ZONA_GEO } from '@/lib/geo-zonas'
 import { COOKIE_ENTRADA, canalDeHost, esPropio, escribirEntrada } from '@/lib/entrada'
+import { COOKIE_AB } from '@/lib/cotizador-v2'
 
 // Detecta la zona del visitante a partir de los headers de geolocalización
 // por IP que agrega Vercel Edge Network (x-vercel-ip-*) y la deja en una
@@ -17,7 +18,18 @@ export function middleware(request: NextRequest) {
   const ciudad = request.headers.get('x-vercel-ip-city')
   const zona = detectarZona(region, ciudad)
 
-  const response = NextResponse.next()
+  // Prueba 50/50 del cotizador (24-oct-2026): con AB_COTIZADOR=ab, a quien
+  // entra a /comparador sin grupo se le sortea uno y se guarda 30 días (así
+  // ve siempre la misma versión). Va también en el pedido, para que la página
+  // ya lo lea en esta primera visita.
+  let grupoAb = ''
+  if (process.env.AB_COTIZADOR === 'ab' && request.nextUrl.pathname === '/comparador' && !request.cookies.has(COOKIE_AB)) {
+    grupoAb = Math.random() < 0.5 ? 'a' : 'b'
+    request.cookies.set(COOKIE_AB, grupoAb)
+  }
+
+  const response = grupoAb ? NextResponse.next({ request: { headers: request.headers } }) : NextResponse.next()
+  if (grupoAb) response.cookies.set(COOKIE_AB, grupoAb, { maxAge: 60 * 60 * 24 * 30, path: '/', sameSite: 'lax' })
   if (zona) {
     // Sin encodeURIComponent acá a propósito: `response.cookies.set()` ya
     // codifica el valor solo al armar el header Set-Cookie. Codificarlo acá
