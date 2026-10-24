@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { esBot } from '@/lib/botid'
 import { createHash } from 'crypto'
 import { guardarResena, resenasRecientesDeIp } from '@/lib/db'
 import { prepagas } from '@/lib/data/prepagas'
@@ -12,6 +13,9 @@ import { avisarLeadPorPush } from '@/lib/push'
 const SAL = process.env.RESENAS_SAL ?? 'prepagaya-resenas'
 
 export async function POST(req: NextRequest) {
+  if (await esBot()) {
+    return NextResponse.json({ error: 'Acceso denegado' }, { status: 403 })
+  }
   const body = await req.json().catch(() => null)
   if (!body) return NextResponse.json({ error: 'JSON inválido' }, { status: 400 })
 
