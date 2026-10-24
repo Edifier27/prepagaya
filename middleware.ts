@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { detectarZona, COOKIE_ZONA_GEO } from '@/lib/geo-zonas'
+import { COOKIE_ENTRADA, canalDeHost, esPropio, escribirEntrada } from '@/lib/entrada'
 
 // Detecta la zona del visitante a partir de los headers de geolocalización
 // por IP que agrega Vercel Edge Network (x-vercel-ip-*) y la deja en una
@@ -29,6 +30,20 @@ export function middleware(request: NextRequest) {
       maxAge: 60 * 60 * 24, // 1 día — la IP puede cambiar (wifi/datos), no persistir de más
       path: '/',
       sameSite: 'lax',
+    })
+  }
+
+  // Por dónde entró la visita (acción 3, 24-oct-2026): se anota al llegar
+  // desde afuera (o sin referer y sin cookie). La navegación interna no la
+  // pisa. Cookie de sesión: dura lo que la visita.
+  let hostReferer = ''
+  try { hostReferer = new URL(request.headers.get('referer') ?? '').hostname } catch { /* sin referer */ }
+  const deAfuera = hostReferer !== '' && !esPropio(hostReferer)
+  if (deAfuera || (!hostReferer && !request.cookies.has(COOKIE_ENTRADA))) {
+    response.cookies.set(COOKIE_ENTRADA, escribirEntrada({ canal: canalDeHost(hostReferer), pagina: request.nextUrl.pathname }), {
+      path: '/',
+      sameSite: 'lax',
+      httpOnly: true,
     })
   }
   return response

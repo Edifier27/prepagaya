@@ -24,6 +24,8 @@ export async function POST(req: NextRequest) {
     situacionLaboral: limpiarSituacionLaboral(body.situacion_laboral),
     prepagaActual: limpiarPrepagaActual(body.prepaga_actual),
     preferencias: limpiarPreferencias(body.preferencias),
+    // "Consultar precios" de una tarjeta del cotizador: "Swiss Medical — SMG20 | $… (eligió en el cotizador)"
+    planElegido: String(body.plan_elegido ?? '').trim().slice(0, 160) || undefined,
   })
   return NextResponse.json({ ok })
 }

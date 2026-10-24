@@ -1,5 +1,6 @@
 import type { LeadRow } from '@/lib/db'
-import { normalizarCelularAR } from '@/lib/utils'
+import { normalizarCelularAR, PARTNERS_OFICIALES } from '@/lib/utils'
+import { prepagas } from '@/lib/data/prepagas'
 
 // Conexión con el CRM Asesor (pedido de Darío, 3-oct-2026): destino opcional
 // "CRM Asesor" en /panel-leads, en etapa de prueba. Mientras no se elija ese
@@ -20,6 +21,29 @@ const BYPASS = process.env.CRM_ASESOR_BYPASS ?? ''
 const EMAIL_GABRIELA = process.env.CRM_ASESOR_EMAIL_GABRIELA ?? 'gabriela.lazarte@gmail.com'
 
 export const crmAsesorConfigurado = () => Boolean(URL_CRM && CLAVE)
+
+const sinTildes = (t: string) => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+
+/** "partner" si pidió alguna de las 5 que vendemos, "no partner" si solo
+ *  otras, "sin prepaga" si no eligió ninguna (acción 3, 24-oct-2026). */
+export function tipoDeInteres(interes: string | null): 'partner' | 'no partner' | 'sin prepaga' {
+  const t = sinTildes(interes ?? '')
+  if (!t) return 'sin prepaga'
+  if (PARTNERS_OFICIALES.some((p) => t.includes(sinTildes(p)))) return 'partner'
+  return prepagas.some((p) => t.includes(sinTildes(p.nombre))) ? 'no partner' : 'sin prepaga'
+}
+
+/** Texto de origen para el asesor: fuente, página, canal, partner y número
+ *  de lead del panel, para cruzar después las ventas con su origen. */
+export function detalleOrigen(lead: LeadRow): string {
+  return [
+    `PrepagaYa · ${lead.fuente ?? 'web'}`,
+    lead.pagina_origen ? `desde ${lead.pagina_origen}` : '',
+    lead.canal ? `entró por ${lead.canal}${lead.pagina_entrada ? ` (${lead.pagina_entrada})` : ''}` : '',
+    tipoDeInteres(lead.prepaga),
+    `#${lead.id}`,
+  ].filter(Boolean).join(' · ').slice(0, 300)
+}
 
 /** Manda un lead ya consolidado (el mismo que iría a Kommo) al CRM Asesor. */
 export async function mandarLeadACrmAsesor(
@@ -45,7 +69,7 @@ export async function mandarLeadACrmAsesor(
     prepaga_interes: lead.prepaga ?? '',
     presupuesto: lead.presupuesto ?? '',
     origen: 'web',
-    origen_detalle: `PrepagaYa · ${lead.fuente ?? 'web'}`,
+    origen_detalle: detalleOrigen(lead),
     ...(cuenta === 'gabriela' ? { asesor: EMAIL_GABRIELA } : {}),
     ...(sinBienvenida ? { enviarBienvenida: false } : {}),
   }

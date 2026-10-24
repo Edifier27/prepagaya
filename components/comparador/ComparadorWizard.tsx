@@ -22,6 +22,7 @@ import { leerZonaGeoDeCookie } from '@/lib/geo-zonas'
 import { OPCIONES_PREPAGA_ACTUAL } from '@/lib/data/sondeo'
 import type { SumaPlan } from '@/lib/planes-suma'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
+import { paginaPrevia } from '@/lib/navegacion-cliente'
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
@@ -1083,7 +1084,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     const res = await fetch('/api/leads', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...payload, ...datoTrampa() }),
+      body: JSON.stringify({ ...payload, ...datoTrampa(), pagina_previa: paginaPrevia() }),
     })
     // fetch() no rechaza por status HTTP (solo por error de red): sin este
     // chequeo, un 400 de /api/leads (ej. email inválido) queda como
@@ -1115,6 +1116,17 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     // quiere que el visitante le escriba directo, solo recibir el lead por
     // mail y contactar él cuando quiera). Solo queda un "anotado" local.
     setPlanAccedidoStatus('success')
+    // Que el asesor vea qué plan eligió (acción 3, 24-oct-2026): antes en casi
+    // la mitad de los leads el interés era Swiss u OSDE por defecto.
+    fetch('/api/leads/complemento', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: emailFinal,
+        celular: celular.trim(),
+        plan_elegido: `${res.prepaga.nombre} — ${res.plan.nombre} | $${res.precioGrupal.toLocaleString('es-AR')}/mes (eligió en el cotizador)`,
+      }),
+    }).catch(() => {})
   }
 
   function toggleCob(id: CobId) {

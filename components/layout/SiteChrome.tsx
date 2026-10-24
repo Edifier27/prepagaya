@@ -1,6 +1,8 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
+import { registrarRuta } from '@/lib/navegacion-cliente'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { BottomNav } from './BottomNav'
@@ -60,6 +62,8 @@ function SiteChromeInner({ children, provincias }: { children: React.ReactNode; 
     // HTML y se escondía recién al hidratar, y la página saltaba (CLS).
     || ruta === '/empresas' || ruta.startsWith('/empresas/')
   const hideChrome = modoEnfocado || sinChrome
+  // Página anterior para medir desde dónde llega cada lead del cotizador
+  useEffect(() => { if (ruta) registrarRuta(ruta) }, [ruta])
   return (
     <div className={`flex-1 flex flex-col ${hideChrome ? '' : 'pb-16 lg:pb-0'}`}>
       {!sinChrome && (modoEnfocado ? <HeaderEnfocado /> : <Header />)}
