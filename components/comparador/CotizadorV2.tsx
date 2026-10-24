@@ -219,7 +219,7 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
         </div>
 
         <div>
-          <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">¿Cómo la pagarías?</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">¿Condición?</p>
           <div className="grid grid-cols-3 gap-2">
             {CONDICIONES.map((c) => (
               <button key={c.id} type="button" onClick={() => setCondicion(c.id)}
