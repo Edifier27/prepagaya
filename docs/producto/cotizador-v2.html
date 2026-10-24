@@ -105,7 +105,10 @@ body.pc .screen{border-radius:12px;height:760px}
 body.pc .body{padding:22px 28px}
 body.pc .grilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;align-items:start}
 body.pc .body > h3, body.pc .body > .hint, body.pc .body > .aviso{max-width:none}
-body.pc .body .persona, body.pc .body .seg, body.pc .body label.f, body.pc .body .opts, body.pc .body .zona, body.pc .body .btn, body.pc .body .elegido{max-width:520px}
+/* En la compu, los pasos de formulario van en una columna centrada; solo los planes usan todo el ancho */
+body.pc .body.columna > *{width:100%;max-width:540px;margin-inline:auto}
+body.pc .body.columna{align-items:stretch}
+body.pc .body.columna > .done-ico{width:56px;max-width:56px}
 .alcance{align-self:flex-start}
 body.pc .upsell{display:none}
 .links-pc{display:flex;gap:14px;flex-wrap:wrap}
@@ -417,6 +420,6 @@ function popup(plan, tipo){
   fondo.onclick = (e) => { if (e.target === fondo) cerrar(); };
   fondo.querySelector('#modalCta').onclick = () => { cerrar(); s.elegido = plan; s.paso = 3; render(); };
 }
-function render(){ rail(); pantalla(); panel(); }
+function render(){ rail(); pantalla(); $('pantalla').classList.toggle('columna', s.paso !== 2); panel(); }
 render();
 </script>
