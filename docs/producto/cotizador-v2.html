@@ -74,6 +74,7 @@ input:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid 
 .sanat{font-size:.76rem;border-top:1px dashed var(--line);padding-top:7px;color:var(--ink)}
 .sanat b{display:block;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
 .sanat span{color:var(--muted)}
+.sanat .propios{display:block;color:var(--accent);font-weight:700;margin-top:2px}
 .unlock{font-size:.76rem;color:var(--ok);background:var(--ok-soft);border-radius:10px;padding:7px 9px;margin:0;font-weight:600}
 .plan .promo{font-size:.78rem;background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:7px 9px;font-weight:600}
 .plan .promo span{display:block;font-weight:500;font-size:.72rem}
@@ -239,7 +240,16 @@ function card(plan, i){
       ${plan.top ? `<span class="badge">⭐ ${plan.top}</span>` : ''}
       <div class="head"><div><div class="marca">${plan.marca}</div><div class="nom">${plan.nom}</div></div>${precio}</div>
       <ul class="pts">${plan.pts.map(p => `<li>${p}</li>`).join('')}</ul>
-      ${(() => { const sn = SANATORIOS[s.zona]?.[plan.k]; return sn ? `<div class="sanat"><b>🏥 Internación en ${s.zona}</b>${sn.top.join(' · ')}${sn.total > 3 ? `<span> y ${sn.total - 3} más</span>` : ''}</div>` : ''; })()}
+      ${(() => {
+        // Swiss en GBA Sur y GBA Norte: los sanatorios que eligió Darío; en AMBA, más los centros propios
+        const fijos = plan.grupo === 'swiss' ? { 'GBA Sur': ['Juncal', 'IMA', 'Espora'], 'GBA Norte': ['Las Lomas', 'Trinidad', 'Clínica Olivos'] }[s.zona] : null;
+        const sn = SANATORIOS[s.zona]?.[plan.k];
+        const nombres = fijos ?? sn?.top;
+        if (!nombres) return '';
+        const propios = plan.grupo === 'swiss' && s.region === 'amba';
+        const extra = propios ? '<span class="propios">+ más de 30 centros propios de atención exclusiva</span>' : (!fijos && sn.total > 3 ? `<span> y ${sn.total - 3} más</span>` : '');
+        return `<div class="sanat"><b>🏥 Internación en ${s.zona}</b>${nombres.join(' · ')}${extra}</div>`;
+      })()}
       ${promoCorta ? `<p class="unlock">🔓 Pedilo ahora y pagás menos desde el primer mes. Tu precio final con descuento te lo pasa un asesor oficial.</p>` : ''}
       <button type="button" class="cta ${promoCorta ? '' : 'sec2'}" data-i="${i}">${boton} →</button>
       <span class="asesor">✓ ${asesorDe(plan.grupo).replace('Te asesora un asesor', 'Asesor')}${plan.grupo === 'swiss' || plan.grupo === 'sancor' ? ' · respuesta por WhatsApp' : ''}</span>
