@@ -132,7 +132,7 @@ tr.capt td{background:var(--accent-soft)}
       <table>
         <thead><tr><th>Paso</th><th>Qué pedimos</th><th>Por qué en este momento</th><th>Qué hacemos con la respuesta</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td>Provincia o zona</td><td>Es fácil de contestar y define precios y cartilla. No asusta a nadie.</td><td>Filtra prepagas sin cobertura en la zona.</td></tr>
+          <tr><td>1</td><td>Nada: la zona sale por IP. Solo se pregunta si no la detectamos o si toca "Cambiar"</td><td>Un paso menos. Queda visible arriba de las edades por si la IP se equivoca (CABA/GBA, datos móviles, VPN).</td><td>Filtra prepagas sin cobertura en la zona.</td></tr>
           <tr><td>2</td><td>Integrantes y edades</td><td>Hace falta para el precio por edad. La persona ya invirtió un paso.</td><td>Calcula el precio de lista del grupo.</td></tr>
           <tr><td>3</td><td>Nada: ve los precios de lista</td><td>Es lo que vino a buscar. Quien ve el precio y sigue, ya sabe que lo puede pagar.</td><td>Mide qué planes mira y en cuál toca el botón.</td></tr>
           <tr class="capt"><td>4</td><td>Nombre y celular</td><td>Recién cuando pide algo que solo nosotros damos: el precio con promo y un asesor.</td><td>Se guarda el lead con el plan elegido. Desde acá ya no se pierde.</td></tr>
@@ -165,8 +165,8 @@ const PLANES = [
   {id:'smg20', prep:'Swiss Medical', plan:'SMG20', precio:353333, nota:'Suma sanatorios de primer nivel', partner:true, mas:true},
   {id:'as100', prep:'Avalian', plan:'AS100', precio:288674, nota:'Red propia en todo el país', partner:true, mas:true},
 ];
-const PASOS = ['Zona','Integrantes','Precios','Contacto','3 preguntas','Listo'];
-const s = { paso:0, zona:'', personas:[{t:'Titular', edad:35}], verMas:false, plan:null, nombre:'', cel:'', wa:false, intencion:'', pago:'', cuando:'' };
+const PASOS = ['Zona (si no la detectamos)','Integrantes','Precios','Contacto','3 preguntas','Listo'];
+const s = { paso:1, zona:'CABA', zonaIp:true, personas:[{t:'Titular', edad:35}], verMas:false, plan:null, nombre:'', cel:'', wa:false, intencion:'', pago:'', cuando:'' };
 const $ = (id) => document.getElementById(id);
 const fmt = (n) => '$' + Math.round(n).toLocaleString('es-AR');
 
@@ -195,7 +195,7 @@ function irA(i){
 }
 
 const PANEL = [
-  { titulo:'Paso 1 · Zona', pide:'Provincia o zona (CABA, GBA Norte, Córdoba…).', porque:'Es la pregunta más fácil y la que más cambia el precio y la cartilla. Arrancar con algo simple hace que la persona siga.', hace:'Filtramos las prepagas que no tienen cobertura en esa zona. Si es una zona donde no vendemos, ya lo sabemos antes del contacto.' },
+  { titulo:'Paso 1 · Zona, solo si no la detectamos', pide:'Nada en la mayoría de los casos: la zona sale de la ubicación por IP. Esta pantalla aparece solo si no la pudimos detectar o si la persona toca "Cambiar".', porque:'Un paso menos. La ubicación por IP acierta bien la provincia, pero puede fallar entre CABA y GBA, con datos móviles o VPN. Por eso la zona queda visible arriba de las edades, con "Cambiar" a un toque.', hace:'Filtramos las prepagas que no tienen cobertura en esa zona. Si es una zona donde no vendemos, ya lo sabemos antes del contacto.' },
   { titulo:'Paso 2 · Integrantes y edades', pide:'Quiénes son y la edad de cada uno.', porque:'Sin esto no hay precio por edad. Pedir la edad no se siente invasivo y la persona ya está metida en el proceso.', hace:'Calculamos el precio de lista del grupo con el motor de precios, plan por plan.' },
   { titulo:'Paso 3 · Precios de lista a la vista', pide:'Nada. Ve los precios oficiales por edad, Swiss primero, con 4 planes recomendados y "ver más".', porque:'Es lo que vino a buscar y ya es público en la SSSalud. Mostrarlo filtra: quien ve el precio y sigue adelante sabe que lo puede pagar. Quien no llega, se va sin generar trabajo ni costo de WhatsApp.', hace:'Medimos qué planes mira y en cuál toca "Quiero el precio con promo". Ese clic dice qué prepaga y qué plan le interesa.' },
   { titulo:'Paso 4 · Nombre y celular (acá se captura el dato)', pide:'Nombre y celular. Sin email. Casilla de permiso para WhatsApp sin tildar de antemano.', porque:'Recién pedimos datos cuando la persona pide algo que solo nosotros damos: el precio con promoción y un asesor. Es un intercambio justo, no una barrera.', hace:'Guardamos el lead con el plan que eligió, el origen (canal y página) y el #id. Desde este momento el lead no se pierde aunque cierre la página.' },
@@ -225,15 +225,17 @@ function pantalla(){
     el.innerHTML = `<h3>¿Dónde vivís?</h3><p class="hint">Los precios y la cartilla cambian según la zona.</p>
       <div class="chips">${PROVINCIAS.map(p => `<button type="button" class="chip ${s.zona===p?'sel':''}" data-zona="${p}">${p}</button>`).join('')}</div>
       <button type="button" class="btn" id="sig" aria-disabled="${!s.zona}">Siguiente</button>`;
-    el.querySelectorAll('[data-zona]').forEach(b => b.onclick = () => { s.zona = b.dataset.zona; render(); });
+    el.querySelectorAll('[data-zona]').forEach(b => b.onclick = () => { s.zona = b.dataset.zona; s.zonaIp = false; render(); });
     $('sig').onclick = () => { if (s.zona){ s.paso = 1; render(); } };
   }
   if (s.paso === 1){
-    el.innerHTML = `<h3>¿Para quiénes es?</h3><p class="hint">Poné la edad de cada uno. Nada más.</p>
+    el.innerHTML = `<div class="elegido">📍 Precios para <b>${s.zona}</b>${s.zonaIp ? ' (por tu ubicación)' : ''} · <button type="button" class="reset" id="cambiarZona">Cambiar</button></div>
+      <h3>¿Para quiénes es?</h3><p class="hint">Poné la edad de cada uno. Nada más.</p>
       ${s.personas.map((p,i) => `<div class="persona"><span>${p.t}</span><input type="text" inputmode="numeric" id="edad-${i}" value="${p.edad}" aria-label="Edad de ${p.t}"> años</div>`).join('')}
       <button type="button" class="btn ghost" id="mas">+ Agregar integrante</button>
       <button type="button" class="btn" id="sig">Ver precios</button>`;
     s.personas.forEach((p,i) => $('edad-'+i).oninput = (e) => { p.edad = parseInt(e.target.value) || ''; });
+    $('cambiarZona').onclick = () => { s.paso = 0; render(); };
     $('mas').onclick = () => { s.personas.push({t: s.personas.length === 1 ? 'Pareja' : 'Hijo/a', edad: s.personas.length === 1 ? 33 : 4}); render(); };
     $('sig').onclick = () => { s.paso = 2; render(); };
   }
@@ -291,7 +293,7 @@ function pantalla(){
       <div class="plan"><div class="row"><span class="nom">${s.plan.prep} ${s.plan.plan}</span><span class="pre">${fmt(s.plan.precio)}</span></div><span class="sub">Precio de lista. El de la promo te lo pasamos nosotros.</span></div>
       <p class="hint center">Lo que ves en los otros planes sigue disponible abajo.</p>
       <button type="button" class="btn ghost" id="otra">Probar otro recorrido</button>`;
-    $('otra').onclick = () => { Object.assign(s, {paso:0, zona:'', personas:[{t:'Titular', edad:35}], verMas:false, plan:null, nombre:'', cel:'', wa:false, intencion:'', pago:'', cuando:''}); render(); };
+    $('otra').onclick = () => { Object.assign(s, {paso:1, zona:'CABA', zonaIp:true, personas:[{t:'Titular', edad:35}], verMas:false, plan:null, nombre:'', cel:'', wa:false, intencion:'', pago:'', cuando:''}); render(); };
   }
 }
 
