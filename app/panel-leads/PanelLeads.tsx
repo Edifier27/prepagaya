@@ -109,6 +109,9 @@ function exportarCSV(leads: LeadRow[]) {
     ['Presupuesto (quiz)', (l) => l.presupuesto ?? ''],
     ['Preferencias', (l) => textoPreferencias(l.preferencias)],
     ['Fuente', (l) => l.fuente ?? ''],
+    ['Página de origen', (l) => l.pagina_origen ?? ''],
+    ['Canal de entrada', (l) => l.canal ?? ''],
+    ['Página de entrada', (l) => l.pagina_entrada ?? ''],
     ['Estado', (l) => estadoInfo(l.estado).label],
     ['Notas', (l) => l.notas ?? ''],
     ['Seguimiento', (l) => (l.seguimiento_en ? new Date(l.seguimiento_en).toLocaleString('es-AR') : '')],
@@ -137,9 +140,14 @@ interface Filtros {
   estado: EstadoLead | null
   soloSeguimiento: boolean
   region: string | null
+  canal: string | null
+  origen: string | null
 }
-const FILTROS_VACIOS: Filtros = { mes: null, zona: null, fuente: null, soloHoy: false, soloSinLeer: false, busqueda: '', estado: null, soloSeguimiento: false, region: null }
-type FiltroChip = 'mes' | 'zona' | 'fuente' | 'region'
+const FILTROS_VACIOS: Filtros = { mes: null, zona: null, fuente: null, soloHoy: false, soloSinLeer: false, busqueda: '', estado: null, soloSeguimiento: false, region: null, canal: null, origen: null }
+// Origen del lead (acción 3, 24-oct-2026). Los leads de antes no lo tienen.
+const canalDe = (l: LeadRow) => l.canal || 'Sin dato'
+const origenDe = (l: LeadRow) => l.pagina_origen || 'Sin dato'
+type FiltroChip = 'mes' | 'zona' | 'fuente' | 'region' | 'canal' | 'origen'
 
 type EstadoAlertas = 'desconocido' | 'inactivas' | 'activando' | 'activas' | 'no-soportado' | 'rechazadas'
 
@@ -438,6 +446,8 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
       porZona: contar(leads.map((l) => l.provincia)),
       porRegion: contar(leads.map((l) => partesZona(l.zona_detectada)?.region ?? null)),
       porFuente: contar(leads.map((l) => l.fuente)),
+      porCanal: contar(leads.map(canalDe)),
+      porOrigen: contar(leads.map(origenDe)),
       porMes,
       porEstado,
       ventasPorFuente,
@@ -456,6 +466,8 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
       if (filtros.estado && (l.estado ?? 'nuevo') !== filtros.estado) return false
       if (filtros.region && (partesZona(l.zona_detectada)?.region ?? 'Sin especificar') !== filtros.region) return false
       if (filtros.soloSeguimiento && !seguimientoVencido(l)) return false
+      if (filtros.canal && canalDe(l) !== filtros.canal) return false
+      if (filtros.origen && origenDe(l) !== filtros.origen) return false
       if (q) {
         const texto = normalizar([l.nombre, l.email, l.prepaga, l.provincia, l.zona_detectada].filter(Boolean).join(' '))
         const coincideTel = qDigitos.length >= 3 && (l.celular ?? '').replace(/\D/g, '').includes(qDigitos)
@@ -466,7 +478,7 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
   }, [leads, filtros])
 
   const hayFiltros = Boolean(
-    filtros.mes || filtros.zona || filtros.fuente || filtros.soloHoy || filtros.soloSinLeer || filtros.busqueda.trim() || filtros.estado || filtros.soloSeguimiento || filtros.region
+    filtros.mes || filtros.zona || filtros.fuente || filtros.soloHoy || filtros.soloSinLeer || filtros.busqueda.trim() || filtros.estado || filtros.soloSeguimiento || filtros.region || filtros.canal || filtros.origen
   )
 
   return (
@@ -696,6 +708,8 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
               {filtros.mes && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, mes: null }))}>{mesLabel(filtros.mes)}</ChipActivo>}
               {filtros.zona && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, zona: null }))}>{filtros.zona}</ChipActivo>}
               {filtros.region && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, region: null }))}>📍 {filtros.region}</ChipActivo>}
+              {filtros.canal && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, canal: null }))}>Canal: {filtros.canal}</ChipActivo>}
+              {filtros.origen && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, origen: null }))}>Origen: {filtros.origen}</ChipActivo>}
               {filtros.fuente && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, fuente: null }))}>{filtros.fuente}</ChipActivo>}
               {filtros.soloSinLeer && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, soloSinLeer: false }))}>Sin leer</ChipActivo>}
               {filtros.estado && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, estado: null }))}>{estadoInfo(filtros.estado).label}</ChipActivo>}
@@ -729,6 +743,8 @@ interface Stats {
   desde: string | null
   porZona: [string, number][]
   porFuente: [string, number][]
+  porCanal: [string, number][]
+  porOrigen: [string, number][]
   porMes: [string, number][]
   porEstado: [EstadoLead, number][]
   porRegion: [string, number][]
@@ -832,6 +848,8 @@ function StatsPanel({ stats, filtros, onAlternar, onHoy, onEstado }: {
         <StatBreakdown titulo="Por zona elegida" items={stats.porZona} activo={filtros.zona} onSelect={(v) => onAlternar('zona', v)} />
         <StatBreakdown titulo="Por zona detectada (aprox.)" items={stats.porRegion} activo={filtros.region} onSelect={(v) => onAlternar('region', v)} />
         <StatBreakdown titulo="Por fuente" items={stats.porFuente} activo={filtros.fuente} onSelect={(v) => onAlternar('fuente', v)} />
+        <StatBreakdown titulo="Por canal de entrada" items={stats.porCanal} activo={filtros.canal} onSelect={(v) => onAlternar('canal', v)} />
+        <StatBreakdown titulo="Por página de origen" items={stats.porOrigen} activo={filtros.origen} onSelect={(v) => onAlternar('origen', v)} />
       </div>
     </div>
   )
@@ -1028,6 +1046,8 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
           {lead.presupuesto && <Campo label="Presupuesto (quiz)">{lead.presupuesto}</Campo>}
           {textoPreferencias(lead.preferencias) && <Campo label="Preferencias" completo>{textoPreferencias(lead.preferencias)}</Campo>}
           {lead.fuente && <Campo label="Fuente">{lead.fuente}</Campo>}
+          {lead.pagina_origen && <Campo label="Página de origen">{lead.pagina_origen}</Campo>}
+          {lead.canal && <Campo label="Entró por">{lead.canal}{lead.pagina_entrada ? ` · ${lead.pagina_entrada}` : ''}</Campo>}
           {lead.veces > 1 && lead.actualizado_en && <Campo label="Última actividad"><span suppressHydrationWarning>{formatFecha(lead.actualizado_en)}</span></Campo>}
         </div>
         {envio?.tipo === 'fallo' && (

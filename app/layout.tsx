@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import { ClicsMedibles } from '@/components/ui/ClicsMedibles'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+import { AnalyticsSitio } from '@/components/layout/AnalyticsSitio'
 import './globals.css'
 import { SiteChrome } from '@/components/layout/SiteChrome'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/utils'
@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </noscript>
         <SiteChrome provincias={provinciasMenu()}>{children}</SiteChrome>
-        <Analytics />
+        <AnalyticsSitio />
         <ClicsMedibles />
         {/* lazyOnload: se carga cuando el navegador queda libre, después de la
             carga de la página (no compite con el primer render en el celular) */}

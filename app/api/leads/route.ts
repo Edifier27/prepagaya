@@ -8,6 +8,7 @@ import { avisarLeadPorPush } from '@/lib/push'
 import { detectarZona } from '@/lib/geo-zonas'
 import { limpiarSituacionLaboral, limpiarPresupuesto, limpiarPrepagaActual, limpiarPreferencias } from '@/lib/data/sondeo'
 import { CAMPO_TRAMPA, campoDemasiadoLargo, celularPlausible, pruebaAutorizada } from '@/lib/leads-validacion'
+import { COOKIE_ENTRADA, leerEntrada } from '@/lib/entrada'
 
 // Envío a Kommo programado por cada lead (19-oct-2026, en vez del cron de
 // cada minuto que agotó el cupo gratis de la base): después de responder,
@@ -82,10 +83,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Email inválido' }, { status: 400 })
   }
 
-  // Sin nombre, email ni celular: los logs de Vercel se guardan días y no
-  // tienen que tener datos personales (auditoría 21-oct-2026).
-  console.log('[LEAD]', JSON.stringify({ fuente, provincia, prepaga: prepaga.slice(0, 80) }))
-
   // Kommo ya NO se llama acá — pedido de Darío, 22-sep-2026, con Vercel Pro
   // activo: el lead entra "Pendiente" y sale recién al minuto y medio de la
   // última actividad de esa persona (ver el after() de abajo), para no crear un contacto en Kommo por cada
@@ -100,6 +97,18 @@ export async function POST(req: NextRequest) {
   try {
     pagina = new URL(req.headers.get('referer') ?? '').pathname.slice(0, 100)
   } catch { /* sin referer */ }
+  // Leads del cotizador (acción 3, 24-oct-2026): se mandan desde /comparador,
+  // así que la página que cuenta es la anterior (la ficha, el plan o la guía
+  // desde donde la persona fue a cotizar). Si entró directo al comparador,
+  // queda /comparador.
+  const previa = String(body.pagina_previa ?? '').trim()
+  if (pagina.startsWith('/comparador') && /^\/[\w\-/]{0,99}$/.test(previa) && !previa.startsWith('/comparador')) pagina = previa
+  // Por dónde entró a la visita: canal (google, bing, chatgpt, directo…) y
+  // primera página, de la cookie que pone el middleware.
+  const entrada = leerEntrada(req.cookies.get(COOKIE_ENTRADA)?.value)
+  // Sin nombre, email ni celular: los logs de Vercel se guardan días y no
+  // tienen que tener datos personales (auditoría 21-oct-2026).
+  console.log('[LEAD]', JSON.stringify({ fuente, provincia, prepaga: prepaga.slice(0, 80), pagina, entrada }))
 
   // Leads que llegaron al comparador desde la barra "Cotizá X" de fichas y
   // planes (3-oct-2026): se miden como "cotizacion-wizard · barra". Solo en
@@ -109,8 +118,8 @@ export async function POST(req: NextRequest) {
 
   await Promise.allSettled([
     // Sin las pruebas (fuente "prueba-…"): no cuentan como contacto en los informes (informe 12–18 oct)
-    fuente.startsWith('prueba') ? Promise.resolve() : track('Lead enviado', { fuente: fuenteMedida.slice(0, 60), pagina: pagina || '(desconocida)', provincia: provincia ? provincia.slice(0, 40) : 'Sin especificar' }, { headers: req.headers }),
-    guardarLead({ nombre, celular, email, prepaga, provincia, edades: personas, fuente, pais: pais || undefined, zonaDetectada, situacionLaboral, presupuesto, prepagaActual, preferencias }),
+    fuente.startsWith('prueba') ? Promise.resolve() : track('Lead enviado', { fuente: fuenteMedida.slice(0, 60), pagina: pagina || '(desconocida)', provincia: provincia ? provincia.slice(0, 40) : 'Sin especificar', entrada: entrada ? `${entrada.canal} ${entrada.pagina}`.slice(0, 100) : '(sin dato)' }, { headers: req.headers }),
+    guardarLead({ nombre, celular, email, prepaga, provincia, edades: personas, fuente, pais: pais || undefined, zonaDetectada, situacionLaboral, presupuesto, prepagaActual, preferencias, paginaOrigen: pagina || undefined, canal: entrada?.canal, paginaEntrada: entrada?.pagina }),
     avisarLeadPorTelegram(textoAlertaLead({
       nombre, celular, email, prepaga, provincia, edades: personas, fuente, kommoLink: '',
     })),

@@ -2,7 +2,7 @@ import { getDestinoLead, resolverDestino } from '@/lib/kommo'
 import { reclamarLeadsPendientesDeKommo, marcarResultadoKommo, seguimientosVencidos, marcarSeguimientoAvisado } from '@/lib/db'
 import { avisarLeadPorPush } from '@/lib/push'
 import { mandarLeadPorEmail } from '@/lib/emailjs'
-import { mandarLeadACrmAsesor } from '@/lib/crm-asesor'
+import { mandarLeadACrmAsesor, detalleOrigen } from '@/lib/crm-asesor'
 import { devolverCupoMail, tomarCupoMail } from '@/lib/cupo-mail'
 
 // Envío de los leads a Kommo (o al destino configurado en el panel), 1
@@ -38,6 +38,8 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
     const provincia = lead.provincia || lead.zona_detectada || ''
     const edades = lead.edades ?? ''
     const fuente = lead.fuente ?? 'web'
+    // En los mails, la fuente va con el origen completo (página, canal, partner y #id), igual que al CRM
+    const fuenteMail = detalleOrigen(lead)
     const fecha = new Date(lead.creado_en).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
 
     // Cupo diario por mail (pedido de Darío, 14-oct-2026): los primeros 3 leads de cada día van a un mail aparte y
@@ -47,7 +49,7 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
     if (cupo) {
       try {
         await mandarLeadPorEmail({
-          nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
+          nombre, celular, email, prepaga, provincia, edades, fuente: fuenteMail, fecha,
           kommo_link: '', kommo_label: '', duplicado_banner: '', to: cupo.email,
         })
         await marcarResultadoKommo(lead.id, `Cupo mail: ${cupo.rotulo}`, '')
@@ -84,7 +86,7 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
         try {
           // Ya no se trabaja con Kommo (22-oct-2026): el mail de respaldo va sin link para cargarlo ahí
           await mandarLeadPorEmail({
-            nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
+            nombre, celular, email, prepaga, provincia, edades, fuente: fuenteMail, fecha,
             kommo_link: '', kommo_label: '', duplicado_banner: '',
           })
         } catch (err) {
@@ -99,7 +101,7 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
     if (destino.tipo === 'email') {
       try {
         await mandarLeadPorEmail({
-          nombre, celular, email, prepaga, provincia, edades, fuente, fecha,
+          nombre, celular, email, prepaga, provincia, edades, fuente: fuenteMail, fecha,
           kommo_link: '', kommo_label: '', duplicado_banner: '', to: destino.email,
         })
         await marcarResultadoKommo(lead.id, `Email directo a ${destino.email}`, '')

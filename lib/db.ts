@@ -124,6 +124,12 @@ function asegurarTablas(): Promise<unknown> {
       // reservó el lead para mandarlo, así dos envíos simultáneos no lo
       // duplican y uno que se cortó a la mitad se retoma.
       db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS kommo_reclamado_en TIMESTAMPTZ`,
+      // Origen de cada lead (acción 3, 24-oct-2026): página donde estaba al
+      // dejar los datos (o la anterior al cotizador), canal de entrada
+      // (google, bing, chatgpt, directo…) y primera página de la visita.
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS pagina_origen TEXT`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS canal TEXT`,
+      db`ALTER TABLE leads ADD COLUMN IF NOT EXISTS pagina_entrada TEXT`,
       ])
     })().catch((err) => {
       tablasListas = null
@@ -175,6 +181,12 @@ export interface LeadRow {
   prepaga_actual: string | null
   /** JSON con las preferencias que marcó (copago, coberturas, respuestas del quiz) */
   preferencias: string | null
+  /** Página donde dejó los datos; en el cotizador, la anterior (acción 3) */
+  pagina_origen: string | null
+  /** Por dónde entró a la visita: google, bing, chatgpt, directo, otro… */
+  canal: string | null
+  /** Primera página de la visita */
+  pagina_entrada: string | null
 }
 
 export const ESTADOS_LEAD = ['nuevo', 'contactado', 'cotizado', 'vendido', 'perdido'] as const
@@ -196,6 +208,9 @@ export interface NuevoLead {
   presupuesto?: string
   prepagaActual?: string
   preferencias?: string
+  paginaOrigen?: string
+  canal?: string
+  paginaEntrada?: string
 }
 
 /** Sentinela de kommo_estado para leads que todavía no se mandaron a Kommo — ver KOMMO_DELAY_MIN en app/api/leads/route.ts. */
@@ -266,6 +281,9 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
           presupuesto = COALESCE(NULLIF(${d.presupuesto ?? ''}, ''), presupuesto),
           prepaga_actual = COALESCE(NULLIF(${d.prepagaActual ?? ''}, ''), prepaga_actual),
           preferencias = COALESCE(NULLIF(${d.preferencias ?? ''}, ''), preferencias),
+          pagina_origen = COALESCE(pagina_origen, ${d.paginaOrigen ?? null}),
+          canal = COALESCE(canal, ${d.canal ?? null}),
+          pagina_entrada = COALESCE(pagina_entrada, ${d.paginaEntrada ?? null}),
           fuente = ${d.fuente},
           veces = veces + 1,
           actualizado_en = now(),
@@ -276,8 +294,8 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
     }
 
     await sql`
-      INSERT INTO leads (nombre, celular, email, prepaga, provincia, edades, fuente, kommo_estado, kommo_link, pais, zona_detectada, situacion_laboral, presupuesto, prepaga_actual, preferencias)
-      VALUES (${d.nombre}, ${d.celular}, ${d.email}, ${d.prepaga}, ${d.provincia}, ${d.edades}, ${d.fuente}, ${KOMMO_PENDIENTE}, '', ${d.pais ?? null}, ${d.zonaDetectada ?? null}, ${d.situacionLaboral || null}, ${d.presupuesto || null}, ${d.prepagaActual || null}, ${d.preferencias || null})
+      INSERT INTO leads (nombre, celular, email, prepaga, provincia, edades, fuente, kommo_estado, kommo_link, pais, zona_detectada, situacion_laboral, presupuesto, prepaga_actual, preferencias, pagina_origen, canal, pagina_entrada)
+      VALUES (${d.nombre}, ${d.celular}, ${d.email}, ${d.prepaga}, ${d.provincia}, ${d.edades}, ${d.fuente}, ${KOMMO_PENDIENTE}, '', ${d.pais ?? null}, ${d.zonaDetectada ?? null}, ${d.situacionLaboral || null}, ${d.presupuesto || null}, ${d.prepagaActual || null}, ${d.preferencias || null}, ${d.paginaOrigen ?? null}, ${d.canal ?? null}, ${d.paginaEntrada ?? null})
     `
   } catch (err) {
     console.error('[DB] error guardando lead:', err)
@@ -290,15 +308,26 @@ export async function guardarLead(d: NuevoLead): Promise<void> {
  * filtra). Actualiza su lead más reciente de las últimas 24 hs: pide email Y
  * celular juntos, así nadie puede tocar el lead de otro con solo un dato.
  */
-export async function complementarLead(c: { email: string; celular: string; situacionLaboral?: string; prepagaActual?: string; preferencias?: string }): Promise<boolean> {
+export async function complementarLead(c: { email: string; celular: string; situacionLaboral?: string; prepagaActual?: string; preferencias?: string; planElegido?: string }): Promise<boolean> {
   if (!sql || !c.email || !c.celular) return false
   try {
     await asegurarTablas()
+    // Plan que tocó en "Consultar precios" (acción 3, 24-oct-2026): pasa
+    // primero en el interés, que es lo que ve el asesor. Si el lead todavía
+    // no salió al CRM, se corre la espera (actualizado_en) para que salga con
+    // todo lo que completó; antes situación y cobertura llegaban tarde.
+    const plan = c.planElegido ?? ''
     const rows = await sql`
       UPDATE leads SET
         situacion_laboral = COALESCE(NULLIF(${c.situacionLaboral ?? ''}, ''), situacion_laboral),
         prepaga_actual = COALESCE(NULLIF(${c.prepagaActual ?? ''}, ''), prepaga_actual),
-        preferencias = COALESCE(NULLIF(${c.preferencias ?? ''}, ''), preferencias)
+        preferencias = COALESCE(NULLIF(${c.preferencias ?? ''}, ''), preferencias),
+        prepaga = CASE
+          WHEN ${plan}::text = '' OR position(${plan}::text in coalesce(prepaga, '')) > 0 THEN prepaga
+          WHEN coalesce(prepaga, '') = '' THEN ${plan}::text
+          ELSE ${plan}::text || ', ' || prepaga
+        END,
+        actualizado_en = CASE WHEN kommo_estado = ${KOMMO_PENDIENTE} THEN now() ELSE actualizado_en END
       WHERE id = (
         SELECT id FROM leads
         WHERE email = ${c.email} AND celular = ${c.celular} AND eliminado_en IS NULL
