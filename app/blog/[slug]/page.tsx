@@ -16,6 +16,7 @@ import { BlogTOC } from '@/components/blog/BlogTOC'
 import { RankingResumen } from '@/components/blog/RankingResumen'
 import { ldJson } from '@/lib/jsonld'
 import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
+import { BotonCotizarArriba } from '@/components/ui/BotonCotizarArriba'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -180,6 +181,11 @@ export default async function BlogPostPage({ params }: Props) {
               <p className="text-gray-800 leading-relaxed">{marcarTerminos(enlazarPrepagas(post.contenido.intro, vistas), vistosGlosario)}</p>
             </div>
 
+            {/* Botón temprano al cotizador (acción 6, 24-oct-2026) en los posts sin una página principal propia */}
+            {!post.paginaPrincipal && (
+              <BotonCotizarArriba desde="blog" query={post.slug.startsWith('osde-') ? 'prepaga=osde' : ''} className="mb-8" />
+            )}
+
             {post.paginaPrincipal && (
               <Link href={post.paginaPrincipal.href} className="mb-8 flex items-center justify-between gap-3 rounded-2xl bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold px-5 py-4 transition-colors">
                 {post.paginaPrincipal.texto}
@@ -283,7 +289,7 @@ export default async function BlogPostPage({ params }: Props) {
               <h2 className="text-xl font-bold mb-2">¿Querés comparar prepagas?</h2>
               <p className="text-red-100 text-sm mb-5">Usá nuestro comparador gratuito y encontrá la mejor opción para vos.</p>
               <Link
-                href="/comparador"
+                href="/comparador?desde=blog"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors"
               >
                 Comparar prepagas →

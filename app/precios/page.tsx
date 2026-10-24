@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/Badge'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
 import preciosOficiales from '@/lib/data/precios-oficiales.json'
 import { ldJson } from '@/lib/jsonld'
+import { BotonCotizarArriba } from '@/components/ui/BotonCotizarArriba'
 
 // El mes se toma de PRECIO_ACTUALIZADO (lib/data/prepagas.ts) — única fuente
 // de verdad para evitar que esta página quede desincronizada del resto del sitio.
@@ -157,6 +158,8 @@ export default function PreciosPage(): React.ReactElement {
             <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-800">Superintendencia de Servicios de Salud</a>
             {' '}para las prepagas que los declaran; el resto, precio de referencia.
           </p>
+
+          <BotonCotizarArriba desde="precios" className="mb-6" />
 
           {/* Stats rápidos */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -391,7 +394,7 @@ export default function PreciosPage(): React.ReactElement {
             Los precios varían según tu edad y zona. Usá nuestro cotizador para ver el precio exacto para tu perfil.
           </p>
           <Link
-            href="/#cotizador"
+            href="/comparador?desde=precios"
             className="inline-flex items-center justify-center font-bold rounded-xl px-8 py-4 text-base bg-[#00875A] text-white hover:bg-[#006644] transition-colors shadow-sm"
           >
             Ver precio para mi edad →

@@ -303,7 +303,7 @@ function ResultadoComparacion({ p1, p2 }: { p1: Prepaga; p2: Prepaga }) {
         <p className="font-bold text-base mb-1">¿Querés saber cuánto pagás vos?</p>
         <p className="text-sm text-red-100 mb-4">El precio varía según tu edad y grupo familiar. Cotizá gratis en 2 minutos.</p>
         <Link
-          href="/#cotizador"
+          href="/comparador?desde=comparativas"
           className="inline-block bg-white text-[#E8002D] font-bold px-6 py-3 rounded-xl text-sm hover:bg-red-50 transition-colors"
         >
           Cotizar mi prepaga gratis →

@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/Badge'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
+import { BotonCotizarArriba } from '@/components/ui/BotonCotizarArriba'
 
 function PrepagaCard({ p, destacado }: { p: Prepaga; destacado?: boolean }) {
   const planMasBarato = [...p.planes].sort((a, b) => a.precio - b.precio)[0]
@@ -126,6 +127,7 @@ export default function PrepagasPage() {
           <p className="text-xs text-gray-400 mt-2">
             * Precios de referencia para persona de 30 años, contratación individual. Actualizado: {PRECIO_ACTUALIZADO}.
           </p>
+          <BotonCotizarArriba desde="prepagas" className="mt-5" />
         </div>
       </section>
 

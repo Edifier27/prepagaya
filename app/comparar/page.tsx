@@ -6,6 +6,7 @@ import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import { ComparadorTable } from '@/components/comparador/ComparadorTable'
 import { ComparadorLadoALado } from '@/components/comparador/ComparadorLadoALado'
 import { ldJson } from '@/lib/jsonld'
+import { BotonCotizarArriba } from '@/components/ui/BotonCotizarArriba'
 
 export const metadata: Metadata = {
   title: 'Comparar Prepagas Lado a Lado: Tabla Comparativa 2026',
@@ -53,6 +54,7 @@ export default function CompararPage(): React.ReactElement {
           <p className="text-gray-600 max-w-xl mx-auto">
             Seleccioná hasta 3 prepagas y compará precio, coberturas y red en una sola tabla.
           </p>
+          <BotonCotizarArriba desde="comparar" centrado className="mt-5" />
         </div>
       </section>
 
@@ -120,7 +122,7 @@ export default function CompararPage(): React.ReactElement {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-3">¿Necesitás ayuda para elegir?</h2>
           <p className="text-red-100 mb-7 text-sm">Completá el comparador inteligente y te mostramos la mejor opción para tu perfil.</p>
-          <Link href="/#cotizador"
+          <Link href="/comparador?desde=comparar"
             className="inline-flex items-center justify-center font-bold rounded-xl px-8 py-4 text-base bg-[#00875A] text-white hover:bg-[#006644] transition-colors shadow-sm">
             Cotizar mi prepaga gratis →
           </Link>

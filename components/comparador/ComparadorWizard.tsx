@@ -1250,7 +1250,10 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           </button>
         )}
 
-        <div className="flex flex-col items-end gap-2">
+        {/* En la compu queda pegado abajo mientras se cargan las edades (acción 6,
+            24-oct-2026): en 1366×768 con la barra del navegador el botón
+            quedaba en el borde o abajo de la pantalla, y más con 2 o más integrantes. */}
+        <div className="flex flex-col items-end gap-2 lg:sticky lg:bottom-4 lg:z-10">
           {faltaEdad && (
             <p role="alert" className="text-sm font-semibold text-[#E8002D]">Elegí la edad de cada integrante para ver los precios.</p>
           )}
