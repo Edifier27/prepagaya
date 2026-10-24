@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/Button'
 import { BreadcrumbSchema } from '@/components/ui/BreadcrumbSchema'
 import type { Plan, Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
+import { BotonCotizarArriba } from '@/components/ui/BotonCotizarArriba'
 
 // Solo precios oficiales (27-sep-2026): el ranking mezclaba precios de
 // referencia sin cuadro de la SSSalud (Medicus, Luis Pasteur, Hominis, OSDE
@@ -172,6 +173,7 @@ export default function PrepagasEconomicasPage() {
             <strong>{masBarata.prep.nombre} {masBarata.planMinimo.nombre}</strong>, a{' '}
             <strong>{formatPrecio(masBarata.planMinimo.precio)}/mes</strong> para una persona de 30 años en CABA y GBA ({PRECIO_ACTUALIZADO.toLowerCase()}, cuadro de la Superintendencia de Servicios de Salud). Todas cubren el PMO completo, el mismo piso legal que el plan más caro del mercado: la diferencia está en la cartilla, los sanatorios y los copagos, no en la cobertura que exige la ley.
           </p>
+          <BotonCotizarArriba desde="economicas" className="mt-5" />
         </div>
       </section>
 

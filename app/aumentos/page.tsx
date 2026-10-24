@@ -6,6 +6,7 @@ import { formatPrecio, SITE_NAME, SITE_URL, PRECIOS_UPDATE } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
+import { BotonCotizarArriba } from '@/components/ui/BotonCotizarArriba'
 
 const acumulado = aumentoAcumulado()
 const ultimoConfirmado = [...aumentos2026].reverse().find((a) => !a.esProyeccion)!
@@ -153,6 +154,7 @@ export default function AumentosPage() {
             Seguimos mes a mes los aumentos de las principales prepagas de Argentina: cuánto subieron, cuánto acumulan
             en el año y cuánto se espera para el mes que viene. Si tu cuota subió más que estos promedios, algo hay que revisar.
           </p>
+          <BotonCotizarArriba desde="aumentos" className="-mt-4 mb-8" />
 
           {/* Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

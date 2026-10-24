@@ -9,6 +9,8 @@ import { ldJson } from '@/lib/jsonld'
 import { elegir, mesCorto, codigoCorto, nombreCortoPrepaga, MAX_DESCRIPCION } from '@/lib/seo/titulos'
 import { TablaDiferenciasPlanes, type FilaDiferencia } from '@/components/prepagas/TablaDiferenciasPlanes'
 import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
+import { BotonCotizarArriba } from '@/components/ui/BotonCotizarArriba'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 
 type Plan = Prepaga['planes'][number]
 
@@ -158,6 +160,9 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
               </Link>
             ))}
           </div>
+          {/* Botón temprano propio (acción 6, 24-oct-2026): hasta ahora el único
+              de flux-vs-210 era la promo Flux + SportClub, que se va el 1-nov */}
+          <BotonCotizarArriba desde="comparativa" query={`prepaga=${prep.slug}`} className="mt-5" />
         </div>
       </section>
 
@@ -276,6 +281,7 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
           </Link>
         </div>
       </section>
+      <BarraCotizar titulo={`${plan1.nombre} o ${plan2.nombre}`} origen={`comparativa-planes:${comp.slug}`} href={`/comparador?prepaga=${prep.slug}&desde=barra`} />
     </>
   )
 }

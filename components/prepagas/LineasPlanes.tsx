@@ -165,21 +165,25 @@ export function LineasPlanes({ prep }: { prep: Prepaga }) {
       <h3 className="text-base font-bold text-gray-900 mb-2">Los planes de {prep.nombre} por línea</h3>
       <p className="text-sm text-gray-600 leading-relaxed mb-4 max-w-3xl">{resumen(prep, ls)}</p>
       <div className="overflow-x-auto rounded-xl border border-gray-200">
-        <table className="w-full min-w-[40rem] text-sm text-left">
+        {/* En el celular la tabla se desliza de costado: "Desde" va 2.ª para que
+            el precio se vea sin deslizar, y la última columna es más ancha para
+            que las filas no midan 300 px de alto (acción 6, 24-oct-2026). */}
+        <table className="w-full min-w-[48rem] text-sm text-left">
           <thead className="bg-gray-50 text-xs text-gray-500 uppercase tracking-wide">
             <tr>
               <th scope="col" className="px-3 py-2 font-semibold">Línea</th>
-              <th scope="col" className="px-3 py-2 font-semibold">Planes</th>
               <th scope="col" className="px-3 py-2 font-semibold whitespace-nowrap">Desde (30 años)</th>
+              <th scope="col" className="px-3 py-2 font-semibold">Planes</th>
               <th scope="col" className="px-3 py-2 font-semibold">Copago</th>
               <th scope="col" className="px-3 py-2 font-semibold">Red</th>
-              <th scope="col" className="px-3 py-2 font-semibold">Qué la distingue</th>
+              <th scope="col" className="px-3 py-2 font-semibold min-w-[16rem]">Qué la distingue</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {lineas.map((l) => (
               <tr key={l.nombre} className="align-top">
                 <th scope="row" className="px-3 py-2.5 font-semibold text-gray-900">{l.nombre}</th>
+                <td className="px-3 py-2.5 font-semibold text-gray-900 tabular-nums whitespace-nowrap">{formatPrecio(l.desde)}</td>
                 <td className="px-3 py-2.5">
                   {l.planes.map((pl, i) => (
                     <span key={pl.slug} className="whitespace-nowrap">
@@ -188,7 +192,6 @@ export function LineasPlanes({ prep }: { prep: Prepaga }) {
                     </span>
                   ))}
                 </td>
-                <td className="px-3 py-2.5 font-semibold text-gray-900 tabular-nums whitespace-nowrap">{formatPrecio(l.desde)}</td>
                 <td className="px-3 py-2.5 text-gray-600">{l.copago}</td>
                 <td className="px-3 py-2.5 text-gray-600">{l.red}</td>
                 <td className="px-3 py-2.5 text-gray-600">{l.distingue}</td>
@@ -197,10 +200,10 @@ export function LineasPlanes({ prep }: { prep: Prepaga }) {
             {extra && (
               <tr className="align-top">
                 <th scope="row" className="px-3 py-2.5 font-semibold text-gray-900">{extra.nombre}</th>
+                <td className="px-3 py-2.5 text-gray-600">A cotizar</td>
                 <td className="px-3 py-2.5 whitespace-nowrap">
                   <Link href={extra.href} className="font-semibold text-gray-900 hover:text-[#E8002D] hover:underline">{extra.plan}</Link>
                 </td>
-                <td className="px-3 py-2.5 text-gray-600">A cotizar</td>
                 <td className="px-3 py-2.5 text-gray-600">—</td>
                 <td className="px-3 py-2.5 text-gray-600">—</td>
                 <td className="px-3 py-2.5 text-gray-600">
