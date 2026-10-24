@@ -68,6 +68,10 @@ input:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid 
 .plan .pre small{display:block;font-size:.65rem;color:var(--muted)}
 .plan .badge{align-self:flex-start;font-size:.68rem;font-weight:700;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:2px 8px}
 .plan .pts{margin:0;padding-left:16px;font-size:.78rem;color:var(--ink);display:flex;flex-direction:column;gap:1px}
+.ribbon{margin:-12px -12px 2px;padding:7px 12px;background:var(--ok);color:#fff;font-weight:800;font-size:.9rem;border-radius:14px 14px 0 0;display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.ribbon span{font-weight:500;font-size:.72rem;opacity:.9}
+.plan .lista{display:block;font-size:.62rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.unlock{font-size:.76rem;color:var(--ok);background:var(--ok-soft);border-radius:10px;padding:7px 9px;margin:0;font-weight:600}
 .plan .promo{font-size:.78rem;background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:7px 9px;font-weight:600}
 .plan .promo span{display:block;font-weight:500;font-size:.72rem}
 .plan .asesor{font-size:.72rem;color:var(--muted)}
@@ -123,7 +127,7 @@ th{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--mu
         <tr><td>El dato</td><td>Nombre, celular y "¿para cuándo buscás el alta?". Todos los leads van al CRM, con el plan elegido, la condición, las edades y el "para cuándo".</td></tr>
       </tbody>
     </table></div>
-    <p class="note">La tarjeta muestra el precio de lista y cuánto ahorra con la promo, pero no el precio final con descuento: ese se lo pasa el asesor. Así la persona tiene un motivo concreto para dejar el teléfono y el asesor tiene de qué hablar en el primer mensaje.</p>
+    <p class="note">La tarjeta muestra el precio de lista (rotulado así, para que no parezca que ya tiene el descuento) y arriba, bien visible, la promo que le toca. El precio final con descuento se "desbloquea" dejando el teléfono: se lo pasa el asesor oficial. Ese es el motivo para dejar el dato.</p>
   </section>
 </div>
 
@@ -205,7 +209,7 @@ function irA(i){
 const PANEL = [
   ['Zona, solo si la cambia', 'Nada en la mayoría de los casos: la zona sale por IP y se muestra arriba de las edades con "Cambiar".', 'La IP acierta la provincia, pero puede fallar entre CABA y GBA, con datos móviles o VPN.', 'Define si ve el recorrido de AMBA (S1, SMG02) o el del interior (S2, SMG20).'],
   ['Edades y condición', 'Edad de cada integrante y si es particular, monotributista o con recibo de sueldo. Con recibo, el sueldo bruto ("es para calcular tu aporte") y "+ Sumar otro aporte".', 'Sin la condición, el precio que ve no es el suyo: con recibo la cuota es otra lista, sin IVA y menos el aporte. Mostrar un precio equivocado espanta.', 'Calculamos su precio real y la promo que le toca. Si es una persona sola de 66 años o más, no avanza.'],
-  ['Planes: Swiss primero', 'Nada. Ve sus precios: primero 4 planes de Swiss (del más económico con copago al superador sin copago), después 2 de Sancor y en "Ver más planes", Premedic y OSDE.', 'Es lo que vino a buscar y lo que convence: que Swiss tiene muy buen precio-calidad. Cada tarjeta dice cuánto ahorra con su promo y que lo asesora un asesor oficial.', 'El botón de la tarjeta es la señal de compra: queda guardado qué plan eligió.'],
+  ['Planes: Swiss primero', 'Nada. Ve sus precios: primero 4 planes de Swiss (del más económico con copago al superador sin copago), después 2 de Sancor y en "Ver más planes", Premedic y OSDE.', 'Es lo que vino a buscar y lo que convence: que Swiss tiene muy buen precio-calidad. Cada tarjeta muestra arriba la promo que le toca y que lo asesora un asesor oficial. El precio dice \"Precio de lista\" para que no parezca descontado.', 'El botón de la tarjeta es la señal de compra: queda guardado qué plan eligió.'],
   ['Tus datos', 'Nombre, celular y "¿para cuándo buscás el alta?". Sin email y sin casilla de permiso.', 'Recién acá, cuando pide su promo. Es un intercambio claro: deja el teléfono y un asesor oficial le pasa el precio final con descuento.', 'Todos los leads van al CRM con el plan elegido, la condición, las edades y el "para cuándo", para que ustedes prioricen.'],
   ['Listo', 'Nada. Le decimos quién le escribe y por dónde.', 'Si sabe que le escribe un asesor oficial de Swiss por WhatsApp en minutos, atiende.', 'El CRM manda el saludo y el asesor arranca con el plan y la promo ya sabidos.'],
 ];
@@ -216,23 +220,22 @@ function panel(){
 
 function card(plan, i){
   const c = cotizar(plan);
+  const promoCorta = c?.promo ? c.promo.replace(' por 12 meses si venís de otra prepaga', '').replace(' por 12 meses', '') : (plan.grupo === 'sancor' ? '30% OFF' : '');
+  const detallePromo = plan.grupo === 'sancor' ? 'por 12 meses si venís de otra prepaga' : plan.grupo === 'premedic' ? 'por 12 meses' : plan.grupo === 'swiss' ? 'exclusivo cotizando online' : '';
+  const ribbon = promoCorta ? `<div class="ribbon">🔥 ${promoCorta}<span>${detallePromo}</span></div>` : '';
   const precio = c
-    ? `<div class="pre"><b>${fmt(c.aPagar)}</b><small>${s.cond === 'recibo' ? (aportes() ? 'por mes, con tu aporte descontado' : 'por mes, sin IVA (falta tu sueldo)') : 'por mes, IVA incluido'}</small></div>`
-    : `<div class="pre"><small>Precio en tu zona:<br>te lo pasa el asesor</small></div>`;
-  const promo = c?.promo
-    ? `<div class="promo">🎁 ${c.promo}<span>Ahorrás ~${fmt(c.ahorro)} por mes. Te lo confirma el asesor.</span></div>`
-    : plan.grupo === 'osde' ? '' : plan.grupo === 'sancor' ? `<div class="promo">🎁 30% OFF por 12 meses si venís de otra prepaga<span>Te lo confirma el asesor oficial.</span></div>` : '';
-  const boton = c?.promo || plan.grupo === 'sancor'
-    ? (plan.grupo === 'swiss' ? 'Quiero mi descuento' : 'Quiero el 30% OFF')
-    : 'Consultar este plan';
+    ? `<div class="pre"><small class="lista">Precio de lista</small><b>${fmt(c.aPagar)}</b><small>${s.cond === 'recibo' ? (aportes() ? 'por mes, con tu aporte descontado' : 'por mes, sin IVA') : 'por mes, IVA incluido'}</small></div>`
+    : `<div class="pre"><small>Tu precio te lo pasa<br>el asesor oficial</small></div>`;
+  const boton = promoCorta ? `Quiero mi ${promoCorta.split(' ')[0]} OFF` : 'Quiero que me asesoren';
   return `${plan.upsell ? `<p class="upsell">${plan.upsell}</p>` : ''}
     <div class="plan ${plan.top ? 'top' : ''}">
-      ${plan.top ? `<span class="badge">${plan.top}</span>` : ''}
+      ${ribbon}
+      ${plan.top ? `<span class="badge">⭐ ${plan.top}</span>` : ''}
       <div class="head"><div><div class="marca">${plan.marca}</div><div class="nom">${plan.nom}</div></div>${precio}</div>
       <ul class="pts">${plan.pts.map(p => `<li>${p}</li>`).join('')}</ul>
-      ${promo}
-      <div class="row2"><span class="asesor">${asesorDe(plan.grupo)}</span><a class="link" href="${WEB}${plan.k}" target="_blank" rel="noopener">Cartilla y coberturas</a></div>
-      <button type="button" class="cta ${plan.grupo === 'osde' || plan.grupo === 'premedic' ? 'sec2' : ''}" data-i="${i}">${boton} →</button>
+      ${promoCorta ? `<p class="unlock">🔓 Pedilo ahora y pagás menos desde el primer mes. Tu precio final con descuento te lo pasa un asesor oficial.</p>` : ''}
+      <button type="button" class="cta ${promoCorta ? '' : 'sec2'}" data-i="${i}">${boton} →</button>
+      <span class="asesor">✓ ${asesorDe(plan.grupo).replace('Te asesora un asesor', 'Asesor')}${plan.grupo === 'swiss' || plan.grupo === 'sancor' ? ' · respuesta por WhatsApp' : ''}</span>
     </div>`;
 }
 
@@ -266,9 +269,9 @@ function pantalla(){
     const lista = PLANES[s.region];
     const visibles = lista.map((p, i) => [p, i]).filter(([p]) => s.verMas || !p.mas);
     const swiss = visibles.filter(([p]) => p.grupo === 'swiss'), otros = visibles.filter(([p]) => p.grupo !== 'swiss');
-    el.innerHTML = `<h3>Tus planes en ${s.zona}</h3>
+    el.innerHTML = `<h3>¡Encontramos tus planes en ${s.zona}!</h3>
       <p class="hint">${s.personas.length === 1 ? `1 persona de ${edades()[0]} años` : `${s.personas.length} integrantes (${edades().join(', ')} años)`} · ${s.cond === 'recibo' ? 'con recibo de sueldo' : s.cond}</p>
-      <p class="aviso">Los precios de las prepagas cambian todos los meses: la lista nueva entra el 1 de noviembre.</p>
+      <p class="aviso">⏰ Promos vigentes hasta el 31/10. El 1 de noviembre sube la lista de precios.</p>
       <p class="sec">Swiss Medical</p>
       ${swiss.map(([p, i]) => card(p, i)).join('')}
       <p class="sec">Otras opciones</p>
@@ -280,13 +283,13 @@ function pantalla(){
   if (s.paso === 3){
     const p = s.elegido, c = cotizar(p);
     const quien = p.grupo === 'swiss' ? 'Un asesor oficial de Swiss Medical' : p.grupo === 'sancor' ? 'Un asesor oficial de Sancor Salud' : 'Un asesor de PrepagaYa';
-    el.innerHTML = `<h3>Elegiste ${p.marca} ${p.nom}</h3>
-      <div class="elegido">${c ? `Precio de lista: <b>${fmt(c.aPagar)}</b> por mes.<br>` : ''}${c?.promo ? `🎁 <b>${c.promo}</b>: ahorrás ~${fmt(c.ahorro)} por mes.<br>` : ''}${quien} te pasa tu precio final${c?.promo ? ' con el descuento' : ''} y te ayuda con el alta.</div>
+    el.innerHTML = `<h3>¡Buenísima elección! ${p.marca} ${p.nom}${c?.promo ? ` con ${c.promo.split(' ')[0]} OFF` : ''}</h3>
+      <div class="elegido">${c?.promo ? `🔓 <b>Desbloqueá tu descuento.</b> ` : ''}${quien} te manda por WhatsApp tu precio final${c?.promo ? ' con el descuento aplicado' : ''} y te ayuda con el alta.${c ? `<br><span class="hint">Precio de lista hoy: ${fmt(c.aPagar)} por mes.</span>` : ''}</div>
       <label class="f" for="nom">Nombre<input type="text" id="nom" value="${s.nombre}" placeholder="Tu nombre" autocomplete="given-name"></label>
       <label class="f" for="cel">Celular con código de área<input type="tel" id="cel" value="${s.cel}" placeholder="11 2345-6789" autocomplete="tel-national"></label>
       <p class="sec">¿Para cuándo buscás el alta?</p>
       <div class="opts">${[['inmediata','De forma inmediata'],['mes-que-viene','A partir del mes que viene'],['averiguando','Solo estoy averiguando']].map(([v,t]) => `<button type="button" class="chip ${s.cuando===v?'sel':''}" data-q="${v}">${t}</button>`).join('')}</div>
-      <button type="button" class="btn" id="env">${c?.promo ? 'Quiero mi descuento' : 'Quiero que me asesoren'}</button>
+      <button type="button" class="btn" id="env">${c?.promo ? 'Desbloquear mi descuento 🔓' : 'Quiero que me asesoren'}</button>
       <p class="hint center">Te escribimos por WhatsApp. Gratis, sin DNI y sin compromiso.</p>`;
     $('nom').oninput = (e) => s.nombre = e.target.value;
     $('cel').oninput = (e) => s.cel = e.target.value;
@@ -297,9 +300,10 @@ function pantalla(){
     const p = s.elegido, c = cotizar(p);
     const quien = p.grupo === 'swiss' ? 'un asesor oficial de Swiss Medical' : p.grupo === 'sancor' ? 'un asesor oficial de Sancor Salud' : 'un asesor de PrepagaYa';
     el.innerHTML = `<div class="done-ico">✓</div>
-      <h3 class="center">Listo, ${s.nombre}. Te escribe ${quien} por WhatsApp</h3>
+      <h3 class="center">¡Listo, ${s.nombre}! ${c?.promo ? `Ya pedimos tu ${c.promo.split(' ')[0]} OFF` : 'Ya pedimos tu cotización'}</h3>
+      <p class="hint center"><b>Te escribe ${quien} por WhatsApp.</b></p>
       <p class="hint center">En los próximos minutos, de lunes a viernes de 8 a 20. Si es fuera de horario, a primera hora del día hábil siguiente.</p>
-      <div class="elegido"><b>${p.marca} ${p.nom}</b>${c ? ` · lista ${fmt(c.aPagar)}/mes` : ''}${c?.promo ? `<br>🎁 ${c.promo}: ahorrás ~${fmt(c.ahorro)} por mes` : ''}</div>
+      <div class="elegido"><b>${p.marca} ${p.nom}</b>${c?.promo ? ` · 🔥 ${c.promo}` : ''}<br><span class="hint">Tené el WhatsApp a mano: tu precio con descuento llega en minutos.</span></div>
       <button type="button" class="btn ghost" id="otra">Probar otro recorrido</button>`;
     $('otra').onclick = () => { s = NUEVO(); render(); };
   }
