@@ -1,29 +1,33 @@
 // Solo servidor: usa las cartillas completas (lib/data/cartilla-zonas).
 // Para cada zona del cotizador v2 y cada plan, los 3 sanatorios con
-// internación más conocidos y cuántos hay en total. Se calcula una vez por
-// instancia y viaja a la página como un objeto chico.
+// internación más conocidos y cuántos hay en total; y las localidades de la
+// cartilla que el popup ofrece por prepaga. Se calcula una vez por instancia
+// y viaja a la página como un objeto chico.
 import { CARTILLAS } from '@/lib/data/cartilla-zonas'
-import { ZONAS_V2, TODOS_LOS_PLANES_V2 } from '@/lib/cotizador-v2'
+import { ZONAS_V2, TODOS_LOS_PLANES_V2, CARTILLAS_ZONA_V2, puestoSanatorio, nombreProlijo } from '@/lib/cotizador-v2'
 
-export type SanatoriosV2 = Record<string, Record<string, { top: string[]; total: number }>>
-
-// Los más conocidos primero (sin esto el orden es alfabético y arranca por
-// clínicas chicas)
-const CONOCIDOS = ['trinidad', 'mater dei', 'arcos', 'otamendi', 'suizo', 'italiano', 'brit', 'g[uü]emes', 'finochietto', 'agote', 'zabala',
-  'favaloro', 'olivos', 'lomas', 'nordelta', 'san lucas', 'allende', 'reina fabiola', 'privado', 'sirio', 'bazterrica', 'cemic', 'santa isabel',
-  'fleni', 'anchorena', 'colegiales', 'providencia'].map((x) => new RegExp(x, 'i'))
-const puesto = (n: string) => { const i = CONOCIDOS.findIndex((r) => r.test(n)); return i < 0 ? 99 : i }
-// "Sanatorio los ARCOS" → "Sanatorio los Arcos"
-const prolijo = (n: string) => n.replace(/\b([A-ZÁÉÍÓÚÑ]{3,})\b/g, (w) => w[0] + w.slice(1).toLowerCase()).replace(/\s*-\s*ASE$/, '').replace(/^Clinica /, 'Clínica ')
+export interface SanatoriosV2 {
+  /** zona → plan → top 3 con internación y total */
+  top: Record<string, Record<string, { top: string[]; total: number }>>
+  /** zona → prepaga → localidades de su cartilla */
+  localidades: Record<string, Record<string, { slug: string; nombre: string }[]>>
+}
 
 let cache: SanatoriosV2 | null = null
 
 export function sanatoriosV2(): SanatoriosV2 {
   if (cache) return cache
-  const out: SanatoriosV2 = {}
+  const out: SanatoriosV2 = { top: {}, localidades: {} }
+  const prepagasV2 = [...new Set(TODOS_LOS_PLANES_V2.map((k) => k.split('/')[0]))]
   for (const zona of ZONAS_V2) {
+    out.localidades[zona.id] = {}
+    for (const prep of prepagasV2) {
+      const zonas = CARTILLAS[prep]?.zonas ?? []
+      const locs = (CARTILLAS_ZONA_V2[zona.id] ?? []).map((slug) => zonas.find((z) => z.slug === slug)).filter((z) => !!z)
+      if (locs.length) out.localidades[zona.id][prep] = locs.slice(0, 8).map((z) => ({ slug: z.slug, nombre: z.nombre }))
+    }
     if (!zona.cartilla) continue
-    out[zona.id] = {}
+    out.top[zona.id] = {}
     for (const k of TODOS_LOS_PLANES_V2) {
       const [prep, planSlug] = k.split('/')
       const c = CARTILLAS[prep]
@@ -31,8 +35,8 @@ export function sanatoriosV2(): SanatoriosV2 {
       const z = c?.zonas.find((x) => x.slug === (prep === 'osde' ? zona.cartillaOsde ?? zona.cartilla : zona.cartilla))
       if (!plan || !z) continue
       const nombres = z.centros.filter((x) => x.internacion.includes(plan.id)).map((x) => x.nombre)
-        .sort((a, b) => puesto(a) - puesto(b) || a.localeCompare(b))
-      if (nombres.length) out[zona.id][k] = { top: nombres.slice(0, 3).map(prolijo), total: nombres.length }
+        .sort((a, b) => puestoSanatorio(a) - puestoSanatorio(b) || a.localeCompare(b))
+      if (nombres.length) out.top[zona.id][k] = { top: nombres.slice(0, 3).map(nombreProlijo), total: nombres.length }
     }
   }
   cache = out

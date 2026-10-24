@@ -83,6 +83,22 @@ body {
   }
 }
 
+/* Cotizador v2: popup del plan (entrada suave) y modo formulario (al pedir
+   el descuento solo queda el cotizador: sin encabezado ni secciones de la
+   página, Darío 24-oct-2026) */
+@keyframes cv2-fondo-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cv2-modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.cv2-fondo { animation: cv2-fondo-in 0.2s ease-out both; }
+.cv2-modal { animation: cv2-modal-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.cv2-panel { animation: card-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
+html[data-cv2-foco] .cv2-ocultable { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .cv2-fondo, .cv2-modal, .cv2-panel { animation: none; }
+}
+
 /* Filas de /obras-sociales/codigos (~400): clases cortas para que la página
    no pese el doble por repetir las mismas utilidades en cada fila. */
 @layer components {

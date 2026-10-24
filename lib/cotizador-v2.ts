@@ -97,6 +97,38 @@ export const PLANES_V2: Record<Region, PlanV2[]> = {
 
 export const TODOS_LOS_PLANES_V2 = [...new Set([...PLANES_V2.amba, ...PLANES_V2.interior].map((p) => p.k))]
 
+/** Localidades de la cartilla (lib/data/cartilla-zonas) que el popup ofrece
+ *  en cada zona, de la más poblada a la menos. Cada prepaga usa las que tiene
+ *  cargadas (OSDE con sus propios slugs). */
+export const CARTILLAS_ZONA_V2: Record<string, string[]> = {
+  caba: ['caba'],
+  'gba-norte': ['gba-zona-norte', 'gba-zona-noroeste'],
+  'gba-oeste': ['gba-zona-oeste'],
+  'gba-sur': ['gba-zona-sur', 'gba-zona-sudeste', 'gba-zona-sudoeste'],
+  'buenos-aires-interior': ['la-plata', 'mar-del-plata', 'bahia-blanca', 'tandil', 'junin', 'pergamino', 'olavarria', 'san-nicolas-de-los-arroyos', 'necochea', 'azul', 'zarate', 'campana', 'lujan', 'tres-arroyos', 'chivilcoy'],
+  cordoba: ['cordoba', 'cordoba-capital', 'rio-cuarto', 'villa-maria', 'villa-carlos-paz', 'san-francisco', 'alta-gracia'],
+  'santa-fe': ['rosario', 'santa-fe', 'ciudad-de-santa-fe', 'rafaela', 'venado-tuerto', 'reconquista'],
+  mendoza: ['mendoza', 'ciudad-de-mendoza', 'godoy-cruz', 'guaymallen', 'san-jose-de-guaymallen', 'lujan-de-cuyo', 'san-rafael'],
+  tucuman: ['san-miguel-de-tucuman', 'tucuman'],
+  'entre-rios': ['parana', 'concordia', 'concepcion-del-uruguay', 'gualeguaychu'],
+  salta: ['salta', 'salta-capital'],
+  neuquen: ['neuquen', 'ciudad-de-neuquen', 'zapala'],
+  misiones: ['posadas', 'obera', 'misiones'],
+  chaco: ['resistencia', 'presidencia-roque-saenz-pena'],
+  corrientes: ['corrientes', 'corrientes-capital'],
+  'rio-negro': ['san-carlos-de-bariloche', 'general-roca', 'cipolletti', 'viedma'],
+  jujuy: ['san-salvador-de-jujuy'],
+}
+
+// Los sanatorios más conocidos primero (sin esto el orden es alfabético y
+// arranca por clínicas chicas)
+const CONOCIDOS = ['trinidad', 'mater dei', 'arcos', 'otamendi', 'suizo', 'italiano', 'brit', 'g[uü]emes', 'finochietto', 'agote', 'zabala',
+  'favaloro', 'olivos', 'lomas', 'nordelta', 'san lucas', 'allende', 'reina fabiola', 'privado', 'sirio', 'bazterrica', 'cemic', 'santa isabel',
+  'fleni', 'anchorena', 'colegiales', 'providencia', 'juncal', '\\bima\\b', 'espora'].map((x) => new RegExp(x, 'i'))
+export const puestoSanatorio = (n: string) => { const i = CONOCIDOS.findIndex((r) => r.test(n)); return i < 0 ? 99 : i }
+/** "Sanatorio los ARCOS - ASE" → "Sanatorio los Arcos" */
+export const nombreProlijo = (n: string) => n.replace(/\b([A-ZÁÉÍÓÚÑ]{3,})\b/g, (w) => w[0] + w.slice(1).toLowerCase()).replace(/\s*-\s*ASE$/, '').replace(/^Clinica /, 'Clínica ')
+
 /** Sanatorios de Swiss elegidos por Darío para GBA Sur y GBA Norte (24-oct-2026). */
 export const SANATORIOS_SWISS_FIJOS: Record<string, string[]> = {
   'gba-sur': ['Juncal', 'IMA', 'Espora'],

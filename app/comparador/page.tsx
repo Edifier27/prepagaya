@@ -119,7 +119,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
         // la primera pantalla (Darío, 28-sep-2026: "mucha data, acortala"). La
         // zona detectada ya la muestra el propio cotizador ("Detectamos que
         // estás en…"): el banner y la pastilla quedan solo en pantallas grandes.
-        <section className="bg-gradient-to-b from-[#FFF1F2] to-white border-b border-red-100 pt-5 pb-4 sm:py-14">
+        <section className="cv2-ocultable bg-gradient-to-b from-[#FFF1F2] to-white border-b border-red-100 pt-5 pb-4 sm:py-14">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="hidden sm:block">
               <ZonaBanner variant="cotizador" />
@@ -182,7 +182,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
 
       {/* Confianza debajo del comparador (Darío, 6-oct-2026): cómo funciona,
           en tres columnas. Solo afirmaciones que el sitio ya respalda. */}
-      <section className="py-10 bg-white border-t border-gray-100">
+      <section className="cv2-ocultable py-10 bg-white border-t border-gray-100">
         <div className="container max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
@@ -215,7 +215,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
       </section>
 
       {/* Preguntas frecuentes — texto indexable para "comparador de prepagas" */}
-      <section className="py-12 bg-white border-t border-gray-100">
+      <section className="cv2-ocultable py-12 bg-white border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes sobre el comparador de prepagas</h2>
           <div className="space-y-2">
@@ -234,7 +234,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
 
       {/* Footer trust — solo si no hay zona (página limpia de cotización) */}
       {!zona && (
-        <section className="bg-gray-50 border-t border-gray-200 py-10">
+        <section className="cv2-ocultable bg-gray-50 border-t border-gray-200 py-10">
           <div className="container max-w-3xl mx-auto">
             <p className="text-center text-sm text-gray-500 mb-6">
               ¿Preferís explorar por tu cuenta? Navegá nuestras secciones:

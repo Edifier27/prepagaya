@@ -4,7 +4,7 @@
 // Reglas y maqueta: docs/producto/cotizador-v2.html y lib/cotizador-v2.ts.
 // Swiss primero, precio de lista real según la condición, la promo de cada
 // prepaga en la tarjeta y los datos recién al pedir el descuento.
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { track } from '@vercel/analytics'
 import { prepagas } from '@/lib/data/prepagas'
@@ -20,10 +20,10 @@ import {
   type ZonaV2, type PlanV2, type Condicion,
 } from '@/lib/cotizador-v2'
 import type { SanatoriosV2 } from '@/lib/cotizador-v2-sanatorios'
-import { PlanModal } from './PlanModal'
+import type { PestanaV2 } from './PlanDetalleV2'
 
-// Trae cartillas y sanatorios: se descarga recién al abrirlo (solo en la compu)
-const CartillaModal = dynamic(() => import('./CartillaModal').then((m) => m.CartillaModal), { ssr: false })
+// Popup del plan: se descarga recién al abrirlo (solo en la compu)
+const PlanDetalleV2 = dynamic(() => import('./PlanDetalleV2').then((m) => m.PlanDetalleV2), { ssr: false })
 
 type Paso = 'zona' | 'edades' | 'planes' | 'datos' | 'listo'
 interface Persona { id: number; rol: string; edad: string }
@@ -54,13 +54,15 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
   const [intento, setIntento] = useState(false)
   const [enviando, setEnviando] = useState(false)
   const [errorEnvio, setErrorEnvio] = useState(false)
-  const [modal, setModal] = useState<{ tipo: 'alcance' | 'cartilla'; plan: PlanV2 } | null>(null)
+  const [modal, setModal] = useState<{ pestana: PestanaV2; plan: PlanV2 } | null>(null)
+  const [localidadGeo, setLocalidadGeo] = useState<string | undefined>()
 
   // Zona por IP: arranca en las edades con "Cambiar" (la pantalla de zona solo
   // si no se detecta o si la persona la cambia)
   useEffect(() => {
     track('Cotizador visto', { version: 'b' })
-    const z = zonaDesdeGeo(leerZonaGeoDeCookie())
+    const geo = leerZonaGeoDeCookie()
+    const z = zonaDesdeGeo(geo)
     if (!z) return
     // La cookie solo existe en el navegador: se aplica después de hidratar
     let vigente = true
@@ -68,6 +70,7 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
       if (!vigente) return
       setZona(z)
       setZonaPorIp(true)
+      setLocalidadGeo(geo?.localidadSlug)
       setPaso('edades')
     })
     return () => { vigente = false }
@@ -75,8 +78,16 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
 
   // Modo enfocado como el cotizador actual: sin menú en las edades y los datos
   const { setHideChrome } = useChromeVisibility()
-  useEffect(() => { setHideChrome(paso === 'edades' || paso === 'datos') }, [paso, setHideChrome])
+  useEffect(() => { setHideChrome(paso === 'edades' || paso === 'datos' || paso === 'listo') }, [paso, setHideChrome])
   useEffect(() => () => setHideChrome(false), [setHideChrome])
+  // Al pedir el descuento solo queda el formulario (Darío, 24-oct-2026): se
+  // esconden el encabezado y las secciones de la página (.cv2-ocultable)
+  useEffect(() => {
+    const raiz = document.documentElement
+    if (paso === 'datos' || paso === 'listo') raiz.dataset.cv2Foco = '1'
+    else delete raiz.dataset.cv2Foco
+    return () => { delete raiz.dataset.cv2Foco }
+  }, [paso])
 
   const edades = personas.map((p) => (p.edad.trim() === '' ? null : parseInt(p.edad)))
   const edadesOk = edades.filter((e): e is number => e !== null && Number.isFinite(e))
@@ -110,6 +121,7 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
     return { lista, aPagar: lista === null ? null : Math.max(0, lista - aportes), promo }
   }
 
+  const cerrarModal = useCallback(() => setModal(null), [])
   function elegir(plan: PlanV2) {
     setElegido(plan)
     setModal(null)
@@ -250,7 +262,7 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
       // Premedic y OSDE sin precio en la zona no se muestran; Swiss y Sancor sí (el precio lo pasa el asesor)
       if (c.lista === null && precios && (plan.grupo === 'premedic' || plan.grupo === 'osde')) return null
       const fijos = plan.grupo === 'swiss' ? SANATORIOS_SWISS_FIJOS[zona.id] : undefined
-      const sn = sanatorios[zona.id]?.[plan.k]
+      const sn = sanatorios.top[zona.id]?.[plan.k]
       const nombres = fijos ?? sn?.top
       const propios = plan.grupo === 'swiss' ? centrosPropiosSwiss(zona) : ''
       return (
@@ -290,10 +302,16 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
               {c.promo && (
                 <p className="rounded-xl bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-800">🔓 Pedilo ahora y pagás menos desde el primer mes. Tu precio final con descuento te lo pasa un asesor oficial.</p>
               )}
-              {/* En la compu, los popups de alcance y cartilla como hoy; en el celular, no */}
-              <div className="hidden gap-4 text-sm lg:flex">
-                <button type="button" onClick={() => setModal({ tipo: 'alcance', plan })} className="font-semibold text-[#E8002D] underline">Alcance del plan</button>
-                <button type="button" onClick={() => setModal({ tipo: 'cartilla', plan })} className="font-semibold text-[#E8002D] underline">Cartilla en {zona.nombre}</button>
+              {/* En la compu, el popup del plan (qué cubre y cartilla); en el celular, no */}
+              <div className="hidden grid-cols-2 gap-2 lg:grid">
+                {([['cubre', 'Qué cubre', <path key="i" d="M9 12l2 2 4-4M7.8 4.7a3.4 3.4 0 001.9-.8 3.4 3.4 0 014.6 0 3.4 3.4 0 001.9.8 3.4 3.4 0 013.1 3.1c.1.7.3 1.4.8 1.9a3.4 3.4 0 010 4.6 3.4 3.4 0 00-.8 1.9 3.4 3.4 0 01-3.1 3.1 3.4 3.4 0 00-1.9.8 3.4 3.4 0 01-4.6 0 3.4 3.4 0 00-1.9-.8 3.4 3.4 0 01-3.1-3.1 3.4 3.4 0 00-.8-1.9 3.4 3.4 0 010-4.6c.5-.5.7-1.2.8-1.9a3.4 3.4 0 013.1-3.1z" />],
+                  ['cartilla', 'Cartilla', <path key="i" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M12 7v4M10 9h4" />]] as const).map(([id, texto, icono]) => (
+                  <button key={id} type="button" onClick={() => setModal({ pestana: id, plan })}
+                    className="group flex items-center justify-center gap-1.5 rounded-xl border border-gray-200 bg-gray-50/70 px-3 py-2 text-sm font-semibold text-gray-700 transition hover:-translate-y-0.5 hover:border-[#E8002D] hover:bg-white hover:text-gray-900 hover:shadow-sm">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-[#E8002D]">{icono}</svg>
+                    {texto}
+                  </button>
+                ))}
               </div>
               <button type="button" onClick={() => elegir(plan)}
                 className={`w-full rounded-xl py-3 text-sm font-bold ${c.promo ? 'bg-[#E8002D] text-white hover:bg-[#B8001F]' : 'bg-red-50 text-[#E8002D] hover:bg-red-100'}`}>
@@ -307,8 +325,7 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
     }
     const swiss = visibles.filter((p) => p.grupo === 'swiss')
     const otros = visibles.filter((p) => p.grupo !== 'swiss')
-    const prepModal = modal ? prepagas.find((p) => p.slug === modal.plan.k.split('/')[0]) : undefined
-    const planModal = modal && prepModal ? prepModal.planes.find((pl) => pl.slug === modal.plan.k.split('/')[1]) : undefined
+    const planModal = modal ? prepagas.find((p) => p.slug === modal.plan.k.split('/')[0])?.planes.find((pl) => pl.slug === modal.plan.k.split('/')[1]) : undefined
     return (
       <div className="flex flex-col gap-4">
         <div>
@@ -328,16 +345,17 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
           <button type="button" onClick={() => setVerMas(true)} className="self-center rounded-xl border-2 border-[#E8002D] px-6 py-3 text-sm font-bold text-[#E8002D] hover:bg-red-50">Ver más planes</button>
         )}
         <p className="text-xs text-gray-400">Precios de lista oficiales declarados ante la Superintendencia de Servicios de Salud. El precio final con promoción lo confirma el asesor.</p>
-        {modal?.tipo === 'alcance' && prepModal && planModal && (
-          <PlanModal prepaga={prepModal} plan={planModal} onClose={() => setModal(null)} onQuiero={() => elegir(modal.plan)}
-            quieroLabel={(() => { const p = promoDe(modal.plan.grupo, edadesOk, condicion); return p ? `Quiero mi ${p.pct} OFF` : 'Quiero que me asesoren' })()} />
-        )}
-        {modal?.tipo === 'cartilla' && prepModal && planModal && (
-          <CartillaModal prepaga={prepModal} plan={planModal} zonaKey={zona.zonaKey} provinciaNombre={zona.nombre}
-            localidadSlug={(prepModal.slug === 'osde' ? zona.cartillaOsde ?? zona.cartilla : zona.cartilla) ?? null}
-            onClose={() => setModal(null)} onQuiero={() => elegir(modal.plan)}
-            quieroLabel={(() => { const p = promoDe(modal.plan.grupo, edadesOk, condicion); return p ? `Quiero mi ${p.pct} OFF` : 'Quiero que me asesoren' })()} />
-        )}
+        {modal && (() => {
+          const c = cotizacion(modal.plan)
+          const prep = modal.plan.k.split('/')[0]
+          return (
+            <PlanDetalleV2 plan={modal.plan} datos={planModal} zonaNombre={zona.nombre}
+              localidades={sanatorios.localidades[zona.id]?.[prep] ?? []} localidadInicial={localidadGeo}
+              pestanaInicial={modal.pestana} precio={c.aPagar !== null ? formatPrecio(c.aPagar) : null} promo={c.promo}
+              propios={modal.plan.grupo === 'swiss' ? centrosPropiosSwiss(zona) : ''}
+              onClose={cerrarModal} onQuiero={() => elegir(modal.plan)} />
+          )
+        })()}
       </div>
     )
   }
