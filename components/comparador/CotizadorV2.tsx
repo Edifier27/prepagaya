@@ -367,11 +367,22 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
     return (
       <div className="max-w-xl mx-auto flex flex-col gap-4">
         <button type="button" onClick={() => setPaso('planes')} className="self-start text-sm text-gray-500 hover:text-[#E8002D]">← Ver otros planes</button>
-        <h2 className="text-2xl font-bold text-gray-900">¡Buenísima elección! {elegido.marca} {elegido.nom}{c.promo ? ` con ${c.promo.pct} OFF` : ''}</h2>
-        <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-gray-800">
-          {c.promo && <><strong>🔓 Desbloqueá tu descuento.</strong> </>}{quien} te manda por WhatsApp tu precio final{c.promo ? ' con el descuento aplicado' : ''} y te ayuda con el alta.
-          {c.aPagar !== null && <span className="mt-1 block text-gray-500">Precio de lista hoy: {formatPrecio(c.aPagar)} por mes.</span>}
-        </p>
+        <h2 className="text-2xl font-bold text-gray-900">¡Buenísima elección!</h2>
+        {/* Resumen del plan elegido: qué pide y cuánto sale de lista */}
+        <div className="flex items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-sm">
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-wider text-gray-500">{elegido.marca}</p>
+            <p className="text-lg font-extrabold leading-tight text-gray-900">{elegido.nom}</p>
+            {c.promo && <p className="mt-1 text-xs font-bold text-emerald-700">🔥 {c.promo.corta} · {c.promo.detalle}</p>}
+          </div>
+          {c.aPagar !== null && (
+            <div className="text-right">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Precio de lista</p>
+              <p className="text-lg font-extrabold tabular-nums text-gray-900">{formatPrecio(c.aPagar)}</p>
+            </div>
+          )}
+        </div>
+        <p className="text-sm text-gray-700">{quien} te pasa por WhatsApp tu precio final{c.promo ? ` con el ${c.promo.pct} OFF` : ''} y te ayuda con el alta.</p>
         <CampoTrampa />
         <label htmlFor="v2-nombre" className="flex flex-col gap-1 text-sm font-semibold text-gray-800">Nombre
           <input id="v2-nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} autoComplete="given-name" placeholder="Tu nombre"
@@ -395,9 +406,9 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
         {errorEnvio && <p role="alert" className="text-sm text-red-600">No se pudo enviar. Probá de nuevo en un momento.</p>}
         <button type="button" onClick={enviar} disabled={enviando}
           className="w-full rounded-2xl bg-[#E8002D] py-4 text-base font-bold text-white shadow-md hover:bg-[#B8001F] disabled:cursor-wait disabled:opacity-70">
-          {enviando ? 'Enviando…' : c.promo ? 'Desbloquear mi descuento 🔓' : 'Quiero que me asesoren'}
+          {enviando ? 'Enviando…' : c.promo ? `Quiero mi precio con ${c.promo.pct} OFF →` : 'Quiero mi precio final →'}
         </button>
-        <p className="text-center text-xs text-gray-500">Te escribimos por WhatsApp. Gratis, sin DNI y sin compromiso.</p>
+        <p className="text-center text-xs text-gray-500">📲 Te llega por WhatsApp · Gratis, sin DNI y sin compromiso</p>
       </div>
     )
   }
@@ -405,16 +416,39 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
   // ── Listo ─────────────────────────────────────────────────────────────────
   if (paso === 'listo' && elegido) {
     const c = cotizacion(elegido)
+    const pasos = [
+      { t: 'Recibimos tu pedido', d: `${elegido.marca} ${elegido.nom}${c.promo ? ` con ${c.promo.corta}` : ''}`, estado: 'hecho' },
+      { t: `Te escribe ${asesorDe(elegido.grupo).replace('Asesor', 'un asesor')}`, d: 'Por WhatsApp, en los próximos minutos (lunes a viernes de 8 a 20; si es fuera de horario, a primera hora del día hábil siguiente).', estado: 'ahora' },
+      { t: c.promo ? `Te pasa tu precio final con el ${c.promo.pct} OFF` : 'Te pasa tu precio final', d: 'Y te ayuda con el alta, sin vueltas.', estado: 'despues' },
+    ]
     return (
-      <div className="max-w-xl mx-auto flex flex-col items-center gap-3 text-center">
-        <div className="grid h-14 w-14 place-items-center rounded-full bg-emerald-50 text-2xl font-extrabold text-emerald-700">✓</div>
-        <h2 className="text-2xl font-bold text-gray-900">¡Listo, {nombre.trim().split(' ')[0]}! {c.promo ? `Ya pedimos tu ${c.promo.pct} OFF` : 'Ya pedimos tu cotización'}</h2>
-        <p className="font-semibold text-gray-700">Te escribe {asesorDe(elegido.grupo).replace('Asesor', 'un asesor')} por WhatsApp.</p>
-        <p className="text-sm text-gray-500">En los próximos minutos, de lunes a viernes de 8 a 20. Si es fuera de horario, a primera hora del día hábil siguiente.</p>
-        <p className="w-full rounded-xl bg-red-50 px-4 py-3 text-left text-sm text-gray-800">
-          <strong>{elegido.marca} {elegido.nom}</strong>{c.promo ? ` · 🔥 ${c.promo.corta}` : ''}
-          <span className="mt-1 block text-gray-500">Tené el WhatsApp a mano: tu precio con descuento llega en minutos.</span>
-        </p>
+      <div className="max-w-xl mx-auto flex flex-col gap-5">
+        <div className="flex flex-col items-center gap-2 text-center">
+          <div className="cv2-modal grid h-16 w-16 place-items-center rounded-full bg-emerald-500 text-3xl font-black text-white shadow-lg shadow-emerald-200">✓</div>
+          <h2 className="text-2xl font-bold text-gray-900">¡Listo, {nombre.trim().split(' ')[0]}! {c.promo ? `Tu ${c.promo.pct} OFF ya está pedido` : 'Ya pedimos tu precio'}</h2>
+          <p className="text-sm text-gray-500">Tené el WhatsApp a mano: ahí te llega todo.</p>
+        </div>
+        {/* Qué pasa ahora, en tres pasos */}
+        <ol className="flex flex-col rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+          {pasos.map((x, i) => (
+            <li key={x.t} className="relative flex gap-3 pb-5 last:pb-0">
+              {i < pasos.length - 1 && <span aria-hidden className={`absolute left-[13px] top-7 h-[calc(100%-1.75rem)] w-0.5 ${x.estado === 'hecho' ? 'bg-emerald-400' : 'bg-gray-200'}`} />}
+              <span className={`relative z-10 grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-black ${x.estado === 'hecho' ? 'bg-emerald-500 text-white' : x.estado === 'ahora' ? 'bg-[#E8002D] text-white' : 'bg-gray-100 text-gray-500'}`}>
+                {x.estado === 'hecho' ? '✓' : i + 1}
+                {x.estado === 'ahora' && <span aria-hidden className="absolute inset-0 animate-ping rounded-full bg-[#E8002D]/40 motion-reduce:animate-none" />}
+              </span>
+              <div className="pt-0.5">
+                <p className={`text-sm font-bold ${x.estado === 'despues' ? 'text-gray-500' : 'text-gray-900'}`}>{x.t}</p>
+                <p className="text-sm text-gray-500">{x.d}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        {/* Si el número está mal, el asesor no llega: se puede corregir acá */}
+        <div className="flex items-center justify-between gap-3 rounded-2xl bg-gray-50 px-4 py-3 text-sm">
+          <span className="text-gray-600">Te escribimos al <strong className="whitespace-nowrap text-gray-900">{celular.trim()}</strong></span>
+          <button type="button" onClick={() => setPaso('datos')} className="shrink-0 font-semibold text-[#E8002D] hover:underline">¿Está mal? Corregilo</button>
+        </div>
       </div>
     )
   }
