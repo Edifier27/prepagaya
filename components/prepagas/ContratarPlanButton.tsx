@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 
 interface Props {
   prepagaNombre: string
@@ -25,6 +26,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
   const [open, setOpen] = useState(false)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [planElegido, setPlanElegido] = useState('')
@@ -41,6 +43,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
 
   async function handleSubmit() {
     if (!ok) return
+    if (!(await avisoCelular.revisar(celular))) return
     setStatus('loading')
     try {
       const res = await fetch('/api/leads', {
@@ -142,10 +145,11 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">Celular *</label>
                       <input
-                        type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
+                        type="tel" value={celular} onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }}
                         placeholder="11 2345-6789" autoComplete="tel" inputMode="numeric"
                         className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
                       />
+                      <AvisoCelular texto={avisoCelular.aviso} />
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">Edades de quienes se asocian <span className="font-normal text-gray-400">(opcional)</span></label>

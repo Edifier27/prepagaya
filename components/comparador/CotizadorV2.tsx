@@ -15,6 +15,7 @@ import { resumenEdades } from '@/lib/leads-cliente'
 import { paginaPrevia } from '@/lib/navegacion-cliente'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 import { useChromeVisibility } from '@/components/layout/ChromeVisibility'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 import {
   ZONAS_V2, PLANES_V2, SANATORIOS_SWISS_FIJOS, CUANDO_ALTA, centrosPropiosSwiss, errorDeEdad, aporteDe, promoDe, asesorDe, zonaDesdeGeo,
   type ZonaV2, type PlanV2, type Condicion,
@@ -50,6 +51,7 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
   const [elegido, setElegido] = useState<PlanV2 | null>(null)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [cuando, setCuando] = useState('')
   const [intento, setIntento] = useState(false)
   const [enviando, setEnviando] = useState(false)
@@ -134,6 +136,7 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
   async function enviar() {
     setIntento(true)
     if (!nombre.trim() || !celularOk || !elegido || !zona) return
+    if (!(await avisoCelular.revisar(celular))) return
     setEnviando(true)
     setErrorEnvio(false)
     const c = cotizacion(elegido)
@@ -390,8 +393,9 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
           {intento && !nombre.trim() && <span className="text-xs text-[#E8002D]">Falta tu nombre.</span>}
         </label>
         <label htmlFor="v2-celular" className="flex flex-col gap-1 text-sm font-semibold text-gray-800">Celular con código de área
-          <input id="v2-celular" type="tel" inputMode="tel" value={celular} onChange={(e) => setCelular(e.target.value)} autoComplete="tel-national" placeholder="11 2345-6789"
+          <input id="v2-celular" type="tel" inputMode="tel" value={celular} onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }} autoComplete="tel-national" placeholder="11 2345-6789"
             className={`rounded-xl border-2 px-3 py-3 text-base font-normal focus:border-[#E8002D] focus:outline-none ${intento && !celularOk ? 'border-[#E8002D] bg-red-50/40' : 'border-gray-200'}`} />
+          <AvisoCelular texto={avisoCelular.aviso} />
           {intento && !celularOk && <span className="text-xs text-[#E8002D]">{celular.trim() ? 'Revisá el número: con código de área, por ejemplo 11 2345-6789.' : 'Falta tu celular.'}</span>}
         </label>
         <div>

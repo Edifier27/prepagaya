@@ -9,6 +9,7 @@ import { detectarZona } from '@/lib/geo-zonas'
 import { limpiarSituacionLaboral, limpiarPresupuesto, limpiarPrepagaActual, limpiarPreferencias } from '@/lib/data/sondeo'
 import { CAMPO_TRAMPA, campoDemasiadoLargo, celularPlausible, pruebaAutorizada } from '@/lib/leads-validacion'
 import { COOKIE_ENTRADA, leerEntrada } from '@/lib/entrada'
+import { verificarCelularAR } from '@/lib/celular-ar'
 
 // Envío a Kommo programado por cada lead (19-oct-2026, en vez del cron de
 // cada minuto que agotó el cupo gratis de la base): después de responder,
@@ -61,7 +62,14 @@ export async function POST(req: NextRequest) {
   const situacionLaboral = limpiarSituacionLaboral(body.situacion_laboral)
   const presupuesto = limpiarPresupuesto(body.presupuesto_quiz)
   const prepagaActual = limpiarPrepagaActual(body.prepaga_actual)
-  const preferencias = limpiarPreferencias(body.preferencias)
+  // Celular que no está en los bloques de ENACOM (25-oct-2026): el
+  // formulario ya avisó y la persona lo confirmó; se guarda igual, marcado,
+  // para que el asesor lo sepa. Los del exterior (pais) no se revisan.
+  const verificacion = pais ? null : verificarCelularAR(celular)
+  const preferenciasLimpias = limpiarPreferencias(body.preferencias)
+  const preferencias = verificacion && !verificacion.ok
+    ? JSON.stringify({ ...JSON.parse(preferenciasLimpias || '{}'), celular: `no verificado (${verificacion.motivo})` })
+    : preferenciasLimpias
   const zonaDetectada = detectarZona(req.headers.get('x-vercel-ip-country-region'), req.headers.get('x-vercel-ip-city'))?.label
 
   // Campo trampa completo o prueba sin el secreto: se responde "ok" para no
@@ -108,7 +116,7 @@ export async function POST(req: NextRequest) {
   const entrada = leerEntrada(req.cookies.get(COOKIE_ENTRADA)?.value)
   // Sin nombre, email ni celular: los logs de Vercel se guardan días y no
   // tienen que tener datos personales (auditoría 21-oct-2026).
-  console.log('[LEAD]', JSON.stringify({ fuente, provincia, prepaga: prepaga.slice(0, 80), pagina, entrada }))
+  console.log('[LEAD]', JSON.stringify({ fuente, provincia, prepaga: prepaga.slice(0, 80), pagina, entrada, ...(verificacion && !verificacion.ok ? { celular: verificacion.motivo } : {}) }))
 
   // Leads que llegaron al comparador desde la barra "Cotizá X" de fichas y
   // planes (3-oct-2026): se miden como "cotizacion-wizard · barra". Solo en

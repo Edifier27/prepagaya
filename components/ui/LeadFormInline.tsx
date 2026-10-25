@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { trackLead } from '@/lib/analytics'
 import { TrustBadge } from './TrustBadge'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 
 interface Props {
   prepagaNombre?: string
@@ -16,12 +17,14 @@ interface Props {
 export function LeadFormInline({ prepagaNombre, titulo, className = '', fuente: fuenteProp }: Props) {
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!nombre.trim() || !celular.trim() || !email.trim()) return
+    if (!(await avisoCelular.revisar(celular))) return
     setStatus('loading')
     const fuente = fuenteProp ?? (prepagaNombre ? `sidebar-${prepagaNombre.toLowerCase().replace(/\s+/g, '-')}` : 'sidebar-inline')
     try {
@@ -88,11 +91,12 @@ export function LeadFormInline({ prepagaNombre, titulo, className = '', fuente: 
           <input
             type="tel"
             value={celular}
-            onChange={(e) => setCelular(e.target.value)}
+            onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }}
             placeholder="Celular *"
             required
             className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
           />
+          <AvisoCelular texto={avisoCelular.aviso} />
         </div>
         <div>
           <input

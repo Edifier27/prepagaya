@@ -34,11 +34,15 @@ export function tipoDeInteres(interes: string | null): 'partner' | 'no partner' 
 }
 
 /** "¿Para cuándo buscás el alta?" del cotizador v2, para que el asesor
- *  priorice (24-oct-2026). */
+ *  priorice (24-oct-2026), y si el celular no se pudo verificar. */
 function altaDe(preferencias: string | null): string {
   try {
-    const alta = JSON.parse(preferencias ?? '{}')?.alta
-    return typeof alta === 'string' && alta ? `alta: ${alta.toLowerCase()}` : ''
+    const { alta, celular } = JSON.parse(preferencias ?? '{}') ?? {}
+    return [
+      typeof alta === 'string' && alta ? `alta: ${alta.toLowerCase()}` : '',
+      // Celular fuera de los bloques de ENACOM que la persona confirmó (25-oct-2026)
+      typeof celular === 'string' && celular ? `celular ${celular}` : '',
+    ].filter(Boolean).join(' · ')
   } catch {
     return ''
   }

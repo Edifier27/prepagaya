@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { trackLead } from '@/lib/analytics'
 import { TrustBadge } from './TrustBadge'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 
 interface Props {
   open: boolean
@@ -58,6 +59,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
   const [personas, setPersonas] = useState<Personas | ''>('')
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
 
   if (!open) return null
@@ -80,6 +82,7 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
 
   async function handleSubmit() {
     if (!ok) return
+    if (!(await avisoCelular.revisar(celular))) return
     setStatus('loading')
     const situacionLabel = SITUACIONES.find((s) => s.value === situacion)?.label ?? situacion
     const prioridadLabel = PRIORIDADES.find((p) => p.value === prioridad)?.label ?? prioridad
@@ -245,12 +248,13 @@ export function AsesoramientoPopup({ open, onClose }: Props): React.ReactElement
                       <input
                         type="tel"
                         value={celular}
-                        onChange={(e) => setCelular(e.target.value)}
+                        onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }}
                         placeholder="11 2345-6789"
                         autoComplete="tel"
                         inputMode="numeric"
                         className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-[#E8002D] transition-colors"
                       />
+                      <AvisoCelular texto={avisoCelular.aviso} />
                     </div>
                   </div>
 

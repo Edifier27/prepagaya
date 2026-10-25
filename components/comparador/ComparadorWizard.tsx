@@ -23,6 +23,7 @@ import { OPCIONES_PREPAGA_ACTUAL } from '@/lib/data/sondeo'
 import type { SumaPlan } from '@/lib/planes-suma'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 import { paginaPrevia } from '@/lib/navegacion-cliente'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
@@ -771,6 +772,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   // Lead data
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [email, setEmail] = useState('')
   // Email opcional (4-oct-2026): el comparador trae la mitad de los leads y
   // cada campo obligatorio menos suma. Sin email va el mismo comodín que usa
@@ -1095,6 +1097,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
   async function handleVerPrecios() {
     if (!popupOk) { marcarFaltantes(true); return }
+    if (!(await avisoCelular.revisar(celular))) return
     setLeadStatus('loading')
     try {
       await sendEmail(buildPayload())
@@ -1402,10 +1405,11 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
                       </svg>
                     </span>
-                    <input id="lead-celular" type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
+                    <input id="lead-celular" type="tel" value={celular} onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }}
                       placeholder="11 2345-6789" autoComplete="tel-national" inputMode="tel" aria-invalid={intentoDatos && faltaCelular}
                       className={`w-full border-2 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors ${intentoDatos && faltaCelular ? 'border-[#E8002D] bg-red-50/40' : 'border-gray-200'}`} />
                   </div>
+                  <AvisoCelular texto={avisoCelular.aviso} />
                   {intentoDatos && faltaCelular ? (
                     <p className="text-[11px] font-semibold text-[#E8002D] mt-1">{celular.trim() ? 'Revisá el número: con código de área, por ejemplo 11 2345-6789.' : 'Falta tu celular, con código de área.'}</p>
                   ) : celular.trim().length > 0 && faltaCelular && (
