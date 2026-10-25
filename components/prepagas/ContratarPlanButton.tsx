@@ -20,9 +20,11 @@ interface Props {
   titulo?: string
   /** Planes para elegir en el popup (botón de la ficha de la prepaga, sin plan fijo) */
   planesOpciones?: string[]
+  /** Menciona el 15% OFF en el popup (25-oct-2026: solo Swiss en las fichas de plan) */
+  conPromo?: boolean
 }
 
-export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra, titulo, planesOpciones }: Props) {
+export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra, titulo, planesOpciones, conPromo = true }: Props) {
   const [open, setOpen] = useState(false)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
@@ -103,7 +105,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
               </button>
               <div className="text-xl font-bold mb-1 pr-6">{titulo ?? 'Cotizá online y Ahorrá'}</div>
               <p className="text-red-100 text-sm leading-relaxed">
-                Dejanos tus datos y un asesor oficial te pasa el precio exacto de {interes} para tu edad, con 15% OFF por contratar online.
+                Dejanos tus datos y un asesor oficial te pasa el precio exacto de {interes} para tu edad{conPromo ? ', con 15% OFF por contratar online' : ''}.
               </p>
             </div>
 

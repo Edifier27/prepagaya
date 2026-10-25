@@ -10,7 +10,7 @@ import { trackEvent } from '@/lib/analytics'
 // comparador dejan sus datos, y las páginas de plan tenían cientos de
 // visitas y casi ningún contacto. Aparece después de bajar un poco (no tapa
 // el botón de arriba) y queda sobre la barra de navegación del celular.
-export function BarraCotizar({ titulo, href, origen }: { titulo: string; href: string; origen: string }) {
+export function BarraCotizar({ titulo, href, origen, promo = '15% OFF' }: { titulo: string; href: string; origen: string; /** Promo al lado del título; vacío sin promo (25-oct-2026: solo Swiss) */ promo?: string }) {
   const [visible, setVisible] = useState(false)
   useEffect(() => {
     // Se ve después de bajar 500 px y se esconde al llegar al pie de página
@@ -34,7 +34,7 @@ export function BarraCotizar({ titulo, href, origen }: { titulo: string; href: s
         className="flex items-center justify-between gap-3 rounded-2xl bg-[#E8002D] px-4 py-2 text-white shadow-xl"
       >
         {/* Una sola línea (11-oct-2026): ocupa menos pantalla en el celular */}
-        <span className="min-w-0 truncate text-sm font-bold">Cotizá {titulo} <span className="font-semibold text-red-100">· 15% OFF</span></span>
+        <span className="min-w-0 truncate text-sm font-bold">Cotizá {titulo} {promo && <span className="font-semibold text-red-100">· {promo}</span>}</span>
         <span className="flex-shrink-0 rounded-xl bg-white px-3 py-1.5 text-sm font-bold text-[#E8002D]">Ver mi precio →</span>
       </Link>
     </div>
