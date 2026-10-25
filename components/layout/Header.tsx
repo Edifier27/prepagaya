@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { Buscador } from './Buscador'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { promoEnRuta } from '@/lib/promo-rutas'
 // Solo el JSON chico de precios (no lib/data/prepagas.ts): el header está en
 // todas las páginas y es client component.
 import preciosOficiales from '@/lib/data/precios-oficiales.json'
@@ -102,6 +104,8 @@ function Disparador({ texto, abierto, onAlternar }: { texto: string; abierto: bo
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  // Sin el 15% OFF en las páginas de las prepagas que no son Swiss (25-oct-2026)
+  const conPromo = promoEnRuta(usePathname())
   const [activeDropdown, setActiveDropdown] = useState<DropdownKey>(null)
 
   const openDropdown = (key: DropdownKey) => setActiveDropdown(key)
@@ -231,7 +235,7 @@ export function Header() {
               </svg>
               Cotizá gratis
               {/* Incentivo al clic (Darío, 25-sep-2026): el mismo 15% online del cotizador */}
-              <span className="rounded-md bg-white/5 border border-white/25 px-1.5 py-0.5 text-[10px] font-black leading-none">15% OFF</span>
+              {conPromo && <span className="rounded-md bg-white/5 border border-white/25 px-1.5 py-0.5 text-[10px] font-black leading-none">15% OFF</span>}
             </Link>
           </div>
 
@@ -262,7 +266,7 @@ export function Header() {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" className="w-4 h-4">
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-              Cotizá gratis · 15% OFF online
+              {conPromo ? 'Cotizá gratis · 15% OFF online' : 'Cotizá gratis'}
             </Link>
 
             {herramientasGrupos.map((g) => (
