@@ -413,6 +413,10 @@ export function CotizadorV2({ sanatorios, desde }: { sanatorios: SanatoriosV2; d
           {enviando ? 'Enviando…' : c.promo ? `Quiero mi precio con ${c.promo.pct} OFF →` : 'Quiero mi precio final →'}
         </button>
         <p className="text-center text-xs text-gray-500">📲 Te llega por WhatsApp · Gratis, sin DNI y sin compromiso</p>
+        {/* Consentimiento para pasar el dato al asesor de la prepaga (Ley 25.326, 25-oct-2026) */}
+        {process.env.NEXT_PUBLIC_PORTAL_ASESORES === 'on' && elegido.grupo !== 'swiss' && elegido.grupo !== 'osde' && (
+          <p className="text-center text-xs text-gray-500">Al enviar, aceptás que te contacte un asesor de {elegido.marca} para pasarte tu precio.</p>
+        )}
       </div>
     )
   }

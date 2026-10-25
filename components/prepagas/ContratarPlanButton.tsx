@@ -186,6 +186,10 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                   >
                     {status === 'loading' ? 'Enviando...' : planFinal ? `Cotizar ${planFinal} →` : 'Cotizar →'}
                   </button>
+                  {/* Consentimiento para pasar el dato al asesor de la prepaga (Ley 25.326, 25-oct-2026) */}
+                  {process.env.NEXT_PUBLIC_PORTAL_ASESORES === 'on' && !/swiss|osde/i.test(prepagaNombre) && (
+                    <p className="mt-2 text-center text-xs text-gray-500">Al enviar, aceptás que te contacte un asesor de {prepagaNombre} para pasarte tu precio.</p>
+                  )}
                 </>
               )}
             </div>
