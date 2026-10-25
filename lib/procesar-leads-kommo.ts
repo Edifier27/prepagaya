@@ -4,6 +4,8 @@ import { avisarLeadPorPush } from '@/lib/push'
 import { mandarLeadPorEmail } from '@/lib/emailjs'
 import { mandarLeadACrmAsesor, detalleOrigen } from '@/lib/crm-asesor'
 import { devolverCupoMail, tomarCupoMail } from '@/lib/cupo-mail'
+import { portalConfigurado, prepagaParaPortal, mandarAlPortal } from '@/lib/portal-asesores'
+import { prepagas as listaPrepagas } from '@/lib/data/prepagas'
 
 // Envío de los leads a Kommo (o al destino configurado en el panel), 1
 // minuto y medio después de la última actividad de cada persona (Darío,
@@ -41,6 +43,16 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
     // En los mails, la fuente va con el origen completo (página, canal, partner y #id), igual que al CRM
     const fuenteMail = detalleOrigen(lead)
     const fecha = new Date(lead.creado_en).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
+
+    // Portal Asesores (25-oct-2026): si solo pidió prepagas que no son Swiss
+    // ni OSDE, va al asesor de esa prepaga y no al CRM ni al cupo por mail.
+    // Si el portal no responde, sigue el camino de siempre (no se pierde).
+    const slugPortal = portalConfigurado() && !fuente.startsWith('prueba') ? prepagaParaPortal(prepaga) : null
+    if (slugPortal && await mandarAlPortal(lead, slugPortal)) {
+      await marcarResultadoKommo(lead.id, `Portal asesores: ${listaPrepagas.find((p) => p.slug === slugPortal)?.nombre ?? slugPortal}`, '')
+      ok++
+      continue
+    }
 
     // Cupo diario por mail (pedido de Darío, 14-oct-2026): los primeros 3 leads de cada día van a un mail aparte y
     // en el panel quedan con su rótulo ("Dario B2"). Va antes del destino normal y no lo toca (ni avanza alternancias).

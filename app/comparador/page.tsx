@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { cookies } from 'next/headers'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
+import { CotizadorV2 } from '@/components/comparador/CotizadorV2'
+import { VistoAB } from '@/components/comparador/VistoAB'
+import { COOKIE_AB } from '@/lib/cotizador-v2'
+import { sanatoriosV2 } from '@/lib/cotizador-v2-sanatorios'
 import { sumasPorPlan } from '@/lib/planes-suma'
 import { prepagasEnSitioPorZona } from '@/lib/data/zonas'
 import { PRECIO_ACTUALIZADO, prepagas } from '@/lib/data/prepagas'
@@ -64,11 +69,11 @@ const jsonLd = {
 }
 
 interface Props {
-  searchParams: Promise<{ zona?: string; provincia?: string; prepaga?: string; plan?: string; desde?: string }>
+  searchParams: Promise<{ zona?: string; provincia?: string; prepaga?: string; plan?: string; desde?: string; v?: string }>
 }
 
 export default async function ComparadorPage({ searchParams }: Props) {
-  const { zona, provincia, prepaga: prepagaParam, plan: planParam, desde } = await searchParams
+  const { zona, provincia, prepaga: prepagaParam, plan: planParam, desde, v } = await searchParams
   // Llegada desde la barra "Cotizá X" de una ficha o página de plan
   // (3-oct-2026): los resultados vienen filtrados por esa prepaga y el lead
   // dice qué plan estaba mirando. Solo slugs que existen.
@@ -83,6 +88,16 @@ export default async function ComparadorPage({ searchParams }: Props) {
         desde: desde && /^[a-z-]{3,20}$/.test(desde) ? desde : undefined,
       }
     : undefined
+
+  // Prueba 50/50 (24-oct-2026): con AB_COTIZADOR=ab, el grupo "b" del
+  // middleware ve el cotizador v2. ?v=b lo muestra siempre (vista previa).
+  // Las llegadas con zona, provincia o prepaga en la URL siguen con el actual,
+  // que ya arma esos recorridos. Se mide con el evento "Cotizador visto" y la
+  // fuente del lead (cotizador-v2 frente a la del actual).
+  const enPrueba = process.env.AB_COTIZADOR === 'ab'
+  const grupo = v === 'a' || v === 'b' ? v : enPrueba ? (await cookies()).get(COOKIE_AB)?.value : undefined
+  const desdeOk = desde && /^[a-z-]{3,20}$/.test(desde) ? desde : undefined
+  const versionB = grupo === 'b' && !origen && !zona && !provincia
 
   return (
     <>
@@ -104,7 +119,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
         // la primera pantalla (Darío, 28-sep-2026: "mucha data, acortala"). La
         // zona detectada ya la muestra el propio cotizador ("Detectamos que
         // estás en…"): el banner y la pastilla quedan solo en pantallas grandes.
-        <section className="bg-gradient-to-b from-[#FFF1F2] to-white border-b border-red-100 pt-5 pb-4 sm:py-14">
+        <section className="cv2-ocultable bg-gradient-to-b from-[#FFF1F2] to-white border-b border-red-100 pt-5 pb-4 sm:py-14">
           <div className="container max-w-3xl mx-auto text-center">
             <div className="hidden sm:block">
               <ZonaBanner variant="cotizador" />
@@ -145,14 +160,21 @@ export default async function ComparadorPage({ searchParams }: Props) {
             {origen.prepaga !== 'swiss-medical' ? ' y, para comparar, Swiss Medical' : ''}. Con tu zona y edades te mostramos el precio exacto.
           </p>
         )}
-        <ComparadorWizard
-          zonasSEO={prepagasEnSitioPorZona()}
-          initialZona={zona}
-          initialProvincia={provincia}
-          origen={origen}
-          sumas={sumasPorPlan()}
-          desde={desde && /^[a-z-]{3,20}$/.test(desde) ? desde : undefined}
-        />
+        {versionB ? (
+          <CotizadorV2 sanatorios={sanatoriosV2()} desde={desdeOk} />
+        ) : (
+          <>
+            {grupo === 'a' && <VistoAB />}
+            <ComparadorWizard
+              zonasSEO={prepagasEnSitioPorZona()}
+              initialZona={zona}
+              initialProvincia={provincia}
+              origen={origen}
+              sumas={sumasPorPlan()}
+              desde={desdeOk}
+            />
+          </>
+        )}
       </section>
 
       {/* Sin "Cotizar por prepaga" (Darío, 5-oct-2026): el comparador queda
@@ -160,7 +182,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
 
       {/* Confianza debajo del comparador (Darío, 6-oct-2026): cómo funciona,
           en tres columnas. Solo afirmaciones que el sitio ya respalda. */}
-      <section className="py-10 bg-white border-t border-gray-100">
+      <section className="cv2-ocultable py-10 bg-white border-t border-gray-100">
         <div className="container max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
@@ -193,7 +215,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
       </section>
 
       {/* Preguntas frecuentes — texto indexable para "comparador de prepagas" */}
-      <section className="py-12 bg-white border-t border-gray-100">
+      <section className="cv2-ocultable py-12 bg-white border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-5">Preguntas frecuentes sobre el comparador de prepagas</h2>
           <div className="space-y-2">
@@ -212,7 +234,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
 
       {/* Footer trust — solo si no hay zona (página limpia de cotización) */}
       {!zona && (
-        <section className="bg-gray-50 border-t border-gray-200 py-10">
+        <section className="cv2-ocultable bg-gray-50 border-t border-gray-200 py-10">
           <div className="container max-w-3xl mx-auto">
             <p className="text-center text-sm text-gray-500 mb-6">
               ¿Preferís explorar por tu cuenta? Navegá nuestras secciones:

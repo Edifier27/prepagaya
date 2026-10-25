@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { esCelularArgentinoValido, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 
 // Formulario de datos de las herramientas (Mis sanatorios, Chequeo, Match).
 // El precio exacto para la edad se muestra recién después de dejar los datos
@@ -34,6 +35,7 @@ export function FormularioLead({ titulo, bajada, textoBoton, pedirEdades, edades
   const [edades, setEdades] = useState<string[]>(edadesIniciales?.length ? edadesIniciales.map(String) : [''])
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [email, setEmail] = useState('')
   const [estado, setEstado] = useState<'idle' | 'enviando' | 'error'>('idle')
   const primerCampo = useRef<HTMLInputElement>(null)
@@ -61,6 +63,7 @@ export function FormularioLead({ titulo, bajada, textoBoton, pedirEdades, edades
   async function enviar(e: React.FormEvent) {
     e.preventDefault()
     if (!ok || estado === 'enviando') return
+    if (!(await avisoCelular.revisar(celular))) return
     setEstado('enviando')
     try {
       await onEnviar({ nombre: nombre.trim(), celular: celular.trim(), email: email.trim(), edades: edadesNum })
@@ -116,7 +119,8 @@ export function FormularioLead({ titulo, bajada, textoBoton, pedirEdades, edades
           </div>
           <div>
             <label htmlFor="fl-celular" className="block text-xs font-semibold text-gray-600 mb-1">Celular</label>
-            <input id="fl-celular" type="tel" value={celular} onChange={(e) => setCelular(e.target.value)} autoComplete="tel" placeholder="11 2345-6789" className={input} />
+            <input id="fl-celular" type="tel" value={celular} onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }} autoComplete="tel" placeholder="11 2345-6789" className={input} />
+            <AvisoCelular texto={avisoCelular.aviso} />
             {celular.trim().length > 0 && !celularOk && <p className="text-[11px] text-amber-700 mt-1">Revisá el número: parece incompleto.</p>}
           </div>
           <div>

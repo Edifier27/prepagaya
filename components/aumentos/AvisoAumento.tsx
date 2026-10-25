@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { trackEvent, trackLead } from '@/lib/analytics'
 import { OPCIONES_PREPAGA_ACTUAL } from '@/lib/data/sondeo'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 
 // "Te aviso el aumento" (15-oct-2026): el aumento mensual es el momento en que
 // la gente piensa en cambiarse. Entra como un lead más (/api/leads, fuente
@@ -16,6 +17,7 @@ export function AvisoAumento({ prepagaInicial, titulo, compacto = false }: { pre
   const [abierto, setAbierto] = useState(!compacto)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [prepaga, setPrepaga] = useState(prepagaInicial && PREPAGAS.includes(prepagaInicial) ? prepagaInicial : '')
   const [estado, setEstado] = useState<'idle' | 'enviando' | 'ok' | 'error'>('idle')
   const ok = nombre.trim().length >= 2 && celular.replace(/\D/g, '').length >= 8 && !!prepaga
@@ -23,6 +25,7 @@ export function AvisoAumento({ prepagaInicial, titulo, compacto = false }: { pre
   async function enviar(e: React.FormEvent) {
     e.preventDefault()
     if (!ok || estado === 'enviando') return
+    if (!(await avisoCelular.revisar(celular))) return
     setEstado('enviando')
     try {
       const res = await fetch('/api/leads', {
@@ -85,8 +88,9 @@ export function AvisoAumento({ prepagaInicial, titulo, compacto = false }: { pre
         </label>
         <label className="block">
           <span className="block text-xs font-semibold text-gray-600 mb-1">WhatsApp</span>
-          <input value={celular} onChange={(e) => setCelular(e.target.value)} type="tel" inputMode="tel" autoComplete="tel-national" placeholder="11 2345-6789"
+          <input value={celular} onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }} type="tel" inputMode="tel" autoComplete="tel-national" placeholder="11 2345-6789"
             className="w-full border-2 border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:border-[#E8002D]" />
+          <AvisoCelular texto={avisoCelular.aviso} />
         </label>
       </div>
       {estado === 'error' && <p className="text-sm text-[#E8002D] mt-3">Hubo un problema. Probá de nuevo.</p>}

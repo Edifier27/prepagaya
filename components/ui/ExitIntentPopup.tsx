@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import { trackLead } from '@/lib/analytics'
 import { TrustBadge } from './TrustBadge'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 
 const CUPON_CODE = 'PREPAGAYA15'
 const MINIMO_EN_SITIO = 60_000
@@ -14,6 +15,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
   const [visible, setVisible] = useState(false)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
   const fired = useRef(false)
 
@@ -72,6 +74,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
 
   const handleSubmit = async () => {
     if (!nombre.trim() || celular.trim().length < 8) return
+    if (!(await avisoCelular.revisar(celular))) return
     setStatus('loading')
     try {
       await fetch('/api/leads', {
@@ -161,12 +164,13 @@ export function ExitIntentPopup(): React.ReactElement | null {
                   <input
                     type="tel"
                     value={celular}
-                    onChange={(e) => setCelular(e.target.value)}
+                    onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }}
                     placeholder="11 2345-6789"
                     autoComplete="tel"
                     inputMode="numeric"
                     className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
                   />
+                  <AvisoCelular texto={avisoCelular.aviso} />
                 </div>
               </div>
 

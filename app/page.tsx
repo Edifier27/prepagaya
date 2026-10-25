@@ -11,7 +11,7 @@ const zonasPrincipales = SLUGS_PRINCIPALES.map((s) => provinciasSEO.find((p) => 
 const zonasResto = provinciasSEO.filter((p) => !SLUGS_PRINCIPALES.includes(p.slug))
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA, formatPrecio, precioDesde } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, TIEMPO_RESPUESTA, formatPrecio, precioDesde } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
@@ -114,8 +114,9 @@ const faqItems = [
 ]
 
 const RANKING_ORDER = [
-  // Partners en orden de prioridad (Darío, 22-sep-2026), después el resto.
-  ...PRIORIDAD_PARTNERS, 'osde', 'cemic',
+  // Top 3 del home: Swiss, Sancor y Premedic (Darío, 24-oct-2026); después
+  // Avalian y el resto.
+  'swiss-medical', 'sancor-salud', 'premedic', 'avalian', 'osde', 'cemic',
   'omint', 'medicus', 'medife', 'prevencion-salud',
   'hospital-italiano', 'hominis', 'federada-salud',
 ]

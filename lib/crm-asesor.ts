@@ -33,6 +33,21 @@ export function tipoDeInteres(interes: string | null): 'partner' | 'no partner' 
   return prepagas.some((p) => t.includes(sinTildes(p.nombre))) ? 'no partner' : 'sin prepaga'
 }
 
+/** "¿Para cuándo buscás el alta?" del cotizador v2, para que el asesor
+ *  priorice (24-oct-2026), y si el celular no se pudo verificar. */
+function altaDe(preferencias: string | null): string {
+  try {
+    const { alta, celular } = JSON.parse(preferencias ?? '{}') ?? {}
+    return [
+      typeof alta === 'string' && alta ? `alta: ${alta.toLowerCase()}` : '',
+      // Celular fuera de los bloques de ENACOM que la persona confirmó (25-oct-2026)
+      typeof celular === 'string' && celular ? `celular ${celular}` : '',
+    ].filter(Boolean).join(' · ')
+  } catch {
+    return ''
+  }
+}
+
 /** Texto de origen para el asesor: fuente, página, canal, partner y número
  *  de lead del panel, para cruzar después las ventas con su origen. */
 export function detalleOrigen(lead: LeadRow): string {
@@ -41,6 +56,7 @@ export function detalleOrigen(lead: LeadRow): string {
     lead.pagina_origen ? `desde ${lead.pagina_origen}` : '',
     lead.canal ? `entró por ${lead.canal}${lead.pagina_entrada ? ` (${lead.pagina_entrada})` : ''}` : '',
     tipoDeInteres(lead.prepaga),
+    altaDe(lead.preferencias),
     `#${lead.id}`,
   ].filter(Boolean).join(' · ').slice(0, 300)
 }

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 
 interface Props {
   prepagaNombre: string
@@ -19,12 +20,15 @@ interface Props {
   titulo?: string
   /** Planes para elegir en el popup (botón de la ficha de la prepaga, sin plan fijo) */
   planesOpciones?: string[]
+  /** Menciona el 15% OFF en el popup (25-oct-2026: solo Swiss en las fichas de plan) */
+  conPromo?: boolean
 }
 
-export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra, titulo, planesOpciones }: Props) {
+export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra, titulo, planesOpciones, conPromo = true }: Props) {
   const [open, setOpen] = useState(false)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [planElegido, setPlanElegido] = useState('')
@@ -41,6 +45,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
 
   async function handleSubmit() {
     if (!ok) return
+    if (!(await avisoCelular.revisar(celular))) return
     setStatus('loading')
     try {
       const res = await fetch('/api/leads', {
@@ -100,7 +105,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
               </button>
               <div className="text-xl font-bold mb-1 pr-6">{titulo ?? 'Cotizá online y Ahorrá'}</div>
               <p className="text-red-100 text-sm leading-relaxed">
-                Dejanos tus datos y un asesor oficial te pasa el precio exacto de {interes} para tu edad, con 15% OFF por contratar online.
+                Dejanos tus datos y un asesor oficial te pasa el precio exacto de {interes} para tu edad{conPromo ? ', con 15% OFF por contratar online' : ''}.
               </p>
             </div>
 
@@ -142,10 +147,11 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">Celular *</label>
                       <input
-                        type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
+                        type="tel" value={celular} onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }}
                         placeholder="11 2345-6789" autoComplete="tel" inputMode="numeric"
                         className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
                       />
+                      <AvisoCelular texto={avisoCelular.aviso} />
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">Edades de quienes se asocian <span className="font-normal text-gray-400">(opcional)</span></label>
@@ -180,6 +186,10 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
                   >
                     {status === 'loading' ? 'Enviando...' : planFinal ? `Cotizar ${planFinal} →` : 'Cotizar →'}
                   </button>
+                  {/* Consentimiento para pasar el dato al asesor de la prepaga (Ley 25.326, 25-oct-2026) */}
+                  {process.env.NEXT_PUBLIC_PORTAL_ASESORES === 'on' && !/swiss|osde/i.test(prepagaNombre) && (
+                    <p className="mt-2 text-center text-xs text-gray-500">Al enviar, aceptás que te contacte un asesor de {prepagaNombre} para pasarte tu precio.</p>
+                  )}
                 </>
               )}
             </div>

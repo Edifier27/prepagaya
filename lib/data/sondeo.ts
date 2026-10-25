@@ -26,7 +26,7 @@ export const OPCIONES_PREPAGA_ACTUAL = [
 export const PRESUPUESTOS_QUIZ = ['Menos de $200.000', '$200.000–$350.000', '$350.000–$600.000', 'Más de $600.000'] as const
 
 // sanatorios: /buscar-por-sanatorio · planActual: /chequeo-prepaga · perfil: /match-prepaga
-const PREFERENCIAS_CLAVES = ['copago', 'coberturas', 'zona', 'saludMental', 'medicoDeConfianza', 'grupo', 'sanatorios', 'planActual', 'perfil'] as const
+const PREFERENCIAS_CLAVES = ['copago', 'coberturas', 'zona', 'saludMental', 'medicoDeConfianza', 'grupo', 'sanatorios', 'planActual', 'perfil', 'alta'] as const
 export type Preferencias = Partial<Record<(typeof PREFERENCIAS_CLAVES)[number], string>>
 
 function deLista<T extends readonly string[]>(lista: T, valor: unknown): string {

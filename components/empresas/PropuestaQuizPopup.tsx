@@ -5,6 +5,7 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { trackLead } from '@/lib/analytics'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
+import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
 
 const RANGOS_EMPLEADOS = ['2-5', '6-10', '11-25', '26-50', '+50']
 
@@ -102,6 +103,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
   const [empresa, setEmpresa] = useState('')
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
+  const avisoCelular = useAvisoCelular()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
@@ -132,6 +134,7 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
 
   async function handleSubmit() {
     if (!contactOk) return
+    if (!(await avisoCelular.revisar(celular))) return
     setStatus('loading')
     const modalidadLabel = MODALIDADES.find((m) => m.value === modalidad)?.label ?? modalidad
     const prioridadLabel = PRIORIDADES.find((p) => p.value === prioridad)?.label ?? prioridad
@@ -304,10 +307,11 @@ export function PropuestaQuizPopup({ open, onClose, prepagaContexto }: Props): R
                 <div>
                   <label className="block text-xs font-semibold text-gray-400 mb-1.5">Teléfono de contacto *</label>
                   <input
-                    type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
+                    type="tel" value={celular} onChange={(e) => { setCelular(e.target.value); avisoCelular.limpiar() }}
                     placeholder="11 4567-8900" inputMode="numeric" autoComplete="tel"
                     className="w-full bg-white/[0.03] border border-white/[0.12] text-white placeholder:text-gray-600 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-[#C7A046] transition-colors"
                   />
+                  <AvisoCelular texto={avisoCelular.aviso} />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-gray-400 mb-1.5">Email *</label>

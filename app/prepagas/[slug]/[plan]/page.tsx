@@ -9,6 +9,7 @@ import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
+import { CajaPrecioPlan } from '@/components/prepagas/CajaPrecioPlan'
 import { escalaPorEdad, preciosPorRegion, precioGrupo } from '@/lib/precios/motor'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
@@ -515,7 +516,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? `${prep.nombre} ${codigoPlan(plan)}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`
     : `${prep.nombre} ${plan.nombre}: cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()} y qué cubre`
   const descripcion = escalaMeta
-    ? `Precio oficial del ${codigoPlan(plan)} de ${prep.nombre}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes hasta los ${escalaMeta.rangos[0].hasta} años. ${plan.copago ? 'Con copago' : 'Sin copago'}. Precio por edad, qué cubre y sanatorios. Cotizá con 15% OFF.`
+    ? `Precio oficial del ${codigoPlan(plan)} de ${prep.nombre}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes hasta los ${escalaMeta.rangos[0].hasta} años. ${plan.copago ? 'Con copago' : 'Sin copago'}. Precio por edad, qué cubre y sanatorios.${prep.slug === 'swiss-medical' ? ' Cotizá con 15% OFF.' : ''}`
     : !Number.isFinite(plan.precio)
       ? `${prep.nombre} ${plan.nombre}: qué cubre, ${plan.copago ? 'con copago' : 'sin copago'}, red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Sin lista de precios oficial: cotizalo gratis para tu edad y zona.`
       : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}${plan.fuentePrecio === 'sssalud' ? ', lista oficial SSSalud' : ''}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`
@@ -574,6 +575,11 @@ export default async function PlanPage({ params, searchParams }: Props) {
   if (!prep || !plan) notFound()
 
   const orejitas = orejitasPlan(prep, plan)
+  // Caja de precio (25-oct-2026): promo solo en Swiss Medical; la escala por
+  // edad de CABA o, si el plan no se vende ahí, de la primera zona con cuadro
+  const promo = prep.slug === 'swiss-medical' ? { corta: '15% OFF', detalle: 'cotizando online · 25% monotributistas' } : null
+  const escalaCaja = ['caba', 'buenos-aires-interior', 'cordoba', 'santa-fe', 'mendoza', 'tucuman', 'salta', 'neuquen']
+    .map((z) => escalaPorEdad(prep.slug, plan.slug, z)).find((e) => e !== null) ?? null
   const { provincia } = await searchParams
   const cartillaPlanLink = linkCartillaPlan(prep.slug, plan.slug)
   // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba") ya
@@ -710,6 +716,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
       <BarraCotizar
         titulo={`${prep.nombre} ${codigoPlan(plan)}`}
         origen={`plan:${slug}/${planSlug}`}
+        promo={promo?.corta}
         href={`/comparador?${new URLSearchParams({
           prepaga: slug,
           plan: planSlug,
@@ -758,29 +765,26 @@ export default async function PlanPage({ params, searchParams }: Props) {
             </div>
           </div>
 
-          {/* CTA — sin precio: se cotiza por edad en el comparador o se pide directo */}
-          <div className="bg-white rounded-2xl border-2 border-[#E8002D] p-6 mb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <div className="text-sm font-bold text-gray-900">{prep.nombre} {plan.nombre}</div>
-              <div className="text-xs text-gray-500 mt-0.5">Cotizando online: <strong className="text-[#E8002D]">15% OFF</strong> sobre el precio de lista (25% si sos monotributista)</div>
-            </div>
-            <div className="flex flex-col gap-2 sm:items-end">
+          {/* Caja de precio tipo carrito (25-oct-2026): precio de lista estimado
+              por edad, botón de cotizar y comparar, como la caja anterior */}
+          <CajaPrecioPlan
+            titulo={`${prep.nombre} ${plan.nombre}`}
+            rangos={escalaCaja?.rangos ?? null}
+            region={escalaCaja && regionTexto(escalaCaja.region) !== 'lista general' ? regionTexto(escalaCaja.region) : ''}
+            promo={promo}
+            hrefComparar={`/comparar?plan=${prep.slug}/${plan.slug}#planes`}
+            cta={
               <ContratarPlanButton
-                    prepagaNombre={prep.nombre}
-                    planNombre={plan.nombre}
-                    fuente="ficha-plan"
-                    titulo={`Cotizá y contratá el ${prep.nombre} ${plan.nombre.replace(/^Plan\s+/, '')}`}
-                  />
-                  {/* Comparar este plan con otro (Darío, 28-sep-2026) */}
-                  <Link
-                    href={`/comparar?plan=${prep.slug}/${plan.slug}#planes`}
-                    className="text-center sm:text-right text-sm font-semibold text-gray-600 hover:text-[#E8002D] underline-offset-2 hover:underline"
-                  >
-                    Comparar este plan con otro →
-                  </Link>
-
-            </div>
-          </div>
+                prepagaNombre={prep.nombre}
+                planNombre={plan.nombre}
+                fuente="ficha-plan"
+                titulo={`Cotizá y contratá el ${prep.nombre} ${plan.nombre.replace(/^Plan\s+/, '')}`}
+                label={promo ? `Cotizá con ${promo.corta}` : 'Cotizá a tu medida'}
+                conPromo={!!promo}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#E8002D] px-6 py-4 text-base font-bold text-white shadow-lg shadow-red-200 transition hover:-translate-y-0.5 hover:bg-[#B8001F]"
+              />
+            }
+          />
 
           {/* Promo de octubre 2026 (OSDE Flux + SportClub); se oculta sola el 1-nov */}
           {prep.slug === 'osde' && plan.slug === 'flux' && <PromoFluxSportClub origen="ficha-plan-flux" />}
@@ -894,7 +898,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
               <div>
                 <h2 className="text-xl font-bold text-gray-900 mb-1">Precio del {seo.nombreLargo} por edad</h2>
                 <p className="text-xs text-gray-500 mb-3">
-                  Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona. Cotizando online tenés 15% OFF sobre estos valores.
+                  Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona.{promo ? ' Cotizando online tenés 15% OFF sobre estos valores.' : ''}
                 </p>
                 {/* Plegado (25-sep-2026) y vuelto a abrir (13-oct-2026, Clarity):
                     "Ver precio de lista por edad" era lo más tocado de la página
@@ -1152,7 +1156,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">¿Querés cotizar el {plan.nombre}?</h2>
           <p className="text-white text-sm mb-6">
-            El precio real depende de tu edad y zona. Cotizá online con 15% OFF (25% si sos monotributista) y recibí asesoramiento sin cargo.
+            El precio real depende de tu edad y zona. {promo ? 'Cotizá online con 15% OFF (25% si sos monotributista) y recibí asesoramiento sin cargo.' : 'Cotizá online y recibí asesoramiento sin cargo.'}
           </p>
           <div className="flex flex-col items-center gap-3">
               <ContratarPlanButton
@@ -1161,6 +1165,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
                 fuente="ficha-plan-final"
                 titulo={`Cotizá y contratá el ${prep.nombre} ${plan.nombre.replace(/^Plan\s+/, '')}`}
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
+                conPromo={!!promo}
               />
               <Link href={`/comparar?plan=${prep.slug}/${plan.slug}#planes`} className="text-sm text-red-100 hover:text-white font-semibold underline underline-offset-2">
                 O compará el {plan.nombre} con otro plan

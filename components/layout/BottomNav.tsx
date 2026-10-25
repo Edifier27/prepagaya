@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { promoEnRuta } from '@/lib/promo-rutas'
 import dynamic from 'next/dynamic'
 
 // El popup (cerrado no pinta nada) se descarga después de la carga inicial:
@@ -60,6 +61,8 @@ const items = [
 
 export function BottomNav(): React.ReactElement {
   const pathname = usePathname()
+  // Sin el -15% en las páginas de las prepagas que no son Swiss (25-oct-2026)
+  const conPromo = promoEnRuta(pathname)
   const [asesoramientoOpen, setAsesoramientoOpen] = useState(false)
 
   return (
@@ -79,7 +82,7 @@ export function BottomNav(): React.ReactElement {
                 <span className="relative">
                   {item.icon(active)}
                   {/* Incentivo al clic (25-sep-2026): 15% OFF cotizando online */}
-                  {item.href === '/comparador' && (
+                  {item.href === '/comparador' && conPromo && (
                     <span className="absolute -top-1.5 -right-5 rounded-full bg-[#E8002D] px-1 py-px text-[9px] font-black leading-none text-white">-15%</span>
                   )}
                 </span>
