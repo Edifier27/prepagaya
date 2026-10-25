@@ -30,7 +30,7 @@ const faqs = [
   },
   {
     q: '¿Se puede deducir de Ganancias?',
-    a: 'Sí, la cobertura médica de los empleados es un gasto deducible para la empresa, y la parte que eventualmente paga cada empleado también entra dentro de los conceptos deducibles de su Ganancias personal, dentro de los límites que fija AFIP.',
+    a: 'Sí, la cobertura médica de los empleados es un gasto deducible para la empresa, y la parte que eventualmente paga cada empleado también entra dentro de los conceptos deducibles de su Ganancias personal, dentro de los límites que fija ARCA.',
   },
   {
     q: '¿Quién recibe la factura, la empresa o cada empleado?',
@@ -119,7 +119,7 @@ export default function EmpresasPage() {
             <div className="bg-[#0A0B0D] p-7">
               <div className="text-[#C7A046] text-2xl font-semibold mb-3 tabular-nums">03</div>
               <h3 className="font-semibold text-white mb-2">Deducible de Ganancias</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">La cobertura de los empleados es un gasto deducible para la empresa, dentro de los límites que fija AFIP. <Link href="/empresas/beneficios-impositivos" className="text-[#C7A046] font-semibold hover:underline">Ver el detalle →</Link></p>
+              <p className="text-sm text-gray-500 leading-relaxed">La cobertura de los empleados es un gasto deducible para la empresa, dentro de los límites que fija ARCA. <Link href="/empresas/beneficios-impositivos" className="text-[#C7A046] font-semibold hover:underline">Ver el detalle →</Link></p>
             </div>
           </div>
         </div>
