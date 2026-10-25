@@ -97,7 +97,7 @@ export default function ComoCotizarEmpresasPage() {
               <ul className="text-sm text-gray-600 leading-relaxed space-y-1.5 list-disc pl-5">
                 <li>Formulario de Ingresos Brutos de la empresa</li>
                 <li>Estatuto (o contrato social)</li>
-                <li>Último formulario 931 de AFIP, con el comprobante de pago</li>
+                <li>Último formulario 931 de ARCA, con el comprobante de pago</li>
                 <li>Nómina básica del equipo: nombre, apellido, edad y sueldo bruto de cada empleado</li>
               </ul>
               <p className="text-sm text-gray-600 leading-relaxed mt-3">Con esa información arman la propuesta a medida. Los datos completos de cada empleado (DNI, fecha de nacimiento, grupo familiar) se piden después, ya para el alta individual definitiva.</p>
