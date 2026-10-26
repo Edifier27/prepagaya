@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Buscador } from '@/components/layout/Buscador'
-import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { provinciasSEO, prepagasEnSitioPorZona } from '@/lib/data/zonas'
 
 // Zonas a la vista en el home (Darío, 28-sep-2026): las principales; el resto
@@ -13,10 +13,11 @@ import { cambiosRecomendados } from '@/lib/data/cambios'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, TIEMPO_RESPUESTA, formatPrecio, precioDesde } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
-import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
+import { RankingHome, type ItemRanking } from '@/components/home/RankingHome'
+import { escalaPorEdad } from '@/lib/precios/motor'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
 import { ldJson } from '@/lib/jsonld'
 
@@ -121,20 +122,52 @@ const RANKING_ORDER = [
   'hospital-italiano', 'hominis', 'federada-salud',
 ]
 
-// Etiqueta de las prepagas partner del top: tier por presupuesto donde está
-// definido; Avalian va como "PARTNER" hasta tener sus precios oficiales
-// cargados (sin precio verificado no la ubicamos en un tier).
-const TIER_PARTNER: Record<string, string> = {
-  'swiss-medical': 'PREMIUM',
-  'avalian': 'PARTNER',
-  'sancor-salud': 'INTERMEDIA',
-  'premedic': 'ECONÓMICA',
+// Ranking de la home: por qué está cada una (Darío, 26-oct-2026). Solo datos
+// que figuran en lib/data/prepagas.ts (pros y descripción de cada prepaga).
+const RANKING_HOME: Record<string, { ideal: string; pruebas: (planes: number) => string[]; escalaLogo?: number }> = {
+  'swiss-medical': {
+    ideal: 'quien quiere sanatorios propios de primer nivel',
+    pruebas: () => ['9 sanatorios propios (Suizo Argentina, Los Arcos, Agote…)', 'Más de 30 SMG Center en AMBA', 'Sin copagos desde el SMG02'],
+  },
+  'sancor-salud': {
+    ideal: 'quien vive o viaja seguido al interior',
+    pruebas: (n) => ['Fuerte en Córdoba, Santa Fe y Entre Ríos', 'Farmacia y óptica propias', `${n} planes para elegir`],
+    escalaLogo: 1.5,
+  },
+  'premedic': {
+    ideal: 'quien busca el precio más bajo en CABA y GBA',
+    pruebas: () => ['La cuota más baja de las tres', '7 centros odontológicos propios', 'Cobertura en CABA, GBA, Córdoba y Tucumán'],
+  },
 }
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+const regionCuadro = (r: string) => /^(general|avalian)$/i.test(r) ? 'lista general'
+  : r === r.toUpperCase() && r.length > 4 ? r.toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase()).replace(/ (De|Del|Y) /g, (x) => x.toLowerCase()) : r
 
 export default function HomePage(): React.ReactElement {
   const prepagasRanking = RANKING_ORDER
     .map(slug => prepagas.find(p => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
+  // Top 3 con el plan más accesible que tiene cuadro oficial (el "desde")
+  const fuentesRanking: string[] = []
+  const itemsRanking: ItemRanking[] = prepagasRanking.slice(0, 3).map((prep) => {
+    const desde = precioDesde(prep)
+    const plan = prep.planes.find((pl) => pl.precio === desde) ?? prep.planes[0]
+    const escala = escalaPorEdad(prep.slug, plan.slug, 'caba')
+    if (escala) fuentesRanking.push(`${prep.nombre} (${regionCuadro(escala.region)}, ${MESES[(escala.periodo % 100) - 1]} ${Math.floor(escala.periodo / 100)})`)
+    const extra = RANKING_HOME[prep.slug]
+    return {
+      slug: prep.slug,
+      nombre: prep.nombre,
+      ideal: extra?.ideal,
+      pruebas: extra ? extra.pruebas(prep.planes.length) : prep.pros.slice(0, 3),
+      plan: plan.nombre,
+      planes: prep.planes.map((pl) => pl.nombre),
+      rangos: escala?.rangos ?? [],
+      promo: prep.slug === 'swiss-medical',
+      escalaLogo: extra?.escalaLogo,
+    }
+  })
+  const fuenteRanking = `Precios de lista con IVA incluido, contratación directa, según los cuadros que cada prepaga declara ante la Superintendencia de Servicios de Salud: ${fuentesRanking.length > 1 ? `${fuentesRanking.slice(0, -1).join(', ')} y ${fuentesRanking[fuentesRanking.length - 1]}` : fuentesRanking[0] ?? ''}. El 15% OFF es exclusivo cotizando online con Swiss Medical.`
 
   return (
     <>
@@ -272,96 +305,23 @@ export default function HomePage(): React.ReactElement {
           una (Darío, 4-oct-2026), así las fichas toman fuerza ── */}
       <CotizarPorPrepaga fuente="home-por-prepaga" modo="ver" />
 
-      {/* ── Ranking de prepagas: intención "mejor prepaga argentina" / precios ── */}
+      {/* ── Ranking de prepagas: intención "mejor prepaga argentina" / precios.
+          Podio con precio según la edad (Darío, 26-oct-2026) ── */}
       <section className="py-14 bg-white border-b border-gray-100">
-        <div className="container max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-700 text-xs font-semibold px-4 py-2 rounded-full mb-4">
-              <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-amber-500">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-              Ranking actualizado {PRECIO_ACTUALIZADO}
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900">Las mejores prepagas de Argentina</h2>
-            <p className="text-gray-500 text-sm mt-2">Nuestras prepagas partner destacadas: cotizás y contratás con nosotros</p>
+        <div className="container max-w-5xl mx-auto">
+          <div className="text-center mb-7 flex flex-col items-center gap-2.5">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1 text-xs font-semibold text-gray-500">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
+              Precios oficiales actualizados a {PRECIO_ACTUALIZADO.toLowerCase()}
+            </span>
+            <h2 className="text-2xl sm:text-[32px] font-extrabold tracking-tight text-gray-900 text-balance">Las mejores prepagas de Argentina</h2>
+            <p className="text-gray-500 text-sm sm:text-base max-w-xl">Las tres prepagas con las que trabajamos, con su plan más accesible. Elegí tu edad y mirá cuánto pagarías.</p>
           </div>
 
-          {/* Tarjetas del ranking (rediseño 4-oct-2026, Darío: "mismo tamaño,
-              mejor diseño"): logo, puesto, tier, cobertura, planes y precio
-              desde (lista oficial), con un CTA claro a la ficha. */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {prepagasRanking.slice(0, 3).map((prep, i) => {
-              const planReferencia = prep.planes.find(pl => pl.destacado) ?? prep.planes[0]
-              const pos = i + 1
-              const medalla =
-                pos === 1 ? 'from-amber-300 to-amber-500 text-amber-950' :
-                pos === 2 ? 'from-gray-200 to-gray-400 text-gray-800' :
-                            'from-orange-300 to-amber-700 text-white'
-              return (
-                <Link
-                  key={prep.slug}
-                  href={`/prepagas/${prep.slug}`}
-                  className="relative flex items-center gap-3 p-3 sm:flex-col sm:items-stretch sm:gap-0 sm:p-0 bg-white rounded-2xl border border-gray-200 hover:border-[#E8002D]/40 hover:shadow-lg hover:-translate-y-0.5 transition-all group overflow-hidden"
-                >
-                  {/* Puesto: banda diagonal en la esquina (Darío, 4-oct-2026) */}
-                  <div className="pointer-events-none absolute top-0 left-0 w-20 h-20 overflow-hidden z-10" aria-label={`Puesto ${pos}`}>
-                    <div className={`absolute top-[12px] -left-[34px] w-[120px] -rotate-45 bg-gradient-to-r ${medalla} text-center text-[11px] font-black py-0.5 shadow-sm`}>
-                      #{pos}
-                    </div>
-                  </div>
-                  {/* Cabecera: logo */}
-                  <div className="relative flex items-center justify-center sm:h-24 sm:bg-gradient-to-b sm:from-gray-50 sm:to-white sm:border-b sm:border-gray-100 flex-shrink-0">
-                    <PrepagaLogo slug={prep.slug} nombre={prep.nombre} colorPrimario={prep.colorPrimario} size="md" />
-                  </div>
+          <RankingHome items={itemsRanking} fuente={fuenteRanking} />
 
-                  <div className="min-w-0 flex-1 sm:p-5 sm:pt-4 flex flex-col">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <div className="font-bold text-gray-900 group-hover:text-[#E8002D] transition-colors truncate sm:text-lg">{prep.nombre}</div>
-                      {TIER_PARTNER[prep.slug] && (
-                        <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-black px-1.5 sm:px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 flex-shrink-0">
-                          ★ {TIER_PARTNER[prep.slug]}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Sin "% de satisfacción" (auditoría 18-oct-2026: no tenía
-                        fuente publicable): datos verificables de la prepaga */}
-                    <div className="mt-1.5 sm:mt-3 text-xs text-gray-500">
-                      {prep.caracteristicas.coberturaNacional ? 'Cobertura nacional' : 'Cobertura regional'}
-                      {' · '}
-                      {prep.sanatoriosPropios > 0 ? `${prep.sanatoriosPropios} sanatorios propios` : 'Red por convenio'}
-                    </div>
-
-                    <div className="hidden sm:grid grid-cols-2 gap-2 mt-4">
-                      <div className="rounded-xl bg-gray-50 px-3 py-2">
-                        <div className="text-[10px] uppercase tracking-wide text-gray-400 font-semibold">Planes</div>
-                        <div className="font-bold text-gray-900 tabular-nums">{prep.planes.length}</div>
-                      </div>
-                      <div className="rounded-xl bg-gray-50 px-3 py-2">
-                        <div className="text-[10px] uppercase tracking-wide text-gray-400 font-semibold">Desde</div>
-                        <div className="font-bold text-gray-900 tabular-nums text-sm">{formatPrecio(precioDesde(prep))}</div>
-                      </div>
-                    </div>
-                    <div className="sm:hidden text-xs text-gray-500 mt-1">{prep.planes.length} planes · desde {formatPrecio(precioDesde(prep))}</div>
-
-                    <div className="hidden sm:flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
-                      <NivelPrecioBadge nivel={nivelPrecio(planReferencia.precio)} />
-                      <span className="text-sm font-bold text-[#E8002D] group-hover:translate-x-0.5 transition-transform">Ver planes →</span>
-                    </div>
-                  </div>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"
-                    className="sm:hidden w-4 h-4 text-gray-300 group-hover:text-[#E8002D] flex-shrink-0">
-                    <path d="M9 18l6-6-6-6"/>
-                  </svg>
-                </Link>
-              )
-            })}
-          </div>
-
-          <div className="text-center mt-8">
-            <Button href="/prepagas" variant="outline" size="lg">
-              Ver todos los planes y precios →
-            </Button>
+          <div className="text-center mt-6">
+            <Link href="/prepagas" className="text-sm font-bold text-[#E8002D] hover:underline">Ver los planes y precios de las {prepagas.length} prepagas →</Link>
           </div>
         </div>
       </section>

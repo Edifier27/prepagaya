@@ -18,7 +18,7 @@ const sizeConfig = {
   lg: { px: 72,  cls: 'w-[72px] h-[72px] rounded-2xl text-xl' },
 }
 
-const LOGO_EXT: Record<string, string> = {
+export const LOGO_EXT: Record<string, string> = {
   'swiss-medical':    'svg',
   'osde':             'png',
   'cemic':            'svg',
