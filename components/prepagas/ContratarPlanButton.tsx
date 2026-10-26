@@ -22,9 +22,11 @@ interface Props {
   planesOpciones?: string[]
   /** Menciona el 15% OFF en el popup (25-oct-2026: solo Swiss en las fichas de plan) */
   conPromo?: boolean
+  /** Integrantes ya elegidos antes de abrir (ranking de la home: "30 años", "2 personas de 30 años") */
+  edadesIniciales?: string
 }
 
-export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra, titulo, planesOpciones, conPromo = true }: Props) {
+export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra, titulo, planesOpciones, conPromo = true, edadesIniciales }: Props) {
   const [open, setOpen] = useState(false)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
@@ -79,7 +81,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
   return (
     <>
       <button
-        onClick={() => { setOpen(true); trackEvent('abrir_cotizador', { fuente, prepaga: prepagaNombre }) }}
+        onClick={() => { setOpen(true); if (edadesIniciales) setEdades(edadesIniciales); trackEvent('abrir_cotizador', { fuente, prepaga: prepagaNombre }) }}
         className={className ?? "inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm w-full sm:w-auto"}
       >
         {label ?? (planNombre ? `Cotizar ${planNombre}` : 'Cotización personalizada')} →
