@@ -1,5 +1,6 @@
 // Solo del lado del servidor (la usa app/api/precios): no importar desde client components.
 import tarifasJson from '@/lib/data/tarifas-oficiales.json'
+import { EDAD_MAX_INGRESO } from '@/lib/utils'
 
 // Motor de precios oficial (23-sep-2026, pedido de Darío: "un solo motor de
 // precios"). Calcula el precio de lista de un plan para un grupo con la
@@ -113,6 +114,8 @@ export function precioGrupo(
   zona: string,
   modalidad: Modalidad = 'directo',
 ): PrecioGrupo | null {
+  // Sin precios de 66 años en adelante: el ingreso es hasta los 65
+  if (edades.some((e) => e > EDAD_MAX_INGRESO)) return null
   const tabla = DATOS.tarifas[prepaga]?.[plan]
   if (!tabla || edades.length === 0) return null
   const clave = modalidad === 'directo' ? 'd' : 'r'
@@ -190,10 +193,14 @@ export function escalaPorEdad(prepaga: string, plan: string, zona = 'caba'): { r
   for (const region of regionesDe(prepaga, zona)) {
     const bandas = tabla[region]?.d
     if (!bandas?.length) continue
+    // Hasta EDAD_MAX_INGRESO: la última franja del cuadro ("61 a 100") se
+    // muestra como "61 a 65" y las que empiezan después no se muestran
     return {
       region,
       periodo: DATOS.periodoPorPrepaga[prepaga],
-      rangos: bandas.map(([desde, hasta, valor]) => ({ desde, hasta, precio: Math.round(valor * DATOS.iva) })),
+      rangos: bandas
+        .filter(([desde]) => desde <= EDAD_MAX_INGRESO)
+        .map(([desde, hasta, valor]) => ({ desde, hasta: Math.min(hasta, EDAD_MAX_INGRESO), precio: Math.round(valor * DATOS.iva) })),
     }
   }
   return null

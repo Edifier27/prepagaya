@@ -148,8 +148,8 @@ export function centrosPropiosSwiss(zona: ZonaV2): string {
 export function errorDeEdad(edades: (number | null)[]): string {
   if (edades.some((e) => e === null || !Number.isFinite(e) || e < 0)) return 'Completá la edad de cada integrante.'
   const e = edades as number[]
-  if (e.some((n) => n > 69)) return 'Cotizamos online hasta los 69 años, y solo junto a un integrante de 65 o menos.'
-  if (!e.some((n) => n <= 65)) return 'Cotizamos online hasta los 65 años. Si en el grupo hay alguien de 65 o menos, podés sumar integrantes de hasta 69.'
+  // Ingreso hasta los 65 años, menores de 66 (Darío, 27-oct-2026)
+  if (e.some((n) => n > 65)) return 'Para afiliarte a una prepaga cada integrante tiene que tener 65 años o menos.'
   return ''
 }
 

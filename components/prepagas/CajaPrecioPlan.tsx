@@ -7,7 +7,7 @@
 // aparece solo en Swiss Medical; en el resto, sin promociones.
 import { useState, type ReactNode } from 'react'
 import Link from 'next/link'
-import { formatPrecio } from '@/lib/utils'
+import { formatPrecio, EDAD_MAX_INGRESO } from '@/lib/utils'
 
 interface Props {
   titulo: string
@@ -24,7 +24,7 @@ interface Props {
 const EDAD_MIN = 18
 
 export function CajaPrecioPlan({ titulo, rangos, region, promo, cta, hrefComparar }: Props) {
-  const edadMax = rangos ? Math.min(75, Math.max(...rangos.map((r) => r.desde))) : 65
+  const edadMax = rangos ? Math.min(EDAD_MAX_INGRESO, Math.max(...rangos.map((r) => r.hasta))) : EDAD_MAX_INGRESO
   const [edades, setEdades] = useState<number[]>([30])
   const precioDe = (e: number) => rangos?.find((r) => r.desde <= e && e <= r.hasta)?.precio ?? null
   const precios = edades.map(precioDe)
@@ -100,7 +100,9 @@ export function CajaPrecioPlan({ titulo, rangos, region, promo, cta, hrefCompara
               <p className="text-xs text-gray-500">Precio de lista con IVA incluido{region ? ` · ${region}` : ''}</p>
             </div>
           )}
-          <p className="rounded-2xl bg-red-50 px-3.5 py-2.5 text-sm text-gray-800">
+          {/* Texto sin fondo de color: en un recuadro rosa parecía un botón
+              (Clarity, 19–25/10/2026: clics muertos en las fichas de Swiss) */}
+          <p className="text-sm text-gray-700">
             <strong className="text-[#B8001F]">Conseguí un mejor precio.</strong>{' '}
             {promo ? `Cotizá a tu medida con ${promo.corta} y un asesor oficial te pasa tu precio final por WhatsApp.` : 'Cotizá a tu medida y un asesor te pasa tu precio final por WhatsApp.'}
           </p>

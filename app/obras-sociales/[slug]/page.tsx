@@ -231,10 +231,32 @@ export default async function ObraSocialPage({ params }: Props) {
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">{os.titulo}</h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl mb-6">{os.intro}</p>
+          {/* Cotizar arriba de todo (métricas 19–25/10/2026: Unión Personal
+              pasó a 296 visitas por semana, con 29% de scroll y sin contactos).
+              Lleva al comparador, que es donde más contactos se concretan. Solo
+              donde los aportes se pueden pasar: agentes del seguro nacionales
+              (con código), no las provinciales ni PAMI. */}
+          {codigo && os.slug !== 'pami' && (
+            <div className="mb-6 flex flex-col gap-3 rounded-2xl border-2 border-[#E8002D]/25 bg-white p-4 sm:flex-row sm:items-center sm:p-5 shadow-sm">
+              <div className="min-w-0 flex-1">
+                <div className="font-bold text-gray-900">¿Tenés {os.nombre}? Con tus mismos aportes podés tener {os.tipo === 'sindical' || os.tipo === 'empresarial' ? 'Swiss Medical' : 'una prepaga'}</div>
+                <div className="mt-0.5 text-sm text-gray-600">Tus aportes se descuentan de la cuota y pagás solo la diferencia. Mirá tu precio en 1 minuto, con 15% OFF cotizando online.</div>
+              </div>
+              <div className="flex shrink-0 flex-col items-stretch gap-1.5 sm:items-end">
+                <Link href={`/comparador?prepaga=swiss-medical&desde=obra-social`}
+                  className="inline-flex items-center justify-center rounded-xl bg-[#E8002D] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#B8001F]">
+                  Ver mi precio con mis aportes →
+                </Link>
+                <Link href={`/calculadora-aportes?os=${os.slug}`} className="text-center text-xs font-semibold text-gray-500 hover:text-[#E8002D] hover:underline sm:text-right">
+                  o calculá tu diferencia según tu sueldo
+                </Link>
+              </div>
+            </div>
+          )}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg">
             {typeof os.beneficiarios === 'number' && (
-              <div className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm">
-                <div className="text-lg font-bold text-[#E8002D]">
+              <div className="bg-gray-50 rounded-xl p-4 text-center">
+                <div className="text-lg font-bold text-gray-900">
                   {os.beneficiarios >= 1000000
                     ? `${(os.beneficiarios / 1000000).toLocaleString('es-AR', { maximumFractionDigits: 1 })}M`
                     : `${Math.round(os.beneficiarios / 1000)}k`}
@@ -242,43 +264,24 @@ export default async function ObraSocialPage({ params }: Props) {
                 <div className="text-xs text-gray-500 mt-0.5">Beneficiarios</div>
               </div>
             )}
-            <div className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm">
-              <div className="text-lg font-bold text-[#E8002D]">{os.derivacion ? 'Sí' : 'No'}</div>
+            <div className="bg-gray-50 rounded-xl p-4 text-center">
+              <div className="text-lg font-bold text-gray-900">{os.derivacion ? 'Sí' : 'No'}</div>
               <div className="text-xs text-gray-500 mt-0.5">Derivación</div>
             </div>
             {codigo && (
               <Link href="/obras-sociales/codigos" className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:border-gray-400 transition-colors" title={`RNAS ${registro?.codigo}`}>
                 <div className="text-lg font-bold text-[#E8002D] tabular-nums">{codigo}</div>
-                <div className="text-xs text-gray-500 mt-0.5">Código de obra social</div>
+                <div className="text-xs text-gray-500 mt-0.5">Código de obra social <span className="font-semibold text-[#E8002D]">· ver todos →</span></div>
               </Link>
             )}
             {/* En mobile (2 columnas) "Tipo" ocupa la fila entera solo si quedaría sola. */}
-            <div className={`bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm ${(typeof os.beneficiarios === 'number' ? 1 : 0) + (codigo ? 1 : 0) === 1 ? 'col-span-2 sm:col-span-1' : ''}`}>
-              <div className="text-lg font-bold text-[#E8002D]">{tiposLabels[os.tipo]?.split(' ')[0] ?? os.tipo}</div>
+            <div className={`bg-gray-50 rounded-xl p-4 text-center ${(typeof os.beneficiarios === 'number' ? 1 : 0) + (codigo ? 1 : 0) === 1 ? 'col-span-2 sm:col-span-1' : ''}`}>
+              <div className="text-lg font-bold text-gray-900">{tiposLabels[os.tipo]?.split(' ')[0] ?? os.tipo}</div>
               <div className="text-xs text-gray-500 mt-0.5">Tipo</div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Oferta para el tráfico de obras sociales (24-sep-2026): con los mismos
-          aportes, una prepaga pagando la diferencia. Solo donde los aportes se
-          pueden pasar: agentes del seguro nacionales (con código), no las
-          provinciales ni PAMI. */}
-      {codigo && os.slug !== 'pami' && (
-        <section className="py-6 bg-white">
-          <div className="container max-w-4xl mx-auto">
-            <Link href={`/calculadora-aportes?os=${os.slug}`}
-              className="group flex flex-col sm:flex-row sm:items-center gap-3 rounded-2xl border-2 border-[#E8002D]/20 bg-gradient-to-r from-red-50 to-white p-5 hover:border-[#E8002D] transition-colors">
-              <div className="flex-1 min-w-0">
-                <div className="font-bold text-gray-900">¿Tenés {os.nombre}? Con tus mismos aportes podés tener una prepaga</div>
-                <div className="text-sm text-gray-600 mt-0.5">Poné tu sueldo y mirá cuánto pagarías de diferencia en cada plan, con los precios oficiales.</div>
-              </div>
-              <span className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-[#E8002D] group-hover:bg-[#B8001F] text-white font-bold rounded-xl text-sm">Calcular mi diferencia →</span>
-            </Link>
-          </div>
-        </section>
-      )}
 
       {/* Teléfonos (23-sep-2026): "osecac teléfono", "pami 138"... tienen mucho
           volumen. Solo números copiados de la web oficial. */}

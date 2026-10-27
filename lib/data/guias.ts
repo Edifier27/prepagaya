@@ -691,7 +691,7 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Cuánto sube un mismo plan con la edad',
-          cuerpo: `Precios de lista oficiales de ${MES} (CABA y GBA, contratación directa, IVA incluido). El SMG20 de Swiss Medical sale ${lista('swiss-medical', 'smg20', 30)} a los 30 años, ${lista('swiss-medical', 'smg20', 40)} a los 40, ${lista('swiss-medical', 'smg20', 50)} a los 50 y ${lista('swiss-medical', 'smg20', 61)} desde los ${ultimoCorte('swiss-medical', 'smg20')}. El Plan 3000 de Sancor Salud: ${lista('sancor-salud', 'plan-3000', 30)} a los 30, ${lista('sancor-salud', 'plan-3000', 40)} a los 40, ${lista('sancor-salud', 'plan-3000', 50)} a los 50, ${lista('sancor-salud', 'plan-3000', 60)} a los 60 y ${lista('sancor-salud', 'plan-3000', 70)} a los 70. El 310 de OSDE: ${lista('osde', '310', 25)} a los 25, ${lista('osde', '310', 30)} a los 30 y ${lista('osde', '310', 40)} desde los ${ultimoCorte('osde', '310')}. Cotizando online tenés 15% OFF sobre estos valores.`,
+          cuerpo: `Precios de lista oficiales de ${MES} (CABA y GBA, contratación directa, IVA incluido). El SMG20 de Swiss Medical sale ${lista('swiss-medical', 'smg20', 30)} a los 30 años, ${lista('swiss-medical', 'smg20', 40)} a los 40, ${lista('swiss-medical', 'smg20', 50)} a los 50 y ${lista('swiss-medical', 'smg20', 61)} desde los ${ultimoCorte('swiss-medical', 'smg20')}. El Plan 3000 de Sancor Salud: ${lista('sancor-salud', 'plan-3000', 30)} a los 30, ${lista('sancor-salud', 'plan-3000', 40)} a los 40, ${lista('sancor-salud', 'plan-3000', 50)} a los 50, ${lista('sancor-salud', 'plan-3000', 60)} a los 60 y ${lista('sancor-salud', 'plan-3000', 65)} a los 65. El 310 de OSDE: ${lista('osde', '310', 25)} a los 25, ${lista('osde', '310', 30)} a los 30 y ${lista('osde', '310', 40)} desde los ${ultimoCorte('osde', '310')}. Cotizando online Swiss Medical tenés 15% OFF sobre esos valores.`,
         },
         {
           titulo: 'Estrategias para pagar menos a cualquier edad',
@@ -704,10 +704,6 @@ export const guias: GuiaData[] = [
       {
         q: '¿La prepaga puede aumentarme la cuota cuando cumplo años?',
         a: 'Sí, cuando pasás a otra de las franjas de edad que la prepaga declara ante la Superintendencia (en muchos planes, por ejemplo, a los 36). La excepción: si tenés más de 65 años y 10 o más de antigüedad en la misma prepaga, la Ley 26.682 no permite aumentos por edad.',
-      },
-      {
-        q: '¿Hay prepagas que acepten personas mayores de 70?',
-        a: `Sí. La ley no permite rechazarte por la edad; lo que cambia es el precio. Según las listas oficiales de ${MES}, a los 70 años el SMG20 de Swiss Medical sale ${lista('swiss-medical', 'smg20', 70)} y el 310 de OSDE, ${lista('osde', '310', 70)}. En la guía de prepagas para mayores de 60 tenés el precio de cada prepaga a los 60, 65 y 70 años.`,
       },
       {
         q: '¿Los hijos pagan lo mismo que los adultos en un plan familiar?',
@@ -1619,10 +1615,6 @@ export const guias: GuiaData[] = [
       conclusion: 'No hay edad máxima legal para afiliarte a una prepaga, pero a partir de los 65 el camino más habitual deja de ser el plan integral y pasa a ser un plan complementario (ambulatorio o de internación) que trabaja junto a tu obra social de base. Confirmá con la prepaga qué planes complementarios tiene disponibles y cuál conviene según tu obra social actual.',
     },
     faq: [
-      {
-        q: '¿Una prepaga me puede rechazar por tener 70 años?',
-        a: 'No puede rechazarte solo por la edad — está prohibido por ley. Lo que sí puede pasar es que te oriente hacia un plan complementario en lugar del plan integral general, sobre todo si ya tenés una obra social de base.',
-      },
       {
         q: '¿Necesito tener PAMI para acceder a un plan complementario?',
         a: 'Necesitás tener alguna obra social de apoyo vigente, sea PAMI u otra (como una obra social de convenio que hayas mantenido de tu actividad laboral anterior). El plan complementario está diseñado para trabajar junto a esa cobertura, no de forma aislada.',

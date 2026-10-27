@@ -7,7 +7,7 @@ import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { prepagas, nivelPrecio, type NivelPrecio } from '@/lib/data/prepagas'
 import type { Plan, Prepaga } from '@/types'
-import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, DESTACADO_PARTNER, FUERA_DEL_COMPARADOR, APORTE_DERIVABLE, TIEMPO_RESPUESTA } from '@/lib/utils'
+import { formatPrecio, esCelularArgentinoValido, NIVEL_PRECIO_LABEL, DESTACADO_PARTNER, FUERA_DEL_COMPARADOR, APORTE_DERIVABLE, TIEMPO_RESPUESTA, EDAD_MAX_INGRESO } from '@/lib/utils'
 import { PROVINCIAS, type Provincia } from '@/lib/data/provincias-cotizador'
 import dynamic from 'next/dynamic'
 // El modal de cartilla trae sanatorios, cartillas y zonas (~30 KB
@@ -422,7 +422,7 @@ function ProgressBar({ step, onStepClick }: { step: Step; onStepClick?: (step: S
 function pasoEdad(edad: string, delta: 1 | -1, indice: number): string {
   const actual = parseInt(edad, 10)
   if (Number.isNaN(actual)) return indice === 0 ? '30' : String(Math.max(0, delta))
-  return String(Math.min(110, Math.max(0, actual + delta)))
+  return String(Math.min(EDAD_MAX_INGRESO, Math.max(0, actual + delta)))
 }
 
 function BackBtn({ onClick }: { onClick: () => void }) {
@@ -638,7 +638,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     setModoPrueba(prueba)
     // Modo prueba con edades por URL (?testing=dario&zona=caba&provincia=CABA&edades=35,33):
     // va directo a resultados, sin popup y sin mandar lead (Darío, 23-sep-2026).
-    const edades = (params.get('edades') ?? '').split(',').map((e) => parseInt(e)).filter((n) => n > 0 && n < 110)
+    const edades = (params.get('edades') ?? '').split(',').map((e) => parseInt(e)).filter((n) => n > 0 && n <= EDAD_MAX_INGRESO)
     if (prueba && edades.length && initialZona) {
       setPersonas(edades.map((edad, i) => ({ id: i + 1, edad: String(edad) })))
       setStep('preview')
@@ -1001,7 +1001,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
   const edadesOk = personas.length > 0 && personas.every((p) => {
     const n = parseInt(p.edad)
-    return p.edad !== '' && !isNaN(n) && n > 0 && n < 110
+    return p.edad !== '' && !isNaN(n) && n > 0 && n <= EDAD_MAX_INGRESO
   })
   const faltaNombre = nombre.trim().length === 0
   const faltaCelular = !esCelularArgentinoValido(celular)
@@ -1220,7 +1220,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 >−</button>
                 <input
                   id={`edad-${p.id}`}
-                  type="number" min={0} max={110} inputMode="numeric"
+                  type="number" min={0} max={EDAD_MAX_INGRESO} inputMode="numeric"
                   // Foco en la edad del titular al entrar al paso: el teclado numérico ya abierto
                   autoFocus={i === 0 && !p.edad}
                   value={p.edad}
@@ -1270,13 +1270,13 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
             quedaba en el borde o abajo de la pantalla, y más con 2 o más integrantes. */}
         <div className="flex flex-col items-end gap-2 lg:sticky lg:bottom-4 lg:z-10">
           {faltaEdad && (
-            <p role="alert" className="text-sm font-semibold text-[#E8002D]">Elegí la edad de cada integrante para ver los precios.</p>
+            <p role="alert" className="text-sm font-semibold text-[#E8002D]">{personas.some((p) => parseInt(p.edad) > EDAD_MAX_INGRESO) ? `Para afiliarte a una prepaga cada integrante tiene que tener ${EDAD_MAX_INGRESO} años o menos.` : 'Elegí la edad de cada integrante para ver los precios.'}</p>
           )}
           <button
             onClick={() => {
               if (edadesOk) { setStep('preview'); return }
               setFaltaEdad(true)
-              const vacia = personas.find((p) => !(p.edad !== '' && parseInt(p.edad) > 0 && parseInt(p.edad) < 110))
+              const vacia = personas.find((p) => !(p.edad !== '' && parseInt(p.edad) > 0 && parseInt(p.edad) <= EDAD_MAX_INGRESO))
               if (vacia) document.getElementById(`edad-${vacia.id}`)?.focus()
             }}
             aria-disabled={!edadesOk}
@@ -1551,7 +1551,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                     className="w-7 h-7 rounded-lg bg-white/15 hover:bg-white/25 flex items-center justify-center text-white font-bold transition-colors"
                   >−</button>
                   <input
-                    type="number" min={0} max={110}
+                    type="number" min={0} max={EDAD_MAX_INGRESO}
                     value={p.edad}
                     onChange={(e) => updateEdad(p.id, e.target.value)}
                     placeholder="Edad"
@@ -2386,7 +2386,12 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                       <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Precio aprox.</td>
                       {seleccionados.map((r) => (
                         <td key={`${r.prepaga.slug}-${r.plan.slug}-precioaprox`} className={`py-3 px-3 ${celda(r)}`}>
-                          <PrecioBloqueado size="sm" texto={<>{formatPrecio(precioFinal(r.precioDesc))}<span className="text-[10px] text-gray-400">/mes</span></>} />
+                          {/* El candado de la tabla también pide la cotización, como en las
+                              tarjetas (métricas 19–25/10/2026: clics muertos en /comparador) */}
+                          <button type="button" onClick={() => handleAccederPlan(r)} className="cursor-pointer text-left"
+                            aria-label={`Consultar el precio de ${r.prepaga.nombre} ${r.plan.nombre}`}>
+                            <PrecioBloqueado size="sm" texto={<>{formatPrecio(precioFinal(r.precioDesc))}<span className="text-[10px] text-gray-400">/mes</span></>} />
+                          </button>
                         </td>
                       ))}
                     </tr>

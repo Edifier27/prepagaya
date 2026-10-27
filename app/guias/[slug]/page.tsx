@@ -21,7 +21,7 @@ import { getCambiosPorOrigen } from '@/lib/data/cambios'
 // con la URL y el título nuevos.
 const RELACIONADAS_CONSOLIDADAS: Record<string, { href: string; titulo: string; categoria: string }> = {
   'prepagas-economicas': { href: '/prepagas-economicas', titulo: 'Prepagas económicas: cuál es la más barata y cuáles son buenas', categoria: 'Precios' },
-  'prepaga-para-mayores-60': { href: '/para/adultos-mayores', titulo: 'Prepagas para jubilados y mayores de 60 y 70 años: precios por edad', categoria: 'Perfiles' },
+  'prepaga-para-mayores-60': { href: '/para/adultos-mayores', titulo: 'Prepagas para jubilados y mayores de 60: precios por edad', categoria: 'Perfiles' },
   'prepagas-para-monotributistas': { href: '/para/monotributistas', titulo: 'Prepagas para monotributistas: cómo usar el aporte y cuánto pagás', categoria: 'Perfiles' },
 }
 

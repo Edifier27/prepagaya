@@ -34,7 +34,7 @@ export interface LadoCruzado {
   cartillaHref: string | null
 }
 
-export const EDADES_CRUZADAS = [25, 30, 40, 50, 60, 70]
+export const EDADES_CRUZADAS = [25, 30, 40, 50, 60, 65]
 
 const codigo = (pl: Plan) => (/\d/.test(pl.nombre) ? pl.nombre.replace(/^Plan /, '') : pl.nombre)
 

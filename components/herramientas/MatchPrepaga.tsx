@@ -35,8 +35,8 @@ const NIVELES = ['Pagar lo menos posible', 'Equilibrio entre precio y cobertura'
 const EDADES = [
   { label: 'Menos de 36', min: 18 },
   { label: '36 a 49', min: 36 },
-  { label: '50 a 64', min: 50 },
-  { label: '65 o más', min: 65 },
+  { label: '50 a 59', min: 50 },
+  { label: '60 a 65', min: 60 },
 ]
 const RAPIDAS = ['caba', 'buenos-aires', 'buenos-aires-interior', 'cordoba', 'santa-fe', 'mendoza']
 // Swiss Medical va siempre arriba como recomendación de los asesores (Darío,

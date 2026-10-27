@@ -1,18 +1,4 @@
 import type { Prepaga } from '@/types'
-import { preciosParaGrupo } from '@/lib/precios/motor'
-import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { formatPrecio } from '@/lib/utils'
-
-// "¿Cuánto cuesta una prepaga para mayores de 70?" (Search Console, 105
-// impresiones sin clics): el plan más barato a los 70 según el cuadro oficial.
-const masBarato70 = (() => {
-  const [clave, total] = Object.entries(preciosParaGrupo([70], 'caba')).sort((a, b) => a[1] - b[1])[0] ?? []
-  if (!clave) return null
-  const [ps, pl] = clave.split('/')
-  const prep = prepagas.find((p) => p.slug === ps)
-  const plan = prep?.planes.find((x) => x.slug === pl)
-  return prep && plan ? { prep: prep.nombre, plan: plan.nombre, total } : null
-})()
 
 export interface PerfilData {
   slug: string
@@ -169,15 +155,16 @@ export const perfiles: PerfilData[] = [
     slug: 'adultos-mayores',
     nombre: 'Jubilados y mayores de 60',
     emoji: '👴',
-    // Search Console (3-oct-2026): "cuanto cuesta una prepaga para mayores de
-    // 70 años" y "prepaga para mayores de 60". La página muestra los precios
-    // oficiales por edad (components/perfiles/PreciosMayores.tsx).
+    // Search Console (3-oct-2026): "prepaga para mayores de 60". La página
+    // muestra los precios oficiales por edad (components/perfiles/PreciosMayores.tsx).
+    // 27-oct-2026 (Darío): el ingreso es hasta los 65 años, menores de 66; no
+    // se muestra nada de 66 en adelante.
     // 20-oct-2026: suma "jubilados" (Google Ads: "prepagas para jubilados"
     // 260/mes, +23 %). Es la misma intención: una sola URL, sin página aparte.
-    titulo: 'Prepagas para jubilados y mayores de 60 y 70 años: precios y cuál conviene',
-    tituloSeo: 'Prepagas para jubilados y mayores de 60 y 70: precios 2026',
-    metaDescripcion: '¿Cuánto cuesta una prepaga para jubilados y mayores de 60, 65 y 70? Precios oficiales por edad, qué dice la ley, PAMI y prepaga juntos, y cuál conviene.',
-    descripcion: 'Después de los 60 la cuota pesa más y cada prepaga sube distinto con la edad: algunas dejan de aumentar mucho antes que otras. Acá tenés los precios oficiales por edad de cada una y lo que dice la ley para que elijas bien.',
+    titulo: 'Prepagas para jubilados y mayores de 60: precios por edad y cuál conviene',
+    tituloSeo: 'Prepagas para jubilados y mayores de 60: precios 2026',
+    metaDescripcion: '¿Cuánto cuesta una prepaga para jubilados y mayores de 60? Precios oficiales a los 55, 60 y 65 años, hasta qué edad podés entrar, PAMI y prepaga juntos, y cuál conviene.',
+    descripcion: 'Después de los 60 la cuota pesa más y cada prepaga sube distinto con la edad: algunas dejan de aumentar mucho antes que otras. Acá tenés los precios oficiales por edad de cada una hasta los 65, la edad máxima para entrar, y lo que dice la ley para que elijas bien.',
     necesidades: [
       'Red de especialistas cerca de tu casa (cardiología, traumatología, neurología)',
       'Cobertura de medicamentos de uso crónico',
@@ -188,7 +175,7 @@ export const perfiles: PerfilData[] = [
     ],
     prepagasRecomendadas: [
       { slug: 'swiss-medical', razon: 'Sanatorios propios en CABA y GBA. Los planes SMG30 a SMG70 usan la cartilla Premium, que en CABA suma el Hospital Alemán y Fleni. Según su cuadro oficial, el precio deja de subir por edad a los 61.' },
-      { slug: 'osde', razon: 'Según su cuadro oficial, el precio deja de subir por edad a partir de los 36 años: a los 70 pagás lo mismo que a los 40.' },
+      { slug: 'osde', razon: 'Según su cuadro oficial, el precio deja de subir por edad a partir de los 36 años: a los 65 pagás lo mismo que a los 40.' },
       { slug: 'cemic', razon: 'Tiene hospital universitario propio en CABA.' },
     ],
     planesRecomendados: [
@@ -196,18 +183,14 @@ export const perfiles: PerfilData[] = [
       { prepagaSlug: 'osde', planSlug: '410', razon: 'Sin copago en consultas y con el mismo precio desde los 36 años' },
     ],
     faq: [
-      ...(masBarato70 ? [{
-        q: '¿Cuánto cuesta una prepaga para mayores de 70?',
-        a: `Según los cuadros tarifarios oficiales (${PRECIO_ACTUALIZADO.toLowerCase()}, CABA/AMBA, contratación directa), el plan más barato para una persona de 70 años es ${masBarato70.prep} ${masBarato70.plan}, a ${formatPrecio(masBarato70.total)} por mes. Más abajo están los precios a los 70 de cada prepaga.`,
-      }] : []),
       // La pregunta "¿Cuánto cuesta…?" se arma con los precios oficiales en la página
       {
         q: '¿Qué prepaga acepta jubilados?',
-        a: 'Todas. La Ley 26.682 no permite que una prepaga rechace a alguien por su edad, así que podés contratar cualquiera siendo jubilado. Lo que cambia es el precio por edad: más abajo están los precios oficiales a los 60, 65 y 70 de cada una.',
+        a: 'Todas, si tenés menos de 66 años: las prepagas aceptan ingresos nuevos hasta los 65. Lo que cambia es el precio por edad: más abajo están los precios oficiales a los 55, 60 y 65 de cada una.',
       },
       {
-        q: '¿Las prepagas pueden negarse a afiliar a adultos mayores?',
-        a: 'No. La Ley 26.682 no permite rechazar a alguien por su edad. Lo que cambia es el precio, según los rangos de edad que cada prepaga declara ante la Superintendencia de Servicios de Salud. Por una preexistencia pueden cobrarte una cuota diferencial autorizada por la Superintendencia, pero tampoco pueden rechazarte.',
+        q: '¿Hasta qué edad me puedo afiliar a una prepaga?',
+        a: 'Hasta los 65 años: para afiliarte por primera vez tenés que tener menos de 66. El precio depende de los rangos de edad que cada prepaga declara ante la Superintendencia de Servicios de Salud. Por una preexistencia pueden cobrarte una cuota diferencial autorizada por la Superintendencia, pero no rechazarte.',
       },
       {
         q: '¿Me pueden aumentar la cuota por cumplir 65?',
@@ -215,7 +198,7 @@ export const perfiles: PerfilData[] = [
       },
       {
         q: '¿Qué prepaga conviene después de los 60?',
-        a: 'Depende de dónde te atendés y de cuánto querés pagar. Mirá dos cosas en la tabla de precios: cuánto sale hoy cada plan y a qué edad deja de subir (OSDE, por ejemplo, cobra lo mismo desde los 36 según su cuadro oficial). Después confirmá que estén tus sanatorios en la cartilla del plan. Te lo cotizamos gratis con 15% OFF.',
+        a: 'Depende de dónde te atendés y de cuánto querés pagar. Mirá dos cosas en la tabla de precios: cuánto sale hoy cada plan y a qué edad deja de subir (OSDE, por ejemplo, cobra lo mismo desde los 36 según su cuadro oficial). Después confirmá que estén tus sanatorios en la cartilla del plan. Te lo cotizamos gratis, con 15% OFF en Swiss Medical.',
       },
       {
         q: '¿Puedo tener PAMI y una prepaga al mismo tiempo?',
