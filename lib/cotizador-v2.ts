@@ -1,6 +1,7 @@
 // Cotizador v2 (prueba 50/50 contra el actual, Darío 24-oct-2026). Maqueta y
 // reglas acordadas: docs/producto/cotizador-v2.html. Sirve en servidor y en el
 // navegador: sin imports de servidor.
+import { EDAD_MAX_INGRESO } from '@/lib/utils'
 
 export type Condicion = 'particular' | 'monotributo' | 'recibo'
 export type GrupoPlan = 'swiss' | 'sancor' | 'premedic' | 'osde'
@@ -148,8 +149,8 @@ export function centrosPropiosSwiss(zona: ZonaV2): string {
 export function errorDeEdad(edades: (number | null)[]): string {
   if (edades.some((e) => e === null || !Number.isFinite(e) || e < 0)) return 'Completá la edad de cada integrante.'
   const e = edades as number[]
-  // Ingreso hasta los 65 años, menores de 66 (Darío, 27-oct-2026)
-  if (e.some((n) => n > 65)) return 'Para afiliarte a una prepaga cada integrante tiene que tener 65 años o menos.'
+  // Ingreso hasta los 66 años inclusive (Darío, 27-oct-2026)
+  if (e.some((n) => n > EDAD_MAX_INGRESO)) return `Para afiliarte a una prepaga cada integrante tiene que tener ${EDAD_MAX_INGRESO} años o menos.`
   return ''
 }
 

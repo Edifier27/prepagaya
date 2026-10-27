@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { esLeadMayor, ESTADO_MAYOR_66 } from '@/lib/edad-lead'
 import { logout } from './actions'
 import PanelResenas from './PanelResenas'
 import type { LeadRow, EstadoLead } from '@/lib/db'
@@ -157,7 +158,12 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   const [refrescando, setRefrescando] = useState(false)
   const [filtros, setFiltros] = useState<Filtros>(FILTROS_VACIOS)
   // Pestañas del panel: leads o moderación de reseñas (23-sep-2026)
-  const [vista, setVista] = useState<'leads' | 'resenas'>('leads')
+  const [vista, setVista] = useState<'leads' | 'mayores' | 'resenas'>('leads')
+  // Mayores de 66 (27-oct-2026): van en su propia solapa y no se mezclan con
+  // los leads ni con sus números
+  const esMayor = (l: LeadRow) => l.kommo_estado === ESTADO_MAYOR_66 || esLeadMayor(l.edades)
+  const cantidadMayores = useMemo(() => leads.filter(esMayor).length, [leads])
+  const leadsVista = useMemo(() => leads.filter((l) => (vista === 'mayores') === esMayor(l)), [leads, vista])
   const [resenasPendientes, setResenasPendientes] = useState<number | null>(null)
   useEffect(() => {
     fetch('/api/panel/resenas?estado=pendiente')
@@ -403,6 +409,7 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
   // datos entran y de dónde — se calculan solas de los leads ya cargados
   // en el panel, sin pedir nada nuevo al servidor.
   const stats = useMemo(() => {
+    const leads = leadsVista
     const hoy = leads.filter((l) => esHoy(l.creado_en)).length
     const contar = (valores: (string | null)[]) => {
       const mapa = new Map<string, number>()
@@ -452,12 +459,12 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
       porEstado,
       ventasPorFuente,
     }
-  }, [leads])
+  }, [leadsVista])
 
   const leadsFiltrados = useMemo(() => {
     const q = normalizar(filtros.busqueda.trim())
     const qDigitos = filtros.busqueda.replace(/\D/g, '')
-    return leads.filter((l) => {
+    return leadsVista.filter((l) => {
       if (filtros.mes && mesKey(l.creado_en) !== filtros.mes) return false
       if (filtros.zona && (l.provincia?.trim() || 'Sin especificar') !== filtros.zona) return false
       if (filtros.fuente && (l.fuente?.trim() || 'Sin especificar') !== filtros.fuente) return false
@@ -475,7 +482,7 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
       }
       return true
     })
-  }, [leads, filtros])
+  }, [leadsVista, filtros])
 
   const hayFiltros = Boolean(
     filtros.mes || filtros.zona || filtros.fuente || filtros.soloHoy || filtros.soloSinLeer || filtros.busqueda.trim() || filtros.estado || filtros.soloSeguimiento || filtros.region || filtros.canal || filtros.origen
@@ -646,16 +653,22 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
 
       <div className="max-w-3xl mx-auto p-4">
         <div className="flex gap-1.5 mb-3">
-          {([['leads', 'Leads'], ['resenas', 'Reseñas']] as const).map(([id, label]) => (
+          {([['leads', 'Leads'], ['mayores', 'Mayores de 66 años'], ['resenas', 'Reseñas']] as const).map(([id, label]) => (
             <button key={id} onClick={() => setVista(id)}
               className={`text-sm font-semibold rounded-xl px-4 py-2 transition-colors ${vista === id ? 'bg-gray-900 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:text-gray-900'}`}>
               {label}
               {id === 'resenas' && resenasPendientes ? <span className="ml-1.5 text-[10px] font-bold bg-[#E8002D] text-white rounded-full px-1.5 py-0.5">{resenasPendientes}</span> : null}
+              {id === 'mayores' && cantidadMayores ? <span className="ml-1.5 text-[10px] font-bold bg-gray-500 text-white rounded-full px-1.5 py-0.5">{cantidadMayores}</span> : null}
             </button>
           ))}
         </div>
 
         {vista === 'resenas' ? <PanelResenas onPendientes={setResenasPendientes} /> : (<>
+        {vista === 'mayores' && (
+          <p className="mb-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-600">
+            Leads con alguien de <strong className="text-gray-900">67 años o más</strong>: no se mandan al CRM ni reciben mensajes. Quedan acá para consultarlos.
+          </p>
+        )}
         <StatsPanel
           stats={stats}
           filtros={filtros}
@@ -702,7 +715,7 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
           {hayFiltros && (
             <div className="flex flex-wrap items-center gap-1.5 text-xs">
               <span className="text-gray-500 mr-1">
-                Mostrando <strong className="text-gray-900">{leadsFiltrados.length}</strong> de {leads.length}
+                Mostrando <strong className="text-gray-900">{leadsFiltrados.length}</strong> de {leadsVista.length}
               </span>
               {filtros.soloHoy && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, soloHoy: false }))}>Hoy</ChipActivo>}
               {filtros.mes && <ChipActivo onQuitar={() => setFiltros((f) => ({ ...f, mes: null }))}>{mesLabel(filtros.mes)}</ChipActivo>}
@@ -940,6 +953,7 @@ function estadoEnvio(estado: string | null): Envio | null {
   if (!estado) return null
   if (estado === 'Pendiente') return { tipo: 'pendiente', texto: 'Por enviar', detalle: 'Sale al minuto y medio de la última actividad de la persona' }
   if (estado === 'Procesando') return { tipo: 'pendiente', texto: 'Enviando…' }
+  if (estado === ESTADO_MAYOR_66) return { tipo: 'pendiente', texto: 'No va al CRM (mayor de 66)' }
   if (estado.startsWith('OK (CRM')) return { tipo: 'enviado', texto: 'Enviado al CRM' }
   if (estado.startsWith('OK')) return { tipo: 'enviado', texto: 'Enviado a Kommo' }
   if (estado.startsWith('Email directo')) return { tipo: 'enviado', texto: 'Enviado por mail', detalle: estado }

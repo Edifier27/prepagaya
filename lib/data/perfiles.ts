@@ -157,7 +157,7 @@ export const perfiles: PerfilData[] = [
     emoji: '👴',
     // Search Console (3-oct-2026): "prepaga para mayores de 60". La página
     // muestra los precios oficiales por edad (components/perfiles/PreciosMayores.tsx).
-    // 27-oct-2026 (Darío): el ingreso es hasta los 65 años, menores de 66; no
+    // 27-oct-2026 (Darío): el ingreso es hasta los 66 años inclusive; no
     // se muestra nada de 66 en adelante.
     // 20-oct-2026: suma "jubilados" (Google Ads: "prepagas para jubilados"
     // 260/mes, +23 %). Es la misma intención: una sola URL, sin página aparte.
@@ -186,11 +186,11 @@ export const perfiles: PerfilData[] = [
       // La pregunta "¿Cuánto cuesta…?" se arma con los precios oficiales en la página
       {
         q: '¿Qué prepaga acepta jubilados?',
-        a: 'Todas, si tenés menos de 66 años: las prepagas aceptan ingresos nuevos hasta los 65. Lo que cambia es el precio por edad: más abajo están los precios oficiales a los 55, 60 y 65 de cada una.',
+        a: 'Todas, si tenés 66 años o menos: las prepagas aceptan ingresos nuevos hasta los 66. Lo que cambia es el precio por edad: más abajo están los precios oficiales a los 55, 60 y 65 de cada una.',
       },
       {
         q: '¿Hasta qué edad me puedo afiliar a una prepaga?',
-        a: 'Hasta los 65 años: para afiliarte por primera vez tenés que tener menos de 66. El precio depende de los rangos de edad que cada prepaga declara ante la Superintendencia de Servicios de Salud. Por una preexistencia pueden cobrarte una cuota diferencial autorizada por la Superintendencia, pero no rechazarte.',
+        a: 'Hasta los 66 años inclusive: para afiliarte por primera vez tenés que tener 66 o menos. El precio depende de los rangos de edad que cada prepaga declara ante la Superintendencia de Servicios de Salud. Por una preexistencia pueden cobrarte una cuota diferencial autorizada por la Superintendencia, pero no rechazarte.',
       },
       {
         q: '¿Me pueden aumentar la cuota por cumplir 65?',

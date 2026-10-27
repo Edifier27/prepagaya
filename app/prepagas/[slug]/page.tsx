@@ -296,14 +296,14 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
       a: ES_OBRA_SOCIAL_O_PREPAGA[prep.slug],
     }] : []),
     // Keyword research 14-oct-2026: "[prepaga] para jubilados / mayores de
-    // 65". Ingreso hasta los 65 años, menores de 66 (Darío, 27-oct-2026), "[prepaga] dar de baja". Precio del cuadro oficial; la baja, con
+    // 65". Ingreso hasta los 66 años inclusive (Darío, 27-oct-2026), "[prepaga] dar de baja". Precio del cuadro oficial; la baja, con
     // lo verificado en la guía /guias/como-dar-de-baja-prepaga-u-obra-social.
     ...(() => {
       const e = comp.entrada.oficial ? escalaPorEdad(prep.slug, comp.entrada.plan.slug, 'caba') : null
       const p65 = e?.rangos.find((x) => x.desde <= 65 && 65 <= x.hasta)?.precio
       return p65 ? [{
         q: `¿Cuánto cuesta ${prep.nombre} para jubilados o mayores de 65?`,
-        a: `El plan más económico de ${prep.nombre}, el ${comp.entrada.plan.nombre}, sale ${formatPrecio(p65)} por mes para una persona de 65 años según el cuadro tarifario oficial (${PRECIO_ACTUALIZADO.toLowerCase()}, contratación directa, IVA incluido). Para afiliarte por primera vez tenés que tener menos de 66 años: ${prep.nombre} acepta ingresos nuevos hasta los 65. Si ya sos afiliado y tenés 10 años de antigüedad continua, la ley no permite aumentarte por edad después de los 65.`,
+        a: `El plan más económico de ${prep.nombre}, el ${comp.entrada.plan.nombre}, sale ${formatPrecio(p65)} por mes para una persona de 65 años según el cuadro tarifario oficial (${PRECIO_ACTUALIZADO.toLowerCase()}, contratación directa, IVA incluido). Para afiliarte por primera vez tenés que tener 66 años o menos: ${prep.nombre} acepta ingresos nuevos hasta los 66. Si ya sos afiliado y tenés 10 años de antigüedad continua, la ley no permite aumentarte por edad después de los 65.`,
       }] : []
     })(),
     // 17-oct-2026, keyword research de Darío (Swiss, OSDE, Sancor, Omint,
