@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
-import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, EDAD_MAX_INGRESO } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
@@ -585,6 +585,13 @@ export default async function PlanPage({ params, searchParams }: Props) {
   // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba") ya
   // sabemos la provincia: la barra "Cotizá" la pasa al comparador.
   const provDelLink = provincia ? getProvinciaSEO(provincia) : undefined
+  // Al comparador con el plan elegido; "desde" dice qué se tocó
+  const hrefCotizar = (desde: string) => `/comparador?${new URLSearchParams({
+    prepaga: slug,
+    plan: planSlug,
+    desde,
+    ...(provDelLink ? { zona: provDelLink.zonaKey, provincia: provDelLink.nombre } : {}),
+  })}`
 
   // Plan de la cartilla oficial que corresponde a este plan (ej. SMG20 → "SMG20", S1 → "SMG02")
   const cartillaDef = CARTILLAS[prep.slug]
@@ -645,6 +652,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
       .flatMap((c) => c.planes.filter((f) => f.planSlugs.includes(plan.slug)).map((f) => ({ tema: c.tema, nombre: c.temaNombre, fila: f }))),
     sanatoriosCaba: resumenCaba,
     cartillaHref: cartillaPlanLink?.href,
+    cotizarHref: hrefCotizar('imagen-plan'),
   }
   // Una sola pregunta de precio (25-sep-2026): si hay cuadro oficial por edad,
   // la de "precio a los 30 años" sobra.
@@ -717,12 +725,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
         titulo={`${prep.nombre} ${codigoPlan(plan)}`}
         origen={`plan:${slug}/${planSlug}`}
         promo={promo?.corta}
-        href={`/comparador?${new URLSearchParams({
-          prepaga: slug,
-          plan: planSlug,
-          desde: 'barra',
-          ...(provDelLink ? { zona: provDelLink.zonaKey, provincia: provDelLink.nombre } : {}),
-        })}`}
+        href={hrefCotizar('barra')}
       />
 
       {/* Breadcrumb */}
@@ -773,6 +776,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
             region={escalaCaja && regionTexto(escalaCaja.region) !== 'lista general' ? regionTexto(escalaCaja.region) : ''}
             promo={promo}
             hrefComparar={`/comparar?plan=${prep.slug}/${plan.slug}#planes`}
+            hrefCotizar={hrefCotizar('caja-promo')}
             cta={
               <ContratarPlanButton
                 prepagaNombre={prep.nombre}
@@ -913,9 +917,11 @@ export default async function PlanPage({ params, searchParams }: Props) {
                     <tr><th className="text-left px-4 py-2">Edad</th><th className="text-right px-4 py-2">Precio mensual</th></tr>
                   </thead>
                   <tbody>
-                    {seo.escala.rangos.map((x) => (
+                    {/* Ingreso hasta los 65 (EDAD_MAX_INGRESO): el último rango
+                        del cuadro ("65 años o más") se muestra cortado en 65 */}
+                    {seo.escala.rangos.filter((x) => x.desde <= EDAD_MAX_INGRESO).map((x) => (
                       <tr key={x.desde} className="border-t border-gray-100">
-                        <td className="px-4 py-2 text-gray-700">{x.hasta >= 99 ? `${x.desde} años o más` : `${x.desde} a ${x.hasta} años`}</td>
+                        <td className="px-4 py-2 text-gray-700">{x.hasta > EDAD_MAX_INGRESO ? (x.desde === EDAD_MAX_INGRESO ? `${x.desde} años` : `${x.desde} a ${EDAD_MAX_INGRESO} años`) : `${x.desde} a ${x.hasta} años`}</td>
                         <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(x.precio)}</td>
                       </tr>
                     ))}

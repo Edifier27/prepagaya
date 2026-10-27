@@ -19,11 +19,13 @@ interface Props {
   /** Botón que abre el formulario (ContratarPlanButton) */
   cta: ReactNode
   hrefComparar: string
+  /** A dónde lleva la franja de la promo (cotizador con el plan) */
+  hrefCotizar?: string
 }
 
 const EDAD_MIN = 18
 
-export function CajaPrecioPlan({ titulo, rangos, region, promo, cta, hrefComparar }: Props) {
+export function CajaPrecioPlan({ titulo, rangos, region, promo, cta, hrefComparar, hrefCotizar }: Props) {
   const edadMax = rangos ? Math.min(EDAD_MAX_INGRESO, Math.max(...rangos.map((r) => r.hasta))) : EDAD_MAX_INGRESO
   const [edades, setEdades] = useState<number[]>([30])
   const precioDe = (e: number) => rangos?.find((r) => r.desde <= e && e <= r.hasta)?.precio ?? null
@@ -34,12 +36,19 @@ export function CajaPrecioPlan({ titulo, rangos, region, promo, cta, hrefCompara
 
   return (
     <div className="mb-5 overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-[0_18px_40px_-24px_rgba(22,18,26,0.35)]">
-      {promo && (
+      {/* Franja roja de la promo: parecía un botón y la tocaban para
+          cotizar (Clarity, 21–27/10/2026, SMG30). Ahora cotiza. */}
+      {promo && (hrefCotizar ? (
+        <Link href={hrefCotizar} className="flex flex-wrap items-baseline justify-between gap-x-3 bg-gradient-to-r from-[#6E0B22] to-[#E8002D] px-5 py-2 text-white transition hover:from-[#5A0919] hover:to-[#C90027]">
+          <span className="text-sm font-extrabold">{promo.corta} <span className="font-semibold underline underline-offset-2">Cotizá →</span></span>
+          <span className="text-xs text-red-100">{promo.detalle}</span>
+        </Link>
+      ) : (
         <div className="flex flex-wrap items-baseline justify-between gap-x-3 bg-gradient-to-r from-[#6E0B22] to-[#E8002D] px-5 py-2 text-white">
           <span className="text-sm font-extrabold">{promo.corta}</span>
           <span className="text-xs text-red-100">{promo.detalle}</span>
         </div>
-      )}
+      ))}
       <div className="grid gap-5 p-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] sm:p-6">
         {/* Izquierda: para quién es */}
         <div className="flex flex-col gap-3">
