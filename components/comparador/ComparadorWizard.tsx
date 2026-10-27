@@ -743,6 +743,10 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   // Clarity (8-oct-2026): el "Ver precios" deshabilitado recibía clics muertos
   // y el "+" se tocaba decenas de veces. Ahora el botón siempre responde.
   const [faltaEdad, setFaltaEdad] = useState(false)
+  // Mayores de 66 (Darío, 27-oct-2026): no ven precios, pero pueden dejar
+  // nombre y celular. El lead no va al CRM (lib/procesar-leads-kommo.ts) y
+  // queda en la solapa "Mayores de 66 años" del panel.
+  const [mayorEstado, setMayorEstado] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle')
 
   // Modo enfocado: apenas se elige la zona y se avanza, se oculta el
   // header/footer/bottom-nav para que la cotización no tenga forma de
@@ -999,6 +1003,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     return () => window.removeEventListener('beforeunload', handler)
   }, [showPopup])
 
+  const hayMayor = personas.some((p) => { const n = parseInt(p.edad); return n > EDAD_MAX_INGRESO && n < 120 })
   const edadesOk = personas.length > 0 && personas.every((p) => {
     const n = parseInt(p.edad)
     return p.edad !== '' && !isNaN(n) && n > 0 && n <= EDAD_MAX_INGRESO
@@ -1093,6 +1098,24 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     // "éxito" silencioso — la persona ve el cartel de listo pero el mail
     // nunca sale. Lanzamos para que los try/catch de arriba lo detecten.
     if (!res.ok) throw new Error(`/api/leads respondió ${res.status}`)
+  }
+
+  async function handleMayorDatos() {
+    if (faltaNombre || faltaCelular) { setIntentoDatos(true); return }
+    if (!(await avisoCelular.revisar(celular))) return
+    setMayorEstado('loading')
+    try {
+      await sendEmail({
+        nombre: nombre.trim(), celular: celular.trim(), email: emailFinal, provincia: provinciaNombre,
+        personas: resumenEdadesNatural(), fuente: 'cotizacion-wizard', prepaga_interes: 'Mayores de 66: sin precios',
+        fecha: new Date().toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' }),
+        ...((origen?.desde ?? desde) ? { origen: (origen?.desde ?? desde)! } : {}),
+      })
+      trackLead('cotizacion-wizard')
+      setMayorEstado('ok')
+    } catch {
+      setMayorEstado('error')
+    }
   }
 
   async function handleVerPrecios() {
@@ -1240,7 +1263,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                   (111 toques, los menores de 30 bajaban de a uno). En mobile se
                   sacan −/+ y quedan el campo (teclado numérico) y atajos más grandes. */}
               <div className="flex flex-wrap gap-1.5 sm:basis-full" role="group" aria-label={`Edad rápida de ${i === 0 ? 'titular' : `integrante ${i + 1}`}`}>
-                {(i === 0 ? [25, 30, 35, 40, 45, 50, 55, 60, 65, 70] : [1, 5, 10, 18, 25, 30, 40, 50, 60, 65]).map((n) => (
+                {(i === 0 ? [25, 30, 35, 40, 45, 50, 55, 60, 65, 66] : [1, 5, 10, 18, 25, 30, 40, 50, 60, 65]).map((n) => (
                   <button
                     key={n}
                     type="button"
@@ -1265,12 +1288,41 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           </button>
         )}
 
+        {hayMayor && (
+          <div className="mb-6 rounded-2xl border-2 border-gray-200 bg-white p-5" role="region" aria-label="Datos para mayores de 66 años">
+            {mayorEstado === 'ok' ? (
+              <p className="text-sm font-semibold text-emerald-700">Listo, recibimos tus datos.</p>
+            ) : (
+              <>
+                <p className="font-bold text-gray-900">Las prepagas aceptan ingresos nuevos hasta los {EDAD_MAX_INGRESO} años</p>
+                <p className="mt-1 text-sm text-gray-600">Por eso no podemos mostrarte precios. Si querés, dejanos tus datos y un asesor los revisa.</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <label className="flex flex-col gap-1 text-xs font-semibold text-gray-700">Nombre
+                    <input id="mayor-nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} autoComplete="name"
+                      className={`rounded-xl border-2 px-3 py-2.5 text-sm font-normal focus:border-[#E8002D] focus:outline-none ${intentoDatos && faltaNombre ? 'border-[#E8002D]' : 'border-gray-200'}`} />
+                  </label>
+                  <label className="flex flex-col gap-1 text-xs font-semibold text-gray-700">Celular
+                    <input id="mayor-celular" value={celular} onChange={(e) => setCelular(e.target.value)} inputMode="tel" autoComplete="tel" placeholder="Ej: 11 2345 6789"
+                      className={`rounded-xl border-2 px-3 py-2.5 text-sm font-normal focus:border-[#E8002D] focus:outline-none ${intentoDatos && faltaCelular ? 'border-[#E8002D]' : 'border-gray-200'}`} />
+                  </label>
+                </div>
+                <AvisoCelular texto={avisoCelular.aviso} />
+                {mayorEstado === 'error' && <p role="alert" className="mt-2 text-sm font-semibold text-[#E8002D]">No se pudo enviar. Probá de nuevo en un momento.</p>}
+                <button type="button" onClick={handleMayorDatos} disabled={mayorEstado === 'loading'}
+                  className="mt-4 inline-flex items-center justify-center rounded-xl bg-[#E8002D] px-6 py-3 text-sm font-bold text-white hover:bg-[#B8001F] disabled:opacity-60">
+                  {mayorEstado === 'loading' ? 'Enviando…' : 'Dejar mis datos'}
+                </button>
+              </>
+            )}
+          </div>
+        )}
+
         {/* En la compu queda pegado abajo mientras se cargan las edades (acción 6,
             24-oct-2026): en 1366×768 con la barra del navegador el botón
             quedaba en el borde o abajo de la pantalla, y más con 2 o más integrantes. */}
         <div className="flex flex-col items-end gap-2 lg:sticky lg:bottom-4 lg:z-10">
           {faltaEdad && (
-            <p role="alert" className="text-sm font-semibold text-[#E8002D]">{personas.some((p) => parseInt(p.edad) > EDAD_MAX_INGRESO) ? `Para afiliarte a una prepaga cada integrante tiene que tener ${EDAD_MAX_INGRESO} años o menos.` : 'Elegí la edad de cada integrante para ver los precios.'}</p>
+            <p role="alert" className="text-sm font-semibold text-[#E8002D]">{hayMayor ? `Con alguien de más de ${EDAD_MAX_INGRESO} años no hay precios: dejá tus datos arriba.` : 'Elegí la edad de cada integrante para ver los precios.'}</p>
           )}
           <button
             onClick={() => {
