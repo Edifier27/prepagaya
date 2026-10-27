@@ -3,14 +3,14 @@ import { escalaPorEdad, precioGrupo } from '@/lib/precios/motor'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio } from '@/lib/utils'
 
-// "¿Cuánto cuesta una prepaga para mayores de 60 o 70 años?" (Search
-// Console, 3-oct-2026: "cuanto cuesta una prepaga para mayores de 70 años",
-// 44 impresiones en el puesto 8,7). Precios de lista oficiales de cada
-// prepaga por edad, de los cuadros declarados ante la SSSalud (CABA y GBA,
-// contratación directa, IVA incluido). Swiss Medical primero.
+// "¿Cuánto cuesta una prepaga para mayores de 60?" Precios de lista oficiales
+// de cada prepaga por edad, de los cuadros declarados ante la SSSalud (CABA y
+// GBA, contratación directa, IVA incluido). Swiss Medical primero. Hasta los
+// 65: las prepagas aceptan ingresos nuevos hasta esa edad, menores de 66
+// (Darío, 27-oct-2026), así que no se muestran precios de 66 en adelante.
 
 const ORDEN = ['swiss-medical', 'osde', 'sancor-salud', 'avalian', 'medife', 'premedic', 'galeno']
-const EDADES = [60, 65, 70]
+const EDADES = [55, 60, 65]
 
 /** "Swiss Medical S1", "Medifé+" (sin repetir la marca cuando el plan ya la lleva) */
 export function nombreCorto(prep: string, plan: string) {
@@ -37,22 +37,22 @@ function filas() {
     const elegidos = [planes[0], planes.find((x) => x.pl.destacado && x.pl.slug !== planes[0].pl.slug)].filter((x) => x !== undefined)
     return elegidos.map((x) => {
       const ultimo = escalaPorEdad(slug, x.pl.slug, 'caba')?.rangos.at(-1)
-      return { prep: x.prep, plan: x.pl, precios: x.precios, dejaDeSubir: ultimo && ultimo.desde <= 70 ? ultimo.desde : null }
+      return { prep: x.prep, plan: x.pl, precios: x.precios, dejaDeSubir: ultimo && ultimo.desde <= 65 ? ultimo.desde : null }
     })
   })
 }
 
 /** Respuesta para las preguntas frecuentes, con los mismos datos de la tabla */
 export function faqPreciosMayores(): { q: string; a: string } {
-  // El plan más barato de cada prepaga a los 70
+  // El plan más barato de cada prepaga a los 65
   const f = ORDEN.flatMap((slug) => {
     const min = planesDe(slug).sort((a, b) => a.precios[2] - b.precios[2])[0]
     return min ? [min] : []
   })
   const texto = f.slice(0, 5).map((x) => `${nombreCorto(x.prep.nombre, x.pl.nombre)}, ${formatPrecio(x.precios[2])}`).join('; ')
   return {
-    q: '¿Cuánto cuesta una prepaga para mayores de 65 o 70 años?',
-    a: `Depende de la prepaga y del plan: cada una declara su precio por edad ante la Superintendencia de Servicios de Salud. Según las listas oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()} (CABA y GBA, por persona, IVA incluido), el plan más económico de cada una sale a los 70 años: ${texto}. Cotizando online Swiss Medical tenés 15% OFF sobre esos valores.`,
+    q: '¿Cuánto cuesta una prepaga para mayores de 60?',
+    a: `Depende de la prepaga y del plan: cada una declara su precio por edad ante la Superintendencia de Servicios de Salud. Según las listas oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()} (CABA y GBA, por persona, IVA incluido), el plan más económico de cada una sale a los 65 años: ${texto}. Para afiliarte por primera vez tenés que tener menos de 66 años. Cotizando online Swiss Medical tenés 15% OFF sobre esos valores.`,
   }
 }
 
@@ -62,7 +62,7 @@ export function PreciosMayores() {
   return (
     <section className="py-10 bg-white border-t border-gray-100">
       <div className="container max-w-4xl mx-auto">
-        <h2 className="text-xl font-bold text-gray-900 mb-1">Cuánto cuesta una prepaga a los 60, 65 y 70 años</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">Cuánto cuesta una prepaga a los 55, 60 y 65 años</h2>
         <p className="text-sm text-gray-500 mb-4">
           Precios de lista oficiales de {PRECIO_ACTUALIZADO.toLowerCase()} declarados ante la Superintendencia de Servicios de Salud: CABA y GBA, por persona, contratación directa, IVA incluido. Cotizando online Swiss Medical tenés 15% OFF.
         </p>
@@ -90,7 +90,7 @@ export function PreciosMayores() {
           </table>
         </div>
         <ul className="mt-4 space-y-2 text-sm text-gray-700">
-          <li><strong>No te pueden rechazar por la edad.</strong> La Ley 26.682 no permite negar la afiliación por edad; lo que cambia es el precio, según los rangos que declara cada prepaga.</li>
+          <li><strong>El ingreso es hasta los 65 años.</strong> Para afiliarte por primera vez tenés que tener menos de 66: el precio depende de los rangos de edad que declara cada prepaga.</li>
           <li><strong>Si tenés más de 65 y 10 años o más en la misma prepaga</strong>, no te pueden aumentar la cuota por edad. Antes de cambiarte, tenelo en cuenta: en una prepaga nueva empezás de cero.</li>
           <li><strong>Por una preexistencia</strong> pueden cobrarte una cuota diferencial autorizada por la Superintendencia, pero no rechazarte.</li>
         </ul>

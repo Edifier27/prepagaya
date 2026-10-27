@@ -7,7 +7,7 @@
 // aparece solo en Swiss Medical; en el resto, sin promociones.
 import { useState, type ReactNode } from 'react'
 import Link from 'next/link'
-import { formatPrecio } from '@/lib/utils'
+import { formatPrecio, EDAD_MAX_INGRESO } from '@/lib/utils'
 
 interface Props {
   titulo: string
@@ -24,7 +24,7 @@ interface Props {
 const EDAD_MIN = 18
 
 export function CajaPrecioPlan({ titulo, rangos, region, promo, cta, hrefComparar }: Props) {
-  const edadMax = rangos ? Math.min(75, Math.max(...rangos.map((r) => r.desde))) : 65
+  const edadMax = rangos ? Math.min(EDAD_MAX_INGRESO, Math.max(...rangos.map((r) => r.hasta))) : EDAD_MAX_INGRESO
   const [edades, setEdades] = useState<number[]>([30])
   const precioDe = (e: number) => rangos?.find((r) => r.desde <= e && e <= r.hasta)?.precio ?? null
   const precios = edades.map(precioDe)

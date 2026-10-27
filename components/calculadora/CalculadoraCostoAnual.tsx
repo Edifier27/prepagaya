@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { prepagas } from '@/lib/data/prepagas'
-import { formatPrecio, precioDeriva } from '@/lib/utils'
+import { formatPrecio, precioDeriva, EDAD_MAX_INGRESO } from '@/lib/utils'
 import type { Plan, Prepaga } from '@/types'
 
 function multEdad(edad: number): number {
@@ -30,7 +30,7 @@ export function CalculadoraCostoAnual(): React.ReactElement {
   const [prepagaSlug, setPrepagaSlug] = useState<string>(prepagas[0].slug)
   const [planSlug, setPlanSlug] = useState<string>(prepagas[0].planes[0].slug)
   const [edadStr, setEdadStr] = useState<string>('35')
-  const edad = Math.min(99, Math.max(18, Number(edadStr) || 18))
+  const edad = Math.min(EDAD_MAX_INGRESO, Math.max(18, Number(edadStr) || 18))
   const [situacion, setSituacion] = useState<Situacion>('particular')
   const [sueldoBruto, setSueldoBruto] = useState<string>('')
   const [consultasMes, setConsultasMes] = useState<number>(1)
@@ -157,7 +157,7 @@ export function CalculadoraCostoAnual(): React.ReactElement {
               maxLength={2}
               value={edadStr}
               onChange={(e) => setEdadStr(e.target.value.replace(/[^0-9]/g, ''))}
-              onBlur={() => setEdadStr(String(Math.min(99, Math.max(18, Number(edadStr) || 18))))}
+              onBlur={() => setEdadStr(String(Math.min(EDAD_MAX_INGRESO, Math.max(18, Number(edadStr) || 18))))}
               className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#E8002D] focus:border-[#E8002D]"
             />
             <p className="text-xs text-gray-400 mt-1">

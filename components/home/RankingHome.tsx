@@ -6,7 +6,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { formatPrecio } from '@/lib/utils'
+import { formatPrecio, EDAD_MAX_INGRESO } from '@/lib/utils'
 import { LOGO_EXT } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 
@@ -26,7 +26,7 @@ export interface ItemRanking {
 }
 
 const EDAD_MIN = 18
-const EDAD_MAX = 75
+const EDAD_MAX = EDAD_MAX_INGRESO
 const DESCUENTO = 0.15
 
 const Tilde = () => (

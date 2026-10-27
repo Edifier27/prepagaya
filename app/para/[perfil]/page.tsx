@@ -174,7 +174,7 @@ export default async function PerfilPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Adultos mayores: precios oficiales a los 60, 65 y 70 años (3-oct-2026),
+      {/* Adultos mayores: precios oficiales a los 55, 60 y 65 años (3-oct-2026),
           antes de las necesidades para responder primero lo que se busca */}
       {perf.slug === 'adultos-mayores' && <PreciosMayores />}
 

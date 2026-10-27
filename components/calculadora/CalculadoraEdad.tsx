@@ -22,8 +22,6 @@ const TRAMOS = [
   { min: 51, max: 55, factor: 2.25, label: '51-55 años' },
   { min: 56, max: 60, factor: 2.65, label: '56-60 años' },
   { min: 61, max: 65, factor: 3.10, label: '61-65 años' },
-  { min: 66, max: 70, factor: 3.40, label: '66-70 años' },
-  { min: 71, max: 75, factor: 3.60, label: '71-75 años' },
 ]
 
 // Copago promedio por tipo de uso (estimaciones de mercado, Junio 2026)
@@ -106,14 +104,14 @@ export function CalculadoraEdad() {
         <input
           type="range"
           min={18}
-          max={75}
+          max={65}
           value={edad}
           onChange={(e) => setEdad(Number(e.target.value))}
           className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-[#E8002D]"
         />
         <div className="flex justify-between text-xs text-gray-400 mt-1">
           <span>18 años</span>
-          <span>75 años</span>
+          <span>65 años</span>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mt-5 pt-5 border-t border-gray-100">
