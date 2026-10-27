@@ -155,6 +155,13 @@ export default async function PerfilPage({ params }: Props) {
             )}
           </h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl">{perf.descripcion}</p>
+          {/* Cotizar desde el principio (métricas 19–25/10/2026: adultos mayores
+              pasó de 55 a 132 visitas por semana con 1,5% de contactos; el
+              primer botón estaba a mitad de página) */}
+          <Link href="/comparador?desde=perfil"
+            className="mt-5 inline-flex items-center justify-center gap-2 rounded-xl bg-[#E8002D] px-6 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#B8001F]">
+            {perf.slug === 'adultos-mayores' ? 'Ver mi precio según mi edad →' : 'Cotizar mi precio →'}
+          </Link>
           {PERFIL_IDIOMAS[perfil] && (
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4">
               {PERFIL_IDIOMAS[perfil].map((pi) => (
@@ -166,6 +173,10 @@ export default async function PerfilPage({ params }: Props) {
           )}
         </div>
       </section>
+
+      {/* Adultos mayores: precios oficiales a los 60, 65 y 70 años (3-oct-2026),
+          antes de las necesidades para responder primero lo que se busca */}
+      {perf.slug === 'adultos-mayores' && <PreciosMayores />}
 
       {/* Necesidades del perfil */}
       <section className="py-10 bg-white">
@@ -184,9 +195,6 @@ export default async function PerfilPage({ params }: Props) {
           </div>
         </div>
       </section>
-
-      {/* Adultos mayores: precios oficiales a los 60, 65 y 70 años (3-oct-2026) */}
-      {perf.slug === 'adultos-mayores' && <PreciosMayores />}
 
       {/* Monotributistas: la lista oficial de obras sociales y el aporte por categoría (24-sep-2026) */}
       {perf.slug === 'monotributistas' && (

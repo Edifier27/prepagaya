@@ -2386,7 +2386,12 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                       <td className="py-3 pr-3 font-semibold text-gray-500 text-xs">Precio aprox.</td>
                       {seleccionados.map((r) => (
                         <td key={`${r.prepaga.slug}-${r.plan.slug}-precioaprox`} className={`py-3 px-3 ${celda(r)}`}>
-                          <PrecioBloqueado size="sm" texto={<>{formatPrecio(precioFinal(r.precioDesc))}<span className="text-[10px] text-gray-400">/mes</span></>} />
+                          {/* El candado de la tabla también pide la cotización, como en las
+                              tarjetas (métricas 19–25/10/2026: clics muertos en /comparador) */}
+                          <button type="button" onClick={() => handleAccederPlan(r)} className="cursor-pointer text-left"
+                            aria-label={`Consultar el precio de ${r.prepaga.nombre} ${r.plan.nombre}`}>
+                            <PrecioBloqueado size="sm" texto={<>{formatPrecio(precioFinal(r.precioDesc))}<span className="text-[10px] text-gray-400">/mes</span></>} />
+                          </button>
                         </td>
                       ))}
                     </tr>

@@ -100,7 +100,9 @@ export function CajaPrecioPlan({ titulo, rangos, region, promo, cta, hrefCompara
               <p className="text-xs text-gray-500">Precio de lista con IVA incluido{region ? ` · ${region}` : ''}</p>
             </div>
           )}
-          <p className="rounded-2xl bg-red-50 px-3.5 py-2.5 text-sm text-gray-800">
+          {/* Texto sin fondo de color: en un recuadro rosa parecía un botón
+              (Clarity, 19–25/10/2026: clics muertos en las fichas de Swiss) */}
+          <p className="text-sm text-gray-700">
             <strong className="text-[#B8001F]">Conseguí un mejor precio.</strong>{' '}
             {promo ? `Cotizá a tu medida con ${promo.corta} y un asesor oficial te pasa tu precio final por WhatsApp.` : 'Cotizá a tu medida y un asesor te pasa tu precio final por WhatsApp.'}
           </p>

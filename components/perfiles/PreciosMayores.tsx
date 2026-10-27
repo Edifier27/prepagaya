@@ -52,7 +52,7 @@ export function faqPreciosMayores(): { q: string; a: string } {
   const texto = f.slice(0, 5).map((x) => `${nombreCorto(x.prep.nombre, x.pl.nombre)}, ${formatPrecio(x.precios[2])}`).join('; ')
   return {
     q: '¿Cuánto cuesta una prepaga para mayores de 65 o 70 años?',
-    a: `Depende de la prepaga y del plan: cada una declara su precio por edad ante la Superintendencia de Servicios de Salud. Según las listas oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()} (CABA y GBA, por persona, IVA incluido), el plan más económico de cada una sale a los 70 años: ${texto}. Cotizando online tenés 15% OFF sobre esos valores.`,
+    a: `Depende de la prepaga y del plan: cada una declara su precio por edad ante la Superintendencia de Servicios de Salud. Según las listas oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()} (CABA y GBA, por persona, IVA incluido), el plan más económico de cada una sale a los 70 años: ${texto}. Cotizando online Swiss Medical tenés 15% OFF sobre esos valores.`,
   }
 }
 
@@ -64,7 +64,7 @@ export function PreciosMayores() {
       <div className="container max-w-4xl mx-auto">
         <h2 className="text-xl font-bold text-gray-900 mb-1">Cuánto cuesta una prepaga a los 60, 65 y 70 años</h2>
         <p className="text-sm text-gray-500 mb-4">
-          Precios de lista oficiales de {PRECIO_ACTUALIZADO.toLowerCase()} declarados ante la Superintendencia de Servicios de Salud: CABA y GBA, por persona, contratación directa, IVA incluido. Cotizando online tenés 15% OFF.
+          Precios de lista oficiales de {PRECIO_ACTUALIZADO.toLowerCase()} declarados ante la Superintendencia de Servicios de Salud: CABA y GBA, por persona, contratación directa, IVA incluido. Cotizando online Swiss Medical tenés 15% OFF.
         </p>
         <div className="overflow-x-auto rounded-xl border border-gray-200">
           <table className="w-full text-[13px] sm:text-sm">
