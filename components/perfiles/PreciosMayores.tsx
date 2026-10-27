@@ -6,7 +6,7 @@ import { formatPrecio } from '@/lib/utils'
 // "¿Cuánto cuesta una prepaga para mayores de 60?" Precios de lista oficiales
 // de cada prepaga por edad, de los cuadros declarados ante la SSSalud (CABA y
 // GBA, contratación directa, IVA incluido). Swiss Medical primero. Hasta los
-// 65: las prepagas aceptan ingresos nuevos hasta esa edad, menores de 66
+// 65: las prepagas aceptan ingresos nuevos hasta los 66 inclusive
 // (Darío, 27-oct-2026), así que no se muestran precios de 66 en adelante.
 
 const ORDEN = ['swiss-medical', 'osde', 'sancor-salud', 'avalian', 'medife', 'premedic', 'galeno']
@@ -52,7 +52,7 @@ export function faqPreciosMayores(): { q: string; a: string } {
   const texto = f.slice(0, 5).map((x) => `${nombreCorto(x.prep.nombre, x.pl.nombre)}, ${formatPrecio(x.precios[2])}`).join('; ')
   return {
     q: '¿Cuánto cuesta una prepaga para mayores de 60?',
-    a: `Depende de la prepaga y del plan: cada una declara su precio por edad ante la Superintendencia de Servicios de Salud. Según las listas oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()} (CABA y GBA, por persona, IVA incluido), el plan más económico de cada una sale a los 65 años: ${texto}. Para afiliarte por primera vez tenés que tener menos de 66 años. Cotizando online Swiss Medical tenés 15% OFF sobre esos valores.`,
+    a: `Depende de la prepaga y del plan: cada una declara su precio por edad ante la Superintendencia de Servicios de Salud. Según las listas oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()} (CABA y GBA, por persona, IVA incluido), el plan más económico de cada una sale a los 65 años: ${texto}. Para afiliarte por primera vez tenés que tener 66 años o menos. Cotizando online Swiss Medical tenés 15% OFF sobre esos valores.`,
   }
 }
 
@@ -90,7 +90,7 @@ export function PreciosMayores() {
           </table>
         </div>
         <ul className="mt-4 space-y-2 text-sm text-gray-700">
-          <li><strong>El ingreso es hasta los 65 años.</strong> Para afiliarte por primera vez tenés que tener menos de 66: el precio depende de los rangos de edad que declara cada prepaga.</li>
+          <li><strong>El ingreso es hasta los 66 años.</strong> Para afiliarte por primera vez tenés que tener 66 años o menos: el precio depende de los rangos de edad que declara cada prepaga.</li>
           <li><strong>Si tenés más de 65 y 10 años o más en la misma prepaga</strong>, no te pueden aumentar la cuota por edad. Antes de cambiarte, tenelo en cuenta: en una prepaga nueva empezás de cero.</li>
           <li><strong>Por una preexistencia</strong> pueden cobrarte una cuota diferencial autorizada por la Superintendencia, pero no rechazarte.</li>
         </ul>

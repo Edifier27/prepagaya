@@ -6,6 +6,7 @@ import { mandarLeadACrmAsesor, detalleOrigen } from '@/lib/crm-asesor'
 import { devolverCupoMail, tomarCupoMail } from '@/lib/cupo-mail'
 import { portalConfigurado, prepagaParaPortal, mandarAlPortal } from '@/lib/portal-asesores'
 import { prepagas as listaPrepagas } from '@/lib/data/prepagas'
+import { esLeadMayor, ESTADO_MAYOR_66 } from '@/lib/edad-lead'
 
 // Envío de los leads a Kommo (o al destino configurado en el panel), 1
 // minuto y medio después de la última actividad de cada persona (Darío,
@@ -43,6 +44,15 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
     // En los mails, la fuente va con el origen completo (página, canal, partner y #id), igual que al CRM
     const fuenteMail = detalleOrigen(lead)
     const fecha = new Date(lead.creado_en).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
+
+    // Mayores de 66 (Darío, 27-oct-2026): con alguien de 67 años o más el
+    // lead no va a ningún lado (ni CRM, ni mail, ni portal), así nadie le
+    // manda mensajes. Queda en el panel, en la solapa "Mayores de 66 años".
+    if (esLeadMayor(edades)) {
+      await marcarResultadoKommo(lead.id, ESTADO_MAYOR_66, '')
+      ok++
+      continue
+    }
 
     // Portal Asesores (25-oct-2026): si solo pidió prepagas que no son Swiss
     // ni OSDE, va al asesor de esa prepaga y no al CRM ni al cupo por mail.

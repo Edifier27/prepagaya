@@ -114,7 +114,7 @@ export function precioGrupo(
   zona: string,
   modalidad: Modalidad = 'directo',
 ): PrecioGrupo | null {
-  // Sin precios de 66 años en adelante: el ingreso es hasta los 65
+  // Sin precios de 67 años en adelante: el ingreso es hasta los 66
   if (edades.some((e) => e > EDAD_MAX_INGRESO)) return null
   const tabla = DATOS.tarifas[prepaga]?.[plan]
   if (!tabla || edades.length === 0) return null
@@ -194,7 +194,7 @@ export function escalaPorEdad(prepaga: string, plan: string, zona = 'caba'): { r
     const bandas = tabla[region]?.d
     if (!bandas?.length) continue
     // Hasta EDAD_MAX_INGRESO: la última franja del cuadro ("61 a 100") se
-    // muestra como "61 a 65" y las que empiezan después no se muestran
+    // muestra como "61 a 66" y las que empiezan después no se muestran
     return {
       region,
       periodo: DATOS.periodoPorPrepaga[prepaga],

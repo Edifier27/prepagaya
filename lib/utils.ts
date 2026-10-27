@@ -135,9 +135,9 @@ export const IVA_PREPAGA = 0.105
 // de dependencia). Se aporta 9% (3% trabajador + 6% empleador) y entre 10% y
 // 15% de eso va al Fondo Solidario de Redistribución: 7,5% es un valor
 // conservador. Lo usan el cotizador y la calculadora de aportes.
-/** Edad máxima para afiliarse a una prepaga: menores de 66 (Darío, 27-oct-2026).
- *  El sitio no muestra precios ni cotiza de 66 años en adelante. */
-export const EDAD_MAX_INGRESO = 65
+/** Edad máxima para afiliarse a una prepaga: 66 años inclusive (Darío, 27-oct-2026).
+ *  El sitio no muestra precios ni cotiza de 67 años en adelante. */
+export const EDAD_MAX_INGRESO = 66
 
 export const APORTE_DERIVABLE = 0.075
 
