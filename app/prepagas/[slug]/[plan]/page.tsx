@@ -191,7 +191,7 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
   if (may) {
     faqs.push({
       q: `¿Cuánto cuesta el ${nombreLargo} para jubilados o mayores de 65?`,
-      a: `Para una persona de 65 años, el ${nombreLargo} sale ${formatPrecio(may.total / 2)} por mes de lista; una pareja de 65, ${formatPrecio(may.total)} (${PRECIO_ACTUALIZADO}, ${region}, cuadro tarifario oficial).`,
+      a: `Para una persona de 65 años, el ${nombreLargo} sale ${formatPrecio(may.total / 2)} por mes de lista; una pareja de 65, ${formatPrecio(may.total)} (${PRECIO_ACTUALIZADO}, ${region}, cuadro tarifario oficial). Para afiliarte por primera vez tenés que tener menos de 66 años: las prepagas aceptan ingresos nuevos hasta los 65. Si ya sos afiliado, conservás tu plan.`,
     })
   }
   // "¿El OSDE 210 cubre anteojos?" y similares, desde las fichas oficiales
