@@ -34,6 +34,8 @@ interface Props {
   cartillaHref?: string
   /** A dónde lleva la imagen del plan ("Compará y cotizá en 1 minuto") */
   cotizarHref?: string
+  /** Nombre del centro → su página /sanatorios/x (los que la tienen) */
+  hrefsSanatorios?: Record<string, string>
 }
 
 // Clarity, 21–27/10/2026 (fichas SMG70, SMG30 y S1 en compu): la mayoría de
@@ -93,7 +95,7 @@ export function faqResumenPlan(props: Props): { q: string; a: string } {
 }
 
 export function ResumenPlan(props: Props) {
-  const { prep, plan, sanatoriosCaba, cartillaHref, cotizarHref } = props
+  const { prep, plan, sanatoriosCaba, cartillaHref, cotizarHref, hrefsSanatorios } = props
   const r = resumenPlan(props)
   const imagen = (
     <Image
@@ -151,18 +153,23 @@ export function ResumenPlan(props: Props) {
               Con el {plan.nombre} te internás en {sanatoriosCaba.totalInternacion} sanatorios y clínicas de la cartilla oficial en CABA. Entre ellos:
             </p>
             <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
-              {/* Al mapa, como en "Con el plan en tu zona" (Clarity: clics
-                  de enojo sobre Fleni, Fleming, Santa Isabel, Suizo) */}
+              {/* A su página del sitio si la tiene (qué prepagas lo cubren);
+                  si no, al mapa, como en "Con el plan en tu zona" (Clarity:
+                  clics de enojo sobre Fleni, Fleming, Santa Isabel, Suizo) */}
               {r.sanatorios.map((s) => (
                 <li key={s.nombre}>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([s.nombre, s.ubicacion].filter(Boolean).join(', '))}`}
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                    className={linkTexto}
-                  >
-                    {s.nombre}
-                  </a>
+                  {hrefsSanatorios?.[s.nombre] ? (
+                    <Link href={hrefsSanatorios[s.nombre]} className={linkTexto}>{s.nombre}</Link>
+                  ) : (
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([s.nombre, s.ubicacion].filter(Boolean).join(', '))}`}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      className={linkTexto}
+                    >
+                      {s.nombre}
+                    </a>
+                  )}
                   {s.ubicacion ? ` (${s.ubicacion})` : ''}
                 </li>
               ))}

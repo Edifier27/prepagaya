@@ -13,6 +13,7 @@ import { CajaPrecioPlan } from '@/components/prepagas/CajaPrecioPlan'
 import { escalaPorEdad, preciosPorRegion, precioGrupo } from '@/lib/precios/motor'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
+import { hrefSanatorioPorNombre } from '@/lib/data/sanatorios-seo'
 import { linkCartillaPlan, CARTILLAS } from '@/lib/data/cartilla-zonas'
 import { clavesRenombre, resumirZonaPlan } from '@/lib/cartilla-plan-resumen'
 import { cartillaDePlan, cartillaConNombre } from '@/lib/cartilla-plan-nombre'
@@ -653,6 +654,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
     sanatoriosCaba: resumenCaba,
     cartillaHref: cartillaPlanLink?.href,
     cotizarHref: hrefCotizar('imagen-plan'),
+    hrefsSanatorios: Object.fromEntries((resumenCaba?.destacados ?? []).flatMap((x) => { const h = hrefSanatorioPorNombre(x.nombre); return h ? [[x.nombre, h]] : [] })),
   }
   // Una sola pregunta de precio (25-sep-2026): si hay cuadro oficial por edad,
   // la de "precio a los 30 años" sobra.
