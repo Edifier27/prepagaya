@@ -165,3 +165,12 @@ export function prepagasEnSanatorio(slug: string): PrepagaEnSanatorio[] {
 export function sanatoriosPublicables(): SanatorioSEO[] {
   return SANATORIOS_SEO.filter((s) => prepagasEnSanatorio(s.slug).length >= 2)
 }
+
+/** Página propia (/sanatorios/x) de un centro de la cartilla de CABA/GBA, si
+ *  la hay. Mismo cruce que arma esas páginas (claves y exclusiones). */
+export function hrefSanatorioPorNombre(nombre: string): string | undefined {
+  const palabras = nucleoNombre(nombre)
+  const texto = normalizarTexto(nombre)
+  const s = sanatoriosPublicables().find((x) => !x.ciudad && !x.excluir?.some((e) => texto.includes(e)) && x.claves.every((k) => palabras.includes(k)))
+  return s ? `/sanatorios/${s.slug}` : undefined
+}
