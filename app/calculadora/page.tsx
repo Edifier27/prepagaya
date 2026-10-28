@@ -1,7 +1,8 @@
 ﻿import type { Metadata } from 'next'
 import { CalculadoraEdad } from '@/components/calculadora/CalculadoraEdad'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
+import { rangoAEdad } from '@/lib/precios/resumen'
 import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
@@ -30,14 +31,20 @@ const jsonLd = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'ARS' },
 }
 
+// Montos y multiplicadores del cuadro oficial, no escritos a mano (28-oct-2026)
+const MES = PRECIO_ACTUALIZADO.toLowerCase()
+const a50 = rangoAEdad(50)
+const a65 = rangoAEdad(65)
+const veces = (n: number) => n.toLocaleString('es-AR', { maximumFractionDigits: 1 })
+
 const faqItems = [
   {
     q: '¿Las prepagas cobran diferente según la edad?',
-    a: 'Sí. Las prepagas aplican multiplicadores sobre el precio base (referencia: 30 años) según tramos etarios. A los 50 años podés pagar hasta 1.9x el precio base; a los 65 años, hasta 3.1x. El Decreto 1993/2011 regula los topes máximos de variación.',
+    a: `Sí. El precio sube por franja de edad. Según los cuadros oficiales de ${MES} (CABA y GBA, contratación directa), a los 50 años un plan cuesta hasta ${veces(a50.vecesMax)} veces lo que paga una persona de 30, y a los 65, entre ${veces(a65.vecesMin)} y ${veces(a65.vecesMax)} veces. La Ley 26.682 y el Decreto 1993/2011 ponen topes a esa diferencia.`,
   },
   {
     q: '¿Cuánto cuesta una prepaga para un jubilado?',
-    a: 'Para un jubilado de 65 años, el costo estimado oscila entre $350.000 y $1.500.000/mes según la prepaga y el plan elegido, aplicando el multiplicador etario correspondiente.',
+    a: `Para una persona de 65 años, según los cuadros oficiales de ${MES} (CABA y GBA, IVA incluido), va desde ${formatPrecio(a65.min.precio)} por mes (${a65.min.prepaga}, ${a65.min.plan}) hasta ${formatPrecio(a65.max.precio)} (${a65.max.prepaga}, ${a65.max.plan}), según la prepaga y el plan.`,
   },
   {
     q: '¿Puedo contratar una prepaga a cualquier edad?',

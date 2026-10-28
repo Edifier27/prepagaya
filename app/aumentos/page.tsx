@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { aumentos2026, aumentoAcumulado, AUMENTOS_OFICIALES, ultimoMesOficial, mesesArchivoAumentos } from '@/lib/data/aumentos'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL, PRECIOS_UPDATE } from '@/lib/utils'
+import { extremosA30 } from '@/lib/precios/resumen'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
@@ -449,7 +450,7 @@ export default function AumentosPage() {
             </Link>
             <Link href="/prepagas-economicas" className="p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
               <div className="font-semibold text-sm text-gray-900 group-hover:text-[#E8002D] transition-colors">Las prepagas más económicas</div>
-              <div className="text-xs text-gray-400 mt-1">Desde $105.000/mes →</div>
+              <div className="text-xs text-gray-400 mt-1">Desde {formatPrecio(extremosA30().min.precio)}/mes →</div>
             </Link>
           </div>
         </div>
