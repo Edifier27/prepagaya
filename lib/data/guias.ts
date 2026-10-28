@@ -2335,7 +2335,7 @@ export const guiasPreguntas: GuiaData[] = [
         },
         {
           titulo: 'Qué documentación piden',
-          cuerpo: 'Si sos monotributista y dejaste de serlo en AFIP, tenés que presentar el Formulario 183; si te pasaste a otra obra social, una copia del traspaso. Si sos socio por empresa, en la mayoría de los casos piden el certificado de cambio de obra social o, si terminó la relación laboral, el telegrama de renuncia o despido. En esos casos la vigencia es la fecha del traspaso o la que figure en la documentación del cese. En los planes Flux, la baja rige desde el último día del mes de la solicitud.',
+          cuerpo: 'Si sos monotributista y dejaste de serlo en ARCA (ex AFIP), tenés que presentar el Formulario 183; si te pasaste a otra obra social, una copia del traspaso. Si sos socio por empresa, en la mayoría de los casos piden el certificado de cambio de obra social o, si terminó la relación laboral, el telegrama de renuncia o despido. En esos casos la vigencia es la fecha del traspaso o la que figure en la documentación del cese. En los planes Flux, la baja rige desde el último día del mes de la solicitud.',
         },
         {
           titulo: 'Si te asociaste por una empresa',
@@ -2358,7 +2358,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Cómo doy de baja OSDE por internet?', a: 'El titular entra a osde.com.ar con su cuenta y usa Gestiones online > Mi afiliación > Solicitud de baja, o el acceso "Baja de servicio" del pie de la home.' },
       { q: '¿Desde cuándo rige la baja de OSDE?', a: 'Desde el día en que hacés el trámite o una fecha futura. OSDE aclara que no se aceptan bajas retroactivas. En planes por empresa, rige desde la fecha del traspaso o del cese laboral.' },
       { q: '¿Quién puede pedir la baja?', a: 'Solo el titular de la afiliación. La baja del titular incluye a todo el grupo familiar.' },
-      { q: '¿Qué documentación piden?', a: 'Monotributistas: Formulario 183 si se dieron de baja en AFIP, o copia del traspaso si cambiaron de obra social. Socios por empresa: certificado de cambio de obra social o telegrama de renuncia o despido.' },
+      { q: '¿Qué documentación piden?', a: 'Monotributistas: Formulario 183 si se dieron de baja en ARCA (ex AFIP), o copia del traspaso si cambiaron de obra social. Socios por empresa: certificado de cambio de obra social o telegrama de renuncia o despido.' },
       { q: '¿Qué pasa si vuelvo a OSDE después de la baja?', a: 'Si pasaron más de 60 días, OSDE te pide los mismos requisitos que a un socio nuevo. Si reingresás con más de 55 años, según OSDE pagarás cuota Senior al cumplir 65.' },
       { q: '¿Pueden condicionar la baja a que pague una deuda?', a: 'No. El decreto reglamentario de la Ley 26.682 dice que la prepaga no puede supeditar tu baja a la cancelación previa de lo adeudado, aunque la deuda siga siendo exigible.' },
     ],
