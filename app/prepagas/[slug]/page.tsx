@@ -33,6 +33,7 @@ import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 import { ComparaPlanesHero } from '@/components/prepagas/ComparaPlanesHero'
+import { PrecioSwissHero, type PlanCaja } from '@/components/prepagas/PrecioSwissHero'
 import { elegir, anioPrecios, nombreCortoPrepaga, codigoCorto, MAX_DESCRIPCION } from '@/lib/seo/titulos'
 
 interface Props {
@@ -453,6 +454,17 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const precioMax = Math.max(...prep.planes.map(pl => pl.precio).filter(Number.isFinite))
   const planEstrella = prep.planes.find(pl => pl.destacado) ?? planesOrdenados[0]
   const comparacion = compararPlanes(prep)
+  // Caja de precio arriba de la ficha, solo en Swiss Medical (Darío,
+  // 28-oct-2026): los planes que se venden en CABA y GBA con su escala por
+  // edad del cuadro oficial (el S2 se vende solo en el interior).
+  const precioA30 = (pl: PlanCaja) => (pl.rangos.find((r) => r.desde <= 30 && 30 <= r.hasta) ?? pl.rangos[0]).precio
+  const planesCaja: PlanCaja[] = prep.slug !== 'swiss-medical' ? [] : planesOrdenados.flatMap((pl) => {
+    const e = pl.slug === 's2' ? null : escalaPorEdad(prep.slug, pl.slug, 'caba')
+    return e?.rangos.length ? [{ slug: pl.slug, nombre: codigoCorto(pl.nombre), copago: pl.copago, rangos: e.rangos }] : []
+  }).sort((a, b) => precioA30(a) - precioA30(b))
+  const conCaja = planesCaja.length > 0
+  const masAccesible = planesCaja[0]
+  const primeroSinCopago = planesCaja.find((pl) => !pl.copago)
   // Los planes que comparten cartilla real van pegados en vez de ordenados
   // solo por precio (hoy solo hay data cargada para Swiss Medical).
   const otrosPlanes = ordenarPorCartilla(prep.slug, planesOrdenados).filter(pl => pl.slug !== planEstrella.slug)
@@ -592,6 +604,39 @@ export default async function PrepagaSlugPage({ params }: Props) {
     </div>
   )
 
+  // Logo, sellos y H1: igual en el hero de siempre y en el de la caja de Swiss
+  const cabecera = (
+    <div className="flex items-center gap-4 mb-4">
+      <PrepagaLogo
+        slug={prep.slug}
+        nombre={prep.nombre}
+        colorPrimario={prep.colorPrimario}
+        size="lg"
+        className="shadow-sm"
+      />
+      <div>
+        <div className="flex flex-wrap items-center gap-2 mb-1">
+          <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full font-medium">
+            {PRECIO_ACTUALIZADO}
+          </span>
+          {isPartner && (
+            <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+              ✓ {PARTNERS_TIER[slug] ? `Opción ${PARTNERS_TIER[slug]} de PrepagaYa` : 'Partner oficial de PrepagaYa'}
+            </span>
+          )}
+        </div>
+        {/* "Precios" en el H1 (auditoría SEO 24-sep-2026): el título
+            ya dice "cuánto sale"; así la ficha cubre también
+            "[prepaga] precios", la otra forma de la búsqueda. */}
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+          {Number.isFinite(precioMin)
+            ? `${prep.nombre}: planes y precios de ${PRECIO_ACTUALIZADO.toLowerCase()}`
+            : `${prep.nombre}: compará sus planes`}
+        </h1>
+      </div>
+    </div>
+  )
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
@@ -613,158 +658,191 @@ export default async function PrepagaSlugPage({ params }: Props) {
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-10">
         <div className="container max-w-5xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-start gap-6">
-            {/* Left */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-4 mb-4">
-                <PrepagaLogo
-                  slug={prep.slug}
-                  nombre={prep.nombre}
-                  colorPrimario={prep.colorPrimario}
-                  size="lg"
-                  className="shadow-sm"
-                />
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full font-medium">
-                      {PRECIO_ACTUALIZADO}
-                    </span>
-                    {isPartner && (
-                      <span className="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
-                        ✓ {PARTNERS_TIER[slug] ? `Opción ${PARTNERS_TIER[slug]} de PrepagaYa` : 'Partner oficial de PrepagaYa'}
-                      </span>
-                    )}
-                  </div>
-                  {/* "Precios" en el H1 (auditoría SEO 24-sep-2026): el título
-                      ya dice "cuánto sale"; así la ficha cubre también
-                      "[prepaga] precios", la otra forma de la búsqueda. */}
-                  <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-                    {Number.isFinite(precioMin)
-                      ? `${prep.nombre}: planes y precios de ${PRECIO_ACTUALIZADO.toLowerCase()}`
-                      : `${prep.nombre}: compará sus planes`}
-                  </h1>
-                </div>
-              </div>
-
-              {/* Respuesta directa a "[prepaga] planes precios 2026" (26-sep-2026),
-                  ahora como mini comparación con los planes y su precio (17-oct-2026) */}
-              <ComparaPlanesHero prep={prep} />
-
-              {/* Rating: solo el de las reseñas reales del sitio (las mismas del
-                  rich snippet). Antes mostraba "4,2 (1.243 opiniones)" fijo,
-                  sin fuente (Darío, 24-sep-2026). */}
-              <a href="#opiniones" className="inline-flex items-center gap-2 mb-4 group">
-                {opiniones.cantidad > 0 ? (
-                  <>
-                    <StarRow rating={opiniones.promedio} />
-                    <span className="text-sm font-semibold text-gray-700">{opiniones.promedio.toLocaleString('es-AR')}</span>
-                    <span className="text-sm text-gray-400 group-hover:text-[#E8002D]">({opiniones.cantidad} {opiniones.cantidad === 1 ? 'opinión' : 'opiniones'} de usuarios)</span>
-                  </>
-                ) : (
-                  <span className="text-sm text-gray-500 group-hover:text-[#E8002D]">★ Dejá tu opinión sobre {prep.nombre}</span>
-                )}
-              </a>
-
-              <p className="text-gray-600 text-sm leading-relaxed mb-5 max-w-xl">{prep.descripcion}</p>
-
-              <div className="flex flex-wrap gap-3">
-                {/* 28-sep-2026 (Darío): en todas las prepagas, "Cotizar y
-                    contratar online" abre el cotizador de ESTA prepaga (popup
-                    con selector de plan), no el comparador general. Comparar
-                    queda como botón aparte. */}
-                <ContratarPlanButton
-                      prepagaNombre={prep.nombre}
-                      fuente="ficha-prepaga"
-                      label="Cotizar y contratar online"
-                      titulo={`Cotizá y contratá ${prep.nombre}`}
-                      planesOpciones={prep.planes.map((pl) => pl.nombre)}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
-                    />
-                    <Link
-                      href="/comparador"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold rounded-xl transition-all text-sm"
-                    >
-                      Comparar con otras prepagas
-                    </Link>
-
-                {/* Botón a la cartilla por zona/nombre — pedido de Darío, 23-sep-2026, para darle visibilidad */}
-                {getCartillaInfo(prep.slug) && (
-                  <Link
-                    href={`/cartillas/${prep.slug}`}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-[#E8002D] text-[#E8002D] hover:bg-red-50 font-bold rounded-xl transition-all text-sm"
-                  >
-                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4" aria-hidden><path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.45 4.39l3.08 3.08a.75.75 0 11-1.06 1.06l-3.08-3.08A7 7 0 012 9z" clipRule="evenodd" /></svg>
-                    Buscar en la cartilla de {prep.nombre}
-                  </Link>
-                )}
-                {/* Web oficial como botón solo para las que no vendemos: en las
-                    partner mandaba al visitante más calificado a contratar
-                    directo (pedido de Darío, 23-sep-2026). En las partner
-                    queda como link de texto al pie de las preguntas frecuentes. */}
-                {!isPartner && (
-                  <a
-                    href={`https://${prep.web}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-600 font-semibold rounded-xl transition-all text-sm"
-                  >
-                    Web oficial ↗
-                  </a>
-                )}
-              </div>
-              {isPartner && (
-                <p className="mt-3 text-xs text-gray-500 flex items-center gap-1.5">
-                  <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" aria-hidden><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .2.08.39.22.53l3 3a.75.75 0 101.06-1.06l-2.78-2.78V5z" clipRule="evenodd" /></svg>
-                  Te respondemos en {TIEMPO_RESPUESTA} con la cotización de {prep.nombre}, hecha con nuestro sistema propio de cotización.
+          {conCaja ? (
+            // Swiss Medical (Darío, 28-oct-2026): respuesta directa y caja de
+            // precio con edad y 15% OFF. En el celular: logo, título y
+            // respuesta, después la caja y después la lista de planes; en la
+            // compu la caja queda fija a la derecha.
+            <div className="grid grid-cols-1 gap-x-7 gap-y-5 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
+              <div className="min-w-0 lg:col-start-1 lg:row-start-1">
+                {cabecera}
+                {/* Respuesta directa a "[prepaga] planes precios" para Google y las IA */}
+                <p className="max-w-[62ch] text-[15.5px] leading-relaxed text-gray-600">
+                  {prep.nombre} tiene <b className="text-gray-900">{prep.planes.length} planes</b>. El más accesible en CABA y GBA, el {masAccesible.nombre}, sale{' '}
+                  <b className="text-gray-900">{formatPrecio(precioA30(masAccesible) * 0.85)} por mes con 15% OFF</b> cotizando online (lista {formatPrecio(precioA30(masAccesible))}, una persona de 30 años, cuadro oficial de {PRECIO_ACTUALIZADO.toLowerCase()}). Elegí tu edad y mirá el precio de cada plan.
                 </p>
-              )}
-              {(prep.slug === 'swiss-medical' || prep.slug === 'osde') && (
-                <Link href={`/empresas/${prep.slug}`} className="inline-block mt-3 text-xs text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+              </div>
+              <PrecioSwissHero
+                prepagaNombre={prep.nombre}
+                planes={planesCaja}
+                planInicial="smg20"
+                fuente="ficha-prepaga-caja"
+                chips={[
+                  ...(prep.sanatoriosPropios > 0 ? [`${prep.sanatoriosPropios} sanatorios propios`] : []),
+                  ...(primeroSinCopago ? [`Sin copagos desde el ${primeroSinCopago.nombre}`] : []),
+                  'Precio oficial SSSalud',
+                ]}
+              >
+                <p className="text-xs text-gray-500">
+                  Precios de lista con IVA, contratación directa, CABA y GBA, cuadro que {prep.nombre} declara ante la{' '}
+                  <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-[#E8002D]">Superintendencia de Servicios de Salud</a>{' '}
+                  ({PRECIO_ACTUALIZADO.toLowerCase()}). El S2 se vende solo en el interior. El 15% OFF (25% para monotributistas) es cotizando online.
+                </p>
+                <a href="#opiniones" className="inline-flex items-center gap-2 group">
+                  {opiniones.cantidad > 0 ? (
+                    <>
+                      <StarRow rating={opiniones.promedio} />
+                      <span className="text-sm font-semibold text-gray-700">{opiniones.promedio.toLocaleString('es-AR')}</span>
+                      <span className="text-sm text-gray-400 group-hover:text-[#E8002D]">({opiniones.cantidad} {opiniones.cantidad === 1 ? 'opinión' : 'opiniones'} de usuarios)</span>
+                    </>
+                  ) : (
+                    <span className="text-sm text-gray-500 group-hover:text-[#E8002D]">★ Dejá tu opinión sobre {prep.nombre}</span>
+                  )}
+                </a>
+                <p className="text-gray-600 text-sm leading-relaxed max-w-xl">{prep.descripcion}</p>
+                <div className="flex flex-wrap gap-3">
+                  <Link href={`/comparador?prepaga=${prep.slug}&desde=ficha-hero`} className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold rounded-xl transition-all text-sm">
+                    Comparar con otras prepagas
+                  </Link>
+                  {getCartillaInfo(prep.slug) && (
+                    <Link href={`/cartillas/${prep.slug}`} className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#E8002D] text-[#E8002D] hover:bg-red-50 font-bold rounded-xl transition-all text-sm">
+                      Buscar en la cartilla de {prep.nombre}
+                    </Link>
+                  )}
+                </div>
+                <Link href={`/empresas/${prep.slug}`} className="text-xs text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
                   ¿Buscás cobertura para tu empresa? Plan corporativo de {prep.nombre} →
                 </Link>
-              )}
+              </PrecioSwissHero>
             </div>
+          ) : (
+            <>
+            <div className="flex flex-col sm:flex-row sm:items-start gap-6">
+              {/* Left */}
+              <div className="flex-1 min-w-0">
+                {cabecera}
 
-            {/* Right: nivel de precio card */}
-            <div className="sm:w-52 flex-shrink-0">
-              {/* Clickeable (13-oct-2026, Clarity): "Desde $" juntaba clics muertos */}
-              <Link href="#planes" className="block bg-white rounded-2xl border-2 border-[#E8002D] p-5 text-center shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">{Number.isFinite(precioMin) ? 'Desde' : 'Precio'}</div>
-                <div className="text-2xl font-black text-gray-900">{formatPrecio(precioMin)}</div>
-                <div className="flex justify-center mt-1.5">
-                  <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
+                {/* Respuesta directa a "[prepaga] planes precios 2026" (26-sep-2026),
+                    ahora como mini comparación con los planes y su precio (17-oct-2026) */}
+                <ComparaPlanesHero prep={prep} />
+
+                {/* Rating: solo el de las reseñas reales del sitio (las mismas del
+                    rich snippet). Antes mostraba "4,2 (1.243 opiniones)" fijo,
+                    sin fuente (Darío, 24-sep-2026). */}
+                <a href="#opiniones" className="inline-flex items-center gap-2 mb-4 group">
+                  {opiniones.cantidad > 0 ? (
+                    <>
+                      <StarRow rating={opiniones.promedio} />
+                      <span className="text-sm font-semibold text-gray-700">{opiniones.promedio.toLocaleString('es-AR')}</span>
+                      <span className="text-sm text-gray-400 group-hover:text-[#E8002D]">({opiniones.cantidad} {opiniones.cantidad === 1 ? 'opinión' : 'opiniones'} de usuarios)</span>
+                    </>
+                  ) : (
+                    <span className="text-sm text-gray-500 group-hover:text-[#E8002D]">★ Dejá tu opinión sobre {prep.nombre}</span>
+                  )}
+                </a>
+
+                <p className="text-gray-600 text-sm leading-relaxed mb-5 max-w-xl">{prep.descripcion}</p>
+
+                <div className="flex flex-wrap gap-3">
+                  {/* 28-sep-2026 (Darío): en todas las prepagas, "Cotizar y
+                      contratar online" abre el cotizador de ESTA prepaga (popup
+                      con selector de plan), no el comparador general. Comparar
+                      queda como botón aparte. */}
+                  <ContratarPlanButton
+                        prepagaNombre={prep.nombre}
+                        fuente="ficha-prepaga"
+                        label="Cotizar y contratar online"
+                        titulo={`Cotizá y contratá ${prep.nombre}`}
+                        planesOpciones={prep.planes.map((pl) => pl.nombre)}
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
+                      />
+                      <Link
+                        href="/comparador"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold rounded-xl transition-all text-sm"
+                      >
+                        Comparar con otras prepagas
+                      </Link>
+
+                  {/* Botón a la cartilla por zona/nombre — pedido de Darío, 23-sep-2026, para darle visibilidad */}
+                  {getCartillaInfo(prep.slug) && (
+                    <Link
+                      href={`/cartillas/${prep.slug}`}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-[#E8002D] text-[#E8002D] hover:bg-red-50 font-bold rounded-xl transition-all text-sm"
+                    >
+                      <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4" aria-hidden><path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.45 4.39l3.08 3.08a.75.75 0 11-1.06 1.06l-3.08-3.08A7 7 0 012 9z" clipRule="evenodd" /></svg>
+                      Buscar en la cartilla de {prep.nombre}
+                    </Link>
+                  )}
+                  {/* Web oficial como botón solo para las que no vendemos: en las
+                      partner mandaba al visitante más calificado a contratar
+                      directo (pedido de Darío, 23-sep-2026). En las partner
+                      queda como link de texto al pie de las preguntas frecuentes. */}
+                  {!isPartner && (
+                    <a
+                      href={`https://${prep.web}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-600 font-semibold rounded-xl transition-all text-sm"
+                    >
+                      Web oficial ↗
+                    </a>
+                  )}
                 </div>
-                {/* Sello de fuente (14-oct-2026, tendencias de diseño: transparencia) */}
-                {Number.isFinite(precioMin) && (
-                  <div className="mt-2 inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
-                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3" aria-hidden><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                    Precio oficial SSSalud
-                  </div>
+                {isPartner && (
+                  <p className="mt-3 text-xs text-gray-500 flex items-center gap-1.5">
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" aria-hidden><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .2.08.39.22.53l3 3a.75.75 0 101.06-1.06l-2.78-2.78V5z" clipRule="evenodd" /></svg>
+                    Te respondemos en {TIEMPO_RESPUESTA} con la cotización de {prep.nombre}, hecha con nuestro sistema propio de cotización.
+                  </p>
                 )}
-                <div className="mt-4 pt-3 border-t border-gray-100 space-y-1">
-                  <div className="text-xs text-gray-500 font-medium">{prep.planes.length} planes disponibles</div>
-                  <div className="text-xs text-gray-400">El precio exacto depende de tu edad y zona</div>
-                  <div className="text-xs font-bold text-[#E8002D] pt-1">Ver planes y precios ↓</div>
-                </div>
-              </Link>
-            </div>
-          </div>
+                {(prep.slug === 'swiss-medical' || prep.slug === 'osde') && (
+                  <Link href={`/empresas/${prep.slug}`} className="inline-block mt-3 text-xs text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                    ¿Buscás cobertura para tu empresa? Plan corporativo de {prep.nombre} →
+                  </Link>
+                )}
+              </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
-            {[
-              ...(prep.profesionales ? [{ label: 'Prestadores', value: `${(prep.profesionales / 1000).toFixed(0)}k+`, href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' }] : []),
-              { label: 'Centros propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red convenio', href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' },
-              { label: 'Planes', value: String(prep.planes.length), href: '#planes' },
-              ...(opiniones.cantidad > 0 ? [{ label: 'Opiniones de usuarios', value: String(opiniones.cantidad), href: '#opiniones' }] : []),
-            ].map((s) => (
-              // Clickeables (13-oct-2026, Clarity: clics muertos en "Satisfacción")
-              <Link key={s.label} href={s.href} className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:border-red-200 transition-colors">
-                <div className="text-lg font-bold text-[#E8002D]">{s.value}</div>
-                <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
-              </Link>
-            ))}
-          </div>
+              {/* Right: nivel de precio card */}
+              <div className="sm:w-52 flex-shrink-0">
+                {/* Clickeable (13-oct-2026, Clarity): "Desde $" juntaba clics muertos */}
+                <Link href="#planes" className="block bg-white rounded-2xl border-2 border-[#E8002D] p-5 text-center shadow-sm hover:shadow-md transition-shadow">
+                  <div className="text-xs text-gray-400 mb-2 uppercase tracking-wide font-medium">{Number.isFinite(precioMin) ? 'Desde' : 'Precio'}</div>
+                  <div className="text-2xl font-black text-gray-900">{formatPrecio(precioMin)}</div>
+                  <div className="flex justify-center mt-1.5">
+                    <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
+                  </div>
+                  {/* Sello de fuente (14-oct-2026, tendencias de diseño: transparencia) */}
+                  {Number.isFinite(precioMin) && (
+                    <div className="mt-2 inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-700">
+                      <svg viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3" aria-hidden><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      Precio oficial SSSalud
+                    </div>
+                  )}
+                  <div className="mt-4 pt-3 border-t border-gray-100 space-y-1">
+                    <div className="text-xs text-gray-500 font-medium">{prep.planes.length} planes disponibles</div>
+                    <div className="text-xs text-gray-400">El precio exacto depende de tu edad y zona</div>
+                    <div className="text-xs font-bold text-[#E8002D] pt-1">Ver planes y precios ↓</div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
+              {[
+                ...(prep.profesionales ? [{ label: 'Prestadores', value: `${(prep.profesionales / 1000).toFixed(0)}k+`, href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' }] : []),
+                { label: 'Centros propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red convenio', href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' },
+                { label: 'Planes', value: String(prep.planes.length), href: '#planes' },
+                ...(opiniones.cantidad > 0 ? [{ label: 'Opiniones de usuarios', value: String(opiniones.cantidad), href: '#opiniones' }] : []),
+              ].map((s) => (
+                // Clickeables (13-oct-2026, Clarity: clics muertos en "Satisfacción")
+                <Link key={s.label} href={s.href} className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm hover:border-red-200 transition-colors">
+                  <div className="text-lg font-bold text-[#E8002D]">{s.value}</div>
+                  <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
+                </Link>
+              ))}
+            </div>
+            </>
+          )}
 
           {getCartillaInfo(prep.slug) && (
             <Link
