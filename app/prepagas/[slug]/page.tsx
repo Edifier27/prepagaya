@@ -6,7 +6,6 @@ import { ciudadesDestacadas, getProvinciaSEO, provinciasSEO } from '@/lib/data/z
 import { getCambiosPorOrigen, getCambiosPorDestino } from '@/lib/data/cambios'
 import { getComparativasByPrepaga } from '@/lib/data/comparativas'
 import { obrasSociales } from '@/lib/data/obras-sociales'
-import { ordenarPorCartilla, getGrupoCartilla } from '@/lib/data/cartilla-grupos'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { compararPlanes, type ComparacionPlanes as DatosComparacion } from '@/lib/planes-comparacion'
@@ -14,7 +13,7 @@ import { ComparacionPlanes } from '@/components/prepagas/ComparacionPlanes'
 import { CartillasSwiss, faqCartillasSwiss } from '@/components/prepagas/CartillasSwiss'
 import { LineasPlanes, faqLineasPlanes } from '@/components/prepagas/LineasPlanes'
 import { OG_SIZE, urlOgPrepaga, altOgPrepaga } from '@/lib/og/datos'
-import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, calidadPlan, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA, precioDesde } from '@/lib/utils'
+import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA, precioDesde } from '@/lib/utils'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -33,7 +32,7 @@ import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 import { ComparaPlanesHero } from '@/components/prepagas/ComparaPlanesHero'
-import { PrecioSwissHero, type PlanCaja } from '@/components/prepagas/PrecioSwissHero'
+import { ListaPlanesPrecios } from '@/components/prepagas/ListaPlanesPrecios'
 import { elegir, anioPrecios, nombreCortoPrepaga, codigoCorto, MAX_DESCRIPCION } from '@/lib/seo/titulos'
 
 interface Props {
@@ -454,9 +453,10 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const precioMax = Math.max(...prep.planes.map(pl => pl.precio).filter(Number.isFinite))
   const planEstrella = prep.planes.find(pl => pl.destacado) ?? planesOrdenados[0]
   const comparacion = compararPlanes(prep)
-  // Caja de precio arriba de la ficha, solo en Swiss Medical (Darío,
-  // 28-oct-2026): los planes que se venden en CABA y GBA con su escala por
-  // edad del cuadro oficial (el S2 se vende solo en el interior).
+  // Hero de Swiss Medical con respuesta directa (Darío, 28-oct-2026): los
+  // planes que se venden en CABA y GBA con su escala por edad del cuadro
+  // oficial (el S2 se vende solo en el interior)
+  type PlanCaja = { slug: string; nombre: string; copago: boolean; rangos: { desde: number; hasta: number; precio: number }[] }
   const precioA30 = (pl: PlanCaja) => (pl.rangos.find((r) => r.desde <= 30 && 30 <= r.hasta) ?? pl.rangos[0]).precio
   const planesCaja: PlanCaja[] = prep.slug !== 'swiss-medical' ? [] : planesOrdenados.flatMap((pl) => {
     const e = pl.slug === 's2' ? null : escalaPorEdad(prep.slug, pl.slug, 'caba')
@@ -467,7 +467,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const primeroSinCopago = planesCaja.find((pl) => !pl.copago)
   // Los planes que comparten cartilla real van pegados en vez de ordenados
   // solo por precio (hoy solo hay data cargada para Swiss Medical).
-  const otrosPlanes = ordenarPorCartilla(prep.slug, planesOrdenados).filter(pl => pl.slug !== planEstrella.slug)
   const perfiles = getPerfilesIdeales(prep, precioMin)
   const app = getAppPrepaga(prep.slug)
   const contacto = contactos[prep.slug]
@@ -659,61 +658,63 @@ export default async function PrepagaSlugPage({ params }: Props) {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-10">
         <div className="container max-w-5xl mx-auto">
           {conCaja ? (
-            // Swiss Medical (Darío, 28-oct-2026): respuesta directa y caja de
-            // precio con edad y 15% OFF. En el celular: logo, título y
-            // respuesta, después la caja y después la lista de planes; en la
-            // compu la caja queda fija a la derecha.
-            <div className="grid grid-cols-1 gap-x-7 gap-y-5 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
-              <div className="min-w-0 lg:col-start-1 lg:row-start-1">
+            // Swiss Medical (Darío, 28-oct-2026): respuesta directa, chips y
+            // el botón con el 15% OFF. La lista de planes con precio está
+            // abajo, en "Planes y precios".
+            <div className="flex max-w-3xl flex-col gap-4">
+              <div>
                 {cabecera}
                 {/* Respuesta directa a "[prepaga] planes precios" para Google y las IA */}
                 <p className="max-w-[62ch] text-[15.5px] leading-relaxed text-gray-600">
                   {prep.nombre} tiene <b className="text-gray-900">{prep.planes.length} planes</b>. El más accesible en CABA y GBA, el {masAccesible.nombre}, sale{' '}
-                  <b className="text-gray-900">{formatPrecio(precioA30(masAccesible) * 0.85)} por mes con 15% OFF</b> cotizando online (lista {formatPrecio(precioA30(masAccesible))}, una persona de 30 años, cuadro oficial de {PRECIO_ACTUALIZADO.toLowerCase()}). Elegí tu edad y mirá el precio de cada plan.
+                  <b className="text-gray-900">{formatPrecio(precioA30(masAccesible) * 0.85)} por mes con 15% OFF</b> cotizando online (lista {formatPrecio(precioA30(masAccesible))}, una persona de 30 años, cuadro oficial de {PRECIO_ACTUALIZADO.toLowerCase()}).
                 </p>
               </div>
-              <PrecioSwissHero
-                prepagaNombre={prep.nombre}
-                planes={planesCaja}
-                planInicial="smg20"
-                fuente="ficha-prepaga-caja"
-                chips={[
+              <ul className="flex flex-wrap gap-2">
+                {[
                   ...(prep.sanatoriosPropios > 0 ? [`${prep.sanatoriosPropios} sanatorios propios`] : []),
                   ...(primeroSinCopago ? [`Sin copagos desde el ${primeroSinCopago.nombre}`] : []),
                   'Precio oficial SSSalud',
-                ]}
-              >
-                <p className="text-xs text-gray-500">
-                  Precios de lista con IVA, contratación directa, CABA y GBA, cuadro que {prep.nombre} declara ante la{' '}
-                  <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-[#E8002D]">Superintendencia de Servicios de Salud</a>{' '}
-                  ({PRECIO_ACTUALIZADO.toLowerCase()}). El S2 se vende solo en el interior. El 15% OFF (25% para monotributistas) es cotizando online.
-                </p>
-                <a href="#opiniones" className="inline-flex items-center gap-2 group">
-                  {opiniones.cantidad > 0 ? (
-                    <>
-                      <StarRow rating={opiniones.promedio} />
-                      <span className="text-sm font-semibold text-gray-700">{opiniones.promedio.toLocaleString('es-AR')}</span>
-                      <span className="text-sm text-gray-400 group-hover:text-[#E8002D]">({opiniones.cantidad} {opiniones.cantidad === 1 ? 'opinión' : 'opiniones'} de usuarios)</span>
-                    </>
-                  ) : (
-                    <span className="text-sm text-gray-500 group-hover:text-[#E8002D]">★ Dejá tu opinión sobre {prep.nombre}</span>
-                  )}
-                </a>
-                <p className="text-gray-600 text-sm leading-relaxed max-w-xl">{prep.descripcion}</p>
-                <div className="flex flex-wrap gap-3">
-                  <Link href={`/comparador?prepaga=${prep.slug}&desde=ficha-hero`} className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold rounded-xl transition-all text-sm">
-                    Comparar con otras prepagas
-                  </Link>
-                  {getCartillaInfo(prep.slug) && (
-                    <Link href={`/cartillas/${prep.slug}`} className="inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#E8002D] text-[#E8002D] hover:bg-red-50 font-bold rounded-xl transition-all text-sm">
-                      Buscar en la cartilla de {prep.nombre}
-                    </Link>
-                  )}
-                </div>
-                <Link href={`/empresas/${prep.slug}`} className="text-xs text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
-                  ¿Buscás cobertura para tu empresa? Plan corporativo de {prep.nombre} →
+                ].map((c) => (
+                  <li key={c} className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-[13px] font-semibold text-gray-900">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 flex-shrink-0 text-emerald-600" aria-hidden><path d="M5 12.5l4 4 10-10" /></svg>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-3">
+                <ContratarPlanButton
+                  prepagaNombre={prep.nombre}
+                  fuente="ficha-prepaga"
+                  titulo="Tu precio con 15% OFF"
+                  label="Quiero mi precio con 15% OFF"
+                  planesOpciones={prep.planes.map((pl) => pl.nombre)}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
+                />
+                <Link href="#planes" className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold rounded-xl transition-all text-sm">
+                  Ver los {prep.planes.length} planes y precios ↓
                 </Link>
-              </PrecioSwissHero>
+                {getCartillaInfo(prep.slug) && (
+                  <Link href={`/cartillas/${prep.slug}`} className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-[#E8002D] text-[#E8002D] hover:bg-red-50 font-bold rounded-xl transition-all text-sm">
+                    Buscar en la cartilla
+                  </Link>
+                )}
+              </div>
+              <a href="#opiniones" className="inline-flex items-center gap-2 group">
+                {opiniones.cantidad > 0 ? (
+                  <>
+                    <StarRow rating={opiniones.promedio} />
+                    <span className="text-sm font-semibold text-gray-700">{opiniones.promedio.toLocaleString('es-AR')}</span>
+                    <span className="text-sm text-gray-400 group-hover:text-[#E8002D]">({opiniones.cantidad} {opiniones.cantidad === 1 ? 'opinión' : 'opiniones'} de usuarios)</span>
+                  </>
+                ) : (
+                  <span className="text-sm text-gray-500 group-hover:text-[#E8002D]">★ Dejá tu opinión sobre {prep.nombre}</span>
+                )}
+              </a>
+              <p className="text-gray-600 text-sm leading-relaxed max-w-xl">{prep.descripcion}</p>
+              <Link href={`/empresas/${prep.slug}`} className="text-xs text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                ¿Buscás cobertura para tu empresa? Plan corporativo de {prep.nombre} →
+              </Link>
             </div>
           ) : (
             <>
@@ -910,7 +911,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
         <div className="container max-w-5xl mx-auto">
           <div className="flex items-end justify-between mb-5">
             <h2 className="text-xl font-bold text-gray-900">Planes y precios de {prep.nombre} — {PRECIO_ACTUALIZADO.toLowerCase()}</h2>
-            <span className="text-xs text-gray-400 hidden sm:block">Nivel de precio relativo</span>
           </div>
           <p className="text-xs text-gray-400 -mt-3 mb-5">
             {prep.planes.every((pl) => pl.fuentePrecio === 'sssalud') ? (
@@ -928,123 +928,12 @@ export default async function PrepagaSlugPage({ params }: Props) {
 
           <LineasPlanes prep={prep} />
 
-          {/* Plan destacado — más grande */}
-          <div className="relative bg-gradient-to-r from-[#fff5f5] to-white border-2 border-[#E8002D] rounded-2xl p-6 mb-4">
-            <div className="absolute -top-3.5 left-6">
-              <span className="bg-[#E8002D] text-white text-[11px] font-black px-4 py-1.5 rounded-full shadow-sm tracking-wide">
-                MÁS ELEGIDO
-              </span>
-            </div>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-1">
-              <Link href={`/prepagas/${slug}/${planEstrella.slug}`} className="flex-1 min-w-0 group">
-                <div className="font-bold text-gray-900 text-lg group-hover:text-[#E8002D] transition-colors">{planEstrella.nombre}</div>
-                <p className="text-sm text-gray-600 mt-1 leading-relaxed">{planEstrella.descripcion}</p>
-                <div className="flex flex-wrap gap-1.5 mt-3">
-                  <span className={`text-[11px] px-2.5 py-1 rounded-full font-semibold ${
-                    planEstrella.copago ? 'bg-gray-100 text-gray-500' : 'bg-green-50 text-green-700 border border-green-200'
-                  }`}>
-                    {planEstrella.copago ? 'Con copago' : 'Sin copago'}
-                  </span>
-                  <span className={`text-[11px] px-2.5 py-1 rounded-full font-semibold ${
-                    planEstrella.redAbierta ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-gray-100 text-gray-500'
-                  }`}>
-                    Red {planEstrella.redAbierta ? 'abierta' : 'cerrada'}
-                  </span>
-                  <span className="text-[11px] px-2.5 py-1 rounded-full font-semibold bg-gray-50 text-gray-600 border border-gray-200">
-                    Cartilla {calidadPlan(prep, planEstrella)}/5
-                  </span>
-                  {planEstrella.cobertura.slice(0, 3).map(c => (
-                    <span key={c} className="text-[11px] px-2 py-1 bg-gray-50 text-gray-500 rounded-full border border-gray-100">{c}</span>
-                  ))}
-                  {planEstrella.cobertura.length > 3 && (
-                    <span className="text-[11px] text-gray-400 py-1">+{planEstrella.cobertura.length - 3} más</span>
-                  )}
-                </div>
-              </Link>
-              <div className="flex-shrink-0 flex flex-col items-stretch sm:items-end gap-2">
-                <Link href={`/prepagas/${slug}/${planEstrella.slug}`} className="text-right sm:text-right">
-                  <div className="font-black text-gray-900 text-lg">{formatPrecio(planEstrella.precio)}</div>
-                  <div className="flex sm:justify-end">
-                    <NivelPrecioBadge nivel={nivelPrecio(planEstrella.precio)} />
-                  </div>
-                </Link>
-                <div className="flex gap-2 flex-wrap sm:justify-end">
-                  <Link href={`/prepagas/${slug}/${planEstrella.slug}`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 border-2 border-gray-200 hover:border-red-200 text-gray-700 hover:text-[#E8002D] rounded-xl text-xs font-bold transition-colors whitespace-nowrap">
-                    Ver más →
-                  </Link>
-                  <ContratarPlanButton
-                    prepagaNombre={prep.nombre}
-                    planNombre={planEstrella.nombre}
-                    fuente="ficha-prepaga"
-                    label="Cotizar plan"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#E8002D] hover:bg-[#B8001F] text-white rounded-xl text-xs font-bold transition-colors whitespace-nowrap"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Otros planes */}
-          {otrosPlanes.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {otrosPlanes.map((plan) => {
-                const grupoCartilla = getGrupoCartilla(prep.slug, plan.slug)
-                return (
-                <div
-                  key={plan.slug}
-                  className="group bg-white rounded-xl border border-gray-200 p-4 hover:border-red-200 hover:shadow-sm transition-all h-full flex flex-col"
-                >
-                  <Link href={`/prepagas/${slug}/${plan.slug}`} className="block flex-1">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors text-sm">{plan.nombre}</div>
-                        <div className="text-xs text-gray-500 mt-0.5 leading-snug line-clamp-2 min-h-[2.5em]">{plan.descripcion}</div>
-                        <div className="flex gap-1.5 mt-2 flex-wrap">
-                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
-                            plan.copago ? 'bg-gray-100 text-gray-500' : 'bg-green-50 text-green-700'
-                          }`}>
-                            {plan.copago ? 'Con copago' : 'Sin copago'}
-                          </span>
-                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
-                            plan.redAbierta ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-500'
-                          }`}>
-                            Red {plan.redAbierta ? 'abierta' : 'cerrada'}
-                          </span>
-                          {grupoCartilla && (
-                            <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold bg-red-50 text-[#E8002D]">
-                              {grupoCartilla.nombre}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex-shrink-0 text-right">
-                        <div className="font-bold text-gray-900 text-sm">{formatPrecio(plan.precio)}</div>
-                        <NivelPrecioBadge nivel={nivelPrecio(plan.precio)} />
-                      </div>
-                    </div>
-                  </Link>
-                  <div className="mt-3 pt-3 border-t border-gray-100 flex gap-2">
-                    <Link href={`/prepagas/${slug}/${plan.slug}`}
-                      className="flex-1 justify-center inline-flex items-center gap-1.5 text-xs font-bold text-gray-600 hover:text-[#E8002D] border-2 border-gray-200 hover:border-red-200 rounded-lg px-3 py-2 transition-colors">
-                      Ver más →
-                    </Link>
-                    <ContratarPlanButton
-                      prepagaNombre={prep.nombre}
-                      planNombre={plan.nombre}
-                      fuente="ficha-prepaga"
-                      label="Cotizar plan"
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-bold px-3 py-2 rounded-lg bg-[#E8002D] hover:bg-[#B8001F] text-white transition-colors"
-                    />
-                  </div>
-                </div>
-              )})}
-            </div>
+          {/* Lista de planes (Darío, 28-oct-2026): reemplaza las tarjetas
+              "Más elegido" + grilla, con el diseño de la lista de Swiss */}
+          <ListaPlanesPrecios prep={prep} destacado={planEstrella} />
+          {prep.slug === 'swiss-medical' && (
+            <p className="text-xs text-gray-500 mt-3">Tachado, el precio de lista; abajo, con el 15% OFF cotizando online (25% para monotributistas).</p>
           )}
-
-          <p className="text-xs text-gray-400 mt-4">
-            * Nivel de precio relativo al resto del mercado · {PRECIO_ACTUALIZADO}. Cotizá tu precio exacto según tu edad y zona.
-          </p>
 
           <div className="mt-6 bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-center sm:text-left">

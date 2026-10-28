@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CtaMedio } from '@/components/ui/CtaMedio'
-import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
+import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL, nivelPrecio } from '@/lib/data/prepagas'
 import { provinciasSEO } from '@/lib/data/zonas'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, DESTACADO_PARTNER, PARTNERS_OFICIALES_TEXTO, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
@@ -98,6 +98,12 @@ const jsonLd = [
 
 export default function RankingPage() {
   const porPrecio = [...prepagas].sort((a, b) => precioDesde(a) - precioDesde(b))
+  // Respuesta directa arriba de la tabla (Darío, 28-oct-2026: para Google y
+  // las IA): las tres más baratas con su plan y precio, y la fuente
+  const conPrecio = porPrecio.filter((p) => Number.isFinite(precioDesde(p)))
+  const planMin = (p: Prepaga) => [...p.planes].sort((a, b) => a.precio - b.precio)[0]
+  const conPlan = (p: Prepaga) => `${p.nombre} (${planMin(p).nombre}, ${formatPrecio(precioDesde(p))})`
+  const ultima = conPrecio[conPrecio.length - 1]
 
   return (
     <>
@@ -218,12 +224,19 @@ export default function RankingPage() {
         <div className="container max-w-3xl mx-auto">
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-1">Ranking por precio</h2>
+            <p className="text-sm text-gray-600 leading-relaxed mb-2">
+              En {MES}, la prepaga más barata de Argentina es <strong className="text-gray-900">{conPrecio[0].nombre}</strong>: su {planMin(conPrecio[0]).nombre} sale{' '}
+              <strong className="text-gray-900">{formatPrecio(precioDesde(conPrecio[0]))} por mes</strong> para una persona de 30 años. Le siguen {conPlan(conPrecio[1])} y {conPlan(conPrecio[2])}.
+              {' '}Entre las {conPrecio.length} prepagas con precio oficial, el plan de entrada más caro es el de {conPlan(ultima)}.
+            </p>
             <p className="text-xs text-gray-500 mb-4">
-              Plan más económico de cada una, persona de 30 años.{' '}
+              Plan más económico de cada una, persona de 30 años, precio de lista con IVA y contratación directa, según los cuadros que cada prepaga declara ante la{' '}
+              <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-[#E8002D]">Superintendencia de Servicios de Salud</a> ({MES}). El precio final depende de tu edad y tu zona.{' '}
               <Link href="/prepagas-economicas" className="text-[#E8002D] font-semibold hover:underline">Ver prepagas económicas</Link>
             </p>
             <div className="overflow-x-auto rounded-xl border border-gray-200">
               <table className="w-full text-sm">
+                <caption className="sr-only">Ranking de prepagas por precio, {MES}: plan más económico de cada una para una persona de 30 años</caption>
                 <thead className="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wide">
                   <tr>
                     <th className="px-3 py-2.5 font-semibold w-8">#</th>

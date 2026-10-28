@@ -11,13 +11,12 @@ const zonasPrincipales = SLUGS_PRINCIPALES.map((s) => provinciasSEO.find((p) => 
 const zonasResto = provinciasSEO.filter((p) => !SLUGS_PRINCIPALES.includes(p.slug))
 import { cambiosRecomendados } from '@/lib/data/cambios'
 import { ultimoMesOficial } from '@/lib/data/aumentos'
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, TIEMPO_RESPUESTA, formatPrecio, precioDesde } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, SITE_DESCRIPTION, PARTNERS_OFICIALES_TEXTO, TIEMPO_RESPUESTA, formatPrecio } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ComparadorWizard } from '@/components/comparador/ComparadorWizard'
 import { CotizarPorPrepaga } from '@/components/prepagas/CotizarPorPrepaga'
 import { RankingHome, type ItemRanking } from '@/components/home/RankingHome'
-import { escalaPorEdad } from '@/lib/precios/motor'
 import { ZonaBanner } from '@/components/ui/ZonaBanner'
 import { ldJson } from '@/lib/jsonld'
 
@@ -139,35 +138,24 @@ const RANKING_HOME: Record<string, { ideal: string; pruebas: (planes: number) =>
     pruebas: () => ['La cuota más baja de las tres', '7 centros odontológicos propios', 'Cobertura en CABA, GBA, Córdoba y Tucumán'],
   },
 }
-const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
-const regionCuadro = (r: string) => /^(general|avalian)$/i.test(r) ? 'lista general'
-  : r === r.toUpperCase() && r.length > 4 ? r.toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase()).replace(/ (De|Del|Y) /g, (x) => x.toLowerCase()) : r
-
 export default function HomePage(): React.ReactElement {
   const prepagasRanking = RANKING_ORDER
     .map(slug => prepagas.find(p => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p))
-  // Top 3 con el plan más accesible que tiene cuadro oficial (el "desde")
-  const fuentesRanking: string[] = []
+  // Top 3 sin precio (Darío, 28-oct-2026): solo para quién es cada una y
+  // el botón para cotizar
   const itemsRanking: ItemRanking[] = prepagasRanking.slice(0, 3).map((prep) => {
-    const desde = precioDesde(prep)
-    const plan = prep.planes.find((pl) => pl.precio === desde) ?? prep.planes[0]
-    const escala = escalaPorEdad(prep.slug, plan.slug, 'caba')
-    if (escala) fuentesRanking.push(`${prep.nombre} (${regionCuadro(escala.region)}, ${MESES[(escala.periodo % 100) - 1]} ${Math.floor(escala.periodo / 100)})`)
     const extra = RANKING_HOME[prep.slug]
     return {
       slug: prep.slug,
       nombre: prep.nombre,
       ideal: extra?.ideal,
       pruebas: extra ? extra.pruebas(prep.planes.length) : prep.pros.slice(0, 3),
-      plan: plan.nombre,
       planes: prep.planes.map((pl) => pl.nombre),
-      rangos: escala?.rangos ?? [],
       promo: prep.slug === 'swiss-medical',
       escalaLogo: extra?.escalaLogo,
     }
   })
-  const fuenteRanking = `Precios de lista con IVA incluido, contratación directa, según los cuadros que cada prepaga declara ante la Superintendencia de Servicios de Salud: ${fuentesRanking.length > 1 ? `${fuentesRanking.slice(0, -1).join(', ')} y ${fuentesRanking[fuentesRanking.length - 1]}` : fuentesRanking[0] ?? ''}. El 15% OFF es exclusivo cotizando online con Swiss Medical.`
 
   return (
     <>
@@ -310,15 +298,11 @@ export default function HomePage(): React.ReactElement {
       <section className="py-14 bg-white border-b border-gray-100">
         <div className="container max-w-5xl mx-auto">
           <div className="text-center mb-7 flex flex-col items-center gap-2.5">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1 text-xs font-semibold text-gray-500">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
-              Precios oficiales actualizados a {PRECIO_ACTUALIZADO.toLowerCase()}
-            </span>
             <h2 className="text-2xl sm:text-[32px] font-extrabold tracking-tight text-gray-900 text-balance">Las mejores prepagas de Argentina</h2>
-            <p className="text-gray-500 text-sm sm:text-base max-w-xl">Las tres prepagas con las que trabajamos, con su plan más accesible. Elegí tu edad y mirá cuánto pagarías.</p>
+            <p className="text-gray-500 text-sm sm:text-base max-w-xl">Las tres prepagas con las que trabajamos y para quién es cada una. Cotizá online y un asesor oficial te pasa tu precio.</p>
           </div>
 
-          <RankingHome items={itemsRanking} fuente={fuenteRanking} />
+          <RankingHome items={itemsRanking} />
 
           <div className="text-center mt-6">
             <Link href="/prepagas" className="text-sm font-bold text-[#E8002D] hover:underline">Ver los planes y precios de las {prepagas.length} prepagas →</Link>
