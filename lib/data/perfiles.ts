@@ -1,4 +1,10 @@
 import type { Prepaga } from '@/types'
+import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
+import { formatPrecio } from '@/lib/utils'
+import { extremosA30 } from '@/lib/precios/resumen'
+
+// Extremos del mercado a los 30 años, del cuadro oficial (28-oct-2026)
+const A30 = extremosA30()
 
 export interface PerfilData {
   slug: string
@@ -284,7 +290,7 @@ export const perfiles: PerfilData[] = [
       },
       {
         q: '¿Cuánto cuesta una prepaga para un extranjero?',
-        a: 'Pagás lo mismo que un argentino: el precio depende de la edad y el plan, no de la nacionalidad. Según las listas oficiales de 2026, para un adulto de 30 años van desde menos de $100.000 por mes (planes con copago) hasta más de $1.000.000 (los premium). Cotizá gratis para ver el valor exacto de tu edad.',
+        a: `Pagás lo mismo que un argentino: el precio depende de la edad y el plan, no de la nacionalidad. Según los cuadros oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()}, para un adulto de 30 años van desde ${formatPrecio(A30.min.precio)} por mes (${A30.min.prepaga}, ${A30.min.plan}) hasta ${formatPrecio(A30.max.precio)} (${A30.max.prepaga}, ${A30.max.plan}). Cotizá gratis para ver el valor exacto de tu edad.`,
       },
       {
         q: '¿La prepaga sirve como seguro para el trámite de residencia?',

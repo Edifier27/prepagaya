@@ -2,6 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_RU, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
+import { extremosA30 } from '@/lib/precios/resumen'
+
+// Цены из официальных таблиц, не вручную (28-oct-2026)
+const A30 = extremosA30()
+const ars = (n: number) => `AR$${Math.round(n).toLocaleString('es-AR')}`
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
@@ -39,7 +44,7 @@ const faqs = [
   },
   {
     q: 'Сколько стоит частная медицинская страховка в Аргентине?',
-    a: `Иностранцы платят столько же, сколько местные жители: цена зависит от возраста и плана, а не от гражданства. По состоянию на ${PRECIO_ACTUALIZADO_RU}, базовые планы начинаются примерно от AR$170.000/мес для человека 30 лет, планы среднего уровня без доплат — AR$300.000–500.000, премиум-планы — от AR$1.000.000.`,
+    a: `Иностранцы платят столько же, сколько местные жители: цена зависит от возраста и плана, а не от гражданства. По состоянию на ${PRECIO_ACTUALIZADO_RU}, цены для человека 30 лет — от ${ars(A30.min.precio)}/мес (${A30.min.prepaga}, ${A30.min.plan}) до ${ars(A30.max.precio)}/мес (${A30.max.prepaga}, ${A30.max.plan}), по официальным таблицам Superintendencia de Servicios de Salud.`,
   },
   {
     q: 'Туристическая страховка или местная prepaga — что выбрать?',
