@@ -24,9 +24,11 @@ interface Props {
   conPromo?: boolean
   /** Integrantes ya elegidos antes de abrir (ranking de la home: "30 años", "2 personas de 30 años") */
   edadesIniciales?: string
+  /** Descuento que nombra el popup (caja de la ficha de Swiss: "25% OFF" si eligió monotributo) */
+  textoPromo?: string
 }
 
-export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra, titulo, planesOpciones, conPromo = true, edadesIniciales }: Props) {
+export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contratar-plan', label, className, datosExtra, titulo, planesOpciones, conPromo = true, edadesIniciales, textoPromo = '15% OFF' }: Props) {
   const [open, setOpen] = useState(false)
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
@@ -107,7 +109,7 @@ export function ContratarPlanButton({ prepagaNombre, planNombre, fuente = 'contr
               </button>
               <div className="text-xl font-bold mb-1 pr-6">{titulo ?? 'Cotizá online y Ahorrá'}</div>
               <p className="text-red-100 text-sm leading-relaxed">
-                Dejanos tus datos y un asesor oficial te pasa el precio exacto de {interes} para tu edad{conPromo ? ', con 15% OFF por contratar online' : ''}.
+                Dejanos tus datos y un asesor oficial te pasa el precio exacto de {interes} para tu edad{conPromo ? `, con ${textoPromo} por contratar online` : ''}.
               </p>
             </div>
 
