@@ -453,18 +453,23 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const precioMax = Math.max(...prep.planes.map(pl => pl.precio).filter(Number.isFinite))
   const planEstrella = prep.planes.find(pl => pl.destacado) ?? planesOrdenados[0]
   const comparacion = compararPlanes(prep)
-  // Hero de Swiss Medical con respuesta directa (Darío, 28-oct-2026): los
-  // planes que se venden en CABA y GBA con su escala por edad del cuadro
-  // oficial (el S2 se vende solo en el interior)
+  // Hero con respuesta directa (Darío, 28-oct-2026 en Swiss Medical; 29-oct
+  // OSDE y Sancor, las fichas con más impresiones en Search Console): los
+  // planes con escala por edad del cuadro oficial (el S2 de Swiss se vende
+  // solo en el interior). El 15% OFF, solo en Swiss.
   type PlanCaja = { slug: string; nombre: string; copago: boolean; rangos: { desde: number; hasta: number; precio: number }[] }
   const precioA30 = (pl: PlanCaja) => (pl.rangos.find((r) => r.desde <= 30 && 30 <= r.hasta) ?? pl.rangos[0]).precio
-  const planesCaja: PlanCaja[] = prep.slug !== 'swiss-medical' ? [] : planesOrdenados.flatMap((pl) => {
+  const esSwiss = prep.slug === 'swiss-medical'
+  const planesCaja: PlanCaja[] = !['swiss-medical', 'osde', 'sancor-salud'].includes(prep.slug) ? [] : planesOrdenados.flatMap((pl) => {
     const e = pl.slug === 's2' ? null : escalaPorEdad(prep.slug, pl.slug, 'caba')
     return e?.rangos.length ? [{ slug: pl.slug, nombre: codigoCorto(pl.nombre), copago: pl.copago, rangos: e.rangos }] : []
   }).sort((a, b) => precioA30(a) - precioA30(b))
   const conCaja = planesCaja.length > 0
   const masAccesible = planesCaja[0]
   const primeroSinCopago = planesCaja.find((pl) => !pl.copago)
+  // "lista general" (Sancor) vale para todo el país; el resto, CABA y GBA
+  const regionCaja = conCaja ? escalaPorEdad(prep.slug, masAccesible.slug, 'caba')?.region ?? '' : ''
+  const zonaCaja = /^general$/i.test(regionCaja) ? 'de la lista general' : 'en CABA y GBA'
   // Los planes que comparten cartilla real van pegados en vez de ordenados
   // solo por precio (hoy solo hay data cargada para Swiss Medical).
   const perfiles = getPerfilesIdeales(prep, precioMin)
@@ -658,22 +663,27 @@ export default async function PrepagaSlugPage({ params }: Props) {
       <section className="bg-gradient-to-b from-gray-50 to-white border-b border-gray-100 py-10">
         <div className="container max-w-5xl mx-auto">
           {conCaja ? (
-            // Swiss Medical (Darío, 28-oct-2026): respuesta directa, chips y
-            // el botón con el 15% OFF. La lista de planes con precio está
-            // abajo, en "Planes y precios".
+            // Swiss, OSDE y Sancor: respuesta directa, chips y el botón de
+            // cotizar (con 15% OFF solo en Swiss). La lista de planes con
+            // precio está abajo, en "Planes y precios".
             <div className="flex max-w-3xl flex-col gap-4">
               <div>
                 {cabecera}
                 {/* Respuesta directa a "[prepaga] planes precios" para Google y las IA */}
                 <p className="max-w-[62ch] text-[15.5px] leading-relaxed text-gray-600">
-                  {prep.nombre} tiene <b className="text-gray-900">{prep.planes.length} planes</b>. El más accesible en CABA y GBA, el {masAccesible.nombre}, sale{' '}
-                  <b className="text-gray-900">{formatPrecio(precioA30(masAccesible) * 0.85)} por mes con 15% OFF</b> cotizando online (lista {formatPrecio(precioA30(masAccesible))}, una persona de 30 años, cuadro oficial de {PRECIO_ACTUALIZADO.toLowerCase()}).
+                  {prep.nombre} tiene <b className="text-gray-900">{prep.planes.length} planes</b>. El más accesible {zonaCaja}, el {masAccesible.nombre}, sale{' '}
+                  {esSwiss ? (
+                    <><b className="text-gray-900">{formatPrecio(precioA30(masAccesible) * 0.85)} por mes con 15% OFF</b> cotizando online (lista {formatPrecio(precioA30(masAccesible))}, una persona de 30 años, cuadro oficial de {PRECIO_ACTUALIZADO.toLowerCase()}).</>
+                  ) : (
+                    <><b className="text-gray-900">{formatPrecio(precioA30(masAccesible))} por mes</b> (precio de lista con IVA, una persona de 30 años, cuadro oficial de {PRECIO_ACTUALIZADO.toLowerCase()}).</>
+                  )}
                 </p>
               </div>
               <ul className="flex flex-wrap gap-2">
                 {[
-                  ...(prep.sanatoriosPropios > 0 ? [`${prep.sanatoriosPropios} sanatorios propios`] : []),
-                  ...(primeroSinCopago ? [`Sin copagos desde el ${primeroSinCopago.nombre}`] : []),
+                  // Con uno solo no: en Sancor es un centro médico (Vitus), no un sanatorio
+                  ...(prep.sanatoriosPropios > 1 ? [`${prep.sanatoriosPropios} sanatorios propios`] : []),
+                  ...(prep.planes.every((pl) => !pl.copago) ? ['Sin copago en todos los planes'] : primeroSinCopago ? [`Sin copagos desde el ${primeroSinCopago.nombre}`] : []),
                   'Precio oficial SSSalud',
                 ].map((c) => (
                   <li key={c} className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-[13px] font-semibold text-gray-900">
@@ -686,8 +696,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 <ContratarPlanButton
                   prepagaNombre={prep.nombre}
                   fuente="ficha-prepaga"
-                  titulo="Tu precio con 15% OFF"
-                  label="Quiero mi precio con 15% OFF"
+                  titulo={esSwiss ? 'Tu precio con 15% OFF' : `Cotizá ${prep.nombre}`}
+                  label={esSwiss ? 'Quiero mi precio con 15% OFF' : `Cotizar ${prep.nombre}`}
+                  conPromo={esSwiss}
                   planesOpciones={prep.planes.map((pl) => pl.nombre)}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg text-sm"
                 />
@@ -712,9 +723,11 @@ export default async function PrepagaSlugPage({ params }: Props) {
                 )}
               </a>
               <p className="text-gray-600 text-sm leading-relaxed max-w-xl">{prep.descripcion}</p>
-              <Link href={`/empresas/${prep.slug}`} className="text-xs text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
-                ¿Buscás cobertura para tu empresa? Plan corporativo de {prep.nombre} →
-              </Link>
+              {(prep.slug === 'swiss-medical' || prep.slug === 'osde') && (
+                <Link href={`/empresas/${prep.slug}`} className="text-xs text-gray-400 hover:text-[#E8002D] font-medium transition-colors">
+                  ¿Buscás cobertura para tu empresa? Plan corporativo de {prep.nombre} →
+                </Link>
+              )}
             </div>
           ) : (
             <>
