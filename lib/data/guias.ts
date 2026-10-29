@@ -1364,8 +1364,119 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['seguro medico obligatorio argentina', 'decreto 366/25 seguro medico', 'prepaga para extranjeros', 'prepaga sin dni argentina', 'health insurance argentina requirement'],
-    relacionadas: ['como-afiliarse-prepaga-requisitos', 'prepaga-sin-periodo-carencia', 'como-contratar-prepaga-online'],
+    relacionadas: ['como-afiliarse-prepaga-requisitos', 'prepaga-para-uruguayos-en-argentina', 'prepaga-sin-periodo-carencia', 'como-contratar-prepaga-online'],
     prepagasRelacionadas: ['swiss-medical', 'osde', 'medife'],
+  },
+  // Uruguay (Darío, 29-oct-2026): los dos casos. Uruguayos que viven o se
+  // mudan a Argentina (residencia Mercosur) y argentinos que viajan a
+  // Uruguay (Punta del Este, Montevideo): qué plan cubre allá, con los datos
+  // oficiales de cobertura en el exterior que ya usa /coberturas/exterior.
+  {
+    slug: 'prepaga-para-uruguayos-en-argentina',
+    titulo: 'Prepaga en Argentina para uruguayos: cómo afiliarte y cuánto cuesta (2026)',
+    metaDescripcion: `Si sos uruguayo y vivís o te mudás a Argentina: residencia Mercosur, cómo afiliarte a una prepaga sin DNI argentino y cuánto cuesta, desde ${DESDE} por mes (${MES}).`,
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-10-29',
+    contenido: {
+      intro: `Si sos uruguayo y vivís en Argentina, o te estás por mudar, podés afiliarte a cualquier prepaga argentina al mismo precio que un argentino: el valor depende de tu edad y del plan, no de tu nacionalidad. Según las listas oficiales de ${MES}, para una persona de 30 años la cuota más baja del mercado es de ${DESDE} por mes (${DESDE_PLAN}).`,
+      secciones: [
+        {
+          titulo: 'Residencia: el acuerdo del Mercosur',
+          cuerpo: 'Como ciudadano uruguayo podés pedir la residencia en Argentina por el Acuerdo de Residencia del Mercosur (Leyes 25.902 y 25.903), con el trámite que fija la Dirección Nacional de Migraciones (Disposición 1637/2022). Mientras la tramitás, sos residente "precario"; con la residencia ya podés sacar el DNI para extranjeros. Si todavía no tenés residencia, el Decreto 366/25 te exige un seguro médico durante la estadía, como a cualquier extranjero no residente.',
+          enlaces: [{ texto: 'Residencia Mercosur en Migraciones', url: 'https://www.argentina.gob.ar/interior/migraciones' }],
+        },
+        {
+          titulo: 'Cómo afiliarte sin DNI argentino',
+          cuerpo: 'La mayoría de las prepagas grandes aceptan la afiliación con el documento de tu país y la residencia precaria (la constancia del trámite iniciado); algunas piden un CUIL o CDI para facturar. Con el DNI argentino el trámite es igual al de cualquier persona. Las enfermedades previas se declaran en la declaración jurada de salud, y por ley no te pueden rechazar por la edad.',
+        },
+        {
+          titulo: 'Cuánto cuesta',
+          cuerpo: `Según las listas oficiales de ${MES} (CABA y GBA, contratación directa, IVA incluido), para una persona de 30 años: desde ${DESDE} por mes (${DESDE_PLAN}). Un plan sin copago con sanatorios propios, como el SMG20 de Swiss Medical, sale ${lista('swiss-medical', 'smg20')} de lista, y cotizando online tenés 15% OFF (25% si sos monotributista). El 210 de OSDE, ${lista('osde', '210')}.`,
+          cta: { texto: 'Cotizá gratis y un asesor oficial te pasa tu precio por WhatsApp, también a números de Uruguay (+598).', boton: 'Cotizar mi prepaga', href: '/comparador?desde=guia-uruguayos' },
+        },
+        {
+          titulo: 'Si viajás seguido a Uruguay',
+          cuerpo: 'Algunos planes argentinos incluyen asistencia al viajero en países limítrofes o en todo el mundo, así que te cubren urgencias cuando vas a ver a tu familia. Swiss Medical la incluye desde el SMG30; Premedic, en los países limítrofes en casi todos sus planes. Tené en cuenta que es para urgencias en viajes cortos, no reemplaza una cobertura si vivís allá.',
+        },
+      ],
+      conclusion: 'Si vivís en Argentina, una prepaga local te da la cobertura completa al mismo precio que a un argentino. Compará los planes de tu zona y cotizá gratis: te escribimos a tu celular, sea de Argentina o de Uruguay.',
+    },
+    faq: [
+      {
+        q: '¿Un uruguayo puede tener prepaga en Argentina?',
+        a: 'Sí. Las prepagas afilian a extranjeros residentes y a quienes tienen la residencia en trámite. El precio es el mismo que para un argentino: depende de la edad y del plan.',
+      },
+      {
+        q: '¿Necesito DNI argentino para afiliarme?',
+        a: 'No siempre. La mayoría de las prepagas grandes aceptan el documento de tu país con la residencia precaria; algunas piden CUIL o CDI para facturar. Un asesor te confirma qué empresa acepta tu documentación.',
+      },
+      {
+        q: '¿La prepaga argentina me cubre cuando voy a Uruguay?',
+        a: 'Depende del plan. Swiss Medical incluye asistencia al viajero desde el SMG30 y Premedic cubre los países limítrofes en casi todos sus planes. Es para urgencias en viajes, no para atenderte de forma habitual allá.',
+      },
+    ],
+    keywords: ['prepaga para uruguayos en argentina', 'uruguayo vivir en argentina cobertura medica', 'prepaga sin dni argentino uruguayo', 'residencia mercosur uruguayo argentina prepaga', 'obra social uruguayo en argentina'],
+    relacionadas: ['seguro-medico-obligatorio-extranjeros', 'prepaga-cobertura-en-uruguay', 'como-afiliarse-prepaga-requisitos'],
+    prepagasRelacionadas: ['swiss-medical', 'osde', 'premedic'],
+    fuentes: [
+      { texto: 'Disposición DNM 1637/2022 (residencia Mercosur)', url: 'https://www.argentina.gob.ar/normativa/nacional/norma-369202/texto' },
+    ],
+  },
+  {
+    slug: 'prepaga-cobertura-en-uruguay',
+    titulo: '¿Mi prepaga me cubre en Uruguay? Punta del Este y Montevideo, plan por plan',
+    metaDescripcion: 'Qué planes de prepaga argentina cubren en Uruguay: Swiss Medical desde el SMG30, Premedic en países limítrofes y Avalian según el plan. Topes, días y qué hacer si te falta cobertura.',
+    tiempoLectura: 4,
+    categoria: 'Cobertura',
+    fechaActualizacion: '2026-10-29',
+    contenido: {
+      intro: 'Si te vas a Punta del Este, Montevideo o Colonia, tu prepaga puede cubrirte urgencias allá con la asistencia al viajero que incluyen algunos planes. La ley no obliga a cubrir fuera del país, así que depende del plan: algunos cubren los países limítrofes (Uruguay entre ellos), otros todo el mundo, y otros nada. Esto es lo que publica cada prepaga.',
+      secciones: [
+        {
+          titulo: 'Qué cubre la asistencia al viajero',
+          cuerpo: 'Es para accidentes y enfermedades repentinas durante el viaje: consulta, guardia, internación y medicación de la urgencia, con un tope por evento. No cubre tratamientos programados ni controles, y tiene un límite de días por viaje (en Swiss Medical, hasta 60 días corridos desde la salida de Argentina). Antes de viajar, guardá el teléfono de la asistencia de tu plan.',
+        },
+        {
+          titulo: 'Si pasás toda la temporada o vivís en Uruguay',
+          cuerpo: 'La asistencia al viajero no reemplaza una cobertura si te quedás más tiempo que el que cubre tu plan: pasado el límite de días, o para atenderte de forma habitual, necesitás cobertura local en Uruguay. Para las urgencias de un viaje o una temporada corta, el plan argentino con cobertura en el exterior alcanza.',
+        },
+        {
+          titulo: '¿Te falta la cobertura? Cambiar o subir de plan',
+          cuerpo: 'Si tu plan no cubre fuera del país, podés pasarte a uno que sí. En Swiss Medical, del SMG20 al SMG30 suma la cobertura internacional; cotizando online tenés 15% OFF. Antes de viajar, chequeá la fecha en que empieza a regir el plan nuevo.',
+          cta: { texto: 'Cotizá un plan con cobertura en Uruguay y en el exterior.', boton: 'Cotizar Swiss Medical con 15% OFF', href: '/prepagas/swiss-medical/smg30' },
+        },
+      ],
+      conclusion: 'Para unos días en Uruguay, mirá si tu plan incluye países limítrofes o cobertura internacional. Si no, cotizá uno que la incluya o sacá una asistencia al viajero aparte.',
+    },
+    tabla: {
+      titulo: 'Qué planes cubren en Uruguay',
+      columnas: ['Prepaga', 'Planes con cobertura en Uruguay', 'Alcance', 'Asistencia'],
+      filas: [
+        { celdas: ['Swiss Medical', 'SMG30, SMG40, SMG50, SMG60 y SMG70', 'Internacional (Uruguay incluido); viajes de hasta 60 días', 'Universal Assistance'], slug: 'swiss-medical' },
+        { celdas: ['Premedic', 'Casi todos sus planes', 'Argentina y países limítrofes (Uruguay, Brasil, Chile, Paraguay y Bolivia)', 'Cardinal Assistance'], slug: 'premedic' },
+        { celdas: ['Avalian', 'Integral (limítrofes); Superior y Selecta (internacional)', 'Según el plan', 'Universal Assistance'], slug: 'avalian' },
+        { celdas: ['OSDE, Sancor Salud y Medifé', 'Consultá tu plan', 'Según el plan', 'Universal Assistance'] },
+      ],
+      nota: 'Fuentes: comparativo y alcance de cobertura oficiales de Swiss Medical, fichas y diagrama de cobertura de Avalian y fichas oficiales de Premedic (2026). En Swiss Medical, S1, S2, SMG02 y SMG20 no incluyen cobertura en el exterior.',
+    },
+    faq: [
+      {
+        q: '¿OSDE me cubre en Uruguay?',
+        a: 'OSDE trabaja con Universal Assistance para la asistencia al viajero. Qué países, topes y días incluye depende del plan: consultalo con OSDE antes de viajar.',
+      },
+      {
+        q: '¿Swiss Medical me cubre en Punta del Este?',
+        a: 'Sí desde el SMG30: los planes SMG30, SMG40, SMG50, SMG60 y SMG70 incluyen asistencia al viajero internacional (Universal Assistance), para accidentes y enfermedades repentinas, en viajes de hasta 60 días. S1, S2, SMG02 y SMG20 no la incluyen.',
+      },
+      {
+        q: '¿Necesito una asistencia al viajero aparte para ir a Uruguay?',
+        a: 'Solo si tu plan no cubre fuera del país o si te quedás más días de los que cubre. Con un plan que incluye países limítrofes o cobertura internacional, las urgencias del viaje están cubiertas.',
+      },
+    ],
+    keywords: ['prepaga cubre en uruguay', 'osde cobertura en uruguay', 'swiss medical cobertura uruguay', 'prepaga punta del este', 'cobertura medica punta del este argentinos', 'asistencia al viajero uruguay prepaga'],
+    relacionadas: ['prepaga-para-uruguayos-en-argentina', 'seguro-medico-obligatorio-extranjeros'],
+    prepagasRelacionadas: ['swiss-medical', 'premedic', 'avalian'],
   },
   {
     slug: 'sin-trabajo-obra-social',
