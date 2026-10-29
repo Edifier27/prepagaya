@@ -5,6 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
 import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
+import { elegir, pesosTitulo, PLANES_TITULO_PRECIO } from '@/lib/seo/titulos'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
@@ -510,7 +511,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Swiss: "Swiss Medical SMG20" (sin "Plan", es como se busca) + precio por edad
   // "Cuánto sale" (23-sep-2026): misma intención que las fichas de prepaga.
   // absolute: sin "| PrepagaYa", para que Google lo muestre completo.
-  const titulo = escalaMeta
+  const titulo = escalaMeta && PLANES_TITULO_PRECIO.includes(`${prep.slug}/${plan.slug}`)
+    // Ola 2 de CTR (29-oct-2026): "precio" pegado al plan, como se busca, y
+    // "desde" porque el monto es el de la franja más joven
+    ? elegir([
+        `${prep.nombre} ${codigoPlan(plan)} precio ${PRECIO_ACTUALIZADO.toLowerCase()}: desde ${pesosTitulo(escalaMeta.rangos[0].precio)}/mes y qué cubre`,
+        `${prep.nombre} ${codigoPlan(plan)} precio ${PRECIO_ACTUALIZADO.toLowerCase()}: desde ${pesosTitulo(escalaMeta.rangos[0].precio)}/mes`,
+      ])
+    : escalaMeta
     // Precio en el título (11-oct-2026): las búsquedas "smg20 precio 2026",
     // "osde 210 precio" tenían impresiones y 0 clics con el título sin monto
     ? `${prep.nombre} ${codigoPlan(plan)}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`

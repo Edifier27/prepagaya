@@ -33,7 +33,7 @@ import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 import { ComparaPlanesHero } from '@/components/prepagas/ComparaPlanesHero'
 import { ListaPlanesPrecios } from '@/components/prepagas/ListaPlanesPrecios'
-import { elegir, anioPrecios, nombreCortoPrepaga, codigoCorto, MAX_DESCRIPCION } from '@/lib/seo/titulos'
+import { elegir, anioPrecios, nombreCortoPrepaga, codigoCorto, MAX_DESCRIPCION, pesosTitulo, FICHAS_TITULO_PRECIO } from '@/lib/seo/titulos'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -156,6 +156,12 @@ function tituloFicha(prep: Prepaga) {
   const n = nombreCortoPrepaga(prep.nombre)
   const N = prep.planes.length
   const y = anioPrecios()
+  if (FICHAS_TITULO_PRECIO.includes(prep.slug) && Number.isFinite(precioDesde(prep))) {
+    const mes = PRECIO_ACTUALIZADO.toLowerCase()
+    const desde = pesosTitulo(precioDesde(prep))
+    const plan = codigoCorto([...prep.planes].sort((a, b) => a.precio - b.precio)[0].nombre)
+    return elegir([`${n} planes y precios ${mes}: el ${plan} desde ${desde}`, `${n} planes y precios ${mes}: desde ${desde}`, `${n} planes y precios ${y}: desde ${desde}`])
+  }
   return Number.isFinite(precioDesde(prep))
     ? elegir([`${n} planes y precios ${y}: compará los ${N} en 1 min`, `${n} planes y precios ${y}: compará los ${N}`, `${n} planes y precios ${y}`])
     : elegir([`${n} planes ${y}: los ${N} comparados, cotizá en 1 minuto`, `${n} planes ${y}: los ${N} comparados, cotizá en 1 min`, `${n} planes ${y}: cotizá en 1 minuto`, `${n} planes ${y}`])
@@ -164,10 +170,20 @@ function tituloFicha(prep: Prepaga) {
 function descripcionFicha(prep: Prepaga, desde: number) {
   const N = prep.planes.length
   const mes = PRECIO_ACTUALIZADO.toLowerCase()
+  // El 15% OFF solo en Swiss Medical (29-oct-2026: lo decía en todas)
+  const cierre = prep.slug === 'swiss-medical' ? 'Tu precio con 15% OFF, sin DNI.' : 'Cotizá gratis para tu edad, sin DNI.'
+  if (FICHAS_TITULO_PRECIO.includes(prep.slug) && Number.isFinite(desde)) {
+    const plan = codigoCorto([...prep.planes].sort((a, b) => a.precio - b.precio)[0].nombre)
+    const sinCopago = prep.planes.every((pl) => !pl.copago) ? ', sin copago en todos' : ''
+    return elegir([
+      `Los ${N} planes de ${prep.nombre} con precio oficial SSSalud de ${mes}: el ${plan} desde ${pesosTitulo(desde)}/mes${sinCopago}. ${cierre}`,
+      `Los ${N} planes de ${prep.nombre} con precio oficial SSSalud de ${mes}: desde ${pesosTitulo(desde)}/mes. ${cierre}`,
+    ], MAX_DESCRIPCION)
+  }
   return Number.isFinite(desde)
     ? elegir([
-        `Los ${N} planes de ${prep.nombre} lado a lado: desde ${formatPrecio(desde)}/mes (precio oficial SSSalud, ${mes}), copago y cartilla. Tu precio con 15% OFF, sin DNI.`,
-        `Los ${N} planes de ${prep.nombre} lado a lado: desde ${formatPrecio(desde)}/mes (oficial SSSalud, ${mes}). Tu precio con 15% OFF, sin DNI.`,
+        `Los ${N} planes de ${prep.nombre} lado a lado: desde ${formatPrecio(desde)}/mes (precio oficial SSSalud, ${mes}), copago y cartilla. ${cierre}`,
+        `Los ${N} planes de ${prep.nombre} lado a lado: desde ${formatPrecio(desde)}/mes (oficial SSSalud, ${mes}). ${cierre}`,
       ], MAX_DESCRIPCION)
     : elegir([
         `Los ${N} planes de ${prep.nombre} lado a lado: coberturas, copago y cartilla. No publica lista oficial de precios: cotizá gratis para tu edad y zona, sin DNI.`,
