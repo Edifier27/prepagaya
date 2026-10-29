@@ -220,6 +220,37 @@ export const CODIGO_PAIS_INTL: Record<'us' | 'ru' | 'zh', { prefijo: string; pla
 }
 
 /**
+ * Códigos para cambiar el de arriba (29-oct-2026, Vercel Analytics: el 28%
+ * de las visitas a las páginas en inglés/ruso/chino son desde Argentina y
+ * el popup les fijaba +1/+7/+86; nadie del exterior dejó datos). Arranca en
+ * el del silo y se puede cambiar. Argentina (+54) va por el camino normal de
+ * celulares argentinos (lleva el 9 de WhatsApp).
+ */
+export const CODIGOS_PAIS_OPCIONES: { prefijo: string; pais: string }[] = [
+  { prefijo: '54', pais: 'Argentina' },
+  { prefijo: '598', pais: 'Uruguay' },
+  { prefijo: '1', pais: 'USA / Canada' },
+  { prefijo: '44', pais: 'UK' },
+  { prefijo: '34', pais: 'España' },
+  { prefijo: '55', pais: 'Brasil' },
+  { prefijo: '56', pais: 'Chile' },
+  { prefijo: '595', pais: 'Paraguay' },
+  { prefijo: '57', pais: 'Colombia' },
+  { prefijo: '52', pais: 'México' },
+  { prefijo: '49', pais: 'Deutschland' },
+  { prefijo: '33', pais: 'France' },
+  { prefijo: '39', pais: 'Italia' },
+  { prefijo: '31', pais: 'Nederland' },
+  { prefijo: '7', pais: 'Россия' },
+  { prefijo: '375', pais: 'Беларусь' },
+  { prefijo: '380', pais: 'Україна' },
+  { prefijo: '86', pais: '中国' },
+  { prefijo: '852', pais: '香港' },
+  { prefijo: '65', pais: 'Singapore' },
+  { prefijo: '61', pais: 'Australia' },
+]
+
+/**
  * Arma el celular internacional completo (código de país + número) para
  * mandar a Kommo/la base tal cual, sin la normalización a formato argentino
  * de normalizarCelularAR (que le pondría 549 adelante y rompería el

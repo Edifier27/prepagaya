@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { centrosPorEspecialidad, fuenteEspecialidades } from '@/lib/data/cartilla-zonas/especialidades'
 import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/utils'
+import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
+import { prepagas } from '@/lib/data/prepagas'
 import { ldJson } from '@/lib/jsonld'
 
 // Fertilización asistida (28-sep-2026, pedido de Darío): explica la Ley
@@ -12,10 +14,18 @@ import { ldJson } from '@/lib/jsonld'
 // todo el mundo le queda vacío, se listan esos 2 y se deriva a la pestaña de
 // Ginecología de /cartillas/swiss-medical (scripts/cartilla-swiss/especialidades.py)
 // para el resto. Se suma OSDE cuando esté su cartilla oficial vigente 2026.
+//
+// 29-oct-2026 (Darío): página única para "qué prepaga cubre fertilidad" (el
+// post del blog redirige acá y /coberturas/fertilidad resume y enlaza).
+// Respuesta directa arriba, tabla de tratamientos según la ley, Swiss
+// primero con los 10 centros de fertilidad de su cartilla oficial (los de
+// "Esterilidad" más los de Ginecología con nombre de centro de fertilidad),
+// OSDE con lo que dice su página oficial de cobertura, y cómo pedir la
+// autorización. Nada de convenios sin fuente.
 
 const URL = `${SITE_URL}/fertilizacion-asistida`
-const TITULO = 'Fertilización asistida con prepaga: qué cubre la Ley 26.862 y centros por zona'
-const DESCRIPCION = 'La Ley 26.862 obliga a las prepagas a cubrir la fertilización asistida: hasta 4 tratamientos de baja complejidad y 3 de alta complejidad por año, incluidos en el PMO. Te explicamos qué cubre exactamente y qué camino seguir para atenderte.'
+const TITULO = 'Fertilización asistida con prepaga: tratamientos, centros y qué plan la cubre'
+const DESCRIPCION = 'Todas las prepagas cubren la fertilización asistida por ley, en todos los planes: 4 tratamientos de baja y 3 de alta complejidad por año. FIV, ICSI, ovodonación, centros de Swiss Medical y OSDE.'
 
 export const metadata: Metadata = {
   title: TITULO,
@@ -27,6 +37,11 @@ export const metadata: Metadata = {
     'cobertura fertilizacion in vitro argentina',
     'centros de fertilidad swiss medical',
     'cuantos tratamientos de fertilidad cubre la prepaga',
+    'prepagas que cubren fertilizacion asistida',
+    'osde fertilidad',
+    'swiss medical fertilizacion asistida',
+    'ovodonacion prepaga',
+    'que plan cubre fertilizacion in vitro',
   ],
   openGraph: { title: TITULO, description: DESCRIPCION, url: URL, type: 'website', images: [OG_IMAGE] },
 }
@@ -60,6 +75,14 @@ const puntos = [
 
 const faqs = [
   {
+    q: '¿Qué plan de Swiss Medical u OSDE cubre la fertilización asistida?',
+    a: 'Todos. La Ley 26.862 no distingue planes: el SMG02 de Swiss Medical o el 210 de OSDE cubren los mismos tratamientos que los planes más altos. Lo que cambia es la red de centros: Swiss Medical tiene centros de fertilidad en su cartilla oficial en Comodoro Rivadavia, Neuquén, Mar del Plata, Córdoba, Paraná, Jujuy, Bariloche y Tucumán, y OSDE cubre con los prestadores de su cartilla.',
+  },
+  {
+    q: '¿La prepaga cubre la ovodonación?',
+    a: 'Sí. La ley incluye las técnicas con donación de óvulos, semen o embriones, dentro de los topes de baja y alta complejidad. El banco de gametos tiene que estar inscripto en el registro oficial (REFES): hubo un fallo en el que se revocó la cobertura porque el banco del centro no lo estaba.',
+  },
+  {
     q: '¿Qué prepagas cubren la fertilización asistida?',
     a: 'Todas. La Ley 26.862 es obligatoria para el sector público, las obras sociales y todas las entidades de medicina prepaga habilitadas por la Ley 26.682, sin excepción y en cualquier plan.',
   },
@@ -81,8 +104,30 @@ const faqs = [
   },
 ]
 
+
+// Tratamientos según la Ley 26.862 (art. 2 y 8) y el Decreto 956/2013 (art. 2 y 8)
+const tratamientos = [
+  { t: 'Baja complejidad', que: 'Inducción de ovulación, estimulación ovárica controlada e inseminación intrauterina (con semen de la pareja o de donante).', tope: 'Hasta 4 por año', req: 'Mayor de edad y consentimiento informado.' },
+  { t: 'Alta complejidad: FIV e ICSI', que: 'Fecundación in vitro e inyección intracitoplasmática de espermatozoides, con la transferencia de embriones.', tope: 'Hasta 3 por año, con 3 meses entre uno y otro', req: 'Antes, 3 intentos de baja complejidad, salvo indicación médica que justifique ir directo.' },
+  { t: 'Donación de óvulos, semen o embriones', que: 'Ovodonación, donación de semen y de embriones, incluidas en las técnicas que cubre la ley.', tope: 'Dentro de los topes de baja o alta complejidad', req: 'El banco de gametos tiene que estar inscripto en el registro oficial (REFES).' },
+  { t: 'Preservación de la fertilidad', que: 'Guarda de óvulos, espermatozoides o tejido reproductivo.', tope: 'Cuando hay indicación médica', req: 'Por un tratamiento o enfermedad que puede afectar la fertilidad (por ejemplo, oncológico), también en menores. La preservación electiva no es obligatoria.' },
+  { t: 'Diagnóstico, medicación y terapias de apoyo', que: 'Estudios de diagnóstico, la medicación del tratamiento y las terapias de apoyo.', tope: 'Incluidos en el PMO', req: 'Con indicación del médico tratante.' },
+]
+
+// Centros de fertilidad en la cartilla oficial de Swiss Medical: los de
+// "Esterilidad" y los de Ginecología con nombre de centro de fertilidad
+const NOMBRE_FERTILIDAD = /reproduc|fertil|fecund|gestar|crecer/i
+function centrosFertilidadSwiss() {
+  const vistos = new Set<string>()
+  return [...centrosPorEspecialidad('swiss-medical', 'Esterilidad'), ...centrosPorEspecialidad('swiss-medical', 'Ginecología').filter(({ centro }) => NOMBRE_FERTILIDAD.test(centro.nombre))]
+    .filter(({ centro }) => !vistos.has(centro.nombre) && vistos.add(centro.nombre))
+    .sort((a, b) => a.zona.localeCompare(b.zona, 'es'))
+}
+
 export default function FertilizacionAsistidaPage() {
-  const centrosFertilidad = centrosPorEspecialidad('swiss-medical', 'Esterilidad')
+  const centrosFertilidad = centrosFertilidadSwiss()
+  const swiss = prepagas.find((p) => p.slug === 'swiss-medical')!
+  const osde = prepagas.find((p) => p.slug === 'osde')!
   const fuenteEsp = fuenteEspecialidades('swiss-medical')
 
   const jsonLd = [
@@ -104,7 +149,7 @@ export default function FertilizacionAsistidaPage() {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: SITE_NAME, item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Cartillas', item: `${SITE_URL}/cartillas` },
+        { '@type': 'ListItem', position: 2, name: 'Coberturas', item: `${SITE_URL}/coberturas` },
         { '@type': 'ListItem', position: 3, name: 'Fertilización asistida' },
       ],
     },
@@ -125,16 +170,54 @@ export default function FertilizacionAsistidaPage() {
           <nav className="text-sm text-gray-500 mb-5">
             <Link href="/" className="hover:text-[#E8002D]">{SITE_NAME}</Link>
             <span className="mx-2 text-gray-300">›</span>
-            <Link href="/cartillas" className="hover:text-[#E8002D]">Cartillas</Link>
+            <Link href="/coberturas" className="hover:text-[#E8002D]">Coberturas</Link>
             <span className="mx-2 text-gray-300">›</span>
             <span className="text-gray-700">Fertilización asistida</span>
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight text-balance">
-            Fertilización asistida con prepaga: qué cubre la ley y dónde atenderte
+            ¿Qué prepaga cubre la fertilización asistida? Todas, en todos los planes
           </h1>
+          {/* Respuesta directa para Google y las IA */}
           <p className="text-gray-700 mt-3 leading-relaxed">
-            La Ley 26.862 (2013) obliga a todas las prepagas a cubrir la reproducción médicamente asistida, en cualquier plan.
-            Te explicamos qué cubre exactamente, con las dos normas oficiales, y qué camino seguir para atenderte.
+            La <strong>Ley 26.862</strong> obliga a todas las prepagas y obras sociales a cubrir la reproducción médicamente asistida, en cualquier plan y sin costo extra:
+            hasta <strong>4 tratamientos de baja complejidad</strong> y <strong>3 de alta complejidad</strong> (FIV o ICSI) por año, con la medicación, la donación de óvulos o semen
+            y la preservación de la fertilidad por motivo médico (Decreto 956/2013). Lo que cambia entre prepagas no es si lo cubren, sino <strong>en qué centros</strong> te atendés.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2 text-sm">
+            <a href="#tratamientos" className="rounded-full border border-gray-200 bg-white px-3.5 py-1.5 font-medium text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">Tratamientos</a>
+            <a href="#swiss-medical" className="rounded-full border border-gray-200 bg-white px-3.5 py-1.5 font-medium text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">Centros de Swiss Medical</a>
+            <a href="#osde" className="rounded-full border border-gray-200 bg-white px-3.5 py-1.5 font-medium text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">OSDE</a>
+            <a href="#autorizacion" className="rounded-full border border-gray-200 bg-white px-3.5 py-1.5 font-medium text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">Cómo pedir la autorización</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Tratamientos y qué cubre la ley */}
+      <section id="tratamientos" className="py-10 bg-white scroll-mt-20">
+        <div className="container max-w-3xl! mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-1">Tratamientos que cubre la prepaga y con qué tope</h2>
+          <p className="text-sm text-gray-500 mb-5">Igual en todas las prepagas y en todos los planes: es una prestación obligatoria del PMO. Fuente: Ley 26.862 y Decreto 956/2013.</p>
+          <div className="overflow-x-auto rounded-xl border border-gray-200">
+            <table className="w-full text-sm">
+              <caption className="sr-only">Tratamientos de fertilidad que cubre la prepaga por la Ley 26.862, con tope y requisito</caption>
+              <thead className="bg-gray-50 text-left text-xs uppercase tracking-wide text-gray-500">
+                <tr><th className="px-3 py-2.5 font-semibold">Tratamiento</th><th className="px-3 py-2.5 font-semibold">Qué incluye</th><th className="px-3 py-2.5 font-semibold">Tope</th><th className="px-3 py-2.5 font-semibold">Requisito</th></tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {tratamientos.map((x) => (
+                  <tr key={x.t} className="align-top">
+                    <th scope="row" className="px-3 py-3 text-left font-semibold text-gray-900">{x.t}</th>
+                    <td className="px-3 py-3 text-gray-600">{x.que}</td>
+                    <td className="px-3 py-3 font-medium text-gray-800">{x.tope}</td>
+                    <td className="px-3 py-3 text-gray-600">{x.req}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-sm text-gray-600">
+            <strong className="text-gray-900">¿Qué plan lo cubre?</strong> Todos. El SMG02 de Swiss Medical o el 210 de OSDE cubren lo mismo que el SMG70 o el 510: la ley no distingue planes.
+            Lo que cambia entre planes es la red de centros y, en los de red abierta, la posibilidad de reintegro fuera de cartilla, que depende de las condiciones de cada plan.
           </p>
         </div>
       </section>
@@ -177,16 +260,17 @@ export default function FertilizacionAsistidaPage() {
           el mundo, se listan los 2 reales y se deriva a la pestaña de
           Ginecología (con cientos de centros) para el resto. */}
       {centrosFertilidad.length > 0 && (
-        <section className="py-10 bg-gray-50 border-t border-gray-100">
+        <section id="swiss-medical" className="py-10 bg-gray-50 border-t border-gray-100 scroll-mt-20">
           <div className="container max-w-3xl! mx-auto">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-1 text-center">Centros de fertilidad</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-1 text-center">Swiss Medical: {centrosFertilidad.length} centros de fertilidad en su cartilla</h2>
             <p className="text-sm text-gray-500 mb-6 text-center">
-              En su buscador oficial (consultado el {fuenteEsp?.vigencia}), Swiss Medical clasifica específicamente como &quot;Esterilidad&quot; solo estos {centrosFertilidad.length} centros en todo el país. Cubren los tres planes (SMG02, SMG20 y SMG30).
+              Según su buscador oficial de cartilla (consultado el {fuenteEsp?.vigencia}), estos son los centros de fertilidad y reproducción de Swiss Medical en el país,
+              para los planes SMG02, SMG20 y SMG30. En CABA y GBA no figura ninguno con nombre de centro de fertilidad: ahí te deriva tu ginecólogo/a de cartilla.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
               {centrosFertilidad.map(({ zona, centro }) => {
                 const s = centro.sedes[0]
-                const maps = s?.lat != null && s?.lon != null ? `https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lon}` : null
+                const maps = s?.lat && s?.lon ? `https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lon}` : null
                 return (
                   <div key={centro.nombre} className="bg-white rounded-xl border border-gray-200 p-4">
                     <h3 className="font-semibold text-gray-900 text-sm">{centro.nombre}</h3>
@@ -208,15 +292,69 @@ export default function FertilizacionAsistidaPage() {
               })}
             </div>
             <p className="text-sm text-gray-600 bg-white border border-gray-200 rounded-2xl p-5">
-              ¿No estás cerca de estos dos? En el resto del país, la vía habitual es que tu ginecólogo/a de cartilla te derive a un centro de fertilidad —
-              no hace falta que figure con ese rótulo específico en el buscador. Mirá los ginecólogos y centros de Swiss Medical en tu zona en la{' '}
+              ¿No estás cerca de estos centros? En el resto del país, la vía habitual es que tu ginecólogo/a de cartilla te derive a un centro de fertilidad —
+              no hace falta que figure con ese rótulo en el buscador. Mirá los ginecólogos y centros de Swiss Medical en tu zona en la{' '}
               <Link href="/cartillas/swiss-medical" className="font-semibold text-[#E8002D] hover:underline">
                 cartilla por especialidad →
               </Link>
             </p>
+
+            <div className="mt-6 flex flex-col items-center gap-2 text-center">
+              <ContratarPlanButton
+                prepagaNombre={swiss.nombre}
+                fuente="fertilidad-swiss"
+                titulo="Tu precio con 15% OFF"
+                label="Cotizá Swiss Medical con 15% OFF"
+                planesOpciones={swiss.planes.map((pl) => pl.nombre)}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
+              />
+              <Link href="/prepagas/swiss-medical" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D]">Ver los planes y precios de Swiss Medical →</Link>
+            </div>
           </div>
         </section>
       )}
+
+      {/* OSDE: lo que dice su página oficial de cobertura (sin lista de centros publicada que podamos citar) */}
+      <section id="osde" className="py-10 bg-white border-t border-gray-100 scroll-mt-20">
+        <div className="container max-w-3xl! mx-auto">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">OSDE: fertilización asistida con prestadores de cartilla</h2>
+          <p className="text-sm text-gray-700 leading-relaxed">
+            En su página oficial de servicios y cobertura, OSDE informa que cubre la <strong>fertilización asistida de alta complejidad</strong> y la <strong>inseminación artificial
+            de baja complejidad</strong> &quot;con prestadores e instituciones de cartilla, según Ley 26.862&quot;, en todos sus planes (210, 310, 410, 510 y Flux).
+            Los centros los asigna la cartilla de tu zona: consultalos con tu ginecólogo/a o en la cartilla de OSDE antes de empezar.
+          </p>
+          <p className="mt-2 text-xs text-gray-500">
+            Fuente: <a href="https://www.osde.com.ar/informacion-al-socio/servicios-y-cobertura/fertilidad" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#E8002D]">osde.com.ar, servicios y cobertura: fertilidad</a> (octubre 2026).
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <ContratarPlanButton
+              prepagaNombre={osde.nombre}
+              fuente="fertilidad-osde"
+              conPromo={false}
+              titulo="Cotizá OSDE"
+              label="Cotizar OSDE"
+              planesOpciones={osde.planes.map((pl) => pl.nombre)}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-[#E8002D] text-[#E8002D] hover:bg-red-50 font-bold rounded-xl transition-all text-sm"
+            />
+            <Link href="/cartillas/osde" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D]">Cartilla de OSDE por zona →</Link>
+            <Link href="/prepagas/osde" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D]">Planes y precios de OSDE →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Cómo pedir la autorización */}
+      <section id="autorizacion" className="py-10 bg-gray-50 border-t border-gray-100 scroll-mt-20">
+        <div className="container max-w-3xl! mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Cómo pedir la autorización a tu prepaga</h2>
+          <ol className="space-y-3 text-sm text-gray-700">
+            <li><strong className="text-gray-900">1. Consulta con un especialista de cartilla.</strong> Es quien indica el tratamiento (baja o alta complejidad) y te deriva a un centro de fertilidad de la red de tu prepaga.</li>
+            <li><strong className="text-gray-900">2. Armá la documentación.</strong> Lo habitual es un resumen de historia clínica firmado por el médico, el tratamiento indicado, la medicación con las dosis y el consentimiento informado (Ley 26.529). Cada prepaga tiene su formulario: pedilo antes.</li>
+            <li><strong className="text-gray-900">3. Confirmá que el centro esté habilitado.</strong> Tiene que estar inscripto en el registro oficial de establecimientos (REFES) del Ministerio de Salud; si hay donación de óvulos o semen, también el banco de gametos.</li>
+            <li><strong className="text-gray-900">4. Si te la niegan o te piden carencia,</strong> pedí la respuesta por escrito y hacé el reclamo ante la Superintendencia de Servicios de Salud (0800-222-72583). La infertilidad no es preexistencia y lo que está en el PMO no tiene carencia.</li>
+          </ol>
+        </div>
+      </section>
+
 
       {/* FAQ */}
       <section className="py-10 bg-white border-t border-gray-100">

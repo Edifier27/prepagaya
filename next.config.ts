@@ -179,7 +179,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/blog/prepagas-que-cubren-tratamientos-fertilidad",
-        destination: "/coberturas/fertilidad",
+        // 29-oct-2026: a la página única de fertilidad (tratamientos y centros)
+        destination: "/fertilizacion-asistida",
         permanent: true,
       },
       {

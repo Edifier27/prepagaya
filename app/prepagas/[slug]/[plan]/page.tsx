@@ -890,6 +890,10 @@ export default async function PlanPage({ params, searchParams }: Props) {
               )
             })}
           </div>
+          {/* Fertilización asistida: obligatoria en todos los planes por la Ley 26.862 (29-oct-2026) */}
+          <Link href="/fertilizacion-asistida" className="mt-3 inline-block text-sm font-semibold text-gray-600 hover:text-[#E8002D]">
+            Fertilización asistida: el {plan.nombre} la cubre por ley (Ley 26.862) →
+          </Link>
         </div>
       </section>
 

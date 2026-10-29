@@ -162,13 +162,16 @@ export const coberturas: CoberturaData[] = [
     nombre: 'Fertilización y tratamientos de fertilidad',
     emoji: '🍀',
     titulo: '¿Las prepagas cubren fertilización in vitro y tratamientos de fertilidad?',
-    metaDescripcion: 'Todo sobre la cobertura de fertilidad en prepagas argentinas. FIV, ovodonación, inseminación artificial. Qué dice la ley y cuáles son los mejores planes.',
+    metaDescripcion: 'Todas las prepagas cubren la fertilización asistida por ley, en todos los planes: FIV, ICSI, ovodonación e inseminación. Qué dice la Ley 26.862 y dónde atenderte.',
     intro: 'Argentina tiene una de las legislaciones más avanzadas del mundo en fertilidad: la Ley 26.862 obliga a prepagas y obras sociales a cubrir tratamientos de reproducción médicamente asistida. Sin embargo, hay diferencias importantes en cuántos ciclos cubren, qué técnicas incluyen y la calidad de los centros de fertilidad.',
     queEstableceLaLey: 'La Ley 26.862 obliga a las prepagas a cubrir de forma integral la reproducción médicamente asistida a toda persona mayor de edad, incluida la medicación. Su reglamentación fija el límite: hasta 4 tratamientos de baja complejidad por año y hasta 3 de alta complejidad (FIV, ICSI), con al menos 3 meses entre uno y otro; antes de la alta complejidad van como mínimo 3 intentos de baja, salvo una causa médica documentada (Decreto 956/2013, art. 8). La ley no discrimina por orientación sexual ni estado civil, y los gametos donados deben venir de bancos inscriptos.',
     prepagasRecomendadas: [
-      { slug: 'swiss-medical', razon: 'Swiss Medical tiene convenio con los mejores centros de fertilidad del país (CEGYR, Procrearte). Cubre los tratamientos de la Ley 26.862, con la medicación incluida. Atención personalizada y coordinación entre ginecólogo y especialista en fertilidad.', planSlug: 'smg20' },
-      { slug: 'osde', razon: 'OSDE tiene la red de centros de fertilidad adheridos más amplia. El Plan 310 cubre los tratamientos por ley. Su ventaja es la cantidad de opciones de centros especializados en todo el país.', planSlug: '310' },
-      { slug: 'sancor-salud', razon: 'Sancor Salud cumple la ley 26.862 en todas sus modalidades. Buena opción para el interior del país donde Swiss y OSDE tienen menos centros de fertilidad habilitados.', planSlug: 'plan-4500' },
+      // 29-oct-2026: sin convenios ni "red más amplia" sin fuente. Swiss: los
+      // centros de fertilidad de su cartilla oficial (/fertilizacion-asistida);
+      // OSDE: su página oficial de cobertura. La ley cubre en todos los planes.
+      { slug: 'swiss-medical', razon: 'Cubre la Ley 26.862 en todos sus planes, con la medicación. En su cartilla oficial figuran 10 centros de fertilidad y reproducción (Comodoro Rivadavia, Neuquén, Mar del Plata, Córdoba, Paraná, Jujuy, Bariloche y Tucumán); en CABA y GBA te deriva tu ginecólogo/a de cartilla. Cotizando online tenés 15% OFF.', planSlug: 'smg20' },
+      { slug: 'osde', razon: 'Según su página oficial, cubre la fertilización asistida de alta complejidad y la inseminación de baja complejidad con prestadores e instituciones de su cartilla, según la Ley 26.862, en todos sus planes (desde el 210).', planSlug: '210' },
+      { slug: 'sancor-salud', razon: 'Cubre la Ley 26.862 en todos sus planes. Tiene fuerte presencia en el interior del país, sobre todo en Córdoba, Santa Fe y Entre Ríos.', planSlug: 'plan-4500' },
     ],
     prepagasRestrictivas: [],
     quePreguntar: [

@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { CODIGO_PAIS_INTL, formatearCelularInternacional } from '@/lib/utils'
-import { trackLead } from '@/lib/analytics'
+import { CODIGO_PAIS_INTL, CODIGOS_PAIS_OPCIONES, formatearCelularInternacional } from '@/lib/utils'
+import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
@@ -32,6 +32,9 @@ interface Textos {
   exitoTexto: string
   seguridad: string
   interesInterno: string // metadata interna en español, para el panel de Darío/Gabriela
+  opcional: string
+  error: string
+  codigoPais: string
 }
 
 const TEXTOS: Record<Locale, Textos> = {
@@ -50,6 +53,9 @@ const TEXTOS: Record<Locale, Textos> = {
     exitoTexto: 'We received your info. An advisor will contact you shortly with your exact quote.',
     seguridad: 'Secure SSL connection · Data protected',
     interesInterno: 'Extranjero (EE.UU.)',
+    opcional: 'optional',
+    error: 'We couldn’t send it. Please try again.',
+    codigoPais: 'Country code',
   },
   ru: {
     boton: 'Получить расчёт →',
@@ -66,6 +72,9 @@ const TEXTOS: Record<Locale, Textos> = {
     exitoTexto: 'Мы получили ваши данные. Консультант свяжется с вами в ближайшее время с точным расчётом.',
     seguridad: 'Безопасное SSL-соединение · Данные защищены',
     interesInterno: 'Extranjero (Rusia)',
+    opcional: 'необязательно',
+    error: 'Не удалось отправить. Попробуйте ещё раз.',
+    codigoPais: 'Код страны',
   },
   zh: {
     boton: '获取报价 →',
@@ -82,6 +91,9 @@ const TEXTOS: Record<Locale, Textos> = {
     exitoTexto: '我们已收到您的信息,顾问会尽快与您联系,提供准确报价。',
     seguridad: 'SSL 安全连接 · 数据受保护',
     interesInterno: 'Extranjero (China)',
+    opcional: '可选',
+    error: '发送失败,请重试。',
+    codigoPais: '国家代码',
   },
 }
 
@@ -90,11 +102,15 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
   const [nombre, setNombre] = useState('')
   const [celular, setCelular] = useState('')
   const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const t = TEXTOS[locale]
   const codigoPais = CODIGO_PAIS_INTL[locale]
-  const ok = nombre.trim().length >= 2 && celular.replace(/\D/g, '').length >= 6 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
+  const [prefijo, setPrefijo] = useState(codigoPais.prefijo)
+  // Email opcional (29-oct-2026), como en el formulario en español: con
+  // nombre y celular alcanza para que el asesor escriba
+  const ok = nombre.trim().length >= 2 && celular.replace(/\D/g, '').length >= 6 && (email.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+  const esAR = prefijo === '54'
 
   function handleClose() {
     setOpen(false)
@@ -105,30 +121,33 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
     if (!ok) return
     setStatus('loading')
     try {
-      await fetch('/api/leads', {
+      const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...datoTrampa(),
           nombre: nombre.trim(),
-          celular: formatearCelularInternacional(codigoPais.prefijo, celular),
-          email: email.trim(),
+          // +54: celular argentino, sin "pais" para que se normalice con el 9
+          celular: esAR ? celular.trim() : formatearCelularInternacional(prefijo, celular),
+          email: email.trim() || `${prefijo}${celular.replace(/\D/g, '')}@sin-email.com`,
           fuente,
           prepaga_interes: t.interesInterno,
-          pais: locale,
+          ...(esAR ? {} : { pais: `${locale}+${prefijo}` }),
         }),
       })
+      // Antes mostraba "listo" aunque la API respondiera error
+      if (!res.ok) throw new Error(String(res.status))
       trackLead(fuente)
       setStatus('success')
     } catch {
-      setStatus('idle')
+      setStatus('error')
     }
   }
 
   return (
     <>
       <button
-        onClick={() => setOpen(true)}
+        onClick={() => { setOpen(true); trackEvent('abrir_cotizador', { fuente, prepaga: t.interesInterno }) }}
         className={className ?? 'inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-2xl transition-all shadow-lg text-sm'}
       >
         {label ?? t.boton}
@@ -182,18 +201,19 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">{t.labelCelular} *</label>
                       <div className="flex gap-2">
-                        <span className="flex-shrink-0 flex items-center justify-center px-3 border-2 border-gray-200 rounded-xl text-sm font-semibold text-gray-600 bg-gray-50">
-                          +{codigoPais.prefijo}
-                        </span>
+                        <select value={prefijo} onChange={(e) => setPrefijo(e.target.value)} aria-label={t.codigoPais}
+                          className="flex-shrink-0 w-[6.5rem] border-2 border-gray-200 rounded-xl px-2 text-sm font-semibold text-gray-700 bg-gray-50 focus:outline-none focus:border-[#E8002D]">
+                          {CODIGOS_PAIS_OPCIONES.map((o) => <option key={o.prefijo} value={o.prefijo}>+{o.prefijo} {o.pais}</option>)}
+                        </select>
                         <input
                           type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}
-                          placeholder={codigoPais.placeholder} autoComplete="tel" inputMode="tel"
+                          placeholder={prefijo === codigoPais.prefijo ? codigoPais.placeholder : esAR ? '11 2345-6789' : ''} autoComplete="tel" inputMode="tel"
                           className="w-full min-w-0 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#E8002D] transition-colors"
                         />
                       </div>
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-gray-700 mb-1">{t.labelEmail} *</label>
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">{t.labelEmail} <span className="font-normal text-gray-400">({t.opcional})</span></label>
                       <input
                         type="email" value={email} onChange={(e) => setEmail(e.target.value)}
                         placeholder={t.placeholderEmail} autoComplete="email"
@@ -203,6 +223,7 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
                   </div>
 
                   <TrustBadge texto={t.seguridad} className="mb-3" />
+                  {status === 'error' && <p role="alert" className="mb-3 text-center text-sm font-semibold text-[#B8001F]">{t.error}</p>}
 
                   <button
                     onClick={handleSubmit}
