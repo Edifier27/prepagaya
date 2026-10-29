@@ -175,7 +175,7 @@ export default async function CoberturaPage({ params }: Props) {
                 todavía, aunque este hub es su lugar natural. */}
             {cob.slug === 'fertilidad' && (
               <Link href="/fertilizacion-asistida" className="block mt-2 text-sm font-semibold text-blue-700 hover:underline">
-                Guía completa de la Ley 26.862 y los centros de fertilidad de Swiss Medical →
+                Tratamientos que cubre la ley, centros de Swiss Medical y OSDE y cómo pedir la autorización →
               </Link>
             )}
           </div>
