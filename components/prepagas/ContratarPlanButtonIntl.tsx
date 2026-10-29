@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { CODIGO_PAIS_INTL, CODIGOS_PAIS_OPCIONES, formatearCelularInternacional } from '@/lib/utils'
+import { useState, useSyncExternalStore } from 'react'
+import { CODIGO_PAIS_INTL, CODIGOS_PAIS_OPCIONES, banderaPais, formatearCelularInternacional } from '@/lib/utils'
+import { COOKIE_PAIS_IP } from '@/lib/geo-zonas'
 import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
@@ -97,6 +98,11 @@ const TEXTOS: Record<Locale, Textos> = {
   },
 }
 
+// País del silo si la IP no dice otra cosa
+const ISO_SILO: Record<Locale, string> = { us: 'US', ru: 'RU', zh: 'CN' }
+const sinSuscripcion = () => () => {}
+const leerPaisIp = () => document.cookie.match(new RegExp(`(?:^|; )${COOKIE_PAIS_IP}=([A-Z]{2})`))?.[1] ?? ''
+
 export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Props) {
   const [open, setOpen] = useState(false)
   const [nombre, setNombre] = useState('')
@@ -106,7 +112,12 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
 
   const t = TEXTOS[locale]
   const codigoPais = CODIGO_PAIS_INTL[locale]
-  const [prefijo, setPrefijo] = useState(codigoPais.prefijo)
+  // Arranca con el país de la IP (bandera y código) si está en la lista; si
+  // no, con el del silo. La persona lo puede cambiar.
+  const paisIp = useSyncExternalStore(sinSuscripcion, leerPaisIp, () => '')
+  const [isoElegido, setIsoElegido] = useState('')
+  const iso = isoElegido || (CODIGOS_PAIS_OPCIONES.some((o) => o.iso === paisIp) ? paisIp : ISO_SILO[locale])
+  const prefijo = CODIGOS_PAIS_OPCIONES.find((o) => o.iso === iso)?.prefijo ?? codigoPais.prefijo
   // Email opcional (29-oct-2026), como en el formulario en español: con
   // nombre y celular alcanza para que el asesor escriba
   const ok = nombre.trim().length >= 2 && celular.replace(/\D/g, '').length >= 6 && (email.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
@@ -131,7 +142,8 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
           celular: esAR ? celular.trim() : formatearCelularInternacional(prefijo, celular),
           email: email.trim() || `${prefijo}${celular.replace(/\D/g, '')}@sin-email.com`,
           fuente,
-          prepaga_interes: t.interesInterno,
+          // Página de la que vino + país elegido, para el asesor
+          prepaga_interes: `${t.interesInterno} · ${CODIGOS_PAIS_OPCIONES.find((o) => o.iso === iso)?.pais ?? iso}`,
           ...(esAR ? {} : { pais: `${locale}+${prefijo}` }),
         }),
       })
@@ -201,9 +213,9 @@ export function ContratarPlanButtonIntl({ locale, fuente, label, className }: Pr
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">{t.labelCelular} *</label>
                       <div className="flex gap-2">
-                        <select value={prefijo} onChange={(e) => setPrefijo(e.target.value)} aria-label={t.codigoPais}
-                          className="flex-shrink-0 w-[6.5rem] border-2 border-gray-200 rounded-xl px-2 text-sm font-semibold text-gray-700 bg-gray-50 focus:outline-none focus:border-[#E8002D]">
-                          {CODIGOS_PAIS_OPCIONES.map((o) => <option key={o.prefijo} value={o.prefijo}>+{o.prefijo} {o.pais}</option>)}
+                        <select value={iso} onChange={(e) => setIsoElegido(e.target.value)} aria-label={t.codigoPais}
+                          className="flex-shrink-0 w-[7rem] border-2 border-gray-200 rounded-xl px-2 text-sm font-semibold text-gray-700 bg-gray-50 focus:outline-none focus:border-[#E8002D]">
+                          {CODIGOS_PAIS_OPCIONES.map((o) => <option key={o.iso} value={o.iso}>{banderaPais(o.iso)} +{o.prefijo} {o.pais}</option>)}
                         </select>
                         <input
                           type="tel" value={celular} onChange={(e) => setCelular(e.target.value)}

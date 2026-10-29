@@ -226,29 +226,38 @@ export const CODIGO_PAIS_INTL: Record<'us' | 'ru' | 'zh', { prefijo: string; pla
  * el del silo y se puede cambiar. Argentina (+54) va por el camino normal de
  * celulares argentinos (lleva el 9 de WhatsApp).
  */
-export const CODIGOS_PAIS_OPCIONES: { prefijo: string; pais: string }[] = [
-  { prefijo: '54', pais: 'Argentina' },
-  { prefijo: '598', pais: 'Uruguay' },
-  { prefijo: '1', pais: 'USA / Canada' },
-  { prefijo: '44', pais: 'UK' },
-  { prefijo: '34', pais: 'España' },
-  { prefijo: '55', pais: 'Brasil' },
-  { prefijo: '56', pais: 'Chile' },
-  { prefijo: '595', pais: 'Paraguay' },
-  { prefijo: '57', pais: 'Colombia' },
-  { prefijo: '52', pais: 'México' },
-  { prefijo: '49', pais: 'Deutschland' },
-  { prefijo: '33', pais: 'France' },
-  { prefijo: '39', pais: 'Italia' },
-  { prefijo: '31', pais: 'Nederland' },
-  { prefijo: '7', pais: 'Россия' },
-  { prefijo: '375', pais: 'Беларусь' },
-  { prefijo: '380', pais: 'Україна' },
-  { prefijo: '86', pais: '中国' },
-  { prefijo: '852', pais: '香港' },
-  { prefijo: '65', pais: 'Singapore' },
-  { prefijo: '61', pais: 'Australia' },
+export const CODIGOS_PAIS_OPCIONES: { iso: string; prefijo: string; pais: string }[] = [
+  { iso: 'AR', prefijo: '54', pais: 'Argentina' },
+  { iso: 'UY', prefijo: '598', pais: 'Uruguay' },
+  { iso: 'US', prefijo: '1', pais: 'USA' },
+  { iso: 'CA', prefijo: '1', pais: 'Canada' },
+  { iso: 'GB', prefijo: '44', pais: 'UK' },
+  { iso: 'ES', prefijo: '34', pais: 'España' },
+  { iso: 'BR', prefijo: '55', pais: 'Brasil' },
+  { iso: 'CL', prefijo: '56', pais: 'Chile' },
+  { iso: 'PY', prefijo: '595', pais: 'Paraguay' },
+  { iso: 'BO', prefijo: '591', pais: 'Bolivia' },
+  { iso: 'PE', prefijo: '51', pais: 'Perú' },
+  { iso: 'CO', prefijo: '57', pais: 'Colombia' },
+  { iso: 'VE', prefijo: '58', pais: 'Venezuela' },
+  { iso: 'MX', prefijo: '52', pais: 'México' },
+  { iso: 'DE', prefijo: '49', pais: 'Deutschland' },
+  { iso: 'FR', prefijo: '33', pais: 'France' },
+  { iso: 'IT', prefijo: '39', pais: 'Italia' },
+  { iso: 'NL', prefijo: '31', pais: 'Nederland' },
+  { iso: 'IL', prefijo: '972', pais: 'Israel' },
+  { iso: 'RU', prefijo: '7', pais: 'Россия' },
+  { iso: 'BY', prefijo: '375', pais: 'Беларусь' },
+  { iso: 'UA', prefijo: '380', pais: 'Україна' },
+  { iso: 'CN', prefijo: '86', pais: '中国' },
+  { iso: 'HK', prefijo: '852', pais: '香港' },
+  { iso: 'SG', prefijo: '65', pais: 'Singapore' },
+  { iso: 'IN', prefijo: '91', pais: 'India' },
+  { iso: 'AU', prefijo: '61', pais: 'Australia' },
 ]
+
+/** "AR" → 🇦🇷 (las letras como indicadores regionales) */
+export const banderaPais = (iso: string) => iso.toUpperCase().replace(/[A-Z]/g, (c) => String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65))
 
 /**
  * Arma el celular internacional completo (código de país + número) para
