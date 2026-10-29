@@ -575,11 +575,8 @@ export default async function PlanPage({ params, searchParams }: Props) {
   if (!prep || !plan) notFound()
 
   const orejitas = orejitasPlan(prep, plan)
-  // Caja de precio (25-oct-2026): promo solo en Swiss Medical; la escala por
-  // edad de CABA o, si el plan no se vende ahí, de la primera zona con cuadro
+  // Caja de cotizar (25-oct-2026): promo solo en Swiss Medical
   const promo = prep.slug === 'swiss-medical' ? { corta: '15% OFF', detalle: 'cotizando online · 25% monotributistas' } : null
-  const escalaCaja = ['caba', 'buenos-aires-interior', 'cordoba', 'santa-fe', 'mendoza', 'tucuman', 'salta', 'neuquen']
-    .map((z) => escalaPorEdad(prep.slug, plan.slug, z)).find((e) => e !== null) ?? null
   const { provincia } = await searchParams
   const cartillaPlanLink = linkCartillaPlan(prep.slug, plan.slug)
   // Si se llega desde una página de zona (ej. "Sancor Salud en Córdoba") ya
@@ -765,12 +762,10 @@ export default async function PlanPage({ params, searchParams }: Props) {
             </div>
           </div>
 
-          {/* Caja de precio tipo carrito (25-oct-2026): precio de lista estimado
-              por edad, botón de cotizar y comparar, como la caja anterior */}
+          {/* Caja de cotizar (25-oct-2026; sin calculadora por edad desde el
+              29-oct-2026): botón de cotizar y comparar */}
           <CajaPrecioPlan
             titulo={`${prep.nombre} ${plan.nombre}`}
-            rangos={escalaCaja?.rangos ?? null}
-            region={escalaCaja && regionTexto(escalaCaja.region) !== 'lista general' ? regionTexto(escalaCaja.region) : ''}
             promo={promo}
             hrefComparar={`/comparar?plan=${prep.slug}/${plan.slug}#planes`}
             cta={
