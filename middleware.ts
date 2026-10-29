@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { detectarZona, COOKIE_ZONA_GEO } from '@/lib/geo-zonas'
+import { detectarZona, COOKIE_ZONA_GEO, COOKIE_PAIS_IP } from '@/lib/geo-zonas'
 import { COOKIE_ENTRADA, canalDeHost, esPropio, escribirEntrada } from '@/lib/entrada'
 import { COOKIE_AB } from '@/lib/cotizador-v2'
 
@@ -43,6 +43,13 @@ export function middleware(request: NextRequest) {
       path: '/',
       sameSite: 'lax',
     })
+  }
+
+  // País de la IP (29-oct-2026): el formulario internacional arranca con la
+  // bandera y el código de ese país. Solo el código ISO de dos letras.
+  const paisIp = request.headers.get('x-vercel-ip-country')
+  if (paisIp && /^[A-Z]{2}$/.test(paisIp) && request.cookies.get(COOKIE_PAIS_IP)?.value !== paisIp) {
+    response.cookies.set(COOKIE_PAIS_IP, paisIp, { maxAge: 60 * 60 * 24, path: '/', sameSite: 'lax' })
   }
 
   // Por dónde entró la visita (acción 3, 24-oct-2026): se anota al llegar

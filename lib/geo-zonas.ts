@@ -192,6 +192,9 @@ export function detectarZona(countryRegion: string | null, ciudad: string | null
 // aplica después de la hidratación, no en el render del servidor.
 export const COOKIE_ZONA_GEO = 'pya_zona_geo'
 
+/** País de la IP (header x-vercel-ip-country), para el formulario internacional */
+export const COOKIE_PAIS_IP = 'pya_pais'
+
 export function leerZonaGeoDeCookie(): ZonaDetectada | null {
   if (typeof document === 'undefined') return null
   const match = document.cookie.match(new RegExp(`(?:^|; )${COOKIE_ZONA_GEO}=([^;]*)`))

@@ -211,6 +211,24 @@ export default async function PerfilPage({ params }: Props) {
         </section>
       )}
 
+      {/* Extranjeros: las guías por situación (29-oct-2026: Uruguay y Decreto 366) */}
+      {perf.slug === 'extranjeros' && (
+        <section className="pb-10 bg-white">
+          <div className="container max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              { href: '/guias/seguro-medico-obligatorio-extranjeros', t: 'Seguro médico obligatorio (Decreto 366/25)', d: 'Qué exige Migraciones y cuándo conviene una prepaga.' },
+              { href: '/guias/prepaga-para-uruguayos-en-argentina', t: 'Prepaga para uruguayos en Argentina', d: 'Residencia Mercosur, afiliación sin DNI y precios.' },
+              { href: '/guias/prepaga-cobertura-en-uruguay', t: '¿Tu prepaga te cubre en Uruguay?', d: 'Punta del Este y Montevideo, plan por plan.' },
+            ].map((x) => (
+              <Link key={x.href} href={x.href} className="group rounded-2xl border border-gray-200 bg-white p-4 hover:border-[#E8002D] transition-colors">
+                <div className="font-bold text-sm text-gray-900 group-hover:text-[#E8002D]">{x.t} →</div>
+                <div className="text-xs text-gray-600 mt-1">{x.d}</div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Planes recomendados con precio */}
       {planes.length > 0 && (
         <section className="py-10 bg-gray-50 border-t border-gray-100">
