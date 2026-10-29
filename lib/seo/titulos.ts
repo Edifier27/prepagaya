@@ -28,3 +28,15 @@ export const nombreCortoPrepaga = (nombre: string) => nombre.replace(/^Plan de S
 
 /** "Plan 210" → "210", "Plan Flux" → "Flux" */
 export const codigoCorto = (nombrePlan: string) => nombrePlan.replace(/^Plan /, '')
+
+/** "$320.904": monto sin espacio, para títulos (formatPrecio pone "$ 320.904") */
+export const pesosTitulo = (n: number) => `$${Math.round(n).toLocaleString('es-AR')}`
+
+/**
+ * Fichas y planes con el precio "desde" y el mes en el título (29-oct-2026,
+ * ola 2 de CTR, Search Console al 28-oct: muchas impresiones y CTR < 0,7%).
+ * Swiss Medical queda con el título de la ola 1 hasta medirlo (mediados de
+ * noviembre); su SMG20 sí entra.
+ */
+export const FICHAS_TITULO_PRECIO = ['osde', 'sancor-salud']
+export const PLANES_TITULO_PRECIO = ['osde/210', 'swiss-medical/smg20']
