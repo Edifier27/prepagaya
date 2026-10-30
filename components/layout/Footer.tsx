@@ -3,13 +3,21 @@ import Image from 'next/image'
 import type { ProvinciaMenu } from '@/lib/data/zonas'
 import { PARTNERS_OFICIALES_TEXTO } from '@/lib/utils'
 
-const prepagaLinks = [
+// 30-oct-2026: se suman Avalian (partner, 33.100 búsquedas de marca/mes y
+// solo 8 links internos a su ficha), Galeno y Hospital Italiano. En Hospital
+// Italiano, para "hospital italiano plan de salud" Google mostraba las páginas
+// de zona (caba 1.084 y buenos-aires 844 impresiones) y no la ficha (55): el
+// link de todo el sitio, con el texto que se busca, va a la ficha.
+const prepagaLinks: { slug: string; nombre: string; texto?: string }[] = [
   { slug: 'swiss-medical', nombre: 'Swiss Medical' },
   { slug: 'osde', nombre: 'OSDE' },
-  { slug: 'cemic', nombre: 'CEMIC' },
   { slug: 'sancor-salud', nombre: 'Sancor Salud' },
+  { slug: 'avalian', nombre: 'Avalian' },
   { slug: 'premedic', nombre: 'Premedic' },
   { slug: 'medife', nombre: 'Medifé' },
+  { slug: 'galeno', nombre: 'Galeno' },
+  { slug: 'hospital-italiano', nombre: 'Hospital Italiano', texto: 'Plan de Salud Hospital Italiano' },
+  { slug: 'cemic', nombre: 'CEMIC' },
 ]
 
 const coberturaLinks = [
@@ -186,7 +194,7 @@ export function Footer({ provincias }: { provincias: ProvinciaMenu[] }) {
                       links internos a las fichas decían solo la marca, y la
                       búsqueda a posicionar es "{prepaga} planes". */}
                   <Link href={`/prepagas/${p.slug}`} className="text-sm text-gray-400 hover:text-white transition-colors">
-                    Planes de {p.nombre}
+                    {p.texto ?? `Planes de ${p.nombre}`}
                   </Link>
                 </li>
               ))}
