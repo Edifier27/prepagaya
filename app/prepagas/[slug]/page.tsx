@@ -486,6 +486,16 @@ export default async function PrepagaSlugPage({ params }: Props) {
   // "lista general" (Sancor) vale para todo el país; el resto, CABA y GBA
   const regionCaja = conCaja ? escalaPorEdad(prep.slug, masAccesible.slug, 'caba')?.region ?? '' : ''
   const zonaCaja = /^general$/i.test(regionCaja) ? 'de la lista general' : 'en CABA y GBA'
+  // Precio por edad (GEO, 30-oct-2026): a las IA les preguntan "¿cuánto sale
+  // {prepaga} a los 40?" y la ficha solo daba los 30 años. Mismos cuadros
+  // oficiales de la SSSalud que la caja de arriba; null si el plan no tiene
+  // franja para esa edad.
+  const EDADES_TABLA = [25, 30, 40, 50, 60]
+  const precioAEdadCaja = (pl: PlanCaja, edad: number) => pl.rangos.find((r) => r.desde <= edad && edad <= r.hasta)?.precio ?? null
+  const faqPorEdad = conCaja ? {
+    q: `¿Cuánto sale ${prep.nombre} según la edad?`,
+    a: `Según el cuadro oficial de ${PRECIO_ACTUALIZADO.toLowerCase()} declarado ante la Superintendencia de Servicios de Salud (precio de lista con IVA, una persona, ${zonaCaja}), el ${masAccesible.nombre} sale ${EDADES_TABLA.flatMap((e) => { const p = precioAEdadCaja(masAccesible, e); return p === null ? [] : [`${formatPrecio(p)} a los ${e} años`] }).join(', ')}${primeroSinCopago && primeroSinCopago.slug !== masAccesible.slug ? `; el ${primeroSinCopago.nombre}, el primero sin copago, ${EDADES_TABLA.flatMap((e) => { const p = precioAEdadCaja(primeroSinCopago, e); return p === null ? [] : [`${formatPrecio(p)} a los ${e}`] }).join(', ')}` : ''}.${esSwiss ? ' Cotizando online tenés 15% OFF sobre esos valores.' : ''} El precio final depende también de tu zona y tu grupo familiar.`,
+  } : null
   // Los planes que comparten cartilla real van pegados en vez de ordenados
   // solo por precio (hoy solo hay data cargada para Swiss Medical).
   const perfiles = getPerfilesIdeales(prep, precioMin)
@@ -510,6 +520,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const faqs = [
     ...(faqLineas ? [faqLineas] : []),
     ...buildFAQs(prep, precioMin, precioMax, planEstrella, comparacion),
+    ...(faqPorEdad ? [faqPorEdad] : []),
     ...(faqCartillas ? [faqCartillas] : []),
     ...(aumento ? [{
       q: `¿Cuánto aumenta ${prep.nombre} en ${aumento.mes.label.toLowerCase()}?`,
@@ -962,6 +973,49 @@ export default async function PrepagaSlugPage({ params }: Props) {
           <ListaPlanesPrecios prep={prep} destacado={planEstrella} />
           {prep.slug === 'swiss-medical' && (
             <p className="text-xs text-gray-500 mt-3">Tachado, el precio de lista; abajo, con el 15% OFF cotizando online (25% para monotributistas).</p>
+          )}
+
+          {/* Precio por edad (GEO, 30-oct-2026): tabla HTML con fuente y fecha,
+              el formato que las IA citan para "cuánto sale X a los N años". */}
+          {conCaja && (
+            <div id="precio-por-edad" className="mt-8">
+              <h3 className="text-lg font-bold text-gray-900">Precio de {prep.nombre} por edad — {PRECIO_ACTUALIZADO.toLowerCase()}</h3>
+              <p className="text-sm text-gray-600 mt-1 mb-4">
+                Cuánto sale cada plan por mes para una persona, según la edad, {zonaCaja}.{esSwiss ? ' Cotizando online, a estos valores se les descuenta el 15%.' : ''}
+              </p>
+              <div className="overflow-x-auto rounded-xl border border-gray-200">
+                <table className="w-full min-w-[560px] text-sm">
+                  <caption className="sr-only">Precio mensual de los planes de {prep.nombre} por edad, {PRECIO_ACTUALIZADO.toLowerCase()}</caption>
+                  <thead className="bg-gray-50 text-gray-600">
+                    <tr>
+                      <th scope="col" className="px-3 py-2.5 text-left font-semibold">Plan</th>
+                      {EDADES_TABLA.map((e) => (
+                        <th key={e} scope="col" className="px-3 py-2.5 text-right font-semibold whitespace-nowrap">{e} años</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {planesCaja.map((pl) => (
+                      <tr key={pl.slug} className="border-t border-gray-100">
+                        <th scope="row" className="px-3 py-2.5 text-left font-semibold text-gray-900 whitespace-nowrap">
+                          <Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="hover:text-[#E8002D]">{pl.nombre}</Link>
+                          {pl.copago && <span className="ml-1.5 text-xs font-normal text-gray-500">con copago</span>}
+                        </th>
+                        {EDADES_TABLA.map((e) => {
+                          const p = precioAEdadCaja(pl, e)
+                          return <td key={e} className="px-3 py-2.5 text-right tabular-nums text-gray-800 whitespace-nowrap">{p === null ? '—' : formatPrecio(p)}</td>
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-gray-400 mt-2">
+                Fuente: cuadro tarifario de {prep.nombre} declarado ante la{' '}
+                <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">Superintendencia de Servicios de Salud</a>
+                {' '}({PRECIO_ACTUALIZADO}). Precio de lista por mes, con IVA, contratación directa. Para tu grupo familiar y tu zona exacta, <Link href={`/comparador?prepaga=${prep.slug}&desde=tabla-edad`} className="underline hover:text-gray-600">cotizá gratis</Link>.
+              </p>
+            </div>
           )}
 
           <div className="mt-6 bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
