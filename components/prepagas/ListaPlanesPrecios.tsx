@@ -21,8 +21,11 @@ export function ListaPlanesPrecios({ prep, destacado }: { prep: Prepaga; destaca
         const esDestacado = pl.slug === destacado.slug
         return (
           <li key={pl.slug}
-            className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2 px-4 py-3.5 ${i ? 'border-t border-gray-200' : ''} ${esDestacado ? 'bg-[#fff1f3]' : 'bg-white'}`}>
-            <Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="group min-w-0">
+            className={`relative grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2 px-4 py-3.5 cursor-pointer ${i ? 'border-t border-gray-200' : ''} ${esDestacado ? 'bg-[#fff1f3]' : 'bg-white'}`}>
+            {/* Toda la fila es clickeable (Clarity, 30-oct-2026: clics fallidos
+                en la tarjeta del plan): el link se estira con after:inset-0 y
+                el botón de cotizar queda encima con z-10. */}
+            <Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="group min-w-0 after:absolute after:inset-0 after:content-['']">
               <span className="font-bold text-gray-900 group-hover:text-[#E8002D]">{pl.nombre}</span>
               {esDestacado && <span className="ml-1.5 rounded-full bg-[#E8002D] px-[7px] py-0.5 align-[2px] text-[10.5px] font-extrabold text-white">Más elegido</span>}
               <span className="block text-[12.5px] text-gray-500">
@@ -32,7 +35,7 @@ export function ListaPlanesPrecios({ prep, destacado }: { prep: Prepaga; destaca
               </span>
               <span className="mt-0.5 hidden text-xs text-gray-500 sm:line-clamp-1">{pl.descripcion}</span>
             </Link>
-            <div className="flex flex-col items-end gap-1.5">
+            <div className="relative z-10 flex flex-col items-end gap-1.5">
               <span className="text-right tabular-nums">
                 {conPrecio && conPromo && <span className="block text-xs text-gray-400 line-through">{formatPrecio(pl.precio)}</span>}
                 <span className="text-base font-extrabold text-gray-900">
