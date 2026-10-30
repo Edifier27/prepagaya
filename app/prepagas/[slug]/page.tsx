@@ -1497,11 +1497,22 @@ export default async function PrepagaSlugPage({ params }: Props) {
                       <p className="text-[11px] text-gray-400 mt-2">Fuente: {conv.planesConvenio.fuente}.</p>
                     </div>
                   )}
+                  {/* Tarjetas de banco clickeables al cotizador (Clarity, 30-oct-2026:
+                      el cartel de Banco Macro era el principal clic fallido de la
+                      ficha de Swiss). Link estirado; la fuente queda encima con z-10. */}
                   {conv.bancos?.map((b) => (
-                    <div key={b.banco} className="rounded-xl border border-gray-100 bg-gray-50 p-4">
-                      <h3 className="font-bold text-gray-900 text-sm">Afinidad con {b.banco}</h3>
+                    <div key={b.banco} className="group relative rounded-xl border border-gray-100 bg-gray-50 p-4 transition-colors hover:border-red-200 hover:bg-white">
+                      <h3 className="font-bold text-gray-900 text-sm">
+                        <Link
+                          href={`/comparador?prepaga=${prep.slug}&desde=convenio-banco`}
+                          className="after:absolute after:inset-0 after:rounded-xl after:content-[''] group-hover:text-[#E8002D]"
+                        >
+                          Afinidad con {b.banco}
+                        </Link>
+                      </h3>
                       <p className="text-sm text-gray-700 mt-2">{b.beneficio}</p>
-                      {b.fuente && <p className="text-[11px] text-gray-400 mt-2">Fuente: {b.fuente.url ? <a href={b.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{b.fuente.texto}</a> : b.fuente.texto}</p>}
+                      <p className="text-sm font-semibold text-[#E8002D] mt-2">Consultar mi precio con {b.banco} →</p>
+                      {b.fuente && <p className="relative z-10 text-[11px] text-gray-400 mt-2">Fuente: {b.fuente.url ? <a href={b.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{b.fuente.texto}</a> : b.fuente.texto}</p>}
                     </div>
                   ))}
                 </div>

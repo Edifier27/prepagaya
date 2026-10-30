@@ -205,12 +205,13 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
             <div className="space-y-3">
               {planesOrdenados.map(({ plan, precio }) => (
                 <div key={plan.slug}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all">
-                  <Link href={`/prepagas/${pz.slug}/${plan.slug}?provincia=${prov.slug}`} className="min-w-0 flex-1 group">
+                  className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all cursor-pointer">
+                  {/* Tarjeta entera clickeable (Clarity, 30-oct-2026) */}
+                  <Link href={`/prepagas/${pz.slug}/${plan.slug}?provincia=${prov.slug}`} className="min-w-0 flex-1 group after:absolute after:inset-0 after:rounded-xl after:content-['']">
                     <div className="font-semibold text-gray-900 group-hover:text-[#E8002D] transition-colors">{plan.nombre}</div>
                     <div className="text-xs text-gray-500 mt-0.5 line-clamp-1">{plan.descripcion}</div>
                   </Link>
-                  <div className="flex items-center gap-2 flex-shrink-0 flex-wrap sm:flex-nowrap">
+                  <div className="relative z-10 flex items-center gap-2 flex-shrink-0 flex-wrap sm:flex-nowrap">
                     {precio !== null ? (
                       <>
                         <span className="text-sm font-bold text-gray-900">{formatPrecio(precio)}</span>
