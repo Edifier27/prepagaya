@@ -12,6 +12,7 @@ import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { CajaPrecioPlan } from '@/components/prepagas/CajaPrecioPlan'
 import { escalaPorEdad, preciosPorRegion, precioGrupo } from '@/lib/precios/motor'
+import { precioPorEdadEnFrase } from '@/lib/precios/texto-edad'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
 import { linkCartillaPlan, CARTILLAS } from '@/lib/data/cartilla-zonas'
@@ -129,7 +130,6 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
     .filter((c) => c.prepagaSlug === prep.slug)
     .flatMap((c) => c.planes.filter((f) => f.planSlugs.includes(plan.slug)).map((f) => ({ tema: c.tema, nombre: c.temaNombre, fila: f })))
   const reintegros = coberturas.find((c) => c.tema === 'reintegros')?.fila
-  const precioEdad = (edad: number) => escala?.rangos.find((x) => x.desde <= edad && edad <= x.hasta)?.precio
   // Plan siguiente en la escalera (orden por precio a los 30), sin variantes
   // (Sport de Swiss, GEN, Digital Flex y con coseguro de Sancor, planes con edad acotada)
   const orden = [...prep.planes]
@@ -142,10 +142,11 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
   const diferencias = tablaDiferencias(prep, plan, siguiente ?? anterior, coberturas)
   const faqs: { q: string; a: string }[] = []
   if (escala) {
-    const edades = [40, 50, 60].filter((e) => precioEdad(e))
+    // Frase por franjas o por edades según cuántas franjas tenga el cuadro
+    // (30-oct-2026: en OSDE, con 3 franjas, repetía el mismo precio a los 40, 50 y 60)
     faqs.push({
       q: `¿Cuánto cuesta el ${nombreLargo} según la edad?`,
-      a: `Según el cuadro tarifario que ${prep.nombre} declara ante la Superintendencia de Servicios de Salud (${PRECIO_ACTUALIZADO}, ${region}, contratación directa, IVA incluido): ${edades.map((e) => `${formatPrecio(precioEdad(e)!)} a los ${e} años`).join(', ')}. ${prep.nombre} ajusta el precio por rangos de edad; hasta los ${escala.rangos[0].hasta} años se paga ${formatPrecio(escala.rangos[0].precio)}.`,
+      a: `Según el cuadro tarifario que ${prep.nombre} declara ante la Superintendencia de Servicios de Salud (${PRECIO_ACTUALIZADO}, ${region}, contratación directa, IVA incluido), el ${nombreLargo} sale ${precioPorEdadEnFrase(escala.rangos)} por mes, por persona. ${prep.nombre} ajusta el precio por rangos de edad.`,
     })
   }
   if (reintegros && !reintegros.sinDato) {
@@ -640,6 +641,11 @@ export default async function PlanPage({ params, searchParams }: Props) {
 
   const perfilDelPlan = getPerfilDelPlan(plan)
   const seo = contenidoPlan(prep, plan)
+  // Precio a los 30 para el 15% OFF de la respuesta directa del hero (el
+  // resto de las edades sale de precioPorEdadEnFrase)
+  const precioEnEdad = (edad: number) => seo?.escala?.rangos.find((r) => r.desde <= edad && edad <= r.hasta)?.precio
+  const a30 = precioEnEdad(30)
+  const respuestaPrecio = a30 === undefined ? null : { a30 }
   // "¿Qué es el plan?" con forma citable por las IA (19-oct-2026, ver ResumenPlan)
   const resumen = {
     prep,
@@ -769,6 +775,19 @@ export default async function PlanPage({ params, searchParams }: Props) {
               )}
             </div>
           </div>
+
+          {/* Respuesta directa a "[prepaga] [plan] precio" (GEO, 30-oct-2026):
+              el primer párrafo dice cuánto sale, a qué edades y de dónde sale
+              el dato. Sin calculadora (decisión del 29-oct): solo los valores
+              del cuadro oficial, los mismos de la tabla "Precio por edad". */}
+          {seo?.escala && respuestaPrecio && (
+            <p className="mb-5 max-w-[65ch] text-[15.5px] leading-relaxed text-gray-700">
+              El {seo.nombreLargo} cuesta <b className="text-gray-900">{precioPorEdadEnFrase(seo.escala.rangos)}</b> por mes, por persona
+              {' '}(cuadro tarifario oficial de {PRECIO_ACTUALIZADO.toLowerCase()} ante la Superintendencia de Servicios de Salud, {seo.region}, IVA incluido).
+              {promo && <> Cotizando online tenés <b className="text-gray-900">15% OFF</b>: {formatPrecio(respuestaPrecio.a30 * 0.85)} a los 30.</>}
+              {' '}<a href="#precio-por-edad" className="font-semibold text-[#E8002D] hover:underline whitespace-nowrap">Ver todas las edades ↓</a>
+            </p>
+          )}
 
           {/* Caja de cotizar (25-oct-2026; sin calculadora por edad desde el
               29-oct-2026): botón de cotizar y comparar */}
@@ -902,7 +921,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
         <section className="py-10 bg-white border-t border-gray-100">
           <div className="container max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
             {seo.escala && (
-              <div>
+              <div id="precio-por-edad" className="scroll-mt-24">
                 <h2 className="text-xl font-bold text-gray-900 mb-1">Precio del {seo.nombreLargo} por edad</h2>
                 <p className="text-xs text-gray-500 mb-3">
                   Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona.{promo ? ' Cotizando online tenés 15% OFF sobre estos valores.' : ''}
