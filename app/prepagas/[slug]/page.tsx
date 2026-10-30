@@ -25,6 +25,7 @@ import { ResenaForm } from '@/components/prepagas/ResenaForm'
 import { contactos, CONTACTOS_VERIFICADOS } from '@/lib/data/contactos'
 import { getConvenios, PREPAGAS_DERIVAR } from '@/lib/data/convenios'
 import { planesConTarifa, escalaPorEdad } from '@/lib/precios/motor'
+import { precioPorEdadEnFrase } from '@/lib/precios/texto-edad'
 import { sucursalesEnProvincia, totalSucursales, FUENTES_SUCURSALES } from '@/lib/data/sucursales'
 import { provinciasSEO as PROVINCIAS_SEO_SUC } from '@/lib/data/zonas'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
@@ -494,7 +495,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const precioAEdadCaja = (pl: PlanCaja, edad: number) => pl.rangos.find((r) => r.desde <= edad && edad <= r.hasta)?.precio ?? null
   const faqPorEdad = conCaja ? {
     q: `¿Cuánto sale ${prep.nombre} según la edad?`,
-    a: `Según el cuadro oficial de ${PRECIO_ACTUALIZADO.toLowerCase()} declarado ante la Superintendencia de Servicios de Salud (precio de lista con IVA, una persona, ${zonaCaja}), el ${masAccesible.nombre} sale ${EDADES_TABLA.flatMap((e) => { const p = precioAEdadCaja(masAccesible, e); return p === null ? [] : [`${formatPrecio(p)} a los ${e} años`] }).join(', ')}${primeroSinCopago && primeroSinCopago.slug !== masAccesible.slug ? `; el ${primeroSinCopago.nombre}, el primero sin copago, ${EDADES_TABLA.flatMap((e) => { const p = precioAEdadCaja(primeroSinCopago, e); return p === null ? [] : [`${formatPrecio(p)} a los ${e}`] }).join(', ')}` : ''}.${esSwiss ? ' Cotizando online tenés 15% OFF sobre esos valores.' : ''} El precio final depende también de tu zona y tu grupo familiar.`,
+    a: `Según el cuadro oficial de ${PRECIO_ACTUALIZADO.toLowerCase()} declarado ante la Superintendencia de Servicios de Salud (precio de lista con IVA, una persona, ${zonaCaja}), el ${prep.nombre} ${masAccesible.nombre} sale ${precioPorEdadEnFrase(masAccesible.rangos)}${primeroSinCopago && primeroSinCopago.slug !== masAccesible.slug ? `; el ${prep.nombre} ${primeroSinCopago.nombre}, el primero sin copago, ${precioPorEdadEnFrase(primeroSinCopago.rangos)}` : ''}.${esSwiss ? ' Cotizando online tenés 15% OFF sobre esos valores.' : ''} El precio final depende también de tu zona y tu grupo familiar.`,
   } : null
   // Los planes que comparten cartilla real van pegados en vez de ordenados
   // solo por precio (hoy solo hay data cargada para Swiss Medical).
@@ -998,7 +999,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
                     {planesCaja.map((pl) => (
                       <tr key={pl.slug} className="border-t border-gray-100">
                         <th scope="row" className="px-3 py-2.5 text-left font-semibold text-gray-900 whitespace-nowrap">
-                          <Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="hover:text-[#E8002D]">{pl.nombre}</Link>
+                          {/* Ancla con marca + plan ("OSDE 210", "Swiss Medical SMG20"):
+                              es como se busca el precio de cada plan */}
+                          <Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="hover:text-[#E8002D]">{prep.nombre} {pl.nombre}</Link>
                           {pl.copago && <span className="ml-1.5 text-xs font-normal text-gray-500">con copago</span>}
                         </th>
                         {EDADES_TABLA.map((e) => {
