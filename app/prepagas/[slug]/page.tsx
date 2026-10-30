@@ -25,7 +25,7 @@ import { ResenaForm } from '@/components/prepagas/ResenaForm'
 import { contactos, CONTACTOS_VERIFICADOS } from '@/lib/data/contactos'
 import { getConvenios, PREPAGAS_DERIVAR } from '@/lib/data/convenios'
 import { planesConTarifa, escalaPorEdad } from '@/lib/precios/motor'
-import { precioPorEdadEnFrase } from '@/lib/precios/texto-edad'
+import { precioPorEdadEnFrase, planConMarca } from '@/lib/precios/texto-edad'
 import { sucursalesEnProvincia, totalSucursales, FUENTES_SUCURSALES } from '@/lib/data/sucursales'
 import { provinciasSEO as PROVINCIAS_SEO_SUC } from '@/lib/data/zonas'
 import { AUMENTOS_OFICIALES } from '@/lib/data/aumentos'
@@ -477,16 +477,22 @@ export default async function PrepagaSlugPage({ params }: Props) {
   type PlanCaja = { slug: string; nombre: string; copago: boolean; rangos: { desde: number; hasta: number; precio: number }[] }
   const precioA30 = (pl: PlanCaja) => (pl.rangos.find((r) => r.desde <= 30 && 30 <= r.hasta) ?? pl.rangos[0]).precio
   const esSwiss = prep.slug === 'swiss-medical'
-  const planesCaja: PlanCaja[] = !['swiss-medical', 'osde', 'sancor-salud'].includes(prep.slug) ? [] : planesOrdenados.flatMap((pl) => {
+  // 30-oct-2026 (GEO): se suman Avalian, Premedic y Medifé, las otras tres
+  // con el cuadro oficial validado para las páginas de plan
+  // (PREPAGAS_PLAN_SEO). Galeno y Prevención esperan esa validación.
+  const FICHAS_CON_CAJA = ['swiss-medical', 'osde', 'sancor-salud', 'avalian', 'premedic', 'medife']
+  const planesCaja: PlanCaja[] = !FICHAS_CON_CAJA.includes(prep.slug) ? [] : planesOrdenados.flatMap((pl) => {
     const e = pl.slug === 's2' ? null : escalaPorEdad(prep.slug, pl.slug, 'caba')
     return e?.rangos.length ? [{ slug: pl.slug, nombre: codigoCorto(pl.nombre), copago: pl.copago, rangos: e.rangos }] : []
   }).sort((a, b) => precioA30(a) - precioA30(b))
   const conCaja = planesCaja.length > 0
   const masAccesible = planesCaja[0]
   const primeroSinCopago = planesCaja.find((pl) => !pl.copago)
-  // "lista general" (Sancor) vale para todo el país; el resto, CABA y GBA
+  // "lista general" (Sancor, Avalian) vale para todo el país; Premedic
+  // declara Capital Federal aparte; el resto, CABA y GBA
   const regionCaja = conCaja ? escalaPorEdad(prep.slug, masAccesible.slug, 'caba')?.region ?? '' : ''
-  const zonaCaja = /^general$/i.test(regionCaja) ? 'de la lista general' : 'en CABA y GBA'
+  const zonaCaja = /^(general|avalian)$/i.test(regionCaja) ? 'de la lista general'
+    : /^capital federal$/i.test(regionCaja) ? 'en CABA' : 'en CABA y GBA'
   // Precio por edad (GEO, 30-oct-2026): a las IA les preguntan "¿cuánto sale
   // {prepaga} a los 40?" y la ficha solo daba los 30 años. Mismos cuadros
   // oficiales de la SSSalud que la caja de arriba; null si el plan no tiene
@@ -495,7 +501,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
   const precioAEdadCaja = (pl: PlanCaja, edad: number) => pl.rangos.find((r) => r.desde <= edad && edad <= r.hasta)?.precio ?? null
   const faqPorEdad = conCaja ? {
     q: `¿Cuánto sale ${prep.nombre} según la edad?`,
-    a: `Según el cuadro oficial de ${PRECIO_ACTUALIZADO.toLowerCase()} declarado ante la Superintendencia de Servicios de Salud (precio de lista con IVA, una persona, ${zonaCaja}), el ${prep.nombre} ${masAccesible.nombre} sale ${precioPorEdadEnFrase(masAccesible.rangos)}${primeroSinCopago && primeroSinCopago.slug !== masAccesible.slug ? `; el ${prep.nombre} ${primeroSinCopago.nombre}, el primero sin copago, ${precioPorEdadEnFrase(primeroSinCopago.rangos)}` : ''}.${esSwiss ? ' Cotizando online tenés 15% OFF sobre esos valores.' : ''} El precio final depende también de tu zona y tu grupo familiar.`,
+    a: `Según el cuadro oficial de ${PRECIO_ACTUALIZADO.toLowerCase()} declarado ante la Superintendencia de Servicios de Salud (precio de lista con IVA, una persona, ${zonaCaja}), el ${planConMarca(prep.nombre, masAccesible.nombre)} sale ${precioPorEdadEnFrase(masAccesible.rangos)}${primeroSinCopago && primeroSinCopago.slug !== masAccesible.slug ? `; el ${planConMarca(prep.nombre, primeroSinCopago.nombre)}, el primero sin copago, ${precioPorEdadEnFrase(primeroSinCopago.rangos)}` : ''}.${esSwiss ? ' Cotizando online tenés 15% OFF sobre esos valores.' : ''} El precio final depende también de tu zona y tu grupo familiar.`,
   } : null
   // Los planes que comparten cartilla real van pegados en vez de ordenados
   // solo por precio (hoy solo hay data cargada para Swiss Medical).
@@ -1001,7 +1007,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
                         <th scope="row" className="px-3 py-2.5 text-left font-semibold text-gray-900 whitespace-nowrap">
                           {/* Ancla con marca + plan ("OSDE 210", "Swiss Medical SMG20"):
                               es como se busca el precio de cada plan */}
-                          <Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="hover:text-[#E8002D]">{prep.nombre} {pl.nombre}</Link>
+                          <Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="hover:text-[#E8002D]">{planConMarca(prep.nombre, pl.nombre)}</Link>
                           {pl.copago && <span className="ml-1.5 text-xs font-normal text-gray-500">con copago</span>}
                         </th>
                         {EDADES_TABLA.map((e) => {

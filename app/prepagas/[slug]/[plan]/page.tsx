@@ -12,7 +12,7 @@ import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { CajaPrecioPlan } from '@/components/prepagas/CajaPrecioPlan'
 import { escalaPorEdad, preciosPorRegion, precioGrupo } from '@/lib/precios/motor'
-import { precioPorEdadEnFrase } from '@/lib/precios/texto-edad'
+import { precioPorEdadEnFrase, planConMarca } from '@/lib/precios/texto-edad'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
 import { linkCartillaPlan, CARTILLAS } from '@/lib/data/cartilla-zonas'
@@ -123,7 +123,7 @@ function regionTexto(r: string) {
 function contenidoPlan(prep: Prepaga, plan: Plan) {
   if (!PREPAGAS_PLAN_SEO.includes(prep.slug)) return null
   const codigo = codigoPlan(plan)
-  const nombreLargo = `${prep.nombre} ${codigo}`
+  const nombreLargo = planConMarca(prep.nombre, codigo) // "Medifé+", no "Medifé Medifé+"
   const escala = escalaPorEdad(prep.slug, plan.slug, 'caba')
   const region = escala ? regionTexto(escala.region) : ''
   const coberturas = coberturasMarca
