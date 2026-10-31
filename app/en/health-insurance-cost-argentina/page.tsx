@@ -5,7 +5,8 @@ import { SITE_NAME, SITE_URL } from '@/lib/utils'
 import { extremosA30 } from '@/lib/precios/resumen'
 import { pesosEn, precioPlan } from '@/lib/precios/en'
 import { elegir } from '@/lib/seo/titulos'
-import { TablaPreciosEn } from '@/components/en/TablaPreciosEn'
+import { TablaPreciosIntl } from '@/components/intl/TablaPreciosIntl'
+import { UsdAprox } from '@/components/intl/Dolar'
 
 // Montos del cuadro oficial (31-oct-2026): antes "~AR$170,000" y "AR$300,000–500,000" a mano
 const A30 = extremosA30()
@@ -107,7 +108,7 @@ export default function HealthInsuranceCostArgentinaPage() {
           </h1>
           {/* Respuesta directa para Google y las IA, del cuadro oficial */}
           <p className="text-gray-600 leading-relaxed mb-6">
-            In {MES}, private health insurance in Argentina costs <strong className="text-gray-900">from {pesosEn(A30.min.precio)} per month</strong> for a 30-year-old
+            In {MES}, private health insurance in Argentina costs <strong className="text-gray-900">from {pesosEn(A30.min.precio)}<UsdAprox ars={A30.min.precio} /> per month</strong> for a 30-year-old
             ({A30.min.prepaga} {A30.min.plan}), and up to {pesosEn(A30.max.precio)} for the top plan ({A30.max.prepaga} {A30.max.plan}). Popular no-copay plans:
             OSDE 210 at {pesosEn(OSDE210)} and Swiss Medical SMG20 at {pesosEn(SMG20)} (15% off online). Official list prices filed with the national health regulator (SSSalud);
             your own price depends mainly on age, plan and copays.
@@ -150,7 +151,7 @@ export default function HealthInsuranceCostArgentinaPage() {
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Official prices by company and plan ({MES})</h2>
-          <TablaPreciosEn />
+          <TablaPreciosIntl locale="en" />
         </div>
       </section>
 

@@ -2,9 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_ZH, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
+import { extremosA30 } from '@/lib/precios/resumen'
+import { pesosEn } from '@/lib/precios/en'
+
+// Del cuadro oficial (31-oct-2026), antes escrito a mano
+const A30 = extremosA30()
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
+import { TablaPreciosIntl } from '@/components/intl/TablaPreciosIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `阿根廷医疗保险指南:外国人须知(${PRECIO_ACTUALIZADO_ZH}) — ${SITE_NAME}` },
@@ -43,7 +49,7 @@ const faqs = [
   },
   {
     q: '阿根廷的私人医疗保险费用是多少?',
-    a: <>价格取决于年龄和保险计划,而非国籍。截至{PRECIO_ACTUALIZADO_ZH},基础计划约为每月AR$170,000起(以30岁为例),中端计划(门诊无需自付)约为AR$300,000–500,000,高端计划则超过AR$1,000,000。 <Link href="/zh/yiliao-baoxian-feiyong-agenting" className="text-[#E8002D] hover:underline font-medium">完整价格明细 →</Link></>,
+    a: <>价格取决于年龄和保险计划,而非国籍。根据{PRECIO_ACTUALIZADO_ZH}的官方价目表,30岁参保人每月{pesosEn(A30.min.precio)}起({A30.min.prepaga} {A30.min.plan}),最贵的计划为{pesosEn(A30.max.precio)}。 <Link href="/zh/yiliao-baoxian-feiyong-agenting" className="text-[#E8002D] hover:underline font-medium">完整价格明细 →</Link></>,
   },
   {
     q: '旅行保险还是当地prepaga——该如何选择?',
@@ -132,6 +138,14 @@ export default function YiliaoBaoxianAgentingPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Precios oficiales con dólares (GEO, 31-oct-2026) */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">官方价格({PRECIO_ACTUALIZADO_ZH})</h2>
+          <TablaPreciosIntl locale="zh" />
         </div>
       </section>
 

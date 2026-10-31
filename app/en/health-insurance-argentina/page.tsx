@@ -5,7 +5,8 @@ import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
 import { extremosA30 } from '@/lib/precios/resumen'
 import { pesosEn, precioPlan } from '@/lib/precios/en'
 import { elegir } from '@/lib/seo/titulos'
-import { TablaPreciosEn } from '@/components/en/TablaPreciosEn'
+import { TablaPreciosIntl } from '@/components/intl/TablaPreciosIntl'
+import { UsdAprox } from '@/components/intl/Dolar'
 
 // Montos del cuadro oficial (31-oct-2026), no escritos a mano
 const A30 = extremosA30()
@@ -103,7 +104,7 @@ export default function HealthInsuranceArgentinaPage() {
             Since July 2025, Argentina requires all foreign visitors to carry medical coverage (Decree 366/25).
             And if you are moving here — for work, studies or residency — joining a local private health plan
             (<em>prepaga</em>) is usually far better value than international travel insurance: full hospital
-            network, no per-event caps, and you pay the same monthly fee as any Argentine your age: <strong className="text-gray-900">from {pesosEn(A30.min.precio)} per month</strong> for
+            network, no per-event caps, and you pay the same monthly fee as any Argentine your age: <strong className="text-gray-900">from {pesosEn(A30.min.precio)}<UsdAprox ars={A30.min.precio} /> per month</strong> for
             a 30-year-old, according to the official {PRECIO_ACTUALIZADO_EN} price lists.
           </p>
           <ContratarPlanButtonIntl
@@ -148,7 +149,7 @@ export default function HealthInsuranceArgentinaPage() {
       <section className="py-10 bg-white border-t border-gray-100">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-4">How much it costs: official prices ({PRECIO_ACTUALIZADO_EN})</h2>
-          <TablaPreciosEn />
+          <TablaPreciosIntl locale="en" />
         </div>
       </section>
 

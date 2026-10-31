@@ -2,13 +2,23 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PRECIO_ACTUALIZADO_ZH } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { extremosA30 } from '@/lib/precios/resumen'
+import { pesosEn, precioPlan } from '@/lib/precios/en'
+import { TablaPreciosIntl } from '@/components/intl/TablaPreciosIntl'
+import { UsdAprox } from '@/components/intl/Dolar'
+
+// Montos del cuadro oficial (31-oct-2026): antes "~AR$170 000", "300,000–500,000"
+// y "1 000 000" escritos a mano, y "大多数公司15%折扣" (solo Swiss)
+const A30 = extremosA30()
+const SMG20 = precioPlan('swiss-medical', 'smg20')
+const OSDE210 = precioPlan('osde', '210')
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: { absolute: `阿根廷医疗保险费用是多少?(${PRECIO_ACTUALIZADO_ZH}真实价格) — ${SITE_NAME}` },
   description:
-    '2026年阿根廷prepaga真实价格,按保障级别划分:基础级、中端和高端 — 以及真正影响价格的因素(年龄、自付、计划类型)和在线签约15%折扣。',
+    `${PRECIO_ACTUALIZADO_ZH}官方价格(30岁):每月${pesosEn(A30.min.precio)}起(${A30.min.prepaga} ${A30.min.plan})。Swiss Medical SMG20 ${pesosEn(SMG20)},OSDE 210 ${pesosEn(OSDE210)}。外国人与本地人价格相同。`,
   alternates: {
     canonical: `${SITE_URL}/zh/yiliao-baoxian-feiyong-agenting`,
     languages: {
@@ -27,9 +37,9 @@ export const metadata: Metadata = {
 }
 
 const dengji = [
-  { nombre: '基础级', rango: '约AR$170,000/月起', desc: '强制医疗计划(PMO——法定最低标准:门诊、检查、住院、急诊、生育)全覆盖,以30岁参保人为例。门诊通常需要自付一部分费用。' },
-  { nombre: '中端', rango: 'AR$300,000–500,000/月', desc: '门诊无需自付,医生网络更广,通常可使用至少一家高复杂度的自有或合作医院。' },
-  { nombre: '高端', rango: 'AR$1,000,000以上/月', desc: '医生网络最广,单人病房,专科门诊及择期手术的等待时间最短。' },
+  { nombre: '基础级', rango: `每月${pesosEn(A30.min.precio)}起`, desc: `强制医疗计划(PMO——法定最低标准:门诊、检查、住院、急诊、生育)全覆盖,门诊通常需自付。最便宜的计划:${A30.min.prepaga} ${A30.min.plan}。` },
+  { nombre: '中端(无自付)', rango: `每月${pesosEn(Math.min(SMG20, OSDE210))}–${pesosEn(Math.max(SMG20, OSDE210))}`, desc: `门诊无需自付,医生网络更广,例如OSDE 210(${pesosEn(OSDE210)})或拥有自有医院的Swiss Medical SMG20(${pesosEn(SMG20)})。` },
+  { nombre: '高端', rango: `每月最高${pesosEn(A30.max.precio)}`, desc: `医生网络最广,单人病房,含海外保障。最贵的计划:${A30.max.prepaga} ${A30.max.plan}。` },
 ]
 
 const faqs = [
@@ -39,7 +49,7 @@ const faqs = [
   },
   {
     q: '在线签约或自动扣款是否有折扣?',
-    a: '有,大多数公司对在线签约并自动按月扣款的客户提供约15%的折扣——这一折扣已经体现在您通过PrepagaYa获得的报价中。',
+    a: 'Swiss Medical有:通过PrepagaYa网上投保可享标价15%优惠(单一税纳税人25%)。其他公司按标价计算。',
   },
   {
     q: '家庭计划贵多少?',
@@ -94,8 +104,8 @@ export default function YiliaoBaoxianFeiyongAgentingPage() {
             阿根廷医疗保险费用是多少?
           </h1>
           <p className="text-gray-600 leading-relaxed mb-6">
-            以30岁参保人为例,基础级保障的价格约为每月AR$170,000起,高端计划则超过每月AR$1,000,000
-            (截至{PRECIO_ACTUALIZADO_ZH})。您的具体价格主要取决于年龄、保障级别,以及是否需要门诊免自付。
+            根据{PRECIO_ACTUALIZADO_ZH}的官方价目表,30岁参保人的阿根廷私人医疗保险<strong className="text-gray-900">每月{pesosEn(A30.min.precio)}<UsdAprox ars={A30.min.precio} />起</strong>({A30.min.prepaga} {A30.min.plan}),
+            最贵的计划为{pesosEn(A30.max.precio)}。热门的无自付计划:OSDE 210为{pesosEn(OSDE210)},Swiss Medical SMG20为{pesosEn(SMG20)}(网上投保优惠15%)。您的具体价格主要取决于年龄、计划和是否需要自付。
           </p>
           <ContratarPlanButtonIntl
             locale="zh"
@@ -125,8 +135,16 @@ export default function YiliaoBaoxianFeiyongAgentingPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            标价,{PRECIO_ACTUALIZADO_ZH}。大多数公司对在线签约并自动扣款的客户提供约15%折扣——该折扣已体现在通过比较工具获得的报价中。
+            标价,{PRECIO_ACTUALIZADO_ZH},来自各公司向SSSalud申报的官方价目表。Swiss Medical:网上投保优惠15%(单一税纳税人25%)。
           </p>
+        </div>
+      </section>
+
+      {/* 官方价格(GEO) */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">各公司及计划官方价格({PRECIO_ACTUALIZADO_ZH})</h2>
+          <TablaPreciosIntl locale="zh" />
         </div>
       </section>
 

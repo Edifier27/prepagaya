@@ -10,6 +10,7 @@ const ars = (n: number) => `AR$${Math.round(n).toLocaleString('es-AR')}`
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
+import { TablaPreciosIntl } from '@/components/intl/TablaPreciosIntl'
 
 export const metadata: Metadata = {
   title: { absolute: `Медицинская страховка в Аргентине: гид для иностранцев (${PRECIO_ACTUALIZADO_RU}) — ${SITE_NAME}` },
@@ -139,6 +140,14 @@ export default function StrahovanieArgentinaPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Precios oficiales con dólares (GEO, 31-oct-2026) */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Сколько стоит: официальные цены ({PRECIO_ACTUALIZADO_RU})</h2>
+          <TablaPreciosIntl locale="ru" />
         </div>
       </section>
 
