@@ -5,6 +5,7 @@ import { SITE_NAME, SITE_URL, formatPrecio, precioDesde } from '@/lib/utils'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
+import { TablaPreciosIntl } from '@/components/intl/TablaPreciosIntl'
 
 // Declinación rusa de "clínica" según el número (1 клиника / 2-4 клиники /
 // 0,5+,11-14 клиник) — sanatoriosPropios varía por prepaga (0, 1, 9, 11...)
@@ -122,6 +123,14 @@ export default function LuchshayaStrahovkaArgentinaPage() {
           <p className="text-xs text-gray-400 mt-3">
             <Link href="/ru/strahovanie-argentina" className="text-[#E8002D] hover:underline font-medium">← Общий гид по страховке в Аргентине</Link>
           </p>
+        </div>
+      </section>
+
+      {/* Precios oficiales con dólares (GEO, 31-oct-2026) */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Официальные цены рядом ({PRECIO_ACTUALIZADO_RU})</h2>
+          <TablaPreciosIntl locale="ru" />
         </div>
       </section>
 

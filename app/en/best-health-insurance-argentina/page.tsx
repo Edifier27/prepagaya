@@ -4,7 +4,8 @@ import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepaga
 import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
 import { pesosEn, precioPlan } from '@/lib/precios/en'
 import { elegir } from '@/lib/seo/titulos'
-import { TablaPreciosEn } from '@/components/en/TablaPreciosEn'
+import { TablaPreciosIntl } from '@/components/intl/TablaPreciosIntl'
+import { UsdAprox } from '@/components/intl/Dolar'
 
 // Precios del cuadro oficial para el título y la respuesta directa (31-oct-2026)
 const SMG20 = precioPlan('swiss-medical', 'smg20')
@@ -114,7 +115,7 @@ export default function BestHealthInsuranceArgentinaPage() {
           </p>
           {/* Respuesta directa para Google y las IA */}
           <p className="text-gray-700 leading-relaxed mb-6">
-            <strong>Short answer:</strong> Swiss Medical is the best overall pick for expats — 9 hospitals of its own and the SMG20 plan at {pesosEn(SMG20)}/month
+            <strong>Short answer:</strong> Swiss Medical is the best overall pick for expats — 9 hospitals of its own and the SMG20 plan at {pesosEn(SMG20)}<UsdAprox ars={SMG20} />/month
             for a 30-year-old ({pesosEn(SMG20 * 0.85)} with 15% off online). OSDE has the widest network (210 plan: {pesosEn(OSDE210)}), and Premedic is the cheapest,
             from {pesosEn(PREMEDIC)}. Official {PRECIO_ACTUALIZADO_EN} list prices filed with the SSSalud.
           </p>
@@ -134,7 +135,7 @@ export default function BestHealthInsuranceArgentinaPage() {
       <section className="py-10 bg-white">
         <div className="container max-w-3xl mx-auto">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Official prices, side by side ({PRECIO_ACTUALIZADO_EN})</h2>
-          <TablaPreciosEn />
+          <TablaPreciosIntl locale="en" />
         </div>
       </section>
 

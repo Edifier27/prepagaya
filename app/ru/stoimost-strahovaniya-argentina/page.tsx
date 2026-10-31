@@ -2,13 +2,23 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PRECIO_ACTUALIZADO_RU } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { extremosA30 } from '@/lib/precios/resumen'
+import { pesosEn, precioPlan } from '@/lib/precios/en'
+import { TablaPreciosIntl } from '@/components/intl/TablaPreciosIntl'
+import { UsdAprox } from '@/components/intl/Dolar'
+
+// Montos del cuadro oficial (31-oct-2026): antes "~AR$170 000", "300–500 тыс."
+// y "1 000 000" escritos a mano, y "15% у большинства компаний" (solo Swiss)
+const A30 = extremosA30()
+const SMG20 = precioPlan('swiss-medical', 'smg20')
+const OSDE210 = precioPlan('osde', '210')
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: { absolute: `Сколько стоит медицинская страховка в Аргентине? (${PRECIO_ACTUALIZADO_RU}) — ${SITE_NAME}` },
   description:
-    'Реальные цены на prepaga в Аргентине по уровню покрытия: базовый, средний и премиум — плюс что на самом деле влияет на цену (возраст, доплаты, план) и скидка 15% при онлайн-оформлении.',
+    `Официальные цены (${PRECIO_ACTUALIZADO_RU}) для человека 30 лет: от ${pesosEn(A30.min.precio)}/мес (${A30.min.prepaga} ${A30.min.plan}). Swiss Medical SMG20 ${pesosEn(SMG20)}, OSDE 210 ${pesosEn(OSDE210)}. Иностранцы платят столько же.`,
   alternates: {
     canonical: `${SITE_URL}/ru/stoimost-strahovaniya-argentina`,
     languages: {
@@ -27,9 +37,9 @@ export const metadata: Metadata = {
 }
 
 const urovni = [
-  { nombre: 'Базовый уровень', rango: 'от ~AR$170 000/мес', desc: 'Полное покрытие обязательной программы (PMO — законодательный минимум: приём врача, анализы, госпитализация, неотложная помощь, роды) для человека 30 лет. Обычно с доплатой за приём врача.' },
-  { nombre: 'Средний уровень', rango: 'AR$300 000–500 000/мес', desc: 'Без доплат за приём, более широкая сеть врачей, часто с доступом к как минимум одной клинике высокой сложности.' },
-  { nombre: 'Премиум', rango: 'от AR$1 000 000/мес', desc: 'Самая широкая сеть врачей, отдельные палаты, минимальное время ожидания к специалистам и на плановые процедуры.' },
+  { nombre: 'Базовый уровень', rango: `от ${pesosEn(A30.min.precio)}/мес`, desc: `Полное покрытие обязательной программы (PMO — законодательный минимум: приём врача, анализы, госпитализация, неотложная помощь, роды). Обычно с доплатой за приём. Самый дешёвый: ${A30.min.prepaga} ${A30.min.plan}.` },
+  { nombre: 'Средний уровень, без доплат', rango: `${pesosEn(Math.min(SMG20, OSDE210))}–${pesosEn(Math.max(SMG20, OSDE210))}/мес`, desc: `Без доплат за приём и с более широкой сетью врачей, например OSDE 210 (${pesosEn(OSDE210)}) или Swiss Medical SMG20 (${pesosEn(SMG20)}, с собственными клиниками).` },
+  { nombre: 'Премиум', rango: `до ${pesosEn(A30.max.precio)}/мес`, desc: `Самая широкая сеть врачей, отдельные палаты и покрытие за рубежом. Самый дорогой план: ${A30.max.prepaga} ${A30.max.plan}.` },
 ]
 
 const faqs = [
@@ -39,7 +49,7 @@ const faqs = [
   },
   {
     q: 'Есть ли скидка за онлайн-оформление или автоматическое списание?',
-    a: 'Да, большинство компаний дают около 15% скидки от базовой цены за оформление онлайн с автоматическим ежемесячным списанием — эта скидка уже учтена в ценах, которые вы получаете через PrepagaYa.',
+    a: 'Да, у Swiss Medical: при оформлении онлайн через PrepagaYa скидка 15% от базовой цены (25% для монотрибутистов). Остальные компании — по базовой цене.',
   },
   {
     q: 'Насколько дороже стоит семейный план?',
@@ -94,9 +104,9 @@ export default function StoimostStrahovaniyaArgentinaPage() {
             Сколько стоит медицинская страховка в Аргентине?
           </h1>
           <p className="text-gray-600 leading-relaxed mb-6">
-            Базовые цены для человека 30 лет — от около AR$170 000/мес за начальный уровень покрытия до более
-            AR$1 000 000/мес за премиум-планы, по состоянию на {PRECIO_ACTUALIZADO_RU.toLowerCase()}. Ваша точная
-            цена зависит в основном от возраста, уровня плана и наличия доплат за приём врача.
+            По официальным ценам ({PRECIO_ACTUALIZADO_RU}) медицинская страховка в Аргентине для человека 30 лет стоит <strong className="text-gray-900">от {pesosEn(A30.min.precio)}<UsdAprox ars={A30.min.precio} /> в месяц</strong>
+            ({A30.min.prepaga} {A30.min.plan}) и до {pesosEn(A30.max.precio)} за самый дорогой план. Популярные планы без доплат: OSDE 210 — {pesosEn(OSDE210)}, Swiss Medical SMG20 — {pesosEn(SMG20)} (скидка 15% онлайн).
+            Ваша точная цена зависит в основном от возраста, плана и наличия доплат за приём врача.
           </p>
           <ContratarPlanButtonIntl
             locale="ru"
@@ -126,9 +136,16 @@ export default function StoimostStrahovaniyaArgentinaPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            Базовые цены, {PRECIO_ACTUALIZADO_RU.toLowerCase()}. Большинство компаний дают около 15% скидки за
-            онлайн-оформление с автоматическим списанием — эта скидка уже учтена в ценах через сравнение.
+            Базовые цены, {PRECIO_ACTUALIZADO_RU.toLowerCase()}, по данным, которые компании подают в SSSalud. Swiss Medical: скидка 15% при оформлении онлайн (25% для монотрибутистов).
           </p>
+        </div>
+      </section>
+
+      {/* Официальные цены (GEO) */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Официальные цены по компаниям и планам ({PRECIO_ACTUALIZADO_RU})</h2>
+          <TablaPreciosIntl locale="ru" />
         </div>
       </section>
 
