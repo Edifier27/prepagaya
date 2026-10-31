@@ -33,9 +33,16 @@ export async function dolarOficial(): Promise<Dolar | null> {
   if (prueba) return { valor: Number(prueba[1]), fecha: prueba[2] }
   try {
     const r = await fetch(URL_BCRA, { next: { revalidate: 43200 }, signal: AbortSignal.timeout(6000) })
-    if (!r.ok) return null
-    return leerDolarBcra(await r.json())
-  } catch {
+    if (!r.ok) {
+      console.error('[DOLAR] BCRA respondió', r.status)
+      return null
+    }
+    const json = await r.json()
+    const d = leerDolarBcra(json)
+    if (!d) console.error('[DOLAR] respuesta del BCRA sin cotización:', JSON.stringify(json).slice(0, 300))
+    return d
+  } catch (err) {
+    console.error('[DOLAR] no se pudo leer el BCRA:', err instanceof Error ? `${err.name}: ${err.message} ${String((err as { cause?: unknown }).cause ?? '')}` : err)
     return null
   }
 }
