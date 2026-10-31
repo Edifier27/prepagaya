@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { extremosA30 } from '@/lib/precios/resumen'
+import { pesosEn } from '@/lib/precios/en'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
 
@@ -39,7 +41,7 @@ const faqs = [
   },
   {
     q: 'I am relocating to Argentina for months, not just visiting — do I still need travel insurance?',
-    a: `No — and you shouldn't buy it. A short-term travel policy is priced and designed for a trip of days or weeks. If you are staying for months or settling in, a local prepaga (OSDE, Swiss Medical, Galeno, and others) costs about the same per month as your age group pays locally, covers you continuously with no per-trip limit, and its coverage certificate is what Migraciones actually accepts for temporary residency paperwork. As of ${PRECIO_ACTUALIZADO_EN}, entry-level plans start around AR$170,000/month for a 30-year-old.`,
+    a: `No — and you shouldn't buy it. A short-term travel policy is priced and designed for a trip of days or weeks. If you are staying for months or settling in, a local prepaga (OSDE, Swiss Medical, Galeno, and others) costs about the same per month as your age group pays locally, covers you continuously with no per-trip limit, and its coverage certificate is what Migraciones actually accepts for temporary residency paperwork. As of ${PRECIO_ACTUALIZADO_EN}, plans start at ${pesosEn(extremosA30().min.precio)}/month for a 30-year-old (official price lists).`,
   },
   {
     q: 'Are permanent residents or naturalized citizens exempt?',
