@@ -72,7 +72,7 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
       try {
         await mandarLeadPorEmail({
           nombre, celular, email, prepaga, provincia, edades, fuente: fuenteMail, fecha,
-          kommo_link: '', kommo_label: '', duplicado_banner: '', to: cupo.email,
+          kommo_link: '', kommo_label: '', duplicado_banner: '', pais: lead.pais, to: cupo.email,
         })
         await marcarResultadoKommo(lead.id, `Cupo mail: ${cupo.rotulo}`, '')
         ok++
@@ -109,7 +109,7 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
           // Ya no se trabaja con Kommo (22-oct-2026): el mail de respaldo va sin link para cargarlo ahí
           await mandarLeadPorEmail({
             nombre, celular, email, prepaga, provincia, edades, fuente: fuenteMail, fecha,
-            kommo_link: '', kommo_label: '', duplicado_banner: '',
+            kommo_link: '', kommo_label: '', duplicado_banner: '', pais: lead.pais,
           })
         } catch (err) {
           console.error('[CRON-KOMMO] tampoco salió el mail de respaldo, lead', lead.id, ':', err)
@@ -124,7 +124,7 @@ export async function procesarLeadsPendientesDeKommo(): Promise<{ procesados: nu
       try {
         await mandarLeadPorEmail({
           nombre, celular, email, prepaga, provincia, edades, fuente: fuenteMail, fecha,
-          kommo_link: '', kommo_label: '', duplicado_banner: '', to: destino.email,
+          kommo_link: '', kommo_label: '', duplicado_banner: '', pais: lead.pais, to: destino.email,
         })
         await marcarResultadoKommo(lead.id, `Email directo a ${destino.email}`, '')
         ok++

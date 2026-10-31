@@ -201,8 +201,10 @@ export function esCelularArgentinoValido(raw: string): boolean {
  * conversación la lleva él a mano). Pensado para reenviarse tal cual, sin
  * editar.
  */
-export function whatsappLinkParaLead(nombre: string, celular: string): string {
-  const numero = normalizarCelularAR(celular)
+export function whatsappLinkParaLead(nombre: string, celular: string, pais?: string | null): string {
+  // Lead internacional (31-oct-2026): el celular ya trae su código de país
+  // (ej. 59899123456); normalizarCelularAR le agregaba "549" y rompía el link
+  const numero = pais ? celular.replace(/\D/g, '') : normalizarCelularAR(celular)
   const mensaje = `Hola ${nombre}! Te escribo por tu consulta en la web. Contame, ¿buscás cobertura para vos solo o para grupo familiar?`
   return `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`
 }
@@ -268,9 +270,22 @@ export const banderaPais = (iso: string) => iso.toUpperCase().replace(/[A-Z]/g, 
  * normalizarlo.
  */
 export function formatearCelularInternacional(prefijoPais: string, numeroLocal: string): string {
-  const soloDigitosPrefijo = prefijoPais.replace(/\D/g, '')
-  const soloDigitosNumero = numeroLocal.replace(/\D/g, '')
-  return `${soloDigitosPrefijo}${soloDigitosNumero}`
+  const prefijo = prefijoPais.replace(/\D/g, '')
+  let numero = numeroLocal.replace(/\D/g, '')
+  // Formato de WhatsApp (31-oct-2026, Darío): se corrige lo que la gente
+  // suele escribir de más, para que el link wa.me y el CRM lo encuentren.
+  // 1) "00" de llamada internacional y el código de país repetido
+  //    (eligió +598 y escribió "+598 99 123 456")
+  if (numero.startsWith('00')) numero = numero.slice(2)
+  if (numero.startsWith(prefijo) && numero.length - prefijo.length >= 7) numero = numero.slice(prefijo.length)
+  // 2) El 0 de larga distancia que no va con el código de país (Uruguay
+  //    099…, UK 07…, España/Alemania/Francia 0…). Italia lo conserva.
+  if (prefijo !== '39') numero = numero.replace(/^0+/, '')
+  // 3) México: WhatsApp usa 52 + 10 dígitos, sin el "1" de celular viejo
+  if (prefijo === '52' && numero.length === 11 && numero.startsWith('1')) numero = numero.slice(1)
+  // Rusia/Kazajistán: el 8 de larga distancia local (8 912… → 7 912…)
+  if (prefijo === '7' && numero.length === 11 && numero.startsWith('8')) numero = numero.slice(1)
+  return `${prefijo}${numero}`
 }
 
 /**
