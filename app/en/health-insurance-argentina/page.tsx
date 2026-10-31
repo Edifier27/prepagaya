@@ -2,14 +2,24 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
+import { extremosA30 } from '@/lib/precios/resumen'
+import { pesosEn, precioPlan } from '@/lib/precios/en'
+import { elegir } from '@/lib/seo/titulos'
+import { TablaPreciosEn } from '@/components/en/TablaPreciosEn'
+
+// Montos del cuadro oficial (31-oct-2026), no escritos a mano
+const A30 = extremosA30()
+const SMG20 = precioPlan('swiss-medical', 'smg20')
+const OSDE210 = precioPlan('osde', '210')
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: { absolute: `Health Insurance in Argentina for Foreigners (2026 Guide) — ${SITE_NAME}` },
+  // Con precio y mes (31-oct-2026, ola 2 de CTR: 3.388 imp., 0,59%)
+  title: { absolute: elegir([`Health Insurance in Argentina for Expats (${PRECIO_ACTUALIZADO_EN})`, `Health Insurance in Argentina for Expats, ${PRECIO_ACTUALIZADO_EN.slice(-4)} Guide`]) },
   description:
-    'How health insurance works in Argentina for expats and foreigners: the mandatory insurance requirement (Decree 366/25), how to join a local prepaga without a DNI, and real 2026 prices.',
+    `Plans from ${pesosEn(A30.min.precio)}/month (official ${PRECIO_ACTUALIZADO_EN} prices). Decree 366/25 mandatory insurance, joining a prepaga without a DNI, and which company fits expats.`,
   alternates: {
     canonical: `${SITE_URL}/en/health-insurance-argentina`,
     languages: {
@@ -39,7 +49,7 @@ const faqs = [
   },
   {
     q: 'How much does private health insurance cost in Argentina?',
-    a: <>Foreigners pay the same as locals: price depends on age and plan, not nationality. As of {PRECIO_ACTUALIZADO_EN}, entry-level plans start around AR$170,000/month for a 30-year-old, mid-range plans with no copays run AR$300,000–500,000, and premium plans exceed AR$1,000,000. <Link href="/en/health-insurance-cost-argentina" className="text-[#E8002D] hover:underline font-medium">Full price breakdown →</Link></>,
+    a: <>Foreigners pay the same as locals: price depends on age and plan, not nationality. According to the official {PRECIO_ACTUALIZADO_EN} price lists, plans for a 30-year-old start at {pesosEn(A30.min.precio)}/month ({A30.min.prepaga} {A30.min.plan}); popular no-copay plans like OSDE 210 ({pesosEn(OSDE210)}) and Swiss Medical SMG20 ({pesosEn(SMG20)}, 15% off online) sit in the middle, and the top plan reaches {pesosEn(A30.max.precio)}. <Link href="/en/health-insurance-cost-argentina" className="text-[#E8002D] hover:underline font-medium">Full price breakdown →</Link></>,
   },
   {
     q: 'Travel insurance or a local prepaga — which one do I need?',
@@ -93,7 +103,8 @@ export default function HealthInsuranceArgentinaPage() {
             Since July 2025, Argentina requires all foreign visitors to carry medical coverage (Decree 366/25).
             And if you are moving here — for work, studies or residency — joining a local private health plan
             (<em>prepaga</em>) is usually far better value than international travel insurance: full hospital
-            network, no per-event caps, and you pay the same monthly fee as any Argentine your age.
+            network, no per-event caps, and you pay the same monthly fee as any Argentine your age: <strong className="text-gray-900">from {pesosEn(A30.min.precio)} per month</strong> for
+            a 30-year-old, according to the official {PRECIO_ACTUALIZADO_EN} price lists.
           </p>
           <ContratarPlanButtonIntl
             locale="us"
@@ -130,6 +141,14 @@ export default function HealthInsuranceArgentinaPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Precios oficiales (GEO) */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">How much it costs: official prices ({PRECIO_ACTUALIZADO_EN})</h2>
+          <TablaPreciosEn />
         </div>
       </section>
 

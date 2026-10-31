@@ -2,14 +2,25 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PRECIO_ACTUALIZADO_EN } from '@/lib/data/prepagas'
 import { SITE_NAME, SITE_URL } from '@/lib/utils'
+import { extremosA30 } from '@/lib/precios/resumen'
+import { pesosEn, precioPlan } from '@/lib/precios/en'
+import { elegir } from '@/lib/seo/titulos'
+import { TablaPreciosEn } from '@/components/en/TablaPreciosEn'
+
+// Montos del cuadro oficial (31-oct-2026): antes "~AR$170,000" y "AR$300,000–500,000" a mano
+const A30 = extremosA30()
+const MES = PRECIO_ACTUALIZADO_EN
+const MES_CORTO = MES.replace(/^(\w{3})\w*/, '$1')
+const SMG20 = precioPlan('swiss-medical', 'smg20')
+const OSDE210 = precioPlan('osde', '210')
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  // Más corto (auditoría 13-oct-2026: 3.619 impresiones, CTR 0,14%)
-  title: { absolute: `Health Insurance Cost in Argentina: Real Prices (${PRECIO_ACTUALIZADO_EN})` },
-  description:
-    'Real 2026 prepaga prices in Argentina by coverage tier: entry-level, mid-range and premium — plus what actually moves the price (age, copay, plan) and the 15% online discount.',
+  // Más corto (auditoría 13-oct-2026: 3.619 impresiones, CTR 0,14%). Con el
+  // precio "desde" y el mes (31-oct-2026, ola 2 de CTR: 4.381 imp., 0,18%)
+  title: { absolute: elegir([`Health Insurance Cost in Argentina (${MES}): from ${pesosEn(A30.min.precio)}`, `Argentina Health Insurance Cost (${MES_CORTO}): from ${pesosEn(A30.min.precio)}`]) },
+  description: `Official ${MES} prices for a 30-year-old: from ${pesosEn(A30.min.precio)}/month (${A30.min.prepaga} ${A30.min.plan}). Swiss Medical SMG20 ${pesosEn(SMG20)}, OSDE 210 ${pesosEn(OSDE210)}. Foreigners pay the same.`,
   alternates: {
     canonical: `${SITE_URL}/en/health-insurance-cost-argentina`,
     languages: {
@@ -28,9 +39,9 @@ export const metadata: Metadata = {
 }
 
 const tiers = [
-  { nombre: 'Entry-level', rango: 'from ~AR$170,000/mo', desc: 'Full PMO coverage (the legally mandated minimum: doctor visits, tests, hospitalization, emergencies, maternity) for a 30-year-old. Usually has copays on consultations.' },
-  { nombre: 'Mid-range', rango: 'AR$300,000–500,000/mo', desc: 'No copays, wider provider network, and often access to at least one high-complexity own or partner hospital.' },
-  { nombre: 'Premium', rango: 'AR$1,000,000+/mo', desc: 'The broadest provider network, private rooms, and the shortest wait times for specialists and elective procedures.' },
+  { nombre: 'Entry-level', rango: `from ${pesosEn(A30.min.precio)}/mo`, desc: `Full PMO coverage (the legally mandated minimum: doctor visits, tests, hospitalization, emergencies, maternity). Usually has copays on consultations. Cheapest: ${A30.min.prepaga} ${A30.min.plan}.` },
+  { nombre: 'Mid-range, no copays', rango: `${pesosEn(Math.min(SMG20, OSDE210))}–${pesosEn(Math.max(SMG20, OSDE210))}/mo`, desc: `No copays and a wider network, like OSDE 210 (${pesosEn(OSDE210)}) or Swiss Medical SMG20 (${pesosEn(SMG20)}, with its own hospitals).` },
+  { nombre: 'Premium', rango: `up to ${pesosEn(A30.max.precio)}/mo`, desc: `The broadest networks, private rooms and international coverage. Most expensive plan: ${A30.max.prepaga} ${A30.max.plan}.` },
 ]
 
 const faqs = [
@@ -39,8 +50,8 @@ const faqs = [
     a: 'Yes — it is the single biggest factor. Prices are set in age brackets and rise noticeably after 40, then again after 60. A 25-year-old and a 55-year-old on the identical plan pay very different monthly fees.',
   },
   {
-    q: 'Is there a discount for paying online or by direct debit?',
-    a: 'Yes, most companies offer around 15% off the list price for contracting online (25% for monotributistas, the simplified self-employed regime) — this is already reflected in the quotes you get through PrepagaYa.',
+    q: 'Is there a discount for contracting online?',
+    a: 'With Swiss Medical, yes: quoting online through PrepagaYa you get 15% off the list price (25% for monotributistas, the simplified self-employed regime). Other companies are quoted at list price.',
   },
   {
     q: 'How much more does a family plan cost?',
@@ -94,10 +105,12 @@ export default function HealthInsuranceCostArgentinaPage() {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
             How Much Does Health Insurance Cost in Argentina?
           </h1>
+          {/* Respuesta directa para Google y las IA, del cuadro oficial */}
           <p className="text-gray-600 leading-relaxed mb-6">
-            List prices for a 30-year-old range from about AR$170,000/month for entry-level coverage to over
-            AR$1,000,000/month for premium plans, as of {PRECIO_ACTUALIZADO_EN.toLowerCase()}. Your own price
-            depends mainly on age, plan tier, and whether you want copays or not.
+            In {MES}, private health insurance in Argentina costs <strong className="text-gray-900">from {pesosEn(A30.min.precio)} per month</strong> for a 30-year-old
+            ({A30.min.prepaga} {A30.min.plan}), and up to {pesosEn(A30.max.precio)} for the top plan ({A30.max.prepaga} {A30.max.plan}). Popular no-copay plans:
+            OSDE 210 at {pesosEn(OSDE210)} and Swiss Medical SMG20 at {pesosEn(SMG20)} (15% off online). Official list prices filed with the national health regulator (SSSalud);
+            your own price depends mainly on age, plan and copays.
           </p>
           <ContratarPlanButtonIntl
             locale="us"
@@ -127,9 +140,17 @@ export default function HealthInsuranceCostArgentinaPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            List prices, {PRECIO_ACTUALIZADO_EN.toLowerCase()}. Most companies apply about 15% off for online
-            contracting with automatic debit — already reflected in quotes through the comparator.
+            List prices, {PRECIO_ACTUALIZADO_EN.toLowerCase()}, from each company&apos;s official filing with the SSSalud. Swiss Medical: 15% off quoting online
+            (25% for monotributistas).
           </p>
+        </div>
+      </section>
+
+      {/* Tabla con fuente y fecha (GEO) */}
+      <section className="py-10 bg-white border-t border-gray-100">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Official prices by company and plan ({MES})</h2>
+          <TablaPreciosEn />
         </div>
       </section>
 

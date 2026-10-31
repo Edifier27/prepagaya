@@ -1,16 +1,25 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prepagas, PRECIO_ACTUALIZADO_EN, nivelPrecio } from '@/lib/data/prepagas'
-import { SITE_NAME, SITE_URL, formatPrecio, precioDesde } from '@/lib/utils'
+import { SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
+import { pesosEn, precioPlan } from '@/lib/precios/en'
+import { elegir } from '@/lib/seo/titulos'
+import { TablaPreciosEn } from '@/components/en/TablaPreciosEn'
+
+// Precios del cuadro oficial para el título y la respuesta directa (31-oct-2026)
+const SMG20 = precioPlan('swiss-medical', 'smg20')
+const OSDE210 = precioPlan('osde', '210')
+const PREMEDIC = precioPlan('premedic', 'plan-c100')
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButtonIntl } from '@/components/prepagas/ContratarPlanButtonIntl'
 import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   // Más corto y con "expats" (auditoría 13-oct-2026: 7.682 impresiones, CTR 0,17%)
-  title: { absolute: `Best Health Insurance in Argentina for Expats (${PRECIO_ACTUALIZADO_EN})` },
+  // Ola 2 de CTR (31-oct-2026: 8.787 imp., 0,16%): las 4 marcas en el título
+  title: { absolute: elegir([`Best Health Insurance in Argentina (${PRECIO_ACTUALIZADO_EN}): 4 Compared`, `Best Health Insurance in Argentina for Expats (${PRECIO_ACTUALIZADO_EN})`]) },
   description:
-    'Swiss Medical, OSDE, Sancor Salud or Premedic? A side-by-side comparison of the top Argentine prepaga plans for expats — network size, own hospitals and real 2026 prices.',
+    `Swiss Medical, OSDE, Sancor Salud or Premedic? Official ${PRECIO_ACTUALIZADO_EN} prices: SMG20 ${pesosEn(SMG20)}, OSDE 210 ${pesosEn(OSDE210)}, Premedic from ${pesosEn(PREMEDIC)}. Own hospitals and network compared.`,
   alternates: {
     canonical: `${SITE_URL}/en/best-health-insurance-argentina`,
     languages: {
@@ -32,7 +41,7 @@ const SLUGS = ['swiss-medical', 'osde', 'sancor-salud', 'premedic'] as const
 
 const POSICIONAMIENTO: Record<string, { tag: string; para: string }> = {
   'swiss-medical': { tag: 'Best overall', para: 'Widest network of its own hospitals — the safest pick if you want top-tier coverage and are not choosing on price alone.' },
-  'osde': { tag: 'Largest network', para: "Argentina's biggest prepaga by membership — the widest reach of affiliated doctors and clinics nationwide." },
+  'osde': { tag: 'Largest network', para: 'OSDE reports more than 125,000 providers nationwide, and every plan is free of copays — wide reach of affiliated doctors and clinics.' },
   'sancor-salud': { tag: 'Best balance', para: 'Solid mid-range option: nationwide coverage without the premium price tag.' },
   'premedic': { tag: 'Best value', para: 'The most affordable of the four — full PMO coverage at the lowest monthly cost.' },
 }
@@ -101,7 +110,13 @@ export default function BestHealthInsuranceArgentinaPage() {
           <p className="text-gray-600 leading-relaxed mb-6">
             There is no single &quot;best&quot; prepaga — it depends on whether you value network size, your own
             hospital, or price. Here is how the four most popular options among expats actually compare, with real
-            {' '}{PRECIO_ACTUALIZADO_EN.toLowerCase()} prices.
+            {' '}{PRECIO_ACTUALIZADO_EN} prices.
+          </p>
+          {/* Respuesta directa para Google y las IA */}
+          <p className="text-gray-700 leading-relaxed mb-6">
+            <strong>Short answer:</strong> Swiss Medical is the best overall pick for expats — 9 hospitals of its own and the SMG20 plan at {pesosEn(SMG20)}/month
+            for a 30-year-old ({pesosEn(SMG20 * 0.85)} with 15% off online). OSDE has the widest network (210 plan: {pesosEn(OSDE210)}), and Premedic is the cheapest,
+            from {pesosEn(PREMEDIC)}. Official {PRECIO_ACTUALIZADO_EN} list prices filed with the SSSalud.
           </p>
           <ContratarPlanButtonIntl
             locale="us"
@@ -112,6 +127,14 @@ export default function BestHealthInsuranceArgentinaPage() {
           <p className="text-xs text-gray-400 mt-3">
             ¿Preferís leer en español? <Link href="/ranking" className="text-[#E8002D] hover:underline font-medium">Ranking en español →</Link>
           </p>
+        </div>
+      </section>
+
+      {/* Precios oficiales (GEO) */}
+      <section className="py-10 bg-white">
+        <div className="container max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Official prices, side by side ({PRECIO_ACTUALIZADO_EN})</h2>
+          <TablaPreciosEn />
         </div>
       </section>
 
@@ -138,7 +161,7 @@ export default function BestHealthInsuranceArgentinaPage() {
                       {pos && <p className="text-sm text-gray-600 leading-relaxed mt-1 max-w-md">{pos.para}</p>}
                     </div>
                     <div className="text-right flex-shrink-0">
-                      <div className="font-bold text-gray-900 text-sm">from {formatPrecio(precioMin)}/mo</div>
+                      <div className="font-bold text-gray-900 text-sm">from {pesosEn(precioMin)}/mo</div>
                       <NivelPrecioBadge nivel={nivelPrecio(precioMin)} />
                     </div>
                   </div>

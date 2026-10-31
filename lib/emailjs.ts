@@ -20,6 +20,8 @@ export function bannerDuplicado(cuenta: string): string {
 
 export interface LeadParaEmail {
   nombre: string; celular: string; email: string; prepaga: string
+  /** Lead internacional: el celular ya trae el código de país */
+  pais?: string | null
   provincia: string; edades: string; fuente: string; fecha: string
   kommo_link: string; kommo_label: string; duplicado_banner: string
   /** A quién llega el mail. Sin esto, EmailJS usa el "To Email" fijo que
@@ -50,7 +52,9 @@ export async function mandarLeadPorEmail(d: LeadParaEmail): Promise<void> {
           edades:    d.edades || 'No especificado',
           fuente:    d.fuente,
           fecha:     d.fecha,
-          whatsapp_link: d.celular ? whatsappLinkParaLead(d.nombre, d.celular) : '',
+          whatsapp_link: d.celular ? whatsappLinkParaLead(d.nombre, d.celular, d.pais) : '',
+          // En el mail se ve con "+" y código de país si es del exterior
+          ...(d.pais ? { celular: `+${d.celular.replace(/\D/g, '')} (${d.pais.toUpperCase()})` } : {}),
           kommo_link: d.kommo_link,
           kommo_label: d.kommo_label,
           duplicado_banner: d.duplicado_banner,

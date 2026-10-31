@@ -49,7 +49,8 @@ export async function mandarAlPortal(lead: LeadRow, slug: string): Promise<boole
         plan,
         precio,
         nombre: lead.nombre,
-        celular: lead.celular ?? '',
+        // Lead internacional: con "+" y código de país, para que no se lo tome como argentino
+        celular: lead.pais && lead.celular ? `+${lead.celular.replace(/\D/g, '')}` : lead.celular ?? '',
         // El mail sintético del cotizador ("…@sin-email.com") no sirve al asesor
         email: lead.email && !lead.email.endsWith('@sin-email.com') ? lead.email : null,
         edades: lead.edades,
