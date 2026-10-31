@@ -20,6 +20,12 @@ const DB_CONFIGURADA = Boolean(CONNECTION_STRING)
 
 const sql = DB_CONFIGURADA ? neon(CONNECTION_STRING) : null
 
+// Base anterior (31-oct-2026, pedido de Darío para medir): con BASE2 activa, la
+// original queda solo para consultar desde la pestaña "Base anterior" del panel.
+// Solo lectura: nada del sitio escribe ahí.
+const URL_BASE_ANTERIOR = process.env.BASE2_DATABASE_URL ? (process.env.DATABASE_URL ?? process.env.POSTGRES_URL ?? '') : ''
+const sqlAnterior = URL_BASE_ANTERIOR ? neon(URL_BASE_ANTERIOR) : null
+
 let tablasListas: Promise<unknown> | null = null
 
 function asegurarTablas(): Promise<unknown> {
@@ -413,6 +419,13 @@ export async function listarLeads(limite = 10000): Promise<LeadRow[]> {
   if (!sql) return []
   await asegurarTablas()
   const rows = await sql`SELECT * FROM leads WHERE eliminado_en IS NULL ORDER BY creado_en DESC LIMIT ${limite}`
+  return rows as unknown as LeadRow[]
+}
+
+/** Leads de la base anterior (solo lectura). null si no hay base anterior configurada; tira si la base no responde. */
+export async function listarLeadsBaseAnterior(): Promise<LeadRow[] | null> {
+  if (!sqlAnterior) return null
+  const rows = await sqlAnterior`SELECT * FROM leads WHERE eliminado_en IS NULL ORDER BY creado_en DESC`
   return rows as unknown as LeadRow[]
 }
 

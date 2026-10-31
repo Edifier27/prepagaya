@@ -158,12 +158,30 @@ export default function PanelLeads({ leadsIniciales }: { leadsIniciales: LeadRow
   const [refrescando, setRefrescando] = useState(false)
   const [filtros, setFiltros] = useState<Filtros>(FILTROS_VACIOS)
   // Pestañas del panel: leads o moderación de reseñas (23-sep-2026)
-  const [vista, setVista] = useState<'leads' | 'mayores' | 'resenas'>('leads')
+  const [vista, setVista] = useState<'leads' | 'mayores' | 'resenas' | 'anterior'>('leads')
   // Mayores de 66 (27-oct-2026): van en su propia solapa y no se mezclan con
   // los leads ni con sus números
   const esMayor = (l: LeadRow) => l.kommo_estado === ESTADO_MAYOR_66 || esLeadMayor(l.edades)
   const cantidadMayores = useMemo(() => leads.filter(esMayor).length, [leads])
-  const leadsVista = useMemo(() => leads.filter((l) => (vista === 'mayores') === esMayor(l)), [leads, vista])
+  // Base anterior (31-oct-2026): los leads de la base original, solo para
+  // consultar y medir. Se piden recién al abrir la pestaña.
+  const [leadsAnteriores, setLeadsAnteriores] = useState<LeadRow[] | null>(null)
+  const [errorAnterior, setErrorAnterior] = useState<string | null>(null)
+  useEffect(() => {
+    if (vista !== 'anterior' || leadsAnteriores) return
+    fetch('/api/panel/base-anterior')
+      .then(async (r) => {
+        const d = await r.json().catch(() => null)
+        if (!r.ok) throw new Error(d?.error ?? `Error ${r.status}`)
+        setErrorAnterior(null)
+        setLeadsAnteriores(d.leads)
+      })
+      .catch((e: Error) => setErrorAnterior(e.message))
+  }, [vista, leadsAnteriores])
+  const leadsVista = useMemo(
+    () => (vista === 'anterior' ? (leadsAnteriores ?? []) : leads.filter((l) => (vista === 'mayores') === esMayor(l))),
+    [leads, vista, leadsAnteriores],
+  )
   const [resenasPendientes, setResenasPendientes] = useState<number | null>(null)
   useEffect(() => {
     fetch('/api/panel/resenas?estado=pendiente')
@@ -653,7 +671,7 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
 
       <div className="max-w-3xl mx-auto p-4">
         <div className="flex gap-1.5 mb-3">
-          {([['leads', 'Leads'], ['mayores', 'Mayores de 66 años'], ['resenas', 'Reseñas']] as const).map(([id, label]) => (
+          {([['leads', 'Leads'], ['mayores', 'Mayores de 66 años'], ['resenas', 'Reseñas'], ['anterior', 'Base anterior']] as const).map(([id, label]) => (
             <button key={id} onClick={() => setVista(id)}
               className={`text-sm font-semibold rounded-xl px-4 py-2 transition-colors ${vista === id ? 'bg-gray-900 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:text-gray-900'}`}>
               {label}
@@ -667,6 +685,13 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
         {vista === 'mayores' && (
           <p className="mb-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-600">
             Leads con alguien de <strong className="text-gray-900">67 años o más</strong>: no se mandan al CRM ni reciben mensajes. Quedan acá para consultarlos.
+          </p>
+        )}
+        {vista === 'anterior' && (
+          <p className="mb-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-600">
+            {errorAnterior ? <span className="text-[#E8002D]">{errorAnterior}</span>
+              : !leadsAnteriores ? 'Cargando la base anterior…'
+              : <>Leads de la <strong className="text-gray-900">base anterior</strong> (hasta el cambio de base del 19-oct). Solo para consultar: los nuevos siguen entrando en la pestaña Leads.</>}
           </p>
         )}
         <StatsPanel
@@ -741,7 +766,7 @@ Los leads de prueba se llaman "PRUEBA PrepagaYa": borralos del CRM.`)
             </p>
           )}
           {leadsFiltrados.map((lead) => (
-            <LeadRow key={lead.id} lead={lead} onToggleLeido={toggleLeido} onEliminar={eliminar} onActualizar={actualizar} />
+            <LeadRow key={`${vista === 'anterior' ? 'a' : 'n'}${lead.id}`} lead={lead} soloLectura={vista === 'anterior'} onToggleLeido={toggleLeido} onEliminar={eliminar} onActualizar={actualizar} />
           ))}
         </div>
         </>)}
@@ -970,8 +995,10 @@ function estadoEnvio(estado: string | null): Envio | null {
 // ocupaba demasiado alto siempre expandida). El resumen de una línea trae
 // lo que hace falta para escanear la lista rápido; el resto se abre al
 // tocarla — mismo patrón <details>/<summary> que ya usan las FAQ del sitio.
-function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
+function LeadRow({ lead, soloLectura = false, onToggleLeido, onEliminar, onActualizar }: {
   lead: LeadRow
+  /** Base anterior: sin estado, notas, seguimiento, leído ni eliminar (los ids son de otra base). */
+  soloLectura?: boolean
   onToggleLeido: (id: number, leidoActual: boolean) => void
   onEliminar: (id: number) => Promise<void>
   onActualizar: (id: number, cambios: Partial<Pick<LeadRow, 'estado' | 'notas' | 'seguimiento_en'>>) => Promise<void>
@@ -1070,6 +1097,9 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
           </p>
         )}
 
+        {lead.notas && soloLectura && <p className="mt-2 text-xs text-gray-600 bg-gray-50 rounded-lg px-2.5 py-1.5 whitespace-pre-wrap">{lead.notas}</p>}
+
+        {!soloLectura && (<>
         {/* Estado comercial */}
         <div className="mt-3 pt-3 border-t border-gray-50">
           <div className="text-gray-400 text-[10px] uppercase tracking-wide mb-1.5">Estado</div>
@@ -1127,6 +1157,7 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
             </div>
           )}
         </div>
+        </>)}
 
         <div className="flex flex-wrap items-center gap-3 mt-3 pt-3 border-t border-gray-50">
           {wa && (
@@ -1139,6 +1170,7 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
               Ver en Kommo →
             </a>
           )}
+          {!soloLectura && (<>
           <button
             onClick={() => onToggleLeido(lead.id, lead.leido)}
             className="text-[11px] font-semibold text-gray-400 hover:text-gray-600 transition-colors ml-auto"
@@ -1169,6 +1201,7 @@ function LeadRow({ lead, onToggleLeido, onEliminar, onActualizar }: {
               </svg>
             </button>
           )}
+          </>)}
         </div>
       </div>
     </details>
