@@ -1239,7 +1239,9 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 <button
                   type="button"
                   onClick={() => updateEdad(p.id, pasoEdad(p.edad, -1, i))}
-                  className="hidden sm:flex w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
+                  // 1-nov-2026 (Darío): −/+ también en el celular, al lado del campo
+                  aria-label="Restar un año"
+                  className="flex w-11 h-11 sm:w-9 sm:h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-500 items-center justify-center transition-colors text-xl sm:text-lg font-bold leading-none flex-shrink-0"
                 >−</button>
                 <input
                   id={`edad-${p.id}`}
@@ -1254,16 +1256,19 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 <button
                   type="button"
                   onClick={() => updateEdad(p.id, pasoEdad(p.edad, 1, i))}
-                  className="hidden sm:flex w-9 h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-400 items-center justify-center transition-colors text-lg font-bold leading-none flex-shrink-0"
+                  aria-label="Sumar un año"
+                  className="flex w-11 h-11 sm:w-9 sm:h-9 rounded-xl border-2 border-gray-200 hover:border-[#E8002D] hover:text-[#E8002D] text-gray-500 items-center justify-center transition-colors text-xl sm:text-lg font-bold leading-none flex-shrink-0"
                 >+</button>
                 <span className="text-sm text-gray-400 font-medium flex-shrink-0">años</span>
               </div>
               {/* Atajos de edad: en Clarity el 24% de los clics eran el + y el −.
                   13-oct-2026: en el celular el "−" seguía siendo lo más tocado
                   (111 toques, los menores de 30 bajaban de a uno). En mobile se
-                  sacan −/+ y quedan el campo (teclado numérico) y atajos más grandes. */}
+                  sacan −/+ y quedan el campo (teclado numérico) y atajos más grandes.
+                  1-nov-2026 (Darío): los del titular, en las edades donde
+                  cambia la franja de precio (20, 26, 36… hasta 66). */}
               <div className="flex flex-wrap gap-1.5 sm:basis-full" role="group" aria-label={`Edad rápida de ${i === 0 ? 'titular' : `integrante ${i + 1}`}`}>
-                {(i === 0 ? [25, 30, 35, 40, 45, 50, 55, 60, 65, 66] : [1, 5, 10, 18, 25, 30, 40, 50, 60, 65]).map((n) => (
+                {(i === 0 ? [20, 26, 36, 41, 46, 51, 56, 61, 66] : [1, 5, 10, 18, 25, 30, 40, 50, 60, 65]).map((n) => (
                   <button
                     key={n}
                     type="button"
