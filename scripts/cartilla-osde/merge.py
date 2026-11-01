@@ -6,16 +6,22 @@ De paso, si se pasan, arma también:
     profesionales: esta sección de OSDE solo tiene instituciones)
   - <salida_farmacias.json>: "FARMACIAS" (mismo formato que
     lib/data/cartilla-zonas/sancor-salud-farmacias.json)
+  - <salida_opticas.json> y <salida_vacunatorios.json> (2-nov-2026): "ÓPTICAS"
+    (de "Ópticas y ortopedias") y "CENTROS DE VACUNACIÓN" (de la página de
+    farmacias), mismo formato que farmacias
 En la misma pasada, para que los slugs de zona salgan idénticos a los de
 <salida.json>.
 
 Uso: python merge.py <carpeta_pdfs> <filiales.txt> <salida.json> [<salida_especialidades.json>] [<salida_farmacias.json>]
+                    [<salida_opticas.json>] [<salida_vacunatorios.json>]
 """
 import json, re, sys, os, unicodedata, glob
 from parse import parse_pdf
 
 PLANES = {'21': '210', '31': '310', '41': '410', '45': '450', '51': '510', '70': 'Flux'}
 ORDEN_PLANES = ['210', '310', '410', '450', '510', 'Flux']
+# Secciones de comercios (todas con el formato de farmacias) → clave en la zona
+COMERCIOS = {'farmacia': 'farmacias', 'optica': 'opticas', 'vacunatorio': 'vacunatorios'}
 
 
 def slugify(s):
@@ -32,7 +38,8 @@ def titulo_filial(s):
                     for i, w in enumerate(s.lower().split()))
 
 
-def main(carpeta, filiales_txt, salida, salida_especialidades=None, salida_farmacias=None):
+def main(carpeta, filiales_txt, salida, salida_especialidades=None, salida_farmacias=None,
+         salida_opticas=None, salida_vacunatorios=None):
     # filial -> provincias (según el listado del propio buscador de OSDE)
     prov_por_filial = {}
     for m in re.finditer(r'provincia:"([^"]+)",codFilial:(\d+),filial:"([^"]+)"',
@@ -59,10 +66,11 @@ def main(carpeta, filiales_txt, salida, salida_especialidades=None, salida_farma
                 if not it['zona'] or not it['sedes']:
                     continue
                 zk = (cod, it['zona'])
-                z = zonas.setdefault(zk, {'filial': cod, 'zona': it['zona'], 'centros': {}, 'especialidades': {}, 'farmacias': {}})
-                if it['seccion'] == 'farmacia':
+                z = zonas.setdefault(zk, {'filial': cod, 'zona': it['zona'], 'centros': {}, 'especialidades': {},
+                                          'farmacias': {}, 'opticas': {}, 'vacunatorios': {}})
+                if it['seccion'] in COMERCIOS:
                     ck = clave_nombre(f"{it['nombre']}-{it['sedes'][0].get('direccion') or ''}")
-                    c = z['farmacias'].setdefault(ck, {'nombre': it['nombre'], 'planes': [], 'notas': [], 'sedes': []})
+                    c = z[COMERCIOS[it['seccion']]].setdefault(ck, {'nombre': it['nombre'], 'planes': [], 'notas': [], 'sedes': []})
                     if pnom not in c['planes']:
                         c['planes'].append(pnom)
                     for s in it['sedes']:
@@ -116,7 +124,14 @@ def main(carpeta, filiales_txt, salida, salida_especialidades=None, salida_farma
     salida_zonas = []
     salida_zonas_esp = []
     salida_zonas_farm = []
-    for (cod, nombre_zona), z in sorted(zonas.items(), key=lambda kv: (kv[0][0], kv[0][1])):
+    salida_zonas_rubro = {'opticas': [], 'vacunatorios': []}
+    # Las zonas que solo tienen ópticas o vacunatorios (2-nov-2026) se numeran
+    # DESPUÉS de las que ya existían: así ningún slug de zona de antes cambia
+    # por una zona nueva que se cruce en el orden alfabético.
+    def solo_rubros_nuevos(z):
+        return not (z['centros'] or z['especialidades'] or z['farmacias'])
+    orden = sorted(zonas.items(), key=lambda kv: (solo_rubros_nuevos(kv[1]), kv[0][0], kv[0][1]))
+    for (cod, nombre_zona), z in orden:
         fil = prov_por_filial[cod]
         base = 'caba' if nombre_zona == 'Ciudad de Buenos Aires' else slugify(nombre_zona.replace(' y alrededores', ''))
         slug = base
@@ -166,6 +181,13 @@ def main(carpeta, filiales_txt, salida, salida_especialidades=None, salida_farma
                 c['planes'] = [p for p in ORDEN_PLANES if p in c['planes']]
             farmacias.sort(key=lambda c: clave_nombre(c['nombre']))
             salida_zonas_farm.append({'slug': slug, 'nombre': nombre_zona, 'provincias': provincias, 'centros': farmacias})
+        for rubro, lista_zonas in salida_zonas_rubro.items():
+            if z[rubro]:
+                cs = list(z[rubro].values())
+                for c in cs:
+                    c['planes'] = [p for p in ORDEN_PLANES if p in c['planes']]
+                cs.sort(key=lambda c: clave_nombre(c['nombre']))
+                lista_zonas.append({'slug': slug, 'nombre': nombre_zona, 'provincias': provincias, 'centros': cs})
 
     out = {
         'fuente': 'Cartillas PDF oficiales de OSDE (osde.com.ar/cartilla-inteligente, descarga por filial y plan)',
@@ -205,5 +227,20 @@ def main(carpeta, filiales_txt, salida, salida_especialidades=None, salida_farma
         print(f'{len(salida_zonas_farm)} zonas con farmacias, {n_farm} farmacias')
 
 
+    titulos = {'opticas': 'Ópticas', 'vacunatorios': 'Centros de vacunación'}
+    for rubro, ruta in (('opticas', salida_opticas), ('vacunatorios', salida_vacunatorios)):
+        if not ruta:
+            continue
+        out_r = {
+            'fuente': f'Cartillas PDF oficiales de OSDE, sección "{titulos[rubro]}" (osde.com.ar/cartilla-inteligente)',
+            'vigencia': sorted(vigencias),
+            'planes': ORDEN_PLANES,
+            'zonas': salida_zonas_rubro[rubro],
+        }
+        with open(ruta, 'w', encoding='utf-8') as f:
+            json.dump(out_r, f, ensure_ascii=False, indent=1)
+        print(f"{len(out_r['zonas'])} zonas con {rubro}, {sum(len(z['centros']) for z in out_r['zonas'])} {rubro}")
+
+
 if __name__ == '__main__':
-    main(*sys.argv[1:6])
+    main(*sys.argv[1:8])

@@ -14,6 +14,7 @@ import { contactos } from '@/lib/data/contactos'
 import { getCartilla, nombreCortoZona, slugPlan, textoFecha, textoFechaDe, textoFechaConArticulo, zonasPorProvincia } from '@/lib/data/cartilla-zonas'
 import { especialidadesDisponibles, tipoEspecialidades } from '@/lib/data/cartilla-zonas/especialidades'
 import { tieneFarmacias } from '@/lib/data/cartilla-zonas/farmacias'
+import { esRubroComercio, rubrosDe } from '@/lib/data/cartilla-zonas/comercios'
 import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 import { ldJson } from '@/lib/jsonld'
 
@@ -261,6 +262,8 @@ export default async function CartillaPrepagaPage({ params, searchParams }: Prop
               especialidadesLabel={tipoEspecialidades(slug) === 'guardia' ? 'Especialistas de guardia' : 'Especialidades'}
               tieneFarmacias={tieneFarmacias(slug)}
               farmaciaInicial={seccion === 'farmacia'}
+              rubros={rubrosDe(slug)}
+              rubroInicial={seccion && esRubroComercio(seccion) ? seccion : undefined}
             />
             <p className="mt-4 text-center text-sm text-gray-600">
               ¿Necesitás una guardia ahora?{' '}

@@ -20,6 +20,14 @@ import { EnOtrasCartillas } from '@/components/cartillas/EnOtrasCartillas'
 import type { CentroEnOtras } from '@/lib/data/cartilla-zonas/cruce'
 import type { ZonaEspecialidades } from '@/lib/data/cartilla-zonas/especialidades'
 import type { ZonaFarmacias } from '@/lib/data/cartilla-zonas/farmacias'
+import type { RubroComercio } from '@/lib/data/cartilla-zonas/comercios'
+
+// Pestañas de comercios (2-nov-2026). Los textos van acá y no se importan de
+// comercios.ts: ese archivo trae todos los JSON y no tiene que entrar al cliente.
+const RUBRO_LABEL: Record<RubroComercio, { label: string; plural: string }> = {
+  opticas: { label: 'Ópticas', plural: 'ópticas' },
+  vacunatorios: { label: 'Vacunatorios', plural: 'vacunatorios' },
+}
 
 interface Props {
   prepagaSlug: string
@@ -45,6 +53,10 @@ interface Props {
   tieneFarmacias?: boolean
   /** Abre directo en la pestaña de Farmacias, ej. desde ?seccion=farmacia */
   farmaciaInicial?: boolean
+  /** Ópticas y vacunatorios que tiene esta prepaga (lib/data/cartilla-zonas/comercios.ts) */
+  rubros?: RubroComercio[]
+  /** Abre directo en esa pestaña, ej. desde ?seccion=opticas */
+  rubroInicial?: RubroComercio
 }
 
 // Buscador de cartilla por zona y plan (OSDE / Premedic / Avalian). La zona
@@ -67,14 +79,21 @@ export function BuscadorCartillaZona({
   especialidadInicial,
   tieneFarmacias = false,
   farmaciaInicial = false,
+  rubros = [],
+  rubroInicial,
 }: Props) {
   const indice = useMemo(() => grupos.flatMap((g) => g.zonas), [grupos])
   const [zonaSlug, setZonaSlug] = useState('')
   const [plan, setPlan] = useState(planInicial ?? '')
   const [detectadaLabel, setDetectadaLabel] = useState<string | null>(null)
-  const [seccion, setSeccion] = useState<SeccionCartilla | 'especialidad' | 'farmacia'>(
-    farmaciaInicial && tieneFarmacias ? 'farmacia' : especialidadInicial ? 'especialidad' : 'internacion'
+  const [seccion, setSeccion] = useState<SeccionCartilla | 'especialidad' | 'farmacia' | RubroComercio>(
+    rubroInicial && rubros.includes(rubroInicial) ? rubroInicial
+      : farmaciaInicial && tieneFarmacias ? 'farmacia' : especialidadInicial ? 'especialidad' : 'internacion'
   )
+  const esRubro = (s: string): s is RubroComercio => (rubros as string[]).includes(s)
+  // Ópticas / vacunatorios de la zona: se piden recién al abrir la pestaña
+  // (clave "rubro/zona" para no volver a pedir lo mismo)
+  const [datosRubro, setDatosRubro] = useState<Record<string, ZonaFarmacias & { fuente?: string; vigencia?: string }>>({})
   const [especialidad, setEspecialidad] = useState(especialidadInicial ?? especialidades[0] ?? '')
   const [datos, setDatos] = useState<(ZonaCartilla & { enOtras?: CentroEnOtras[] }) | null>(null)
   const [datosEsp, setDatosEsp] = useState<ZonaEspecialidades | null>(null)
@@ -105,7 +124,8 @@ export function BuscadorCartillaZona({
       .then((z: ZonaCartilla & { enOtras?: CentroEnOtras[] }) => {
         if (cancelado) return
         setDatos(z)
-        if (!z.centros.some((c) => c.internacion.length > 0)) setSeccion('guardia')
+        // Sin sanatorios en la zona se pasa a guardias, salvo que esté mirando otra pestaña (farmacias, ópticas…)
+        if (!z.centros.some((c) => c.internacion.length > 0)) setSeccion((s) => (s === 'internacion' ? 'guardia' : s))
       })
       .catch(() => !cancelado && setError(true))
       .finally(() => !cancelado && setCargando(false))
@@ -153,6 +173,23 @@ export function BuscadorCartillaZona({
     }
   }, [prepagaSlug, zonaSlug, tieneFarmacias])
 
+  useEffect(() => {
+    if (!zonaSlug || !esRubro(seccion)) return
+    const clave = `${seccion}/${zonaSlug}`
+    if (datosRubro[clave]) return
+    let cancelado = false
+    fetch(`/api/cartilla-zona-comercio/${seccion}/${prepagaSlug}/${zonaSlug}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((z: ZonaFarmacias) => !cancelado && setDatosRubro((d) => ({ ...d, [clave]: z })))
+      // 404 = la zona no tiene ese rubro en la fuente oficial: lista vacía
+      // (CentrosFarmacia muestra "No hay ópticas en …"), no "Cargando…" eterno.
+      .catch(() => !cancelado && setDatosRubro((d) => ({ ...d, [clave]: { slug: zonaSlug, nombre: '', provincias: [], centros: [] } })))
+    return () => {
+      cancelado = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prepagaSlug, zonaSlug, seccion])
+
   const zonaIndice = indice.find((z) => z.slug === zonaSlug)
   const planesZona = planes.filter((p) => !zonaIndice || zonaIndice.planes.includes(p.id))
   const planObj = planes.find((p) => p.id === plan)
@@ -168,7 +205,7 @@ export function BuscadorCartillaZona({
       }))
   }, [datos, plan])
   const conteo = (s: SeccionCartilla) => centrosFiltrados.filter((c) => c[s].length > 0).length
-  const upsell = datos && plan && seccion !== 'especialidad' && seccion !== 'farmacia' ? centrosConPlanSuperior(datos.centros, plan, planes, escalera, seccion) : []
+  const upsell = datos && plan && (seccion === 'internacion' || seccion === 'guardia') ? centrosConPlanSuperior(datos.centros, plan, planes, escalera, seccion) : []
   const zonaCorta = datos ? nombreCortoZona(datos.nombre) : ''
 
   return (
@@ -254,6 +291,7 @@ export function BuscadorCartillaZona({
               'internacion', 'guardia',
               ...(especialidades.length > 0 ? (['especialidad'] as const) : []),
               ...(tieneFarmacias ? (['farmacia'] as const) : []),
+              ...rubros,
             ] as const).map((s) => (
               <button
                 key={s}
@@ -274,10 +312,12 @@ export function BuscadorCartillaZona({
                   labelGuardia
                 ) : s === 'especialidad' ? (
                   especialidadesLabel
-                ) : (
+                ) : s === 'farmacia' ? (
                   'Farmacias'
+                ) : (
+                  RUBRO_LABEL[s].label
                 )}
-                {s !== 'especialidad' && s !== 'farmacia' && datos && <span className={`ml-1.5 text-xs ${seccion === s ? 'text-white' : 'text-gray-400'}`}>{conteo(s)}</span>}
+                {(s === 'internacion' || s === 'guardia') && datos && <span className={`ml-1.5 text-xs ${seccion === s ? 'text-white' : 'text-gray-400'}`}>{conteo(s)}</span>}
               </button>
             ))}
           </div>
@@ -321,6 +361,24 @@ export function BuscadorCartillaZona({
               {cargandoFarm && <div className="text-sm text-gray-400 py-8 text-center">Cargando farmacias…</div>}
               {!cargandoFarm && datosFarm && <CentrosFarmacia centros={datosFarm.centros} plan={plan || undefined} zonaCorta={zonaCorta} />}
               <p className="mt-4 text-xs text-gray-400 leading-relaxed">Fuente: {textoFecha}.</p>
+            </div>
+          ) : esRubro(seccion) ? (
+            <div>
+              {!datosRubro[`${seccion}/${zonaSlug}`] ? (
+                <div className="text-sm text-gray-400 py-8 text-center">Cargando {RUBRO_LABEL[seccion].plural}…</div>
+              ) : (
+                <CentrosFarmacia
+                  centros={datosRubro[`${seccion}/${zonaSlug}`].centros}
+                  plan={plan || undefined}
+                  zonaCorta={zonaCorta}
+                  rubro={RUBRO_LABEL[seccion].plural}
+                />
+              )}
+              <p className="mt-4 text-xs text-gray-400 leading-relaxed">
+                {datosRubro[`${seccion}/${zonaSlug}`]?.fuente
+                  ? `Fuente: ${datosRubro[`${seccion}/${zonaSlug}`].fuente}, consultado el ${datosRubro[`${seccion}/${zonaSlug}`].vigencia}.`
+                  : `Fuente: ${textoFecha}.`}
+              </p>
             </div>
           ) : (
             <>

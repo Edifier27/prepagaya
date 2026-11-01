@@ -1,0 +1,2051 @@
+{
+ "fuente": "Buscador oficial de cartilla de Swiss Medical (swissmedical.com.ar/prepagaclientes/cartilla)",
+ "vigencia": [
+  "01/11/2026"
+ ],
+ "planes": [
+  "SMG02",
+  "SMG20",
+  "SMG30"
+ ],
+ "zonas": [
+  {
+   "slug": "caba",
+   "nombre": "Ciudad de Buenos Aires",
+   "provincias": [
+    "Ciudad de Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "SWISS Medical Vacunatorio Zabala",
+     "planes": [
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [
+      "Centro propio de Swiss Medical"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av Cabildo 1295",
+       "localidad": "Palermo",
+       "tel": "0810-333-8876",
+       "lat": -34.567841,
+       "lon": -58.448761,
+       "turnoDigital": true
+      }
+     ]
+    },
+    {
+     "nombre": "UDIAG Barrio Norte",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [
+      "Centro propio de Swiss Medical"
+     ],
+     "sedes": [
+      {
+       "direccion": "Av Pueyrredon 1443",
+       "localidad": "Recoleta",
+       "tel": "0810-333-8876",
+       "lat": -34.593964,
+       "lon": -58.401962,
+       "turnoDigital": true
+      }
+     ]
+    },
+    {
+     "nombre": "Fundación Dr. Mario Socolinsky",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Vuelta de Obligado 2453",
+       "localidad": "Belgrano",
+       "tel": "(15)2292-4282",
+       "lat": -34.558115,
+       "lon": -58.458432,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Fundación Dr. Mario Socolinsky",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Callao 850",
+       "localidad": "Recoleta",
+       "tel": "(15)2292-4282",
+       "lat": -34.599204,
+       "lon": -58.393003,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Grupo Pediátrico - Vacunatorio",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Aguero 1972",
+       "localidad": "Recoleta",
+       "tel": "4822-9648 / 4829-0705",
+       "lat": -34.588882,
+       "lon": -58.403522,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Helios Salud",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Peru 1511",
+       "localidad": "San Telmo",
+       "tel": "4363-7400/7499",
+       "lat": -34.625826,
+       "lon": -58.374033,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pres Marcelo Torcuato de Alvear 2346",
+       "localidad": "Recoleta",
+       "tel": "4965-6500 Int. 0117",
+       "lat": -34.596582,
+       "lon": -58.400918,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda Directorio 2037",
+       "localidad": "Flores",
+       "tel": "4670-8000 Int. 55381/55382",
+       "lat": -34.631903,
+       "lon": -58.455948,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juncal 3002",
+       "localidad": "Recoleta",
+       "tel": "4821-1600",
+       "lat": -34.587151,
+       "lon": -58.407648,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda Rivadavia 6044",
+       "localidad": "Caballito",
+       "tel": "4304-4144 / WSP (15)2746-1768",
+       "lat": -34.624477,
+       "lon": -58.450799,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Cordoba 5775",
+       "localidad": "Palermo",
+       "tel": "4774-1246/8799",
+       "lat": -34.586204,
+       "lon": -58.442009,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax LePharm Caballito",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda Directorio 698",
+       "localidad": "Parque Chacabuco",
+       "tel": "(15)3005-3876",
+       "lat": -34.628524,
+       "lon": -58.436937,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Stamboulian Servicios de Salud",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av del Libertador 5868",
+       "localidad": "Belgrano",
+       "tel": "2206-6000",
+       "lat": -34.558098,
+       "lon": -58.44668,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Stamboulian Servicios de Salud",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pacheco de Melo 2941",
+       "localidad": "Recoleta",
+       "tel": "2206-6000",
+       "lat": -34.58499,
+       "lon": -58.404194,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Stamboulian Servicios de Salud",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 464",
+       "localidad": "San Nicolás",
+       "tel": "2206-6000",
+       "lat": -34.602455,
+       "lon": -58.37127,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Stamboulian Servicios de Salud",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Scalabrini Ortiz 696",
+       "localidad": "Villa Crespo",
+       "tel": "2206-6000",
+       "lat": -34.597137,
+       "lon": -58.434702,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Stamboulian Servicios de Salud",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Olazabal 5670",
+       "localidad": "Villa Urquiza",
+       "tel": "2206-6000",
+       "lat": -34.579066,
+       "lon": -58.49013,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Stamboulian Servicios de Salud",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Carabobo 443",
+       "localidad": "Flores",
+       "tel": "2206-6000",
+       "lat": -34.631978,
+       "lon": -58.454256,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Cabildo",
+     "planes": [
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda Cabildo 1183",
+       "localidad": "Palermo",
+       "tel": "4788-9235 / 4782-0521 / (15)4492-9353 / (15)3585-5818",
+       "lat": -34.568347,
+       "lon": -58.447722,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "comodoro-rivadavia",
+   "nombre": "Comodoro Rivadavia",
+   "provincias": [
+    "Chubut"
+   ],
+   "centros": [
+    {
+     "nombre": "Asociación Española de Socorros Mutuos",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "B Mitre 860",
+       "localidad": "Comodoro Rivadavia",
+       "tel": "(0297) 447-0600 / 406-6677/6900",
+       "lat": -45.861366,
+       "lon": -67.483116,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "lujan",
+   "nombre": "Luján",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Bianconi",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Carril Ferrocarril Oeste 1209",
+       "localidad": "Luján",
+       "tel": "(02323) 42-3853",
+       "lat": -34.555429,
+       "lon": -59.102508,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Cosentino",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda Constitucion 2204",
+       "localidad": "Luján",
+       "tel": "(02323) 42-9529",
+       "lat": -34.573864,
+       "lon": -59.091187,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Armando",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 574",
+       "localidad": "Luján",
+       "tel": "(02323) 43-6049",
+       "lat": -34.563605,
+       "lon": -59.113091,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Barrionuevo",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rep Argentina 2750",
+       "localidad": "Luján",
+       "tel": "(02323) 20-2092",
+       "lat": -34.545545,
+       "lon": -59.143229,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Bouvier",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Colon 1297",
+       "localidad": "Luján",
+       "tel": "(02323) 42-2804",
+       "lat": -34.568771,
+       "lon": -59.11677,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Cava",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jose Hernandez 751",
+       "localidad": "Luján",
+       "tel": "(02323) 43-2980",
+       "lat": -34.554955,
+       "lon": -59.112852,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Compagnucci",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin 1698",
+       "localidad": "Luján",
+       "tel": "(02323) 42-1212",
+       "lat": -34.570529,
+       "lon": -59.09847,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia De La Terminal",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 de Julio 660",
+       "localidad": "Luján",
+       "tel": "(02323) 42-4923",
+       "lat": -34.560277,
+       "lon": -59.118883,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Del Bicentenario",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "V Fernandez Beschtedt 2347",
+       "localidad": "Luján",
+       "tel": "(02323) (15)27-3210",
+       "lat": -34.553504,
+       "lon": -59.093971,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Lorenzo Casey",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av L Casey 786",
+       "localidad": "Luján",
+       "tel": "(02323) 42-0222",
+       "lat": -34.580199,
+       "lon": -59.104182,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Malvicini",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gral Bartolome Mitre 1195",
+       "localidad": "Luján",
+       "tel": "(02323) (15)31-3626 / 42-8080",
+       "lat": -34.569814,
+       "lon": -59.106054,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Melo",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dr A Alsina 1893",
+       "localidad": "Luján",
+       "tel": "(02323) 42-0454",
+       "lat": -34.577352,
+       "lon": -59.118558,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Mitre",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gral Mitre 599",
+       "localidad": "Luján",
+       "tel": "(02323) 42-4090",
+       "lat": -34.567211,
+       "lon": -59.114541,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Moreno",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Perito Francisco Moreno 431",
+       "localidad": "Luján",
+       "tel": "(02323) 43-8010",
+       "lat": -34.584905,
+       "lon": -59.115535,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Oyhagaray",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Colon 1728",
+       "localidad": "Luján",
+       "tel": "(02323) 43-3040",
+       "lat": -34.573867,
+       "lon": -59.118916,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Pisarra",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gral Martin Miguel de Guemes 1202",
+       "localidad": "Luján",
+       "tel": "(02323) 42-4481",
+       "lat": -34.572044,
+       "lon": -59.103671,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Robiano",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Humberto Primo 701",
+       "localidad": "Luján",
+       "tel": "(02323) 42-1560",
+       "lat": -34.563483,
+       "lon": -59.109517,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Rolla",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin 482",
+       "localidad": "Luján",
+       "tel": "(02323) 42-0064 / (011) (15)4165-2546",
+       "lat": -34.565447,
+       "lon": -59.115551,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Roncoroni",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dr Francisco Javier Muñiz 355",
+       "localidad": "Luján",
+       "tel": "(02323) 43-4656",
+       "lat": -34.569655,
+       "lon": -59.119184,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Rosso",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "J M Perez 433",
+       "localidad": "Luján",
+       "tel": "(02323) 42-8120 / (15)58-9950",
+       "lat": -34.566811,
+       "lon": -59.133837,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Rovetta",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alte G Brown 408",
+       "localidad": "Luján",
+       "tel": "(02323) 43-7028 / (011) (15)2292-5615",
+       "lat": -34.561749,
+       "lon": -59.11468,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Salvatto",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda Carlos Pellegrini 753",
+       "localidad": "Luján",
+       "tel": "(02323) 43-0519 / (011) (15)6787-2308",
+       "lat": -34.560865,
+       "lon": -59.108712,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Scasso",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dr Real 1013",
+       "localidad": "Luján",
+       "tel": "(02323) (15)31-4307 / 42-2336",
+       "lat": -34.563717,
+       "lon": -59.105298,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Segura",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dr M Moreno 1293",
+       "localidad": "Luján",
+       "tel": "(02323) 42-1783",
+       "lat": -34.569176,
+       "lon": -59.115322,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Vitullo",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 11",
+       "localidad": "Luján",
+       "tel": "(02323) 49-7393",
+       "lat": -34.561442,
+       "lon": -59.121473,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Peretto Lujan",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 220",
+       "localidad": "Luján",
+       "tel": "(02323) 42-9615",
+       "lat": -34.56224,
+       "lon": -59.117887,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-miguel-de-tucuman",
+   "nombre": "San Miguel de Tucumán",
+   "provincias": [
+    "Tucumán"
+   ],
+   "centros": [
+    {
+     "nombre": "Ceivac - Centro de Vacunación",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Juan 885",
+       "localidad": "San Miguel de Tucumán",
+       "tel": "(0381) 422-1390",
+       "lat": -26.824261,
+       "lon": -65.209099,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "concepcion",
+   "nombre": "Concepción",
+   "provincias": [
+    "Tucumán"
+   ],
+   "centros": [
+    {
+     "nombre": "Ceivac - Centro de Vacunación",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avellaneda 174",
+       "localidad": "Concepción",
+       "tel": "(03865) 42-7325",
+       "lat": -27.343882,
+       "lon": -65.592864,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Ceivac - Centro de Vacunación",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Octaviano Vera 225",
+       "localidad": "Concepción",
+       "tel": "(0381) 425-5762",
+       "lat": -27.346568,
+       "lon": -65.598349,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "centenario",
+   "nombre": "Centenario",
+   "provincias": [
+    "Neuquén"
+   ],
+   "centros": [
+    {
+     "nombre": "Ceni Vacunatorio",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Panama 985",
+       "localidad": "Centenario",
+       "tel": "S/T",
+       "lat": -38.826015,
+       "lon": -68.138174,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cipolletti",
+   "nombre": "Cipolletti",
+   "provincias": [
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Ceni Vacunatorio",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Padre Jose Maria Brentana 52",
+       "localidad": "Cipolletti",
+       "tel": "(0299) (15)415-2010",
+       "lat": -38.94207,
+       "lon": -67.990153,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "concordia",
+   "nombre": "Concordia",
+   "provincias": [
+    "Entre Ríos"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro de Vacunación Concordia",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "3 de Febrero 215",
+       "localidad": "Concordia",
+       "tel": "(0345) 422-4319",
+       "lat": -31.392185,
+       "lon": -58.012921,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-lorenzo",
+   "nombre": "San Lorenzo",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Médico OSPIP - Dr. Ramón Carrillo",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bv Urquiza 485",
+       "localidad": "San Lorenzo",
+       "tel": "(03476) 43-3506",
+       "lat": -32.750084,
+       "lon": -60.733334,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cordoba",
+   "nombre": "Córdoba",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Clínica Universitaria Reina Fabiola",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Oncativo 1248",
+       "localidad": "Córdoba",
+       "tel": "(0351) 414-2121",
+       "lat": -31.410229,
+       "lon": -64.167274,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Mega Salud - Centro de Vacunación",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pres Santiago Derqui 9",
+       "localidad": "Córdoba",
+       "tel": "(0351) 481-2233 / (15)327-8794",
+       "lat": -31.425512,
+       "lon": -64.18775,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Mega Salud - Centro de Vacunación",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juan Beverina 2085",
+       "localidad": "Córdoba",
+       "tel": "(0351) 481-2233 / (15)327-8794",
+       "lat": -31.374118,
+       "lon": -64.22888,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Mega Salud - Centro de Vacunación",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jacinto Rios 554",
+       "localidad": "Córdoba",
+       "tel": "(0351) 481-2233 / WSP (15)327-8736",
+       "lat": -31.410032,
+       "lon": -64.1672,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "jauregui-jose-maria",
+   "nombre": "Jauregui Jose Maria",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Dagnino",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Tropero P Moreira 1190",
+       "localidad": "Jauregui Jose Maria",
+       "tel": "(02323) 49-4694",
+       "lat": -34.602848,
+       "lon": -59.175844,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "parada-robles",
+   "nombre": "Parada Robles",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Marchetti",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ruta 192 0",
+       "localidad": "Parada Robles",
+       "tel": "(02323) 47-8440",
+       "lat": -34.373505,
+       "lon": -59.122329,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-oeste",
+   "nombre": "GBA Zona Oeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Massera",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Carlos 898",
+       "localidad": "General Rodriguez",
+       "tel": "(02323) 49-5163",
+       "lat": -34.485631,
+       "lon": -59.223065,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Fundación Dr. Mario Socolinsky",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Moreno 288",
+       "localidad": "Ramos Mejia",
+       "tel": "(15)2292-4282",
+       "lat": -34.642921,
+       "lon": -58.56234,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "open-door",
+   "nombre": "Open Door",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Rey",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Buenos Aires 954",
+       "localidad": "Open Door",
+       "tel": "(02323) 49-6038",
+       "lat": -34.488498,
+       "lon": -59.075797,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-norte",
+   "nombre": "GBA Zona Norte",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Clínica de Vacunas",
+     "planes": [
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda de los Lagos 6855",
+       "localidad": "Nordelta",
+       "tel": "(15)6477-8875",
+       "lat": -34.404883,
+       "lon": -58.657253,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Fundación Dr. Mario Socolinsky",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Au Panamericana Ramal Pilar 0",
+       "localidad": "Pilar",
+       "tel": "(15)2292-4282",
+       "lat": -34.4505,
+       "lon": -58.889753,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Fundación Dr. Mario Socolinsky",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda de los Lagos 6785",
+       "localidad": "Nordelta",
+       "tel": "(15)2292-4282",
+       "lat": -34.405058,
+       "lon": -58.657672,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Fundación Dr. Mario Socolinsky",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda Diego Carman 599",
+       "localidad": "San Isidro",
+       "tel": "(15)2292-4282",
+       "lat": -34.496442,
+       "lon": -58.544635,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Martin y Omar 352",
+       "localidad": "San Isidro",
+       "tel": "5298-6350 Int. 5146",
+       "lat": -34.470468,
+       "lon": -58.510102,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-sur",
+   "nombre": "GBA Zona Sur",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Fundación Dr. Mario Socolinsky",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Felix de Azara 179",
+       "localidad": "Lomas de Zamora",
+       "tel": "(15)2292-4282",
+       "lat": -34.757937,
+       "lon": -58.404819,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Fundación Dr. Mario Socolinsky",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda Mitre 803",
+       "localidad": "Quilmes",
+       "tel": "(15)2292-4282",
+       "lat": -34.723976,
+       "lon": -58.252181,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda Alte Guillermo Brown 2779",
+       "localidad": "Temperley",
+       "tel": "4239-8855 Int. 1555",
+       "lat": -34.769742,
+       "lon": -58.3965,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Lacarra",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gral Lacarra 1702",
+       "localidad": "Gerli",
+       "tel": "4204-6833",
+       "lat": -34.685507,
+       "lon": -58.374604,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-noroeste",
+   "nombre": "GBA Zona Noroeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Fundación Dr. Mario Socolinsky",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Perdriel 4189",
+       "localidad": "General San Martin",
+       "tel": "(15)2292-4282",
+       "lat": -34.583876,
+       "lon": -58.536362,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax LePharm Tom",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Panamericana Ramal Norte 4002",
+       "localidad": "Tortuguitas",
+       "tel": "(15)2586-6952",
+       "lat": -34.454418,
+       "lon": -58.727263,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "rosario",
+   "nombre": "Rosario",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "GO Sanatorio Funes",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Córdoba 2415",
+       "localidad": "Rosario",
+       "tel": "(0341) 523-2325",
+       "lat": -32.943248,
+       "lon": -60.656358,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto de Medicina y Cirugía Infantil - Sanatorio de Niños",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gral Alvear 863",
+       "localidad": "Rosario",
+       "tel": "(0341) 420-4400",
+       "lat": -32.94397,
+       "lon": -60.654613,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto del Niño",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Entre Rios 1647",
+       "localidad": "Rosario",
+       "tel": "(0341) 421-2808",
+       "lat": -32.956295,
+       "lon": -60.643448,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la Mujer",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Luis 2493",
+       "localidad": "Rosario",
+       "tel": "(0341) 447-8600/8686",
+       "lat": -32.945927,
+       "lon": -60.656895,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vaccini",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Suipacha 815",
+       "localidad": "Rosario",
+       "tel": "(0341) 439-2158",
+       "lat": -32.942054,
+       "lon": -60.664252,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-nicolas-de-los-arroyos",
+   "nombre": "San Nicolás de los Arroyos",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Grupo Oroño - ACE Agrupación de Colaboración Empresaria - Zona Sur",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jose Hernandez 1249",
+       "localidad": "San Nicolás de los Arroyos",
+       "tel": "(0336) 448-8500 / (15)418-1972",
+       "lat": -33.351139,
+       "lon": -60.239288,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "godoy-cruz",
+   "nombre": "Godoy Cruz",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Inmune",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Santiago de Liniers 698",
+       "localidad": "Godoy Cruz",
+       "tel": "(0261) (15)616-6228",
+       "lat": -32.904076,
+       "lon": -68.851592,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Panamericana 2650",
+       "localidad": "Godoy Cruz",
+       "tel": "(0261) 476-2170",
+       "lat": -32.956004,
+       "lon": -68.859683,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Nova Salud",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dr Pablo Ehrlich 56",
+       "localidad": "Godoy Cruz",
+       "tel": "(0261) 424-3968",
+       "lat": -32.914475,
+       "lon": -68.84468,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "neuquen",
+   "nombre": "Neuquén",
+   "provincias": [
+    "Neuquén"
+   ],
+   "centros": [
+    {
+     "nombre": "La Natividad Neuquén",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Córdoba 164",
+       "localidad": "Neuquén",
+       "tel": "(0299) 447-0606/0591",
+       "lat": -38.953335,
+       "lon": -68.05499,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "villa-allende",
+   "nombre": "Villa Allende",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Mega Salud - Centro de Vacunación",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 de Julio 51",
+       "localidad": "Villa Allende",
+       "tel": "(0351) 481-2233 / WSP (15)327-8736",
+       "lat": -31.29552,
+       "lon": -64.294688,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "malagueno",
+   "nombre": "Malagueño",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Mega Salud - Centro de Vacunación",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ruta Provincial C. 45 0 0 0",
+       "localidad": "Malagueño",
+       "tel": "(0351) 481-2233 / WSP (15)327-8736",
+       "lat": -31.464322,
+       "lon": -64.426706,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "rio-cuarto",
+   "nombre": "Río Cuarto",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Mega Salud - Centro de Vacunación",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Cabrera 774",
+       "localidad": "Río Cuarto",
+       "tel": "(0351) 481-2233 / WSP (15)327-8736",
+       "lat": -33.123322,
+       "lon": -64.351636,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "mar-del-plata",
+   "nombre": "Mar del Plata",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 3588",
+       "localidad": "Mar del Plata",
+       "tel": "(0223) 499-4000 Int.: 714",
+       "lat": -37.99275,
+       "lon": -57.555474,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Domingo Faustino Sarmiento 2685",
+       "localidad": "Mar del Plata",
+       "tel": "(011) 4304-4144 Opción 2 / WSP (15)2746-1768",
+       "lat": -38.012241,
+       "lon": -57.543321,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "belen-de-escobar",
+   "nombre": "Belen de Escobar",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Previvax LePharm Puertos",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda de los Lagos 2636",
+       "localidad": "Belen de Escobar",
+       "tel": "(15)2475-0484",
+       "lat": -34.433555,
+       "lon": -58.644276,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "salta",
+   "nombre": "Salta",
+   "provincias": [
+    "Salta"
+   ],
+   "centros": [
+    {
+     "nombre": "Profilaxis",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av D F Sarmiento 360",
+       "localidad": "Salta",
+       "tel": "(0387) 431-2034",
+       "lat": -24.785053,
+       "lon": -65.416218,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "venado-tuerto",
+   "nombre": "Venado Tuerto",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio San Martín",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Castelli 274",
+       "localidad": "Venado Tuerto",
+       "tel": "(03462) 43-8882",
+       "lat": -33.749228,
+       "lon": -61.961541,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-carlos-de-bariloche",
+   "nombre": "San Carlos de Bariloche",
+   "provincias": [
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunatorio Centro Pediátrico Melipal",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avda de los Pioneros 3928",
+       "localidad": "San Carlos de Bariloche",
+       "tel": "(0294) 444-1141 / (011) (15)2309-7399",
+       "lat": -41.132055,
+       "lon": -71.357535,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "maipu",
+   "nombre": "Maipú",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunatorio Nova Salud",
+     "planes": [
+      "SMG02",
+      "SMG20",
+      "SMG30"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jose Alberto Ozamis 737",
+       "localidad": "Maipú",
+       "tel": "(0261) (15)633-0089",
+       "lat": -32.976306,
+       "lon": -68.788068,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
