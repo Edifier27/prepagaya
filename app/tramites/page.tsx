@@ -113,7 +113,7 @@ export default function TramitesPage() {
           {/* GEO: respuesta directa en los primeros ~200 palabras, antes de
               cualquier navegación — igual criterio que /guias/[slug] y /blog/[slug]. */}
           <p className="text-gray-700 leading-relaxed text-lg">
-            Casi todos los trámites de una prepaga en Argentina se hacen online, sin ir a una sucursal: <strong>afiliarte</strong> (alta), <strong>pedir una autorización</strong> para un estudio o cirugía, <strong>cambiar de prepaga</strong> (traspaso), <strong>derivar los aportes</strong> de tu obra social, o <strong>dar de baja</strong> tu cobertura. Esta página reúne, agrupados por lo que necesitás hacer, todos los pasos, plazos legales y requisitos de cada trámite, con la información actualizada a septiembre de 2026.
+            Casi todos los trámites de una prepaga en Argentina se hacen online, sin ir a una sucursal: <strong>afiliarte</strong> (alta), <strong>pedir una autorización</strong> para un estudio o cirugía, <strong>cambiar de prepaga</strong> (traspaso), <strong>derivar los aportes</strong> de tu obra social, o <strong>dar de baja</strong> tu cobertura. Esta página reúne, agrupados por lo que necesitás hacer, todos los pasos, plazos legales y requisitos de cada trámite, con la información revisada de forma periódica.
           </p>
         </div>
       </section>
