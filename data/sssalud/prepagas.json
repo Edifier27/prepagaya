@@ -330,14 +330,14 @@
 "descripcion": "EMECA"
 },
 {
-"rnemp": 112431,
-"nombre_comercial": "EMERGENCIAS SALUD",
-"descripcion": "INTERNATIONAL HEALTH SERVICES ARGENTINA S.A"
-},
-{
 "rnemp": 113359,
 "nombre_comercial": "EMERGENCIAS SALUD",
 "descripcion": "EMERGENCIA MEDICA INTEGRAL S.A."
+},
+{
+"rnemp": 112431,
+"nombre_comercial": "EMERGENCIAS SALUD",
+"descripcion": "INTERNATIONAL HEALTH SERVICES ARGENTINA S.A"
 },
 {
 "rnemp": 117115,
@@ -358,6 +358,11 @@
 "rnemp": 311586,
 "nombre_comercial": "FEDERADA COBERTURA MEDICA",
 "descripcion": "MUTUAL FEDERADA 25 DE JUNIO SOCIEDAD DE PROTECCION RECIPROCA."
+},
+{
+"rnemp": 812212,
+"nombre_comercial": "FEMECA",
+"descripcion": "FEDERACION MEDICA GREMIAL DE LA CAPITAL FEDERAL"
 },
 {
 "rnemp": 520588,
@@ -620,6 +625,11 @@
 "descripcion": "OBRA SOCIAL DE AGENTES DE PROPAGANDA MEDICA DE ROSARIO"
 },
 {
+"rnemp": 620745,
+"nombre_comercial": "OBRA SOCIAL DE COMISARIOS  NAVALES",
+"descripcion": "OBRA SOCIAL DE COMISARIOS  NAVALES                                                                                                                                                                                                                        "
+},
+{
 "rnemp": 610553,
 "nombre_comercial": "OBRA SOCIAL DEL PERSONAL JERARQUICO DE LA REPUBLICA ARGENTINA PARA EL PERSONAL JERARQUICO DE LA INDUSTRIA GRAFICA Y EL PERSONAL JERARQUICO DEL AGUA Y LA ENERGIA",
 "descripcion": "OBRA SOCIAL DEL PERSONAL JERARQUICO DE LA REPUBLICA ARGENTINA PARA EL PERSONAL JERARQUICO DE LA INDUSTRIA GRAFICA Y EL PERSONAL JERARQUICO DEL AGUA Y LA ENERGIA"
@@ -795,11 +805,6 @@
 "descripcion": "REYLES S.A."
 },
 {
-"rnemp": 117757,
-"nombre_comercial": "S/D",
-"descripcion": "EMERGENCIAS DEL SUR S.R.L."
-},
-{
 "rnemp": 116608,
 "nombre_comercial": "S/D",
 "descripcion": "FISHERTON SALUD S.R.L."
@@ -808,6 +813,11 @@
 "rnemp": 316338,
 "nombre_comercial": "S/D",
 "descripcion": "ASOCIACION MUTUAL PREVINOR"
+},
+{
+"rnemp": 117757,
+"nombre_comercial": "S/D",
+"descripcion": "EMERGENCIAS DEL SUR S.R.L."
 },
 {
 "rnemp": 112660,
@@ -1010,9 +1020,9 @@
 "descripcion": "OBRA SOCIAL DE DIRECCION OSDO                                                                                                                                                                                                                             "
 },
 {
-"rnemp": 620745,
+"rnemp": 118538,
 "nombre_comercial": null,
-"descripcion": "OBRA SOCIAL DE COMISARIOS  NAVALES                                                                                                                                                                                                                        "
+"descripcion": "BONMED S.A.                                                                                                                                                                                                                                               "
 },
 {
 "rnemp": 120771,
@@ -1023,11 +1033,6 @@
 "rnemp": 118521,
 "nombre_comercial": null,
 "descripcion": "ANDESALUD S.A.                                                                                                                                                                                                                                            "
-},
-{
-"rnemp": 118538,
-"nombre_comercial": null,
-"descripcion": "BONMED S.A.                                                                                                                                                                                                                                               "
 },
 {
 "rnemp": 118514,

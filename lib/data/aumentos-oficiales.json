@@ -2,7 +2,7 @@
   "fuente": "Superintendencia de Servicios de Salud — cuadros tarifarios (Res. 645/2025)",
   "fuenteUrl": "https://cuadrostarifarios.sssalud.gob.ar/",
   "metodo": "Aumento de cada fila (plan, región, rango de edad y modalidad) entre dos períodos consecutivos; por prepaga se informa la mediana, el mínimo y el máximo. El promedio del mes es el promedio simple de las medianas de las prepagas que declararon.",
-  "generado": "2026-10-15",
+  "generado": "2026-11-01",
   "meses": {
     "202509": {
       "label": "Septiembre 2025",
@@ -1946,7 +1946,7 @@
     },
     "202610": {
       "label": "Octubre 2026",
-      "promedio": 2.17,
+      "promedio": 2.14,
       "prepagas": {
         "federada-salud": {
           "nombre": "Federada Salud",
@@ -2042,16 +2042,6 @@
           ],
           "filas": 683
         },
-        "galeno": {
-          "nombre": "Galeno",
-          "mediana": 2.4,
-          "minimo": 2.4,
-          "maximo": 2.4,
-          "declaradas": [
-            2.4
-          ],
-          "filas": 72
-        },
         "omint": {
           "nombre": "Omint",
           "mediana": 2.9,
@@ -2063,6 +2053,95 @@
             4.9
           ],
           "filas": 540
+        }
+      }
+    },
+    "202611": {
+      "label": "Noviembre 2026",
+      "promedio": 2.39,
+      "prepagas": {
+        "luis-pasteur": {
+          "nombre": "Luis Pasteur",
+          "mediana": 1.9,
+          "minimo": 1.9,
+          "maximo": 1.9,
+          "declaradas": [
+            1.9
+          ],
+          "filas": 80
+        },
+        "osde": {
+          "nombre": "OSDE",
+          "mediana": 2.2,
+          "minimo": 1.7,
+          "maximo": 2.2,
+          "declaradas": [
+            1.7,
+            2.2
+          ],
+          "filas": 164
+        },
+        "swiss-medical": {
+          "nombre": "Swiss Medical",
+          "mediana": 2.3,
+          "minimo": 1.9,
+          "maximo": 2.3,
+          "declaradas": [
+            1.9,
+            2.3
+          ],
+          "filas": 868
+        },
+        "hospital-italiano": {
+          "nombre": "Hospital Italiano",
+          "mediana": 2.3,
+          "minimo": 2.3,
+          "maximo": 2.3,
+          "declaradas": [
+            2.3
+          ],
+          "filas": 10
+        },
+        "prevencion-salud": {
+          "nombre": "Prevención Salud",
+          "mediana": 2.4,
+          "minimo": 2.2,
+          "maximo": 2.4,
+          "declaradas": [
+            2.2,
+            2.4
+          ],
+          "filas": 270
+        },
+        "federada-salud": {
+          "nombre": "Federada Salud",
+          "mediana": 2.4,
+          "minimo": 2.4,
+          "maximo": 2.4,
+          "declaradas": [
+            2.4
+          ],
+          "filas": 118
+        },
+        "omint": {
+          "nombre": "Omint",
+          "mediana": 2.75,
+          "minimo": 2.75,
+          "maximo": 2.75,
+          "declaradas": [
+            2.75
+          ],
+          "filas": 540
+        },
+        "sancor-salud": {
+          "nombre": "Sancor Salud",
+          "mediana": 2.88,
+          "minimo": 2.88,
+          "maximo": 2.9,
+          "declaradas": [
+            2.88
+          ],
+          "filas": 1928
         }
       }
     }

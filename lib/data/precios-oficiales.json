@@ -2,41 +2,41 @@
   "fuente": "Superintendencia de Servicios de Salud — cuadros tarifarios (Res. 645/2025)",
   "fuenteUrl": "https://cuadrostarifarios.sssalud.gob.ar/",
   "referencia": "30 años, contratación individual directa, CABA/AMBA, IVA 10,5% incluido",
-  "periodo": 202610,
-  "periodoTexto": "Octubre 2026",
+  "periodo": 202611,
+  "periodoTexto": "Noviembre 2026",
   "periodoPorPrepaga": {
-    "swiss-medical": 202610,
-    "osde": 202610,
+    "swiss-medical": 202611,
+    "osde": 202611,
     "premedic": 202609,
     "medife": 202610,
-    "sancor-salud": 202610,
-    "prevencion-salud": 202610,
+    "sancor-salud": 202611,
+    "prevencion-salud": 202611,
     "avalian": 202609,
-    "galeno": 202610,
-    "luis-pasteur": 202610,
-    "hospital-italiano": 202610
+    "galeno": 202611,
+    "luis-pasteur": 202611,
+    "hospital-italiano": 202611
   },
-  "generado": "2026-10-15",
+  "generado": "2026-11-01",
   "precios": {
     "swiss-medical": {
-      "smg02": 283109,
-      "s1": 201283,
-      "s2": 252698,
-      "sport-s": 313960,
-      "smg20": 353333,
-      "smg30": 405892,
-      "sport": 413399,
-      "smg40": 424233,
-      "sport-plus": 483625,
-      "smg50": 530091,
-      "smg60": 746423,
-      "smg70": 908349
+      "smg02": 289620,
+      "s1": 205108,
+      "s2": 257499,
+      "sport-s": 319926,
+      "smg20": 361459,
+      "smg30": 415228,
+      "sport": 422907,
+      "smg40": 433990,
+      "sport-plus": 494748,
+      "smg50": 542283,
+      "smg60": 763590,
+      "smg70": 929241
     },
     "osde": {
-      "210": 320904,
-      "310": 414638,
-      "410": 551454,
-      "510": 1368158
+      "210": 327964,
+      "310": 423760,
+      "410": 563585,
+      "510": 1398257
     },
     "premedic": {
       "plan-c100": 90938,
@@ -53,33 +53,33 @@
       "platinum": 616450
     },
     "sancor-salud": {
-      "f700": 237555,
-      "f800": 289865,
-      "f800-digital-flex": 257411,
-      "plan-1000-digital-flex": 339731,
-      "plan-1000": 370455,
-      "plan-1000-cc": 364260,
-      "plan-1500": 430173,
-      "plan-1500-cc": 422984,
-      "plan-3000": 461750,
-      "plan-3500": 505719,
-      "plan-4000": 560347,
-      "plan-4500": 606362,
-      "plan-5000": 907339,
-      "plan-6000": 1179180,
-      "plan-1000-gen": 533314,
-      "plan-1500-gen": 575203,
-      "plan-3000-gen": 619877,
-      "plan-3500-gen": 711860,
-      "plan-4000-gen": 796891,
-      "plan-4500-gen": 880475
+      "f700": 244396,
+      "f800": 298213,
+      "f800-digital-flex": 264824,
+      "plan-1000-digital-flex": 349516,
+      "plan-1000": 381123,
+      "plan-1000-cc": 374751,
+      "plan-1500": 442562,
+      "plan-1500-cc": 435166,
+      "plan-3000": 475048,
+      "plan-3500": 520284,
+      "plan-4000": 576485,
+      "plan-4500": 623826,
+      "plan-5000": 933470,
+      "plan-6000": 1213140,
+      "plan-1000-gen": 548673,
+      "plan-1500-gen": 591769,
+      "plan-3000-gen": 637730,
+      "plan-3500-gen": 732361,
+      "plan-4000-gen": 819841,
+      "plan-4500-gen": 905833
     },
     "prevencion-salud": {
-      "on-demand": 418639,
-      "a1": 772232,
-      "a2": 921089,
-      "a4": 1160612,
-      "a5": 1654727
+      "on-demand": 427849,
+      "a1": 790766,
+      "a2": 943195,
+      "a4": 1188466,
+      "a5": 1694441
     },
     "avalian": {
       "as100": 288674,
@@ -91,24 +91,24 @@
       "as500": 899432
     },
     "galeno": {
-      "azul-200": 290502,
-      "azul-220": 319414,
-      "plata-300": 367348,
-      "plata-330": 411425,
-      "oro-400": 471484,
-      "oro-440": 546821,
-      "oro-550": 825999
+      "azul-200": 296893,
+      "azul-220": 326441,
+      "plata-300": 375429,
+      "plata-330": 420476,
+      "oro-400": 481857,
+      "oro-440": 558851,
+      "oro-550": 844171
     },
     "luis-pasteur": {
-      "novo": 343157,
-      "n": 403758,
-      "p": 497168,
-      "s": 646236,
-      "v": 1221355
+      "novo": 349676,
+      "n": 411429,
+      "p": 506614,
+      "s": 658515,
+      "v": 1244562
     },
     "hospital-italiano": {
-      "vita": 190072,
-      "magna": 265949
+      "vita": 194444,
+      "magna": 272066
     }
   }
 }
