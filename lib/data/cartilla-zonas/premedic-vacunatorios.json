@@ -566,22 +566,6 @@
      ]
     }
    ]
-  },
-  {
-   "slug": "misiones",
-   "nombre": "Misiones",
-   "provincias": [
-    "Misiones"
-   ],
-   "centros": []
-  },
-  {
-   "slug": "mendoza",
-   "nombre": "Mendoza",
-   "provincias": [
-    "Mendoza"
-   ],
-   "centros": []
   }
  ]
 }

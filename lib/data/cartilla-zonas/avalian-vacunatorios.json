@@ -1,1 +1,635 @@
-{"fuente":"PROVISORIO","vigencia":[],"planes":[],"zonas":[]}
+{
+ "fuente": "Buscador oficial de cartilla de Avalian (avalian.com/cartilla)",
+ "vigencia": [
+  "01/11/2026"
+ ],
+ "planes": [
+  "Cerca",
+  "Integral",
+  "Superior",
+  "Selecta",
+  "Clásica"
+ ],
+ "zonas": [
+  {
+   "slug": "salta",
+   "nombre": "Salta",
+   "provincias": [
+    "Salta"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Profilaxis SRL - Profilaxis Vacunatorio Privado",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Sarmiento 360",
+       "localidad": "Salta",
+       "tel": "387 431-2034",
+       "lat": -24.7849949,
+       "lon": -65.4158865,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-nicolas-de-los-arroyos",
+   "nombre": "San Nicolás de los Arroyos",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Vacunatorio GO San Nicolas",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Hernandez 1249",
+       "localidad": "San Nicolás de los Arroyos",
+       "tel": "336 4488500",
+       "lat": -33.3518814,
+       "lon": -60.2401935,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "tandil",
+   "nombre": "Tandil",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Saceip SA - Previvax Vacunatorios",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Maipú 370",
+       "localidad": "Tandil",
+       "tel": "(011)1557391721",
+       "lat": -37.3310508,
+       "lon": -59.1376003,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "caba",
+   "nombre": "Ciudad de Buenos Aires",
+   "provincias": [
+    "Ciudad de Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Fundacion Dr MARIO Socolinsky - Proteger Centros de Vacunacion",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Callao 850",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011-48110816",
+       "lat": -34.5991877,
+       "lon": -58.3932257,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Saceip SA - Previvax Vacunatorios",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Cordoba 5775",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "011-47741246",
+       "lat": -34.5862595,
+       "lon": -58.4419716,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Vacunar",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "M. T. Alvear 2383",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "0810-444-8228",
+       "lat": -34.6614689,
+       "lon": -58.5556781,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Vacunar",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Blanco Encalada 4881",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "11 20534405",
+       "lat": -34.574274,
+       "lon": -58.484364,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Vacunar",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Francisco Beiro 3602 Piso PB",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": null,
+       "lat": -34.6010425,
+       "lon": -58.5036395,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto Argentino de Diagnostico y Tratamiento S.A.",
+     "planes": [
+      "Superior",
+      "Selecta"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Marcelo T. De Alvear 2346",
+       "localidad": "Ciudad de Buenos Aires",
+       "tel": "4965-1100",
+       "lat": -34.5966886,
+       "lon": -58.4008478,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-norte",
+   "nombre": "GBA Zona Norte",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Pediátrico Ballester - Malacchia Carlos",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alvear 2307",
+       "localidad": "Villa Ballester",
+       "tel": "011-4616-6870 / 1121935257",
+       "lat": -34.5465779,
+       "lon": -58.5508334,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Vacunar",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Parana 3745",
+       "localidad": "Martinez",
+       "tel": null,
+       "lat": -34.5089333,
+       "lon": -58.5235333,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-oeste",
+   "nombre": "GBA Zona Oeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "CEPEM",
+     "planes": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Machado 729",
+       "localidad": "Moron",
+       "tel": "28218080",
+       "lat": -34.6462464,
+       "lon": -58.6189244,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "godoy-cruz",
+   "nombre": "Godoy Cruz",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Saceip SA - Previvax Vacunatorios",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Panamericana 2650",
+       "localidad": "Godoy Cruz",
+       "tel": null,
+       "lat": -32.9286268,
+       "lon": -68.8583963,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cipolletti",
+   "nombre": "Cipolletti",
+   "provincias": [
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Vacunatorio CENI",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin 970",
+       "localidad": "Cipolletti",
+       "tel": "0299-4206686",
+       "lat": -38.938771,
+       "lon": -67.9954929,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-carlos-de-bariloche",
+   "nombre": "San Carlos de Bariloche",
+   "provincias": [
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia CPM SAS - Centro Pediatrico Melipal - Vacunatorio Melipal",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Pioneros 3928",
+       "localidad": "San Carlos de Bariloche",
+       "tel": "294-4441141 / 2944538020",
+       "lat": -41.13216,
+       "lon": -71.356269,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Moguilevsky Jorge-vacunatorio CONS Medico Albarracin II",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Albarracin 1332",
+       "localidad": "San Carlos de Bariloche",
+       "tel": "02944-654259",
+       "lat": -41.1406349,
+       "lon": -71.2918058,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "rosario",
+   "nombre": "Rosario",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Creced Vacunatorio",
+     "planes": [
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Suipacha 815",
+       "localidad": "Rosario",
+       "tel": "3414392158",
+       "lat": -32.9420576,
+       "lon": -60.664134,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Sindicato de LUZ y Fuerza de Rosario- Centro de Vacunacion",
+     "planes": [
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Entre Rios 982",
+       "localidad": "Rosario",
+       "tel": "341 4260260 / 341 4803807",
+       "lat": -32.9482905,
+       "lon": -60.6415545,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Vacunatorio Farmava",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Urquiza 1220",
+       "localidad": "Rosario",
+       "tel": "341-6449666",
+       "lat": -32.9426387,
+       "lon": -60.6389541,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Vacunatorio SANAT de la MUJER",
+     "planes": [
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Luis 2493",
+       "localidad": "Rosario",
+       "tel": "341 4478600",
+       "lat": -32.9459828,
+       "lon": -60.6578341,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Vacunatorio Sanatorio de la MUJER Fisherton",
+     "planes": [
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alberto J. Paz 1065 Bis",
+       "localidad": "Rosario",
+       "tel": "0341 486-8960",
+       "lat": -32.9193203,
+       "lon": -60.7777228,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Vacunatorio Sanatorio Parque",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rioja 2292",
+       "localidad": "Rosario",
+       "tel": "341 4204427",
+       "lat": -32.9445307,
+       "lon": -60.6547183,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la MUJER Fisherton",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alberto J. Paz 1065 Bis",
+       "localidad": "Rosario",
+       "tel": "0341 568 - 3444 / 8960",
+       "lat": -32.9193203,
+       "lon": -60.7777228,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la MUJER SUR",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Bv. Oroño 5960",
+       "localidad": "Rosario",
+       "tel": "0341 568 - 3444 / 0999",
+       "lat": -33.0062809,
+       "lon": -60.6653057,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de Niños",
+     "planes": [
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alvear 863",
+       "localidad": "Rosario",
+       "tel": "341 4204400",
+       "lat": -32.9443308,
+       "lon": -60.6545462,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Pediatria Italiana",
+     "planes": [
+      "Cerca",
+      "Integral",
+      "Superior",
+      "Selecta",
+      "Clásica"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Fuerza Aerea 3169",
+       "localidad": "Rosario",
+       "tel": "3416848643 / 3412310424",
+       "lat": -32.9297491,
+       "lon": -60.8283452,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

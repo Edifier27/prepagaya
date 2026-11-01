@@ -227,6 +227,23 @@ def main(carpeta, filiales_txt, salida, salida_especialidades=None, salida_farma
         print(f'{len(salida_zonas_farm)} zonas con farmacias, {n_farm} farmacias')
 
 
+    # Las zonas de ópticas y vacunatorios se muestran en el desplegable de la
+    # cartilla ya publicada (lib/data/cartilla-zonas/osde.json). Si OSDE sumó
+    # zonas desde esa publicación, los slugs de esta corrida pueden correrse
+    # ("bahia-blanca" → "bahia-blanca-bahia-blanca"): se usa el slug publicado
+    # de la zona con el mismo nombre y provincias, así coinciden con lo que ya
+    # está en el sitio (2-nov-2026).
+    publicado = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'lib', 'data', 'cartilla-zonas', 'osde.json')
+    if os.path.exists(publicado):
+        por_nombre = {}
+        for zp in json.load(open(publicado, encoding='utf-8'))['zonas']:
+            por_nombre.setdefault((zp['nombre'], tuple(zp['provincias'])), []).append(zp['slug'])
+        for lista_zonas in salida_zonas_rubro.values():
+            for zr in lista_zonas:
+                candidatos = por_nombre.get((zr['nombre'], tuple(zr['provincias'])), [])
+                if len(candidatos) == 1:
+                    zr['slug'] = candidatos[0]
+
     titulos = {'opticas': 'Ópticas', 'vacunatorios': 'Centros de vacunación'}
     for rubro, ruta in (('opticas', salida_opticas), ('vacunatorios', salida_vacunatorios)):
         if not ruta:
