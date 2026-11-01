@@ -6,9 +6,11 @@ Extrae solo instituciones de cuatro secciones:
   - ESPECIALISTAS DE GUARDIA (instituciones con especialista de guardia, por
     especialidad — NO es "CUERPO MÉDICO", que mezcla instituciones con
     médicos particulares con nombre y apellido y por eso no se parsea)
-  - FARMACIAS (comercios; se descarta la subsección "CENTROS DE VACUNACIÓN"
-    que viene en la misma página, y la portada "FARMACIAS - NORMAS PARA LA
-    ATENCIÓN")
+  - FARMACIAS (comercios; la portada "FARMACIAS - NORMAS PARA LA ATENCIÓN"
+    se descarta). La subsección "CENTROS DE VACUNACIÓN" de la misma página
+    sale aparte como sección "vacunatorio" (2-nov-2026).
+  - ÓPTICAS Y ORTOPEDIAS (2-nov-2026): solo la subsección "ÓPTICAS", como
+    sección "optica"; las ortopedias se descartan.
 Uso: python parse.py pdfs/Cartilla60_31.pdf [...]  -> imprime JSON
 """
 import json, re, sys, io, unicodedata
@@ -19,10 +21,15 @@ SECCIONES = {
     'CENTROS CON SERVICIO DE GUARDIA': 'guardia',
     'ESPECIALISTAS DE GUARDIA': 'especialistas',
     'FARMACIAS': 'farmacia',
+    'ÓPTICAS Y ORTOPEDIAS': 'optica',
 }
 # Subtítulos (bold, tamaño 9, todo mayúsculas) que aparecen DENTRO de la
 # sección "FARMACIAS - <Zona>": solo interesa lo que cae bajo "FARMACIAS".
 SUBCATEGORIAS_FARMACIA = ('CENTROS DE VACUNACIÓN', 'FARMACIAS')
+# Lo mismo en "ÓPTICAS Y ORTOPEDIAS - <Zona>": solo se guarda "ÓPTICAS".
+SUBCATEGORIAS_OPTICA = ('ÓPTICAS', 'ORTOPEDIAS')
+# Subcategoría → sección con la que sale el ítem
+SECCION_DE_SUBCATEGORIA = {'FARMACIAS': 'farmacia', 'CENTROS DE VACUNACIÓN': 'vacunatorio', 'ÓPTICAS': 'optica'}
 MARCAS = {
     '(***)': 'solo-cartilla',   # internación con profesionales de cartilla exclusivamente
     '(**)': 'cuerpo-propio',    # solamente con su cuerpo profesional
@@ -125,6 +132,10 @@ def parse_pdf(path):
                     # eso arranca asumiendo "FARMACIAS", no None.
                     if seccion == 'farmacia':
                         subcategoria = 'FARMACIAS'
+                    # En ópticas, cada página arranca con su subtítulo
+                    # ("ÓPTICAS" u "ORTOPEDIAS"): hasta verlo no se guarda nada.
+                    if seccion == 'optica':
+                        subcategoria = None
                 continue
             if seccion is None:
                 continue
@@ -149,11 +160,12 @@ def parse_pdf(path):
             # guarda lo que cae bajo "FARMACIAS"); los barrios ("Belgrano -
             # Colegiales", bold tamaño 10) NO son una zona nueva acá, a
             # diferencia de sanatorios/guardias.
-            if seccion == 'farmacia' and ln['bold'] and ln['size'] == 9 and t == t.upper() and t in SUBCATEGORIAS_FARMACIA:
+            if seccion in ('farmacia', 'optica') and ln['bold'] and ln['size'] == 9 and t == t.upper() \
+                    and t in (SUBCATEGORIAS_FARMACIA if seccion == 'farmacia' else SUBCATEGORIAS_OPTICA):
                 cerrar()
                 subcategoria = t
                 continue
-            if seccion == 'farmacia' and ln['bold'] and ln['size'] == 10:
+            if seccion in ('farmacia', 'optica') and ln['bold'] and ln['size'] == 10:
                 cerrar()
                 continue
             if ln['bold'] and ln['size'] == 10:  # subtítulo de zona
@@ -163,7 +175,7 @@ def parse_pdf(path):
                 continue
             if cerrado:
                 continue
-            if seccion == 'farmacia' and subcategoria != 'FARMACIAS':
+            if seccion in ('farmacia', 'optica') and subcategoria not in SECCION_DE_SUBCATEGORIA:
                 continue
             if ln['bold']:
                 # nombre (puede venir partido en 2 líneas bold seguidas)
@@ -178,7 +190,7 @@ def parse_pdf(path):
                         t = norm(t[len(k):])
                         break
                 actual = {'filial': filial, 'filialNombre': filial_nombre, 'plan': plan,
-                          'seccion': seccion, 'zona': zona, 'especialidad': especialidad, 'nombre': t, 'marca': marca,
+                          'seccion': SECCION_DE_SUBCATEGORIA[subcategoria] if seccion in ('farmacia', 'optica') else seccion, 'zona': zona, 'especialidad': especialidad, 'nombre': t, 'marca': marca,
                           'notas': [], 'sedes': [], 'pagina': pi}
                 continue
             if actual is None:

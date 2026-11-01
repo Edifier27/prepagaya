@@ -1,7 +1,8 @@
 import type { CentroFarmacia } from '@/lib/data/cartilla-zonas/farmacias'
 
 // Lista de farmacias para la pestaña "Farmacias" de la cartilla — comercios
-// habilitados, no hay problema de privacidad (no son personas).
+// habilitados, no hay problema de privacidad (no son personas). Desde el
+// 2-nov-2026 también ópticas y vacunatorios (mismo formato, otro "rubro").
 
 function telHref(tel: string): string | null {
   const primero = tel.match(/(\(?0?\d{2,4}\)?[\s-]?)?\d{2,4}[\s-]?\d{4}/)
@@ -14,17 +15,20 @@ export function CentrosFarmacia({
   centros,
   plan,
   zonaCorta,
+  rubro = 'farmacias',
 }: {
   centros: CentroFarmacia[]
   plan?: string
   zonaCorta: string
+  /** En plural y minúscula, para el mensaje de "no hay": "farmacias", "ópticas", "vacunatorios" */
+  rubro?: string
 }) {
   const filtrados = plan ? centros.filter((c) => c.planes.includes(plan)) : centros
 
   if (filtrados.length === 0) {
     return (
       <p className="text-sm text-gray-500 bg-gray-50 border border-gray-100 rounded-xl p-4">
-        No hay farmacias en {zonaCorta}
+        No hay {rubro} en {zonaCorta}
         {plan ? ' para este plan' : ''} en la cartilla oficial.
       </p>
     )
@@ -32,8 +36,9 @@ export function CentrosFarmacia({
 
   return (
     <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-      {filtrados.map((c) => (
-        <li key={c.nombre} className="bg-white rounded-xl border border-gray-200 p-4 flex flex-col gap-2">
+      {filtrados.map((c, i) => (
+        // Sucursales con el mismo nombre ("Optica Cristal" en dos calles): la clave no puede ser solo el nombre
+        <li key={`${c.nombre}-${c.sedes[0]?.direccion ?? ''}-${i}`} className="bg-white rounded-xl border border-gray-200 p-4 flex flex-col gap-2">
           <div>
             <h4 className="font-semibold text-gray-900 text-sm leading-snug">{c.nombre}</h4>
             {c.notas.length > 0 && <div className="text-xs text-amber-700 mt-0.5">{c.notas.join(' ')}</div>}

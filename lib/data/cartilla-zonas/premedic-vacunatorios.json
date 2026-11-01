@@ -1,0 +1,571 @@
+{
+ "fuente": "Buscador oficial de cartilla de Premedic (web.grupopremedic.com.ar/cartilla-medica)",
+ "vigencia": [
+  "01/11/2026"
+ ],
+ "planes": [
+  "C-100",
+  "200",
+  "300",
+  "400",
+  "500",
+  "Por aportes"
+ ],
+ "zonas": [
+  {
+   "slug": "caba",
+   "nombre": "Ciudad de Buenos Aires",
+   "provincias": [
+    "Ciudad de Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar - Abasto",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Agüero 609, 2do Nivel CABA Ciudad Autónoma de Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.6029278,
+       "lon": -58.420869,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Acassuso",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. del Libertador 15326 Caba Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.474207,
+       "lon": -58.5051055,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Belgrano",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jose Hernandez 2562 Belgrano Ciudad Autónoma de Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Caballito",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Acoyte 185 Caballito Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Cañitas",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Luis Maria Campos 765 Palermo, Capital Federal Ciudad Autónoma de Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - DOT",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Vedia 3626 Caba Ciudad Autónoma de Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.54691680534562,
+       "lon": -58.487330528607316,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Liniers",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Montiel 174 Liniers Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Palermo",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Paraguay 3949 Palermo, Capital Federal Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Recoleta",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Marcelo Alvear 2383 Recoleta, Capital Federal Ciudad Autónoma de Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Sanatorio Mater Dei",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Martin de Tours 2952 Recoleta Ciudad Autónoma de Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.57801601609837,
+       "lon": -58.4043157303786,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Urquiza",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Blanco Encalada 4881 Villa Urquiza, Capital Federal Ciudad Autónoma de Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-norte",
+   "nombre": "GBA Zona Norte",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar - Florida",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "H. de la Quintana 782 Vicente Lopez Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Paseo Champagnat",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "La Gaviota 200 398 Panamericana, Ramal Pilar km 54,5 Pilar Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.4505499,
+       "lon": -58.9391793,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - San Isidro",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Monseñor Magliano 3041 San Isidro Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Unicenter",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Paraná 3745 Martínez, San Isidro Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5088904,
+       "lon": -58.5261337,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-oeste",
+   "nombre": "GBA Zona Oeste y Noroeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar - Castelar",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Montes de Oca 2231 Castelar Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-sur",
+   "nombre": "GBA Zona Sur",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar - Lanus",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dr. Domingo Nicanor Basavilbaso 1859 Lanus, Lanus Este, Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.5901099,
+       "lon": -58.3962537,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cordoba",
+   "nombre": "Córdoba",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "GENTIUM Centro Medico Privado",
+     "planes": [
+      "300",
+      "400",
+      "500"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Rio de Janeiro 771 Villa Allende Cordoba",
+       "localidad": null,
+       "tel": "03543-433366 436937",
+       "lat": -31.295410866151823,
+       "lon": -64.28959211486685,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Megasalud",
+     "planes": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Derqui 9 Nueva Cordoba Cordoba",
+       "localidad": null,
+       "tel": "(0351) 4812233",
+       "lat": -31.425576576942497,
+       "lon": -64.1877042603446,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Megasalud",
+     "planes": [
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Coronel Beverina 2085 Cerro Las Rosas Cordoba",
+       "localidad": null,
+       "tel": "(0351) 4812233",
+       "lat": -31.37419002855544,
+       "lon": -64.22905861510229,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar - Devoto",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Francisco Beiro 3602 Devoto Ciudad Autónoma de Buenos Aires",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": -34.601038,
+       "lon": -58.5085104,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "tucuman",
+   "nombre": "Tucumán",
+   "provincias": [
+    "Tucumán"
+   ],
+   "centros": [
+    {
+     "nombre": "Ceivac Vacunatorio",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Juan 885 Tucuman Tucumán",
+       "localidad": null,
+       "tel": "Tel: 0381 422-1390",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Ceivac Vacunatorio",
+     "planes": [
+      "C-100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "Por aportes"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Santiago 118 Tucuman Tucumán",
+       "localidad": null,
+       "tel": "Tel: 0381 422-1390",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

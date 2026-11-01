@@ -1,0 +1,1178 @@
+{
+ "fuente": "Buscador oficial de cartilla de Sancor Salud (sancorsalud.com.ar/cartilla-nosoyasociado)",
+ "vigencia": [
+  "01/11/2026"
+ ],
+ "planes": [
+  "F700",
+  "F800",
+  "1000",
+  "1500",
+  "3000",
+  "3500",
+  "4000",
+  "4500",
+  "5000",
+  "6000"
+ ],
+ "zonas": [
+  {
+   "slug": "caba",
+   "nombre": "Ciudad de Buenos Aires",
+   "provincias": [
+    "Ciudad de Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avenida Rivadavia 6044",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.624365,
+       "lon": -58.450455,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Corrientes 3247",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.602651,
+       "lon": -58.410794,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Gascon 79",
+       "localidad": null,
+       "tel": null,
+       "lat": -34.611579,
+       "lon": -58.424167,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Luis María Campos 765",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.569624,
+       "lon": -58.436219,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Blanco Encalada 4881",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.574336,
+       "lon": -58.484541,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Montiel 174",
+       "localidad": null,
+       "tel": null,
+       "lat": -34.641268,
+       "lon": -58.526183,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Besares 4693",
+       "localidad": null,
+       "tel": null,
+       "lat": -34.554903,
+       "lon": -58.492478,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Córdoba 2678",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.598135,
+       "lon": -58.405154,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av las Heras 2900",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.583587,
+       "lon": -58.402062,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Monroe 3407",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.564282,
+       "lon": -58.469695,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jose Hernandez 2562",
+       "localidad": null,
+       "tel": null,
+       "lat": -34.566716,
+       "lon": -58.455041,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Acoyte 185",
+       "localidad": null,
+       "tel": null,
+       "lat": -34.616292,
+       "lon": -58.437346,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av e Galvan 4102",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.603796,
+       "lon": -58.381609,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Emilio Lamarca 3388",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.600975,
+       "lon": -58.503578,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Paraguay 3949",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.588988,
+       "lon": -58.418532,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Azcuenaga 870",
+       "localidad": null,
+       "tel": "(810) 4448228",
+       "lat": -34.598512,
+       "lon": -58.400862,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-sur",
+   "nombre": "GBA Zona Sur",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Dr. Domingo N. Basavilbaso 1859",
+       "localidad": "Lanus Este",
+       "tel": "(810) 4448228",
+       "lat": -34.708599,
+       "lon": -58.386498,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-norte",
+   "nombre": "GBA Zona Norte",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juan Domingo Peron 1500",
+       "localidad": "Pilar",
+       "tel": null,
+       "lat": -34.457119,
+       "lon": -58.865608,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Hilarion de la Quintana 782",
+       "localidad": "Vicente Lopez",
+       "tel": "(11) 4448228 / (810) 4448228",
+       "lat": -34.531225,
+       "lon": -58.480786,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Monseñor Magliano 3041",
+       "localidad": "San Isidro",
+       "tel": null,
+       "lat": -34.495954,
+       "lon": -58.546391,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Avenida del Libertador 15326",
+       "localidad": "Acassuso",
+       "tel": "(810) 4448228",
+       "lat": -34.473589,
+       "lon": -58.503214,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "pilar",
+   "nombre": "Pilar",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Panamericana Ramal Pilar 54",
+       "localidad": "Pilar",
+       "tel": "(810) 4448228",
+       "lat": -34.452241,
+       "lon": -58.9241,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "saavedra",
+   "nombre": "Saavedra",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Vedia 3626",
+       "localidad": "Saavedra",
+       "tel": null,
+       "lat": -37.75,
+       "lon": -62.366667,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "gba-zona-oeste",
+   "nombre": "GBA Zona Oeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Montes de Oca 2331",
+       "localidad": "Castelar",
+       "tel": null,
+       "lat": -34.649715,
+       "lon": -58.641108,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Cepem",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Machado 729",
+       "localidad": "Moron",
+       "tel": "(11) 46270002",
+       "lat": -34.646351,
+       "lon": -58.618825,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "rosario",
+   "nombre": "Rosario",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunatorio Instituto del Niño SRL",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Entre Rios 1647",
+       "localidad": "Rosario",
+       "tel": "(341) 4212828 / (341) 4263557",
+       "lat": -32.956142,
+       "lon": -60.643541,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cerro-de-las-rosas",
+   "nombre": "Cerro de las Rosas",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Vacunatorio Mega Salud",
+     "planes": [
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Coronel Beverina 2085",
+       "localidad": "Cerro de las Rosas",
+       "tel": "(351) 4812233 / (351) 3278736",
+       "lat": -31.37418,
+       "lon": -64.229101,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cordoba",
+   "nombre": "Córdoba",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Vacunatorio Mega Salud",
+     "planes": [
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Santiago Derqui 9",
+       "localidad": "Córdoba",
+       "tel": "(351) 3278736",
+       "lat": -31.425592,
+       "lon": -64.187728,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Centro Vacunatorio Mega Salud",
+     "planes": [
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jacinto Ríos 554",
+       "localidad": "Córdoba",
+       "tel": "(351) 3278736",
+       "lat": -31.410319,
+       "lon": -64.16695,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "villa-allende",
+   "nombre": "Villa Allende",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Vacunatorio Mega Salud",
+     "planes": [
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 de Julio 51",
+       "localidad": "Villa Allende",
+       "tel": "(351) 3278736",
+       "lat": -31.295352,
+       "lon": -64.29468,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "mar-del-plata",
+   "nombre": "Mar del Plata",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Hpc Vacunatorios",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Carlos Tejedo 945",
+       "localidad": "Mar del Plata",
+       "tel": "(223) 4990050",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Hpc Vacunatorios",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Boilivar 3453",
+       "localidad": "Mar del Plata",
+       "tel": "(223) 4940030",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Hpc Vacunatorios",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Azcuénaga 2564",
+       "localidad": "Mar del Plata",
+       "tel": "(223) 4990041",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "mendoza",
+   "nombre": "Mendoza",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Nova Salud",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av Champagnat",
+       "localidad": "Mendoza",
+       "tel": "(261) 4596800",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Cippi",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Italia 5897",
+       "localidad": "Mendoza",
+       "tel": "(261) 2768158 / (261) 4963750",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Cippi",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Paseo Dorego Mall Loc 24 Walmart 1023",
+       "localidad": "Mendoza",
+       "tel": "(261) 7480213 / (261) 4239051",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Cippi",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "La Barraca Mall Pbs 10",
+       "localidad": "Mendoza",
+       "tel": "(261) 3896367",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Cippi",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Colon Horario de Atencion de 10hs A 18hs Lu 284",
+       "localidad": "Mendoza",
+       "tel": "(261) 3672113",
+       "lat": -32.894493,
+       "lon": -68.842811,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-martin",
+   "nombre": "San Martin",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunatorio Cippi",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Crt Echesortu y Casa Esquina Psj 2 y 3",
+       "localidad": "San Martin",
+       "tel": "(263) 4524865",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "godoy-cruz",
+   "nombre": "Godoy Cruz",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Nova Salud",
+     "planes": [
+      "F700",
+      "F800",
+      "1000",
+      "1500",
+      "3000",
+      "3500",
+      "4000",
+      "4500",
+      "5000",
+      "6000"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Erlich 56",
+       "localidad": "Godoy Cruz",
+       "tel": "(261) 2588375 / (261) 4243968",
+       "lat": -32.914316,
+       "lon": -68.845515,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

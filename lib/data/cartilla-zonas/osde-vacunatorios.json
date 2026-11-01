@@ -1,0 +1,1842 @@
+{
+ "fuente": "Cartillas PDF oficiales de OSDE, sección \"Centros de vacunación\" (osde.com.ar/cartilla-inteligente)",
+ "vigencia": [
+  "29/10/2026",
+  "30/10/2026"
+ ],
+ "planes": [
+  "210",
+  "310",
+  "410",
+  "450",
+  "510",
+  "Flux"
+ ],
+ "zonas": [
+  {
+   "slug": "cordoba-capital",
+   "nombre": "Córdoba Capital",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Clínica Privada Reina Fabiola Vacunatorio",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Jacinto Ríos 554",
+       "localidad": null,
+       "tel": "(0351) 414-2121",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Clínica Universitaria Reina Fabiola",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Oncativo 1248",
+       "localidad": null,
+       "tel": "(0351) 414-2121",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Hospital Privado S.A.",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Rafael Nuñez 5229",
+       "localidad": null,
+       "tel": "(0351) 468-8200 Tel general (0351) 152-024687 WhatsApp preferencial para socios OSDE",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Manuel Cardeñosa 3300",
+       "localidad": null,
+       "tel": "(0351) 477-9500/9501 Tel general (0351) 152-024687 WhatsApp preferencial para socios OSDE",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Naciones Unidas 346",
+       "localidad": null,
+       "tel": "(0351) 468-8200 Tel general (0351) 152-024687 WhatsApp preferencial para socios OSDE",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Obispo Trejo 320 (Patio Olmos)",
+       "localidad": null,
+       "tel": "(0351) 569-7600 Tel general (0351) 152-024687 WhatsApp preferencial para socios OSDE",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Life Centro Médico Privado",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Manuel de Falla 6832",
+       "localidad": null,
+       "tel": "(03543) 427352/402418",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Megasalud",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Colocación a Domicilio .",
+       "localidad": null,
+       "tel": "(0351) 481-2233 (0351) 3278736 WhatsApp",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Derqui 9",
+       "localidad": null,
+       "tel": "(0351) 481-2233 (0351) 3278736 WhatsApp",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Jacinto Rios 554 4° B° General Paz",
+       "localidad": null,
+       "tel": "(0351) 481-2233 (0351) 3278736",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Juan Beverina 2085",
+       "localidad": null,
+       "tel": "(0351) 481-2233 (0351) 3278736 WhatsApp",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio de la Recta Pro-Vac",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Juan Nepper 6079",
+       "localidad": null,
+       "tel": "(0351) 153-804004",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Juan Nepper 6079 B° Villa Belgrano",
+       "localidad": null,
+       "tel": "(0351) 153804004",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "cordoba-interior",
+   "nombre": "Córdoba Interior",
+   "provincias": [
+    "Córdoba"
+   ],
+   "centros": [
+    {
+     "nombre": "Hospital Privado S.A.",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Río de Janeiro 1725",
+       "localidad": null,
+       "tel": "(0351) 156-442261 (03543) 439-571 (0351) 152-024687 WhatsApp preferencial para socios OSDE",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Megasalud",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Colocación a Domicilio .",
+       "localidad": null,
+       "tel": "(0351) 481-2233 (0351) 3278736 WhatsApp",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Megasalud",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "\"Colocacion a domicilio\" cada 15 dias, coordinar",
+       "localidad": "turno .",
+       "tel": "(0351) 481-2233 (0351) 3278736 WhatsApp",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Megasalud",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "9 de Julio 51",
+       "localidad": null,
+       "tel": "(0351) 481-2233 (0351) 3278736 WhatsApp",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Colocación a Domicilio .",
+       "localidad": null,
+       "tel": "(0351) 481-2233 (0351) 3278736 WhatsApp",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio de la Recta Pro-Vac",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "\"Colocacion a domicilio \" Solo dia \"Miercoles\"",
+       "localidad": "solicitar turno con anticipacion",
+       "tel": "(0351) 15-3804004",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio de la Recta Pro-Vac",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "\"Colocacion a domicilio \" Solo dia \"Viernes\"",
+       "localidad": "solicitar turno con anticipacion",
+       "tel": "(0351) 15-3804004",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "chilecito",
+   "nombre": "Chilecito",
+   "provincias": [
+    "La Rioja"
+   ],
+   "centros": [
+    {
+     "nombre": "Vacunatorio HECGY S.R.L.",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Julian Amatte esq. Alberto G. Ocampo",
+       "localidad": "Chilecito",
+       "tel": "(03825) 422-252 777-3356",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "la-rioja",
+   "nombre": "La Rioja",
+   "provincias": [
+    "La Rioja"
+   ],
+   "centros": [
+    {
+     "nombre": "Dra. Quiroga, Adriana Carolina",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Beruti 191",
+       "localidad": "La Rioja",
+       "tel": "(0380) 442-0987 (0380) 15-4112-011",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "ciudad-de-mendoza-y-alrededores",
+   "nombre": "Ciudad de Mendoza y Alrededores",
+   "provincias": [
+    "Mendoza"
+   ],
+   "centros": [
+    {
+     "nombre": "Inmunokids",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Lamadrid 202",
+       "localidad": null,
+       "tel": "0261-155882557",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Proteger Care Md",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pablo Erlich 56 P.B. \"4\"",
+       "localidad": "Godoy Cruz",
+       "tel": "(0261) 152588375",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar S.A.",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Acceso Este 2382 Mendoza Plaza Shopping",
+       "localidad": "Guaymallén",
+       "tel": "0810-444-8228",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Cippi",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Colón 284",
+       "localidad": null,
+       "tel": "(0261) 423-9051 (0261) 153672113",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Don Bosco 242",
+       "localidad": null,
+       "tel": "(0261) 423-9051 (0261) 15-5541569 (0261) 15-4171907",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Italia N° 5897 Local 21 Complejo Terraza",
+       "localidad": "Urban Mall",
+       "tel": "(0261) 496-3750 15-276-8158",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Las Cañas N° 1833 P.B. Local 10 Complejo La",
+       "localidad": "Barraca Mall",
+       "tel": "(0261) 476-9036 (0261) 15-275-9249",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Cippi",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Moldes 1023 Complejo Comercial",
+       "localidad": "Dorrego",
+       "tel": "0261-157480213",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio Cippi",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Maza Sur 144 P.B. \"16\" Complejo Arauca",
+       "localidad": "Maipú",
+       "tel": "0261-157480213",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "VACUNATORIO INMUNE",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Santiago de Liniers 698",
+       "localidad": "Godoy Cruz",
+       "tel": "(0261) 15-218-2926",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "interior-neuquen",
+   "nombre": "Interior Neuquén",
+   "provincias": [
+    "Neuquén",
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Ceni S.A.S, Vacunatorio",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Panama 985",
+       "localidad": null,
+       "tel": "(0299) 153293316 Whatsapp",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "interior-rio-negro",
+   "nombre": "Interior Río Negro",
+   "provincias": [
+    "Neuquén",
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "Ceni S.A.S, Vacunatorio",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Padre José M. Brentana 52",
+       "localidad": "Cipolletti",
+       "tel": "(0299) 154152010 whatsapp",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "neuquen",
+   "nombre": "Neuquén",
+   "provincias": [
+    "Neuquén",
+    "Río Negro"
+   ],
+   "centros": [
+    {
+     "nombre": "La Natividad Neuquén Dr. Fernandez Galvez Gabriel Martín (Director)",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Córdoba 164",
+       "localidad": "Neuquén",
+       "tel": "(0299)447-0606",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorio y Enfermería CIEV",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Entre Ríos 1152",
+       "localidad": "Neuquén",
+       "tel": "(0299) 156087613 (Solo mensajes)",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "salta-capital",
+   "nombre": "Salta Capital",
+   "provincias": [
+    "Salta"
+   ],
+   "centros": [
+    {
+     "nombre": "Farmacia Farmacity 251 - Salta Ameghino",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Mitre 998",
+       "localidad": null,
+       "tel": "(0387) 421-5658",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia Fleming",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Belgrano 674",
+       "localidad": null,
+       "tel": "(0387) 4318-245",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia San Francisco",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Bicentenario de la Batalla de Salta 23",
+       "localidad": null,
+       "tel": "(0387) 494-2085",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Av. San Martín esq Pasaje Emma Solá s/n",
+       "localidad": "Villa San Lorenzo",
+       "tel": "(0387) 3046-333",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Deán Funes 596",
+       "localidad": null,
+       "tel": "(0387) 421-2984",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Diego Zavaleta 496 B° Lamadrid",
+       "localidad": null,
+       "tel": "(0387) 6711-924",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia San Francisco III",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Virrey Toledo 1245",
+       "localidad": null,
+       "tel": "(0387)439-6010",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacia San Francisco V",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Ramón Cañavera 1926",
+       "localidad": null,
+       "tel": "(0387)424-5700",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Farmacity - Suc. Salta I (Peatonal)",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alberdi 84",
+       "localidad": null,
+       "tel": "(0387)431-3188",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Profilaxis",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Sarmiento 371",
+       "localidad": null,
+       "tel": "(0387) 670-7114",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "San Francisco VII",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Juan Domingo Perón 2983",
+       "localidad": null,
+       "tel": "(0387)436-5601",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "departamentos",
+   "nombre": "Departamentos",
+   "provincias": [
+    "San Juan"
+   ],
+   "centros": [
+    {
+     "nombre": "Cuyo",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Libertador San Martín 2918 (O)",
+       "localidad": "Rivadavia",
+       "tel": "0264-4230058 / 4231133",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Scalabrini Ortiz (N) 1285",
+       "localidad": "Rivadavia",
+       "tel": "(0264) 15-563-2000",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Cuyo",
+     "planes": [
+      "510"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Scalabrini Ortiz (N) 1285",
+       "localidad": "Rivadavia",
+       "tel": "(0264) 15-563-2000",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-juan-capital",
+   "nombre": "San Juan Capital",
+   "provincias": [
+    "San Juan"
+   ],
+   "centros": [
+    {
+     "nombre": "Sanatorio Argentino",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Luis 432 (O)",
+       "localidad": "San Juan Capital",
+       "tel": "0264-4303030 Int 410",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "interior-tucuman",
+   "nombre": "Interior",
+   "provincias": [
+    "Tucumán"
+   ],
+   "centros": [
+    {
+     "nombre": "Ceivac S.A.S.",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Italia 1580",
+       "localidad": null,
+       "tel": "(03865) 42-8943",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Ceivac S.A.S.",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Lobo de la Vega 213",
+       "localidad": null,
+       "tel": "(0381) 484-9942",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Moreno 690",
+       "localidad": null,
+       "tel": "(0381) 422-1390",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-miguel-de-tucuman",
+   "nombre": "San Miguel de Tucumán",
+   "provincias": [
+    "Tucumán"
+   ],
+   "centros": [
+    {
+     "nombre": "Ceivac S.A.S.",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Juan 885",
+       "localidad": null,
+       "tel": "(0381) 422-1390",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Santiago 157 8°",
+       "localidad": null,
+       "tel": "(0381) 486-6261",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "rosario-centro",
+   "nombre": "Rosario Centro",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Médico Creced",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Suipacha 815",
+       "localidad": null,
+       "tel": "(0341) 4392-158",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Instituto del Niño",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Eva Perón 7852",
+       "localidad": null,
+       "tel": "(0341) 452-0300 (0341) 452-0333",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Entre Ríos 1647",
+       "localidad": null,
+       "tel": "(0341)421-2808",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Entre Ríos 1674",
+       "localidad": null,
+       "tel": "(0341) 421-2808 (0341) 426-3557",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de la Mujer",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "San Luis 2493",
+       "localidad": null,
+       "tel": "(0341) 568-3444 (0341) 536-0999 (0341) 15-780-8060 (Sólo WhatsApp) (0341) 15-780-8070 (Sólo WhatsApp)",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Sanatorio de Niños",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Alvear 863",
+       "localidad": null,
+       "tel": "(0341)420-4400",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "rosario-interior",
+   "nombre": "Rosario Interior",
+   "provincias": [
+    "Santa Fe"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro Médico Dr. Ramón Carrillo",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Oroño 1001",
+       "localidad": null,
+       "tel": "(03476) 43-3506 (0341) 15-343-0094 (Sólo WhatsApp)",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Go Funes",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Córdoba 2415",
+       "localidad": null,
+       "tel": "(0341) 231-2800 (0341) 15-355-6769",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "mar-del-plata",
+   "nombre": "Mar del Plata",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Fund.medica M.d.plata Vacunatorio Hpc",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Azcuénaga 2564",
+       "localidad": "Mar del Plata",
+       "tel": "(0223) 499-0030",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Bolívar 3453",
+       "localidad": "Mar del Plata",
+       "tel": "(0223) 499-0030",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 3542",
+       "localidad": "Mar del Plata",
+       "tel": "(0223) 499-4000",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Sarmiento 2685 Complejo 2° subsuelo Paseo",
+       "localidad": "Aldrey Shopping Mar del Plata",
+       "tel": "(011) 15-4304-4144 (011) 15-2746-1768 (Solo WhatsApp)",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "zona-oeste",
+   "nombre": "Zona Oeste",
+   "provincias": [
+    "Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Basualdo",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Mitre 329",
+       "localidad": "Lobería",
+       "tel": "(02261) 15-440-900",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "comodoro-rivadavia",
+   "nombre": "Comodoro Rivadavia",
+   "provincias": [
+    "Santa Cruz",
+    "Chubut"
+   ],
+   "centros": [
+    {
+     "nombre": "Asociación Española de Socorros Mutuos",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Rivadavia 659",
+       "localidad": null,
+       "tel": "(0297) 406-6677",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "san-carlos-de-bariloche",
+   "nombre": "San Carlos de Bariloche",
+   "provincias": [
+    "Neuquén",
+    "Río Negro",
+    "Chubut"
+   ],
+   "centros": [
+    {
+     "nombre": "VACUNATORIO CMP MELIPAL",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. de los Pioneros N° 3928",
+       "localidad": null,
+       "tel": "(0294) 444-1141",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunatorios Albarracín",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Santiago Albarracín 1332",
+       "localidad": null,
+       "tel": "(0294) 154640537",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "concordia",
+   "nombre": "Concordia",
+   "provincias": [
+    "Entre Ríos"
+   ],
+   "centros": [
+    {
+     "nombre": "Centro de Vacunación e Infectología Concordia",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "3 de Febrero 215",
+       "localidad": "Concordia",
+       "tel": "(011) 15-5857-1944",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "caba",
+   "nombre": "Ciudad de Buenos Aires",
+   "provincias": [
+    "Ciudad de Buenos Aires"
+   ],
+   "centros": [
+    {
+     "nombre": "Centros Stamboulian Barrio Norte",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Pacheco de Melo 2941",
+       "localidad": null,
+       "tel": "2206-6000",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Centros Stamboulian Belgrano",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Del Libertador 5868",
+       "localidad": null,
+       "tel": "2206-6000",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Centros Stamboulian Flores",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Carabobo 443",
+       "localidad": null,
+       "tel": "2206-6000",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Centros Stamboulian Microcentro",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "25 de Mayo 464",
+       "localidad": null,
+       "tel": "2206-6000",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Centros Stamboulian Recoleta",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Arenales 2777",
+       "localidad": null,
+       "tel": "(011) 4011-8080",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Centros Stamboulian Villa Crespo",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. R. Scalabrini Ortiz 696",
+       "localidad": null,
+       "tel": "2206-6000",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Centros Stamboulian Villa Urquiza",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Olazábal 5670",
+       "localidad": null,
+       "tel": "2206-6000",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Helios Salud",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Carabobo 825",
+       "localidad": null,
+       "tel": "(011) 4363-7400 15-3902-7580",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Mendoza 2772",
+       "localidad": null,
+       "tel": "15-3902-7580",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      },
+      {
+       "direccion": "Perú 1515",
+       "localidad": null,
+       "tel": "15-3902-7580",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Previvax",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Córdoba 5775",
+       "localidad": null,
+       "tel": "(011) 4304-4144 15-2798-7414 (Solo WhatsApp) 15-2746-1768",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar Belgrano",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "José Hernández 2562",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar Caballito",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Av. Acoyte 185",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar Devoto",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Emilio Lamarca 3388 P.B.",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar Liniers",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Montiel 174",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    },
+    {
+     "nombre": "Vacunar Recoleta",
+     "planes": [
+      "210",
+      "310",
+      "410",
+      "450",
+      "510",
+      "Flux"
+     ],
+     "notas": [],
+     "sedes": [
+      {
+       "direccion": "Marcelo T. de Alvear 2383",
+       "localidad": null,
+       "tel": "0810-444-8228",
+       "lat": null,
+       "lon": null,
+       "turnoDigital": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
