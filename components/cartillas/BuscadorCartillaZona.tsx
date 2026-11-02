@@ -143,7 +143,8 @@ export function BuscadorCartillaZona({
     fetch(`/api/cartilla-zona-especialidades/${prepagaSlug}/${zonaSlug}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((z: ZonaEspecialidades) => !cancelado && setDatosEsp(z))
-      .catch(() => !cancelado && setDatosEsp(null))
+      // 404 = la zona no tiene especialidades en la fuente: vacío (CentrosEspecialidad muestra "no hay…"), no "Cargando…" eterno
+      .catch(() => !cancelado && setDatosEsp({ slug: zonaSlug, nombre: '', provincias: [], especialidades: {} }))
     return () => {
       cancelado = true
     }
