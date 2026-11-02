@@ -36,6 +36,7 @@ export default function SanatoriosPage() {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">Qué prepagas atienden en cada sanatorio</h1>
           <p className="text-gray-600 max-w-2xl mb-8">
             Elegí el sanatorio o el hospital que querés tener y te mostramos qué prepagas lo incluyen y desde qué plan, según sus cartillas oficiales.
+            {' '}Si buscás una prepaga dueña de sus sanatorios, mirá las <Link href="/prepagas-con-sanatorios-propios" className="underline hover:text-[#E8002D]">prepagas con sanatorios propios</Link>.
           </p>
           {/* Por especialidad (3-oct-2026): "qué prepaga cubre el FLENI /
               el ICBA / el Fleming". Solo los que tienen esa especialidad

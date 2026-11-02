@@ -78,6 +78,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Faltaban en el sitemap (auditoría SEO 24-sep-2026): /prepagas-economicas
     // es la página de la búsqueda transaccional "prepagas económicas/baratas".
     { url: `${BASE}/prepagas-economicas`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.9 },
+    // 2-nov-2026: estructura propia de cada prepaga (sanatorios, centros médicos, avión sanitario)
+    { url: `${BASE}/prepagas-con-sanatorios-propios`, lastModified: new Date('2026-11-02'), changeFrequency: 'monthly', priority: 0.7 },
   ]
 
   // Silos internacionales (expats): antes solo figuraba 1 de las 10 páginas.

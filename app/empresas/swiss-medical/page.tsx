@@ -8,7 +8,7 @@ import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
   title: `Swiss Medical para Empresas: Plan Corporativo y Convenio de Afinidad`,
-  description: 'Plan corporativo de Swiss Medical para tu empresa: convenio de afinidad, facturación individual sin trabajo administrativo para RRHH, 9 sanatorios propios. Cotizá gratis.',
+  description: 'Plan corporativo de Swiss Medical para tu empresa: convenio de afinidad, facturación individual sin trabajo administrativo para RRHH, 11 sanatorios propios. Cotizá gratis.',
   alternates: { canonical: `${SITE_URL}/empresas/swiss-medical` },
   keywords: [
     'swiss medical empresas', 'swiss medical plan corporativo', 'swiss medical convenio afinidad',

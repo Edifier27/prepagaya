@@ -26,7 +26,7 @@ const criterios = [
 const faqs = [
   {
     q: '¿Por qué Swiss Medical encabeza el ranking?',
-    a: 'Por la combinación de infraestructura propia (9 sanatorios, Swiss Medical Centers exclusivos para sus socios, avión sanitario, médico online y ambulancias propias), la modalidad de afinidad que le saca a RRHH el trabajo administrativo de facturación, y un costo que en las cotizaciones que armamos suele resultar más accesible que un plan de OSDE equivalente.',
+    a: 'Por la combinación de infraestructura propia (11 sanatorios, Swiss Medical Centers exclusivos para sus socios, avión sanitario, médico online y ambulancias propias), la modalidad de afinidad que le saca a RRHH el trabajo administrativo de facturación, y un costo que en las cotizaciones que armamos suele resultar más accesible que un plan de OSDE equivalente.',
   },
   {
     q: '¿Evaluaron otras prepagas para planes corporativos, además de Swiss Medical y OSDE?',
@@ -131,7 +131,7 @@ export default function RankingEmpresasPage() {
             </div>
             <ul className="space-y-2 mb-4">
               {[
-                '9 sanatorios propios, incluyendo Swiss Medical Centers de uso exclusivo para sus socios (turnos más rápidos, sobre todo en temporada alta de demanda)',
+                '11 sanatorios propios, incluyendo Swiss Medical Centers de uso exclusivo para sus socios (turnos más rápidos, sobre todo en temporada alta de demanda)',
                 'Convenio de afinidad: la factura llega directo a cada empleado, RRHH no gestiona descuentos de recibo de sueldo',
                 'Avión sanitario, médico online y ambulancias propias — no tercerizados',
                 'En las cotizaciones que armamos, suele resultar significativamente más accesible que un plan equivalente de OSDE',

@@ -8,18 +8,19 @@ export const prepagas: Prepaga[] = [
     logo: '/logos/swiss-medical.svg',
     colorPrimario: '#E30613',
     descripcion:
-      // Sanatorios, SMG Center, ICBA y Diagnóstico Maipú: confirmado por Darío
+      // 11 sanatorios, 20 SMG Center, 10 centros odontológicos y 1 avión sanitario: Darío (partner oficial,
+      // 2-nov-2026). ICBA y Diagnóstico Maipú: confirmado por Darío
       // (partner oficial, 24-sep-2026). Antes: afiliados y centros sin fuente.
-      'Swiss Medical tiene 9 sanatorios propios, más de 30 SMG Center en AMBA y SMG Center en Neuquén, y es dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú. Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
+      'Swiss Medical tiene 11 sanatorios propios, 20 SMG Center, 10 centros odontológicos propios y un avión sanitario, y es dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú. Guardia Ágil permite reservar turno en guardia desde el celular. Swity (WhatsApp) para trámites digitales.',
     satisfaccion: 91,
     calidadCartilla: 5,
-    sanatoriosPropios: 9,
+    sanatoriosPropios: 11,
     pros: [
-      '9 sanatorios propios (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas, Las Lomas)',
+      '11 sanatorios propios (entre ellos Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas, Las Lomas)',
       'Sport Plan: reintegros por gimnasio, nutrición y kinesiología para quienes entrenan',
       'Guardia Ágil: reservá turno en guardia desde el celular',
       'Red nacional de profesionales y centros de diagnóstico',
-      'Más de 30 SMG Center en AMBA y SMG Center en Neuquén',
+      '20 SMG Center, 10 centros odontológicos propios y un avión sanitario',
       // Salta (24-sep-2026): sucursal verificada en swissmedical.com.ar/prepagaclientes/sucursales;
       // Altos de Salta figura en la cartilla oficial con internación y guardia desde SMG02.
       'En Salta: sucursal en España 943 y el Sanatorio Altos de Salta (Laprida 145) en cartilla desde el SMG02',
@@ -337,7 +338,7 @@ export const prepagas: Prepaga[] = [
     calidadCartilla: 3,
     profesionales: 200000,
     profesionalesFuente: 'https://sancorsalud.com.ar/quienes-somos',
-    sanatoriosPropios: 1,
+    sanatoriosPropios: 0,
     pros: [
       'Centro Médico Vitus propio en Córdoba, con 30+ especialidades',
       'Farmavitus y Óptica Vitus: farmacia y óptica propias con descuentos exclusivos',
@@ -825,7 +826,7 @@ export const prepagas: Prepaga[] = [
       'Medicus es una prepaga de alta prestación con 11 centros médicos propios en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche. Acceso a hospitales de primer nivel como Mater Dei, Hospital Alemán, Otamendi y Fundación Favaloro. Consulta online y presencial.',
     satisfaccion: 87,
     calidadCartilla: 3,
-    sanatoriosPropios: 11,
+    sanatoriosPropios: 0,
     pros: [
       '11 centros médicos propios (CABA, GBA, MDQ, Mendoza, Neuquén, Rosario)',
       'Red premium: Mater Dei, Hospital Alemán, Otamendi, Favaloro, CEMIC',
@@ -1103,10 +1104,10 @@ export const prepagas: Prepaga[] = [
       'El Plan de Salud del Hospital Italiano es la prepaga propia de uno de los hospitales más prestigiosos de Argentina. Ofrece atención integrada en la red del Hospital Italiano de Buenos Aires, con centros ambulatorios propios en toda el AMBA y acceso a los mejores especialistas del país. Modelo de medicina interna con historia clínica unificada.',
     satisfaccion: 81,
     calidadCartilla: 3,
-    sanatoriosPropios: 6,
+    sanatoriosPropios: 2,
     pros: [
       'Atención integrada en el Hospital Italiano de Buenos Aires (top 5 del país)',
-      '6 centros ambulatorios propios en AMBA con historia clínica unificada',
+      '2 sedes propias de alta complejidad (Almagro y San Justo) y 15 centros médicos ambulatorios, con historia clínica unificada',
       'Alta complejidad interna: trasplantes, oncología, neurología de primer nivel',
       'Medicina preventiva y gestión de crónicos incluidos',
     ],
@@ -1294,7 +1295,7 @@ export const prepagas: Prepaga[] = [
       'Galeno cuenta con los Sanatorios de la Trinidad, más de 80 sucursales de atención en todo el país y app para gestionar autorizaciones, reintegros y credencial. Ofrece el servicio de telemedicina "Llamando al Doctor" y "Guardia Inteligente".',
     satisfaccion: 74,
     calidadCartilla: 3,
-    sanatoriosPropios: 5,
+    sanatoriosPropios: 8,
     pros: [
       'Red propia Sanatorios de la Trinidad (Palermo, Mitre, San Isidro, Quilmes, Ramos Mejía)',
       'Más de 80 sucursales de atención en todo el país (según Galeno)',
