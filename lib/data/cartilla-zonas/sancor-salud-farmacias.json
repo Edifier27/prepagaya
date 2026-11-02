@@ -10181,7 +10181,7 @@
    ]
   },
   {
-   "slug": "rawson",
+   "slug": "rawson-san-juan",
    "nombre": "Rawson",
    "provincias": [
     "San Juan"
@@ -103229,7 +103229,7 @@
    ]
   },
   {
-   "slug": "pilar",
+   "slug": "pilar-santa-fe",
    "nombre": "Pilar",
    "provincias": [
     "Santa Fe"
@@ -146541,7 +146541,7 @@
    ]
   },
   {
-   "slug": "san-pedro",
+   "slug": "san-pedro-jujuy",
    "nombre": "San Pedro",
    "provincias": [
     "Jujuy"
@@ -160146,7 +160146,7 @@
    ]
   },
   {
-   "slug": "pilar-cordoba",
+   "slug": "pilar",
    "nombre": "Pilar",
    "provincias": [
     "Córdoba"
@@ -171322,7 +171322,7 @@
    ]
   },
   {
-   "slug": "rawson-chubut",
+   "slug": "rawson",
    "nombre": "Rawson",
    "provincias": [
     "Chubut"
@@ -171679,7 +171679,7 @@
    ]
   },
   {
-   "slug": "san-pedro-buenos-aires",
+   "slug": "san-pedro",
    "nombre": "San Pedro",
    "provincias": [
     "Buenos Aires"

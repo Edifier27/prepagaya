@@ -20538,7 +20538,7 @@
    ]
   },
   {
-   "slug": "mercedes",
+   "slug": "mercedes-buenos-aires",
    "nombre": "Mercedes",
    "provincias": [
     "Buenos Aires"
@@ -27976,7 +27976,7 @@
    ]
   },
   {
-   "slug": "general-conesa",
+   "slug": "general-conesa-buenos-aires",
    "nombre": "General Conesa",
    "provincias": [
     "Buenos Aires"
@@ -36192,7 +36192,7 @@
    ]
   },
   {
-   "slug": "general-alvear",
+   "slug": "general-alvear-buenos-aires",
    "nombre": "General Alvear",
    "provincias": [
     "Buenos Aires"
@@ -38922,7 +38922,7 @@
    ]
   },
   {
-   "slug": "villa-dolores",
+   "slug": "villa-dolores-catamarca",
    "nombre": "Villa Dolores",
    "provincias": [
     "Catamarca"
@@ -64535,7 +64535,7 @@
    ]
   },
   {
-   "slug": "villa-dolores-cordoba",
+   "slug": "villa-dolores",
    "nombre": "Villa Dolores",
    "provincias": [
     "Córdoba"
@@ -71121,7 +71121,7 @@
    ]
   },
   {
-   "slug": "mercedes-corrientes",
+   "slug": "mercedes",
    "nombre": "Mercedes",
    "provincias": [
     "Corrientes"
@@ -72426,7 +72426,7 @@
    ]
   },
   {
-   "slug": "villa-elisa",
+   "slug": "villa-elisa-entre-rios",
    "nombre": "Villa Elisa",
    "provincias": [
     "Entre Ríos"
@@ -91922,7 +91922,7 @@
    ]
   },
   {
-   "slug": "general-alvear-mendoza",
+   "slug": "general-alvear",
    "nombre": "General Alvear",
    "provincias": [
     "Mendoza"
@@ -95349,7 +95349,7 @@
    ]
   },
   {
-   "slug": "las-heras",
+   "slug": "las-heras-mendoza",
    "nombre": "Las Heras",
    "provincias": [
     "Mendoza"
@@ -112439,7 +112439,7 @@
    ]
   },
   {
-   "slug": "general-conesa-rio-negro",
+   "slug": "general-conesa",
    "nombre": "General Conesa",
    "provincias": [
     "Río Negro"
@@ -130021,7 +130021,7 @@
    ]
   },
   {
-   "slug": "las-heras-santa-cruz",
+   "slug": "las-heras",
    "nombre": "Las Heras",
    "provincias": [
     "Santa Cruz"

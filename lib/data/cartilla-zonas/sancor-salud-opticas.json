@@ -35345,7 +35345,7 @@
    ]
   },
   {
-   "slug": "colon",
+   "slug": "colon-entre-rios",
    "nombre": "Colon",
    "provincias": [
     "Entre Ríos"
@@ -46181,7 +46181,7 @@
    ]
   },
   {
-   "slug": "rawson",
+   "slug": "rawson-san-juan",
    "nombre": "Rawson",
    "provincias": [
     "San Juan"
@@ -50173,7 +50173,7 @@
    ]
   },
   {
-   "slug": "colon-buenos-aires",
+   "slug": "colon",
    "nombre": "Colon",
    "provincias": [
     "Buenos Aires"
@@ -52091,7 +52091,7 @@
    ]
   },
   {
-   "slug": "rawson-chubut",
+   "slug": "rawson",
    "nombre": "Rawson",
    "provincias": [
     "Chubut"

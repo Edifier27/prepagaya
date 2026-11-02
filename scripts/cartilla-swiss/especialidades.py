@@ -176,6 +176,27 @@ def generar(raw, salida):
                         'turnoDigital': doc.get('turno_digital') == '1',
                     })
 
+    # La página pide los datos con el slug de la zona de swiss-medical.json. El
+    # sufijo de provincia depende del orden en que aparecen las zonas, así que
+    # puede no coincidir ("san-lorenzo" de Santa Fe allá, de Buenos Aires acá):
+    # se reasigna por (nombre, provincias) y las zonas que solo están acá no
+    # pueden quedarse con un slug que allá es de otra zona.
+    principal = json.load(open(os.path.join(os.path.dirname(salida), 'swiss-medical.json'), encoding='utf-8'))['zonas']
+    slug_de = {(z['nombre'], tuple(z['provincias'])): z['slug'] for z in principal}
+    usados = {z['slug'] for z in principal}
+    propio = {}
+    for z in zonas.values():
+        propio[id(z)] = z['slug']
+        z['slug'] = slug_de.get((z['nombre'], tuple(z['provincias'])))
+    for z in zonas.values():
+        if z['slug'] is None:
+            base = propio[id(z)]
+            for slug in [base, f'{base}-{swiss.clave(z["provincias"][0])}'] + [f'{base}-{i}' for i in range(2, 50)]:
+                if slug not in usados:
+                    break
+            z['slug'] = slug
+            usados.add(slug)
+
     salida_zonas = []
     for z in zonas.values():
         especialidades_z = {}
