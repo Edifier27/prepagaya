@@ -1,5 +1,6 @@
 import swissEspecialidadesData from './swiss-medical-especialidades.json'
 import osdeEspecialidadesData from './osde-especialidades.json'
+import sancorEspecialidadesData from './sancor-salud-especialidades.json'
 
 // Cartilla por especialidad — SOLO centros e instituciones, nunca datos de
 // médicos particulares. De los profesionales particulares solo se guarda la
@@ -9,6 +10,9 @@ import osdeEspecialidadesData from './osde-especialidades.json'
 // Dos "tipos" de fuente, según lo que expone cada prepaga:
 //  - 'general' (Swiss Medical, scripts/cartilla-swiss/especialidades.py): el
 //    buscador público de especialidades médicas, cuenta profesionales.
+//    Sancor Salud (2-nov-2026, scripts/cartilla-sancor/especialidades.py):
+//    kinesiología y psicología; centros de "CENTROS MÉDICOS" y profesionales
+//    contados con agregaciones del buscador, sin bajar nombres.
 //  - 'guardia' (OSDE, sección "ESPECIALISTAS DE GUARDIA" del PDF oficial,
 //    scripts/cartilla-osde/merge.py): OSDE no tiene un buscador general por
 //    especialidad sin mezclar médicos particulares — solo la sección de
@@ -58,11 +62,13 @@ interface EspecialidadesJson {
 const TIPOS: Record<string, 'general' | 'guardia'> = {
   'swiss-medical': 'general',
   osde: 'guardia',
+  'sancor-salud': 'general',
 }
 
 const FUENTES: Partial<Record<string, EspecialidadesJson>> = {
   'swiss-medical': swissEspecialidadesData as EspecialidadesJson,
   osde: osdeEspecialidadesData as EspecialidadesJson,
+  'sancor-salud': sancorEspecialidadesData as EspecialidadesJson,
 }
 
 export function tieneEspecialidades(prepagaSlug: string): boolean {

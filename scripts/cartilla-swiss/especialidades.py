@@ -28,6 +28,9 @@ _spec.loader.exec_module(swiss)
 ESPECIALIDADES = [
     'Pediatría', 'Traumatología y Ortopedia', 'Ginecología', 'Cardiología',
     'Dermatología', 'Oftalmología', 'Esterilidad',
+    # 2-nov-2026 (Darío): kinesiología y psicología. Nombres exactos del buscador
+    # oficial ("Kinesiología" o "Fisiatría" solos no traen nada)
+    'Kinesiología y Fisiatría', 'Psicología',
 ]
 TOPE = 600  # el buscador devuelve hasta 600 resultados por consulta
 # Consultorio con nombre de médico puntual (ej. "Consultorio Dr. Kreutzer"): va
@@ -35,24 +38,92 @@ TOPE = 600  # el buscador devuelve hasta 600 resultados por consulta
 ES_CONSULTORIO_PARTICULAR = re.compile(r'consultorio.*\bdra?\.?\b', re.I)
 
 
+def pedir_en(carti, esp, prov='', loca='', barr=''):
+    """Como swiss.pedir, pero filtrando también por localidad o barrio."""
+    q = swiss.urllib.parse.urlencode({'tipo': '1', 'pt': '', 'd': '', 'carti': carti, 'especialidad': esp, 'deno_prov': prov,
+                                       'deno_loca': loca, 'deno_barr': barr, 'deno_part': '', 'ape_razon': ''},
+                                      quote_via=swiss.urllib.parse.quote)
+    req = swiss.urllib.request.Request(f'{swiss.API}?{q}', headers={'User-Agent': 'Mozilla/5.0', 'Origin': 'https://www.swissmedical.com.ar'})
+    for intento in range(4):
+        try:
+            with swiss.urllib.request.urlopen(req, timeout=90) as r:
+                return json.loads(r.read().decode('utf-8'))['response']
+        except Exception as e:
+            print('  reintento', intento, e, flush=True)
+            time.sleep(15 * (intento + 1))
+    raise RuntimeError(f'fallo {carti} {esp} {prov} {loca} {barr}')
+
+
+# El buscador devuelve como mucho TOPE resultados por consulta y no viene
+# ordenado (instituciones y profesionales mezclados): si una provincia llega al
+# tope, se pide localidad por localidad, y si una localidad llega al tope (CABA,
+# Rosario, Córdoba), barrio por barrio (2-nov-2026: en Kinesiología y Psicología
+# se perdía la mitad, y en Buenos Aires y Santa Fe también en las demás).
+# Los nombres de localidades y barrios salen de lo ya descargado de todas las
+# especialidades (el buscador no tiene un listado público).
 def descargar(carpeta):
     os.makedirs(carpeta, exist_ok=True)
+    lugares = {}  # prov -> loca -> set(barrios)
+    def anotar(docs):
+        for d in docs:
+            pv, lc, br = (d.get('deno_prov') or '').strip(), (d.get('deno_loca') or '').strip(), (d.get('deno_barr') or '').strip()
+            if pv and lc:
+                lugares.setdefault(pv, {}).setdefault(lc, set())
+                if br:
+                    lugares[pv][lc].add(br)
+    # 1) pasada por provincia (y se anotan localidades y barrios vistos)
+    pendientes = []
     for carti in swiss.CARTILLAS:
         for esp in ESPECIALIDADES:
             destino = os.path.join(carpeta, f'{carti}__{esp}.json')
             if os.path.exists(destino):
+                anotar(json.load(open(destino, encoding='utf-8')))
                 continue
-            r = swiss.pedir('1', carti, esp)
-            docs = r['docs']
-            if r['numFound'] > TOPE:
-                docs = []
+            r = pedir_en(carti, esp)
+            por_prov = {}
+            if r['numFound'] <= len(r['docs']):
+                por_prov[''] = (r['numFound'], r['docs'])
+            else:
                 for prov in swiss.PROVINCIAS:
-                    rp = swiss.pedir('1', carti, esp, prov)
-                    docs.extend(rp['docs'])
+                    rp = pedir_en(carti, esp, prov)
+                    por_prov[prov] = (rp['numFound'], rp['docs'])
                     time.sleep(1)
-            json.dump(docs, open(destino, 'w', encoding='utf-8'), ensure_ascii=False)
-            print(carti, esp, len(docs), flush=True)
+            for numero, docs in por_prov.values():
+                anotar(docs)
+            pendientes.append((carti, esp, destino, por_prov))
+            print(carti, esp, r['numFound'], sum(len(d) for _, d in por_prov.values()), flush=True)
             time.sleep(1)
+    # 2) provincias que llegaron al tope: por localidad, y si hace falta por barrio
+    for carti, esp, destino, por_prov in pendientes:
+        docs = []
+        for prov, (numero, docs_prov) in por_prov.items():
+            if numero <= len(docs_prov):
+                docs.extend(docs_prov)
+                continue
+            vistos = {}
+            for loca, barrios in sorted(lugares.get(prov, {}).items()):
+                rl = pedir_en(carti, esp, prov, loca)
+                time.sleep(0.7)
+                if rl['numFound'] > len(rl['docs']) and barrios:
+                    for barr in sorted(barrios):
+                        rb = pedir_en(carti, esp, prov, loca, barr)
+                        time.sleep(0.7)
+                        for d in rb['docs']:
+                            vistos[d.get('id_prest') or json.dumps(d, sort_keys=True)] = d
+                        if rb['numFound'] > len(rb['docs']):
+                            print('  OJO: sigue cortado', carti, esp, prov, loca, barr, rb['numFound'], flush=True)
+                else:
+                    if rl['numFound'] > len(rl['docs']):
+                        print('  OJO: sigue cortado', carti, esp, prov, loca, rl['numFound'], flush=True)
+                for d in rl['docs']:
+                    vistos[d.get('id_prest') or json.dumps(d, sort_keys=True)] = d
+            # lo de la primera pasada también (por si alguna localidad no estaba en la lista)
+            for d in docs_prov:
+                vistos.setdefault(d.get('id_prest') or json.dumps(d, sort_keys=True), d)
+            print(f'  {carti} {esp} {prov}: {len(vistos)} de {numero} ({100 * len(vistos) // max(numero, 1)}%)', flush=True)
+            docs.extend(vistos.values())
+        json.dump(docs, open(destino, 'w', encoding='utf-8'), ensure_ascii=False)
+        print(carti, esp, 'guardado', len(docs), flush=True)
 
 
 # Prestad_Tipo_Deno trae "Institución", "Prestador" (médico particular) o
