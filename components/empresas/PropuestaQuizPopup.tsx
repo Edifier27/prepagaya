@@ -66,7 +66,7 @@ interface Recomendacion {
 const RECOMENDACIONES: Record<Prioridad, Recomendacion> = {
   precio: {
     principal: 'swiss-medical',
-    razonPrincipal: 'Con 9 sanatorios propios, controla mejor su costo de atención — suele trasladarse a una cuota corporativa más accesible que un OSDE equivalente.',
+    razonPrincipal: 'Con 11 sanatorios propios, controla mejor su costo de atención — suele trasladarse a una cuota corporativa más accesible que un OSDE equivalente.',
     razonSecundaria: 'Igual te mostramos el número de OSDE al lado, por si la diferencia no justifica cambiar de red.',
   },
   cartilla: {

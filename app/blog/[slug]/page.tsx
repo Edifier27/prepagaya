@@ -235,6 +235,31 @@ export default async function BlogPostPage({ params }: Props) {
                     {seccion.titulo}
                   </h2>
                   <p className="text-gray-600 leading-relaxed">{marcarTerminos(enlazarPrepagas(seccion.cuerpo, vistas), vistosGlosario)}</p>
+                  {seccion.tabla && (
+                    <div className="mt-4 overflow-x-auto rounded-xl border border-gray-100">
+                      <table className="w-full text-sm">
+                        <thead className="bg-gray-50 text-left text-gray-500">
+                          <tr>{seccion.tabla.columnas.map((c, j) => <th key={j} scope="col" className={`px-3 py-2 font-semibold ${j > 1 ? 'text-right' : ''}`}>{c}</th>)}</tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100">
+                          {seccion.tabla.filas.map((f, k) => (
+                            <tr key={k}>
+                              {f.celdas.map((c, j) => (
+                                <td key={j} className={`px-3 py-2 ${j > 1 ? 'text-right tabular-nums' : ''} ${j === 1 ? 'font-medium text-gray-900' : 'text-gray-600'}`}>
+                                  {j === 1 && f.href ? <Link href={f.href} className="hover:text-[#E8002D] hover:underline">{c}</Link> : c}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      {seccion.tabla.fuente && (
+                        <p className="px-3 py-2 text-xs text-gray-400 border-t border-gray-100">
+                          Fuente: <a href={seccion.tabla.fuente.url} target="_blank" rel="noopener noreferrer" className="underline">{seccion.tabla.fuente.texto}</a>
+                        </p>
+                      )}
+                    </div>
+                  )}
                   {seccion.enlace && (
                     <Link href={seccion.enlace.href} className="inline-block mt-3 text-sm font-semibold text-[#E8002D] hover:underline">
                       {seccion.enlace.texto} →

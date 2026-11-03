@@ -1,7 +1,20 @@
 import { appsPrepagas, APPS_FECHA } from './apps-prepagas'
 import { prepagas } from './prepagas'
+import AF from './afiliados-prepagas.json'
 
 const prepagaNombre = (slug: string) => prepagas.find((p) => p.slug === slug)?.nombre ?? slug
+
+// Afiliados por prepaga (SSSalud, scripts/afiliados-sssalud/generar.py)
+const miles = (n: number) => n.toLocaleString('es-AR')
+const pct = (n: number) => n.toLocaleString('es-AR', { maximumFractionDigits: 1 })
+const sumaCuota = (n: number) => AF.ranking.slice(0, n).reduce((a, r) => a + r.cuota, 0)
+const variacionTotal = AF.totalUsuariosAnioAnterior ? (AF.totalUsuarios / AF.totalUsuariosAnioAnterior - 1) * 100 : 0
+const grandes = AF.ranking.slice(0, 10).filter((r) => r.variacion !== null)
+const nombreAf = (r: (typeof AF.ranking)[number]) => (r.slug ? prepagaNombre(r.slug) : r.nombre)
+const unir = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')} y ${xs[xs.length - 1]}` : xs.join(''))
+const listaAf = (rs: typeof grandes) => unir(rs.map((r) => `${nombreAf(r)} (${r.variacion! > 0 ? '+' : ''}${pct(r.variacion!)}%)`))
+const crecen = listaAf([...grandes].filter((r) => r.variacion! > 0).sort((a, b) => b.variacion! - a.variacion!).slice(0, 4))
+const bajan = listaAf([...grandes].filter((r) => r.variacion! < 0).sort((a, b) => a.variacion! - b.variacion!))
 
 export interface BlogPost {
   slug: string
@@ -19,7 +32,13 @@ export interface BlogPost {
     /** `enlace`: link a la página comercial del tema de la sección (plan,
      *  comparativa), al pie del texto — así la nota le pasa fuerza a la
      *  página que tiene que posicionar (26-sep-2026). */
-    secciones: { titulo: string; cuerpo: string; enlace?: { href: string; texto: string } }[]
+    secciones: {
+      titulo: string
+      cuerpo: string
+      enlace?: { href: string; texto: string }
+      /** Tabla HTML debajo del texto (2-nov-2026: GEO, las IA citan tablas con fuente) */
+      tabla?: { columnas: string[]; filas: { celdas: string[]; href?: string }[]; fuente?: { texto: string; url: string } }
+    }[]
     conclusion: string
   }
   prepagasRelacionadas?: string[]
@@ -52,7 +71,7 @@ export const blogPosts: BlogPost[] = [
         },
         {
           titulo: 'Swiss Medical SMG40 y superiores',
-          cuerpo: 'Los planes SMG40, SMG50 y superiores de Swiss Medical tienen acceso exclusivo a los 9 sanatorios propios más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala y más), con hotelería de primer nivel, médico de cabecera y gestores de salud personales. El SMG40 parte de $390.775 para 30 años.',
+          cuerpo: 'Los planes SMG40, SMG50 y superiores de Swiss Medical tienen acceso exclusivo a los 11 sanatorios propios más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala y más), con hotelería de primer nivel, médico de cabecera y gestores de salud personales. El SMG40 parte de $390.775 para 30 años.',
         },
         {
           titulo: '¿Vale la pena pagar tanto?',
@@ -65,37 +84,51 @@ export const blogPosts: BlogPost[] = [
     keywords: ['prepagas mas caras argentina', 'prepaga premium argentina', 'osde 510 precio', 'swiss medical smg70'],
   },
   {
+    // 2-nov-2026: reescrita con el dato oficial de afiliados de la SSSalud (antes tenía cifras sin fuente:
+    // "Avalian declara la mayor cantidad", "más de 10 millones", Medicus con 11 "sanatorios").
     slug: 'cual-es-la-prepaga-mas-grande-argentina',
     titulo: '¿Cuál es la prepaga más grande de Argentina en 2026?',
-    bajada: 'OSDE, Avalian, Swiss Medical y Sancor concentran millones de afiliados. Analizamos el ranking por cantidad de usuarios.',
-    metaDescripcion: '¿Cuál es la prepaga más grande de Argentina? Ranking por cantidad de afiliados, red de prestadores y cobertura. OSDE vs Avalian vs Swiss Medical vs Sancor Salud.',
+    bajada: `Ranking oficial por cantidad de afiliados (SSSalud, ${AF.periodoTexto}): OSDE, Swiss Medical y Sancor Salud encabezan el mercado.`,
+    metaDescripcion: `La prepaga más grande es OSDE, con ${miles(AF.ranking[0].usuarios)} afiliados. Ranking oficial de la SSSalud (${AF.periodoTexto}): cuántos afiliados tiene cada prepaga.`,
     categoria: 'Mercado',
     fechaPublicacion: '2026-06-10',
-    tiempoLectura: 6,
+    fechaActualizacion: '2026-11-02',
+    tiempoLectura: 5,
     contenido: {
-      intro: 'El mercado de medicina prepaga en Argentina mueve más de 10 millones de afiliados. Pero ¿cuál es la empresa más grande? Depende cómo lo midamos: por afiliados, por red de prestadores o por volumen de facturación.',
+      intro: `La prepaga más grande de Argentina es OSDE, con ${miles(AF.ranking[0].usuarios)} afiliados (${pct(AF.ranking[0].cuota)}% del total), según el padrón que la Superintendencia de Servicios de Salud publicó para ${AF.periodoTexto}. La siguen ${AF.ranking[1].nombre}, con ${miles(AF.ranking[1].usuarios)}, y ${AF.ranking[2].nombre}, con ${miles(AF.ranking[2].usuarios)}. En total hay ${miles(AF.totalUsuarios)} personas afiliadas a ${AF.entidades} prepagas.`,
       secciones: [
         {
-          titulo: 'Ranking por cantidad de afiliados',
-          cuerpo: 'Si bien OSDE nació como obra social sindical, hoy compite directamente con las prepagas privadas. Las prepagas no publican de forma pareja su cantidad de afiliados, así que más que el tamaño conviene comparar la cartilla en tu zona y el precio para tu edad.',
+          titulo: 'Ranking de prepagas por cantidad de afiliados',
+          cuerpo: `Estas son las 15 prepagas con más afiliados de Argentina en ${AF.periodoTexto}, con su parte del total y cuánto cambiaron contra el mismo mes de ${Number(AF.periodo.slice(0, 4)) - 1}. Las cifras incluyen titulares y familiares a cargo, y también a quienes derivan sus aportes de obra social a la prepaga.`,
+          tabla: {
+            columnas: ['#', 'Prepaga', 'Afiliados', '% del total', `vs. ${AF.periodoTexto.split(' de ')[0].slice(0, 3)} ${Number(AF.periodo.slice(0, 4)) - 1}`],
+            filas: AF.ranking.slice(0, 15).map((r) => ({
+              celdas: [String(r.posicion), r.slug ? prepagaNombre(r.slug) : r.nombre, miles(r.usuarios), `${pct(r.cuota)}%`, r.variacion === null ? '—' : `${r.variacion > 0 ? '+' : ''}${pct(r.variacion)}%`],
+              href: r.slug ? `/prepagas/${r.slug}` : undefined,
+            })),
+            fuente: { texto: `Superintendencia de Servicios de Salud, usuarios por prepaga (${AF.periodoTexto})`, url: AF.fuenteUrl },
+          },
+          enlace: { href: '/ranking', texto: 'Ver cuál es la mejor prepaga para vos' },
         },
         {
-          titulo: 'Por red de prestadores: OSDE lidera',
-          cuerpo: 'OSDE informa más de 125.000 prestadores y presencia en todo el país. Ninguna prepaga privada se acerca a esa cobertura geográfica y de especialidades.',
+          titulo: 'Un mercado concentrado',
+          cuerpo: `Las tres más grandes (OSDE, Swiss Medical y Sancor Salud) suman el ${pct(sumaCuota(3))}% de los afiliados, y las diez primeras, el ${pct(sumaCuota(10))}%. El resto se reparte entre más de ${Math.floor((AF.entidades - 10) / 10) * 10} prepagas chicas y regionales.`,
         },
         {
-          titulo: 'Por sanatorios propios: Medicus y Swiss Medical',
-          cuerpo: 'Medicus tiene la red propia más numerosa, con 11 centros médicos propios en CABA, GBA y el interior. Swiss Medical le sigue de cerca con 9 sanatorios propios, incluyendo algunos de los más modernos del país (Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas y el Sanatorio Las Lomas, incorporado en 2024). Avalian, en cambio, no tiene sanatorios propios: trabaja con una red de convenio de instituciones de terceros como el Hospital Alemán, CEMIC y Fleni.',
+          titulo: 'Cuáles crecen y cuáles pierden afiliados',
+          cuerpo: `Contra ${AF.periodoTexto.replace(/\d{4}/, String(Number(AF.periodo.slice(0, 4)) - 1))}, el total de afiliados a prepagas creció ${pct(variacionTotal)}%. Entre las grandes, las que más sumaron fueron ${crecen}. Las que perdieron afiliados fueron ${bajan}.`,
         },
         {
-          titulo: 'El mercado está concentrado',
-          cuerpo: 'Las primeras empresas (OSDE, Avalian, Swiss Medical, Sancor Salud, Galeno y Omint) concentran más del 60% de los afiliados al sistema de medicina prepaga. Este oligopolio hace que los precios sean similares entre competidores y que la diferenciación sea por calidad de red y experiencia.',
+          titulo: 'La más grande no es la que tiene más sanatorios propios',
+          cuerpo: 'OSDE es la que tiene más afiliados, pero no tiene sanatorios propios: trabaja con prestadores de cartilla. Swiss Medical es la que más sanatorios propios tiene (11), además de 20 SMG Center y un avión sanitario; la sigue Galeno, con 8 sanatorios (los de la Trinidad y el Dupuytren).',
+          enlace: { href: '/prepagas-con-sanatorios-propios', texto: 'Ver el ranking de prepagas con sanatorios propios' },
         },
       ],
-      conclusion: 'No hay una respuesta única: Avalian declara la mayor cantidad de afiliados entre las prepagas puras, OSDE tiene la mayor red de prestadores, Swiss Medical tiene los mejores sanatorios propios, y Sancor es la más grande en cobertura geográfica nacional. Todo depende del criterio que uses para medir "grande".',
+      conclusion: `Por afiliados, OSDE es la prepaga más grande del país y Swiss Medical la segunda. Que una prepaga sea grande no la hace mejor para vos: conviene comparar la cartilla de tu zona, los sanatorios que incluye cada plan y el precio para tu edad.`,
     },
-    prepagasRelacionadas: ['swiss-medical', 'osde', 'sancor-salud', 'avalian'],
-    keywords: ['prepaga mas grande argentina', 'mayor prepaga argentina', 'cuantos afiliados tiene osde', 'ranking prepagas argentina', 'avalian cuantos afiliados tiene'],
+    prepagasRelacionadas: ['osde', 'swiss-medical', 'sancor-salud', 'galeno'],
+    paginaPrincipal: { href: '/comparador', texto: 'Compará el precio de cada prepaga para tu edad' },
+    keywords: ['prepaga mas grande argentina', 'prepagas con mas afiliados', 'cuantos afiliados tiene osde', 'cuantos afiliados tiene swiss medical', 'ranking prepagas argentina', 'mayor prepaga argentina', 'cantidad de afiliados por prepaga'],
   },
   {
     slug: 'que-pasa-si-dejo-de-pagar-la-prepaga',

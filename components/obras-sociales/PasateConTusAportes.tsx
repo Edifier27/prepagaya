@@ -95,8 +95,8 @@ export function PasateConTusAportes({ osNombre, osSlug, sanatoriosOs, fuente, ti
             <h3 className="font-bold text-gray-900 mb-3">Qué ganás con Swiss Medical</h3>
             <ul className="space-y-2 text-sm text-gray-700">
               {[
-                '9 sanatorios propios: Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas y Las Lomas, entre otros',
-                'Más de 30 SMG Center en el AMBA para consultas y estudios, y SMG Center en Neuquén',
+                '11 sanatorios propios: Suizo Argentina, Los Arcos, Agote, Zabala, Olivos, San Lucas y Las Lomas, entre otros',
+                '20 SMG Center para consultas y estudios, 10 centros odontológicos propios y un avión sanitario',
                 'Dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú',
                 'Guardia Ágil: reservás tu turno en la guardia desde el celular',
                 'Trámites por WhatsApp con Swity',

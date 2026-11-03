@@ -860,7 +860,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
               {[
                 ...(prep.profesionales ? [{ label: 'Prestadores', value: `${(prep.profesionales / 1000).toFixed(0)}k+`, href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' }] : []),
-                { label: 'Centros propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red convenio', href: getCartillaInfo(prep.slug) ? `/cartillas/${prep.slug}` : '#planes' },
+                { label: 'Sanatorios propios', value: prep.sanatoriosPropios > 0 ? String(prep.sanatoriosPropios) : 'Red por convenio', href: '/prepagas-con-sanatorios-propios' },
                 { label: 'Planes', value: String(prep.planes.length), href: '#planes' },
                 ...(opiniones.cantidad > 0 ? [{ label: 'Opiniones de usuarios', value: String(opiniones.cantidad), href: '#opiniones' }] : []),
               ].map((s) => (

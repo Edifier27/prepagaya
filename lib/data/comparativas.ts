@@ -19,7 +19,7 @@ export const comparativas: Comparativa[] = [
     descripcion: 'Analizamos Swiss Medical y Sancor Salud en todos los aspectos: precio, cobertura, red y experiencia del afiliado.',
     ganadorRed: 'swiss-medical',
     ganadorSatisfaccion: 'swiss-medical',
-    veredicto: 'Están más parejas de lo que parece. Según los cuadros tarifarios oficiales, el plan de entrada de Swiss Medical (S1) sale menos que el de Sancor Salud (F700), pero el plan sin copago más accesible de Sancor (F800 Digital Flex) queda por debajo del de Swiss Medical (SMG02). Swiss Medical suma 9 sanatorios propios; Sancor Salud informa más de 200.000 prestadores y es fuerte en el interior. Para AMBA y sanatorios propios, Swiss Medical. Para el interior o un plan sin copago más económico, Sancor Salud.',
+    veredicto: 'Están más parejas de lo que parece. Según los cuadros tarifarios oficiales, el plan de entrada de Swiss Medical (S1) sale menos que el de Sancor Salud (F700), pero el plan sin copago más accesible de Sancor (F800 Digital Flex) queda por debajo del de Swiss Medical (SMG02). Swiss Medical suma 11 sanatorios propios; Sancor Salud informa más de 200.000 prestadores y es fuerte en el interior. Para AMBA y sanatorios propios, Swiss Medical. Para el interior o un plan sin copago más económico, Sancor Salud.',
   },
   {
     slug: 'osde-vs-sancor-salud',
@@ -39,7 +39,7 @@ export const comparativas: Comparativa[] = [
     descripcion: 'Dos modelos distintos: Swiss Medical con amplia red abierta y CEMIC con sus propias clínicas universitarias.',
     ganadorRed: 'swiss-medical',
     ganadorSatisfaccion: 'swiss-medical',
-    veredicto: 'Arrancan en un precio de lista casi igual. CEMIC destaca por sus propias clínicas de alta complejidad, pero con cobertura concentrada en Buenos Aires. Swiss Medical tiene cobertura nacional y 9 sanatorios propios. Si vivís en AMBA y valorás el modelo universitario, CEMIC. Si necesitás cobertura nacional, Swiss Medical.',
+    veredicto: 'Arrancan en un precio de lista casi igual. CEMIC destaca por sus propias clínicas de alta complejidad, pero con cobertura concentrada en Buenos Aires. Swiss Medical tiene cobertura nacional y 11 sanatorios propios. Si vivís en AMBA y valorás el modelo universitario, CEMIC. Si necesitás cobertura nacional, Swiss Medical.',
   },
   {
     slug: 'premedic-vs-sancor-salud',
@@ -185,7 +185,7 @@ export const comparativas: Comparativa[] = [
     descripcion: 'Si necesitás internaciones, cirugías complejas o estudios de alta tecnología, esta es la comparativa clave. Swiss Medical vs CEMIC en lo que más importa.',
     ganadorRed: 'swiss-medical',
     ganadorSatisfaccion: 'swiss-medical',
-    veredicto: 'CEMIC tiene hospitales universitarios propios con tecnología de primer nivel para alta complejidad en AMBA. Swiss Medical tiene cobertura nacional y 9 sanatorios propios, además del ICBA (Instituto Cardiovascular de Buenos Aires). Si vivís en Buenos Aires y buscás el modelo académico para tratamientos complejos, CEMIC. Para cobertura nacional o internaciones fuera de AMBA, Swiss Medical.',
+    veredicto: 'CEMIC tiene hospitales universitarios propios con tecnología de primer nivel para alta complejidad en AMBA. Swiss Medical tiene cobertura nacional y 11 sanatorios propios, además del ICBA (Instituto Cardiovascular de Buenos Aires). Si vivís en Buenos Aires y buscás el modelo académico para tratamientos complejos, CEMIC. Para cobertura nacional o internaciones fuera de AMBA, Swiss Medical.',
   },
   {
     slug: 'osde-vs-swiss-medical-para-jubilados',
@@ -225,7 +225,7 @@ export const comparativas: Comparativa[] = [
     descripcion: 'Avalian (ex ACA Salud) contra Swiss Medical: precio, sanatorios propios, red de prestadores y coberturas.',
     ganadorRed: 'swiss-medical',
     ganadorSatisfaccion: 'swiss-medical',
-    veredicto: 'Swiss Medical gana en cuota: según los cuadros tarifarios oficiales, su plan de entrada (S1) y su plan sin copago más accesible (SMG02) salen menos que los de Avalian, y además tiene 9 sanatorios propios. La diferencia real de Avalian es la telemedicina 24hs incluida en todos los planes, incluso el más básico. Para la mayoría, Swiss Medical rinde más por el mismo presupuesto; Avalian tiene sentido si la consulta médica por video sin moverte de casa es una prioridad.',
+    veredicto: 'Swiss Medical gana en cuota: según los cuadros tarifarios oficiales, su plan de entrada (S1) y su plan sin copago más accesible (SMG02) salen menos que los de Avalian, y además tiene 11 sanatorios propios. La diferencia real de Avalian es la telemedicina 24hs incluida en todos los planes, incluso el más básico. Para la mayoría, Swiss Medical rinde más por el mismo presupuesto; Avalian tiene sentido si la consulta médica por video sin moverte de casa es una prioridad.',
   },
   {
     slug: 'avalian-vs-sancor-salud',
@@ -327,7 +327,7 @@ export const comparativas: Comparativa[] = [
     descripcion: 'Omint contra Swiss Medical: sanatorios propios, planes, cobertura nacional e internacional.',
     ganadorRed: 'swiss-medical',
     ganadorSatisfaccion: 'swiss-medical',
-    veredicto: 'Las dos tienen sanatorios propios: Omint, 3 de alta complejidad (Bazterrica, Del Sol y Santa Isabel); Swiss Medical, 9, además del ICBA y más de 30 SMG Center en AMBA. Swiss Medical tiene cobertura nacional y un plan de entrada (S1) más accesible; Omint suma cobertura internacional en todos sus planes, pero su red se concentra en CABA y GBA. Para la red propia más grande y cobertura nacional, Swiss Medical. Si la cobertura internacional en todos los planes es prioridad, Omint.',
+    veredicto: 'Las dos tienen sanatorios propios: Omint, 3 de alta complejidad (Bazterrica, Del Sol y Santa Isabel); Swiss Medical, 11, además del ICBA y 20 SMG Center. Swiss Medical tiene cobertura nacional y un plan de entrada (S1) más accesible; Omint suma cobertura internacional en todos sus planes, pero su red se concentra en CABA y GBA. Para la red propia más grande y cobertura nacional, Swiss Medical. Si la cobertura internacional en todos los planes es prioridad, Omint.',
   },
   {
     slug: 'premedic-vs-avalian',
@@ -361,10 +361,10 @@ export const comparativas: Comparativa[] = [
     prepaga1Slug: 'medicus',
     prepaga2Slug: 'swiss-medical',
     titulo: 'Medicus vs Swiss Medical: ¿cuál conviene? 2026',
-    descripcion: 'Medicus (11 centros médicos propios) contra Swiss Medical (9 sanatorios propios y cobertura nacional): red, centros propios, planes sin copago y dónde conviene cada una.',
+    descripcion: 'Medicus (11 centros médicos propios) contra Swiss Medical (11 sanatorios propios y cobertura nacional): red, centros propios, planes sin copago y dónde conviene cada una.',
     ganadorRed: 'swiss-medical',
     ganadorSatisfaccion: 'swiss-medical',
-    veredicto: 'Tienen modelos distintos. Medicus tiene 11 centros médicos propios en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche, y acceso a sanatorios como Mater Dei, el Hospital Alemán, Otamendi, Favaloro y CEMIC, pero no tiene cobertura nacional. Swiss Medical tiene 9 sanatorios propios, más de 30 SMG Center en AMBA, cobertura nacional y planes sin copago desde el SMG20. En nuestras fichas, Swiss figura con mejor cartilla. El precio no lo comparamos acá: los cuadros oficiales de la Superintendencia que usa el sitio incluyen a Swiss Medical pero no a Medicus, así que pedí cotización de los dos para tu edad. Si vivís cerca de un centro Medicus y valorás su atención integrada, Medicus. Si necesitás cobertura en todo el país o en AMBA con sanatorios propios, Swiss Medical.',
+    veredicto: 'Tienen modelos distintos. Medicus tiene 11 centros médicos propios en CABA, GBA, Mar del Plata, Mendoza, Neuquén, Rosario y Bariloche, y acceso a sanatorios como Mater Dei, el Hospital Alemán, Otamendi, Favaloro y CEMIC, pero no tiene cobertura nacional. Swiss Medical tiene 11 sanatorios propios, 20 SMG Center, cobertura nacional y planes sin copago desde el SMG20. En nuestras fichas, Swiss figura con mejor cartilla. El precio no lo comparamos acá: los cuadros oficiales de la Superintendencia que usa el sitio incluyen a Swiss Medical pero no a Medicus, así que pedí cotización de los dos para tu edad. Si vivís cerca de un centro Medicus y valorás su atención integrada, Medicus. Si necesitás cobertura en todo el país o en AMBA con sanatorios propios, Swiss Medical.',
   },
 ]
 

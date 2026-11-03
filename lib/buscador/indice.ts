@@ -49,6 +49,7 @@ export function indiceBuscador(): EntradaBuscador[] {
   add('Obras sociales para monotributistas', '/obras-sociales/monotributo', G('Herramientas'), 'Lista oficial y cuánto pagás por categoría', 'monotributo monotributista categoria aporte obra social familiar adherente')
   add('Códigos de obras sociales', '/obras-sociales/codigos', G('Herramientas'), 'Código RNOS para AFIP/ARCA', 'codigo rnos rnas afip arca alta temprana')
   add('Ranking de prepagas', '/ranking', G('Herramientas'), 'Las mejores prepagas', 'mejores ranking')
+  add('Prepagas con sanatorios propios', '/prepagas-con-sanatorios-propios', G('Herramientas'), 'Sanatorios, centros médicos y avión sanitario', 'sanatorios propios clinicas propias centros medicos avion sanitario estructura')
   add('Prepagas económicas', '/prepagas-economicas', G('Herramientas'), 'Los planes más baratos', 'barata economica')
   add('Preexistencias: qué papeles te piden', '/declaracion-jurada-de-salud', G('Herramientas'), 'Documentación para la declaración jurada de salud', 'preexistencia declaracion jurada ddjj auditoria documentacion papeles enfermedad')
   add('¿Qué me cubre la prepaga?', '/guias/que-cubre-la-prepaga#buscador', G('Herramientas'), 'Buscador de coberturas: por ley y por plan', 'cobertura cubre pmo obligatorio ley prestacion practica tratamiento estudio')

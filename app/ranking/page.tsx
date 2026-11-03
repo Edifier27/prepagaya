@@ -41,7 +41,7 @@ const CATEGORIAS = [
   { slug: 'avalian', titulo: 'Mejor en el interior', para: 'Para quien necesita una red amplia en todo el país.' },
 ]
 
-const respuesta = `Para la mayoría de las personas, la mejor prepaga de Argentina en ${ANIO} es Swiss Medical: tiene 9 sanatorios propios y más de 30 SMG Center en AMBA. Si lo que más te importa es el precio, Premedic es la opción más económica (desde ${formatPrecio(precioDesde(bySlug('premedic')))} por mes). Si vivís en el interior, Sancor Salud y Avalian tienen las redes más amplias fuera de AMBA.`
+const respuesta = `Para la mayoría de las personas, la mejor prepaga de Argentina en ${ANIO} es Swiss Medical: tiene 11 sanatorios propios y 20 SMG Center. Si lo que más te importa es el precio, Premedic es la opción más económica (desde ${formatPrecio(precioDesde(bySlug('premedic')))} por mes). Si vivís en el interior, Sancor Salud y Avalian tienen las redes más amplias fuera de AMBA.`
 
 const faqs = [
   { q: `¿Cuál es la mejor prepaga de Argentina en ${ANIO}?`, a: respuesta },
@@ -265,6 +265,20 @@ export default function RankingPage() {
               </table>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Otros rankings (2-nov-2026): por afiliados y por estructura propia, cada uno en su URL */}
+      <section className="py-8 bg-white border-t border-gray-100">
+        <div className="container max-w-5xl mx-auto grid sm:grid-cols-2 gap-3">
+          <Link href="/blog/cual-es-la-prepaga-mas-grande-argentina" className="block rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 p-4 transition-colors">
+            <span className="block font-bold text-gray-900">Ranking de prepagas por afiliados</span>
+            <span className="text-sm text-gray-500">Cuál es la prepaga más grande, con el dato oficial de la SSSalud →</span>
+          </Link>
+          <Link href="/prepagas-con-sanatorios-propios" className="block rounded-xl border border-gray-200 hover:border-red-200 hover:bg-red-50 p-4 transition-colors">
+            <span className="block font-bold text-gray-900">Prepagas con sanatorios propios</span>
+            <span className="text-sm text-gray-500">Sanatorios, centros médicos y avión sanitario de cada una →</span>
+          </Link>
         </div>
       </section>
 

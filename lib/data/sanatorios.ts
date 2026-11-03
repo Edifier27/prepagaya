@@ -168,11 +168,11 @@ export const REFERENCIA_GBA_SUBZONAS: { subzona: string; sanatorios: string[] }[
   },
 ]
 
-// Swiss Medical tiene una red propia de más de 30 SMG Center: centros de
+// Swiss Medical tiene una red propia de 20 SMG Center: centros de
 // atención exclusivos para socios en todo el país, con turnos más rápidos
 // que la cartilla general. No listamos ubicaciones puntuales por ciudad
 // porque no tenemos ese detalle verificado — es un dato general de la marca.
-export const SMG_CENTER_NOTA = 'Swiss Medical suma más de 30 SMG Center en AMBA, y también tiene en Neuquén: centros de atención propios y exclusivos para socios.'
+export const SMG_CENTER_NOTA = 'Swiss Medical suma 20 SMG Center: centros de atención propios y exclusivos para socios.'
 
 // ─── Laboratorios de referencia ────────────────────────────────────────────
 // Mismo nivel de certeza que REFERENCIA_POR_ZONA: son redes de diagnóstico
