@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-21",
+ "generado": "2026-11-03",
  "fuentes": {
   "osde": "https://www.osde.com.ar/buscadorsucursales",
   "swiss-medical": "https://www.swissmedical.com.ar/prepagaclientes/sucursales",
@@ -997,7 +997,7 @@
    "direccion": "Rodríguez 362",
    "localidad": "Bahía Blanca",
    "region": "Buenos Aires",
-   "horario": "Lunes a viernes de 9 a 17 hs",
+   "horario": "Lunes a viernes de 8 a 16 hs",
    "lat": -38.71297836303711,
    "lon": -62.26388931274414
   },
