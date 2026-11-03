@@ -69,13 +69,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Si también hay obras sociales con el sanatorio en su cartilla oficial, el
   // título lo dice: "qué obra social atiende el X" se busca mucho (1-oct-2026)
   const os = obrasSocialesEnSanatorio(slug)
+  // Título y descripción acotados (≤65 y ≤160 caracteres, control del 3-nov-2026)
+  const titulo = os.length
+    ? `Qué prepagas y obras sociales atienden en ${art(s.nombre)} ${s.nombre}`
+    : `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`
+  const tituloCorto = os.length
+    ? `Prepagas y obras sociales en ${art(s.nombre)} ${s.nombre}`
+    : `Prepagas en ${art(s.nombre)} ${s.nombre}: desde qué plan`
+  const descLarga = os.length
+    ? `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')} y las obras sociales ${os.map((o) => o.osNombre).join(', ')}, según sus cartillas oficiales. Cotizá gratis.`
+    : `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una, según sus cartillas oficiales. Cotizá gratis.`
+  const descCorta = `${s.nombre}: lo tienen en cartilla ${nombres.slice(0, 3).join(', ')}${nombres.length > 3 ? ' y otras' : ''}${os.length ? ' y obras sociales' : ''}, según sus cartillas oficiales. Cotizá gratis.`
+  const descMini = `${s.nombre}: en cartilla de ${nombres.slice(0, 2).join(', ')}${nombres.length > 2 ? ' y otras' : ''}. Según cartillas oficiales. Cotizá gratis.`
   return {
-    title: os.length
-      ? `Qué prepagas y obras sociales atienden en ${art(s.nombre)} ${s.nombre}`
-      : `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`,
-    description: os.length
-      ? `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')} (desde qué plan, para internación y guardia) y las obras sociales ${os.map((o) => o.osNombre).join(', ')}, según sus cartillas oficiales. Cotizá gratis.`
-      : `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
+    title: titulo.length <= 65 ? titulo : tituloCorto.length <= 65 ? tituloCorto : `Prepagas en ${s.nombre}`,
+    description: descLarga.length <= 160 ? descLarga : descCorta.length <= 160 ? descCorta : descMini,
     alternates: { canonical: `${SITE_URL}/sanatorios/${slug}` },
     keywords: [
       `prepagas ${s.nombre.toLowerCase()}`,
