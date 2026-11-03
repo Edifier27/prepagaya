@@ -9,6 +9,7 @@ import { elegir, pesosTitulo, PLANES_TITULO_PRECIO } from '@/lib/seo/titulos'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
+import { BotonPdfPlan } from '@/components/prepagas/BotonPdfPlan'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { CajaPrecioPlan } from '@/components/prepagas/CajaPrecioPlan'
 import { escalaPorEdad, preciosPorRegion, precioGrupo } from '@/lib/precios/motor'
@@ -209,6 +210,22 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
       a: c.fila.incluido
         ? `Sí. Según la ficha oficial de ${prep.nombre}: ${c.fila.detalle ? c.fila.detalle.replace(/^\S/, (ch) => ch.toLowerCase()) : 'incluido'}.`
         : `No. Según la ficha oficial de ${prep.nombre}, el ${codigo} no incluye ${c.nombre.toLowerCase()}${c.fila.detalle ? ` (${c.fila.detalle.toLowerCase()})` : ''}.`,
+    })
+  }
+  // Preguntas que más hacen los clientes en los chats del CRM (3-nov-2026). Copago ($14.000 fijo) y embarazo
+  // (2 meses de carencia, no se ingresa embarazada): Darío como asesor oficial de Swiss Medical (base de
+  // conocimiento del CRM). PMO sin carencia: Ley 26.682, igual que la guía de carencias de Swiss Medical.
+  if (prep.slug === 'swiss-medical') {
+    if (plan.copago) {
+      const sinCopago = plan.slug === 's2' ? 'SMG20' : 'SMG02'
+      faqs.push({
+        q: `¿Cuánto es el copago del ${codigo} y en qué se paga?`,
+        a: `Es un copago fijo de $14.000 en consultas y estudios; la internación y el resto de la cobertura no tienen copago. Si preferís no pagar copago, el mismo nivel de plan sin copago es el ${sinCopago}.`,
+      })
+    }
+    faqs.push({
+      q: `¿Desde cuándo tengo cobertura con el ${codigo}?`,
+      a: 'Desde el día del alta. Por la Ley 26.682, lo que está en el PMO no tiene carencia; si hay plazos para otras prestaciones, figuran en el anexo del plan. Para embarazo hay una carencia de 2 meses desde el alta, y no se puede ingresar con un embarazo en curso.',
     })
   }
   return { codigo, nombreLargo, escala, region, coberturas, faqs, regiones, diferencias, familias }
@@ -991,6 +1008,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
         <div className="container max-w-4xl mx-auto">
           <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
             <h2 className="text-xl font-bold text-gray-900">¿Qué incluye el {plan.nombre}?</h2>
+            <BotonPdfPlan plan={`${prep.slug}/${plan.slug}`} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {plan.cobertura.map((c) => {
@@ -1176,6 +1194,50 @@ export default async function PlanPage({ params, searchParams }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Hoja para "Descargar qué cubre (PDF)" (chats del CRM, 3-nov-2026): solo se ve al imprimir con el botón */}
+      <div data-imprimir className="hidden">
+        <p style={{ fontSize: 11, color: '#6b7280' }}>PrepagaYa · {SITE_URL.replace(/^https?:\/\//, '')}/prepagas/{prep.slug}/{plan.slug}</p>
+        <h1 style={{ fontSize: 22, fontWeight: 800, margin: '4px 0 2px' }}>{prep.nombre} {plan.nombre}: qué cubre</h1>
+        <p style={{ fontSize: 12, margin: '0 0 10px' }}>
+          {plan.copago ? 'Con copago en consultas' : 'Sin copago en consultas'} · {plan.redAbierta ? 'Red abierta (con reintegros)' : 'Red cerrada (cartilla)'}
+        </p>
+        <p style={{ fontSize: 12, margin: '0 0 10px' }}>{plan.descripcion}</p>
+        <h2 style={{ fontSize: 15, fontWeight: 700, margin: '12px 0 4px' }}>Incluye</h2>
+        <ul style={{ fontSize: 12, margin: 0, paddingLeft: 18, listStyle: 'disc' }}>{plan.cobertura.map((c) => <li key={c}>{c}</li>)}</ul>
+        {seo && seo.coberturas.length > 0 && (
+          <>
+            <h2 style={{ fontSize: 15, fontWeight: 700, margin: '12px 0 4px' }}>Cobertura punto por punto (fichas oficiales de {prep.nombre})</h2>
+            <table style={{ width: '100%', fontSize: 12, borderCollapse: 'collapse' }}>
+              <tbody>
+                {seo.coberturas.map((c) => (
+                  <tr key={c.tema} style={{ borderTop: '1px solid #e5e7eb' }}>
+                    <td style={{ padding: '3px 0' }}>{c.nombre}</td>
+                    <td style={{ padding: '3px 0', textAlign: 'right' }}>{c.fila.sinDato ? 'Sin dato en la ficha' : c.fila.incluido ? c.fila.detalle ?? 'Incluido' : `No incluido${c.fila.detalle ? ` (${c.fila.detalle})` : ''}`}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+        {seo?.escala && (
+          <>
+            <h2 style={{ fontSize: 15, fontWeight: 700, margin: '12px 0 4px' }}>Precio de lista por edad ({PRECIO_ACTUALIZADO})</h2>
+            <table style={{ width: '100%', fontSize: 12, borderCollapse: 'collapse' }}>
+              <tbody>
+                {seo.escala.rangos.map((x) => (
+                  <tr key={x.desde} style={{ borderTop: '1px solid #e5e7eb' }}>
+                    <td style={{ padding: '3px 0' }}>{x.hasta >= 99 ? `${x.desde} años o más` : `${x.desde} a ${x.hasta} años`}</td>
+                    <td style={{ padding: '3px 0', textAlign: 'right' }}>{formatPrecio(x.precio)} por mes</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p style={{ fontSize: 10, color: '#6b7280', marginTop: 4 }}>Cuadro tarifario declarado ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona. Con aportes o promociones el precio final cambia.</p>
+          </>
+        )}
+        <p style={{ fontSize: 10, color: '#6b7280', marginTop: 12 }}>Información orientativa según las fuentes oficiales de {prep.nombre}. Confirmá la cobertura antes de usarla. Cotizá tu precio exacto en prepagaya.com.ar.</p>
+      </div>
 
       {/* CTA final */}
       <section className="py-12 bg-[#E8002D] text-white">

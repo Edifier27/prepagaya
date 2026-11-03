@@ -175,3 +175,34 @@ select case
 ```
 
 Con el resultado se arman las preguntas frecuentes de cada plan (punto 4), con la respuesta sacada de la ficha oficial.
+
+## Lo que pregunta la gente en los chats del CRM (3-nov-2026)
+
+Fuente: 299 preguntas de clientes de los últimos 90 días que nombran un plan, y 400 resúmenes de lo que le interesa a cada lead (ficha del CRM). Se cuentan temas, sin datos personales. La consulta de "aprendizajes" no se corrió todavía.
+
+| Tema | Menciones | Ejemplos reales (reescritos) | ¿Tenemos página? |
+|---|---|---|---|
+| Precio: "¿hay algo más barato?", "tengo hasta X" | 78 | "¿Tenés algún plan por menos de $200.000?", "el S2 se me va" | Sí: /prepagas-economicas y /prepaga-por-presupuesto. Falta "el plan más barato de Swiss Medical", con la escalera S1 → S2 → SMG02 → SMG20 |
+| Cartilla o un sanatorio puntual | 67 | "¿El S2 cubre el Británico de Rosario?", "¿entra la Clínica Bessone?", "¿está el Güemes?" | Sí: /sanatorios/[slug] ya tiene Bessone, Güemes, Británico de Rosario y Modelo de Quilmes. Se suma Trinidad Quilmes (3-nov). Hospital Español de Mendoza figura en una sola cartilla oficial, así que no se publica (piso de 2). "Sanatorio Lomas" y Corporación Médica de San Martín no aparecen en las cartillas cargadas |
+| Copago: qué es, cuánto, en qué se paga | 54 | "¿Los $14.000 son por consulta y por estudios?", "¿el SMG20 es el sin copago?", "¿la internación tiene copago?" | Guía general de copago, sí. **Falta "S1 vs SMG02" y "S2 vs SMG20"**: la duda número uno de venta (es el mismo plan, cambia el copago). Además, "plan s1 swiss medical" está en posición 13,5 en Google |
+| Monotributo y aportes | 44 | "¿Me toman los dos aportes, el de mi marido y el del monotributo?", "¿el monotributo es pago a cuenta?" | Sí: perfil monotributistas y guías. Sumar preguntas frecuentes en las fichas |
+| Desde cuándo tengo cobertura, alta y baja de la otra prepaga | 38 | "¿Desde cuándo lo puedo usar?", "¿cuándo doy de baja Sancor sin pagar dos veces?" | Sí: /guias/como-cambiar-de-prepaga. Sumar las fechas: alta el 1 del mes y cuándo dar la baja en la otra |
+| Qué cubre, "por escrito" o en PDF | 26 | "¿Me lo pasás en PDF?", "¿tenés el brochure del SMG50?" | La ficha tiene "qué cubre punto por punto", pero no se puede descargar. **Idea: botón "Descargar qué cubre el plan" (PDF)** en cada ficha |
+| Nombres y equivalencias de planes | 23 | "¿Cuál es como el OSDE 310 o el 410?", "¿Swiss y Sancor es lo mismo?", "¿un escalón menos sería el SMG02?" | Parcial: hay comparaciones sueltas. **Falta una tabla de equivalencias** (OSDE 210 / 310 / 410 contra S1, SMG02, SMG20, SMG30 y SMG50). La tiene que validar Darío |
+| Ortodoncia y odontología | 20 | "Tengo SMG20 y estoy con ortodoncia: ¿qué plan la cubre para adultos?" | Sí: /coberturas/ortodoncia/swiss-medical, en posición 4,8. Sumar "ortodoncia para adultos: desde qué plan" |
+| Aumentos y rango de edad | 19 | "¿Cada cuánto aumenta?", "¿cuándo cambia el precio por edad?" | Sí: /aumentos y la tabla por edad de la ficha. Sumarlo a las preguntas frecuentes de la ficha |
+| Mayores de 65, PAMI, AMBU 1 e INTER 1 | 17 | Hijas que buscan cobertura para su madre de 70 a 80 años con PAMI | **No hay página.** Hace falta "prepaga para mayores de 65 con PAMI: AMBU 1 e INTER 1" ("prepagas para jubilados": 260 búsquedas por mes, +23%) |
+| Embarazo, parto y carencia | 15 | "¿El SMG02 cubre el parto?", "¿hay carencia de maternidad?" | Sí: /guias/contratar-prepaga-embarazada. Sumar la pregunta en las fichas de SMG02, S1 y S2 |
+| Reintegros y plan abierto o cerrado | 15 | "Mi psicóloga es particular: ¿hay reintegro?", "¿plan abierto o cerrado?" | Sí: guía de reintegros y nota de red abierta vs cerrada |
+| Psicología | 14 | "¿Cuántas sesiones cubre?", "¿reintegra la psicóloga particular?" | Sí: /coberturas/psicologia/swiss-medical |
+| Cirugía estética, botox y rellenos | 12 | "¿Cubre botox o relleno de labios?", "¿desde cuándo cubre la cirugía?" | Sí: /coberturas/cirugia-estetica/swiss-medical. Sumar botox y rellenos solo si lo dice la ficha oficial |
+| Autorizaciones | 5 | "¿Con el S2 voy directo o necesito autorización?" | Sí: guía de autorizaciones |
+
+### Contenido nuevo que sale de los chats, en orden
+
+1. **"S1 vs SMG02" y "S2 vs SMG20" de Swiss Medical.** Es la duda de copago, la más frecuente en los chats, y "plan s1" está en posición 13,5. Mismo formato que las comparaciones que ya rinden.
+2. **"Prepaga para mayores de 65 con PAMI: AMBU 1 e INTER 1".** No existe y llegan muchos leads de 66 años o más. "prepagas para jubilados": 260 búsquedas por mes y en aumento. Ojo: el precio solo se publica si hay fuente oficial.
+3. **Página del Sanatorio de la Trinidad Quilmes** (hecha el 3-nov). Bessone, Güemes, Británico de Rosario y Modelo de Quilmes ya tenían su página.
+4. **Tabla de equivalencias OSDE ↔ Swiss Medical,** validada por Darío.
+5. **Botón "Descargar qué cubre el plan" (PDF)** en cada ficha, para el que lo pide "por escrito".
+6. **Preguntas frecuentes en cada ficha de plan,** sacadas de esta lista: copago, parto, aumentos por edad, desde cuándo cubre, monotributo.

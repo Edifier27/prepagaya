@@ -64,4 +64,8 @@ export function paresComparativaAuto(): { prep: Prepaga; plan1: Plan; plan2: Pla
 const SALTOS_BUSCADOS: [string, string, string][] = [
   ['osde', '210', '410'],
   ['swiss-medical', 'smg20', 'smg40'],
+  // Chats del CRM (3-nov-2026): la duda de venta más frecuente es el copago, y es entre el mismo plan con y sin
+  // copago: S1 vs SMG02 (AMBA) y S2 vs SMG20 (interior). "plan s1 swiss medical" está en posición 13,5.
+  ['swiss-medical', 's1', 'smg02'],
+  ['swiss-medical', 's2', 'smg20'],
 ]
