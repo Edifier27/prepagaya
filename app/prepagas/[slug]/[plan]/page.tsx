@@ -557,6 +557,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+// Planes donde se busca más el precio que la cartilla (Search Console, ago-oct 2026): ahí la tabla de
+// precio por edad va primero. En el resto va primero la cartilla de tu zona.
+const PRIMERO_PRECIO: Record<string, string[]> = { osde: ['210', '410', '510', 'flux'], 'sancor-salud': ['plan-3000', 'plan-3000-gen'] }
+
 export default async function PlanPage({ params, searchParams }: Props) {
   const { slug, plan: planSlug } = await params
   const prov = getProvinciaSEO(slug)
@@ -713,6 +717,130 @@ export default async function PlanPage({ params, searchParams }: Props) {
     },
   ]
 
+  const primeroPrecio = (PRIMERO_PRECIO[prep.slug] ?? []).includes(plan.slug)
+  const bloquePrecio = (
+    <>
+      {/* Precio por edad (cuadro tarifario SSSalud) y cobertura punto por punto (fichas oficiales) */}
+      {seo && (seo.escala || seo.coberturas.length > 0) && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {seo.escala && (
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-1">Precio del {seo.nombreLargo} por edad</h2>
+                <p className="text-xs text-gray-500 mb-3">
+                  Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona.{promo ? ' Cotizando online tenés 15% OFF sobre estos valores.' : ''}
+                </p>
+                {/* Plegado (25-sep-2026) y vuelto a abrir (13-oct-2026, Clarity):
+                    "Ver precio de lista por edad" era lo más tocado de la página
+                    (18% en OSDE 210). La tabla por zona sigue plegada. */}
+                <details open className="group rounded-xl border border-gray-200">
+                  <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
+                    Ver precio de lista por edad
+                    <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                  </summary>
+                <table className="w-full text-sm border-t border-gray-100">
+                  <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+                    <tr><th className="text-left px-4 py-2">Edad</th><th className="text-right px-4 py-2">Precio mensual</th></tr>
+                  </thead>
+                  <tbody>
+                    {seo.escala.rangos.map((x) => (
+                      <tr key={x.desde} className="border-t border-gray-100">
+                        <td className="px-4 py-2 text-gray-700">{x.hasta >= 99 ? `${x.desde} años o más` : `${x.desde} a ${x.hasta} años`}</td>
+                        <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(x.precio)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                </details>
+                {seo.regiones.length > 0 && (
+                  <details className="group mt-3 rounded-xl border border-gray-200">
+                    <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
+                      Ver precio por zona (a los 30 años)
+                      <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                    </summary>
+                    <table className="w-full text-sm border-t border-gray-100">
+                      <caption className="sr-only">Precio de lista del {seo.nombreLargo} a los 30 años según la zona</caption>
+                      <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+                        <tr><th className="text-left px-4 py-2">Zona</th><th className="text-right px-4 py-2">Precio mensual</th></tr>
+                      </thead>
+                      <tbody>
+                        {seo.regiones.map((r) => (
+                          <tr key={r.region} className="border-t border-gray-100">
+                            <td className="px-4 py-2 text-gray-700">{r.zonas.join(', ')}</td>
+                            <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(r.precio)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </details>
+                )}
+                {seo.familias.length > 0 && (
+                  <details className="group mt-3 rounded-xl border border-gray-200">
+                    <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
+                      Ver precio para tu grupo familiar
+                      <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                    </summary>
+                    <table className="w-full text-sm border-t border-gray-100">
+                      <caption className="sr-only">Precio de lista del {seo.nombreLargo} según el grupo familiar</caption>
+                      <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+                        <tr><th className="text-left px-4 py-2">Grupo</th><th className="text-right px-4 py-2">Total por mes</th></tr>
+                      </thead>
+                      <tbody>
+                        {seo.familias.map((g) => (
+                          <tr key={g.label} className="border-t border-gray-100">
+                            <td className="px-4 py-2 text-gray-700">{g.label}</td>
+                            <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(g.total)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </details>
+                )}
+                <p className="text-xs text-gray-400 mt-2">El precio final depende de tu zona, tu grupo familiar y las promociones vigentes: te lo cotizamos sin cargo.</p>
+              </div>
+            )}
+            {seo.coberturas.length > 0 && (
+              <div>
+                <h2 className="text-xl font-bold text-gray-900 mb-1">Qué cubre el {seo.nombreLargo}, punto por punto</h2>
+                <p className="text-xs text-gray-500 mb-4">Según las fichas oficiales de {prep.nombre}.</p>
+                <ul className="divide-y divide-gray-100 border border-gray-100 rounded-xl">
+                  {seo.coberturas.map((c) => (
+                    <li key={c.tema} className="flex items-start justify-between gap-3 px-4 py-2.5 text-sm">
+                      <Link href={`/coberturas/${c.tema}/${prep.slug}`} className="text-gray-700 hover:text-[#E8002D] hover:underline">{c.nombre}</Link>
+                      <span className={`text-right ${c.fila.sinDato ? 'text-gray-400' : c.fila.incluido ? 'text-emerald-700 font-semibold' : 'text-gray-500'}`}>
+                        {c.fila.sinDato ? 'Sin dato en la ficha' : c.fila.incluido ? `✓ ${c.fila.detalle ?? 'Incluido'}` : `✕ ${c.fila.detalle ?? 'No incluido'}`}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+    </>
+  )
+  const bloqueCartilla = (
+    <>
+      {/* Qué tenés con este plan en tu zona (cartilla oficial por zona, Darío 23-sep-2026) */}
+      {planCartilla && cartillaDef && (
+        <section className="py-8 bg-white">
+          <div className="container max-w-5xl mx-auto">
+            <CartillaPlanTuZona
+              prepagaSlug={prep.slug}
+              prepagaNombre={prep.nombre}
+              planNombre={plan.nombre}
+              planCartillaId={planCartilla.id}
+              labelGuardia={cartillaDef.labelGuardia}
+              renombre={renombre}
+              inicial={resumenCaba}
+            />
+          </div>
+        </section>
+      )}
+    </>
+  )
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
@@ -826,7 +954,14 @@ export default async function PlanPage({ params, searchParams }: Props) {
         </div>
       </section>
 
+      {/* Lo que más busca la gente de este plan, primero (keyword research 3-nov-2026,
+          docs/seo/keyword-research-planes-2026-11.md): en OSDE 210/410/510/Flux y Sancor 3000 se busca
+          el precio; en el resto, la cartilla. El otro bloque va después del resumen. */}
+      {primeroPrecio ? bloquePrecio : bloqueCartilla}
+
       <ResumenPlan {...resumen} />
+
+      {primeroPrecio ? bloqueCartilla : bloquePrecio}
 
       {/* Para quién es este plan */}
       <section className="py-10 bg-white">
@@ -896,122 +1031,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
           </Link>
         </div>
       </section>
-
-      {/* Precio por edad (cuadro tarifario SSSalud) y cobertura punto por punto (fichas oficiales) */}
-      {seo && (seo.escala || seo.coberturas.length > 0) && (
-        <section className="py-10 bg-white border-t border-gray-100">
-          <div className="container max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {seo.escala && (
-              <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-1">Precio del {seo.nombreLargo} por edad</h2>
-                <p className="text-xs text-gray-500 mb-3">
-                  Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona.{promo ? ' Cotizando online tenés 15% OFF sobre estos valores.' : ''}
-                </p>
-                {/* Plegado (25-sep-2026) y vuelto a abrir (13-oct-2026, Clarity):
-                    "Ver precio de lista por edad" era lo más tocado de la página
-                    (18% en OSDE 210). La tabla por zona sigue plegada. */}
-                <details open className="group rounded-xl border border-gray-200">
-                  <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
-                    Ver precio de lista por edad
-                    <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                  </summary>
-                <table className="w-full text-sm border-t border-gray-100">
-                  <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
-                    <tr><th className="text-left px-4 py-2">Edad</th><th className="text-right px-4 py-2">Precio mensual</th></tr>
-                  </thead>
-                  <tbody>
-                    {seo.escala.rangos.map((x) => (
-                      <tr key={x.desde} className="border-t border-gray-100">
-                        <td className="px-4 py-2 text-gray-700">{x.hasta >= 99 ? `${x.desde} años o más` : `${x.desde} a ${x.hasta} años`}</td>
-                        <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(x.precio)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                </details>
-                {seo.regiones.length > 0 && (
-                  <details className="group mt-3 rounded-xl border border-gray-200">
-                    <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
-                      Ver precio por zona (a los 30 años)
-                      <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                    </summary>
-                    <table className="w-full text-sm border-t border-gray-100">
-                      <caption className="sr-only">Precio de lista del {seo.nombreLargo} a los 30 años según la zona</caption>
-                      <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
-                        <tr><th className="text-left px-4 py-2">Zona</th><th className="text-right px-4 py-2">Precio mensual</th></tr>
-                      </thead>
-                      <tbody>
-                        {seo.regiones.map((r) => (
-                          <tr key={r.region} className="border-t border-gray-100">
-                            <td className="px-4 py-2 text-gray-700">{r.zonas.join(', ')}</td>
-                            <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(r.precio)}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </details>
-                )}
-                {seo.familias.length > 0 && (
-                  <details className="group mt-3 rounded-xl border border-gray-200">
-                    <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden text-sm font-semibold text-gray-800">
-                      Ver precio para tu grupo familiar
-                      <svg className="w-4 h-4 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                    </summary>
-                    <table className="w-full text-sm border-t border-gray-100">
-                      <caption className="sr-only">Precio de lista del {seo.nombreLargo} según el grupo familiar</caption>
-                      <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
-                        <tr><th className="text-left px-4 py-2">Grupo</th><th className="text-right px-4 py-2">Total por mes</th></tr>
-                      </thead>
-                      <tbody>
-                        {seo.familias.map((g) => (
-                          <tr key={g.label} className="border-t border-gray-100">
-                            <td className="px-4 py-2 text-gray-700">{g.label}</td>
-                            <td className="px-4 py-2 text-right font-semibold text-gray-900 tabular-nums">{formatPrecio(g.total)}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </details>
-                )}
-                <p className="text-xs text-gray-400 mt-2">El precio final depende de tu zona, tu grupo familiar y las promociones vigentes: te lo cotizamos sin cargo.</p>
-              </div>
-            )}
-            {seo.coberturas.length > 0 && (
-              <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-1">Qué cubre el {seo.nombreLargo}, punto por punto</h2>
-                <p className="text-xs text-gray-500 mb-4">Según las fichas oficiales de {prep.nombre}.</p>
-                <ul className="divide-y divide-gray-100 border border-gray-100 rounded-xl">
-                  {seo.coberturas.map((c) => (
-                    <li key={c.tema} className="flex items-start justify-between gap-3 px-4 py-2.5 text-sm">
-                      <Link href={`/coberturas/${c.tema}/${prep.slug}`} className="text-gray-700 hover:text-[#E8002D] hover:underline">{c.nombre}</Link>
-                      <span className={`text-right ${c.fila.sinDato ? 'text-gray-400' : c.fila.incluido ? 'text-emerald-700 font-semibold' : 'text-gray-500'}`}>
-                        {c.fila.sinDato ? 'Sin dato en la ficha' : c.fila.incluido ? `✓ ${c.fila.detalle ?? 'Incluido'}` : `✕ ${c.fila.detalle ?? 'No incluido'}`}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* Qué tenés con este plan en tu zona (cartilla oficial por zona, Darío 23-sep-2026) */}
-      {planCartilla && cartillaDef && (
-        <section className="py-8 bg-white">
-          <div className="container max-w-5xl mx-auto">
-            <CartillaPlanTuZona
-              prepagaSlug={prep.slug}
-              prepagaNombre={prep.nombre}
-              planNombre={plan.nombre}
-              planCartillaId={planCartilla.id}
-              labelGuardia={cartillaDef.labelGuardia}
-              renombre={renombre}
-              inicial={resumenCaba}
-            />
-          </div>
-        </section>
-      )}
 
       {/* Diferencias con el escalón vecino, con datos oficiales (28-sep-2026: se busca "smg20 vs smg30") */}
       {seo?.diferencias && (
