@@ -67,6 +67,8 @@ export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'clinica-olivos', nombre: 'Clínica Olivos', claves: ['olivos'], excluir: ['sanatorio'] },
   { slug: 'sanatorio-juncal', nombre: 'Sanatorio Juncal', claves: ['juncal'] },
   { slug: 'sanatorio-modelo-quilmes', nombre: 'Sanatorio Modelo Quilmes', claves: ['modelo', 'quilmes'] },
+  // Chats del CRM (3-nov-2026): "que tenga Clínica Modelo y/o Trinidad de Quilmes"
+  { slug: 'sanatorio-de-la-trinidad-quilmes', nombre: 'Sanatorio de la Trinidad Quilmes', claves: ['trinidad', 'quilmes'] },
   { slug: 'sanatorio-bernal', nombre: 'Sanatorio Bernal', claves: ['bernal'] },
   { slug: 'sanatorio-itoiz', nombre: 'Sanatorio Itoiz', claves: ['itoiz'] },
   { slug: 'clinica-bessone', nombre: 'Clínica Bessone', claves: ['bessone'] },

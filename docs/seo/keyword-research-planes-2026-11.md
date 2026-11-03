@@ -183,7 +183,7 @@ Fuente: 299 preguntas de clientes de los últimos 90 días que nombran un plan, 
 | Tema | Menciones | Ejemplos reales (reescritos) | ¿Tenemos página? |
 |---|---|---|---|
 | Precio: "¿hay algo más barato?", "tengo hasta X" | 78 | "¿Tenés algún plan por menos de $200.000?", "el S2 se me va" | Sí: /prepagas-economicas y /prepaga-por-presupuesto. Falta "el plan más barato de Swiss Medical", con la escalera S1 → S2 → SMG02 → SMG20 |
-| Cartilla o un sanatorio puntual | 67 | "¿El S2 cubre el Británico de Rosario?", "¿entra la Clínica Bessone?", "¿está el Güemes?" | Parcial: /sanatorios tiene 38 sanatorios. **Faltan** Bessone (San Miguel), Güemes, Británico de Rosario, Hospital Español de Mendoza, Trinidad Quilmes, Modelo de Quilmes, Sanatorio Lomas y Corporación Médica de San Martín |
+| Cartilla o un sanatorio puntual | 67 | "¿El S2 cubre el Británico de Rosario?", "¿entra la Clínica Bessone?", "¿está el Güemes?" | Sí: /sanatorios/[slug] ya tiene Bessone, Güemes, Británico de Rosario y Modelo de Quilmes. Se suma Trinidad Quilmes (3-nov). Hospital Español de Mendoza figura en una sola cartilla oficial, así que no se publica (piso de 2). "Sanatorio Lomas" y Corporación Médica de San Martín no aparecen en las cartillas cargadas |
 | Copago: qué es, cuánto, en qué se paga | 54 | "¿Los $14.000 son por consulta y por estudios?", "¿el SMG20 es el sin copago?", "¿la internación tiene copago?" | Guía general de copago, sí. **Falta "S1 vs SMG02" y "S2 vs SMG20"**: la duda número uno de venta (es el mismo plan, cambia el copago). Además, "plan s1 swiss medical" está en posición 13,5 en Google |
 | Monotributo y aportes | 44 | "¿Me toman los dos aportes, el de mi marido y el del monotributo?", "¿el monotributo es pago a cuenta?" | Sí: perfil monotributistas y guías. Sumar preguntas frecuentes en las fichas |
 | Desde cuándo tengo cobertura, alta y baja de la otra prepaga | 38 | "¿Desde cuándo lo puedo usar?", "¿cuándo doy de baja Sancor sin pagar dos veces?" | Sí: /guias/como-cambiar-de-prepaga. Sumar las fechas: alta el 1 del mes y cuándo dar la baja en la otra |
@@ -202,7 +202,7 @@ Fuente: 299 preguntas de clientes de los últimos 90 días que nombran un plan, 
 
 1. **"S1 vs SMG02" y "S2 vs SMG20" de Swiss Medical.** Es la duda de copago, la más frecuente en los chats, y "plan s1" está en posición 13,5. Mismo formato que las comparaciones que ya rinden.
 2. **"Prepaga para mayores de 65 con PAMI: AMBU 1 e INTER 1".** No existe y llegan muchos leads de 66 años o más. "prepagas para jubilados": 260 búsquedas por mes y en aumento. Ojo: el precio solo se publica si hay fuente oficial.
-3. **Páginas de sanatorio que faltan:** Bessone, Güemes, Británico de Rosario, Español de Mendoza, Trinidad Quilmes, Modelo de Quilmes y Sanatorio Lomas. Mismo formato que /sanatorios/[slug] ("qué prepagas lo tienen y desde qué plan"), con la cartilla oficial.
+3. **Página del Sanatorio de la Trinidad Quilmes** (hecha el 3-nov). Bessone, Güemes, Británico de Rosario y Modelo de Quilmes ya tenían su página.
 4. **Tabla de equivalencias OSDE ↔ Swiss Medical,** validada por Darío.
 5. **Botón "Descargar qué cubre el plan" (PDF)** en cada ficha, para el que lo pide "por escrito".
 6. **Preguntas frecuentes en cada ficha de plan,** sacadas de esta lista: copago, parto, aumentos por edad, desde cuándo cubre, monotributo.
