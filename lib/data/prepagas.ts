@@ -61,8 +61,10 @@ export const prepagas: Prepaga[] = [
         nombre: 'Plan S1',
         // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
         precio: 197336,
-        descripcion: 'Plan económico con copago para jóvenes y personas que buscan cobertura esencial a bajo costo con la calidad Swiss Medical.',
-        cobertura: ['Internación', 'Urgencias', 'Consultas generales', 'Maternidad básica'],
+        // Beneficios del comparativo oficial de coberturas de Swiss Medical (julio 2026, ver coberturas-marca.ts),
+        // confirmados por Darío el 3-nov-2026: el S1 suma lo que el SMG02 no tiene. Prótesis por reintegro: Darío.
+        descripcion: 'Plan con copago fijo en consultas y estudios y la misma cartilla que el SMG02. Suma lo que el SMG02 no tiene: un par de anteojos o lentes de contacto por año, cirugía refractiva, placa de descanso, y ortodoncia (hasta 15 años), prótesis e implantes por reintegro.',
+        cobertura: ['Internación', 'Urgencias', 'Consultas generales', 'Maternidad', 'Óptica: 1 par de anteojos o lentes por año', 'Cirugía refractiva', 'Ortodoncia por reintegro hasta 15 años', 'Prótesis e implantes dentales por reintegro', 'Placa de descanso', '40% descuento en farmacias'],
         copago: true,
         redAbierta: false,
       },
@@ -71,8 +73,9 @@ export const prepagas: Prepaga[] = [
         nombre: 'Plan S2',
         // Precio oficial cotizador Swiss Medical (AMBA, particular, hasta 35 años) — vigencia 09/2026
         precio: 247743,
-        descripcion: 'Suma Hospital Italiano y Fundación Favaloro a la red del S1. Con copago en consultas y estudios.',
-        cobertura: ['Internación', 'Urgencias', 'Especialistas', 'Maternidad', 'Salud mental', 'Hospital Italiano', 'Fundación Favaloro'],
+        // Óptica, refractiva, placa y reintegros: comparativo oficial de Swiss Medical (julio 2026), Darío 3-nov-2026
+        descripcion: 'Suma Hospital Italiano y Fundación Favaloro a la red del S1. Con copago en consultas y estudios. Incluye un par de anteojos o lentes por año, cirugía refractiva, placa de descanso, y ortodoncia (hasta 15 años), prótesis e implantes por reintegro.',
+        cobertura: ['Internación', 'Urgencias', 'Especialistas', 'Maternidad', 'Salud mental', 'Hospital Italiano', 'Fundación Favaloro', 'Óptica: 1 par de anteojos o lentes por año', 'Cirugía refractiva', 'Ortodoncia por reintegro hasta 15 años', 'Prótesis e implantes dentales por reintegro', 'Placa de descanso'],
         copago: true,
         redAbierta: false,
       },
