@@ -9,7 +9,8 @@ import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, 
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import type { Prepaga } from '@/types'
-import { PARES_CRUZADOS, comparacionCruzada } from '@/lib/comparativas-cruzadas'
+import { PARES_CRUZADOS, comparacionCruzada, EQUIVALENCIAS_OSDE_SWISS } from '@/lib/comparativas-cruzadas'
+import { escalaPorEdad } from '@/lib/precios/motor'
 import { ComparacionCruzadaPage } from '@/components/comparativas/ComparacionCruzadaPage'
 import { ldJson } from '@/lib/jsonld'
 
@@ -342,6 +343,47 @@ export default async function ComparativaPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Equivalencias OSDE ↔ Swiss Medical (Darío, 3-nov-2026): "¿cuál es como el OSDE 310?" sale seguido en los chats */}
+      {[p1.slug, p2.slug].sort().join() === 'osde,swiss-medical' && (() => {
+        const precio30 = (pre: string, plan: string) => escalaPorEdad(pre, plan, 'caba')?.rangos.find((x) => x.desde <= 30 && 30 <= x.hasta)?.precio
+        const filas = EQUIVALENCIAS_OSDE_SWISS.map((e) => ({ ...e, pOsde: precio30('osde', e.osde), pSwiss: precio30('swiss-medical', e.swiss) }))
+        return (
+          <section className="py-10 bg-white border-t border-gray-100">
+            <div className="container max-w-4xl mx-auto">
+              <h2 className="text-xl font-bold text-gray-900 mb-1">Qué plan de Swiss Medical equivale a cada plan de OSDE</h2>
+              <p className="text-sm text-gray-500 mb-4">
+                Equivalencia de nivel según nuestros asesores oficiales de Swiss Medical. Precio de lista a los 30 años, cuadro oficial de la Superintendencia de Servicios de Salud ({PRECIO_ACTUALIZADO}, CABA y GBA, contratación directa, IVA incluido).
+              </p>
+              <div className="overflow-x-auto rounded-xl border border-gray-100">
+                <table className="w-full text-sm">
+                  <thead className="bg-gray-50 text-left text-gray-500">
+                    <tr>
+                      <th scope="col" className="px-3 py-2 font-semibold">Si tenés OSDE</th>
+                      <th scope="col" className="px-3 py-2 font-semibold">El equivalente en Swiss Medical</th>
+                      <th scope="col" className="px-3 py-2 font-semibold text-right">OSDE, 30 años</th>
+                      <th scope="col" className="px-3 py-2 font-semibold text-right">Swiss Medical, 30 años</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {filas.map((f) => (
+                      <tr key={f.osde}>
+                        <td className="px-3 py-2 font-medium text-gray-900"><Link href={`/prepagas/osde/${f.osde}`} className="hover:text-[#E8002D] hover:underline">OSDE {f.osde}</Link></td>
+                        <td className="px-3 py-2">
+                          <Link href={`/comparativas/${f.slug}`} className="font-semibold text-[#E8002D] hover:underline">{f.swiss.toUpperCase()}</Link>
+                        </td>
+                        <td className="px-3 py-2 text-right tabular-nums text-gray-600">{f.pOsde ? formatPrecio(f.pOsde) : '—'}</td>
+                        <td className="px-3 py-2 text-right tabular-nums text-gray-600">{f.pSwiss ? formatPrecio(f.pSwiss) : '—'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-gray-400 mt-2">Tocá el plan de Swiss Medical para ver la comparación punto por punto: precio por edad, sanatorios y cobertura.</p>
+            </div>
+          </section>
+        )
+      })()}
 
       {/* FAQ */}
       {/* Plan por plan (11-oct-2026): comparaciones entre planes de las dos marcas */}

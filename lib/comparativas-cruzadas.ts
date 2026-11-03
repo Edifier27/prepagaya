@@ -23,6 +23,18 @@ export const PARES_CRUZADOS: ParCruzado[] = [
   { slug: 'swiss-medical-smg02-vs-osde-210', a: ['swiss-medical', 'smg02'], b: ['osde', '210'] },
   { slug: 'swiss-medical-smg30-vs-osde-410', a: ['swiss-medical', 'smg30'], b: ['osde', '410'] },
   { slug: 'swiss-medical-smg20-vs-sancor-salud-plan-3000', a: ['swiss-medical', 'smg20'], b: ['sancor-salud', 'plan-3000'] },
+  // Equivalencias de Darío como asesor (3-nov-2026): OSDE 210 = SMG20, 310 = SMG30, 410 = SMG50
+  { slug: 'swiss-medical-smg20-vs-osde-210', a: ['swiss-medical', 'smg20'], b: ['osde', '210'] },
+  { slug: 'swiss-medical-smg30-vs-osde-310', a: ['swiss-medical', 'smg30'], b: ['osde', '310'] },
+  { slug: 'swiss-medical-smg50-vs-osde-410', a: ['swiss-medical', 'smg50'], b: ['osde', '410'] },
+]
+
+/** Plan de Swiss Medical equivalente a cada plan de OSDE, según Darío como asesor oficial (3-nov-2026).
+ *  Es la equivalencia de nivel que se usa en la venta; las diferencias puntuales salen de cada comparación. */
+export const EQUIVALENCIAS_OSDE_SWISS: { osde: string; swiss: string; slug: string }[] = [
+  { osde: '210', swiss: 'smg20', slug: 'swiss-medical-smg20-vs-osde-210' },
+  { osde: '310', swiss: 'smg30', slug: 'swiss-medical-smg30-vs-osde-310' },
+  { osde: '410', swiss: 'smg50', slug: 'swiss-medical-smg50-vs-osde-410' },
 ]
 
 type Plan = Prepaga['planes'][number]
