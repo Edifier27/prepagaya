@@ -4,14 +4,14 @@
   "encabezado": [
    [
     "Categ.",
-    "Ingresos brutos (*)",
-    "Sup. Afectada (**)",
+    "Ingresos brutos",
+    "Sup. afectada (**)",
     "Energía eléctrica consumida anualmente",
     "Alquileres devengados anualmente",
     "Precio unitario máximo para venta de cosas muebles",
-    "Impuesto integrado",
+    "Impuesto integrado (*)",
     "Aportes al SIPA (***)",
-    "Aportes obra social (****)",
+    "Aportes obra social (***) (****)",
     "Total"
    ],
    [
@@ -25,8 +25,8 @@
    [
     "A",
     "$12.009.410,45",
-    "Hasta 30 m2",
-    "Hasta 3330 Kw",
+    "Hasta 30 m²",
+    "Hasta 3330 kWh",
     "$2.792.886,15",
     "$716.840,77",
     "$5.585,77",
@@ -39,8 +39,8 @@
    [
     "B",
     "$17.595.182,74",
-    "Hasta 45 m2",
-    "Hasta 5000 Kw",
+    "Hasta 45 m²",
+    "Hasta 5000 kWh",
     "$2.792.886,15",
     "$716.840,77",
     "$10.612,98",
@@ -53,8 +53,8 @@
    [
     "C",
     "$24.670.494,31",
-    "Hasta 60 m2",
-    "Hasta 6700 Kw",
+    "Hasta 60 m²",
+    "Hasta 6700 kWh",
     "$3.816.944,41",
     "$716.840,77",
     "$18.246,86",
@@ -67,8 +67,8 @@
    [
     "D",
     "$30.628.651,43",
-    "Hasta 85 m2",
-    "Hasta 10000 Kw",
+    "Hasta 85 m²",
+    "Hasta 10000 kWh",
     "$3.816.944,41",
     "$716.840,77",
     "$29.790,79",
@@ -81,8 +81,8 @@
    [
     "E",
     "$36.028.231,33",
-    "Hasta 110 m2",
-    "Hasta 13000 Kw",
+    "Hasta 110 m²",
+    "Hasta 13000 kWh",
     "$4.841.002,66",
     "$716.840,77",
     "$55.857,73",
@@ -95,8 +95,8 @@
    [
     "F",
     "$45.151.659,41",
-    "Hasta 150 m2",
-    "Hasta 16500 Kw",
+    "Hasta 150 m²",
+    "Hasta 16500 kWh",
     "$4.841.002,66",
     "$716.840,77",
     "$78.573,20",
@@ -109,8 +109,8 @@
    [
     "G",
     "$53.995.798,87",
-    "Hasta 200 m2",
-    "Hasta 20000 Kw",
+    "Hasta 200 m²",
+    "Hasta 20000 kWh",
     "$5.771.964,69",
     "$716.840,77",
     "$142.995,76",
@@ -123,8 +123,8 @@
    [
     "H",
     "$81.924.660,37",
-    "Hasta 200 m2",
-    "Hasta 20000 Kw",
+    "Hasta 200 m²",
+    "Hasta 20000 kWh",
     "$8.378.658,45",
     "$716.840,77",
     "$409.623,31",
@@ -137,8 +137,8 @@
    [
     "I",
     "$91.699.761,90",
-    "Hasta 200 m2",
-    "Hasta 20000 Kw",
+    "Hasta 200 m²",
+    "Hasta 20000 kWh",
     "$8.378.658,45",
     "$716.840,77",
     "$814.591,79",
@@ -151,8 +151,8 @@
    [
     "J",
     "$105.012.519,20",
-    "Hasta 200 m2",
-    "Hasta 20000 Kw",
+    "Hasta 200 m²",
+    "Hasta 20000 kWh",
     "$8.378.658,45",
     "$716.840,77",
     "$977.510,14",
@@ -165,8 +165,8 @@
    [
     "K",
     "$126.610.838,75",
-    "Hasta 200 m2",
-    "Hasta 20000 Kw",
+    "Hasta 200 m²",
+    "Hasta 20000 kWh",
     "$8.378.658,45",
     "$716.840,77",
     "$1.368.514,20",
@@ -183,17 +183,17 @@
    "las herramientas de navegación y pasar al contenido Monotributo Menu Inicio Ayuda Inicio Categorías Montos y categorías vigentes Montos y categorías vigentes Parámetros y valores a abonar Ver montos y categorías anteriores Valores de aplicación desde el 1/08/2026 VER VALORES VIGENTES "
   ],
   "notas": [
-   "(*) Actividad --> Sup. Afectada",
-   "(**) Energía eléctrica consumida anualmente Alquileres devengados anualmente Precio unitario máximo para venta de cosas muebles Impuesto integrado Aportes al SIPA",
+   "(**) Energía eléctrica consumida anualmente Alquileres devengados anualmente Precio unitario máximo para venta de cosas muebles Impuesto integrado",
+   "(*) Aportes al SIPA",
    "(***) Aportes obra social",
-   "(****) Total Locaciones y prestaciones de servicios Venta de cosas muebles Locaciones y prestaciones de servicios Venta de cosas muebles A $12.009.410,45 No excluida --> Hasta 30 m2 Hasta 3330 Kw $2.792.886,15 $716.840,77 $5.585,77 $5.585,77 $18.246,86 $25.694,55 $49.527,18 $49.527,18 B $17.595.182,74 No excluida --> Hasta 45 m2 Hasta 5000 Kw $2.792.886,15 $716.840,77 $10.612,98 $10.612,98 $20.071,55 $25.694,55 $56.379,08 $56.379,08 C $24.670.494,31 No excluida --> Hasta 60 m2 Hasta 6700 Kw $3.816.944,41 $716.840,77 $18.246,86 $16.757,32 $22.078,71 $25.694,55 $66.020,12 $64.530,58 D $30.628.651,43 No excluida --> Hasta 85 m2 Hasta 10000 Kw $3.816.944,41 $716.840,77 $29.790,79 $27.742,67 $24.286,58",
+   "(****) Total Locaciones y prestaciones de servicios Venta de cosas muebles Locaciones y prestaciones de servicios Venta de cosas muebles A $12.009.410,45 No excluida --> Hasta 30 m² Hasta 3330 kWh $2.792.886,15 $716.840,77 $5.585,77 $5.585,77 $18.246,86 $25.694,55 $49.527,18 $49.527,18 B $17.595.182,74 No excluida --> Hasta 45 m² Hasta 5000 kWh $2.792.886,15 $716.840,77 $10.612,98 $10.612,98 $20.071,55 $25.694,55 $56.379,08 $56.379,08 C $24.670.494,31 No excluida --> Hasta 60 m² Hasta 6700 kWh $3.816.944,41 $716.840,77 $18.246,86 $16.757,32 $22.078,71 $25.694,55 $66.020,12 $64.530,58 D $30.628.651,43 No excluida --> Hasta 85 m² Hasta 10000 kWh $3.816.944,41 $716.840,77 $29.790,79 $27.742,67 $24.28",
    "(*) No ingresarán el impuesto integrado: Los trabajadores independientes promovidos. Los asociados a cooperativas cuando sus ingresos brutos no superen la suma máxima establecida para la categoría A. Los sujetos que adhieran, exclusivamente en su condición de locadores de bienes inmuebles -cualquiera sea su destino-, siempre que la cantidad de inmuebles que mantengan en locación -incluyendo los que integren condominios por los que se haya adherido en forma individual- no exceda de 2. Los inscriptos en el Registro Nacional de Efectores cuando sus ingresos brutos no superen la suma máxima establecida para la categoría A. Quienes desarrollen exclusivamente actividades primarias siendo su actividad",
-   "(**) Este parámetro no deberá considerarse en ciudades de menos de 40.000 habitantes",
-   "(***) Quedan exceptuados de ingresar cotizaciones al régimen de la seguridad social y a obras sociales, los siguientes sujetos: Quienes se encuentran obligados por otros regímenes previsionales. Los menores de 18 años. Los contribuyentes que adhirieron al monotributo por locación de bienes muebles y/o inmuebles Las sucesiones indivisas continuadoras de los sujetos adheridos al régimen que opten por la permanencia en el mismo. Quienes se jubilaron por leyes anteriores al 07/1994",
+   "(**) Este parámetro no deberá considerarse en ciudades o poblaciones de hasta 40.000 habitantes, salvo en las zonas, regiones o actividades que determine ARCA .",
+   "(***) Quedan exceptuados de ingresar cotizaciones al régimen de la seguridad social y a obras sociales, los siguientes sujetos: Quienes se encuentran obligados por otros regímenes previsionales. Los menores de 18 años. Los contribuyentes que adhirieron al monotributo por locación de bienes muebles y/o inmuebles. Las sucesiones indivisas continuadoras de los sujetos adheridos al régimen que opten por la permanencia en el mismo. Quienes se jubilaron por leyes anteriores al 07/1994",
    "(****) Afiliación individual a obra social, sin adherentes. Por cada adherente, además, deberá ingresarse ese mismo importe. footer a { text-decoration: none !important; } #logoAFIPFooter { height: 72px; margin-top: -15px; } #logoAFIPFooter a { padding: 0 !important; float: none !important; margin: 0 !important; } #logosFooter { overflow: hidden; margin-bottom: 25px !important; } #logosFooter a { display: block; float: left; background-position: center center; width: 28px; height: 28px; background-size: contain; background-repeat: no-repeat; margin-right: 3px; } #logosFooter a.footer-logo-facebook { background-image: url"
   ]
  },
- "generado": "2026-10-05",
+ "generado": "2026-11-05",
  "obrasSociales": [
   {
    "codigo": "0-0150-8",
