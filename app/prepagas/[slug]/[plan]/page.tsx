@@ -212,7 +212,8 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
         : `No. Según la ficha oficial de ${prep.nombre}, el ${codigo} no incluye ${c.nombre.toLowerCase()}${c.fila.detalle ? ` (${c.fila.detalle.toLowerCase()})` : ''}.`,
     })
   }
-  // Preguntas que más hacen los clientes en los chats del CRM (3-nov-2026). Copago ($14.000 fijo) y embarazo
+  // Preguntas que más hacen los clientes en los chats del CRM (3-nov-2026). Copago ($14.000 fijo en consultas; en
+  // estudios, tres niveles sin monto publicado, Darío 5-nov-2026) y embarazo
   // (2 meses de carencia, no se ingresa embarazada): Darío como asesor oficial de Swiss Medical (base de
   // conocimiento del CRM). PMO sin carencia: Ley 26.682, igual que la guía de carencias de Swiss Medical.
   if (prep.slug === 'swiss-medical') {
@@ -220,7 +221,7 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
       const sinCopago = plan.slug === 's2' ? 'SMG20' : 'SMG02'
       faqs.push({
         q: `¿Cuánto es el copago del ${codigo} y en qué se paga?`,
-        a: `Es un copago fijo de $14.000 en consultas y estudios; la internación y el resto de la cobertura no tienen copago. Si preferís no pagar copago, el mismo nivel de plan sin copago es el ${sinCopago}.`,
+        a: `En las consultas es un copago fijo de $14.000. En los estudios el copago no es fijo: depende del tipo de estudio (hay tres niveles). La internación y el resto de la cobertura no tienen copago. Si preferís no pagar copago, el mismo nivel de plan sin copago es el ${sinCopago}.`,
       })
     }
     faqs.push({
