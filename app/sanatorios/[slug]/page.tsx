@@ -69,13 +69,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Si también hay obras sociales con el sanatorio en su cartilla oficial, el
   // título lo dice: "qué obra social atiende el X" se busca mucho (1-oct-2026)
   const os = obrasSocialesEnSanatorio(slug)
+  // Control de calidad (6-nov-2026): título de 65 caracteres o menos y descripción
+  // de 160 o menos; si la versión completa no entra, se usa una más corta.
+  const tituloLargo = os.length
+    ? `Qué prepagas y obras sociales atienden en ${art(s.nombre)} ${s.nombre}`
+    : `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`
+  const title = tituloLargo.length <= 65
+    ? tituloLargo
+    : os.length
+      ? `Prepagas y obras sociales en ${art(s.nombre)} ${s.nombre}`
+      : `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}`
+  const descLarga = os.length
+    ? `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')} (desde qué plan, para internación y guardia) y las obras sociales ${os.map((o) => o.osNombre).join(', ')}, según sus cartillas oficiales. Cotizá gratis.`
+    : null
+  const descCorta = `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')} y las obras sociales ${os.map((o) => o.osNombre).join(', ')}, según sus cartillas oficiales. Cotizá gratis.`
   return {
-    title: os.length
-      ? `Qué prepagas y obras sociales atienden en ${art(s.nombre)} ${s.nombre}`
-      : `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`,
-    description: os.length
-      ? `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')} (desde qué plan, para internación y guardia) y las obras sociales ${os.map((o) => o.osNombre).join(', ')}, según sus cartillas oficiales. Cotizá gratis.`
-      : `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
+    title,
+    description: descLarga
+      ? (descLarga.length <= 160 ? descLarga : descCorta.length <= 160 ? descCorta : `${nombres.slice(0, 4).join(', ')} y otras: qué planes y obras sociales atienden en ${art(s.nombre)} ${s.nombre}, según sus cartillas oficiales. Cotizá gratis.`)
+      : (() => {
+          const larga = `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`
+          return larga.length <= 160
+            ? larga
+            : `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una, según sus cartillas oficiales. Cotizá gratis.`
+        })(),
     alternates: { canonical: `${SITE_URL}/sanatorios/${slug}` },
     keywords: [
       `prepagas ${s.nombre.toLowerCase()}`,
