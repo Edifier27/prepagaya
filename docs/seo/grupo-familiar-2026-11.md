@@ -26,17 +26,19 @@ Pedido de Darío (6-nov-2026): cómo busca la gente "incluir a un familiar a la 
 
 3. **Consultas que ya nos muestran**: "plan osde 210 precio grupo familiar" (69 impresiones, posición 8,5), "hasta que edad cubre la prepaga a los hijos" (22, posición 7,6), "osde plan familiar precio" (7). En el buscador del sitio: "Grupo familiar", "HIJOS MAYORES" (4 veces) y "cómo hago los aportes desde monotributo a Swiss Medical".
 4. **En los chats del CRM** el tema aparece pegado a los aportes: "¿Me toman los dos aportes, el de mi marido y el del monotributo?" (44 menciones de monotributo y aportes; ver `keyword-research-planes-2026-11.md`).
-5. **El dato que nadie tiene: en Swiss, un hijo paga lo mismo que un adulto.** La primera franja del cuadro va de 0 a 35 años:
+5. **El dato que nadie tiene: en Swiss, los hijos pagan bastante menos que un adulto.** El cuadro de la SSSalud no lo muestra (trae un solo precio de 0 a 35 años), pero la lista comercial de Swiss, la del cotizador del CRM, tiene tarifa de **primer hijo** y de **hijos siguientes** para los menores de 21. Desde los 21 pagan por su edad. Corregido el 6-nov: la primera versión de este documento decía que un hijo pagaba lo mismo que un adulto, y era un error.
 
-   | Plan | Hijo o pareja (0 a 35) | Pareja de 45 | Padre o suegro de 60 | 2 adultos de 35 y 2 hijos |
-   |---|---|---|---|---|
-   | S1 | $205.108 | $258.435 | $480.442 | $820.432 |
-   | S2 | $257.499 | $324.419 | $603.133 | $1.029.996 |
-   | SMG02 | $289.621 | $364.922 | $678.405 | $1.158.484 |
-   | SMG20 | $361.459 | $455.397 | $846.637 | $1.445.836 |
-   | SMG30 | $415.228 | $523.205 | $972.621 | $1.660.912 |
+   | Plan | Adulto (0 a 35) | Primer hijo | Hijos siguientes | Padre o suegro de 60 | 2 adultos de 35 y 2 hijos |
+   |---|---|---|---|---|---|
+   | S1 | $205.108 | $146.207 | $106.032 | $480.442 | $662.455 |
+   | S2 | $257.499 | $217.669 | $156.222 | $603.133 | $888.889 |
+   | SMG02 | $289.621 | $206.450 | $149.721 | $678.405 | $935.413 |
+   | SMG20 | $361.459 | $305.550 | $219.294 | $846.637 | $1.247.762 |
+   | SMG30 | $415.228 | $355.479 | $254.866 | $972.621 | $1.440.801 |
 
-   En OSDE, en cambio, los menores de 27 pagan bastante menos (perfil familias). Es una diferencia de compra concreta para una familia con hijos.
+   Noviembre 2026, AMBA, contratación directa. Adultos: cuadro de la SSSalud. Hijos: la proporción hijo/adulto de la lista comercial de octubre, aplicada al cuadro vigente; es la misma en todas las zonas (`lib/data/swiss-grupo-familiar.ts`).
+
+   **Consecuencia:** el sitio cotizaba a los hijos de Swiss como adultos, así que la familia de 4 se veía entre 13% y 19% más cara. Ya está corregido en las páginas de plan. Falta el cotizador (v1 y v2).
 
 ## Qué dice el reglamento de Swiss (fuente de la guía)
 
@@ -49,7 +51,10 @@ Pedido de Darío (6-nov-2026): cómo busca la gente "incluir a un familiar a la 
 - **7.1.1:** hay que avisar cualquier cambio del grupo dentro de los 30 días.
 - **7.1.3:** el bebé que nace en un sanatorio de la cartilla, con la madre asociada, conserva la antigüedad del grupo si se lo suma dentro de los 30 días. El trámite lo hacen el padre, la madre o el tutor.
 - **2.1:** la cuota es por mes calendario; no se prorratea por la fecha de alta.
-- **Pendiente de confirmar con Darío:** si Swiss acepta al conviviente sin casamiento y con qué papel; si el alta de un integrante se puede pedir online o por Swity, o hay que ir a la sucursal; y qué documentación pide hoy.
+- **Confirmado por Darío (6-nov):**
+  - Swiss acepta al conviviente sin casamiento.
+  - El alta de un integrante se pide online, como una venta normal, y genera comisión.
+  - Padres o suegros a cargo, hasta los 65.
 
 ## Mapa de búsquedas y qué URL responde cada una (una intención = una URL)
 
@@ -96,12 +101,12 @@ Pedido de Darío (6-nov-2026): cómo busca la gente "incluir a un familiar a la 
 - **Después**, una guía general "Cómo agregar un familiar a la prepaga" con una tabla por prepaga (hasta qué edad los hijos, si acepta padres, recién nacido), que enlaza a cada guía. Es el mismo esquema que la baja: el pilar general (`como-dar-de-baja-prepaga-u-obra-social`) más una guía por marca, que ya funciona sin canibalizarse.
 - **Hosts que hay que habilitar** en el entorno cuando toque: repo.sancorsalud.com.ar, www.avalian.com, www.osde.com.ar y el de Premedic.
 
-## Preguntas para Darío
+## Respuestas de Darío (6-nov-2026)
 
-1. Si alguien que ya es de Swiss quiere sumar a un familiar, ¿lo puede gestionar el asesor, y eso genera comisión? Define el botón de la guía.
-2. ¿Swiss acepta al conviviente sin casamiento? ¿Con qué papel (certificado de unión convivencial o declaración jurada de convivencia)?
-3. El alta de un integrante, ¿se pide online, por Swity o en la sucursal? ¿Qué documentación piden hoy?
-4. ¿Swiss acepta en la práctica padres o suegros a cargo que convivan? ¿Hasta qué edad?
+1. Sumar un familiar genera comisión: el botón de la guía lleva al cotizador.
+2. Swiss acepta al conviviente sin casamiento.
+3. El alta se pide online, como una venta normal.
+4. Swiss acepta padres o suegros a cargo hasta los 65.
 
 ## Para el Planificador de Google Ads (volúmenes)
 

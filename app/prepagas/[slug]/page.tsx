@@ -14,6 +14,8 @@ import { CartillasSwiss, faqCartillasSwiss } from '@/components/prepagas/Cartill
 import { LineasPlanes, faqLineasPlanes } from '@/components/prepagas/LineasPlanes'
 import { OG_SIZE, urlOgPrepaga, altOgPrepaga } from '@/lib/og/datos'
 import { NIVEL_PRECIO_LABEL, SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS, TIEMPO_RESPUESTA, precioDesde } from '@/lib/utils'
+import { guias } from '@/lib/data/guias'
+import { tarifaHijosSwiss, EDAD_MAX_FAMILIAR_A_CARGO, EDAD_MAX_HIJO_SWISS, EDAD_TARIFA_HIJO } from '@/lib/data/swiss-grupo-familiar'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
@@ -106,6 +108,10 @@ const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
   'swiss-medical': [{
     q: '¿Swiss Medical cubre el apto físico?',
     a: 'Sí. Los afiliados pueden hacerse el chequeo médico deportivo (apto físico) en el Centro Deragopyan, dentro de la cobertura de los planes desde el SMG02, el SMG20 incluido. No hace falta contratar un plan especial. Pedí el turno al 0810-333-8876 o con tu asesor.',
+  }, {
+    // 6-nov-2026: sumar un familiar (guía /guias/como-agregar-un-familiar-a-swiss-medical)
+    q: '¿Cómo sumo a un familiar a Swiss Medical?',
+    a: `El titular pide el alta online, con un asesor oficial. Podés sumar a tu pareja (casados o convivientes), a tus hijos solteros hasta los ${EDAD_MAX_HIJO_SWISS} y a tus padres o suegros a cargo hasta los ${EDAD_MAX_FAMILIAR_A_CARGO}. Los hijos menores de ${EDAD_TARIFA_HIJO} pagan tarifa de hijo: en el SMG20, ${formatPrecio(tarifaHijosSwiss('smg20')?.primero ?? NaN)} el primero y ${formatPrecio(tarifaHijosSwiss('smg20')?.siguientes ?? NaN)} desde el segundo (${PRECIO_ACTUALIZADO.toLowerCase()}, CABA y GBA). Paso a paso en la guía "Cómo agregar un familiar a Swiss Medical".`,
   }],
   'prevencion-salud': [{
     q: '¿Prevención Salud es lo mismo que Sancor Salud?',
@@ -1536,6 +1542,25 @@ export default async function PrepagaSlugPage({ params }: Props) {
               </details>
             ))}
           </div>
+          {/* Trámites de la prepaga (6-nov-2026): las guías propias de la marca
+              (el slug lleva el de la prepaga) no tenían ningún enlace desde la ficha */}
+          {(() => {
+            const tramites = guias.filter((g) => g.slug.includes(prep.slug) && g.tituloCorto)
+            return tramites.length > 0 && (
+              <div className="mt-6">
+                <h3 className="text-sm font-bold text-gray-900 mb-2">Trámites de {prep.nombre}</h3>
+                <ul className="flex flex-wrap gap-2">
+                  {tramites.map((g) => (
+                    <li key={g.slug}>
+                      <Link href={`/guias/${g.slug}`} className="inline-block rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-[#E8002D] hover:text-[#E8002D]">
+                        {g.tituloCorto}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          })()}
           {isPartner && (
             <p className="text-xs text-gray-400 mt-5">
               Sitio oficial de {prep.nombre}:{' '}
