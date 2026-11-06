@@ -4,6 +4,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { formatPrecio } from '@/lib/utils'
 import { contactos } from '@/lib/data/contactos'
 import { SWISS_S1_COPAGOS, SWISS_COPAGOS_VIGENCIA } from '@/lib/data/coseguros-os'
+import { tarifaHijosSwiss, EDAD_MAX_FAMILIAR_A_CARGO, EDAD_MAX_HIJO_SWISS, EDAD_TARIFA_HIJO } from '@/lib/data/swiss-grupo-familiar'
 
 // Precios de lista oficiales para las guías que dan números (3-oct-2026):
 // CABA y GBA, contratación directa, IVA incluido. Salen de los cuadros de la
@@ -27,6 +28,11 @@ const MAS_BARATO = prepagas
   .sort((a, b) => (a.r?.total ?? 0) - (b.r?.total ?? 0))[0]
 const DESDE = MAS_BARATO?.r ? formatPrecio(MAS_BARATO.r.total) : '—'
 const DESDE_PLAN = MAS_BARATO ? `${MAS_BARATO.p.nombre} ${MAS_BARATO.pl.nombre.replace(/^Plan /, '')}${MAS_BARATO.pl.copago ? ', con copago' : ''}` : ''
+// Tarifa de hijo de Swiss (primer hijo y siguientes), ver lib/data/swiss-grupo-familiar.ts
+const hijoSwiss = (plan: string, cual: 'primero' | 'siguientes') => {
+  const t = tarifaHijosSwiss(plan)
+  return t ? formatPrecio(t[cual]) : '—'
+}
 
 export interface GuiaEnlace {
   texto: string
@@ -60,6 +66,7 @@ export interface GuiaData {
   prepagasRelacionadas?: string[] // slugs de prepagas
   fuentes?: GuiaEnlace[] // fuentes oficiales (se listan al pie y van a isBasedOn)
   captarBaja?: boolean // muestra el formulario de contacto de "bajas" (17-oct-2026)
+  tituloCorto?: string // texto del enlace desde la ficha de la prepaga ("Trámites de Swiss Medical")
   // Tabla comparativa y pasos (pilar de bajas, 17-oct-2026): datos propios,
   // fáciles de citar por buscadores de IA; los pasos generan el JSON-LD HowTo.
   tabla?: { titulo: string; columnas: string[]; filas: { celdas: string[]; slug?: string }[]; nota?: string }
@@ -332,6 +339,11 @@ export const guias: GuiaData[] = [
           titulo: 'Otros familiares a cargo',
           cuerpo: 'La Superintendencia de Servicios de Salud puede autorizar que se sumen otros ascendientes o descendientes por consanguinidad que estén a cargo del titular, como padres o nietos. Por cada persona que se incluye se paga un aporte adicional del 1,5%.',
         },
+        {
+          titulo: '¿Y en una prepaga?',
+          cuerpo: `La Ley 23.660 rige para las obras sociales. En un plan particular de prepaga, hasta qué edad cubre a los hijos lo fija el contrato de cada empresa. En Swiss Medical, por ejemplo, los hijos solteros entran con tarifa de hijo hasta los ${EDAD_TARIFA_HIJO} años y pueden seguir en el grupo hasta los ${EDAD_MAX_HIJO_SWISS}, pagando como un adulto; a los 30 salen del grupo y tienen 30 días para asociarse por su cuenta sin perder la antigüedad.`,
+          cta: { texto: 'Quiénes podés sumar a tu plan de Swiss Medical y cuánto paga cada hijo.', boton: 'Cómo agregar un familiar a Swiss Medical', href: '/guias/como-agregar-un-familiar-a-swiss-medical' },
+        },
       ],
       conclusion: 'Hasta los 21 años, los hijos solteros están cubiertos por la obra social del padre o la madre. De 21 a 25 inclusive, solo si estudian y están a cargo. Después, cada uno necesita su propia cobertura: la obra social de su trabajo, la del monotributo o un plan de prepaga. En un plan de prepaga particular, las condiciones para los hijos las fija el contrato.',
     },
@@ -358,7 +370,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['hijos 21 a 25 años obra social', 'hasta que edad un hijo puede estar en la obra social', 'hijo estudiante obra social 25 años', 'obra social hijos mayores de 21', 'grupo familiar primario obra social', 'ley 23660 articulo 9'],
-    relacionadas: ['afiliar-recien-nacido-prepaga', 'discapacidad-obra-social-cobertura-100', 'opcion-de-cambio-obra-social', 'edad-maxima-afiliarse-prepaga'],
+    relacionadas: ['afiliar-recien-nacido-prepaga', 'discapacidad-obra-social-cobertura-100', 'opcion-de-cambio-obra-social', 'edad-maxima-afiliarse-prepaga', 'como-agregar-un-familiar-a-swiss-medical'],
     fuentes: [
       { texto: 'Ley 23.660 de Obras Sociales, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/62/texact.htm' },
     ],
@@ -434,7 +446,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['divorcio obra social', 'desunificacion de aportes', 'obra social despues del divorcio', 'ex conyuge obra social', 'separacion obra social', 'desunificar aportes obra social'],
-    relacionadas: ['unificar-aportes-obra-social', 'hijos-21-a-25-anos-obra-social', 'opcion-de-cambio-obra-social', 'sin-trabajo-obra-social'],
+    relacionadas: ['unificar-aportes-obra-social', 'hijos-21-a-25-anos-obra-social', 'opcion-de-cambio-obra-social', 'sin-trabajo-obra-social', 'como-agregar-un-familiar-a-swiss-medical'],
     fuentes: [
       { texto: 'Argentina.gob.ar — Solicitar desunificación de aportes', url: 'https://www.argentina.gob.ar/servicio/solicitar-desunificacion-de-aportes' },
       { texto: 'Ley 23.660 de Obras Sociales, texto actualizado (Infoleg)', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/62/texact.htm' },
@@ -1616,7 +1628,8 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Cuánto empieza a costar',
-          cuerpo: 'El bebé se suma como un integrante más de tu grupo familiar, con el valor de la franja de edad más baja del plan que tengas contratado — generalmente la cuota más económica de toda la tabla de precios por edad de esa prepaga. El monto exacto varía según la empresa y el plan: usá la calculadora para ver cuánto se sumaría a tu cuota familiar antes de inscribirlo.',
+          cuerpo: `El bebé se suma como un integrante más de tu grupo familiar, con el valor de la franja de edad más baja del plan que tengas contratado — generalmente la cuota más económica de toda la tabla de precios por edad de esa prepaga. El monto exacto varía según la empresa y el plan: usá la calculadora para ver cuánto se sumaría a tu cuota familiar antes de inscribirlo. En Swiss Medical, los hijos menores de ${EDAD_TARIFA_HIJO} tienen tarifa de hijo, más baja que la de un adulto, y el bebé que nace en un sanatorio de su cartilla conserva la antigüedad del grupo si lo sumás dentro de los 30 días.`,
+          cta: { texto: 'Cuánto paga cada hijo en Swiss Medical y cómo se hace el alta.', boton: 'Cómo agregar un familiar a Swiss Medical', href: '/guias/como-agregar-un-familiar-a-swiss-medical' },
         },
       ],
       conclusion: 'El resumen práctico: el parto y los primeros días del bebé están cubiertos pase lo que pase, pero la inscripción formal como beneficiario tiene plazo. Llamá a tu prepaga apenas nazca para confirmar la fecha límite exacta de tu contrato, iniciá el trámite con el Certificado de Nacido Vivo si el DNI todavía no está, y no dejes pasar la ventana sin carencias.',
@@ -1640,7 +1653,7 @@ export const guias: GuiaData[] = [
       },
     ],
     keywords: ['afiliar bebe recien nacido prepaga', 'plazo para afiliar recien nacido obra social', 'cuanto cuesta afiliar un bebe a la prepaga', 'plan materno infantil recien nacido', 'documentos para afiliar bebe prepaga'],
-    relacionadas: ['como-afiliarse-prepaga-requisitos', 'cuota-prepaga-por-edad'],
+    relacionadas: ['como-afiliarse-prepaga-requisitos', 'cuota-prepaga-por-edad', 'como-agregar-un-familiar-a-swiss-medical'],
   },
   {
     slug: 'prepaga-corporativa-vs-particular',
@@ -2305,6 +2318,7 @@ export const guiasPreguntas: GuiaData[] = [
   {
     slug: 'como-dar-de-baja-swiss-medical',
     captarBaja: true,
+    tituloCorto: 'Cómo dar de baja',
     titulo: 'Cómo dar de baja Swiss Medical: pasos, fecha límite del día 5 y qué pasa con tu familia',
     metaDescripcion: 'La baja de Swiss Medical la hace el titular, de forma fehaciente. Hasta el día 5 del mes es retroactiva al mes anterior. Pasos, qué pasa con el grupo familiar y cómo mantener tu antigüedad.',
     tiempoLectura: 5,
@@ -2352,7 +2366,88 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Qué hago si me siguen cobrando después de la baja?', a: 'Reclamá por escrito con el comprobante de la baja y, si no lo corrigen, ante la Superintendencia de Servicios de Salud.' },
     ],
     keywords: ['como dar de baja swiss medical', 'dar de baja swiss medical', 'baja swiss medical', 'swiss medical baja de servicio', 'swiss medical bajas', 'swiss medical como dar de baja', 'renuncia swiss medical', 'baja swiss medical por fallecimiento', 'swiss medical baja grupo familiar', 'swiss medical hijos 30 años'],
-    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad', 'swiss-medical-carencias-preexistencias-declaracion-jurada', 'swiss-medical-mora-suspension-baja-por-falta-de-pago'],
+    relacionadas: ['como-dar-de-baja-prepaga-u-obra-social', 'prepaga-no-me-da-la-baja', 'carta-documento-baja-prepaga-modelo', 'prepaga-sigue-cobrando-despues-de-la-baja', 'como-cambiar-de-prepaga', 'como-reclamar-a-una-prepaga', 'cuota-prepaga-por-edad', 'swiss-medical-carencias-preexistencias-declaracion-jurada', 'swiss-medical-mora-suspension-baja-por-falta-de-pago', 'como-agregar-un-familiar-a-swiss-medical'],
+    prepagasRelacionadas: ['swiss-medical'],
+    fuentes: [
+      { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
+    ],
+  },
+  // Sumar un familiar a Swiss (6-nov-2026, docs/seo/grupo-familiar-2026-11.md).
+  // Quiénes entran, hijos, recién nacido y declaración jurada: Reglamento General
+  // de Contratación (puntos 1.2 a 1.5, 2.1 y 7). Pareja conviviente, padres o
+  // suegros hasta 65 y que el alta es online como una venta: Darío, asesor
+  // oficial. Tarifa de hijo: lista comercial de Swiss (swiss-grupo-familiar.ts).
+  {
+    slug: 'como-agregar-un-familiar-a-swiss-medical',
+    tituloCorto: 'Cómo agregar un familiar',
+    titulo: 'Cómo agregar un familiar a Swiss Medical: quién puede entrar y cuánto paga cada uno',
+    metaDescripcion: `En Swiss Medical podés sumar a tu pareja, a tus hijos hasta los ${EDAD_MAX_HIJO_SWISS} y a tus padres o suegros a cargo hasta los ${EDAD_MAX_FAMILIAR_A_CARGO}. En el SMG20 el primer hijo paga ${hijoSwiss('smg20', 'primero')} y desde el segundo ${hijoSwiss('smg20', 'siguientes')} por mes. Cómo se hace.`,
+    tiempoLectura: 5,
+    categoria: 'Trámites',
+    fechaActualizacion: '2026-11-06',
+    contenido: {
+      intro: `Para agregar a un familiar a Swiss Medical, el titular pide el alta del nuevo integrante: se hace online, igual que una contratación, con un asesor oficial. Podés sumar a tu cónyuge o a tu pareja conviviente, a tus hijos solteros hasta los ${EDAD_MAX_HIJO_SWISS} años y a tus padres o suegros que vivan con vos y estén a tu cargo, hasta los ${EDAD_MAX_FAMILIAR_A_CARGO}. Los hijos menores de ${EDAD_TARIFA_HIJO} pagan menos que un adulto: en el SMG20, el primer hijo cuesta ${hijoSwiss('smg20', 'primero')} por mes y desde el segundo, ${hijoSwiss('smg20', 'siguientes')}, contra ${lista('swiss-medical', 'smg20')} de un adulto de hasta 35 años (precios de lista de ${MES}, CABA y GBA, contratación directa).`,
+      secciones: [
+        {
+          titulo: 'Quiénes podés sumar a tu grupo familiar',
+          cuerpo: `Según el Reglamento General de Contratación de Swiss Medical (punto 1.2), pueden formar parte del grupo familiar el titular; su cónyuge; los hijos solteros de hasta 21 años a su cargo; y, pagando una cuota adicional, los hijos solteros de 21 a 30 años y los familiares a cargo en primer grado (padres y suegros) que convivan con el titular y estén a su exclusivo cargo. Swiss acepta además a la pareja conviviente aunque no estén casados, y a los padres o suegros a cargo de hasta ${EDAD_MAX_FAMILIAR_A_CARGO} años. Los hijos con discapacidad a cargo no tienen tope de edad (punto 1.3.2).`,
+          enlaces: [{ texto: 'Reglamento General de Contratación de Swiss Medical (PDF oficial)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' }],
+        },
+        {
+          titulo: 'Cuánto cuesta sumar a cada integrante',
+          cuerpo: `En Swiss cada integrante paga según su edad, con una excepción que baja mucho la cuota de las familias: los hijos menores de ${EDAD_TARIFA_HIJO} tienen tarifa de hijo. El primer hijo paga menos que un adulto, y desde el segundo, todavía menos. De ${EDAD_TARIFA_HIJO} años en adelante, el hijo paga como un adulto de su edad. La pareja, los padres y los suegros pagan según su franja de edad: hasta los 35 es el precio más bajo, y sube a los ${cortes('swiss-medical', 'smg20')} años. Cotizando online, la promo de Swiss es 15% OFF a los adultos y 50% OFF a los menores de 26.`,
+          cta: { texto: 'Poné las edades de tu familia y mirá el precio de cada plan de Swiss.', boton: 'Cotizar para mi familia', href: '/comparador?prepaga=swiss-medical&desde=guia-familiar' },
+        },
+        {
+          titulo: 'Tu pareja: casados o convivientes',
+          cuerpo: 'Podés sumar a tu cónyuge y también a tu pareja conviviente aunque no estén casados. Paga según su edad. Si piensan tener hijos, tené en cuenta lo que dice el reglamento sobre la maternidad: los beneficios de maternidad del plan rigen para la titular o la cónyuge que figure como tal en la solicitud de ingreso, y cualquier otra integrante del grupo que quede embarazada se atiende según el Programa Médico Obligatorio (punto 1.3.4). Si tu pareja trabaja en relación de dependencia, sus aportes pueden bajar la cuota de todo el grupo.',
+          cta: { texto: 'Mirá cuánto baja la cuota si sumás los aportes de tu pareja.', boton: 'Derivar aportes a Swiss Medical', href: '/derivar-aportes/swiss-medical' },
+        },
+        {
+          titulo: 'Tus hijos: hasta qué edad',
+          cuerpo: `Hasta los ${EDAD_TARIFA_HIJO} años, los hijos solteros a cargo entran con tarifa de hijo. De ${EDAD_TARIFA_HIJO} a ${EDAD_MAX_HIJO_SWISS} pueden seguir en el grupo, pagando como un adulto de su edad. Al cumplir 30, Swiss los da de baja del grupo automáticamente: para no perder la antigüedad, tienen 30 días para asociarse por su cuenta (punto 1.3.1). Si un hijo se casa antes de los 30, tiene que armar su propio grupo, con el mismo plazo (punto 1.3.3). En una obra social las edades son otras, porque las fija la Ley 23.660: hasta los 21, o hasta los 25 si estudia y está a cargo.`,
+        },
+        {
+          titulo: 'Si tuviste un bebé: tenés 30 días',
+          cuerpo: 'Sumalo dentro de los 30 días del nacimiento. Si nació en un sanatorio de la cartilla de Swiss y la mamá está asociada, conserva la antigüedad del grupo familiar (punto 7.1.3). El trámite no es automático: lo tienen que hacer el padre, la madre o el tutor. El bebé paga tarifa de hijo.',
+        },
+        {
+          titulo: 'Tus padres o tus suegros',
+          cuerpo: `Swiss acepta a los padres y a los suegros que vivan con vos y estén a tu cargo, hasta los ${EDAD_MAX_FAMILIAR_A_CARGO} años. Pagan según su edad, y en esas edades está el precio más alto de la lista: en el SMG20, ${lista('swiss-medical', 'smg20', 60)} por mes a los 60 y ${lista('swiss-medical', 'smg20', 61)} desde los ${ultimoCorte('swiss-medical', 'smg20')}. A veces conviene un plan propio para ellos, con copago, en lugar de sumarlos al tuyo: en el S1, ${lista('swiss-medical', 's1', 60)} a los 60.`,
+          cta: { texto: 'Compará cuánto sale sumarlos a tu plan o darles un plan propio.', boton: 'Cotizar para mis padres', href: '/comparador?prepaga=swiss-medical&desde=guia-familiar-padres' },
+        },
+        {
+          titulo: 'La declaración jurada del nuevo integrante',
+          cuerpo: 'Como en cualquier ingreso, el nuevo integrante completa la declaración jurada de salud: enfermedades, cirugías y tratamientos, y los médicos consultados en los últimos 12 meses. El titular responde por lo que se declara de cada integrante, y si después aparece algo que no se declaró, Swiss puede rescindir el contrato de todo el grupo (punto 1.4.1). Sé completo. Las carencias, es decir el tiempo de espera para algunas prestaciones, las fija el anexo de cada plan.',
+        },
+      ],
+      conclusion: `Para sumar a un familiar a Swiss Medical, el titular pide el alta online con un asesor: entran la pareja (casados o convivientes), los hijos hasta los ${EDAD_MAX_HIJO_SWISS} y los padres o suegros a cargo hasta los ${EDAD_MAX_FAMILIAR_A_CARGO}. Los hijos menores de ${EDAD_TARIFA_HIJO} pagan tarifa de hijo, más baja que la de un adulto. Avisá cualquier cambio del grupo dentro de los 30 días (punto 7.1.1) y, si tuviste un bebé, sumalo en ese plazo para que conserve la antigüedad.`,
+    },
+    tabla: {
+      titulo: `Cuánto paga cada integrante en Swiss Medical (${MES})`,
+      columnas: ['Plan', 'Adulto hasta 35', 'Primer hijo', 'Desde el segundo hijo', 'Padre o madre de 60'],
+      filas: ['s1', 's2', 'smg02', 'smg20', 'smg30', 'smg40'].map((pl) => ({
+        celdas: [pl.toUpperCase(), lista('swiss-medical', pl), hijoSwiss(pl, 'primero'), hijoSwiss(pl, 'siguientes'), lista('swiss-medical', pl, 60)],
+      })),
+      nota: `Precio de lista por persona y por mes, CABA y GBA, contratación directa, IVA incluido, sin la promo. Adultos, padres y suegros: cuadro tarifario oficial de la SSSalud (${MES}). Hijos menores de ${EDAD_TARIFA_HIJO}: tarifa de hijo de la lista comercial de Swiss Medical.`,
+    },
+    pasos: [
+      { nombre: 'Pedí el alta con un asesor oficial', texto: 'Es online, como una contratación: el titular pide sumar al nuevo integrante y el asesor le pasa cuánto suma a la cuota.' },
+      { nombre: 'Completá la solicitud y la declaración jurada', texto: 'Cada integrante nuevo tiene su declaración jurada de salud. El titular responde por lo que se declara (punto 1.4.1).' },
+      { nombre: 'Mandá el DNI y lo que acredita el vínculo', texto: 'El asesor te dice qué papel corresponde: no es el mismo para un hijo, un cónyuge, una pareja conviviente o un padre a cargo.' },
+      { nombre: 'Esperá la confirmación de Swiss', texto: 'Como toda contratación, queda firme cuando Swiss la acepta o cuando llega la credencial (punto 1.5.1). La cuota se paga por mes completo, sin prorrateo por la fecha de alta (punto 2.1).' },
+    ],
+    faq: [
+      { q: '¿Cómo agrego a un familiar a Swiss Medical?', a: 'Lo pide el titular, online, con un asesor oficial: es como una contratación. El nuevo integrante completa su declaración jurada de salud y manda su DNI y lo que acredita el vínculo.' },
+      { q: '¿A quién puedo sumar a mi plan de Swiss Medical?', a: `A tu cónyuge o pareja conviviente, a tus hijos solteros hasta los ${EDAD_MAX_HIJO_SWISS} años (sin tope si tienen una discapacidad y están a tu cargo) y a tus padres o suegros que vivan con vos y estén a tu cargo, hasta los ${EDAD_MAX_FAMILIAR_A_CARGO}.` },
+      { q: '¿Cuánto cuesta agregar un hijo a Swiss Medical?', a: `Los hijos menores de ${EDAD_TARIFA_HIJO} pagan tarifa de hijo. En el SMG20, el primer hijo cuesta ${hijoSwiss('smg20', 'primero')} por mes y desde el segundo, ${hijoSwiss('smg20', 'siguientes')}; en el S2, ${hijoSwiss('s2', 'primero')} y ${hijoSwiss('s2', 'siguientes')} (lista de ${MES}, CABA y GBA, contratación directa). Desde los ${EDAD_TARIFA_HIJO}, pagan como un adulto de su edad.` },
+      { q: '¿Hasta qué edad cubre Swiss Medical a los hijos?', a: `Con tarifa de hijo, hasta los ${EDAD_TARIFA_HIJO}. De ${EDAD_TARIFA_HIJO} a ${EDAD_MAX_HIJO_SWISS} pueden seguir en el grupo, pagando como un adulto. A los 30 salen del grupo y tienen 30 días para asociarse por su cuenta sin perder la antigüedad.` },
+      { q: '¿Puedo sumar a mi pareja si no estamos casados?', a: 'Sí. Swiss acepta a la pareja conviviente aunque no estén casados. Paga según su edad.' },
+      { q: '¿Puedo sumar a mis padres a Swiss Medical?', a: `Sí, si viven con vos y están a tu cargo, hasta los ${EDAD_MAX_FAMILIAR_A_CARGO} años. Pagan según su edad: en el SMG20, ${lista('swiss-medical', 'smg20', 60)} por mes a los 60.` },
+      { q: '¿Cuánto tiempo tengo para sumar a mi bebé?', a: '30 días desde el nacimiento. Si nació en un sanatorio de la cartilla de Swiss y la mamá está asociada, conserva la antigüedad del grupo familiar.' },
+    ],
+    keywords: ['agregar familiar swiss medical', 'como agregar un familiar a swiss medical', 'sumar familiar swiss medical', 'alta familiar swiss medical', 'swiss medical grupo familiar', 'swiss medical plan familiar', 'swiss medical precio grupo familiar', 'agregar hijo swiss medical', 'agregar pareja swiss medical', 'swiss medical conyuge', 'swiss medical concubino', 'hasta que edad cubre swiss medical a los hijos', 'swiss medical hijos 21 años', 'afiliar bebe swiss medical', 'sumar a mis padres swiss medical', 'familiar a cargo swiss medical'],
+    relacionadas: ['afiliar-recien-nacido-prepaga', 'hijos-21-a-25-anos-obra-social', 'swiss-medical-carencias-preexistencias-declaracion-jurada', 'como-dar-de-baja-swiss-medical', 'divorcio-obra-social', 'cuota-prepaga-por-edad'],
     prepagasRelacionadas: ['swiss-medical'],
     fuentes: [
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
@@ -3646,6 +3741,7 @@ export const guiasPreguntas: GuiaData[] = [
   // Decreto 1993/2011 (art. 9).
   {
     slug: 'swiss-medical-carencias-preexistencias-declaracion-jurada',
+    tituloCorto: 'Carencias, preexistencias y declaración jurada',
     titulo: 'Swiss Medical: carencias, preexistencias y declaración jurada (qué dice su reglamento y qué dice la ley)',
     metaDescripcion: 'Qué dice el reglamento de Swiss Medical sobre carencias, preexistencias y declaración jurada, y qué establece la Ley 26.682: sin carencia en el PMO, preexistencias solo por declaración jurada y baja solo con mala fe acreditada.',
     tiempoLectura: 7,
@@ -3694,7 +3790,7 @@ export const guiasPreguntas: GuiaData[] = [
       { q: '¿Puedo arrepentirme de contratar Swiss Medical?', a: 'Sí: el reglamento reconoce la revocación dentro de los 10 días, conforme el artículo 34 de la Ley 24.240.' },
     ],
     keywords: ['swiss medical carencias', 'carencia swiss medical', 'swiss medical preexistencias', 'swiss medical declaracion jurada', 'swiss medical enfermedades preexistentes', 'swiss medical periodo de carencia parto', 'swiss medical carencia cirugia', 'swiss medical reglamento', 'swiss medical junta medica'],
-    relacionadas: ['prepaga-sin-periodo-carencia', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'arrepentimiento-prepaga-10-dias', 'como-dar-de-baja-swiss-medical', 'reintegros-en-prepagas', 'que-cubre-la-prepaga', 'swiss-medical-mora-suspension-baja-por-falta-de-pago'],
+    relacionadas: ['prepaga-sin-periodo-carencia', 'prepaga-me-dio-de-baja-por-falta-de-pago', 'arrepentimiento-prepaga-10-dias', 'como-dar-de-baja-swiss-medical', 'reintegros-en-prepagas', 'que-cubre-la-prepaga', 'swiss-medical-mora-suspension-baja-por-falta-de-pago', 'como-agregar-un-familiar-a-swiss-medical'],
     prepagasRelacionadas: ['swiss-medical'],
     fuentes: [
       { texto: 'Swiss Medical — Reglamento General de Contratación (PDF)', url: 'https://www.swissmedical.com.ar/smgnewsite/pdf/prepaga/formularios/reglamento_swissmedical.pdf' },
@@ -3708,6 +3804,7 @@ export const guiasPreguntas: GuiaData[] = [
   // prevalece en un caso concreto.
   {
     slug: 'swiss-medical-mora-suspension-baja-por-falta-de-pago',
+    tituloCorto: 'Mora, suspensión y baja por falta de pago',
     titulo: 'Swiss Medical: mora, suspensión de servicios y baja por falta de pago (reglamento y ley)',
     metaDescripcion: 'Qué dice el reglamento de Swiss Medical sobre mora, intereses, suspensión y baja por falta de pago (3 cuotas), y qué exige el decreto 1993/2011: intimación de 10 días hábiles. Cómo regularizar y reclamar.',
     tiempoLectura: 6,
