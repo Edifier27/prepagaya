@@ -23,6 +23,12 @@ import { ldJson } from '@/lib/jsonld'
 // datos ya verificados (pz.cartillaLocal / prep.profesionales) — nada inventado.
 const UMBRAL_CARTILLA_FINA = 3
 
+/** Agrega "(mes año)" solo si el título sigue en 65 caracteres o menos. */
+function tituloConPrecio(base: string, fecha: string): string {
+  const completo = `${base} (${fecha})`
+  return completo.length <= 65 ? completo : base
+}
+
 export function localidadPrepagaMetadata(prov: ProvinciaSEO, loc: LocalidadZona, pz: PrepagaZona): Metadata {
   const corto = nombreCorto(loc.nombre)
   const year = new Date().getFullYear()
@@ -42,7 +48,7 @@ export function localidadPrepagaMetadata(prov: ProvinciaSEO, loc: LocalidadZona,
       ? `${pz.nombre} en ${corto}: ${suc.length === 1 ? 'sucursal' : 'sucursales'}, planes y precios ${year}`
       : precioDesde
         // absolute: sin " | PrepagaYa", para que Google no corte el precio
-        ? { absolute: `${pz.nombre} en ${corto}: planes desde ${formatPrecio(precioDesde)}/mes (${PRECIO_ACTUALIZADO.toLowerCase()})` }
+        ? { absolute: tituloConPrecio(`${pz.nombre} en ${corto}: planes desde ${formatPrecio(precioDesde)}/mes`, PRECIO_ACTUALIZADO.toLowerCase()) }
         : `${pz.nombre} en ${corto}, ${prov.nombre}: planes y precios ${year}`,
     description: suc.length
       ? `${suc.length === 1 ? 'Sucursal' : 'Sucursales'} de ${pz.nombre} en ${corto}: ${suc.slice(0, 2).map((x) => x.direccion.split(' - ')[0]).join(' y ')}. Planes y precios (${PRECIO_ACTUALIZADO.toLowerCase()}) y cotización online gratis.`
