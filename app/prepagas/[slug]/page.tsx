@@ -33,6 +33,7 @@ import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 import { ComparaPlanesHero } from '@/components/prepagas/ComparaPlanesHero'
 import { ListaPlanesPrecios } from '@/components/prepagas/ListaPlanesPrecios'
+import { PLANES_PRECIO_ARRIBA } from '@/lib/seo/titulos'
 import { elegir, anioPrecios, nombreCortoPrepaga, codigoCorto, MAX_DESCRIPCION, pesosTitulo, FICHAS_TITULO_PRECIO } from '@/lib/seo/titulos'
 
 interface Props {
@@ -960,6 +961,15 @@ export default async function PrepagaSlugPage({ params }: Props) {
           {/* Lista de planes (Darío, 28-oct-2026): reemplaza las tarjetas
               "Más elegido" + grilla, con el diseño de la lista de Swiss */}
           <ListaPlanesPrecios prep={prep} destacado={planEstrella} />
+          {/* Enlace con el texto que se busca (9-nov-2026, lib/seo/titulos.ts) */}
+          {PLANES_PRECIO_ARRIBA.some((x) => x.startsWith(`${prep.slug}/`)) && (
+            <p className="text-sm text-gray-600 mt-3">
+              Precio por edad:{' '}
+              {prep.planes.filter((pl) => PLANES_PRECIO_ARRIBA.includes(`${prep.slug}/${pl.slug}`)).map((pl, i) => (
+                <span key={pl.slug}>{i > 0 && ' · '}<Link href={`/prepagas/${prep.slug}/${pl.slug}`} className="font-semibold text-[#E8002D] hover:underline">precio del {prep.nombre} {pl.nombre.replace(/^Plan\s+/, '')}</Link></span>
+              ))}
+            </p>
+          )}
           {prep.slug === 'swiss-medical' && (
             <p className="text-xs text-gray-500 mt-3">Tachado, el precio de lista; abajo, con el 15% OFF cotizando online (25% para monotributistas).</p>
           )}
