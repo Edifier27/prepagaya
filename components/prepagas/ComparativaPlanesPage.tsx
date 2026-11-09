@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PLANES_PRECIO_ARRIBA } from '@/lib/seo/titulos'
 import { PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import type { ComparativaPlanes } from '@/lib/data/comparativas-planes'
 import { SITE_NAME, SITE_URL, formatPrecio } from '@/lib/utils'
@@ -8,7 +9,6 @@ import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
 import { elegir, mesCorto, codigoCorto, nombreCortoPrepaga, MAX_DESCRIPCION } from '@/lib/seo/titulos'
 import { TablaDiferenciasPlanes, type FilaDiferencia } from '@/components/prepagas/TablaDiferenciasPlanes'
-import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
 import { BotonCotizarArriba } from '@/components/ui/BotonCotizarArriba'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 
@@ -166,10 +166,6 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
         </div>
       </section>
 
-      {/* Promo de octubre 2026 (OSDE Flux + SportClub); se oculta sola el 1-nov */}
-      {prep.slug === 'osde' && (plan1.slug === 'flux' || plan2.slug === 'flux') && (
-        <div className="container max-w-3xl mx-auto"><PromoFluxSportClub origen="comparativa-flux" /></div>
-      )}
 
       {/* Tabla comparativa */}
       <section className="py-10 bg-white">
@@ -259,10 +255,10 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
         <div className="container max-w-3xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link href={`/prepagas/${prep.slug}/${plan1.slug}`} className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
-              <span className="text-sm font-semibold text-gray-900 group-hover:text-[#E8002D]">Ver ficha completa del {plan1.nombre} →</span>
+              <span className="text-sm font-semibold text-gray-900 group-hover:text-[#E8002D]">{PLANES_PRECIO_ARRIBA.includes(`${prep.slug}/${plan1.slug}`) ? `Precio y ficha del ${prep.nombre} ${plan1.nombre.replace(/^Plan\s+/, '')}` : `Ver ficha completa del ${plan1.nombre}`} →</span>
             </Link>
             <Link href={`/prepagas/${prep.slug}/${plan2.slug}`} className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-red-200 hover:shadow-sm transition-all group">
-              <span className="text-sm font-semibold text-gray-900 group-hover:text-[#E8002D]">Ver ficha completa del {plan2.nombre} →</span>
+              <span className="text-sm font-semibold text-gray-900 group-hover:text-[#E8002D]">{PLANES_PRECIO_ARRIBA.includes(`${prep.slug}/${plan2.slug}`) ? `Precio y ficha del ${prep.nombre} ${plan2.nombre.replace(/^Plan\s+/, '')}` : `Ver ficha completa del ${plan2.nombre}`} →</span>
             </Link>
           </div>
         </div>

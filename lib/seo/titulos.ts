@@ -39,4 +39,11 @@ export const pesosTitulo = (n: number) => `$${Math.round(n).toLocaleString('es-A
  * noviembre); su SMG20 sí entra.
  */
 export const FICHAS_TITULO_PRECIO = ['osde', 'sancor-salud']
-export const PLANES_TITULO_PRECIO = ['osde/210', 'swiss-medical/smg20']
+export const PLANES_TITULO_PRECIO = ['osde/210', 'osde/310', 'swiss-medical/smg20']
+
+/**
+ * Fichas de plan con "precio" en el H1 y la respuesta directa arriba de todo (9-nov-2026, Search
+ * Console al 7-nov: "osde 210 precio" en la posición 8,0 y "osde 310 precio" en la 8,5, con CTR < 1%).
+ * Medir a las 2-4 semanas contra docs/seo/datos/gsc-2026-11-09.
+ */
+export const PLANES_PRECIO_ARRIBA = ['osde/210', 'osde/310']

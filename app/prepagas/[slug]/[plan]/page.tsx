@@ -5,7 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
 import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
-import { elegir, pesosTitulo, PLANES_TITULO_PRECIO } from '@/lib/seo/titulos'
+import { elegir, pesosTitulo, PLANES_PRECIO_ARRIBA, PLANES_TITULO_PRECIO } from '@/lib/seo/titulos'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
@@ -29,7 +29,6 @@ import { CarruselPlanes, type TarjetaPlan } from '@/components/prepagas/Carrusel
 import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
 import { TablaDiferenciasPlanes } from '@/components/prepagas/TablaDiferenciasPlanes'
-import { PromoFluxSportClub } from '@/components/prepagas/PromoFluxSportClub'
 import { ResumenPlan, faqResumenPlan } from '@/components/prepagas/ResumenPlan'
 import { OG_SIZE, urlOgPlan, altOgPlan } from '@/lib/og/datos'
 import { terminoPorSlug } from '@/lib/data/glosario'
@@ -577,7 +576,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // Planes donde se busca más el precio que la cartilla (Search Console, ago-oct 2026): ahí la tabla de
 // precio por edad va primero. En el resto va primero la cartilla de tu zona.
-const PRIMERO_PRECIO: Record<string, string[]> = { osde: ['210', '410', '510', 'flux'], 'sancor-salud': ['plan-3000', 'plan-3000-gen'] }
+const PRIMERO_PRECIO: Record<string, string[]> = { osde: ['210', '310', '410', '510', 'flux'], 'sancor-salud': ['plan-3000', 'plan-3000-gen'] }
 
 export default async function PlanPage({ params, searchParams }: Props) {
   const { slug, plan: planSlug } = await params
@@ -736,6 +735,9 @@ export default async function PlanPage({ params, searchParams }: Props) {
   ]
 
   const primeroPrecio = (PRIMERO_PRECIO[prep.slug] ?? []).includes(plan.slug)
+  // Respuesta directa arriba (9-nov-2026, ver PLANES_PRECIO_ARRIBA): precio desde, a los 30 y fuente con fecha
+  const escalaArriba = PLANES_PRECIO_ARRIBA.includes(`${prep.slug}/${plan.slug}`) ? escalaPorEdad(prep.slug, plan.slug, 'caba') : null
+  const precioA30 = escalaArriba?.rangos.find((r) => r.desde <= 30 && 30 <= r.hasta)?.precio
   const bloquePrecio = (
     <>
       {/* Precio por edad (cuadro tarifario SSSalud) y cobertura punto por punto (fichas oficiales) */}
@@ -744,7 +746,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
           <div className="container max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
             {seo.escala && (
               <div>
-                <h2 className="text-xl font-bold text-gray-900 mb-1">Precio del {seo.nombreLargo} por edad</h2>
+                <h2 id="precio-por-edad" className="text-xl font-bold text-gray-900 mb-1 scroll-mt-20">Precio del {seo.nombreLargo} por edad</h2>
                 <p className="text-xs text-gray-500 mb-3">
                   Lista oficial de {PRECIO_ACTUALIZADO} declarada ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona.{promo ? ' Cotizando online tenés 15% OFF sobre estos valores.' : ''}
                 </p>
@@ -907,7 +909,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
                 Planes de {prep.nombre}
               </Link>
               {/* H1 con marca + plan: "osde 210" se busca más que "planes osde" (Trends, 23-sep-2026) */}
-              <h1 className="text-3xl font-bold text-gray-900 mt-0.5">{prep.nombre} {plan.nombre}</h1>
+              <h1 className="text-3xl font-bold text-gray-900 mt-0.5">{escalaArriba ? `${prep.nombre} ${codigoPlan(plan)}: precio y qué cubre` : `${prep.nombre} ${plan.nombre}`}</h1>
               {plan.destacado && (
                 <span className="inline-block mt-2 bg-[#E8002D] text-white text-xs font-black px-3 py-1 rounded-full">
                   MÁS ELEGIDO
@@ -915,6 +917,20 @@ export default async function PlanPage({ params, searchParams }: Props) {
               )}
             </div>
           </div>
+
+          {escalaArriba && (
+            <div className="mb-5">
+              <p className="text-gray-800 leading-relaxed">
+                El {prep.nombre} {codigoPlan(plan)} cuesta <strong>desde {formatPrecio(escalaArriba.rangos[0].precio)} por mes</strong> (hasta los {escalaArriba.rangos[0].hasta} años)
+                {precioA30 ? <> y <strong>{formatPrecio(precioA30)}</strong> a los 30</>: null}, {plan.copago ? 'con copago' : 'sin copago'}.
+                {' '}Es la lista oficial de {PRECIO_ACTUALIZADO.toLowerCase()} que {prep.nombre} declara ante la Superintendencia de Servicios de Salud ({escalaArriba.region}, contratación directa, IVA incluido, por persona).
+              </p>
+              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm font-semibold">
+                <a href="#precio-por-edad" className="text-[#E8002D] hover:underline">Precio del {codigoPlan(plan)} por edad ↓</a>
+                {cartillaPlanLink && <Link href={cartillaPlanLink.href} className="text-[#E8002D] hover:underline">Ver la cartilla del {codigoPlan(plan)} →</Link>}
+              </div>
+            </div>
+          )}
 
           {/* Caja de cotizar (25-oct-2026; sin calculadora por edad desde el
               29-oct-2026): botón de cotizar y comparar */}
@@ -935,8 +951,6 @@ export default async function PlanPage({ params, searchParams }: Props) {
             }
           />
 
-          {/* Promo de octubre 2026 (OSDE Flux + SportClub); se oculta sola el 1-nov */}
-          {prep.slug === 'osde' && plan.slug === 'flux' && <PromoFluxSportClub origen="ficha-plan-flux" />}
 
           {/* Tags: tocables (Clarity 12–18 oct: clics muertos en SMG20, SMG30,
               OSDE 310 y Hospital Italiano — la pastilla parecía un botón y no

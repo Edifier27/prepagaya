@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
+import { PLANES_PRECIO_ARRIBA } from '@/lib/seo/titulos'
 import { Carrusel } from '@/components/ui/Carrusel'
 import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
@@ -304,6 +305,15 @@ export default function PreciosPage(): React.ReactElement {
                       </Link>
                     ))}
                   </div>
+                  {/* Enlace con el texto que se busca (9-nov-2026, lib/seo/titulos.ts) */}
+                  {PLANES_PRECIO_ARRIBA.some((x) => x.startsWith(`${p.slug}/`)) && (
+            <p className="px-5 py-3 text-sm text-gray-600 border-t border-gray-50">
+              Precio por edad:{' '}
+              {p.planes.filter((pl) => PLANES_PRECIO_ARRIBA.includes(`${p.slug}/${pl.slug}`)).map((pl, i) => (
+                <span key={pl.slug}>{i > 0 && ' · '}<Link href={`/prepagas/${p.slug}/${pl.slug}`} className="font-semibold text-[#E8002D] hover:underline">precio del {p.nombre} {pl.nombre.replace(/^Plan\s+/, '')}</Link></span>
+              ))}
+            </p>
+          )}
                 </div>
               )
             })}
