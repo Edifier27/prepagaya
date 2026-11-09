@@ -1,4 +1,5 @@
 import { prepagas } from '@/lib/data/prepagas'
+import { perfiles } from '@/lib/data/perfiles'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import { entidadesRegistro, codigoSeisDigitos, nombreLegible, registroDeObraSocial, PREPAGA_A_REGISTRO } from '@/lib/data/registro-sssalud'
 import { SANATORIOS_SEO, sanatoriosPublicables } from '@/lib/data/sanatorios-seo'
@@ -54,6 +55,8 @@ export function indiceBuscador(): EntradaBuscador[] {
   add('Preexistencias: qué papeles te piden', '/declaracion-jurada-de-salud', G('Herramientas'), 'Documentación para la declaración jurada de salud', 'preexistencia declaracion jurada ddjj auditoria documentacion papeles enfermedad')
   add('¿Qué me cubre la prepaga?', '/guias/que-cubre-la-prepaga#buscador', G('Herramientas'), 'Buscador de coberturas: por ley y por plan', 'cobertura cubre pmo obligatorio ley prestacion practica tratamiento estudio')
   add('¿Dónde me atiendo? Guardias cerca', '/guardias-cerca', G('Herramientas'), 'Guardias y sanatorios de tu prepaga más cerca tuyo', 'guardia guardias cerca urgencia emergencia sanatorio donde me atiendo ubicacion')
+  // Guías por perfil (informe del 9-nov-2026: "prepagas mayores de 70 años" no encontraba /para/adultos-mayores)
+  for (const p of perfiles) add(p.titulo, `/para/${p.slug}`, G('Guías'), p.nombre, `${p.keywords.join(' ')} ${p.slug === 'adultos-mayores' ? 'jubilado jubilados mayores 60 65 70 anos tercera edad abuelos' : ''}`, 1)
   for (const c of Object.values(CARTILLAS)) {
     add(`Guardias de ${c.prepagaNombre} cerca tuyo`, `/guardias-cerca?prepaga=${c.prepagaSlug}`, G('Herramientas'), 'Con tu ubicación, según la cartilla oficial', `guardia guardias urgencia cerca ${c.prepagaNombre}`)
   }
