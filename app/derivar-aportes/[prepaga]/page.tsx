@@ -1,11 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { CopiarCodigo } from '@/components/ui/CopiarCodigo'
 import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { getConvenios, PREPAGAS_DERIVAR } from '@/lib/data/convenios'
 import { APORTE_DERIVABLE, SITE_URL, TIEMPO_RESPUESTA, formatPrecio, precioDeriva } from '@/lib/utils'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { ldJson } from '@/lib/jsonld'
+
+// Trámite oficial de la opción de cambio (argentina.gob.ar, el mismo enlace de la guía)
+const OPCION_DE_CAMBIO = 'https://www.argentina.gob.ar/servicio/realizar-opcion-de-cambio-libre-eleccion-de-agentes-del-seguro'
 
 // "Derivar aportes a [prepaga]" (14-oct-2026, keyword research: "cómo derivar
 // aportes a OSDE", "derivar aportes obra social a swiss medical", "sancor
@@ -120,7 +124,7 @@ export default async function DerivarAportesPage({ params }: Props) {
           <div className="mt-5 rounded-2xl border-2 border-[#E8002D] bg-white p-5 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
             <div>
               <div className="text-xs uppercase tracking-wide text-gray-500 font-semibold">Código de obra social de {prep.nombre}</div>
-              <div className="text-3xl font-black text-gray-900 tabular-nums mt-1">{c.codigo}</div>
+              <CopiarCodigo codigo={c.codigo} />
               {c.nota && <div className="text-xs text-gray-500 mt-1">{c.nota}</div>}
             </div>
             {codigo.fuente && (
@@ -139,12 +143,23 @@ export default async function DerivarAportesPage({ params }: Props) {
               ['Hacé la opción de cambio', `Entrá a la web de la Superintendencia de Servicios de Salud con tu clave fiscal nivel 3 de ARCA y elegí el código ${c.codigo}. Es gratis y sin intermediarios.`],
               ['Confirmá el mail', 'Te llega un mail para confirmar dentro de las 48 horas: si no lo confirmás, el trámite se cae.'],
               ['Afiliate', `El cambio se activa el primer día del mes siguiente y ahí te afiliás a ${prep.nombre}.`],
-            ].map(([t, x], i) => (
-              <li key={t} className="flex gap-3 rounded-xl border border-gray-200 p-4">
-                <span className="w-7 h-7 shrink-0 rounded-full bg-red-50 text-[#E8002D] font-bold text-sm flex items-center justify-center">{i + 1}</span>
-                <div><div className="font-semibold text-gray-900 text-sm">{t}</div><p className="text-sm text-gray-600 mt-0.5 leading-relaxed">{x}</p></div>
-              </li>
-            ))}
+            ].map(([t, x], i) => {
+              // Clarity (2 al 9-nov-2026): los pasos parecían botones. El 1 baja a la cotización y el 2 abre el trámite oficial
+              const destino = i === 0 && planes.length > 0 ? { href: '#cotizar', texto: 'Ver cuánto pago →', externo: false }
+                : i === 1 ? { href: OPCION_DE_CAMBIO, texto: 'Ir al trámite oficial →', externo: true } : null
+              return (
+                <li key={t} className="flex gap-3 rounded-xl border border-gray-200 p-4">
+                  <span className="w-7 h-7 shrink-0 rounded-full bg-red-50 text-[#E8002D] font-bold text-sm flex items-center justify-center">{i + 1}</span>
+                  <div>
+                    <div className="font-semibold text-gray-900 text-sm">{t}</div>
+                    <p className="text-sm text-gray-600 mt-0.5 leading-relaxed">{x}</p>
+                    {destino && (
+                      <a href={destino.href} {...(destino.externo ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="mt-1.5 inline-block text-sm font-semibold text-[#E8002D] hover:underline">{destino.texto}</a>
+                    )}
+                  </div>
+                </li>
+              )
+            })}
           </ol>
           <p className="text-sm text-gray-600 mt-4 leading-relaxed">
             <strong>¿Empezás un trabajo nuevo?</strong> Pedile a Recursos Humanos que en tu alta cargue el código {c.codigo} en vez de la obra social del convenio: te ahorrás el trámite de después.
@@ -153,7 +168,7 @@ export default async function DerivarAportesPage({ params }: Props) {
       </section>
 
       {planes.length > 0 && (
-        <section className="py-8 bg-gray-50 border-y border-gray-100">
+        <section id="cotizar" className="py-8 bg-gray-50 border-y border-gray-100 scroll-mt-20">
           <div className="container max-w-3xl mx-auto">
             <h2 className="text-xl font-bold text-gray-900 mb-1">Cuánto pagás por {prep.nombre} con aportes</h2>
             <p className="text-sm text-gray-600 mb-4">Lista oficial ({PRECIO_ACTUALIZADO.toLowerCase()}, 30 años). Con aportes se cotiza sin IVA y se descuenta lo que aportás.</p>

@@ -24,6 +24,13 @@ const BONUS_GRUPO: Record<number, number> = { 0: 2, 1: 3, 2: 1, 4: 2 }
 // palabra no estuviera en el índice no salía ningún resultado).
 const VACIAS = new Set(['de', 'del', 'la', 'el', 'los', 'las', 'y', 'o', 'u', 'en', 'que', 'con', 'para', 'por', 'es', 'mi', 'me', 'tengo', 'cual', 'cuales', 'mejor', 'un', 'una', 'al', 'a', 'se', 'como', 'admite', 'puedo', 'hay', 'sin'])
 
+// Cómo lo escribe la gente → cómo figura en el índice (informe del 9-nov-2026)
+const SINONIMOS: Record<string, string> = {
+  sancorsalud: 'sancor', swissmedical: 'swiss', oculista: 'especialistas', oculistas: 'especialistas', oftalmologo: 'especialistas',
+  nutricionista: 'especialistas', nutricionistas: 'especialistas', lentes: 'anteojos', ciegos: 'discapacidad', ciego: 'discapacidad',
+  oncologo: 'oncologia', oncologico: 'oncologia',
+}
+
 function tokensDe(q: string): string[] {
   return normalizarBusqueda(q)
     .split(/\s+/)
@@ -31,6 +38,7 @@ function tokensDe(q: string): string[] {
     // Códigos: "0-0090-1" o "0-00901" se buscan como "000901"
     .map((tk) => (/^[\d-]+$/.test(tk) && tk.replace(/\D/g, '').length >= 4 ? tk.replace(/\D/g, '') : tk.replace(/[¿?¡!.,]/g, '')))
     .filter((tk) => tk && !VACIAS.has(tk))
+    .map((tk) => SINONIMOS[tk] ?? tk)
 }
 
 /** `parcial`: no hubo nada con todas las palabras y se muestra lo más parecido. */
