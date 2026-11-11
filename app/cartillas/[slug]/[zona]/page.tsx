@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { elegir } from '@/lib/seo/titulos'
 import { notFound } from 'next/navigation'
 import { SITE_URL } from '@/lib/utils'
 import {
@@ -66,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     guardias ? `${guardias} ${guardias === 1 ? 'centro' : 'centros'} con ${c.labelGuardia.toLowerCase()}` : '',
   ].filter(Boolean).join(' y ')
   return {
-    title: { absolute: `Cartilla ${c.prepagaNombre} ${corto} ${anio(c)}: sanatorios por plan` },
+    title: { absolute: elegir([`Cartilla ${c.prepagaNombre} ${corto} ${anio(c)}: sanatorios por plan`, `Cartilla ${c.prepagaNombre} ${corto}: sanatorios por plan`, `Cartilla ${c.prepagaNombre} ${corto} ${anio(c)}`], 65) },
     description: `${numeros ? `${c.prepagaNombre} en ${corto}: ${numeros}` : `Cartilla de ${c.prepagaNombre} en ${corto}`}, con dirección, teléfono y desde qué plan. Cartilla oficial de ${mesAnio(c)}.`,
     alternates: { canonical: `${SITE_URL}/cartillas/${slug}/${z.slug}` },
     ...(idx && !idx.indexable ? { robots: { index: false, follow: true } } : {}),

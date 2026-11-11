@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { elegir, nombreCortoPrepaga } from '@/lib/seo/titulos'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { cartillasInfo } from '@/lib/data/cartillas'
@@ -44,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // oficial no da: buscar el sanatorio y ver desde qué plan está.
     title: oficial
       ? { absolute: `Cartilla ${prep.nombre} 2026 por plan: buscá tu sanatorio` }
-      : `Cartilla ${prep.nombre} 2026: sanatorios, guardias y cómo consultarla`,
+      : elegir([`Cartilla ${prep.nombre} 2026: sanatorios, guardias y cómo consultarla`, `Cartilla ${prep.nombre} 2026: sanatorios, guardias y cómo verla`, `Cartilla ${prep.nombre} 2026: sanatorios y guardias`, `Cartilla ${nombreCortoPrepaga(prep.nombre)} 2026: sanatorios y guardias`], 65),
     description: oficial
       ? `Buscá tu sanatorio o guardia de ${prep.nombre} y fijate desde qué plan está, zona por zona. Cartilla oficial con dirección y teléfono.`
       : `Cartilla de ${prep.nombre}: cómo consultarla online, qué plan necesitás para cada sanatorio y cómo comparar la red antes de contratar. Actualizado ${PRECIO_ACTUALIZADO}.`,
