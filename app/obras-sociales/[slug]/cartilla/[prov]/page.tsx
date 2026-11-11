@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { elegir } from '@/lib/seo/titulos'
 import { notFound } from 'next/navigation'
 import { osDeCartilla } from '@/lib/data/sindicales-cartillas/os'
 import { CARTILLAS_SINDICALES, contar, getCartillaSindical, getProvinciaCartilla, provinciasConPagina } from '@/lib/data/sindicales-cartillas'
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCartillaSindical(slug)
   const p = c && getProvinciaCartilla(c, prov)
   if (!os || !c || !p) return {}
-  const title = `Cartilla de ${os.nombre} en ${p.nombre}: sanatorios, guardias y centros`
+  const title = elegir([`Cartilla de ${os.nombre} en ${p.nombre}: sanatorios, guardias y centros`, `Cartilla de ${os.nombre} en ${p.nombre}: sanatorios y guardias`, `Cartilla de ${os.nombre} en ${p.nombre}`], 65)
   const internacion = contar(p.instituciones, 'internacion')
   const guardia = contar(p.instituciones, 'guardia')
   const description = `Dónde atiende ${os.nombre} en ${p.nombre}: ${internacion ? `${internacion} sanatorios con internación, ` : ''}${guardia ? `${guardia} guardias y ` : ''}centros de diagnóstico por localidad, con dirección y teléfono. Cartilla oficial presentada ante la SSSalud.`
