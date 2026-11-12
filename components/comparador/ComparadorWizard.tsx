@@ -1647,6 +1647,22 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
         )}
       </div>
 
+      {/* Qué pasa ahora (auditoría del 10-nov-2026): después de dejar los datos nada decía que le iban a escribir
+          ni a qué número. El lead sale al minuto y medio, así que el WhatsApp llega cuando todavía está acá: si sabe
+          que viene, lo reconoce y lo contesta. Se muestra su propio celular para que vea si lo tipeó mal (sin botón para
+          corregirlo: reenviar el formulario mandaría un segundo lead con el número viejo todavía en camino). */}
+      {celular.trim() && (
+        <div className="mb-4 flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3" role="status">
+          <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white" aria-hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="M20 6L9 17l-5-5" /></svg>
+          </span>
+          <p className="min-w-0 text-sm leading-snug text-gray-700">
+            <strong className="text-gray-900">Listo{nombre.trim() ? `, ${nombre.trim().split(/\s+/)[0].toLowerCase().replace(/^./, (c) => c.toUpperCase())}` : ''}.</strong>{' '}
+            En unos minutos te escribe un asesor oficial por WhatsApp al <strong className="whitespace-nowrap tabular-nums text-gray-900">{celular.trim()}</strong> para confirmarte el valor final. Abajo tenés tu precio plan por plan.
+          </p>
+        </div>
+      )}
+
       {/* "¿Qué cobertura tenés hoy?" — opcional y DESPUÉS del lead, así no
           suma fricción al formulario. Le sirve al asesor para comparar con lo
           que paga hoy y al sondeo anónimo de /prensa/sondeo (24-sep-2026). */}
