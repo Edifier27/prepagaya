@@ -261,6 +261,12 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
               <span className="text-sm font-semibold text-gray-900 group-hover:text-[#E8002D]">{PLANES_PRECIO_ARRIBA.includes(`${prep.slug}/${plan2.slug}`) ? `Precio y ficha del ${prep.nombre} ${plan2.nombre.replace(/^Plan\s+/, '')}` : `Ver ficha completa del ${plan2.nombre}`} →</span>
             </Link>
           </div>
+          {/* "swiss medical precios" (9-nov-2026): enlace a la ficha con el texto que se busca */}
+          {prep.slug === 'swiss-medical' && (
+            <Link href={`/prepagas/${prep.slug}#planes`} className="mt-4 block text-center text-sm font-semibold text-[#E8002D] hover:underline">
+              Todos los planes y precios de {prep.nombre} →
+            </Link>
+          )}
         </div>
       </section>
 

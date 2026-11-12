@@ -250,7 +250,7 @@ export default function PreciosPage(): React.ReactElement {
                       href={`/prepagas/${p.slug}`}
                       className="text-xs font-semibold text-[#E8002D] hover:underline hidden sm:block"
                     >
-                      Ver página completa →
+                      {p.slug === 'swiss-medical' ? `Planes y precios de ${p.nombre}` : 'Ver página completa'} →
                     </Link>
                   </div>
 

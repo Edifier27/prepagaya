@@ -625,6 +625,40 @@ export default async function PrepagaSlugPage({ params }: Props) {
     </div>
   )
 
+  // "swiss medical precios" (9-nov-2026): en Swiss la tabla de planes y precios va antes del aumento
+  const aumentoDespues = prep.slug === 'swiss-medical'
+  const bloqueAumento = (
+    aumento && (
+      <section id="aumento" className="pt-8 bg-white">
+        <div className="container max-w-5xl mx-auto">
+          <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1 min-w-0">
+              <h2 className="text-lg font-bold text-gray-900">
+                Aumento de {prep.nombre} en {aumento.mes.label.toLowerCase()}: {pct(aumento.dato.mediana)}
+              </h2>
+              <p className="text-sm text-gray-600 leading-relaxed mt-1">
+                Dato oficial del cuadro tarifario declarado ante la Superintendencia de Servicios de Salud{aumentoRango}. Promedio del mercado: {pct(aumento.mes.promedio)}.
+                {aumentoAnterior && <> En {aumentoAnterior.mes.label.toLowerCase()} había aumentado {pct(aumentoAnterior.dato.mediana)}.</>}
+              </p>
+            </div>
+            <div className="flex-shrink-0 flex flex-col gap-1.5 sm:items-end">
+              {TIENE_CHEQUEO.has(prep.slug) && (
+                <Link href={`/chequeo-prepaga?prepaga=${prep.slug}`} className="text-sm font-bold text-[#E8002D] hover:underline">
+                  ¿Cuánto vas a pagar vos? Chequeá tu plan →
+                </Link>
+              )}
+              <Link href="/aumentos" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D] hover:underline">
+                Aumentos de todas las prepagas →
+              </Link>
+            </div>
+          </div>
+          {/* Te aviso el aumento (15-oct-2026) */}
+          <div className="mt-4"><AvisoAumento compacto prepagaInicial={prep.nombre} titulo={`¿Querés saber cuánto aumenta ${prep.nombre} el mes que viene?`} /></div>
+        </div>
+      </section>
+    )
+  )
+
   // Logo, sellos y H1: igual en el hero de siempre y en el de la caja de Swiss
   const cabecera = (
     <div className="flex items-center gap-4 mb-4">
@@ -905,36 +939,9 @@ export default async function PrepagaSlugPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Aumento oficial del mes (ver aumentosPrep arriba) */}
-      {aumento && (
-        <section id="aumento" className="pt-8 bg-white">
-          <div className="container max-w-5xl mx-auto">
-            <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-5 flex flex-col sm:flex-row sm:items-center gap-4">
-              <div className="flex-1 min-w-0">
-                <h2 className="text-lg font-bold text-gray-900">
-                  Aumento de {prep.nombre} en {aumento.mes.label.toLowerCase()}: {pct(aumento.dato.mediana)}
-                </h2>
-                <p className="text-sm text-gray-600 leading-relaxed mt-1">
-                  Dato oficial del cuadro tarifario declarado ante la Superintendencia de Servicios de Salud{aumentoRango}. Promedio del mercado: {pct(aumento.mes.promedio)}.
-                  {aumentoAnterior && <> En {aumentoAnterior.mes.label.toLowerCase()} había aumentado {pct(aumentoAnterior.dato.mediana)}.</>}
-                </p>
-              </div>
-              <div className="flex-shrink-0 flex flex-col gap-1.5 sm:items-end">
-                {TIENE_CHEQUEO.has(prep.slug) && (
-                  <Link href={`/chequeo-prepaga?prepaga=${prep.slug}`} className="text-sm font-bold text-[#E8002D] hover:underline">
-                    ¿Cuánto vas a pagar vos? Chequeá tu plan →
-                  </Link>
-                )}
-                <Link href="/aumentos" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D] hover:underline">
-                  Aumentos de todas las prepagas →
-                </Link>
-              </div>
-            </div>
-            {/* Te aviso el aumento (15-oct-2026) */}
-            <div className="mt-4"><AvisoAumento compacto prepagaInicial={prep.nombre} titulo={`¿Querés saber cuánto aumenta ${prep.nombre} el mes que viene?`} /></div>
-          </div>
-        </section>
-      )}
+      {/* Aumento oficial del mes (ver aumentosPrep arriba). En Swiss va después de los planes
+          (9-nov-2026): "swiss medical precios" en la posición 9,2; lo primero tiene que ser la tabla */}
+      {!aumentoDespues && bloqueAumento}
 
       {/* Planes */}
       <section id="planes" className="py-10 bg-white">
@@ -990,6 +997,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {aumentoDespues && bloqueAumento}
 
       {prep.planes.length > 1 && <ComparacionPlanes prep={prep} datos={comparacion} />}
 
