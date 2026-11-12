@@ -274,7 +274,7 @@ export function ComparativaPlanesPage({ comp, prep, plan1, plan2, filas }: {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">¿Querés saber cuál te conviene a vos?</h2>
-          <p className="text-white text-sm mb-6">Cotizá online con 15% OFF (25% si sos monotributista) y te decimos qué plan de {prep.nombre} encaja con tu edad y presupuesto.</p>
+          <p className="text-white text-sm mb-6">Cotizá online{prep.slug === 'swiss-medical' ? ' con 15% OFF (25% si sos monotributista)' : ', gratis y sin DNI,'} y te decimos qué plan de {prep.nombre} encaja con tu edad y presupuesto.</p>
           <Link
             href={`/comparador?prepaga=${prep.slug}&desde=comparativa`}
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"

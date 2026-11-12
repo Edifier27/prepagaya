@@ -198,7 +198,7 @@ export default function HomePage(): React.ReactElement {
             </h1>
             {/* El cotizador son 2 preguntas (zona y edades), no 4 */}
             <p className="text-gray-600 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-              Zona y edades, y listo: todos los planes con <strong className="text-gray-800">15% OFF online</strong> (25% monotributistas).
+              Zona y edades, y listo: tu precio en 2 minutos. Swiss Medical con <strong className="text-gray-800">15% OFF online</strong> (25% monotributistas).
             </p>
 
             {/* Trust bullets — ocultos en mobile para que el cotizador entre
