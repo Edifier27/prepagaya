@@ -10,7 +10,12 @@ import { trackEvent } from '@/lib/analytics'
 // comparador dejan sus datos, y las páginas de plan tenían cientos de
 // visitas y casi ningún contacto. Aparece después de bajar un poco (no tapa
 // el botón de arriba) y queda sobre la barra de navegación del celular.
-export function BarraCotizar({ titulo, href, origen, promo = '15% OFF' }: { titulo: string; href: string; origen: string; /** Promo al lado del título; vacío sin promo (25-oct-2026: solo Swiss) */ promo?: string }) {
+// La promo es solo de Swiss Medical (regla de Darío). Auditoría del 10-nov-2026: la barra decía "Cotizá OSDE · 15% OFF"
+// porque el 15% era el valor por defecto. Ahora, sin promo explícita, sale solo si el botón lleva a cotizar Swiss.
+const llevaASwiss = (href: string) => /[?&]prepaga=swiss-medical(&|$)/.test(href)
+
+export function BarraCotizar({ titulo, href, origen, promo: promoDada }: { titulo: string; href: string; origen: string; /** Promo al lado del título; sin indicar, "15% OFF" solo si el botón lleva a Swiss Medical */ promo?: string }) {
+  const promo = promoDada ?? (llevaASwiss(href) ? '15% OFF' : '')
   const [visible, setVisible] = useState(false)
   useEffect(() => {
     // Se ve después de bajar 500 px y se esconde al llegar al pie de página
