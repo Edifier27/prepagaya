@@ -166,7 +166,7 @@ export function ComparacionCruzadaPage({ c }: { c: Comp }) {
       <section className="py-12 bg-[#E8002D] text-white">
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">¿Querés ver los dos con tu edad exacta?</h2>
-          <p className="text-red-100 text-sm mb-6">Te mostramos el precio de los dos planes para tu grupo, con 15% OFF online. Gratis y sin DNI.</p>
+          <p className="text-red-100 text-sm mb-6">Te mostramos el precio de los dos planes para tu grupo, con el 15% OFF online de Swiss Medical. Gratis y sin DNI.</p>
           <Link href={comparadorHref} className="inline-flex items-center justify-center px-6 py-3.5 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 shadow-lg text-sm">
             Comparar a mi edad →
           </Link>

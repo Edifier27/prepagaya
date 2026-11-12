@@ -132,7 +132,7 @@ export default async function ComparadorPage({ searchParams }: Props) {
               Cotizá tu prepaga online: <span className="text-[#E8002D]">precio exacto para tu grupo</span>
             </h1>
             <p className="text-gray-500 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-              Zona y edades, y listo: planes con <strong className="text-gray-700">15% OFF online</strong> (25% monotributistas). Gratis y sin DNI.
+              Zona y edades, y listo: tu precio en 2 minutos. Swiss Medical con <strong className="text-gray-700">15% OFF online</strong> (25% monotributistas). Gratis y sin DNI.
             </p>
             <div className="hidden sm:flex flex-wrap items-center justify-center gap-6 mt-7 text-xs text-gray-500">
               <span className="flex items-center gap-2">
