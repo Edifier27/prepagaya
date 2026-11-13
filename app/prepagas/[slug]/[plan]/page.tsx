@@ -1210,10 +1210,10 @@ export default async function PlanPage({ params, searchParams }: Props) {
         </div>
       </section>
 
-      {/* Hoja para "Descargar qué cubre (PDF)" (chats del CRM, 3-nov-2026): solo se ve al imprimir con el botón */}
+      {/* Hoja para "Descargar qué cubre (PDF)" (chats del CRM, 3-nov-2026): solo se ve al imprimir con el botón. El título va en <p> y no en <h1>: la hoja está en el HTML y un segundo H1 confunde a Google (control 13-nov-2026) */}
       <div data-imprimir className="hidden">
         <p style={{ fontSize: 11, color: '#6b7280' }}>PrepagaYa · {SITE_URL.replace(/^https?:\/\//, '')}/prepagas/{prep.slug}/{plan.slug}</p>
-        <h1 style={{ fontSize: 22, fontWeight: 800, margin: '4px 0 2px' }}>{prep.nombre} {plan.nombre}: qué cubre</h1>
+        <p style={{ fontSize: 22, fontWeight: 800, margin: '4px 0 2px' }}>{prep.nombre} {plan.nombre}: qué cubre</p>
         <p style={{ fontSize: 12, margin: '0 0 10px' }}>
           {plan.copago ? 'Con copago en consultas' : 'Sin copago en consultas'} · {plan.redAbierta ? 'Red abierta (con reintegros)' : 'Red cerrada (cartilla)'}
         </p>
