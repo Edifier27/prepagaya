@@ -906,7 +906,8 @@ export default async function PlanPage({ params, searchParams }: Props) {
             />
             <div>
               <Link href={`/prepagas/${slug}`} className="text-sm text-gray-500 hover:text-[#E8002D] transition-colors font-medium">
-                Planes de {prep.nombre}
+                {/* "swiss medical precios" (9-nov-2026): el enlace a la ficha con el texto que se busca */}
+                {prep.slug === 'swiss-medical' ? `Planes y precios de ${prep.nombre}` : `Planes de ${prep.nombre}`}
               </Link>
               {/* H1 con marca + plan: "osde 210" se busca más que "planes osde" (Trends, 23-sep-2026) */}
               <h1 className="text-3xl font-bold text-gray-900 mt-0.5">{escalaArriba ? `${prep.nombre} ${codigoPlan(plan)}: precio y qué cubre` : `${prep.nombre} ${plan.nombre}`}</h1>
