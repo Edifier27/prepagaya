@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { PLANES_PRECIO_ARRIBA } from '@/lib/seo/titulos'
+import { PLANES_PRECIO_ARRIBA, FICHAS_PRECIOS_PRIMERO } from '@/lib/seo/titulos'
 import { Carrusel } from '@/components/ui/Carrusel'
 import { prepagas, PRECIO_ACTUALIZADO, PRECIOS_FUENTE_URL } from '@/lib/data/prepagas'
 import { formatPrecio, SITE_NAME, SITE_URL, precioDesde } from '@/lib/utils'
@@ -250,7 +250,7 @@ export default function PreciosPage(): React.ReactElement {
                       href={`/prepagas/${p.slug}`}
                       className="text-xs font-semibold text-[#E8002D] hover:underline hidden sm:block"
                     >
-                      {p.slug === 'swiss-medical' ? `Planes y precios de ${p.nombre}` : 'Ver página completa'} →
+                      {FICHAS_PRECIOS_PRIMERO.includes(p.slug) ? `Planes y precios de ${p.nombre}` : 'Ver página completa'} →
                     </Link>
                   </div>
 

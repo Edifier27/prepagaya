@@ -33,7 +33,7 @@ import { AvisoAumento } from '@/components/aumentos/AvisoAumento'
 import { ldJson } from '@/lib/jsonld'
 import { ComparaPlanesHero } from '@/components/prepagas/ComparaPlanesHero'
 import { ListaPlanesPrecios } from '@/components/prepagas/ListaPlanesPrecios'
-import { PLANES_PRECIO_ARRIBA } from '@/lib/seo/titulos'
+import { PLANES_PRECIO_ARRIBA, FICHAS_PRECIOS_PRIMERO } from '@/lib/seo/titulos'
 import { elegir, anioPrecios, nombreCortoPrepaga, codigoCorto, MAX_DESCRIPCION, pesosTitulo, FICHAS_TITULO_PRECIO } from '@/lib/seo/titulos'
 
 interface Props {
@@ -625,8 +625,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
     </div>
   )
 
-  // "swiss medical precios" (9-nov-2026): en Swiss la tabla de planes y precios va antes del aumento
-  const aumentoDespues = prep.slug === 'swiss-medical'
+  // La tabla de planes y precios va antes del aumento (ver FICHAS_PRECIOS_PRIMERO)
+  const aumentoDespues = FICHAS_PRECIOS_PRIMERO.includes(prep.slug)
   const bloqueAumento = (
     aumento && (
       <section id="aumento" className="pt-8 bg-white">
@@ -939,8 +939,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Aumento oficial del mes (ver aumentosPrep arriba). En Swiss va después de los planes
-          (9-nov-2026): "swiss medical precios" en la posición 9,2; lo primero tiene que ser la tabla */}
+      {/* Aumento oficial del mes (ver aumentosPrep arriba). En Swiss, OSDE y Sancor va después de los
+          planes: lo primero tiene que ser la tabla de precios (ver FICHAS_PRECIOS_PRIMERO) */}
       {!aumentoDespues && bloqueAumento}
 
       {/* Planes */}

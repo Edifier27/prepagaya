@@ -47,3 +47,11 @@ export const PLANES_TITULO_PRECIO = ['osde/210', 'osde/310', 'swiss-medical/smg2
  * Medir a las 2-4 semanas contra docs/seo/datos/gsc-2026-11-09.
  */
 export const PLANES_PRECIO_ARRIBA = ['osde/210', 'osde/310']
+
+/**
+ * Fichas de prepaga donde la tabla de planes y precios va antes del aumento y que reciben enlaces internos con el
+ * texto "planes y precios de X". Swiss desde el 9-nov-2026; OSDE y Sancor Salud desde el 16-nov-2026 (Search Console
+ * del 27-oct al 16-nov: sus consultas de compra, "sancor salud planes y precios", "cotizar sancor salud", "osde planes
+ * precios 2026", están en la posición 8 a 12 y casi sin clics).
+ */
+export const FICHAS_PRECIOS_PRIMERO = ['swiss-medical', 'osde', 'sancor-salud']
