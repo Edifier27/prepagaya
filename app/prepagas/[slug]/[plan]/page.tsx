@@ -5,7 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
 import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
-import { elegir, pesosTitulo, PLANES_PRECIO_ARRIBA, PLANES_TITULO_PRECIO } from '@/lib/seo/titulos'
+import { elegir, pesosTitulo, PLANES_PRECIO_ARRIBA, PLANES_TITULO_PRECIO, FICHAS_PRECIOS_PRIMERO } from '@/lib/seo/titulos'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
@@ -906,8 +906,8 @@ export default async function PlanPage({ params, searchParams }: Props) {
             />
             <div>
               <Link href={`/prepagas/${slug}`} className="text-sm text-gray-500 hover:text-[#E8002D] transition-colors font-medium">
-                {/* "swiss medical precios" (9-nov-2026): el enlace a la ficha con el texto que se busca */}
-                {prep.slug === 'swiss-medical' ? `Planes y precios de ${prep.nombre}` : `Planes de ${prep.nombre}`}
+                {/* El enlace a la ficha con el texto que se busca ("swiss medical precios", "osde planes precios") */}
+                {FICHAS_PRECIOS_PRIMERO.includes(prep.slug) ? `Planes y precios de ${prep.nombre}` : `Planes de ${prep.nombre}`}
               </Link>
               {/* H1 con marca + plan: "osde 210" se busca más que "planes osde" (Trends, 23-sep-2026) */}
               <h1 className="text-3xl font-bold text-gray-900 mt-0.5">{escalaArriba ? `${prep.nombre} ${codigoPlan(plan)}: precio y qué cubre` : `${prep.nombre} ${plan.nombre}`}</h1>
