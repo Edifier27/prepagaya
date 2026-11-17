@@ -406,6 +406,23 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
         </section>
       )}
 
+      {/* Qué plan necesitás (17-nov-2026, auditoría de navegación): antes iba
+          después de las guardias y del cruce con otras prepagas (pantalla 10,6
+          en la cartilla de Swiss en CABA). Ahora, después de los sanatorios. */}
+      {planes.length > 1 && (
+        <section className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">¿Qué plan de {c.prepagaNombre} necesitás en {corto}?</h2>
+            <p className="text-sm text-gray-500 mb-4">Cantidad de centros que incluye cada plan en {nombreZonaTexto(c.prepagaSlug, z)}.</p>
+            <TablaPlanes c={c} z={z} linkPlan={linkPlan} />
+            <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-red-50 border border-red-100 rounded-2xl p-4">
+              <p className="text-sm text-gray-700">¿No sabés qué plan te conviene? Te ayudamos a elegir según los sanatorios que usás.</p>
+              <Cta c={c} zonaCorta={corto} />
+            </div>
+          </div>
+        </section>
+      )}
+
       {cuenta.guardia > 0 && (
         <section className="py-10 bg-gray-50 border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">
@@ -421,21 +438,10 @@ export function PaginaZona({ c, z }: { c: CartillaPrepaga; z: ZonaCartilla }) {
       {enOtras.length > 0 && (
         <section className="py-10 bg-white border-t border-gray-100">
           <div className="container max-w-4xl mx-auto">
-            <EnOtrasCartillas items={enOtras} prepagaNombre={c.prepagaNombre} zonaCorta={corto} prepagaSlug={c.prepagaSlug} />
-          </div>
-        </section>
-      )}
-
-      {planes.length > 1 && (
-        <section className="py-10 bg-white border-t border-gray-100">
-          <div className="container max-w-4xl mx-auto">
-            <h2 className="text-xl font-bold text-gray-900 mb-1">¿Qué plan de {c.prepagaNombre} necesitás en {corto}?</h2>
-            <p className="text-sm text-gray-500 mb-4">Cantidad de centros que incluye cada plan en {nombreZonaTexto(c.prepagaSlug, z)}.</p>
-            <TablaPlanes c={c} z={z} linkPlan={linkPlan} />
-            <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-red-50 border border-red-100 rounded-2xl p-4">
-              <p className="text-sm text-gray-700">¿No sabés qué plan te conviene? Te ayudamos a elegir según los sanatorios que usás.</p>
-              <Cta c={c} zonaCorta={corto} />
-            </div>
+            {/* 4 a la vista y el resto plegado (17-nov-2026): con 12 eran unas 3
+                pantallas de botones rojos en el celular y trajo 3 leads en el
+                mes. En OSDE se dejan 12: ahí es el pase a Swiss (Darío, 27-sep). */}
+            <EnOtrasCartillas items={enOtras} prepagaNombre={c.prepagaNombre} zonaCorta={corto} prepagaSlug={c.prepagaSlug} max={c.prepagaSlug === 'osde' ? 12 : 4} />
           </div>
         </section>
       )}

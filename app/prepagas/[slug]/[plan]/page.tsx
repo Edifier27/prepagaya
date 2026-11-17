@@ -814,6 +814,18 @@ export default async function PlanPage({ params, searchParams }: Props) {
             </div>
           )}
 
+          {/* Precio arriba (17-nov-2026, auditoría de navegación): el título de
+              Google promete "desde $X/mes" y en el celular la tabla por edad
+              quedaba a 5 pantallas (SMG20). Una línea con el precio de lista y
+              el link a la tabla; OSDE 210 y 310 ya lo tienen (escalaArriba). */}
+          {!escalaArriba && seo?.escala && (
+            <p className="mb-4 text-sm text-gray-700">
+              Precio de lista: <strong className="text-gray-900">desde {formatPrecio(seo.escala.rangos[0].precio)} por mes</strong>{' '}
+              (hasta los {seo.escala.rangos[0].hasta} años, {PRECIO_ACTUALIZADO.toLowerCase()}) ·{' '}
+              <a href="#precio-por-edad" className="font-semibold text-[#E8002D] hover:underline whitespace-nowrap">Ver precio por edad ↓</a>
+            </p>
+          )}
+
           {/* Caja de cotizar (25-oct-2026; sin calculadora por edad desde el
               29-oct-2026): botón de cotizar y comparar */}
           <CajaPrecioPlan

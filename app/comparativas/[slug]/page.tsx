@@ -266,6 +266,15 @@ export default async function ComparativaPage({ params }: Props) {
               Nuestro veredicto
             </h2>
             <p className="text-gray-700 leading-relaxed">{comp.veredicto}</p>
+            {/* Botón en el momento de decidir (17-nov-2026, auditoría de
+                navegación): el primero, fuera de la barra, estaba en la
+                pantalla 7 del celular; 429 visitas y 2 leads en el mes. */}
+            <Link
+              href="/comparador?desde=veredicto"
+              className="mt-5 inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3 bg-[#E8002D] hover:bg-[#B8001F] text-white font-bold rounded-xl transition-all shadow-md text-sm"
+            >
+              Ver el precio de las dos para mi edad →
+            </Link>
           </div>
 
           {/* Link cruzado a la página de cambio, si existe para este par */}

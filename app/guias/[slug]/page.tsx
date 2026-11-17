@@ -133,9 +133,19 @@ export default async function GuiaPage({ params }: Props) {
   // Términos del glosario ya explicados en la página (cada uno, una sola vez)
   const vistosGlosario = new Set<string>()
   const textoGlosario = [guia.contenido.intro, ...guia.contenido.secciones.map((x) => x.cuerpo), guia.contenido.conclusion, ...guia.faq.map((f) => `${f.q} ${f.a}`)].join(' ')
+  // Guías de baja (17-nov-2026, auditoría de navegación): la barra tomaba la
+  // primera prepaga de la guía y le ofrecía a la persona la misma que deja
+  // ("Cómo dar de baja Swiss Medical" → "Cotizá Swiss Medical · 15% OFF").
+  // En esas guías lleva al cotizador sin prepaga elegida (desde=baja, para medir).
+  const esBaja = /(^|-)baja(-|$)/.test(guia.slug)
+  const barraPrepaga = esBaja ? undefined : prepagasRelacionadas[0]
   return (
     <>
-      <BarraCotizar titulo={prepagasRelacionadas[0] ? prepagasRelacionadas[0].nombre : 'tu prepaga'} origen={`guia:${guia.slug}`} href={prepagasRelacionadas[0] ? `/comparador?prepaga=${prepagasRelacionadas[0].slug}&desde=barra` : '/comparador?desde=barra'} />
+      <BarraCotizar
+        titulo={esBaja ? 'tu nueva prepaga' : barraPrepaga ? barraPrepaga.nombre : 'tu prepaga'}
+        origen={`guia:${guia.slug}`}
+        href={barraPrepaga ? `/comparador?prepaga=${barraPrepaga.slug}&desde=barra` : `/comparador?desde=${esBaja ? 'baja' : 'barra'}`}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* Breadcrumb */}
