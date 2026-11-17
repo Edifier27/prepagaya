@@ -28,9 +28,21 @@ export interface CartillaSwiss {
   zonas: number
   /** El plan más barato de la cartilla (30 años, CABA y GBA, lista con IVA) */
   desde: { slug: string; nombre: string; precio: number } | null
+  /** Planes corporativos que usan esta cartilla */
+  corporativos: string[]
 }
 
 const PRECIO_EDAD = 30
+
+// Planes corporativos y la cartilla que usan (Darío, 17-nov-2026: "qualitas
+// es nubial, docthos es global y premium, SMMP es premium"). Se buscan por el
+// nombre: "qualitas premium swiss medical", "cartilla docthos global", "smmp
+// premium cls". Ojo: el Qualitas Premium usa la Nubial, no la Premium.
+const CORPORATIVOS: Record<string, string[]> = {
+  SMG02: ['Qualitas'],
+  SMG20: ['Docthos Global'],
+  SMG30: ['Docthos Premium', 'SMMP'],
+}
 
 export function cartillasSwiss(): CartillaSwiss[] {
   const c = CARTILLAS['swiss-medical']
@@ -58,12 +70,26 @@ export function cartillasSwiss(): CartillaSwiss[] {
         internacionCaba: caba ? caba.centros.filter((ce) => ce.internacion.includes(p.id)).map((ce) => ce.nombre) : [],
         zonas: c.zonas.filter((z) => z.centros.some((ce) => ce.internacion.includes(p.id) || ce.guardia.includes(p.id))).length,
         desde: conPrecio[0] ?? null,
+        corporativos: CORPORATIVOS[p.id] ?? [],
       }
     })
 }
 
 const lista = (xs: string[]) => xs.join(', ').replace(/, ([^,]*)$/, ' y $1')
 const nombresPlanes = (x: CartillaSwiss) => lista(x.planes.map((p) => p.nombre))
+
+/** "Los planes corporativos Docthos Premium y SMMP también usan esta cartilla." */
+function textoCorporativos(x: CartillaSwiss): string {
+  if (x.corporativos.length === 0) return ''
+  const qualitas = x.corporativos.includes('Qualitas')
+  return `Los planes corporativos ${lista(x.corporativos)} también usan la cartilla ${x.nombre}${qualitas ? ', incluido el Qualitas Premium: a pesar del nombre, su cartilla no es la Premium' : ''}.`
+}
+
+/** Para la pregunta "¿Cuál es mi cartilla?": "Qualitas usa la Nubial; Docthos Global, la Global; …" */
+export function corporativosPorCartilla(): string {
+  const partes = cartillasSwiss().flatMap((x) => (x.corporativos.length ? [`${lista(x.corporativos)} usa${x.corporativos.length > 1 ? 'n' : ''} la ${x.nombre}`] : []))
+  return partes.length ? `Planes corporativos: ${partes.join('; ')} (el Qualitas Premium también usa la Nubial).` : ''
+}
 
 /** Respuesta directa para el primer párrafo y la pregunta "¿Qué es la cartilla X?" (GEO) */
 export function respuestaCartillaSwiss(id: string): string | null {
@@ -74,7 +100,7 @@ export function respuestaCartillaSwiss(id: string): string | null {
   const posicion = i === 0 ? 'la de entrada' : i === cs.length - 1 ? 'la más completa' : 'la del medio'
   const otras = cs.filter((_, j) => j !== i).map((o) => `${o.internacionCaba.length} de la ${o.nombre}`)
   const fecha = CARTILLAS['swiss-medical']?.vigencia
-  return `La cartilla ${x.nombre} de Swiss Medical es la de los planes ${nombresPlanes(x)}${x.codigo ? ` (código ${x.codigo} en el buscador oficial)` : ''}. De las tres cartillas de Swiss (${lista(cs.map((o) => o.nombre))}), es ${posicion}. En la Ciudad de Buenos Aires tiene ${x.internacionCaba.length} sanatorios para internación, contra ${lista(otras)}${fecha ? ` (cartilla oficial consultada el ${fecha})` : ''}.`
+  return `La cartilla ${x.nombre} de Swiss Medical es la de los planes ${nombresPlanes(x)}${x.codigo ? ` (código ${x.codigo} en el buscador oficial)` : ''}.${x.corporativos.length ? ` ${textoCorporativos(x)}` : ''} De las tres cartillas de Swiss (${lista(cs.map((o) => o.nombre))}), es ${posicion}. En la Ciudad de Buenos Aires tiene ${x.internacionCaba.length} sanatorios para internación, contra ${lista(otras)}${fecha ? ` (cartilla oficial consultada el ${fecha})` : ''}.`
 }
 
 /** Preguntas propias de la cartilla, para la página de cada una */
@@ -93,9 +119,15 @@ export function faqsCartillaSwiss(id: string): { q: string; a: string }[] {
       a: `Desde ${formatPrecio(x.desde.precio)} por mes, que es el ${x.desde.nombre} para una persona de ${PRECIO_EDAD} años${otros.length ? ` (${otros.map((p) => `${p.nombre}: ${formatPrecio(p.precio!)}`).join('; ')})` : ''}. Son precios de lista de ${PRECIO_ACTUALIZADO.toLowerCase()} en CABA y GBA, contratación directa, IVA incluido, según el cuadro oficial de la SSSalud. El precio cambia con la edad: la tabla completa está en la página de cada plan.`,
     })
   }
+  if (x.corporativos.length) {
+    faqs.push({
+      q: `¿Qué planes corporativos usan la cartilla ${x.nombre} de Swiss Medical?`,
+      a: `${textoCorporativos(x)} Tenés los mismos sanatorios y guardias que con los planes ${nombresPlanes(x)}: los ves zona por zona en esta página.`,
+    })
+  }
   faqs.push({
     q: '¿Cómo sé qué cartilla tengo en Swiss Medical?',
-    a: `Depende de tu plan: ${cs.map((o) => `${nombresPlanes(o)} usan la ${o.nombre}`).join('; ')}. Si tu plan no está en la lista (por ejemplo, un plan corporativo), confirmalo en la cartilla oficial de Swiss Medical.`,
+    a: `Depende de tu plan: ${cs.map((o) => `${nombresPlanes(o)} usan la ${o.nombre}`).join('; ')}. ${corporativosPorCartilla()} Si tu plan no está en la lista, confirmalo en la cartilla oficial de Swiss Medical.`.replace('  ', ' '),
   })
   return faqs
 }

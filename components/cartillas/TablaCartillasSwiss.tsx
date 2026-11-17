@@ -43,6 +43,9 @@ export function TablaCartillasSwiss({ actual }: { actual?: string }) {
                         <Link href={`/prepagas/swiss-medical/${p.slug}`} className="whitespace-nowrap hover:text-[#E8002D] hover:underline">{p.nombre}</Link>
                       </span>
                     ))}
+                    {x.corporativos.length > 0 && (
+                      <span className="block text-[11px] text-gray-500 mt-0.5">Corporativos: {x.corporativos.join(', ')}</span>
+                    )}
                   </td>
                   <td className="px-2.5 sm:px-4 py-2.5 text-right text-gray-700">{x.internacionCaba.length}</td>
                   <td className="px-2.5 sm:px-4 py-2.5 text-right text-gray-700 whitespace-nowrap">

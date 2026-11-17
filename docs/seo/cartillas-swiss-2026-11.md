@@ -106,9 +106,10 @@ No se crearon páginas nuevas. Cada cartilla ya tenía su URL; faltaba que dijer
 
 ## Pendiente
 
-- **Planes corporativos** (pregunta para Darío): ¿los planes Docthos, Qualitas, SMMP, BG2, BGI, PSG1, Care 2, SB04, MS3, Plus y Rojo usan la misma cartilla que su nombre? Por ejemplo, ¿Qualitas Premium es la cartilla Premium (CLS)?
-  - Si es así, se suma una línea con fuente en la página de cada cartilla: "Si tu plan corporativo dice Premium, tu cartilla es esta".
-  - Sin confirmación no se publica.
+- **Planes corporativos** (respuesta de Darío, 17-nov-2026): Qualitas usa la Nubial; Docthos Global, la Global; Docthos Premium y SMMP, la Premium.
+  - Ya está en la página de cada cartilla: primer párrafo, tabla, pregunta "¿Qué planes corporativos usan la cartilla X?" y "¿Cómo sé qué cartilla tengo?".
+  - Ojo: el **Qualitas Premium usa la Nubial**, no la Premium. Se aclara en la página porque se busca ("qualitas premium swiss medical", "cartilla qualitas premium").
+  - A confirmar: el autocompletado muestra "smmp global cle" (CLE es el código de la Global). Si existe un SMMP con cartilla Global, hay que corregir "SMMP usa la Premium".
 - **Nubial Clásica** (SMG01): se sigue buscando y el plan ya no existe. Se podría sumar una respuesta en la cartilla Nubial ("la Nubial Clásica ya no se comercializa; hoy la Nubial es la del S1 y el SMG02"), si Darío lo confirma.
 - **Volúmenes**: correr en el Planificador de Google Ads (Argentina, español, últimos 12 meses):
 

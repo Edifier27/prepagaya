@@ -18,7 +18,7 @@ import { esRubroComercio, rubrosDe } from '@/lib/data/cartilla-zonas/comercios'
 import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 import { ldJson } from '@/lib/jsonld'
 import { TablaCartillasSwiss } from '@/components/cartillas/TablaCartillasSwiss'
-import { cartillasSwiss } from '@/lib/data/cartillas-swiss'
+import { cartillasSwiss, corporativosPorCartilla } from '@/lib/data/cartillas-swiss'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -97,7 +97,7 @@ export default async function CartillaPrepagaPage({ params, searchParams }: Prop
     if (cs.length > 0) {
       faqsCartillaZonas.push({
         q: `¿Cuál es mi cartilla de ${prep.nombre}: ${cs.map((x) => x.nombre).join(', ').replace(/, ([^,]*)$/, ' o $1')}?`,
-        a: `Depende de tu plan. ${cs.map((x) => `La cartilla ${x.nombre} es la de los planes ${x.planes.map((p) => p.nombre).join(', ').replace(/, ([^,]*)$/, ' y $1')}, con ${x.internacionCaba.length} sanatorios para internación en CABA`).join('. ')}. Datos ${textoFechaDe(cartillaZonas)}.`,
+        a: `Depende de tu plan. ${cs.map((x) => `La cartilla ${x.nombre} es la de los planes ${x.planes.map((p) => p.nombre).join(', ').replace(/, ([^,]*)$/, ' y $1')}, con ${x.internacionCaba.length} sanatorios para internación en CABA`).join('. ')} (datos ${textoFechaDe(cartillaZonas)}). ${corporativosPorCartilla()}`.trim(),
       })
     }
     faqsCartillaZonas.push({
