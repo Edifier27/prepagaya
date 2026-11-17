@@ -60,6 +60,15 @@ function planComparador(prepagaSlug: string, comparadorSlug?: string) {
   return plan ?? null
 }
 
+// Google corta los títulos a ~65 caracteres y las descripciones a 160: si la versión
+// completa no entra, se usa la corta (control de calidad, 17-nov-2026).
+const tituloCorto = (largo: string, corto: string) => (largo.length <= 65 ? largo : corto)
+const descripcionCorta = (larga: string, corta: string) => {
+  if (larga.length <= 160) return larga
+  return corta.length <= 160 ? corta : `${nombresCortos(corta)}`
+}
+const nombresCortos = (t: string) => t.slice(0, 160).replace(/[,;]?\s+\S*$/, '').replace(/[,;(]\s*$/, '') + '.'
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const s = SANATORIOS_SEO.find((x) => x.slug === slug)
@@ -70,12 +79,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // título lo dice: "qué obra social atiende el X" se busca mucho (1-oct-2026)
   const os = obrasSocialesEnSanatorio(slug)
   return {
-    title: os.length
-      ? `Qué prepagas y obras sociales atienden en ${art(s.nombre)} ${s.nombre}`
-      : `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`,
-    description: os.length
-      ? `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')} (desde qué plan, para internación y guardia) y las obras sociales ${os.map((o) => o.osNombre).join(', ')}, según sus cartillas oficiales. Cotizá gratis.`
-      : `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
+    title: tituloCorto(
+      os.length
+        ? `Qué prepagas y obras sociales atienden en ${art(s.nombre)} ${s.nombre}`
+        : `Prepagas que atienden en ${art(s.nombre)} ${s.nombre}: desde qué plan`,
+      `Prepagas y obras sociales en ${art(s.nombre)} ${s.nombre}`,
+    ),
+    description: descripcionCorta(
+      os.length
+        ? `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')} (desde qué plan, para internación y guardia) y las obras sociales ${os.map((o) => o.osNombre).join(', ')}, según sus cartillas oficiales. Cotizá gratis.`
+        : `Prepagas con ${art(s.nombre)} ${s.nombre} en cartilla: ${nombres.join(', ')}. Desde qué plan lo cubre cada una para internación y guardia, según sus cartillas oficiales. Cotizá gratis.`,
+      `${s.nombre}: lo tienen en cartilla ${nombres.join(', ')}${os.length ? ' y obras sociales' : ''}, según sus cartillas oficiales. Cotizá gratis.`,
+    ),
     alternates: { canonical: `${SITE_URL}/sanatorios/${slug}` },
     keywords: [
       `prepagas ${s.nombre.toLowerCase()}`,
