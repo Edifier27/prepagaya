@@ -13,7 +13,6 @@ import { BotonPdfPlan } from '@/components/prepagas/BotonPdfPlan'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { CajaPrecioPlan } from '@/components/prepagas/CajaPrecioPlan'
 import { escalaPorEdad, preciosPorRegion, precioGrupo } from '@/lib/precios/motor'
-import { precioGrupoSwiss } from '@/lib/data/swiss-grupo-familiar'
 import { coberturasMarca } from '@/lib/data/coberturas-marca'
 import { sanatorios } from '@/lib/data/sanatorios'
 import { linkCartillaPlan, CARTILLAS } from '@/lib/data/cartilla-zonas'
@@ -171,23 +170,19 @@ function contenidoPlan(prep: Prepaga, plan: Plan) {
   // Precio por grupo familiar (14-oct-2026, keyword research: "cuánto sale
   // osde 210 para 3/4 personas", "para grupo familiar", "para jubilados").
   // Motor oficial (cuadro SSSalud, CABA/AMBA, directo, IVA incluido).
-  const GRUPOS: { label: string; edades: number[]; hijos?: number }[] = [
+  const GRUPOS: { label: string; edades: number[] }[] = [
     { label: 'Pareja de 35 años', edades: [35, 35] },
-    { label: '1 adulto (35) y 1 hijo (5)', edades: [35, 5], hijos: 1 },
-    { label: '2 adultos (35) y 1 hijo (5)', edades: [35, 35, 5], hijos: 1 },
-    { label: '2 adultos (35) y 2 hijos (5 y 8)', edades: [35, 35, 5, 8], hijos: 2 },
+    { label: '1 adulto (35) y 1 hijo (5)', edades: [35, 5] },
+    { label: '2 adultos (35) y 1 hijo (5)', edades: [35, 35, 5] },
+    { label: '2 adultos (35) y 2 hijos (5 y 8)', edades: [35, 35, 5, 8] },
     { label: 'Pareja de 50 años', edades: [50, 50] },
     { label: 'Pareja de 65 años', edades: [65, 65] },
   ]
   // Swiss: los hijos menores de 21 pagan tarifa de hijo, que el cuadro de la
-  // SSSalud no trae (6-nov-2026, lib/data/swiss-grupo-familiar.ts). Antes se
-  // los cotizaba como adultos y la familia de 4 salía ~14% más cara.
+  // SSSalud no trae; la aplica el motor (lib/precios/tarifa-hijo.ts).
   const conTarifaHijo = prep.slug === 'swiss-medical'
-  const totalGrupo = (g: (typeof GRUPOS)[number]) => conTarifaHijo
-    ? precioGrupoSwiss(plan.slug, g.edades.map((edad, i) => ({ edad, hijo: i >= g.edades.length - (g.hijos ?? 0) })))?.total
-    : precioGrupo(prep.slug, plan.slug, g.edades, 'caba')?.total
   const familias = escala
-    ? GRUPOS.flatMap((g) => { const total = totalGrupo(g); return total ? [{ ...g, total }] : [] })
+    ? GRUPOS.flatMap((g) => { const r = precioGrupo(prep.slug, plan.slug, g.edades, 'caba'); return r ? [{ ...g, total: r.total }] : [] })
     : []
   const fam4 = familias.find((x) => x.edades.length === 4)
   if (fam4) {
