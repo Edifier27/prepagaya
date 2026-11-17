@@ -28,7 +28,9 @@ function PrepagaCotizarCard({ p, fuente, modo }: { p: (typeof prepagas)[number];
       {modo === 'ver' ? (
         <Link
           href={`/prepagas/${p.slug}`}
-          className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#E8002D] hover:bg-[#B8001F] text-white rounded-lg text-xs font-bold transition-colors"
+          // Secundario (17-nov-2026, auditoría de navegación): en rojo lleno
+          // competía con el botón de cotizar del home
+          className="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-white border border-gray-200 hover:border-[#E8002D] text-gray-800 hover:text-[#E8002D] rounded-lg text-xs font-bold transition-colors"
         >
           Ver más →
         </Link>

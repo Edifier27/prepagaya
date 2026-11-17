@@ -32,6 +32,27 @@ Pedido de Darío: revisar cómo están ordenadas las cosas, si el cliente se pie
 5. **Hay páginas muy largas sin índice.** En el celular, la ficha de Swiss mide 37 pantallas, la cartilla de Swiss 30 y los códigos de obras sociales 72.
 6. **El menú y el home destacan herramientas que casi nadie usa** (13 a 53 visitantes por mes cada una).
 
+## Avance (17-nov-2026)
+
+Darío: "mergeá todo lo que te parezca para aumentar el CTR". En celular, dónde cayó cada cosa antes y después:
+
+| Hecho | Antes (pantalla) | Ahora (pantalla) |
+|---|---|---|
+| Fichas de plan sin orejitas (punto 1a) | tapaban el botón | botón despejado |
+| Fichas de plan: precio de lista "desde" y link a la tabla por edad (punto 2) | tabla en la 5,6 (SMG20) | precio en la 0,5 |
+| Guías de baja: "Cotizá tu nueva prepaga", cotizador sin prepaga elegida (`desde=baja`; punto 4) | ofrecía la misma prepaga | sin prepaga elegida |
+| Cartilla por zona: "¿Qué plan necesitás?" después de los sanatorios y 4 sanatorios del cruce a la vista, menos en OSDE (punto 5) | 10,6 | 4,3 |
+| Comparativas: "Ver el precio de las dos para mi edad" debajo del veredicto (`desde=veredicto`; punto 9) | 7,2 | 2,7 |
+| Home: podio después del cotizador, "Ver más" en blanco, pasos del encabezado con tilde en compu (punto 7) | 3,8 | 1,2 |
+
+Medir a las 2 semanas en Vercel:
+- leads con fuente "ficha-plan" y "barra";
+- leads desde cartillas;
+- leads con `desde=baja` y `desde=veredicto`;
+- leads desde el home.
+
+Siguen pendientes: 1b, 3, 6, 8 y 10.
+
 ## Cómo llega y dónde convierte la gente (18-oct al 17-nov)
 
 | | Visitantes | Leads (personas) | % |

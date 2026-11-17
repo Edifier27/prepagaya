@@ -231,8 +231,10 @@ export default function HomePage(): React.ReactElement {
                 { n: '3', t: 'Vos decidís', d: 'Un asesor te contacta solo si pedís más info' },
               ].map((s) => (
                 <div key={s.n} className="flex flex-col items-center text-center gap-1 sm:gap-1.5">
-                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white border-2 border-red-100 flex items-center justify-center font-bold text-xs sm:text-sm text-[#E8002D] shadow-sm">
-                    {s.n}
+                  {/* Con tilde y sin número (17-nov-2026): el cotizador de abajo ya
+                      tiene su propio 1-2-3 y se veían dos escaleras seguidas */}
+                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white border-2 border-red-100 flex items-center justify-center text-[#E8002D] shadow-sm" aria-hidden>
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clipRule="evenodd" /></svg>
                   </div>
                   <div className="text-xs sm:text-sm font-bold text-gray-900 leading-tight">{s.t}</div>
                   <div className="hidden sm:block text-xs text-gray-500">{s.d}</div>
@@ -250,7 +252,32 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      {/* ── Tres puertas (24-sep-2026, docs/producto/propuesta-buscador-
+      {/* ── Ranking de prepagas: intención "mejor prepaga argentina" / precios.
+          Podio con precio según la edad (Darío, 26-oct-2026). Justo después
+          del cotizador desde el 17-nov-2026 (auditoría de navegación): estaba
+          en la pantalla 3,8 del celular, después de los atajos y la grilla. ── */}
+      <section className="py-14 bg-white border-b border-gray-100">
+        <div className="container max-w-5xl mx-auto">
+          <div className="text-center mb-7 flex flex-col items-center gap-2.5">
+            <h2 className="text-2xl sm:text-[32px] font-extrabold tracking-tight text-gray-900 text-balance">Las mejores prepagas de Argentina</h2>
+            <p className="text-gray-500 text-sm sm:text-base max-w-xl">Las tres prepagas con las que trabajamos y para quién es cada una. Cotizá online y un asesor oficial te pasa tu precio.</p>
+          </div>
+
+          <RankingHome items={itemsRanking} />
+
+          <div className="text-center mt-6">
+            <Link href="/prepagas" className="text-sm font-bold text-[#E8002D] hover:underline">Ver los planes y precios de las {prepagas.length} prepagas →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Todas las prepagas — debajo del cotizador. Lleva a la ficha de cada
+          una (Darío, 4-oct-2026), así las fichas toman fuerza ── */}
+      <CotizarPorPrepaga fuente="home-por-prepaga" modo="ver" />
+
+      {/* ── Atajos: después del podio y la grilla desde el 17-nov-2026 (cada
+          herramienta tiene entre 13 y 53 visitas por mes).
+          Tres puertas (24-sep-2026, docs/producto/propuesta-buscador-
           interactivo.md): otras formas de empezar además del cotizador. La de
           sanatorios reemplaza al acceso a cartillas del 23-sep (lo incluye). ── */}
       <section className="py-10 bg-white border-b border-gray-100">
@@ -285,27 +312,6 @@ export default function HomePage(): React.ReactElement {
           <div className="mt-4 grid grid-cols-[minmax(0,1fr)] gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
             <Buscador variante="barra" />
             <Link href="/cartillas" className="text-sm font-semibold text-gray-600 hover:text-[#E8002D] hover:underline sm:px-2">Cartillas de {PARTNERS_OFICIALES_TEXTO} por zona →</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Todas las prepagas — debajo del cotizador. Lleva a la ficha de cada
-          una (Darío, 4-oct-2026), así las fichas toman fuerza ── */}
-      <CotizarPorPrepaga fuente="home-por-prepaga" modo="ver" />
-
-      {/* ── Ranking de prepagas: intención "mejor prepaga argentina" / precios.
-          Podio con precio según la edad (Darío, 26-oct-2026) ── */}
-      <section className="py-14 bg-white border-b border-gray-100">
-        <div className="container max-w-5xl mx-auto">
-          <div className="text-center mb-7 flex flex-col items-center gap-2.5">
-            <h2 className="text-2xl sm:text-[32px] font-extrabold tracking-tight text-gray-900 text-balance">Las mejores prepagas de Argentina</h2>
-            <p className="text-gray-500 text-sm sm:text-base max-w-xl">Las tres prepagas con las que trabajamos y para quién es cada una. Cotizá online y un asesor oficial te pasa tu precio.</p>
-          </div>
-
-          <RankingHome items={itemsRanking} />
-
-          <div className="text-center mt-6">
-            <Link href="/prepagas" className="text-sm font-bold text-[#E8002D] hover:underline">Ver los planes y precios de las {prepagas.length} prepagas →</Link>
           </div>
         </div>
       </section>
