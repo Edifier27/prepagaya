@@ -8,7 +8,7 @@ import { preciosParaGrupo, precioGrupo, FUENTE_PRECIOS, type Modalidad } from '@
 //   → { precios: { "swiss-medical/smg20": 123456, ... }, fuente }
 // Con planes: ["swiss-medical/smg20", …] suma porPersona (precio de cada
 // integrante, en el orden de edades) para esos planes: el cotizador v2 lo usa
-// para la promo de Swiss (50% a menores de 26, 15% a los adultos).
+// y el comparador para la promo de Swiss, que va por integrante.
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null)
   const zona = String(body?.zona ?? '').trim()

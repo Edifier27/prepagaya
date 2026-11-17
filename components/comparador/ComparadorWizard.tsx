@@ -24,18 +24,23 @@ import type { SumaPlan } from '@/lib/planes-suma'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 import { paginaPrevia } from '@/lib/navegacion-cliente'
 import { AvisoCelular, useAvisoCelular } from '@/components/ui/AvisoCelular'
+import { descuentosSwiss } from '@/lib/precios/promo-swiss'
 
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
 // la alícuota de IVA en salud es del 10,5%, no el 21% general. El 25% es solo
 // para monotributistas; el resto, 15% en la mayoría de las prepagas (Darío,
 // 23-sep-2026).
+const IVA_SALUD = 0.105
 const DESCUENTO_POR_SITUACION: Record<SituacionLaboral, number> = {
   particular: 0.15,
-  'relacion-dependencia': 1 - (1 - 0.15) * (1 - 0.105),
+  'relacion-dependencia': 1 - (1 - 0.15) * (1 - IVA_SALUD),
   monotributo: 0.25,
   'responsable-inscripto': 0.15,
 }
+
+// Planes de Swiss Medical, para pedir el precio de cada integrante (promo por integrante)
+const PLANES_SWISS = (prepagas.find((p) => p.slug === 'swiss-medical')?.planes ?? []).map((pl) => `swiss-medical/${pl.slug}`)
 
 // Aporte del trabajador en relación de dependencia: 7,5% del sueldo bruto,
 // se descuenta directo de la cuota mostrada (APORTE_DERIVABLE, lib/utils).
@@ -230,13 +235,20 @@ function mecharResultados(sorted: Resultado[]): Resultado[] {
 // multiplicadores de calcGrupal (23-sep-2026).
 // `pedida`: la prepaga que la persona vino a cotizar (?prepaga=), que entra
 // aunque esté en FUERA_DEL_COMPARADOR.
-function calcResultados(personas: Persona[], zonaKey: string, descuento: number, oficiales: Record<string, number>, zonaPrepagas: Record<string, string[]>, pedida?: string): Resultado[] {
+// Swiss Medical (17-nov-2026): el descuento va por integrante, con la regla
+// del CRM (lib/precios/promo-swiss.ts), sobre el precio de cada uno
+// (`porPersona`, en el orden de `edades`). La pantalla no cambia: sigue
+// mostrando el descuento de la situación laboral (Darío: el de los menores de
+// 26 y los hijos es obligatorio y se lo cuenta el asesor).
+function calcResultados(personas: Persona[], zonaKey: string, descuento: number, oficiales: Record<string, number>, zonaPrepagas: Record<string, string[]>, pedida: string | undefined, situacion: SituacionLaboral, edades: number[], porPersona: Record<string, number[]>): Resultado[] {
   const slugsZona = zonaPrepagas[zonaKey] ?? zonaPrepagas['otras']
   const prepagasFiltradas = prepagas.filter((p) => slugsZona.includes(p.slug) && (!FUERA_DEL_COMPARADOR.includes(p.slug) || p.slug === pedida))
   const out: Resultado[] = []
   // Planes con edad acotada (Sancor GEN 18-45, Avalian Plan Hoy 18-35): se
   // toma la persona de mayor edad del grupo como referencia del titular.
   const edadMayor = Math.max(0, ...personas.map((p) => parseInt(p.edad) || 0))
+  const dSwiss = descuentosSwiss(edades, situacion)
+  const factorSituacion = situacion === 'relacion-dependencia' ? 1 - IVA_SALUD : 1
   for (const prep of prepagasFiltradas) {
     for (const plan of prep.planes) {
       if (plan.edadMaxima && edadMayor > plan.edadMaxima) continue
@@ -245,8 +257,13 @@ function calcResultados(personas: Persona[], zonaKey: string, descuento: number,
       if (plan.redAbierta) score += 3
       if (!plan.copago) score += 2
       if (plan.destacado) score += 3
-      const precioGrupal = oficiales[`${prep.slug}/${plan.slug}`] ?? calcGrupal(plan.precio, personas)
-      out.push({ prepaga: prep, plan, score, precioGrupal, precioDesc: Math.round(precioGrupal * (1 - descuento)) })
+      const k = `${prep.slug}/${plan.slug}`
+      const precioGrupal = oficiales[k] ?? calcGrupal(plan.precio, personas)
+      const pp = prep.slug === 'swiss-medical' ? porPersona[k] : undefined
+      const precioDesc = pp && pp.length === edades.length && oficiales[k] !== undefined
+        ? Math.round(pp.reduce((t, p, i) => t + p * (1 - dSwiss[i]), 0) * factorSituacion)
+        : Math.round(precioGrupal * (1 - descuento))
+      out.push({ prepaga: prep, plan, score, precioGrupal, precioDesc })
     }
   }
   return mecharResultados(out.sort((a, b) => b.score - a.score))
@@ -707,7 +724,10 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
 
   // Precios oficiales del grupo (motor de precios, /api/precios): se piden al
   // llegar a preview/resultados y cada vez que cambian edades o zona.
+  // Para Swiss también se pide el precio de cada integrante (porPersona), que
+  // es sobre lo que se aplica su promo (calcResultados).
   const [preciosOficiales, setPreciosOficiales] = useState<Record<string, number>>({})
+  const [preciosPorPersona, setPreciosPorPersona] = useState<{ edades: string; precios: Record<string, number[]> }>({ edades: '', precios: {} })
   const edadesClave = personas.map((p) => parseInt(p.edad)).filter((n) => Number.isFinite(n)).join(',')
   useEffect(() => {
     if (!zonaKey || !edadesClave) return
@@ -715,10 +735,14 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
     fetch('/api/precios', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ zona: zonaKey, edades: edadesClave.split(',').map(Number) }),
+      body: JSON.stringify({ zona: zonaKey, edades: edadesClave.split(',').map(Number), planes: PLANES_SWISS }),
     })
       .then((res) => (res.ok ? res.json() : null))
-      .then((data) => { if (!cancelado && data?.precios) setPreciosOficiales(data.precios) })
+      .then((data) => {
+        if (cancelado || !data?.precios) return
+        setPreciosOficiales(data.precios)
+        setPreciosPorPersona({ edades: edadesClave, precios: data.porPersona ?? {} })
+      })
       .catch(() => {})
     return () => { cancelado = true }
   }, [zonaKey, edadesClave])
@@ -858,8 +882,10 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
   }
 
   const allResultados = useMemo(() =>
-    (step === 'resultados' || step === 'preview') ? calcResultados(personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas, origen?.prepaga) : [],
-    [step, personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas, origen?.prepaga]
+    (step === 'resultados' || step === 'preview')
+      ? calcResultados(personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas, origen?.prepaga, situacion, preciosPorPersona.edades ? preciosPorPersona.edades.split(',').map(Number) : [], preciosPorPersona.precios)
+      : [],
+    [step, personas, zonaKey, descuentoRate, preciosOficiales, zonaPrepagas, origen?.prepaga, situacion, preciosPorPersona]
   )
 
   // Prepagas presentes en los resultados de esta zona — la lista del filtro
