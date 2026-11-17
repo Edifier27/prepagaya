@@ -56,6 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           `plan ${k} ${c.prepagaNombre.toLowerCase()}`,
           `cartilla ${c.prepagaNombre.toLowerCase()} ${pc.toLowerCase()}`,
           `sanatorios ${c.prepagaNombre.toLowerCase()} ${pc.toLowerCase()}`,
+          ...(cs?.corporativos ?? []).map((x) => `cartilla ${x.toLowerCase()}`),
         ],
       }
     }
