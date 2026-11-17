@@ -1,6 +1,7 @@
 // Solo del lado del servidor (la usa app/api/precios): no importar desde client components.
 import tarifasJson from '@/lib/data/tarifas-oficiales.json'
 import { EDAD_MAX_INGRESO } from '@/lib/utils'
+import { proporcionHijo, tarifaHijoPorIntegrante } from '@/lib/precios/tarifa-hijo'
 
 // Motor de precios oficial (23-sep-2026, pedido de Darío: "un solo motor de
 // precios"). Calcula el precio de lista de un plan para un grupo con la
@@ -123,11 +124,17 @@ export function precioGrupo(
   for (const region of regionesDe(prepaga, zona)) {
     const bandas = tabla[region]?.[clave]
     if (!bandas) continue
+    // Tarifa de hijo de la lista comercial (hoy solo Swiss, ver tarifa-hijo.ts):
+    // los hijos menores de 21 pagan una proporción del adulto de la primera franja
+    const prop = proporcionHijo(prepaga, plan, modalidad)
+    const tarifas = prop ? tarifaHijoPorIntegrante(edades) : []
+    const primeraFranja = valorParaEdad(bandas, 0)
     const porPersona: { edad: number; precio: number }[] = []
-    for (const edad of edades) {
+    for (const [i, edad] of edades.entries()) {
       const v = valorParaEdad(bandas, edad)
       if (v === null) return null // edad fuera de los rangos declarados: sin dato
-      porPersona.push({ edad, precio: Math.round(v * factor) })
+      const t = tarifas[i]
+      porPersona.push({ edad, precio: Math.round((prop && t && primeraFranja ? primeraFranja * prop[t] : v) * factor) })
     }
     return { total: porPersona.reduce((s, p) => s + p.precio, 0), porPersona, region, periodo: DATOS.periodoPorPrepaga[prepaga] }
   }
