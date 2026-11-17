@@ -2395,7 +2395,7 @@ export const guiasPreguntas: GuiaData[] = [
         },
         {
           titulo: 'Cuánto cuesta sumar a cada integrante',
-          cuerpo: `En Swiss cada integrante paga según su edad, con una excepción que baja mucho la cuota de las familias: los hijos menores de ${EDAD_TARIFA_HIJO} tienen tarifa de hijo. El primer hijo paga menos que un adulto, y desde el segundo, todavía menos. De ${EDAD_TARIFA_HIJO} años en adelante, el hijo paga como un adulto de su edad. La pareja, los padres y los suegros pagan según su franja de edad: hasta los 35 es el precio más bajo, y sube a los ${cortes('swiss-medical', 'smg20')} años. Cotizando online, la promo de Swiss es 15% OFF a los adultos y 50% OFF a los menores de 26.`,
+          cuerpo: `En Swiss cada integrante paga según su edad, con una excepción que baja mucho la cuota de las familias: los hijos menores de ${EDAD_TARIFA_HIJO} tienen tarifa de hijo. El primer hijo paga menos que un adulto, y desde el segundo, todavía menos. De ${EDAD_TARIFA_HIJO} años en adelante, el hijo paga como un adulto de su edad. La pareja, los padres y los suegros pagan según su franja de edad: hasta los 35 es el precio más bajo, y sube a los ${cortes('swiss-medical', 'smg20')} años. Cotizando online, Swiss tiene 15% OFF, y el asesor te confirma el precio final de cada integrante.`,
           cta: { texto: 'Poné las edades de tu familia y mirá el precio de cada plan de Swiss.', boton: 'Cotizar para mi familia', href: '/comparador?prepaga=swiss-medical&desde=guia-familiar' },
         },
         {

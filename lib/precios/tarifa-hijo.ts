@@ -59,22 +59,30 @@ export function proporcionHijo(prepaga: string, plan: string, modalidad: Modalid
 }
 
 /**
- * Quién paga tarifa de hijo cuando solo se conocen las edades, con la regla
- * del CRM (integrantesDesdeTexto): los dos mayores de 21 o más son el titular
- * y la pareja (si nadie tiene 21, el mayor es el titular); el resto son hijos.
- * Los hijos menores de 21 pagan tarifa de hijo: el mayor de ellos, la de
- * primer hijo; los demás, la de siguientes. Devuelve, en el orden de las
- * edades, 'primero' | 'siguientes' | null (paga por su edad).
+ * Quién es hijo cuando solo se conocen las edades, con la regla del CRM
+ * (integrantesDesdeTexto): los dos mayores de 21 o más son el titular y la
+ * pareja (si nadie tiene 21, el mayor es el titular); el resto son hijos.
+ * Devuelve, en el orden de las edades, true para cada hijo.
  */
-export function tarifaHijoPorIntegrante(edades: number[]): ('primero' | 'siguientes' | null)[] {
+export function hijosPorEdades(edades: number[]): boolean[] {
   const orden = edades.map((edad, i) => ({ edad, i })).sort((a, b) => b.edad - a.edad)
   const adultos = orden.filter((x) => x.edad >= EDAD_TARIFA_HIJO).slice(0, 2).map((x) => x.i)
   if (!adultos.length && orden.length) adultos.push(orden[0].i)
+  return edades.map((_, i) => !adultos.includes(i))
+}
+
+/**
+ * Quién paga tarifa de hijo: los hijos (hijosPorEdades) menores de 21. El
+ * mayor de ellos, la de primer hijo; los demás, la de siguientes. Devuelve,
+ * en el orden de las edades, 'primero' | 'siguientes' | null (paga por su edad).
+ */
+export function tarifaHijoPorIntegrante(edades: number[]): ('primero' | 'siguientes' | null)[] {
+  const hijos = hijosPorEdades(edades)
   const out: ('primero' | 'siguientes' | null)[] = edades.map(() => null)
-  let hijos = 0
-  for (const x of orden) {
-    if (adultos.includes(x.i) || x.edad >= EDAD_TARIFA_HIJO) continue
-    out[x.i] = hijos++ === 0 ? 'primero' : 'siguientes'
+  let n = 0
+  for (const i of edades.map((_, i) => i).sort((a, b) => edades[b] - edades[a])) {
+    if (!hijos[i] || edades[i] >= EDAD_TARIFA_HIJO) continue
+    out[i] = n++ === 0 ? 'primero' : 'siguientes'
   }
   return out
 }
