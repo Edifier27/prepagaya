@@ -94,6 +94,11 @@ Otros 147 leads tienen como página el cotizador mismo: entraron directo o sin p
   - (b) Que mientras se ve la barra de cotizar se esconda el menú de abajo, porque la barra ya es el botón principal. Así queda libre cerca del 75%.
 - **Alcance**: todas las fichas de plan (3.673 visitantes por mes) y, por el punto (b), todas las páginas que tienen barra.
 - **Esfuerzo**: chico (`OrejitaPlan.tsx`, `BottomNav.tsx`, `BarraCotizar.tsx`).
+- **Hecho (17-nov-2026)**: Darío pidió sacar las orejitas, en celular y en compu.
+  - En el celular, al bajar, la pantalla libre pasó de 443 a 490 px (de 67% a 74%).
+  - Arriba de todo, el botón de cotizar ya no queda tapado.
+  - El paso a otros planes sigue en la página: "Otros planes", "Diferencias entre…" y el comparador de planes.
+  - Queda pendiente el punto (b).
 
 ### 2. Fichas de plan de Swiss: el título promete el precio y el precio está a 5,5 pantallas
 
