@@ -16,6 +16,10 @@ export interface PlanCartilla {
   comparadorSlug?: string
   /** Otros planes del comparador que usan esta misma cartilla (ej. S2 → Global) */
   otrosComparadorSlugs?: string[]
+  /** Nombre propio de la cartilla, cuando la prepaga la nombra aparte del plan (Swiss: "Global") */
+  cartilla?: string
+  /** Código de esa cartilla en el buscador oficial (Swiss: "CLE") */
+  codigoCartilla?: string
 }
 
 export interface ZonaCartillaIndice {
