@@ -11,6 +11,7 @@ import {
   slugPlan,
 } from '@/lib/data/cartilla-zonas'
 import { PaginaPlan, PaginaZona, anio, mesAnio, planCorto } from '@/components/cartillas/PaginasCartillaZona'
+import { cartillasSwiss } from '@/lib/data/cartillas-swiss'
 
 // Segundo nivel del silo de cartillas por zona:
 //   /cartillas/osde/gba-zona-norte   → cartilla de la zona ("cartilla osde zona norte")
@@ -37,6 +38,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const plan = getPlanPorSlug(slug, zona)
   if (plan) {
     const pc = planCorto(plan)
+    // Swiss (17-nov-2026): la cartilla tiene nombre propio (Nubial, Global,
+    // Premium) y también se busca así; el título suma el nombre sin sacar los
+    // códigos de plan, que son la búsqueda más grande ("cartilla swiss medical smg20").
+    if (plan.cartilla) {
+      const cs = cartillasSwiss().find((x) => x.plan.id === plan.id)
+      const n = cs?.internacionCaba.length
+      const k = plan.cartilla.toLowerCase()
+      return {
+        title: { absolute: `Cartilla ${c.prepagaNombre} ${plan.cartilla} (${pc}) ${anio(c)}: sanatorios` },
+        description: `La cartilla ${plan.cartilla} de ${c.prepagaNombre} es la de los planes ${cs ? cs.planes.map((x) => x.nombre).join(', ').replace(/, ([^,]*)$/, ' y $1') : pc}.${n ? ` ${n} sanatorios para internación en CABA` : ''}, más GBA y el interior, con dirección y teléfono. Oficial, ${mesAnio(c)}.`,
+        alternates: { canonical: `${SITE_URL}/cartillas/${slug}/${zona}` },
+        keywords: [
+          `cartilla ${k} ${c.prepagaNombre.toLowerCase()}`,
+          `${c.prepagaNombre.toLowerCase()} cartilla ${k}`,
+          `${c.prepagaNombre.toLowerCase()} ${k}`,
+          `plan ${k} ${c.prepagaNombre.toLowerCase()}`,
+          `cartilla ${c.prepagaNombre.toLowerCase()} ${pc.toLowerCase()}`,
+          `sanatorios ${c.prepagaNombre.toLowerCase()} ${pc.toLowerCase()}`,
+        ],
+      }
+    }
     return {
       // Títulos de hasta ~60 caracteres y descripción que no se corta (11-oct-2026):
       // Google corta lo que pasa de ese largo y en el celular se ve todavía menos.

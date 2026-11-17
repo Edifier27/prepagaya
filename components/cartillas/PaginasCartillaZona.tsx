@@ -25,6 +25,8 @@ import { centrosEnOtrasCartillas } from '@/lib/data/cartilla-zonas/cruce'
 import { enlacePlanesDeLaZona } from '@/lib/seo/enlace-cartilla-localidad'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { ldJson } from '@/lib/jsonld'
+import { TablaCartillasSwiss } from '@/components/cartillas/TablaCartillasSwiss'
+import { faqsCartillaSwiss, respuestaCartillaSwiss } from '@/lib/data/cartillas-swiss'
 
 // Páginas del silo de cartilla por zona (estructura silo: /cartillas →
 // /cartillas/[prepaga] → /cartillas/[prepaga]/[zona | plan-x] →
@@ -46,6 +48,10 @@ export function anio(c: CartillaPrepaga): string {
 /** "Plan 210" → "210"; "Integral (AS200/AS204)" → "Integral" */
 export function planCorto(p: PlanCartilla): string {
   return p.label.replace(/^Plan /, '').replace(/ \(.*\)$/, '')
+}
+/** Para títulos: "Nubial (SMG02 y S1)" si la cartilla tiene nombre propio (Swiss), si no "210" */
+export function planTitulo(p: PlanCartilla): string {
+  return p.cartilla ? `${p.cartilla} (${planCorto(p)})` : planCorto(p)
 }
 
 function contar(centros: CentroCartilla[], plan?: string) {
@@ -467,22 +473,28 @@ export function faqsPlan(c: CartillaPrepaga, p: PlanCartilla) {
   const sumaSiguiente = caba && siguiente ? centrosConPlanSuperior(caba.centros, p.id, c.planes, c.escalera, 'internacion').filter((x) => x.desde.id === siguiente.id) : []
   const zonasCon = c.zonas.filter((z) => z.centros.some((ce) => ce.internacion.includes(p.id) || ce.guardia.includes(p.id)))
   const faqs: { q: string; a: string }[] = []
+  // Swiss (17-nov-2026): la cartilla tiene nombre propio y así se busca
+  // ("cartilla global swiss medical"); las preguntas van con ese nombre.
+  const deLa = p.cartilla ? `la cartilla ${p.cartilla} de ${c.prepagaNombre}` : null
+  const propias = p.cartilla ? faqsCartillaSwiss(p.id) : []
+  if (propias[0]) faqs.push(propias[0])
   if (intCaba.length > 0) {
     faqs.push({
-      q: `¿Qué sanatorios cubre el ${c.prepagaNombre} ${planCorto(p)} en CABA?`,
+      q: deLa ? `¿Qué sanatorios tiene ${deLa} en CABA?` : `¿Qué sanatorios cubre el ${c.prepagaNombre} ${planCorto(p)} en CABA?`,
       a: `Según ${textoFechaConArticulo(c)}, en la Ciudad de Buenos Aires el ${p.label} incluye ${intCaba.length} sanatorio${intCaba.length === 1 ? '' : 's'} para internación: ${listaNombres(intCaba, 10)}.`,
     })
   }
   if (siguiente && sumaSiguiente.length > 0) {
     faqs.push({
-      q: `¿Qué sanatorios suma el ${siguiente.label} frente al ${p.label}?`,
+      q: siguiente.cartilla && p.cartilla ? `¿Qué sanatorios suma la cartilla ${siguiente.cartilla} frente a la ${p.cartilla}?` : `¿Qué sanatorios suma el ${siguiente.label} frente al ${p.label}?`,
       a: `En CABA, el ${siguiente.label} suma para internación: ${sumaSiguiente.map((x) => x.nombre).join(', ')}.`,
     })
   }
   faqs.push({
-    q: `¿En qué zonas tiene cartilla el ${c.prepagaNombre} ${planCorto(p)}?`,
+    q: deLa ? `¿En qué zonas tiene centros ${deLa}?` : `¿En qué zonas tiene cartilla el ${c.prepagaNombre} ${planCorto(p)}?`,
     a: `El ${p.label} tiene centros en ${zonasCon.length} zona${zonasCon.length === 1 ? '' : 's'} de la cartilla${amba.length ? `, incluyendo ${amba.filter((z) => zonasCon.includes(z)).map((z) => nombreCortoZona(z.nombre)).join(', ')}` : ''}. Elegí tu zona en el buscador para ver los sanatorios y ${c.labelGuardia.toLowerCase()} cerca tuyo.`,
   })
+  faqs.push(...propias.slice(1))
   return faqs
 }
 
@@ -496,6 +508,7 @@ export function PaginaPlan({ c, p }: { c: CartillaPrepaga; p: PlanCartilla }) {
   const faqs = faqsPlan(c, p)
   const idxEsc = c.escalera.indexOf(p.id)
   const siguiente = idxEsc >= 0 ? c.planes.find((x) => x.id === c.escalera[idxEsc + 1]) : undefined
+  const respuesta = p.cartilla ? respuestaCartillaSwiss(p.id) : null
 
   return (
     <>
@@ -508,7 +521,7 @@ export function PaginaPlan({ c, p }: { c: CartillaPrepaga; p: PlanCartilla }) {
           { name: p.label },
         ]),
         ldFaq(faqs),
-        ldPagina(c, `Cartilla del ${c.prepagaNombre} ${p.label}`),
+        ldPagina(c, p.cartilla ? `Cartilla ${p.cartilla} de ${c.prepagaNombre} (${corto})` : `Cartilla del ${c.prepagaNombre} ${p.label}`),
       ])}
       <Breadcrumb items={[{ href: '/', label: SITE_NAME }, { href: '/cartillas', label: 'Cartillas' }, { href: base, label: c.prepagaNombre }, { label: p.label }]} />
 
@@ -518,8 +531,11 @@ export function PaginaPlan({ c, p }: { c: CartillaPrepaga; p: PlanCartilla }) {
             {c.tipoFecha === 'vigencia' ? `Cartilla oficial · vigente al ${c.vigencia}` : `Cartilla oficial · consultada el ${c.vigencia}`}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-3">
-            Cartilla {c.prepagaNombre} {corto}: sanatorios y {c.labelGuardia.toLowerCase()} por zona
+            {p.cartilla
+              ? <>Cartilla {p.cartilla} de {c.prepagaNombre} ({corto}): sanatorios y {c.labelGuardia.toLowerCase()} por zona</>
+              : <>Cartilla {c.prepagaNombre} {corto}: sanatorios y {c.labelGuardia.toLowerCase()} por zona</>}
           </h1>
+          {respuesta && <p className="text-gray-700 leading-relaxed max-w-3xl mb-3">{respuesta}</p>}
           <p className="text-gray-600 leading-relaxed max-w-3xl mb-5">
             Todos los sanatorios para internación y {c.labelGuardia.toLowerCase()} que incluye el {p.label} de {c.prepagaNombre}
             , zona por zona{zonasConPlan > 1 ? ` (${zonasConPlan} zonas y localidades)` : ''}. Elegí tu zona y mirá qué tenés cerca.
@@ -544,6 +560,16 @@ export function PaginaPlan({ c, p }: { c: CartillaPrepaga; p: PlanCartilla }) {
           />
         </div>
       </section>
+
+      {p.cartilla && c.prepagaSlug === 'swiss-medical' && (
+        <section className="py-10 bg-gray-50 border-b border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Cartilla {p.cartilla} frente a las otras cartillas de {c.prepagaNombre}</h2>
+            <p className="text-sm text-gray-500 mb-5">Qué planes usa cada cartilla, cuántos sanatorios tiene en CABA y desde cuánto sale.</p>
+            <TablaCartillasSwiss actual={p.id} />
+          </div>
+        </section>
+      )}
 
       {amba.map((z) => {
         const lista = soloPlan(z.centros, p.id)
@@ -697,7 +723,7 @@ export function PaginaPlanZona({ c, p, z }: { c: CartillaPrepaga; p: PlanCartill
             {c.tipoFecha === 'vigencia' ? `Cartilla oficial · vigente al ${c.vigencia}` : `Cartilla oficial · consultada el ${c.vigencia}`}
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-3">
-            Cartilla {c.prepagaNombre} {pc} en {nombreZonaTitulo(c.prepagaSlug, z)}
+            Cartilla {c.prepagaNombre} {planTitulo(p)} en {nombreZonaTitulo(c.prepagaSlug, z)}
           </h1>
           <p className="text-gray-600 leading-relaxed max-w-3xl mb-5">
             Con el {p.label} de {c.prepagaNombre}, en {nombreZonaTexto(c.prepagaSlug, z)} tenés{' '}

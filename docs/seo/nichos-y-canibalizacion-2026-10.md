@@ -14,6 +14,7 @@ Sale de tres fuentes: Search Console (17-sep a 14-oct), los leads reales de Verc
 |---|---|---|---|
 | "swiss medical rosario" (y cualquier "[prepaga] [ciudad]") | Cartilla por zona vs. planes y precios de la ciudad | 618 y 485 impresiones, posiciones 5,5 y 6 | La de planes ya enlazaba a la cartilla y no al revés. Ahora la cartilla enlaza a los planes de esa ciudad (commit `e36f03e`). Los títulos ya están separados desde antes (cartilla vs. "sucursal, planes y precios"). |
 | "swiss medical cartilla" | Hub de la marca vs. zona CABA | 849 y 1.324 impresiones, ambas en posición 8,5 | Sin cambio: el hub tiene 326 enlaces entrantes y CABA 50, cada una cumple un rol y no hay canibalización dañina. |
+| "cartilla nubial / global / premium" (17-nov-2026) | Cartilla de Swiss vs. página de cada cartilla vs. ficha del plan | "cartilla global swiss medical": 35 impresiones en 3 meses, posición 18,7 | Cada cartilla es dueña de su nombre (`/cartillas/swiss-medical/plan-smg02`, `-smg20` y `-smg30`); la cartilla de Swiss solo las resume en una tabla y enlaza; el precio sigue en la ficha de cada plan. Detalle en `cartillas-swiss-2026-11.md`. |
 | "[prepaga] + ciudad" en marcas sin sucursal propia (Medicus, Omint, Hominis, Federada) | Páginas de localidad vs. provincia | 93 a 98 % de vocabulario compartido entre ellas | Sin cambio: las 47 de Medicus suman 4.479 impresiones y 39 clics, más que las de provincia. Si Search Console empieza a marcarlas como duplicadas, se enriquecen. |
 
 ## 2. Nichos

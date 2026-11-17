@@ -45,7 +45,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const n = z.centros.filter((ce) => ce.internacion.includes(p.id)).length
   const g = z.centros.filter((ce) => ce.guardia.includes(p.id)).length
   return {
-    title: `Cartilla ${c.prepagaNombre} ${pc} ${corto} ${anio(c)}: sanatorios y ${c.labelGuardia.toLowerCase()}`,
+    // Swiss: con el nombre de la cartilla ("Nubial SMG02 y S1"), 17-nov-2026
+    title: `Cartilla ${c.prepagaNombre} ${p.cartilla ? `${p.cartilla} ` : ''}${pc} ${corto} ${anio(c)}: sanatorios y ${c.labelGuardia.toLowerCase()}`,
     description: `${c.prepagaNombre} ${pc} en ${z.nombre}: ${n} sanatorio${n === 1 ? '' : 's'} para internación${g ? ` y ${g} con ${c.labelGuardia.toLowerCase()}` : ''}, con dirección y teléfono. Qué suma un plan superior. Datos oficiales de ${mesAnio(c)}.`,
     alternates: { canonical: `${SITE_URL}/cartillas/${slug}/${zona}/${sub}` },
     keywords: [

@@ -17,6 +17,8 @@ import { tieneFarmacias } from '@/lib/data/cartilla-zonas/farmacias'
 import { esRubroComercio, rubrosDe } from '@/lib/data/cartilla-zonas/comercios'
 import { AlternativaSwiss } from '@/components/cartillas/AlternativaSwiss'
 import { ldJson } from '@/lib/jsonld'
+import { TablaCartillasSwiss } from '@/components/cartillas/TablaCartillasSwiss'
+import { cartillasSwiss } from '@/lib/data/cartillas-swiss'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -89,9 +91,18 @@ export default async function CartillaPrepagaPage({ params, searchParams }: Prop
         a: `Según ${textoFechaConArticulo(cartillaZonas)}, en la Ciudad de Buenos Aires el ${p2.label} suma para internación ${suma.length} sanatorio${suma.length === 1 ? '' : 's'} que el ${p1.label} no incluye: ${suma.map((x) => x.nombre).join(', ')}. En cada zona la diferencia es distinta: elegí tu zona en el buscador de arriba para verla.`,
       })
     }
+    // Swiss (17-nov-2026): sus 3 cartillas tienen nombre propio y la gente
+    // busca por ese nombre. Cada una tiene su página (plan-smg02, -smg20, -smg30).
+    const cs = slug === 'swiss-medical' ? cartillasSwiss() : []
+    if (cs.length > 0) {
+      faqsCartillaZonas.push({
+        q: `¿Cuál es mi cartilla de ${prep.nombre}: ${cs.map((x) => x.nombre).join(', ').replace(/, ([^,]*)$/, ' o $1')}?`,
+        a: `Depende de tu plan. ${cs.map((x) => `La cartilla ${x.nombre} es la de los planes ${x.planes.map((p) => p.nombre).join(', ').replace(/, ([^,]*)$/, ' y $1')}, con ${x.internacionCaba.length} sanatorios para internación en CABA`).join('. ')}. Datos ${textoFechaDe(cartillaZonas)}.`,
+      })
+    }
     faqsCartillaZonas.push({
       q: `¿Cómo veo la cartilla de ${prep.nombre} de mi zona?`,
-      a: `Elegí tu zona y tu plan en el buscador de esta página: te mostramos los sanatorios para internación y ${cartillaZonas.labelGuardia.toLowerCase()} de ${prep.nombre} con dirección y teléfono. Los datos salen de ${textoFechaConArticulo(cartillaZonas)}.`,
+      a: `Elegí tu zona y tu plan en el buscador de esta página: te mostramos los sanatorios para internación y ${cartillaZonas.labelGuardia.toLowerCase()} de ${prep.nombre} con dirección y teléfono. Los datos salen ${textoFechaDe(cartillaZonas)}.`,
     })
   }
 
@@ -285,6 +296,19 @@ export default async function CartillaPrepagaPage({ params, searchParams }: Prop
                 )
               })}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* Las 3 cartillas de Swiss Medical con nombre propio (17-nov-2026) */}
+      {slug === 'swiss-medical' && cartillaZonas && (
+        <section className="py-10 bg-white border-b border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Las 3 cartillas de Swiss Medical: Nubial, Global y Premium</h2>
+            <p className="text-sm text-gray-600 mb-5 max-w-3xl">
+              Cada plan de Swiss Medical usa una de estas tres cartillas. Entrá a la tuya para ver sus sanatorios y guardias por zona.
+            </p>
+            <TablaCartillasSwiss />
           </div>
         </section>
       )}

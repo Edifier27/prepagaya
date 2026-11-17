@@ -217,9 +217,13 @@ export const CARTILLAS: Record<string, CartillaPrepaga> = {
       // Los planes Sport no figuran en esa lista: no se asignan a ninguna.
       // SMG01 (Nubial Clásica) y SMG10 (Advance) se sacaron: ya no existen (23-sep-2026).
       planes: [
-        { id: 'SMG02', label: 'SMG02 y S1 (Nubial Quality)', comparadorSlug: 'smg02', otrosComparadorSlugs: ['s1'] },
-        { id: 'SMG20', label: 'SMG20 y S2 (Global)', comparadorSlug: 'smg20', otrosComparadorSlugs: ['s2'] },
-        { id: 'SMG30', label: 'SMG30 a SMG70 (Premium)', comparadorSlug: 'smg30', otrosComparadorSlugs: ['smg40', 'smg50', 'smg60', 'smg70'] },
+        // cartilla / codigoCartilla: nombre y código de cada cartilla en el
+        // buscador oficial (scripts/cartilla-swiss/swiss.py). La gente también
+        // busca por ese nombre: "cartilla nubial", "swiss medical global",
+        // "cartilla premium swiss medical" (17-nov-2026).
+        { id: 'SMG02', label: 'SMG02 y S1 (Nubial Quality)', comparadorSlug: 'smg02', otrosComparadorSlugs: ['s1'], cartilla: 'Nubial', codigoCartilla: 'NU3' },
+        { id: 'SMG20', label: 'SMG20 y S2 (Global)', comparadorSlug: 'smg20', otrosComparadorSlugs: ['s2'], cartilla: 'Global', codigoCartilla: 'CLE' },
+        { id: 'SMG30', label: 'SMG30 a SMG70 (Premium)', comparadorSlug: 'smg30', otrosComparadorSlugs: ['smg40', 'smg50', 'smg60', 'smg70'], cartilla: 'Premium', codigoCartilla: 'CLS' },
       ],
       planesConPagina: ['SMG02', 'SMG20', 'SMG30'],
       escalera: ['SMG02', 'SMG20', 'SMG30'],
