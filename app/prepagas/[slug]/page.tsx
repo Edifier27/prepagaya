@@ -271,7 +271,7 @@ function buildFAQs(prep: Prepaga, precioMin: number, precioMax: number, planEstr
       // por prepaga entre posición 7 y 11 con CTR 0 (Search Console,
       // 8-oct-2026). Misma ficha, sin URL nueva, para no canibalizar.
       q: `¿Cómo cotizar ${prep.nombre} online?`,
-      a: `En el cotizador online de PrepagaYa elegís tu zona y la edad de cada integrante y ves el precio oficial de cada plan de ${prep.nombre}, con 15% OFF por contratar online. Es gratis y sin DNI; un asesor te confirma la cotización exacta en ${TIEMPO_RESPUESTA}.`,
+      a: `En el cotizador online de PrepagaYa elegís tu zona y la edad de cada integrante y ves el precio oficial de cada plan de ${prep.nombre}${prep.slug === 'swiss-medical' ? ', con 15% OFF por contratar online' : ''}. Es gratis y sin DNI; un asesor te confirma la cotización exacta en ${TIEMPO_RESPUESTA}.`,
     },
     {
       q: `¿Qué plan de ${prep.nombre} conviene más?`,
@@ -1594,7 +1594,7 @@ export default async function PrepagaSlugPage({ params }: Props) {
         <div className="container max-w-xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Cotizá {prep.nombre} para tu perfil</h2>
           <p className="text-white text-sm mb-6">
-            El precio cambia según tu edad y zona. Te pasamos el precio exacto con 15% OFF por contratar online.
+            El precio cambia según tu edad y zona. {esSwiss ? 'Te pasamos el precio exacto con 15% OFF por contratar online.' : 'Te pasamos el precio exacto, gratis y sin DNI.'}
           </p>
           <div className="flex flex-col items-center gap-3">
               <ContratarPlanButton

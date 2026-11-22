@@ -25,7 +25,7 @@ export function GET() {
       const m = ultimoMesOficial()
       return m ? [`- Aumento promedio de las prepagas en ${m.label.toLowerCase()}: ${m.promedio.toLocaleString('es-AR')}% (cuadros tarifarios SSSalud). Detalle por prepaga: ${SITE_URL}/aumentos`] : []
     })(),
-    '- Descuento por contratar online con PrepagaYa: 15% en la mayoría de las prepagas; 25% para monotributistas.',
+    '- Descuento por contratar online con PrepagaYa: 15% OFF solo en Swiss Medical (25% para monotributistas de Swiss Medical). Las demás prepagas se cotizan al precio de lista oficial, sin descuento.',
     `- Tiempo de respuesta a cada consulta: ${TIEMPO_RESPUESTA}.`,
     '- Psicología, maternidad (Plan Materno Infantil) e internación son obligatorias por el PMO en todos los planes.',
     '',

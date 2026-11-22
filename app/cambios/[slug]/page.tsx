@@ -258,7 +258,7 @@ export default async function CambioPage({ params }: Props) {
           {/* CTA */}
           <div className="bg-gradient-to-r from-[#E8002D] to-[#B8001F] rounded-2xl p-7 text-white text-center mb-10">
             <h2 className="text-xl font-bold mb-2">Cotizá {destino.nombre} para tu edad exacta</h2>
-            <p className="text-red-100 text-sm mb-5">El precio de lista es para 30 años. Cotizá gratis y sin DNI para ver tu valor real, con el 15% al 25% de descuento según tu situación.</p>
+            <p className="text-red-100 text-sm mb-5">El precio de lista es para 30 años. Cotizá gratis y sin DNI para ver tu valor real.{c.destinoNombre === 'Swiss Medical' ? ' Con 15% OFF online (25% si sos monotributista).' : ''}</p>
             <Link
               href="/comparador"
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#E8002D] font-bold rounded-xl text-sm hover:bg-red-50 transition-colors"

@@ -117,7 +117,7 @@ export function ComparacionCruzadaPage({ c }: { c: Comp }) {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-gray-500 mt-2">Cotizando online tenés 15% OFF sobre estos valores (25% si sos monotributista).</p>
+          <p className="text-xs text-gray-500 mt-2">El 15% OFF online (25% si sos monotributista) aplica solo a Swiss Medical; las demás se cotizan al precio de lista.</p>
         </div>
       </section>
 
