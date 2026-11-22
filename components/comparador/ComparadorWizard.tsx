@@ -29,8 +29,8 @@ import { descuentosSwiss } from '@/lib/precios/promo-swiss'
 // Descuento según cómo paga el usuario. Relación de dependencia combina el
 // 15% general con una reducción adicional de 10,5 puntos (descuento sucesivo):
 // la alícuota de IVA en salud es del 10,5%, no el 21% general. El 25% es solo
-// para monotributistas; el resto, 15% en la mayoría de las prepagas (Darío,
-// 23-sep-2026).
+// para monotributistas. Desde el 22-nov-2026 (Darío) el descuento es SOLO de
+// Swiss Medical: las demás prepagas se muestran a precio de lista oficial.
 const IVA_SALUD = 0.105
 const DESCUENTO_POR_SITUACION: Record<SituacionLaboral, number> = {
   particular: 0.15,
@@ -260,9 +260,12 @@ function calcResultados(personas: Persona[], zonaKey: string, descuento: number,
       const k = `${prep.slug}/${plan.slug}`
       const precioGrupal = oficiales[k] ?? calcGrupal(plan.precio, personas)
       const pp = prep.slug === 'swiss-medical' ? porPersona[k] : undefined
-      const precioDesc = pp && pp.length === edades.length && oficiales[k] !== undefined
-        ? Math.round(pp.reduce((t, p, i) => t + p * (1 - dSwiss[i]), 0) * factorSituacion)
-        : Math.round(precioGrupal * (1 - descuento))
+      // El descuento es solo de Swiss Medical (Darío, 22-nov-2026): las demás prepagas van a precio de lista oficial
+      const precioDesc = prep.slug !== 'swiss-medical'
+        ? precioGrupal
+        : pp && pp.length === edades.length && oficiales[k] !== undefined
+          ? Math.round(pp.reduce((t, p, i) => t + p * (1 - dSwiss[i]), 0) * factorSituacion)
+          : Math.round(precioGrupal * (1 - descuento))
       out.push({ prepaga: prep, plan, score, precioGrupal, precioDesc })
     }
   }
@@ -332,10 +335,10 @@ interface SituacionDef {
 }
 
 const SITUACIONES: SituacionDef[] = [
-  { id: 'particular',             label: 'Particular',              desc: 'Pagás la cuota completa de tu bolsillo', badge: '15% OFF' },
-  { id: 'relacion-dependencia',   label: 'Relación de dependencia', desc: 'Tenés recibo de sueldo — te descontamos el aporte', badge: '15% OFF + aporte' },
-  { id: 'monotributo',            label: 'Monotributista',          desc: 'Facturás como monotributista', badge: '25% OFF' },
-  { id: 'responsable-inscripto',  label: 'Responsable Inscripto',   desc: 'Facturás con IVA discriminado', badge: '15% OFF' },
+  { id: 'particular',             label: 'Particular',              desc: 'Pagás la cuota completa de tu bolsillo', badge: 'Swiss 15% OFF' },
+  { id: 'relacion-dependencia',   label: 'Relación de dependencia', desc: 'Tenés recibo de sueldo — te descontamos el aporte', badge: 'Swiss 15% OFF + aporte' },
+  { id: 'monotributo',            label: 'Monotributista',          desc: 'Facturás como monotributista', badge: 'Swiss 25% OFF' },
+  { id: 'responsable-inscripto',  label: 'Responsable Inscripto',   desc: 'Facturás con IVA discriminado', badge: 'Swiss 15% OFF' },
 ]
 
 // ─── Progress bar (3 steps) ───────────────────────────────────────────────────
@@ -354,13 +357,13 @@ function mensajePerfil(personas: Persona[], descuento: number): { titulo: string
   if (edades.length > 1 && menores > 0) {
     return {
       titulo: 'Te mostramos los mejores planes para familias',
-      texto: `Pediatría, vacunas del calendario, maternidad y guardia para los chicos están cubiertas en cualquier plan: lo que cambia es en qué sanatorios te atendés y si pagás copagos. Por eso te ordenamos los planes que mejor resuelven eso para los ${edades.length} de tu familia, con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+      texto: `Pediatría, vacunas del calendario, maternidad y guardia para los chicos están cubiertas en cualquier plan: lo que cambia es en qué sanatorios te atendés y si pagás copagos. Por eso te ordenamos los planes que mejor resuelven eso para los ${edades.length} de tu familia. En Swiss Medical, con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
     }
   }
   if (edades.length > 1) {
     return {
       titulo: `Los mejores planes para ${edades.length} personas`,
-      texto: `Comparamos el precio total del grupo, no por persona, y ya te aplicamos un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+      texto: `Comparamos el precio total del grupo, no por persona. En Swiss Medical ya te aplicamos un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
     }
   }
   if (edades[0] < 22) {
@@ -368,12 +371,12 @@ function mensajePerfil(personas: Persona[], descuento: number): { titulo: string
       titulo: 'Planes para vos: buen precio y atención rápida',
       // Reintegro de gimnasio y deportes: planes Sport de Swiss (folletos 09/2026).
       // El chequeo deportivo sin cargo NO va (Darío, 2-oct-2026).
-      texto: `A tu edad pagás de los precios más bajos de cada prepaga. Los planes Sport de Swiss Medical suman reintegro de gimnasio y deportes. Turnos, credencial y autorizaciones desde el celular, con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+      texto: `A tu edad pagás de los precios más bajos de cada prepaga. Los planes Sport de Swiss Medical suman reintegro de gimnasio y deportes. Turnos, credencial y autorizaciones desde el celular. En Swiss Medical, con un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
     }
   }
   return {
     titulo: 'Los mejores planes para vos, con el mayor ahorro',
-    texto: `Priorizamos la cobertura que más vas a usar (consultas, estudios y guardia) al mejor precio para tu edad, y ya te aplicamos un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
+    texto: `Priorizamos la cobertura que más vas a usar (consultas, estudios y guardia) al mejor precio para tu edad. En Swiss Medical ya te aplicamos un ${pct} de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`,
   }
 }
 
@@ -1464,7 +1467,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                 <div className="text-center mb-5">
                   <p className="text-sm text-gray-500">Para {personas.length === 1 ? 'vos' : `tu grupo de ${personas.length}`} en {provinciaNombre}, planes desde</p>
                   <p className="text-3xl font-black text-gray-900 tabular-nums mt-0.5">{formatPrecio(precioDesdePreview)}<span className="text-base font-bold text-gray-500">/mes</span></p>
-                  <p className="text-xs font-semibold text-[#00875A] mt-1">con {Math.round(descuentoMostrado * 100)}% OFF · {allResultados.length} planes</p>
+                  <p className="text-xs font-semibold text-[#00875A] mt-1">{allResultados.length} planes · Swiss Medical con {Math.round(descuentoMostrado * 100)}% OFF</p>
                   <p className="text-sm text-gray-500 mt-3">Dejá tus datos para ver el precio de cada plan</p>
                 </div>
               ) : (
@@ -1600,7 +1603,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           </div>
           <div className="flex-shrink-0 rounded-xl bg-white text-[#E8002D] px-3 py-1.5 text-center leading-tight shadow-sm">
             <div className="text-base sm:text-lg font-black">{Math.round(descuentoMostrado * 100)}% OFF</div>
-            <div className="text-[10px] font-semibold text-gray-500">{aporteMensual > 0 ? '+ tu aporte' : 'por 12 meses'}</div>
+            <div className="text-[10px] font-semibold text-gray-500">{aporteMensual > 0 ? 'en Swiss + tu aporte' : 'en Swiss, por 12 meses'}</div>
           </div>
         </div>
         <button
@@ -2312,7 +2315,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
                           )}
                           <PrecioBloqueado texto={<>{formatPrecio(precioFinal(res.precioDesc))}<span className="text-xs font-medium text-gray-400">/mes*</span></>} />
                         </div>
-                        <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''} · {Math.round(descuentoMostrado * 100)}% OFF</div>
+                        <div className="text-[11px] text-gray-500">{personas.length} persona{personas.length !== 1 ? 's' : ''}{res.prepaga.slug === 'swiss-medical' ? ` · ${Math.round(descuentoMostrado * 100)}% OFF` : ''}</div>
                       </button>
                       {isAccedido && planAccedidoStatus === 'success' ? (
                         <div className="text-xs text-emerald-600 font-semibold bg-emerald-50 border border-emerald-200 rounded-xl px-3 py-2 text-center max-w-[170px]">
@@ -2345,7 +2348,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           </div>
           {resultadosFiltrados.length > 0 && (
             <p className="text-[11px] text-gray-400 leading-snug -mt-5 mb-6">
-              *Estimado sobre precios de lista, con el {Math.round(descuentoMostrado * 100)}% de descuento aplicado. El valor final lo confirma un asesor, que en el asesoramiento puede conseguirte más descuento.
+              *Estimado sobre precios de lista oficiales. En Swiss Medical, con el {Math.round(descuentoMostrado * 100)}% de descuento aplicado. El valor final lo confirma un asesor.
             </p>
           )}
           {!verTodos && sortBy === 'relevancia' && resultadosFiltrados.length > RECOMENDADOS_VISIBLES && (
