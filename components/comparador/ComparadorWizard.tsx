@@ -1603,7 +1603,7 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
           </div>
           <div className="flex-shrink-0 rounded-xl bg-white text-[#E8002D] px-3 py-1.5 text-center leading-tight shadow-sm">
             <div className="text-base sm:text-lg font-black">{Math.round(descuentoMostrado * 100)}% OFF</div>
-            <div className="text-[10px] font-semibold text-gray-500">{aporteMensual > 0 ? 'en Swiss + tu aporte' : 'en Swiss Medical'}</div>
+            <div className="text-[10px] font-semibold text-gray-500">{aporteMensual > 0 ? 'en Swiss + tu aporte' : 'en Swiss, por 12 meses'}</div>
           </div>
         </div>
         <button
