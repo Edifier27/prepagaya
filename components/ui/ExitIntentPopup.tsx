@@ -123,7 +123,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
           </button>
           <div className="text-2xl mb-1">No te vayas</div>
           <p className="text-red-100 text-sm leading-relaxed mb-3">
-            Te regalamos un cupón con 15% OFF en todos los planes.
+            Te regalamos un cupón con 15% OFF en Swiss Medical.
           </p>
           <div className="inline-flex items-center gap-2 bg-white/15 border border-dashed border-white/50 rounded-lg px-3 py-1.5">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -142,7 +142,7 @@ export function ExitIntentPopup(): React.ReactElement | null {
                 </svg>
               </div>
               <p className="font-bold text-gray-900 mb-1">¡Cupón activado!</p>
-              <p className="text-sm text-gray-500">Recibimos tus datos. Un asesor oficial te va a contactar a la brevedad para aplicar el 15% OFF.</p>
+              <p className="text-sm text-gray-500">Recibimos tus datos. Un asesor oficial te va a contactar a la brevedad para aplicar el 15% OFF de Swiss Medical.</p>
             </div>
           ) : (
             <>

@@ -49,7 +49,7 @@ const herramientasGrupos: { titulo: string; items: ItemMenu[] }[] = [
   {
     titulo: 'Elegí tu prepaga',
     items: [
-      { href: '/comparador', label: 'Cotizador', desc: 'Precio exacto para tu grupo, 15% OFF' },
+      { href: '/comparador', label: 'Cotizador', desc: 'Precio exacto para tu grupo' },
       { href: '/match-prepaga', label: '¿Qué prepaga me conviene?', desc: 'Test de 6 preguntas' },
       { href: '/chequeo-prepaga', label: '¿Pagás de más?', desc: 'Chequeá tu cuota y cuánto aumenta' },
       { href: '/calculadora-aportes', label: 'De tu obra social a una prepaga', desc: 'Cuánto pagás con tus aportes' },

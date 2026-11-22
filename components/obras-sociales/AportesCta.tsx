@@ -21,7 +21,7 @@ export function AportesCta({ osNombre, osSlug, derivable = true }: { osNombre?: 
             : 'Compará prepagas con precio oficial'}
         </span>
         <span className="block text-xs text-gray-600 mt-0.5">
-          {derivable ? 'Poné tu sueldo y mirá cuánto pagarías de diferencia, o nada.' : 'Cotizá gratis, sin DNI, con 15% OFF online.'}
+          {derivable ? 'Poné tu sueldo y mirá cuánto pagarías de diferencia, o nada.' : 'Cotizá gratis, sin DNI.'}
         </span>
       </span>
       <span className="shrink-0 rounded-xl bg-[#E8002D] px-3 py-2 text-xs font-bold text-white group-hover:bg-[#B8001F]">

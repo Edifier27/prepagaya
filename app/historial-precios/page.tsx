@@ -212,7 +212,7 @@ export default function HistorialPreciosPage(): React.ReactElement {
             <div className="bg-white rounded-xl border border-gray-200 p-5">
               <h3 className="font-semibold text-gray-900 mb-2 text-sm">Son precios de lista oficiales</h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                Cada prepaga declara sus cuadros tarifarios ante la Superintendencia de Servicios de Salud, por plan, región y franja de edad. Acá mostramos el valor a los 30 años en CABA y GBA; cotizando online tenés 15% OFF sobre ese precio.
+                Cada prepaga declara sus cuadros tarifarios ante la Superintendencia de Servicios de Salud, por plan, región y franja de edad. Acá mostramos el valor a los 30 años en CABA y GBA; en Swiss Medical, cotizando online, tenés 15% OFF sobre ese precio.
               </p>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-5">
@@ -244,7 +244,7 @@ export default function HistorialPreciosPage(): React.ReactElement {
             Mirá el precio de hoy para tu edad
           </h2>
           <p className="text-red-100 mb-7 text-sm">
-            Compará los precios de todas las prepagas con tu edad y tu zona, con 15% OFF cotizando online.
+            Compará los precios de todas las prepagas con tu edad y tu zona; en Swiss Medical, con 15% OFF cotizando online.
           </p>
           <Link
             href="/comparador"

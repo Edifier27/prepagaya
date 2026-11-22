@@ -11,7 +11,7 @@ export function CtaMedio({ titulo, texto, href = '/comparador', boton = 'Ver mi 
         <div className="rounded-2xl bg-gradient-to-r from-[#E8002D] to-[#B8001F] text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
           <div className="min-w-0">
             <p className="font-bold text-lg leading-snug">{titulo}</p>
-            <p className="text-sm text-red-100 mt-1">{texto ?? `Gratis y sin DNI: tu precio exacto por edad y zona, con 15% de descuento. Un asesor te responde en ${TIEMPO_RESPUESTA}.`}</p>
+            <p className="text-sm text-red-100 mt-1">{texto ?? `Gratis y sin DNI: tu precio exacto por edad y zona. Un asesor te responde en ${TIEMPO_RESPUESTA}.`}</p>
           </div>
           <Link href={href} className="shrink-0 inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-[#E8002D] font-bold text-sm hover:bg-red-50 transition-colors">
             {boton} →

@@ -209,7 +209,7 @@ export default function PrepagasEconomicasPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-4">
-            Cuadros tarifarios que cada prepaga declara ante la Superintendencia de Servicios de Salud, con IVA, {PRECIO_ACTUALIZADO}. Con el descuento por contratación online (15%, o 25% si sos monotributista) el valor baja más — cotizá tu precio exacto según tu edad y zona.
+            Cuadros tarifarios que cada prepaga declara ante la Superintendencia de Servicios de Salud, con IVA, {PRECIO_ACTUALIZADO}. En Swiss Medical, con el descuento por contratación online (15%, o 25% si sos monotributista) el valor baja más; las demás se cotizan al precio de lista. Cotizá tu precio exacto según tu edad y zona.
             {sinPrecioOficial.length > 0 && <> {sinPrecioOficial.map((p) => p.nombre).join(', ').replace(/, ([^,]*)$/, ' y $1')} no están en el ranking porque no tenemos su precio oficial: te las cotizamos igual.</>}
           </p>
         </section>

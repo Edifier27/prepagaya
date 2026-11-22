@@ -240,7 +240,7 @@ export default async function ObraSocialPage({ params }: Props) {
             <div className="mb-6 flex flex-col gap-3 rounded-2xl border-2 border-[#E8002D]/25 bg-white p-4 sm:flex-row sm:items-center sm:p-5 shadow-sm">
               <div className="min-w-0 flex-1">
                 <div className="font-bold text-gray-900">¿Tenés {os.nombre}? Con tus mismos aportes podés tener {os.tipo === 'sindical' || os.tipo === 'empresarial' ? 'Swiss Medical' : 'una prepaga'}</div>
-                <div className="mt-0.5 text-sm text-gray-600">Tus aportes se descuentan de la cuota y pagás solo la diferencia. Mirá tu precio en 1 minuto, con 15% OFF cotizando online.</div>
+                <div className="mt-0.5 text-sm text-gray-600">Tus aportes se descuentan de la cuota y pagás solo la diferencia. Mirá tu precio en 1 minuto, cotizando online.</div>
               </div>
               <div className="flex shrink-0 flex-col items-stretch gap-1.5 sm:items-end">
                 <Link href={`/comparador?prepaga=swiss-medical&desde=obra-social`}

@@ -216,7 +216,7 @@ export default function RankingPage() {
         </div>
       </section>
 
-      <CtaMedio href="/comparador?desde=ranking" titulo="¿Cuál de estas prepagas te conviene a vos?" texto="Cotizá gratis y sin DNI: precio exacto para tu edad y zona, con 15% de descuento online." />
+      <CtaMedio href="/comparador?desde=ranking" titulo="¿Cuál de estas prepagas te conviene a vos?" texto="Cotizá gratis y sin DNI: precio exacto para tu edad y zona. En Swiss Medical, con 15% OFF online." />
 
       {/* Datos: precio en tabla compacta. Sin la tabla de satisfacción
           (auditoría 18-oct-2026: el dato no tenía fuente publicable) */}
