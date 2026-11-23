@@ -17,7 +17,16 @@ export function Carrusel({
   etiqueta?: string
 }) {
   const pista = useRef<HTMLDivElement>(null)
-  const mover = (dir: 1 | -1) => pista.current?.scrollBy({ left: dir * pista.current.clientWidth, behavior: 'smooth' })
+  // Las flechas siempre responden (clics muertos): al llegar a un extremo, la que seguía da la vuelta al otro lado
+  const mover = (dir: 1 | -1) => {
+    const el = pista.current
+    if (!el) return
+    const alPrincipio = el.scrollLeft <= 4
+    const alFinal = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4
+    if (dir < 0 && alPrincipio) el.scrollTo({ left: el.scrollWidth, behavior: 'smooth' })
+    else if (dir > 0 && alFinal) el.scrollTo({ left: 0, behavior: 'smooth' })
+    else el.scrollBy({ left: dir * el.clientWidth, behavior: 'smooth' })
+  }
 
   return (
     <div>

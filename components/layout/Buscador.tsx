@@ -29,6 +29,8 @@ const SINONIMOS: Record<string, string> = {
   sancorsalud: 'sancor', swissmedical: 'swiss', oculista: 'especialistas', oculistas: 'especialistas', oftalmologo: 'especialistas',
   nutricionista: 'especialistas', nutricionistas: 'especialistas', lentes: 'anteojos', ciegos: 'discapacidad', ciego: 'discapacidad',
   oncologo: 'oncologia', oncologico: 'oncologia',
+  // "farmacias adheridas" (23-nov-2026): lo que se busca es la cobertura de medicamentos
+  farmacias: 'farmacia', adheridas: 'medicamentos', adheridos: 'medicamentos',
 }
 
 function tokensDe(q: string): string[] {
@@ -64,15 +66,21 @@ function buscar(prep: Preparada[], q: string): { lista: Preparada[]; parcial: bo
   // Sin coincidencia completa: lo que tenga más palabras (de 3+ letras) en común
   const utiles = tokens.filter((tk) => tk.length >= 3)
   if (utiles.length < 2) return aproximada(prep, tokens, puntuar)
+  // Las palabras raras pesan más (23-nov-2026): en "Nobis Medical" lo que se busca es "nobis" y no "medical" (que está en cientos
+  // de entradas), y en "fertilidad en sancor" es "fertilidad". Se ordena por el peso de lo encontrado y se quedan las que
+  // llegan a la mitad del mejor.
+  const peso = new Map(utiles.map((tk) => [tk, Math.log(1 + prep.length / Math.max(1, prep.filter((p) => p.todo.includes(tk)).length))]))
   let mejor = 0
-  const parciales: { p: Preparada; n: number; s: number }[] = []
+  const parciales: { p: Preparada; w: number; s: number }[] = []
   for (const p of prep) {
     const encontradas = utiles.filter((tk) => p.todo.includes(tk))
     if (!encontradas.length) continue
-    mejor = Math.max(mejor, encontradas.length)
-    parciales.push({ p, n: encontradas.length, s: puntuar(p, encontradas) })
+    // Una palabra en el título vale el doble que una escondida en el texto de apoyo (las cartillas listan especialidades: "Centro de infertilidad")
+    const w = encontradas.reduce((t, tk) => t + (peso.get(tk) ?? 0) * (p.t.includes(tk) ? 2 : 1), 0)
+    mejor = Math.max(mejor, w)
+    parciales.push({ p, w, s: puntuar(p, encontradas) })
   }
-  const lista = parciales.filter((x) => x.n === mejor).sort((a, b) => b.s - a.s).slice(0, 8).map((x) => x.p)
+  const lista = parciales.filter((x) => x.w >= mejor * 0.5).sort((a, b) => b.w - a.w || b.s - a.s).slice(0, 8).map((x) => x.p)
   return lista.length ? { lista, parcial: true } : aproximada(prep, tokens, puntuar)
 }
 

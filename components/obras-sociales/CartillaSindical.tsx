@@ -101,8 +101,9 @@ function Cta({ os }: { os: OsCartilla }) {
               Calcular mi diferencia →
             </Link>
           )}
-          <Link href="/comparador" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-2xl hover:bg-white/10 transition-all text-sm">
-            Comparar prepagas
+          {/* Fuente propia para medirlo (23-nov-2026): el lead llega como "... · cierre-os" */}
+          <Link href={`/comparador?${conCodigo ? 'prepaga=swiss-medical&' : ''}desde=cierre-os`} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-white text-white font-bold rounded-2xl hover:bg-white/10 transition-all text-sm">
+            {conCodigo ? 'Ver prepagas que aceptan tus aportes' : 'Comparar prepagas'}
           </Link>
         </div>
       </div>

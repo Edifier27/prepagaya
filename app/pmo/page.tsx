@@ -5,6 +5,7 @@ import { SITE_NAME, SITE_URL, CONTENT_UPDATE, OG_IMAGE } from '@/lib/utils'
 import { condiciones } from '@/lib/data/condiciones'
 import { coberturas } from '@/lib/data/coberturas'
 import { BlogTOC } from '@/components/blog/BlogTOC'
+import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { ldJson } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
@@ -290,6 +291,8 @@ export default function PmoPage() {
 
   return (
     <>
+      {/* Barra fija de cotizar (23-nov-2026, Clarity: 113 visitantes y ningún contacto): la misma pieza de las demás páginas, fuente "barra" */}
+      <BarraCotizar titulo="Swiss Medical" origen="pmo" href="/comparador?prepaga=swiss-medical&desde=barra" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <div className="bg-gray-50 border-b border-gray-100 py-3">

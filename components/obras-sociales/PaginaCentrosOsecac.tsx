@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { AportesCta } from '@/components/obras-sociales/AportesCta'
+import { CierreAportes } from '@/components/obras-sociales/CierreAportes'
 import { FiltroCentrosOsecac } from '@/components/obras-sociales/FiltroCentrosOsecac'
 import { PasateConTusAportes } from '@/components/obras-sociales/PasateConTusAportes'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
@@ -283,6 +284,8 @@ export function PaginaCentrosOsecac() {
           </p>
         </div>
       </section>
+
+      <CierreAportes fuente="cierre-os" osNombre="OSECAC" osSlug="osecac" />
     </>
   )
 }

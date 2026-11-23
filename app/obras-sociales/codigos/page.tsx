@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CtaMedio } from '@/components/ui/CtaMedio'
 import { AportesCta } from '@/components/obras-sociales/AportesCta'
+import { CierreAportes } from '@/components/obras-sociales/CierreAportes'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { obrasSociales } from '@/lib/data/obras-sociales'
 import {
@@ -232,6 +233,7 @@ export default function CodigosObrasSocialesPage() {
           </div>
         </div>
       </section>
+      <CierreAportes fuente="cierre-os" />
       <BarraCotizar titulo="Swiss Medical con tus aportes" origen="obras-sociales:codigos" href="/comparador?prepaga=swiss-medical&desde=barra" />
     </>
   )

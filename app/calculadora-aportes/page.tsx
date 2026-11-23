@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CalculadoraAportes } from '@/components/herramientas/CalculadoraAportes'
+import { CierreAportes } from '@/components/obras-sociales/CierreAportes'
 import { InsertarWidget } from '@/components/prensa/InsertarWidget'
 import { prepagasCotizables } from '@/lib/data/planes-cotizables'
 import { obrasSociales } from '@/lib/data/obras-sociales'
@@ -136,6 +137,8 @@ export default function CalculadoraAportesPage() {
           />
         </div>
       </section>
+
+      <CierreAportes fuente="cierre-aportes" />
     </>
   )
 }

@@ -6,6 +6,7 @@ import { SITE_NAME, SITE_URL, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { PasateConTusAportes, faqPasarseASwiss, faqCoseguros } from '@/components/obras-sociales/PasateConTusAportes'
 import { GuiaObraSocial, faqsGuia } from '@/components/obras-sociales/GuiaObraSocial'
 import { AportesCta } from '@/components/obras-sociales/AportesCta'
+import { CierreAportes } from '@/components/obras-sociales/CierreAportes'
 import { ldJson } from '@/lib/jsonld'
 
 // Ficha de obra social armada con el registro de la SSSalud (lib/data/
@@ -226,6 +227,8 @@ export function FichaRegistroPage({ ficha: f, entidad: e }: { ficha: Ficha; enti
           </div>
         </div>
       </section>
+
+      <CierreAportes fuente="cierre-os" osNombre={f.nombreCorto} osSlug={f.slug} />
     </>
   )
 }
