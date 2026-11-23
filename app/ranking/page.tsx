@@ -10,6 +10,7 @@ import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import type { Prepaga } from '@/types'
 import { ldJson } from '@/lib/jsonld'
+import { elegir } from '@/lib/seo/titulos'
 
 // Rediseño 28-sep-2026 (UX + copy): respuesta directa arriba (GEO), ganadores
 // por categoría alineados con el posicionamiento de partners (Swiss mejor
@@ -65,7 +66,13 @@ const faqs = [
 export const metadata: Metadata = {
   // "las 10 mejores prepagas de argentina" es como más se busca (11-oct-2026)
   // Pregunta textual (15-oct-2026, Search Console: "cual es la mejor prepaga de argentina" pos. 8 sin clics)
-  title: { absolute: `¿Cuál es la mejor prepaga de Argentina? Ranking ${ANIO} con precios` },
+  // Prueba del 23-nov-2026 (docs/seo/pruebas-titulos-2026-11-23.md): "las N mejores prepagas" en lugar de la pregunta; N sale de
+  // las prepagas que lista el ranking (no se inventa el 10). Antes: "¿Cuál es la mejor prepaga de Argentina? Ranking 2026 con precios".
+  title: { absolute: elegir([
+    `Las ${ORDEN_RANKING.length} mejores prepagas de Argentina ${ANIO}: ranking con precios`,
+    `Las ${ORDEN_RANKING.length} mejores prepagas de Argentina ${ANIO}: ranking y precios`,
+    `Las mejores prepagas de Argentina ${ANIO}: ranking con precios`,
+  ]) },
   description: `¿Cuál es la mejor prepaga? Ranking ${MES} por categoría: mejor en general, más económica y mejor cartilla, con el precio oficial de cada una.`,
   alternates: {
     canonical: `${SITE_URL}/ranking`,

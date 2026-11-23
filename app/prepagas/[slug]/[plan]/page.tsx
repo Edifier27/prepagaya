@@ -5,7 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
 import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
-import { elegir, pesosTitulo, PLANES_PRECIO_ARRIBA, PLANES_TITULO_PRECIO, FICHAS_PRECIOS_PRIMERO } from '@/lib/seo/titulos'
+import { elegir, mesCorto, pesosTitulo, PLANES_PRECIO_ARRIBA, PLANES_TITULO_CON_PLAN, PLANES_TITULO_PRECIO, PLANES_TITULO_PRECIO_A30, FICHAS_PRECIOS_PRIMERO } from '@/lib/seo/titulos'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
@@ -404,7 +404,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Swiss: "Swiss Medical SMG20" (sin "Plan", es como se busca) + precio por edad
   // "Cuánto sale" (23-sep-2026): misma intención que las fichas de prepaga.
   // absolute: sin "| PrepagaYa", para que Google lo muestre completo.
-  const titulo = escalaMeta && PLANES_TITULO_PRECIO.includes(`${prep.slug}/${plan.slug}`)
+  const clavePlan = `${prep.slug}/${plan.slug}`
+  const precioA30Meta = escalaMeta?.rangos.find((r) => r.desde <= 30 && 30 <= r.hasta)?.precio
+  const titulo = escalaMeta && PLANES_TITULO_CON_PLAN.includes(clavePlan)
+    // Prueba del 23-nov-2026: "Plan" delante, como se busca; sigue el "desde" porque el monto es el de la franja más joven
+    ? elegir([
+        `Plan ${codigoPlan(plan)} ${prep.nombre} precio ${mesCorto()}: desde ${pesosTitulo(escalaMeta.rangos[0].precio)}/mes`,
+        `Plan ${codigoPlan(plan)} ${prep.nombre} precio: desde ${pesosTitulo(escalaMeta.rangos[0].precio)}/mes`,
+      ])
+    : escalaMeta && precioA30Meta && PLANES_TITULO_PRECIO_A30.includes(clavePlan)
+    // Prueba del 23-nov-2026: el precio a los 30 años (el de /precios y el que se compara), no el de los 27
+    ? elegir([
+        `${prep.nombre} ${codigoPlan(plan)} precio ${PRECIO_ACTUALIZADO.toLowerCase()}: ${pesosTitulo(precioA30Meta)}/mes a los 30 años`,
+        `${prep.nombre} ${codigoPlan(plan)} precio: ${pesosTitulo(precioA30Meta)}/mes a los 30 años`,
+      ])
+    : escalaMeta && PLANES_TITULO_PRECIO.includes(clavePlan)
     // Ola 2 de CTR (29-oct-2026): "precio" pegado al plan, como se busca, y
     // "desde" porque el monto es el de la franja más joven
     ? elegir([
@@ -416,7 +430,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // "osde 210 precio" tenían impresiones y 0 clics con el título sin monto
     ? `${prep.nombre} ${codigoPlan(plan)}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes y qué cubre (${PRECIO_ACTUALIZADO.toLowerCase()})`
     : `${prep.nombre} ${plan.nombre}: cuánto sale en ${PRECIO_ACTUALIZADO.toLowerCase()} y qué cubre`
-  const descripcion = escalaMeta
+  const descripcion = escalaMeta && precioA30Meta && PLANES_TITULO_PRECIO_A30.includes(clavePlan)
+    ? `Precio oficial del ${codigoPlan(plan)} de ${prep.nombre}: ${pesosTitulo(precioA30Meta)}/mes a los 30 años (desde ${pesosTitulo(escalaMeta.rangos[0].precio)} hasta los ${escalaMeta.rangos[0].hasta}). ${plan.copago ? 'Con copago' : 'Sin copago'}. Precio por edad, qué cubre y sanatorios.`
+    : escalaMeta
     ? `Precio oficial del ${codigoPlan(plan)} de ${prep.nombre}: ${formatPrecio(escalaMeta.rangos[0].precio)}/mes hasta los ${escalaMeta.rangos[0].hasta} años. ${plan.copago ? 'Con copago' : 'Sin copago'}. Precio por edad, qué cubre y sanatorios.${prep.slug === 'swiss-medical' ? ' Cotizá con 15% OFF.' : ''}`
     : !Number.isFinite(plan.precio)
       ? `${prep.nombre} ${plan.nombre}: qué cubre, ${plan.copago ? 'con copago' : 'sin copago'}, red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Sin lista de precios oficial: cotizalo gratis para tu edad y zona.`

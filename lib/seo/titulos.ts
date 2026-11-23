@@ -42,6 +42,15 @@ export const FICHAS_TITULO_PRECIO = ['osde', 'sancor-salud']
 export const PLANES_TITULO_PRECIO = ['osde/210', 'osde/310', 'swiss-medical/smg20']
 
 /**
+ * Pruebas de título del 23-nov-2026 (auditoría de CTR con Search Console al 22-nov; protocolo y línea de base en
+ * docs/seo/pruebas-titulos-2026-11-23.md). Medir a las 2-4 semanas, página por página:
+ *  · A30: el precio de referencia a los 30 años en vez del "desde" de la franja más joven (OSDE 410 y 510).
+ *  · CON_PLAN: "Plan SMG20 …", como se busca ("plan smg20 swiss medical", 0,3% de CTR en la posición 9).
+ */
+export const PLANES_TITULO_PRECIO_A30 = ['osde/410', 'osde/510']
+export const PLANES_TITULO_CON_PLAN = ['swiss-medical/smg20']
+
+/**
  * Fichas de plan con "precio" en el H1 y la respuesta directa arriba de todo (9-nov-2026, Search
  * Console al 7-nov: "osde 210 precio" en la posición 8,0 y "osde 310 precio" en la 8,5, con CTR < 1%).
  * Medir a las 2-4 semanas contra docs/seo/datos/gsc-2026-11-09.
