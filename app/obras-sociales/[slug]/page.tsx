@@ -657,11 +657,12 @@ export default async function ObraSocialPage({ params }: Props) {
           <p className="text-white text-sm mb-6">
             {os.ganchoConversion ?? 'Precios reales actualizados. Sin DNI y sin compromiso. Decidí con toda la información.'}
           </p>
+          {/* Fuente propia para medirlo (23-nov-2026): el lead llega como "... · cierre-os". Con aportes derivables, a Swiss primero. */}
           <Link
-            href="/comparador"
+            href={`/comparador?${conversion ? 'prepaga=swiss-medical&' : ''}desde=cierre-os`}
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#E8002D] font-bold rounded-2xl hover:bg-red-50 transition-all shadow-lg text-sm"
           >
-            Comparar gratis →
+            {conversion ? 'Ver prepagas que aceptan tus aportes →' : 'Comparar gratis →'}
           </Link>
         </div>
       </section>
