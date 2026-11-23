@@ -123,6 +123,20 @@ export default function PreciosPage(): React.ReactElement {
 
   const totalPlanes = prepagas.reduce((acc, p) => acc + p.planes.length, 0)
 
+  // Tabla HTML con todos los planes (22-nov-2026, auditoría SEO/GEO): prepaga, plan, copago, red, precio, fuente y mes.
+  // "SSSalud" = el precio sale de los cuadros tarifarios oficiales (lib/data/precios-oficiales.json); "Referencia" = no está ahí.
+  const oficiales = preciosOficiales.precios as Record<string, Record<string, number>>
+  const periodos = preciosOficiales.periodoPorPrepaga as Record<string, number>
+  const mesDe = (n: number) => `${String(n).slice(4)}/${String(n).slice(0, 4)}`
+  const orden = (n: number) => (Number.isFinite(n) && n > 0 ? n : Number.MAX_SAFE_INTEGER) // los planes sin precio publicado, al final de cada prepaga
+  const filasTabla = prepagasCarrusel.flatMap((p) =>
+    [...p.planes].sort((a, b) => orden(a.precio) - orden(b.precio)).map((plan) => ({
+      p,
+      plan,
+      fuente: oficiales[p.slug]?.[plan.slug] !== undefined ? `SSSalud ${periodos[p.slug] ? mesDe(periodos[p.slug]) : mesDe(preciosOficiales.periodo)}` : 'Referencia',
+    })),
+  )
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
@@ -203,6 +217,49 @@ export default function PreciosPage(): React.ReactElement {
           </div>
           <p className="text-xs text-gray-500 mt-4 max-w-3xl">
             El precio de lista no es lo único que importa: dos planes sin copago pueden tener cartillas muy distintas. Antes de decidir, fijate que la cartilla tenga los prestadores que usás.
+          </p>
+        </div>
+      </section>
+
+      {/* Tabla HTML de precios: la respuesta directa para Google y las IA ("tablas en HTML", AGENTS.md) */}
+      <section id="tabla-precios" className="py-10 bg-white border-b border-gray-100 scroll-mt-24">
+        <div className="container max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Tabla de precios de prepagas {MES_ACTUAL.toLowerCase()}: todos los planes</h2>
+          <p className="text-sm text-gray-600 max-w-3xl mb-4">
+            Precio mensual de lista para una persona de 30 años, contratación directa en CABA y GBA, IVA incluido. Fuente: cuadros tarifarios de la Superintendencia de Servicios de Salud (SSSalud), actualizada el {FECHA_ACTUALIZACION}. &quot;Referencia&quot; marca los planes cuyo precio no figura en esos cuadros y &quot;A cotizar&quot;, los que la prepaga no publica.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gray-200">
+            <table className="w-full min-w-[640px] text-sm">
+              <caption className="sr-only">Precios mensuales de las prepagas de Argentina por plan, {MES_ACTUAL}</caption>
+              <thead className="bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+                <tr>
+                  <th scope="col" className="px-4 py-3">Prepaga</th>
+                  <th scope="col" className="px-4 py-3">Plan</th>
+                  <th scope="col" className="px-4 py-3">Copago</th>
+                  <th scope="col" className="px-4 py-3">Red</th>
+                  <th scope="col" className="px-4 py-3 text-right">Precio por mes</th>
+                  <th scope="col" className="px-4 py-3">Fuente y mes</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {filasTabla.map(({ p, plan, fuente }) => (
+                  <tr key={`${p.slug}/${plan.slug}`}>
+                    <th scope="row" className="px-4 py-2.5 text-left font-medium text-gray-900">{p.nombre}</th>
+                    <td className="px-4 py-2.5">
+                      <Link href={`/prepagas/${p.slug}/${plan.slug}`} className="font-medium text-[#E8002D] hover:underline">{plan.nombre}</Link>
+                    </td>
+                    <td className="px-4 py-2.5 text-gray-600">{plan.copago ? 'Con copago' : 'Sin copago'}</td>
+                    <td className="px-4 py-2.5 text-gray-600">{plan.redAbierta ? 'Abierta' : 'Cerrada'}</td>
+                    <td className="px-4 py-2.5 text-right font-bold tabular-nums text-gray-900">{formatPrecio(plan.precio)}</td>
+                    <td className="px-4 py-2.5 text-xs text-gray-500 whitespace-nowrap">{fuente}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-gray-500 mt-3 max-w-3xl">
+            Son precios de lista: el valor final depende de tu edad, tu zona y cómo pagás. Los cuadros tarifarios oficiales están en{' '}
+            <a href={PRECIOS_FUENTE_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-800">cuadrostarifarios.sssalud.gob.ar</a>.
           </p>
         </div>
       </section>
