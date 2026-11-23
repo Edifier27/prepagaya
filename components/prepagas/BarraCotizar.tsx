@@ -14,18 +14,18 @@ import { trackEvent } from '@/lib/analytics'
 // porque el 15% era el valor por defecto. Ahora, sin promo explícita, sale solo si el botón lleva a cotizar Swiss.
 const llevaASwiss = (href: string) => /[?&]prepaga=swiss-medical(&|$)/.test(href)
 
-export function BarraCotizar({ titulo, href, origen, promo: promoDada }: { titulo: string; href: string; origen: string; /** Promo al lado del título; sin indicar, "15% OFF" solo si el botón lleva a Swiss Medical */ promo?: string }) {
+export function BarraCotizar({ titulo, href, origen, promo: promoDada, apareceEn = 500 }: { titulo: string; href: string; origen: string; /** Promo al lado del título; sin indicar, "15% OFF" solo si el botón lleva a Swiss Medical */ promo?: string; /** Píxeles de scroll a partir de los cuales se ve (por defecto 500) */ apareceEn?: number }) {
   const promo = promoDada ?? (llevaASwiss(href) ? '15% OFF' : '')
   const [visible, setVisible] = useState(false)
   useEffect(() => {
     // Se ve después de bajar 500 px y se esconde al llegar al pie de página
     const alScrollear = () => {
       const alFinal = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight) < 400
-      setVisible(window.scrollY > 500 && !alFinal)
+      setVisible(window.scrollY > apareceEn && !alFinal)
     }
     window.addEventListener('scroll', alScrollear, { passive: true })
     return () => window.removeEventListener('scroll', alScrollear)
-  }, [])
+  }, [apareceEn])
 
   return (
     <div

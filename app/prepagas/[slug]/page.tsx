@@ -701,7 +701,8 @@ export default async function PrepagaSlugPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
-      <BarraCotizar titulo={prep.nombre} origen={`ficha:${slug}`} href={`/comparador?prepaga=${slug}&desde=barra`} />
+      {/* Swiss Medical (Clarity, 16-22 nov: 6 contactos de 220 visitantes): la barra, que duplicó los contactos, aparece antes (a los 250 px y no a los 500) */}
+      <BarraCotizar titulo={prep.nombre} origen={`ficha:${slug}`} href={`/comparador?prepaga=${slug}&desde=barra`} apareceEn={slug === 'swiss-medical' ? 250 : 500} />
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 border-b border-gray-100 py-3">
@@ -736,19 +737,6 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   )}
                 </p>
               </div>
-              <ul className="flex flex-wrap gap-2">
-                {[
-                  // Con uno solo no: en Sancor es un centro médico (Vitus), no un sanatorio
-                  ...(prep.sanatoriosPropios > 1 ? [`${prep.sanatoriosPropios} sanatorios propios`] : []),
-                  ...(prep.planes.every((pl) => !pl.copago) ? ['Sin copago en todos los planes'] : primeroSinCopago ? [`Sin copagos desde el ${primeroSinCopago.nombre}`] : []),
-                  'Precio oficial SSSalud',
-                ].map((c) => (
-                  <li key={c} className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-[13px] font-semibold text-gray-900">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 flex-shrink-0 text-emerald-600" aria-hidden><path d="M5 12.5l4 4 10-10" /></svg>
-                    {c}
-                  </li>
-                ))}
-              </ul>
               <div className="flex flex-wrap gap-3">
                 <ContratarPlanButton
                   prepagaNombre={prep.nombre}
@@ -768,6 +756,19 @@ export default async function PrepagaSlugPage({ params }: Props) {
                   </Link>
                 )}
               </div>
+              <ul className="flex flex-wrap gap-x-5 gap-y-1.5">
+                {[
+                  // Con uno solo no: en Sancor es un centro médico (Vitus), no un sanatorio
+                  ...(prep.sanatoriosPropios > 1 ? [`${prep.sanatoriosPropios} sanatorios propios`] : []),
+                  ...(prep.planes.every((pl) => !pl.copago) ? ['Sin copago en todos los planes'] : primeroSinCopago ? [`Sin copagos desde el ${primeroSinCopago.nombre}`] : []),
+                  'Precio oficial SSSalud',
+                ].map((c) => (
+                  <li key={c} className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-gray-700">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 flex-shrink-0 text-emerald-600" aria-hidden><path d="M5 12.5l4 4 10-10" /></svg>
+                    {c}
+                  </li>
+                ))}
+              </ul>
               <a href="#opiniones" className="inline-flex items-center gap-2 group">
                 {opiniones.cantidad > 0 ? (
                   <>
