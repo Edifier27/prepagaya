@@ -393,9 +393,17 @@ function MensajePerfil({ personas, descuento }: { personas: Persona[]; descuento
 
 function ProgressBar({ step, onStepClick }: { step: Step; onStepClick?: (step: Step) => void }) {
   const idx = STEP_ORDER.indexOf(step)
+  // Clics muertos (Clarity, 16-22 nov: 37,5% de las sesiones del comparador): los círculos 2 y 3 son botones desactivados y la
+  // gente los toca para avanzar. Ahora un toque en un paso que no se puede usar responde con un aviso corto.
+  const [aviso, setAviso] = useState('')
+  useEffect(() => {
+    if (!aviso) return
+    const t = setTimeout(() => setAviso(''), 2500)
+    return () => clearTimeout(t)
+  }, [aviso])
   if (idx < 0) return null
   return (
-    <div className="mb-10">
+    <div className="mb-10 relative">
       <div className="flex items-center">
         {STEP_LABELS.map((label, i) => {
           const clickable = i < idx && Boolean(onStepClick)
@@ -403,8 +411,11 @@ function ProgressBar({ step, onStepClick }: { step: Step; onStepClick?: (step: S
             <div key={label} className="flex items-center flex-1 last:flex-none">
               <button
                 type="button"
-                disabled={!clickable}
-                onClick={() => clickable && onStepClick?.(STEP_ORDER[i])}
+                aria-disabled={!clickable}
+                onClick={() => {
+                  if (clickable) onStepClick?.(STEP_ORDER[i])
+                  else setAviso(i === idx ? `Estás en el paso ${i + 1} de ${STEP_LABELS.length}` : `Primero completá este paso para llegar a "${label}"`)
+                }}
                 className={`flex flex-col items-center gap-1 ${clickable ? 'cursor-pointer group' : 'cursor-default'}`}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
@@ -429,6 +440,7 @@ function ProgressBar({ step, onStepClick }: { step: Step; onStepClick?: (step: S
           )
         })}
       </div>
+      {aviso && <p role="status" className="absolute inset-x-0 top-full mt-1 text-center text-xs font-semibold text-gray-500">{aviso}</p>}
     </div>
   )
 }
@@ -1405,8 +1417,13 @@ export function ComparadorWizard({ zonasSEO, initialZona, initialProvincia, orig
         <div className={`space-y-3 mb-4 transition-all duration-500 ${showPopup ? 'blur-md pointer-events-none select-none' : ''}`}>
           {previewItems.map((r, i) => {
             return (
+              // Clics muertos: en los 3 segundos antes del cartel la gente toca estas tarjetas esperando el detalle. Tocar una abre
+              // el cartel de datos ya (el detalle y el precio de cada plan se ven al dejar los datos).
               <div key={`${r.prepaga.slug}-${r.plan.slug}`}
-                className={`bg-white rounded-2xl border-2 p-4 flex items-center justify-between ${i === 0 ? 'border-[#E8002D]' : 'border-gray-100'}`}>
+                role="button" tabIndex={0} aria-label={`Ver el precio de ${r.prepaga.nombre} ${r.plan.nombre}: dejá tus datos`}
+                onClick={() => { setCountdown(0); setShowPopup(true) }}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setCountdown(0); setShowPopup(true) } }}
+                className={`bg-white rounded-2xl border-2 p-4 flex items-center justify-between cursor-pointer ${i === 0 ? 'border-[#E8002D]' : 'border-gray-100'}`}>
                 <div className="flex-1 min-w-0">
                   {i === 0 && (
                     <div className="inline-flex items-center gap-1 bg-[#E8002D] text-white text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5">

@@ -28,7 +28,12 @@ export function CarruselPlanes({ planes, origen }: { planes: TarjetaPlan[]; orig
   const mover = (dir: 1 | -1) => {
     const el = pista.current
     if (!el) return
-    el.scrollBy({ left: dir * el.clientWidth, behavior: 'smooth' })
+    // Las flechas siempre responden (clics muertos): al llegar a un extremo, la que seguía da la vuelta al otro lado
+    const alPrincipio = el.scrollLeft <= 4
+    const alFinal = el.scrollLeft + el.clientWidth >= el.scrollWidth - 4
+    if (dir < 0 && alPrincipio) el.scrollTo({ left: el.scrollWidth, behavior: 'smooth' })
+    else if (dir > 0 && alFinal) el.scrollTo({ left: 0, behavior: 'smooth' })
+    else el.scrollBy({ left: dir * el.clientWidth, behavior: 'smooth' })
   }
 
   return (
