@@ -246,7 +246,7 @@ export default function PreciosPage(): React.ReactElement {
                   <tr key={`${p.slug}/${plan.slug}`}>
                     <th scope="row" className="px-4 py-2.5 text-left font-medium text-gray-900">{p.nombre}</th>
                     <td className="px-4 py-2.5">
-                      <Link href={`/prepagas/${p.slug}/${plan.slug}`} className="font-medium text-[#E8002D] hover:underline">{plan.nombre}</Link>
+                      <Link href={`/prepagas/${p.slug}/${plan.slug}`} className="font-medium text-[#E8002D] hover:underline">{plan.nombre}<span className="sr-only"> de {p.nombre}</span></Link>
                     </td>
                     <td className="px-4 py-2.5 text-gray-600">{plan.copago ? 'Con copago' : 'Sin copago'}</td>
                     <td className="px-4 py-2.5 text-gray-600">{plan.redAbierta ? 'Abierta' : 'Cerrada'}</td>
