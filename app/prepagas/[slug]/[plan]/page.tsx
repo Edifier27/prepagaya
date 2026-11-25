@@ -933,7 +933,7 @@ export default async function PlanPage({ params, searchParams }: Props) {
         <div className="container max-w-4xl mx-auto">
           <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
             <h2 className="text-xl font-bold text-gray-900">¿Qué incluye el {plan.nombre}?</h2>
-            <BotonPdfPlan plan={`${prep.slug}/${plan.slug}`} />
+            <BotonPdfPlan plan={`${prep.slug}/${plan.slug}`} titulo={`${prep.nombre} ${plan.nombre} - qué cubre`} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {plan.cobertura.map((c) => {
@@ -1121,13 +1121,13 @@ export default async function PlanPage({ params, searchParams }: Props) {
       </section>
 
       {/* Hoja para "Descargar qué cubre (PDF)" (chats del CRM, 3-nov-2026): solo se ve al imprimir con el botón */}
+      {/* Sin marca ni textos de PrepagaYa (Darío, 25-nov-2026): la hoja es del plan; solo lo de la prepaga, las fichas oficiales y el
+          cuadro de la SSSalud. Tampoco va la descripción comercial (plan.descripcion). */}
       <div data-imprimir className="hidden">
-        <p style={{ fontSize: 11, color: '#6b7280' }}>PrepagaYa · {SITE_URL.replace(/^https?:\/\//, '')}/prepagas/{prep.slug}/{plan.slug}</p>
-        <p style={{ fontSize: 22, fontWeight: 800, margin: '4px 0 2px' }}>{prep.nombre} {plan.nombre}: qué cubre</p>
+        <p style={{ fontSize: 22, fontWeight: 800, margin: '0 0 2px' }}>{prep.nombre} {plan.nombre}: qué cubre</p>
         <p style={{ fontSize: 12, margin: '0 0 10px' }}>
           {plan.copago ? 'Con copago en consultas' : 'Sin copago en consultas'} · {plan.redAbierta ? 'Red abierta (con reintegros)' : 'Red cerrada (cartilla)'}
         </p>
-        <p style={{ fontSize: 12, margin: '0 0 10px' }}>{plan.descripcion}</p>
         <h2 style={{ fontSize: 15, fontWeight: 700, margin: '12px 0 4px' }}>Incluye</h2>
         <ul style={{ fontSize: 12, margin: 0, paddingLeft: 18, listStyle: 'disc' }}>{plan.cobertura.map((c) => <li key={c}>{c}</li>)}</ul>
         {seo && seo.coberturas.length > 0 && (
@@ -1158,10 +1158,10 @@ export default async function PlanPage({ params, searchParams }: Props) {
                 ))}
               </tbody>
             </table>
-            <p style={{ fontSize: 10, color: '#6b7280', marginTop: 4 }}>Cuadro tarifario declarado ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona. Con aportes o promociones el precio final cambia.</p>
+            <p style={{ fontSize: 10, color: '#6b7280', marginTop: 4 }}>Cuadro tarifario declarado ante la Superintendencia de Servicios de Salud: {seo.region}, contratación directa, IVA incluido, por persona. Con aportes de sueldo el precio final cambia.</p>
           </>
         )}
-        <p style={{ fontSize: 10, color: '#6b7280', marginTop: 12 }}>Información orientativa según las fuentes oficiales de {prep.nombre}. Confirmá la cobertura antes de usarla. Cotizá tu precio exacto en prepagaya.com.ar.</p>
+        <p style={{ fontSize: 10, color: '#6b7280', marginTop: 12 }}>Fuentes: fichas oficiales de {prep.nombre} y cuadro tarifario de la Superintendencia de Servicios de Salud ({PRECIO_ACTUALIZADO}). Información orientativa: confirmá la cobertura con {prep.nombre} antes de usarla.</p>
       </div>
 
       {/* CTA final */}
