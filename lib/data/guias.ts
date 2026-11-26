@@ -3769,7 +3769,7 @@ export const guiasPreguntas: GuiaData[] = [
   {
     slug: 'swiss-medical-carencias-preexistencias-declaracion-jurada',
     tituloCorto: 'Carencias, preexistencias y declaración jurada',
-    titulo: 'Swiss Medical: carencias, preexistencias y declaración jurada (qué dice su reglamento y qué dice la ley)',
+    titulo: 'Swiss Medical: carencias, preexistencias y declaración jurada',
     metaDescripcion: 'Qué dice el reglamento de Swiss Medical sobre carencias, preexistencias y declaración jurada, y qué establece la Ley 26.682: sin carencia en el PMO, preexistencias solo por declaración jurada y baja solo con mala fe acreditada.',
     tiempoLectura: 7,
     categoria: 'Coberturas',
