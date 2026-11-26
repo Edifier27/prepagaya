@@ -20,6 +20,17 @@ export interface PerfilData {
   planesRecomendados: { prepagaSlug: string; planSlug: string; razon: string }[]
   faq: { q: string; a: string }[]
   keywords: string[]
+  /** Secciones propias del perfil (26-nov-2026, estudiantes extranjeros): texto, tabla en HTML y fuentes */
+  secciones?: SeccionPerfil[]
+  /** Páginas hermanas que se enlazan arriba del FAQ, con el texto que se busca */
+  relacionados?: { href: string; titulo: string; texto: string }[]
+}
+
+export interface SeccionPerfil {
+  titulo: string
+  parrafos: string[]
+  tabla?: { columnas: string[]; filas: string[][] }
+  fuentes?: { texto: string; url: string }[]
 }
 
 export const perfiles: PerfilData[] = [
@@ -256,13 +267,17 @@ export const perfiles: PerfilData[] = [
     nombre: 'Extranjeros',
     emoji: '🌎',
     titulo: 'Prepaga para extranjeros en Argentina',
-    metaDescripcion: 'Guía de cobertura médica para extranjeros en Argentina: el seguro obligatorio del Decreto 366/25, qué prepagas te afilian sin DNI argentino y cuánto cuesta en 2026.',
-    descripcion: 'Desde julio de 2025, todo extranjero no residente necesita seguro médico para entrar a Argentina (Decreto 366/25). Y si venís a quedarte —por trabajo, estudio o residencia—, una prepaga local suele ser más conveniente que una asistencia al viajero: cobertura completa, cartilla real y sin límites de reintegro por evento. Te contamos qué opciones tenés según tu situación migratoria.',
+    // 26-nov-2026 (Darío): Swiss Medical afilia con pasaporte o residencia
+    // precaria, damos el certificado de cobertura para el DNI y asesoramos en
+    // inglés y portugués. El decreto, con su fuente (Boletín Oficial).
+    metaDescripcion: 'Cobertura médica para extranjeros en Argentina: qué pide el DNU 366/2025, afiliación con pasaporte o residencia precaria y certificado de cobertura para tu DNI. Te asesoramos en inglés y portugués.',
+    descripcion: 'El DNU 366/2025 pide seguro de salud a los extranjeros que entran al país sin residencia permanente, y los hospitales públicos les cobran la atención programada (las emergencias se atienden siempre). Si venís a quedarte —por trabajo, estudio o residencia—, una prepaga local es más conveniente que una asistencia al viajero: cobertura completa y cartilla real, todos los meses. Swiss Medical te afilia con tu pasaporte o con la residencia precaria, y con la afiliación te damos el certificado de cobertura para tu trámite de DNI. Te asesoramos en español, inglés y portugués.',
     necesidades: [
-      'Cumplir el requisito migratorio de cobertura médica (Decreto 366/25)',
-      'Afiliación sin DNI argentino (con pasaporte o residencia precaria, según la empresa)',
-      'Cobertura desde el primer día para urgencias e internación',
-      'Atención en inglés o portugués (según la prepaga y la zona)',
+      'Cumplir el requisito de cobertura médica del DNU 366/2025',
+      'Afiliarte con pasaporte o residencia precaria (Swiss Medical acepta los dos)',
+      'El certificado de cobertura para tu trámite de residencia y DNI',
+      'Cobertura desde el primer mes para guardias e internación',
+      'Asesoramiento en inglés o portugués',
       'Facturación sin CUIL/CUIT o con formas de pago internacionales',
       'Red fuerte en la ciudad donde vas a vivir',
     ],
@@ -282,22 +297,144 @@ export const perfiles: PerfilData[] = [
     faq: [
       {
         q: '¿Es obligatorio tener seguro médico para entrar a Argentina?',
-        a: 'Sí. Desde el Decreto 366/25 (vigente desde julio de 2025), todos los extranjeros no residentes deben contar con un seguro médico que cubra su estadía —turistas, estudiantes y trabajadores incluidos. Los residentes permanentes y ciudadanos naturalizados están exentos. Para el ingreso alcanza una asistencia al viajero; para radicarte, una prepaga local es la opción más completa.',
+        a: 'Sí. El DNU 366/2025, publicado en el Boletín Oficial el 29 de mayo de 2025, reformó la Ley de Migraciones y pide seguro de salud a los extranjeros que ingresan sin residencia permanente —turistas, estudiantes y trabajadores—. Además, los hospitales públicos les cobran la atención programada; las emergencias se atienden siempre. Para un viaje corto alcanza una asistencia al viajero; para radicarte o estudiar, una prepaga local es la opción más completa.',
       },
       {
         q: '¿Puedo contratar una prepaga sin DNI argentino?',
-        a: 'Depende de la empresa. La mayoría de las prepagas grandes aceptan afiliación con pasaporte y residencia precaria (el trámite migratorio iniciado), y algunas piden CDI o CUIL provisorio para facturar. Lo más práctico es cotizar y consultar tu caso puntual: un asesor te confirma qué empresa acepta tu documentación actual.',
+        a: 'Sí. Swiss Medical te afilia con tu pasaporte o con el certificado de residencia precaria que te da Migraciones mientras tramitás la residencia. Para otras prepagas, consultá tu caso: un asesor te confirma qué documentación aceptan.',
       },
       {
         q: '¿Cuánto cuesta una prepaga para un extranjero?',
         a: `Pagás lo mismo que un argentino: el precio depende de la edad y el plan, no de la nacionalidad. Según los cuadros oficiales de ${PRECIO_ACTUALIZADO.toLowerCase()}, para un adulto de 30 años van desde ${formatPrecio(A30.min.precio)} por mes (${A30.min.prepaga}, ${A30.min.plan}) hasta ${formatPrecio(A30.max.precio)} (${A30.max.prepaga}, ${A30.max.plan}). Cotizá gratis para ver el valor exacto de tu edad.`,
       },
       {
-        q: '¿La prepaga sirve como seguro para el trámite de residencia?',
-        a: 'Una prepaga local cubre de sobra los requisitos de cobertura médica que exige Migraciones para residencias temporarias. Pedile a la empresa el certificado de cobertura para presentarlo en tu trámite.',
+        q: '¿Me dan un certificado de cobertura para el trámite de residencia y DNI?',
+        a: 'Sí. Con la afiliación te damos el certificado de cobertura para presentarlo en tu trámite de residencia y DNI.',
+      },
+      {
+        q: '¿Me atienden en inglés o portugués?',
+        a: 'Sí: el asesoramiento es en español, inglés o portugués, por WhatsApp o por teléfono.',
+      },
+      {
+        q: 'Vengo a estudiar a Argentina, ¿qué cobertura necesito?',
+        a: 'Lo mismo que cualquier extranjero sin residencia permanente: un seguro o una prepaga para la atención programada. Tenemos una guía para estudiantes extranjeros, con cuánto sale y cómo funciona la prepaga si venís de Brasil, Uruguay o Colombia.',
       },
     ],
-    keywords: ['prepaga para extranjeros argentina', 'seguro medico obligatorio argentina', 'prepaga sin dni', 'health insurance argentina', 'cobertura medica extranjeros residencia'],
+    relacionados: [
+      { href: '/para/estudiantes-extranjeros', titulo: '¿Venís a estudiar a Argentina?', texto: 'Seguro médico para estudiantes extranjeros: precio, residencia precaria y certificado para el DNI' },
+      { href: '/guias/seguro-medico-obligatorio-extranjeros', titulo: '¿Qué exige el decreto 366?', texto: 'Seguro médico obligatorio para extranjeros: qué pide la ley y quién está exento' },
+      { href: '/pt/plano-de-saude-argentina', titulo: 'Lê em português?', texto: 'Plano de saúde na Argentina para brasileiros' },
+    ],
+    // Lo legal ("seguro médico obligatorio", "decreto 366") es de la guía
+    // /guias/seguro-medico-obligatorio-extranjeros: acá solo el link (26-nov-2026)
+    keywords: ['prepaga para extranjeros argentina', 'seguro medico para extranjeros en argentina', 'prepaga con residencia precaria', 'prepaga sin dni', 'health insurance argentina', 'cobertura medica extranjeros residencia'],
+  },
+  {
+    // Estudiantes extranjeros (26-nov-2026, Darío: "apuntemos a todos los
+    // países que quieren venir a estudiar"). Autocompletado: "estudiar medicina
+    // en argentina siendo peruano/colombiano/ecuatoriano", "estudar medicina na
+    // argentina", "certificado de residencia precaria". Ver
+    // docs/seo/extranjeros-2026-11.md. Nada del 50% de menores de 26 (se
+    // comunica después, criterio de Darío).
+    slug: 'estudiantes-extranjeros',
+    nombre: 'Estudiantes extranjeros',
+    emoji: '🎓',
+    titulo: 'Prepaga para estudiantes extranjeros en Argentina',
+    tituloSeo: 'Seguro médico para estudiantes extranjeros en Argentina 2026',
+    metaDescripcion: 'Para estudiar en Argentina sin residencia permanente necesitás cobertura médica. Swiss Medical te afilia con pasaporte o residencia precaria y te damos el certificado para tu DNI. Te asesoramos en portugués e inglés.',
+    descripcion: 'Si venís a estudiar a Argentina —medicina u otra carrera—, mientras no tengas residencia permanente la atención programada en los hospitales públicos se paga o la cubre un seguro (DNU 366/2025); las emergencias se atienden siempre. Con una prepaga tenés médicos, estudios, guardias e internación de la cartilla desde el primer mes. Swiss Medical te afilia con tu pasaporte o con el certificado de residencia precaria, y con la afiliación te damos el certificado de cobertura para tu trámite de residencia y DNI. Te asesoramos en español, portugués o inglés.',
+    necesidades: [
+      'Afiliarte con pasaporte o con el certificado de residencia precaria',
+      'El certificado de cobertura para tu trámite de residencia y DNI',
+      'Una cuota de estudiante: el precio depende de la edad, no de la nacionalidad',
+      'Guardias y médicos cerca de tu facultad',
+      'Asesoramiento en tu idioma: español, portugués o inglés',
+      'Cobertura todos los meses, sin topes por viaje como una asistencia al viajero',
+    ],
+    prepagasRecomendadas: [
+      { slug: 'swiss-medical', razon: 'Te afilia con pasaporte o con la residencia precaria, y con la afiliación te damos el certificado de cobertura para tu trámite de DNI. Cotizando online tenés 15% OFF.' },
+    ],
+    planesRecomendados: [
+      { prepagaSlug: 'swiss-medical', planSlug: 's1', razon: 'La cuota más baja de Swiss Medical: copago fijo en consultas, con la cartilla Nubial' },
+      { prepagaSlug: 'swiss-medical', planSlug: 'smg02', razon: 'Sin copago en consultas, con la misma cartilla Nubial' },
+      { prepagaSlug: 'swiss-medical', planSlug: 'smg20', razon: 'Cartilla Global: suma el Hospital Italiano y la Fundación Favaloro en CABA' },
+    ],
+    faq: [
+      {
+        q: '¿Necesito seguro médico para estudiar en Argentina?',
+        a: 'Para entrar al país, el DNU 366/2025 pide seguro de salud a los extranjeros sin residencia permanente. Y mientras no tengas residencia permanente, la atención programada en los hospitales públicos se paga o la cubre tu seguro; las emergencias se atienden siempre. Por eso los estudiantes que se quedan meses o años se afilian a una prepaga.',
+      },
+      {
+        q: '¿Puedo afiliarme con pasaporte o con la residencia precaria?',
+        a: 'Sí. Swiss Medical te afilia con tu pasaporte o con el certificado de residencia precaria que te da Migraciones mientras tramitás la residencia. Para otras prepagas, consultá tu caso con un asesor.',
+      },
+      {
+        q: '¿Me dan un certificado de cobertura para el DNI?',
+        a: 'Sí. Con la afiliación te damos el certificado de cobertura para presentarlo en tu trámite de residencia y DNI.',
+      },
+      {
+        q: '¿Qué es la residencia precaria?',
+        a: 'Es el certificado que te da la Dirección Nacional de Migraciones al iniciar el trámite de residencia y que acredita tu situación mientras se resuelve. La residencia temporaria de estudiante se pide a distancia, por el sistema RaDEX, y dura un año prorrogable.',
+      },
+      {
+        q: '¿En qué se diferencia de un seguro de viaje?',
+        a: 'La asistencia al viajero está pensada para viajes cortos, con topes por evento. Una prepaga es tu cobertura médica en Argentina: médicos, estudios, guardias e internación de la cartilla, todos los meses.',
+      },
+      {
+        q: '¿Me atienden en portugués o inglés?',
+        a: 'Sí: el asesoramiento es en español, portugués o inglés.',
+      },
+    ],
+    secciones: [
+      {
+        titulo: 'Cómo funciona la prepaga si venís de Brasil, Uruguay o Colombia',
+        parrafos: [
+          'En Argentina la prepaga es un plan de salud privado: pagás una cuota mensual según tu edad y el plan, y te atendés con los médicos, sanatorios y guardias de su cartilla. Todos los planes cubren el Programa Médico Obligatorio (PMO), y hay planes sin copago en consultas: en Swiss Medical, desde el SMG02.',
+          'La diferencia con tu país está en cuánto pagás cada vez que usás el plan y desde cuándo te cubre:',
+        ],
+        tabla: {
+          columnas: ['País', 'Cómo funciona allá', 'En Argentina, con una prepaga'],
+          filas: [
+            ['Brasil', 'Planos de saúde regulados por la ANS, con carencias de hasta 180 días para consultas, estudios e internación y de 300 días para el parto.', 'Lo que está en el PMO (consultas, estudios, internación, urgencias) no puede tener carencia (Ley 26.682, art. 10). Para embarazo, Swiss Medical tiene 2 meses de carencia desde el alta, y no se puede ingresar embarazada.'],
+            ['Uruguay', 'En las mutualistas se paga la cuota y, aparte, órdenes y tickets (tasas moderadoras) por consultas y medicamentos, con topes que fija el Poder Ejecutivo.', 'Con un plan sin copago pagás solo la cuota mensual: la consulta no tiene costo extra.'],
+            ['Colombia', 'En las EPS se pagan cuotas moderadoras por consultas y copagos por servicios de mayor complejidad, que fija el Ministerio de Salud.', 'Con un plan sin copago, la consulta no tiene costo extra; los planes con copago tienen una cuota más baja.'],
+          ],
+        },
+        fuentes: [
+          { texto: 'IDEC (Brasil): carencias de los planes', url: 'https://idec.org.br/node/19435' },
+          { texto: 'ANS (Brasil)', url: 'https://www.gov.br/ans/pt-br/assuntos/consumidor/prazos-maximos-de-atendimento' },
+          { texto: 'OPS: el sistema de salud de Uruguay', url: 'https://paho.org/sites/default/files/2021-12/Digital_Funcionamiento%20del%20sistema%20de%20salud%20de%20Uruguay.pdf' },
+          { texto: 'IMPO (Uruguay): tasas moderadoras', url: 'https://www.impo.com.uy/bases/decretos/362-2024/8' },
+          { texto: 'Ley 26.682 (Argentina), Infoleg', url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/180000-184999/182180/texact.htm' },
+          { texto: 'Portafolio (Colombia): cuotas moderadoras y copagos 2026', url: 'https://www.portafolio.co/economia/gobierno/cuotas-moderadoras-y-copagos-en-2026-asi-quedan-los-valores-que-deberan-pagar-los-afiliados-al-sistema-de-salud-485624' },
+        ],
+      },
+      {
+        titulo: 'Qué te pedimos para afiliarte',
+        parrafos: [
+          'Para cotizar alcanzan tu edad y tu ciudad. Para afiliarte a Swiss Medical, tu pasaporte o el certificado de residencia precaria. Un asesor te guía en español, portugués o inglés y, con la afiliación, te damos el certificado de cobertura para tu trámite de residencia y DNI.',
+        ],
+      },
+      {
+        titulo: 'Qué dice la ley desde 2025',
+        parrafos: [
+          'El DNU 366/2025, publicado en el Boletín Oficial el 29 de mayo de 2025, reformó la Ley de Migraciones: pide seguro de salud a los extranjeros que ingresan sin residencia permanente, y los hospitales públicos cobran la atención programada a quien no tiene residencia permanente. Las emergencias se atienden siempre.',
+          'La residencia temporaria de estudiante la da la Dirección Nacional de Migraciones a alumnos regulares de establecimientos reconocidos, por un año prorrogable. El trámite empieza a distancia, por el sistema RaDEX.',
+        ],
+        fuentes: [
+          { texto: 'DNU 366/2025, Boletín Oficial', url: 'https://www.boletinoficial.gob.ar/detalleAviso/primera/326096/2025-05-29' },
+          { texto: 'Texto del decreto, argentina.gob.ar', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-366-2025-413297' },
+          { texto: 'Presidencia: atención a no residentes', url: 'https://www.argentina.gob.ar/node/467195' },
+          { texto: 'Migraciones: residencia temporaria de estudiante', url: 'https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-estudiante' },
+        ],
+      },
+    ],
+    relacionados: [
+      { href: '/para/extranjeros', titulo: '¿No venís a estudiar?', texto: 'Prepaga para extranjeros en Argentina: trabajo, residencia y jubilados' },
+      { href: '/guias/seguro-medico-obligatorio-extranjeros', titulo: '¿Qué exige el decreto 366?', texto: 'Seguro médico obligatorio para extranjeros: qué pide la ley y quién está exento' },
+      { href: '/pt/plano-de-saude-argentina', titulo: 'Lê em português?', texto: 'Plano de saúde na Argentina para estudantes brasileiros' },
+    ],
+    keywords: ['seguro medico para estudiantes extranjeros en argentina', 'prepaga para estudiantes extranjeros', 'seguro medico para estudiar en argentina', 'estudiar medicina en argentina seguro medico', 'certificado de cobertura medica para dni'],
   },
 ]
 

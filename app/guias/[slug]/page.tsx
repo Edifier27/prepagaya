@@ -275,7 +275,16 @@ export default async function GuiaPage({ params }: Props) {
               <p className="text-gray-600 leading-relaxed">{marcarTerminos(enlazarPrepagas(seccion.cuerpo, vistas), vistosGlosario)}</p>
               {seccion.enlaces && (
                 <div className="flex flex-wrap gap-2 mt-4">
-                  {seccion.enlaces.map((e) => (
+                  {seccion.enlaces.map((e) => e.url.startsWith('/') ? (
+                    // Enlace interno (26-nov-2026): misma pestaña, sin el ícono de sitio externo
+                    <Link
+                      key={e.url}
+                      href={e.url}
+                      className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white border-2 border-gray-200 hover:border-[#E8002D] text-gray-900 font-semibold rounded-xl text-sm transition-colors"
+                    >
+                      {e.texto} →
+                    </Link>
+                  ) : (
                     <a
                       key={e.url}
                       href={e.url}

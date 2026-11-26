@@ -1546,6 +1546,9 @@ const [mesActualizado, anioActualizado] = PRECIO_ACTUALIZADO.toLowerCase().split
 const MES_INDICE = MESES_ORDEN.indexOf(mesActualizado)
 export const PRECIO_ACTUALIZADO_RU = MES_INDICE >= 0 ? `${MESES_RU[MES_INDICE]} ${anioActualizado}` : PRECIO_ACTUALIZADO_EN
 export const PRECIO_ACTUALIZADO_ZH = MES_INDICE >= 0 ? `${anioActualizado}年${MES_INDICE + 1}月` : PRECIO_ACTUALIZADO_EN
+// Ídem para /pt/* (26-nov-2026): "novembro de 2026"
+const MESES_PT = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro']
+export const PRECIO_ACTUALIZADO_PT = MES_INDICE >= 0 ? `${MESES_PT[MES_INDICE]} de ${anioActualizado}` : PRECIO_ACTUALIZADO_EN
 
 // Nivel de precio: posición relativa de un plan dentro de la distribución de
 // precios de todo el sitio, sin exponer el monto. Reemplaza a formatPrecio()

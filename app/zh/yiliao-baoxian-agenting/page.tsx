@@ -23,6 +23,7 @@ export const metadata: Metadata = {
       en: `${SITE_URL}/en/health-insurance-argentina`,
       ru: `${SITE_URL}/ru/strahovanie-argentina`,
       zh: `${SITE_URL}/zh/yiliao-baoxian-agenting`,
+      pt: `${SITE_URL}/pt/plano-de-saude-argentina`,
     },
   },
   keywords: [
@@ -34,10 +35,12 @@ export const metadata: Metadata = {
   ],
 }
 
-const faqs = [
+// texto: la respuesta sin links, para el JSON-LD (26-nov-2026: iba el JSX y
+// el FAQPage quedaba con un objeto en vez de texto)
+const faqs: { q: string; a: React.ReactNode; texto?: string }[] = [
   {
     q: '医疗保险是入境阿根廷的强制要求吗?',
-    a: '是的。自2025年7月起,根据366/25号法令,所有非永久居民的外国人 — 无论是旅游、留学还是工作 — 在整个逗留期间都必须持有有效的医疗保险。永久居民和已入籍公民可豁免。',
+    a: '是的,如果您没有永久居留权。2025年5月29日在阿根廷《官方公报》(Boletín Oficial)发布的366/2025号法令,要求没有永久居留权的外国人入境时持有医疗保险 — 无论是旅游、留学还是工作(据报道,边境检查自2025年7月1日起实施)。永久居民和阿根廷公民可豁免。',
   },
   {
     q: '持有美国签证的中国公民可以免签入境阿根廷吗?',
@@ -45,15 +48,16 @@ const faqs = [
   },
   {
     q: '没有DNI可以加入阿根廷的prepaga吗?',
-    a: '通常可以。大多数主要保险公司接受持有护照及居留申请证明("residencia precaria")的外国人办理。部分公司要求提供临时税号(CDI/CUIL)用于开具账单。价格与本地居民完全相同 — 国籍不影响费用。',
+    a: '可以。Swiss Medical接受凭护照或居留申请证明("residencia precaria",在移民局提交居留申请时发放)办理。其他公司请向顾问咨询。办理后,我们会提供保险证明,用于居留和DNI手续。价格与本地居民完全相同 — 国籍不影响费用。',
   },
   {
     q: '阿根廷的私人医疗保险费用是多少?',
     a: <>价格取决于年龄和保险计划,而非国籍。根据{PRECIO_ACTUALIZADO_ZH}的官方价目表,30岁参保人每月{pesosEn(A30.min.precio)}起({A30.min.prepaga} {A30.min.plan}),最贵的计划为{pesosEn(A30.max.precio)}。 <Link href="/zh/yiliao-baoxian-feiyong-agenting" className="text-[#E8002D] hover:underline font-medium">完整价格明细 →</Link></>,
+    texto: `价格取决于年龄和保险计划,而非国籍。根据${PRECIO_ACTUALIZADO_ZH}的官方价目表,30岁参保人每月${pesosEn(A30.min.precio)}起(${A30.min.prepaga} ${A30.min.plan}),最贵的计划为${pesosEn(A30.max.precio)}。`,
   },
   {
     q: '旅行保险还是当地prepaga——该如何选择?',
-    a: '短期旅行可选择旅行保险,满足入境要求且费用更低。如果您计划长期在阿根廷生活或工作,当地prepaga是更完整的选择:覆盖范围更广、住院无次数限制,且其保险证明可用于居留申请手续。',
+    a: '短期旅行通常选择旅行保险(我们不销售旅行保险)。如果您计划长期在阿根廷生活或工作,当地prepaga是更完整的选择:覆盖范围更广、没有单次事件限额,并且我们会提供保险证明,用于居留和DNI手续。',
   },
 ]
 
@@ -73,10 +77,10 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map(({ q, a }) => ({
+    mainEntity: faqs.map(({ q, a, texto }) => ({
       '@type': 'Question',
       name: q,
-      acceptedAnswer: { '@type': 'Answer', text: a },
+      acceptedAnswer: { '@type': 'Answer', text: typeof a === 'string' ? a : texto },
     })),
   },
 ]
@@ -100,7 +104,7 @@ export default function YiliaoBaoxianAgentingPage() {
             阿根廷医疗保险指南:外国人须知
           </h1>
           <p className="text-gray-600 leading-relaxed mb-6">
-            自2025年7月起,阿根廷要求所有外国人在入境时持有医疗保险(366/25号法令)。如果您计划长期在阿根廷生活、
+            366/2025号法令要求没有永久居留权的外国人持有医疗保险,公立医院对非居民的预约诊疗收费。如果您计划长期在阿根廷生活、
             工作或办理居留手续,当地的私人医疗保险(<em>prepaga</em>)通常比国际旅行保险更划算:覆盖范围更广、
             住院无次数限制,且保费与同龄本地居民完全相同。
           </p>
@@ -122,10 +126,10 @@ export default function YiliaoBaoxianAgentingPage() {
           <h2 className="text-xl font-bold text-gray-900 mb-6">4项须知要点</h2>
           <div className="space-y-4">
             {[
-              { t: '入境现已强制要求保险', d: '366/25号法令(自2025年7月起生效)要求每位非永久居民外国人在整个逗留期间持有医疗保险——无论经空运、陆路还是海路入境。永久居民和已入籍公民可豁免。' },
-              { t: '无需DNI即可加入prepaga', d: '大多数主要保险公司接受持有护照及居留申请证明的外国人办理。部分公司要求提供临时税号用于开具账单。价格与本地居民相同——国籍不影响费用。' },
+              { t: '没有永久居留权须持有医疗保险', d: '366/2025号法令(2025年5月29日《官方公报》)要求没有永久居留权的外国人入境时持有医疗保险;据报道,边境检查自2025年7月1日起实施。公立医院对非居民的预约诊疗收费,急诊始终提供。' },
+              { t: '无需DNI即可加入prepaga', d: 'Swiss Medical接受外国人凭护照或居留申请证明(residencia precaria)办理。价格与本地居民相同——国籍不影响费用。' },
               { t: '大部分基础医疗服务无等待期', d: '根据法律(Ley 26.682),强制医疗计划(PMO)的服务——门诊、检查、住院、急诊——不得设有等待期,从第一天起即可使用。产科(孕产)是唯一例外:标准等待期为投保后2个月。' },
-              { t: 'prepaga保险证明可用于移民手续', d: '任何prepaga出具的保险证明,阿根廷移民局均接受作为临时居留申请的医疗保险证明。' },
+              { t: '我们提供用于居留和DNI的保险证明', d: '办理后,我们会提供prepaga的保险证明,供您在办理居留和DNI时提交。' },
             ].map((item, i) => (
               <div key={item.t} className="flex items-start gap-4 bg-gray-50 rounded-2xl border border-gray-100 p-5">
                 <span className="w-8 h-8 rounded-full bg-red-50 border border-red-100 flex items-center justify-center text-sm font-bold text-[#E8002D] flex-shrink-0">

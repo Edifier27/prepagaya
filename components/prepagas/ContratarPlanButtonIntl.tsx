@@ -7,7 +7,7 @@ import { trackEvent, trackLead } from '@/lib/analytics'
 import { TrustBadge } from '@/components/ui/TrustBadge'
 import { CampoTrampa, datoTrampa } from '@/components/ui/CampoTrampa'
 
-type Locale = 'us' | 'ru' | 'zh'
+type Locale = 'us' | 'ru' | 'zh' | 'pt'
 
 interface Props {
   /** País del silo — fija el código de país del teléfono en vez de pedir que el visitante lo elija (pedido de Darío, 22-sep-2026). */
@@ -77,6 +77,25 @@ const TEXTOS: Record<Locale, Textos> = {
     error: 'Не удалось отправить. Попробуйте ещё раз.',
     codigoPais: 'Код страны',
   },
+  pt: {
+    boton: 'Quero minha cotação →',
+    tituloPopup: 'Seu plano de saúde na Argentina pelo melhor preço',
+    descripcion: 'Deixe seus dados e um assessor que fala português cota o plano que mais combina com você.',
+    labelNombre: 'Nome',
+    labelCelular: 'Celular (WhatsApp)',
+    labelEmail: 'E-mail',
+    placeholderNombre: 'Seu nome',
+    placeholderEmail: 'voce@email.com',
+    submit: 'Quero minha cotação',
+    enviando: 'Enviando...',
+    exitoTitulo: 'Pronto!',
+    exitoTexto: 'Recebemos seus dados. Um assessor vai falar com você em português, com a cotação exata.',
+    seguridad: 'Conexão segura SSL · Dados protegidos',
+    interesInterno: 'Extranjero (Brasil, portugués)',
+    opcional: 'opcional',
+    error: 'Não foi possível enviar. Tente de novo.',
+    codigoPais: 'Código do país',
+  },
   zh: {
     boton: '获取报价 →',
     tituloPopup: '为您匹配阿根廷最优惠的保险计划',
@@ -99,7 +118,7 @@ const TEXTOS: Record<Locale, Textos> = {
 }
 
 // País del silo si la IP no dice otra cosa
-const ISO_SILO: Record<Locale, string> = { us: 'US', ru: 'RU', zh: 'CN' }
+const ISO_SILO: Record<Locale, string> = { us: 'US', ru: 'RU', zh: 'CN', pt: 'BR' }
 const sinSuscripcion = () => () => {}
 const leerPaisIp = () => document.cookie.match(new RegExp(`(?:^|; )${COOKIE_PAIS_IP}=([A-Z]{2})`))?.[1] ?? ''
 

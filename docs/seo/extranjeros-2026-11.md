@@ -92,15 +92,16 @@ Pedido de Darío: analizar las páginas para extranjeros e investigar palabras c
 
 | Intención | Ejemplos | URL dueña | Estado |
 |---|---|---|---|
-| Seguro para entrar al país (turista) | health insurance required to enter argentina, argentina travel insurance requirements | /en/mandatory-insurance-decree-366 | Existe: sumarle fuentes y la regla de los hospitales |
-| Prepaga para quien se queda (inglés) | health insurance for expats in argentina, health insurance for foreigners in argentina, how does health insurance work in argentina | /en/health-insurance-argentina | Existe: sumarle secciones para estudiantes, mudanza y jubilados |
+| Seguro para entrar al país (turista) | health insurance required to enter argentina, argentina travel insurance requirements | /en/mandatory-insurance-decree-366 | Hecho (26-nov): fuentes oficiales, sin lo de las aerolíneas, la regla de los hospitales |
+| Prepaga para quien se queda (inglés) | health insurance for expats in argentina, health insurance for foreigners in argentina, how does health insurance work in argentina, health insurance for international students argentina | /en/health-insurance-argentina | Hecho (26-nov): sección para estudiantes (#students), pasaporte o precaria, certificado para el DNI. Falta jubilados |
 | Cuánto cuesta (inglés) | how much does health insurance cost in argentina, cost of private health insurance in argentina | /en/health-insurance-cost-argentina | Existe: CTR 0,3% |
 | La mejor (inglés) | best health insurance in argentina, y la búsqueda suelta "health insurance" | /en/best-health-insurance-argentina | Existe: CTR 0,25%, mejorar título y descripción |
-| ¿Es gratis la salud para extranjeros? (inglés) | is healthcare free in argentina for foreigners, does argentina have free healthcare | /en/health-insurance-argentina (pregunta frecuente) | Falta |
-| Prepaga para extranjeros (español) | prepaga para extranjeros, medicina prepaga para extranjeros en argentina, seguro médico para estudiantes extranjeros en argentina | /para/extranjeros | Existe: sumarle estudiantes y residencia |
-| Decreto 366 (español, legal) | decreto 366/25 migraciones, decreto 366 25 resumen, seguro médico obligatorio para extranjeros en argentina | Guía nueva: /guias/decreto-366-seguro-medico-extranjeros | Falta. Enlaza a /para/extranjeros para la compra |
-| Prepaga en Argentina (portugués) | plano de saúde na argentina, quanto custa um plano de saúde na argentina | Página nueva: /pt/plano-de-saude-argentina | Falta. hreflang con /en y /para/extranjeros |
-| Seguro de viagem (portugués) | seguro saúde para entrar na argentina | La misma página en portugués, una sección corta | Falta |
+| ¿Es gratis la salud para extranjeros? (inglés) | is healthcare free in argentina for foreigners, does argentina have free healthcare | /en/mandatory-insurance-decree-366 (pregunta frecuente; la respuesta es la regla del decreto) | Hecho (26-nov) |
+| Prepaga para extranjeros (español) | prepaga para extranjeros, medicina prepaga para extranjeros en argentina, prepaga con residencia precaria | /para/extranjeros | Hecho (26-nov): pasaporte o precaria, certificado para el DNI, links a estudiantes y a portugués |
+| Estudiantes extranjeros (español) | seguro médico para estudiantes extranjeros en argentina, prepaga para estudiantes extranjeros, estudiar medicina en argentina seguro médico | /para/estudiantes-extranjeros | Nueva (26-nov): precio a los 22 años, comparación con Brasil, Uruguay y Colombia, qué dice la ley |
+| Decreto 366 (español, legal) | decreto 366/25 migraciones, decreto 366 25 resumen, seguro médico obligatorio para extranjeros en argentina | /guias/seguro-medico-obligatorio-extranjeros (ya existía; no la vimos en el primer análisis porque no tiene clics) | Hecho (26-nov): fuentes oficiales, sin "la mayoría acepta pasaporte" ni "cumple el requisito"; enlaza a /para/extranjeros y a estudiantes |
+| Prepaga en Argentina (portugués) | plano de saúde na argentina, quanto custa um plano de saúde na argentina, como se chama plano de saúde na argentina, plano de saúde estudante argentina | /pt/plano-de-saude-argentina | Nueva (26-nov): hreflang con /para/extranjeros, /en, /ru y /zh; secciones #estudantes y #turistas |
+| Seguro de viagem (portugués) | seguro saúde para entrar na argentina, seguro saúde argentina é obrigatório | /pt/plano-de-saude-argentina#turistas | Hecho (26-nov): una sección corta, sin vender seguro de viaje |
 
 No se cruzan:
 - **Guía del decreto en español**: responde qué exige la ley y deriva a `/para/extranjeros` para cotizar.
@@ -129,3 +130,23 @@ No se cruzan:
 
 - **Idiomas**: ¿hay quien atienda en inglés y en portugués? Sin eso, la página en portugués trae consultas que después no se cierran.
 - **Afiliación con pasaporte**: ¿qué prepagas afilian solo con pasaporte (sin DNI) o con residencia precaria? `/para/extranjeros` dice que "la mayoría de las grandes" lo aceptan, y conviene tenerlo confirmado por prepaga.
+
+## Hecho el 26-nov (Darío: "arrancá con todo")
+
+Datos de Darío: asesoramos en inglés y portugués; Swiss Medical afilia con pasaporte o con residencia precaria; con la afiliación damos el certificado de cobertura para el trámite del DNI.
+
+- **Redirección** de las dos direcciones rotas a `/en/best-health-insurance-argentina`.
+- **Decreto 366 (inglés)**: fuentes del Boletín Oficial, la normativa y Presidencia; sin lo de las aerolíneas; el 1-jul-2025 como fecha informada por la prensa; preguntas nuevas: "Is healthcare free in Argentina for foreigners?" y afiliación con pasaporte o precaria.
+- **Guía en inglés**: sin "la mayoría de las compañías aceptan pasaporte" (solo Swiss está confirmado); sección para estudiantes con el precio a los 22 años; asesores en inglés y portugués; el JSON-LD de las preguntas ya no manda un objeto en vez del texto.
+- **Ruso y chino**: las mismas correcciones del decreto y del pasaporte, y el hreflang a portugués.
+- **`/para/extranjeros`**: pasaporte o precaria, certificado para el DNI, links a estudiantes y a portugués.
+- **`/para/estudiantes-extranjeros`** (nueva): precio a los 22 años de la lista oficial, cómo funciona si venís de Brasil, Uruguay o Colombia (con fuentes), qué dice la ley.
+- **`/pt/plano-de-saude-argentina`** (nueva): precio oficial, comparación Brasil-Argentina, glosario ("como se chama plano de saúde"), estudiantes, turistas y formulario en portugués (fuente `pt-pillar`, `pt-estudantes`, `pt-pillar-cta`; el teléfono arranca en +55).
+- Sin el descuento por edad de Swiss en ninguna página: se comunica en la cotización.
+
+- **Guías en español que ya existían**:
+  - `/guias/seguro-medico-obligatorio-extranjeros` (dueña de lo legal en español): fuentes oficiales y las mismas correcciones;
+  - `/guias/prepaga-para-uruguayos-en-argentina`: la diferencia con las mutualistas (órdenes y tickets, con fuente de la OPS e IMPO), como pidió Darío;
+  - `/guias/como-afiliarse-prepaga-requisitos`: solo lo confirmado sobre el pasaporte.
+
+Falta: títulos de `best` y `cost` en inglés, y qué prepagas además de Swiss afilian con pasaporte (Sancor lo averigua Darío).
