@@ -94,6 +94,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/ru/strahovka-dlya-beremennyh',
     '/zh/yiliao-baoxian-agenting',
     '/zh/yiliao-baoxian-feiyong-agenting',
+    // 26-nov-2026: brasileños que viven o estudian en Argentina
+    '/pt/plano-de-saude-argentina',
   ].map((path) => ({ url: `${BASE}${path}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.7 }))
 
   const cambioRoutes: MetadataRoute.Sitemap = cambiosRecomendados.map((c) => ({

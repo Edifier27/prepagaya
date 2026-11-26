@@ -1,13 +1,13 @@
 import Link from 'next/link'
-import { PRECIO_ACTUALIZADO_EN, PRECIO_ACTUALIZADO_RU, PRECIO_ACTUALIZADO_ZH, PRECIOS_FUENTE_URL } from '@/lib/data/prepagas'
-import { pesosEn, planesTablaEn } from '@/lib/precios/en'
+import { PRECIO_ACTUALIZADO_EN, PRECIO_ACTUALIZADO_PT, PRECIO_ACTUALIZADO_RU, PRECIO_ACTUALIZADO_ZH, PRECIOS_FUENTE_URL } from '@/lib/data/prepagas'
+import { pesosEn, pesosPt, planesTablaEn } from '@/lib/precios/en'
 import { dolarOficial, usd } from '@/lib/dolar'
 import { NotaDolar } from '@/components/intl/Dolar'
 
-// Tabla de precios oficiales para las páginas en inglés, ruso y chino
+// Tabla de precios oficiales para las páginas en inglés, ruso, chino y portugués
 // (31-oct-2026): HTML real con fuente y fecha (GEO), Swiss Medical primero,
 // 15% OFF solo en Swiss y, si el BCRA responde, el equivalente en dólares.
-export type LocaleIntl = 'en' | 'ru' | 'zh'
+export type LocaleIntl = 'en' | 'ru' | 'zh' | 'pt'
 
 const T: Record<LocaleIntl, { mes: string; caption: string; plan: string; copago: string; precio: string; si: string; no: string; off: string; notas: Record<string, string>; fuente: (link: React.ReactNode) => React.ReactNode }> = {
   en: {
@@ -20,6 +20,11 @@ const T: Record<LocaleIntl, { mes: string; caption: string; plan: string; copago
     notas: { popular: 'Самый популярный план Swiss Medical', entrada: 'Начальный план', barato: 'Самая низкая цена на рынке' },
     fuente: (l) => <>Базовые цены в аргентинских песо (AR$) с НДС, прямое оформление, Буэнос-Айрес и пригороды, по данным, которые каждая компания подаёт в {l} ({PRECIO_ACTUALIZADO_RU}). Скидка 15% за онлайн-оформление (25% для монотрибутистов) — только у Swiss Medical.</>,
   },
+  pt: {
+    mes: PRECIO_ACTUALIZADO_PT, caption: 'Preços mensais de tabela dos planos de saúde na Argentina para uma pessoa de 30 anos', plan: 'Prepaga e plano', copago: 'Coparticipação', precio: 'Preço mensal (30 anos)', si: 'Sim', no: 'Não', off: '15% off on-line',
+    notas: { popular: 'O plano mais vendido da Swiss Medical', entrada: 'Plano de entrada', barato: 'O menor preço do mercado' },
+    fuente: (l) => <>Preços de tabela em pesos argentinos (AR$), com IVA, contratação direta, Cidade de Buenos Aires e Grande Buenos Aires, conforme cada prepaga informa à {l} ({PRECIO_ACTUALIZADO_PT}). O desconto de 15% na contratação on-line (25% para monotributistas) vale só para a Swiss Medical.</>,
+  },
   zh: {
     mes: PRECIO_ACTUALIZADO_ZH, caption: '阿根廷医疗保险计划月度标价(30岁)', plan: '公司与计划', copago: '自付', precio: '月费(30岁)', si: '有', no: '无', off: '网上投保优惠15%',
     notas: { popular: 'Swiss Medical最受欢迎的计划', entrada: '入门计划', barato: '市场最低价' },
@@ -30,6 +35,7 @@ const NOTA_FILA: Record<string, keyof typeof T.en.notas> = { smg20: 'popular', s
 
 export async function TablaPreciosIntl({ locale }: { locale: LocaleIntl }) {
   const t = T[locale]
+  const pesos = locale === 'pt' ? pesosPt : pesosEn
   const dolar = await dolarOficial()
   const filas = planesTablaEn()
   return (
@@ -56,8 +62,8 @@ export async function TablaPreciosIntl({ locale }: { locale: LocaleIntl }) {
                   </th>
                   <td className="px-3 py-2.5 text-gray-600">{f.copago ? t.si : t.no}</td>
                   <td className="px-3 py-2.5 text-right tabular-nums">
-                    {f.promo && <span className="block text-xs text-gray-400 line-through">{pesosEn(f.precio)}</span>}
-                    <span className="font-bold text-gray-900">{pesosEn(final)}</span>
+                    {f.promo && <span className="block text-xs text-gray-400 line-through">{pesos(f.precio)}</span>}
+                    <span className="font-bold text-gray-900">{pesos(final)}</span>
                     {dolar && <span className="block text-xs font-semibold text-gray-600">≈ {usd(final, dolar)}</span>}
                     {f.promo && <span className="block text-xs font-semibold text-emerald-700">{t.off}</span>}
                   </td>

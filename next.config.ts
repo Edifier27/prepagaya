@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
       // 24-sep-2026): páginas viejas y variantes mal escritas.
       // Canibalización blog vs página comercial (auditoría 13-oct-2026): el
       // post y la comparativa competían por la misma búsqueda.
+      // Links rotos de afuera (26-nov-2026, Vercel: 24 visitantes en un mes, sin
+      // sitio de origen): "/en/best-health-insurance-argentinaprepaga" y la
+      // misma con ")." al final. No están en el sitio; se mandan a la página.
+      { source: "/en/:p(best-health-insurance-argentina.+)", destination: "/en/best-health-insurance-argentina", permanent: true },
       { source: "/blog/osde-plan-210-vs-310", destination: "/prepagas/osde/210-vs-310", permanent: true },
       { source: "/blog/swiss-medical-smg20-vs-osde-310", destination: "/comparativas/swiss-medical-smg20-vs-osde-310", permanent: true },
       { source: "/blog/mejores-obras-sociales-argentina", destination: "/obras-sociales/mejores", permanent: true },

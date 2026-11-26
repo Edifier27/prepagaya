@@ -3,6 +3,7 @@ import { precioGrupo } from '@/lib/precios/motor'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { APORTE_OS_MAXIMO, APORTE_OS_MINIMO, CATEGORIAS_MONOTRIBUTO, VIGENCIA_CATEGORIAS, formatoPesos } from '@/lib/data/monotributo'
 import { formatPrecio } from '@/lib/utils'
+import { EDAD_ESTUDIANTE, planesEstudiante } from '@/lib/precios/estudiante'
 import { nombreCorto } from '@/components/perfiles/PreciosMayores'
 
 // Preguntas de los perfiles que se responden con datos oficiales (3-oct-2026):
@@ -43,5 +44,17 @@ export function faqAporteMonotributo(): { q: string; a: string } | null {
   return {
     q: '¿Cuánto aporta mi categoría del monotributo a la obra social?',
     a: `Según el cuadro de ARCA${VIGENCIA_CATEGORIAS ? ` vigente desde el ${VIGENCIA_CATEGORIAS}` : ''}, el aporte mensual a la obra social va de ${formatoPesos(APORTE_OS_MINIMO)} (${rango(minimas)}) a ${formatoPesos(APORTE_OS_MAXIMO)} (${rango(maximas)}). Cada familiar que sumes como adherente paga lo mismo que el titular. Si la prepaga toma ese aporte, se descuenta de la cuota y pagás solo la diferencia.`,
+  }
+}
+
+// Estudiantes extranjeros (26-nov-2026): Swiss Medical afilia con pasaporte o
+// residencia precaria (Darío). Precio de lista a los 22 años, que paga igual
+// que un argentino de su edad.
+export function faqEstudiante(): { q: string; a: string } | null {
+  const filas = planesEstudiante().map((f) => `Swiss Medical ${f.plan}, ${formatPrecio(f.precio)}`)
+  if (filas.length < 2) return null
+  return {
+    q: '¿Cuánto cuesta una prepaga para un estudiante extranjero?',
+    a: `Lo mismo que para un argentino de tu edad: el precio depende de la edad y del plan, no de la nacionalidad. Para una persona de ${EDAD_ESTUDIANTE} años, la lista oficial de ${PRECIO_ACTUALIZADO.toLowerCase()} de Swiss Medical en CABA y GBA es: ${filas.join('; ')} por mes (contratación directa, IVA incluido). Cotizando online tenés 15% OFF.`,
   }
 }

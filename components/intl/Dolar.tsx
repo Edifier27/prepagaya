@@ -16,6 +16,7 @@ export async function NotaDolar({ locale }: { locale: LocaleIntl }) {
   const [a, m, dia] = d.fecha.split('-')
   const valor = `AR$${d.valor.toLocaleString('en-US', { maximumFractionDigits: 2 })}`
   if (locale === 'ru') return <>Суммы в долларах приблизительные, по официальному курсу BCRA на {dia}.{m}.{a} ({valor} за доллар). Оплата в аргентинских песо.</>
+  if (locale === 'pt') return <>Os valores em dólares são aproximados, pela cotação oficial do BCRA de {dia}/{m}/{a} ({valor} por dólar). Os planos são cobrados em pesos argentinos.</>
   if (locale === 'zh') return <>美元金额为约数,按阿根廷中央银行(BCRA){a}年{Number(m)}月{Number(dia)}日官方汇率(1美元={valor})换算。按阿根廷比索计费。</>
   return <>US$ amounts are approximate, at the BCRA official exchange rate of {m}/{dia}/{a} ({valor} per dollar). Plans are billed in Argentine pesos.</>
 }

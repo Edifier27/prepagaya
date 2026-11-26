@@ -215,10 +215,11 @@ export function whatsappLinkParaLead(nombre: string, celular: string, pais?: str
  * ya sabe de qué país es el visitante (por la página en la que está), así
  * que fija el prefijo en vez de pedirle que elija uno de una lista.
  */
-export const CODIGO_PAIS_INTL: Record<'us' | 'ru' | 'zh', { prefijo: string; placeholder: string }> = {
+export const CODIGO_PAIS_INTL: Record<'us' | 'ru' | 'zh' | 'pt', { prefijo: string; placeholder: string }> = {
   us: { prefijo: '1', placeholder: '(212) 555-0142' },
   ru: { prefijo: '7', placeholder: '912 345-67-89' },
   zh: { prefijo: '86', placeholder: '138 0013 8000' },
+  pt: { prefijo: '55', placeholder: '11 91234-5678' },
 }
 
 /**

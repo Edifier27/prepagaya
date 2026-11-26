@@ -5,6 +5,8 @@ import { codigoCorto } from '@/lib/seo/titulos'
 
 /** "AR$90,938" (formato en inglés) */
 export const pesosEn = (n: number) => `AR$${Math.round(n).toLocaleString('en-US')}`
+/** "AR$ 90.938" (formato brasileño, para /pt/*). Espacio duro: en el celular no se corta entre "AR$" y el número */
+export const pesosPt = (n: number) => `AR$ ${Math.round(n).toLocaleString('pt-BR')}`
 
 export interface FilaPrecioEn { slug: string; prepaga: string; planSlug: string; plan: string; precio: number; copago: boolean; promo: boolean; nota?: string }
 

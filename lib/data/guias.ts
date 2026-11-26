@@ -1289,7 +1289,7 @@ export const guias: GuiaData[] = [
       secciones: [
         {
           titulo: 'Los requisitos base (para todos)',
-          cuerpo: 'DNI de cada integrante del grupo a afiliar, datos de contacto, y la declaración jurada de salud de cada adulto. No existe requisito de nacionalidad (los extranjeros con DNI argentino o residencia en trámite pueden afiliarse; algunas empresas aceptan pasaporte con precaria) ni límite de edad legal para el ingreso, aunque las tarifas suben fuerte con la edad. No pueden exigirte estudios médicos como condición de aceptación: la evaluación de admisión, donde existe, solo puede usarse para encuadrar preexistencias.',
+          cuerpo: 'DNI de cada integrante del grupo a afiliar, datos de contacto, y la declaración jurada de salud de cada adulto. No existe requisito de nacionalidad (los extranjeros con DNI argentino o residencia en trámite pueden afiliarse; Swiss Medical acepta pasaporte o residencia precaria) ni límite de edad legal para el ingreso, aunque las tarifas suben fuerte con la edad. No pueden exigirte estudios médicos como condición de aceptación: la evaluación de admisión, donde existe, solo puede usarse para encuadrar preexistencias.',
         },
         {
           titulo: 'Documentación según tu situación laboral',
@@ -1314,7 +1314,7 @@ export const guias: GuiaData[] = [
       },
       {
         q: '¿Un extranjero puede afiliarse a una prepaga argentina?',
-        a: 'Sí. Con DNI argentino el trámite es idéntico al de cualquier afiliado. Con residencia en trámite, varias empresas aceptan pasaporte y constancia de residencia precaria. Las condiciones comerciales pueden variar, pero no hay impedimento legal.',
+        a: 'Sí. Con DNI argentino el trámite es idéntico al de cualquier afiliado. Con residencia en trámite, Swiss Medical te afilia con pasaporte o con la constancia de residencia precaria; en otras empresas, consultá tu caso. No hay impedimento legal.',
       },
       {
         q: '¿Puedo afiliar a mi pareja sin estar casados?',
@@ -1327,24 +1327,32 @@ export const guias: GuiaData[] = [
   {
     slug: 'seguro-medico-obligatorio-extranjeros',
     titulo: 'Seguro médico obligatorio en Argentina: guía para extranjeros 2026',
-    metaDescripcion: 'El Decreto 366/25 hizo obligatorio el seguro médico para entrar a Argentina. Qué exige Migraciones, quiénes están exentos y cuándo conviene una prepaga local en vez de asistencia al viajero.',
+    metaDescripcion: 'El DNU 366/2025 pide seguro médico a los extranjeros sin residencia permanente y los hospitales públicos les cobran la atención programada. Qué exige, quién está exento y cuándo conviene una prepaga.',
     tiempoLectura: 7,
     categoria: 'Trámites',
-    fechaActualizacion: '2026-10-03',
+    fechaActualizacion: '2026-11-26',
     contenido: {
-      intro: 'Desde mediados de 2025, entrar a Argentina sin cobertura médica dejó de ser una opción: el Decreto 366/25 exige que todo extranjero no residente cuente con un seguro médico válido durante su estadía, sin importar si viene por turismo, trabajo o estudio. Y para quienes se quedan a vivir, la pregunta cambia: ¿alcanza con la asistencia al viajero o conviene pasarse a una prepaga local? Esta guía responde las dos cosas.',
+      intro: 'El DNU 366/2025, publicado en el Boletín Oficial el 29 de mayo de 2025, reformó la Ley de Migraciones: los extranjeros que ingresan sin residencia permanente tienen que contar con un seguro de salud, vengan por turismo, trabajo o estudio, y los hospitales públicos les cobran la atención programada (las emergencias se atienden siempre). Para quienes se quedan a vivir, la pregunta cambia: ¿alcanza con la asistencia al viajero o conviene una prepaga local? Esta guía responde las dos cosas.',
       secciones: [
         {
           titulo: 'Qué exige el Decreto 366/25',
-          cuerpo: 'Desde julio de 2025 rige la obligación de contar con seguro médico para todos los extranjeros que ingresan como residentes transitorios o temporarios, por cualquier vía (aérea, marítima o terrestre). La cobertura debe incluir atención primaria y de emergencia, internación por accidente o enfermedad y asistencia durante toda la estadía. Los residentes permanentes y los ciudadanos naturalizados están exentos del requisito.',
+          cuerpo: 'El DNU 366/2025 reformó la Ley de Migraciones 25.871: los extranjeros que ingresan sin residencia permanente (turistas, estudiantes y trabajadores) tienen que contar con un seguro de salud, por cualquier vía de ingreso. Según informó la prensa, los controles en la frontera empezaron el 1 de julio de 2025. Además, quien no tiene residencia permanente paga la atención programada en los hospitales públicos, o la cubre su seguro; las emergencias se atienden siempre. Los residentes permanentes y los argentinos están exentos.',
+          enlaces: [
+            { texto: 'El DNU 366/2025 en el Boletín Oficial', url: 'https://www.boletinoficial.gob.ar/detalleAviso/primera/326096/2025-05-29' },
+            { texto: 'Presidencia: atención de no residentes en hospitales públicos', url: 'https://www.argentina.gob.ar/node/467195' },
+          ],
         },
         {
           titulo: 'Asistencia al viajero vs. prepaga local',
-          cuerpo: 'Para una visita corta, una asistencia al viajero cumple el requisito y es más barata. Pero si venís a radicarte —trabajo, estudio de largo plazo, residencia—, la ecuación se invierte: la asistencia tiene topes de reintegro por evento, no cubre tratamientos programados ni enfermedades crónicas, y no te da médico de cabecera. Una prepaga local te da cartilla completa, internación sin tope, medicamentos con descuento y continuidad de tratamiento, pagando lo mismo que un residente argentino de tu edad.',
+          cuerpo: 'Para una visita corta, lo habitual es una asistencia al viajero, que es más barata (nosotros no la vendemos). Pero si venís a radicarte —trabajo, estudio de largo plazo, residencia—, la ecuación se invierte: la asistencia tiene topes de reintegro por evento, no cubre tratamientos programados ni enfermedades crónicas, y no te da médico de cabecera. Una prepaga local te da cartilla completa, internación sin tope, medicamentos con descuento y continuidad de tratamiento, pagando lo mismo que un residente argentino de tu edad.',
         },
         {
           titulo: 'Cómo afiliarte a una prepaga siendo extranjero',
-          cuerpo: 'La mayoría de las prepagas grandes aceptan la afiliación con pasaporte y el trámite de residencia iniciado (residencia precaria); algunas piden un CDI o CUIL provisorio para la facturación. El precio es el mismo que para cualquier persona de tu edad: la nacionalidad no cambia la cuota. Al momento de contratar, pedí el certificado de cobertura — sirve como comprobante ante Migraciones para el trámite de residencia.',
+          cuerpo: 'Swiss Medical te afilia con tu pasaporte o con el certificado de residencia precaria que te da Migraciones al iniciar el trámite de residencia; para otras prepagas, consultá tu caso con un asesor. El precio es el mismo que para cualquier persona de tu edad: la nacionalidad no cambia la cuota. Con la afiliación te damos el certificado de cobertura para presentar en tu trámite de residencia y DNI. Te asesoramos en español, inglés y portugués.',
+          enlaces: [
+            { texto: 'Prepaga para extranjeros en Argentina', url: '/para/extranjeros' },
+            { texto: 'Seguro médico para estudiantes extranjeros', url: '/para/estudiantes-extranjeros' },
+          ],
         },
         {
           titulo: 'Cuánto cuesta en 2026',
@@ -1355,29 +1363,34 @@ export const guias: GuiaData[] = [
           cuerpo: 'Los tres más frecuentes: contratar la asistencia al viajero más barata y descubrir el tope de reintegro recién en la primera internación; elegir prepaga por marca sin verificar la cartilla de la ciudad donde efectivamente van a vivir (la red fuera de Buenos Aires cambia mucho entre empresas); y no declarar preexistencias en la declaración jurada, lo que puede complicar coberturas futuras. La ley argentina prohíbe rechazar afiliaciones por preexistencia — declarala y evitá problemas.',
         },
       ],
-      conclusion: 'Si venís de visita, cualquier seguro que cumpla el Decreto 366/25 alcanza. Si venís a quedarte, una prepaga local es la única cobertura completa: mismo precio que un argentino, cartilla real y certificado válido para Migraciones. Compará los planes con precios reales y elegí según la ciudad donde vas a vivir.',
+      conclusion: 'Si venís de visita, lo habitual es una asistencia al viajero. Si venís a quedarte —a trabajar, estudiar o vivir—, una prepaga local es la cobertura completa: mismo precio que un argentino, cartilla real y el certificado de cobertura para tu trámite de residencia y DNI. Compará los planes con precios reales y elegí según la ciudad donde vas a vivir.',
     },
     faq: [
       {
         q: '¿El seguro médico es obligatorio también para turistas?',
-        a: 'Sí. Desde julio de 2025 el requisito alcanza a todos los extranjeros no residentes, incluidos turistas, sin importar la vía de ingreso. Los residentes permanentes y naturalizados están exentos.',
+        a: 'Sí. El DNU 366/2025 pide seguro de salud a los extranjeros que ingresan sin residencia permanente, incluidos los turistas, sin importar la vía de ingreso; según la prensa, los controles en la frontera empezaron el 1 de julio de 2025. Los residentes permanentes y los argentinos están exentos.',
       },
       {
         q: '¿Puedo usar el hospital público siendo extranjero?',
-        a: 'El sistema público argentino atiende urgencias a cualquier persona. Pero el Decreto 366/25 exige igualmente contar con seguro al ingresar, y para radicarte la cobertura privada te evita las demoras del sistema público en consultas programadas y estudios.',
+        a: 'Las emergencias se atienden siempre, a cualquier persona. La atención programada (consultas, estudios, cirugías) se les cobra a quienes no tienen residencia permanente, salvo que tengan un seguro que la cubra.',
       },
       {
         q: '¿Qué documento necesito para contratar una prepaga sin DNI?',
-        a: 'Depende de la empresa: en general pasaporte vigente y residencia precaria (constancia del trámite migratorio iniciado). Algunas piden CDI/CUIL provisorio para facturar. Cotizá y consultá tu caso — un asesor te confirma qué empresas aceptan tu documentación hoy.',
+        a: 'En Swiss Medical, el pasaporte o el certificado de residencia precaria (la constancia del trámite migratorio iniciado). Para otras prepagas, consultá tu caso: un asesor te confirma qué empresa acepta tu documentación.',
       },
       {
         q: '¿La prepaga me sirve como comprobante para la residencia?',
-        a: 'Sí: el certificado de cobertura que emite la prepaga acredita cobertura médica ante Migraciones para los trámites de residencia temporaria.',
+        a: 'Sí: con la afiliación te damos el certificado de cobertura para presentar en tu trámite de residencia y DNI.',
       },
     ],
-    keywords: ['seguro medico obligatorio argentina', 'decreto 366/25 seguro medico', 'prepaga para extranjeros', 'prepaga sin dni argentina', 'health insurance argentina requirement'],
+    keywords: ['seguro medico obligatorio argentina', 'seguro medico obligatorio para extranjeros en argentina', 'decreto 366/25 seguro medico', 'decreto 366/25 migraciones', 'decreto 366 25 resumen', 'health insurance argentina requirement'],
     relacionadas: ['como-afiliarse-prepaga-requisitos', 'prepaga-para-uruguayos-en-argentina', 'prepaga-sin-periodo-carencia', 'como-contratar-prepaga-online'],
     prepagasRelacionadas: ['swiss-medical', 'osde', 'medife'],
+    fuentes: [
+      { texto: 'DNU 366/2025, Boletín Oficial (29-may-2025)', url: 'https://www.boletinoficial.gob.ar/detalleAviso/primera/326096/2025-05-29' },
+      { texto: 'Texto del DNU 366/2025, argentina.gob.ar', url: 'https://www.argentina.gob.ar/normativa/nacional/decreto-366-2025-413297' },
+      { texto: 'Presidencia: atención de no residentes en hospitales públicos', url: 'https://www.argentina.gob.ar/node/467195' },
+    ],
   },
   // Uruguay (Darío, 29-oct-2026): los dos casos. Uruguayos que viven o se
   // mudan a Argentina (residencia Mercosur) y argentinos que viajan a
@@ -1389,7 +1402,7 @@ export const guias: GuiaData[] = [
     metaDescripcion: `Si sos uruguayo y vivís o te mudás a Argentina: residencia Mercosur, cómo afiliarte a una prepaga sin DNI argentino y cuánto cuesta, desde ${DESDE} por mes (${MES}).`,
     tiempoLectura: 5,
     categoria: 'Trámites',
-    fechaActualizacion: '2026-10-29',
+    fechaActualizacion: '2026-11-26',
     contenido: {
       intro: `Si sos uruguayo y vivís en Argentina, o te estás por mudar, podés afiliarte a cualquier prepaga argentina al mismo precio que un argentino: el valor depende de tu edad y del plan, no de tu nacionalidad. Según las listas oficiales de ${MES}, para una persona de 30 años la cuota más baja del mercado es de ${DESDE} por mes (${DESDE_PLAN}).`,
       secciones: [
@@ -1400,7 +1413,15 @@ export const guias: GuiaData[] = [
         },
         {
           titulo: 'Cómo afiliarte sin DNI argentino',
-          cuerpo: 'La mayoría de las prepagas grandes aceptan la afiliación con el documento de tu país y la residencia precaria (la constancia del trámite iniciado); algunas piden un CUIL o CDI para facturar. Con el DNI argentino el trámite es igual al de cualquier persona. Las enfermedades previas se declaran en la declaración jurada de salud, y por ley no te pueden rechazar por la edad.',
+          cuerpo: 'Swiss Medical te afilia con tu pasaporte o con la residencia precaria (la constancia del trámite iniciado); para otras prepagas, consultá tu caso con un asesor. Con el DNI argentino el trámite es igual al de cualquier persona. Las enfermedades previas se declaran en la declaración jurada de salud, y por ley no te pueden rechazar por la edad. Con la afiliación te damos el certificado de cobertura para tu trámite de residencia y DNI.',
+        },
+        {
+          titulo: 'La diferencia con tu mutualista: sin órdenes ni tickets',
+          cuerpo: 'En Uruguay, en las mutualistas pagás la cuota y, aparte, órdenes y tickets (tasas moderadoras) cada vez que usás el servicio: consultas, estudios y medicamentos, con topes que fija el Poder Ejecutivo. En Argentina hay planes de prepaga sin copago: pagás solo la cuota mensual y la consulta no tiene costo extra (en Swiss Medical, desde el SMG02). Los planes con copago cobran un monto fijo por consulta a cambio de una cuota más baja.',
+          enlaces: [
+            { texto: 'OPS: cómo funciona el sistema de salud de Uruguay', url: 'https://paho.org/sites/default/files/2021-12/Digital_Funcionamiento%20del%20sistema%20de%20salud%20de%20Uruguay.pdf' },
+            { texto: 'IMPO: tasas moderadoras', url: 'https://www.impo.com.uy/bases/decretos/362-2024/8' },
+          ],
         },
         {
           titulo: 'Cuánto cuesta',
@@ -1421,7 +1442,11 @@ export const guias: GuiaData[] = [
       },
       {
         q: '¿Necesito DNI argentino para afiliarme?',
-        a: 'No siempre. La mayoría de las prepagas grandes aceptan el documento de tu país con la residencia precaria; algunas piden CUIL o CDI para facturar. Un asesor te confirma qué empresa acepta tu documentación.',
+        a: 'No. Swiss Medical te afilia con tu pasaporte o con la residencia precaria. Para otras prepagas, un asesor te confirma qué empresa acepta tu documentación.',
+      },
+      {
+        q: '¿En la prepaga argentina se pagan órdenes y tickets como en Uruguay?',
+        a: 'Depende del plan. Con un plan sin copago pagás solo la cuota mensual y la consulta no tiene costo extra (en Swiss Medical, desde el SMG02). Los planes con copago cobran un monto fijo por consulta a cambio de una cuota más baja: en el S1 de Swiss Medical, $14.000 por consulta.',
       },
       {
         q: '¿La prepaga argentina me cubre cuando voy a Uruguay?',
@@ -1433,6 +1458,8 @@ export const guias: GuiaData[] = [
     prepagasRelacionadas: ['swiss-medical', 'osde', 'premedic'],
     fuentes: [
       { texto: 'Disposición DNM 1637/2022 (residencia Mercosur)', url: 'https://www.argentina.gob.ar/normativa/nacional/norma-369202/texto' },
+      { texto: 'OPS: funcionamiento del sistema de salud de Uruguay', url: 'https://paho.org/sites/default/files/2021-12/Digital_Funcionamiento%20del%20sistema%20de%20salud%20de%20Uruguay.pdf' },
+      { texto: 'IMPO (Uruguay): tasas moderadoras', url: 'https://www.impo.com.uy/bases/decretos/362-2024/8' },
     ],
   },
   {

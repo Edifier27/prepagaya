@@ -9,13 +9,14 @@ import { SITE_NAME, SITE_URL, formatPrecio, CONTENT_UPDATE, OG_IMAGE } from '@/l
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { NivelPrecioBadge } from '@/components/ui/NivelPrecioBadge'
 import { PreciosMayores, faqPreciosMayores } from '@/components/perfiles/PreciosMayores'
-import { faqAporteMonotributo, faqFamilia } from '@/lib/perfiles-faq'
+import { faqAporteMonotributo, faqEstudiante, faqFamilia } from '@/lib/perfiles-faq'
 import { ldJson } from '@/lib/jsonld'
 
 const FAQ_CON_DATOS: Record<string, () => { q: string; a: string } | null> = {
   'adultos-mayores': faqPreciosMayores,
   familias: faqFamilia,
   monotributistas: faqAporteMonotributo,
+  'estudiantes-extranjeros': faqEstudiante,
 }
 
 interface Props {
@@ -43,9 +44,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       // Perfiles con versión dedicada en otro idioma (PERFIL_IDIOMAS): el
       // hreflang recíproco evita que Google las trate como contenido no
       // relacionado.
-      ...(PERFIL_IDIOMAS[perfil] ? { languages: {
+      ...(PERFIL_IDIOMAS[perfil]?.some((pi) => pi.hreflang !== false) ? { languages: {
         'es-AR': `${SITE_URL}/para/${perfil}`,
-        ...Object.fromEntries(PERFIL_IDIOMAS[perfil].map((pi) => [pi.codigo, `${SITE_URL}${pi.href}`])),
+        ...Object.fromEntries(PERFIL_IDIOMAS[perfil].filter((pi) => pi.hreflang !== false).map((pi) => [pi.codigo, `${SITE_URL}${pi.href}`])),
       } } : {}),
     },
     keywords: perf.keywords,
@@ -360,6 +361,62 @@ export default async function PerfilPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {/* Páginas hermanas (26-nov-2026): extranjeros ↔ estudiantes ↔ portugués */}
+      {perf.relacionados && perf.relacionados.length > 0 && (
+        <section className="py-8 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {perf.relacionados.map((r) => (
+              <Link key={r.href} href={r.href} className="flex items-center justify-between gap-3 bg-red-50/60 border border-red-100 rounded-xl px-5 py-4 hover:border-red-200 transition-colors">
+                <div>
+                  <div className="font-bold text-gray-900 text-sm">{r.titulo}</div>
+                  <div className="text-xs text-gray-600">{r.texto}</div>
+                </div>
+                <span className="flex-shrink-0 text-sm font-bold text-[#E8002D]">Ver →</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Secciones propias del perfil (26-nov-2026): texto, tabla en HTML y fuentes con link (GEO) */}
+      {perf.secciones?.map((sec) => (
+        <section key={sec.titulo} className="py-10 bg-white border-t border-gray-100">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">{sec.titulo}</h2>
+            {sec.parrafos.map((t) => (
+              <p key={t.slice(0, 40)} className="text-sm text-gray-700 leading-relaxed mb-3 max-w-3xl">{t}</p>
+            ))}
+            {sec.tabla && (
+              <div className="overflow-x-auto -mx-4 px-4 mt-4">
+                <table className="w-full text-[13px] sm:text-sm border border-gray-200 rounded-xl overflow-hidden bg-white">
+                  <thead className="bg-gray-50 text-gray-600">
+                    <tr>{sec.tabla.columnas.map((c) => <th key={c} className="text-left font-semibold px-3 sm:px-4 py-2.5">{c}</th>)}</tr>
+                  </thead>
+                  <tbody>
+                    {sec.tabla.filas.map((f) => (
+                      <tr key={f[0]} className="border-t border-gray-100 align-top">
+                        {f.map((c, i) => <td key={i} className={`px-3 sm:px-4 py-2.5 ${i === 0 ? 'font-semibold text-gray-900 whitespace-nowrap' : 'text-gray-700'}`}>{c}</td>)}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            {sec.fuentes && sec.fuentes.length > 0 && (
+              <p className="text-xs text-gray-400 mt-3 leading-relaxed">
+                Fuentes:{' '}
+                {sec.fuentes.map((f, i) => (
+                  <span key={f.url}>
+                    {i > 0 && ' · '}
+                    <a href={f.url} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">{f.texto}</a>
+                  </span>
+                ))}
+              </p>
+            )}
+          </div>
+        </section>
+      ))}
 
       {/* FAQ */}
       <section className="py-10 bg-gray-50 border-t border-gray-100">
