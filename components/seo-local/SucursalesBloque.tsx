@@ -1,16 +1,12 @@
 import { FUENTES_SUCURSALES, SUCURSALES_GENERADO, linkMapa, type Sucursal } from '@/lib/data/sucursales'
 import { ListaFiltrable } from '@/components/cartillas/ListaFiltrable'
+import { direccionCorta } from '@/lib/seo/marca-lugar'
 
 // Sucursales oficiales de una prepaga en una provincia o localidad
 // (lib/data/sucursales.ts). Va arriba de todo: quien busca "osde rosario"
 // casi siempre quiere la dirección de la sucursal.
 
 
-/** "San Lorenzo 1141 - Rosario - Santa Fe" → "San Lorenzo 1141" cuando el resto repite la localidad. */
-function direccionCorta(s: Sucursal): string {
-  const partes = s.direccion.split(' - ').map((x) => x.trim())
-  return partes.length > 1 && s.localidad && partes.slice(1).some((p) => p.toLowerCase() === s.localidad!.toLowerCase()) ? partes[0] : s.direccion
-}
 
 export function SucursalesBloque({ prepagaSlug, prepagaNombre, lugar, sucursales }: { prepagaSlug: string; prepagaNombre: string; lugar: string; sucursales: Sucursal[] }) {
   if (!sucursales.length) return null

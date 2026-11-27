@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { linkCartillaZona } from '@/lib/data/cartilla-zonas'
 import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
 import { SucursalesBloque } from './SucursalesBloque'
+import { TelefonosMarca } from './TelefonosMarca'
+import { metaMarcaLugar } from '@/lib/seo/marca-lugar'
 import { sucursalesEnProvincia } from '@/lib/data/sucursales'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
@@ -22,7 +24,17 @@ export function prepagaZonaMetadata(prov: ProvinciaSEO, pz: PrepagaZona): Metada
   // Con la lista oficial de la región (28-sep-2026): antes, el de CABA
   const precioMin = prepData ? preciosDeZona(prepData, prov.zonaKey).desde : null
   // Sucursales oficiales en la provincia (24-sep-2026): van en el título.
-  const nSuc = sucursalesEnProvincia(pz.slug, prov, provinciasSEO).length
+  const sucProv = sucursalesEnProvincia(pz.slug, prov, provinciasSEO)
+  const nSuc = sucProv.length
+  const propia = metaMarcaLugar({ slug: pz.slug, marca: pz.nombre, lugar: prov.nombre, sucursales: sucProv, precioDesde: precioMin, mes: PRECIO_ACTUALIZADO.toLowerCase() })
+  if (propia) {
+    return {
+      title: { absolute: propia.title },
+      description: propia.description,
+      alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${pz.slug}` },
+      keywords: [`${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()} telefono`, `${pz.nombre.toLowerCase()} ${prov.capitalNombre.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${prov.nombre.toLowerCase()} precios`],
+    }
+  }
   return {
     title: nSuc && precioMin
       ? `${pz.nombre} en ${prov.nombre}: ${nSuc === 1 ? 'sucursal' : 'sucursales'} y planes desde ${formatPrecio(precioMin)}/mes`
@@ -103,6 +115,7 @@ export function PrepagaZonaPage({ prov, pz }: { prov: ProvinciaSEO; pz: PrepagaZ
         </header>
 
         <SucursalesBloque prepagaSlug={pz.slug} prepagaNombre={pz.nombre} lugar={prov.nombre} sucursales={sucursalesEnProvincia(pz.slug, prov, provinciasSEO)} />
+        <TelefonosMarca prepagaSlug={pz.slug} prepagaNombre={pz.nombre} />
 
         {/* Link al silo de cartillas (datos oficiales por zona), si la prepaga lo tiene */}
         {cartillaLink && (
