@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { linkCartillaZona } from '@/lib/data/cartilla-zonas'
 import { CartillaOficialLink } from '@/components/cartillas/CartillaOficialLink'
 import { SucursalesBloque } from './SucursalesBloque'
+import { TelefonosMarca } from './TelefonosMarca'
+import { metaMarcaLugar } from '@/lib/seo/marca-lugar'
 import { sucursalesEnLocalidad } from '@/lib/data/sucursales'
 import type { Metadata } from 'next'
 import { prepagas, PRECIO_ACTUALIZADO, nivelPrecio } from '@/lib/data/prepagas'
@@ -32,6 +34,15 @@ export function localidadPrepagaMetadata(prov: ProvinciaSEO, loc: LocalidadZona,
   const suc = sucursalesEnLocalidad(pz.slug, prov, loc, provinciasSEO)
   const prepData = prepagas.find((p) => p.slug === pz.slug)
   const precioDesde = prepData ? preciosDeZona(prepData, zonaDeLocalidad(prov, loc)).desde : null
+  const propia = metaMarcaLugar({ slug: pz.slug, marca: pz.nombre, lugar: corto, sucursales: suc, precioDesde, mes: PRECIO_ACTUALIZADO.toLowerCase() })
+  if (propia) {
+    return {
+      title: { absolute: propia.title },
+      description: propia.description,
+      alternates: { canonical: `${SITE_URL}/prepagas/${prov.slug}/${loc.slug}/${pz.slug}` },
+      keywords: [`${pz.nombre.toLowerCase()} ${corto.toLowerCase()}`, `${pz.nombre.toLowerCase()} ${corto.toLowerCase()} telefono`, `${pz.nombre.toLowerCase()} ${corto.toLowerCase()} sucursal`, `planes ${pz.nombre.toLowerCase()} ${corto.toLowerCase()}`],
+    }
+  }
   return {
     // Intención "planes y precios" en la localidad. La intención "cartilla" la
     // toma el silo /cartillas/[prepaga]/[zona] (datos oficiales por zona);
@@ -124,6 +135,7 @@ export function LocalidadPrepagaPage({ prov, loc, pz }: { prov: ProvinciaSEO; lo
         </header>
 
         <SucursalesBloque prepagaSlug={pz.slug} prepagaNombre={pz.nombre} lugar={corto} sucursales={sucursalesEnLocalidad(pz.slug, prov, loc, provinciasSEO)} />
+        <TelefonosMarca prepagaSlug={pz.slug} prepagaNombre={pz.nombre} />
 
         {/* Link al silo de cartillas (datos oficiales por zona), si la prepaga lo tiene */}
         {cartillaLink && (
