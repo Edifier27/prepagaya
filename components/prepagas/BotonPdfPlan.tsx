@@ -5,7 +5,10 @@ import { trackEvent } from '@/lib/analytics'
 // "¿Me lo pasás por escrito / en PDF?" es de lo que más piden en los chats del CRM (3-nov-2026). El botón
 // imprime solo la hoja del plan (el bloque con data-imprimir de la ficha): en el celular y en la compu,
 // "Guardar como PDF" en el diálogo de impresión.
-export function BotonPdfPlan({ plan, className = '' }: { plan: string; className?: string }) {
+// Sin marca de PrepagaYa en el PDF (25-nov-2026): el nombre del archivo sale del título de la página, así que se cambia mientras se
+// imprime, y el navegador no agrega su encabezado y pie (con la dirección del sitio) porque se pide margen de página 0 solo durante
+// la impresión de esta hoja (el margen lo da el padding de .hoja-imprimir).
+export function BotonPdfPlan({ plan, titulo, className = '' }: { plan: string; titulo?: string; className?: string }) {
   function imprimir() {
     trackEvent('pdf_plan_click', { plan })
     // La hoja se copia como hija directa del body: así se oculta todo lo demás con display:none
@@ -17,7 +20,18 @@ export function BotonPdfPlan({ plan, className = '' }: { plan: string; className
     hoja.className = 'hoja-imprimir'
     document.body.appendChild(hoja)
     document.body.classList.add('imprimir-plan')
-    const limpiar = () => { document.body.classList.remove('imprimir-plan'); hoja.remove(); window.removeEventListener('afterprint', limpiar) }
+    const tituloAntes = document.title
+    if (titulo) document.title = titulo
+    const sinMargen = document.createElement('style')
+    sinMargen.textContent = '@page { margin: 0 } .hoja-imprimir { padding: 14mm !important; }'
+    document.head.appendChild(sinMargen)
+    const limpiar = () => {
+      document.body.classList.remove('imprimir-plan')
+      hoja.remove()
+      sinMargen.remove()
+      if (titulo) document.title = tituloAntes
+      window.removeEventListener('afterprint', limpiar)
+    }
     window.addEventListener('afterprint', limpiar)
     window.print()
     // Safari en iOS no siempre dispara afterprint
