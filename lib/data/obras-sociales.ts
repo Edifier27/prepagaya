@@ -825,8 +825,10 @@ export const obrasSociales: ObraSocialData[] = [
     nombre: 'OSDEPYM',
     emoji: '💼',
     tipo: 'empresarial',
-    titulo: 'OSDEPYM: obra social de empresarios y monotributistas, teléfono (2026)',
-    metaDescripcion: 'OSDEPYM, la Obra Social de Empresarios, Profesionales y Monotributistas: teléfono (011) 5288-5600, quién puede afiliarse, monotributo y opción de cambio.',
+    // 27-nov-2026: "obra social de empresarios profesionales y monotributistas"
+    // (2.312 impresiones, pos. 7,5, CTR 0,3%): el título no tenía "profesionales".
+    titulo: 'OSDEPYM: Obra Social de Empresarios, Profesionales y Monotributistas',
+    metaDescripcion: 'OSDEPYM, código 4-0170-4: teléfono (011) 5288-5600, quién puede afiliarse, si acepta monotributistas y cómo pasar tus aportes a una prepaga pagando la diferencia.',
     descripcion: 'La Obra Social de Empresarios, Profesionales y Monotributistas.',
     intro: 'OSDEPYM es la Obra Social de Empresarios, Profesionales y Monotributistas, inscripta en la Superintendencia de Servicios de Salud como obra social de personal de dirección (código 4-0170-4). Tiene sede en Reconquista 458, piso 2, Ciudad de Buenos Aires. Figura en el listado oficial de obras sociales que aceptan monotributistas y en el de la opción de cambio.',
     quienesPuedenAfiliarse: [
@@ -866,6 +868,7 @@ export const obrasSociales: ObraSocialData[] = [
       { q: '¿Qué significa OSDEPYM?', a: 'Obra Social de Empresarios, Profesionales y Monotributistas. Está inscripta en la Superintendencia de Servicios de Salud como obra social de personal de dirección, con el código 4-0170-4.' },
       { q: '¿OSDEPYM acepta monotributistas?', a: 'Sí: figura en el listado oficial de obras sociales que aceptan monotributistas de la Superintendencia de Servicios de Salud. Se paga con el aporte de salud de tu categoría.' },
       { q: '¿Puedo pasarme a OSDEPYM si trabajo en relación de dependencia?', a: 'Sí. Está habilitada para la opción de cambio: hacés el trámite online en la web de la Superintendencia con tu clave fiscal.' },
+      { q: 'Soy monotributista, ¿puedo usar mi aporte de obra social para una prepaga?', a: 'Sí. El aporte de salud de tu categoría lo pagás igual dentro de la cuota del monotributo: si elegís una prepaga que lo tome, se descuenta de la cuota y pagás solo la diferencia. Cotizando online, Swiss Medical tiene 25% OFF para monotributistas.' },
     ],
     keywords: ['osdepym', 'osdepym obra social', 'osdepym telefono', 'osdepym monotributo', 'obra social de empresarios'],
   },

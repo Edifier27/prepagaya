@@ -871,7 +871,9 @@ export const guias: GuiaData[] = [
     // web (tiene captcha y son datos de salud de terceros): la guía explica el
     // trámite oficial, linkea a ANSES/SSSalud y convierte al que va a cambiar.
     slug: 'que-obra-social-tengo-codem',
-    titulo: '¿Qué obra social tengo? Consultala por DNI o CUIL y sacá el CODEM (2026)',
+    // 27-nov-2026: 28.391 impresiones, pos. 8,6, CTR 0,68%. Arranca con la
+    // búsqueda más grande ("consulta de obra social por dni", 4.661) y entra en 60.
+    titulo: 'Consulta de obra social por DNI y CODEM: cuál tenés (2026)',
     metaDescripcion: 'Cómo saber cuál es tu obra social en 1 minuto: consultá gratis el CODEM de ANSES con tu DNI o CUIL, o el padrón de la Superintendencia de Servicios de Salud. Paso a paso y qué hacer si no figurás.',
     tiempoLectura: 5,
     categoria: 'Trámites',
@@ -883,6 +885,11 @@ export const guias: GuiaData[] = [
           titulo: 'Cómo sacar el CODEM en ANSES, paso a paso',
           cuerpo: 'Entrá a la consulta "Obra social (CODEM)" de ANSES, ingresá tu número de DNI y/o CUIL y seleccioná Continuar. El sistema te informa cuál es tu obra social y los familiares a cargo, si los tenés. Desde ahí podés descargar e imprimir el comprobante. El trámite es gratuito y lo podés hacer desde el celular o la computadora.',
           enlaces: [{ texto: 'Consultar el CODEM en ANSES', url: 'https://www.anses.gob.ar/consultas/obra-social-codem' }],
+          cta: {
+            texto: 'Con ese dato podés ver cuánto pagarías por una prepaga usando tus aportes: se descuentan de la cuota y pagás solo la diferencia.',
+            boton: 'Ver mi precio con mis aportes',
+            href: '/comparador?desde=guia-codem',
+          },
         },
         {
           titulo: 'Quiénes pueden consultarlo',

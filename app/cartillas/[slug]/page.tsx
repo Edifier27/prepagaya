@@ -44,7 +44,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // 11-oct-2026: "osde cartilla" tenía 3.257 impresiones y 1 clic con el
     // título largo (Google lo cortaba). Título corto con lo que la web
     // oficial no da: buscar el sanatorio y ver desde qué plan está.
-    title: oficial
+    // 27-nov-2026: con el mismo título, "cartilla osde" tenía CTR 0,09% (31.926
+    // impresiones, pos. 5,8) y la de Swiss 1,52%. Prueba solo en OSDE: los planes
+    // en el título, que es lo que la cartilla oficial de OSDE no compara.
+    title: slug === 'osde' && oficial
+      ? { absolute: 'Cartilla OSDE 2026: qué sanatorios tiene cada plan (210 a 510)' }
+      : oficial
       ? { absolute: `Cartilla ${prep.nombre} 2026 por plan: buscá tu sanatorio` }
       : `Cartilla ${prep.nombre} 2026: sanatorios, guardias y cómo consultarla`,
     description: oficial

@@ -29,7 +29,9 @@ const fechaDatos = new Date(`${MONOTRIBUTO_GENERADO}T12:00:00`).toLocaleDateStri
 // preguntas nuevas y el Monotributo Social (fuente: argentina.gob.ar).
 
 export const metadata: Metadata = {
-  title: 'Obras sociales para monotributistas 2026: lista oficial y cuánto pagás',
+  // 27-nov-2026: arranca con lo que se busca ("obras sociales que aceptan
+  // monotributistas 2026", "listado de obras sociales para monotributistas")
+  title: 'Obras sociales que aceptan monotributistas 2026 y cuánto pagás',
   description: `Las ${N} obras sociales que aceptan monotributistas según la Superintendencia, cuánto pagás de obra social en cada categoría (desde ${formatoPesos(APORTE_OS_MINIMO)} por mes, según ARCA) y cuánto suma cada familiar.`,
   alternates: { canonical: URL },
   keywords: ['obras sociales para monotributistas', 'obra social monotributo', 'obras sociales que aceptan monotributistas', 'cuanto se paga de obra social en el monotributo', 'monotributo obra social familiar', 'aporte obra social monotributo 2026'],
@@ -140,6 +142,16 @@ export default function ObrasSocialesMonotributoPage() {
               <p className="text-2xl sm:text-3xl font-black text-gray-900">×2</p>
               <p className="text-xs text-gray-600">con un familiar: cada adherente paga lo mismo</p>
             </div>
+          </div>
+          {/* 27-nov-2026: la opción de prepaga estaba recién después de la lista */}
+          <div className="mt-6 flex flex-col gap-3 rounded-2xl border-2 border-[#E8002D]/25 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:p-5">
+            <div className="min-w-0 flex-1">
+              <div className="font-bold text-gray-900">¿Preferís una prepaga? Usá tu aporte y pagá la diferencia</div>
+              <div className="mt-0.5 text-sm text-gray-600">Con tu aporte de obra social del monotributo podés tener una prepaga. Cotizando online, Swiss Medical tiene 25% OFF para monotributistas.</div>
+            </div>
+            <Link href="/comparador?desde=monotributo" className="inline-flex shrink-0 items-center justify-center rounded-xl bg-[#E8002D] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#B8001F]">
+              Ver mi precio →
+            </Link>
           </div>
           <h2 className="text-lg font-bold text-gray-900 mt-8 mb-3">¿Cuánto pagás con tu familia?</h2>
           <CalculadoraMonotributo categorias={CATEGORIAS_MONOTRIBUTO} />
