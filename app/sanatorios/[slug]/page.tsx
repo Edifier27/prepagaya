@@ -49,6 +49,32 @@ const tiposOs = (o: { internacion: boolean; guardia: boolean }) =>
   o.internacion && o.guardia ? 'internación y guardia' : o.internacion ? 'internación' : 'guardia'
 
 const ORDEN = [...PRIORIDAD_PARTNERS, 'osde']
+// "hospital italiano atiende swiss medical", "sanatorio los arcos atiende osde
+// 210" (Search Console y autocompletado, 26-nov-2026): una pregunta por cada
+// prepaga con la que trabajamos, con el plan desde el que lo cubre según su
+// cartilla oficial. En OSDE, además, si el 210 lo incluye.
+const PREPAGAS_PREGUNTA = ['swiss-medical', 'osde', 'sancor-salud', 'avalian', 'premedic']
+const lista_ = (xs: string[]) => xs.join(', ').replace(/, ([^,]*)$/, ' y $1')
+function faqsPorPrepaga(nombre: string, lista: PrepagaEnSanatorio[]): { q: string; a: string }[] {
+  const El = art(nombre) === 'la' ? 'La' : 'El'
+  return lista.filter((p) => PREPAGAS_PREGUNTA.includes(p.prepagaSlug)).flatMap((p) => {
+    const guardia = p.guardia.map((x) => x.label)
+    let a: string
+    if (p.desde) {
+      a = `Sí. Según ${p.prepagaNombre} (${p.fecha}), ${art(nombre)} ${nombre} está para internación desde el ${p.desde.label}${guardia.length ? `, y para guardia en ${lista_(guardia)}` : ''}.`
+      if (p.prepagaSlug === 'osde') {
+        const con210 = p.internacion.some((x) => x.comparadorSlug === '210' || x.otrosComparadorSlugs?.includes('210'))
+        a += con210 ? ' El OSDE 210 lo incluye para internación.' : ' El OSDE 210 no lo incluye para internación.'
+      }
+    } else if (guardia.length) {
+      a = `Para guardia, sí: según ${p.prepagaNombre} (${p.fecha}), figura en ${lista_(guardia)}. Para internación no figura en ningún plan.`
+    } else {
+      return []
+    }
+    return [{ q: `¿${El} ${nombre} atiende ${p.prepagaNombre}?`, a }]
+  })
+}
+
 function ordenar(lista: PrepagaEnSanatorio[]) {
   return [...lista].sort((a, b) => (ORDEN.indexOf(a.prepagaSlug) + 99) % 99 - (ORDEN.indexOf(b.prepagaSlug) + 99) % 99)
 }
@@ -145,6 +171,7 @@ export default async function SanatorioPage({ params }: Props) {
           a: `Según el cuerpo médico que publica ${art(s.nombre)} ${s.nombre}, atienden ${pediatria.totalGenerales} pediatras de pediatría general (${pediatria.generalesPorSede.map((x) => `${x.n} en ${x.sede}`).join(', ').replace(/, ([^,]*)$/, ' y $1')}) y ${pediatria.totalSubespecialistas} subespecialistas pediátricos, como neumonología, cardiología y dermatología. Para atenderte con ellos, tu prepaga tiene que incluir el sanatorio en tu plan.`,
         }]
       : []),
+    ...faqsPorPrepaga(s.nombre, lista),
     ...(FAQ_EXTRA[slug] ?? []),
   ]
 

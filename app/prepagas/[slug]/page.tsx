@@ -125,6 +125,11 @@ const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
   // autónoma; la prepaga del grupo es Prevención Salud; ambas nacieron en
   // Sunchales. No se afirma nada sobre la cooperativa láctea (la nota no la trata).
   'sancor-salud': [{
+    // 26-nov-2026: "sancor salud plan joven", "sancor gen". Edad: la lista
+    // oficial de precios trae los GEN hasta los 45 años.
+    q: '¿Sancor Salud tiene un plan para jóvenes?',
+    a: 'Sí: los planes GEN (1000 GEN, 1500 GEN, 3000 GEN, 3500 GEN, 4000 GEN y 4500 GEN). En la lista oficial de precios que Sancor Salud presenta ante la Superintendencia de Servicios de Salud, los GEN tienen precio para personas de hasta 45 años. Cotizá con tu edad y te pasamos el GEN junto al plan equivalente para que compares.',
+  }, {
     q: '¿Sancor Salud es lo mismo que Sancor Seguros o Prevención Salud?',
     a: 'No. Sancor Salud es la Asociación Mutual Sancor Salud, una mutual de medicina prepaga independiente: no integra el Grupo Sancor Seguros y funciona de manera autónoma. La prepaga de ese grupo asegurador es Prevención Salud. Sancor Seguros y Sancor Salud nacieron en Sunchales (Santa Fe) y comparten parte del nombre, pero son organizaciones distintas.',
   }],
@@ -144,6 +149,16 @@ const FAQ_EXTRA: Record<string, { q: string; a: string }[]> = {
   }, {
     q: '¿Qué incluye el Plan Flux de OSDE?',
     a: 'Según la página oficial de OSDE: consultas médicas sin copago, virtuales o presenciales; psicología sin tope de sesiones; ortodoncia, placa de descanso, lentes recetados y kinesiología; anticonceptivos al 100% (con empadronamiento, en farmacias adheridas); asistencia al viajero sin cargo en países limítrofes; chequeo anual de salud; reintegros sin tope por factura; y una membresía de un año a elección. Los beneficios están sujetos a vigencia, disponibilidad, cupos y condiciones. El precio no figura: se cotiza.',
+   },
+  // 26-nov-2026, Darío (asesor oficial): Neo es para menores de 27 años y el
+  // 450 sigue a la venta aunque se vende poco por el precio. Ninguno de los dos
+  // está en el cuadro oficial de la SSSalud; el 450 sí figura en la cartilla oficial.
+  {
+    q: '¿OSDE tiene un plan para jóvenes además del Flux?',
+    a: 'Sí: OSDE Neo, para jóvenes menores de 27 años. El Flux, en cambio, OSDE lo pensó para personas de 18 a 35. Ninguno de los dos figura en el cuadro de precios que OSDE presenta ante la Superintendencia de Servicios de Salud, así que se cotizan según tu edad: te pasamos los dos para que compares.',
+  }, {
+    q: '¿OSDE sigue vendiendo el plan 450?',
+    a: 'Sí, el 450 sigue a la venta y figura en la cartilla oficial de OSDE, entre el 410 y el 510. Se contrata poco porque su cuota es alta, y no está en el cuadro de precios que OSDE presenta ante la Superintendencia de Servicios de Salud (que incluye el 210, 310, 410 y 510): se cotiza según tu edad.',
   }],
   // 18-oct-2026, "prepaga para mascotas" 170/mes (+50 %) en el Planificador de Google Ads.
   // Fuente oficial: web.grupopremedic.com.ar (novedades del 31-jul, 18-ago y 10-sep-2026).

@@ -113,3 +113,27 @@ Lo que falta hoy, revisado en el código:
    - enlaces a comparaciones entre marcas y a derivar aportes desde las fichas en prueba (enlaces 1 y 2);
    - sección de jubilados en la ficha de Swiss.
 4. **Medir** cada tanda a las 2 y 4 semanas en Search Console, por página, como pide `pruebas-titulos-2026-11-23.md`.
+
+## Hecho el 27-nov
+
+Datos de Darío (26-nov): OSDE Neo es para menores de 27 años; el OSDE 450 sigue a la venta, aunque se vende poco por el precio.
+
+- **Flux (punto 4)**:
+  - "osde flux" (2.761 impresiones, posición 8,7, CTR 0,3%) y "osde flux precio" (1.414) los ganaba la comparación Flux vs 210 (11.630 impresiones), no la página del plan;
+  - la página `/prepagas/osde/flux` tiene ahora título y descripción propios: "OSDE Flux 2026: qué cubre, edad y precio del plan joven";
+  - el resto de las fichas de plan usa la misma plantilla de siempre, y las que están en prueba no cambian.
+- **Ficha de OSDE**: preguntas "¿OSDE tiene un plan para jóvenes además del Flux?" (Neo, menores de 27) y "¿OSDE sigue vendiendo el plan 450?". El 450 figura en la cartilla oficial, pero no en el cuadro de precios de la SSSalud.
+- **Ficha de Sancor**: "¿Sancor Salud tiene un plan para jóvenes?" (los GEN, con precio hasta los 45 años en la lista oficial). No se dice que sean más baratos: a los 30 años la lista los muestra más caros que el plan equivalente.
+- **Sanatorios (punto 7)**:
+  - una pregunta por prepaga ("¿El Hospital Italiano atiende Swiss Medical?") con el plan desde el que lo cubre según la cartilla oficial;
+  - en OSDE, además, si el 210 lo incluye;
+  - responde "hospital italiano atiende swiss medical" (82 impresiones, posición 5,4) y "sanatorio los arcos atiende osde 210".
+
+**Queda para después del 21-dic:**
+- **Flux vs 310 y vs 410 (punto 2)**: crear esas comparaciones agrega un enlace en las fichas del 310 (control) y del 410 (en prueba).
+- **Monotributo en derivar aportes (punto 5)**: poco volumen ("swiss medical monotributo", 46 impresiones), y `/derivar-aportes/swiss-medical` rinde bien (posición 3,5, CTR 2,7%). No se toca el título; la página ya responde "¿Sirve si soy monotributista?".
+- **La Pampa y San Luis (punto 10)**:
+  - Es lo de más volumen: unas 1.800 impresiones en posición 6 a 10 ("sancor salud santa rosa" 505, "osde san luis" 331, "sancor salud general pico" 304). Hoy las ganan las páginas de cartilla.
+  - Sumarlas al silo por provincia toca la lista de provincias de `/ranking` (en prueba) y de la ficha de Swiss (control).
+  - Además, el motor de precios no tiene región oficial para esas provincias en Swiss, OSDE y Sancor.
+  - Se hace después del 21-dic. Mientras tanto, las cartillas de esas ciudades siguen siendo las dueñas.
