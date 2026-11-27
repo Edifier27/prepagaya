@@ -5,7 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { getProvinciaSEO, provinciasSEO } from '@/lib/data/zonas'
 import { getPlanMenosCopago, getGrupoCartilla, ordenarPorCartilla } from '@/lib/data/cartilla-grupos'
 import { SITE_NAME, SITE_URL, formatPrecio, PRECIO_VALIDO_HASTA, PARTNERS_OFICIALES_SLUGS } from '@/lib/utils'
-import { elegir, mesCorto, pesosTitulo, PLANES_PRECIO_ARRIBA, PLANES_TITULO_CON_PLAN, PLANES_TITULO_PRECIO, PLANES_TITULO_PRECIO_A30, FICHAS_PRECIOS_PRIMERO } from '@/lib/seo/titulos'
+import { anioPrecios, elegir, mesCorto, pesosTitulo, PLANES_PRECIO_ARRIBA, PLANES_TITULO_CON_PLAN, PLANES_TITULO_PRECIO, PLANES_TITULO_PRECIO_A30, FICHAS_PRECIOS_PRIMERO } from '@/lib/seo/titulos'
 import { PrepagaLogo } from '@/components/ui/PrepagaLogo'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { CartillaPlanTuZona } from '@/components/cartillas/CartillaPlanTuZona'
@@ -437,15 +437,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : !Number.isFinite(plan.precio)
       ? `${prep.nombre} ${plan.nombre}: qué cubre, ${plan.copago ? 'con copago' : 'sin copago'}, red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Sin lista de precios oficial: cotizalo gratis para tu edad y zona.`
       : `${prep.nombre} ${plan.nombre} cuesta ${formatPrecio(plan.precio)}/mes (persona de 30 años, ${PRECIO_ACTUALIZADO.toLowerCase()}${plan.fuentePrecio === 'sssalud' ? ', lista oficial SSSalud' : ''}). ${plan.copago ? 'Con copago.' : 'Sin copago.'} Red ${plan.redAbierta ? 'abierta' : 'cerrada'}. Cotizá el precio exacto para tu edad gratis.`
+  // Título y descripción propios de un plan (27-nov-2026): "osde flux" (2.761
+  // impresiones, pos. 8,7) y "osde flux precio" (1.414) en Search Console los
+  // ganaba la comparación Flux vs 210; esta es la página dueña de "osde flux" y
+  // "osde plan joven". El precio del Flux no es público: no se promete un monto.
+  const propia = META_PLAN_PROPIA[clavePlan]
+  const tituloFinal = propia?.titulo ?? titulo
+  const descripcionFinal = propia?.descripcion ?? descripcion
   const url = `${SITE_URL}/prepagas/${slug}/${planSlug}`
   // Imagen del plan (20-oct-2026, lib/og/tarjeta.tsx). Con openGraph propio, el
   // título al compartir deja de ser el genérico del layout.
   const imagen = { url: urlOgPlan(prep.slug, plan.slug), ...OG_SIZE, alt: altOgPlan(prep, plan) }
   return {
-    title: { absolute: titulo },
-    description: descripcion,
-    openGraph: { type: 'website', locale: 'es_AR', siteName: SITE_NAME, url, title: titulo, description: descripcion, images: [imagen] },
-    twitter: { card: 'summary_large_image', title: titulo, description: descripcion, images: [imagen.url] },
+    title: { absolute: tituloFinal },
+    description: descripcionFinal,
+    openGraph: { type: 'website', locale: 'es_AR', siteName: SITE_NAME, url, title: tituloFinal, description: descripcionFinal, images: [imagen] },
+    twitter: { card: 'summary_large_image', title: tituloFinal, description: descripcionFinal, images: [imagen.url] },
     alternates: { canonical: url },
     keywords: [
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()}`,
@@ -464,6 +471,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${prep.nombre.toLowerCase()} ${plan.nombre.toLowerCase()} opiniones`,
     ],
   }
+}
+
+const META_PLAN_PROPIA: Record<string, { titulo: string; descripcion: string }> = {
+  'osde/flux': {
+    titulo: `OSDE Flux ${anioPrecios()}: qué cubre, edad y precio del plan joven`,
+    descripcion: 'El plan joven de OSDE, pensado para 18 a 35 años: consultas sin copago, psicología sin tope, ortodoncia y lentes. Su precio no es público: cotizalo gratis.',
+  },
 }
 
 // Planes donde se busca más el precio que la cartilla (Search Console, ago-oct 2026): ahí la tabla de
