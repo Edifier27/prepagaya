@@ -5,6 +5,7 @@ import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
 import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, prepagasEnSanatorio, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { idCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
+import { CARTILLAS, textoFecha } from '@/lib/data/cartilla-zonas'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import { obrasSocialesEnSanatorio } from '@/lib/data/sanatorios-obras-sociales'
 import { CARTILLAS_SINDICALES } from '@/lib/data/sindicales-cartillas'
@@ -56,9 +57,16 @@ const ORDEN = [...PRIORIDAD_PARTNERS, 'osde']
 // cartilla oficial. En OSDE, además, si el 210 lo incluye.
 const PREPAGAS_PREGUNTA = ['swiss-medical', 'osde', 'sancor-salud', 'avalian', 'premedic']
 const lista_ = (xs: string[]) => xs.join(', ').replace(/, ([^,]*)$/, ' y $1')
-function faqsPorPrepaga(nombre: string, lista: PrepagaEnSanatorio[]): { q: string; a: string }[] {
+function faqsPorPrepaga(nombre: string, lista: PrepagaEnSanatorio[], amba: boolean): { q: string; a: string }[] {
   const El = art(nombre) === 'la' ? 'La' : 'El'
-  return lista.filter((p) => PREPAGAS_PREGUNTA.includes(p.prepagaSlug)).flatMap((p) => {
+  // Swiss Medical no lo tiene en su cartilla (28-nov-2026: "bazterrica atiende
+  // swiss medical"): se responde igual, con la fecha del relevamiento y sin
+  // afirmar más de lo que dice el buscador oficial. Solo en el AMBA, donde
+  // relevamos la cartilla completa de Swiss.
+  const sinSwiss = amba && !lista.some((p) => p.prepagaSlug === 'swiss-medical')
+    ? [{ q: `¿${El} ${nombre} atiende Swiss Medical?`, a: `No figura en la cartilla de Swiss Medical que relevamos (${CARTILLAS['swiss-medical'] ? textoFecha(CARTILLAS['swiss-medical']) : 'último relevamiento'}). Las cartillas cambian: si querés atenderte ahí, un asesor oficial te confirma si algún plan lo incluye hoy, o te muestra los sanatorios de Swiss Medical más cerca.` }]
+    : []
+  return [...sinSwiss, ...lista.filter((p) => PREPAGAS_PREGUNTA.includes(p.prepagaSlug)).flatMap((p) => {
     const guardia = p.guardia.map((x) => x.label)
     let a: string
     if (p.desde) {
@@ -73,7 +81,7 @@ function faqsPorPrepaga(nombre: string, lista: PrepagaEnSanatorio[]): { q: strin
       return []
     }
     return [{ q: `¿${El} ${nombre} atiende ${p.prepagaNombre}?`, a }]
-  })
+  })]
 }
 
 function ordenar(lista: PrepagaEnSanatorio[]) {
@@ -172,7 +180,7 @@ export default async function SanatorioPage({ params }: Props) {
           a: `Según el cuerpo médico que publica ${art(s.nombre)} ${s.nombre}, atienden ${pediatria.totalGenerales} pediatras de pediatría general (${pediatria.generalesPorSede.map((x) => `${x.n} en ${x.sede}`).join(', ').replace(/, ([^,]*)$/, ' y $1')}) y ${pediatria.totalSubespecialistas} subespecialistas pediátricos, como neumonología, cardiología y dermatología. Para atenderte con ellos, tu prepaga tiene que incluir el sanatorio en tu plan.`,
         }]
       : []),
-    ...faqsPorPrepaga(s.nombre, lista),
+    ...faqsPorPrepaga(s.nombre, lista, !s.ciudad),
     ...(FAQ_EXTRA[slug] ?? []),
   ]
 
