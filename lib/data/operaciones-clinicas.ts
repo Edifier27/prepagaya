@@ -49,7 +49,7 @@ export const operacionesClinicas: OperacionClinica[] = [
     fecha: 'noviembre de 2026',
     lugar: 'Rosario',
     detalle: 'La familia Villavicencio vendió su parte del Grupo Oroño, la red de salud privada más grande de Rosario: Sanatorio Parque, Sanatorio de Niños, Instituto Cardiovascular de Rosario, Maternidad Oroño, GO Sanatorio Funes, Diagnóstico Médico Oroño e INECO Oroño. Según La Capital, entre Oroño y Gamma suman cerca del 60% de la salud privada de la ciudad.',
-    sanatorios: ['sanatorio-parque-rosario', 'sanatorio-de-ninos-rosario', 'instituto-cardiovascular-de-rosario'],
+    sanatorios: ['sanatorio-parque-rosario', 'sanatorio-de-ninos-rosario', 'instituto-cardiovascular-de-rosario', 'maternidad-orono', 'go-sanatorio-funes'],
     fuentes: [
       { texto: 'La Capital', url: 'https://www.lacapital.com.ar/grupo-orono-como-queda-el-mapa-la-salud-privada-rosario-despues-la-venta-del-siglo-n10292374.html' },
       { texto: 'Aire de Santa Fe', url: 'https://www.airedesantafe.com.ar/cambios-la-salud-privada-rosario-y-la-region-se-vendio-grupo-orono-n676874' },
