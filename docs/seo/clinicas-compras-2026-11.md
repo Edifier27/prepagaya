@@ -69,3 +69,38 @@ Contexto: las cámaras (ADECRA, ACAMI, CAPRESS) piden audiencia por la crisis y 
    - Juncal y Santa Isabel están en la cartilla de Swiss desde el SMG02 y el S1, y responden "Sí" desde el 27-nov.
    - En los sanatorios del AMBA que no figuran en la cartilla de Swiss, la página ahora responde "¿atiende Swiss Medical?" con un "No figura", la fecha del relevamiento y la derivación a un asesor. Son Bazterrica, Anchorena, Colegiales, Sirio Libanés, Bernal e Itoiz.
    - Pendiente: confirmar con Swiss si alguno entró a la cartilla después del 22-sep.
+
+## Volúmenes (Planificador de Google Ads, 28-nov-2026)
+
+Planificador de palabras clave de la cuenta de Google Ads, Argentina, Google, promedio mensual nov-2025 a oct-2026. Plan guardado en Ads: "Plan del nov 28, 2026". 196 frases (las de las tablas de arriba): 59 con volumen, unas 249.000 búsquedas por mes en total; 137 "sin datos" (long tail sin volumen medible).
+
+| Frase | Búsquedas/mes | Página nuestra |
+|---|---|---|
+| diagnostico maipu | 135.000 | **no hay** |
+| sanatorio las lomas | 49.500 | `/sanatorios/sanatorio-las-lomas` |
+| icba | 40.500 | `/sanatorios/instituto-cardiovascular-de-buenos-aires` |
+| go sanatorio funes | 5.400 | `/sanatorios/go-sanatorio-funes` |
+| sanatorio parque rosario | 4.400 | `/sanatorios/sanatorio-parque-rosario` |
+| maternidad oroño | 3.600 | `/sanatorios/maternidad-orono` |
+| instituto cardiovascular de rosario | 2.400 | `/sanatorios/instituto-cardiovascular-de-rosario` |
+| grupo gamma rosario / grupo olmos | 1.900 c/u | informe `/prensa/clinicas-compradas-por-prepagas` |
+| clinica ima adrogue | 1.600 | `/sanatorios/clinica-ima` |
+| dueño de swiss medical | 590 | informe (pregunta "¿Quién es el dueño de Swiss Medical?") |
+| clinica swiss medical | 390 | `/prepagas-con-sanatorios-propios/swiss-medical` |
+| clinicas de swiss medical | 170 | ídem |
+| clinica espora adrogue / clinica swiss medical salta | 140 c/u | `/sanatorios/clinica-espora` / red propia |
+| dueño de galeno / dueño de osde | 110 / 90 | informe |
+| sanatorios de swiss medical, diagnostico maipu swiss medical, hospital italiano atiende swiss medical | 70 c/u | red propia / — / `/sanatorios/hospital-italiano` |
+| "[clínica] atiende swiss medical" (cemic, hospital alemán, dim, otamendi…) | 10 a 50 c/u | `/sanatorios/[slug]` |
+| "clinica swiss medical" + barrio o ciudad | 10 a 40 c/u; la mayoría sin datos | red propia |
+
+**Sin datos, con duda**: "grupo oroño" y "sanatorio de niños rosario". Puede que el Planificador les haya asignado el volumen a otra variante. Pendiente: consultarlas en "Descubrir nuevas palabras clave".
+
+### Qué dicen, con el criterio del sitio (volumen × intención de compra)
+
+1. **El volumen está en los nombres propios y es navegacional.** Quien busca "diagnostico maipu" o "sanatorio las lomas" casi siempre quiere un turno, un teléfono o un resultado, no una prepaga. Lo que se puede captar es una parte: el que pregunta qué cobertura lo atiende o de quién es. No reemplaza a las búsquedas transaccionales ("[prepaga] planes", "precio"), que siguen primero.
+2. **Hueco más grande: Diagnóstico Maipú (135.000) no tiene página.** Es de Swiss Medical desde oct-2025. La cartilla de Swiss que tenemos bajada no lo lista (es una red de diagnóstico, no un sanatorio), así que la página no puede salir solo del cruce de cartillas: necesita la confirmación del asesor, como Maternidad Oroño y GO Funes (`todos: true`). Si Darío lo confirma, es la próxima página.
+3. **Swiss Medical + clínica es poco volumen pero con la intención correcta.** "clinica swiss medical" (390), "clinicas de swiss medical" (170) y "sanatorios de swiss medical" (70) ya tienen URL dueña: la red propia de Swiss, cuyo título dice "Clínicas y sanatorios de Swiss Medical". No hace falta otra página.
+4. **"[Clínica] atiende Swiss Medical" no justifica páginas nuevas.** Va de 10 a 70 por frase. Se cubre con la pregunta en cada `/sanatorios/[slug]`; donde falte el sanatorio, se suma al listado solo si tiene volumen propio.
+5. **"Dueño de…" (Swiss 590, Galeno 110, OSDE 90) y los grupos (Gamma y Olmos, 1.900 c/u)** son informativos. Los responde el informe de compras. No crear URLs aparte.
+6. **Medir en Search Console a las 2-4 semanas** (28-dic): impresiones de "sanatorio las lomas", "icba", "go sanatorio funes" y "maternidad oroño" en sus páginas, y de "clinica(s) swiss medical" en la red propia.
