@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, ASESOR_FECHA, SIN_CONVENIO, prepagasEnSanatorio, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
+import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, ASESOR_FECHA, SIN_CONVENIO, prepagasEnSanatorio, sanatorioPublicable, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { idCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
 import { getCartillaInfo } from '@/lib/data/cartillas'
@@ -27,7 +27,7 @@ export function generateStaticParams() {
 }
 
 /** Artículo según el nombre: "la Clínica de Cuyo", "el Hospital Alemán". */
-const art = (nombre: string) => (/^cl[ií]nica/i.test(nombre) ? 'la' : 'el')
+const art = (nombre: string) => (/^(cl[ií]nica|maternidad)/i.test(nombre) ? 'la' : 'el')
 
 // "¿Es público o privado?" (29-sep-2026, keyword research de Darío): volumen
 // real en Hospital Italiano y Hospital Alemán. Verificado con fuente: ambos
@@ -102,7 +102,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const s = SANATORIOS_SEO.find((x) => x.slug === slug)
   const lista = s ? prepagasEnSanatorio(slug) : []
-  if (!s || lista.length < 2) return {}
+  if (!s || !sanatorioPublicable(slug)) return {}
   const nombres = ordenar(lista).map((p) => p.prepagaNombre)
   // Si también hay obras sociales con el sanatorio en su cartilla oficial, el
   // título lo dice: "qué obra social atiende el X" se busca mucho (1-oct-2026)
@@ -135,10 +135,11 @@ export default async function SanatorioPage({ params }: Props) {
   const s = SANATORIOS_SEO.find((x) => x.slug === slug)
   if (!s) notFound()
   const lista = ordenar(prepagasEnSanatorio(slug))
-  if (lista.length < 2) notFound()
+  if (!sanatorioPublicable(slug)) notFound()
 
   const conInternacion = lista.filter((p) => p.desde)
   // Altas de nuestro asesor (28-nov-2026): el texto lo dice
+  const soloAsesor = lista.every((p) => p.asesor)
   const conAsesor = lista.some((p) => p.asesor) ? ` y ${[...new Set(lista.filter((p) => p.asesor).map((p) => p.asesor!.replace(/ \(.*\)$/, '')))].join(' y ')}` : ''
   // Obras sociales con este sanatorio en su cartilla oficial (1-oct-2026)
   const obrasSociales = obrasSocialesEnSanatorio(slug)
@@ -154,7 +155,7 @@ export default async function SanatorioPage({ params }: Props) {
   const faqs = [
     {
       q: `¿Qué prepagas atienden en ${art(s.nombre)} ${s.nombre}?`,
-      a: `Según sus cartillas oficiales${conAsesor}, ${art(s.nombre)} ${s.nombre} figura en ${lista.map((p) => p.prepagaNombre).join(', ')}.${resumen ? ` Para internación: ${resumen}.` : ''}`,
+      a: `${soloAsesor ? `Según ${lista[0].asesor!.replace(/ \(.*\)$/, '')}` : `Según sus cartillas oficiales${conAsesor}`}, ${art(s.nombre)} ${s.nombre} figura en ${lista.map((p) => p.prepagaNombre).join(', ')}.${resumen ? ` Para internación: ${resumen}.` : ''}`,
     },
     {
       q: `¿Cuál es el plan más barato que incluye ${art(s.nombre)} ${s.nombre}?`,
@@ -241,7 +242,7 @@ export default async function SanatorioPage({ params }: Props) {
             ¿Qué prepagas{obrasSociales.length ? ' y obras sociales' : ''} atienden en {art(s.nombre)} {s.nombre}?
           </h1>
           <p className="text-gray-700 text-base leading-relaxed max-w-3xl">
-            Según sus cartillas oficiales{conAsesor}, {art(s.nombre)} <strong>{s.nombre}</strong> figura en <strong>{lista.map((p) => p.prepagaNombre).join(', ')}</strong>.
+            {soloAsesor ? `Según ${lista[0].asesor!.replace(/ \(.*\)$/, '')}` : `Según sus cartillas oficiales${conAsesor}`}, {art(s.nombre)} <strong>{s.nombre}</strong> figura en <strong>{lista.map((p) => p.prepagaNombre).join(', ')}</strong>.
             {resumen && <> Para internación: {resumen}.</>}
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mt-6">

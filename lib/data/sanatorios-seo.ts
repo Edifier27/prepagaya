@@ -88,6 +88,8 @@ export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'centro-medico-ipam', nombre: 'Centro Médico IPAM (Rosario)', claves: ['ipam'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
   { slug: 'instituto-cardiovascular-de-rosario', nombre: 'Instituto Cardiovascular de Rosario', claves: ['cardiovascular'], ciudad: 'rosario', ciudadNombre: 'Rosario', especialidad: 'Cardiología' },
   { slug: 'hospital-italiano-garibaldi-rosario', nombre: 'Hospital Italiano Garibaldi (Rosario)', claves: ['italiano'], excluir: ['sanatorio'], ciudad: 'rosario', ciudadNombre: 'Rosario' },
+  { slug: 'maternidad-orono', nombre: 'Maternidad Oroño', claves: ['maternidad', 'orono'], ciudad: 'rosario', ciudadNombre: 'Rosario', especialidad: 'Maternidad' },
+  { slug: 'go-sanatorio-funes', nombre: 'GO Sanatorio Funes', claves: ['go', 'funes'], excluir: ['dean'], ciudad: 'funes', ciudadNombre: 'Funes' },
   { slug: 'sanatorio-de-ninos-rosario', nombre: 'Sanatorio de Niños (Rosario)', claves: ['ninos'], excluir: ['vilela'], ciudad: 'rosario', ciudadNombre: 'Rosario', especialidad: 'Pediatría' },
   { slug: 'clinica-de-cuyo', nombre: 'Clínica de Cuyo', claves: ['cuyo'], excluir: ['oftalmologico'], ciudad: 'mendoza', ciudadNombre: 'Mendoza' },
   { slug: 'clinica-mayo-tucuman', nombre: 'Clínica Mayo (Tucumán)', claves: ['mayo'], excluir: ['sanatorio'], ciudad: 'tucuman', ciudadNombre: 'Tucumán' },
@@ -136,6 +138,9 @@ const ALTAS_ASESOR: Record<string, { prepagaSlug: string; todos: boolean }[]> = 
   'sanatorio-bernal': [{ prepagaSlug: 'swiss-medical', todos: true }],
   'sanatorio-itoiz': [{ prepagaSlug: 'swiss-medical', todos: true }],
   'clinica-espora': [{ prepagaSlug: 'swiss-medical', todos: true }],
+  // Grupo Oroño (Rosario), de Swiss Medical y Chicago Capital desde nov-2026
+  'maternidad-orono': [{ prepagaSlug: 'swiss-medical', todos: true }],
+  'go-sanatorio-funes': [{ prepagaSlug: 'swiss-medical', todos: true }],
 }
 /** Sin convenio según nuestro asesor oficial (Darío, 28-nov-2026) */
 export const SIN_CONVENIO: Record<string, string[]> = {
@@ -202,7 +207,13 @@ export function prepagasEnSanatorio(slug: string): PrepagaEnSanatorio[] {
   return out
 }
 
-/** Solo se publican los sanatorios que figuran en al menos 2 cartillas oficiales. */
+/** Se publica si figura en al menos 2 cartillas oficiales, o si lo confirmó
+ *  nuestro asesor oficial (28-nov-2026: Maternidad Oroño y GO Funes, de Swiss). */
+export function sanatorioPublicable(slug: string): boolean {
+  const l = prepagasEnSanatorio(slug)
+  return l.length >= 2 || l.some((p) => p.asesor)
+}
+
 export function sanatoriosPublicables(): SanatorioSEO[] {
-  return SANATORIOS_SEO.filter((s) => prepagasEnSanatorio(s.slug).length >= 2)
+  return SANATORIOS_SEO.filter((s) => sanatorioPublicable(s.slug))
 }
