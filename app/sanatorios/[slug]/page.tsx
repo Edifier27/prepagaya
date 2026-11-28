@@ -2,10 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prepagas, PRECIO_ACTUALIZADO } from '@/lib/data/prepagas'
-import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, prepagasEnSanatorio, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
+import { SANATORIOS_SEO, SANATORIOS_ACTUALIZADO, ASESOR_FECHA, SIN_CONVENIO, prepagasEnSanatorio, sanatoriosPublicables, type PrepagaEnSanatorio } from '@/lib/data/sanatorios-seo'
 import { SITE_NAME, SITE_URL, formatPrecio, PRIORIDAD_PARTNERS, TIEMPO_RESPUESTA } from '@/lib/utils'
 import { idCobertura } from '@/lib/data/cartilla-zonas/indice-cobertura'
-import { CARTILLAS, textoFecha } from '@/lib/data/cartilla-zonas'
 import { getCartillaInfo } from '@/lib/data/cartillas'
 import { obrasSocialesEnSanatorio } from '@/lib/data/sanatorios-obras-sociales'
 import { CARTILLAS_SINDICALES } from '@/lib/data/sindicales-cartillas'
@@ -57,19 +56,23 @@ const ORDEN = [...PRIORIDAD_PARTNERS, 'osde']
 // cartilla oficial. En OSDE, además, si el 210 lo incluye.
 const PREPAGAS_PREGUNTA = ['swiss-medical', 'osde', 'sancor-salud', 'avalian', 'premedic']
 const lista_ = (xs: string[]) => xs.join(', ').replace(/, ([^,]*)$/, ' y $1')
-function faqsPorPrepaga(nombre: string, lista: PrepagaEnSanatorio[], amba: boolean): { q: string; a: string }[] {
+function faqsPorPrepaga(slug: string, nombre: string, lista: PrepagaEnSanatorio[]): { q: string; a: string }[] {
   const El = art(nombre) === 'la' ? 'La' : 'El'
-  // Swiss Medical no lo tiene en su cartilla (28-nov-2026: "bazterrica atiende
-  // swiss medical"): se responde igual, con la fecha del relevamiento y sin
-  // afirmar más de lo que dice el buscador oficial. Solo en el AMBA, donde
-  // relevamos la cartilla completa de Swiss.
-  const sinSwiss = amba && !lista.some((p) => p.prepagaSlug === 'swiss-medical')
-    ? [{ q: `¿${El} ${nombre} atiende Swiss Medical?`, a: `No figura en la cartilla de Swiss Medical que relevamos (${CARTILLAS['swiss-medical'] ? textoFecha(CARTILLAS['swiss-medical']) : 'último relevamiento'}). Las cartillas cambian: si querés atenderte ahí, un asesor oficial te confirma si algún plan lo incluye hoy, o te muestra los sanatorios de Swiss Medical más cerca.` }]
-    : []
-  return [...sinSwiss, ...lista.filter((p) => PREPAGAS_PREGUNTA.includes(p.prepagaSlug)).flatMap((p) => {
+  // Sin convenio según nuestro asesor oficial (28-nov-2026: "bazterrica atiende
+  // swiss medical"). El "no figura en la cartilla" genérico se sacó: el
+  // buscador relevado de Swiss no tenía varios sanatorios que sí cubre.
+  const sinConvenio = (SIN_CONVENIO[slug] ?? []).map((pre) => {
+    const nom = pre === 'swiss-medical' ? 'Swiss Medical' : pre
+    return { q: `¿${El} ${nombre} atiende ${nom}?`, a: `No. ${nom} no tiene convenio con ${art(nombre)} ${nombre}, según nuestro asesor oficial (${ASESOR_FECHA}). Si querés ${nom}, un asesor te muestra los sanatorios de su cartilla más cerca y desde qué plan te cubren.` }
+  })
+  return [...sinConvenio, ...lista.filter((p) => PREPAGAS_PREGUNTA.includes(p.prepagaSlug)).flatMap((p) => {
     const guardia = p.guardia.map((x) => x.label)
     let a: string
-    if (p.desde) {
+    if (p.asesor) {
+      a = p.desde
+        ? `Sí, desde todos los planes de ${p.prepagaNombre}, según ${p.asesor}. El plan más económico que lo incluye es el ${p.desde.label}.`
+        : `Sí, según ${p.asesor}. Te confirmamos desde qué plan lo cubre cuando cotizás.`
+    } else if (p.desde) {
       a = `Sí. Según ${p.prepagaNombre} (${p.fecha}), ${art(nombre)} ${nombre} está para internación desde el ${p.desde.label}${guardia.length ? `, y para guardia en ${lista_(guardia)}` : ''}.`
       if (p.prepagaSlug === 'osde') {
         const con210 = p.internacion.some((x) => x.comparadorSlug === '210' || x.otrosComparadorSlugs?.includes('210'))
@@ -135,6 +138,8 @@ export default async function SanatorioPage({ params }: Props) {
   if (lista.length < 2) notFound()
 
   const conInternacion = lista.filter((p) => p.desde)
+  // Altas de nuestro asesor (28-nov-2026): el texto lo dice
+  const conAsesor = lista.some((p) => p.asesor) ? ` y ${[...new Set(lista.filter((p) => p.asesor).map((p) => p.asesor!.replace(/ \(.*\)$/, '')))].join(' y ')}` : ''
   // Obras sociales con este sanatorio en su cartilla oficial (1-oct-2026)
   const obrasSociales = obrasSocialesEnSanatorio(slug)
   // Pediatría (1-oct-2026): solo conteos del cuerpo médico oficial, sin nombres
@@ -149,7 +154,7 @@ export default async function SanatorioPage({ params }: Props) {
   const faqs = [
     {
       q: `¿Qué prepagas atienden en ${art(s.nombre)} ${s.nombre}?`,
-      a: `Según sus cartillas oficiales, ${art(s.nombre)} ${s.nombre} figura en ${lista.map((p) => p.prepagaNombre).join(', ')}.${resumen ? ` Para internación: ${resumen}.` : ''}`,
+      a: `Según sus cartillas oficiales${conAsesor}, ${art(s.nombre)} ${s.nombre} figura en ${lista.map((p) => p.prepagaNombre).join(', ')}.${resumen ? ` Para internación: ${resumen}.` : ''}`,
     },
     {
       q: `¿Cuál es el plan más barato que incluye ${art(s.nombre)} ${s.nombre}?`,
@@ -180,7 +185,7 @@ export default async function SanatorioPage({ params }: Props) {
           a: `Según el cuerpo médico que publica ${art(s.nombre)} ${s.nombre}, atienden ${pediatria.totalGenerales} pediatras de pediatría general (${pediatria.generalesPorSede.map((x) => `${x.n} en ${x.sede}`).join(', ').replace(/, ([^,]*)$/, ' y $1')}) y ${pediatria.totalSubespecialistas} subespecialistas pediátricos, como neumonología, cardiología y dermatología. Para atenderte con ellos, tu prepaga tiene que incluir el sanatorio en tu plan.`,
         }]
       : []),
-    ...faqsPorPrepaga(s.nombre, lista, !s.ciudad),
+    ...faqsPorPrepaga(slug, s.nombre, lista),
     ...(FAQ_EXTRA[slug] ?? []),
   ]
 
@@ -236,7 +241,7 @@ export default async function SanatorioPage({ params }: Props) {
             ¿Qué prepagas{obrasSociales.length ? ' y obras sociales' : ''} atienden en {art(s.nombre)} {s.nombre}?
           </h1>
           <p className="text-gray-700 text-base leading-relaxed max-w-3xl">
-            Según sus cartillas oficiales, {art(s.nombre)} <strong>{s.nombre}</strong> figura en <strong>{lista.map((p) => p.prepagaNombre).join(', ')}</strong>.
+            Según sus cartillas oficiales{conAsesor}, {art(s.nombre)} <strong>{s.nombre}</strong> figura en <strong>{lista.map((p) => p.prepagaNombre).join(', ')}</strong>.
             {resumen && <> Para internación: {resumen}.</>}
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3 mt-6">
@@ -361,6 +366,8 @@ export default async function SanatorioPage({ params }: Props) {
                           Internación desde <strong>{p.desde.label}</strong>
                           {plan && <> · desde {formatPrecio(plan.precio)}/mes <span className="text-gray-400">(30 años)</span></>}
                         </p>
+                      ) : p.asesor ? (
+                        <p className="text-sm text-gray-700 mt-0.5">Lo cubre, según nuestro asesor oficial: el plan te lo confirmamos al cotizar</p>
                       ) : (
                         <p className="text-sm text-gray-700 mt-0.5">Figura solo para guardia</p>
                       )}
@@ -374,11 +381,11 @@ export default async function SanatorioPage({ params }: Props) {
                   <dl className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                     <div>
                       <dt className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Internación</dt>
-                      <dd className="text-gray-800 mt-1">{p.internacion.length ? p.internacion.map((x) => x.label).join(' · ') : 'No figura'}</dd>
+                      <dd className="text-gray-800 mt-1">{p.internacion.length ? p.internacion.map((x) => x.label).join(' · ') : p.asesor ? 'Sí (plan a confirmar)' : 'No figura'}</dd>
                     </div>
                     <div>
                       <dt className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Guardia</dt>
-                      <dd className="text-gray-800 mt-1">{p.guardia.length ? p.guardia.map((x) => x.label).join(' · ') : 'No figura con guardia'}</dd>
+                      <dd className="text-gray-800 mt-1">{p.guardia.length ? p.guardia.map((x) => x.label).join(' · ') : p.asesor ? 'Consultalo con el asesor' : 'No figura con guardia'}</dd>
                     </div>
                   </dl>
                   {p.sedes.length > 0 && (
@@ -387,7 +394,7 @@ export default async function SanatorioPage({ params }: Props) {
                     </p>
                   )}
                   <p className="text-xs text-gray-400 mt-2">
-                    Fuente: <a href={p.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">cartilla oficial de {p.prepagaNombre}</a> ({p.fecha}).
+                    {p.asesor ? <>Fuente: {p.asesor}.</> : <>Fuente: <a href={p.fuenteUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600">cartilla oficial de {p.prepagaNombre}</a> ({p.fecha}).</>}
                   </p>
                   {/* Enlazado interno (auditoría 29-sep-2026): esta página no
                       linkeaba a /cartillas, aunque es el contenido más

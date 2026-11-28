@@ -108,6 +108,8 @@ export interface PrepagaEnSanatorio {
   sedes: { nombre: string; direccion: string | null; zona: string }[]
   fuenteUrl: string
   fecha: string
+  /** Dato de nuestro asesor oficial, cuando el buscador relevado no lo mostraba */
+  asesor?: string
 }
 
 const esAmba = (s: string) => s === 'caba' || s.startsWith('gba-')
@@ -117,6 +119,23 @@ function coincide(s: SanatorioSEO, c: CentroCartilla): boolean {
   const texto = normalizarTexto(c.nombre)
   if (s.excluir?.some((x) => texto.includes(x))) return false
   return s.claves.every((k) => palabras.includes(k))
+}
+
+// Sanatorios que la prepaga cubre según nuestro asesor oficial (Darío,
+// 28-nov-2026) y que el buscador oficial de Swiss relevado el 22-sep no
+// mostraba. todos: desde el plan más bajo (todos los planes); si no, cubierto
+// sin el plan confirmado.
+export const ASESOR_FECHA = '28 de noviembre de 2026'
+const ALTAS_ASESOR: Record<string, { prepagaSlug: string; todos: boolean }[]> = {
+  'sanatorio-anchorena': [{ prepagaSlug: 'swiss-medical', todos: true }],
+  'sanatorio-colegiales': [{ prepagaSlug: 'swiss-medical', todos: false }],
+  'hospital-sirio-libanes': [{ prepagaSlug: 'swiss-medical', todos: false }],
+  'sanatorio-bernal': [{ prepagaSlug: 'swiss-medical', todos: false }],
+  'sanatorio-itoiz': [{ prepagaSlug: 'swiss-medical', todos: false }],
+}
+/** Sin convenio según nuestro asesor oficial (Darío, 28-nov-2026) */
+export const SIN_CONVENIO: Record<string, string[]> = {
+  'clinica-bazterrica': ['swiss-medical'],
 }
 
 const cache = new Map<string, PrepagaEnSanatorio[]>()
@@ -157,6 +176,22 @@ export function prepagasEnSanatorio(slug: string): PrepagaEnSanatorio[] {
       sedes: sedes.slice(0, 6),
       fuenteUrl: cart.fuenteUrl,
       fecha: textoFecha(cart),
+    })
+  }
+  for (const alta of ALTAS_ASESOR[slug] ?? []) {
+    const cart = Object.values(CARTILLAS).find((c) => c.prepagaSlug === alta.prepagaSlug)
+    if (!cart || out.some((x) => x.prepagaSlug === alta.prepagaSlug)) continue
+    const todos = alta.todos ? cart.escalera.map((id) => cart.planes.find((p) => p.id === id)).filter((p): p is PlanCartilla => Boolean(p)) : []
+    out.push({
+      prepagaSlug: cart.prepagaSlug,
+      prepagaNombre: cart.prepagaNombre,
+      desde: todos[0] ?? null,
+      internacion: todos,
+      guardia: [],
+      sedes: [],
+      fuenteUrl: cart.fuenteUrl,
+      fecha: `dato de nuestro asesor oficial de ${cart.prepagaNombre}, ${ASESOR_FECHA}`,
+      asesor: `nuestro asesor oficial de ${cart.prepagaNombre} (${ASESOR_FECHA})`,
     })
   }
   cache.set(slug, out)
