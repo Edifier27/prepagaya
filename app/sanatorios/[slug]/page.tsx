@@ -12,6 +12,7 @@ import { pediatriaDeSanatorio } from '@/lib/data/sanatorios-pediatria'
 import { ContratarPlanButton } from '@/components/prepagas/ContratarPlanButton'
 import { BarraCotizar } from '@/components/prepagas/BarraCotizar'
 import { ldJson } from '@/lib/jsonld'
+import { operacionesDeSanatorio, prepagaDuena } from '@/lib/data/operaciones-clinicas'
 
 // "¿Qué prepagas atienden en el Hospital X?" (23-sep-2026): búsqueda que la
 // competencia cubre con notas escritas a mano. Acá todo sale de las cartillas
@@ -238,6 +239,30 @@ export default async function SanatorioPage({ params }: Props) {
               ¿Te atendés en otro sanatorio también? Mirá qué plan los cubre a todos →
             </Link>
           </div>
+          {/* Quién es el dueño (28-nov-2026): compras de clínicas y red propia, con fuente */}
+          {(() => {
+            const ops = operacionesDeSanatorio(slug)
+            const duena = prepagaDuena(slug)
+            if (!ops.length && !duena) return null
+            return (
+              <div className="mt-6 rounded-xl border border-gray-200 bg-white p-4 text-sm text-gray-700 max-w-3xl">
+                <div className="font-bold text-gray-900 mb-1">Quién es el dueño</div>
+                {ops.map((o) => (
+                  <p key={o.id} className="leading-relaxed">
+                    {o.tipo === 'gerenciamiento' ? `Desde ${o.fecha} lo gerencia ${o.comprador}.` : o.id === 'icba' ? `Desde ${o.fecha}, ${o.comprador} tiene el 50%.` : `Desde ${o.fecha} es de ${o.comprador}${(o.sanatorios?.length ?? 0) > 1 ? `, que compró el ${o.que}` : ''}.`}{' '}
+                    <span className="text-xs text-gray-400">Fuente: {o.fuentes.map((f, i) => (<span key={f.url}>{i > 0 && ' · '}<a href={f.url} target="_blank" rel="noopener noreferrer" className="underline">{f.texto}</a></span>))}</span>
+                  </p>
+                ))}
+                {!ops.length && duena === 'swiss-medical' && <p className="leading-relaxed">Es un sanatorio propio de Swiss Medical.</p>}
+                <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                  {(duena === 'swiss-medical' || ops.some((o) => o.prepagaSlug === 'swiss-medical')) && (
+                    <Link href="/prepagas-con-sanatorios-propios/swiss-medical" className="font-semibold text-[#E8002D] hover:underline">Clínicas y sanatorios de Swiss Medical →</Link>
+                  )}
+                  {ops.length > 0 && <Link href={`/prensa/clinicas-compradas-por-prepagas#${ops[0].id}`} className="font-semibold text-[#E8002D] hover:underline">Qué clínicas compraron las prepagas →</Link>}
+                </p>
+              </div>
+            )
+          })()}
         </div>
       </section>
 

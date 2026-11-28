@@ -139,6 +139,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/prensa`, lastModified: PRECIOS_UPDATE, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/prensa/prepagas-dadas-de-baja`, lastModified: new Date('2026-09-29').toISOString(), changeFrequency: 'monthly', priority: 0.6 },
+    // 28-nov-2026: compras de clínicas y red propia de Swiss Medical
+    { url: `${BASE}/prensa/clinicas-compradas-por-prepagas`, lastModified: new Date('2026-11-28').toISOString(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE}/prepagas-con-sanatorios-propios/swiss-medical`, lastModified: new Date('2026-11-28').toISOString(), changeFrequency: 'monthly', priority: 0.8 },
     ...INFORMES_PROVINCIA.map((p) => ({ url: `${BASE}/prensa/sueldo-para-cubrir-la-prepaga/${p.slug}`, lastModified: PRECIOS_UPDATE, changeFrequency: 'monthly' as const, priority: 0.6 })),
     ...sanatoriosPublicables().map((s) => ({
       url: `${BASE}/sanatorios/${s.slug}`,

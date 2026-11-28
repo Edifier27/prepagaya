@@ -151,6 +151,9 @@ export default function Pagina() {
                   </p>
                 )}
                 {p.nota && <p className="text-sm text-gray-500 mt-1">{p.nota}</p>}
+                {p.slug === 'swiss-medical' && (
+                  <Link href="/prepagas-con-sanatorios-propios/swiss-medical" className="inline-block text-sm font-semibold text-[#E8002D] hover:underline mt-2">Clínicas y sanatorios de Swiss Medical, plan por plan →</Link>
+                )}
                 <p className="text-xs text-gray-400 mt-2">Fuente: <Fuente p={p} /></p>
               </div>
             ))}
@@ -198,6 +201,7 @@ export default function Pagina() {
             <li><Link href="/blog/cual-es-la-prepaga-mas-grande-argentina" className="text-[#E8002D] hover:underline">La prepaga más grande de Argentina: ranking por afiliados</Link></li>
             <li><Link href="/ranking" className="text-[#E8002D] hover:underline">Cuál es la mejor prepaga</Link></li>
             <li><Link href="/sanatorios" className="text-[#E8002D] hover:underline">Qué prepagas atienden en cada sanatorio</Link></li>
+            <li><Link href="/prensa/clinicas-compradas-por-prepagas" className="text-[#E8002D] hover:underline">Qué clínicas compraron las prepagas (2021-2026)</Link></li>
             <li><Link href="/comparar" className="text-[#E8002D] hover:underline">Comparar prepagas lado a lado</Link></li>
           </ul>
         </section>

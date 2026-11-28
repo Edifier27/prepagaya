@@ -25,7 +25,7 @@ export const estructuraPrepagas: EstructuraPrepaga[] = [
     slug: 'swiss-medical', nombre: 'Swiss Medical', sanatorios: 11,
     sanatoriosNombres: ['Clínica y Maternidad Suizo Argentina', 'Sanatorio de Los Arcos', 'Sanatorio Agote', 'Clínica Zabala', 'Clínica Olivos', 'Clínica San Lucas', 'Sanatorio Las Lomas', 'Sanatorio Nordelta', 'Sanatorio Altos de Salta'],
     centrosMedicos: 20, centrosOdontologicos: 10, avionSanitario: 1,
-    nota: 'Los 20 centros médicos son los SMG Center, exclusivos para socios. También es dueña del ICBA (Instituto Cardiovascular de Buenos Aires) y de Diagnóstico Maipú.',
+    nota: 'Los 20 centros médicos son los SMG Center, exclusivos para socios. También tiene el 50% del ICBA (Instituto Cardiovascular de Buenos Aires, desde enero de 2021) y es dueña de Diagnóstico Maipú (desde octubre de 2025).',
     fuente: { texto: 'Swiss Medical, dato confirmado por PrepagaYa como asesor oficial (2-nov-2026)' },
   },
   {
