@@ -64,4 +64,8 @@ Contexto: las cámaras (ADECRA, ACAMI, CAPRESS) piden audiencia por la crisis y 
    - botón de cotizar Swiss.
 2. **Informe de compras y cierres**, con fuente y fecha.
 3. **Sección "Quién es el dueño"** en los sanatorios comprados: Las Lomas, ICBA y los tres de Rosario.
-4. **Páginas de sanatorio nuevas** para los que más se buscan con "atiende swiss medical" y no tenemos (Juncal, Bazterrica, Santa Isabel, Clínica Modelo de Lanús…), solo si están en las cartillas oficiales.
+4. **"[Sanatorio] atiende Swiss Medical"** (28-nov):
+   - Juncal, Bazterrica y Santa Isabel ya tenían página (1.833, 1.136 y 1.324 impresiones). El primer análisis las dio por faltantes por error.
+   - Juncal y Santa Isabel están en la cartilla de Swiss desde el SMG02 y el S1, y responden "Sí" desde el 27-nov.
+   - En los sanatorios del AMBA que no figuran en la cartilla de Swiss, la página ahora responde "¿atiende Swiss Medical?" con un "No figura", la fecha del relevamiento y la derivación a un asesor. Son Bazterrica, Anchorena, Colegiales, Sirio Libanés, Bernal e Itoiz.
+   - Pendiente: confirmar con Swiss si alguno entró a la cartilla después del 22-sep.
