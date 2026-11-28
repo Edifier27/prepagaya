@@ -71,6 +71,9 @@ export const SANATORIOS_SEO: SanatorioSEO[] = [
   { slug: 'sanatorio-de-la-trinidad-quilmes', nombre: 'Sanatorio de la Trinidad Quilmes', claves: ['trinidad', 'quilmes'] },
   { slug: 'sanatorio-bernal', nombre: 'Sanatorio Bernal', claves: ['bernal'] },
   { slug: 'sanatorio-itoiz', nombre: 'Sanatorio Itoiz', claves: ['itoiz'] },
+  // 28-nov-2026 (Darío): zona sur. IMA está en las cartillas; Espora, en la de Sancor y en Swiss según el asesor
+  { slug: 'clinica-ima', nombre: 'Clínica IMA (Adrogué)', claves: ['ima'] },
+  { slug: 'clinica-espora', nombre: 'Clínica Espora', claves: ['espora'] },
   { slug: 'clinica-bessone', nombre: 'Clínica Bessone', claves: ['bessone'] },
   // Interior: los que figuran en 3 o más cartillas oficiales de su ciudad
   { slug: 'sanatorio-allende', nombre: 'Sanatorio Allende', claves: ['allende'], excluir: ['transito', 'caceres'], ciudad: 'cordoba', ciudadNombre: 'Córdoba' },
@@ -123,15 +126,16 @@ function coincide(s: SanatorioSEO, c: CentroCartilla): boolean {
 
 // Sanatorios que la prepaga cubre según nuestro asesor oficial (Darío,
 // 28-nov-2026) y que el buscador oficial de Swiss relevado el 22-sep no
-// mostraba. todos: desde el plan más bajo (todos los planes); si no, cubierto
-// sin el plan confirmado.
+// mostraba. todos: desde el plan más bajo (todos los planes: el S1 comparte
+// cartilla con el SMG02); si no, cubierto sin el plan confirmado.
 export const ASESOR_FECHA = '28 de noviembre de 2026'
 const ALTAS_ASESOR: Record<string, { prepagaSlug: string; todos: boolean }[]> = {
   'sanatorio-anchorena': [{ prepagaSlug: 'swiss-medical', todos: true }],
-  'sanatorio-colegiales': [{ prepagaSlug: 'swiss-medical', todos: false }],
-  'hospital-sirio-libanes': [{ prepagaSlug: 'swiss-medical', todos: false }],
-  'sanatorio-bernal': [{ prepagaSlug: 'swiss-medical', todos: false }],
-  'sanatorio-itoiz': [{ prepagaSlug: 'swiss-medical', todos: false }],
+  'sanatorio-colegiales': [{ prepagaSlug: 'swiss-medical', todos: true }],
+  'hospital-sirio-libanes': [{ prepagaSlug: 'swiss-medical', todos: true }],
+  'sanatorio-bernal': [{ prepagaSlug: 'swiss-medical', todos: true }],
+  'sanatorio-itoiz': [{ prepagaSlug: 'swiss-medical', todos: true }],
+  'clinica-espora': [{ prepagaSlug: 'swiss-medical', todos: true }],
 }
 /** Sin convenio según nuestro asesor oficial (Darío, 28-nov-2026) */
 export const SIN_CONVENIO: Record<string, string[]> = {
